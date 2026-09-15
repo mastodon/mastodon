@@ -860,7 +860,6 @@ sc:
   imports:
     errors:
       empty: Archìviu CSV bòidu
-      over_rows_processing_limit: cuntenet prus de %{count} filas
       too_large: S'archìviu est tropu mannu
     failures: Faddinas
     imported: Importadu
@@ -929,7 +928,6 @@ sc:
     incoming_migrations_html: Pro tramudare cuntenutos dae un'àteru contu a custu, prima depes <a href="%{path}">creare unu nomìngiu</a>.
     moved_msg: Su contu tuo immoe est torrende a indiritzare a %{acct} e sa gente chi ti sighit at a èssere tramudada.
     not_redirecting: Su contu tuo no est torrende a indiritzare a perunu àteru contu immoe.
-    on_cooldown: As tramudadu su contu tuo de reghente. Custa funtzionalidade at a torrare a èssere a disponimentu de immoe a %{count} dies.
     past_migrations: Tràmudas pretzedentes
     proceed_with_move: Tràmuda sa gente chi ti sighit
     redirected_msg: Su contu tuo immoe est torrende a indiritzare a %{acct}.
@@ -1049,9 +1047,6 @@ sc:
     descriptions:
       account: Publicatziones pùblicas dae @%{acct}
       tag: 'Publicatziones pùblicas etichetadas cun #%{hashtag}'
-  scheduled_statuses:
-    over_daily_limit: As superadu su lìmite de %{limit} publicatziones programmadas pro cudda die
-    over_total_limit: As superadu su lìmite de %{limit} tuts programmados
   sessions:
     activity: Ùrtima atividade
     browser: Navigadore

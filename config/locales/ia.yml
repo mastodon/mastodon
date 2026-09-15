@@ -1045,7 +1045,6 @@ ia:
           one: Compartite per un persona le septimana passate
           other: Compartite per %{count} personas le septimana passate
         title: Ligamines in tendentia
-        usage_comparison: Compartite %{today} vices hodie, in comparation con le %{yesterday} de heri
       not_allowed_to_trend: Non autorisate a apparer in tendentias
       only_allowed: Solo permittites
       pending_review: Attende revision
@@ -1090,7 +1089,6 @@ ia:
         trendable: Pote apparer sub tendentias
         trending_rank: 'Tendentia #%{rank}'
         usable: Pote esser usate
-        usage_comparison: Usate %{today} vices hodie, in comparation con le %{yesterday} de heri
         used_by_over_week:
           one: Usate per un persona in le ultime septimana
           other: Usate per %{count} personas in le ultime septimana
@@ -1487,7 +1485,6 @@ ia:
       empty: File CSV vacue
       incompatible_type: Incompatibile con le typo de importation seligite
       invalid_csv_file: 'File CSV non valide. Error: %{error}'
-      over_rows_processing_limit: contine plus de %{count} lineas
       too_large: Le file es troppo grande
     failures: Fallimentos
     imported: Importate
@@ -1630,7 +1627,6 @@ ia:
     incoming_migrations_html: Pro migrar de un altere conto a iste, primo tu debe <a href="%{path}">crear un alias de conto</a>.
     moved_msg: Tu conto es ora redirigite a %{acct} e le transferentia de tu sequitores es in curso.
     not_redirecting: Tu conto actualmente non es redirigite a un altere conto.
-    on_cooldown: Tu ha recentemente migrate tu conto. Iste function essera disponibile de novo in %{count} dies.
     past_migrations: Migrationes passate
     proceed_with_move: Transferer sequitores
     redirected_msg: Tu conto es ora redirigite a %{acct}.
@@ -1786,8 +1782,6 @@ ia:
       account: Messages public de @%{acct}
       tag: 'Messages public con hashtag #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Tu ha excedite le limite de %{limit} messages programmate pro hodie
-    over_total_limit: Tu ha excedite le limite de %{limit} messages programmate
     too_soon: le data debe esser in le futuro
   self_destruct:
     lead_html: Infortunatemente, <strong>%{domain}</strong> tosto claudera permanentemente. Si tu habeva un conto illac, tu non potera continuar a usar lo, ma tu pote ancora requestar un copia de tu datos.

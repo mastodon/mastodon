@@ -1062,7 +1062,6 @@ sl:
           other: Delilo %{count} oseb v zadnjem tednu
           two: Delili %{count} osebi v zadnjem tednu
         title: Povezave v trendu
-        usage_comparison: Danes deljeno %{today}-krat, včeraj pa %{yesterday}-krat
       not_allowed_to_trend: Ni dovoljeno, da bi bilo v trendu
       only_allowed: Samo dovoljeni
       pending_review: Čakajoče na pregled
@@ -1109,7 +1108,6 @@ sl:
         trendable: Se lahko pojavi med trendi
         trending_rank: 'V trendu #%{rank}'
         usable: Je moč uporabiti
-        usage_comparison: Danes uporabljeno %{today}-krat, včeraj pa %{yesterday}-krat
         used_by_over_week:
           few: Uporabile %{count} osebe v zadnjem tednu
           one: Uporabila %{count} oseba v zadnjem tednu
@@ -1528,7 +1526,6 @@ sl:
       empty: Prazna datoteka CSV
       incompatible_type: Nezdružljivo z izbrano vrsto uvoza
       invalid_csv_file: 'Neveljavna datoteka CSV. Napaka: %{error}'
-      over_rows_processing_limit: vsebuje več kot %{count} vrstic
       too_large: Datoteka je prevelika
     failures: Neuspehi
     imported: Uvoženo
@@ -1696,7 +1693,6 @@ sl:
     incoming_migrations_html: Če se želite preseliti iz drugega računa na tega, morate najprej <a href="%{path}">ustvariti vzdevek računa</a>.
     moved_msg: Vaš račun se zdaj preusmerja na %{acct} in vaši sledilci so preseljeni.
     not_redirecting: Vaš račun trenutno ne preusmerja na noben drug račun.
-    on_cooldown: Nedavno ste migrirali svoj račun. Funkcija bo znova na voljo čez %{count} dni.
     past_migrations: Pretekle migracije
     proceed_with_move: Premakni sledilce
     redirected_msg: Vaš račun se zdaj preusmerja na %{acct}.
@@ -1852,8 +1848,6 @@ sl:
       account: Javne objave @%{acct}
       tag: 'Javne objave s ključnikom #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Za ta dan ste presegli omejitev %{limit} načrtovanih objav
-    over_total_limit: Presegli ste omejitev %{limit} načrtovanih objav
     too_soon: datum mora biti v prihodnosti
   self_destruct:
     lead_html: Na žalost se <strong>%{domain}</strong> za vedno zapira. Če ste tu imeli svoj račun, ga v prihodnje ne boste mogli več uporabljati. Zahtevate lahko kopijo svojih podatkov.

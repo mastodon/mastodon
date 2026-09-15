@@ -1198,7 +1198,9 @@ fi:
           one: Jakanut yksi käyttäjä viimeisen viikon aikana
           other: Jakanut %{count} käyttäjää viimeisen viikon aikana
         title: Suositut linkit
-        usage_comparison: Jaettu tänään %{today} kertaa verrattuna eilisen %{yesterday} kertaan
+        usage_comparison:
+          one: Jaettu tänään %{count} kerran verrattuna eilisen %{yesterday} kertaan
+          other: Jaettu tänään %{count} kertaa verrattuna eilisen %{yesterday} kertaan
       not_allowed_to_trend: Ei saa trendata
       only_allowed: Vain sallittu
       pending_review: Odottaa tarkastusta
@@ -1243,7 +1245,9 @@ fi:
         trendable: Voi näkyä trendeissä
         trending_rank: Suosittu, sijalla %{rank}
         usable: Voi käyttää
-        usage_comparison: Käytetty tänään %{today} kertaa, verrattuna elisen %{yesterday} kertaan
+        usage_comparison:
+          one: Käytetty tänään %{count} kerran verrattuna eilisen %{yesterday} kertaan
+          other: Käytetty tänään %{count} kertaa verrattuna eilisen %{yesterday} kertaan
         used_by_over_week:
           one: Käyttänyt yksi käyttäjä viimeisen viikon aikana
           other: Käyttänyt %{count} käyttäjää viimeisen viikon aikana
@@ -1693,7 +1697,9 @@ fi:
       invalid_csv_file: 'Epäkelpo CSV-tiedosto. Virhe: %{error}'
       invalid_json_file: 'Epäkelpo JSON-tiedosto. Virhe: %{error}'
       no_data: Tämä tiedosto ei sisällä dataa, joka vastaa annettua tuontityyppiä
-      over_rows_processing_limit: sisältää yli %{count} riviä
+      over_rows_processing_limit:
+        one: sisältää yli %{count} rivin
+        other: sisältää yli %{count} riviä
       too_large: Tiedosto on liian suuri
     failures: Virheet
     imported: Tuodut
@@ -1840,7 +1846,9 @@ fi:
     incoming_migrations_html: Muuttaaksesi toisesta tilistä tähän, sinun täytyy ensin <a href="%{path}">luoda tilin alias</a>.
     moved_msg: Tilisi ohjaa nyt kohteeseen %{acct} ja seuraajiasi siirretään.
     not_redirecting: Tilisi ei ohjaa tällä hetkellä mihinkään muuhun tiliin.
-    on_cooldown: Olet siirtänyt tilisi äskettäin. Tämä toiminto tulee saataville uudelleen %{count} päivän kuluttua.
+    on_cooldown:
+      one: Olet siirtänyt tilisi äskettäin. Tämä toiminto tulee saataville uudelleen %{count} päivän kuluttua.
+      other: Olet siirtänyt tilisi äskettäin. Tämä toiminto tulee saataville uudelleen %{count} päivän kuluttua.
     past_migrations: Edelliset migraatiot
     proceed_with_move: Siirrä seuraajat
     redirected_msg: 'Tilisi uudelleenohjaa nyt kohteeseen: %{acct}.'
@@ -2026,8 +2034,12 @@ fi:
       account: Julkiset julkaisut tililtä @%{acct}
       tag: 'Julkiset julkaisut aihetunnisteella #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Olet ylittänyt %{limit} ajastetun julkaisun rajan tälle päivälle
-    over_total_limit: Olet ylittänyt %{limit} ajastetun julkaisun rajan
+    over_daily_limit:
+      one: Olet ylittänyt päivittäisen %{count} ajastetun julkaisun rajan
+      other: Olet ylittänyt päivittäisen %{count} ajastetun julkaisun rajan
+    over_total_limit:
+      one: Olet ylittänyt %{count} ajastetun julkaisun rajan
+      other: Olet ylittänyt %{count} ajastetun julkaisun rajan
     too_soon: päivämäärän on oltava tulevaisuudessa
   self_destruct:
     lead_html: Valitettavasti <strong>%{domain}</strong> sulkeutuu pysyvästi. Jos sinulla on siellä tili, et voi jatkaa sen käyttöä mutta voit yhä pyytää varmuuskopiota tiedoistasi.

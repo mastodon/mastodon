@@ -1206,7 +1206,6 @@ et:
           one: Jagatud ühe kasutaja pool viimase nädala jooksul
           other: Jagatud %{count} kasutaja poolt viimase nädala jooksul
         title: Trendikad viited
-        usage_comparison: Jagatud %{today} korda täna, eile %{yesterday} korda
       not_allowed_to_trend: Trend ei ole lubatud
       only_allowed: Ainult lubatud
       pending_review: Ootab ülevaatust
@@ -1251,7 +1250,6 @@ et:
         trendable: Võib ilmuda trendides
         trending_rank: 'Trendides #%{rank}'
         usable: Kasutatav
-        usage_comparison: Kasutatud %{today} korda täna, eile %{yesterday} korda
         used_by_over_week:
           one: Kasutatud ühe kasutaja pool viimase nädala jooksul
           other: Kasutatud %{count} kasutaja poolt viimase nädala jooksul
@@ -1710,7 +1708,6 @@ et:
       invalid_csv_file: 'Vigane CSV-fail. Veateade: %{error}'
       invalid_json_file: 'Vigane JSON-fail. Viga: %{error}'
       no_data: See fail ei sisalda mitte mingisuguseid andmeid, mis vastaksid antud importtüübile
-      over_rows_processing_limit: sisaldab rohkem, kui %{count} rida
       status_not_found_warning: Mõned sinu filtrid peidavad teatavaid postitusi, mis pole sellele serverile teada. Kui server neid tuvastab, siis nad jäävad automaatselt filtreerimata.
       too_large: Fail on liiga suur
     failures: Ebaõnnestumised
@@ -1861,7 +1858,6 @@ et:
     incoming_migrations_html: Kui soovid kolida teise konto siia, pead esmalt määrama <a href="%{path}">kolitava konto aadressi</a>.
     moved_msg: Su konto suunab nüüd ümber kontole %{acct}, jälgijaid kolitakse üle.
     not_redirecting: See konto pole praegu kuhugi ümber suunatud.
-    on_cooldown: Oled oma kontot hiljuti kolinud. Uuesti saad seda teha %{count} päeva pärast.
     past_migrations: Kolimisajalugu
     proceed_with_move: Käivita kolimine
     redirected_msg: Konto on suunatud ümber aadressile %{acct}.
@@ -2049,8 +2045,6 @@ et:
       account: "@%{acct} avalikud postitused"
       tag: 'Avalikud postitused teemaviitega #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Lubatud ajastatud postituste arv %{limit} päevas on tänaseks ületatud
-    over_total_limit: Oled jõudnud ajastatud postituste lubatud maksimumarvuni %{limit}
     too_soon: kuupäev peab olema tulevikus
   self_destruct:
     lead_html: Kahjuks suletakse <strong>%{domain}</strong> lõplikult. Kui sul oli seal konto, ei saa sa seda enam kasutada, kuid siiski võid taotleda oma andmete varukoopiat.

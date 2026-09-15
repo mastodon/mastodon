@@ -1206,7 +1206,6 @@ de:
           one: In den vergangenen 7 Tagen von einem Profil geteilt
           other: In den vergangenen 7 Tagen von %{count} Profilen geteilt
         title: Angesagte Links
-        usage_comparison: Heute %{today} × und gestern %{yesterday} × geteilt
       not_allowed_to_trend: Trend nicht erlaubt
       only_allowed: Nur Genehmigte
       pending_review: Überprüfung ausstehend
@@ -1251,7 +1250,6 @@ de:
         trendable: In Trends erlaubt
         trending_rank: Platz %{rank}
         usable: In Beiträgen erlaubt
-        usage_comparison: Heute %{today} × und gestern %{yesterday} × verwendet
         used_by_over_week:
           one: In den vergangenen 7 Tagen von einem Profil verwendet
           other: In den vergangenen 7 Tagen von %{count} Profilen verwendet
@@ -1710,7 +1708,9 @@ de:
       invalid_csv_file: 'Ungültige CSV-Datei. Fehler: %{error}'
       invalid_json_file: 'Ungültige JSON-Datei. Fehler: %{error}'
       no_data: Diese Datei enthält keinerlei Daten, die zu diesem Dateitypen passen
-      over_rows_processing_limit: enthält mehr als %{count} Zeilen
+      over_rows_processing_limit:
+        one: enthält mehr als %{count} Zeile
+        other: enthält mehr als %{count} Zeilen
       status_not_found_warning: Einige deiner Filter blenden bestimmte Beiträge aus, die diesem Server nicht bekannt sind. Diese Beiträge werden nicht automatisch gefiltert, wenn sie dem Server später bekannt werden.
       too_large: Datei ist zu groß
     failures: Fehler
@@ -1861,7 +1861,9 @@ de:
     incoming_migrations_html: Um von einem anderen Konto zu diesem umzuziehen, musst du zuerst ein <a href="%{path}">Konto-Alias erstellen</a>.
     moved_msg: Dein Konto wird jetzt auf %{acct} weitergeleitet und deine Follower werden übertragen.
     not_redirecting: Dein Konto wird derzeit nicht auf ein anderes Konto weitergeleitet.
-    on_cooldown: Du bist mit deinem Konto erst vor Kurzem umgezogen. Diese Funktion wird in %{count} Tagen wieder verfügbar sein.
+    on_cooldown:
+      one: Du bist mit deinem Konto erst vor Kurzem umgezogen. Diese Funktion wird in %{count} Tag wieder verfügbar sein.
+      other: Du bist mit deinem Konto erst vor Kurzem umgezogen. Diese Funktion wird in %{count} Tagen wieder verfügbar sein.
     past_migrations: Vorherige Umzüge
     proceed_with_move: Follower übertragen
     redirected_msg: Dein Konto wird nun zu %{acct} weitergeleitet.
@@ -2050,8 +2052,12 @@ de:
       account: Öffentliche Beiträge von @%{acct}
       tag: 'Öffentliche Beiträge mit dem Hashtag #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du hast das Limit von %{limit} geplanten Beiträgen für heute erreicht
-    over_total_limit: Du hast das Limit für geplante Beiträge, das %{limit} beträgt, erreicht
+    over_daily_limit:
+      one: Du hast das Limit von %{count} geplanten Beitrag für heute erreicht
+      other: Du hast das Limit von %{count} geplanten Beiträgen für heute erreicht
+    over_total_limit:
+      one: Du hast das Limit von %{count} geplanten Beitrag erreicht
+      other: Du hast das Limit von %{count} geplanten Beiträgen erreicht
     too_soon: Datum muss in der Zukunft liegen
   self_destruct:
     lead_html: Bedauerlicherweise wird <strong>%{domain}</strong> den Betrieb für immer einstellen. Wenn du dort ein Konto angelegt hast, wirst du es nicht weiter verwenden können. Du kannst allerdings eine Sicherung deiner Daten anfordern.

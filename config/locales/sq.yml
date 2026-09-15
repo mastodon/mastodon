@@ -1180,7 +1180,6 @@ sq:
           one: Ndarë me të tjerë nga një person gjatë javës së kaluar
           other: Ndarë me të tjerë nga %{count} vetë gjatë javës së kaluar
         title: Lidhje në modë
-        usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
       only_allowed: Lejuar vetëm
       pending_review: Në pritje të shqyrtimit
       preview_card_providers:
@@ -1224,7 +1223,6 @@ sq:
         trendable: Mund të shfaqet nën të modës
         trending_rank: 'Trending #%{rank}'
         usable: Mund të përdoret
-        usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
         used_by_over_week:
           one: Përdorur nga një person gjatë javës së kaluar
           other: Përdorur nga %{count} vetë gjatë javës së kaluar
@@ -1677,7 +1675,6 @@ sq:
       incompatible_type: E papërputhshme me llojin e përzgjedhur për importim
       invalid_csv_file: 'Kartelë CSV e pavlefshme. Gabim: %{error}'
       invalid_json_file: 'Kartelë JSON e pavlefshme. Gabim: %{error}'
-      over_rows_processing_limit: përmban më shumë se %{count} rreshta
       status_not_found_warning: Disa nga filtrat tuaj fshehin postime specifike që s’njihen nga ky shërbyes. Këto postime s’do të filtrohen automatikisht, nëse zbulohen më vonë nga shërbyesi.
       too_large: Kartela është shumë e madhe
     failures: Dështime
@@ -1828,7 +1825,6 @@ sq:
     incoming_migrations_html: Për të kaluar prej një llogarie tjetër te kjo këtu, së pari lypset të <a href="%{path}">krijoni një alias llogarie</a>.
     moved_msg: Llogaria juaj tani ridrejton te %{acct} dhe ndjekësit tuaj po sillen në të.
     not_redirecting: Llogaria juaj nuk ridrejton aktualisht te ndonjë llogari tjetër.
-    on_cooldown: E keni migruar llogarinë tuaj tani afër. Ky funksion do të jetë sërish i përdorshëm pas %{count} ditësh.
     past_migrations: Migrime të kaluar
     proceed_with_move: Lëvizi ndjekësit
     redirected_msg: Llogaria juaj tani ridrejton te %{acct}.
@@ -2016,8 +2012,6 @@ sq:
       account: Postime publike prej @%{acct}
       tag: 'Postime publike etiketuar me #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara për atë ditë
-    over_total_limit: Keni tejkaluar kufirin prej %{limit} mesazhesh të planifikuara
     too_soon: data duhet të jetë në të ardhmen
   self_destruct:
     lead_html: Mjerisht, <strong>%{domain}</strong> po mbyllet përgjithmonë. Nëse patët një llogari këtu, s’do të jeni në gjendje të vazhdoni ta përdorni, por mundeni ende të kërkoni një kopjeruajtje të të dhënave tuaja.

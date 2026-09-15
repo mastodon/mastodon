@@ -1206,7 +1206,9 @@ da:
           one: Delt af én person den seneste uge
           other: Delt af %{count} personer den seneste uge
         title: Links, der trender
-        usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
+        usage_comparison:
+          one: Delt %{count} gang i dag, sammenlignet med %{yesterday} i går
+          other: Delt %{count} gange i dag, sammenlignet med %{yesterday} i går
       not_allowed_to_trend: Ikke tilladt at trende
       only_allowed: Kun tilladte
       pending_review: Afventer gennemgang
@@ -1251,7 +1253,9 @@ da:
         trendable: Kan vises under tendenser
         trending_rank: 'Populær #%{rank}'
         usable: Kan anvendes
-        usage_comparison: Anvendt %{today} gange i dag, sammenlignet med %{yesterday} i går
+        usage_comparison:
+          one: Brugt %{count} gang i dag, sammenlignet med %{yesterday} i går
+          other: Brugt %{count} gange i dag, sammenlignet med %{yesterday} i går
         used_by_over_week:
           one: Brugt af én person den seneste uge
           other: Brugt af %{count} personer den seneste uge
@@ -1710,7 +1714,9 @@ da:
       invalid_csv_file: 'Ugyldig CSV-fil. Fejl: %{error}'
       invalid_json_file: 'Ugyldig JSON-fil. Fejl: %{error}'
       no_data: Denne fil indeholder ikke nogen data, der matcher den givne importtype
-      over_rows_processing_limit: indeholder mere end %{count} rækker
+      over_rows_processing_limit:
+        one: indeholder mere end %{count} række
+        other: indeholder mere end %{count} rækker
       status_not_found_warning: Nogle af dine filtre skjuler bestemte indlæg, som denne server ikke kender til. Disse indlæg bliver ikke automatisk filtreret, hvis serveren finder dem senere.
       too_large: Filen for stor
     failures: Mislykket
@@ -1861,7 +1867,9 @@ da:
     incoming_migrations_html: For at flytte fra en anden konto til denne skal der først <a href="%{path}">oprettes et kontoalias</a>.
     moved_msg: Din konto omdirigeres nu til %{acct} og dine følgere overflyttes.
     not_redirecting: Din konto omdirigerer pt. ikke til nogen anden konto.
-    on_cooldown: Du har for nylig migreret din konto. Denne funktion tilgængeliggøres igen om %{count} dage.
+    on_cooldown:
+      one: Du har for nylig flyttet din konto. Denne funktion vil igen være tilgængelig om %{count} dag.
+      other: Du har for nylig flyttet din konto. Denne funktion vil igen være tilgængelig om %{count} dage.
     past_migrations: Tidligere migreringer
     proceed_with_move: Flyt følgere
     redirected_msg: Din konto omdirigerer nu til %{acct}.
@@ -2049,8 +2057,12 @@ da:
       account: Offentlige indlæg fra @%{acct}
       tag: 'Offentlige indlæg tagget #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Den daglige grænse på %{limit} planlagte indlæg er nået
-    over_total_limit: Grænsen på %{limit} planlagte indlæg er nået
+    over_daily_limit:
+      one: Du har overskredet grænsen på %{count} planlagt indlæg for i dag
+      other: Du har overskredet grænsen på %{count} planlagte indlæg for i dag
+    over_total_limit:
+      one: Du har overskredet grænsen på %{count} planlagt indlæg
+      other: Du har overskredet grænsen på %{count} planlagte indlæg
     too_soon: dato skal være i fremtiden
   self_destruct:
     lead_html: Desværre lukker <strong>%{domain}</strong> permanent. Har man en konto dér, vil fortsat brug heraf ikke være mulig. Man kan dog stadig anmode om en sikkerhedskopi af sine data.

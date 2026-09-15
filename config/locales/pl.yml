@@ -1137,7 +1137,6 @@ pl:
           one: Udostępnione przez jedną osobę w ciągu ostatniego tygodnia
           other: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
         title: Popularne linki
-        usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
       not_allowed_to_trend: Wyłączona widoczność w popularnych
       only_allowed: Tylko dozwolone
       pending_review: Oczekuje na przegląd
@@ -1184,7 +1183,6 @@ pl:
         trendable: Może pojawić się pod trendami
         trending_rank: 'Popularne #%{rank}'
         usable: Może być użyty
-        usage_comparison: Używane %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
         used_by_over_week:
           few: Użyte przez %{count} osoby w ciągu ostatniego tygodnia
           many: Użyte przez %{count} osób w ciągu ostatniego tygodnia
@@ -1618,7 +1616,6 @@ pl:
       empty: Pusty plik CSV
       incompatible_type: Niezgodny z wybranym typem importu
       invalid_csv_file: 'Nieprawidłowy plik CSV. Błąd: %{error}'
-      over_rows_processing_limit: zawiera więcej niż %{count} wierszy
       too_large: Plik jest zbyt duży
     failures: Błędy
     imported: Zaimportowano
@@ -1785,7 +1782,6 @@ pl:
     incoming_migrations_html: Aby przenieść się z innego konta na to, musisz najpierw <a href="%{path}">utworzyć alias konta</a>.
     moved_msg: Twoje konto przekierowuje teraz na %{acct}, a obserwujący są przenoszeni.
     not_redirecting: Twoje konto nie przekierowuje obecnie na żadne inne konto.
-    on_cooldown: Ostatnio przeniosłeś(-aś) swoje konto. Ta funkcja będzie dostępna ponownie za %{count} dni.
     past_migrations: Poprzednie migracje
     proceed_with_move: Przenieś obserwujących
     redirected_msg: Twoje konto przekierowuje teraz na %{acct}.
@@ -1941,8 +1937,6 @@ pl:
       account: Publiczne posty od @%{acct}
       tag: 'Publiczne wpisy oznaczone #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów na ten dzień
-    over_total_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów
     too_soon: musi to być przyszła data
   self_destruct:
     lead_html: Niestety, <strong>%{domain}</strong> jest permanentnie zamykane. Konta z tego serwera nie będą dostępne, ale można jeszcze odzyskać kopię zapasową danych.

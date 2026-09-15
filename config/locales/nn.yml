@@ -1190,7 +1190,6 @@ nn:
           one: Delt av %{count} person i løpet av den siste uken
           other: Delt av %{count} personer i løpet av den siste uken
         title: Populære lenkjer
-        usage_comparison: Delt %{today} ganger i dag, sammenlignet med %{yesterday} i går
       not_allowed_to_trend: Har ikkje lov å trenda
       only_allowed: Kun tillatne
       pending_review: Avventer gjennomgang
@@ -1235,7 +1234,6 @@ nn:
         trendable: Kan vises under trender
         trending_rank: 'Trender #%{rank}'
         usable: Kan brukes
-        usage_comparison: Brukt %{today} ganger i dag, sammenlignet med %{yesterday} i går
         used_by_over_week:
           one: Brukt av én person i løpet av den seneste uken
           other: Brukt av %{count} personer i løpet av den seneste uken
@@ -1692,7 +1690,6 @@ nn:
       incompatible_type: Ikkje kompatibel med importtypen du valde
       invalid_csv_file: 'Ugyldig CSV-fil. Feil: %{error}'
       invalid_json_file: 'Ugyldig JSON-fil. Feil: %{error}'
-      over_rows_processing_limit: inneholder flere enn %{count} rader
       status_not_found_warning: Nokre av filtra dine gøymer visse innlegg som denne tenaren ikkje kjenner til. Desse innlegga blir ikkje gøymde automatisk viss dei blir oppdaga av tenaren din seinare.
       too_large: Fila er for stor
     failures: Feil
@@ -1843,7 +1840,6 @@ nn:
     incoming_migrations_html: For å flytta frå ein annnan konto til denne må du fyrst <a href="%{path}">laga eit kallenamn til kontoen</a>.
     moved_msg: Kontoen din vidaresender no til %{acct}, og fylgjarane dine blir flytte over dit.
     not_redirecting: Kontoen din omdirigeres ikke til noen andre kontoer for øyeblikket.
-    on_cooldown: Du har nylig overført kontoen din. Denne funksjonen blir tilgjengelig igjen om %{count} dager.
     past_migrations: Tidlegare vandringar
     proceed_with_move: Flytt fylgjarar
     redirected_msg: Kontoen din omdirigerer no til %{acct}.
@@ -2031,8 +2027,6 @@ nn:
       account: Offentlige innlegg fra @%{acct}
       tag: 'Offentlige innlegg merket med #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
-    over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
     too_soon: datoen må vera i framtida
   self_destruct:
     lead_html: Diverre stengjer <strong>%{domain}</strong> dørene for godt. Viss du hadde ein brukarkonto der, vil du ikkje kunna halda fram å bruka han, men du kan få ut ein tryggingskopi av dataa dine.
