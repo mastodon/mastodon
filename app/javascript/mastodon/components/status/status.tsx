@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useId, useMemo } from 'react';
 
 import classNames from 'classnames';
 
@@ -94,6 +94,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       status ? computeHashtagBarForStatus(status) : {},
     [status],
   );
+  const contentWrapperId = useId();
 
   // Handlers
   const {
@@ -124,17 +125,19 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     'data-id': id,
   };
 
+  const isHidden =
+    (!showDespiteFilter && isFiltered) ||
+    (!!status.spoiler_text && status.hidden);
+
   if (hidden) {
     return (
       <StatusHotkeys {...hotkeysProps}>
         <span>{status.account.display_name || status.account.username}</span>
         {status.spoiler_text && <span>{status.spoiler_text}</span>}
-        <span>{status.content}</span>
+        {!isHidden && <span>{status.content}</span>}
       </StatusHotkeys>
     );
   }
-
-  const showFooter = variant === 'page' || (showActions && !isQuotedPost);
 
   return (
     <StatusContext.Provider value={{ id, contextType }}>
@@ -145,9 +148,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           variant === 'thread' && classes.variantThread,
           variant === 'page' && classes.variantPage,
           isQuotedPost && classes.isQuote,
-          ((!showDespiteFilter && isFiltered) ||
-            (status.spoiler_text && status.hidden)) &&
-            classes.isFiltered,
         )}
         data-featured={featured ? 'true' : null}
         aria-label={screenReaderText}
@@ -171,9 +171,17 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           statusId={actualStatus.id}
           dismissedFilter={showDespiteFilter}
           onFilterToggle={onFilterToggle}
+          wrapperId={contentWrapperId}
         />
 
-        <div className={classes.contentWrapper}>
+        <div
+          className={classNames(
+            classes.contentWrapper,
+            isHidden && classes.isFiltered,
+          )}
+          id={contentWrapperId}
+          inert={isHidden}
+        >
           <StatusContent
             status={status}
             statusContent={statusContent}
@@ -201,7 +209,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           />
         </div>
 
-        {showFooter && (
+        {(variant === 'page' || (showActions && !isQuotedPost)) && (
           <footer className={classes.footer}>
             {variant === 'page' && (
               <StatusMeta status={status} className={classes.meta} />

@@ -20,7 +20,8 @@ export const StatusWarning: React.FC<{
   statusId: string;
   dismissedFilter: boolean;
   onFilterToggle: () => void;
-}> = ({ statusId, dismissedFilter, onFilterToggle }) => {
+  wrapperId?: string;
+}> = ({ statusId, dismissedFilter, onFilterToggle, wrapperId }) => {
   const { contextType } = useStatusContext();
   const { filters, filterAction } = useAppSelector((state) =>
     selectStatusFilters(state, { contextType, statusId }),
@@ -64,7 +65,14 @@ export const StatusWarning: React.FC<{
         )}
       </div>
 
-      <Button variant='solid' size='sm' onClick={onToggle}>
+      <Button
+        variant='solid'
+        size='sm'
+        onClick={onToggle}
+        aria-controls={wrapperId}
+        aria-expanded={dismissedFilter}
+        noActiveHighlight
+      >
         {dismissedFilter ? (
           <FormattedMessage
             id='content_warning.hide_short'
