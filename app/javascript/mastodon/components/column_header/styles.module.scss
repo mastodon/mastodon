@@ -44,7 +44,9 @@
     minmax(0, auto)
     minmax(min-content, 1fr);
   align-items: center;
-  min-height: 40px;
+
+  // Ensure that a header without buttons is as tall as one with buttons
+  min-height: 32px;
   padding: var(--space-sm);
   text-align: center;
   color: var(--color-text-primary);
