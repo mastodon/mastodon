@@ -1,19 +1,22 @@
-:global(.layout-multiple-columns) .root {
+.root {
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
-  flex: 0 0 auto;
+  flex-grow: 1;
 
-  --available-width: calc(
-    100% - var(--multi-column-navigation-width) - var(--multi-column-gap)
-  );
+  :global(.layout-multiple-columns) & {
+    flex: 0 0 auto;
 
-  width: clamp(
-    360px,
-    (var(--available-width) / 4 - var(--multi-column-gap)),
-    400px
-  );
-  padding: 0;
-  background: var(--color-bg-primary);
+    --available-width: calc(
+      100% - var(--multi-column-navigation-width) - var(--multi-column-gap)
+    );
+
+    width: clamp(
+      360px,
+      (var(--available-width) / 4 - var(--multi-column-gap)),
+      400px
+    );
+    background: var(--color-bg-primary);
+  }
 }
