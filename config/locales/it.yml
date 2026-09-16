@@ -1206,6 +1206,9 @@ it:
           one: Condiviso da una persona nell'ultima settimana
           other: Condiviso da %{count} persone nell'ultima settimana
         title: Link in tendenza
+        usage_comparison:
+          one: Condiviso %{count} volta oggi, rispetto alle %{yesterday} di ieri
+          other: Condiviso %{count} volte oggi, rispetto alle %{yesterday} di ieri
       not_allowed_to_trend: Non è consentito il trend
       only_allowed: Solo consentiti
       pending_review: Revisione in sospeso
@@ -1250,6 +1253,9 @@ it:
         trendable: Può comparire nelle tendenze
         trending_rank: 'In tendenza #%{rank}'
         usable: Utilizzabile
+        usage_comparison:
+          one: Usato %{count} volta oggi, rispetto alle %{yesterday} di ieri
+          other: Usato %{count} volte oggi, rispetto alle %{yesterday} di ieri
         used_by_over_week:
           one: Usato da una persona nell'ultima settimana
           other: Usato da %{count} persone nell'ultima settimana
@@ -1708,6 +1714,9 @@ it:
       invalid_csv_file: 'File CSV non valido. Errore: %{error}'
       invalid_json_file: 'File JSON non valido. Errore: %{error}'
       no_data: Questo file non contiene dati corrispondenti al tipo di importazione specificato
+      over_rows_processing_limit:
+        one: contiene più di %{count} riga
+        other: contiene più di %{count} righe
       status_not_found_warning: Alcuni dei tuoi filtri nascondono post specifici che non sono noti a questo server. Questi post non verranno filtrati automaticamente se vengono scoperti in seguito dal server.
       too_large: Il file è troppo grande
     failures: Fallimenti
@@ -1858,6 +1867,9 @@ it:
     incoming_migrations_html: Per spostarti da un altro account a questo, devi prima creare <a href="%{path}">un alias</a>.
     moved_msg: Il tuo account è ora reindirizzato a %{acct} e i tuoi follower sono stati spostati.
     not_redirecting: Il tuo account attualmente non è reindirizzato ad alcun altro account.
+    on_cooldown:
+      one: Hai migrato il tuo account di recente. Questa funzione tornerà disponibile tra %{count} giorno.
+      other: Hai migrato il tuo account di recente. Questa funzione tornerà disponibile tra %{count} giorni.
     past_migrations: Trasferimenti passati
     proceed_with_move: Sposta i follower
     redirected_msg: Il tuo account sta reindirizzando a %{acct}.
@@ -2045,6 +2057,12 @@ it:
       account: Post pubblici di @%{acct}
       tag: 'Post pubblici taggati #%{hashtag}'
   scheduled_statuses:
+    over_daily_limit:
+      one: Hai superato il limite di %{count} post programmato per oggi
+      other: Hai superato il limite di %{count} post programmati per oggi
+    over_total_limit:
+      one: Hai superato il limite di %{count} post programmato
+      other: Hai superato il limite di %{count} post programmati
     too_soon: la data deve essere nel futuro
   self_destruct:
     lead_html: Sfortunatamente, <strong>%{domain}</strong> sta chiudendo definitivamente. Se hai un account lì, non potrai continuare a usarlo, ma puoi ancora richiedere un backup dei tuoi dati.

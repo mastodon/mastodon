@@ -1208,6 +1208,9 @@ is:
           one: Deilt af einum aðila síðustu vikuna
           other: Deilt af %{count} aðilum síðustu vikuna
         title: Vinsælir tenglar
+        usage_comparison:
+          one: Deilt %{count} sinnum í dag, samanborið við %{yesterday} í gær
+          other: Deilt %{count} sinnum í dag, samanborið við %{yesterday} í gær
       not_allowed_to_trend: Ekki leyft að verða vinsælt
       only_allowed: Aðeins leyfð
       pending_review: Bíður eftir yfirlestri
@@ -1252,6 +1255,9 @@ is:
         trendable: Má vera með í vinsældum
         trending_rank: 'Vinsæl #%{rank}'
         usable: Má nota
+        usage_comparison:
+          one: Notað %{count} sinnum í dag, samanborið við %{yesterday} í gær
+          other: Notað %{count} sinnum í dag, samanborið við %{yesterday} í gær
         used_by_over_week:
           one: Notað af einum aðila síðustu vikuna
           other: Notað af %{count} aðilum síðustu vikuna
@@ -1712,6 +1718,9 @@ is:
       invalid_csv_file: 'Ógild CSV-skrá. Villa: %{error}'
       invalid_json_file: 'Ógild JSON-skrá. Villa: %{error}'
       no_data: Þessi skrá inniheldur ekki nein gögn sem samsvata uppgefinni tegund innflutnings
+      over_rows_processing_limit:
+        one: inniheldur meira en %{count} röð
+        other: inniheldur meira en %{count} raðir
       status_not_found_warning: Sumar af síunum þínum fela tilteknar færslur sem þessi netþjónn kann ekki skil á. Þessar færslur verða ekki síaðar sjálfkrafa ef netþjónninn uppgötvar þær síðar.
       too_large: Skráin er of stór
     failures: Mistök
@@ -1862,6 +1871,9 @@ is:
     incoming_migrations_html: Til að flytjast af öðrum notandaaðgangi yfir á þennan, þarftu fyrst að <a href="%{path}">útbúa samnefni fyrir aðgang</a>.
     moved_msg: Notandaaðgangurinn þinn endurbeinist núna á %{acct} og er verið að yfirfæra fylgjendurna þína.
     not_redirecting: Notandaaðgangurinn þinn er ekki að endurbeinast á neinn annan aðgang.
+    on_cooldown:
+      one: Þú hefur nýverið yfirfært aðganginn þinn. Þessi aðgerð verður tiltæk aftur eftir %{count} dag.
+      other: Þú hefur nýverið yfirfært aðganginn þinn. Þessi aðgerð verður tiltæk aftur eftir %{count} daga.
     past_migrations: Fyrri yfirfærslur
     proceed_with_move: Færa fylgjendur
     redirected_msg: Notandaaðgangurinn þinn endurbeinist núna á %{acct}.
@@ -2049,6 +2061,12 @@ is:
       account: Opinberar færslur frá @%{acct}
       tag: 'Opinberar færslur merktar #%{hashtag}'
   scheduled_statuses:
+    over_daily_limit:
+      one: Þú hefur farið fram úr hámarkinu með %{count} áætlaða færslu fyrir þennan dag
+      other: Þú hefur farið fram úr hámarkinu með %{count} áætlaðar færslur fyrir þennan dag
+    over_total_limit:
+      one: Þú hefur farið fram úr hámarkinu með %{count} áætlaða færslu
+      other: Þú hefur farið fram úr hámarkinu með %{count} áætlaðar færslur
     too_soon: dagsetning verður að vera fram í tímann
   self_destruct:
     lead_html: Því miður, <strong>%{domain}</strong> er að hætta starfsemi endanlega. Ef þú varst með aðgang þar, muntu ekki geta haldið áfram að nota hann, en þú getur áfram beðið um afrit af gögnunum þínum.
