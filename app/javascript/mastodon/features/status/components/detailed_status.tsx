@@ -12,12 +12,12 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { ContentWarning } from '@/mastodon/components/status/legacy/content_warning';
+import { FilterWarning } from '@/mastodon/components/status/legacy/filter_warning';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import { Avatar } from 'mastodon/components/avatar';
 import { DisplayName } from 'mastodon/components/display_name';
 import { EditedTimestamp } from 'mastodon/components/edited_timestamp';
-import { FilterWarning } from 'mastodon/components/filter_warning';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import type { StatusLike } from 'mastodon/components/hashtag_bar';
 import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';
