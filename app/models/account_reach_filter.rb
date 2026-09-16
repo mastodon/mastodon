@@ -18,18 +18,37 @@ class AccountReachFilter < ApplicationRecord
   after_initialize :set_salt
   before_save :set_filter_data
 
+  # This class uses bloom filters to (optionally) keep track of which server is aware of an account.
+  # Once an account with an `AccountReachFilter` has federated at least once, `bloom_filter` will
+  # hold a bloom filter used to approximate the set of remote domains it has federated to.
+  #
+  # Before different accounts have widely different federation patterns, we start with a small bloom
+  # filter and replace (“upgrade”) it with a larger one if needed, until the account has federated so much
+  # that we consider the reach filter “saturated”, meaning the underlying bloom filter is not worth
+  # keeping.
+  #
+  # Replacing a bloom filter is a costly operation, as we need to go through the set of possible values
+  # and re-insert them in the new filter. Furthermore, false positives accumulate, so bloom filter
+  # sizes must be chosen carefully and upgrades should be kept to a minimum.
+  #
+  # For instance, with a false positive of 0.001, on a server that knows about 100_000 different domains,
+  # each filter upgrade may take a couple seconds to run and add around 100 false positives to the new filter.
+
   # Ideal false positive rate
   TARGET_FALSE_POSITIVE_RATE = 0.001
 
-  # Tolerated false positive rate for largest-size bloom filters
+  # Tolerated false positive rate for largest-size bloom filters, after which a filter is considered saturated
   TARGET_SATURATION_FALSE_POSITIVE_RATE = 0.75
 
-  # Largest allowed size for a bloom filter before upgrade
-  BLOOM_SIZE_FILTER_THRESHOLD = 1.kilobyte * 8
+  # Target capacity for bloom filters of individual sizes
+  BLOOM_FILTER_TARGET_CAPACITIES = [300, 10_000].freeze
 
-  # Target capacity for bloom filters before and after update
-  INITIAL_BLOOM_FILTER_CAPACITY = 300
-  UPGRADED_BLOOM_FILTER_CAPACITY = 10_000
+  # Size of bloom filter for every target capacity, precomputed using BloomFilt's formula
+  BLOOM_FILTER_SIZES = begin
+    factor = -Math.log(TARGET_FALSE_POSITIVE_RATE) / (Math.log(2.0)**2)
+
+    BLOOM_FILTER_TARGET_CAPACITIES.map { |capacity| (capacity * factor).ceil }
+  end.freeze
 
   class << self
     include Redisable
@@ -58,7 +77,8 @@ class AccountReachFilter < ApplicationRecord
   def add(*hosts)
     return if saturated
 
-    threshold = ((filter.size < BLOOM_SIZE_FILTER_THRESHOLD ? TARGET_FALSE_POSITIVE_RATE : TARGET_SATURATION_FALSE_POSITIVE_RATE)**(1.0 / filter.k)) * filter.m
+    next_filter_class = BLOOM_FILTER_SIZES.index { |size| size > filter.size }
+    threshold = ((next_filter_class.nil? ? TARGET_SATURATION_FALSE_POSITIVE_RATE : TARGET_FALSE_POSITIVE_RATE)**(1.0 / filter.k)) * filter.m
 
     hosts.each do |host|
       filter.add("#{salt}:#{host}")
@@ -66,10 +86,11 @@ class AccountReachFilter < ApplicationRecord
 
       # We have reached the threshold after which false-positives are too frequent for us.
       # Either update the filter or mark it as saturated.
-      if filter.size < BLOOM_SIZE_FILTER_THRESHOLD
-        upgrade_filter!
+      if next_filter_class.present?
+        replace_filter!(BLOOM_FILTER_TARGET_CAPACITIES[next_filter_class])
 
-        threshold = (TARGET_SATURATION_FALSE_POSITIVE_RATE**(1.0 / filter.k)) * filter.m
+        next_filter_class = BLOOM_FILTER_SIZES.index { |size| size > filter.size }
+        threshold = ((next_filter_class.nil? ? TARGET_SATURATION_FALSE_POSITIVE_RATE : TARGET_FALSE_POSITIVE_RATE)**(1.0 / filter.k)) * filter.m
       else
         update!(saturated: true, bloom_filter: nil)
 
@@ -111,14 +132,14 @@ class AccountReachFilter < ApplicationRecord
       if bloom_filter
         BloomFit.unpack(bloom_filter)
       else
-        BloomFit.new(capacity: INITIAL_BLOOM_FILTER_CAPACITY, false_positive_rate: TARGET_FALSE_POSITIVE_RATE)
+        BloomFit.new(capacity: BLOOM_FILTER_TARGET_CAPACITIES.first, false_positive_rate: TARGET_FALSE_POSITIVE_RATE)
       end
     end
   end
 
-  def upgrade_filter!
+  def replace_filter!(capacity)
     # TODO: is this a good idea? this will be expensive
-    @filter = BloomFit.new(capacity: UPGRADED_BLOOM_FILTER_CAPACITY, false_positive_rate: TARGET_FALSE_POSITIVE_RATE).tap do |new_filter|
+    @filter = BloomFit.new(capacity:, false_positive_rate: TARGET_FALSE_POSITIVE_RATE).tap do |new_filter|
       Account.inboxes.each do |inbox|
         entry = "#{salt}:#{Addressable::URI.parse(inbox).normalized_host}"
         new_filter.add(entry) if @filter.include?(entry)
