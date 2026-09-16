@@ -11,17 +11,23 @@ import { quoteComposeById } from '@/mastodon/actions/compose_typed';
 import { toggleReblog } from '@/mastodon/actions/interactions';
 import { openModal } from '@/mastodon/actions/modal';
 import { fetchStatus } from '@/mastodon/actions/statuses';
+import type { RenderItemFn } from '@/mastodon/components/dropdown_menu';
+import {
+  Dropdown,
+  DropdownMenuItemContent,
+} from '@/mastodon/components/dropdown_menu';
+import { IconButton } from '@/mastodon/components/icon_button';
 import { useStatus } from '@/mastodon/hooks/useStatus';
 import { quickBoosting } from '@/mastodon/initial_state';
 import type { ActionMenuItem } from '@/mastodon/models/dropdown_menu';
 import { selectStatusConditions } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import type { RenderItemFn } from '../dropdown_menu';
-import { Dropdown, DropdownMenuItemContent } from '../dropdown_menu';
-import { IconButton } from '../icon_button';
-
-import { boostItemState, messages, quoteItemState } from './boost_button_utils';
+import {
+  boostItemState,
+  messages,
+  quoteItemState,
+} from '../boost_button_utils';
 
 const StandaloneBoostButton: FC<ReblogButtonProps> = ({
   statusId,
