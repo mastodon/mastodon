@@ -1206,6 +1206,9 @@ es-MX:
           one: Compartido por una persona durante la última semana
           other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
+        usage_comparison:
+          one: Compartido %{count} vez hoy, compara con %{yesterday} ayer
+          other: Compartido %{count} veces hoy, comparado con %{yesterday} ayer
       not_allowed_to_trend: No permitido para tendencia
       only_allowed: Sólo las permitidas
       pending_review: Revisión pendiente
@@ -1250,6 +1253,9 @@ es-MX:
         trendable: Pueden aparecer en tendencias
         trending_rank: Tendencia n.º %{rank}
         usable: Pueden usarse
+        usage_comparison:
+          one: Usada %{count} vez hoy, comparado con %{yesterday} ayer
+          other: Usada %{count} veces hoy, comparado con %{yesterday} ayer
         used_by_over_week:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
@@ -1708,6 +1714,9 @@ es-MX:
       invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
       invalid_json_file: 'Fichero JSON no válido. Error: %{error}'
       no_data: Este archivo no contiene información que coincida con el tipo de importación indicado
+      over_rows_processing_limit:
+        one: contiene más de %{count} fila
+        other: contiene más de %{count} filas
       status_not_found_warning: Algunos de tus filtros ocultan publicaciones específicas que este servidor no conoce. Estas publicaciones no se filtrarán automáticamente si el servidor las detecta más adelante.
       too_large: El archivo es demasiado grande
     failures: Fallos
@@ -1858,6 +1867,9 @@ es-MX:
     incoming_migrations_html: Para migrar de otra cuenta a esta, primero necesitas <a href="%{path}">crear un alias de la cuenta</a>.
     moved_msg: Tu cuenta ahora se está redirigiendo a %{acct} y tus seguidores se están migrando.
     not_redirecting: Tu cuenta no se está redirigiendo a ninguna otra cuenta actualmente.
+    on_cooldown:
+      one: Has migrado tu cuenta recientemente. Esta función estará disponible de nuevo en %{count} día.
+      other: Has migrado tu cuenta recientemente. Esta función está disponible de nuevo en %{count} días.
     past_migrations: Migraciones pasadas
     proceed_with_move: Migrar seguidores
     redirected_msg: Tu cuenta ahora redirige a %{acct}.
@@ -2045,6 +2057,12 @@ es-MX:
       account: Publicaciones públicas de @%{acct}
       tag: 'Publicaciones públicas etiquetadas con #%{hashtag}'
   scheduled_statuses:
+    over_daily_limit:
+      one: Has excedido el límite de %{count} publicación programada para hoy
+      other: Has excedido el límite de %{count} publicaciones programadas para hoy
+    over_total_limit:
+      one: Has excedido el límite de %{count} publicación programada
+      other: Has excedido el límite de %{count} publicaciones programadas
     too_soon: la fecha debe ser en el futuro
   self_destruct:
     lead_html: Desafortunadamente, <strong>%{domain}</strong> está cerrando de manera permanente. Si tenías una cuenta ahí, no puedes continuar utilizándolo, pero puedes solicitar un respaldo de tus datos.

@@ -1206,6 +1206,9 @@ fr-CA:
           one: Partagé par %{count} personne au cours de la dernière semaine
           other: Partagé par %{count} personnes au cours de la dernière semaine
         title: Liens tendances
+        usage_comparison:
+          one: Partagé %{count} fois ce jour, et %{yesterday} fois hier
+          other: Partagé %{count} fois ce jour, et %{yesterday} fois hier
       not_allowed_to_trend: Non autorisé à apparaître dans les tendances
       only_allowed: Autorisées seulement
       pending_review: En attente de révision
@@ -1250,6 +1253,9 @@ fr-CA:
         trendable: Peut apparaître sous les tendances
         trending_rank: 'Tendance #%{rank}'
         usable: Peut être utilisé
+        usage_comparison:
+          one: Utilisé %{count} fois ce jour, et %{yesterday} hier
+          other: Utilisé %{count} fois ce jour, et %{yesterday} hier
         used_by_over_week:
           one: Utilisé par %{count} personne au cours de la dernière semaine
           other: Utilisé par %{count} personnes au cours de la dernière semaine
@@ -1708,6 +1714,9 @@ fr-CA:
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
       invalid_json_file: 'Fichier JSON non valide. Erreur : %{error}'
       no_data: Ce fichier ne contient aucune donnée correspondant au type d'import sélectionné
+      over_rows_processing_limit:
+        one: contient plus de %{count} ligne
+        other: contient plus de %{count} lignes
       status_not_found_warning: Certains de vos filtres masquent des messages spécifiques qui ne sont pas connus par ce serveur. Ces messages ne seront pas filtrés automatiquement s'ils sont découverts plus tard par le serveur.
       too_large: Fichier trop lourd
     failures: Échecs
@@ -1858,6 +1867,9 @@ fr-CA:
     incoming_migrations_html: Pour déménager d'un autre compte à celui-ci, vous devez d'abord <a href="%{path}">créer un alias de compte</a>.
     moved_msg: Votre compte est maintenant redirigé vers %{acct} et vos abonné·e·s sont en train d'être déplacé·e·s.
     not_redirecting: Votre compte n'est pas redirigé vers un autre compte actuellement.
+    on_cooldown:
+      one: Vous avez récemment migré votre compte. Cette fonction sera à nouveau disponible dans %{count} jour.
+      other: Vous avez récemment migré votre compte. Cette fonction sera à nouveau disponible dans %{count} jours.
     past_migrations: Migrations passées
     proceed_with_move: Migrer les abonné·e·s
     redirected_msg: Votre compte est maintenant redirigé vers %{acct}.
@@ -2045,6 +2057,12 @@ fr-CA:
       account: Messages publics de @%{acct}
       tag: 'Messages publics taggés #%{hashtag}'
   scheduled_statuses:
+    over_daily_limit:
+      one: Vous avez dépassé la limite de %{count} message planifié pour aujourd'hui
+      other: Vous avez dépassé la limite de %{count} messages planifiés pour aujourd'hui
+    over_total_limit:
+      one: Vous avez dépassé la limite de %{count} message planifié
+      other: Vous avez dépassé la limite de %{count} messages planifiés
     too_soon: la date doit se situer dans le futur
   self_destruct:
     lead_html: Malheureusement, <strong>%{domain}</strong> ferme définitivement. Si vous y aviez un compte, vous ne pourrez pas continuer à l’utiliser, mais vous pouvez toujours demander une sauvegarde de vos données.

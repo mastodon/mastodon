@@ -1260,6 +1260,12 @@ ga:
           other: Roinnte ag %{count} duine le seachtain anuas
           two: Roinnte ag %{count} duine le seachtain anuas
         title: Naisc treochta
+        usage_comparison:
+          few: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          many: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          one: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          other: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          two: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
       not_allowed_to_trend: Ní cheadaítear treocht
       only_allowed: Ní cheadaítear ach
       pending_review: Athbhreithniú ar feitheamh
@@ -1307,6 +1313,12 @@ ga:
         trendable: Is féidir le feiceáil faoi threochtaí
         trending_rank: 'Ag treochtáil # %{rank}'
         usable: Is féidir é a úsáid
+        usage_comparison:
+          few: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          many: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          one: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          other: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          two: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
         used_by_over_week:
           few: Úsáidte ag %{count} duine le seachtain anuas
           many: Úsáidte ag %{count} duine le seachtain anuas
@@ -1797,6 +1809,12 @@ ga:
       invalid_csv_file: 'Comhad CSV neamhbhailí. Earráid: %{error}'
       invalid_json_file: 'Comhad JSON neamhbhailí. Earráid: %{error}'
       no_data: Níl aon sonraí sa chomhad seo a thagann leis an gcineál iompórtála a tugadh
+      over_rows_processing_limit:
+        few: tá níos mó ná %{count} ró ann
+        many: tá níos mó ná %{count} ró ann
+        one: tá níos mó ná %{count} ró ann
+        other: tá níos mó ná %{count} ró ann
+        two: tá níos mó ná %{count} ró ann
       status_not_found_warning: Cuireann cuid de do scagairí poist shonracha i bhfolach nach bhfuil ar eolas ag an bhfreastalaí seo. Ní scagfar na poist seo go huathoibríoch má aimsíonn an freastalaí iad níos déanaí.
       too_large: Tá an comhad ró-mhór
     failures: Teipeanna
@@ -1992,6 +2010,12 @@ ga:
     incoming_migrations_html: Chun bogadh ó chuntas eile go dtí an ceann seo, ní mór duit <a href="%{path}">ailias cuntais a chruthú</a> ar dtús.
     moved_msg: Tá do chuntas á atreorú chuig %{acct} anois agus tá do leantóirí á bhogadh anonn.
     not_redirecting: Níl do chuntas á atreorú chuig aon chuntas eile faoi láthair.
+    on_cooldown:
+      few: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      many: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      one: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      other: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      two: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
     past_migrations: Imirce san am a chuaigh thart
     proceed_with_move: Bog leantóirí
     redirected_msg: Tá do chuntas á atreorú chuig %{acct} anois.
@@ -2182,6 +2206,18 @@ ga:
       account: Postálacha poiblí ó @%{acct}
       tag: 'Postálacha poiblí clibáilte # %{hashtag}'
   scheduled_statuses:
+    over_daily_limit:
+      few: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      many: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      one: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      other: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      two: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+    over_total_limit:
+      few: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      many: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      one: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      other: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      two: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
     too_soon: caithfidh dáta a bheith sa todhchaí
   self_destruct:
     lead_html: Ar an drochuair, tá <strong>%{domain}</strong> ag dúnadh síos go buan. Má bhí cuntas agat ann, ní bheidh tú in ann leanúint ar aghaidh á úsáid, ach is féidir leat cúltaca de do shonraí a iarraidh fós.
