@@ -56,7 +56,7 @@ export function useStatusHandlers({
   contextType?: StatusContextType;
   onOpen?: () => void;
 }) {
-  const matchedFilters = useAppSelector((state) =>
+  const { filterAction } = useAppSelector((state) =>
     selectStatusFilters(state, { contextType, statusId: status?.id }),
   );
   const [showDespiteFilter, { onToggle: onFilterToggle }] = useToggle(false);
@@ -65,28 +65,18 @@ export function useStatusHandlers({
   const statusId = status?.id;
 
   // Display handlers
-  const onExpandedToggle = useCallback(() => {
-    dispatch(toggleStatusSpoilers(statusId));
-  }, [dispatch, statusId]);
-
   const onToggleHidden = useCallback(() => {
     if (!status) {
       return;
     }
-    if (!matchedFilters.length || showDespiteFilter) {
+    if (!filterAction || showDespiteFilter) {
       dispatch(toggleStatusSpoilers(status.id));
     }
 
     if (!status.hidden || !status.spoiler_text) {
       onFilterToggle();
     }
-  }, [
-    dispatch,
-    matchedFilters.length,
-    onFilterToggle,
-    showDespiteFilter,
-    status,
-  ]);
+  }, [dispatch, filterAction, onFilterToggle, showDespiteFilter, status]);
 
   // Interaction handlers
   const handlerFactory = useCallback(
@@ -185,9 +175,9 @@ export function useStatusHandlers({
 
   return useMemo(
     () => ({
+      isFiltered: !!filterAction,
       showDespiteFilter,
       onOpenClick,
-      onExpandedToggle,
       onFilterToggle,
       onMention,
       onOpen: () => {
@@ -203,8 +193,8 @@ export function useStatusHandlers({
       onTranslate: handlerFactory('translate'),
     }),
     [
+      filterAction,
       handlerFactory,
-      onExpandedToggle,
       onFilterToggle,
       onMention,
       onOpenCallback,

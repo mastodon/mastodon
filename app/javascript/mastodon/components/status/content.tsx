@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useCallback, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -51,12 +50,10 @@ export const StatusContent: React.FC<
       const maxHeight = lineHeightPx * MAX_LINES;
 
       setCollapsed(
-        (node.clientHeight > maxHeight ||
-          node.scrollWidth > node.clientWidth) &&
-          !status.spoiler_text,
+        node.clientHeight > maxHeight || node.scrollWidth > node.clientWidth,
       );
     },
-    [collapsed, status.spoiler_text],
+    [collapsed],
   );
 
   const htmlHandlers = useHandlersForStatus(status);

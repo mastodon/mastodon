@@ -32,16 +32,20 @@
   --content-col: span 2;
 }
 
+.isFiltered {
+  content: '';
+}
+
 .header {
   grid-column: span 2;
 }
 
-.content,
-.footer,
 .root :global(.status__prepend),
-.root :global(.content-warning),
+.spoiler,
 .translate,
-.contentReadMore {
+.contentWrapper,
+.contentReadMore,
+.footer {
   grid-column: var(--content-col);
 }
 
@@ -57,12 +61,72 @@
   margin-inline-start: auto;
 }
 
-.content {
-  --mask-height: 80px;
+.spoiler {
+  display: flex;
+  align-items: center;
+}
 
+.spoilerContent {
+  @include mixins.type-body-strong;
+
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.contentWrapper,
+.content {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  position: relative;
+}
+
+.contentWrapper {
+  --fade-time: 100ms;
+
+  overflow: clip;
+  border-radius: var(--radius-xs);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      var(--color-bg-highlight) 1px,
+      transparent 0
+    );
+    background-size: var(--space-xs) var(--space-xs);
+    background-repeat: repeat;
+
+    // See: https://css-tricks.com/snippets/css/toggle-visibility-when-hiding-elements/
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      visibility 0s linear var(--fade-time),
+      opacity var(--fade-time) ease-in-out;
+
+    // Show only if backdrop-filter is unsupported.
+    background-color: var(--color-bg-blend);
+
+    @supports (backdrop-filter: blur(20px)) {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+    }
+  }
+
+  &.isFiltered::after {
+    visibility: visible;
+    opacity: 1;
+    transition:
+      visibility 0s linear 0s,
+      opacity var(--fade-time) ease-in-out;
+  }
+}
+
+.content {
+  --mask-height: 80px;
+
+  overflow-y: clip;
 
   &.collapsed {
     max-height: var(--max-height); // Set via JS.
