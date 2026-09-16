@@ -1,9 +1,7 @@
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
-import {
-  StatusBanner,
-  BannerVariant,
-} from '@/mastodon/components/status_banner';
 import { useStatus } from '@/mastodon/hooks/useStatus';
+
+import { StatusBanner, BannerVariant } from './banner';
 
 export const ContentWarning: React.FC<{
   statusId: string;

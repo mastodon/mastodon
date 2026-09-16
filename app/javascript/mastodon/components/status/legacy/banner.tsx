@@ -3,7 +3,7 @@ import { useCallback, useRef, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { AnimateEmojiProvider } from './emoji/context';
+import { AnimateEmojiProvider } from '../../emoji/context';
 
 export enum BannerVariant {
   Warning = 'warning',

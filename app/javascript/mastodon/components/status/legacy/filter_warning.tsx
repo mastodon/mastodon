@@ -1,9 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import {
-  StatusBanner,
-  BannerVariant,
-} from '@/mastodon/components/status_banner';
+import { StatusBanner, BannerVariant } from './banner';
 
 export const FilterWarning: React.FC<{
   title: string;
