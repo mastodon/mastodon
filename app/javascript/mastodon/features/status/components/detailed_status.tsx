@@ -17,6 +17,7 @@ import { FilterWarning } from '@/mastodon/components/status/legacy/filter_warnin
 import type { StatusLike } from '@/mastodon/components/status/legacy/hashtag_bar';
 import { getHashtagBarForStatus } from '@/mastodon/components/status/legacy/hashtag_bar';
 import { PictureInPicturePlaceholder } from '@/mastodon/components/status/legacy/picture_in_picture_placeholder';
+import { QuotedStatus } from '@/mastodon/components/status/legacy/quoted';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import { Avatar } from 'mastodon/components/avatar';
@@ -26,7 +27,6 @@ import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { Icon } from 'mastodon/components/icon';
 import { IconLogo } from 'mastodon/components/logo';
 import MediaGallery from 'mastodon/components/media_gallery';
-import { QuotedStatus } from 'mastodon/components/status_quoted';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
 import { Audio } from 'mastodon/features/audio';
 import { CollectionPreviewCard } from 'mastodon/features/collections/components/collection_preview_card';

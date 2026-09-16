@@ -6,8 +6,8 @@ import {
   statusQuotedFactoryAPI,
 } from '@/testing/factories';
 
-import type { StatusQuoteManagerProps } from './status_quoted';
-import { StatusQuoteManager } from './status_quoted';
+import type { StatusQuoteManagerProps } from './quoted';
+import { StatusQuoteManager } from './quoted';
 
 const meta = {
   title: 'Components/Status/StatusQuoteManager',

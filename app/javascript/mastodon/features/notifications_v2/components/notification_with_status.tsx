@@ -12,7 +12,7 @@ import {
 import { Hotkeys } from 'mastodon/components/hotkeys';
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
-import { StatusQuoteManager } from 'mastodon/components/status_quoted';
+import { StatusQuoteManager } from 'mastodon/components/status/legacy/quoted';
 import { getStatusHidden } from 'mastodon/selectors/filters';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 

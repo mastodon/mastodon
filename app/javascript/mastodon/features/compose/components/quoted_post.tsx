@@ -4,7 +4,7 @@ import type { FC } from 'react';
 import { Map } from 'immutable';
 
 import { quoteComposeCancel } from '@/mastodon/actions/compose_typed';
-import { QuotedStatus } from '@/mastodon/components/status_quoted';
+import { QuotedStatus } from '@/mastodon/components/status/legacy/quoted';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { QuotePlaceholder } from './quote_placeholder';

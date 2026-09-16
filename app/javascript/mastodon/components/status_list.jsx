@@ -11,7 +11,7 @@ import { RegenerationIndicator } from 'mastodon/components/regeneration_indicato
 import { InlineFollowSuggestions } from 'mastodon/features/home_timeline/components/inline_follow_suggestions';
 import { PinnedShowAllButton } from '@/mastodon/features/account_timeline/components/pinned_statuses';
 
-import { StatusQuoteManager } from '../components/status_quoted';
+import { StatusQuoteManager } from './status/legacy/quoted';
 
 import { LoadGap } from './load_gap';
 import ScrollableList from './scrollable_list';

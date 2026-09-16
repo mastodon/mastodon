@@ -19,7 +19,7 @@ import { Account } from 'mastodon/components/account';
 import { CompatibilityHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
-import { StatusQuoteManager } from 'mastodon/components/status_quoted';
+import { StatusQuoteManager } from 'mastodon/components/status/legacy/quoted';
 import { Search } from 'mastodon/features/compose/components/search';
 import { useSearchParam } from 'mastodon/hooks/useSearchParam';
 import type { Hashtag as HashtagType } from 'mastodon/models/tags';

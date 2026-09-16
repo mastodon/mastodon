@@ -22,7 +22,7 @@ import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { Icon }  from 'mastodon/components/icon';
 import { injectIntl } from '@/mastodon/components/intl';
 import { Hotkeys } from 'mastodon/components/hotkeys';
-import { StatusQuoteManager } from 'mastodon/components/status_quoted';
+import { StatusQuoteManager } from 'mastodon/components/status/legacy/quoted';
 import { me } from 'mastodon/initial_state';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
