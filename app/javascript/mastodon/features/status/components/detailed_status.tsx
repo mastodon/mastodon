@@ -11,6 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import StatusContent from '@/mastodon/components/status/legacy/content';
 import { ContentWarning } from '@/mastodon/components/status/legacy/content_warning';
 import { FilterWarning } from '@/mastodon/components/status/legacy/filter_warning';
 import type { StatusLike } from '@/mastodon/components/status/legacy/hashtag_bar';
@@ -25,7 +26,6 @@ import { Icon } from 'mastodon/components/icon';
 import { IconLogo } from 'mastodon/components/logo';
 import MediaGallery from 'mastodon/components/media_gallery';
 import { PictureInPicturePlaceholder } from 'mastodon/components/picture_in_picture_placeholder';
-import StatusContent from 'mastodon/components/status_content';
 import { QuotedStatus } from 'mastodon/components/status_quoted';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
 import { Audio } from 'mastodon/features/audio';

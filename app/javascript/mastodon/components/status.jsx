@@ -29,7 +29,7 @@ import { StatusHeader } from './status/legacy/header'
 import { LinkedDisplayName } from './display_name';
 import { getHashtagBarForStatus } from './status/legacy/hashtag_bar';
 import StatusActionBar from './status/legacy/action_bar';
-import StatusContent from './status_content';
+import StatusContent from './status/legacy/content';
 import { StatusThreadLabel } from './status_thread_label';
 import { CollectionPreviewCard } from '../features/collections/components/collection_preview_card';
 import { compareUrls } from '../utils/compare_urls';

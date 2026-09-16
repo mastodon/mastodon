@@ -13,6 +13,7 @@ import type {
 
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
+import StatusContent from '@/mastodon/components/status/legacy/content';
 import type { Account } from '@/mastodon/models/account';
 import type { StatusShape } from '@/mastodon/models/status';
 import {
@@ -39,7 +40,6 @@ import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { Hotkeys } from 'mastodon/components/hotkeys';
 import { IconButton } from 'mastodon/components/icon_button';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-import StatusContent from 'mastodon/components/status_content';
 import { makeGetStatus } from 'mastodon/selectors';
 
 const messages = defineMessages({
