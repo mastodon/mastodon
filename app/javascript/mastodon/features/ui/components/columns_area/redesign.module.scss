@@ -5,6 +5,8 @@
   --navigation-min-width: 280px;
   --navigation-max-width: 320px;
 
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -71,7 +73,7 @@
   grid-column: 2;
   display: flex;
   flex-direction: column;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   width: 100%;
   contain: inline-size layout paint style;
   container: column / inline-size;
