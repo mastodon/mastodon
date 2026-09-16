@@ -113,8 +113,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     return null; // loading state
   }
 
-  const actualStatus = parent ?? status;
-
   const hotkeysProps = {
     handlers: {
       ...handlers,
@@ -148,6 +146,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           variant === 'thread' && classes.variantThread,
           variant === 'page' && classes.variantPage,
           isQuotedPost && classes.isQuote,
+          status.visibility === 'direct' && classes.isMessage,
         )}
         data-featured={featured ? 'true' : null}
         aria-label={screenReaderText}
@@ -155,8 +154,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       >
         {!skipPrepend && (
           <StatusPrepend
-            status={actualStatus}
-            isReblog={!!parent}
+            status={status}
+            reblogId={parent?.id}
             showThread={showThread}
           />
         )}
@@ -168,7 +167,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         <TranslateButton status={status} onTranslate={onTranslate} />
 
         <StatusWarning
-          statusId={actualStatus.id}
+          statusId={status.id}
           dismissedFilter={showDespiteFilter}
           onFilterToggle={onFilterToggle}
           wrapperId={contentWrapperId}

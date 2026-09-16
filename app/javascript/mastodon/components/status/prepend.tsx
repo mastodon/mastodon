@@ -1,67 +1,135 @@
+import type React from 'react';
+
 import { FormattedMessage } from 'react-intl';
 
-import type { ExpandedStatusShape } from '@/mastodon/models/status';
-import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
-import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import { Link } from 'react-router-dom';
 
-import { LinkedDisplayName } from '../display_name';
+import { ArrowsClockwiseIcon } from '@phosphor-icons/react';
+
+import { useAccountStatus } from '@/mastodon/hooks/useStatus';
+import type { ExpandedStatusShape } from '@/mastodon/models/status';
+
+import { Avatar } from '../avatar';
+import { DisplayName } from '../display_name';
+import { EmojiHTML } from '../emoji/html';
 import { Icon } from '../icon';
-import { StatusThreadLabel } from '../status_thread_label';
+import { RelativeTimestamp } from '../relative_timestamp';
+
+import { onStatusLinksDisabled } from './hooks';
+import classes from './prepend.module.scss';
+import { statusLink } from './utils';
 
 export const StatusPrepend: React.FC<{
   status: ExpandedStatusShape;
+  reblogId?: string;
   showThread?: boolean;
-  isReblog?: boolean;
-}> = ({ status, showThread, isReblog }) => {
-  if (isReblog) {
-    return (
-      <div className='status__prepend'>
-        <div className='status__prepend__icon'>
-          <Icon id='retweet' icon={RepeatIcon} />
-        </div>
+}> = ({ status, showThread, reblogId }) => {
+  if (!reblogId && (!showThread || !status.in_reply_to_id)) {
+    return null;
+  }
+
+  return (
+    <>
+      {!!reblogId && <StatusPrependReblog reblogId={reblogId} />}
+      {showThread && !!status.in_reply_to_id && (
+        <StatusPrependReply replyId={status.in_reply_to_id} />
+      )}
+    </>
+  );
+};
+
+const StatusPrependReblog: React.FC<{ reblogId: string }> = ({ reblogId }) => {
+  const status = useAccountStatus(reblogId, true);
+  if (!status) {
+    return null;
+  }
+
+  const account = status.account;
+  const accountLinkProps = {
+    to: {
+      pathname: `/@${account.acct}`,
+      state: { reference: 'status' },
+    },
+    title: `@${account.acct}`,
+    'data-id': account.id,
+    'data-hover-card-account': account.id,
+    'data-hover-card-reference': 'status',
+  };
+  return (
+    <div className={classes.root}>
+      <Icon icon={ArrowsClockwiseIcon} className={classes.reblogIcon} />
+
+      <span className={classes.contents}>
+        <Link {...accountLinkProps} role='presentation' tabIndex={-1}>
+          <Avatar account={account} />
+        </Link>
         <FormattedMessage
           id='status.reblogged_by'
           defaultMessage='{name} boosted'
           values={{
             name: (
-              <LinkedDisplayName
-                displayProps={{
-                  account: status.account,
-                  variant: 'simple',
-                }}
-                className='status__display-name muted'
-              />
+              <Link {...accountLinkProps} className={classes.account}>
+                <DisplayName variant='simple' account={account} />
+              </Link>
             ),
           }}
-          tagName='span'
         />
+        &nbsp;&bull;
+        <RelativeTimestamp timestamp={status.created_at} />
+      </span>
+    </div>
+  );
+};
+
+const StatusPrependReply: React.FC<{ replyId: string }> = ({ replyId }) => {
+  const status = useAccountStatus(replyId, true);
+
+  if (!status) {
+    return null;
+  }
+
+  const account = status.account;
+  const accountLinkProps = {
+    to: {
+      pathname: `/@${account.acct}`,
+      state: { reference: 'status' },
+    },
+    title: `@${account.acct}`,
+    'data-id': account.id,
+    'data-hover-card-account': account.id,
+    'data-hover-card-reference': 'status',
+  };
+
+  const language = status.translation?.language ?? status.language;
+
+  return (
+    <div className={classes.root}>
+      <div className={classes.replyIcon} />
+
+      <div>
+        <span className={classes.contents}>
+          <Link {...accountLinkProps} role='presentation' tabIndex={-1}>
+            <Avatar account={account} />
+          </Link>
+          <Link {...accountLinkProps} className={classes.account}>
+            <DisplayName variant='simple' account={account} />
+          </Link>
+          &bull;
+          <Link to={statusLink(status)}>
+            <RelativeTimestamp timestamp={status.created_at} />
+          </Link>
+        </span>
+
+        <Link to={statusLink(status)} className={classes.text}>
+          <EmojiHTML
+            as='blockquote'
+            lang={language}
+            htmlString={status.translation?.contentHtml ?? status.contentHtml}
+            extraEmojis={status.emojis}
+            onElement={onStatusLinksDisabled}
+          />
+        </Link>
       </div>
-    );
-  }
-
-  if (status.visibility === 'direct') {
-    return (
-      <div className='status__prepend'>
-        <div className='status__prepend__icon'>
-          <Icon id='at' icon={AlternateEmailIcon} />
-        </div>
-        <FormattedMessage
-          id='status.direct_indicator'
-          defaultMessage='Private mention'
-          tagName='span'
-        />
-      </div>
-    );
-  }
-
-  if (showThread && status.in_reply_to_account_id) {
-    return (
-      <StatusThreadLabel
-        accountId={status.account.id}
-        inReplyToAccountId={status.in_reply_to_account_id}
-      />
-    );
-  }
-
-  return null;
+    </div>
+  );
 };

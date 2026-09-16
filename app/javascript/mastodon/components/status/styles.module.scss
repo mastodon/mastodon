@@ -27,6 +27,25 @@
   padding: var(--space-sm);
 }
 
+.isMessage {
+  position: relative;
+
+  &::before {
+    content: '';
+    mask-repeat: repeat;
+    mask-image: url('@/images/composer_message.svg');
+    mask-size: 311.36px auto;
+    background-color: var(--color-border-brand);
+    opacity: 0.15;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+}
+
 .variantPage,
 .isQuote {
   --content-col: span 2;
@@ -40,7 +59,6 @@
   grid-column: span 2;
 }
 
-.root :global(.status__prepend),
 .spoiler,
 .translate,
 .contentWrapper,
