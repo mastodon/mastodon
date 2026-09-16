@@ -217,6 +217,15 @@
   @include mixins.type-micro;
 
   color: var(--color-text-secondary);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .actions {
