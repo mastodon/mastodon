@@ -42,7 +42,7 @@ import {
 } from '../actions/statuses';
 import { setStatusQuotePolicy } from '../actions/statuses_typed';
 import { injectIntl } from '../components/intl';
-import Status from '../components/status';
+import Status from '../components/status/legacy/status';
 import { deleteModal } from '../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
 

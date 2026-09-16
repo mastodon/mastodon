@@ -4,9 +4,8 @@ import StatusContainer from '@/mastodon/containers/status_container';
 import type { Account as TAccount } from '@/mastodon/models/account';
 import type { Status as TStatus } from '@/mastodon/models/status';
 
-import Status from '../status';
-
 import type { StatusHeaderRenderFn } from './legacy/header';
+import Status from './legacy/status';
 
 export type StatusContextType =
   | 'account'

@@ -92,7 +92,7 @@ import { CustomHomepage } from 'mastodon/features/custom_homepage';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
-import '../../components/status';
+import '../../components/status/legacy/status';
 import { getNavigationSkipLinkId, SkipLinks } from './components/skip_links';
 
 const messages = defineMessages({

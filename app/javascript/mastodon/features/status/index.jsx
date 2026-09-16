@@ -63,7 +63,7 @@ import {
   undoStatusTranslation,
 } from '../../actions/statuses';
 import { setStatusQuotePolicy } from '../../actions/statuses_typed';
-import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
+import { textForScreenReader, defaultMediaVisibility } from '../../components/status/legacy/status';
 import { StatusQuoteManager } from '../../components/status_quoted';
 import { deleteModal } from '../../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../../selectors';
