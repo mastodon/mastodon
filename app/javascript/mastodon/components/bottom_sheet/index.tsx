@@ -3,7 +3,7 @@ import { useLayoutEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
-import { useBodyScrollLock } from '@/mastodon/components/body_scroll_lock';
+import { useBodyScrollLock } from '@/mastodon/hooks/useBodyScrollLock';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import { useOnClickOutside } from '@/mastodon/hooks/useOnClickOutside';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';

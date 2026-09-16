@@ -36,6 +36,7 @@ const getShouldLockBodyScroll = createAppSelector(
 /**
  * This component locks scrolling on the body when
  * `getShouldLockBodyScroll` returns true.
+ * Should only be used once per app.
  */
 
 export const BodyScrollLock: React.FC = () => {
