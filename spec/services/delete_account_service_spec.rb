@@ -88,6 +88,8 @@ RSpec.describe DeleteAccountService do
       let!(:collection) { Fabricate(:collection, account:) } # rubocop:disable RSpec/LetSetup
 
       context 'without a reach filter' do
+        before { account.reach_filter&.destroy }
+
         it 'sends a delete actor activity to all known inboxes' do
           subject
           expect(a_request(:post, remote_alice.inbox_url)).to have_been_made.once

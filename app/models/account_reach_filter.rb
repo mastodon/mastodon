@@ -106,7 +106,7 @@ class AccountReachFilter < ApplicationRecord
   end
 
   def filter_inboxes(inboxes)
-    return inboxes if saturated?
+    return inboxes if saturated? || destroyed?
     return [] if filter.empty?
 
     inboxes.filter do |url|
