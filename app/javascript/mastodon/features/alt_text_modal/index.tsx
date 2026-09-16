@@ -443,7 +443,7 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
             {(type === 'audio' || type === 'video') && unattached && (
               <UploadButton
                 onSelectFile={handleThumbnailChange}
-                mimeTypes='image/jpeg,image/png,image/gif,image/heic,image/heif,image/webp,image/avif'
+                mimeTypes='image/jpeg,image/png,image/gif,image/webp'
               >
                 <FormattedMessage
                   id='alt_text_modal.change_thumbnail'
