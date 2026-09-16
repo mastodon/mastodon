@@ -1,18 +1,23 @@
+import type React from 'react';
+
 import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
 import { ArrowsClockwiseIcon } from '@phosphor-icons/react';
 
+import { useAccountStatus } from '@/mastodon/hooks/useStatus';
 import type { ExpandedStatusShape } from '@/mastodon/models/status';
 
 import { Avatar } from '../avatar';
 import { DisplayName } from '../display_name';
+import { EmojiHTML } from '../emoji/html';
 import { Icon } from '../icon';
 import { RelativeTimestamp } from '../relative_timestamp';
-import { StatusThreadLabel } from '../status_thread_label';
 
-import classes from './styles.module.scss';
+import { onStatusLinksDisabled } from './hooks';
+import classes from './prepend.module.scss';
+import { statusLink } from './utils';
 
 export const StatusPrepend: React.FC<{
   status: ExpandedStatusShape;
@@ -23,23 +28,12 @@ export const StatusPrepend: React.FC<{
     return null;
   }
 
-  let reply: React.ReactNode = null;
-
-  if (showThread && status.in_reply_to_account_id) {
-    reply = (
-      <div className={classes.prepend}>
-        <StatusThreadLabel
-          accountId={status.account.id}
-          inReplyToAccountId={status.in_reply_to_account_id}
-        />
-      </div>
-    );
-  }
-
   return (
     <>
       {isReblog && <StatusPrependReblog status={status} />}
-      {reply}
+      {showThread && !!status.in_reply_to_id && (
+        <StatusPrependReply replyId={status.in_reply_to_id} />
+      )}
     </>
   );
 };
@@ -58,12 +52,11 @@ const StatusPrependReblog: React.FC<{ status: ExpandedStatusShape }> = ({
     'data-hover-card-account': account.id,
     'data-hover-card-reference': 'status',
   };
-
   return (
-    <div className={classes.prepend}>
-      <Icon icon={ArrowsClockwiseIcon} className={classes.prependIcon} />
+    <div className={classes.root}>
+      <Icon icon={ArrowsClockwiseIcon} className={classes.reblogIcon} />
 
-      <span className={classes.prependContents}>
+      <span className={classes.contents}>
         <Link {...accountLinkProps} role='presentation' tabIndex={-1}>
           <Avatar account={account} />
         </Link>
@@ -72,7 +65,7 @@ const StatusPrependReblog: React.FC<{ status: ExpandedStatusShape }> = ({
           defaultMessage='{name} boosted'
           values={{
             name: (
-              <Link {...accountLinkProps}>
+              <Link {...accountLinkProps} className={classes.account}>
                 <DisplayName variant='simple' account={account} />
               </Link>
             ),
@@ -81,6 +74,59 @@ const StatusPrependReblog: React.FC<{ status: ExpandedStatusShape }> = ({
         &nbsp;&bull;
         <RelativeTimestamp timestamp={status.created_at} />
       </span>
+    </div>
+  );
+};
+
+const StatusPrependReply: React.FC<{ replyId: string }> = ({ replyId }) => {
+  const status = useAccountStatus(replyId, true);
+
+  if (!status) {
+    return null;
+  }
+
+  const account = status.account;
+  const accountLinkProps = {
+    to: {
+      pathname: `/@${account.acct}`,
+      state: { reference: 'status' },
+    },
+    title: `@${account.acct}`,
+    'data-id': account.id,
+    'data-hover-card-account': account.id,
+    'data-hover-card-reference': 'status',
+  };
+
+  const language = status.translation?.language ?? status.language;
+
+  return (
+    <div className={classes.root}>
+      <div className={classes.replyIcon} />
+
+      <div>
+        <span className={classes.contents}>
+          <Link {...accountLinkProps} role='presentation' tabIndex={-1}>
+            <Avatar account={account} />
+          </Link>
+          <Link {...accountLinkProps} className={classes.account}>
+            <DisplayName variant='simple' account={account} />
+          </Link>
+          &bull;
+          <Link to={statusLink(status)}>
+            <RelativeTimestamp timestamp={status.created_at} />
+          </Link>
+        </span>
+
+        <Link to={statusLink(status)} className={classes.text}>
+          <EmojiHTML
+            as='blockquote'
+            lang={language}
+            htmlString={status.translation?.contentHtml ?? status.contentHtml}
+            extraEmojis={status.emojis}
+            onElement={onStatusLinksDisabled}
+          />
+        </Link>
+      </div>
     </div>
   );
 };
