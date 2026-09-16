@@ -56,16 +56,19 @@ export const BodyScrollLock: React.FC = () => {
  * Utility hook for engaging the body scroll lock for a component
  * on mount & disabling it on unmount.
  */
-export function useBodyScrollLock(modalId?: string) {
+export function useBodyScrollLock(active = true) {
   const dispatch = useAppDispatch();
-  const uniqueId = useId();
-  const id = modalId ?? uniqueId;
+  const id = useId();
 
   useLayoutEffect(() => {
-    dispatch(addToScrollLockStack(id));
+    if (active) {
+      dispatch(addToScrollLockStack(id));
+    } else {
+      dispatch(removeFromScrollLockStack(id));
+    }
 
     return () => {
       dispatch(removeFromScrollLockStack(id));
     };
-  }, [id, dispatch]);
+  }, [id, dispatch, active]);
 }
