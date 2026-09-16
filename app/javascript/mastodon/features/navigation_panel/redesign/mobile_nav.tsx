@@ -1,13 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
 import { useLocation } from 'react-router';
 
 import {
   BellIcon,
   ChatCircleDotsIcon,
   HouseIcon,
+  InfoIcon,
   MagnifyingGlassIcon,
 } from '@phosphor-icons/react';
 import { animated, useSpring } from '@react-spring/web';
@@ -15,6 +17,7 @@ import { useDrag } from '@use-gesture/react';
 
 import { closeNavigation, openNavigation } from '@/mastodon/actions/navigation';
 import { Avatar } from '@/mastodon/components/avatar';
+import { Button, IconButton } from '@/mastodon/components/button/redesign';
 import { Menu, MenuList, MenuTrigger } from '@/mastodon/components/menu';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
@@ -25,10 +28,12 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { RedesignNavigationPanel } from '.';
 import { AccountMenuItems } from './account_card_and_menu';
+import { LogoLockup } from './header';
 import classes from './mobile_nav.module.scss';
 import { MobileNavLink, MobileNavProfileButton } from './navigation_link';
 
 export const RedesignMobileNavigation: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { accountId, signedIn } = useIdentity();
   const account = useAccount(accountId);
 
@@ -36,66 +41,95 @@ export const RedesignMobileNavigation: React.FC = () => {
     selectUnreadNotificationGroupsCount,
   );
 
-  if (!signedIn) {
-    return <SlideOutNavigation />;
-  }
+  const openMobileNav = useCallback(() => {
+    dispatch(openNavigation());
+  }, [dispatch]);
 
   return (
     <>
-      <nav className={classes.root}>
-        <ul className={classes.list}>
-          <MobileNavLink to='/home' iconComponent={HouseIcon}>
-            <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
-          </MobileNavLink>
-          <MobileNavLink
-            to={{
-              pathname: '/explore',
-              state: { focusTarget: FOCUS_TARGET.SEARCH },
-            }}
-            iconComponent={MagnifyingGlassIcon}
-          >
-            <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
-          </MobileNavLink>
-          <MobileNavLink to='/conversations' iconComponent={ChatCircleDotsIcon}>
-            <FormattedMessage
-              id='tabs_bar.messages'
-              defaultMessage='Messages'
-              description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
-            />
-          </MobileNavLink>
-          <MobileNavLink
-            to='/notifications'
-            iconComponent={BellIcon}
-            withDot={notificationsCount > 0}
-          >
-            <FormattedMessage
-              id='tabs_bar.notifications'
-              defaultMessage='Notifications'
-            />
-          </MobileNavLink>
-          <Menu>
-            <MenuTrigger
-              as={MobileNavProfileButton}
-              avatar={
-                <Avatar
-                  size={24}
-                  account={account}
-                  className={classes.avatar}
-                />
-              }
+      {signedIn ? (
+        <nav className={classes.root}>
+          <ul className={classNames(classes.floatingCard, classes.list)}>
+            <MobileNavLink to='/home' iconComponent={HouseIcon}>
+              <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
+            </MobileNavLink>
+            <MobileNavLink
+              to={{
+                pathname: '/explore',
+                state: { focusTarget: FOCUS_TARGET.SEARCH },
+              }}
+              iconComponent={MagnifyingGlassIcon}
+            >
+              <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
+            </MobileNavLink>
+            <MobileNavLink
+              to='/conversations'
+              iconComponent={ChatCircleDotsIcon}
             >
               <FormattedMessage
-                id='tabs_bar.account_settings'
-                defaultMessage='Account settings'
+                id='tabs_bar.messages'
+                defaultMessage='Messages'
+                description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
               />
-            </MenuTrigger>
-            <MenuList placement='top-end' offset={8}>
-              <AccountMenuItems context='mobile' />
-            </MenuList>
-          </Menu>
-        </ul>
-        <ComposeRedesignButton inline />
-      </nav>
+            </MobileNavLink>
+            <MobileNavLink
+              to='/notifications'
+              iconComponent={BellIcon}
+              withDot={notificationsCount > 0}
+            >
+              <FormattedMessage
+                id='tabs_bar.notifications'
+                defaultMessage='Notifications'
+              />
+            </MobileNavLink>
+            <Menu>
+              <MenuTrigger
+                as={MobileNavProfileButton}
+                avatar={
+                  <Avatar
+                    size={24}
+                    account={account}
+                    className={classes.avatar}
+                  />
+                }
+              >
+                <FormattedMessage
+                  id='tabs_bar.account_settings'
+                  defaultMessage='Account settings'
+                />
+              </MenuTrigger>
+              <MenuList placement='top-end' offset={8}>
+                <AccountMenuItems context='mobile' />
+              </MenuList>
+            </Menu>
+          </ul>
+          <ComposeRedesignButton inline />
+        </nav>
+      ) : (
+        // Logged out state:
+        <nav className={classes.root}>
+          <div
+            className={classNames(classes.floatingCard, classes.loggedOutInfo)}
+          >
+            <LogoLockup className={classes.logoLockup} />
+            <Button
+              as='a'
+              href='/auth/sign_up'
+              variant='solid'
+              size='sm'
+              className={classes.signUpButton}
+            >
+              <FormattedMessage
+                id='server_banner.sign_up'
+                defaultMessage='Sign up'
+              />
+            </Button>
+            <IconButton size='sm' icon={InfoIcon} onClick={openMobileNav}>
+              <FormattedMessage id='server_banner.info' defaultMessage='Info' />
+            </IconButton>
+          </div>
+        </nav>
+      )}
 
       <SlideOutNavigation />
     </>
