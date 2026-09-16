@@ -4,6 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'Accounts show response' do
   let(:account) { Fabricate(:account) }
+  let(:authorized_fetch_mode) { 'false' }
+
+  around do |example|
+    ClimateControl.modify AUTHORIZED_FETCH: authorized_fetch_mode.to_s do
+      example.run
+    end
+  end
 
   context 'with numeric-based identifiers' do
     context 'with JSON format' do
@@ -151,12 +158,6 @@ RSpec.describe 'Accounts show response' do
       context 'with JSON' do
         let(:authorized_fetch_mode) { false }
         let(:headers) { { 'ACCEPT' => 'application/json' } }
-
-        around do |example|
-          ClimateControl.modify AUTHORIZED_FETCH: authorized_fetch_mode.to_s do
-            example.run
-          end
-        end
 
         context 'with a normal account in a JSON request' do
           before do
