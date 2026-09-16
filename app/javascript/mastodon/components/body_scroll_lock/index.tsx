@@ -1,12 +1,21 @@
-import { useLayoutEffect } from 'react';
+import { useId, useLayoutEffect } from 'react';
 
+import {
+  addCustomModal,
+  removeCustomModal,
+} from '@/mastodon/reducers/slices/customModals';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import { createAppSelector, useAppSelector } from 'mastodon/store';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from 'mastodon/store';
 
 const getShouldLockBodyScroll = createAppSelector(
   [
     (state) => state.navigation.open,
     (state) => state.modal.get('stack').size > 0,
+    (state) => state.customModals.stack.length > 0,
     (state) =>
       isRedesignEnabled() &&
       state.composer.displayState === 'showing' &&
@@ -15,8 +24,13 @@ const getShouldLockBodyScroll = createAppSelector(
   (
     isMobileMenuOpen: boolean,
     isModalOpen: boolean,
+    isCustomModalOpen: boolean,
     isRedesignComposerOpen: boolean,
-  ) => isMobileMenuOpen || isModalOpen || isRedesignComposerOpen,
+  ) =>
+    isMobileMenuOpen ||
+    isModalOpen ||
+    isCustomModalOpen ||
+    isRedesignComposerOpen,
 );
 
 /**
@@ -36,3 +50,21 @@ export const BodyScrollLock: React.FC = () => {
 
   return null;
 };
+
+/**
+ * Utility hook for engaging the body scroll lock for a component
+ * on mount & disabling it on unmount.
+ */
+export function useBodyScrollLock(modalId?: string) {
+  const dispatch = useAppDispatch();
+  const uniqueId = useId();
+  const id = modalId ?? uniqueId;
+
+  useLayoutEffect(() => {
+    dispatch(addCustomModal(id));
+
+    return () => {
+      dispatch(removeCustomModal(id));
+    };
+  }, [id, dispatch]);
+}
