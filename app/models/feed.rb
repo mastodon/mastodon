@@ -30,7 +30,8 @@ class Feed
     scope.merge!(Status.where(in_reply_to_id: nil).or(Status.where(in_reply_to_id: @id))) if @options[:exclude_replies] # TODO: beware
 
     # If we have no filter, rely on Redis to apply the limit, otherwise we will have to do a posteriori filtering
-    limit_clause = [0, limit] unless @options[:exclude_direct] || @options[:exclude_reblogs] || @options[:exclude_quotes] || @options[:exclude_replies]
+    filters_present = @options[:exclude_direct] || @options[:exclude_reblogs] || @options[:exclude_quotes] || @options[:exclude_replies]
+    limit_clause = [0, limit] unless filters_present
 
     max_id = '+inf' if max_id.blank?
     if min_id.blank?
@@ -40,7 +41,7 @@ class Feed
       ids = redis.zrangebyscore(key, "(#{min_id}", "(#{max_id}", limit: limit_clause, with_scores: true).map { |id| id.first.to_i }
     end
 
-    if min_id.blank? || limit_clause.present?
+    if min_id.blank? || !filters_present
       scope.where(id: ids).limit(limit)
     else
       # We need to do some filtering *and* do it in the correct order
