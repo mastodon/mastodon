@@ -87,8 +87,6 @@ const StatusWarningDisplay: React.FC<{
         size='sm'
         onClick={onToggle}
         aria-controls={wrapperId}
-        aria-expanded={hidden}
-        noActiveHighlight
       >
         {hidden ? (
           <FormattedMessage
