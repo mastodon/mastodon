@@ -64,7 +64,7 @@ import {
 } from '@/mastodon/actions/statuses';
 import { setStatusQuotePolicy } from '@/mastodon/actions/statuses_typed';
 import { textForScreenReader, defaultMediaVisibility } from '@/mastodon/components/status/legacy/status';
-import { StatusQuoteManager } from '@/mastodon/components/status/legacy/quoted';
+import { Status as StatusComponent } from '@/mastodon/components/status';
 import { deleteModal } from '@/mastodon/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '@/mastodon/selectors';
 import { getAncestorsIds, getDescendantsIds } from 'mastodon/selectors/contexts';
@@ -465,7 +465,7 @@ class Status extends ImmutablePureComponent {
     const { params: { statusId } } = this.props;
 
     return list.map((id, i) => (
-      <StatusQuoteManager
+      <StatusComponent
         key={id}
         id={id}
         contextType='thread'
