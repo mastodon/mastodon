@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useCallback } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -31,10 +32,9 @@ export const StatusWarning: React.FC<{
   const status = useAppSelector((state) => selectPlainStatus(state, statusId));
 
   const dispatch = useAppDispatch();
-  const onToggle = useCallback(() => {
+  const onToggleCW = useCallback(() => {
     dispatch(toggleStatusSpoilers(statusId));
-    onFilterToggle();
-  }, [dispatch, onFilterToggle, statusId]);
+  }, [dispatch, statusId]);
 
   if (!status || (!filterAction && !status.spoiler_text)) {
     return null;
@@ -43,9 +43,13 @@ export const StatusWarning: React.FC<{
   const spoilerText = status.translation?.spoilerHtml ?? status.spoilerHtml;
 
   return (
-    <div className={classes.spoiler}>
-      <div className={classes.spoilerContent}>
-        {filters.length > 0 && (
+    <>
+      {!!filterAction && (
+        <StatusWarningDisplay
+          hidden={dismissedFilter}
+          onToggle={onFilterToggle}
+          wrapperId={wrapperId}
+        >
           <FormattedMessage
             id='filter_warning.matches_filter'
             defaultMessage='Matches filter “<span>{title}</span>”'
@@ -53,27 +57,41 @@ export const StatusWarning: React.FC<{
               title: intl.formatList(filters.map(({ title }) => title)),
               span: (chunks) => <span>{chunks}</span>,
             }}
-            tagName='p'
           />
-        )}
-        {!!spoilerText && (
-          <EmojiHTML
-            as='p'
-            htmlString={spoilerText}
-            extraEmojis={status.emojis}
-          />
-        )}
-      </div>
+        </StatusWarningDisplay>
+      )}
+      {!!spoilerText && (!filterAction || dismissedFilter) && (
+        <StatusWarningDisplay
+          hidden={!status.hidden}
+          onToggle={onToggleCW}
+          wrapperId={wrapperId}
+        >
+          <EmojiHTML htmlString={spoilerText} extraEmojis={status.emojis} />
+        </StatusWarningDisplay>
+      )}
+    </>
+  );
+};
+
+const StatusWarningDisplay: React.FC<{
+  hidden: boolean;
+  onToggle: () => void;
+  children: React.ReactElement;
+  wrapperId?: string;
+}> = ({ hidden, onToggle, children, wrapperId }) => {
+  return (
+    <div className={classes.spoiler}>
+      <div className={classes.spoilerContent}>{children}</div>
 
       <Button
         variant='solid'
         size='sm'
         onClick={onToggle}
         aria-controls={wrapperId}
-        aria-expanded={dismissedFilter}
+        aria-expanded={hidden}
         noActiveHighlight
       >
-        {dismissedFilter ? (
+        {hidden ? (
           <FormattedMessage
             id='content_warning.hide_short'
             defaultMessage='Hide'
