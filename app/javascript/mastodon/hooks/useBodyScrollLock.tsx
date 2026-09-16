@@ -1,9 +1,9 @@
 import { useId, useLayoutEffect } from 'react';
 
 import {
-  addCustomModal,
-  removeCustomModal,
-} from '@/mastodon/reducers/slices/customModals';
+  addToScrollLockStack,
+  removeFromScrollLockStack,
+} from '@/mastodon/reducers/slices/scrollLockStack';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import {
   createAppSelector,
@@ -13,23 +13,23 @@ import {
 
 const getShouldLockBodyScroll = createAppSelector(
   [
+    (state) => state.scrollLockStack.stack.length > 0,
     (state) => state.navigation.open,
     (state) => state.modal.get('stack').size > 0,
-    (state) => state.customModals.stack.length > 0,
     (state) =>
       isRedesignEnabled() &&
       state.composer.displayState === 'showing' &&
       state.meta.get('layout') === 'mobile',
   ],
   (
+    hasScrollLockStackItems: boolean,
     isMobileMenuOpen: boolean,
     isModalOpen: boolean,
-    isCustomModalOpen: boolean,
     isRedesignComposerOpen: boolean,
   ) =>
+    hasScrollLockStackItems ||
     isMobileMenuOpen ||
     isModalOpen ||
-    isCustomModalOpen ||
     isRedesignComposerOpen,
 );
 
@@ -62,10 +62,10 @@ export function useBodyScrollLock(modalId?: string) {
   const id = modalId ?? uniqueId;
 
   useLayoutEffect(() => {
-    dispatch(addCustomModal(id));
+    dispatch(addToScrollLockStack(id));
 
     return () => {
-      dispatch(removeCustomModal(id));
+      dispatch(removeFromScrollLockStack(id));
     };
   }, [id, dispatch]);
 }
