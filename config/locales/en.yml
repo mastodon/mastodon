@@ -1026,7 +1026,7 @@ en:
         authorized_fetch_hints:
           actors: Requiring authentication for profiles enables tracking of which server has ever discovered each of your local accounts, which can greatly reduce the number of unnecessary requests performed when notifying servers of an account deletion. This option comes at a slight performance cost when serving profiles due to said tracking and the inability for the reverse-proxy to cache responses for these requests. This might also introduce compatibility issues with some federated services.
           all: In addition to the benefits and drawbacks of requiring authentication for profiles, unconditionally requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks, but and also prevents caching of most requests. It will also reduce the reach of your replies, as reply forwarding will be disabled.
-          none: Requiring authentication only when strictly necessary allows maximal compatibility, and allows your reverse proxy to cache more requests.
+          none: Requiring authentication only when strictly necessary allows your reverse proxy to cache more requests. This option might get removed in the future. Only use it if the other options cause issues.
         authorized_fetch_modes:
           actors: For profiles and private content
           all: For every request
