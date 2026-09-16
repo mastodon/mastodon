@@ -3,6 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe AccountReachFilter do
+  describe 'BLOOM_FILTER_SIZES' do
+    it 'corresponds to the size of the bloom filters created by BloomFit' do
+      expect(described_class::BLOOM_FILTER_SIZES)
+        .to eq(described_class::BLOOM_FILTER_TARGET_CAPACITIES.map { |capacity| BloomFit.new(capacity:, false_positive_rate: described_class::TARGET_FALSE_POSITIVE_RATE).size })
+    end
+  end
+
   describe 'basic functionality' do
     let(:filter) { Fabricate(:account_reach_filter) }
 
@@ -66,13 +73,14 @@ RSpec.describe AccountReachFilter do
       end
 
       before do
-        stub_const('AccountReachFilter::INITIAL_BLOOM_FILTER_CAPACITY', 3)
+        stub_const('AccountReachFilter::BLOOM_FILTER_TARGET_CAPACITIES', [3, 10_000])
+        stub_const('AccountReachFilter::BLOOM_FILTER_SIZES', described_class::BLOOM_FILTER_TARGET_CAPACITIES.map { |capacity| BloomFit.new(capacity:, false_positive_rate: described_class::TARGET_FALSE_POSITIVE_RATE).size })
         allow(Account).to receive(:inboxes).and_return(inboxes)
         filter.add('mastodon.social')
         filter.save!
       end
 
-      it 'upgrades the filter and keeps functionality' do
+      it 'upgrades the filter and keeps functionality', :aggregate_failures do
         expect do
           filter.add('mastodon.online', 'example.com', 'joinmastodon.org')
           filter.save!
