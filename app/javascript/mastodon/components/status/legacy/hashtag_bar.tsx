@@ -8,12 +8,12 @@ import type { List, Record } from 'immutable';
 
 import { groupBy, minBy } from 'lodash';
 
-import type { ApiTagJSON } from '../api_types/statuses';
+import type { ApiTagJSON } from '../../../api_types/statuses';
 import type {
   MediaAttachmentShape,
   StatusShape,
   StatusTranslation,
-} from '../models/status';
+} from '../../../models/status';
 
 // Fit on a single line on desktop
 const VISIBLE_HASHTAGS = 3;

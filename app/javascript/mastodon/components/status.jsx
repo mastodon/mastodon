@@ -9,12 +9,12 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
-import { Hotkeys } from 'mastodon/components/hotkeys';
-import { ContentWarning } from '@/mastodon/components/status/legacy/content_warning';
-import { FilterWarning } from '@/mastodon/components/status/legacy/filter_warning';
-import { Icon }  from 'mastodon/components/icon';
-import { PictureInPicturePlaceholder } from 'mastodon/components/picture_in_picture_placeholder';
-import { withOptionalRouter, WithOptionalRouterPropTypes } from 'mastodon/utils/react_router';
+import { Hotkeys } from './hotkeys';
+import { ContentWarning } from './status/legacy/content_warning';
+import { FilterWarning } from './status/legacy/filter_warning';
+import { Icon }  from './icon';
+import { PictureInPicturePlaceholder } from './picture_in_picture_placeholder';
+import { withOptionalRouter, WithOptionalRouterPropTypes } from '@/mastodon/utils/react_router';
 
 import Card from '../features/status/components/card';
 // We use the component (and not the container) since we do not want
@@ -27,7 +27,7 @@ import { displayMedia } from '../initial_state';
 import { injectIntl } from './intl';
 import { StatusHeader } from './status/legacy/header'
 import { LinkedDisplayName } from './display_name';
-import { getHashtagBarForStatus } from './hashtag_bar';
+import { getHashtagBarForStatus } from './status/legacy/hashtag_bar';
 import StatusActionBar from './status/legacy/action_bar';
 import StatusContent from './status_content';
 import { StatusThreadLabel } from './status_thread_label';
