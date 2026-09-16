@@ -11,7 +11,7 @@ import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?re
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import { Hotkeys } from '@/mastodon/components/hotkeys';
 import { Icon }  from '@/mastodon/components/icon';
-import { PictureInPicturePlaceholder } from '@/mastodon/components/picture_in_picture_placeholder';
+import { PictureInPicturePlaceholder } from './picture_in_picture_placeholder';
 import { withOptionalRouter, WithOptionalRouterPropTypes } from '@/mastodon/utils/react_router';
 
 import Card from '@/mastodon/features/status/components/card';
