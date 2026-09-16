@@ -21,16 +21,16 @@ import { statusLink } from './utils';
 
 export const StatusPrepend: React.FC<{
   status: ExpandedStatusShape;
+  reblogId?: string;
   showThread?: boolean;
-  isReblog?: boolean;
-}> = ({ status, showThread, isReblog }) => {
-  if (!isReblog && (!showThread || !status.in_reply_to_id)) {
+}> = ({ status, showThread, reblogId }) => {
+  if (!reblogId && (!showThread || !status.in_reply_to_id)) {
     return null;
   }
 
   return (
     <>
-      {isReblog && <StatusPrependReblog status={status} />}
+      {!!reblogId && <StatusPrependReblog reblogId={reblogId} />}
       {showThread && !!status.in_reply_to_id && (
         <StatusPrependReply replyId={status.in_reply_to_id} />
       )}
@@ -38,9 +38,12 @@ export const StatusPrepend: React.FC<{
   );
 };
 
-const StatusPrependReblog: React.FC<{ status: ExpandedStatusShape }> = ({
-  status,
-}) => {
+const StatusPrependReblog: React.FC<{ reblogId: string }> = ({ reblogId }) => {
+  const status = useAccountStatus(reblogId, true);
+  if (!status) {
+    return null;
+  }
+
   const account = status.account;
   const accountLinkProps = {
     to: {
