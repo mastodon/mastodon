@@ -28,7 +28,7 @@ import { injectIntl } from './intl';
 import { StatusHeader } from './status/legacy/header'
 import { LinkedDisplayName } from './display_name';
 import { getHashtagBarForStatus } from './hashtag_bar';
-import StatusActionBar from './status_action_bar';
+import StatusActionBar from './status/legacy/action_bar';
 import StatusContent from './status_content';
 import { StatusThreadLabel } from './status_thread_label';
 import { CollectionPreviewCard } from '../features/collections/components/collection_preview_card';

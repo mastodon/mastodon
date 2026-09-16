@@ -67,10 +67,10 @@ import {
   MenuList,
   MenuTrigger,
 } from '../menu';
-import { RemoveQuoteHint } from '../status_action_bar/remove_quote_hint';
 
 import { boostItemState, quoteItemState } from './boost_button_utils';
 import { useStatusContext } from './hooks';
+import { RemoveQuoteHint } from './legacy/action_bar/remove_quote_hint';
 import classes from './styles.module.scss';
 
 interface StatusActionBarProps {

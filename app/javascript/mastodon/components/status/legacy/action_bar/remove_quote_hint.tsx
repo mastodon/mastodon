@@ -4,12 +4,11 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { Button } from '@/mastodon/components/button';
+import { Icon } from '@/mastodon/components/icon';
+import { Popover } from '@/mastodon/components/popover';
 import { useDismissible } from '@/mastodon/hooks/useDismissible';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
-
-import { Button } from '../button';
-import { Icon } from '../icon';
-import { Popover } from '../popover';
 
 import classes from './remove_quote_hint.module.css';
 
