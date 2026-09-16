@@ -25,7 +25,7 @@ import { SensitiveMediaContext } from '../features/ui/util/sensitive_media_conte
 import { displayMedia } from '../initial_state';
 
 import { injectIntl } from './intl';
-import { StatusHeader } from './status/header'
+import { StatusHeader } from './status/legacy/header'
 import { LinkedDisplayName } from './display_name';
 import { getHashtagBarForStatus } from './hashtag_bar';
 import StatusActionBar from './status_action_bar';

@@ -32,8 +32,8 @@ import { isRedesignStatusEnabled } from '../utils/environment';
 import { Button } from './button';
 import { IconButton } from './icon_button';
 import { LoadingIndicator } from './loading_indicator';
-import type { StatusHeaderRenderFn } from './status/header';
-import { StatusHeader } from './status/header';
+import type { StatusHeaderRenderFn } from './status/legacy/header';
+import { StatusHeader } from './status/legacy/header';
 import { TypedStatusContainer } from './status/types';
 import type { StatusContainerProps, StatusContextType } from './status/types';
 

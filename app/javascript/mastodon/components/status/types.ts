@@ -6,7 +6,7 @@ import type { Status as TStatus } from '@/mastodon/models/status';
 
 import Status from '../status';
 
-import type { StatusHeaderRenderFn } from './header';
+import type { StatusHeaderRenderFn } from './legacy/header';
 
 export type StatusContextType =
   | 'account'

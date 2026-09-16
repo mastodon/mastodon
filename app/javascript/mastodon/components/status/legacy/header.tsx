@@ -5,16 +5,15 @@ import { defineMessage, useIntl } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { Avatar } from '@/mastodon/components/avatar';
+import { AvatarOverlay } from '@/mastodon/components/avatar_overlay';
+import type { DisplayNameProps } from '@/mastodon/components/display_name';
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
+import { RelativeTimestamp } from '@/mastodon/components/relative_timestamp';
+import { VisibilityIcon } from '@/mastodon/components/visibility_icon';
 import type { Account, AccountShapeFull } from '@/mastodon/models/account';
 import { selectAccountStatus } from '@/mastodon/selectors/statuses';
 import { useAppSelector } from '@/mastodon/store';
-
-import { Avatar } from '../avatar';
-import { AvatarOverlay } from '../avatar_overlay';
-import type { DisplayNameProps } from '../display_name';
-import { LinkedDisplayName } from '../display_name';
-import { RelativeTimestamp } from '../relative_timestamp';
-import { VisibilityIcon } from '../visibility_icon';
 
 export interface StatusHeaderProps {
   statusId: string;
