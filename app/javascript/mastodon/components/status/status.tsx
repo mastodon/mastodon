@@ -148,6 +148,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           variant === 'thread' && classes.variantThread,
           variant === 'page' && classes.variantPage,
           isQuotedPost && classes.isQuote,
+          status.visibility === 'direct' && classes.isMessage,
         )}
         data-featured={featured ? 'true' : null}
         aria-label={screenReaderText}
