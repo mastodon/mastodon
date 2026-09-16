@@ -5,10 +5,10 @@ module AuthorizedFetchHelper
     case ENV.fetch('AUTHORIZED_FETCH') { Setting.authorized_fetch }
     when true, 'true', 'all'
       'all'
-    when 'actors'
-      'actors'
-    else
+    when false, 'false', 'none'
       'none'
+    else
+      'actors'
     end
   end
 
