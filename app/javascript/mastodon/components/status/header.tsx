@@ -7,14 +7,14 @@ import { Link } from 'react-router-dom';
 
 import type { AccountStatusShape } from '@/mastodon/models/status';
 
-import { Avatar } from '../../avatar';
-import { DisplayName } from '../../display_name';
-import { useAccountHandle } from '../../display_name/default';
-import { RelativeTimestamp } from '../../relative_timestamp';
-import { Skeleton } from '../../skeleton';
-import { statusLink } from '../utils';
+import { Avatar } from '../avatar';
+import { DisplayName } from '../display_name';
+import { useAccountHandle } from '../display_name/default';
+import { RelativeTimestamp } from '../relative_timestamp';
+import { Skeleton } from '../skeleton';
 
-import classes from './styles.module.scss';
+import classes from './header.module.scss';
+import { statusLink } from './utils';
 
 interface StatusRedesignHeaderProps {
   status: Pick<
