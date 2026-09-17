@@ -135,7 +135,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
         direction='right'
         title={intl.formatMessage(messages.more)}
       >
-        <button className='dropdown-button column-header__select-row__select-menu' disabled={selectedItems.length === 0}>
+        <button type='button' className='dropdown-button column-header__select-row__select-menu' disabled={selectedItems.length === 0}>
           <span className='dropdown-button__label'>
             {selectedCount} selected
           </span>
@@ -143,7 +143,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
         </button>
       </Dropdown>
       <div className='column-header__select-row__mode-button'>
-        <button className='text-btn' tabIndex={0} onClick={handleToggleSelectionMode}>
+        <button type='button' className='text-btn' tabIndex={0} onClick={handleToggleSelectionMode}>
           {selectionMode ? (
             <FormattedMessage id='notification_requests.exit_selection' defaultMessage='Done' />
           ) :
