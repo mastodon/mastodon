@@ -46,7 +46,7 @@
           %tr
             %th= t('admin.instances.content_policies.policy')
             %td= policy_list(@instance.domain_block)
-          - if @instance.domain_block.moderation_subscription
+          - if Mastodon::Feature.moderation_subscriptions_enabled? && @instance.domain_block.moderation_subscription
             %tr
               %th= t('admin.instances.content_policies.moderation_subscription')
               %td= link_to @instance.domain_block.moderation_subscription.name, admin_moderation_subscription_path(@instance.domain_block.moderation_subscription)

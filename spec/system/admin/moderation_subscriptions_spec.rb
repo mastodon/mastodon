@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'using the moderation subscription interface' do
+RSpec.describe 'using the moderation subscription interface', feature: :moderation_subscriptions do
   before do
     sign_in Fabricate(:admin_user), scope: :user
   end

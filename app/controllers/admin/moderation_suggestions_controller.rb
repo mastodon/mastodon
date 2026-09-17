@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::ModerationSuggestionsController < Admin::BaseController
+  before_action :check_feature_enabled
   before_action :set_moderation_suggestion_targets, only: :index
   before_action :set_moderation_suggestions_by_target, only: :index
   before_action :set_moderation_advisories_by_target, only: :index
@@ -155,5 +156,9 @@ class Admin::ModerationSuggestionsController < Admin::BaseController
 
   def set_moderation_suggestion
     @moderation_suggestion = ModerationSuggestion.find(params[:id])
+  end
+
+  def check_feature_enabled
+    raise ActionController::RoutingError, 'Feature disabled' unless Mastodon::Feature.moderation_subscriptions_enabled?
   end
 end
