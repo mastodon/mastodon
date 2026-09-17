@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
@@ -22,6 +23,10 @@ import { StatusRedesign as Status } from '@/mastodon/components/status/status';
 import { ScrollContainer } from '@/mastodon/containers/scroll_container';
 import type { ShouldUpdateScrollFn } from '@/mastodon/containers/scroll_container/default_should_update_scroll';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
+import {
+  getAncestorsIds,
+  getDescendantsIds,
+} from '@/mastodon/selectors/contexts';
 import { useAppSelector } from '@/mastodon/store';
 
 import { BundleColumnError } from '../ui/components/bundle_column_error';
@@ -33,6 +38,7 @@ import {
 } from '../ui/util/fullscreen';
 
 import { RefreshController } from './components/refresh_controller';
+import classes from './redesign.module.scss';
 
 const messages = defineMessages({
   revealAll: {
@@ -68,9 +74,16 @@ export const StatusPage: React.FC = () => {
     };
   });
 
-  const status = useExpandedStatus(statusId, true);
+  const status = useExpandedStatus(statusId, 'force');
   const isLoading = useAppSelector(
     (state) => !!state.statuses.getIn([statusId, 'isLoading']),
+  );
+
+  const ancestorIds = useAppSelector((state) =>
+    getAncestorsIds(state, status?.in_reply_to_id),
+  );
+  const descendantIds = useAppSelector((state) =>
+    getDescendantsIds(state, statusId),
   );
 
   const statusFocusRef = useRef<HTMLDivElement>(null);
@@ -172,23 +185,38 @@ export const StatusPage: React.FC = () => {
         shouldUpdateScroll={shouldUpdateScroll}
       >
         <div
-          className={classNames('item-list scrollable scrollable--flex', {
+          className={classNames({
             fullscreen,
           })}
         >
+          {ancestorIds.length > 0 && (
+            <div>
+              <StatusRelativeList statusIds={ancestorIds} rootId={statusId} />
+            </div>
+          )}
+
           <NavigationFocusTarget
             as='div'
             focusTargetName={FOCUS_TARGET.POST}
-            className={classNames(
-              'focusable',
-              'detailed-status__wrapper',
-              `detailed-status__wrapper-${status.visibility}`,
-            )}
+            className={classes.mainStatus}
             tabIndex={0}
             ref={statusFocusRef}
           >
             <Status id={statusId} contextType='detailed' />
           </NavigationFocusTarget>
+
+          <div>reply here</div>
+
+          <div>
+            <StatusRelativeList statusIds={descendantIds} rootId={statusId} />
+
+            <div>
+              <FormattedMessage
+                id='status.thread_end'
+                defaultMessage='You’ve reached the end of the conversation.'
+              />
+            </div>
+          </div>
 
           <RefreshController
             isLocal={isLocal}
@@ -208,4 +236,20 @@ export const StatusPage: React.FC = () => {
       </Helmet>
     </Column>
   );
+};
+
+const StatusRelativeList: React.FC<{ statusIds: string[]; rootId: string }> = ({
+  statusIds,
+  rootId,
+}) => {
+  return statusIds.map((statusId, index) => (
+    <Status
+      key={statusId}
+      id={statusId}
+      rootId={rootId}
+      contextType='thread'
+      previousId={statusIds[index - 1]}
+      nextId={statusIds[index + 1]}
+    />
+  ));
 };
