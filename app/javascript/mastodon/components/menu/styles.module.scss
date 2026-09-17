@@ -25,7 +25,7 @@
 }
 
 .itemGroupLabel {
-  @include mixins.type-label-sm;
+  @include mixins.type-caption;
 
   color: var(--color-text-tertiary);
   padding: var(--space-2) var(--space-3) 0;
@@ -109,7 +109,7 @@
 }
 
 .itemDescription {
-  @include mixins.type-label-sm;
+  @include mixins.type-caption;
 
   display: block;
   margin-top: var(--space-half);

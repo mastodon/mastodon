@@ -14,14 +14,14 @@
       }
 
       :global(.status-card__host) {
-        @include mixins.type-label-md;
+        @include mixins.type-meta;
 
         // Overrides hover styles.
         color: var(--color-text-secondary);
       }
 
       :global(.status-card__title) {
-        @include mixins.type-label-lg;
+        @include mixins.type-label;
 
         // Overrides hover styles.
         color: var(--color-text-primary);

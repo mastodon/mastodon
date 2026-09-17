@@ -23,7 +23,7 @@
   padding: var(--space-1) var(--space-2);
   margin-bottom: var(--space-half);
 
-  @include mixins.type-label-md;
+  @include mixins.type-meta;
 
   color: var(--color-text-secondary);
 }
@@ -40,7 +40,7 @@
 }
 
 .emptyState {
-  @include mixins.type-label-sm;
+  @include mixins.type-caption;
 
   padding-inline: var(--space-2);
 }

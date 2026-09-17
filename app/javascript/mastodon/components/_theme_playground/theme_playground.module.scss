@@ -87,7 +87,7 @@
 
       .subtitle {
         grid-area: subtitle;
-        @include mixins.type-label-sm;
+        @include mixins.type-caption;
 
         color: var(--color-text-secondary);
         overflow: hidden;

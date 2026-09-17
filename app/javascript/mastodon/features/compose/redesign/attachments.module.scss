@@ -121,7 +121,7 @@
   }
 
   label {
-    @include mixins.type-label-sm;
+    @include mixins.type-caption;
   }
 }
 
@@ -211,7 +211,7 @@
 }
 
 .quoteVideoDuration {
-  @include mixins.type-label-md;
+  @include mixins.type-meta;
 
   display: flex;
   gap: var(--space-1);

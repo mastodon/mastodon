@@ -37,7 +37,7 @@ a.root {
 }
 
 .title {
-  @include mixins.type-label-md;
+  @include mixins.type-meta;
 
   color: var(--color-text-secondary);
   display: flex;
@@ -63,7 +63,7 @@ a.root {
 }
 
 .body {
-  @include mixins.type-label-lg;
+  @include mixins.type-label;
 
   overflow-wrap: break-word;
   flex-grow: 1;
