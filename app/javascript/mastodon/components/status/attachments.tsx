@@ -23,6 +23,7 @@ import { selectMediaFilters } from '@/mastodon/selectors/filters';
 import { selectPictureInPicture } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { compareUrls } from '@/mastodon/utils/compare_urls';
+import { decodeIDNA } from '@/mastodon/utils/links';
 
 import { Avatar } from '../avatar';
 import { Button } from '../button/redesign';
@@ -317,13 +318,16 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
             <RelativeTimestamp timestamp={card.published_at} />
           )
         }
+        lang={card.language ?? undefined}
       >
         <a
           href={`${providerUrl.protocol}//${providerUrl.host}`}
           target='_blank'
           rel='noopener'
         >
-          {card.author_name || card.provider_name || providerUrl.host}
+          {card.author_name ||
+            card.provider_name ||
+            decodeIDNA(providerUrl.host)}
         </a>
       </CardTitle>
       <CardBody {...cardLinkProps}>{card.title}</CardBody>
