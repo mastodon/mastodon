@@ -1,3 +1,42 @@
+@use '@/styles/mastodon/mixins';
+
+.cardMedia {
+  > :global(.status-card) {
+    margin-top: 0;
+    border: var(--border-thin);
+    border-radius: var(--radius-md);
+
+    > a {
+      transition: background 200ms ease-in-out;
+
+      &:hover {
+        background-color: var(--color-bg-highlight);
+      }
+
+      :global(.status-card__host) {
+        @include mixins.type-label-md;
+
+        // Overrides hover styles.
+        color: var(--color-text-secondary);
+      }
+
+      :global(.status-card__title) {
+        @include mixins.type-label-lg;
+
+        // Overrides hover styles.
+        color: var(--color-text-primary);
+      }
+
+      :global(.status-card__author) {
+        @include mixins.type-body-compact;
+
+        // Overrides hover styles.
+        color: var(--color-text-primary);
+      }
+    }
+  }
+}
+
 .cardAuthor {
   padding-inline-start: var(--space-xs);
   gap: var(--space-2xs);

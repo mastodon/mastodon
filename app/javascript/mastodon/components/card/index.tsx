@@ -1,4 +1,3 @@
-import type React from 'react';
 import { createContext, use, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';

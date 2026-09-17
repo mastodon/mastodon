@@ -1,4 +1,3 @@
-import type React from 'react';
 import { lazy, Suspense, useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -289,7 +288,7 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
   // Use the old card if we have authors as the new design doesn't have attribution yet.
   if (card.type === 'video') {
     return (
-      <div>
+      <div className={classes.cardMedia}>
         <MediaCard
           key={`${status.id}-${status.edited_at}`}
           card={card}
