@@ -6,15 +6,15 @@
   justify-content: center;
   max-width: 100%;
   min-width: 1lh;
-  padding: var(--space-2xs);
-  gap: var(--space-2xs);
-  border-radius: var(--radius-xs);
+  padding: var(--space-1);
+  gap: var(--space-1);
+  border-radius: var(--radius-2);
   color: var(--color-text-primary);
   font-size: 13px;
   font-weight: 400;
 
   &:not(.badgeWithoutIcon) {
-    padding-inline-end: var(--space-xs);
+    padding-inline-end: var(--space-2);
   }
 
   > svg {

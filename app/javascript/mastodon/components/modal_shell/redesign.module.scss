@@ -3,13 +3,13 @@
 .modal {
   @include mixins.elevation-1;
 
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-6);
   box-sizing: border-box;
   background: var(--color-bg-primary);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
-  padding: var(--space-md);
+  gap: var(--space-4);
+  padding: var(--space-4);
   pointer-events: auto;
   user-select: text;
   overflow: hidden;
@@ -22,7 +22,7 @@
 .titleWrapper {
   display: flex;
   align-items: start;
-  gap: var(--space-md);
+  gap: var(--space-4);
 }
 
 .title {
@@ -33,15 +33,15 @@
 
 .closeButton {
   // Prevent close button from increasing spacing around title
-  margin-block: calc(-1 * var(--space-xs));
-  margin-inline-end: calc(-1 * var(--space-xs));
+  margin-block: calc(-1 * var(--space-2));
+  margin-inline-end: calc(-1 * var(--space-2));
 }
 
 .actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-md);
+  gap: var(--space-4);
 }
 
 .actionsLeft {

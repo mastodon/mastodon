@@ -4,7 +4,7 @@
   --bg: transparent;
   --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
   --fg: var(--color-text-primary);
-  --inline-padding: var(--space-xs);
+  --inline-padding: var(--space-2);
 
   @include mixins.type-label-lg;
 
@@ -21,7 +21,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  column-gap: var(--space-2xs);
+  column-gap: var(--space-1);
   padding-inline: var(--inline-padding);
   box-sizing: border-box;
 
@@ -74,23 +74,23 @@ a.base {
 }
 
 .sm {
-  --inline-padding: var(--space-sm);
+  --inline-padding: var(--space-3);
 
-  padding-block: var(--space-2xs);
+  padding-block: var(--space-1);
   min-height: 32px;
 }
 
 .md {
-  --inline-padding: var(--space-md);
+  --inline-padding: var(--space-4);
 
-  padding-block: var(--space-xs);
+  padding-block: var(--space-2);
   min-height: 40px;
 }
 
 .lg {
-  --inline-padding: var(--space-lg);
+  --inline-padding: var(--space-5);
 
-  padding-block: var(--space-sm);
+  padding-block: var(--space-3);
   min-height: 48px;
 }
 
