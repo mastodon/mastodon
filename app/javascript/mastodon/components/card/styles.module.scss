@@ -69,7 +69,7 @@ a.root {
   flex-grow: 1;
 
   * + & {
-    margin-block-start: var(--space-xs);
+    padding-block-start: var(--space-xs);
   }
 
   a {
@@ -102,15 +102,18 @@ a.body {
 .image {
   contain: size;
   grid-column: 2;
-  grid-row: 1 / span 2;
+  grid-row: 1 / span 9999; // Handles unlimited space
   margin-block: calc(-1 * var(--space-sm));
 
-  &,
-  & > img {
+  > img {
     height: 100%;
     object-fit: cover;
     width: 100%;
   }
+}
+
+.actions {
+  margin-block-start: var(--space-sm);
 }
 
 .clamp {
