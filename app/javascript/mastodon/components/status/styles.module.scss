@@ -13,13 +13,13 @@
   padding: var(--space-md);
 }
 
+.variantPage {
+  padding: var(--space-xs) var(--space-md);
+}
+
 .variantThread {
   --avatar-size: 32px;
 
-  padding: var(--space-xs) 0;
-}
-
-.variantPage {
   padding: 0;
 }
 
@@ -216,13 +216,17 @@
 .meta {
   @include mixins.type-micro;
 
+  display: flex;
+  gap: var(--space-2xs);
   color: var(--color-text-secondary);
+  padding-block: var(--space-xs);
 
   a {
     color: inherit;
     text-decoration: none;
 
-    &:hover {
+    &:hover,
+    &:hover * {
       text-decoration: underline;
     }
   }
