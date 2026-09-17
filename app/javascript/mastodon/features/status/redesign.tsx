@@ -210,7 +210,7 @@ export const StatusPage: React.FC = () => {
           <div>
             <StatusRelativeList statusIds={descendantIds} rootId={statusId} />
 
-            <div>
+            <div className={classes.threadEnd}>
               <FormattedMessage
                 id='status.thread_end'
                 defaultMessage='You’ve reached the end of the conversation.'

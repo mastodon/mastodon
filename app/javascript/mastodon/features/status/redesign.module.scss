@@ -1,3 +1,14 @@
+@use '@/styles/mastodon/mixins';
+
 .mainStatus {
   border-bottom: var(--border-normal);
+}
+
+.threadEnd {
+  @include mixins.type-label-md;
+
+  border-top: var(--border-normal);
+  color: var(--color-text-tertiary);
+  padding: var(--space-5xl) var(--space-md);
+  text-align: center;
 }
