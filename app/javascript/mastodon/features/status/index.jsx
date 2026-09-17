@@ -575,18 +575,18 @@ class Status extends ImmutablePureComponent {
       onTranslate: this.handleHotkeyTranslate,
     };
 
-    const pageTitle = status.visibility === 'direct' ? (
+    const pageTitle = status.get('visibility') === 'direct' ? (
       <FormattedMessage
-        id='status.title'
-        defaultMessage='Post by {name}'
+        id='status.title.message'
+        defaultMessage='Message by {name}'
         values={{
           name: <DisplayNameSimple account={account} />
         }}
       />
     ) : (
       <FormattedMessage
-        id='status.title.message'
-        defaultMessage='Message by {name}'
+        id='status.title'
+        defaultMessage='Post by {name}'
         values={{
           name: <DisplayNameSimple account={account} />
         }}
