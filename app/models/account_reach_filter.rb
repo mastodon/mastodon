@@ -54,6 +54,7 @@ class AccountReachFilter < ApplicationRecord
 
   # Batch size for processing queued additions
   BATCH_SIZE = 500
+  DEBOUNCE_DELAY = 5.minutes
 
   class BloomFilterSerializer
     def self.load(value)
@@ -91,7 +92,7 @@ class AccountReachFilter < ApplicationRecord
         redis.sadd("account_reach:#{account_reach_filter_id}:to_add", Addressable::URI.parse(inbox_url).normalized_host)
       end
 
-      UpdateAccountReachWorker.perform_async(account_reach_filter_id)
+      UpdateAccountReachWorker.perform_in(DEBOUNCE_DELAY, account_reach_filter_id)
     end
   end
 
