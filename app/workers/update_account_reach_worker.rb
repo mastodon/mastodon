@@ -13,8 +13,6 @@ class UpdateAccountReachWorker
   # will be processed by the worker.
   sidekiq_options queue: 'ingress', lock: :until_executing, retry: 5
 
-  BATCH_SIZE = 500
-
   def perform(account_reach_filter_id)
     # Since we are using `until_executing` rather than `until_executed`, lock
     # the whole process to avoid race conditions.
@@ -25,17 +23,7 @@ class UpdateAccountReachWorker
       filter = AccountReachFilter.find_by(id: account_reach_filter_id)
       return if filter.nil?
 
-      with_redis do |redis|
-        loop do
-          domains = redis.spop("account_reach:#{account_reach_filter_id}:to_add", BATCH_SIZE)
-
-          filter.add(*domains)
-
-          break if domains.size < BATCH_SIZE
-        end
-      end
-
-      filter.save!
+      filter.process_queued_additions!
     end
   end
 end

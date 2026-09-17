@@ -13,6 +13,9 @@
 #  account_id   :bigint(8)        not null
 #
 class AccountReachFilter < ApplicationRecord
+  include Redisable
+  include Lockable
+
   belongs_to :account
 
   after_initialize :set_salt
@@ -49,6 +52,9 @@ class AccountReachFilter < ApplicationRecord
 
     BLOOM_FILTER_TARGET_CAPACITIES.map { |capacity| (capacity * factor).ceil }
   end.freeze
+
+  # Batch size for processing queued additions
+  BATCH_SIZE = 500
 
   class << self
     include Redisable
@@ -106,7 +112,11 @@ class AccountReachFilter < ApplicationRecord
   end
 
   def filter_inboxes(inboxes)
-    return inboxes if saturated? || destroyed?
+    return inboxes if destroyed? || saturated?
+
+    process_queued_additions_with_lock!
+
+    return inboxes if saturated?
     return [] if filter.empty?
 
     inboxes.filter do |url|
@@ -114,6 +124,21 @@ class AccountReachFilter < ApplicationRecord
     rescue
       true
     end
+  end
+
+  def process_queued_additions!
+    with_redis do |redis|
+      reload
+      loop do
+        domains = redis.spop("account_reach:#{id}:to_add", BATCH_SIZE)
+
+        add(*domains)
+
+        break if domains.size < BATCH_SIZE
+      end
+    end
+
+    save!
   end
 
   # NOTE: There ought to be a better way of doing this…
@@ -134,6 +159,17 @@ class AccountReachFilter < ApplicationRecord
       else
         BloomFit.new(capacity: BLOOM_FILTER_TARGET_CAPACITIES.first, false_positive_rate: TARGET_FALSE_POSITIVE_RATE)
       end
+    end
+  end
+
+  def process_queued_additions_with_lock!
+    return unless persisted?
+    raise 'AccountReachFilter changes need to be performed with a lock' if changed?
+
+    with_redis_lock("consolidate_account_reach_filter:#{id}", autorelease: 5.minutes) do
+      reload
+
+      process_queued_additions!
     end
   end
 
