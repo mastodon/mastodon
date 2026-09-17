@@ -6,6 +6,7 @@ class Scheduler::ModerationListSynchronizationScheduler
   sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 6.hours.to_i
 
   def perform
+    return unless Mastodon::Feature.moderation_subscriptions_enabled?
     return unless update_lists!
 
     ProcessModerationListsService.new.call

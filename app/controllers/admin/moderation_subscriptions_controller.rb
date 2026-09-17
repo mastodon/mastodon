@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::ModerationSubscriptionsController < Admin::BaseController
+  before_action :check_feature_enabled
   before_action :set_moderation_subscriptions, only: :index
   before_action :set_moderation_subscription, only: [:show, :edit, :update, :destroy]
   before_action :set_subscribed_advisories, only: :show
@@ -92,5 +93,9 @@ class Admin::ModerationSubscriptionsController < Admin::BaseController
 
   def set_subscribed_advisories
     @subscribed_advisories = @moderation_subscription.advisories.order(id: :asc).page(params[:page])
+  end
+
+  def check_feature_enabled
+    raise ActionController::RoutingError, 'Feature disabled' unless Mastodon::Feature.moderation_subscriptions_enabled?
   end
 end
