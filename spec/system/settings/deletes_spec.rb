@@ -15,12 +15,21 @@ RSpec.describe 'Settings Deletes' do
         .and have_private_cache_control
 
       # Wrong confirmation value
+      fill_in 'form_delete_confirmation_username', with: user.account.username
       fill_in 'form_delete_confirmation_password', with: 'wrongvalue'
       click_on I18n.t('deletes.proceed')
       expect(page)
         .to have_text(I18n.t('deletes.challenge_not_passed'))
 
+      # Wrong confirmation value
+      fill_in 'form_delete_confirmation_username', with: 'wrongvalue'
+      fill_in 'form_delete_confirmation_password', with: user.password
+      click_on I18n.t('deletes.proceed')
+      expect(page)
+        .to have_text(I18n.t('deletes.challenge_not_passed'))
+
       # Correct confirmation value
+      fill_in 'form_delete_confirmation_username', with: user.account.username
       fill_in 'form_delete_confirmation_password', with: user.password
       click_on I18n.t('deletes.proceed')
       expect(page)
