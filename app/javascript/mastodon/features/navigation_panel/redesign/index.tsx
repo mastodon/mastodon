@@ -2,6 +2,8 @@ import { useCallback, useEffect } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import { Link } from 'react-router-dom';
+
 import {
   PenNibIcon,
   HouseIcon,
@@ -10,6 +12,7 @@ import {
   BellIcon,
   ChatCircleDotsIcon,
   BookmarkSimpleIcon,
+  PlusIcon,
 } from '@phosphor-icons/react';
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
@@ -162,31 +165,44 @@ export const RedesignNavigationPanel: React.FC<{
                   defaultMessage='Custom Feeds'
                 />
               }
-              action={{
-                label: (
-                  <FormattedMessage
-                    id='tabs_bar.create_custom_feed'
-                    defaultMessage='Create'
-                  />
-                ),
-                link: '/lists/new',
-              }}
               emptyMessage={
-                <FormattedMessage
-                  id='tabs_bar.custom_feeds_empty'
-                  defaultMessage='You have no custom feeds yet.'
-                />
+                <>
+                  <FormattedMessage
+                    id='tabs_bar.custom_feeds_empty'
+                    defaultMessage='You have no custom feeds yet.'
+                  />{' '}
+                  <Link to='/lists/new'>
+                    <FormattedMessage
+                      id='tabs_bar.create_custom_feed'
+                      defaultMessage='Create feed'
+                    />
+                  </Link>
+                </>
               }
             >
-              {customFeeds.map((feed) => (
-                <NavigationLink
-                  key={feed.id}
-                  to={`/lists/${feed.id}`}
-                  iconComponent={RssSimpleIcon}
-                >
-                  {feed.title}
-                </NavigationLink>
-              ))}
+              {customFeeds.length > 0 && (
+                <>
+                  <NavigationLink
+                    key='new'
+                    to='/lists/new'
+                    iconComponent={PlusIcon}
+                  >
+                    <FormattedMessage
+                      id='tabs_bar.create_custom_feed'
+                      defaultMessage='Create feed'
+                    />
+                  </NavigationLink>
+                  {customFeeds.map((feed) => (
+                    <NavigationLink
+                      key={feed.id}
+                      to={`/lists/${feed.id}`}
+                      iconComponent={RssSimpleIcon}
+                    >
+                      {feed.title}
+                    </NavigationLink>
+                  ))}
+                </>
+              )}
             </ListSection>
 
             {followedHashtags.length > 0 && (

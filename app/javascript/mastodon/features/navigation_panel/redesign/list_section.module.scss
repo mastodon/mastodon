@@ -1,45 +1,42 @@
 @use '@/styles/mastodon/mixins';
+@use './navigation_link.module.scss' as navigation-link;
 
 .root {
   &:not(:last-child) {
     margin-bottom: var(--space-md);
   }
-}
 
-.titleWrapper {
-  display: flex;
-  align-items: center;
-  padding-inline: var(--space-xs);
-  padding-block: calc(var(--space-xs) - var(--space-3xs));
+  :any-link {
+    color: inherit;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+    }
+  }
 }
 
 .title {
-  @include mixins.type-label-sm;
+  @include navigation-link.link-base;
+
+  min-height: 32px;
+  padding: var(--space-2xs) var(--space-xs);
+  margin-bottom: var(--space-3xs);
+
+  @include mixins.type-label-md;
 
   color: var(--color-text-secondary);
-  cursor: default;
 }
 
-.toggleButton {
-  // Compensate for the button's outer spacing
-  --button-padding: calc(var(--space-xs) - var(--space-3xs));
-
-  margin: calc(-1 * var(--button-padding));
-  margin-inline-end: var(--button-padding);
-
-  --fg: var(--color-text-tertiary);
-
-  svg {
-    transition: rotate 100ms ease-in;
-  }
-
-  &[aria-expanded='false'] svg {
-    rotate: -90deg;
-  }
-}
-
-.action {
+.toggleIcon {
+  width: 20px;
+  height: 20px;
   margin-inline-start: auto;
+  transition: rotate 100ms ease-in;
+
+  .title[aria-expanded='true'] & {
+    rotate: -180deg;
+  }
 }
 
 .emptyState {
