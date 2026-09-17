@@ -1,7 +1,7 @@
 import type React from 'react';
 import { useMemo } from 'react';
 
-import { FormattedDate, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
@@ -10,16 +10,15 @@ import type {
   StatusVisibility,
 } from '@/mastodon/models/status';
 
+import { AnimatedNumber } from '../animated_number';
+import { FormattedDateWrapper } from '../formatted_date';
+
+import classes from './styles.module.scss';
 import { statusLink } from './utils';
 
-export const StatusMeta: React.FC<
-  {
-    status: Pick<
-      AnyStatusShape,
-      'account' | 'application' | 'created_at' | 'id' | 'visibility'
-    >;
-  } & React.ComponentPropsWithRef<'span'>
-> = ({ status, ...props }) => {
+export const StatusMeta: React.FC<{
+  status: AnyStatusShape;
+}> = ({ status }) => {
   const { created_at, application } = status;
 
   const createdAt = useMemo(() => {
@@ -38,9 +37,67 @@ export const StatusMeta: React.FC<
     return null;
   }
 
-  const createdLink = (
-    <Link to={statusLink(status)}>
-      <FormattedDate
+  let applicationDisplay: React.ReactNode = null;
+  if (application?.website) {
+    applicationDisplay = (
+      <a href={application.website} target='_blank' rel='noopener noreferrer'>
+        {application.name}
+      </a>
+    );
+  } else if (application?.name) {
+    applicationDisplay = <span>{application.name}</span>;
+  }
+
+  const baseStatusLink = statusLink(status);
+
+  return (
+    <div className={classes.meta}>
+      <FormattedMessage
+        id='status.replies_count'
+        defaultMessage='{count, plural, one {{counter} reply} other {{counter} replies}}'
+        values={{
+          count: status.replies_count,
+          counter: <AnimatedNumber value={status.replies_count} />,
+        }}
+        tagName='span'
+      />
+      &bull;
+      <Link to={`${baseStatusLink}/quotes`}>
+        <FormattedMessage
+          id='status.quotes_count'
+          defaultMessage='{count, plural, one {{counter} quote} other {{counter} quotes}}'
+          values={{
+            count: status.quotes_count,
+            counter: <AnimatedNumber value={status.quotes_count} />,
+          }}
+        />
+      </Link>
+      &bull;
+      <Link to={`${baseStatusLink}/reblogs`}>
+        <FormattedMessage
+          id='status.reblogs_count'
+          defaultMessage='{count, plural, one {{counter} boost} other {{counter} boosts}}'
+          values={{
+            count: status.reblogs_count,
+            counter: <AnimatedNumber value={status.reblogs_count} />,
+          }}
+        />
+      </Link>
+      &bull;
+      <Link
+        to={`${baseStatusLink}/favourites`}
+        className={classes.actionsButtonGap}
+      >
+        <FormattedMessage
+          id='status.likes_count'
+          defaultMessage='{count, plural, one {{counter} like} other {{counter} likes}}'
+          values={{
+            count: status.favourites_count,
+            counter: <AnimatedNumber value={status.favourites_count} />,
+          }}
+        />
+      </Link>
+      <FormattedDateWrapper
         value={createdAt}
         year='numeric'
         month='short'
@@ -48,43 +105,15 @@ export const StatusMeta: React.FC<
         hour='2-digit'
         minute='2-digit'
       />
-    </Link>
-  );
-
-  let applicationLink: React.ReactNode = application?.name;
-  if (application?.website) {
-    applicationLink = (
-      <a href={application.website} target='_blank' rel='noopener noreferrer'>
-        {application.name}
-      </a>
-    );
-  }
-
-  return (
-    <span {...props}>
-      {applicationLink ? (
-        <FormattedMessage
-          id='status.meta'
-          defaultMessage='{createdAt} on {source} {sep} {visibility}'
-          values={{
-            createdAt: createdLink,
-            source: applicationLink,
-            visibility,
-            sep: <>&bull;</>,
-          }}
-        />
-      ) : (
-        <FormattedMessage
-          id='status.meta.no_application'
-          defaultMessage='{createdAt} {sep} {visibility}'
-          values={{
-            createdAt: createdLink,
-            visibility,
-            sep: <>&bull;</>,
-          }}
-        />
+      {applicationDisplay && (
+        <>
+          &bull;
+          {applicationDisplay}
+        </>
       )}
-    </span>
+      &bull;
+      <span>{visibility}</span>
+    </div>
   );
 };
 

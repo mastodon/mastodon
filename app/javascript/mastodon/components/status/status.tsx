@@ -210,15 +210,14 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
         {(variant === 'page' || (showActions && !isQuotedPost)) && (
           <footer className={classes.footer}>
-            {variant === 'page' && (
-              <StatusMeta status={status} className={classes.meta} />
-            )}
+            {variant === 'page' && <StatusMeta status={status} />}
 
             {showActions && !isQuotedPost && (
               <StatusActionBar
                 statusId={status.id}
                 withDismiss={withDismiss}
                 withCounters={withCounters}
+                onlyInteractions={variant === 'page'}
               />
             )}
           </footer>
