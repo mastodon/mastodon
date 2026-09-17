@@ -14,7 +14,7 @@ export default class ClearColumnButton extends PureComponent {
 
   render () {
     return (
-      <button className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.props.onClick}><Icon id='eraser' icon={DeleteForeverIcon} /> <FormattedMessage id='notifications.clear' defaultMessage='Clear notifications' /></button>
+      <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.props.onClick}><Icon id='eraser' icon={DeleteForeverIcon} /> <FormattedMessage id='notifications.clear' defaultMessage='Clear notifications' /></button>
     );
   }
 

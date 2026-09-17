@@ -48,7 +48,7 @@ class TranslateButton extends PureComponent {
 
       return (
         <div className='translate-button'>
-          <button className='link-button' onClick={onClick}>
+          <button type='button' className='link-button' onClick={onClick}>
             <FormattedMessage id='status.show_original' defaultMessage='Show original' />
           </button>
 
@@ -60,7 +60,7 @@ class TranslateButton extends PureComponent {
     }
 
     return (
-      <button className='status__content__translate-button' onClick={onClick}>
+      <button type='button' className='status__content__translate-button' onClick={onClick}>
         <FormattedMessage id='status.translate' defaultMessage='Translate' />
       </button>
     );
@@ -198,7 +198,7 @@ class StatusContent extends PureComponent {
     });
 
     const readMoreButton = renderReadMore && (
-      <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
+      <button type='button' className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
         <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' icon={ChevronRightIcon} />
       </button>
     );
