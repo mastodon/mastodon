@@ -23,17 +23,13 @@
   column-gap: var(--space-sm);
   border-radius: var(--border-radius);
   border: none;
-  color: inherit;
+  color: var(--color-text-primary);
   background-color: transparent;
 
-  @include mixins.type-body-compact;
+  @include mixins.type-body;
 
   text-decoration: none;
   text-align: start;
-
-  &:not(:where(.linkStacked, .linkMobile)) {
-    color: var(--color-text-secondary);
-  }
 
   @media (width < variables.$mobile-menu-breakpoint) {
     min-height: 48px;
@@ -46,8 +42,8 @@
     text-decoration: none;
   }
 
-  &[aria-current='page'] {
-    color: var(--color-text-primary);
+  &[aria-current='page']:not(:where(.linkStacked, .linkMobile)) {
+    @include mixins.type-body-strong;
   }
 
   &:focus-visible {
