@@ -21,7 +21,8 @@ export const getStatusList = createAppSelector(
 export const selectPlainStatus = createAppSelector(
   [(state, statusId?: string | null) => state.statuses.get(statusId ?? '')],
   (status) => {
-    if (!status) {
+    // Check for statuses that are just `{isLoading: true}`.
+    if (!status?.get('id')) {
       return null;
     }
     return status.toJS() as unknown as StatusShape;
