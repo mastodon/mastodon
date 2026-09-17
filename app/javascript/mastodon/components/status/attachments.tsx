@@ -1,10 +1,14 @@
+import type React from 'react';
 import { lazy, Suspense, useCallback } from 'react';
+
+import { FormattedMessage } from 'react-intl';
 
 import { openModal } from '@/mastodon/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import { deployPictureInPicture } from '@/mastodon/actions/picture_in_picture';
 import { CollectionPreviewCard } from '@/mastodon/features/collections/components/collection_preview_card';
 import MediaCard from '@/mastodon/features/status/components/card';
+import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { displayMedia } from '@/mastodon/initial_state';
@@ -20,9 +24,13 @@ import { selectPictureInPicture } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { compareUrls } from '@/mastodon/utils/compare_urls';
 
-import { Card, CardBody, CardTitle } from '../card';
+import { Avatar } from '../avatar';
+import { Button } from '../button/redesign';
+import { Card, CardActions, CardBody, CardTitle } from '../card';
+import { DisplayName } from '../display_name';
 import { RelativeTimestamp } from '../relative_timestamp';
 
+import classes from './attachments.module.scss';
 import { useStatusContext } from './hooks';
 import { PictureInPicturePlaceholder } from './legacy/picture_in_picture_placeholder';
 import { StatusQuote } from './quote';
@@ -278,7 +286,7 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
   status,
 }) => {
   // Use the old card if we have authors as the new design doesn't have attribution yet.
-  if (card.type === 'video' || card.authors.length > 0) {
+  if (card.type === 'video') {
     return (
       <div>
         <MediaCard
@@ -298,6 +306,8 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
     target: '_blank',
     rel: 'noopener',
   } as const;
+  // While possible there is more than one author, the previous UI didn't handle it.
+  const authorAccountId = card.authors.at(0)?.accountId;
 
   return (
     <Card>
@@ -322,6 +332,33 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
           {card.description}
         </CardBody>
       )}
+
+      {authorAccountId && <LinkCardAuthor authorId={authorAccountId} />}
     </Card>
+  );
+};
+
+const LinkCardAuthor: React.FC<{ authorId: string }> = ({ authorId }) => {
+  const author = useAccount(authorId);
+
+  if (!author) {
+    return null;
+  }
+
+  return (
+    <CardActions>
+      <Button
+        as='link'
+        to={`/@${author.get('acct')}`}
+        className={classes.cardAuthor}
+      >
+        <Avatar account={author} />
+        <FormattedMessage
+          id='link_preview.more_from_author'
+          defaultMessage='More from {name}'
+          values={{ name: <DisplayName variant='simple' account={author} /> }}
+        />
+      </Button>
+    </CardActions>
   );
 };

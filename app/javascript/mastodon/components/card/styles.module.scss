@@ -69,7 +69,7 @@ a.root {
   flex-grow: 1;
 
   * + & {
-    margin-block-start: var(--space-xs);
+    padding-block-start: var(--space-xs);
   }
 
   a {
@@ -111,6 +111,11 @@ a.body {
     object-fit: cover;
     width: 100%;
   }
+}
+
+.actions {
+  grid-column: 1 / span 2;
+  margin-block-start: var(--space-sm);
 }
 
 .clamp {

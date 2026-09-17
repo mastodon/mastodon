@@ -136,3 +136,25 @@ export const CardBody = <As extends React.ElementType = 'div'>({
     </Comp>
   );
 };
+
+type CardActionProps<As extends React.ElementType> = PolymorphicProps<
+  {
+    children: React.ReactNode;
+    className?: string;
+  },
+  As
+>;
+
+export const CardActions = <As extends React.ElementType = 'div'>({
+  as: asComp,
+  children,
+  className,
+  ...props
+}: CardActionProps<As>) => {
+  const Comp = asComp ?? 'div';
+  return (
+    <Comp {...props} className={classNames(className, classes.actions)}>
+      {children}
+    </Comp>
+  );
+};
