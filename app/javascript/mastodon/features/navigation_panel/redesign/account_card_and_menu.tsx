@@ -104,10 +104,10 @@ export const AccountMenuItems: React.FC<{
     <>
       {context === 'mobile' && <ProfileMenuItem />}
 
-      <MenuItemLink to='/profile/edit' icon={UserIcon}>
+      <MenuItemLink to={accountBasePath} icon={UserIcon}>
         <FormattedMessage
-          id='account.edit_profile'
-          defaultMessage='Edit profile'
+          id='account.view_profile'
+          defaultMessage='View profile'
         />
       </MenuItemLink>
 
