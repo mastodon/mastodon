@@ -27,15 +27,15 @@ import { getAccountHidden } from 'mastodon/selectors/accounts';
 import type { RootState } from 'mastodon/store';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { isRedesignStatusEnabled } from '../utils/environment';
+import { isRedesignStatusEnabled } from '../../../utils/environment';
+import { Button } from '../../button';
+import { IconButton } from '../../icon_button';
+import { LoadingIndicator } from '../../loading_indicator';
+import { TypedStatusContainer } from '../types';
+import type { StatusContainerProps, StatusContextType } from '../types';
 
-import { Button } from './button';
-import { IconButton } from './icon_button';
-import { LoadingIndicator } from './loading_indicator';
-import type { StatusHeaderRenderFn } from './status/header';
-import { StatusHeader } from './status/header';
-import { TypedStatusContainer } from './status/types';
-import type { StatusContainerProps, StatusContextType } from './status/types';
+import type { StatusHeaderRenderFn } from './header';
+import { StatusHeader } from './header';
 
 const MAX_QUOTE_POSTS_NESTING_LEVEL = 1;
 
@@ -420,7 +420,7 @@ export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
 };
 
 const LazyStatusRedesign = lazy(() =>
-  import('./status/status').then(({ StatusRedesign }) => ({
+  import('../status').then(({ StatusRedesign }) => ({
     default: StatusRedesign,
   })),
 );

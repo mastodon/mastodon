@@ -1,7 +1,7 @@
-import { useStatus } from '../hooks/useStatus';
+import { EmojiHTML } from '@/mastodon/components/emoji/html';
+import { useStatus } from '@/mastodon/hooks/useStatus';
 
-import { EmojiHTML } from './emoji/html';
-import { StatusBanner, BannerVariant } from './status_banner';
+import { StatusBanner, BannerVariant } from './banner';
 
 export const ContentWarning: React.FC<{
   statusId: string;

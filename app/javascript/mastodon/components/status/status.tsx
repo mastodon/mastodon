@@ -7,7 +7,6 @@ import type { Merge } from 'type-fest';
 import { selectExpandedStatus } from '@/mastodon/selectors/statuses';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
-import { computeHashtagBarForStatus } from '../hashtag_bar';
 import { Hotkeys } from '../hotkeys';
 import { Poll } from '../poll';
 
@@ -15,15 +14,16 @@ import { StatusActionBar } from './action_bar';
 import { StatusAttachments } from './attachments';
 import { StatusContent } from './content';
 import { StatusHashtagBar } from './hashtag_bar';
+import { StatusRedesignHeader } from './header';
 import type { StatusHandlers } from './hooks';
 import {
   StatusContext,
   useStatusHandlers,
   useTextForScreenReader,
 } from './hooks';
+import { computeHashtagBarForStatus } from './legacy/hashtag_bar';
 import { StatusMeta } from './meta';
 import { StatusPrepend } from './prepend';
-import { StatusRedesignHeader } from './redesign/header';
 import classes from './styles.module.scss';
 import { TranslateButton } from './translate';
 import type { StatusContainerProps, StatusContextType } from './types';

@@ -19,7 +19,7 @@ import { Account } from 'mastodon/components/account';
 import { CompatibilityHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
-import { StatusQuoteManager } from 'mastodon/components/status_quoted';
+import { Status } from 'mastodon/components/status';
 import { Search } from 'mastodon/features/compose/components/search';
 import { useSearchParam } from 'mastodon/hooks/useSearchParam';
 import type { Hashtag as HashtagType } from 'mastodon/models/tags';
@@ -59,7 +59,7 @@ const renderHashtags = (hashtags: HashtagType[]) =>
 
 const renderStatuses = (statusIds: string[]) =>
   hidePeek<string>(statusIds).map((id) => (
-    <StatusQuoteManager contextType='search' key={id} id={id} />
+    <Status contextType='search' key={id} id={id} />
   ));
 
 type SearchType = 'all' | ApiSearchType;
@@ -217,7 +217,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   onClickMore={handleSelectStatuses}
                 >
                   {results.statuses.slice(0, INITIAL_DISPLAY).map((id) => (
-                    <StatusQuoteManager contextType='search' key={id} id={id} />
+                    <Status contextType='search' key={id} id={id} />
                   ))}
                 </SearchSection>
               )}

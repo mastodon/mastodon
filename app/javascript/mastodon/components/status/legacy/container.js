@@ -3,21 +3,21 @@ import { connect } from 'react-redux';
 import {
   unmuteAccount,
   unblockAccount,
-} from '../actions/accounts';
-import { initBlockModal } from '../actions/blocks';
+} from '@/mastodon/actions/accounts';
+import { initBlockModal } from '@/mastodon/actions/blocks';
 import {
   replyCompose,
   mentionCompose,
   directCompose,
-} from '../actions/compose';
-import { quoteComposeById } from '../actions/compose_typed';
+} from '@/mastodon/actions/compose';
+import { quoteComposeById } from '@/mastodon/actions/compose_typed';
 import {
   initDomainBlockModal,
   unblockDomain,
-} from '../actions/domain_blocks';
+} from '@/mastodon/actions/domain_blocks';
 import {
   initAddFilter,
-} from '../actions/filters';
+} from '@/mastodon/actions/filters';
 import {
   toggleReblog,
   toggleFavourite,
@@ -25,11 +25,11 @@ import {
   unbookmark,
   pin,
   unpin,
-} from '../actions/interactions';
-import { openModal } from '../actions/modal';
-import { initMuteModal } from '../actions/mutes';
-import { deployPictureInPicture } from '../actions/picture_in_picture';
-import { initReport } from '../actions/reports';
+} from '@/mastodon/actions/interactions';
+import { openModal } from '@/mastodon/actions/modal';
+import { initMuteModal } from '@/mastodon/actions/mutes';
+import { deployPictureInPicture } from '@/mastodon/actions/picture_in_picture';
+import { initReport } from '@/mastodon/actions/reports';
 import {
   muteStatus,
   unmuteStatus,
@@ -39,12 +39,13 @@ import {
   editStatus,
   translateStatus,
   undoStatusTranslation,
-} from '../actions/statuses';
-import { setStatusQuotePolicy } from '../actions/statuses_typed';
-import { injectIntl } from '../components/intl';
-import Status from '../components/status';
-import { deleteModal } from '../initial_state';
-import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
+} from '@/mastodon/actions/statuses';
+import { setStatusQuotePolicy } from '@/mastodon/actions/statuses_typed';
+import { injectIntl } from '@/mastodon/components/intl';
+import { deleteModal } from '@/mastodon/initial_state';
+import { makeGetStatus, makeGetPictureInPicture } from '@/mastodon/selectors';
+
+import Status from './status';
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();

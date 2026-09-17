@@ -10,15 +10,15 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
-import { Icon }  from 'mastodon/components/icon';
-import { Poll } from 'mastodon/components/poll';
-import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { languages as preloadedLanguages } from 'mastodon/initial_state';
+import { Icon }  from '@/mastodon/components/icon';
+import { Poll } from '@/mastodon/components/poll';
+import { identityContextPropShape, withIdentity } from '@/mastodon/identity_context';
+import { languages as preloadedLanguages } from '@/mastodon/initial_state';
+import { EmojiHTML } from '@/mastodon/components/emoji/html';
+import { injectIntl } from '@/mastodon/components/intl';
+import { compareUrls } from '@/mastodon/utils/compare_urls';
 
-import { EmojiHTML } from './emoji/html';
-import { injectIntl } from './intl';
-import { HandledLink } from './status/handled_link';
-import { compareUrls } from '../utils/compare_urls';
+import { HandledLink } from '../handled_link';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 

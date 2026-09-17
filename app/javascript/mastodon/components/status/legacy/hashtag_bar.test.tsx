@@ -1,6 +1,6 @@
 import { mediaAttachmentFactoryAPI } from '@/testing/factories';
 
-import { computeHashtagBarForStatus } from '../hashtag_bar';
+import { computeHashtagBarForStatus } from './hashtag_bar';
 
 function createStatus(
   content: string,
