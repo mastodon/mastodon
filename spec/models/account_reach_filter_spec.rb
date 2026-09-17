@@ -123,7 +123,10 @@ RSpec.describe AccountReachFilter do
     context 'when the filter has items' do
       let(:filter) { Fabricate(:account_reach_filter) }
 
-      before { filter.add('mastodon.social') }
+      before do
+        filter.add('mastodon.social')
+        filter.save!
+      end
 
       it 'returns the correct inboxes' do
         expect(filter.filter_inboxes(inboxes))
