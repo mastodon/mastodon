@@ -1,7 +1,7 @@
 @use '@/styles/mastodon/mixins';
 
 .root {
-  border: 0.5px solid var(--color-border-primary);
+  border: var(--border-thin);
   border-radius: var(--radius-4);
   box-sizing: border-box;
   display: flex;
@@ -16,6 +16,10 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) 120px;
     padding-inline-end: 0;
+  }
+
+  &:has(.actions) {
+    padding-block-end: var(--space-1);
   }
 }
 
@@ -113,7 +117,20 @@ a.body {
 }
 
 .actions {
+  @include mixins.type-label;
+
+  padding-inline: var(--space-3);
+  margin-inline: calc(-1 * var(--space-3));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-block-start: var(--space-1);
+  border-block-start: var(--border-thin);
   margin-block-start: var(--space-3);
+
+  > span {
+    margin-inline-end: var(--space-1);
+  }
 }
 
 .clamp {
