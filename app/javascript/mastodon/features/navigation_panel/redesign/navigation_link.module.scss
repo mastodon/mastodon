@@ -9,7 +9,7 @@
   padding-bottom: var(--space-md);
 }
 
-.link {
+@mixin link-base {
   --icon-size: 20px;
   --border-radius: var(--radius-sm);
 
@@ -18,36 +18,21 @@
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 40px;
   padding: var(--space-xs);
   column-gap: var(--space-sm);
   border-radius: var(--border-radius);
   border: none;
-  color: inherit;
+  color: var(--color-text-primary);
   background-color: transparent;
-
-  @include mixins.type-body-compact;
-
+  transition: background-color 200ms;
   text-decoration: none;
   text-align: start;
 
-  &:not(:where(.linkStacked, .linkMobile)) {
-    color: var(--color-text-secondary);
-  }
-
-  @media (width < variables.$mobile-menu-breakpoint) {
-    min-height: 48px;
-  }
-
-  &:hover,
+  &:where(button, a):hover,
   &:focus-visible,
   &[aria-current='page'] {
     background-color: var(--color-bg-highlight);
     text-decoration: none;
-  }
-
-  &[aria-current='page'] {
-    color: var(--color-text-primary);
   }
 
   &:focus-visible {
@@ -57,6 +42,21 @@
   &:focus {
     // Override silly global focus style
     border-radius: var(--border-radius);
+  }
+}
+
+.link {
+  @include link-base;
+
+  min-height: 40px;
+  @include mixins.type-body;
+
+  @media (width < variables.$mobile-menu-breakpoint) {
+    min-height: 48px;
+  }
+
+  &[aria-current='page']:not(:where(.linkStacked, .linkMobile)) {
+    @include mixins.type-body-strong;
   }
 }
 
