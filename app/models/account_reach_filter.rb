@@ -19,7 +19,6 @@ class AccountReachFilter < ApplicationRecord
   belongs_to :account
 
   after_initialize :set_salt
-  before_save :set_filter_data
 
   # This class uses bloom filters to (optionally) keep track of which server is aware of an account.
   # Once an account with an `AccountReachFilter` has federated at least once, `bloom_filter` will
@@ -56,6 +55,22 @@ class AccountReachFilter < ApplicationRecord
   # Batch size for processing queued additions
   BATCH_SIZE = 500
 
+  class BloomFilterSerializer
+    def self.load(value)
+      return BloomFit.new(capacity: BLOOM_FILTER_TARGET_CAPACITIES.first, false_positive_rate: TARGET_FALSE_POSITIVE_RATE) if value.nil?
+
+      BloomFit.unpack(value)
+    end
+
+    def self.dump(value)
+      return nil if value.empty?
+
+      value.to_msgpack
+    end
+  end
+
+  serialize :bloom_filter, coder: BloomFilterSerializer
+
   class << self
     include Redisable
     include AuthorizedFetchHelper
@@ -83,20 +98,20 @@ class AccountReachFilter < ApplicationRecord
   def add(*hosts)
     return if saturated
 
-    next_filter_class = BLOOM_FILTER_SIZES.index { |size| size > filter.size }
-    threshold = ((next_filter_class.nil? ? TARGET_SATURATION_FALSE_POSITIVE_RATE : TARGET_FALSE_POSITIVE_RATE)**(1.0 / filter.k)) * filter.m
+    next_filter_class = BLOOM_FILTER_SIZES.index { |size| size > bloom_filter.size }
+    threshold = ((next_filter_class.nil? ? TARGET_SATURATION_FALSE_POSITIVE_RATE : TARGET_FALSE_POSITIVE_RATE)**(1.0 / bloom_filter.k)) * bloom_filter.m
 
     hosts.each do |host|
-      filter.add("#{salt}:#{host}")
-      next if filter.set_bits < threshold
+      bloom_filter.add("#{salt}:#{host}")
+      next if bloom_filter.set_bits < threshold
 
       # We have reached the threshold after which false-positives are too frequent for us.
       # Either update the filter or mark it as saturated.
       if next_filter_class.present?
         replace_filter!(BLOOM_FILTER_TARGET_CAPACITIES[next_filter_class])
 
-        next_filter_class = BLOOM_FILTER_SIZES.index { |size| size > filter.size }
-        threshold = ((next_filter_class.nil? ? TARGET_SATURATION_FALSE_POSITIVE_RATE : TARGET_FALSE_POSITIVE_RATE)**(1.0 / filter.k)) * filter.m
+        next_filter_class = BLOOM_FILTER_SIZES.index { |size| size > bloom_filter.size }
+        threshold = ((next_filter_class.nil? ? TARGET_SATURATION_FALSE_POSITIVE_RATE : TARGET_FALSE_POSITIVE_RATE)**(1.0 / bloom_filter.k)) * bloom_filter.m
       else
         update!(saturated: true, bloom_filter: nil)
 
@@ -108,7 +123,7 @@ class AccountReachFilter < ApplicationRecord
   def include?(host)
     return true if saturated
 
-    filter.include?("#{salt}:#{host}")
+    bloom_filter.include?("#{salt}:#{host}")
   end
 
   def filter_inboxes(inboxes)
@@ -117,7 +132,7 @@ class AccountReachFilter < ApplicationRecord
     process_queued_additions_with_lock!
 
     return inboxes if saturated?
-    return [] if filter.empty?
+    return [] if bloom_filter.blank?
 
     inboxes.filter do |url|
       include?(Addressable::URI.parse(url).normalized_host)
@@ -141,26 +156,7 @@ class AccountReachFilter < ApplicationRecord
     save!
   end
 
-  # NOTE: There ought to be a better way of doing this…
-  def reload
-    super
-
-    @filter = nil if defined?(@filter)
-
-    self
-  end
-
   private
-
-  def filter
-    @filter ||= begin
-      if bloom_filter
-        BloomFit.unpack(bloom_filter)
-      else
-        BloomFit.new(capacity: BLOOM_FILTER_TARGET_CAPACITIES.first, false_positive_rate: TARGET_FALSE_POSITIVE_RATE)
-      end
-    end
-  end
 
   def process_queued_additions_with_lock!
     return unless persisted?
@@ -175,19 +171,15 @@ class AccountReachFilter < ApplicationRecord
 
   def replace_filter!(capacity)
     # TODO: is this a good idea? this will be expensive
-    @filter = BloomFit.new(capacity:, false_positive_rate: TARGET_FALSE_POSITIVE_RATE).tap do |new_filter|
+    self.bloom_filter = BloomFit.new(capacity:, false_positive_rate: TARGET_FALSE_POSITIVE_RATE).tap do |new_filter|
       Account.inboxes.each do |inbox|
         entry = "#{salt}:#{Addressable::URI.parse(inbox).normalized_host}"
-        new_filter.add(entry) if @filter.include?(entry)
+        new_filter.add(entry) if bloom_filter.include?(entry)
       end
     end
   end
 
   def set_salt
     self.salt ||= SecureRandom.alphanumeric(4)
-  end
-
-  def set_filter_data
-    self.bloom_filter = saturated ? nil : @filter.to_msgpack if @filter
   end
 end
