@@ -3,7 +3,7 @@
 
 .root {
   &:not(:last-child) {
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-4);
   }
 
   :any-link {
@@ -20,10 +20,10 @@
   @include navigation-link.link-base;
 
   min-height: 32px;
-  padding: var(--space-2xs) var(--space-xs);
-  margin-bottom: var(--space-3xs);
+  padding: var(--space-1) var(--space-2);
+  margin-bottom: var(--space-half);
 
-  @include mixins.type-label-md;
+  @include mixins.type-meta;
 
   color: var(--color-text-secondary);
 }
@@ -40,7 +40,7 @@
 }
 
 .emptyState {
-  @include mixins.type-label-sm;
+  @include mixins.type-caption;
 
-  padding-inline: var(--space-xs);
+  padding-inline: var(--space-2);
 }

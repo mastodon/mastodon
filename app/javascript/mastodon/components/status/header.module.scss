@@ -38,7 +38,7 @@
   @include mixins.type-body;
 
   display: flex;
-  gap: var(--space-2xs);
+  gap: var(--space-1);
 }
 
 // Overrides .header a
@@ -54,5 +54,5 @@ a.headerNameLink {
 }
 
 .headerHandle {
-  @include mixins.type-label-md;
+  @include mixins.type-meta;
 }

@@ -6087,7 +6087,7 @@ a.status-card {
   height: 100%;
   max-width: 100vw;
   max-height: 100vh;
-  padding: var(--space-lg);
+  padding: var(--space-5);
   box-sizing: border-box;
   display: flex;
   z-index: 9999;
@@ -6098,7 +6098,7 @@ a.status-card {
 
   @media screen and (width <= $mobile-breakpoint) {
     padding-bottom: 0;
-    padding-inline: var(--space-xs);
+    padding-inline: var(--space-2);
   }
 
   > * {

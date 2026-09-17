@@ -1,7 +1,7 @@
 @use '@/styles/mastodon/mixins';
 
 .root {
-  @include mixins.type-label-md;
+  @include mixins.type-meta;
 
   display: grid;
   grid-template-columns: subgrid;
@@ -34,18 +34,18 @@
 .replyIcon {
   border-block-start: 2px solid var(--color-border-primary);
   border-inline-start: 2px solid var(--color-border-primary);
-  border-top-left-radius: var(--radius-md);
+  border-top-left-radius: var(--radius-4);
   box-sizing: border-box;
-  margin: var(--space-xs) var(--col-gap) 0 var(--space-2xs);
+  margin: var(--space-2) var(--col-gap) 0 var(--space-1);
   width: calc(var(--avatar-size) / 2 + 1px);
-  height: calc(100% - var(--space-xs));
+  height: calc(100% - var(--space-2));
   justify-self: end;
 }
 
 .contents {
   display: flex;
   align-items: center;
-  gap: var(--space-2xs);
+  gap: var(--space-1);
 }
 
 // Add a tag to override .root a
@@ -58,5 +58,5 @@ a.account {
   @include mixins.line-clamp(1);
 
   display: block;
-  margin-block-start: var(--space-2xs);
+  margin-block-start: var(--space-1);
 }

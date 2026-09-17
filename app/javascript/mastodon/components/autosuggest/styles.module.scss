@@ -29,13 +29,13 @@
 
 .item {
   display: flex;
-  gap: var(--space-xs);
-  min-height: var(--space-3xl);
+  gap: var(--space-2);
+  min-height: var(--space-8);
 }
 
 .itemIcon {
-  width: var(--space-3xl);
-  height: var(--space-3xl);
+  width: var(--space-8);
+  height: var(--space-8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,19 +47,19 @@
 .itemHashUses {
   color: var(--color-text-tertiary);
   margin-inline-start: auto;
-  font-size: var(--fs-xs);
+  font-size: var(--fs-13);
 }
 
 .itemAccountName {
-  @include mixins.type-label-lg;
+  @include mixins.type-label;
 
   display: flex;
   align-items: stretch;
-  gap: var(--space-2xs);
+  gap: var(--space-1);
 }
 
 .itemAccountHandle {
-  @include mixins.type-label-sm;
+  @include mixins.type-caption;
 
   color: var(--color-text-tertiary);
 }

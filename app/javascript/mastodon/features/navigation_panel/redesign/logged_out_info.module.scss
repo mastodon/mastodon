@@ -1,7 +1,7 @@
 @use '@/styles/mastodon/mixins';
 
 .description {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-4);
 
   @include mixins.type-body-compact;
 
@@ -11,5 +11,5 @@
 .buttons {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-2);
 }

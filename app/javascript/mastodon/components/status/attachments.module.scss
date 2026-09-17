@@ -4,7 +4,7 @@
   > :global(.status-card) {
     margin-top: 0;
     border: var(--border-thin);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-4);
 
     > a {
       transition: background 200ms ease-in-out;
@@ -14,14 +14,14 @@
       }
 
       :global(.status-card__host) {
-        @include mixins.type-label-md;
+        @include mixins.type-meta;
 
         // Overrides hover styles.
         color: var(--color-text-secondary);
       }
 
       :global(.status-card__title) {
-        @include mixins.type-label-lg;
+        @include mixins.type-label;
 
         // Overrides hover styles.
         color: var(--color-text-primary);
@@ -38,6 +38,6 @@
 }
 
 .cardAuthor {
-  padding-inline-start: var(--space-xs);
-  gap: var(--space-2xs);
+  padding-inline-start: var(--space-2);
+  gap: var(--space-1);
 }

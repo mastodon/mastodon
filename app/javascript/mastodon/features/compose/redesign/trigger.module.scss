@@ -3,8 +3,8 @@
 .button {
   &:not(.buttonInline) {
     position: fixed;
-    bottom: var(--space-md);
-    right: var(--space-md);
+    bottom: var(--space-4);
+    right: var(--space-4);
     z-index: 2;
   }
 }
@@ -29,20 +29,20 @@
     bottom: 0;
     min-height: 270px;
     height: auto;
-    max-height: calc(100vh - (var(--space-md) * 2));
+    max-height: calc(100vh - (var(--space-4) * 2));
     min-width: 300px;
-    width: calc(100vw - var(--space-md) * 2);
+    width: calc(100vw - var(--space-4) * 2);
     max-width: 500px;
-    margin: var(--space-md);
+    margin: var(--space-4);
   }
 }
 
 .composerMinimized {
   bottom: 0;
-  width: min(320px, calc(100vw - var(--space-md) * 2));
-  padding: var(--space-md);
-  margin: var(--space-md);
-  border-radius: var(--radius-xl);
+  width: min(320px, calc(100vw - var(--space-4) * 2));
+  padding: var(--space-4);
+  margin: var(--space-4);
+  border-radius: var(--radius-6);
 
   @media (width < #{variables.$mobile-menu-breakpoint}) {
     bottom: var(--mobile-bottom-nav-height);

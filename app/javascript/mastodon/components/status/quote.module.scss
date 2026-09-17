@@ -9,9 +9,9 @@
 
 .spoiler {
   background: var(--color-bg-highlight);
-  border-radius: var(--radius-sm);
-  margin: var(--space-2xs) 0;
-  padding: var(--space-xs);
+  border-radius: var(--radius-3);
+  margin: var(--space-1) 0;
+  padding: var(--space-2);
 }
 
 .body {
@@ -36,17 +36,17 @@
 
 .reply {
   color: var(--color-text-tertiary);
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-2);
 }
 
 .media {
-  margin-top: var(--space-2xs);
+  margin-top: var(--space-1);
 }
 
 .mediaGrid {
   display: grid;
   height: 260px;
-  gap: var(--space-3xs);
+  gap: var(--space-half);
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   aspect-ratio: 3/2;
@@ -68,21 +68,21 @@
 
 .image {
   max-height: 260px;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-2);
 }
 
 .videoDuration {
-  @include mixins.type-label-md;
+  @include mixins.type-meta;
 
   display: flex;
-  gap: var(--space-2xs);
+  gap: var(--space-1);
   align-items: center;
   position: absolute;
-  inset-block-end: var(--space-xs);
-  inset-inline-start: var(--space-xs);
-  padding: var(--space-2xs) var(--space-3xs);
+  inset-block-end: var(--space-2);
+  inset-inline-start: var(--space-2);
+  padding: var(--space-1) var(--space-half);
   background: var(--color-bg-highlight);
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-2);
   color: var(--color-text-primary);
 
   svg {
@@ -104,5 +104,5 @@
 }
 
 .infoPopup {
-  padding: var(--space-sm);
+  padding: var(--space-3);
 }

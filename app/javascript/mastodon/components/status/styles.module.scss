@@ -1,7 +1,7 @@
 @use '@/styles/mastodon/mixins';
 
 .root {
-  --col-gap: var(--space-xs);
+  --col-gap: var(--space-2);
   --avatar-size: 40px;
   --content-col: 2;
 
@@ -9,14 +9,14 @@
   grid-template-columns: calc(var(--avatar-size) + var(--col-gap)) auto;
   grid-template-rows: minmax(calc(var(--avatar-size) + var(--col-gap)), auto);
   grid-auto-rows: auto;
-  row-gap: var(--space-xs);
-  padding: var(--space-md);
+  row-gap: var(--space-2);
+  padding: var(--space-4);
 }
 
 .variantThread {
   --avatar-size: 32px;
 
-  padding: var(--space-xs) 0;
+  padding: var(--space-2) 0;
 }
 
 .variantPage {
@@ -24,7 +24,7 @@
 }
 
 .isQuote {
-  padding: var(--space-sm);
+  padding: var(--space-3);
 }
 
 .isMessage {
@@ -73,7 +73,7 @@
 }
 
 .translateInfo {
-  @include mixins.type-label-md;
+  @include mixins.type-meta;
 
   color: var(--color-text-secondary);
   margin-inline-start: auto;
@@ -95,7 +95,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-2);
   position: relative;
 }
 
@@ -103,7 +103,7 @@
   --fade-time: 100ms;
 
   overflow: clip;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-2);
 
   &::after {
     content: '';
@@ -113,7 +113,7 @@
       var(--color-bg-highlight) 1px,
       transparent 0
     );
-    background-size: var(--space-xs) var(--space-xs);
+    background-size: var(--space-2) var(--space-2);
     background-repeat: repeat;
 
     // See: https://css-tricks.com/snippets/css/toggle-visibility-when-hiding-elements/
@@ -170,7 +170,7 @@
 }
 
 .contentImage {
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-4);
   position: relative;
   background-size: cover;
   background-position: center;
@@ -190,12 +190,12 @@
 .hashtagsWrapper,
 .hashtags {
   display: flex;
-  gap: var(--space-2xs);
+  gap: var(--space-1);
   flex-wrap: nowrap;
 }
 
 .hashtagsWrapper {
-  padding: var(--space-2xs) 0;
+  padding: var(--space-1) 0;
 }
 
 .hashtags {

@@ -6,14 +6,14 @@
   background: var(--color-bg-primary);
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
-  padding: var(--space-md);
+  gap: var(--space-2);
+  padding: var(--space-4);
   z-index: 1; // To cover the sidebar
 
   @media (width >= #{variables.$mobile-menu-breakpoint}) {
     @include mixins.elevation-2;
 
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-6);
     overflow: hidden;
   }
 }
@@ -44,9 +44,9 @@
 }
 
 .toolbar {
-  margin-top: var(--space-xs);
+  margin-top: var(--space-2);
   display: flex;
-  gap: var(--space-xs);
+  gap: var(--space-2);
   align-items: center;
   flex-wrap: wrap;
 
@@ -58,7 +58,7 @@
 .flexGrowWrap {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-2);
   flex-grow: 1;
 
   @container (width < 310px) {
@@ -72,18 +72,18 @@
 
 .toolbarMessage {
   display: flex;
-  gap: var(--space-2xs);
+  gap: var(--space-1);
   align-items: center;
   color: var(--color-text-secondary);
 
   svg {
-    width: var(--space-lg);
-    height: var(--space-lg);
+    width: var(--space-5);
+    height: var(--space-5);
   }
 }
 
 .textareaWrapper {
-  --fade-size: var(--space-xl);
+  --fade-size: var(--space-6);
 
   overflow-y: auto;
   flex-grow: 1;
@@ -119,13 +119,13 @@
 .textareaMirror {
   @include mixins.type-body-lg;
 
-  padding: var(--space-xs);
+  padding: var(--space-2);
 }
 
 .textarea {
   flex-grow: 1;
   flex-shrink: 0;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-2);
   transition: border 200ms;
   cursor: text;
   border: none;
@@ -160,21 +160,21 @@ textarea.textarea {
 .attachments {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
-  margin-top: var(--space-md);
+  gap: var(--space-2);
+  margin-top: var(--space-4);
 }
 
 .footer {
   display: flex;
   align-items: center;
-  gap: var(--space-2xs);
+  gap: var(--space-1);
   flex-wrap: wrap;
 }
 
 .counter {
   display: flex;
   align-items: center;
-  gap: var(--space-3xs);
+  gap: var(--space-half);
   font-family: var(--font-monospace);
   color: var(--color-text-tertiary);
   margin-inline-start: auto;
@@ -187,10 +187,10 @@ textarea.textarea {
 // Language selector
 
 .languageMenu {
-  padding: var(--space-xs);
+  padding: var(--space-2);
 
   input {
-    margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-2);
 
     &:focus::placeholder {
       color: transparent;
@@ -214,7 +214,7 @@ textarea.textarea {
 // Reply
 
 .reply {
-  column-gap: var(--space-2xs);
+  column-gap: var(--space-1);
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
@@ -222,12 +222,12 @@ textarea.textarea {
   &::before {
     border-block-start: 2px solid var(--color-border-primary);
     border-inline-start: 2px solid var(--color-border-primary);
-    border-top-left-radius: var(--radius-md);
+    border-top-left-radius: var(--radius-4);
     box-sizing: border-box;
     content: '';
     display: block;
     grid-row: span 2;
-    margin: var(--space-xs) var(--space-2xs) 0;
+    margin: var(--space-2) var(--space-1) 0;
     width: 20px;
   }
 
@@ -240,7 +240,7 @@ textarea.textarea {
 .replyAccount {
   display: flex;
   align-items: center;
-  margin-bottom: var(--space-2xs);
+  margin-bottom: var(--space-1);
 
   > a,
   > span {
@@ -249,7 +249,7 @@ textarea.textarea {
 }
 
 .replyAvatar {
-  margin-inline-end: var(--space-xs);
+  margin-inline-end: var(--space-2);
   border-radius: var(--radius-round);
   overflow: hidden;
 }
