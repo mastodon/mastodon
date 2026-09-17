@@ -30,7 +30,7 @@ class Scheduler::SuspendedUserCleanupScheduler
     # This should be fine because we only process a small amount of deletion requests at once and
     # `id` and `created_at` should follow the same order.
     AccountDeletionRequest.reorder(id: :asc).take(MAX_DELETIONS_PER_JOB).each do |deletion_request|
-      next unless deletion_request.created_at < AccountDeletionRequest::DELAY_TO_DELETION.ago
+      next unless deletion_request.due_at.past?
 
       Admin::AccountDeletionWorker.perform_async(deletion_request.account_id)
     end
