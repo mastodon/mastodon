@@ -29,11 +29,9 @@ class Settings::DeletesController < Settings::BaseController
   end
 
   def challenge_passed?
-    if current_user.encrypted_password.blank?
-      current_account.username == resource_params[:username]
-    else
-      current_user.valid_password?(resource_params[:password])
-    end
+    return false unless current_account.username == resource_params[:username]
+
+    current_user.encrypted_password.blank? || current_user.valid_password?(resource_params[:password])
   end
 
   def destroy_account!
