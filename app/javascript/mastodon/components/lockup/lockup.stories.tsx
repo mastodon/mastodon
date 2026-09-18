@@ -10,17 +10,17 @@ import { Button } from '../button';
 import { Icon } from '../icon';
 
 import {
-  ListItemWrapper,
-  ListItemContent,
-  ListItemButton,
-  ListItemLink,
+  LockupWrapper,
+  LockupContent,
+  LockupButton,
+  LockupLink,
 } from './index';
 
 const meta = {
-  title: 'Components/ListItem',
-  component: ListItemWrapper,
-  subcomponents: { ListItemContent, ListItemButton, ListItemLink },
-} satisfies Meta<typeof ListItemWrapper>;
+  title: 'Components/Lockup',
+  component: LockupWrapper,
+  subcomponents: { LockupContent, LockupButton, LockupLink },
+} satisfies Meta<typeof LockupWrapper>;
 
 export default meta;
 
@@ -28,45 +28,45 @@ type Story = StoryObj<typeof meta>;
 
 export const NonInteractive: Story = {
   render: () => (
-    <ListItemWrapper icon={<Icon icon={VisibilityIcon} id='visibility' />}>
-      <ListItemContent>View more</ListItemContent>
-    </ListItemWrapper>
+    <LockupWrapper icon={<Icon icon={VisibilityIcon} id='visibility' />}>
+      <LockupContent>View more</LockupContent>
+    </LockupWrapper>
   ),
 };
 
 export const WithButton: Story = {
   render: () => (
-    <ListItemWrapper
+    <LockupWrapper
       icon={<Icon icon={VisibilityOffIcon} id='visibility' />}
       sideContent={<Icon icon={KeyboardArrowDownIcon} id='down' />}
     >
-      <ListItemButton subtitle='You’ve blocked or muted these users'>
+      <LockupButton subtitle='You’ve blocked or muted these users'>
         3 hidden accounts
-      </ListItemButton>
-    </ListItemWrapper>
+      </LockupButton>
+    </LockupWrapper>
   ),
 };
 
 export const WithLink: Story = {
   render: () => (
-    <ListItemWrapper
+    <LockupWrapper
       icon={<Icon icon={VisibilityIcon} id='visibility' />}
       sideContent={<Icon icon={ChevronRightIcon} id='right' />}
     >
-      <ListItemLink to='/'>View more</ListItemLink>
-    </ListItemWrapper>
+      <LockupLink to='/'>View more</LockupLink>
+    </LockupWrapper>
   ),
 };
 
 export const WithInteractiveSideContent: Story = {
   render: () => (
-    <ListItemWrapper
+    <LockupWrapper
       icon={<AvatarById accountId='1' size={40} />}
       sideContent={<Button compact>Follow</Button>}
     >
-      <ListItemLink to='/' subtitle='@test@example.com'>
+      <LockupLink to='/' subtitle='@test@example.com'>
         Test account
-      </ListItemLink>
-    </ListItemWrapper>
+      </LockupLink>
+    </LockupWrapper>
   ),
 };

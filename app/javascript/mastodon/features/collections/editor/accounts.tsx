@@ -18,10 +18,7 @@ import { useAccountHandle } from 'mastodon/components/display_name/default';
 import { EmptyState } from 'mastodon/components/empty_state';
 import { FormStack, ComboboxField } from 'mastodon/components/form_fields';
 import { useComboboxItemProps } from 'mastodon/components/form_fields/combobox_field';
-import {
-  ListItemContent,
-  ListItemWrapper,
-} from 'mastodon/components/list_item';
+import { LockupContent, LockupWrapper } from 'mastodon/components/lockup';
 import {
   Article,
   ItemList,
@@ -85,11 +82,11 @@ const SuggestedAccountItem: React.FC<{ id: string }> = ({ id }) => {
 
   return (
     <li {...comboboxItemProps} className={classes.suggestion}>
-      <ListItemWrapper icon={<Avatar account={account} size={40} />}>
-        <ListItemContent subtitle={handle}>
+      <LockupWrapper icon={<Avatar account={account} size={40} />}>
+        <LockupContent subtitle={handle}>
           <DisplayName account={account} variant='simple' />
-        </ListItemContent>
-      </ListItemWrapper>
+        </LockupContent>
+      </LockupWrapper>
     </li>
   );
 };
@@ -164,11 +161,11 @@ const renderGroupTitle = (groupKey: GroupKey, titleId: string) => {
 
   return (
     <li role='presentation'>
-      <ListItemWrapper className={classes.suggestionGroup}>
-        <ListItemContent id={titleId} subtitle={description}>
+      <LockupWrapper className={classes.suggestionGroup}>
+        <LockupContent id={titleId} subtitle={description}>
           {title}
-        </ListItemContent>
-      </ListItemWrapper>
+        </LockupContent>
+      </LockupWrapper>
     </li>
   );
 };

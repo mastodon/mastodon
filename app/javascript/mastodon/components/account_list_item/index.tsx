@@ -17,7 +17,7 @@ import { DisplayNameSimple } from '../display_name/simple';
 import { EmojiHTML } from '../emoji/html';
 import { FollowButton } from '../follow_button';
 import { FormattedDateWrapper } from '../formatted_date';
-import { ListItemLink, ListItemWrapper } from '../list_item';
+import { LockupLink, LockupWrapper } from '../lockup';
 import { NumberFields, NumberFieldsItem } from '../number_fields';
 import { RelativeTimestamp } from '../relative_timestamp';
 import { ShortNumber } from '../short_number';
@@ -81,7 +81,7 @@ export const AccountListItem: React.FC<Props> = ({
 
   return (
     <div className={classes.wrapper} data-with-border={withBorder}>
-      <ListItemWrapper
+      <LockupWrapper
         className={classes.main}
         icon={<Avatar account={account} size={40} />}
         sideContent={
@@ -90,7 +90,7 @@ export const AccountListItem: React.FC<Props> = ({
           </span>
         }
       >
-        <ListItemLink
+        <LockupLink
           to={{ pathname: `/@${account.acct}`, state: { reference } }}
           data-hover-card-account={accountId}
           data-hover-card-reference={reference}
@@ -101,8 +101,8 @@ export const AccountListItem: React.FC<Props> = ({
             className={classes.displayName}
           />
           {badge && <span className={classes.badge}>{badge}</span>}
-        </ListItemLink>
-      </ListItemWrapper>
+        </LockupLink>
+      </LockupWrapper>
 
       <NumberFields>
         {stats.includes('followers') && (

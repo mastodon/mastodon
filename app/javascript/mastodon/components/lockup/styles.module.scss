@@ -1,17 +1,17 @@
 @use '@/styles/mastodon/mixins';
 
 .wrapper {
-  --list-item-padding: 16px;
-  --list-item-padding-block: var(--list-item-padding);
-  --list-item-gap: 12px;
+  --lockup-padding: 16px;
+  --lockup-padding-block: var(--lockup-padding);
+  --lockup-gap: 12px;
 
   box-sizing: border-box;
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  gap: var(--list-item-gap);
-  padding: var(--list-item-padding-block) var(--list-item-padding);
+  gap: var(--lockup-gap);
+  padding: var(--lockup-padding-block) var(--lockup-padding);
   font-size: 15px;
   color: var(--color-text-primary);
 }
@@ -53,7 +53,7 @@
 
 .sideContent {
   display: flex;
-  gap: var(--list-item-gap);
+  gap: var(--lockup-gap);
   align-self: stretch;
   align-items: center;
   margin-inline-start: auto;
@@ -69,8 +69,8 @@
     &::before {
       content: '';
       position: absolute;
-      inset-block: calc(-1 * var(--list-item-padding-block));
-      inset-inline: calc(-1 * var(--list-item-padding));
+      inset-block: calc(-1 * var(--lockup-padding-block));
+      inset-inline: calc(-1 * var(--lockup-padding));
       z-index: -1;
     }
   }
