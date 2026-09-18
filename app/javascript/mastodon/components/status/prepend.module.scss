@@ -5,7 +5,6 @@
 
   display: grid;
   grid-template-columns: subgrid;
-  grid-template-rows: 1fr;
   align-items: center;
   color: var(--color-text-secondary);
   grid-column: span 2;
@@ -54,9 +53,13 @@ a.account {
   color: var(--color-text-primary);
 }
 
-.text {
-  @include mixins.line-clamp(1);
-
-  display: block;
+.text blockquote {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   margin-block-start: var(--space-1);
+
+  > p {
+    display: inline;
+  }
 }
