@@ -9,7 +9,7 @@ AllCops:
     - lib/json-canonicalization/floats_fix.rb
   ExtraDetails: true
   NewCops: enable
-  TargetRubyVersion: 3.3 # Oldest supported ruby version
+  TargetRubyVersion: 3.4 # Oldest supported ruby version
 
 inherit_from:
   - .rubocop/layout.yml
