@@ -24,6 +24,11 @@
     color: var(--color-text-secondary);
     text-decoration: underline;
 
+    &[aria-current='page'] {
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
+
     &:hover,
     &:focus,
     &:active {
