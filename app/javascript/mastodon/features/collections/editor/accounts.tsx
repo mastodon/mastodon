@@ -18,7 +18,7 @@ import { useAccountHandle } from 'mastodon/components/display_name/default';
 import { EmptyState } from 'mastodon/components/empty_state';
 import { FormStack, ComboboxField } from 'mastodon/components/form_fields';
 import { useComboboxItemProps } from 'mastodon/components/form_fields/combobox_field';
-import { LockupContent, LockupWrapper } from 'mastodon/components/list_item';
+import { LockupContent, LockupWrapper } from 'mastodon/components/lockup';
 import {
   Article,
   ItemList,

@@ -2,7 +2,7 @@ import { useId } from 'react';
 
 import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
 import { Toggle } from '@/mastodon/components/form_fields';
-import { LockupContent, LockupWrapper } from '@/mastodon/components/list_item';
+import { LockupContent, LockupWrapper } from '@/mastodon/components/lockup';
 import {
   AvatarGrid,
   CollectionInfo,

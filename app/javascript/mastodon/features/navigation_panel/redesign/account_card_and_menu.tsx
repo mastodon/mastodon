@@ -24,7 +24,7 @@ import {
   LockupButton,
   LockupContent,
   LockupWrapper,
-} from '@/mastodon/components/list_item';
+} from '@/mastodon/components/lockup';
 import {
   Menu,
   MenuItem,

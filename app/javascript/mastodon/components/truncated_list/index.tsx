@@ -6,7 +6,7 @@ import KeyboardArrowUpIcon from '@/material-icons/400-24px/keyboard_arrow_up.svg
 
 import { Icon } from '../icon';
 import type { IconProp } from '../icon';
-import { LockupButton, LockupWrapper } from '../list_item';
+import { LockupButton, LockupWrapper } from '../lockup';
 
 export interface TruncatedListItemInfo<TListItem> {
   item: TListItem;

@@ -2,7 +2,7 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { LockupLink, LockupWrapper } from '@/mastodon/components/list_item';
+import { LockupLink, LockupWrapper } from '@/mastodon/components/lockup';
 import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { AvatarById } from 'mastodon/components/avatar';

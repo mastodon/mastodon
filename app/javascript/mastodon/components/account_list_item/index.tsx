@@ -17,7 +17,7 @@ import { DisplayNameSimple } from '../display_name/simple';
 import { EmojiHTML } from '../emoji/html';
 import { FollowButton } from '../follow_button';
 import { FormattedDateWrapper } from '../formatted_date';
-import { LockupLink, LockupWrapper } from '../list_item';
+import { LockupLink, LockupWrapper } from '../lockup';
 import { NumberFields, NumberFieldsItem } from '../number_fields';
 import { RelativeTimestamp } from '../relative_timestamp';
 import { ShortNumber } from '../short_number';
