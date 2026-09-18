@@ -46,6 +46,7 @@ const meta = {
     const { onTextChange, suggestProps, sourceProps } = useAutosuggestMenu({
       suggestions,
       onSelect: selectCb,
+      sourceRef: textareaRef,
       onFetch(token) {
         const newSuggestions = tokenToSuggestions(token);
 
