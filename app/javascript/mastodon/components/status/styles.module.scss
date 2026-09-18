@@ -3,11 +3,14 @@
 .root {
   --col-gap: var(--space-2);
   --avatar-size: 40px;
+  --first-col-width: calc(var(--avatar-size) + var(--col-gap));
   --content-col: 2;
 
   display: grid;
-  grid-template-columns: calc(var(--avatar-size) + var(--col-gap)) auto;
-  grid-template-rows: minmax(calc(var(--avatar-size) + var(--col-gap)), auto);
+  grid-template-columns: var(--first-col-width) minmax(
+      calc(100% - var(--first-col-width)),
+      1fr
+    );
   grid-auto-rows: auto;
   row-gap: var(--space-2);
   padding: var(--space-4);
