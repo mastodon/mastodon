@@ -1,6 +1,6 @@
 .root {
-  --list-item-padding: var(--space-2);
-  --list-item-gap: var(--space-2);
+  --lockup-padding: var(--space-2);
+  --lockup-gap: var(--space-2);
 
   border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-3);
@@ -32,8 +32,8 @@
 }
 
 .profileMenuItem {
-  --list-item-padding: 0;
-  --list-item-gap: var(--space-2);
+  --lockup-padding: 0;
+  --lockup-gap: var(--space-2);
 
   color: inherit;
 }
