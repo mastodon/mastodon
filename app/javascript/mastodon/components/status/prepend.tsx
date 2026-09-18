@@ -101,6 +101,9 @@ const StatusPrependReply: React.FC<{ replyId: string }> = ({ replyId }) => {
   };
 
   const language = status.translation?.language ?? status.language;
+  const content = (
+    status.translation?.contentHtml ?? status.contentHtml
+  ).trim();
 
   return (
     <div className={classes.root}>
@@ -120,15 +123,17 @@ const StatusPrependReply: React.FC<{ replyId: string }> = ({ replyId }) => {
           </Link>
         </span>
 
-        <Link to={statusLink(status)} className={classes.text}>
-          <EmojiHTML
-            as='blockquote'
-            lang={language}
-            htmlString={status.translation?.contentHtml ?? status.contentHtml}
-            extraEmojis={status.emojis}
-            onElement={onStatusLinksDisabled}
-          />
-        </Link>
+        {!!content && (
+          <Link to={statusLink(status)} className={classes.text}>
+            <EmojiHTML
+              as='blockquote'
+              lang={language}
+              htmlString={content}
+              extraEmojis={status.emojis}
+              onElement={onStatusLinksDisabled}
+            />
+          </Link>
+        )}
       </div>
     </div>
   );
