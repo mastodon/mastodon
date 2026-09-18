@@ -74,6 +74,13 @@ function useFollowedHashtags() {
   return { followedHashtags: tags };
 }
 
+const isFediverseFeedsLinkActive = (
+  match: unknown,
+  { pathname }: { pathname: string },
+) => {
+  return !!match || pathname.startsWith('/public');
+};
+
 const MAX_HASHTAG_COUNT = 5;
 
 export const RedesignNavigationPanel: React.FC<{
@@ -152,6 +159,7 @@ export const RedesignNavigationPanel: React.FC<{
               withSpaceAfter
               to='/public/local'
               iconComponent={FediIcon}
+              isActive={isFediverseFeedsLinkActive}
             >
               <FormattedMessage
                 id='tabs_bar.fediverse_feeds'
