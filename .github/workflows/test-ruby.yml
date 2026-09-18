@@ -18,18 +18,13 @@ concurrency:
 
 jobs:
   build:
+    name: build (production)
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
-    strategy:
-      fail-fast: true
-      matrix:
-        mode:
-          - production
-          - test
     env:
-      RAILS_ENV: ${{ matrix.mode }}
-      BUNDLE_WITH: ${{ matrix.mode }}
+      RAILS_ENV: production
+      BUNDLE_WITH: production
       SECRET_KEY_BASE_DUMMY: 1
 
     steps:
@@ -51,12 +46,12 @@ jobs:
             public/packs
             public/packs-test
             tmp/cache/vite
-          key: ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+          key: assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
           restore-keys: |
-            ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
-            ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}
-            ${{ matrix.mode }}-assets-main
-            ${{ matrix.mode }}-assets
+            assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+            assets-${{ github.head_ref || github.ref_name }}
+            assets-main
+            assets
 
       - name: Precompile assets
         run: |-
@@ -67,7 +62,6 @@ jobs:
           tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs*
 
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
-        if: matrix.mode == 'test'
         with:
           path: |-
             ./artifacts.tar.gz
