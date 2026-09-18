@@ -216,7 +216,7 @@ const ProfileMenuItem: React.FC = () => {
   const accountBasePath = `/@${account?.acct}`;
 
   return (
-    <MenuItemLink to={accountBasePath}>
+    <MenuItemLink to={accountBasePath} exact>
       <LockupWrapper
         icon={<Avatar account={account} size={40} />}
         className={classes.profileMenuItem}
