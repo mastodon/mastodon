@@ -175,7 +175,7 @@ export const RedesignNavigationPanel: React.FC<{
                   <Link to='/lists/new'>
                     <FormattedMessage
                       id='tabs_bar.create_custom_feed'
-                      defaultMessage='Create feed'
+                      defaultMessage='Create Feed'
                     />
                   </Link>
                 </>
@@ -190,7 +190,7 @@ export const RedesignNavigationPanel: React.FC<{
                   >
                     <FormattedMessage
                       id='tabs_bar.create_custom_feed'
-                      defaultMessage='Create feed'
+                      defaultMessage='Create Feed'
                     />
                   </NavigationLink>
                   {customFeeds.map((feed) => (
