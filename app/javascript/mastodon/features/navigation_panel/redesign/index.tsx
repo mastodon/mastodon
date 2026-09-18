@@ -83,7 +83,8 @@ export const RedesignNavigationPanel: React.FC<{
    * menu items are hidden and the design is tweaked slightly
    */
   mode?: 'static' | 'slide-out';
-}> = ({ siteName, mode = 'static' }) => {
+  multiColumn?: boolean;
+}> = ({ siteName, mode = 'static', multiColumn }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
@@ -271,14 +272,20 @@ export const RedesignNavigationPanel: React.FC<{
                 <NavigationAccountCardAndMenu />
               </>
             )}
-            <NavigationFooterLinks siteName={siteName} />
+            <NavigationFooterLinks
+              multiColumn={multiColumn}
+              siteName={siteName}
+            />
           </footer>
         </>
       )}
       {!signedIn && (
         <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
           <LoggedOutInfo />
-          <NavigationFooterLinks siteName={siteName} />
+          <NavigationFooterLinks
+            multiColumn={multiColumn}
+            siteName={siteName}
+          />
         </footer>
       )}
       {bottomSensor}
