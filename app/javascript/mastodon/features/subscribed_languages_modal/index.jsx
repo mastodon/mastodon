@@ -5,7 +5,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import { createSelector } from '@reduxjs/toolkit';
 import { is, List as ImmutableList, Set as ImmutableSet } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { ImmutablePureComponent } from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';

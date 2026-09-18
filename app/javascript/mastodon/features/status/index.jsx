@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 import { difference } from 'lodash';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { ImmutablePureComponent } from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import VisibilityIcon from '@/material-icons/400-24px/visibility.svg?react';
@@ -22,7 +22,7 @@ import { Icon }  from 'mastodon/components/icon';
 import { injectIntl } from '@/mastodon/components/intl';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ScrollContainer } from 'mastodon/containers/scroll_container';
-import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import { BundleColumnError } from 'mastodon/features/ui/components/bundle_column_error';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 

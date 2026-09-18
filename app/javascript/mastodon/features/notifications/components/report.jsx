@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { ImmutablePureComponent } from 'react-immutable-pure-component';
 
 import { AvatarOverlay } from 'mastodon/components/avatar_overlay';
 import { injectIntl } from '@/mastodon/components/intl';
