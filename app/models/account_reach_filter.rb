@@ -147,10 +147,9 @@ class AccountReachFilter < ApplicationRecord
       reload
       loop do
         domains = redis.spop("account_reach:#{id}:to_add", BATCH_SIZE)
+        break if domains.blank?
 
         add(*domains)
-
-        break if domains.size < BATCH_SIZE
       end
     end
 
