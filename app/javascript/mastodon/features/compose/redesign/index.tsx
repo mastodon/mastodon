@@ -14,8 +14,10 @@ import {
 } from '@/mastodon/actions/compose';
 import { ToggleButton } from '@/mastodon/components/button/redesign';
 import { TextInputField } from '@/mastodon/components/form_fields/redesign';
+import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import { Icon, useIconWeight } from '@/mastodon/components/icon';
 import {
+  closeComposer,
   getComposerTextarea,
   requestComposerFocus,
   submitComposer,
@@ -140,6 +142,25 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
   const text = useAppSelector((state) => state.compose.get('text') as string);
 
   const dispatch = useAppDispatch();
+
+  const isModalOpen = useAppSelector((state) => state.modal.stack.size > 0);
+  useEffect(() => {
+    function escapeComposer(event: KeyboardEvent) {
+      const key = normalizeKey(event.key);
+      if (key !== 'escape' || isModalOpen) {
+        return;
+      }
+
+      if (!event.defaultPrevented) {
+        dispatch(closeComposer());
+      }
+    }
+
+    document.addEventListener('keydown', escapeComposer);
+    return () => {
+      document.removeEventListener('keydown', escapeComposer);
+    };
+  }, [dispatch, isModalOpen]);
 
   // Sensitive handling
   const isSensitive = useAppSelector((state) => !!state.compose.get('spoiler'));

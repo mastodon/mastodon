@@ -157,6 +157,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
           event.preventDefault();
           onSuggestionClear();
         } else if (key === 'escape') {
+          event.preventDefault();
           // Dismiss the suggestions if we're displaying any.
           if (suggestions.length > 0) {
             onSuggestionClear();
