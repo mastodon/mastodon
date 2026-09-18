@@ -42,7 +42,7 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
   end
 
   def account_home_feed
-    HomeFeed.new(current_account)
+    HomeFeed.new(current_account, params.permit(:exclude_direct, :exclude_reblogs, :exclude_quotes, :exclude_replies))
   end
 
   def next_path

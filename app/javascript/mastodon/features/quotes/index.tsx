@@ -4,20 +4,27 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { List as ImmutableList } from 'immutable';
 
+import { ArrowClockwiseIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
 import { fetchQuotes } from '@/mastodon/actions/interactions_typed';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import {
+  ColumnHeader,
+  ColumnHeaderButton,
+} from '@/mastodon/components/column_header';
 import { Icon } from '@/mastodon/components/icon';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import StatusList from '@/mastodon/components/status_list';
 import { useIdentity } from '@/mastodon/identity_context';
 import { domain } from '@/mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
 
 const messages = defineMessages({
+  title: { id: 'status.quotes_title', defaultMessage: 'Post Quotes' },
   refresh: { id: 'refresh', defaultMessage: 'Refresh' },
 });
 
@@ -112,21 +119,36 @@ export const Quotes: React.FC<{
 
   return (
     <Column bindToDocument={!multiColumn}>
-      <ColumnHeader
-        showBackButton
-        multiColumn={multiColumn}
-        extraButton={
-          <button
-            type='button'
-            className='column-header__button'
-            title={intl.formatMessage(messages.refresh)}
-            aria-label={intl.formatMessage(messages.refresh)}
-            onClick={handleRefresh}
-          >
-            <Icon id='refresh' icon={RefreshIcon} />
-          </button>
-        }
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={intl.formatMessage(messages.title)}
+          extraButtons={
+            <ColumnHeaderButton
+              icon={ArrowClockwiseIcon}
+              onClick={handleRefresh}
+            >
+              {intl.formatMessage(messages.refresh)}
+            </ColumnHeaderButton>
+          }
+        />
+      ) : (
+        <LegacyColumnHeader
+          showBackButton
+          multiColumn={multiColumn}
+          extraButton={
+            <button
+              type='button'
+              className='column-header__button'
+              title={intl.formatMessage(messages.refresh)}
+              aria-label={intl.formatMessage(messages.refresh)}
+              onClick={handleRefresh}
+            >
+              <Icon id='refresh' icon={RefreshIcon} />
+            </button>
+          }
+        />
+      )}
 
       <StatusList
         scrollKey='quotes_timeline'

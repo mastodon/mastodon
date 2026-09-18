@@ -84,6 +84,10 @@ cy:
       disable_sign_in_token_auth: Analluogi dilysu tocyn e-bost
       disable_two_factor_authentication: Diffodd 2FA
       disabled: Wedi rhewi
+      discoverable:
+        disabled: Dyw'r awdur heb ddewis bod yn ddarganfyddadwy
+        enabled: Mae'r awdur wedi dewis bod yn ddarganfyddadwy
+        title: Darganfyddadwy
       display_name: Enw sgrin
       domain: Parth
       edit: Golygu
@@ -93,6 +97,12 @@ cy:
       enable_sign_in_token_auth: Galluogi dilysu tocyn e-bost
       enabled: Wedi ei alluogi
       enabled_msg: Wedi dadrewi cyfrif %{username} yn llwyddiannus
+      follow_recommendations:
+        allowed: Caniatawyd
+        suppress: Atal unrhyw argymhelliad dilyn
+        suppressed: Cyfyngwyd
+        title: Dilyn yr argymhellion
+        unsuppress: Adfer unrhyw argymhelliad dilyn
       followers: Dilynwyr
       follows: Yn dilyn
       header: Pennyn
@@ -181,6 +191,11 @@ cy:
       suspension_irreversible: Mae data'r cyfrif hwn wedi'i ddileu'n ddiwrthdro. Gallwch ddad-atal y cyfrif i'w wneud yn ddefnyddiadwy ond ni fydd yn adennill unrhyw ddata a oedd ganddo o'r blaen.
       suspension_reversible_hint_html: Mae'r cyfrif wedi'i atal, a bydd y data'n cael ei ddileu yn llawn ar %{date}. Tan hynny, mae modd adfer y cyfrif heb unrhyw effeithiau gwael. Os dymunwch gael gwared ar holl ddata'r cyfrif ar unwaith, gallwch wneud hynny isod.
       title: Cyfrifon
+      trends:
+        allow: Caniatáu
+        allowed: Caniatawyd
+        disallow: Peidio Caniatáu
+        disallowed: Peidio Caniatáu
       unblock_email: Dadflocio cyfeiriad e-bost
       unblocked_email_msg: Llwyddwyd i ddadflocio cyfeiriad e-bost %{username}
       unconfirmed_email: E-bost heb ei gadarnhau
@@ -1262,7 +1277,6 @@ cy:
           two: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
           zero: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
         title: Dolenni sy'n trendio
-        usage_comparison: Wedi'i rannu %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
       not_allowed_to_trend: Dim caniatâd i trendio
       only_allowed: Derbyniwyd yn unig
       pending_review: Yn aros am adolygiad
@@ -1311,7 +1325,6 @@ cy:
         trendable: Gall ymddangos o dan trendiau
         trending_rank: 'Yn trendio #%{rank}'
         usable: Mae modd ei ddefnyddio
-        usage_comparison: Wedi'i ddefnyddio %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
         used_by_over_week:
           few: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
           many: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
@@ -1684,6 +1697,7 @@ cy:
       content: Ymddiheuriadau, ond fe aeth rhywbeth o'i le ar ein pen ni.
       title: Nid yw'r dudalen hon yn gywir
     '503': Ni fu modd gwasanaethu'r dudalen oherwydd methiant gweinydd dros dro.
+    go_home: Mynd adref
     noscript_html: I ddefnyddio ap gwe Mastodon, galluogwch JavaScript os gwelwch yn dda. Fel arall, gallwch drio un o'r <a href="%{apps_path}">apiau cynhenid</a> ar gyfer Mastodon ar eich platfform.
   existing_username_validator:
     not_found: methu dod o hyd i ddefnyddiwr lleol gyda'r enw defnyddiwr hwnnw
@@ -1808,7 +1822,6 @@ cy:
       incompatible_type: Nid yw'n gydnaws â'r math mewnforio a ddewiswyd
       invalid_csv_file: 'Ffeil CSV annilys. Gwall: %{error}'
       invalid_json_file: 'Ffeil JSON annilys. Gwall: %{error}'
-      over_rows_processing_limit: yn cynnwys mwy na %{count} o resi
       status_not_found_warning: Mae rhai o'ch hidlau yn cuddio postiadau penodol nad yw'r gweinydd hwn yn eu hadnabod. Fydd y cofnodion hyn ddim yn cael eu hidlo'n awtomatig os fyddan nhw'n cael eu darganfod yn ddiweddarach gan y gweinydd.
       too_large: Mae'r ffeil yn rhy fawr
     failures: Methiannau
@@ -2019,7 +2032,6 @@ cy:
     incoming_migrations_html: I symud o gyfrif arall i'r un hwn, yn gyntaf mae angen i chi <a href="%{path}">greu enwarall (alias) cyfrif</a>.
     moved_msg: Mae eich cyfrif bellach yn ailgyfeirio i %{acct} ac mae eich dilynwyr yn cael eu symud drosodd.
     not_redirecting: Nid yw eich cyfrif yn ailgyfeirio i unrhyw gyfrif arall ar hyn o bryd.
-    on_cooldown: Rydych chi wedi mudo'ch cyfrif yn ddiweddar. Bydd y swyddogaeth hon ar gael eto ymhen %{count} diwrnod.
     past_migrations: Mudo'r gorffennol
     proceed_with_move: Symud dilynwyr
     redirected_msg: Mae eich cyfrif yn awr yn ailgyfeirio at %{acct}.
@@ -2211,8 +2223,6 @@ cy:
       account: Postiadau cyhoeddus gan @%{acct}
       tag: 'Postiadau cyhoeddus wedi''u tagio #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd ar gyfer heddiw
-    over_total_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd
     too_soon: rhaid i'r dyddiad fod yn y dyfodol
   self_destruct:
     lead_html: Yn anffodus mae <strong>%{domain}</strong> yn cau'n barhaol. Os oedd gennych gyfrif yno, ni fydd modd i chi barhau i'w ddefnyddio, ond mae dal modd gofyn i gael copi wrth gefn o'ch data.

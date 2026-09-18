@@ -45,17 +45,18 @@ const ComposerModalSwitch: React.FC = () => {
       <FormattedMessage
         id='compose.switch_modal.body'
         defaultMessage='Your message has limited visibility. If you convert to a post, it will switch to your default post visibility.'
+        description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
       />
 
       <ModalActions>
-        <Button size='sm' onClick={handleBack}>
+        <Button onClick={handleBack}>
           <FormattedMessage
             id='compose.switch_modal.back'
             defaultMessage='Back'
           />
         </Button>
 
-        <Button size='sm' variant='solid' onClick={handleContinue}>
+        <Button variant='solid' onClick={handleContinue}>
           <FormattedMessage
             id='compose.switch_modal.continue'
             defaultMessage='Continue'
@@ -66,5 +67,4 @@ const ComposerModalSwitch: React.FC = () => {
   );
 };
 
-// eslint-disable-next-line import/no-default-export
 export default ComposerModalSwitch;

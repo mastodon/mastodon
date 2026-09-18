@@ -114,7 +114,7 @@ export const Popover: React.FC<PopoverProps> = ({
   popoverElement,
   placement = 'bottom',
   offset,
-  strategy = 'fixed',
+  strategy = 'absolute',
   flip = true,
   container,
   matchReferenceWidth = false,

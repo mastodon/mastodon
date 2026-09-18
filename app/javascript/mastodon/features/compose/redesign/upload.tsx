@@ -19,6 +19,7 @@ import {
   MenuItemDivider,
   MenuList,
 } from '@/mastodon/components/menu';
+import { StatusImage } from '@/mastodon/components/status/image';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import classes from './attachments.module.scss';
@@ -43,29 +44,11 @@ export const ComposeUpload: React.FC<{
     return <ComposeAudioUpload attachment={attachment} />;
   }
 
-  let x = 50;
-  let y = 50;
-  const focusX = attachment.meta.focus?.x;
-  const focusY = attachment.meta.focus?.y;
-  if (focusX && focusY) {
-    x = (focusX / 2 + 0.5) * 100;
-    y = (focusY / -2 + 0.5) * 100;
-  }
-
   return (
-    <div
-      className={classNames(classes.mediaUpload, className)}
-      style={{
-        backgroundImage:
-          !sensitive && attachment.preview_url
-            ? `url(${attachment.preview_url})`
-            : undefined,
-        backgroundPosition: `${x}% ${y}%`,
-        aspectRatio: single
-          ? `${attachment.meta.original.width} / ${attachment.meta.original.height}`
-          : undefined,
-      }}
-      data-color-scheme='dark'
+    <StatusImage
+      attachment={attachment}
+      className={classNames(className, classes.mediaUpload)}
+      sensitive={sensitive}
     >
       {sensitive && attachment.blurhash && (
         <Blurhash hash={attachment.blurhash} className={classes.blurHash} />
@@ -93,7 +76,7 @@ export const ComposeUpload: React.FC<{
           <FormattedMessage id='compose.upload.alt' defaultMessage='Alt' />
         </span>
       )}
-    </div>
+    </StatusImage>
   );
 };
 

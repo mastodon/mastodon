@@ -64,8 +64,6 @@
 #
 
 class Account < ApplicationRecord
-  self.ignored_columns += %w(devices_url)
-
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
   REFRESH_DEADLINE = 6.hours
   STALE_THRESHOLD = 1.day

@@ -328,7 +328,7 @@ class MediaGallery extends PureComponent {
 
         {(visible && !uncached) && (
           <div className='media-gallery__actions'>
-            <button className='media-gallery__actions__pill' onClick={this.handleOpen}><FormattedMessage id='media_gallery.hide' defaultMessage='Hide' /></button>
+            <button type='button' className='media-gallery__actions__pill' onClick={this.handleOpen}><FormattedMessage id='media_gallery.hide' defaultMessage='Hide' /></button>
           </div>
         )}
       </div>

@@ -23,42 +23,42 @@
   }
 
   label {
-    font-size: var(--fs-sm);
+    font-size: var(--fs-14);
   }
 }
 
 .icon {
-  width: var(--space-lg);
-  height: var(--space-lg);
+  width: var(--space-5);
+  height: var(--space-5);
 }
 
 // Text Input
 
 .inputWrapper {
   label {
-    font-size: var(--fs-sm);
+    font-size: var(--fs-14);
   }
 
   span {
     color: var(--color-text-tertiary);
-    font-size: var(--fs-2xs);
-    line-height: var(--fs-lg);
+    font-size: var(--fs-12);
+    line-height: var(--fs-16);
   }
 }
 
 input.input {
-  font-size: var(--fs-lg);
+  font-size: var(--fs-16);
   background: none;
-  border-radius: var(--space-xs);
+  border-radius: var(--space-2);
   border: 0.5px solid var(--color-text-tertiary);
-  padding: var(--space-xs);
+  padding: var(--space-2);
   transition:
     background 200ms,
     border 200ms,
     opacity 200ms;
 
   &:hover:not(:disabled) {
-    box-shadow: 0 1px var(--space-2xs) 0
+    box-shadow: 0 1px var(--space-1) 0
       rgb(from var(--color-text-primary) r g b / 10%);
     background: var(--color-bg-highlight);
   }
@@ -77,8 +77,8 @@ input.input {
   svg {
     width: 20px;
     height: 20px;
-    inset-inline-start: var(--space-xs);
-    inset-block-start: var(--space-xs);
+    inset-inline-start: var(--space-2);
+    inset-block-start: var(--space-2);
   }
 }
 

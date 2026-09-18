@@ -1003,7 +1003,6 @@ lad:
           one: Partajado por una persona durante la ultima semana
           other: Partajado por %{count} personas durante la ultima semana
         title: Atadijos en trend
-        usage_comparison: Partajado %{today} vezes oy, komparado kon %{yesterday} ayer
       not_allowed_to_trend: Sin permiso para estar en trendes
       only_allowed: Solo las permetidas
       pending_review: Revizion esta asperando
@@ -1044,7 +1043,6 @@ lad:
         trendable: Pueden apareser en trendes
         trending_rank: Trend n.º %{rank}
         usable: Pueden uzarse
-        usage_comparison: Uzada %{today} vezes oy, komparado kon %{yesterday} ayer
         used_by_over_week:
           one: Uzada por una persona durante la ultima semana
           other: Uzada por %{count} personas durante la ultima semana
@@ -1445,7 +1443,6 @@ lad:
       empty: Dosya CSV vaziya
       incompatible_type: Inkompativle kon el tipo de importo eskojido
       invalid_csv_file: 'Dosya CSV no valida. Yerro: %{error}'
-      over_rows_processing_limit: kontiene mas de %{count} filas
       too_large: Dosya es mas grande
     failures: Yerros
     imported: Importado
@@ -1548,7 +1545,6 @@ lad:
     incoming_migrations_html: Para migrar de otro kuento a este, primero kale <a href="%{path}">kriyar un alias del kuento</a>.
     moved_msg: Tu kuento agora se esta redirigiendo a %{acct} i tus suivantes se estan migrando.
     not_redirecting: Tu kuento no se esta readresando a dinguna otro kuento aktualmente.
-    on_cooldown: Tienes migrado tu kuento rezientemente. Esta fonksyon estara desponivle de muevo en %{count} diyas.
     past_migrations: Migrasyones pasadas
     proceed_with_move: Migra suivantes
     redirected_msg: Tu kuento agora readresa a %{acct}.
@@ -1702,8 +1698,6 @@ lad:
       account: Publikasyones publikas de @%{acct}
       tag: 'Publikasyones publikas etiketadas kon #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Tienes superado el limito de %{limit} publikasyones programadas para akel diya
-    over_total_limit: Tienes superado el limito de %{limit} publikasyones programadas
     too_soon: data tiene ke ser en el avenir
   self_destruct:
     lead_html: Malorozamente, <strong>%{domain}</strong> va serrar permanentemente. Si teniyas un kuento ayi, ya no podras utilizarlo, ama ainda puedes solisitar una kopya de tus datos.

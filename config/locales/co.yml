@@ -657,8 +657,6 @@ co:
       one: Qualcosa ùn và bè! Verificate u prublemu quì sottu
       other: Qualcosa ùn và bè! Verificate %{count} prublemi quì sottu
   imports:
-    errors:
-      over_rows_processing_limit: cuntene più di %{count} filari
     modes:
       merge: Unisce
       merge_long: Cunservà i dati esistenti è aghjunghje i novi
@@ -721,7 +719,6 @@ co:
     incoming_migrations_html: Per spustà da stu contu à un'altru, primu duvete <a href="%{path}">creà un pseudonimu di contu</a>.
     moved_msg: Avà u vostru contu riindirizza versu %{acct} è i vostri abbunati sò in corsu di trasferimentu.
     not_redirecting: U vostru contu ùn riindirizza micca ancu versu un'altru contu.
-    on_cooldown: Avede digià migratu u vostru contu. Sta funzionne sarà torna dispunibule in %{count} ghjorni.
     past_migrations: Anziane migrazione
     proceed_with_move: Trasferì l'abbunati
     redirected_msg: Avà u vostru contu riindirizza versu à %{acct}.
@@ -831,9 +828,6 @@ co:
     status: Statutu di u contu
   remote_follow:
     missing_resource: Ùn avemu pussutu à truvà l’indirizzu di ridirezzione
-  scheduled_statuses:
-    over_daily_limit: Avete trapassatu a limita di %{limit} statuti pianificati per stu ghjornu
-    over_total_limit: Avete trapassatu a limita di %{limit} statuti pianificati
   sessions:
     activity: Ultima attività
     browser: Navigatore

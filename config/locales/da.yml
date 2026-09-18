@@ -72,6 +72,10 @@ da:
       disable_sign_in_token_auth: Deaktivér e-mailtoken godkendelse
       disable_two_factor_authentication: Deaktivér 2FA
       disabled: Frosset
+      discoverable:
+        disabled: Forfatteren har ikke valgt at kunne findes
+        enabled: Forfatteren har valgt at kunne findes
+        title: Kan findes
       display_name: Visningsnavn
       domain: Domæne
       edit: Rediger
@@ -81,6 +85,12 @@ da:
       enable_sign_in_token_auth: Aktivér e-mailtoken godkendelse
       enabled: Aktiveret
       enabled_msg: "%{username}s konto er optøet"
+      follow_recommendations:
+        allowed: Tilladt
+        suppress: Undertryk enhver følg-anbefaling
+        suppressed: Undertrykt
+        title: Følg-anbefalinger
+        unsuppress: Genopret enhver følg-anbefaling
       followers: Følgere
       follows: Følger
       header: Banner
@@ -165,6 +175,12 @@ da:
       suspension_irreversible: Denne kontos data er blevet slettet permanent. Kontoen kan genaktiveres for at gøre den brugbar, imidlertid gendanner dette ikke tidligere kontodata.
       suspension_reversible_hint_html: Kontoen er blevet suspenderet, og dens data fjernes helt d. %{date}. Indtil da kan kontoen genoprettes uden datatab mv. Ønsker alle kontodata fjernet straks, kan dette gøres nedenfor.
       title: Konti
+      trends:
+        allow: Tillad
+        allowed: Tilladt
+        disallow: Tillad ikke
+        disallowed: Ikke tilladt
+        title: Indlæg, der trender
       unblock_email: Afblokér e-mailadresse
       unblocked_email_msg: "%{username}s e-mail-adresse afblokeret"
       unconfirmed_email: Ubekræftet e-mail
@@ -1190,7 +1206,9 @@ da:
           one: Delt af én person den seneste uge
           other: Delt af %{count} personer den seneste uge
         title: Links, der trender
-        usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
+        usage_comparison:
+          one: Delt %{count} gang i dag, sammenlignet med %{yesterday} i går
+          other: Delt %{count} gange i dag, sammenlignet med %{yesterday} i går
       not_allowed_to_trend: Ikke tilladt at trende
       only_allowed: Kun tilladte
       pending_review: Afventer gennemgang
@@ -1235,7 +1253,9 @@ da:
         trendable: Kan vises under tendenser
         trending_rank: 'Populær #%{rank}'
         usable: Kan anvendes
-        usage_comparison: Anvendt %{today} gange i dag, sammenlignet med %{yesterday} i går
+        usage_comparison:
+          one: Brugt %{count} gang i dag, sammenlignet med %{yesterday} i går
+          other: Brugt %{count} gange i dag, sammenlignet med %{yesterday} i går
         used_by_over_week:
           one: Brugt af én person den seneste uge
           other: Brugt af %{count} personer den seneste uge
@@ -1596,6 +1616,7 @@ da:
       content: Beklager, noget gik galt hos os.
       title: Denne side er forkert
     '503': Siden kunne ikke vises grundet en midlertidig serverfejl.
+    go_home: Gå hjem
     noscript_html: For brug af Mastodon-webapplikationen, så aktivér JavaScript. Alternativt, prøv en af disse <a href="%{apps_path}">apps</a> til Mastodon til din platform.
   existing_username_validator:
     not_found: kunne ikke finde en lokal bruger med dette brugenavn
@@ -1692,7 +1713,10 @@ da:
       incompatible_type: Inkompatibel med valgte importtype
       invalid_csv_file: 'Ugyldig CSV-fil. Fejl: %{error}'
       invalid_json_file: 'Ugyldig JSON-fil. Fejl: %{error}'
-      over_rows_processing_limit: indeholder mere end %{count} rækker
+      no_data: Denne fil indeholder ikke nogen data, der matcher den givne importtype
+      over_rows_processing_limit:
+        one: indeholder mere end %{count} række
+        other: indeholder mere end %{count} rækker
       status_not_found_warning: Nogle af dine filtre skjuler bestemte indlæg, som denne server ikke kender til. Disse indlæg bliver ikke automatisk filtreret, hvis serveren finder dem senere.
       too_large: Filen for stor
     failures: Mislykket
@@ -1843,7 +1867,9 @@ da:
     incoming_migrations_html: For at flytte fra en anden konto til denne skal der først <a href="%{path}">oprettes et kontoalias</a>.
     moved_msg: Din konto omdirigeres nu til %{acct} og dine følgere overflyttes.
     not_redirecting: Din konto omdirigerer pt. ikke til nogen anden konto.
-    on_cooldown: Du har for nylig migreret din konto. Denne funktion tilgængeliggøres igen om %{count} dage.
+    on_cooldown:
+      one: Du har for nylig flyttet din konto. Denne funktion vil igen være tilgængelig om %{count} dag.
+      other: Du har for nylig flyttet din konto. Denne funktion vil igen være tilgængelig om %{count} dage.
     past_migrations: Tidligere migreringer
     proceed_with_move: Flyt følgere
     redirected_msg: Din konto omdirigerer nu til %{acct}.
@@ -2031,8 +2057,12 @@ da:
       account: Offentlige indlæg fra @%{acct}
       tag: 'Offentlige indlæg tagget #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Den daglige grænse på %{limit} planlagte indlæg er nået
-    over_total_limit: Grænsen på %{limit} planlagte indlæg er nået
+    over_daily_limit:
+      one: Du har overskredet grænsen på %{count} planlagt indlæg for i dag
+      other: Du har overskredet grænsen på %{count} planlagte indlæg for i dag
+    over_total_limit:
+      one: Du har overskredet grænsen på %{count} planlagt indlæg
+      other: Du har overskredet grænsen på %{count} planlagte indlæg
     too_soon: dato skal være i fremtiden
   self_destruct:
     lead_html: Desværre lukker <strong>%{domain}</strong> permanent. Har man en konto dér, vil fortsat brug heraf ikke være mulig. Man kan dog stadig anmode om en sikkerhedskopi af sine data.

@@ -17,13 +17,6 @@
 #
 
 class NotificationPolicy < ApplicationRecord
-  self.ignored_columns += %w(
-    filter_not_following
-    filter_not_followers
-    filter_new_accounts
-    filter_private_mentions
-  )
-
   belongs_to :account
 
   has_many :notification_requests, primary_key: :account_id, foreign_key: :account_id, dependent: nil, inverse_of: false

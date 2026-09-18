@@ -1,7 +1,6 @@
-import { createAppSelector } from 'mastodon/store';
-import { toServerSideType } from 'mastodon/utils/filters';
-
-import type { StatusContextType } from '../components/status/types';
+import type { StatusContextType } from '@/mastodon/components/status/types';
+import { createAppSelector } from '@/mastodon/store/typed_functions';
+import { toServerSideType } from '@/mastodon/utils/filters';
 
 import { selectExpandedStatus } from './statuses';
 
@@ -55,14 +54,20 @@ export const selectStatusFilters = createAppSelector(
     (state, { statusId }: { statusId?: string | null }) =>
       selectExpandedStatus(state, statusId ?? undefined),
     selectPlainFilters,
-    (_, { warnInsteadOfHide }: { warnInsteadOfHide?: boolean }) =>
-      warnInsteadOfHide,
+    (state) => state.meta.get('me') as string | undefined,
+    (_, { contextType }: { contextType?: StatusContextType }) => contextType,
   ],
-  (status, filters) => {
+  (status, filters, currentAccountId, contextType) => {
     const results: FilterShape[] = [];
-    if (!status || !filters) {
-      return results;
+    let filterAction: 'warn' | 'hide' | null = null;
+    if (!status || !filters || status.account.acct === currentAccountId) {
+      return { filters: results, filterAction };
     }
+
+    const warnInsteadOfHide =
+      !!contextType &&
+      ['detailed', 'bookmarks', 'favourites', 'search'].includes(contextType);
+
     const filtered = status.reblog?.filtered ?? status.filtered;
     for (const result of filtered) {
       const filter = filters[result.filter];
@@ -70,44 +75,22 @@ export const selectStatusFilters = createAppSelector(
         continue;
       }
 
+      if (filter.filter_action === 'hide' && !warnInsteadOfHide) {
+        filterAction = 'hide';
+      } else {
+        filterAction ??= 'warn';
+      }
+
       results.push(filter);
     }
 
-    return results;
-  },
-);
-
-export const selectStatusLoadingState = createAppSelector(
-  [
-    (state, { statusId }: { statusId?: string | null }) =>
-      selectExpandedStatus(state, statusId ?? undefined),
-    selectStatusFilters,
-    (_, { warnInsteadOfHide }: { warnInsteadOfHide?: boolean }) =>
-      warnInsteadOfHide,
-  ],
-  (status, filters, warnInsteadOfHide) => {
-    if (!status) {
-      return { state: 'not-found', status: null };
-    }
-
-    if (status.isLoading) {
-      return { state: 'loading', status: null };
-    }
-
-    if (
-      !warnInsteadOfHide &&
-      filters.some((filter) => filter.filter_action === 'hide')
-    ) {
-      return { state: 'filtered', status: null };
-    }
-
-    return { state: 'loaded', status };
+    return { filters: results, filterAction };
   },
 );
 
 export const selectMediaFilters = createAppSelector(
   [selectStatusFilters],
-  (filters) =>
+  ({ filters }) =>
     filters
       .filter((filter) => filter.filter_action === 'blur')
       .map((filter) => filter.title),

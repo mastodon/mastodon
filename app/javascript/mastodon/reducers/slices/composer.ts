@@ -1,8 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAction } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 import {
   changeCompose,
   clearComposeSuggestions,
+  COMPOSE_DIRECT,
+  COMPOSE_FOCUS,
+  COMPOSE_MENTION,
+  COMPOSE_REPLY,
+  COMPOSE_SET_STATUS,
   directCompose,
   replyComposeById,
   resetCompose,
@@ -13,6 +19,7 @@ import {
   PRIVATE_QUOTE_MODAL_ID,
 } from '@/mastodon/actions/compose_typed';
 import { openModal } from '@/mastodon/actions/modal';
+import { REDRAFT } from '@/mastodon/actions/statuses';
 import type {
   ApiStatusJSON,
   StatusVisibility,
@@ -30,30 +37,27 @@ export function getComposerTextarea() {
   }
   return null;
 }
-/**
- * Focuses on the composer textarea.
- * @param defer Waits before focusing. Useful if the composer may not be focusable immediately.
- */
-export function focusComposerTextarea(defer = false) {
-  if (defer) {
-    requestAnimationFrame(() => {
-      getComposerTextarea()?.focus();
-    });
-  } else {
-    getComposerTextarea()?.focus();
-  }
+export interface ComposerTextareaSelection {
+  start: number;
+  end: number;
+}
+
+interface PendingFocus {
+  selection: ComposerTextareaSelection | null;
 }
 
 type DisplayState = 'hidden' | 'showing' | 'minimized';
 
-export type ComposeType = 'post' | 'message' | 'reply';
+export type ComposeType = 'post' | 'message' | 'reply' | 'replyPrivate';
 
 interface ComposerState {
   displayState: DisplayState;
+  pendingFocus: PendingFocus | null;
 }
 
 const initialState: ComposerState = {
   displayState: 'hidden',
+  pendingFocus: null,
 };
 
 const composerSlice = createSlice({
@@ -70,10 +74,41 @@ const composerSlice = createSlice({
     hideComposer(state) {
       state.displayState = 'hidden';
     },
+    requestFocus(
+      state,
+      action: PayloadAction<ComposerTextareaSelection | undefined>,
+    ) {
+      state.pendingFocus = { selection: action.payload ?? null };
+    },
+    clearPendingFocus(state) {
+      state.pendingFocus = null;
+    },
+  },
+  extraReducers(builder) {
+    builder.addMatcher(
+      (action) =>
+        isAction(action) &&
+        [
+          COMPOSE_REPLY,
+          COMPOSE_FOCUS,
+          COMPOSE_MENTION,
+          COMPOSE_DIRECT,
+          COMPOSE_SET_STATUS,
+          REDRAFT,
+        ].includes(action.type),
+      (state) => {
+        state.displayState = 'showing';
+      },
+    );
   },
 });
 
 export const composer = composerSlice.reducer;
+
+export const {
+  requestFocus: requestComposerFocus,
+  clearPendingFocus: clearComposerFocusRequest,
+} = composerSlice.actions;
 
 export const minimizeComposerToggle = createAppThunk(
   (_arg, { dispatch, getState }) => {
@@ -126,6 +161,9 @@ type ComposeNewPayload = (
 
 export const openNewComposer = createAppThunk(
   (payload: ComposeNewPayload, { dispatch, getState }) => {
+    // Always show the composer if it is closed or minimized.
+    dispatch(composerSlice.actions.showComposer());
+
     if (!payload.force && selectComposerIsChanged(getState())) {
       dispatch(
         openModal({
@@ -146,13 +184,13 @@ export const openNewComposer = createAppThunk(
         dispatch(directCompose(account));
       } else {
         dispatch(changeComposeVisibility('direct'));
+        dispatch(requestComposerFocus());
       }
     } else if (payload.type === 'reply') {
       dispatch(replyComposeById(payload.toStatusId));
+    } else {
+      dispatch(requestComposerFocus());
     }
-    dispatch(composerSlice.actions.showComposer());
-
-    focusComposerTextarea(true);
   },
 );
 
@@ -253,6 +291,9 @@ export const submitComposer = createAppThunk(
           if (redirectOnSuccess) {
             window.location.assign(status.url);
           }
+
+          // Hide composer on successful publish
+          dispatch(composerSlice.actions.hideComposer());
         }),
       );
     }

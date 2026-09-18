@@ -72,6 +72,10 @@ it:
       disable_sign_in_token_auth: Disabilitare l'autenticazione del token e-mail
       disable_two_factor_authentication: Disabilita A2F
       disabled: Congelato
+      discoverable:
+        disabled: L’autore/trice non ha optato di essere scopribile
+        enabled: L’autore/trice ha optato di essere scopribile
+        title: Scopribile
       display_name: Nome mostrato
       domain: Dominio
       edit: Modifica
@@ -81,6 +85,12 @@ it:
       enable_sign_in_token_auth: Abilitare l'autenticazione del token e-mail
       enabled: Abilitato
       enabled_msg: Il profilo di %{username} è stato scongelato correttamente
+      follow_recommendations:
+        allowed: Autorizzati
+        suppress: Nascondi qualsiasi suggerimento di account
+        suppressed: Nascosti
+        title: Suggerimenti di account
+        unsuppress: Ripristina qualsiasi suggerimento di account
       followers: Follower
       follows: Seguiti
       header: Intestazione
@@ -165,6 +175,12 @@ it:
       suspension_irreversible: I dati di questo profilo sono stati eliminati irreversibilmente. Puoi annullare la sospensione del profilo per renderlo utilizzabile, ma non recuperà alcun dato precedente.
       suspension_reversible_hint_html: Il profilo è stato sospeso e i dati saranno rimossi completamente il %{date}. Fino ad allora, il profilo è ripristinabile senza alcun effetto negativo. Se desideri rimuovere immediatamente tutti i dati del profilo, puoi farlo di seguito.
       title: Profili
+      trends:
+        allow: Autorizza
+        allowed: Autorizzati
+        disallow: Non autorizzare
+        disallowed: Non autorizzati
+        title: Post di tendenza
       unblock_email: Sblocca indirizzo email
       unblocked_email_msg: Indirizzo email di %{username} sbloccato correttamente
       unconfirmed_email: Email non confermata
@@ -1190,7 +1206,9 @@ it:
           one: Condiviso da una persona nell'ultima settimana
           other: Condiviso da %{count} persone nell'ultima settimana
         title: Link in tendenza
-        usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
+        usage_comparison:
+          one: Condiviso %{count} volta oggi, rispetto alle %{yesterday} di ieri
+          other: Condiviso %{count} volte oggi, rispetto alle %{yesterday} di ieri
       not_allowed_to_trend: Non è consentito il trend
       only_allowed: Solo consentiti
       pending_review: Revisione in sospeso
@@ -1235,7 +1253,9 @@ it:
         trendable: Può comparire nelle tendenze
         trending_rank: 'In tendenza #%{rank}'
         usable: Utilizzabile
-        usage_comparison: Usato %{today} volte oggi, rispetto a %{yesterday} ieri
+        usage_comparison:
+          one: Usato %{count} volta oggi, rispetto alle %{yesterday} di ieri
+          other: Usato %{count} volte oggi, rispetto alle %{yesterday} di ieri
         used_by_over_week:
           one: Usato da una persona nell'ultima settimana
           other: Usato da %{count} persone nell'ultima settimana
@@ -1596,6 +1616,7 @@ it:
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
     '503': La pagina non può essere trasmessa a causa di un errore temporaneo del server.
+    go_home: Vai alla Home
     noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
   existing_username_validator:
     not_found: impossibile trovare un utente locale con quel nome utente
@@ -1692,7 +1713,10 @@ it:
       incompatible_type: Incompatibile con il tipo di importazione selezionato
       invalid_csv_file: 'File CSV non valido. Errore: %{error}'
       invalid_json_file: 'File JSON non valido. Errore: %{error}'
-      over_rows_processing_limit: contiene più di %{count} righe
+      no_data: Questo file non contiene dati corrispondenti al tipo di importazione specificato
+      over_rows_processing_limit:
+        one: contiene più di %{count} riga
+        other: contiene più di %{count} righe
       status_not_found_warning: Alcuni dei tuoi filtri nascondono post specifici che non sono noti a questo server. Questi post non verranno filtrati automaticamente se vengono scoperti in seguito dal server.
       too_large: Il file è troppo grande
     failures: Fallimenti
@@ -1843,7 +1867,9 @@ it:
     incoming_migrations_html: Per spostarti da un altro account a questo, devi prima creare <a href="%{path}">un alias</a>.
     moved_msg: Il tuo account è ora reindirizzato a %{acct} e i tuoi follower sono stati spostati.
     not_redirecting: Il tuo account attualmente non è reindirizzato ad alcun altro account.
-    on_cooldown: Hai recentemente trasferito il tuo account. Questa funzione sarà nuovamente disponibile tra %{count} giorni.
+    on_cooldown:
+      one: Hai migrato il tuo account di recente. Questa funzione tornerà disponibile tra %{count} giorno.
+      other: Hai migrato il tuo account di recente. Questa funzione tornerà disponibile tra %{count} giorni.
     past_migrations: Trasferimenti passati
     proceed_with_move: Sposta i follower
     redirected_msg: Il tuo account sta reindirizzando a %{acct}.
@@ -2031,8 +2057,12 @@ it:
       account: Post pubblici di @%{acct}
       tag: 'Post pubblici taggati #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Hai superato il limite di %{limit} post programmati per questo giorno
-    over_total_limit: Hai superato il limite di %{limit} post programmati
+    over_daily_limit:
+      one: Hai superato il limite di %{count} post programmato per oggi
+      other: Hai superato il limite di %{count} post programmati per oggi
+    over_total_limit:
+      one: Hai superato il limite di %{count} post programmato
+      other: Hai superato il limite di %{count} post programmati
     too_soon: la data deve essere nel futuro
   self_destruct:
     lead_html: Sfortunatamente, <strong>%{domain}</strong> sta chiudendo definitivamente. Se hai un account lì, non potrai continuare a usarlo, ma puoi ancora richiedere un backup dei tuoi dati.

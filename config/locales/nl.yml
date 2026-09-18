@@ -72,6 +72,10 @@ nl:
       disable_sign_in_token_auth: Verificatie met een toegangscode via e-mail uitschakelen
       disable_two_factor_authentication: 2FA uitschakelen
       disabled: Bevroren
+      discoverable:
+        disabled: Gebruiker heeft geen toestemming gegeven om vindbaar te zijn
+        enabled: Auteur heeft ervoor gekozen om vindbaar te zijn
+        title: Vindbaar
       display_name: Weergavenaam
       domain: Domein
       edit: Bewerken
@@ -81,6 +85,12 @@ nl:
       enable_sign_in_token_auth: Verificatie met een toegangscode via e-mail inschakelen
       enabled: Ingeschakeld
       enabled_msg: Het ontdooien van het account van %{username} is geslaagd
+      follow_recommendations:
+        allowed: Toegestaan
+        suppress: Aanbevelingen tot volgen onderdrukken
+        suppressed: Onderdrukt
+        title: Aanbevelingen tot volgen
+        unsuppress: Aanbevelingen tot volgen herstellen
       followers: Volgers
       follows: Gevolgde accounts
       header: Omslagfoto
@@ -165,6 +175,12 @@ nl:
       suspension_irreversible: De gegevens van dit account zijn onomkeerbaar verwijderd. Je kunt het opschorten van dit account ongedaan maken zodat het weer valt te gebruiken, maar de verwijderde gegevens worden hiermee niet hersteld.
       suspension_reversible_hint_html: Dit account is opgeschort en de gegevens worden volledig verwijderd op %{date}. Tot die tijd kan dit account worden hersteld zonder nadelige gevolgen. Wanneer je alle gegevens van dit account onmiddellijk wilt verwijderen, kun je dit hieronder doen.
       title: Accounts
+      trends:
+        allow: Toestaan
+        allowed: Toegestaan
+        disallow: Afwijzen
+        disallowed: Afgewezen
+        title: Trending berichten
       unblock_email: E-mailadres deblokkeren
       unblocked_email_msg: Het e-mailadres van %{username} is gedeblokkeerd
       unconfirmed_email: Onbevestigd e-mailadres
@@ -1190,7 +1206,9 @@ nl:
           one: Deze week door één persoon gedeeld
           other: Deze week door %{count} mensen gedeeld
         title: Trending links
-        usage_comparison: Vandaag %{today} keer gedeeld, vergeleken met %{yesterday} keer gisteren
+        usage_comparison:
+          one: Vandaag %{count} keer gedeeld, vergeleken met %{yesterday} keer gisteren
+          other: Vandaag %{count} keer gedeeld, vergeleken met %{yesterday} keer gisteren
       not_allowed_to_trend: Trending worden niet toegestaan
       only_allowed: Alleen goedgekeurde
       pending_review: In afwachting van beoordeling
@@ -1235,7 +1253,9 @@ nl:
         trendable: Kan onder trends verschijnen
         trending_rank: 'Trending #%{rank}'
         usable: Kan worden gebruikt
-        usage_comparison: "%{today} keer vandaag gebruikt, vergeleken met %{yesterday} keer gisteren"
+        usage_comparison:
+          one: "%{count} keer vandaag gebruikt, vergeleken met %{yesterday} keer gisteren"
+          other: "%{count} keer vandaag gebruikt, vergeleken met %{yesterday} keer gisteren"
         used_by_over_week:
           one: Door één persoon tijdens de afgelopen week gebruikt
           other: Door %{count} mensen tijdens de afgelopen week gebruikt
@@ -1596,6 +1616,7 @@ nl:
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
     '503': De pagina kon door een tijdelijke serverstoring niet worden geladen.
+    go_home: Ga naar Start
     noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="%{apps_path}">Mastodon-app</a> zoeken voor jouw platform.
   existing_username_validator:
     not_found: Kon geen lokale gebruiker met die gebruikersnaam vinden
@@ -1692,7 +1713,10 @@ nl:
       incompatible_type: Incompatibel met het geselecteerde importtype
       invalid_csv_file: 'Ongeldig CSV-bestand. Fout: %{error}'
       invalid_json_file: 'Ongeldig JSON-bestand. Foutmelding: %{error}'
-      over_rows_processing_limit: bevat meer dan %{count} rijen
+      no_data: Dit bestand bevat geen gegevens die overeenkomen met het gegeven type import
+      over_rows_processing_limit:
+        one: bevat meer dan %{count} rij
+        other: bevat meer dan %{count} rijen
       status_not_found_warning: Sommige van je filters verbergen specifieke berichten die niet bekend zijn bij deze server. Deze berichten worden niet automatisch gefilterd wanneer ze later alsnog door de server worden ontdekt.
       too_large: Bestand is te groot
     failures: Fouten
@@ -1843,7 +1867,9 @@ nl:
     incoming_migrations_html: Om vanaf een ander account naar dit account te verhuizen, dien je eerst <a href="%{path}">een accountalias aan te maken</a>.
     moved_msg: Jouw account wordt nu naar %{acct} doorverwezen en jouw volgers worden verhuisd.
     not_redirecting: Jouw account wordt momenteel niet naar een ander account doorverwezen.
-    on_cooldown: Je hebt recentelijk jouw account verhuisd. Deze mogelijkheid is weer beschikbaar over %{count} dagen.
+    on_cooldown:
+      one: Je hebt recentelijk jouw account verhuisd. Deze mogelijkheid is over %{count} dag weer beschikbaar.
+      other: Je hebt recentelijk jouw account verhuisd. Deze mogelijkheid is over %{count} dagen weer beschikbaar.
     past_migrations: Vorige migraties
     proceed_with_move: Volgers verhuizen
     redirected_msg: Jouw account wordt nu doorverwezen naar %{acct}.
@@ -2031,8 +2057,12 @@ nl:
       account: Openbare berichten van @%{acct}
       tag: 'Openbare berichten met hashtag #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Je hebt de limiet van %{limit} in te plannen berichten voor vandaag overschreden
-    over_total_limit: Je hebt de limiet van %{limit} in te plannen berichten overschreden
+    over_daily_limit:
+      one: Je hebt de limiet van %{count} in te plannen bericht voor vandaag overschreden
+      other: Je hebt de limiet van %{count} in te plannen berichten voor vandaag overschreden
+    over_total_limit:
+      one: Je hebt de limiet van %{count} in te plannen bericht overschreden
+      other: Je hebt de limiet van %{count} in te plannen berichten overschreden
     too_soon: datum moet in de toekomst liggen
   self_destruct:
     lead_html: Helaas gaat <strong>%{domain}</strong> permanent sluiten. Als je daar een account had, kun je deze niet meer gebruiken, maar je kunt nog steeds een back-up van je gegevens opvragen.
@@ -2371,8 +2401,8 @@ nl:
         one: "%{people} persoon in de afgelopen 2 dagen"
         other: "%{people} mensen in de afgelopen 2 dagen"
       hashtags_subtitle: Wat er in de afgelopen 2 dagen is gebeurd verkennen
-      hashtags_title: Populaire hashtags
-      hashtags_view_more: Meer populaire hashtags bekijken
+      hashtags_title: Trending hashtags
+      hashtags_view_more: Meer trending hashtags bekijken
       post_action: Opstellen
       post_step: Zeg hallo tegen de wereld met tekst, foto's, video's of peilingen.
       post_title: Je eerste bericht schrijven

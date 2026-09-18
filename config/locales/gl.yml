@@ -72,6 +72,10 @@ gl:
       disable_sign_in_token_auth: Desactivar a autenticación con token por correo
       disable_two_factor_authentication: Desactivar 2FA
       disabled: Desactivado
+      discoverable:
+        disabled: A persoa autora elixiu non poder ser atopada
+        enabled: A persoa autora elixiu poder ser atopada
+        title: Atopable
       display_name: Nome a amosar
       domain: Dominio
       edit: Editar
@@ -81,6 +85,12 @@ gl:
       enable_sign_in_token_auth: Activar autenticación con token por correo
       enabled: Activado
       enabled_msg: Desbloqueada a conta de %{username}
+      follow_recommendations:
+        allowed: Permitido
+        suppress: Eliminar calquera suxestión de seguimento
+        suppressed: Eliminada
+        title: Recomendacións de seguimento
+        unsuppress: Restablecer as recomendacións de seguimento
       followers: Seguidoras
       follows: Seguimentos
       header: Cabeceira
@@ -165,6 +175,12 @@ gl:
       suspension_irreversible: Elimináronse de xeito irreversible os datos desta conta. Podes reactivar a conta para facela usable novamente pero non recuperará os datos eliminados.
       suspension_reversible_hint_html: Esta conta foi suspendida, e os datos serán totalmente eliminados o %{date}. Ata entón, a conta pode ser restaurada sen danos. Se desexas eliminar agora mesmo todos os datos da conta, podes facelo aquí embaixo.
       title: Contas
+      trends:
+        allow: Permitir
+        allowed: Permitido
+        disallow: Denegar
+        disallowed: Denegado
+        title: Publicacións populares
       unblock_email: Desbloquear enderezo de correo
       unblocked_email_msg: Enderezo de correo de %{username} desbloqueado
       unconfirmed_email: Enderezo de correo sen confirmar
@@ -1190,7 +1206,9 @@ gl:
           one: Compartido por unha persoa na última semana
           other: Compartido por %{count} persoas na última semana
         title: Ligazóns en voga
-        usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
+        usage_comparison:
+          one: Compartido hoxe %{count} vez, comparado con %{yesterday} onte
+          other: Compartido hoxe %{count} veces, comparado con %{yesterday} onte
       not_allowed_to_trend: Non permitido como tendencia
       only_allowed: Só as permitidas
       pending_review: Revisión pendente
@@ -1235,7 +1253,9 @@ gl:
         trendable: Pode aparecer nas tendencias
         trending_rank: 'En voga #%{rank}'
         usable: Pode ser usado
-        usage_comparison: Utilizado %{today} veces hoxe, comparado coas %{yesterday} de onte
+        usage_comparison:
+          one: Utilizado %{count} vez hoxe, comparado con %{yesterday} de onte
+          other: Utilizado %{count} veces hoxe, comparado coas %{yesterday} de onte
         used_by_over_week:
           one: Utilizado por unha persoa na última semana
           other: Utilizado por %{count} persoas na última semana
@@ -1596,6 +1616,7 @@ gl:
       content: Sentímolo, pero algo do noso lado falloou.
       title: Esta páxina non é correcta
     '503': A páxina non se puido servir debido a un fallo temporal no servidor.
+    go_home: Ir ao inicio
     noscript_html: Para utilizar a aplicación web de Mastodon debes activar JavaScript. De xeito alternativo, proba cunha das <a href="%{apps_path}">apps nativas</a> para Mastodon na túa plataforma.
   existing_username_validator:
     not_found: non se atopou unha usuaria local con ese alcume
@@ -1692,7 +1713,10 @@ gl:
       incompatible_type: Non é compatible co tipo de importación seleccionado
       invalid_csv_file: 'Ficheiro CSV non válido. Erro: %{error}'
       invalid_json_file: 'Ficheiro JSON non válido. Erro: %{error}'
-      over_rows_processing_limit: contén máis de %{count} filas
+      no_data: Este ficheiro non contén datos que concorden co tipo de importación indicado
+      over_rows_processing_limit:
+        one: contén máis de %{count} fila
+        other: contén máis de %{count} filas
       status_not_found_warning: Algún dos teus filtros oculta publicacións concretas que non son coñecidas por este servidor. Estas publicacións non se van filtrar automaticamente se son descubertas máis tarde polo servidor.
       too_large: O ficheiro é demasiado grande
     failures: Erros
@@ -1843,7 +1867,9 @@ gl:
     incoming_migrations_html: Para migrar doutra conta cara esta, primeiro debes <a href="%{path}">crear un alcume da conta</a>.
     moved_msg: A túa conta foi redirixida a %{acct} e os teus seguimentos movéronse alí.
     not_redirecting: Neste momento a túa conta non está redirixindo cara a ningunha outra.
-    on_cooldown: Migraches recentemente a conta. Esta función estará dispoñible de novo en %{count} días.
+    on_cooldown:
+      one: Migraches recentemente a conta. Esta función estará dispoñible de novo en %{count} día.
+      other: Migraches recentemente a conta. Esta función estará dispoñible de novo en %{count} días.
     past_migrations: Migracións pasadas
     proceed_with_move: Mover seguidoras
     redirected_msg: Agora a conta redirixe a %{acct}.
@@ -2031,8 +2057,12 @@ gl:
       account: Publicacións públicas de @%{acct}
       tag: 'Publicacións públicas con #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Excedeches o límite de %{limit} publicacións programadas para ese día
-    over_total_limit: Excedeches o límite de %{limit} publicacións programadas
+    over_daily_limit:
+      one: Excedeches o límite de %{count} publicación programada para hoxe
+      other: Excedeches o límite de %{count} publicacións programadas para hoxe
+    over_total_limit:
+      one: Excedeches o límite de %{count} publicación programada
+      other: Excedeches o límite de %{count} publicacións programadas
     too_soon: a data ten que estar no futuro
   self_destruct:
     lead_html: Desafortunadamente, <strong>%{domain}</strong> vai deixar de dar servizo. Se tes unha conta aquí non poderás seguir usándoa, mais podes solicitar un ficheiro cos teus datos.

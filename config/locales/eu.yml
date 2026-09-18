@@ -1038,7 +1038,6 @@ eu:
           one: Pertsona batek partekatua azken astean
           other: "%{count} pertsonak partekatua azken astean"
         title: Esteken joerak
-        usage_comparison: "%{today} aldiz partekatua gaur, atzo %{yesterday} aldiz"
       not_allowed_to_trend: Joeretan agertzeko baimenik gabe
       only_allowed: Soilik onartutakoak
       pending_review: Berrikusketaren zain
@@ -1079,7 +1078,6 @@ eu:
         trendable: Joeretan agertuko da
         trending_rank: "%{rank}. joera"
         usable: Erabili daiteke
-        usage_comparison: "%{today} aldiz erabili da gaur, atzo %{yesterday} aldiz"
         used_by_over_week:
           one: Pertsona batek erabilia azken astean
           other: "%{count} pertsonak erabilia azken astean"
@@ -1459,7 +1457,6 @@ eu:
       empty: CSV fitxategi hutsa
       incompatible_type: Ez da bateragarria aukeratutako inportatze-motarekin
       invalid_csv_file: 'CSV fitxategi baliogabea. Errorea: %{error}'
-      over_rows_processing_limit: "%{count} lerro baina gehiago ditu"
       too_large: Fitxategia handiegia da
     failures: Akatsak
     imported: Inportatuta
@@ -1563,7 +1560,6 @@ eu:
     incoming_migrations_html: Beste kontu batetik hona migratzeko, aurretik <a href="%{path}">kontuaren ezizen bat sortu</a> behar duzu.
     moved_msg: Zure kontuak orain %{acct} kontura birbideratzen du, eta zure jarraitzaileak hara migratuak izaten ari dira.
     not_redirecting: Zure kontuak ez du orain beste konturen batera birbideratzen.
-    on_cooldown: Duela gutxi migratu duzu. Funtzio hau %{count} egun barru egongo da berriro eskuragarri.
     past_migrations: Aurreko migrazioak
     proceed_with_move: Mugitu jarraitzaileak
     redirected_msg: 'Zure kontuak hona birbideratzen du orain: %{acct}.'
@@ -1726,8 +1722,6 @@ eu:
       account: "@%{acct} kontuaren bidalketa publikoak"
       tag: "#%{hashtag} traola duten bidalketa publikoak"
   scheduled_statuses:
-    over_daily_limit: 'Egun horretarako programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'
-    over_total_limit: 'Programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'
     too_soon: datak etorkizunekoa izan behar du
   self_destruct:
     lead_html: Zoritxarrez, <strong>%{domain}</strong> betirako itxiko da. Kontu bat baduzu bertan, ezin izango duzu erabiltzen jarraitu, baina, oraindik zure datuen babeskopia bat eska dezakezu.

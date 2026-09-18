@@ -860,7 +860,6 @@ ie:
           one: Partit de un person durant li ultim semane
           other: Partit de %{count} persones durant li ultim semane
         title: Ligamentes in tendentie
-        usage_comparison: Partit %{today} vezes hodie, in comparation a %{yesterday} yer
       not_allowed_to_trend: Ne permisset esser in tendentie
       only_allowed: Solmen li permissetes
       pending_review: Sub inspection
@@ -901,7 +900,6 @@ ie:
         trendable: Posse aparir in tendenties
         trending_rank: 'Tendentie #%{rank}'
         usable: Permisset
-        usage_comparison: 'Usat hodie: %{today} vez(es), yer: %{yesterday}'
         used_by_over_week:
           one: Usat de un person durant li ultim semane
           other: Usat de %{count} persones durant li ultim semane
@@ -1247,7 +1245,6 @@ ie:
       empty: li file es vacui
       incompatible_type: Íncompatibil con li selectet specie de importation
       invalid_csv_file: 'Ínvalid file CSV. Errore: %{error}'
-      over_rows_processing_limit: contene plu quam %{count} lineas
       too_large: li file es tro grand
     failures: Fallites
     imported: Importat
@@ -1343,7 +1340,6 @@ ie:
     incoming_migrations_html: Por mover de un altri conto a ti-ci, erstmen tu deve <a href="%{path}">crear un alias de conto</a>.
     moved_msg: Tui conto nu redirecte a %{acct} e tui sequitores es in li processu de esser movet.
     not_redirecting: Tui conto redirecte a null altri conto actualmen.
-    on_cooldown: Tu ha recentmen migrat tui conto. Ti function va esser disponibil denov pos %{count} dies.
     past_migrations: Passat migrationes
     proceed_with_move: Translocar sequitores
     redirected_msg: Tui conto nu have un redirection a %{acct}.
@@ -1489,9 +1485,6 @@ ie:
     descriptions:
       account: Public postas de @%{acct}
       tag: 'Public postas con li hashtag #%{hashtag}'
-  scheduled_statuses:
-    over_daily_limit: Tu ha atinget li límite de %{limit} planat postas por hodie
-    over_total_limit: Tu ha atinget li límite de %{limit} planat postas
   self_destruct:
     lead_html: Ínfortunatmen, <strong>%{domain}</strong> va bentost permanentmen cluder. Si tu havet un conto ta, tu ne va posser continuar usar it, ma tu ancor posse demandar un archive de tui data.
     title: Ti-ci servitor va cluder bentost

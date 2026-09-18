@@ -15,8 +15,6 @@
 #
 
 class CustomFilter < ApplicationRecord
-  self.ignored_columns += %w(whole_word irreversible)
-
   alias_attribute :title, :phrase
   alias_attribute :filter_action, :action
 

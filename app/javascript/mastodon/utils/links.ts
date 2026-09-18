@@ -1,4 +1,5 @@
 import { on } from 'delegated-events';
+import punycode from 'punycode/punycode';
 
 export function setupLinkListeners() {
   on('click', 'a[data-confirm]', handleConfirmLink);
@@ -8,6 +9,28 @@ export function setupLinkListeners() {
 
   // We also want to target buttons with data-confirm that are not inside forms.
   on('click', ':not(form) button[data-confirm]:not([form])', handleConfirmLink);
+}
+
+export function urlToDomain(input: string | URL) {
+  try {
+    const url = new URL(input);
+    return url.hostname;
+  } catch {
+    return null;
+  }
+}
+
+const IDNA_PREFIX = 'xn--';
+
+export function decodeIDNA(domain: string) {
+  return domain
+    .split('.')
+    .map((part) =>
+      part.startsWith(IDNA_PREFIX)
+        ? punycode.decode(part.slice(IDNA_PREFIX.length))
+        : part,
+    )
+    .join('.');
 }
 
 function handleConfirmLink(event: MouseEvent) {

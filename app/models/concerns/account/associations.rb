@@ -40,6 +40,7 @@ module Account::Associations
         has_many :statuses
         has_many :keypairs
         has_many :email_subscriptions
+        has_many :generated_annual_reports
 
         has_one :deletion_request, class_name: 'AccountDeletionRequest'
         has_one :follow_recommendation_suppression

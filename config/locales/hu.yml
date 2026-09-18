@@ -72,6 +72,10 @@ hu:
       disable_sign_in_token_auth: Tokenes e-mail-hitelesítés letiltása
       disable_two_factor_authentication: Kétlépcsős hitelesítés kikapcsolása
       disabled: Befagyasztva
+      discoverable:
+        disabled: A szerző nem járult hozzá, hogy mások rátalálhassanak
+        enabled: A szerző hozzájárult, hogy mások rátalálhassanak
+        title: Felfedezhető
       display_name: Megjelenítendő név
       domain: Domain
       edit: Szerkesztés
@@ -81,6 +85,12 @@ hu:
       enable_sign_in_token_auth: Tokenes e-mail-hitelesítés engedélyezése
       enabled: Bekapcsolva
       enabled_msg: "%{username} fiókja befagyasztása sikeresen visszavonva"
+      follow_recommendations:
+        allowed: Engedélyezve
+        suppress: Követési ajánlatok elnémítása
+        suppressed: Elnémítva
+        title: Ajánlások követése
+        unsuppress: Követési ajánlatok helyreállítása
       followers: Követő
       follows: Követett
       header: Fejléc
@@ -165,6 +175,12 @@ hu:
       suspension_irreversible: Ennek a fióknak az adatait visszaállíthatatlanul törölték. Visszavonhatod a fiók felfüggesztését, hogy újra használható legyen, de a régi adatok ettől még nem fognak visszatérni.
       suspension_reversible_hint_html: 'A fiókot felfüggesztettük, az adatai ekkor lesznek teljesen eltávolítva: %{date}. Eddig az időpontig a fiók probléma nélkül visszaállítható. Ha mégis azonnal törölni szeretnéd a fiókot, alább megteheted.'
       title: Fiókok
+      trends:
+        allow: Engedélyezés
+        allowed: Engedélyezve
+        disallow: Letiltás
+        disallowed: Letiltva
+        title: Felkapott bejegyzések
       unblock_email: E-mail-cím tiltásának feloldása
       unblocked_email_msg: A(z) %{username} e-mail-cím tiltása sikeresen feloldva
       unconfirmed_email: Nem megerősített e-mail
@@ -1190,7 +1206,9 @@ hu:
           one: Egy ember osztotta meg a múlt héten
           other: "%{count} ember osztotta meg a múlt héten"
         title: Felkapott hivatkozások
-        usage_comparison: "%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest"
+        usage_comparison:
+          one: "%{count} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest"
+          other: "%{count} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest"
       not_allowed_to_trend: Nem engedélyezett a trendekben
       only_allowed: Csak engedélyezett
       pending_review: Áttekintésre vár
@@ -1235,7 +1253,9 @@ hu:
         trendable: Megjelenhet a trendek alatt
         trending_rank: "%{rank}. felkapott"
         usable: Használható
-        usage_comparison: "%{today} alkalommal lett ma használva, a tegnapi %{yesterday} alkalomhoz képest"
+        usage_comparison:
+          one: "%{count} alkalommal lett ma használva, a tegnapi %{yesterday} alkalomhoz képest"
+          other: "%{count} alkalommal lett ma használva, a tegnapi %{yesterday} alkalomhoz képest"
         used_by_over_week:
           one: Egy ember használta a múlt héten
           other: "%{count} ember használta a múlt héten"
@@ -1596,6 +1616,7 @@ hu:
       content: Sajnáljuk, valami hiba történt a mi oldalunkon.
       title: Az oldal nem megfelelő
     '503': Az oldalt átmeneti kiszolgálóprobléma miatt nem lehet kiszolgálni.
+    go_home: Ugrás a kezdőlapra
     noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálsz egy platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
   existing_username_validator:
     not_found: ezzel a névvel nem találtunk helyi felhasználót
@@ -1692,7 +1713,10 @@ hu:
       incompatible_type: Nem kompatibilis a kiválasztott importálási típussal
       invalid_csv_file: 'Érvénytelen CSV-fájl. Hiba: %{error}'
       invalid_json_file: 'Érvénytelen JSON-fájl. Hiba: %{error}'
-      over_rows_processing_limit: több mint %{count} sort tartalmaz
+      no_data: Ez a fájl nem tartalmaz az adott importálási típusnak megfelelő adatot
+      over_rows_processing_limit:
+        one: több mint %{count} sort tartalmaz
+        other: több mint %{count} sort tartalmaz
       status_not_found_warning: A szűrőid olyan bejegyzéseket rejtenek el, melyeket ez a kiszolgáló nem ismer. Ezek a bejegyzések nem lesznek automatikusan kiszűrve, ha a kiszolgáló később felfedezi őket.
       too_large: A fájl túl nagy
     failures: Hibák
@@ -1843,7 +1867,9 @@ hu:
     incoming_migrations_html: Ahhoz, hogy egy másik fiókból ebbe költözz, először <a href="%{path}">hozz létre egy fiókálnevet</a>.
     moved_msg: A fiókod mostantól ide %{acct} irányít át, a követőidet átköltöztetjük.
     not_redirecting: A fiókod nincs átirányítva jelenleg sehová sem.
-    on_cooldown: Nemrég költöztetted a fiókod. Ez a funkció %{count} nap múlva lesz megint elérhető.
+    on_cooldown:
+      one: Nemrég költöztetted a fiókod. Ez a funkció %{count} nap múlva lesz megint elérhető.
+      other: Nemrég költöztetted a fiókod. Ez a funkció %{count} nap múlva lesz megint elérhető.
     past_migrations: Eddigi költözések
     proceed_with_move: Követők átköltöztetése
     redirected_msg: A fiókodat ide irányítjuk át %{acct}.
@@ -1970,8 +1996,8 @@ hu:
       invalid_choice: A kiválasztott szavazási lehetőség nem létezik
       over_character_limit: egyik sem lehet %{max} karakternél hosszabb
       self_vote: Nem szavazhatsz a saját szavazásodon
-      too_few_options: több, mint egy opciónak kell lennie
-      too_many_options: nem lehet több, mint %{max} opció
+      too_few_options: több, mint egy elemnek kell lennie
+      too_many_options: nem lehet több, mint %{max} elem
     vote: Szavazás
   posting_defaults:
     explanation: Ezek a beállítások lesznek alapértelmezésként használva, amikor új bejegyzéseket hoz létre, de a szerkesztő segítségével bejegyzésenként szerkeszthetők.
@@ -2031,8 +2057,12 @@ hu:
       account: Nyilvános bejegyzések a(z) @%{acct} fióktól
       tag: 'Ezzel jelölt nyilvános bejegyzések: #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os napi limitet
-    over_total_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os limitet
+    over_daily_limit:
+      one: Túllépted az időzített bejegyzésekre vonatkozó %{count} darabos napi korlátot
+      other: Túllépted az időzített bejegyzésekre vonatkozó %{count} darabos napi korlátot
+    over_total_limit:
+      one: Túllépted az időzített bejegyzésekre vonatkozó %{count} darabos korlátot
+      other: Túllépted az időzített bejegyzésekre vonatkozó %{count} darabos korlátot
     too_soon: a dátumnak a jövőben kell lennie
   self_destruct:
     lead_html: Sajnos a <strong>%{domain}</strong> végleg bezár. Ha volt itt fiókod, nem fogod tudni tovább használni, de kérheted majd az adataid biztonsági mentését.

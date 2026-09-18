@@ -10,7 +10,7 @@ az:
         setting_aggregate_reblogs: Təzəlikcə təkrar paylaşılmış göndərişlər üçün yeni təkrar paylaşımlar göstərilməsin (yalnız yeni alınan təkrar paylaşımlara təsir edir).
         setting_always_send_emails: Normalda, Mastodon-u aktiv olaraq istifadə etdiyiniz zaman e-poçt bildirişləri göndərilməyəcək
         setting_default_sensitive: Həssas media, ilkin olaraq gizlədilir və bir kliklə göstərilə bilər
-        setting_use_blurhash: Meyillər, gizli vizualların rənglərinə əsaslanır, ancaq detalları gizlədir
+        setting_use_blurhash: Meyillər, gizli vizualların rənglərinə əsaslanır, ancaq ayrıntıları gizlədir
         setting_use_pending_items: Lenti avtomatik diyirləmək əvəzinə, zaman xətti güncəlləmələrini tək bir kliklə gizlət
       domain_allow:
         domain: Bu domen, bu serverdən veri ala biləcək və ondan gələn verilər emal olunacaq və depolanacaq
@@ -24,6 +24,8 @@ az:
       ip_block:
         severities:
           no_access: Bütün resurslara erişimi əngəllə
+      rule:
+        hint: İxtiyari. Qayda barədə daha çox ayrıntı təqdim edin
       sessions:
         otp: 'Telefon tətbiqiniz tərəfindən yaradılmış iki faktorlu kodu daxil edin və ya geri qaytarma kodlarınızdan birini istifadə edin:'
         webauthn: Əgər USB açarıdırsa, taxdığınıza və gərək olarsa üzərinə toxunduğunuza əmin olun.

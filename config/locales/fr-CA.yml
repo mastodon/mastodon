@@ -72,6 +72,10 @@ fr-CA:
       disable_sign_in_token_auth: Désactiver le jeton d'authentification par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
       disabled: Gelé
+      discoverable:
+        disabled: L'auteur⋅rice n'a pas choisi de pouvoir être découvert⋅e
+        enabled: L'auteur⋅rice a choisi de pouvoir être découvert⋅e
+        title: Découvrable
       display_name: Nom affiché
       domain: Domaine
       edit: Éditer
@@ -81,6 +85,12 @@ fr-CA:
       enable_sign_in_token_auth: Activer le jeton d'authentification par courriel
       enabled: Activé
       enabled_msg: Le compte de %{username} a été dégelé avec succès
+      follow_recommendations:
+        allowed: Autorisées
+        suppress: Supprimer les recommandations d'abonnement
+        suppressed: Supprimées
+        title: Recommandations d'abonnement
+        unsuppress: Rétablir les recommandations d'abonnement
       followers: Abonné·e·s
       follows: Abonnements
       header: Entête
@@ -165,6 +175,12 @@ fr-CA:
       suspension_irreversible: Les données de ce compte ont été irréversiblement supprimées. Vous pouvez annuler la suspension du compte pour le rendre utilisable, mais il ne récupérera aucune donnée qu’il avait auparavant.
       suspension_reversible_hint_html: Le compte a été suspendu et les données seront complètement supprimées le %{date}. D’ici là, le compte peut être restauré sans aucun effet néfaste. Si vous souhaitez supprimer toutes les données du compte immédiatement, vous pouvez le faire ci-dessous.
       title: Comptes
+      trends:
+        allow: Autoriser
+        allowed: Autorisé
+        disallow: Interdire
+        disallowed: Non autorisé
+        title: Messages en tendance
       unblock_email: Débloquer l'adresse courriel
       unblocked_email_msg: L'adresse courriel de %{username} a été débloquée avec succès
       unconfirmed_email: Courriel non confirmé
@@ -1190,7 +1206,9 @@ fr-CA:
           one: Partagé par %{count} personne au cours de la dernière semaine
           other: Partagé par %{count} personnes au cours de la dernière semaine
         title: Liens tendances
-        usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
+        usage_comparison:
+          one: Partagé %{count} fois ce jour, et %{yesterday} fois hier
+          other: Partagé %{count} fois ce jour, et %{yesterday} fois hier
       not_allowed_to_trend: Non autorisé à apparaître dans les tendances
       only_allowed: Autorisées seulement
       pending_review: En attente de révision
@@ -1235,7 +1253,9 @@ fr-CA:
         trendable: Peut apparaître sous les tendances
         trending_rank: 'Tendance #%{rank}'
         usable: Peut être utilisé
-        usage_comparison: Utilisé %{today} fois aujourd'hui, comparé à %{yesterday} hier
+        usage_comparison:
+          one: Utilisé %{count} fois ce jour, et %{yesterday} hier
+          other: Utilisé %{count} fois ce jour, et %{yesterday} hier
         used_by_over_week:
           one: Utilisé par %{count} personne au cours de la dernière semaine
           other: Utilisé par %{count} personnes au cours de la dernière semaine
@@ -1596,6 +1616,7 @@ fr-CA:
       content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre côté.
       title: Cette page n’est pas correcte
     '503': La page n'a pas pu être servie en raison d'une défaillance temporaire du serveur.
+    go_home: Accéder à l’accueil
     noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l’une des <a href="%{apps_path}">applications natives</a> pour Mastodon pour votre plate-forme.
   existing_username_validator:
     not_found: impossible de trouver un·e utilisateur·ice local·e de ce nom
@@ -1692,7 +1713,10 @@ fr-CA:
       incompatible_type: Incompatible avec le type d’import sélectionné
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
       invalid_json_file: 'Fichier JSON non valide. Erreur : %{error}'
-      over_rows_processing_limit: contient plus de %{count} lignes
+      no_data: Ce fichier ne contient aucune donnée correspondant au type d'import sélectionné
+      over_rows_processing_limit:
+        one: contient plus de %{count} ligne
+        other: contient plus de %{count} lignes
       status_not_found_warning: Certains de vos filtres masquent des messages spécifiques qui ne sont pas connus par ce serveur. Ces messages ne seront pas filtrés automatiquement s'ils sont découverts plus tard par le serveur.
       too_large: Fichier trop lourd
     failures: Échecs
@@ -1843,7 +1867,9 @@ fr-CA:
     incoming_migrations_html: Pour déménager d'un autre compte à celui-ci, vous devez d'abord <a href="%{path}">créer un alias de compte</a>.
     moved_msg: Votre compte est maintenant redirigé vers %{acct} et vos abonné·e·s sont en train d'être déplacé·e·s.
     not_redirecting: Votre compte n'est pas redirigé vers un autre compte actuellement.
-    on_cooldown: Vous avez récemment migré votre compte. Cette fonction sera à nouveau disponible dans %{count} jours.
+    on_cooldown:
+      one: Vous avez récemment migré votre compte. Cette fonction sera à nouveau disponible dans %{count} jour.
+      other: Vous avez récemment migré votre compte. Cette fonction sera à nouveau disponible dans %{count} jours.
     past_migrations: Migrations passées
     proceed_with_move: Migrer les abonné·e·s
     redirected_msg: Votre compte est maintenant redirigé vers %{acct}.
@@ -2031,8 +2057,12 @@ fr-CA:
       account: Messages publics de @%{acct}
       tag: 'Messages publics taggés #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Vous avez dépassé la limite de %{limit} messages planifiés par jour
-    over_total_limit: Vous avez dépassé la limite de %{limit} messages planifiés
+    over_daily_limit:
+      one: Vous avez dépassé la limite de %{count} message planifié pour aujourd'hui
+      other: Vous avez dépassé la limite de %{count} messages planifiés pour aujourd'hui
+    over_total_limit:
+      one: Vous avez dépassé la limite de %{count} message planifié
+      other: Vous avez dépassé la limite de %{count} messages planifiés
     too_soon: la date doit se situer dans le futur
   self_destruct:
     lead_html: Malheureusement, <strong>%{domain}</strong> ferme définitivement. Si vous y aviez un compte, vous ne pourrez pas continuer à l’utiliser, mais vous pouvez toujours demander une sauvegarde de vos données.

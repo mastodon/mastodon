@@ -4,7 +4,7 @@
 
 @mixin type-heading-lg {
   font-family: var(--font-heading);
-  font-size: var(--fs-3xl);
+  font-size: var(--fs-26);
   font-weight: 500;
   font-variation-settings: 'GEOM' 50;
   line-height: var(--lh-tighter);
@@ -13,7 +13,7 @@
 
 @mixin type-heading-md {
   font-family: var(--font-heading);
-  font-size: var(--fs-2xl);
+  font-size: var(--fs-22);
   font-weight: 500;
   font-variation-settings: 'GEOM' 50;
   line-height: var(--lh-tighter);
@@ -22,7 +22,7 @@
 
 @mixin type-heading-sm {
   font-family: var(--font-heading);
-  font-size: var(--fs-xl);
+  font-size: var(--fs-20);
   font-weight: 500;
   font-variation-settings: 'GEOM' 50;
   line-height: var(--lh-tight);
@@ -31,7 +31,7 @@
 
 @mixin type-body-lg {
   font-family: var(--font-body);
-  font-size: var(--fs-lg);
+  font-size: var(--fs-18);
   font-weight: normal;
   line-height: var(--lh-normal);
   letter-spacing: var(--ls-normal);
@@ -39,7 +39,7 @@
 
 @mixin type-body-strong {
   font-family: var(--font-body);
-  font-size: var(--fs-md);
+  font-size: var(--fs-15);
   font-weight: bold;
   line-height: var(--lh-normal);
   letter-spacing: var(--ls-normal);
@@ -47,7 +47,7 @@
 
 @mixin type-body {
   font-family: var(--font-body);
-  font-size: var(--fs-md);
+  font-size: var(--fs-15);
   font-weight: normal;
   line-height: var(--lh-normal);
   letter-spacing: var(--ls-normal);
@@ -55,31 +55,31 @@
 
 @mixin type-body-compact {
   font-family: var(--font-body);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-14);
   font-weight: normal;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-normal);
 }
 
-@mixin type-label-lg {
+@mixin type-label {
   font-family: var(--font-body);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-14);
   font-weight: bold;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-normal);
 }
 
-@mixin type-label-md {
+@mixin type-meta {
   font-family: var(--font-body);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-13);
   font-weight: normal;
   line-height: var(--lh-tighter);
   letter-spacing: var(--ls-loose);
 }
 
-@mixin type-label-sm {
+@mixin type-caption {
   font-family: var(--font-body);
-  font-size: var(--fs-2xs);
+  font-size: var(--fs-12);
   font-weight: normal;
   line-height: var(--lh-tighter);
   letter-spacing: var(--ls-loose);
@@ -87,7 +87,7 @@
 
 @mixin type-micro {
   font-family: var(--font-body);
-  font-size: var(--fs-3xs);
+  font-size: var(--fs-11);
   font-weight: normal;
   line-height: var(--lh-tighter);
   letter-spacing: var(--ls-looser);
@@ -98,12 +98,12 @@
  */
 
 @mixin elevation-1 {
-  border: var(--border-w-normal) solid var(--color-border-strong);
+  border: var(--bw-default) solid var(--color-border-strong);
   box-shadow: 0 1px 0 var(--color-border-strong);
 }
 
 @mixin elevation-2 {
-  border: var(--border-w-normal) solid var(--color-border-strong);
+  border: var(--bw-default) solid var(--color-border-strong);
   box-shadow: 1px 2px 0 var(--color-border-strong);
 }
 
@@ -112,10 +112,10 @@
  */
 
 @mixin focus($offset: false) {
-  outline: var(--border-w-strong) solid var(--color-border-brand);
+  outline: var(--bw-thick) solid var(--color-border-brand);
 
   @if $offset not false {
-    outline-offset: var(--border-w-strong);
+    outline-offset: var(--bw-thick);
   }
 }
 
@@ -133,7 +133,7 @@
   }
 
   inset-inline: 0;
-  height: calc(var(--space-4xl) * 2);
+  height: calc(var(--space-10) * 2);
   background: linear-gradient(to $position, transparent, $background-color);
   pointer-events: none;
 }
@@ -150,7 +150,7 @@
   background: var(--color-bg-secondary);
   color: var(--color-text-primary);
   border-radius: 4px;
-  border: var(--border-w-normal) solid var(--color-border-primary);
+  border: var(--bw-default) solid var(--color-border-primary);
   font-size: 17px;
   line-height: normal;
   margin: 0;

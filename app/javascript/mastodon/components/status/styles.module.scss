@@ -1,0 +1,241 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  --col-gap: var(--space-2);
+  --avatar-size: 40px;
+  --content-col: 2;
+
+  display: grid;
+  grid-template-columns: calc(var(--avatar-size) + var(--col-gap)) auto;
+  grid-template-rows: minmax(calc(var(--avatar-size) + var(--col-gap)), auto);
+  grid-auto-rows: auto;
+  row-gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.variantThread {
+  --avatar-size: 32px;
+
+  padding: var(--space-2) 0;
+}
+
+.variantPage {
+  padding: 0;
+}
+
+.isQuote {
+  padding: var(--space-3);
+}
+
+.isMessage {
+  position: relative;
+
+  &::before {
+    content: '';
+    mask-repeat: repeat;
+    mask-image: url('@/images/composer_message.svg');
+    mask-size: 311.36px auto;
+    background-color: var(--color-border-brand);
+    opacity: 0.15;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+}
+
+.variantPage,
+.isQuote {
+  --content-col: span 2;
+}
+
+.isFiltered {
+  content: '';
+}
+
+.header {
+  grid-column: span 2;
+}
+
+.spoiler,
+.translate,
+.contentWrapper,
+.contentReadMore,
+.footer {
+  grid-column: var(--content-col);
+}
+
+.translate {
+  display: flex;
+  align-items: center;
+}
+
+.translateInfo {
+  @include mixins.type-meta;
+
+  color: var(--color-text-secondary);
+  margin-inline-start: auto;
+}
+
+.spoiler {
+  display: flex;
+  align-items: center;
+}
+
+.spoilerContent {
+  @include mixins.type-body-strong;
+
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.contentWrapper,
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  position: relative;
+}
+
+.contentWrapper {
+  --fade-time: 100ms;
+
+  overflow: clip;
+  border-radius: var(--radius-2);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      var(--color-bg-highlight) 1px,
+      transparent 0
+    );
+    background-size: var(--space-2) var(--space-2);
+    background-repeat: repeat;
+
+    // See: https://css-tricks.com/snippets/css/toggle-visibility-when-hiding-elements/
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      visibility 0s linear var(--fade-time),
+      opacity var(--fade-time) ease-in-out;
+
+    // Show only if backdrop-filter is unsupported.
+    background-color: var(--color-bg-blend);
+
+    @supports (backdrop-filter: blur(20px)) {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+    }
+  }
+
+  &.isFiltered::after {
+    visibility: visible;
+    opacity: 1;
+    transition:
+      visibility 0s linear 0s,
+      opacity var(--fade-time) ease-in-out;
+  }
+}
+
+.content {
+  --mask-height: 80px;
+
+  overflow-y: clip;
+
+  &.collapsed {
+    max-height: var(--max-height); // Set via JS.
+    overflow-y: clip;
+    mask-image: linear-gradient(
+      to bottom,
+      black calc(100% - var(--mask-height)),
+      transparent
+    );
+  }
+}
+
+.contentText {
+  @include mixins.type-body;
+
+  p:not(:last-child) {
+    margin-block-end: 1em;
+  }
+
+  a {
+    color: var(--color-text-brand);
+  }
+}
+
+.contentImage {
+  border-radius: var(--radius-4);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.contentBlurHash {
+  width: 100%;
+  height: 100%;
+}
+
+.contentReadMore {
+  width: max-content;
+}
+
+.hashtagsWrapper,
+.hashtags {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: nowrap;
+}
+
+.hashtagsWrapper {
+  padding: var(--space-1) 0;
+}
+
+.hashtags {
+  overflow: hidden;
+  position: relative;
+
+  > button {
+    flex-shrink: 0;
+  }
+}
+
+.hashtagsShowAll {
+  flex-wrap: wrap;
+  overflow: visible;
+  max-width: none !important;
+}
+
+.meta {
+  @include mixins.type-micro;
+
+  color: var(--color-text-secondary);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+
+  > button:not(:hover, :active, [aria-pressed='true'], [aria-expanded='true']) {
+    opacity: 0.7;
+  }
+}
+
+.actionsButtonGap {
+  margin-inline-end: auto;
+}

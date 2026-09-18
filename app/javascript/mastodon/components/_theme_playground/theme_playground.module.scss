@@ -4,10 +4,10 @@
   position: relative;
   display: grid;
   grid-template-columns: 250px 1fr;
-  gap: var(--space-md);
-  padding: var(--space-3xl);
+  gap: var(--space-4);
+  padding: var(--space-8);
   font-family: Inter, sans-serif;
-  font-size: var(--fs-lg);
+  font-size: var(--fs-16);
   line-height: var(--lh-normal);
   overflow-wrap: break-word;
   color: var(--color-text-primary);
@@ -32,18 +32,18 @@
   nav {
     display: block;
     grid-template-rows: min-content;
-    font-size: var(--fs-sm);
+    font-size: var(--fs-14);
 
     input {
       display: block;
       box-sizing: border-box;
       width: 100%;
-      margin-block-end: var(--space-md);
-      padding: var(--space-xs) var(--space-md);
+      margin-block-end: var(--space-4);
+      padding: var(--space-2) var(--space-4);
       color: var(--color-text-primary);
       background: transparent;
       border: 1px solid var(--color-border-primary);
-      border-radius: var(--radius-xs);
+      border-radius: var(--radius-2);
       font: inherit;
 
       &:focus {
@@ -54,8 +54,8 @@
 
     a {
       display: block;
-      padding: var(--space-xs) var(--space-md);
-      border-radius: var(--radius-xs);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-2);
       color: var(--color-text-secondary);
       @include mixins.type-body-compact;
 
@@ -72,10 +72,10 @@
         'subtitle button';
       grid-template-columns: 1fr min-content;
       align-items: center;
-      gap: var(--space-3xs) var(--space-xs);
-      margin-block-start: var(--space-md);
-      padding: var(--space-sm) var(--space-md);
-      border-radius: var(--radius-md);
+      gap: var(--space-half) var(--space-2);
+      margin-block-start: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-4);
       border: 1px solid var(--color-border-primary);
 
       h2 {
@@ -87,7 +87,7 @@
 
       .subtitle {
         grid-area: subtitle;
-        @include mixins.type-label-sm;
+        @include mixins.type-caption;
 
         color: var(--color-text-secondary);
         overflow: hidden;
@@ -113,19 +113,19 @@
   }
 
   main {
-    padding: var(--space-3xl);
+    padding: var(--space-8);
     background-color: var(--color-bg-primary);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-4);
   }
 
   .overlay {
     position: absolute;
-    inset: auto var(--space-md) var(--space-md) auto;
+    inset: auto var(--space-4) var(--space-4) auto;
     width: 30%;
     height: 35%;
-    padding: var(--space-md);
+    padding: var(--space-4);
     background-color: var(--color-bg-primary);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-6);
 
     @include mixins.elevation-2;
   }

@@ -877,7 +877,6 @@ sr-Latn:
           one: Podeljen od strane jedne osobe tokom prethodne nedelje
           other: Podeljen od strane %{count} osoba tokom prethodne nedelje
         title: Linkovi u trendu
-        usage_comparison: Podeljeno %{today} puta danas, u poređenju sa %{yesterday} puta juče
       not_allowed_to_trend: Nije odobreno za trend
       only_allowed: Samo dozvoljeno
       pending_review: Pregled na čekanju
@@ -919,7 +918,6 @@ sr-Latn:
         trendable: Može da se pojavi pod trendovima
         trending_rank: 'U trendu #%{rank}'
         usable: Može se koristiti
-        usage_comparison: Upotrebljeno %{today} puta danas, u poređenju sa %{yesterday} puta juče
         used_by_over_week:
           few: Korišćeno od strane %{count} osobe tokom prethodne nedelje
           one: Korišćeno od strane jedne osobe tokom prethodne nedelje
@@ -1275,7 +1273,6 @@ sr-Latn:
       empty: Prazna CSV datoteka
       incompatible_type: Nekompatibilno sa izabranim tipom uvoza
       invalid_csv_file: 'Neispravan CSV fajl. Greška: %{error}'
-      over_rows_processing_limit: sadrži više od %{count} redova
       too_large: Datoteka je prevelika
     failures: Neuspesi
     imported: Uvezeno
@@ -1372,7 +1369,6 @@ sr-Latn:
     incoming_migrations_html: Da biste prešli sa drugog naloga na ovaj, prvo morate <a href="%{path}">kreirate pseudonim naloga</a>.
     moved_msg: Vaš nalog sada preusmerava na %{acct} i Vaši pratioci se trenutno prebacuju.
     not_redirecting: Vaš nalog trenutno ne preusmerava ni na jedan drugi nalog.
-    on_cooldown: Nedavno ste se preselili na novi nalog. Ova funkcija će Vam ponovo postati dostupna za %{count} dana.
     past_migrations: Prethodne selidbe
     proceed_with_move: Prebacite pratioce
     redirected_msg: Vaš nalog sada preusmerava na %{acct}.
@@ -1518,9 +1514,6 @@ sr-Latn:
     descriptions:
       account: Javne objave sa @%{acct}
       tag: 'Javne objave označene sa #%{hashtag}'
-  scheduled_statuses:
-    over_daily_limit: Prekoračili ste granicu od %{limit} planiranih objava za danas
-    over_total_limit: Prekoračili ste granicu od %{limit} planiranih objava
   self_destruct:
     lead_html: Nažalost, <strong>%{domain}</strong> se trajno zatvara. Ako ste tamo imali nalog, nećete moći da nastavite da ga koristite, ali i dalje možete da zatražite rezervnu kopiju svojih podataka.
     title: Ovaj server se zatvara

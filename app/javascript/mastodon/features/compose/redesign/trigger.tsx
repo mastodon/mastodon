@@ -6,13 +6,12 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import {
-  ChatCircleIcon,
+  ChatCircleDotsIcon,
   NewspaperIcon,
   PenNibIcon,
 } from '@phosphor-icons/react';
 
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { CircularProgress } from '@/mastodon/components/circular_progress';
 import {
   Menu,
   MenuTrigger,
@@ -20,6 +19,7 @@ import {
   MenuItem,
 } from '@/mastodon/components/menu';
 import { MenuCard } from '@/mastodon/components/menu/card';
+import { useIdentity } from '@/mastodon/identity_context';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
@@ -69,7 +69,9 @@ export const ComposeRedesignButton: React.FC<{
       [dispatch],
     );
 
-  if (!isRedesignEnabled()) {
+  const { signedIn } = useIdentity();
+
+  if (!isRedesignEnabled() || !signedIn) {
     return null;
   }
 
@@ -87,7 +89,25 @@ export const ComposeRedesignButton: React.FC<{
       '--viewport-height': viewportHeight ? `${viewportHeight}px` : undefined,
     } as React.CSSProperties;
     return (
-      <Suspense fallback={<CircularProgress strokeWidth={2} size={50} />}>
+      <Suspense
+        fallback={
+          <IconButton
+            loading
+            icon={PenNibIcon}
+            className={classNames(
+              classes.button,
+              inline && classes.buttonInline,
+            )}
+            variant='solid'
+            size='lg'
+          >
+            <FormattedMessage
+              id='compose.new'
+              defaultMessage='Write a new post or messsage'
+            />
+          </IconButton>
+        }
+      >
         <ComposeLazyForm autoFocus className={classes.composer} style={style} />
       </Suspense>
     );
@@ -116,7 +136,7 @@ export const ComposeRedesignButton: React.FC<{
         <MenuItem
           name='message'
           onClick={handleComposerOpen}
-          icon={ChatCircleIcon}
+          icon={ChatCircleDotsIcon}
         >
           <FormattedMessage
             id='compose.new.message'

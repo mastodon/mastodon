@@ -36,22 +36,17 @@
   --overlay-strength-secondary: 4%;
   --color-bg-secondary: var(--color-grey-50);
   --color-bg-tertiary: var(--color-grey-100); // legacy
-  --color-bg-blend-strength: 4%;
-  --color-bg-blend: #{utils.css-alpha(
-      var(--color-grey-950),
-      var(--color-bg-blend-strength)
-    )};
-  --color-bg-blend-solid: color-mix(
+  --color-bg-blend: color-mix(
     in srgb,
     var(--color-bg-primary),
-    var(--color-grey-950) var(--color-bg-blend-strength)
+    var(--color-grey-950) 4%
   );
   --color-bg-highlight: #{utils.css-alpha(var(--color-text-primary), 4%)};
 
   // Utility
   --color-bg-inverted: var(--color-grey-950);
   --color-bg-overlay-highlight: var(--color-bg-highlight); // legacy
-  --color-bg-overlay: var(--color-bg-primary); // legacy
+  --color-bg-overlay: var(--color-black); // legacy
   --color-bg-media-base: var(--color-black); // legacy
   --color-bg-media: #{utils.css-alpha(var(--color-bg-media-base), 65%)}; // legacy
   --color-bg-disabled: var(--color-grey-400); // legacy

@@ -97,14 +97,14 @@ export const BlockModal = ({ accountId, acct }) => {
 
         <div className='safety-action-modal__actions'>
           {domain && (
-            <button onClick={handleToggleLearnMore} className='link-button'>
+            <button type='button' onClick={handleToggleLearnMore} className='link-button'>
               {expanded ? <FormattedMessage id='block_modal.show_less' defaultMessage='Show less' /> : <FormattedMessage id='block_modal.show_more' defaultMessage='Show more' />}
             </button>
           )}
 
           <div className='spacer' />
 
-          <button onClick={handleCancel} className='link-button'>
+          <button type='button' onClick={handleCancel} className='link-button'>
             <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
           </button>
 

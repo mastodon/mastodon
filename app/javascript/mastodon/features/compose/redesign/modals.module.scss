@@ -4,20 +4,20 @@
 
 .attachmentRoot {
   min-width: 400px;
-  padding: var(--space-md) 0;
+  padding: var(--space-4) 0;
 
   .title,
   .footer {
-    padding: 0 var(--space-md);
+    padding: 0 var(--space-4);
   }
 }
 
 .attachmentItem {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-xs) var(--space-xs);
-  margin: 0 var(--space-xs);
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-2);
+  margin: 0 var(--space-2);
   transition:
     opacity 200ms,
     var(--transition, none);
@@ -32,12 +32,12 @@
     height: 60px;
     width: 90px;
     object-fit: cover;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-4);
   }
 }
 
 .attachmentHandle {
-  padding: var(--space-xs) 0;
+  padding: var(--space-2) 0;
   aspect-ratio: auto;
   cursor: inherit;
 }

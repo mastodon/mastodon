@@ -756,7 +756,6 @@ sco:
           one: Shared bi ae person ower the last week
           other: Shared bi %{count} fowk ower the last week
         title: Trendin links
-        usage_comparison: Shared %{today} times the day, compart tae %{yesterday} yisterday
       only_allowed: Ainly allooed
       pending_review: Pendin review
       preview_card_providers:
@@ -796,7 +795,6 @@ sco:
         trendable: Kin appear unner trends
         trending_rank: 'Trendin #%{rank}'
         usable: Kin be uised
-        usage_comparison: Uised %{today} times the day, compart tae %{yesterday} yisterday
         used_by_over_week:
           one: Uised bi ae person ower the last week
           other: Uised bi %{count} fowk ower the last week
@@ -1091,7 +1089,6 @@ sco:
   imports:
     errors:
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
-      over_rows_processing_limit: contains mair nor %{count} rows
     modes:
       merge: Merge
       merge_long: Keep existin records an add new anes
@@ -1159,7 +1156,6 @@ sco:
     incoming_migrations_html: Tae flit fae anither accoont tae this ane, first ye need tae <a href="%{path}">mak a accoont alias</a>.
     moved_msg: Yer accoont is noo redirectin tae %{acct} an yer follaers ur gettin flittit ower.
     not_redirecting: Yer accoont isnae redirectin tae onie ither accoont the noo.
-    on_cooldown: Ye'v flittit yer accoont o late. This function wull become available again in %{count} days.
     past_migrations: Past flittins
     proceed_with_move: Flit follaers
     redirected_msg: Yer accoont is noo redirectin tae %{acct}.
@@ -1288,9 +1284,6 @@ sco:
     descriptions:
       account: Public posts fae @%{acct}
       tag: 'Public posts tagged #%{hashtag}'
-  scheduled_statuses:
-    over_daily_limit: Ye'v went by the limit o %{limit} scheduled posts thit ye'r allooed fir the day
-    over_total_limit: Ye'v went by the limit o %{limit} scheduled posts
   sessions:
     activity: Last activity
     browser: Brooser

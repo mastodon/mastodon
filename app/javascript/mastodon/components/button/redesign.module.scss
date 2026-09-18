@@ -4,6 +4,9 @@
   --bg: transparent;
   --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
   --fg: var(--color-text-primary);
+  --inline-padding: var(--space-2);
+
+  @include mixins.type-label;
 
   background-color: var(--bg);
   border-radius: var(--radius-round);
@@ -18,9 +21,8 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  column-gap: var(--space-2xs);
-  @include mixins.type-label-lg;
-
+  column-gap: var(--space-1);
+  padding-inline: var(--inline-padding);
   box-sizing: border-box;
 
   &:hover:not(
@@ -59,8 +61,8 @@ a.base {
 
 @mixin active {
   &:active,
-  &[aria-pressed='true'],
-  &[aria-expanded='true'] {
+  &[aria-pressed='true']:not(.noActiveHighlight),
+  &[aria-expanded='true']:not(.noActiveHighlight) {
     @content;
   }
 }
@@ -68,22 +70,27 @@ a.base {
 // Sizes
 
 .xs {
-  padding-inline: var(--space-xs);
   min-height: 20px;
 }
 
 .sm {
-  padding: var(--space-2xs) var(--space-sm);
+  --inline-padding: var(--space-3);
+
+  padding-block: var(--space-1);
   min-height: 32px;
 }
 
 .md {
-  padding: var(--space-xs) var(--space-md);
+  --inline-padding: var(--space-4);
+
+  padding-block: var(--space-2);
   min-height: 40px;
 }
 
 .lg {
-  padding: var(--space-sm) var(--space-lg);
+  --inline-padding: var(--space-5);
+
+  padding-block: var(--space-3);
   min-height: 48px;
 }
 
@@ -176,12 +183,40 @@ a.base {
   }
 }
 
+// Toggle buttons
+.toggle {
+  &:hover {
+    background-color: var(--bg-hover);
+  }
+
+  &.solid {
+    @include active {
+      --bg: var(--color-bg-brand-base);
+      --fg: var(--color-text-on-brand-base);
+    }
+  }
+
+  &.tonal {
+    @include active {
+      --bg: rgb(from var(--color-bg-brand-base) r g b / 10%);
+      --fg: var(--color-text-brand);
+    }
+  }
+
+  &.ghost {
+    @include active {
+      --bg: transparent;
+      --fg: var(--color-text-brand);
+    }
+  }
+}
+
 // Helper classes
 
 .icon,
 .loading {
-  width: var(--fs-xl);
-  height: var(--fs-xl);
+  width: var(--fs-20);
+  height: var(--fs-20);
 }
 
 .iconCustom {
@@ -198,20 +233,6 @@ a.base {
   color: inherit;
 }
 
-// Toggle tonal buttons by default show the neutral color, but when pressed show the brand color.
-.toggle {
-  &.tonal {
-    @include active {
-      --bg: rgb(from var(--color-bg-brand-base) r g b / 10%);
-      --fg: var(--color-text-brand);
-    }
-  }
-
-  &.solid,
-  &.ghost {
-    @include active {
-      --bg: var(--color-bg-brand-base);
-      --fg: var(--color-text-on-brand-base);
-    }
-  }
+.clipPadding {
+  margin-inline-start: calc(-1 * var(--inline-padding));
 }

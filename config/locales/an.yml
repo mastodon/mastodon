@@ -765,7 +765,6 @@ an:
           one: Compartiu per una persona entre la zaguera semana
           other: Compartiu per %{count} personas entre la zaguera semana
         title: Vinclos en tendencia
-        usage_comparison: Compartiu %{today} vegadas hue, comparau con %{yesterday} ahiere
       only_allowed: Nomás las permitidas
       pending_review: Revisión pendient
       preview_card_providers:
@@ -805,7 +804,6 @@ an:
         trendable: Pueden amaneixer en tendencias
         trending_rank: 'Tendencia #%{rank}'
         usable: Pueden usar-se
-        usage_comparison: Usada %{today} vegadas hue, comparau con %{yesterday} ahiere
         used_by_over_week:
           one: Usada per una persona entre la zaguera semana
           other: Usada per %{count} personas entre la zaguera semana
@@ -1103,7 +1101,6 @@ an:
   imports:
     errors:
       invalid_csv_file: 'Fichero CSV no valido. Error: %{error}'
-      over_rows_processing_limit: contiene mas de %{count} ringleras
     modes:
       merge: Unir
       merge_long: Mantener rechistros existents y anyadir nuevos
@@ -1171,7 +1168,6 @@ an:
     incoming_migrations_html: Pa migrar d'unatra cuenta a esta, primero amenestes <a href="%{path}">creyar un alias d'a cuenta</a>.
     moved_msg: La tuya cuenta agora se ye reendrezando a %{acct} y las tuyas seguidores se son migrando.
     not_redirecting: La tuya cuenta no se ye reendrezando a garra atra cuenta actualment.
-    on_cooldown: Has migrado la tuya cuenta recientment. Esta función será disponible de nuevo en %{count} días.
     past_migrations: Migracions pasadas
     proceed_with_move: Migrar seguidores
     redirected_msg: La tuya cuenta agora reendreza a %{acct}.
@@ -1303,9 +1299,6 @@ an:
     descriptions:
       account: Publicacions publicas de @%{acct}
       tag: 'Publicacions publicas etiquetadas con #%{hashtag}'
-  scheduled_statuses:
-    over_daily_limit: Ha superau lo limite de %{limit} publicacions programadas pa ixe día
-    over_total_limit: Ha superau lo limite de %{limit} publicacions programadas
   sessions:
     activity: Zaguera actividat
     browser: Navegador

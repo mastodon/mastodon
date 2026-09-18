@@ -72,6 +72,10 @@ sv:
       disable_sign_in_token_auth: Inaktivera autentisering med pollett via e-post
       disable_two_factor_authentication: Inaktivera 2FA
       disabled: Inaktiverad
+      discoverable:
+        disabled: Författaren har inte valt att vara upptäckbar
+        enabled: Författaren har valt att vara upptäckbar
+        title: Upptäckbar
       display_name: Visningsnamn
       domain: Domän
       edit: Redigera
@@ -81,6 +85,12 @@ sv:
       enable_sign_in_token_auth: Aktivera autentisering med pollett via e-post
       enabled: Aktiverad
       enabled_msg: Uppfrysningen av %{username}s konto lyckades
+      follow_recommendations:
+        allowed: Tillåtet
+        suppress: Tysta alla följrekommendationer
+        suppressed: Tystad
+        title: Följrekommendationer
+        unsuppress: Återställ alla följrekommendationer
       followers: Följare
       follows: Följs
       header: Rubrik
@@ -165,6 +175,12 @@ sv:
       suspension_irreversible: All data som tillhör detta konto har permanent raderats. Du kan låsa upp kontot om du vill att det ska gå att använda, men ingen data kommer finnas kvar.
       suspension_reversible_hint_html: Kontot har stängts av och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       title: Konton
+      trends:
+        allow: Tillåt
+        allowed: Tillåtet
+        disallow: Neka
+        disallowed: Nekat
+        title: Trendande inlägg
       unblock_email: Avblockera e-postadress
       unblocked_email_msg: "%{username}s e-postadress avblockerad"
       unconfirmed_email: Obekräftad e-postadress
@@ -1190,7 +1206,9 @@ sv:
           one: Delad av en person under den senaste veckan
           other: Delad av %{count} personer under den senaste veckan
         title: Trendande länkar
-        usage_comparison: Delade %{today} gånger idag, jämfört med %{yesterday} igår
+        usage_comparison:
+          one: Delad %{count} gång idag, jämfört med %{yesterday} igår
+          other: Delad %{count} gånger idag, jämfört med %{yesterday} igår
       not_allowed_to_trend: Inte tillåtet att trenda
       only_allowed: Endast tillåtna
       pending_review: Väntar på granskning
@@ -1235,7 +1253,9 @@ sv:
         trendable: Kan visas under trender
         trending_rank: 'Trendande #%{rank}'
         usable: Kan användas
-        usage_comparison: Använd %{today} gånger idag, jämfört med %{yesterday} igår
+        usage_comparison:
+          one: Använd %{count} gång idag, jämfört med %{yesterday} igår
+          other: Använd %{count} gånger idag, jämfört med %{yesterday} igår
         used_by_over_week:
           one: Använd av en person under den senaste veckan
           other: Använd av %{count} personer under den senaste veckan
@@ -1579,7 +1599,7 @@ sv:
     status: Status
     subscribers: Prenumeranter
   emoji_styles:
-    auto: Automatiskt
+    auto: Auto
     native: Ursprunglig
     twemoji: Twemoji
   errors:
@@ -1596,6 +1616,7 @@ sv:
       content: Vi är ledsna, men något gick fel från vårat håll.
       title: Den här sidan är inte korrekt
     '503': Sidan kunde inte visas på grund av ett tillfälligt serverfel.
+    go_home: Gå hem
     noscript_html: Aktivera JavaScript för att använda Mastodons webbapplikation. Alternativt kan du prova någon av Mastodons <a href="%{apps_path}">plattformsspecifika appar</a> för din plattform.
   existing_username_validator:
     not_found: kunde inte hitta en lokal användare med det användarnamnet
@@ -1692,7 +1713,10 @@ sv:
       incompatible_type: Inkompatibel med den valda importtypen
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
       invalid_json_file: 'Ogiltig JSON-fil. Fel: %{error}'
-      over_rows_processing_limit: innehåller fler än %{count} rader
+      no_data: Den här filen innehåller ingen data som matchar den angivna importtypen
+      over_rows_processing_limit:
+        one: innehåller fler än %{count} rad
+        other: innehåller fler än %{count} rader
       status_not_found_warning: Några av dina filter döljer specifika inlägg som inte är kända av denna server. Dessa inlägg filtreras inte automatiskt om de upptäcks senare av servern.
       too_large: Filen är för stor
     failures: Misslyckanden
@@ -1843,7 +1867,9 @@ sv:
     incoming_migrations_html: För att flytta från ett annat konto till det här så behöver du först <a href="%{path}">skapa ett konto-alias</a>.
     moved_msg: Ditt konto omdirigerar nu till %{acct} och dina följare flyttas över.
     not_redirecting: Ditt konto omdirigerar inte till något annat konto för tillfället.
-    on_cooldown: Du har nyss migrerat ditt konto. Den här funktionen kommer att vara tillgänglig igen om %{count} dagar.
+    on_cooldown:
+      one: Du har nyligen migrerat ditt konto. Denna funktion kommer att bli tillgänglig igen om %{count} dag.
+      other: Du har nyligen migrerat ditt konto. Denna funktion kommer att bli tillgänglig igen om %{count} dagar.
     past_migrations: Föregående migreringar
     proceed_with_move: Flytta följare
     redirected_msg: Ditt konto dirigeras om till %{acct}.
@@ -2031,8 +2057,12 @@ sv:
       account: Offentliga inlägg från @%{acct}
       tag: 'Offentliga inlägg taggade med #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du har överskridit dygnsgränsen på %{limit} schemalagda inlägg
-    over_total_limit: Du har överskridit gränsen på %{limit} schemalagda inlägg
+    over_daily_limit:
+      one: Du har överskridit gränsen för %{count} schemalagt inlägg för idag
+      other: Du har överskridit gränsen för %{count} schemalagda inlägg för idag
+    over_total_limit:
+      one: Du har överskridit gränsen för %{count} schemalagt inlägg
+      other: Du har överskridit gränsen för %{count} schemalagda inlägg
     too_soon: datumet måste vara i framtiden
   self_destruct:
     lead_html: Tyvärr stänger <strong>%{domain}</strong> för gott. Om du hade ett konto där kommer du inte längre kunna använda det, men du kan fortfarande begära en säkerhetskopia av din data.

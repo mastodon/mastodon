@@ -4,7 +4,8 @@ import { Avatar } from '@/mastodon/components/avatar';
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { RelativeTimestamp } from '@/mastodon/components/relative_timestamp';
-import { useHandlersForStatus } from '@/mastodon/components/status/hooks';
+import { onStatusLinksDisabled } from '@/mastodon/components/status/hooks';
+import { statusLink } from '@/mastodon/components/status/utils';
 import { selectAccountStatus } from '@/mastodon/selectors/statuses';
 import { useAppSelector } from '@/mastodon/store';
 
@@ -15,8 +16,6 @@ export const ComposeReply: React.FC = () => {
     (state) => state.compose.get('in_reply_to') as null | string,
   );
   const status = useAppSelector((state) => selectAccountStatus(state, replyId));
-
-  const htmlHandlers = useHandlersForStatus(status);
 
   if (!status) {
     return;
@@ -30,26 +29,29 @@ export const ComposeReply: React.FC = () => {
           className={classes.replyAvatar}
           withLink
         />
+
         <LinkedDisplayName
           displayProps={{ account: status.account, variant: 'simple' }}
         />
+
         <span className={classes.replyTime}>
-          &middot;&nbsp;
-          <Link to={`/@${status.account.acct}/${status.id}`}>
+          &nbsp;&bull;&nbsp;
+          <Link to={statusLink(status)}>
             <RelativeTimestamp timestamp={status.created_at} />
           </Link>
         </span>
       </figcaption>
 
-      <EmojiHTML
-        as='blockquote'
-        cite={status.uri}
-        htmlString={status.translation?.contentHtml ?? status.contentHtml}
-        extraEmojis={status.emojis}
-        className={classes.replyText}
-        lang={status.translation?.language ?? status.language}
-        {...htmlHandlers}
-      />
+      <Link to={statusLink(status)} className={classes.replyText}>
+        <EmojiHTML
+          as='blockquote'
+          cite={status.uri}
+          htmlString={status.translation?.contentHtml ?? status.contentHtml}
+          extraEmojis={status.emojis}
+          lang={status.translation?.language ?? status.language}
+          onElement={onStatusLinksDisabled}
+        />
+      </Link>
     </figure>
   );
 };

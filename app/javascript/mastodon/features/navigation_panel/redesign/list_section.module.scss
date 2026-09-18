@@ -1,31 +1,46 @@
 @use '@/styles/mastodon/mixins';
+@use './navigation_link.module.scss' as navigation-link;
 
 .root {
   &:not(:last-child) {
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-4);
+  }
+
+  :any-link {
+    color: inherit;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+    }
   }
 }
 
-.titleWrapper {
-  display: flex;
-  align-items: center;
-  padding-inline: var(--space-xs);
-  padding-block: calc(var(--space-xs) - var(--space-3xs));
-}
-
 .title {
-  @include mixins.type-label-sm;
+  @include navigation-link.link-base;
+
+  min-height: 32px;
+  padding: var(--space-1) var(--space-2);
+  margin-bottom: var(--space-half);
+
+  @include mixins.type-meta;
 
   color: var(--color-text-secondary);
-  cursor: default;
 }
 
-.action {
+.toggleIcon {
+  width: 20px;
+  height: 20px;
   margin-inline-start: auto;
+  transition: rotate 100ms ease-in;
+
+  .title[aria-expanded='true'] & {
+    rotate: -180deg;
+  }
 }
 
 .emptyState {
-  @include mixins.type-label-sm;
+  @include mixins.type-caption;
 
-  padding-inline: var(--space-xs);
+  padding-inline: var(--space-2);
 }

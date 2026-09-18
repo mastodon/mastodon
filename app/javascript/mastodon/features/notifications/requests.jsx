@@ -20,7 +20,7 @@ import {
 import { changeSetting } from 'mastodon/actions/settings';
 import { CheckBox } from 'mastodon/components/check_box';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { Dropdown } from 'mastodon/components/dropdown_menu';
@@ -28,6 +28,8 @@ import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { NotificationRequest } from './components/notification_request';
 import { PolicyControls } from './components/policy_controls';
 import SettingToggle from './components/setting_toggle';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 
 const messages = defineMessages({
   title: { id: 'notification_requests.title', defaultMessage: 'Filtered notifications' },
@@ -133,7 +135,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
         direction='right'
         title={intl.formatMessage(messages.more)}
       >
-        <button className='dropdown-button column-header__select-row__select-menu' disabled={selectedItems.length === 0}>
+        <button type='button' className='dropdown-button column-header__select-row__select-menu' disabled={selectedItems.length === 0}>
           <span className='dropdown-button__label'>
             {selectedCount} selected
           </span>
@@ -141,7 +143,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
         </button>
       </Dropdown>
       <div className='column-header__select-row__mode-button'>
-        <button className='text-btn' tabIndex={0} onClick={handleToggleSelectionMode}>
+        <button type='button' className='text-btn' tabIndex={0} onClick={handleToggleSelectionMode}>
           {selectionMode ? (
             <FormattedMessage id='notification_requests.exit_selection' defaultMessage='Done' />
           ) :
@@ -207,22 +209,31 @@ export const NotificationRequests = ({ multiColumn }) => {
     dispatch(fetchNotificationRequests());
   }, [dispatch]);
 
+  const selectionRow = notificationRequests.length > 0 && (
+    <SelectRow selectionMode={selectionMode} setSelectionMode={setSelectionMode} selectAllChecked={selectAllChecked} toggleSelectAll={toggleSelectAll} selectedItems={checkedRequestIds} />
+  );
+
   return (
     <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
-      <ColumnHeader
-        icon='archive'
-        iconComponent={InventoryIcon}
-        title={intl.formatMessage(messages.title)}
-        multiColumn={multiColumn}
-        showBackButton
-        scrollTopOnClick
-        appendContent={
-          notificationRequests.length > 0 && (
-            <SelectRow selectionMode={selectionMode} setSelectionMode={setSelectionMode} selectAllChecked={selectAllChecked} toggleSelectAll={toggleSelectAll} selectedItems={checkedRequestIds} />
-          )}
-      >
-        <ColumnSettings />
-      </ColumnHeader>
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={intl.formatMessage(messages.title)}
+          extraStickyContent={selectionRow}
+        />
+      ) : (
+        <LegacyColumnHeader
+          icon='archive'
+          iconComponent={InventoryIcon}
+          title={intl.formatMessage(messages.title)}
+          multiColumn={multiColumn}
+          showBackButton
+          scrollTopOnClick
+          appendContent={selectionRow}
+        >
+          <ColumnSettings />
+        </LegacyColumnHeader>
+      )}
 
       <ScrollableList
         scrollKey='notification_requests'

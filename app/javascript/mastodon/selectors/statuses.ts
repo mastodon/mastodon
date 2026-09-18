@@ -8,6 +8,7 @@ import type {
 import { createAppSelector } from '@/mastodon/store/typed_functions';
 
 import { selectIsAccountLocal, selectPlainAccount } from './accounts';
+import { selectStatusFilters } from './filters';
 
 export const getStatusList = createAppSelector(
   [
@@ -69,6 +70,29 @@ export const selectExpandedStatus = createAppSelector(
       ...status,
       reblog: reblog ?? undefined,
     };
+  },
+);
+
+export const selectStatusLoadingState = createAppSelector(
+  [
+    (state, { statusId }: { statusId?: string | null }) =>
+      selectExpandedStatus(state, statusId ?? undefined),
+    selectStatusFilters,
+  ],
+  (status, { filterAction }) => {
+    if (!status) {
+      return { state: 'not-found', status: null } as const;
+    }
+
+    if (status.isLoading) {
+      return { state: 'loading', status: null } as const;
+    }
+
+    if (filterAction === 'hide') {
+      return { state: 'filtered', status: null } as const;
+    }
+
+    return { state: 'loaded', status } as const;
   },
 );
 
@@ -143,6 +167,7 @@ export const selectStatusInteractions = createAppSelector(
       Partial<typeof conditionals> & { allowed: boolean }
     > = {
       bookmark: addAllowed({ isLoggedIn }),
+      copy: addAllowed({}),
       delete: addAllowed({ isMine }),
       edit: addAllowed({ isMine }),
       editQuotePolicy: addAllowed({ isMine, isPublic }),

@@ -2,51 +2,37 @@
 @use '@/styles/mastodon/variables';
 
 .wrapper {
-  padding-bottom: var(--space-3xs);
+  padding-bottom: var(--space-half);
 }
 
 .wrapperWithSpace {
-  padding-bottom: var(--space-md);
+  padding-bottom: var(--space-4);
 }
 
-.link {
+@mixin link-base {
   --icon-size: 20px;
-  --border-radius: var(--radius-sm);
+  --border-radius: var(--radius-3);
 
   position: relative;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   width: 100%;
-  padding: var(--space-xs);
-  column-gap: var(--space-sm);
+  padding: var(--space-2);
+  column-gap: var(--space-3);
   border-radius: var(--border-radius);
   border: none;
-  color: inherit;
+  color: var(--color-text-primary);
   background-color: transparent;
-
-  @include mixins.type-body-compact;
-
+  transition: background-color 200ms;
   text-decoration: none;
   text-align: start;
 
-  &:not(:where(.linkStacked, .linkMobile)) {
-    color: var(--color-text-secondary);
-  }
-
-  @media (width < variables.$mobile-menu-breakpoint) {
-    min-height: 40px;
-  }
-
-  &:hover,
+  &:where(button, a):hover,
   &:focus-visible,
   &[aria-current='page'] {
     background-color: var(--color-bg-highlight);
     text-decoration: none;
-  }
-
-  &[aria-current='page'] {
-    color: var(--color-text-primary);
   }
 
   &:focus-visible {
@@ -59,11 +45,26 @@
   }
 }
 
+.link {
+  @include link-base;
+
+  min-height: 40px;
+  @include mixins.type-body;
+
+  @media (width < variables.$mobile-menu-breakpoint) {
+    min-height: 48px;
+  }
+
+  &[aria-current='page']:not(:where(.linkStacked, .linkMobile)) {
+    @include mixins.type-body-strong;
+  }
+}
+
 .linkStacked {
   --icon-size: 24px;
 
   flex-direction: column;
-  row-gap: var(--space-2xs);
+  row-gap: var(--space-1);
   padding-inline: 0;
   @include mixins.type-micro;
 }
@@ -75,7 +76,15 @@
   width: 100%;
   justify-content: center;
   gap: 0;
-  padding-block: var(--space-sm);
+  padding-block: var(--space-3);
+  transition:
+    background-color 200ms,
+    color 200ms;
+
+  &[aria-expanded='true'] {
+    color: var(--color-text-inverted);
+    background-color: var(--color-bg-inverted);
+  }
 }
 
 .icon {
@@ -96,9 +105,9 @@
     content: '';
     position: absolute;
     top: var(--space-4xs);
-    left: calc(50% + var(--space-3xs));
-    width: var(--space-xs);
-    height: var(--space-xs);
+    left: calc(50% + var(--space-half));
+    width: var(--space-2);
+    height: var(--space-2);
     border-radius: var(--radius-round);
     background-color: var(--color-bg-brand-base);
     border: 1px solid var(--color-bg-primary);
@@ -121,7 +130,7 @@
 .badge {
   .linkStacked & {
     position: absolute;
-    top: var(--space-3xs);
-    inset-inline-start: calc(50% + var(--space-3xs));
+    top: var(--space-half);
+    inset-inline-start: calc(50% + var(--space-half));
   }
 }

@@ -5,8 +5,9 @@
   --navigation-min-width: 280px;
   --navigation-max-width: 320px;
 
-  box-sizing: border-box;
   display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -14,7 +15,7 @@
   padding-bottom: env(safe-area-inset-bottom);
 
   @media (min-width: $no-gap-breakpoint) {
-    padding-inline: var(--space-2xs);
+    padding-inline: var(--space-1);
   }
 
   @media (min-width: $mobile-menu-breakpoint) {
@@ -23,8 +24,27 @@
       minmax(var(--navigation-min-width), 1fr)
       minmax(0, var(--main-column-max-width))
       minmax(0, 1fr);
-    gap: var(--space-xs);
+    gap: var(--space-2);
   }
+}
+
+.rootMinimal {
+  // In `minimalShell` layout, no sidebar navigation is shown,
+  // so we allow the column to collapse
+  --navigation-min-width: 0;
+}
+
+.multiColumnRoot {
+  --multi-column-navigation-width: 320px;
+  --multi-column-gap: var(--space-2);
+
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  gap: var(--multi-column-gap);
+  padding-inline-end: var(--multi-column-gap);
+  overflow-x: auto;
 }
 
 .navigationWrapper {
@@ -34,6 +54,14 @@
   max-width: var(--navigation-max-width);
   height: 100dvh;
   padding-bottom: env(safe-area-inset-bottom);
+
+  .multiColumnRoot & {
+    height: initial;
+    min-width: var(--multi-column-navigation-width);
+    inset-inline-start: 0;
+    z-index: 100;
+    background: var(--color-bg-blend);
+  }
 
   @media (max-width: ($mobile-menu-breakpoint - 1)) {
     display: none;
@@ -45,50 +73,12 @@
   grid-column: 2;
   display: flex;
   flex-direction: column;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   width: 100%;
   contain: inline-size layout paint style;
   container: column / inline-size;
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
-}
-
-.columnHeader {
-  // Make bottom half of column header transparent to make the
-  // overlay gradient of the nested `ColumnHeader` component work
-  --column-header-gradient-start: 55%;
-
-  background: linear-gradient(
-    to bottom,
-    var(--color-bg-blend-solid) var(--column-header-gradient-start),
-    transparent var(--column-header-gradient-start)
-  );
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  border-top: 0;
-
-  @media (width >= $mobile-menu-breakpoint) {
-    border-top: 10px solid var(--color-bg-blend-solid);
-  }
-
-  // Fix bg color for legacy column headers.
-  // Remove when new column headers are in.
-  & :global(.column-header) {
-    background: var(--color-bg-primary);
-  }
-}
-
-.content {
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-
-  :global(.column) {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-  }
 
   :global(.scrollable) {
     contain: content;

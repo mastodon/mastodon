@@ -1226,7 +1226,6 @@ cs:
           one: Sdílený jedním člověkem za poslední týden
           other: Sdílený %{count} lidmi za poslední týden
         title: Populární odkazy
-        usage_comparison: Za dnešek %{today} sdílení, oproti %{yesterday} včera
       not_allowed_to_trend: Trendování není povoleno
       only_allowed: Jen povolené
       pending_review: Čeká na posouzení
@@ -1273,7 +1272,6 @@ cs:
         trendable: Může se objevovat mezi populárními
         trending_rank: 'Populární #%{rank}'
         usable: Může být používán
-        usage_comparison: Za dnešek %{today} použití, oproti %{yesterday} včera
         used_by_over_week:
           few: Použit %{count} lidmi za poslední týden
           many: Použit %{count} lidmi za poslední týden
@@ -1640,6 +1638,7 @@ cs:
       content: Omlouváme se, ale něco se u nás pokazilo.
       title: Tato stránka není správná
     '503': Stránku nelze načíst kvůli dočasnému selhání serveru.
+    go_home: Přejít domů
     noscript_html: Pro použití webové aplikace Mastodon prosím povolte JavaScript. Nebo zkuste jednu z <a href="%{apps_path}">nativních aplikací</a> pro Mastodon pro vaši platformu.
   existing_username_validator:
     not_found: nelze najít místního uživatele s tímto uživatelským jménem
@@ -1750,7 +1749,6 @@ cs:
       incompatible_type: Nekompatibilní s vybraným typem importu
       invalid_csv_file: 'Neplatný soubor CSV. Chyba: %{error}'
       invalid_json_file: 'Neplatný JSON soubor. Chyba: %{error}'
-      over_rows_processing_limit: obsahuje více než %{count} řádků
       status_not_found_warning: Některé z vašich filtrů skrývají specifické příspěvky, které nejsou tímto serverem známy. Tyto příspěvky nebudou automaticky filtrovány, pokud budou objeveny později.
       too_large: Soubor je příliš velký
     failures: Chyby
@@ -1931,7 +1929,6 @@ cs:
     incoming_migrations_html: Chcete-li se přesunout z jiného účtu na tento, potřebujete si nejprve <a href="%{path}">vytvořit alias účtu</a>.
     moved_msg: Váš účet se nyní přesměrovává na účet %{acct} a vaši sledující se na něj přesouvají.
     not_redirecting: Váš účet se aktuálně nepřesměrovává na žádný jiný účet.
-    on_cooldown: Nedávno jste svůj účet přesunuli. Tato funkce bude opět dostupná za %{count} dní.
     past_migrations: Předchozí přesuny
     proceed_with_move: Přesunout sledující
     redirected_msg: Váš účet nyní přesměruje na %{acct}.
@@ -2121,8 +2118,6 @@ cs:
       account: Veřejné příspěvky od @%{acct}
       tag: 'Veřejné příspěvky s hashtagem #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Pro dnešek jste překročili limit %{limit} naplánovaných příspěvků
-    over_total_limit: Překročili jste limit %{limit} naplánovaných příspěvků
     too_soon: datum musí být v budoucnu
   self_destruct:
     lead_html: "<strong>%{domain}</strong> bohužel končí nadobro. Pokud jste tam měli účet, nebudete jej moci dále používat, ale stále si můžete vyžádat zálohu vašich dat."

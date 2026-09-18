@@ -882,7 +882,6 @@ zh-HK:
         shared_by_over_week:
           other: 上週有 %{count} 人分享
         title: 熱門連結
-        usage_comparison: 今天被分享了 %{today} 次，相較於昨天 %{yesterday} 次
       not_allowed_to_trend: 不允許登上趨勢
       only_allowed: 僅允許
       pending_review: 等待審核中
@@ -922,7 +921,6 @@ zh-HK:
         trendable: 可登上熱門
         trending_rank: '熱門 #%{rank}'
         usable: 可用
-        usage_comparison: 今天被使用了 %{today} 次，相較於昨天 %{yesterday} 次
         used_by_over_week:
           other: 上週有 %{count} 人使用
       trending: 熱門
@@ -1261,7 +1259,6 @@ zh-HK:
       empty: 空白 CSV 檔案
       incompatible_type: 與選擇的匯入類型不相符
       invalid_csv_file: 無效的 CSV 檔案。錯誤：%{error}
-      over_rows_processing_limit: 包含超過 %{count} 行
       too_large: 檔案太大
     failures: 失敗
     imported: 已匯入
@@ -1356,7 +1353,6 @@ zh-HK:
     incoming_migrations_html: 要由其他帳戶轉移至當前帳戶的話，首先你需要 <a href="%{path}">新增帳戶別名(alias)</a>.
     moved_msg: 你的帳號正被轉接至 %{acct} ，你的關注者正在同步轉移至該帳號。
     not_redirecting: 你的帳號現時並未被重新定向。
-    on_cooldown: 你最近已經轉移過帳戶。此功能將在 %{count} 天後可重新使用。
     past_migrations: 以往的帳戶轉移
     proceed_with_move: 移動追隨者
     redirected_msg: 你的帳戶即將被重新定向至%{acct}。
@@ -1502,9 +1498,6 @@ zh-HK:
     descriptions:
       account: 來自 @%{acct} 的公開帖文
       tag: "#%{hashtag} 標籤的公開帖文"
-  scheduled_statuses:
-    over_daily_limit: 你已經超越了當天排定發文的限額 (%{limit})
-    over_total_limit: 你已經超越了排定發文的限額 (%{limit})
   self_destruct:
     lead_html: 很遺憾，<strong>%{domain}</strong> 即將永久停止服務。如果你在該處擁有帳號，你將無法繼續使用它，但你仍然可以要求備份你的數據。
     title: 這個伺服器即將停止服務

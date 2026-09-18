@@ -72,6 +72,10 @@ es-AR:
       disable_sign_in_token_auth: Deshabilitar autenticación de token por correo electrónico
       disable_two_factor_authentication: Deshabilitar 2FA
       disabled: Congelada
+      discoverable:
+        disabled: Esta persona prefirió no poder ser descubierta
+        enabled: Esta persona prefirió poder ser descubierta
+        title: Descubrible
       display_name: Nombre para mostrar
       domain: Dominio
       edit: Editar
@@ -81,6 +85,12 @@ es-AR:
       enable_sign_in_token_auth: Habilitar autenticación de token por correo electrónico
       enabled: Habilitada
       enabled_msg: Se descongeló exitosamente la cuenta de %{username}
+      follow_recommendations:
+        allowed: Permitida
+        suppress: Suprimir cualquier recomendación de seguimiento
+        suppressed: Suprimida
+        title: Recomendaciones de seguimiento
+        unsuppress: Restablecer cualquier recomendación de seguimiento
       followers: Seguidores
       follows: Siguiendo
       header: Cabecera
@@ -165,6 +175,12 @@ es-AR:
       suspension_irreversible: Se eliminaron irreversiblemente los datos de esta cuenta. Podés dejar de suspenderla para hacerla utilizable, pero no se recuperarán los datos que tenía anteriormente.
       suspension_reversible_hint_html: La cuenta fue suspendida y los datos se eliminarán completamente el %{date}. Hasta entonces, la cuenta puede ser restaurada sin ningún efecto perjudicial. Si querés eliminar todos los datos de la cuenta inmediatamente, podés hacerlo abajo.
       title: Cuentas
+      trends:
+        allow: Permitir
+        allowed: Permitida
+        disallow: Dejar de permitir
+        disallowed: No permitida
+        title: Mensajes en tendencia
       unblock_email: Desbloquear dirección de correo electrónico
       unblocked_email_msg: Se desbloqueó exitosamente la dirección de correo electrónico de %{username}
       unconfirmed_email: Correo electrónico sin confirmar
@@ -1190,7 +1206,9 @@ es-AR:
           one: Compartido por una persona durante la última semana
           other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
-        usage_comparison: Compartido %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
+        usage_comparison:
+          one: Se compartió %{count} vez hoy, comparado a ayer (%{yesterday})
+          other: Se compartió %{count} veces hoy, comparado a ayer (%{yesterday})
       not_allowed_to_trend: No se permite la tendencia
       only_allowed: Solo permitidas
       pending_review: Revisión pendiente
@@ -1235,7 +1253,9 @@ es-AR:
         trendable: Pueden aparecer en tendencias
         trending_rank: Tendencia n.º %{rank}
         usable: Pueden usarse
-        usage_comparison: Usadas %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
+        usage_comparison:
+          one: Se usó %{count} vez hoy, comparado a ayer (%{yesterday})
+          other: Se usó %{count} veces hoy, comparado a ayer (%{yesterday})
         used_by_over_week:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
@@ -1596,6 +1616,7 @@ es-AR:
       content: Lo sentimos, pero algo salió mal en nuestro lado.
       title: Esta página no es correcta
     '503': La página no se pudo cargar debido a un fallo temporal del servidor.
+    go_home: Ir a la página principal
     noscript_html: Para usar la aplicación web de Mastodon, por favor, activá Javascript. Alternativamente, probá alguna de las <a href="%{apps_path}">aplicaciones nativas</a> de Mastodon para tu plataforma.
   existing_username_validator:
     not_found: no se pudo encontrar un usuario local con ese nombre de usuario
@@ -1692,7 +1713,10 @@ es-AR:
       incompatible_type: Incompatible con el tipo de importación seleccionado
       invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
       invalid_json_file: 'Archivo JSON no válido. Error: %{error}'
-      over_rows_processing_limit: contiene más de %{count} filas
+      no_data: Este archivo no contiene ningún dato que coincida con el tipo importado
+      over_rows_processing_limit:
+        one: contiene más de %{count} fila
+        other: contiene más de %{count} filas
       status_not_found_warning: Algunos de tus filtros ocultan mensajes específicos que no son conocidos por este servidor. Estos mensajes no serán filtrados automáticamente si son descubiertos más tarde por el servidor.
       too_large: El archivo es demasiado grande
     failures: Fallos
@@ -1843,7 +1867,9 @@ es-AR:
     incoming_migrations_html: Para mudarte de otra cuenta a esta, primero necesitás <a href="%{path}">crear un alias de la cuenta</a>.
     moved_msg: Ahora tu cuenta está siendo redirigida a %{acct} y tus seguidores se están mudando.
     not_redirecting: Actualmente, tu cuenta no está siendo redirigida a ninguna otra cuenta.
-    on_cooldown: Recientemente mudaste tu cuenta. Esta función estará disponible de nuevo en %{count} días.
+    on_cooldown:
+      one: Recientemente migraste tu cuenta. Esta función estará disponible de nuevo en %{count} día.
+      other: Recientemente migraste tu cuenta. Esta función estará disponible de nuevo en %{count} días.
     past_migrations: Mudanzas pasadas
     proceed_with_move: Mudar seguidores
     redirected_msg: Tu cuenta ahora redirige a %{acct}.
@@ -2031,8 +2057,12 @@ es-AR:
       account: Mensajes públicos de @%{acct}
       tag: 'Mensajes públicos etiquetados #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Superaste el límite de %{limit} mensajes programados para ese día
-    over_total_limit: Superaste el límite de %{limit} mensajes programados
+    over_daily_limit:
+      one: Excediste el límite de %{count} mensaje programado para hoy
+      other: Excediste el límite de %{count} mensajes programados para hoy
+    over_total_limit:
+      one: Excediste el límite de %{count} mensaje programado
+      other: Excediste el límite de %{count} mensajes programados
     too_soon: la fecha debe ser en el futuro
   self_destruct:
     lead_html: Desafortunadamente, <strong>%{domain}</strong> va a cerrar permanentemente. Si tenías una cuenta ahí, no podrás continuar usándola, pero aún podés solicitar una copia de tus datos.

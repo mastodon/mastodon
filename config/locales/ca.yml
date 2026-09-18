@@ -1041,7 +1041,6 @@ ca:
           one: Compartit per una persona en la darrera setmana
           other: Compartit per %{count} persones en la darrera setmana
         title: Enllaços en tendència
-        usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
       not_allowed_to_trend: No es permet la tendència
       only_allowed: Només permesos
       pending_review: Revisió pendent
@@ -1086,7 +1085,6 @@ ca:
         trendable: Pot aparèixer en les tendències
         trending_rank: 'Tendència #%{rank}'
         usable: Pot ser emprat
-        usage_comparison: Usat %{today} vegades avui, comparat amb %{yesterday} d'ahir
         used_by_over_week:
           one: Emprat per una persona en la darrera setmana
           other: Emprat per %{count} persones en la darrera setmana
@@ -1486,7 +1484,6 @@ ca:
       empty: Fitxer CSV buit
       incompatible_type: Incompatible amb el tipus d'importació seleccionada
       invalid_csv_file: 'Fitxer CSV invàlid. Error: %{error}'
-      over_rows_processing_limit: conté més de %{count} files
       too_large: El fitxer és massa gran
     failures: Fallades
     imported: Importat
@@ -1629,7 +1626,6 @@ ca:
     incoming_migrations_html: Per a moure't des d'un altre compte a aquest, primer necessites <a href="%{path}">crear un àlies de compte</a>.
     moved_msg: El teu compte ara està redirigint a %{acct} i els teus seguidors estan sent moguts.
     not_redirecting: El teu compte no està redirigint actualment a cap altre.
-    on_cooldown: Recentment has emigrat el teu compte. Aquesta funció esdevindrà un altre cop disponible en %{count} dies.
     past_migrations: Migracions passades
     proceed_with_move: Mou seguidors
     redirected_msg: El teu compte és ara redireccionat a %{acct}.
@@ -1790,8 +1786,6 @@ ca:
       account: Publicacions públiques de @%{acct}
       tag: 'Tuts etiquetats #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Has superat el límit de %{limit} tuts programats per a avui
-    over_total_limit: Has superat el límit de %{limit} tuts programats
     too_soon: la data ha de ser al futur
   self_destruct:
     lead_html: Lamentablement, <strong>%{domain}</strong> tanca de forma definitiva. Si hi teníeu un compte, no el podreu continuar utilitzant, però podeu demanar una còpia de les vostres dades.

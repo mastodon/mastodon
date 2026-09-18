@@ -14,10 +14,6 @@
 #  relationship_severance_event_id :bigint(8)        not null
 #
 class AccountRelationshipSeveranceEvent < ApplicationRecord
-  self.ignored_columns += %w(
-    relationships_count
-  )
-
   belongs_to :account
   belongs_to :relationship_severance_event
 

@@ -1011,7 +1011,6 @@ sk:
       other: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chyby uvedené nižšie
   imports:
     errors:
-      over_rows_processing_limit: obsahuje viac než %{count} riadkov
       too_large: Súbor je príliš veľký
     failures: Zlyhaní(a)
     imported: Nahrané
@@ -1095,7 +1094,6 @@ sk:
     incoming_migrations_html: Ak sa chcete na tento účet presunúť z iného účtu, najprv si <a href="%{path}">vytvorte nový alias</a>.
     moved_msg: Tvoj účet teraz presmerováva na %{acct} a tvoji sledovatelia sú presúvaní tam.
     not_redirecting: Tvoj účet v súčasnosti nepresmerováva na žiaden iný účet.
-    on_cooldown: Účet si si presunul/a len nedávno. Táto vymoženosť bude znovu sprístupnená za %{count} dní.
     past_migrations: Predošlé presuny
     proceed_with_move: Presuň sledovateľov
     redirected_msg: Tvoj účet teraz presmerováva na %{acct}.
@@ -1215,9 +1213,6 @@ sk:
     descriptions:
       account: Verejné príspevky od @%{acct}
       tag: 'Verejné príspevky otagované #%{hashtag}'
-  scheduled_statuses:
-    over_daily_limit: Prekročil/a si denný limit %{limit} predplánovaných príspevkov
-    over_total_limit: Prekročil/a si limit %{limit} predplánovaných príspevkov
   sessions:
     activity: Posledná aktivita
     browser: Prehliadač

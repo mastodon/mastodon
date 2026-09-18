@@ -23,12 +23,12 @@ html {
   &[data-redesign='true'] {
     --font-body: Inter, sans-serif;
     --avatar-border-radius: var(--radius-round);
-    --mobile-bottom-nav-height: calc(58px + var(--space-md));
+    --mobile-bottom-nav-height: calc(58px + var(--space-4));
 
     // Compensate for column header height when scrolling elements into view
     --column-header-height: 74px;
 
-    background: var(--color-bg-blend-solid);
+    background: var(--color-bg-blend);
   }
 
   // Variable for easily inverting directional UI elements,
@@ -191,6 +191,7 @@ body {
         font-size: 20px;
         line-height: 28px;
         font-weight: 400;
+        margin-bottom: var(--space-4);
       }
     }
   }

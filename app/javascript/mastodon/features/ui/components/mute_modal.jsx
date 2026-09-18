@@ -131,13 +131,13 @@ export const MuteModal = ({ accountId, acct }) => {
         </div>
 
         <div className='safety-action-modal__actions'>
-          <button onClick={handleToggleSettings} className='link-button'>
+          <button type='button' onClick={handleToggleSettings} className='link-button'>
             {expanded ? <FormattedMessage id='mute_modal.hide_options' defaultMessage='Hide options' /> : <FormattedMessage id='mute_modal.show_options' defaultMessage='Show options' />}
           </button>
 
           <div className='spacer' />
 
-          <button onClick={handleCancel} className='link-button'>
+          <button type='button' onClick={handleCancel} className='link-button'>
             <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
           </button>
 

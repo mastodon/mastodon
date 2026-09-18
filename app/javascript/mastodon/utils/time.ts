@@ -41,13 +41,13 @@ export function relativeTimeParts(
   return { value: sign * Math.floor(absDelta / DAY), unit: 'day', delta };
 }
 
-export function isToday(ts: number, now = Date.now()): boolean {
+export function isSameUTCDay(ts: number, now = Date.now()): boolean {
   const date = new Date(ts);
   const nowDate = new Date(now);
   return (
-    date.getDate() === nowDate.getDate() &&
-    date.getMonth() === nowDate.getMonth() &&
-    date.getFullYear() === nowDate.getFullYear()
+    date.getUTCDate() === nowDate.getUTCDate() &&
+    date.getUTCMonth() === nowDate.getUTCMonth() &&
+    date.getUTCFullYear() === nowDate.getUTCFullYear()
   );
 }
 
@@ -138,7 +138,7 @@ export function formatTime({
   const { value, unit } = relativeTimeParts(timestamp, now);
 
   // If we're only showing days, show "today" for the current day.
-  if (noTime && isToday(timestamp, now)) {
+  if (noTime && isSameUTCDay(timestamp, now)) {
     return intl.formatMessage(timeMessages.today);
   }
 

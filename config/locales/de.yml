@@ -72,6 +72,10 @@ de:
       disable_sign_in_token_auth: E-Mail-Token-Authentisierung deaktivieren
       disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
       disabled: Eingefroren
+      discoverable:
+        disabled: Autor*in hat sich dafür entschieden, nicht entdeckt zu werden
+        enabled: Autor*in hat sich dafür entschieden, entdeckt zu werden
+        title: Entdecken
       display_name: Anzeigename
       domain: Domain
       edit: Bearbeiten
@@ -81,6 +85,12 @@ de:
       enable_sign_in_token_auth: E-Mail-Token-Authentisierung aktivieren
       enabled: Freigegeben
       enabled_msg: Konto von %{username} erfolgreich freigegeben
+      follow_recommendations:
+        allowed: Erlaubt
+        suppress: Follower-Empfehlungen unterbinden
+        suppressed: Unterbunden
+        title: Follower-Empfehlungen
+        unsuppress: Follower-Empfehlungen wiederherstellen
       followers: Follower
       follows: Folge ich
       header: Titelbild
@@ -165,6 +175,12 @@ de:
       suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst die Kontosperrung aufheben, damit es wieder aktiv ist und funktioniert, aber es werden keine früheren Daten wiederhergestellt.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du das nachfolgend tun.
       title: Konten
+      trends:
+        allow: Erlauben
+        allowed: Erlaubt
+        disallow: Erlauben
+        disallowed: Verwehrt
+        title: Trends
       unblock_email: Blockierung der E-Mail-Adresse aufheben
       unblocked_email_msg: E-Mail-Adresse von %{username} erfolgreich entsperrt
       unconfirmed_email: Unbestätigte E-Mail-Adresse
@@ -302,7 +318,7 @@ de:
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} entfernte das Profilbild von %{target}"
         reopen_report_html: "%{name} öffnete die Meldung %{target} wieder"
-        resend_user_html: "%{name} versendete erneut die E-Mail-Bestätigung für %{target}"
+        resend_user_html: "%{name} verschickte erneut die E-Mail-Bestätigung für %{target}"
         reset_password_user_html: "%{name} setzte das Passwort von %{target} zurück"
         resolve_report_html: "%{name} klärte die Meldung %{target}"
         sensitive_account_html: "%{name} versah die Medien von %{target} mit einer Inhaltswarnung"
@@ -516,12 +532,12 @@ de:
         last_email: Letzte E-Mail
         lead: Konten, die die Funktion aktiviert haben und abonniert wurden, werden unten angezeigt.
         show:
-          confirm_disable_feature: E-Mail-Newsletter für %{name} deaktivieren? Für dieses Konto werden keine Neuigkeiten mehr über E-Mail versendet. Das Profil kann die Funktion in den Kontoeinstellungen weiterhin reaktivieren. Um den Zugriff auf diese Funktion dauerhaft zu entfernen, passe die Berechtigung in der Rollenverwaltung an.
+          confirm_disable_feature: E-Mail-Newsletter für %{name} deaktivieren? Für dieses Konto werden keine Neuigkeiten mehr über E-Mail verschickt. Das Profil kann die Funktion in den Kontoeinstellungen weiterhin reaktivieren. Um den Zugriff auf diese Funktion dauerhaft zu entfernen, passe die Berechtigung in der Rollenverwaltung an.
           confirm_remove_subscriber: "%{email} wird keine E-Mails mehr von %{name} erhalten. Die Aktion lässt sich nicht rückgängig machen."
           consent: Abonnent*innen haben ausschließlich dem Erhalt von Beiträgen per E-Mail zugestimmt. Verwende diese Liste nicht zu anderen Zwecken.
           date: Registrierungsdatum
           disable_feature: Funktion deaktivieren
-          disabled: Die Funktion wurde deaktiviert und E-Mails werden nicht länger diese Liste gesendet.
+          disabled: Die Funktion wurde deaktiviert und E-Mails werden nicht länger diese Liste verschickt.
           email: E-Mail-Adresse
           empty:
             hint: Noch hat niemand dieses Konto abonniert.
@@ -584,7 +600,7 @@ de:
             1_permission_explanation: Wenn die Funktion aktiviert ist, können alle berechtigten Konten ein E-Mail-Formular zu ihrem Profil hinzufügen.
             2_feature_explanation: Sobald Gäste ein Profil abonnieren und das Abonnement bestätigen, werden sie E-Mails über neue öffentliche Beiträge des betreffenden Profils erhalten.
             3_privacy_policy_warning: Server-Admins werden Zugriff auf persönlich identifizierbare Informationen (E-Mail-Adressen) haben. Daher müssen die Datenschutzerklärung und Nutzungsbedingungen im Vorfeld aktualisiert werden, bevor diese Funktion verwendet werden kann.
-            4_cost_warning: Abhängig vom Hosting-Provider können Gebühren für den E-Mail-Versand anfallen. Kläre für deinen Server vorher alle Details, da diese Funktion die Anzahl versendeter E-Mails drastisch erhöhen kann.
+            4_cost_warning: Abhängig vom Hosting-Provider können Gebühren für das Verschicken von E-Mails anfallen. Kläre vorher alle Details für deinen Server, da diese Funktion die Anzahl verschickter E-Mails drastisch erhöhen kann.
     export_domain_allows:
       new:
         title: Erlaubte Domains importieren
@@ -634,10 +650,10 @@ de:
       description_html: "<strong>Follower-Empfehlungen helfen neuen Nutzer*innen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer*in noch nicht genug mit anderen interagiert hat, um personalisierte Follower-Empfehlungen zu erhalten, werden stattdessen diese Profile vorgeschlagen. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache neu berechnet."
       language: Für Sprache
       status: Status
-      suppress: Folgeempfehlung unterbinden
+      suppress: Follower-Empfehlungen unterbinden
       suppressed: Unterdrückt
       title: Follower-Empfehlungen
-      unsuppress: Folgeempfehlung nicht mehr unterbinden
+      unsuppress: Follower-Empfehlungen wiederherstellen
     instances:
       audit_log:
         title: Neueste Protokolle
@@ -777,7 +793,7 @@ de:
         resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen und der Vorgang wird nicht aufgezeichnet – die Meldung wird hiermit geschlossen.
         silence_description_html: Das Konto wird nur für diejenigen sichtbar sein, die dem Konto bereits folgen oder es manuell suchen, was die Reichweite stark einschränkt. Kann jederzeit rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
         suspend_description_html: Das Konto und alle Inhalte werden unzugänglich und ggf. gelöscht. Eine Interaktion mit dem Konto wird unmöglich. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
-      actions_description_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, wird eine E-Mail-Benachrichtigung an dieses gesendet, außer wenn die <strong>Spam</strong>-Kategorie ausgewählt ist.
+      actions_description_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, erhält es eine E-Mail-Benachrichtigung, sofern nicht die <strong>Spam</strong>-Kategorie ausgewählt ist.
       actions_description_remote_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Dies wirkt sich lediglich darauf aus, wie <strong>dein</strong> Server mit diesem externen Konto kommuniziert und dessen Inhalt handhabt.
       actions_no_posts: Diese Meldung enthält keine zu löschenden Beiträge
       add_to_report: Meldung ergänzen
@@ -1065,7 +1081,7 @@ de:
         delete_statuses: "%{name} entfernte die Beiträge von %{target}"
         disable: "%{name} fror das Konto von %{target} ein"
         mark_statuses_as_sensitive: "%{name} hat die Beiträge von %{target} mit einer Inhaltswarnung versehen"
-        none: "%{name} hat eine Warnung an %{target} gesendet"
+        none: "%{name} schickte eine Warnung an %{target}"
         sensitive: "%{name} versah das Konto von %{target} mit einer Inhaltswarnung"
         silence: "%{name} schaltete das Konto von %{target} stumm"
         suspend: "%{name} sperrte das Konto von %{target}"
@@ -1156,7 +1172,7 @@ de:
       notified_on_html: Nutzer*innen wurden am %{date} benachrichtigt
       notify_users: Nutzer*innen benachrichtigen
       preview:
-        explanation_html: 'Die E-Mail wird an <strong>%{display_count} Nutzer*innen</strong> gesendet, die sich vor dem %{date} registriert haben. Folgendes wird in der E-Mail enthalten sein:'
+        explanation_html: 'Die E-Mail wird an <strong>%{display_count} Nutzer*innen</strong> geschickt, die sich vor dem %{date} registriert haben. Folgendes wird in der E-Mail enthalten sein:'
         send_preview: Vorschau an %{email} senden
         send_to_all:
           one: "%{display_count} E-Mail senden"
@@ -1190,7 +1206,6 @@ de:
           one: In den vergangenen 7 Tagen von einem Profil geteilt
           other: In den vergangenen 7 Tagen von %{count} Profilen geteilt
         title: Angesagte Links
-        usage_comparison: Heute %{today} × und gestern %{yesterday} × geteilt
       not_allowed_to_trend: Trend nicht erlaubt
       only_allowed: Nur Genehmigte
       pending_review: Überprüfung ausstehend
@@ -1235,7 +1250,6 @@ de:
         trendable: In Trends erlaubt
         trending_rank: Platz %{rank}
         usable: In Beiträgen erlaubt
-        usage_comparison: Heute %{today} × und gestern %{yesterday} × verwendet
         used_by_over_week:
           one: In den vergangenen 7 Tagen von einem Profil verwendet
           other: In den vergangenen 7 Tagen von %{count} Profilen verwendet
@@ -1521,7 +1535,7 @@ de:
       approve_appeal: Einspruch annehmen
       associated_report: Zugehörige Meldung
       created_at: Datum
-      description_html: Dies sind Maßnahmen, die gegen dein Konto ergriffen worden sind, und Warnungen, die dir die Mitarbeiter*innen von %{instance} gesendet haben.
+      description_html: Dies sind Maßnahmen, die gegen dein Konto ergriffen worden sind, und Warnungen, die dir die Mitarbeiter*innen von %{instance} geschickt haben.
       recipient: Adressiert an
       reject_appeal: Einspruch ablehnen
       status: "%{id}. Beitrag"
@@ -1596,6 +1610,7 @@ de:
       content: Wir bitten um Verzeihung, aber etwas ist bei uns schiefgegangen.
       title: Diese Seite enthält einen Fehler
     '503': Die Seite konnte wegen eines temporären Serverfehlers nicht angezeigt werden.
+    go_home: Zur Startseite
     noscript_html: Bitte aktiviere JavaScript, um das Webinterface von Mastodon zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Apps</a> für Mastodon verwenden.
   existing_username_validator:
     not_found: kann kein lokales Konto mit diesem Profilnamen finden
@@ -1692,7 +1707,10 @@ de:
       incompatible_type: Inkompatibel mit dem ausgewählten Importtyp
       invalid_csv_file: 'Ungültige CSV-Datei. Fehler: %{error}'
       invalid_json_file: 'Ungültige JSON-Datei. Fehler: %{error}'
-      over_rows_processing_limit: enthält mehr als %{count} Zeilen
+      no_data: Diese Datei enthält keinerlei Daten, die zu diesem Dateitypen passen
+      over_rows_processing_limit:
+        one: enthält mehr als %{count} Zeile
+        other: enthält mehr als %{count} Zeilen
       status_not_found_warning: Einige deiner Filter blenden bestimmte Beiträge aus, die diesem Server nicht bekannt sind. Diese Beiträge werden nicht automatisch gefiltert, wenn sie dem Server später bekannt werden.
       too_large: Datei ist zu groß
     failures: Fehler
@@ -1843,7 +1861,9 @@ de:
     incoming_migrations_html: Um von einem anderen Konto zu diesem umzuziehen, musst du zuerst ein <a href="%{path}">Konto-Alias erstellen</a>.
     moved_msg: Dein Konto wird jetzt auf %{acct} weitergeleitet und deine Follower werden übertragen.
     not_redirecting: Dein Konto wird derzeit nicht auf ein anderes Konto weitergeleitet.
-    on_cooldown: Du bist mit deinem Konto erst vor Kurzem umgezogen. Diese Funktion wird in %{count} Tagen wieder verfügbar sein.
+    on_cooldown:
+      one: Du bist mit deinem Konto erst vor Kurzem umgezogen. Diese Funktion wird in %{count} Tag wieder verfügbar sein.
+      other: Du bist mit deinem Konto erst vor Kurzem umgezogen. Diese Funktion wird in %{count} Tagen wieder verfügbar sein.
     past_migrations: Vorherige Umzüge
     proceed_with_move: Follower übertragen
     redirected_msg: Dein Konto wird nun zu %{acct} weitergeleitet.
@@ -2032,8 +2052,12 @@ de:
       account: Öffentliche Beiträge von @%{acct}
       tag: 'Öffentliche Beiträge mit dem Hashtag #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du hast das Limit von %{limit} geplanten Beiträgen für heute erreicht
-    over_total_limit: Du hast das Limit für geplante Beiträge, das %{limit} beträgt, erreicht
+    over_daily_limit:
+      one: Du hast das Limit von %{count} geplanten Beitrag für heute erreicht
+      other: Du hast das Limit von %{count} geplanten Beiträgen für heute erreicht
+    over_total_limit:
+      one: Du hast das Limit von %{count} geplanten Beitrag erreicht
+      other: Du hast das Limit von %{count} geplanten Beiträgen erreicht
     too_soon: Datum muss in der Zukunft liegen
   self_destruct:
     lead_html: Bedauerlicherweise wird <strong>%{domain}</strong> den Betrieb für immer einstellen. Wenn du dort ein Konto angelegt hast, wirst du es nicht weiter verwenden können. Du kannst allerdings eine Sicherung deiner Daten anfordern.

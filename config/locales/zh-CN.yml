@@ -69,6 +69,10 @@ zh-CN:
       disable_sign_in_token_auth: 禁用邮件令牌身份验证
       disable_two_factor_authentication: 停用双因素认证
       disabled: 已冻结
+      discoverable:
+        disabled: 作者选择不被发现
+        enabled: 作者选择被发现
+        title: 可发现
       display_name: 昵称
       domain: 域名
       edit: 编辑
@@ -78,6 +82,12 @@ zh-CN:
       enable_sign_in_token_auth: 启用邮件令牌身份验证
       enabled: 已启用
       enabled_msg: 成功解冻 %{username} 的账号
+      follow_recommendations:
+        allowed: 已允许
+        suppress: 禁用推荐关注
+        suppressed: 已禁用
+        title: 关注推荐
+        unsuppress: 恢复推荐关注
       followers: 关注者
       follows: 关注
       header: 封面图
@@ -161,6 +171,12 @@ zh-CN:
       suspension_irreversible: 该账号的数据已被不可逆转地删除。你可以取消暂停该账号以使其可用，但它不会恢复以前拥有的任何数据。
       suspension_reversible_hint_html: 账号已封禁，数据将在 %{date} 完全删除。 在此之前，账号仍可恢复，并且没有任何不良影响。 如果你想立即移除该账号的所有数据，可以在下面进行。
       title: 用户
+      trends:
+        allow: 允许
+        allowed: 已允许
+        disallow: 不允许
+        disallowed: 不允许
+        title: 热门嘟文
       unblock_email: 取消屏蔽邮件地址
       unblocked_email_msg: 成功取消屏蔽了 %{username} 的邮件地址
       unconfirmed_email: 待验证的邮箱地址
@@ -1172,7 +1188,8 @@ zh-CN:
         shared_by_over_week:
           other: 过去一周内被 %{count} 个人分享过
         title: 热门链接
-        usage_comparison: 今日被分享 %{today} 次，前一日为 %{yesterday} 次
+        usage_comparison:
+          other: 今日被分享 %{count} 次，前一日为 %{yesterday} 次
       not_allowed_to_trend: 不允许进入热门
       only_allowed: 仅显示已允许的内容
       pending_review: 待审核
@@ -1216,7 +1233,8 @@ zh-CN:
         trendable: 可显示在热门列表中
         trending_rank: '热门 #%{rank}'
         usable: 可以使用
-        usage_comparison: 今日被使用 %{today} 次，前一日为 %{yesterday} 次
+        usage_comparison:
+          other: 今日被使用 %{count} 次，前一日为 %{yesterday} 次
         used_by_over_week:
           other: 过去一周内被 %{count} 个人使用过
       title: 推荐与热门
@@ -1574,6 +1592,7 @@ zh-CN:
       content: 抱歉，服务器出现了一些故障。
       title: 页面无法正确加载
     '503': 服务器出现临时故障，无法加载页面。
+    go_home: 回到主页
     noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Mastodon 应用</a>。
   existing_username_validator:
     not_found: 在本站找不到此用户
@@ -1663,7 +1682,9 @@ zh-CN:
       incompatible_type: 与所选导入类型不兼容
       invalid_csv_file: 无效的 CSV 文件。错误：%{error}
       invalid_json_file: 无效的 JSON 文件。错误：%{error}
-      over_rows_processing_limit: 包含行数超过了 %{count}
+      no_data: 此文件不包含任何匹配指定导入类型的数据
+      over_rows_processing_limit:
+        other: 包含行数超过了 %{count}
       status_not_found_warning: 你的部分过滤器将会隐藏此服务器暂时未知的特定嘟文。如果这些嘟文以后被服务器发现，则将不会被自动过滤。
       too_large: 文件过大
     failures: 失败
@@ -1799,7 +1820,8 @@ zh-CN:
     incoming_migrations_html: 要把另一个账号移动到本账号，首先你需要<a href="%{path}">创建一个账号别名</a> 。
     moved_msg: 你的账号现在会跳转到 %{acct} ，同时关注者也会一并迁移 。
     not_redirecting: 你的账号当前未跳转到其它账号。
-    on_cooldown: 你最近已经迁移过你的账号。此功能将在%{count} 天后再次可用。
+    on_cooldown:
+      other: 你最近已经迁移过你的账号。此功能将在 %{count} 天后再次可用。
     past_migrations: 迁移记录
     proceed_with_move: 移动关注者
     redirected_msg: 你的账号现在会跳转至 %{acct}
@@ -1986,8 +2008,10 @@ zh-CN:
       account: "@%{acct} 的公开嘟文"
       tag: "#%{hashtag} 标签下的公开嘟文"
   scheduled_statuses:
-    over_daily_limit: 你已超出每日定时嘟文的上限（%{limit} 条）
-    over_total_limit: 你已超出定时嘟文的上限（%{limit} 条）
+    over_daily_limit:
+      other: 你已超出每日定时嘟文的上限（%{count} 条）
+    over_total_limit:
+      other: 你已超出定时嘟文的上限（%{count} 条）
     too_soon: 日期必须晚于当前时间
   self_destruct:
     lead_html: 很遗憾，<strong>%{domain}</strong> 即将永久关闭。 如果你在其中设有账号，那么你将无法再继续使用，但你仍可以请求获得本人数据的备份。

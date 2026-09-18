@@ -22,7 +22,7 @@ import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { Icon }  from 'mastodon/components/icon';
 import { injectIntl } from '@/mastodon/components/intl';
 import { Hotkeys } from 'mastodon/components/hotkeys';
-import { StatusQuoteManager } from 'mastodon/components/status_quoted';
+import { Status } from 'mastodon/components/status';
 import { me } from 'mastodon/initial_state';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
@@ -165,7 +165,7 @@ class Notification extends ImmutablePureComponent {
 
   renderMention (notification) {
     return (
-      <StatusQuoteManager
+      <Status
         id={notification.get('status')}
         withDismiss
         hidden={this.props.hidden}
@@ -193,7 +193,7 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <StatusQuoteManager
+          <Status
             id={notification.get('status')}
             account={notification.get('account')}
             muted
@@ -223,7 +223,7 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <StatusQuoteManager
+          <Status
             id={notification.get('status')}
             account={notification.get('account')}
             muted
@@ -253,7 +253,7 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <StatusQuoteManager
+          <Status
             id={notification.get('status')}
             account={notification.get('account')}
             muted
@@ -287,7 +287,7 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <StatusQuoteManager
+          <Status
             id={notification.get('status')}
             account={notification.get('account')}
             contextType='notifications'
@@ -322,7 +322,7 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <StatusQuoteManager
+          <Status
             id={notification.get('status')}
             account={notification.get('account')}
             contextType='notifications'
@@ -357,7 +357,7 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <StatusQuoteManager
+          <Status
             id={notification.get('status')}
             account={notification.get('account')}
             contextType='notifications'
@@ -398,7 +398,7 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <StatusQuoteManager
+          <Status
             id={notification.get('status')}
             account={account}
             contextType='notifications'

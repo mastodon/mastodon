@@ -81,6 +81,10 @@ ga:
       disable_sign_in_token_auth: Díchumasaigh fíordheimhniú comhartha ríomhphoist
       disable_two_factor_authentication: Díchumasaigh 2FA
       disabled: Reoite
+      discoverable:
+        disabled: Níor roghnaigh an t-údar a bheith infheicthe
+        enabled: Tá an t-údar tar éis rogha a dhéanamh a bheith infheicthe
+        title: Infhaighte
       display_name: Ainm taispeána
       domain: Fearann
       edit: Cuir in eagar
@@ -90,6 +94,12 @@ ga:
       enable_sign_in_token_auth: Cumasaigh fíordheimhniú comhartha ríomhphoist
       enabled: Ar chumas
       enabled_msg: D'éirigh le dí-reoite cuntas %{username}
+      follow_recommendations:
+        allowed: Ceadaithe
+        suppress: Coisc aon mholadh leantach
+        suppressed: Faoi chois
+        title: Lean na moltaí
+        unsuppress: Athchóirigh aon mholadh leantach
       followers: Leantóirí
       follows: Ag leanúint
       header: Ceanntásc
@@ -177,6 +187,12 @@ ga:
       suspension_irreversible: Scriosadh sonraí an chuntais seo go do-aisiompaithe. Is féidir leat an cuntas a chur ar fionraí chun é a dhéanamh inúsáidte ach ní dhéanfaidh sé aon sonraí a bhí aige roimhe seo a aisghabháil.
       suspension_reversible_hint_html: Tá an cuntas curtha ar fionraí, agus bainfear na sonraí go hiomlán ar %{date}. Go dtí sin, is féidir an cuntas a chur ar ais gan aon drochthionchar. Más mian leat sonraí uile an chuntais a bhaint láithreach, is féidir leat é sin a dhéanamh thíos.
       title: Cuntais
+      trends:
+        allow: Ceadaigh
+        allowed: Ceadaithe
+        disallow: Dícheadaigh
+        disallowed: Neamhcheadaithe
+        title: Poist ag treocht
       unblock_email: Bain an bac den seoladh ríomhphoist
       unblocked_email_msg: D'éirigh leis an mbac a bhain le seoladh ríomhphoist %{username}
       unconfirmed_email: Ríomhphost neamhdheimhnithe
@@ -1244,7 +1260,12 @@ ga:
           other: Roinnte ag %{count} duine le seachtain anuas
           two: Roinnte ag %{count} duine le seachtain anuas
         title: Naisc treochta
-        usage_comparison: Roinnte %{today} uair inniu, i gcomparáid le %{yesterday} inné
+        usage_comparison:
+          few: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          many: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          one: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          other: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          two: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
       not_allowed_to_trend: Ní cheadaítear treocht
       only_allowed: Ní cheadaítear ach
       pending_review: Athbhreithniú ar feitheamh
@@ -1272,7 +1293,7 @@ ga:
           one: Roinnte nó is fearr leat am amháin
           other: Roinnte agus ansa leat %{friendly_count} uair
           two: Roinnte agus ansa leat %{friendly_count} uair
-        title: Poist trending
+        title: Poist ag treocht
       tags:
         current_score: Scór reatha %{score}
         dashboard:
@@ -1292,7 +1313,12 @@ ga:
         trendable: Is féidir le feiceáil faoi threochtaí
         trending_rank: 'Ag treochtáil # %{rank}'
         usable: Is féidir é a úsáid
-        usage_comparison: Úsáidte %{today} uair inniu, i gcomparáid le %{yesterday} inné
+        usage_comparison:
+          few: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          many: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          one: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          other: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          two: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
         used_by_over_week:
           few: Úsáidte ag %{count} duine le seachtain anuas
           many: Úsáidte ag %{count} duine le seachtain anuas
@@ -1393,7 +1419,7 @@ ga:
       new_trending_links:
         title: Naisc treochta
       new_trending_statuses:
-        title: Poist trending
+        title: Poist ag treocht
       new_trending_tags:
         title: Hashtags treochta
       subject: Treochtaí nua le hathbhreithniú ar %{instance}
@@ -1664,6 +1690,7 @@ ga:
       content: Tá brón orainn, ach chuaigh rud éigin mícheart ar ár deireadh.
       title: Níl an leathanach seo ceart
     '503': Níorbh fhéidir an leathanach a sheirbheáil mar gheall ar theip shealadach ar an bhfreastalaí.
+    go_home: Téigh abhaile
     noscript_html: Chun feidhmchlár gréasáin Mastodon a úsáid, cumasaigh JavaScript le do thoil. Nó, bain triail as ceann de na <a href="%{apps_path}">aipeanna dúchasacha</a> do Mastodon do d'ardán.
   existing_username_validator:
     not_found: níorbh fhéidir úsáideoir áitiúil a aimsiú leis an ainm úsáideora sin
@@ -1781,7 +1808,13 @@ ga:
       incompatible_type: Neamh-chomhoiriúnach leis an gcineál iompórtála roghnaithe
       invalid_csv_file: 'Comhad CSV neamhbhailí. Earráid: %{error}'
       invalid_json_file: 'Comhad JSON neamhbhailí. Earráid: %{error}'
-      over_rows_processing_limit: níos mó ná %{count} sraitheanna
+      no_data: Níl aon sonraí sa chomhad seo a thagann leis an gcineál iompórtála a tugadh
+      over_rows_processing_limit:
+        few: tá níos mó ná %{count} ró ann
+        many: tá níos mó ná %{count} ró ann
+        one: tá níos mó ná %{count} ró ann
+        other: tá níos mó ná %{count} ró ann
+        two: tá níos mó ná %{count} ró ann
       status_not_found_warning: Cuireann cuid de do scagairí poist shonracha i bhfolach nach bhfuil ar eolas ag an bhfreastalaí seo. Ní scagfar na poist seo go huathoibríoch má aimsíonn an freastalaí iad níos déanaí.
       too_large: Tá an comhad ró-mhór
     failures: Teipeanna
@@ -1977,7 +2010,12 @@ ga:
     incoming_migrations_html: Chun bogadh ó chuntas eile go dtí an ceann seo, ní mór duit <a href="%{path}">ailias cuntais a chruthú</a> ar dtús.
     moved_msg: Tá do chuntas á atreorú chuig %{acct} anois agus tá do leantóirí á bhogadh anonn.
     not_redirecting: Níl do chuntas á atreorú chuig aon chuntas eile faoi láthair.
-    on_cooldown: D'aistrigh tú do chuntas le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+    on_cooldown:
+      few: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      many: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      one: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      other: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      two: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
     past_migrations: Imirce san am a chuaigh thart
     proceed_with_move: Bog leantóirí
     redirected_msg: Tá do chuntas á atreorú chuig %{acct} anois.
@@ -2168,8 +2206,18 @@ ga:
       account: Postálacha poiblí ó @%{acct}
       tag: 'Postálacha poiblí clibáilte # %{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Tá an teorainn de %{limit} postáil sceidealaithe sáraithe agat don lá atá inniu ann
-    over_total_limit: Tá an teorainn de %{limit} postáil sceidealaithe sáraithe agat
+    over_daily_limit:
+      few: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      many: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      one: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      other: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      two: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+    over_total_limit:
+      few: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      many: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      one: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      other: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      two: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
     too_soon: caithfidh dáta a bheith sa todhchaí
   self_destruct:
     lead_html: Ar an drochuair, tá <strong>%{domain}</strong> ag dúnadh síos go buan. Má bhí cuntas agat ann, ní bheidh tú in ann leanúint ar aghaidh á úsáid, ach is féidir leat cúltaca de do shonraí a iarraidh fós.

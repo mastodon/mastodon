@@ -11,8 +11,8 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { Status } from 'mastodon/components/status';
 import { InterceptStatusClicks } from 'mastodon/components/status/intercept_status_clicks';
-import { StatusQuoteManager } from 'mastodon/components/status_quoted';
 import type { TopStatuses } from 'mastodon/models/annual_report';
 import { makeGetStatus } from 'mastodon/selectors';
 import { useAppSelector } from 'mastodon/store';
@@ -95,7 +95,7 @@ export const HighlightedPost: React.FC<{
       </div>
 
       <InterceptStatusClicks onPreventedClick={handleClick}>
-        <StatusQuoteManager showActions={false} id={statusId} />
+        <Status showActions={false} id={statusId} />
       </InterceptStatusClicks>
     </div>
   );

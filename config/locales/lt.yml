@@ -162,6 +162,8 @@ lt:
       suspension_irreversible: Šios paskyros duomenys negrįžtamai ištrinti. Gali atšaukti paskyros pristabdymą, kad ja būtų galima naudotis, bet nebus atkurti jokie anksčiau turėti duomenys.
       suspension_reversible_hint_html: Paskyra pristabdyta, o duomenys bus visiškai pašalinti %{date}. Iki to laiko paskyrą galima atkurti be jokių neigiamų pasekmių. Jei nori iš karto pašalinti visus paskyros duomenis, gali tai padaryti toliau.
       title: Naudotojai
+      trends:
+        title: Tendencingi įrašai
       unblock_email: Atblokuoti el. pašto adresą
       unblocked_email_msg: Sėkmingai atblokuotas %{username} el. pašto adresas.
       unconfirmed_email: Nepatvirtintas el. pašto adresas.
@@ -756,7 +758,6 @@ lt:
         publishers:
           no_publisher_selected: Jokie leidėjai nebuvo pakeisti, nes nė vienas nebuvo pasirinktas
         title: Tendencingos nuorodos
-        usage_comparison: Bendrinta %{today} kartų šiandien, palyginti su %{yesterday} vakar
       not_allowed_to_trend: Neleidžiama tendencinguoti
       only_allowed: Leidžiama tik
       pending_review: Laukiama peržiūros
@@ -1049,6 +1050,7 @@ lt:
     today: šiandien
   imports:
     errors:
+      no_data: Šiame faile nėra jokių duomenų, atitinkančių nurodytą importo tipą.
       too_large: Failas per didelis.
     modes:
       merge: Sujungti
@@ -1197,8 +1199,6 @@ lt:
     descriptions:
       tag: 'Vieši įrašai su grotažymėmis #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Jūs pasieketė limitą (%{limit}) galimų toot'ų per dieną
-    over_total_limit: Jūs pasieketė %{limit} limitą galimų toot'ų
     too_soon: data turi būti ateityje.
   sessions:
     activity: Paskutinė veikla

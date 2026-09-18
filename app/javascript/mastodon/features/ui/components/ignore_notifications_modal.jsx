@@ -92,11 +92,11 @@ export const IgnoreNotificationsModal = ({ filterType }) => {
 
           <div className='spacer' />
 
-          <button onClick={handleCancel} className='link-button'>
+          <button type='button' onClick={handleCancel} className='link-button'>
             <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
           </button>
 
-          <button onClick={handleClick} className='link-button'>
+          <button type='button' onClick={handleClick} className='link-button'>
             <FormattedMessage id='ignore_notifications_modal.ignore' defaultMessage='Ignore notifications' />
           </button>
         </div>

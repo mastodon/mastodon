@@ -1,4 +1,8 @@
+import { useCallback } from 'react';
+
 import classNames from 'classnames';
+
+import type { IconWeight, Icon as PhosphorIcon } from '@phosphor-icons/react';
 
 import CheckBoxOutlineBlankIcon from '@/material-icons/400-24px/check_box_outline_blank.svg?react';
 import { isProduction } from 'mastodon/utils/environment';
@@ -14,6 +18,7 @@ interface Props extends React.SVGProps<SVGSVGElement> {
   id?: string;
   icon: IconProp;
   noFill?: boolean;
+  weight?: IconWeight;
 }
 
 export const Icon: React.FC<Props> = ({
@@ -58,3 +63,27 @@ export const Icon: React.FC<Props> = ({
     />
   );
 };
+
+type MaybeWeight = IconWeight | false | null;
+
+export const iconWeight = (
+  Icon: PhosphorIcon,
+  weight?: MaybeWeight,
+): React.FC<SVGPropsWithTitle> => {
+  const IconWeight = (props: SVGPropsWithTitle) => (
+    <Icon {...props} weight={weight || 'regular'} />
+  );
+  return IconWeight;
+};
+
+export function useIconWeight(
+  Icon: PhosphorIcon,
+  weight?: MaybeWeight,
+): React.FC<SVGPropsWithTitle> {
+  return useCallback(
+    (props: SVGPropsWithTitle) => (
+      <Icon {...props} weight={weight || 'regular'} />
+    ),
+    [Icon, weight],
+  );
+}
