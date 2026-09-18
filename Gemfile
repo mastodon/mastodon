@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 4.0.0', '< 4.1.0'
+ruby file: '.ruby-version'
 
 gem 'propshaft'
 gem 'puma'
