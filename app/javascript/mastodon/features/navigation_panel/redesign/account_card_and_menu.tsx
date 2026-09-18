@@ -17,12 +17,11 @@ import {
 } from '@phosphor-icons/react';
 
 import { openModal } from '@/mastodon/actions/modal';
-import { Account } from '@/mastodon/components/account';
 import { Avatar } from '@/mastodon/components/avatar';
-import { IconButton } from '@/mastodon/components/button/redesign';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { useAccountHandle } from '@/mastodon/components/display_name/default';
 import {
+  ListItemButton,
   ListItemContent,
   ListItemWrapper,
 } from '@/mastodon/components/list_item';
@@ -52,31 +51,41 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
   }
 
   return (
-    <div className={classes.root}>
-      <Account
-        id={accountId}
-        minimal
-        withBorder={false}
-        withMenu={false}
-        size={32}
-      />
-      <Menu type='navigation'>
-        <MenuTrigger
-          as={IconButton}
-          icon={DotsThreeIcon}
-          variant='ghost'
-          size='sm'
-        >
-          <FormattedMessage
-            id='tabs_bar.account_settings'
-            defaultMessage='Account settings'
-          />
-        </MenuTrigger>
-        <MenuList placement='top' offset={8} strategy='fixed'>
-          <AccountMenuItems />
-        </MenuList>
-      </Menu>
-    </div>
+    <Menu type='navigation'>
+      <MenuTrigger as={AccountMenuTrigger}>
+        <FormattedMessage
+          id='tabs_bar.account_settings'
+          defaultMessage='Account settings'
+        />
+      </MenuTrigger>
+      <MenuList
+        placement='top-start'
+        offset={{ mainAxis: 12, crossAxis: -20 }}
+        strategy='fixed'
+      >
+        <AccountMenuItems />
+      </MenuList>
+    </Menu>
+  );
+};
+
+const AccountMenuTrigger: React.FC<React.ComponentPropsWithoutRef<'button'>> = (
+  props,
+) => {
+  const { accountId } = useIdentity();
+  const account = useAccount(accountId);
+  const handle = useAccountHandle(account);
+
+  return (
+    <ListItemWrapper
+      icon={<Avatar account={account} size={32} />}
+      sideContent={<DotsThreeIcon size={20} className={classes.dotsIcon} />}
+      className={classes.root}
+    >
+      <ListItemButton {...props} subtitle={handle}>
+        <DisplayName variant='simple' account={account} />
+      </ListItemButton>
+    </ListItemWrapper>
   );
 };
 

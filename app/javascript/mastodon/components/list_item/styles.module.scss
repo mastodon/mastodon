@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/mixins';
+
 .wrapper {
   --list-item-padding: 16px;
   --list-item-padding-block: var(--list-item-padding);
@@ -20,7 +22,7 @@
 }
 
 .title {
-  font-weight: 500;
+  @include mixins.type-label;
 
   :any-link,
   button {
@@ -44,7 +46,8 @@
 }
 
 .subtitle {
-  font-size: 13px;
+  @include mixins.type-caption;
+
   color: var(--color-text-secondary);
 }
 
