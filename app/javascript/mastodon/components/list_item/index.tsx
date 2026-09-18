@@ -14,13 +14,15 @@ interface WrapperProps extends Omit<
 }
 
 /**
- * A basic list item component that can be used as a base for more bespoke list items.
+ * A lockup is a combination of an image or icon and some accompanying text on its
+ * side. It's often used as the basis for repeated list items or inside of cards to
+ * represent distinct items (accounts, collections) in the UI.
  *
  * Choose the child of the wrapper component based on needed interactivity:
- * `ListItemContent` for a non-interactive item, `ListItemButton` or `ListItemLink`
+ * `LockupContent` for a non-interactive item, `LockupButton` or `LockupLink`
  * for interactive items.
  */
-export const ListItemWrapper: React.FC<WrapperProps> = ({
+export const LockupWrapper: React.FC<WrapperProps> = ({
   icon,
   sideContent,
   children,
@@ -43,7 +45,7 @@ interface ContentProps {
   subtitleId?: string;
 }
 
-export const ListItemContent = <As extends React.ElementType = 'h3'>({
+export const LockupContent = <As extends React.ElementType = 'h3'>({
   as,
   subtitle,
   subtitleId,
@@ -68,7 +70,7 @@ export const ListItemContent = <As extends React.ElementType = 'h3'>({
 interface LinkProps
   extends React.ComponentPropsWithoutRef<typeof Link>, ContentProps {}
 
-export const ListItemLink = <As extends React.ElementType = 'h3'>({
+export const LockupLink = <As extends React.ElementType = 'h3'>({
   as,
   subtitle,
   subtitleId,
@@ -77,22 +79,18 @@ export const ListItemLink = <As extends React.ElementType = 'h3'>({
   ...otherProps
 }: PolymorphicProps<LinkProps, As>) => {
   return (
-    <ListItemContent
-      as={as ?? 'h3'}
-      subtitle={subtitle}
-      subtitleId={subtitleId}
-    >
+    <LockupContent as={as ?? 'h3'} subtitle={subtitle} subtitleId={subtitleId}>
       <Link className={classNames(className, 'focusable')} {...otherProps}>
         {children}
       </Link>
-    </ListItemContent>
+    </LockupContent>
   );
 };
 
 interface ButtonProps
   extends React.ComponentPropsWithoutRef<'button'>, ContentProps {}
 
-export const ListItemButton = <As extends React.ElementType = 'h3'>({
+export const LockupButton = <As extends React.ElementType = 'h3'>({
   as,
   subtitle,
   subtitleId,
@@ -102,7 +100,7 @@ export const ListItemButton = <As extends React.ElementType = 'h3'>({
 }: PolymorphicProps<ButtonProps, As>) => {
   const Comp = as ?? 'h3';
   return (
-    <ListItemContent as={Comp} subtitle={subtitle} subtitleId={subtitleId}>
+    <LockupContent as={Comp} subtitle={subtitle} subtitleId={subtitleId}>
       <button
         type='button'
         className={classNames(className, 'focusable')}
@@ -110,6 +108,6 @@ export const ListItemButton = <As extends React.ElementType = 'h3'>({
       >
         {children}
       </button>
-    </ListItemContent>
+    </LockupContent>
   );
 };
