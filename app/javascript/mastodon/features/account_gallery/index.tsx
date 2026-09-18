@@ -73,9 +73,10 @@ const selectGalleryTimeline = createAppSelector(
     if (isList(statusIds)) {
       for (const statusId of statusIds) {
         const status = statuses.get(statusId);
+        if (!status) continue;
         items = items.concat(
           (
-            status?.get('media_attachments') as ImmutableList<MediaAttachment>
+            status.get('media_attachments') as ImmutableList<MediaAttachment>
           ).map((media) => media.set('status', status)),
         );
       }
