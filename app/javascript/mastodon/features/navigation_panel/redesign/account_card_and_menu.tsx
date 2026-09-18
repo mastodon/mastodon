@@ -113,7 +113,7 @@ export const AccountMenuItems: React.FC<{
     <>
       {context === 'mobile' && <ProfileMenuItem />}
 
-      <MenuItemLink to={accountBasePath} icon={UserIcon}>
+      <MenuItemLink to={accountBasePath} exact icon={UserIcon}>
         <FormattedMessage
           id='account.view_profile'
           defaultMessage='View profile'
