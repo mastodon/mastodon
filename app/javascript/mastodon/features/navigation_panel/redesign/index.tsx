@@ -23,6 +23,7 @@ import { Callout } from '@/mastodon/components/callout/redesign';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import { useIdentity } from '@/mastodon/identity_context';
+import { disabledAccountId } from '@/mastodon/initial_state';
 import { transientSingleColumn } from '@/mastodon/is_mobile';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { getOrderedLists } from '@/mastodon/selectors/lists';
@@ -33,7 +34,7 @@ import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationFooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
 import { ListSection } from './list_section';
-import { LoggedOutInfo } from './logged_out_info';
+import { DisabledAccountBanner, LoggedOutInfo } from './logged_out_info';
 import { NavigationLink } from './navigation_link';
 import classes from './styles.module.scss';
 
@@ -292,7 +293,7 @@ export const RedesignNavigationPanel: React.FC<{
       )}
       {!signedIn && (
         <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
-          <LoggedOutInfo />
+          {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
           <NavigationFooterLinks
             multiColumn={multiColumn}
             siteName={siteName}
