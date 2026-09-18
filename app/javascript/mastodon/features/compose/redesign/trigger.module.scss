@@ -19,6 +19,7 @@
 .composer {
   width: 100%;
   top: env(safe-area-inset-top);
+  padding-block-end: max(env(safe-area-inset-bottom), var(--space-4));
 
   // Set from the visualViewport API.
   height: var(--viewport-height, 100vh);
