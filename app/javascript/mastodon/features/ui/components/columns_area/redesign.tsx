@@ -48,7 +48,7 @@ export const ColumnsAreaRedesign: React.FC<{
   return (
     <main ref={ref} className={multiColClasses.root}>
       <div className={multiColClasses.navigationWrapper}>
-        <RedesignNavigationPanel />
+        <RedesignNavigationPanel multiColumn />
       </div>
       <ComposeRedesignButton />
       <MultiColumnContent>{children}</MultiColumnContent>

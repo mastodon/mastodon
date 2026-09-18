@@ -76,6 +76,11 @@
     background-color: var(--color-bg-highlight);
   }
 
+  &[aria-current='page'] {
+    font-weight: bold;
+    background-color: var(--color-bg-highlight);
+  }
+
   &:focus {
     // Override overeager global styles
     border-radius: var(--radius-3);

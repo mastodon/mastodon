@@ -113,7 +113,7 @@ export const AccountMenuItems: React.FC<{
     <>
       {context === 'mobile' && <ProfileMenuItem />}
 
-      <MenuItemLink to={accountBasePath} icon={UserIcon}>
+      <MenuItemLink to={accountBasePath} exact icon={UserIcon}>
         <FormattedMessage
           id='account.view_profile'
           defaultMessage='View profile'
@@ -197,7 +197,7 @@ export const AccountMenuItems: React.FC<{
       <MenuItem onClick={confirmLogout} icon={SignOutIcon}>
         <FormattedMessage
           id='navigation_bar.sign_out'
-          defaultMessage='Sign out'
+          defaultMessage='Sign Out'
         />
       </MenuItem>
     </>
@@ -216,7 +216,7 @@ const ProfileMenuItem: React.FC = () => {
   const accountBasePath = `/@${account?.acct}`;
 
   return (
-    <MenuItemLink to={accountBasePath}>
+    <MenuItemLink to={accountBasePath} exact>
       <LockupWrapper
         icon={<Avatar account={account} size={40} />}
         className={classes.profileMenuItem}
