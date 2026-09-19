@@ -64,7 +64,7 @@ export function useStatusFetch(
     }
     if (!status) {
       dispatch(fetchStatus(id));
-    } else if (withAccount && !account) {
+    } else if (withAccount && status.account && !account) {
       dispatch(fetchAccount(status.account));
     } else if (withReblog && status.reblog && !reblog) {
       dispatch(fetchStatus(status.reblog));

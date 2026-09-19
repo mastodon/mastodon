@@ -132,9 +132,10 @@
   width: 100%;
   outline: none;
   background: none;
+  min-height: 3lh;
 
   &:focus {
-    outline: 2px solid var(--color-border-brand);
+    outline: var(--outline-focus-default);
     outline-offset: -2px;
 
     &::placeholder {
