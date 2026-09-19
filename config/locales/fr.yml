@@ -135,11 +135,12 @@ fr:
       public: Public
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir le profil
-      redownloaded_msg: Le profil de %{username} a été actualisé avec succès depuis l’origine
+      redownloaded_msg: Le profil de %{username} a été actualisé avec succès depuis son serveur d'origine
+      registration_app: Application d'inscription
       reject: Rejeter
       rejected_msg: La demande d’inscription de %{username} a été rejetée avec succès
       remote_suspension_irreversible: Les données de ce compte ont été supprimées définitivement.
-      remote_suspension_reversible_hint_html: Ce compte a été suspendu par son serveur d'accueil, et les données rattachées seront supprimées le %{date}. Jusqu'à cette date, il peut être restauré sans aucune perte par le serveur distant. Si vous souhaitez supprimer immédiatement toutes les données de ce compte, vous pouvez le faire ci-dessous.
+      remote_suspension_reversible_hint_html: Ce compte a été suspendu par son serveur, et les données rattachées seront supprimées le %{date}. Jusqu'à cette date, il peut être restauré sans aucune perte par le serveur distant. Si vous souhaitez supprimer immédiatement toutes les données de ce compte, vous pouvez le faire ci-dessous.
       remove_avatar: Supprimer l’avatar
       remove_header: Supprimer l'image de couverture
       removed_avatar_msg: L’avatar de %{username} a été supprimé avec succès
@@ -216,6 +217,7 @@ fr:
         create_user_role: Créer un rôle
         create_username_block: Créer une règle de nom d'utilisateur·rice
         demote_user: Rétrograder un·e utilisateur·ice
+        destroy_account: Supprimer les données de compte
         destroy_announcement: Supprimer une annonce
         destroy_canonical_email_block: Supprimer un blocage de courriel
         destroy_custom_emoji: Supprimer un émoji personnalisé
@@ -284,6 +286,7 @@ fr:
         create_user_role_html: "%{name} a créé le rôle %{target}"
         create_username_block_html: "%{name} a ajouté une règle pour les noms d'utilisateur·rice contenant %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
+        destroy_account_html: "%{name} a supprimé les données de compte pour %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
         destroy_canonical_email_block_html: "%{name} a débloqué l'adresse courriel ayant l'empreinte %{target}"
         destroy_collection_html: "%{name} a supprimé la collection de %{target}"
