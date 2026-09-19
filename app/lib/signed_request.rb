@@ -25,14 +25,7 @@ class SignedRequest
 
     def verified?(keypair)
       signature = Base64.decode64(signature_params['signature'])
-      compare_signed_string = build_signed_string(include_query_string: true)
-
-      return true unless verify_signature(keypair, signature, compare_signed_string).nil?
-
-      compare_signed_string = build_signed_string(include_query_string: false)
-      return true unless verify_signature(keypair, signature, compare_signed_string).nil?
-
-      false
+      verify_signature(keypair, signature, build_signed_string)
     end
 
     def created_time
@@ -100,23 +93,16 @@ class SignedRequest
     end
 
     def verify_signature(keypair, signature, compare_signed_string)
-      true if keypair.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), signature, compare_signed_string)
+      keypair.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), signature, compare_signed_string)
     rescue OpenSSL::PKey::PKeyError
-      nil
+      false
     end
 
-    def build_signed_string(include_query_string: true)
+    def build_signed_string
       signed_headers.map do |signed_header|
         case signed_header
         when HttpSignatureDraft::REQUEST_TARGET
-          if include_query_string
-            "#{HttpSignatureDraft::REQUEST_TARGET}: #{@request.method.downcase} #{@request.original_fullpath}"
-          else
-            # Current versions of Mastodon incorrectly omit the query string from the (request-target) pseudo-header.
-            # Therefore, temporarily support such incorrect signatures for compatibility.
-            # TODO: remove eventually some time after release of the fixed version
-            "#{HttpSignatureDraft::REQUEST_TARGET}: #{@request.method.downcase} #{@request.path}"
-          end
+          "#{HttpSignatureDraft::REQUEST_TARGET}: #{@request.method.downcase} #{@request.original_fullpath}"
         when '(created)'
           raise Mastodon::SignatureVerificationError, 'Invalid pseudo-header (created) for rsa-sha256' unless signature_algorithm == 'hs2019'
           raise Mastodon::SignatureVerificationError, 'Pseudo-header (created) used but corresponding argument missing' if signature_params['created'].blank?
