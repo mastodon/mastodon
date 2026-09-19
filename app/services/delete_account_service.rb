@@ -330,7 +330,7 @@ class DeleteAccountService < BaseService
   end
 
   def skip_activitypub?
-    @options[:skip_activitypub]
+    @options[:skip_activitypub] || !@account.has_federated?
   end
 
   def relationship_severance_event
