@@ -27,6 +27,19 @@ RSpec.describe User do
     it { is_expected.to have_many(:login_activities) }
   end
 
+  describe '#role' do
+    it 'caches the default role in the association when role_id is nil' do
+      user = described_class.new
+      default_role = instance_double(UserRole)
+      allow(UserRole).to receive(:everyone).and_return(default_role)
+
+      2.times { user.role }
+
+      expect(UserRole).to have_received(:everyone).once
+      expect(user.association(:role).target).to be(default_role)
+    end
+  end
+
   describe 'Validations' do
     it { is_expected.to_not allow_value('john@').for(:email) }
 
