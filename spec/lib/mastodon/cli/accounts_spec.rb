@@ -4,6 +4,8 @@ require 'rails_helper'
 require 'mastodon/cli/accounts'
 
 RSpec.describe Mastodon::CLI::Accounts do
+  RSpec::Matchers.define_negated_matcher :not_have_enqueued_mail, :have_enqueued_mail
+
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }
@@ -127,6 +129,32 @@ RSpec.describe Mastodon::CLI::Accounts do
           user = User.find_by(email: options[:email])
 
           expect(user.approved?).to be(true)
+        end
+
+        context 'with --confirmed option' do
+          let(:options) { { email: 'tootctl@example.com', confirmed: true, approve: true } }
+
+          around do |example|
+            queue_adapter = ActiveJob::Base.queue_adapter
+            ActiveJob::Base.queue_adapter = :test
+            example.run
+            ActiveJob::Base.queue_adapter = queue_adapter
+          end
+
+          before { Fabricate(:owner_user) }
+
+          it 'creates an approved user without notifying staff about a pending account' do
+            expect { subject }
+              .to output_results('New password')
+              .and not_have_enqueued_mail(AdminMailer, :new_pending_account)
+          end
+
+          it 'prepares the new user only once' do
+            expect { subject }
+              .to output_results('New password')
+              .and have_enqueued_mail(UserMailer, :welcome).once
+              .and enqueue_sidekiq_job(BootstrapTimelineWorker).once
+          end
         end
       end
 
