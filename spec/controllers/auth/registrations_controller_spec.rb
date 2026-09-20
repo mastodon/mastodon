@@ -283,6 +283,37 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
+    context 'with an invalid date of birth' do
+      subject do
+        Setting.registrations_mode = 'open'
+        Setting.min_age = 16
+        post :create, params: {
+          user: {
+            :account_attributes => { username: 'test' },
+            :email => 'test@example.com',
+            :password => '12345678',
+            :password_confirmation => '12345678',
+            :agreement => 'true',
+            'date_of_birth(1i)' => '2019',
+            'date_of_birth(2i)' => '32',
+            'date_of_birth(3i)' => '01',
+          },
+        }
+      end
+
+      it 'responds with an error message about the date of birth' do
+        expect { subject }.to_not raise_error
+
+        expect(response).to have_http_status(:success)
+        expect(date_of_birth_error_text).to eq(I18n.t('errors.messages.invalid'))
+        expect(User.find_by(email: 'test@example.com')).to be_nil
+      end
+
+      def date_of_birth_error_text
+        response.parsed_body.css('.user_date_of_birth .error').text
+      end
+    end
+
     it_behaves_like 'registration mode based responses', :create
   end
 
