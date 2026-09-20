@@ -120,6 +120,12 @@
   @include mixins.type-body;
 
   padding: var(--space-2);
+
+  // Prevent automatic page zoom in Safari when focusing
+  // text fields with font-sizes below 16px
+  @media (width <= #{variables.$mobile-menu-breakpoint}) {
+    font-size: var(--fs-16);
+  }
 }
 
 .textarea {
