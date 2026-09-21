@@ -4,24 +4,58 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router';
 
-import { mentionComposeById } from '@/mastodon/actions/compose';
+import {
+  muteAccount,
+  unblockAccount,
+  unmuteAccount,
+} from '@/mastodon/actions/accounts';
+import { initBlockModal } from '@/mastodon/actions/blocks';
+import {
+  mentionComposeById,
+  directCompose,
+  mentionCompose,
+} from '@/mastodon/actions/compose';
+import {
+  initDomainBlockModal,
+  unblockDomain,
+} from '@/mastodon/actions/domain_blocks';
 import type { StatusInteractionIntent } from '@/mastodon/actions/interactions_typed';
 import { statusInteraction } from '@/mastodon/actions/interactions_typed';
 import { openModal } from '@/mastodon/actions/modal';
 import { toggleStatusSpoilers } from '@/mastodon/actions/statuses';
+import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
+import { useIdentity } from '@/mastodon/identity_context';
+import { quickBoosting } from '@/mastodon/initial_state';
+import type { MenuItem as DropdownItem } from '@/mastodon/models/dropdown_menu';
+import type { Relationship } from '@/mastodon/models/relationship';
 import type {
   AccountStatusShape,
   ExpandedStatusShape,
   StatusShape,
 } from '@/mastodon/models/status';
+import {
+  PERMISSION_MANAGE_FEDERATION,
+  PERMISSION_MANAGE_USERS,
+} from '@/mastodon/permissions';
 import { selectStatusFilters } from '@/mastodon/selectors/filters';
+import type {
+  StatusConditions,
+  StatusInteractionsAllowed,
+} from '@/mastodon/selectors/statuses';
+import {
+  selectStatusConditions,
+  selectStatusInteractionsAllowed,
+} from '@/mastodon/selectors/statuses';
 import { useAppSelector, useAppDispatch } from '@/mastodon/store';
+import type { AppDispatch } from '@/mastodon/store';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
 import { FOCUS_TARGET } from '../navigation_focus_target';
 
+import { quoteItemState } from './boost_button_utils';
 import { useElementHandledLink } from './handled_link';
 import type { StatusContextType } from './types';
 
@@ -33,19 +67,6 @@ export const StatusContext = createContext<{
 export function useStatusContext() {
   return use(StatusContext);
 }
-
-const messages = defineMessages({
-  quote_noun: {
-    id: 'status.quote_noun',
-    defaultMessage: 'Quote',
-    description: 'Quote as a noun',
-  },
-  contains_quote: {
-    id: 'status.contains_quote',
-    defaultMessage: 'Contains quote',
-  },
-  boosted: { id: 'status.reblogged_by', defaultMessage: '{name} boosted' },
-});
 
 export function useStatusHandlers({
   status,
@@ -208,6 +229,19 @@ export function useStatusHandlers({
 }
 export type StatusHandlers = ReturnType<typeof useStatusHandlers>;
 
+const screenReaderMessages = defineMessages({
+  quote_noun: {
+    id: 'status.quote_noun',
+    defaultMessage: 'Quote',
+    description: 'Quote as a noun',
+  },
+  contains_quote: {
+    id: 'status.contains_quote',
+    defaultMessage: 'Contains quote',
+  },
+  boosted: { id: 'status.reblogged_by', defaultMessage: '{name} boosted' },
+});
+
 const domParser = new DOMParser();
 export function useTextForScreenReader({
   statusId,
@@ -232,12 +266,14 @@ export function useTextForScreenReader({
       .documentElement.textContent;
 
     const values = [
-      isQuote ? intl.formatMessage(messages.quote_noun) : undefined,
+      isQuote ? intl.formatMessage(screenReaderMessages.quote_noun) : undefined,
       displayName.length === 0
         ? status.account.acct.split('@')[0]
         : displayName,
       spoilerText && status.hidden ? spoilerText : contentText,
-      status.quote ? intl.formatMessage(messages.contains_quote) : undefined,
+      status.quote
+        ? intl.formatMessage(screenReaderMessages.contains_quote)
+        : undefined,
       intl.formatDate(status.created_at, {
         hour: '2-digit',
         minute: '2-digit',
@@ -246,7 +282,7 @@ export function useTextForScreenReader({
       }),
       status.account.acct,
       reblogAcct
-        ? intl.formatMessage(messages.boosted, { name: reblogAcct })
+        ? intl.formatMessage(screenReaderMessages.boosted, { name: reblogAcct })
         : false,
     ].filter((val) => !!val);
 
@@ -300,3 +336,407 @@ export const onStatusLinksDisabled: OnElementHandler<AccountStatusShape> = (
   }
   return undefined;
 };
+
+const menuMessages = defineMessages({
+  delete: { id: 'status.delete', defaultMessage: 'Delete' },
+  redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
+  edit: { id: 'status.edit', defaultMessage: 'Edit' },
+  direct: { id: 'status.direct', defaultMessage: 'Privately mention @{name}' },
+  mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
+  mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
+  block: { id: 'account.block', defaultMessage: 'Block @{name}' },
+  share: { id: 'status.share', defaultMessage: 'Share' },
+  open: { id: 'status.open', defaultMessage: 'Expand this status' },
+  report: { id: 'status.report', defaultMessage: 'Report @{name}' },
+  muteConversation: {
+    id: 'status.mute_conversation',
+    defaultMessage: 'Mute conversation',
+  },
+  unmuteConversation: {
+    id: 'status.unmute_conversation',
+    defaultMessage: 'Unmute conversation',
+  },
+  pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
+  unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
+  embed: { id: 'status.embed', defaultMessage: 'Get embed code' },
+  admin_account: {
+    id: 'status.admin_account',
+    defaultMessage: 'Open moderation interface for @{name}',
+  },
+  admin_status: {
+    id: 'status.admin_status',
+    defaultMessage: 'Open this post in the moderation interface',
+  },
+  admin_domain: {
+    id: 'status.admin_domain',
+    defaultMessage: 'Open moderation interface for {domain}',
+  },
+  copy: { id: 'status.copy', defaultMessage: 'Copy link to post' },
+  blockDomain: {
+    id: 'account.block_domain',
+    defaultMessage: 'Block domain {domain}',
+  },
+  unblockDomain: {
+    id: 'account.unblock_domain',
+    defaultMessage: 'Unblock domain {domain}',
+  },
+  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
+  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
+  filter: { id: 'status.filter', defaultMessage: 'Filter this post' },
+  openOriginalPage: {
+    id: 'account.open_original_page',
+    defaultMessage: 'Open original page',
+  },
+  revokeQuote: {
+    id: 'status.revoke_quote',
+    defaultMessage: 'Remove my post from @{name}’s post',
+  },
+  quotePolicyChange: {
+    id: 'status.quote_policy_change',
+    defaultMessage: 'Change who can quote',
+  },
+});
+
+export function useStatusMenuActions({
+  status,
+  contextType,
+  withDismiss = false,
+}: {
+  status: AccountStatusShape;
+  withDismiss?: boolean;
+  contextType?: StatusContextType;
+}) {
+  const account = status.account;
+  const { permissions } = useIdentity();
+  const relationship = useRelationship(account.id);
+  const intl = useIntl();
+  const dispatch = useAppDispatch();
+
+  const conditions = useAppSelector((state) =>
+    selectStatusConditions(state, status.id),
+  );
+  const interactions = useAppSelector((state) =>
+    selectStatusInteractionsAllowed(state, status.id),
+  );
+  const statusInteractionFactory = useCallback(
+    (intent: StatusInteractionIntent) => {
+      return () => {
+        dispatch(
+          statusInteraction({ statusId: status.id, contextType, intent }),
+        );
+      };
+    },
+    [contextType, dispatch, status.id],
+  );
+
+  return useMemo(
+    () =>
+      getMenuItems({
+        status,
+        conditions,
+        interactions,
+        onStatusInteraction: statusInteractionFactory,
+        withDismiss,
+        permissions,
+        intl,
+        relationship,
+        dispatch,
+      }),
+    [
+      status,
+      conditions,
+      interactions,
+      statusInteractionFactory,
+      withDismiss,
+      permissions,
+      intl,
+      relationship,
+      dispatch,
+    ],
+  );
+}
+
+interface MenuItemsParams {
+  status: AccountStatusShape;
+  conditions: StatusConditions;
+  interactions: StatusInteractionsAllowed;
+  onStatusInteraction: (intent: StatusInteractionIntent) => () => void;
+  withDismiss?: boolean;
+  permissions: number;
+  intl: ReturnType<typeof useIntl>;
+  relationship?: Relationship | null;
+  dispatch: AppDispatch;
+}
+
+function getMenuItems({
+  status,
+  conditions,
+  interactions,
+  onStatusInteraction,
+  withDismiss,
+  permissions,
+  intl,
+  relationship,
+  dispatch,
+}: MenuItemsParams) {
+  const menu: DropdownItem[] = [];
+
+  const statusId = status.id;
+  const account = status.account;
+  const statusUrl = status.url ?? status.uri;
+  const { isPublic, isLocal, isLoggedIn, isMine } = conditions;
+
+  menu.push({
+    text: intl.formatMessage(menuMessages.open),
+    to: `/@${account.acct}/${statusId}`,
+  });
+
+  if (isPublic && !isLocal) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.openOriginalPage),
+      href: statusUrl,
+    });
+  }
+
+  menu.push({
+    text: intl.formatMessage(menuMessages.copy),
+    action: onStatusInteraction('copy'),
+  });
+
+  if (isPublic && 'share' in navigator) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.share),
+      action: () => {
+        void navigator.share({
+          url: statusUrl,
+        });
+      },
+    });
+  }
+
+  if (interactions.embed) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.embed),
+      action: onStatusInteraction('embed'),
+    });
+  }
+
+  if (!isLoggedIn) {
+    return menu;
+  }
+
+  if (quickBoosting) {
+    menu.push(null);
+    const quoteItem = quoteItemState(conditions);
+    menu.push({
+      text: intl.formatMessage(quoteItem.title),
+      description: quoteItem.meta
+        ? intl.formatMessage(quoteItem.meta)
+        : undefined,
+      disabled: quoteItem.disabled,
+      action: onStatusInteraction('quote'),
+    });
+  }
+
+  menu.push(null);
+
+  if (interactions.pin) {
+    menu.push({
+      text: intl.formatMessage(
+        status.pinned ? menuMessages.unpin : menuMessages.pin,
+      ),
+      action: onStatusInteraction('pin'),
+    });
+    menu.push(null);
+  }
+
+  if (interactions.mute || withDismiss) {
+    menu.push({
+      text: intl.formatMessage(
+        status.muted
+          ? menuMessages.unmuteConversation
+          : menuMessages.muteConversation,
+      ),
+      action: onStatusInteraction('mute'),
+    });
+    if (interactions.editQuotePolicy && !isRedesignEnabled()) {
+      menu.push({
+        text: intl.formatMessage(menuMessages.quotePolicyChange),
+        action: onStatusInteraction('editQuotePolicy'),
+      });
+    }
+    menu.push(null);
+  }
+
+  if (interactions.edit && interactions.delete && interactions.redraft) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.edit),
+      action: onStatusInteraction('edit'),
+    });
+    menu.push({
+      text: intl.formatMessage(menuMessages.delete),
+      action: onStatusInteraction('delete'),
+      dangerous: true,
+    });
+    menu.push({
+      text: intl.formatMessage(menuMessages.redraft),
+      action: onStatusInteraction('redraft'),
+      dangerous: true,
+    });
+  }
+
+  if (isMine) {
+    // Add the filter to handle the edge case of not having account data.
+    if (interactions.filter) {
+      menu.push(null);
+      menu.push({
+        text: intl.formatMessage(menuMessages.filter),
+        action: onStatusInteraction('filter'),
+        dangerous: true,
+      });
+    }
+    return menu;
+  }
+
+  if (!account.invalid_handle) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.mention, {
+        name: account.username,
+      }),
+      action: () => {
+        dispatch(mentionCompose(account));
+      },
+    });
+    menu.push({
+      text: intl.formatMessage(menuMessages.direct, {
+        name: account.username,
+      }),
+      action: () => {
+        dispatch(directCompose(account));
+      },
+    });
+    menu.push(null);
+  }
+
+  if (interactions.revokeQuote) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.revokeQuote, {
+        name: account.username,
+      }),
+      action: onStatusInteraction('revokeQuote'),
+      dangerous: true,
+    });
+  }
+
+  const isMuted = !!relationship?.get('muting');
+  menu.push({
+    text: intl.formatMessage(
+      isMuted ? menuMessages.unmute : menuMessages.mute,
+      {
+        name: account.username,
+      },
+    ),
+    action: () => {
+      if (isMuted) {
+        dispatch(unmuteAccount(account.id));
+      } else {
+        dispatch(muteAccount(account.id));
+      }
+    },
+    dangerous: !isMuted,
+  });
+
+  const isBlocking = !!relationship?.blocking;
+  menu.push({
+    text: intl.formatMessage(
+      isBlocking ? menuMessages.unblock : menuMessages.block,
+      {
+        name: account.username,
+      },
+    ),
+    action: () => {
+      if (isBlocking) {
+        dispatch(unblockAccount(account.id));
+      } else {
+        dispatch(initBlockModal(account));
+      }
+    },
+    dangerous: !isBlocking,
+  });
+
+  if (interactions.filter) {
+    menu.push(null);
+    menu.push({
+      text: intl.formatMessage(menuMessages.filter),
+      action: onStatusInteraction('filter'),
+      dangerous: true,
+    });
+  }
+  menu.push(null);
+
+  menu.push({
+    text: intl.formatMessage(menuMessages.report, {
+      name: account.username,
+    }),
+    action: onStatusInteraction('report'),
+    dangerous: true,
+  });
+
+  const domain = account.acct.split('@')[1];
+
+  if (!isLocal) {
+    menu.push(null);
+
+    const isDomainBlocking = !!relationship?.domain_blocking;
+    menu.push({
+      text: intl.formatMessage(
+        isDomainBlocking
+          ? menuMessages.unblockDomain
+          : menuMessages.blockDomain,
+        { domain },
+      ),
+      action: () => {
+        if (isDomainBlocking) {
+          dispatch(unblockDomain(domain));
+        } else {
+          dispatch(initDomainBlockModal(account));
+        }
+      },
+      dangerous: !isDomainBlocking,
+    });
+  }
+
+  const canManageUsers =
+    (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS;
+  const canManageFederation =
+    (permissions & PERMISSION_MANAGE_FEDERATION) ===
+      PERMISSION_MANAGE_FEDERATION && !isLocal;
+
+  if (!canManageUsers && !canManageFederation) {
+    return menu;
+  }
+
+  menu.push(null);
+  if (canManageUsers) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.admin_account, {
+        name: account.username,
+      }),
+      href: `/admin/accounts/${account.id}`,
+    });
+    menu.push({
+      text: intl.formatMessage(menuMessages.admin_status),
+      href: `/admin/accounts/${account.id}/statuses/${status.id}`,
+    });
+  }
+  if (canManageFederation) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.admin_domain, {
+        domain,
+      }),
+      href: `/admin/instances/${domain}`,
+    });
+  }
+
+  return menu;
+}
