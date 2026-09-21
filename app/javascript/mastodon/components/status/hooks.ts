@@ -5,6 +5,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import { useHistory } from 'react-router';
 
 import {
+  followAccount,
   muteAccount,
   unblockAccount,
   unmuteAccount,
@@ -341,9 +342,18 @@ const menuMessages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   edit: { id: 'status.edit', defaultMessage: 'Edit' },
+  follow: { id: 'status.follow', defaultMessage: 'Follow @{name}' },
   direct: { id: 'status.direct', defaultMessage: 'Privately mention @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
+  muteBoosts: {
+    id: 'account.mute_boosts',
+    defaultMessage: 'Mute boosts from @{name}',
+  },
+  unmuteBoosts: {
+    id: 'account.unmute_boosts',
+    defaultMessage: 'Unmute boosts from @{name}',
+  },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   share: { id: 'status.share', defaultMessage: 'Share' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
@@ -599,6 +609,17 @@ function getMenuItems({
   }
 
   if (!account.invalid_handle) {
+    if (relationship && !relationship.following) {
+      menu.push({
+        text: intl.formatMessage(menuMessages.follow, {
+          name: account.username,
+        }),
+        action: () => {
+          dispatch(followAccount(account.id));
+        },
+      });
+    }
+
     menu.push({
       text: intl.formatMessage(menuMessages.mention, {
         name: account.username,
@@ -628,7 +649,25 @@ function getMenuItems({
     });
   }
 
-  const isMuted = !!relationship?.get('muting');
+  if (relationship?.following && !relationship.muting) {
+    const isMutingBoosts = relationship.showing_reblogs;
+    menu.push({
+      text: intl.formatMessage(
+        isMutingBoosts ? menuMessages.muteBoosts : menuMessages.unmuteBoosts,
+        { name: account.username },
+      ),
+      action: () => {
+        dispatch(
+          followAccount(account.id, {
+            reblogs: !isMutingBoosts,
+          }),
+        );
+      },
+      dangerous: true,
+    });
+  }
+
+  const isMuted = !!relationship?.muting;
   menu.push({
     text: intl.formatMessage(
       isMuted ? menuMessages.unmute : menuMessages.mute,
