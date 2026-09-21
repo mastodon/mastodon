@@ -80,7 +80,7 @@ export const StatusPage: React.FC = () => {
   );
 
   const ancestorIds = useAppSelector((state) =>
-    getAncestorsIds(state, status?.in_reply_to_id),
+    getAncestorsIds(state, statusId),
   );
   const descendantIds = useAppSelector((state) =>
     getDescendantsIds(state, statusId),
@@ -189,11 +189,14 @@ export const StatusPage: React.FC = () => {
             fullscreen,
           })}
         >
-          {ancestorIds.length > 0 && (
-            <div className={classes.thread}>
-              <StatusRelativeList statusIds={ancestorIds} rootId={statusId} />
-            </div>
-          )}
+          {
+            // Length needs to be greater than 1, as ancestorIds includes the current root ID.
+            ancestorIds.length > 1 && (
+              <div className={classes.thread}>
+                <StatusRelativeList statusIds={ancestorIds} rootId={statusId} />
+              </div>
+            )
+          }
 
           <NavigationFocusTarget
             as='div'
@@ -238,18 +241,23 @@ export const StatusPage: React.FC = () => {
   );
 };
 
-const StatusRelativeList: React.FC<{ statusIds: string[]; rootId: string }> = ({
-  statusIds,
-  rootId,
-}) => {
-  return statusIds.map((statusId, index) => (
-    <Status
-      key={statusId}
-      id={statusId}
-      rootId={rootId}
-      contextType='thread'
-      previousId={statusIds[index - 1]}
-      nextId={statusIds[index + 1]}
-    />
-  ));
+const StatusRelativeList: React.FC<{
+  statusIds: string[];
+  rootId: string;
+}> = ({ statusIds, rootId }) => {
+  return (
+    statusIds
+      // Omits the current post ID, but it still is in statusIds so nextId can link correctly.
+      .filter((statusId) => statusId !== rootId)
+      .map((statusId, index) => (
+        <Status
+          key={statusId}
+          id={statusId}
+          rootId={rootId}
+          contextType='thread'
+          previousId={statusIds[index - 1]}
+          nextId={statusIds[index + 1]}
+        />
+      ))
+  );
 };
