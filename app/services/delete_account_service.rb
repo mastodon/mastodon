@@ -11,6 +11,7 @@ class DeleteAccountService < BaseService
     block_relationships
     blocked_by_relationships
     collections
+    collection_items
     conversation_mutes
     conversations
     custom_filters
