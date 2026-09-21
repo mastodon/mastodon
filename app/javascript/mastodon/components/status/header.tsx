@@ -58,20 +58,20 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
     displayName = (
       <FormattedMessage
         id='status.header.to_followers'
-        defaultMessage='{displayName} to Followers {count, plural, =0 {} one {+ # other} other {+ # others}}'
-        description='DisplayName is the author, count is # of other people mentioned in the post'
+        defaultMessage='{author} to Followers {count, plural, =0 {} one {+ # other} other {+ # others}}'
+        description='Count is # of other people mentioned in the post'
         tagName='span'
-        values={{ displayName, count: status.mentions.length }}
+        values={{ author: displayName, count: status.mentions.length }}
       />
     );
   } else if (status.visibility === 'direct') {
     displayName = (
       <FormattedMessage
         id='status.header.message_to_me'
-        defaultMessage='{displayName} to You {count, plural, =0 {} one {+ # other} other {+ # others}}'
+        defaultMessage='{author} to You {count, plural, =0 {} one {+ # other} other {+ # others}}'
         description='DisplayName is the author, count is # of other people mentioned in the post'
         tagName='span'
-        values={{ displayName, count: status.mentions.length - 1 }}
+        values={{ author: displayName, count: status.mentions.length - 1 }}
       />
     );
   }
