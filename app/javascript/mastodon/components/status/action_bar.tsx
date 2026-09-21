@@ -79,7 +79,8 @@ interface StatusActionBarProps {
   statusId: string;
   withDismiss?: boolean;
   withCounters?: boolean;
-  onlyInteractions?: boolean;
+  /** Only show methods to respond (reply, boost, like) and not sharing, bookmarking, and the overflow menu. */
+  onlyResponses?: boolean;
 }
 
 const messages = defineMessages({
@@ -153,7 +154,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   statusId,
   withDismiss,
   withCounters,
-  onlyInteractions,
+  onlyResponses,
 }) => {
   const status = useStatus(statusId);
   const quotedAccountId = useAppSelector(
@@ -215,7 +216,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   const shouldShowQuoteRemovalHint =
     isQuotingMe && contextType === 'notifications';
 
-  const interactionButtons = (
+  const responseButtons = (
     <>
       <Button
         size='sm'
@@ -239,20 +240,20 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         title={favouriteTitle}
         leadingIcon={favouriteIcon}
         onClick={handleFavouriteClick}
-        className={classNames(!onlyInteractions && classes.actionsButtonGap)}
+        className={classNames(!onlyResponses && classes.actionsButtonGap)}
       >
         {withCounters && status.favourites_count}
       </ToggleButton>
     </>
   );
 
-  if (onlyInteractions) {
-    return <div className={classes.actions}>{interactionButtons}</div>;
+  if (onlyResponses) {
+    return <div className={classes.actions}>{responseButtons}</div>;
   }
 
   return (
     <div className={classes.actions}>
-      {interactionButtons}
+      {responseButtons}
 
       {isPublic && (
         <IconButton
