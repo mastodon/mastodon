@@ -200,7 +200,6 @@ export const StatusPage: React.FC = () => {
               active={status.bookmarked}
               icon={bookmarkIcon}
               onClick={handleBookmarkClick}
-              aria-pressed={status.bookmarked}
             >
               {!status.bookmarked ? (
                 <FormattedMessage

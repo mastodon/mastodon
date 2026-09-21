@@ -450,6 +450,7 @@ export function useStatusMenuActions({
         permissions,
         intl,
         relationship,
+        contextType,
         dispatch,
       }),
     [
@@ -461,6 +462,7 @@ export function useStatusMenuActions({
       permissions,
       intl,
       relationship,
+      contextType,
       dispatch,
     ],
   );
@@ -475,6 +477,7 @@ interface MenuItemsParams {
   permissions: number;
   intl: ReturnType<typeof useIntl>;
   relationship?: Relationship | null;
+  contextType?: StatusContextType;
   dispatch: AppDispatch;
 }
 
@@ -487,6 +490,7 @@ function getMenuItems({
   permissions,
   intl,
   relationship,
+  contextType,
   dispatch,
 }: MenuItemsParams) {
   const menu: DropdownItem[] = [];
@@ -496,10 +500,12 @@ function getMenuItems({
   const statusUrl = status.url ?? status.uri;
   const { isPublic, isLocal, isLoggedIn, isMine } = conditions;
 
-  menu.push({
-    text: intl.formatMessage(menuMessages.open),
-    to: `/@${account.acct}/${statusId}`,
-  });
+  if (contextType !== 'detailed') {
+    menu.push({
+      text: intl.formatMessage(menuMessages.open),
+      to: `/@${account.acct}/${statusId}`,
+    });
+  }
 
   if (isPublic && !isLocal) {
     menu.push({

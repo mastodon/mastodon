@@ -184,7 +184,6 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         active={status.bookmarked}
         icon={bookmarkIcon}
         onClick={handleBookmarkClick}
-        aria-pressed={status.bookmarked}
       >
         {!status.bookmarked ? (
           <FormattedMessage id='status.bookmark' defaultMessage='Bookmark' />
