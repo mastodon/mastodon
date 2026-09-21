@@ -19,11 +19,16 @@ import {
   FOCUS_TARGET,
   NavigationFocusTarget,
 } from '@/mastodon/components/navigation_focus_target';
-import { useTextForScreenReader } from '@/mastodon/components/status/hooks';
+import { StatusActionItem } from '@/mastodon/components/status/action_bar';
+import {
+  useStatusMenuActions,
+  useTextForScreenReader,
+} from '@/mastodon/components/status/hooks';
 import { StatusRedesign as Status } from '@/mastodon/components/status/status';
 import { ScrollContainer } from '@/mastodon/containers/scroll_container';
 import type { ShouldUpdateScrollFn } from '@/mastodon/containers/scroll_container/default_should_update_scroll';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
+import type { ExpandedStatusShape } from '@/mastodon/models/status';
 import {
   getAncestorsIds,
   getDescendantsIds,
@@ -177,8 +182,7 @@ export const StatusPage: React.FC = () => {
               />
             }
           >
-            WIP: This menu will contain post actions from the new Status
-            component
+            <StatusMenuItems status={status} />
           </ColumnSettingsMenu>
         }
       />
@@ -250,6 +254,16 @@ export const StatusPage: React.FC = () => {
       </Helmet>
     </Column>
   );
+};
+
+const StatusMenuItems: React.FC<{ status: ExpandedStatusShape }> = ({
+  status,
+}) => {
+  const menu = useStatusMenuActions({ status, contextType: 'detailed' });
+
+  return menu.map((item, index) => (
+    <StatusActionItem key={index} item={item} />
+  ));
 };
 
 const StatusRelativeList: React.FC<{

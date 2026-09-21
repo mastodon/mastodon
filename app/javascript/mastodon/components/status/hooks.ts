@@ -402,7 +402,7 @@ export function useStatusMenuActions({
   contextType,
   withDismiss = false,
 }: {
-  status: AccountStatusShape;
+  status: Omit<AccountStatusShape, 'reblog'>;
   withDismiss?: boolean;
   contextType?: StatusContextType;
 }) {
