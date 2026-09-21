@@ -253,6 +253,8 @@ class DeleteAccountService < BaseService
     @account.also_known_as       = []
     @account.avatar.destroy
     @account.header.destroy
+    @account.avatar_description = ''
+    @account.header_description = ''
     @account.save!
   end
 
