@@ -52,67 +52,68 @@ export const StatusMeta: React.FC<{
 
   return (
     <div className={classes.meta}>
-      <FormattedMessage
-        id='status.replies_count'
-        defaultMessage='{count, plural, one {{counter} reply} other {{counter} replies}}'
-        values={{
-          count: status.replies_count,
-          counter: <AnimatedNumber value={status.replies_count} />,
-        }}
-        tagName='span'
-      />
-      &bull;
-      <Link to={`${baseStatusLink}/quotes`}>
+      <ol>
         <FormattedMessage
-          id='status.quotes_count'
-          defaultMessage='{count, plural, one {{counter} quote} other {{counter} quotes}}'
+          id='status.replies_count'
+          defaultMessage='{count, plural, one {{counter} reply} other {{counter} replies}}'
           values={{
-            count: status.quotes_count,
-            counter: <AnimatedNumber value={status.quotes_count} />,
+            count: status.replies_count,
+            counter: <AnimatedNumber value={status.replies_count} />,
           }}
+          tagName='li'
         />
-      </Link>
-      &bull;
-      <Link to={`${baseStatusLink}/reblogs`}>
-        <FormattedMessage
-          id='status.reblogs_count'
-          defaultMessage='{count, plural, one {{counter} boost} other {{counter} boosts}}'
-          values={{
-            count: status.reblogs_count,
-            counter: <AnimatedNumber value={status.reblogs_count} />,
-          }}
-        />
-      </Link>
-      &bull;
-      <Link
-        to={`${baseStatusLink}/favourites`}
-        className={classes.actionsButtonGap}
-      >
-        <FormattedMessage
-          id='status.likes_count'
-          defaultMessage='{count, plural, one {{counter} like} other {{counter} likes}}'
-          values={{
-            count: status.favourites_count,
-            counter: <AnimatedNumber value={status.favourites_count} />,
-          }}
-        />
-      </Link>
-      <FormattedDateWrapper
-        value={createdAt}
-        year='numeric'
-        month='short'
-        day='2-digit'
-        hour='2-digit'
-        minute='2-digit'
-      />
-      {applicationDisplay && (
-        <>
-          &bull;
-          {applicationDisplay}
-        </>
-      )}
-      &bull;
-      <span>{visibility}</span>
+        <li>
+          <Link to={`${baseStatusLink}/quotes`}>
+            <FormattedMessage
+              id='status.quotes_count'
+              defaultMessage='{count, plural, one {{counter} quote} other {{counter} quotes}}'
+              values={{
+                count: status.quotes_count,
+                counter: <AnimatedNumber value={status.quotes_count} />,
+              }}
+            />
+          </Link>
+        </li>
+        <li>
+          <Link to={`${baseStatusLink}/reblogs`}>
+            <FormattedMessage
+              id='status.reblogs_count'
+              defaultMessage='{count, plural, one {{counter} boost} other {{counter} boosts}}'
+              values={{
+                count: status.reblogs_count,
+                counter: <AnimatedNumber value={status.reblogs_count} />,
+              }}
+            />
+          </Link>
+        </li>
+        <li>
+          <Link to={`${baseStatusLink}/favourites`}>
+            <FormattedMessage
+              id='status.likes_count'
+              defaultMessage='{count, plural, one {{counter} like} other {{counter} likes}}'
+              values={{
+                count: status.favourites_count,
+                counter: <AnimatedNumber value={status.favourites_count} />,
+              }}
+            />
+          </Link>
+        </li>
+      </ol>
+
+      <ol>
+        <li>
+          <FormattedDateWrapper
+            value={createdAt}
+            year='numeric'
+            month='short'
+            day='2-digit'
+            hour='2-digit'
+            minute='2-digit'
+          />
+        </li>
+        {applicationDisplay && <li>{applicationDisplay}</li>}
+        <li>{visibility}</li>
+      </ol>
     </div>
   );
 };

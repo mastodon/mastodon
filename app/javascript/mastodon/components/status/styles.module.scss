@@ -232,13 +232,24 @@
   @include mixins.type-micro;
 
   display: flex;
-  gap: var(--space-1);
+  justify-content: space-between;
   color: var(--color-text-secondary);
   padding-block-start: var(--space-2);
   margin-block-start: var(--space-2);
   border-block-start: var(--border-default);
   margin-inline: calc(-1 * var(--space-4));
   padding-inline: var(--space-4);
+
+  > ol {
+    display: flex;
+    gap: var(--space-1);
+  }
+
+  li:not(:first-child) {
+    &::before {
+      content: '• ';
+    }
+  }
 
   a {
     color: inherit;

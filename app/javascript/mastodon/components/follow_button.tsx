@@ -141,7 +141,6 @@ export function useFollowButton({
         }),
       );
     } else {
-      // @ts-expect-error this action is not typed yet
       dispatch(followAccount(accountId, { ref: reference }));
     }
   }, [
