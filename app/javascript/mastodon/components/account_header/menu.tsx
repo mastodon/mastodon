@@ -180,6 +180,10 @@ const messages = defineMessages({
     id: 'account.menu.add_to_list',
     defaultMessage: 'Add to list…',
   },
+  addToCustomFeed: {
+    id: 'account.menu.add_to_feed',
+    defaultMessage: 'Add to custom feed…',
+  },
   addToCollection: {
     id: 'account.menu.add_to_collection',
     defaultMessage: 'Add to collection…',
@@ -322,7 +326,9 @@ function getMenuItems({
   // Add to list
   if (relationship?.following) {
     items.push({
-      text: intl.formatMessage(messages.addToList),
+      text: intl.formatMessage(
+        isRedesignEnabled() ? messages.addToCustomFeed : messages.addToList,
+      ),
       action: () => {
         dispatch(
           openModal({
