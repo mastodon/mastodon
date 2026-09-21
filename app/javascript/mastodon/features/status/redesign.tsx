@@ -19,6 +19,7 @@ import {
   FOCUS_TARGET,
   NavigationFocusTarget,
 } from '@/mastodon/components/navigation_focus_target';
+import { useTextForScreenReader } from '@/mastodon/components/status/hooks';
 import { StatusRedesign as Status } from '@/mastodon/components/status/status';
 import { ScrollContainer } from '@/mastodon/containers/scroll_container';
 import type { ShouldUpdateScrollFn } from '@/mastodon/containers/scroll_container/default_should_update_scroll';
@@ -85,6 +86,8 @@ export const StatusPage: React.FC = () => {
   const descendantIds = useAppSelector((state) =>
     getDescendantsIds(state, statusId),
   );
+
+  const screenReaderText = useTextForScreenReader({ statusId });
 
   const statusFocusRef = useRef<HTMLDivElement>(null);
   const shouldUpdateScroll: ShouldUpdateScrollFn = useCallback(
@@ -204,6 +207,7 @@ export const StatusPage: React.FC = () => {
             className={classes.mainStatus}
             tabIndex={0}
             ref={statusFocusRef}
+            aria-label={screenReaderText}
           >
             <Status id={statusId} contextType='detailed' />
           </NavigationFocusTarget>
