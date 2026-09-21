@@ -19,7 +19,7 @@ import { statusLink } from './utils';
 interface StatusRedesignHeaderProps {
   status: Pick<
     AccountStatusShape,
-    'id' | 'account' | 'created_at' | 'visibility'
+    'id' | 'account' | 'created_at' | 'visibility' | 'mentions'
   >;
   children?: React.ReactNode;
   className?: string;
@@ -58,9 +58,20 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
     displayName = (
       <FormattedMessage
         id='status.header.to_followers'
-        defaultMessage='{displayName} to Followers'
+        defaultMessage='{author} to Followers {count, plural, =0 {} one {+ # other} other {+ # others}}'
+        description='Count is # of other people mentioned in the post'
         tagName='span'
-        values={{ displayName }}
+        values={{ author: displayName, count: status.mentions.length }}
+      />
+    );
+  } else if (status.visibility === 'direct') {
+    displayName = (
+      <FormattedMessage
+        id='status.header.message_to_me'
+        defaultMessage='{author} to You {count, plural, =0 {} one {+ # other} other {+ # others}}'
+        description='DisplayName is the author, count is # of other people mentioned in the post'
+        tagName='span'
+        values={{ author: displayName, count: status.mentions.length - 1 }}
       />
     );
   }
