@@ -11051,10 +11051,14 @@ noscript {
 }
 
 .column-footer {
-  padding: 16px;
   position: sticky;
   bottom: 0;
+  padding: 16px;
   background: var(--color-bg-primary);
+
+  @media (width <= $mobile-menu-breakpoint) {
+    padding-bottom: calc(16px + var(--mobile-bottom-nav-height, 0));
+  }
 }
 
 .lists-scrollable {
