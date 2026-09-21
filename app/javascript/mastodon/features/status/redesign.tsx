@@ -6,14 +6,18 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import classNames from 'classnames';
 import { useParams } from 'react-router';
 
+import { BookmarkSimpleIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
+import { statusInteraction } from '@/mastodon/actions/interactions_typed';
+import { ToggleIconButton } from '@/mastodon/components/button/redesign';
 import { Column } from '@/mastodon/components/column';
 import {
   ColumnHeader,
   ColumnSettingsMenu,
 } from '@/mastodon/components/column_header';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
+import { useIconWeight } from '@/mastodon/components/icon';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import {
   FOCUS_TARGET,
@@ -33,7 +37,7 @@ import {
   getAncestorsIds,
   getDescendantsIds,
 } from '@/mastodon/selectors/contexts';
-import { useAppSelector } from '@/mastodon/store';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { BundleColumnError } from '../ui/components/bundle_column_error';
 import { useColumnsContext } from '../ui/util/columns_context';
@@ -116,6 +120,21 @@ export const StatusPage: React.FC = () => {
     [],
   );
 
+  const dispatch = useAppDispatch();
+  const handleBookmarkClick = useCallback(() => {
+    dispatch(
+      statusInteraction({
+        statusId,
+        intent: 'bookmark',
+        contextType: 'detailed',
+      }),
+    );
+  }, [dispatch, statusId]);
+  const bookmarkIcon = useIconWeight(
+    BookmarkSimpleIcon,
+    status?.bookmarked && 'fill',
+  );
+
   if (isLoading) {
     return (
       <Column>
@@ -174,16 +193,38 @@ export const StatusPage: React.FC = () => {
         withBackButton
         title={columnTitle}
         extraButtons={
-          <ColumnSettingsMenu
-            label={
-              <FormattedMessage
-                id='status.options'
-                defaultMessage='Post options'
-              />
-            }
-          >
-            <StatusMenuItems status={status} />
-          </ColumnSettingsMenu>
+          <>
+            <ToggleIconButton
+              size='sm'
+              variant='ghost'
+              active={status.bookmarked}
+              icon={bookmarkIcon}
+              onClick={handleBookmarkClick}
+              aria-pressed={status.bookmarked}
+            >
+              {!status.bookmarked ? (
+                <FormattedMessage
+                  id='status.bookmark'
+                  defaultMessage='Bookmark'
+                />
+              ) : (
+                <FormattedMessage
+                  id='status.remove_bookmark'
+                  defaultMessage='Remove bookmark'
+                />
+              )}
+            </ToggleIconButton>
+            <ColumnSettingsMenu
+              label={
+                <FormattedMessage
+                  id='status.options'
+                  defaultMessage='Post options'
+                />
+              }
+            >
+              <StatusMenuItems status={status} />
+            </ColumnSettingsMenu>
+          </>
         }
       />
 
