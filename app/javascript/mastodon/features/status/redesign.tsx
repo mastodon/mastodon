@@ -215,10 +215,17 @@ export const StatusPage: React.FC = () => {
           )}
 
           <div className={classes.threadEnd}>
-            <FormattedMessage
-              id='status.thread_end'
-              defaultMessage='You’ve reached the end of the conversation.'
-            />
+            {descendantIds.length > 0 ? (
+              <FormattedMessage
+                id='status.thread_end'
+                defaultMessage='You’ve reached the end of the conversation.'
+              />
+            ) : (
+              <FormattedMessage
+                id='status.thread_none'
+                defaultMessage='Nothing else has been added to the conversation yet.'
+              />
+            )}
           </div>
 
           <RefreshController
