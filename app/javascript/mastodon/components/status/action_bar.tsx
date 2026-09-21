@@ -19,7 +19,6 @@ import { fetchStatus } from '@/mastodon/actions/statuses';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAccountStatus } from '@/mastodon/hooks/useStatus';
 import { quickBoosting } from '@/mastodon/initial_state';
-import type { MenuItem as DropdownItem } from '@/mastodon/models/dropdown_menu';
 import type { AccountStatusShape } from '@/mastodon/models/status';
 import { selectStatusConditions } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -34,10 +33,9 @@ import { iconWeight, useIconWeight } from '../icon';
 import {
   Menu,
   MenuItem,
-  MenuItemDivider,
-  MenuItemLink,
   MenuList,
   MenuTrigger,
+  LegacyDropdownMenuItems,
 } from '../menu';
 
 import { boostItemState, quoteItemState } from './boost_button_utils';
@@ -316,34 +314,8 @@ const StatusActionMenu: React.FC<{
       </MenuTrigger>
 
       <MenuList placement='top-end'>
-        {menu.map((item, index) => (
-          <StatusActionItem key={index} item={item} />
-        ))}
+        <LegacyDropdownMenuItems items={menu} />
       </MenuList>
     </Menu>
   );
-};
-
-export const StatusActionItem: React.FC<{ item: DropdownItem }> = ({
-  item,
-}) => {
-  if (!item) {
-    return <MenuItemDivider />;
-  }
-
-  const commonProps = {
-    icon: item.icon,
-    disabled: item.disabled,
-    destructive: item.dangerous,
-    children: item.text,
-    description: item.description,
-  } as const;
-
-  if ('to' in item) {
-    return <MenuItemLink {...commonProps} to={item.to} as='link' />;
-  } else if ('href' in item) {
-    return <MenuItemLink {...commonProps} href={item.href} as='a' />;
-  }
-
-  return <MenuItem {...commonProps} onClick={item.action} />;
 };
