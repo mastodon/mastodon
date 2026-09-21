@@ -11,6 +11,16 @@
   gap: var(--multi-column-gap);
   padding-inline-end: var(--multi-column-gap);
   overflow-x: auto;
+  scroll-padding-inline-start: var(--multi-column-navigation-width);
+
+  &:focus-visible {
+    // Scrollable elements are made focusable by some browsers, this adds
+    // a visible outline in this case. Using `border` instead of `outline`
+    // causes a light layout jump shift on focus, but an outline would be
+    // rendered below the navbar and columns and didn't look right.
+    border: var(--outline-focus-default);
+    border-radius: var(--radius-2);
+  }
 }
 
 .navigationWrapper {
