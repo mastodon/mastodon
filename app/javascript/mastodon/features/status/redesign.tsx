@@ -190,7 +190,7 @@ export const StatusPage: React.FC = () => {
           })}
         >
           {ancestorIds.length > 0 && (
-            <div>
+            <div className={classes.thread}>
               <StatusRelativeList statusIds={ancestorIds} rootId={statusId} />
             </div>
           )}
@@ -205,17 +205,17 @@ export const StatusPage: React.FC = () => {
             <Status id={statusId} contextType='detailed' />
           </NavigationFocusTarget>
 
-          <div>reply here</div>
-
-          <div>
-            <StatusRelativeList statusIds={descendantIds} rootId={statusId} />
-
-            <div className={classes.threadEnd}>
-              <FormattedMessage
-                id='status.thread_end'
-                defaultMessage='You’ve reached the end of the conversation.'
-              />
+          {descendantIds.length > 0 && (
+            <div className={classes.thread}>
+              <StatusRelativeList statusIds={descendantIds} rootId={statusId} />
             </div>
+          )}
+
+          <div className={classes.threadEnd}>
+            <FormattedMessage
+              id='status.thread_end'
+              defaultMessage='You’ve reached the end of the conversation.'
+            />
           </div>
 
           <RefreshController

@@ -1,14 +1,25 @@
 @use '@/styles/mastodon/mixins';
 
 .mainStatus {
-  border-bottom: var(--border-normal);
+  border-bottom: var(--border-default);
+}
+
+.thread {
+  padding-block: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  border-block-end: var(--border-default);
+
+  > article {
+    padding-inline: var(--space-4);
+  }
 }
 
 .threadEnd {
-  @include mixins.type-label-md;
+  @include mixins.type-meta;
 
-  border-top: var(--border-normal);
   color: var(--color-text-tertiary);
-  padding: var(--space-5xl) var(--space-md);
+  padding: var(--space-10) var(--space-4);
   text-align: center;
 }
