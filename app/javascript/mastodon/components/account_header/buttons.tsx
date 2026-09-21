@@ -3,6 +3,8 @@ import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import { BellIcon, BellSlashIcon } from '@phosphor-icons/react';
+
 import { followAccount } from '@/mastodon/actions/accounts';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
@@ -13,9 +15,10 @@ import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 
+import { ToggleIconButton } from '../button/redesign';
 import { CopyIconButton } from '../copy_button';
 import { FollowButton } from '../follow_button';
-import { IconButton } from '../icon_button';
+import { IconButton as LegacyIconButton } from '../icon_button';
 
 import { AccountMenu } from './menu';
 import classes from './styles.module.scss';
@@ -104,25 +107,45 @@ const AccountButtonsOther: FC<
           reference={reference}
         />
       )}
-      {isFollowing && (
-        <IconButton
-          icon={relationship.notifying ? 'bell' : 'bell-o'}
-          iconComponent={
-            relationship.notifying ? NotificationsActiveIcon : NotificationsIcon
-          }
-          active={relationship.notifying}
-          title={intl.formatMessage(
-            relationship.notifying
-              ? messages.disableNotifications
-              : messages.enableNotifications,
-            { name: account.username },
-          )}
-          onClick={handleNotifyToggle}
-        />
-      )}
+      {isFollowing &&
+        (isRedesignEnabled() ? (
+          <ToggleIconButton
+            size='sm'
+            icon={relationship.notifying ? BellSlashIcon : BellIcon}
+            active={relationship.notifying}
+            onClick={handleNotifyToggle}
+            title={intl.formatMessage(
+              relationship.notifying
+                ? messages.disableNotifications
+                : messages.enableNotifications,
+              { name: account.username },
+            )}
+          >
+            {intl.formatMessage(messages.enableNotifications, {
+              name: account.username,
+            })}
+          </ToggleIconButton>
+        ) : (
+          <LegacyIconButton
+            icon={relationship.notifying ? 'bell' : 'bell-o'}
+            iconComponent={
+              relationship.notifying
+                ? NotificationsActiveIcon
+                : NotificationsIcon
+            }
+            active={relationship.notifying}
+            title={intl.formatMessage(
+              relationship.notifying
+                ? messages.disableNotifications
+                : messages.enableNotifications,
+              { name: account.username },
+            )}
+            onClick={handleNotifyToggle}
+          />
+        ))}
       {!noShare &&
         ('share' in navigator ? (
-          <IconButton
+          <LegacyIconButton
             className='optional'
             icon=''
             iconComponent={ShareIcon}
