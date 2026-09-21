@@ -217,6 +217,7 @@ fi:
         create_user_role: Luo rooli
         create_username_block: Luo käyttäjänimisääntö
         demote_user: Alenna käyttäjä
+        destroy_account: Poista tilin tiedot
         destroy_announcement: Poista tiedote
         destroy_canonical_email_block: Poista sähköpostiosoitteen esto
         destroy_custom_emoji: Poista mukautettu emoji
@@ -285,6 +286,7 @@ fi:
         create_user_role_html: "%{name} loi roolin %{target}"
         create_username_block_html: "%{name} lisäsi säännön käyttäjänimille, joihin sisältyy %{target}"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
+        destroy_account_html: "%{name} poisti tilin %{target} tiedot"
         destroy_announcement_html: "%{name} poisti tiedotteen %{target}"
         destroy_canonical_email_block_html: "%{name} kumosi eston tiivistettä %{target} vastaavalta sähköpostiosoitteelta"
         destroy_collection_html: "%{name} poisti käyttäjän %{target} kokoelman"
@@ -563,6 +565,7 @@ fi:
           action: Hallitse
           hint: Jokaisen sähköpostiviestin alatunnisteessa on linkki tähän käytäntöön
           title: Tietosuojakäytäntö
+        title: Määräystenmukaisuus
       danger_zone:
         disable_feature:
           action: Poista käytöstä
@@ -587,6 +590,8 @@ fi:
         edit_role: Muokkaa roolia
         empty:
           hint: Kenelläkään ei ole oikeutta käyttää tätä ominaisuutta.
+          no_roles_added: Rooleja ei ole lisätty
+        lead: Tilit, joilla on jokin seuraavista rooleista, voivat ottaa tämän ominaisuuden käyttöönsä profiilissaan.
         manage_roles: Hallitse rooleja
         role_name: Roolin nimi
         title: Roolit
@@ -595,7 +600,10 @@ fi:
           enable_feature: Ota ominaisuus käyttöön
           important_information: Tärkeää tietoa
           list:
+            1_permission_explanation: Kun tämä ominaisuus on käytössä, tarvittavat oikeudet omaavat tilit voivat lisätä profiiliinsa sähköpostiosoitteiden keräyslomakkeen.
+            2_feature_explanation: Kun kävijät tilaavat uutiskirjeen tilin profiilisivulla ja vahvistavat tilauksensa, he alkavat vastaanottaa sähköpostipäivityksiä aina, kun tili luo uusia julkisia julkaisuja.
             3_privacy_policy_warning: Palvelimen ylläpito saa pääsyn kerättyihin henkilötietoihin (sähköpostiosoitteisiin). Siksi palvelimen tietosuojakäytäntö ja käyttöehdot on päivitettävä ennen tämän ominaisuuden käyttöä.
+            4_cost_warning: Sähköposteista saatetaan veloittaa maksu hostingpalvelun määrityksestä riippuen. Keskustele asiasta hostingpalveluntarjoajasi kanssa ennen ominaisuuden ottamista käyttöön, sillä tämä ominaisuus saattaa lisätä palvelimeltasi lähetettävien sähköpostien määrää huomattavasti.
     export_domain_allows:
       new:
         title: Tuo sallittuja verkkotunnuksia
@@ -1026,6 +1034,7 @@ fi:
       critical_update: Kriittinen – päivitä viivyttelemättä
       description: On suositeltavaa pitää Mastodon-asennus ajantasaisena ja siten hyödyntää uusimpia korjauksia sekä ominaisuuksia. Lisäksi joskus on ratkaisevan tärkeää päivittää Mastodon ajoissa tietoturvaongelmien välttämiseksi. Näistä syistä Mastodon tarkistaa päivitykset 30 minuutin välein, ja ilmoittaa sinulle sähköposti-ilmoitusasetustesi mukaisesti.
       documentation_link: Lue lisää
+      nearing_eol: Tällä hetkellä käytössä olevan haaran tuki päättyy %{date}. Harkitse päivittämistä.
       release_notes: Julkaisutiedot
       supported_until: Tuki päättyy %{date}
       title: Saatavilla olevat päivitykset
@@ -1034,6 +1043,7 @@ fi:
         major: Pääversiojulkaisu
         minor: Väliversiojulkaisu
         patch: Korjausjulkaisu — korjauksia virheisiin sekä yksinkertaisia muutoksia
+      unsupported_branch: Tällä hetkellä käytössä olevaa haaraa ei tueta. Päivitä mahdollisimman pian.
       unsupported_since: Tuki päättynyt %{date}
       version: Versio
     statuses:
@@ -1304,6 +1314,15 @@ fi:
     auto_close_registrations:
       body: Palvelimen %{instance} moderaattorit eivät ole olleet viime aikoina aktiivisia. Tästä syystä rekisteröitymismenettely on automaattisesti vaihdettu erillishyväksyntöjä edellyttäväksi. Näin vähennetään riskiä palvelimen %{instance} käyttöön haitallisten toimijoiden alustana. Voit milloin tahansa palauttaa käyttöön vapaat rekisteröitymiset.
       subject: Rekisteröitymiset palvelimelle %{instance} on automaattisesti vaihdettu vaatimaan hyväksyntää
+    end_of_support_out_of_support_warning:
+      body: Tällä hetkellä käytössä olevaa Mastodon-versiota ei enää tueta. Suosittelemme, että päivität mahdollisimman pian!
+      subject: Palvelimella %{instance} käytössä olevaa Mastodon-haaraa %{branch} ei enää tueta!
+    end_of_support_three_months_warning:
+      body: Tällä hetkellä palvelimellasi käytössä olevan Mastodon-version tuki päättyy 3 kuukauden kuluttua. Saatat haluta päivittää uudempaan haaraan etukäteen.
+      subject: Palvelimella %{instance} käytössä olevan haaran %{branch} tuki päättyy 3 kuukauden kuluttua.
+    end_of_support_two_weeks_warning:
+      body: Tällä hetkellä palvelimellasi käytössä olevan Mastodon-version tuki päättyy 2 viikon kuluttua. Suosittelemme päivittämään uudempaan haaraan etukäteen.
+      subject: Palvelimella %{instance} käytössä olevan haaran %{branch} tuki päättyy 2 viikon kuluttua.
     new_appeal:
       actions:
         delete_statuses: poistaa hänen julkaisunsa
@@ -1701,6 +1720,7 @@ fi:
       over_rows_processing_limit:
         one: sisältää yli %{count} rivin
         other: sisältää yli %{count} riviä
+      status_not_found_warning: Jotkin suodattimesi piilottavat tietyt julkaisut, joita tämä palvelin ei tunne. Näitä julkaisuja ei suodateta automaattisesti, jos palvelin löytää ne myöhemmin.
       too_large: Tiedosto on liian suuri
     failures: Virheet
     imported: Tuodut
@@ -1712,45 +1732,48 @@ fi:
       overwrite_long: Korvaa nykyiset tietueet uusilla
     overwrite_preambles:
       blocking_html:
-        one: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Olet aikeissa <strong>korvata suodattimesi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin suodattimiin lisätään kaikkiaan <strong>%{count} suodatin</strong>.
+        other: Olet aikeissa <strong>korvata suodattimesi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin suodattimiin lisätään kaikkiaan <strong>%{count} suodatinta</strong>.
       domain_blocking_html:
-        one: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
       following_html:
-        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
-        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
       lists_html:
-        one: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tili</strong>.
-        other: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tiliä</strong>.
+        one: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tili</strong>.
+        other: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tiliä</strong>.
       muting_html:
-        one: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
     preambles:
       blocking_html:
-        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisun</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
-        other: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
+        one: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisun</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
+        other: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
       custom_filters_html:
-        one: Olet aikeissa lisätä kaikkiaan <strong>%{count} suodattimen</strong> tiedostosta <strong>%{filename}</strong> <strong>suodattimiisi</strong>.
-        other: Olet aikeissa lisätä kaikkiaan <strong>%{count} suodatinta</strong> tiedostosta <strong>%{filename}</strong> <strong>suodattimiisi</strong>.
+        one: Olet aikeissa lisätä kaikkiaan <strong>%{count} suodattimen</strong> tiedostosta <strong>%{filename}</strong> <strong>suodattimiisi</strong>.
+        other: Olet aikeissa lisätä kaikkiaan <strong>%{count} suodatinta</strong> tiedostosta <strong>%{filename}</strong> <strong>suodattimiisi</strong>.
       domain_blocking_html:
-        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnuksen</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnusta</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnuksen</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnusta</strong> tiedostosta <strong>%{filename}</strong>.
       following_html:
-        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
       lists_html:
-        one: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
-        other: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
+        one: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
+        other: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
       muting_html:
-        one: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
     preface: Voit tuoda toiselta palvelimelta viemiäsi tietoja, kuten seuraamiesi tai estämiesi käyttäjien luettelon.
     recent_imports: Viimeksi tuotu
     states:
@@ -1885,12 +1908,13 @@ fi:
     collection_update:
       title_html: "%{name} päivitti kokoelman, jossa olet"
     generic:
-      sign_in: Rekisteröidy Mastodonin selainsovelluksessa
+      sign_in: Kirjaudu sisään Mastodonin selainsovellukseen
       summary_html: Olet sovelluksessa, joka ei tue uusinta Mastodonin versiota. %{link} täyden toiminnallisuuden mahdollistamiseksi.
     moderation_warning:
       summary_html: Olet sovelluksessa, joka ei tue uusinta Mastodonin versiota. %{link}.
       title: Olet saanut moderointivaroituksen.
     severed_relationships:
+      summary_html: Palvelimen %{from} ylläpitäjä on jäädyttänyt palvelimen %{target}, mikä tarkoitaa, että et voi enää vastaanottaa päivityksiä sieltä etkä olla vuorovaikutuksessa sen kanssa. %{link} nähdäksesi luettelon menetetyistä suhteista.
       title: Menetetty yhteydet palvelimeen %{name}
   notification_mailer:
     admin:
@@ -1940,6 +1964,7 @@ fi:
     administration_emails: Ylläpitäjän sähköposti-ilmoitukset
     email_events: Sähköposti-ilmoitusten tapahtumat
     email_events_hint: 'Valitse tapahtumat, joista haluat saada ilmoituksia:'
+    moderation_emails: Moderoinnin sähköposti-ilmoitukset
   number:
     human:
       decimal_units:
@@ -1978,7 +2003,7 @@ fi:
       too_many_options: ei voi sisältää enempää kuin %{max} kohdetta
     vote: Äänestä
   posting_defaults:
-    explanation: Näitä asetuksia käytetään oletuksina, kun luot uusia julkaisuja, mutta voit muokata niitä julkaisukohtaisesti luontikentässä.
+    explanation: Näitä asetuksia käytetään oletuksina, kun luot uusia julkaisuja, mutta voit muokata niitä julkaisukohtaisesti laadintakentässä.
   preferences:
     other: Muut
     posting_defaults: Julkaisun oletukset
@@ -2330,7 +2355,7 @@ fi:
         mark_statuses_as_sensitive: Palvelimen %{instance} moderaattorit ovat merkinneet osan julkaisuistasi arkaluonteisiksi. Tämä tarkoittaa sitä, että mediaa täytyy napauttaa ennen kuin sen esikatselu näytetään. Voit merkitä median itse arkaluonteiseksi, kun julkaiset tulevaisuudessa.
         sensitive: Tästä lähtien kaikki lähetetyt mediatiedostot merkitään arkaluonteisiksi ja piilotetaan napsautusvaroituksen taakse.
         silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat käyttäjät näkevät julkaisusi tällä palvelimella ja sinut voidaan sulkea pois eri löydettävyysominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
-        suspend: Et voi enää käyttää tiliäsi, eivätkä profiilisi ja muut tiedot ole enää käytettävissä. Voit silti kirjautua sisään pyytääksesi tietojesi varmuuskopiota, kunnes tiedot on poistettu kokonaan noin 30 päivän kuluttua. Säilytämme kuitenkin joitain perustietoja, jotka estävät sinua kiertämästä jäädytystä.
+        suspend: Et voi enää käyttää tiliäsi, eivätkä profiilisi ja muut tiedot ole enää käytettävissä. Voit silti kirjautua sisään pyytääksesi tietojesi varmuuskopiota, kunnes tiedot on poistettu kokonaan noin 30 päivän kuluttua. Säilytämme kuitenkin joitain perustietoja, jotka estävät sinua kiertämästä jäädytystä.
       reason: 'Syy:'
       statuses: 'Viitatut julkaisut:'
       subject:
@@ -2381,7 +2406,7 @@ fi:
       hashtags_subtitle: Tutki, mikä on ollut suosittua viimeisenä 2 päivänä
       hashtags_title: Suositut aihetunnisteet
       hashtags_view_more: Näytä lisää suosittuja aihetunnisteita
-      post_action: Kirjoita
+      post_action: Laadi
       post_step: Tervehdi maailmaa sanoin, kuvin, videoin ja äänestyksin.
       post_title: Tee ensimmäinen julkaisusi
       share_step: Kerro ystävillesi, kuinka sinut voi löytää Mastodonista.
