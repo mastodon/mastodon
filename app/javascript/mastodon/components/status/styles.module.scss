@@ -70,6 +70,18 @@
   grid-column: var(--content-col);
 }
 
+.connectNextReply {
+  &::after {
+    content: '';
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    border-inline-start: var(--bw-thick) solid var(--color-border-primary);
+    width: calc(var(--avatar-size) / 2 - 1px);
+    margin: var(--space-2) var(--col-gap) 0 var(--space-1);
+    justify-self: end;
+  }
+}
+
 .translate {
   display: flex;
   align-items: center;

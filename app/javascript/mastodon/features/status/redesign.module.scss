@@ -13,6 +13,12 @@
 
   > article {
     padding-inline: var(--space-4);
+
+    &[data-connect-next='false'] {
+      padding-block-end: var(--space-2);
+      border-block-end: var(--border-default);
+      margin-block-end: var(--space-2);
+    }
   }
 }
 
