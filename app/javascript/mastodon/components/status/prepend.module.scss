@@ -31,12 +31,11 @@
 }
 
 .replyIcon {
-  border-block-start: 2px solid var(--color-border-primary);
-  border-inline-start: 2px solid var(--color-border-primary);
+  border-block-start: var(--bw-thick) solid var(--color-border-primary);
+  border-inline-start: var(--bw-thick) solid var(--color-border-primary);
   border-top-left-radius: var(--radius-4);
-  box-sizing: border-box;
   margin: var(--space-2) var(--col-gap) 0 var(--space-1);
-  width: calc(var(--avatar-size) / 2 + 1px);
+  width: calc(var(--avatar-size) / 2 - 1px);
   height: calc(100% - var(--space-2));
   justify-self: end;
 }

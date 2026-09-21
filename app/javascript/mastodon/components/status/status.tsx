@@ -76,6 +76,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   showThread,
   headerContents,
   variant = contextToVariant(contextType),
+  nextId,
 }) => {
   // Select data from store
   const { status, parent } = useAppSelector((state) =>
@@ -95,6 +96,10 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     [status],
   );
   const contentWrapperId = useId();
+
+  const isNextReplyingToMe = useAppSelector(
+    (state) => state.statuses.getIn([nextId, 'in_reply_to_id']) === statusId,
+  );
 
   // Handlers
   const {
@@ -147,10 +152,15 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           variant === 'page' && classes.variantPage,
           isQuotedPost && classes.isQuote,
           status.visibility === 'direct' && classes.isMessage,
+          variant === 'thread' &&
+            isNextReplyingToMe &&
+            !showThread &&
+            classes.connectNextReply,
         )}
         data-featured={featured ? 'true' : null}
         aria-label={screenReaderText}
         data-nosnippet={status.account.noindex || undefined}
+        data-connect-next={nextId ? isNextReplyingToMe : undefined}
       >
         {!skipPrepend && (
           <StatusPrepend
@@ -210,17 +220,16 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
         {(variant === 'page' || (showActions && !isQuotedPost)) && (
           <footer className={classes.footer}>
-            {variant === 'page' && (
-              <StatusMeta status={status} className={classes.meta} />
-            )}
-
             {showActions && !isQuotedPost && (
               <StatusActionBar
                 statusId={status.id}
                 withDismiss={withDismiss}
                 withCounters={withCounters}
+                onlyInteractions={variant === 'page'}
               />
             )}
+
+            {variant === 'page' && <StatusMeta status={status} />}
           </footer>
         )}
       </StatusHotkeys>

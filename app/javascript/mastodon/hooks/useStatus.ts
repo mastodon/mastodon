@@ -11,31 +11,36 @@ import {
 import { useAppDispatch, useAppSelector } from '../store';
 
 type IdType = string | null | undefined;
+type FetchArg = boolean | 'force';
 
-export function useStatus(id: IdType, fetch = false) {
+export function useStatus(id: IdType, fetch: FetchArg = false) {
   const status = useAppSelector((state) => selectPlainStatus(state, id));
 
-  useStatusFetch(fetch && id);
+  useStatusFetch(fetch && id, { force: fetch === 'force' });
 
   return status;
 }
 
 /** Gets status with full account information, fetching missing data if enabled. */
-export function useAccountStatus(id: IdType, fetch = false) {
+export function useAccountStatus(id: IdType, fetch: FetchArg = false) {
   const status = useAppSelector((state) => selectAccountStatus(state, id));
 
-  useStatusFetch(fetch && id, { withAccount: true });
+  useStatusFetch(fetch && id, { withAccount: true, force: fetch === 'force' });
 
   return status;
 }
 
 /** Adds reblog status and account information to standard Status */
-export function useExpandedStatus(id: IdType, fetch = false) {
+export function useExpandedStatus(id: IdType, fetch: FetchArg = false) {
   const status = useAppSelector((state) =>
     selectExpandedStatus(state, id ?? undefined),
   );
 
-  useStatusFetch(fetch && id, { withAccount: true, withReblog: true });
+  useStatusFetch(fetch && id, {
+    withAccount: true,
+    withReblog: true,
+    force: fetch === 'force',
+  });
 
   return status;
 }
@@ -45,7 +50,8 @@ export function useStatusFetch(
   {
     withAccount,
     withReblog,
-  }: { withAccount?: boolean; withReblog?: boolean } = {},
+    force: forceFetch,
+  }: { withAccount?: boolean; withReblog?: boolean; force?: boolean } = {},
 ) {
   const status = useAppSelector((state) =>
     selectPlainStatus(state, id || null),
@@ -63,11 +69,20 @@ export function useStatusFetch(
       return;
     }
     if (!status) {
-      dispatch(fetchStatus(id));
+      dispatch(fetchStatus(id, { forceFetch }));
     } else if (withAccount && status.account && !account) {
       dispatch(fetchAccount(status.account));
     } else if (withReblog && status.reblog && !reblog) {
-      dispatch(fetchStatus(status.reblog));
+      dispatch(fetchStatus(status.reblog, { forceFetch }));
     }
-  }, [account, dispatch, id, reblog, status, withAccount, withReblog]);
+  }, [
+    account,
+    dispatch,
+    forceFetch,
+    id,
+    reblog,
+    status,
+    withAccount,
+    withReblog,
+  ]);
 }

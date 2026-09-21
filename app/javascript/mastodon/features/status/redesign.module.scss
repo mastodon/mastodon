@@ -1,0 +1,38 @@
+@use '@/styles/mastodon/mixins';
+
+.mainStatus {
+  border-bottom: var(--border-default);
+}
+
+.thread {
+  display: flex;
+  flex-direction: column;
+  border-block-end: var(--border-default);
+
+  > article {
+    padding-inline: var(--space-4);
+    padding-block-start: var(--space-2);
+
+    &:first-child,
+    &[data-connect-next='false'] + article {
+      padding-block-start: var(--space-4);
+    }
+
+    &[data-connect-next='false'],
+    &:last-child {
+      padding-block-end: var(--space-4);
+    }
+
+    &[data-connect-next='false'] {
+      border-block-end: var(--border-default);
+    }
+  }
+}
+
+.threadEnd {
+  @include mixins.type-meta;
+
+  color: var(--color-text-tertiary);
+  padding: var(--space-10) var(--space-4);
+  text-align: center;
+}

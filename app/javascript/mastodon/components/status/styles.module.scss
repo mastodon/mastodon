@@ -16,13 +16,13 @@
   padding: var(--space-4);
 }
 
+.variantPage {
+  padding: var(--space-2) var(--space-4);
+}
+
 .variantThread {
   --avatar-size: 32px;
 
-  padding: var(--space-2) 0;
-}
-
-.variantPage {
   padding: 0;
 }
 
@@ -68,6 +68,18 @@
 .contentReadMore,
 .footer {
   grid-column: var(--content-col);
+}
+
+.connectNextReply {
+  &::after {
+    content: '';
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    border-inline-start: var(--bw-thick) solid var(--color-border-primary);
+    width: calc(var(--avatar-size) / 2 - 1px);
+    margin-inline-end: var(--col-gap);
+    justify-self: end;
+  }
 }
 
 .translate {
@@ -219,13 +231,21 @@
 .meta {
   @include mixins.type-micro;
 
+  display: flex;
+  gap: var(--space-1);
   color: var(--color-text-secondary);
+  padding-block-start: var(--space-2);
+  margin-block-start: var(--space-2);
+  border-block-start: var(--border-default);
+  margin-inline: calc(-1 * var(--space-4));
+  padding-inline: var(--space-4);
 
   a {
     color: inherit;
     text-decoration: none;
 
-    &:hover {
+    &:hover,
+    &:hover * {
       text-decoration: underline;
     }
   }
