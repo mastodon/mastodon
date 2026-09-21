@@ -5,19 +5,26 @@
 }
 
 .thread {
-  padding-block: var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
   border-block-end: var(--border-default);
 
   > article {
     padding-inline: var(--space-4);
+    padding-block-start: var(--space-2);
+
+    &:first-child,
+    &[data-connect-next='false'] + article {
+      padding-block-start: var(--space-4);
+    }
+
+    &[data-connect-next='false'],
+    &:last-child {
+      padding-block-end: var(--space-4);
+    }
 
     &[data-connect-next='false'] {
-      padding-block-end: var(--space-2);
       border-block-end: var(--border-default);
-      margin-block-end: var(--space-2);
     }
   }
 }
