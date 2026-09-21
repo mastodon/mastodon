@@ -2505,12 +2505,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/icu-messageformat-parser@npm:3.5.18":
-  version: 3.5.18
-  resolution: "@formatjs/icu-messageformat-parser@npm:3.5.18"
+"@formatjs/icu-messageformat-parser@npm:3.5.19":
+  version: 3.5.19
+  resolution: "@formatjs/icu-messageformat-parser@npm:3.5.19"
   dependencies:
-    "@formatjs/icu-skeleton-parser": "npm:2.1.11"
-  checksum: 10c0/4c4ecfb9e99e4f644c934279f91f034dc607e1935d0116e7fc7524c70f2708e9847ab2b335baeb2fbecb21da6f5cb629d2d713c56cd545f189ea0f45673028e9
+    "@formatjs/icu-skeleton-parser": "npm:2.1.12"
+  checksum: 10c0/806a7b6567fd7277dfeaa2dcaf562cdd4c1c590014bc16657dad22ee2c954cfc63f5256ca8b0b4bdcdf8268f643eca9fecb6678e6161d8936f88923446496422
   languageName: node
   linkType: hard
 
@@ -2518,6 +2518,13 @@ __metadata:
   version: 2.1.11
   resolution: "@formatjs/icu-skeleton-parser@npm:2.1.11"
   checksum: 10c0/9224b5cbfd64dc1e22ff48d758582e2f36cb4e2cd58f7f1fcfd251527f52ed7a1be27998c800c6dec3b718e06c73f98318a8fd8550bb0bbb467168988c630d29
+  languageName: node
+  linkType: hard
+
+"@formatjs/icu-skeleton-parser@npm:2.1.12":
+  version: 2.1.12
+  resolution: "@formatjs/icu-skeleton-parser@npm:2.1.12"
+  checksum: 10c0/56507b7b5e3e38f964e80efbece91ce80f2d33cbeb0533a66efd9bda55b9d17e3aa2e933a8ad56d8368840c80d4777cc200e83ef6c8e2d4f2e24563ac2c404fa
   languageName: node
   linkType: hard
 
@@ -2569,11 +2576,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ts-transformer@npm:4.4.20":
-  version: 4.4.20
-  resolution: "@formatjs/ts-transformer@npm:4.4.20"
+"@formatjs/ts-transformer@npm:4.4.21":
+  version: 4.4.21
+  resolution: "@formatjs/ts-transformer@npm:4.4.21"
   dependencies:
-    "@formatjs/icu-messageformat-parser": "npm:3.5.18"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.19"
     "@types/babel__core": "npm:7"
     "@types/node": "npm:22 || 24"
     json-stable-stringify: "npm:1"
@@ -2583,17 +2590,17 @@ __metadata:
   peerDependenciesMeta:
     ts-jest:
       optional: true
-  checksum: 10c0/28aa1f5c167433bc347e68cf39421963355c8b8e5d8fbb75be4cfa8580aa6aa171cb56a27f50a87e2fda39fb72232bed839a12d458855dc61a93ca0e3644e814
+  checksum: 10c0/60929c0f79983756bf729e282fc32f4863733a872be3f55ef98d23624ad460a17a13ca2f20ebd1b208a65d62b3e0d7ed16cb7cce7b476c1ff04422ced38882ce
   languageName: node
   linkType: hard
 
-"@formatjs/unplugin@npm:1.2.10":
-  version: 1.2.10
-  resolution: "@formatjs/unplugin@npm:1.2.10"
+"@formatjs/unplugin@npm:1.2.11":
+  version: 1.2.11
+  resolution: "@formatjs/unplugin@npm:1.2.11"
   dependencies:
     "@bazel/runfiles": "npm:6"
-    "@formatjs/icu-messageformat-parser": "npm:3.5.18"
-    "@formatjs/ts-transformer": "npm:4.4.20"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.19"
+    "@formatjs/ts-transformer": "npm:4.4.21"
     "@types/node": "npm:22 || 24"
     decode-named-character-reference: "npm:1"
     magic-string: "npm:1"
@@ -2616,7 +2623,7 @@ __metadata:
       optional: true
     webpack:
       optional: true
-  checksum: 10c0/78765f43aaa5f950bc246492e446538e4f686b8d5cb1a5a598e02763d9db241820166132330197926a4e2b06b23f55028d25e8099c4ecb94161b08ebedcbe037
+  checksum: 10c0/d4f0cc7f3f2c3de7aeebec5d9429a5507a7e8b3517fd1d72dbc6a4d6e0448d88f90ea6dbf287bf5a11067b95a27e549c10131a5de9aa40aff3df842896aed4aa
   languageName: node
   linkType: hard
 
@@ -2857,7 +2864,7 @@ __metadata:
     "@floating-ui/react-dom": "npm:2.1.9"
     "@formatjs/cli": "npm:6.14.4"
     "@formatjs/intl-pluralrules": "npm:6.3.13"
-    "@formatjs/unplugin": "npm:1.2.10"
+    "@formatjs/unplugin": "npm:1.2.11"
     "@gamestdio/websocket": "npm:0.3.2"
     "@github/webauthn-json": "npm:2.1.1"
     "@optimize-lodash/rollup-plugin": "npm:6.0.0"
