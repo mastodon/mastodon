@@ -136,6 +136,7 @@ et:
       push_subscription_expires: PuSH tellimus aegub
       redownload: Värskenda profiili
       redownloaded_msg: "%{username} kasutajakonto algallikast värskendatud"
+      registration_app: Registreerimiseks kasutatud rakendus
       reject: Hülga
       rejected_msg: "%{username} liitumisavaldus tagasi lükatud"
       remote_suspension_irreversible: Selle konto andmed on pöördumatult kustutatud.
@@ -216,6 +217,7 @@ et:
         create_user_role: Loo roll
         create_username_block: Lisa kasutajanime reegel
         demote_user: Alandas kasutaja
+        destroy_account: Kustuta kasutajakonto andmed
         destroy_announcement: Eemaldas teadaande
         destroy_canonical_email_block: Kustuta e-posti blokeering
         destroy_custom_emoji: Eemaldas kohandatud emotikoni
@@ -284,6 +286,7 @@ et:
         create_user_role_html: "%{name} lõi rolli %{target}"
         create_username_block_html: "%{name} lisas kasutajanime reegli, milles sisaldub %{target}"
         demote_user_html: "%{name} alandas kasutajat %{target}"
+        destroy_account_html: "%{name} kustutas kasutajakonto andmed asukohas %{target}"
         destroy_announcement_html: "%{name} kustutas teadaande %{target}"
         destroy_canonical_email_block_html: "%{name} eemaldas blokeeringu e-postilt räsiga %{target}"
         destroy_collection_html: "%{name} eemaldas kasutaja %{target} kogumiku"
@@ -1206,6 +1209,9 @@ et:
           one: Jagatud ühe kasutaja pool viimase nädala jooksul
           other: Jagatud %{count} kasutaja poolt viimase nädala jooksul
         title: Trendikad viited
+        usage_comparison:
+          one: Jagatud %{count} kord täna, eile %{yesterday} kord
+          other: Jagatud %{count} korda täna, eile %{yesterday} korda
       not_allowed_to_trend: Trend ei ole lubatud
       only_allowed: Ainult lubatud
       pending_review: Ootab ülevaatust
@@ -1250,6 +1256,9 @@ et:
         trendable: Võib ilmuda trendides
         trending_rank: 'Trendides #%{rank}'
         usable: Kasutatav
+        usage_comparison:
+          one: Kasutatud täna %{count} kord, eile %{yesterday} kord
+          other: Kasutatud täna %{count} korda, eile %{yesterday} korda
         used_by_over_week:
           one: Kasutatud ühe kasutaja pool viimase nädala jooksul
           other: Kasutatud %{count} kasutaja poolt viimase nädala jooksul
@@ -1708,6 +1717,9 @@ et:
       invalid_csv_file: 'Vigane CSV-fail. Veateade: %{error}'
       invalid_json_file: 'Vigane JSON-fail. Viga: %{error}'
       no_data: See fail ei sisalda mitte mingisuguseid andmeid, mis vastaksid antud importtüübile
+      over_rows_processing_limit:
+        one: sisaldab rohkem, kui %{count} rida
+        other: sisaldab rohkem, kui %{count} rida
       status_not_found_warning: Mõned sinu filtrid peidavad teatavaid postitusi, mis pole sellele serverile teada. Kui server neid tuvastab, siis nad jäävad automaatselt filtreerimata.
       too_large: Fail on liiga suur
     failures: Ebaõnnestumised
@@ -1858,6 +1870,9 @@ et:
     incoming_migrations_html: Kui soovid kolida teise konto siia, pead esmalt määrama <a href="%{path}">kolitava konto aadressi</a>.
     moved_msg: Su konto suunab nüüd ümber kontole %{acct}, jälgijaid kolitakse üle.
     not_redirecting: See konto pole praegu kuhugi ümber suunatud.
+    on_cooldown:
+      one: Oled oma kasutajakonto hiljuti uude serverisse kolinud. See funktsionaalsus on uuesti saadaval %{count} päeva pärast.
+      other: Oled oma kasutajakonto hiljuti uude serverisse kolinud. See funktsionaalsus on uuesti saadaval %{count} päeva pärast.
     past_migrations: Kolimisajalugu
     proceed_with_move: Käivita kolimine
     redirected_msg: Konto on suunatud ümber aadressile %{acct}.
@@ -2045,6 +2060,12 @@ et:
       account: "@%{acct} avalikud postitused"
       tag: 'Avalikud postitused teemaviitega #%{hashtag}'
   scheduled_statuses:
+    over_daily_limit:
+      one: Sa oled ületanud tänaseks päevaks lubatud %{count} ajastatud postituse ülempiiri
+      other: Sa oled ületanud tänaseks päevaks lubatud %{count} ajastatud postituse ülempiiri
+    over_total_limit:
+      one: Oled ületanud ajastatud postituste lubatud maksimumarvu %{count}
+      other: Oled ületanud ajastatud postituste lubatud maksimumarvu %{count}
     too_soon: kuupäev peab olema tulevikus
   self_destruct:
     lead_html: Kahjuks suletakse <strong>%{domain}</strong> lõplikult. Kui sul oli seal konto, ei saa sa seda enam kasutada, kuid siiski võid taotleda oma andmete varukoopiat.

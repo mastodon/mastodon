@@ -174,7 +174,7 @@ fi:
         username: Vastaa riippumatta aakkoskoosta ja yleisistä homoglyyfeistä kuten ”4” merkille ”a” ja ”3” merkille ”e”
       webhook:
         events: Valitse lähetettävät tapahtumat
-        template: Luo oma JSON-hyötykuorma käyttäen muuttujien interpolointia. Jätä kenttä tyhjäksi käyttääksesi vakio-JSON-kuormaa.
+        template: Laadi oma JSON-hyötykuormasi käyttäen muuttujien interpolointia. Jätä tyhjäksi käyttääksesi oletusarvoista JSON-kuormaa.
         url: Mihin tapahtumat lähetetään
     labels:
       account:
@@ -345,6 +345,7 @@ fi:
       notification_emails:
         appeal: Joku valittaa moderaattorin päätöksestä
         digest: Lähetä koosteviestejä sähköpostitse
+        end_of_support: Nykyisen Mastodon-version tuki lähenee loppuaan
         favourite: Joku lisäsi julkaisusi suosikkeihinsa
         follow: Joku seurasi sinua
         follow_request: Joku pyysi lupaa seurata sinua
