@@ -71,7 +71,6 @@ const AccountButtonsOther: FC<
   const dispatch = useAppDispatch();
   const handleNotifyToggle = useCallback(() => {
     if (account) {
-      // @ts-expect-error this action is not typed yet
       dispatch(followAccount(account.id, { notify: !relationship?.notifying }));
     }
   }, [dispatch, account, relationship]);
