@@ -12,8 +12,19 @@
   overscroll-behavior: contain;
 
   &::backdrop {
-    opacity: 0.9;
-    background-color: var(--color-bg-overlay);
+    --bg: #{rgb(from var(--color-bg-overlay) r g b / 90%)};
+
+    background: var(--bg);
+
+    // Paint a bit (or nothing) of the the bottom sheet's primary
+    // background color at the bottom of the ::backdrop to get
+    // Safari on iOS to paint the background behind its address bar
+    // in the same primary bg color rather than the dark overlay color.
+    background: linear-gradient(
+      to top,
+      var(--color-bg-primary) env(safe-area-inset-bottom),
+      var(--bg) env(safe-area-inset-bottom)
+    );
   }
 
   &::after {
