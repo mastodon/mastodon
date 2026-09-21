@@ -3,13 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe AccountReachFilter do
-  describe 'BLOOM_FILTER_SIZES' do
-    it 'corresponds to the size of the bloom filters created by BloomFit' do
-      expect(described_class::BLOOM_FILTER_SIZES)
-        .to eq(described_class::BLOOM_FILTER_TARGET_CAPACITIES.map { |capacity| BloomFit.new(capacity:, false_positive_rate: described_class::TARGET_FALSE_POSITIVE_RATE).size })
-    end
-  end
-
   describe 'basic functionality' do
     let(:filter) { Fabricate(:account_reach_filter) }
 
@@ -61,21 +54,8 @@ RSpec.describe AccountReachFilter do
     end
 
     context 'when adding to a filter that needs upgrading' do
-      let(:inboxes) do
-        %w(
-          https://mastodon.social/inbox
-          https://mastodon.online/inbox
-          https://example.com/inbox
-          https://joinmastodon.org/inbox
-          https://evil.com/inbox
-          https://unknown.com/inbox
-        )
-      end
-
       before do
         stub_const('AccountReachFilter::BLOOM_FILTER_TARGET_CAPACITIES', [3, 10_000])
-        stub_const('AccountReachFilter::BLOOM_FILTER_SIZES', described_class::BLOOM_FILTER_TARGET_CAPACITIES.map { |capacity| BloomFit.new(capacity:, false_positive_rate: described_class::TARGET_FALSE_POSITIVE_RATE).size })
-        allow(Account).to receive(:inboxes).and_return(inboxes)
         filter.add('mastodon.social')
         filter.save!
       end
@@ -85,10 +65,26 @@ RSpec.describe AccountReachFilter do
           filter.add('mastodon.online', 'example.com', 'joinmastodon.org')
           filter.save!
         end
-          .to(change { filter.bloom_filter.size })
+          .to(change { filter.bloom_filters.size })
 
         expect(%w(mastodon.social mastodon.online example.com joinmastodon.org evil.com unknown.com).filter { |value| filter.include?(value) })
           .to contain_exactly('mastodon.social', 'mastodon.online', 'example.com', 'joinmastodon.org')
+      end
+
+      context 'when adding to a filter so much that it saturates' do
+        before do
+          stub_const('AccountReachFilter::BLOOM_FILTER_TARGET_CAPACITIES', [2, 5])
+          filter.add('mastodon.social')
+          filter.save!
+        end
+
+        it 'upgrades the filter and keeps functionality', :aggregate_failures do
+          expect do
+            filter.add(*Array.new(100) { |i| "https://test#{i}.example.com" })
+            filter.save!
+          end
+            .to(change(filter, :saturated).to(true))
+        end
       end
     end
   end
