@@ -35,13 +35,13 @@ class AccountReachFilter < ApplicationRecord
   # an account reach filter with 5 underlying bloom filters will cause around 50 false positives.
 
   # Ideal false positive rate
-  TARGET_FALSE_POSITIVE_RATE = 0.001
+  TARGET_FALSE_POSITIVE_RATE = 0.0001
 
   # Tolerated false positive rate for largest-size bloom filters, after which a filter is considered saturated
   TARGET_SATURATION_FALSE_POSITIVE_RATE = 0.75
 
   # Target capacity for bloom filters of individual sizes
-  BLOOM_FILTER_TARGET_CAPACITIES = [300, 10_000].freeze
+  BLOOM_FILTER_TARGET_CAPACITIES = [50, 100, 350, 1_000, 1_500, 5_000].freeze
 
   # Batch size for processing queued additions
   BATCH_SIZE = 500
