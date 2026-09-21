@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { IconLogo } from '@/mastodon/components/logo';
 import { customAppIcon, domain, title } from '@/mastodon/initial_state';
 
+import { getNavigationSkipLinkId } from '../../ui/components/skip_links';
+
 import classes from './header.module.scss';
 
 export const NavigationHeader: React.FC<{
@@ -24,7 +26,11 @@ export const LogoLockup: React.FC<{
   className?: string;
 }> = ({ siteName, className }) => {
   return (
-    <Link to='/' className={classNames(classes.siteNameLink, className)}>
+    <Link
+      to='/'
+      className={classNames(classes.siteNameLink, className)}
+      id={getNavigationSkipLinkId()}
+    >
       {customAppIcon && (
         <img src={customAppIcon} alt='' className={classes.appIcon} />
       )}
