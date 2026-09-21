@@ -31,10 +31,9 @@ export function useHashtag(tagId?: string) {
   }, [dispatch, tagId, setTag]);
 
   const toggleFeature = useCallback(() => {
-    if (!tag) {
+    if (!tag || !tagId) {
       return;
     }
-    const tagId = tag.id;
     if (tag.featuring) {
       void dispatch(unfeatureHashtag({ tagId })).then((result) => {
         if (isFulfilled(result)) {
@@ -52,16 +51,15 @@ export function useHashtag(tagId?: string) {
         return '';
       });
     }
-  }, [dispatch, tag]);
+  }, [dispatch, tag, tagId]);
 
   const { signedIn } = useIdentity();
 
   const toggleFollow = useCallback(() => {
-    if (!signedIn || !tag) {
+    if (!signedIn || !tag || !tagId) {
       return;
     }
 
-    const tagId = tag.id;
     if (tag.following) {
       setTag((hashtag) => hashtag && { ...hashtag, following: false });
 
@@ -83,7 +81,7 @@ export function useHashtag(tagId?: string) {
         return '';
       });
     }
-  }, [dispatch, signedIn, tag]);
+  }, [dispatch, signedIn, tag, tagId]);
 
   return { tag, toggleFollow, toggleFeature };
 }
