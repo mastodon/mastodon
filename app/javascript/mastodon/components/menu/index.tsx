@@ -25,6 +25,7 @@ export {
   MenuItemRadio,
   MenuItemCheckbox,
 } from './items';
+export { LegacyDropdownMenuItems } from './legacy_dropdown_items';
 
 interface PopoverState {
   isMenuOpen: boolean;
