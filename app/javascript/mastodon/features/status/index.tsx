@@ -8,9 +8,13 @@ const LazyStatusRedesign = lazy(() =>
 );
 const LazyStatusLegacy = lazy(() => import('./legacy'));
 
-const StatusPage = () => (
+const StatusPage = (props: Record<string, unknown>) => (
   <Suspense fallback={<LoadingIndicator />}>
-    {isRedesignStatusEnabled() ? <LazyStatusRedesign /> : <LazyStatusLegacy />}
+    {isRedesignStatusEnabled() ? (
+      <LazyStatusRedesign />
+    ) : (
+      <LazyStatusLegacy {...props} />
+    )}
   </Suspense>
 );
 
