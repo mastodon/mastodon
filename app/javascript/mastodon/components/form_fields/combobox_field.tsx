@@ -74,6 +74,14 @@ interface ComboboxProps<
    */
   getIsItemDisabled?: (item: Item) => boolean;
   /**
+   * Show an empty state for empty groups instead of hiding them (the default).
+   * Group will be hidden when a falsy value is returned.
+   *
+   * Use only where necessary: This message will not be conveyed to users of
+   * assistive technology.
+   */
+  getGroupEmptyMessage?: (groupKey: GroupKey) => React.ReactNode;
+  /**
    * Customise the rendering of each option.
    * The rendered content must not contain other interactive content!
    */
@@ -225,6 +233,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     getItemId = (item) => item.id,
     getIsItemDisabled,
     getIsItemSelected,
+    getGroupEmptyMessage,
     disabled,
     renderGroupTitle,
     renderItem,
@@ -271,6 +280,13 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     [hasGroups, items],
   );
 
+  const hasGroupEmptyMessages =
+    hasGroups &&
+    !!getGroupEmptyMessage &&
+    Object.keys(items).some(
+      (groupKey) => !!getGroupEmptyMessage(groupKey as GroupKey),
+    );
+
   const statusMessage = useGetA11yStatusMessage({
     value,
     isLoading,
@@ -281,7 +297,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
   const hasMenuContent =
     !disabled &&
     !suppressMenu &&
-    (flatItems.length > 0 || showStatusMessageInMenu);
+    (flatItems.length > 0 || hasGroupEmptyMessages || showStatusMessageInMenu);
   const isMenuOpen = shouldMenuOpen && hasMenuContent;
 
   const openMenu = useCallback(() => {
@@ -581,7 +597,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
             className={classNames(classes.popover, placement)}
           >
             <StatusMessageWrapper
-              showStatus={showStatusMessageInMenu}
+              showStatus={showStatusMessageInMenu && !hasGroupEmptyMessages}
               isLoading={isLoading}
               status={statusMessage}
             >
@@ -595,11 +611,18 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
                       groupTitleId,
                     );
                     const hasTitle = customGroupTitle !== null;
+                    const hasGroupItems = !!groupItems?.length;
+                    const groupEmptyState = getGroupEmptyMessage?.(groupKey);
 
-                    if (!groupItems?.length) return null;
+                    if (!hasGroupItems && !groupEmptyState) {
+                      return null;
+                    }
+
+                    const showEmptyState = !hasGroupItems && groupEmptyState;
+                    const GroupWrapperElement = showEmptyState ? 'div' : 'ul';
 
                     return (
-                      <ul
+                      <GroupWrapperElement
                         key={groupKey}
                         role='group'
                         aria-labelledby={hasTitle ? groupTitleId : undefined}
@@ -610,8 +633,14 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
                               {groupKey}
                             </ComboboxMenuGroupTitle>
                           ))}
-                        {renderItems(groupItems)}
-                      </ul>
+                        {hasGroupItems ? (
+                          renderItems(groupItems)
+                        ) : (
+                          <div className={classes.groupEmptyMessage}>
+                            {groupEmptyState}
+                          </div>
+                        )}
+                      </GroupWrapperElement>
                     );
                   })}
                 </div>
