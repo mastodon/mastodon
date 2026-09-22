@@ -202,7 +202,7 @@ export function useStatusHandlers({
       onOpenClick,
       onFilterToggle,
       onMention,
-      onOpen: () => {
+      onOpenCallback: () => {
         onOpenCallback();
       },
       onOpenMedia,

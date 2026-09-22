@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import type { Merge } from 'type-fest';
 
+import type { ExpandedStatusShape } from '@/mastodon/models/status';
 import { selectExpandedStatus } from '@/mastodon/selectors/statuses';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
@@ -15,9 +16,9 @@ import { StatusAttachments } from './attachments';
 import { StatusContent } from './content';
 import { StatusHashtagBar } from './hashtag_bar';
 import { StatusRedesignHeader } from './header';
-import type { StatusHandlers } from './hooks';
 import {
   StatusContext,
+  useStatusContext,
   useStatusHandlers,
   useTextForScreenReader,
 } from './hooks';
@@ -107,7 +108,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     showDespiteFilter,
     onFilterToggle,
     onTranslate,
-    ...handlers
+    onOpenCallback,
   } = useStatusHandlers({
     status,
     contextType,
@@ -119,10 +120,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   }
 
   const hotkeysProps = {
-    handlers: {
-      ...handlers,
-      onTranslate,
-    },
+    status,
+    onOpen,
     muted,
     unfocusable,
     'data-id': id,
@@ -194,7 +193,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           <StatusContent
             status={status}
             statusContent={statusContent}
-            onReadMore={handlers.onOpen}
+            onReadMore={onOpenCallback}
             onTranslate={onTranslate}
             collapsible
           >
@@ -238,27 +237,28 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 };
 
 interface StatusHotkeysProps {
+  children: React.ReactNode;
+  status: ExpandedStatusShape;
+  onOpen?: () => void;
   muted?: boolean;
   unfocusable?: boolean;
-  children: React.ReactNode;
-  handlers: Omit<
-    StatusHandlers,
-    | 'isFiltered'
-    | 'showDespiteFilter'
-    | 'onOpenClick'
-    | 'onHeaderClick'
-    | 'onExpandedToggle'
-    | 'onFilterToggle'
-  >;
 }
 
 const StatusHotkeys = ({
+  children,
+  status,
+  onOpen,
   muted,
   unfocusable,
-  children,
-  handlers,
   ...props
 }: StatusHotkeysProps & React.ComponentPropsWithoutRef<'article'>) => {
+  const { contextType } = useStatusContext();
+  const handlers = useStatusHandlers({
+    status,
+    contextType,
+    onOpen,
+  });
+
   if (muted) {
     return <article {...props}>{children}</article>;
   }
@@ -273,7 +273,7 @@ const StatusHotkeys = ({
         boost: handlers.onBoost,
         quote: handlers.onQuote,
         mention: handlers.onMention,
-        open: handlers.onOpen,
+        open: handlers.onOpenCallback,
         openProfile: handlers.onOpenProfile,
         toggleHidden: handlers.onToggleHidden,
         // TODO: This is handled in a child component, so needs to be fixed.
