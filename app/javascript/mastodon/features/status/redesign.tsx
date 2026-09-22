@@ -19,11 +19,11 @@ import {
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { useIconWeight } from '@/mastodon/components/icon';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { LegacyDropdownMenuItems } from '@/mastodon/components/menu';
 import {
   FOCUS_TARGET,
   NavigationFocusTarget,
 } from '@/mastodon/components/navigation_focus_target';
-import { StatusActionItem } from '@/mastodon/components/status/action_bar';
 import {
   useStatusMenuActions,
   useTextForScreenReader,
@@ -301,9 +301,7 @@ const StatusMenuItems: React.FC<{ status: ExpandedStatusShape }> = ({
 }) => {
   const menu = useStatusMenuActions({ status, contextType: 'detailed' });
 
-  return menu.map((item, index) => (
-    <StatusActionItem key={index} item={item} />
-  ));
+  return <LegacyDropdownMenuItems items={menu} />;
 };
 
 const StatusRelativeList: React.FC<{
