@@ -109,6 +109,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     onFilterToggle,
     onTranslate,
     onOpenCallback,
+    onOpenClick,
   } = useStatusHandlers({
     status,
     contextType,
@@ -145,6 +146,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     <StatusContext.Provider value={{ id, contextType }}>
       <StatusHotkeys
         {...hotkeysProps}
+        onClick={onOpenClick}
         className={classNames(
           classes.root,
           variant === 'thread' && classes.variantThread,
