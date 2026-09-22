@@ -36,7 +36,7 @@ const selectIsFollowersReply = createAppSelector(
     (state) => state.meta.get('me') as string | null,
   ],
   (status, me) =>
-    status?.visibility === 'private' && status.account.acct !== me
+    status?.visibility === 'private' && status.account.id !== me
       ? status.account.acct
       : null,
 );
