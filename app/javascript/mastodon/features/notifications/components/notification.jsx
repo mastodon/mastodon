@@ -31,9 +31,11 @@ import FollowRequestContainer from '../containers/follow_request_container';
 import { ModerationWarning } from './moderation_warning';
 import { RelationshipsSeveranceEvent } from './relationships_severance_event';
 import Report from './report';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 const messages = defineMessages({
   favourite: { id: 'notification.favourite', defaultMessage: '{name} favorited your post' },
+  favourite_redesign: { id: 'notification.like', defaultMessage: '{name} liked your post' },
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
   ownPoll: { id: 'notification.own_poll', defaultMessage: 'Your poll has ended' },
   poll: { id: 'notification.poll', defaultMessage: 'A poll you voted in has ended' },
@@ -182,14 +184,16 @@ class Notification extends ImmutablePureComponent {
   renderFavourite (notification, link) {
     const { intl, unread } = this.props;
 
+    const likeMessage = isRedesignEnabled() ? messages.favourite_redesign : messages.favourite;
+
     return (
       <Hotkeys handlers={this.getHandlers()}>
-        <div className={classNames('notification notification-favourite focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.favourite, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
+        <div className={classNames('notification notification-favourite focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(likeMessage, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
             <Icon id='star' icon={StarIcon} className='star-icon' />
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.favourite' defaultMessage='{name} favorited your post' values={{ name: link }} />
+              <FormattedMessage {...likeMessage} values={{ name: link }} />
             </span>
           </div>
 

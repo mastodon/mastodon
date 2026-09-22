@@ -28,9 +28,10 @@ import { BoostButton } from '../boost_button';
 import { RemoveQuoteHint } from './remove_quote_hint';
 import { quoteItemState } from '../../boost_button_utils';
 import { selectStatusConditions } from '@/mastodon/selectors/statuses';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 
-const messages = defineMessages({
+const baseMessages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   edit: { id: 'status.edit', defaultMessage: 'Edit' },
@@ -66,6 +67,15 @@ const messages = defineMessages({
   revokeQuote: { id: 'status.revoke_quote', defaultMessage: 'Remove my post from @{name}’s post' },
   quotePolicyChange: { id: 'status.quote_policy_change', defaultMessage: 'Change who can quote' },
 });
+
+const redesignMessages = defineMessages({
+  favourite: { id: 'status.like', defaultMessage: 'Like' },
+  removeFavourite: { id: 'status.unlike', defaultMessage: 'Unlike' },
+  bookmark: { id: 'status.save', defaultMessage: 'Save' },
+  removeBookmark: { id: 'status.remove_from_saved', defaultMessage: 'Remove from Saved' },
+});
+
+const messages = isRedesignEnabled() ? {...baseMessages, ...redesignMessages} : baseMessages;
 
 const mapStateToProps = (state, { status }) => {
   const quotedStatusId = status.getIn(['quote', 'quoted_status']);

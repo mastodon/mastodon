@@ -53,10 +53,10 @@ interface StatusActionBarProps {
 
 const messages = defineMessages({
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
-  favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
+  favourite: { id: 'status.like', defaultMessage: 'Like' },
   removeFavourite: {
-    id: 'status.remove_favourite',
-    defaultMessage: 'Remove from favorites',
+    id: 'status.unlike',
+    defaultMessage: 'Unlike',
   },
 });
 
@@ -184,11 +184,11 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         onClick={handleBookmarkClick}
       >
         {!status.bookmarked ? (
-          <FormattedMessage id='status.bookmark' defaultMessage='Bookmark' />
+          <FormattedMessage id='status.save' defaultMessage='Save' />
         ) : (
           <FormattedMessage
-            id='status.remove_bookmark'
-            defaultMessage='Remove bookmark'
+            id='status.remove_from_saved'
+            defaultMessage='Remove from Saved'
           />
         )}
       </ToggleIconButton>

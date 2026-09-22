@@ -78,7 +78,12 @@ const Favourites: React.FC<{ multiColumn?: boolean }> = ({ multiColumn }) => {
     );
   }
 
-  const emptyMessage = (
+  const emptyMessage = isRedesignEnabled() ? (
+    <FormattedMessage
+      id='empty_column.likes'
+      defaultMessage='No one has liked this post yet. When someone does, they will show up here.'
+    />
+  ) : (
     <FormattedMessage
       id='empty_column.favourites'
       defaultMessage='No one has favorited this post yet. When someone does, they will show up here.'
