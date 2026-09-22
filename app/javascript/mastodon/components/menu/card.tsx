@@ -9,6 +9,7 @@ import type { PolymorphicProps } from '@/types/polymorphic';
 import { BottomSheet } from '../bottom_sheet';
 import { Popover } from '../popover';
 import type { PopoverProps } from '../popover';
+import { Portal } from '../popover/portal';
 
 import classes from './styles.module.scss';
 
@@ -97,9 +98,11 @@ export const PopoverMenuCard = <As extends React.ElementType>({
 
   if (isMobile && isOpen) {
     return (
-      <BottomSheet {...props} onClose={onClose}>
-        {children}
-      </BottomSheet>
+      <Portal container={container}>
+        <BottomSheet {...props} onClose={onClose}>
+          {children}
+        </BottomSheet>
+      </Portal>
     );
   }
 
