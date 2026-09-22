@@ -11,10 +11,11 @@ import { ColumnHeader } from '@/mastodon/components/column_header';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
 import { SymbolLogo } from 'mastodon/components/logo';
-import { Search } from 'mastodon/features/compose/components/search';
+// import { Search } from 'mastodon/features/compose/components/search';
 import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'mastodon/identity_context';
 
+import { Search as SearchRedesign } from './components/search';
 import Links from './links';
 import redesignClasses from './redesign.module.scss';
 import Statuses from './statuses';
@@ -57,7 +58,8 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           isRedesignEnabled() && redesignClasses.searchHeader,
         )}
       >
-        <Search singleColumn />
+        {/* <Search singleColumn /> */}
+        <SearchRedesign />
       </div>
 
       <div className='account__section-headline'>
