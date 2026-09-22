@@ -140,6 +140,14 @@ export function useStatusHandlers({
 
   const onOpenClick: React.MouseEventHandler = useCallback(
     (event) => {
+      const target = event.target;
+      if (
+        !(target instanceof HTMLElement) ||
+        target.closest('a, button') ||
+        contextType === 'detailed'
+      ) {
+        return;
+      }
       event.preventDefault();
 
       if (event.button === 0 && !(event.ctrlKey || event.metaKey)) {
@@ -151,7 +159,7 @@ export function useStatusHandlers({
         onOpenCallback(true);
       }
     },
-    [onOpenCallback],
+    [contextType, onOpenCallback],
   );
 
   const acct = status?.account.acct;
@@ -202,7 +210,7 @@ export function useStatusHandlers({
       onOpenClick,
       onFilterToggle,
       onMention,
-      onOpen: () => {
+      onOpenCallback: () => {
         onOpenCallback();
       },
       onOpenMedia,
