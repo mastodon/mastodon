@@ -13,10 +13,9 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
-import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 
 import { ToggleIconButton } from '../button/redesign';
-import { CopyIconButton } from '../copy_button';
+import { CopyIconButton, CopyIconButtonLegacy } from '../copy_button';
 import { FollowButton } from '../follow_button';
 import { IconButton as LegacyIconButton } from '../icon_button';
 
@@ -77,14 +76,6 @@ const AccountButtonsOther: FC<
       dispatch(followAccount(account.id, { notify: !relationship?.notifying }));
     }
   }, [dispatch, account, relationship]);
-  const accountUrl = account?.url;
-  const handleShare = useCallback(() => {
-    if (accountUrl) {
-      void navigator.share({
-        url: accountUrl,
-      });
-    }
-  }, [accountUrl]);
 
   const reference = useFollowReference('profile');
 
@@ -144,18 +135,14 @@ const AccountButtonsOther: FC<
           />
         ))}
       {!noShare &&
-        ('share' in navigator ? (
-          <LegacyIconButton
-            className='optional'
-            icon=''
-            iconComponent={ShareIcon}
-            title={intl.formatMessage(messages.share, {
-              name: account.username,
-            })}
-            onClick={handleShare}
+        (isRedesignEnabled() ? (
+          <CopyIconButton
+            title={intl.formatMessage(messages.copy)}
+            value={account.url}
+            size='sm'
           />
         ) : (
-          <CopyIconButton
+          <CopyIconButtonLegacy
             className='optional'
             title={intl.formatMessage(messages.copy)}
             value={account.url}
