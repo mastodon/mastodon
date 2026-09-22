@@ -5,6 +5,8 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { useAccount } from '@/mastodon/hooks/useAccount';
+import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import type { AccountStatusShape } from '@/mastodon/models/status';
 
 import { Avatar } from '../avatar';
@@ -32,6 +34,10 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
 }) => {
   const account = status.account;
   const handle = useAccountHandle(account);
+  const currentAccountId = useCurrentAccountId();
+  const firstMentionAccount = useAccount(
+    status.mentions.find(({ id }) => id !== currentAccountId)?.id,
+  );
 
   const handleId = useId();
   const accountLinkProps = {
@@ -64,16 +70,35 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
         values={{ author: displayName, count: status.mentions.length }}
       />
     );
-  } else if (status.visibility === 'direct') {
-    displayName = (
-      <FormattedMessage
-        id='status.header.message_to_me'
-        defaultMessage='{author} to You {count, plural, =0 {} one {+ # other} other {+ # others}}'
-        description='DisplayName is the author, count is # of other people mentioned in the post'
-        tagName='span'
-        values={{ author: displayName, count: status.mentions.length - 1 }}
-      />
-    );
+  } else if (status.visibility === 'direct' && status.mentions.length > 0) {
+    if (status.account.id === currentAccountId && firstMentionAccount) {
+      displayName = (
+        <FormattedMessage
+          id='status.header.message_from_me'
+          defaultMessage='{author} to {name} {count, plural, =0 {} one {+ # other} other {+ # others}}'
+          description='DisplayName is the author, count is # of other people mentioned in the post'
+          tagName='span'
+          values={{
+            author: displayName,
+            name: (
+              <DisplayName account={firstMentionAccount} variant='simple' />
+            ),
+            // Minus two, as we're removing the current user as well.
+            count: Math.max(status.mentions.length - 2, 0),
+          }}
+        />
+      );
+    } else {
+      displayName = (
+        <FormattedMessage
+          id='status.header.message_to_me'
+          defaultMessage='{author} to You {count, plural, =0 {} one {+ # other} other {+ # others}}'
+          description='DisplayName is the author, count is # of other people mentioned in the post'
+          tagName='span'
+          values={{ author: displayName, count: status.mentions.length - 1 }}
+        />
+      );
+    }
   }
 
   return (
