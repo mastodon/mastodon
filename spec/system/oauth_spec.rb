@@ -163,6 +163,53 @@ RSpec.describe 'Using OAuth from an external app' do
     end
   end
 
+  context 'when creating a new user' do
+    let(:params) do
+      { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read', prompt: 'create' }
+    end
+
+    it 'allows creating a new user' do
+      subject
+
+      # It presents the user with a sign-up page
+      expect(page)
+        .to have_text(I18n.t('auth.register'))
+
+      # Avoid the registration spam check
+      travel_to 10.seconds.from_now
+
+      fill_in 'user_account_attributes_username', with: 'alice'
+      fill_in 'user_email', with: 'test@example.com'
+      fill_in 'user_password', with: 'Test.123.Pass'
+      fill_in 'user_password_confirmation', with: 'Test.123.Pass'
+      check 'user_agreement'
+
+      click_on(I18n.t('auth.register'))
+
+      # Shows authorization page
+      expect(page)
+        .to have_title(I18n.t('doorkeeper.authorizations.new.title'))
+      expect(page)
+        .to have_text(oauth_authorize_text)
+
+      user = User.find_by(email: 'test@example.com')
+
+      # It grants the app access to the account
+      expect { click_on oauth_authorize_text }
+        .to change {
+              Doorkeeper::AccessGrant
+                .exists?(
+                  application: client_app,
+                  resource_owner_id: user.id
+                )
+            }.to(true)
+        .and change { user.reload.created_by_application_id }.to eq client_app.id
+
+      # Upon authorizing, it redirects to the apps' callback URL
+      expect(page).to redirect_to_callback_url
+    end
+  end
+
   context 'when the user is not already logged in' do
     let(:email)    { 'test@example.com' }
     let(:password) { 'testpassword' }
