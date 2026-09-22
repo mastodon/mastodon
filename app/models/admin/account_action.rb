@@ -97,6 +97,7 @@ class Admin::AccountAction
   end
 
   def process_strike!
+    authorize(target_account, :warn?)
     @warning = target_account.strikes.create!(
       account: current_account,
       report: report,
