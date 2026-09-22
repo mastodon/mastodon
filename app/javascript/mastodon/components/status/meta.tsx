@@ -52,7 +52,7 @@ export const StatusMeta: React.FC<{
 
   return (
     <div className={classes.meta}>
-      <ol>
+      <ul>
         <FormattedMessage
           id='status.replies_count'
           defaultMessage='{count, plural, one {{counter} reply} other {{counter} replies}}'
@@ -98,9 +98,9 @@ export const StatusMeta: React.FC<{
             />
           </Link>
         </li>
-      </ol>
+      </ul>
 
-      <ol>
+      <ul>
         <li>
           <FormattedDateWrapper
             value={createdAt}
@@ -113,7 +113,7 @@ export const StatusMeta: React.FC<{
         </li>
         {applicationDisplay && <li>{applicationDisplay}</li>}
         <li>{visibility}</li>
-      </ol>
+      </ul>
     </div>
   );
 };

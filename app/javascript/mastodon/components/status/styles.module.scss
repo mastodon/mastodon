@@ -232,6 +232,8 @@
   @include mixins.type-micro;
 
   display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
   justify-content: space-between;
   color: var(--color-text-secondary);
   padding-block-start: var(--space-2);
@@ -240,8 +242,9 @@
   margin-inline: calc(-1 * var(--space-4));
   padding-inline: var(--space-4);
 
-  > ol {
+  > ul {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--space-1);
   }
 
