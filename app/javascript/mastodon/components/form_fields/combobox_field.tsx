@@ -112,6 +112,13 @@ interface ComboboxProps<
    */
   openOnFocus?: boolean;
   /**
+   * Keep this enabled for autocomplete-like menu suggestions, where pressing
+   * Enter should select the first item in the suggestion dropdown.
+   * Disable when suggested items aren't necessarily related to user input, or
+   * when pressing Enter should submit a search instead.
+   */
+  autoHighlightFirstItem?: boolean;
+  /**
    * Set to false to keep the menu open when an item is selected
    */
   closeOnSelect?: boolean;
@@ -243,6 +250,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     onKeyDown,
     openOnFocus = false,
     closeOnSelect = true,
+    autoHighlightFirstItem = true,
     suppressMenu = false,
     icon = SearchIcon,
     className,
@@ -325,20 +333,24 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
   );
 
   const resetHighlight = useCallback(() => {
-    const firstItem = flatItems[0];
-    const firstItemId = firstItem ? getItemId(firstItem) : null;
-    highlightItem(firstItemId);
-  }, [flatItems, getItemId, highlightItem]);
+    if (autoHighlightFirstItem) {
+      const firstItem = flatItems[0];
+      const firstItemId = firstItem ? getItemId(firstItem) : null;
+      highlightItem(firstItemId);
+    } else {
+      highlightItem(null);
+    }
+  }, [autoHighlightFirstItem, flatItems, getItemId, highlightItem]);
 
   // Reset scroll & highlight when menu items change
   useEffect(() => {
-    if (flatItems.length) {
+    if (flatItems.length && autoHighlightFirstItem) {
       // This only runs when the items change so should be safe from
       // cascade renders.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       resetHighlight();
     }
-  }, [flatItems, resetHighlight]);
+  }, [flatItems, resetHighlight, autoHighlightFirstItem]);
 
   const handleFocus: React.FocusEventHandler<HTMLInputElement> = useCallback(
     (e) => {
@@ -473,7 +485,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
         }
       }
       if (e.key === 'Enter') {
-        if (isMenuOpen) {
+        if (isMenuOpen && highlightedItemId) {
           e.preventDefault();
           selectHighlightedItem();
         }
@@ -491,6 +503,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
       moveHighlight,
       onKeyDown,
       openMenu,
+      highlightedItemId,
       selectHighlightedItem,
     ],
   );
