@@ -5,14 +5,6 @@ import { defineMessages, useIntl } from 'react-intl';
 import { useHistory } from 'react-router';
 
 import {
-  ArrowsClockwiseIcon,
-  BookmarkSimpleIcon,
-  ChatCircleIcon,
-  HeartIcon,
-  QuotesIcon,
-} from '@phosphor-icons/react';
-
-import {
   followAccount,
   muteAccount,
   unblockAccount,
@@ -61,20 +53,21 @@ import { useAppSelector, useAppDispatch } from '@/mastodon/store';
 import type { AppDispatch } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import type { OnElementHandler } from '@/mastodon/utils/html';
-import BookmarkLegacyIcon from '@/material-icons/400-24px/bookmark-fill.svg?react';
-import BookmarkBorderLegacyIcon from '@/material-icons/400-24px/bookmark.svg?react';
-import BoostLegacyIcon from '@/material-icons/400-24px/repeat.svg?react';
-import ReplyLegacyIcon from '@/material-icons/400-24px/reply.svg?react';
-import ReplyAllLegacyIcon from '@/material-icons/400-24px/reply_all.svg?react';
-import StarLegacyIcon from '@/material-icons/400-24px/star-fill.svg?react';
-import StarBorderLegacyIcon from '@/material-icons/400-24px/star.svg?react';
-import BoostActiveIcon from '@/svg-icons/boost_active.svg?react';
 
-import { iconWeight, useIconWeight } from '../icon';
 import { FOCUS_TARGET } from '../navigation_focus_target';
 
 import { boostItemState, quoteItemState } from './boost_button_utils';
 import { useElementHandledLink } from './handled_link';
+import {
+  StatusBookmarkActiveIcon,
+  StatusBookmarkIcon,
+  StatusBoostActiveIcon,
+  StatusBoostIcon,
+  StatusLikeActiveIcon,
+  StatusLikeIcon,
+  StatusReplyAllIcon,
+  StatusReplyIcon,
+} from './icons';
 import type { StatusContextType } from './types';
 
 export const StatusContext = createContext<{
@@ -295,14 +288,6 @@ const iconMessages = defineMessages({
   },
 });
 
-export const StatusReplyIcon = isRedesignEnabled()
-  ? ChatCircleIcon
-  : ReplyLegacyIcon;
-export const StatusBoostIcon = isRedesignEnabled()
-  ? ArrowsClockwiseIcon
-  : BoostLegacyIcon;
-export const StatusLikeIcon = isRedesignEnabled() ? HeartIcon : StarLegacyIcon;
-
 export function useStatusIcons(statusId: string) {
   const intl = useIntl();
   const conditions = useAppSelector((state) =>
@@ -317,11 +302,7 @@ export function useStatusIcons(statusId: string) {
 
   const isReplyAll = !!status?.in_reply_to_id;
   const reply: StatusIcon = {
-    icon: isRedesign
-      ? ChatCircleIcon
-      : isReplyAll
-        ? ReplyAllLegacyIcon
-        : ReplyLegacyIcon,
+    icon: isReplyAll ? StatusReplyAllIcon : StatusReplyIcon,
     title: intl.formatMessage(
       isReplyAll ? iconMessages.replyAll : iconMessages.reply,
     ),
@@ -341,7 +322,7 @@ export function useStatusIcons(statusId: string) {
     disabled: boostState.disabled ?? false,
   };
   if (isRedesign) {
-    boost.icon = status?.reblogged ? BoostActiveIcon : ArrowsClockwiseIcon;
+    boost.icon = status?.reblogged ? StatusBoostActiveIcon : StatusBoostIcon;
   }
 
   const quoteState = quoteItemState(conditions);
@@ -353,13 +334,10 @@ export function useStatusIcons(statusId: string) {
     action: interactionFactory('quote'),
     disabled: quoteState.disabled ?? false,
   };
-  if (isRedesign) {
-    quote.icon = iconWeight(QuotesIcon, 'fill');
-  }
 
   const isLiked = !!status?.favourited;
   const like: StatusIcon = {
-    icon: isLiked ? StarLegacyIcon : StarBorderLegacyIcon,
+    icon: isLiked ? StatusLikeActiveIcon : StatusLikeIcon,
     title: intl.formatMessage(
       isLiked ? iconMessages.removeFavourite : iconMessages.favourite,
     ),
@@ -368,9 +346,7 @@ export function useStatusIcons(statusId: string) {
     action: interactionFactory('favourite'),
     disabled: interactions.favourite,
   };
-  const likeIcon = useIconWeight(HeartIcon, status?.favourited && 'fill');
   if (isRedesign) {
-    like.icon = likeIcon;
     like.title = intl.formatMessage(
       isLiked ? iconMessages.removeLike : iconMessages.like,
     );
@@ -378,7 +354,7 @@ export function useStatusIcons(statusId: string) {
 
   const isBookmarked = !!status?.bookmarked;
   const bookmark: StatusIcon = {
-    icon: isBookmarked ? BookmarkLegacyIcon : BookmarkBorderLegacyIcon,
+    icon: isBookmarked ? StatusBookmarkActiveIcon : StatusBookmarkIcon,
     title: intl.formatMessage(
       isBookmarked ? iconMessages.removeBookmark : iconMessages.bookmark,
     ),
@@ -386,13 +362,6 @@ export function useStatusIcons(statusId: string) {
     action: interactionFactory('bookmark'),
     disabled: interactions.bookmark,
   };
-  const bookmarkIcon = useIconWeight(
-    BookmarkSimpleIcon,
-    status?.bookmarked && 'fill',
-  );
-  if (isRedesign) {
-    bookmark.icon = bookmarkIcon;
-  }
 
   return {
     reply,

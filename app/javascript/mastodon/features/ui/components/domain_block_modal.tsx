@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { StatusReplyIcon } from '@/mastodon/components/status/hooks';
+import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 import CampaignIcon from '@/material-icons/400-24px/campaign.svg?react';
 import DomainDisabledIcon from '@/material-icons/400-24px/domain_disabled.svg?react';
 import HistoryIcon from '@/material-icons/400-24px/history.svg?react';

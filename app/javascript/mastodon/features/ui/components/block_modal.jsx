@@ -17,7 +17,7 @@ import { closeModal } from 'mastodon/actions/modal';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
-import { StatusReplyIcon } from '@/mastodon/components/status/hooks';
+import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 
 export const BlockModal = ({ accountId, acct }) => {
   const dispatch = useDispatch();

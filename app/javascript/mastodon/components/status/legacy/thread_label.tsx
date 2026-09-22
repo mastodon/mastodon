@@ -4,7 +4,7 @@ import { Icon } from 'mastodon/components/icon';
 import { useAppSelector } from 'mastodon/store';
 
 import { LinkedDisplayName } from '../../display_name';
-import { StatusReplyIcon } from '../hooks';
+import { StatusReplyIcon } from '../icons';
 
 export const StatusThreadLabel: React.FC<{
   accountId: string;

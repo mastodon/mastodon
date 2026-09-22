@@ -19,7 +19,7 @@ import { CheckBox } from 'mastodon/components/check_box';
 import { Icon } from 'mastodon/components/icon';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { RadioButton } from 'mastodon/components/radio_button';
-import { StatusReplyIcon } from '@/mastodon/components/status/hooks';
+import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 
 const messages = defineMessages({
   minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },

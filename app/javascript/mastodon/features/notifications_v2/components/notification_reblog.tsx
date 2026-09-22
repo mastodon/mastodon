@@ -2,7 +2,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
-import { StatusBoostIcon } from '@/mastodon/components/status/hooks';
+import { StatusBoostIcon } from '@/mastodon/components/status/icons';
 import type { NotificationGroupReblog } from 'mastodon/models/notification_group';
 import { useAppSelector } from 'mastodon/store';
 

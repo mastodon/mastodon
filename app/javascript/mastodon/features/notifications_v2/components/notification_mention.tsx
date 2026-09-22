@@ -2,7 +2,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { isEqual } from 'lodash';
 
-import { StatusReplyIcon } from '@/mastodon/components/status/hooks';
+import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import { me } from 'mastodon/initial_state';
 import type { NotificationGroupMention } from 'mastodon/models/notification_group';

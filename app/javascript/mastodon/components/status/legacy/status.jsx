@@ -33,7 +33,7 @@ import { getHashtagBarForStatus } from './hashtag_bar';
 import StatusActionBar from './action_bar';
 import StatusContent from './content';
 import { StatusThreadLabel } from './thread_label';
-import { StatusBoostIcon } from '../hooks';
+import { StatusBoostIcon } from '../icons';
 
 const domParser = new DOMParser();
 

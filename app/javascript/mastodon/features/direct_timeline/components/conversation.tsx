@@ -13,7 +13,7 @@ import type {
 
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
-import { StatusReplyIcon } from '@/mastodon/components/status/hooks';
+import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 import StatusContent from '@/mastodon/components/status/legacy/content';
 import type { Account } from '@/mastodon/models/account';
 import type { StatusShape } from '@/mastodon/models/status';
