@@ -10,6 +10,7 @@ import { BookmarkSimpleIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
 import { statusInteraction } from '@/mastodon/actions/interactions_typed';
+import { fetchStatus } from '@/mastodon/actions/statuses';
 import { ToggleIconButton } from '@/mastodon/components/button/redesign';
 import { Column } from '@/mastodon/components/column';
 import {
@@ -71,6 +72,7 @@ export const StatusPage: React.FC = () => {
   const { statusId } = useParams<{ acct: string; statusId: string }>();
   const { multiColumn } = useColumnsContext();
   const intl = useIntl();
+  const dispatch = useAppDispatch();
 
   const [fullscreen, setFullscreen] = useState(isFullscreen);
   useEffect(() => {
@@ -84,7 +86,12 @@ export const StatusPage: React.FC = () => {
     };
   });
 
-  const status = useExpandedStatus(statusId, 'force');
+  const status = useExpandedStatus(statusId);
+  useEffect(() => {
+    dispatch(
+      fetchStatus(statusId, { forceFetch: true, alsoFetchContext: true }),
+    );
+  }, [dispatch, statusId]);
   const isLoading = useAppSelector(
     (state) => !!state.statuses.getIn([statusId, 'isLoading']),
   );
@@ -120,7 +127,6 @@ export const StatusPage: React.FC = () => {
     [],
   );
 
-  const dispatch = useAppDispatch();
   const handleBookmarkClick = useCallback(() => {
     dispatch(
       statusInteraction({
