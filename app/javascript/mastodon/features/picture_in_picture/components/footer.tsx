@@ -5,6 +5,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 
 import { BoostButton } from '@/mastodon/components/status/legacy/boost_button';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import ReplyAllIcon from '@/material-icons/400-24px/reply_all.svg?react';
@@ -42,6 +43,8 @@ const messages = defineMessages({
     id: 'status.remove_favourite',
     defaultMessage: 'Remove from favorites',
   },
+  like: { id: 'status.like', defaultMessage: 'Like' },
+  unlike: { id: 'status.unlike', defaultMessage: 'Unlike' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
 });
 
@@ -145,9 +148,14 @@ export const Footer: React.FC<{
     replyTitle = intl.formatMessage(messages.replyAll);
   }
 
-  const favouriteTitle = intl.formatMessage(
+  let favouriteTitle = intl.formatMessage(
     status.get('favourited') ? messages.removeFavourite : messages.favourite,
   );
+  if (isRedesignEnabled()) {
+    favouriteTitle = intl.formatMessage(
+      status.get('favourited') ? messages.unlike : messages.like,
+    );
+  }
 
   return (
     <div className='picture-in-picture__footer'>
