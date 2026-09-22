@@ -22,12 +22,13 @@ import { CompatibilityHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { Status } from 'mastodon/components/status';
-import { Search } from 'mastodon/features/compose/components/search';
 import { useSearchParam } from 'mastodon/hooks/useSearchParam';
 import type { Hashtag as HashtagType } from 'mastodon/models/tags';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { CollectionListItem } from '../collections/components/collection_list_item';
+// import { Search } from 'mastodon/features/compose/components/search';
+import { Search as SearchRedesign } from '../explore/components/search';
 import exploreRedesignClasses from '../explore/redesign.module.scss';
 
 import { SearchSection } from './components/search_section';
@@ -249,7 +250,8 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
           isRedesignEnabled() && exploreRedesignClasses.searchHeader,
         )}
       >
-        <Search singleColumn initialValue={trimmedValue} key={trimmedValue} />
+        {/* <Search singleColumn initialValue={trimmedValue} key={trimmedValue} /> */}
+        <SearchRedesign initialValue={trimmedValue} key={trimmedValue} />
       </div>
 
       <div className='account__section-headline'>

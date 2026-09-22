@@ -18,11 +18,10 @@ import {
 } from '@/mastodon/components/form_fields/combobox_field';
 import {
   FOCUS_TARGET,
-  useFocusOnNavigation,
+  useFocusAfterNavigation,
 } from '@/mastodon/components/navigation_focus_target';
 import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import {
   clickSearchResult,
   forgetSearchResult,
@@ -108,7 +107,14 @@ export const Search: React.FC<{
   const [value, setValue] = useState(initialValue ?? '');
   const hasValue = value.length > 0;
   const [quickActions, setQuickActions] = useState<SearchOption[]>([]);
-  const focusOnNavigation = useFocusOnNavigation(FOCUS_TARGET.SEARCH);
+
+  const [shouldOpenOnFocus, setShouldOpenOnFocus] = useState(false);
+  const focusAfterNavigation = useFocusAfterNavigation(
+    FOCUS_TARGET.SEARCH,
+    () => {
+      setShouldOpenOnFocus(true);
+    },
+  );
 
   const insertText = useCallback((text: string) => {
     setValue((currentValue) => {
@@ -474,10 +480,7 @@ export const Search: React.FC<{
       <Combobox
         id={inputId}
         value={value}
-        ref={useMergedRefs(
-          searchInputRef,
-          isRedesignEnabled() ? focusOnNavigation : null,
-        )}
+        ref={useMergedRefs(searchInputRef, focusAfterNavigation)}
         onChange={handleChange}
         inputMode='search'
         // isLoading={isLoadingSuggestions}
@@ -488,6 +491,7 @@ export const Search: React.FC<{
         renderGroupTitle={renderGroupTitle}
         onSelectItem={handleSelectItem}
         autoHighlightFirstItem={false}
+        openOnFocus={shouldOpenOnFocus}
       />
     </form>
   );
