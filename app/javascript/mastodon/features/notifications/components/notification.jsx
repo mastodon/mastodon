@@ -15,7 +15,6 @@ import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
 import PersonIcon from '@/material-icons/400-24px/person-fill.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
-import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import { Account } from 'mastodon/components/account';
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
@@ -32,6 +31,7 @@ import { ModerationWarning } from './moderation_warning';
 import { RelationshipsSeveranceEvent } from './relationships_severance_event';
 import Report from './report';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { StatusBoostIcon } from '@/mastodon/components/status/hooks';
 
 const messages = defineMessages({
   favourite: { id: 'notification.favourite', defaultMessage: '{name} favorited your post' },
@@ -220,7 +220,7 @@ class Notification extends ImmutablePureComponent {
       <Hotkeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-reblog focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.reblog, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='retweet' icon={RepeatIcon} />
+            <Icon icon={StatusBoostIcon} />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your post' values={{ name: link }} />
