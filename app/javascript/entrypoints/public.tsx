@@ -180,6 +180,10 @@ async function loaded() {
     document.querySelector('#user_settings_attributes_default_privacy'),
   );
 
+  updateDefaultDiscoverableFromPrivacy(
+    document.querySelector('#user_settings_attributes_split_default_privacy'),
+  );
+
   truncateRuleHints();
 
   applyRailsA11yPatches();
@@ -443,6 +447,71 @@ const updateDefaultQuotePrivacyFromPrivacy = (
 on('change', '#user_settings_attributes_default_privacy', ({ target }) => {
   updateDefaultQuotePrivacyFromPrivacy(target);
 });
+
+const updateDefaultDiscoverableFromPrivacy = (
+  privacySelect: EventTarget | null,
+) => {
+  if (!(privacySelect instanceof HTMLSelectElement) || !privacySelect.form)
+    return;
+
+  const checkbox = privacySelect.form.querySelector<HTMLInputElement>(
+    'input#user_settings_attributes_split_default_privacy_discoverable',
+  );
+  if (!checkbox) return;
+
+  if (privacySelect.value === 'private') {
+    checkbox.checked = false;
+  }
+
+  setInputDisabled(checkbox, privacySelect.value === 'private');
+};
+
+on(
+  'change',
+  '#user_settings_attributes_split_default_privacy',
+  ({ target }) => {
+    updateDefaultDiscoverableFromPrivacy(target);
+  },
+);
+
+const updateDefaultQuotePrivacyFromSplitPrivacy = () => {
+  const privacySelect = document.querySelector<HTMLSelectElement>(
+    'select#user_settings_attributes_split_default_privacy',
+  );
+  if (!(privacySelect instanceof HTMLSelectElement) || !privacySelect.form)
+    return;
+
+  const discoverableCheckbox = document.querySelector<HTMLInputElement>(
+    'input#user_settings_attributes_split_default_privacy_discoverable',
+  );
+  if (!discoverableCheckbox) return;
+
+  const select = privacySelect.form.querySelector<HTMLSelectElement>(
+    'select#user_settings_attributes_default_quote_policy',
+  );
+  if (!select) return;
+
+  let privacy = privacySelect.value;
+  if (privacy === 'public' && !discoverableCheckbox.checked)
+    privacy = 'unlisted';
+
+  setInputHint(select, privacy);
+
+  if (privacySelect.value === 'private') {
+    select.value = 'nobody';
+    setInputDisabled(select, true);
+  } else {
+    setInputDisabled(select, false);
+  }
+};
+
+on(
+  'change',
+  '#user_settings_attributes_split_default_privacy,#user_settings_attributes_split_default_privacy_discoverable',
+  () => {
+    updateDefaultQuotePrivacyFromSplitPrivacy();
+  },
+);
 
 // Empty the honeypot fields in JS in case something like an extension
 // automatically filled them.
