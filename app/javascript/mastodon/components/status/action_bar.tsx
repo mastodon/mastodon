@@ -182,6 +182,7 @@ const StatusReblogButton: React.FC<{
         active={boost.active}
         title={boost.title}
         leadingIcon={boost.icon}
+        disabled={boost.disabled}
         onClick={boost.action}
       >
         {children}
