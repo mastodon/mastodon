@@ -67,6 +67,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(_resource)
+    last_url = stored_location_for(:user)
+    return last_url if last_url.present? && Rails.application.routes.recognize_path(last_url)[:controller] == 'oauth/authorizations'
+
     auth_setup_path
   end
 
