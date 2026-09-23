@@ -28,6 +28,8 @@ import { getOrderedLists } from '@/mastodon/selectors/lists';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import { useHasAnnouncements } from '../../announcements/hooks';
+
 import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationFooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
@@ -96,9 +98,13 @@ export const RedesignNavigationPanel: React.FC<{
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
-  const notificationsCount = useAppSelector(
+  const unreadNotificationsCount = useAppSelector(
     selectUnreadNotificationGroupsCount,
   );
+  const { unreadAnnouncementCount } = useHasAnnouncements();
+
+  const totalNotificationCount =
+    unreadNotificationsCount + unreadAnnouncementCount;
 
   const openComposer = useCallback(() => {
     dispatch(closeNavigation());
@@ -232,7 +238,7 @@ export const RedesignNavigationPanel: React.FC<{
                     stacked
                     to='/notifications'
                     iconComponent={BellIcon}
-                    badgeCount={notificationsCount}
+                    badgeCount={totalNotificationCount}
                   >
                     <FormattedMessage
                       id='tabs_bar.notifications'
