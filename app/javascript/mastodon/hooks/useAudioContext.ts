@@ -39,6 +39,9 @@ export const useAudioContext = ({ audioElementRef }: AudioContextOptions) => {
       if (context.state !== 'closed') {
         void context.close();
       }
+      audioContextRef.current = null;
+      gainNodeRef.current = null;
+      sourceRef.current = null;
     };
   }, [audioElementRef]);
 
