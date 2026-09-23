@@ -2,8 +2,8 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import { StatusLikeActiveIcon } from '@/mastodon/components/status/icons';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import type { NotificationGroupFavourite } from 'mastodon/models/notification_group';
 import { useAppSelector } from 'mastodon/store';
 
@@ -117,7 +117,7 @@ export const NotificationFavourite: React.FC<{
   return (
     <NotificationGroupWithStatus
       type='favourite'
-      icon={StarIcon}
+      icon={StatusLikeActiveIcon}
       iconId='star'
       accountIds={notification.sampleAccountIds}
       statusId={notification.statusId}

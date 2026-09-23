@@ -11,13 +11,13 @@ import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?re
 import BlockIcon from '@/material-icons/400-24px/block.svg?react';
 import CampaignIcon from '@/material-icons/400-24px/campaign.svg?react';
 import CollectionsIcon from '@/material-icons/400-24px/category.svg?react';
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { blockAccount } from 'mastodon/actions/accounts';
 import { closeModal } from 'mastodon/actions/modal';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
+import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 
 export const BlockModal = ({ accountId, acct }) => {
   const dispatch = useDispatch();
@@ -71,7 +71,7 @@ export const BlockModal = ({ accountId, acct }) => {
           </li>
 
           <li>
-            <div className='safety-action-modal__bullet-points__icon'><Icon icon={ReplyIcon} /></div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={StatusReplyIcon} /></div>
             <div><FormattedMessage id='block_modal.they_cant_mention' defaultMessage="You can't mention, follow, or quote each other." /></div>
           </li>
 

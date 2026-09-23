@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 import CampaignIcon from '@/material-icons/400-24px/campaign.svg?react';
 import DomainDisabledIcon from '@/material-icons/400-24px/domain_disabled.svg?react';
 import HistoryIcon from '@/material-icons/400-24px/history.svg?react';
 import PersonRemoveIcon from '@/material-icons/400-24px/person_remove.svg?react';
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { blockAccount } from 'mastodon/actions/accounts';
 import { blockDomain } from 'mastodon/actions/domain_blocks';
@@ -159,7 +159,7 @@ export const DomainBlockModal: React.FC<{
 
           <li className='safety-action-modal__bullet-points--deemphasized'>
             <div className='safety-action-modal__bullet-points__icon'>
-              <Icon id='' icon={ReplyIcon} />
+              <Icon icon={StatusReplyIcon} />
             </div>
             <div>
               <FormattedMessage
@@ -171,7 +171,7 @@ export const DomainBlockModal: React.FC<{
 
           <li className='safety-action-modal__bullet-points--deemphasized'>
             <div className='safety-action-modal__bullet-points__icon'>
-              <Icon id='' icon={HistoryIcon} />
+              <Icon icon={HistoryIcon} />
             </div>
             <div>
               <FormattedMessage

@@ -1,10 +1,10 @@
 import { FormattedMessage } from 'react-intl';
 
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { Icon } from 'mastodon/components/icon';
 import { useAppSelector } from 'mastodon/store';
 
 import { LinkedDisplayName } from '../../display_name';
+import { StatusReplyIcon } from '../icons';
 
 export const StatusThreadLabel: React.FC<{
   accountId: string;
@@ -49,7 +49,7 @@ export const StatusThreadLabel: React.FC<{
   return (
     <div className='status__prepend'>
       <div className='status__prepend__icon'>
-        <Icon id='reply' icon={ReplyIcon} />
+        <Icon id='reply' icon={StatusReplyIcon} />
       </div>
       <span>{label}</span>
     </div>

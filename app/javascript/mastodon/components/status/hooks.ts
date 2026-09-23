@@ -25,7 +25,7 @@ import { statusInteraction } from '@/mastodon/actions/interactions_typed';
 import { openModal } from '@/mastodon/actions/modal';
 import { toggleStatusSpoilers } from '@/mastodon/actions/statuses';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
-import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
+import { useExpandedStatus, useStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useIdentity } from '@/mastodon/identity_context';
 import { quickBoosting } from '@/mastodon/initial_state';
@@ -56,8 +56,18 @@ import type { OnElementHandler } from '@/mastodon/utils/html';
 
 import { FOCUS_TARGET } from '../navigation_focus_target';
 
-import { quoteItemState } from './boost_button_utils';
+import { boostItemState, quoteItemState } from './boost_button_utils';
 import { useElementHandledLink } from './handled_link';
+import {
+  StatusBookmarkActiveIcon,
+  StatusBookmarkIcon,
+  StatusBoostActiveIcon,
+  StatusBoostIcon,
+  StatusLikeActiveIcon,
+  StatusLikeIcon,
+  StatusReplyAllIcon,
+  StatusReplyIcon,
+} from './icons';
 import type { StatusContextType } from './types';
 
 export const StatusContext = createContext<{
@@ -67,6 +77,23 @@ export const StatusContext = createContext<{
 
 export function useStatusContext() {
   return use(StatusContext);
+}
+
+export function useStatusInteractionFactory(
+  statusId?: string,
+  contextTypeArg?: StatusContextType,
+) {
+  const statusContext = useStatusContext();
+  const contextType = contextTypeArg ?? statusContext.contextType;
+  const dispatch = useAppDispatch();
+  return useCallback(
+    (intent: StatusInteractionIntent) => {
+      return () => {
+        dispatch(statusInteraction({ statusId, intent, contextType }));
+      };
+    },
+    [contextType, dispatch, statusId],
+  );
 }
 
 export function useStatusHandlers({
@@ -101,14 +128,7 @@ export function useStatusHandlers({
   }, [dispatch, filterAction, onFilterToggle, showDespiteFilter, status]);
 
   // Interaction handlers
-  const handlerFactory = useCallback(
-    (intent: StatusInteractionIntent) => {
-      return () => {
-        dispatch(statusInteraction({ statusId, intent, contextType }));
-      };
-    },
-    [contextType, dispatch, statusId],
-  );
+  const handlerFactory = useStatusInteractionFactory(statusId, contextType);
 
   const accountId = status?.account.id;
   const onMention = useCallback(() => {
@@ -237,6 +257,120 @@ export function useStatusHandlers({
   );
 }
 export type StatusHandlers = ReturnType<typeof useStatusHandlers>;
+
+interface StatusIcon {
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  title: string;
+  meta?: string;
+  counter?: number;
+  active?: boolean;
+  action: () => void;
+  disabled: boolean;
+}
+
+const iconMessages = defineMessages({
+  reply: { id: 'status.reply', defaultMessage: 'Reply' },
+  replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
+  favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
+  removeFavourite: {
+    id: 'status.remove_favourite',
+    defaultMessage: 'Remove from favorites',
+  },
+  like: { id: 'status.like', defaultMessage: 'Like' },
+  removeLike: {
+    id: 'status.unlike',
+    defaultMessage: 'Unlike',
+  },
+  bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
+  removeBookmark: {
+    id: 'status.remove_bookmark',
+    defaultMessage: 'Remove bookmark',
+  },
+});
+
+export function useStatusIcons(statusId: string) {
+  const intl = useIntl();
+  const conditions = useAppSelector((state) =>
+    selectStatusConditions(state, statusId),
+  );
+  const status = useStatus(statusId);
+  const interactions = useAppSelector((state) =>
+    selectStatusInteractionsAllowed(state, statusId),
+  );
+  const interactionFactory = useStatusInteractionFactory(statusId);
+  const isRedesign = isRedesignEnabled();
+
+  const isReplyAll = !!status?.in_reply_to_id;
+  const reply: StatusIcon = {
+    icon: isReplyAll ? StatusReplyAllIcon : StatusReplyIcon,
+    title: intl.formatMessage(
+      isReplyAll ? iconMessages.replyAll : iconMessages.reply,
+    ),
+    counter: status?.replies_count,
+    action: interactionFactory('reply'),
+    disabled: interactions.reply,
+  };
+
+  const boostState = boostItemState(conditions);
+  const boost: StatusIcon = {
+    icon: boostState.iconComponent,
+    title: intl.formatMessage(boostState.title),
+    meta: boostState.meta ? intl.formatMessage(boostState.meta) : undefined,
+    counter: status?.reblogs_count,
+    active: status?.reblogged ?? false,
+    action: interactionFactory('reblog'),
+    disabled: boostState.disabled ?? false,
+  };
+  if (isRedesign) {
+    boost.icon = status?.reblogged ? StatusBoostActiveIcon : StatusBoostIcon;
+  }
+
+  const quoteState = quoteItemState(conditions);
+  const quote: StatusIcon = {
+    icon: quoteState.iconComponent,
+    title: intl.formatMessage(quoteState.title),
+    meta: quoteState.meta ? intl.formatMessage(quoteState.meta) : undefined,
+    counter: status?.quotes_count,
+    action: interactionFactory('quote'),
+    disabled: quoteState.disabled ?? false,
+  };
+
+  const isLiked = !!status?.favourited;
+  const like: StatusIcon = {
+    icon: isLiked ? StatusLikeActiveIcon : StatusLikeIcon,
+    title: intl.formatMessage(
+      isLiked ? iconMessages.removeFavourite : iconMessages.favourite,
+    ),
+    counter: status?.favourites_count ?? 0,
+    active: isLiked,
+    action: interactionFactory('favourite'),
+    disabled: interactions.favourite,
+  };
+  if (isRedesign) {
+    like.title = intl.formatMessage(
+      isLiked ? iconMessages.removeLike : iconMessages.like,
+    );
+  }
+
+  const isBookmarked = !!status?.bookmarked;
+  const bookmark: StatusIcon = {
+    icon: isBookmarked ? StatusBookmarkActiveIcon : StatusBookmarkIcon,
+    title: intl.formatMessage(
+      isBookmarked ? iconMessages.removeBookmark : iconMessages.bookmark,
+    ),
+    active: isBookmarked,
+    action: interactionFactory('bookmark'),
+    disabled: interactions.bookmark,
+  };
+
+  return {
+    reply,
+    boost,
+    quote,
+    like,
+    bookmark,
+  } as const;
+}
 
 const screenReaderMessages = defineMessages({
   quote_noun: {
@@ -436,16 +570,7 @@ export function useStatusMenuActions({
   const interactions = useAppSelector((state) =>
     selectStatusInteractionsAllowed(state, status.id),
   );
-  const statusInteractionFactory = useCallback(
-    (intent: StatusInteractionIntent) => {
-      return () => {
-        dispatch(
-          statusInteraction({ statusId: status.id, contextType, intent }),
-        );
-      };
-    },
-    [contextType, dispatch, status.id],
-  );
+  const statusInteractionFactory = useStatusInteractionFactory(status.id);
 
   return useMemo(
     () =>
