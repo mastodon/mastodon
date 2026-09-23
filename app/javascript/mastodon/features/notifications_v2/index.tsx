@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { GearIcon } from '@phosphor-icons/react';
+import { ChecksIcon, GearIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 import { isEqual } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
@@ -14,6 +14,7 @@ import {
 } from '@/mastodon/actions/columns';
 import { submitMarkers } from '@/mastodon/actions/markers';
 import { openModal } from '@/mastodon/actions/modal';
+import { Button } from '@/mastodon/components/button/redesign';
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import {
@@ -64,12 +65,17 @@ import ColumnSettingsContainer from '../notifications/containers/column_settings
 import { FollowRequestsBanner } from './components/follow_requests_banner';
 import { NotificationGroup } from './components/notification_group';
 import { FilterBar } from './filter_bar';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
   markAsRead: {
     id: 'notifications.mark_as_read',
     defaultMessage: 'Mark every notification as read',
+  },
+  markAsReadRedesign: {
+    id: 'notifications.mark_all_as_read',
+    defaultMessage: 'Mark all as read',
   },
 });
 
@@ -325,6 +331,19 @@ export const Notifications: React.FC<{
       )}
 
       {!isRedesignEnabled() && filterBar}
+
+      {canMarkAsRead && (
+        <div className={classes.markAsReadButtonWrapper}>
+          <Button
+            onClick={handleMarkAsRead}
+            variant='ghost'
+            size='sm'
+            leadingIcon={ChecksIcon}
+          >
+            {intl.formatMessage(messages.markAsReadRedesign)}
+          </Button>
+        </div>
+      )}
 
       {scrollContainer}
 
