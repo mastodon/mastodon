@@ -21,11 +21,16 @@ type AnnouncementsState = ImmutableRecord<{
   show: boolean;
 }>;
 
-export function useHasAnnouncements() {
+export function useHasAnnouncements({
+  fetch = true,
+}: { fetch?: boolean } = {}) {
   const dispatch = useAppDispatch();
   const hasAnnouncements = useAppSelector(
     (state) =>
       !(state.announcements as AnnouncementsState).get('items').isEmpty(),
+  );
+  const shouldShowAnnouncements = useAppSelector((state) =>
+    (state.announcements as AnnouncementsState).get('show'),
   );
   const unreadAnnouncementCount = useAppSelector((state) =>
     (state.announcements as AnnouncementsState)
@@ -34,20 +39,29 @@ export function useHasAnnouncements() {
   );
   const hasUnreadAnnouncements = !!unreadAnnouncementCount;
 
+  // Announcements display is transient – it's toggled on when
+  // there are unread announcements or the `show` Redux state is
+  // enabled, but resets to hidden when the page is left (by virtue
+  // of React simply losing this state).
   const [showAnnouncements, setShowAnnouncements] = useState(false);
-  if (hasUnreadAnnouncements && !showAnnouncements) {
+  if (
+    (hasUnreadAnnouncements || shouldShowAnnouncements) &&
+    !showAnnouncements
+  ) {
     setShowAnnouncements(true);
   }
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      dispatch(fetchAnnouncements());
+      if (fetch) {
+        dispatch(fetchAnnouncements());
+      }
     }, 700);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [dispatch]);
+  }, [fetch, dispatch]);
 
   return {
     hasAnnouncements,

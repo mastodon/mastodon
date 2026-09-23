@@ -13,6 +13,7 @@ import GrantPermissionButton from './grant_permission_button';
 import { PolicyControls } from './policy_controls';
 import SettingToggle from './setting_toggle';
 import { ColumnSettingsGroup } from './column_settings_group';
+import { ShowAnnouncementsButton } from './show_announcements_button';
 
 class ColumnSettings extends PureComponent {
   static propTypes = {
@@ -48,6 +49,7 @@ class ColumnSettings extends PureComponent {
       <div className='column-settings'>
         <section>
           <ClearColumnButton onClick={onClear} />
+          <ShowAnnouncementsButton />
         </section>
 
         {alertsEnabled && browserSupport && browserPermission === 'denied' && (
