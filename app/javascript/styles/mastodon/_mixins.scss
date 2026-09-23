@@ -114,7 +114,7 @@
 @mixin focus($offset: false) {
   outline: var(--bw-thick) solid var(--color-border-brand);
 
-  @if $offset not false {
+  @if $offset != false {
     outline-offset: var(--bw-thick);
   }
 }
