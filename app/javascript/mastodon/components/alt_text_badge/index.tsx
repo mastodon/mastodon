@@ -70,7 +70,11 @@ export const AltTextBadge: React.FC<{
         {({ props }) => (
           <div {...props} className='hover-card-controller'>
             <div // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
-              className='info-tooltip dropdown-animation'
+              className={
+                isRedesignStatusEnabled()
+                  ? classes.redesignPopover
+                  : 'info-tooltip dropdown-animation'
+              }
               role='dialog'
               aria-labelledby={titleId}
               ref={popoverRef}

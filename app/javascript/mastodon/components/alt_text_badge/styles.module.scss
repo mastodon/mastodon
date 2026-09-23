@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/mixins';
+
 .closeButton {
   position: absolute;
   top: 5px;
@@ -13,5 +15,27 @@
   svg {
     width: 20px;
     height: 20px;
+  }
+}
+
+.redesignPopover {
+  @include mixins.elevation-1;
+
+  padding: var(--space-4);
+  border-radius: var(--radius-4);
+  background: var(--color-bg-primary);
+  min-width: 16em;
+  min-height: 2em;
+  max-width: 22em;
+  max-height: 30em;
+
+  h4 {
+    @include mixins.type-body-strong;
+  }
+
+  .closeButton {
+    top: 0;
+    inset-inline-end: 0;
+    border-end-start-radius: var(--radius-4);
   }
 }
