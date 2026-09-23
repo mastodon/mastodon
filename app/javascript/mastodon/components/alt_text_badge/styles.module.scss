@@ -24,10 +24,10 @@
   padding: var(--space-4);
   border-radius: var(--radius-4);
   background: var(--color-bg-primary);
-  min-width: 16em;
-  min-height: 2em;
-  max-width: 22em;
-  max-height: 30em;
+  color: var(--color-text-primary);
+  box-shadow: none;
+  backdrop-filter: none;
+  word-break: break-all;
 
   h4 {
     @include mixins.type-body-strong;
@@ -37,5 +37,6 @@
     top: 0;
     inset-inline-end: 0;
     border-end-start-radius: var(--radius-4);
+    border-start-end-radius: var(--radius-4);
   }
 }
