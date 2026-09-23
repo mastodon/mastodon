@@ -186,26 +186,17 @@ RSpec.describe 'Using OAuth from an external app' do
 
       click_on(I18n.t('auth.register'))
 
-      # Shows authorization page
-      expect(page)
-        .to have_title(I18n.t('doorkeeper.authorizations.new.title'))
-      expect(page)
-        .to have_text(oauth_authorize_text)
-
+      # Directly authorizes the app
       user = User.find_by(email: 'test@example.com')
+      expect(Doorkeeper::AccessGrant.exists?(
+               application: client_app,
+               resource_owner_id: user.id
+             )).to be true
 
-      # It grants the app access to the account
-      expect { click_on oauth_authorize_text }
-        .to change {
-              Doorkeeper::AccessGrant
-                .exists?(
-                  application: client_app,
-                  resource_owner_id: user.id
-                )
-            }.to(true)
-        .and change { user.reload.created_by_application_id }.to eq client_app.id
+      # Marks the user as created by the app
+      expect(user.created_by_application_id).to eq client_app.id
 
-      # Upon authorizing, it redirects to the apps' callback URL
+      # Redirects to the app's callback URL
       expect(page).to redirect_to_callback_url
     end
   end
