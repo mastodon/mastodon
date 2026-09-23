@@ -58,7 +58,7 @@ export interface ApiGifvAttachmentJSON extends BaseApiMediaAttachmentJSON {
 
 export interface ApiUnknownAttachmentJSON extends BaseApiMediaAttachmentJSON {
   type: 'unknown';
-  meta: unknown;
+  meta: Record<string, unknown>;
 }
 
 export type ApiMediaAttachmentJSON =

@@ -8,7 +8,11 @@ import { apiGetSearch } from '@/mastodon/api/search';
 import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import type { MediaAttachment } from '@/mastodon/models/media_attachment';
-import type { Status, StatusVisibility } from '@/mastodon/models/status';
+import type {
+  MediaAttachmentShape,
+  Status,
+  StatusVisibility,
+} from '@/mastodon/models/status';
 import type { RootState } from '@/mastodon/store';
 import {
   createDataLoadingThunk,
@@ -61,10 +65,13 @@ const simulateModifiedApiResponse = (
 ): SimulatedMediaAttachmentJSON => {
   const [x, y] = (params.focus ?? '').split(',');
 
+  const jsMedia = media.toJS() as MediaAttachmentShape;
+
   const data = {
-    ...media.toJS(),
+    ...jsMedia,
     ...params,
     meta: {
+      ...jsMedia.meta,
       focus: {
         x: parseFloat(x ?? '0'),
         y: parseFloat(y ?? '0'),
