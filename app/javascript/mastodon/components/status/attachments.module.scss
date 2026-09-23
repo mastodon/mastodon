@@ -27,17 +27,10 @@
   flex-grow: 1;
 }
 
-.galleryContentWrapper {
-  &::after {
-    // Overrides .media-gallery__item
-    z-index: 10;
-  }
-
-  &.hideButtons {
-    :global(.media-gallery__item__badges),
-    :global(.media-gallery__actions) {
-      display: none;
-    }
+.galleryHideButtons {
+  :global(.media-gallery__item__badges),
+  :global(.media-gallery__actions) {
+    display: none;
   }
 }
 
