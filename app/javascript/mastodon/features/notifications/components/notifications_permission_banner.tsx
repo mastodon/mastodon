@@ -5,7 +5,6 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { GearIcon } from '@phosphor-icons/react';
 
 import { Button } from '@/mastodon/components/button/redesign';
-import { messages as columnHeaderMessages } from '@/mastodon/components/column/header';
 import { useAppDispatch } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
@@ -58,7 +57,10 @@ const NotificationsPermissionBanner: React.FC = () => {
               <Icon
                 id='sliders'
                 icon={isRedesignEnabled() ? GearIcon : UnfoldMoreIcon}
-                aria-label={intl.formatMessage(columnHeaderMessages.show)}
+                aria-label={intl.formatMessage({
+                  id: 'notifications.settings',
+                  defaultMessage: 'Notification Settings',
+                })}
               />
             ),
           }}
