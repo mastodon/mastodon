@@ -235,6 +235,18 @@ export const Notifications: React.FC<{
     <>
       {needsNotificationPermission && <NotificationsPermissionBanner />}
       {shouldShowAnnouncements && <Announcements />}
+      {!canMarkAsRead && (
+        <div className={classes.markAsReadButtonWrapper}>
+          <Button
+            onClick={handleMarkAsRead}
+            variant='ghost'
+            size='sm'
+            leadingIcon={ChecksIcon}
+          >
+            {intl.formatMessage(messages.markAsReadRedesign)}
+          </Button>
+        </div>
+      )}
       <FilteredNotificationsBanner />
       <FollowRequestsBanner />
     </>
@@ -331,19 +343,6 @@ export const Notifications: React.FC<{
       )}
 
       {!isRedesignEnabled() && filterBar}
-
-      {canMarkAsRead && (
-        <div className={classes.markAsReadButtonWrapper}>
-          <Button
-            onClick={handleMarkAsRead}
-            variant='ghost'
-            size='sm'
-            leadingIcon={ChecksIcon}
-          >
-            {intl.formatMessage(messages.markAsReadRedesign)}
-          </Button>
-        </div>
-      )}
 
       {scrollContainer}
 

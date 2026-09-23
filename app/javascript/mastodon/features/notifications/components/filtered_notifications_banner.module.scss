@@ -1,0 +1,40 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  margin: var(--space-4) var(--space-4) var(--space-2);
+  color: var(--color-text-secondary);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-3);
+  text-decoration: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: var(--color-text-primary);
+  }
+
+  :global(.notification-group__icon) {
+    color: inherit;
+  }
+}
+
+.text {
+  flex: 1 1 auto;
+  font-size: 14px;
+  line-height: 20px;
+
+  strong {
+    font-size: 16px;
+    line-height: 24px;
+    display: block;
+  }
+}
+
+.badge {
+  color: var(--color-text-on-brand-base);
+  background: var(--color-bg-brand-base);
+  border-radius: 100px;
+  padding: 2px 8px;
+}

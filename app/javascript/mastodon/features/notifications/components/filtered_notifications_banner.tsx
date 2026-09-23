@@ -4,11 +4,16 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import { Link, useHistory } from 'react-router-dom';
 
+import { TrayIcon } from '@phosphor-icons/react';
+
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
 import { fetchNotificationPolicy } from 'mastodon/actions/notification_policies';
 import { Icon } from 'mastodon/components/icon';
 import { selectSettingsNotificationsMinimizeFilteredBanner } from 'mastodon/selectors/settings';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
+
+import classes from './filtered_notifications_banner.module.scss';
 
 const messages = defineMessages({
   filteredNotifications: {
@@ -81,14 +86,26 @@ export const FilteredNotificationsBanner: React.FC = () => {
 
   return (
     <Link
-      className='filtered-notifications-banner'
+      className={
+        isRedesignEnabled() ? classes.root : 'filtered-notifications-banner'
+      }
       to='/notifications/requests'
     >
       <div className='notification-group__icon'>
-        <Icon icon={InventoryIcon} id='filtered-notifications' />
+        {isRedesignEnabled() ? (
+          <TrayIcon size={30} />
+        ) : (
+          <Icon icon={InventoryIcon} id='filtered-notifications' />
+        )}
       </div>
 
-      <div className='filtered-notifications-banner__text'>
+      <div
+        className={
+          isRedesignEnabled()
+            ? classes.text
+            : 'filtered-notifications-banner__text'
+        }
+      >
         <strong>
           <FormattedMessage
             id='filtered_notifications_banner.title'
