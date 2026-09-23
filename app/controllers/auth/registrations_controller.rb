@@ -28,7 +28,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    super
+    super do |resource|
+      # If created through an app, mark it as such
+      session[:created_by_app_id] = session.delete(:registration_app_id) if resource.persisted? && session[:registration_app_id]
+    end
   end
 
   def update
