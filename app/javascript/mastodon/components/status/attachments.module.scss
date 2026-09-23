@@ -13,6 +13,15 @@
     border-radius: var(--radius-4);
     outline: none;
   }
+
+  :global(.media-gallery__alt__label--non-interactive) {
+    @include mixins.type-meta;
+
+    color: var(--color-text-inverted);
+    background-color: var(--color-bg-inverted);
+    border-radius: var(--radius-round);
+    padding-inline: var(--space-2);
+  }
 }
 
 .gallerySpoilerWrapper {
