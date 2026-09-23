@@ -1,6 +1,8 @@
-import { lazy, Suspense, useCallback } from 'react';
+import { lazy, Suspense, useCallback, useRef, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
 
 import { openModal } from '@/mastodon/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
@@ -9,7 +11,6 @@ import { CollectionPreviewCard } from '@/mastodon/features/collections/component
 import MediaCard from '@/mastodon/features/status/components/card';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
-import { useToggle } from '@/mastodon/hooks/useToggle';
 import { displayMedia } from '@/mastodon/initial_state';
 import type {
   CardShape,
@@ -34,6 +35,7 @@ import classes from './attachments.module.scss';
 import { useStatusContext } from './hooks';
 import { PictureInPicturePlaceholder } from './legacy/picture_in_picture_placeholder';
 import { StatusQuote } from './quote';
+import mainClasses from './styles.module.scss';
 
 export const StatusAttachments: React.FC<{
   statusId: string;
@@ -50,7 +52,7 @@ export const StatusAttachments: React.FC<{
       <MediaAttachments
         statusId={statusId}
         accountId={status.account.id}
-        sensitive={status.sensitive}
+        sensitive={status.sensitive && !status.spoiler_text}
         language={status.translation?.language ?? status.language}
         attachment={attachment}
         restAttachments={status.media_attachments.slice(1)}
@@ -79,11 +81,17 @@ export const StatusAttachments: React.FC<{
   return null;
 };
 
+type OnOpenMediaCallback = (
+  media: Immutable.List<MediaAttachment>,
+  index: number,
+  lang?: string,
+) => void;
+
 type TMediaGallery = React.ComponentClass<
   {
     media: Immutable.List<MediaAttachment>;
     height: number;
-    onOpenMedia: (index: number) => void;
+    onOpenMedia: OnOpenMediaCallback;
     onToggleVisibility?: () => void;
     sensitive?: boolean;
     lang?: string;
@@ -135,29 +143,41 @@ const MediaAttachments: React.FC<{
     selectPictureInPicture(state, statusId),
   );
 
-  const [showMedia, { onToggle: handleToggleMediaVisibility }] = useToggle(
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [showMedia, setShowMedia] = useState(
     () =>
       mediaFilters.length === 0 &&
       ((displayMedia !== 'hide_all' && !sensitive) ||
         displayMedia === 'show_all'),
   );
+  const handleToggleMediaVisibility = useCallback(() => {
+    setShowMedia((prev) => {
+      // Pause the video or audio if hiding the media
+      if (prev && wrapperRef.current) {
+        wrapperRef.current
+          .querySelector<HTMLVideoElement | HTMLAudioElement>('video, audio')
+          ?.pause();
+      }
+      return !prev;
+    });
+  }, []);
 
   const dispatch = useAppDispatch();
-  const handleOpenMedia = useCallback(
-    (index: number) => {
+  const handleOpenMedia: OnOpenMediaCallback = useCallback(
+    (media, index, lang) => {
       dispatch(
         openModal({
           modalType: 'MEDIA',
           modalProps: {
             statusId,
-            media: immutableAttachments,
+            media,
             index,
-            lang: language,
+            lang,
           },
         }),
       );
     },
-    [immutableAttachments, dispatch, language, statusId],
+    [dispatch, statusId],
   );
   const handleOpenVideo = useCallback(
     (options: {
@@ -212,12 +232,22 @@ const MediaAttachments: React.FC<{
     return <PictureInPicturePlaceholder aspectRatio={aspectRatio} />;
   }
 
+  const wrapperProps = {
+    sensitive,
+    visible: showMedia,
+    onToggle: handleToggleMediaVisibility,
+    aspectRatio,
+    mediaFilters,
+    wrapperRef,
+  } satisfies Omit<
+    React.ComponentProps<typeof MediaAttachmentWrapper>,
+    'children'
+  >;
+
   if (isMediaAttachmentOfType(attachment, 'audio')) {
     const { colors, original } = attachment.meta;
     return (
-      <Suspense
-        fallback={<div className='audio-player' style={{ aspectRatio }} />}
-      >
+      <MediaAttachmentWrapper {...wrapperProps} type='audio'>
         <Audio
           src={attachment.url}
           alt={description}
@@ -228,22 +258,17 @@ const MediaAttachments: React.FC<{
           accentColor={colors?.accent}
           duration={original.duration}
           deployPictureInPicture={handleDeployPictureInPicture}
-          sensitive={sensitive}
           blurhash={attachment.blurhash}
-          visible={showMedia}
           onToggleVisibility={handleToggleMediaVisibility}
-          matchedFilters={mediaFilters}
         />
-      </Suspense>
+      </MediaAttachmentWrapper>
     );
   }
 
   if (isMediaAttachmentOfType(attachment, 'video')) {
     const { original } = attachment.meta;
     return (
-      <Suspense
-        fallback={<div className='video-player' style={{ aspectRatio }} />}
-      >
+      <MediaAttachmentWrapper {...wrapperProps} type='video'>
         <Video
           src={attachment.url}
           alt={description}
@@ -252,32 +277,106 @@ const MediaAttachments: React.FC<{
           frameRate={original.frame_rate}
           aspectRatio={aspectRatio}
           blurhash={attachment.blurhash}
-          sensitive={sensitive}
           onOpenVideo={handleOpenVideo}
           deployPictureInPicture={handleDeployPictureInPicture}
-          visible={showMedia}
           onToggleVisibility={handleToggleMediaVisibility}
-          matchedFilters={mediaFilters}
         />
-      </Suspense>
+      </MediaAttachmentWrapper>
     );
   }
 
   return (
-    <Suspense
-      fallback={<div className='media-player' style={{ aspectRatio }} />}
-    >
+    <MediaAttachmentWrapper {...wrapperProps} type='media'>
       <MediaGallery
         media={immutableAttachments}
         lang={language}
-        sensitive={sensitive}
         height={110}
         onOpenMedia={handleOpenMedia}
-        visible={showMedia}
         onToggleVisibility={handleToggleMediaVisibility}
-        matchedFilters={mediaFilters}
       />
-    </Suspense>
+    </MediaAttachmentWrapper>
+  );
+};
+
+const MediaAttachmentWrapper: React.FC<{
+  sensitive: boolean;
+  visible: boolean;
+  onToggle: () => void;
+  type?: 'media' | 'video' | 'audio';
+  children: React.ReactNode;
+  aspectRatio: string;
+  mediaFilters: string[];
+  wrapperRef: React.RefObject<HTMLDivElement | null>;
+}> = ({
+  sensitive,
+  visible,
+  type = 'media',
+  onToggle,
+  children,
+  aspectRatio,
+  mediaFilters,
+  wrapperRef,
+}) => {
+  let message = (
+    <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />
+  );
+  if (sensitive) {
+    message = (
+      <FormattedMessage
+        id='status.sensitive_warning'
+        defaultMessage='Sensitive content'
+      />
+    );
+  } else if (mediaFilters.length > 0) {
+    message = (
+      <FormattedMessage
+        id='filter_warning.matches_filter'
+        defaultMessage='Matches filter “<span>{title}</span>”'
+        values={{
+          title: mediaFilters.join(', '),
+          span: (chunks) => <span className='filter-name'>{chunks}</span>,
+        }}
+      />
+    );
+  }
+
+  const showSpoiler = sensitive || mediaFilters.length > 0 || !visible;
+
+  return (
+    <div className={classes.galleryWrapper} ref={wrapperRef}>
+      {showSpoiler && (
+        <div className={classes.gallerySpoilerWrapper}>
+          <span className={classes.gallerySpoilerContent}>{message}</span>
+          <Button variant='solid' size='sm' onClick={onToggle}>
+            {visible ? (
+              <FormattedMessage
+                id='content_warning.media.hide_short'
+                defaultMessage='Hide media'
+              />
+            ) : (
+              <FormattedMessage
+                id='content_warning.media.show_short'
+                defaultMessage='Show media'
+              />
+            )}
+          </Button>
+        </div>
+      )}
+      <div
+        data-color-scheme='dark'
+        className={classNames(
+          mainClasses.contentWrapper,
+          !visible && mainClasses.isFiltered,
+          !visible && classes.galleryHideButtons,
+        )}
+      >
+        <Suspense
+          fallback={<div className={`media-${type}`} style={{ aspectRatio }} />}
+        >
+          {children}
+        </Suspense>
+      </div>
+    </div>
   );
 };
 

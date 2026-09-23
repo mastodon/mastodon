@@ -133,6 +133,9 @@
     background-size: var(--space-2) var(--space-2);
     background-repeat: repeat;
 
+    // Override .media-gallery__item
+    z-index: 2;
+
     // See: https://css-tricks.com/snippets/css/toggle-visibility-when-hiding-elements/
     visibility: hidden;
     opacity: 0;

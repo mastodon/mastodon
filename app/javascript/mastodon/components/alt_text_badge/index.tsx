@@ -4,9 +4,11 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { useSelectableClick } from '@/mastodon/hooks/useSelectableClick';
+import { isRedesignStatusEnabled } from '@/mastodon/utils/environment';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import { useSelectableClick } from 'mastodon/hooks/useSelectableClick';
 
+import { Button } from '../button/redesign';
 import { IconButton } from '../icon_button';
 import { Popover } from '../popover';
 
@@ -40,10 +42,14 @@ export const AltTextBadge: React.FC<{
 
   const [handleMouseDown, handleMouseUp] = useSelectableClick(handleClose);
 
+  const ButtonComp = isRedesignStatusEnabled() ? Button : 'button';
+
   return (
     <>
-      <button
+      <ButtonComp
+        size='xs'
         type='button'
+        variant='solid'
         ref={setButtonElement}
         className={classNames('media-gallery__alt__label', className)}
         onClick={handleClick}
@@ -52,7 +58,7 @@ export const AltTextBadge: React.FC<{
         aria-haspopup='dialog'
       >
         ALT
-      </button>
+      </ButtonComp>
 
       <Popover
         isOpen={open}
@@ -64,7 +70,11 @@ export const AltTextBadge: React.FC<{
         {({ props }) => (
           <div {...props} className='hover-card-controller'>
             <div // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
-              className='info-tooltip dropdown-animation'
+              className={classNames(
+                'info-tooltip',
+                'dropdown-animation',
+                isRedesignStatusEnabled() && classes.redesignPopover,
+              )}
               role='dialog'
               aria-labelledby={titleId}
               ref={popoverRef}

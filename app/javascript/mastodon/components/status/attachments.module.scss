@@ -1,5 +1,50 @@
 @use '@/styles/mastodon/mixins';
 
+.galleryWrapper {
+  :global(.media-gallery) {
+    margin-top: 0;
+    border-radius: 0;
+  }
+
+  // Overrides .media-gallery--layout-2 > .media-gallery__item:nth-child(1)
+  :global(.media-gallery__item):global(.media-gallery__item),
+  :global(.video-player),
+  :global(.audio-player) {
+    border-radius: var(--radius-4);
+    outline: none;
+  }
+
+  :global(.media-gallery__alt__label--non-interactive) {
+    @include mixins.type-meta;
+
+    color: var(--color-text-inverted);
+    background-color: var(--color-bg-inverted);
+    border-radius: var(--radius-round);
+    padding-inline: var(--space-2);
+  }
+}
+
+.gallerySpoilerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.gallerySpoilerContent {
+  @include mixins.type-body-strong;
+
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.galleryHideButtons {
+  :global(.media-gallery__item__badges),
+  :global(.media-gallery__actions) {
+    display: none;
+  }
+}
+
 .cardMedia {
   > :global(.status-card) {
     margin-top: 0;
