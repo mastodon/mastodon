@@ -2158,6 +2158,12 @@
         }
       ]
     },
+    "DISABLE_EMAIL_SUBSCRIPTIONS": {
+      "type": "boolean",
+      "description": "When set to `true`, disables the feature that lets users subscribe to the posts of an account by email.\n",
+      "x-group": "features",
+      "default": false
+    },
     "DISABLE_FOLLOWERS_SYNCHRONIZATION": {
       "type": "boolean",
       "description": "When set to `true`, disables the follower synchronization action which occurs after some events.\n",
@@ -2908,6 +2914,7 @@
           {
             "title": "Other limits",
             "variables": [
+              "DISABLE_EMAIL_SUBSCRIPTIONS",
               "DISABLE_FOLLOWERS_SYNCHRONIZATION",
               "MAX_FOLLOWS_THRESHOLD",
               "MAX_FOLLOWS_RATIO",

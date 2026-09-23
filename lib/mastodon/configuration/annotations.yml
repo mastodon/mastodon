@@ -1983,6 +1983,12 @@ USER_ACTIVE_DAYS:
     - style: info
       body: |
         This setting has no relation to which users are considered active for the purposes of statistics, such as the Monthly Active Users number.
+DISABLE_EMAIL_SUBSCRIPTIONS:
+  type: boolean
+  group: features
+  description: |
+    When set to `true`, disables the feature that lets users subscribe to the posts of an account by email.
+  default: false
 DISABLE_FOLLOWERS_SYNCHRONIZATION:
   type: boolean
   group: features
@@ -2640,6 +2646,7 @@ docs:
             - USER_ACTIVE_DAYS
         - title: Other limits
           variables:
+            - DISABLE_EMAIL_SUBSCRIPTIONS
             - DISABLE_FOLLOWERS_SYNCHRONIZATION
             - MAX_FOLLOWS_THRESHOLD
             - MAX_FOLLOWS_RATIO
