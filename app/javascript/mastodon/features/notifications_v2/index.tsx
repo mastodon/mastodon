@@ -235,7 +235,9 @@ export const Notifications: React.FC<{
     <>
       {needsNotificationPermission && <NotificationsPermissionBanner />}
       {shouldShowAnnouncements && <Announcements />}
-      {!canMarkAsRead && (
+      <FilteredNotificationsBanner />
+      <FollowRequestsBanner />
+      {canMarkAsRead && (
         <div className={classes.markAsReadButtonWrapper}>
           <Button
             onClick={handleMarkAsRead}
@@ -247,8 +249,6 @@ export const Notifications: React.FC<{
           </Button>
         </div>
       )}
-      <FilteredNotificationsBanner />
-      <FollowRequestsBanner />
     </>
   );
 
