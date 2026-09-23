@@ -77,6 +77,15 @@ function useFollowedHashtags() {
   return { followedHashtags: tags };
 }
 
+export function useNotificationsCount() {
+  const unreadNotificationsCount = useAppSelector(
+    selectUnreadNotificationGroupsCount,
+  );
+  const { unreadAnnouncementCount } = useHasAnnouncements();
+
+  return unreadNotificationsCount + unreadAnnouncementCount;
+}
+
 const isFediverseFeedsLinkActive = (
   match: unknown,
   { pathname }: { pathname: string },
@@ -98,13 +107,7 @@ export const RedesignNavigationPanel: React.FC<{
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
-  const unreadNotificationsCount = useAppSelector(
-    selectUnreadNotificationGroupsCount,
-  );
-  const { unreadAnnouncementCount } = useHasAnnouncements();
-
-  const totalNotificationCount =
-    unreadNotificationsCount + unreadAnnouncementCount;
+  const notificationsCount = useNotificationsCount();
 
   const openComposer = useCallback(() => {
     dispatch(closeNavigation());
@@ -238,7 +241,7 @@ export const RedesignNavigationPanel: React.FC<{
                     stacked
                     to='/notifications'
                     iconComponent={BellIcon}
-                    badgeCount={totalNotificationCount}
+                    badgeCount={notificationsCount}
                   >
                     <FormattedMessage
                       id='tabs_bar.notifications'
