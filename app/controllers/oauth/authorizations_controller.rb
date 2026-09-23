@@ -31,7 +31,7 @@ class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
     # If the application requested to sign up, go to the registration path instead
     # of the log-in path, and record the app being used.
     if params['prompt'] == 'create' && !current_user
-      session[:created_by_app_id] = Doorkeeper::OAuth::Client.find(params[:client_id]).id
+      session[:registration_app_id] = Doorkeeper::OAuth::Client.find(params[:client_id]).id
 
       return redirect_to(new_user_registration_path)
     end
@@ -41,8 +41,7 @@ class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
 
   # This is used to record with which application the user was created
   def after_successful_authorization(context)
-    current_user.update(created_by_application_id: context.auth.pre_auth.client.id) if session[:created_by_app_id] == context.auth.pre_auth.client.id && current_user.created_by_application_id.nil?
-    session.delete(:created_by_app_id)
+    current_user.update(created_by_application_id: context.auth.pre_auth.client.id) if session.delete(:created_by_app_id) == context.auth.pre_auth.client.id && current_user.created_by_application_id.nil?
   end
 
   # TODO: we can skip the confirmation screen if we ensure more guardrails, such as unsetting `created_by_app_id` in log-in flow
