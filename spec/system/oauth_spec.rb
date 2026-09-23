@@ -168,8 +168,17 @@ RSpec.describe 'Using OAuth from an external app' do
       { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read', prompt: 'create' }
     end
 
+    let!(:rule) { Fabricate :rule, text: 'You must be seven meters tall' }
+
     it 'allows creating a new user' do
       subject
+
+      # Shows rules
+      expect(page)
+        .to have_title(I18n.t('auth.register'))
+        .and have_text(rule.text)
+
+      click_on I18n.t('auth.rules.accept')
 
       # It presents the user with a sign-up page
       expect(page)
@@ -180,6 +189,16 @@ RSpec.describe 'Using OAuth from an external app' do
 
       fill_in 'user_account_attributes_username', with: 'alice'
       fill_in 'user_email', with: 'test@example.com'
+      fill_in 'user_password', with: 'Test.123.Pass'
+      fill_in 'user_password_confirmation', with: 'Test.123.Pass'
+
+      # Click without approving user agreement
+      click_on(I18n.t('auth.register'))
+
+      # Brings user back to registration page
+      expect(page)
+        .to have_text(I18n.t('auth.register'))
+
       fill_in 'user_password', with: 'Test.123.Pass'
       fill_in 'user_password_confirmation', with: 'Test.123.Pass'
       check 'user_agreement'
