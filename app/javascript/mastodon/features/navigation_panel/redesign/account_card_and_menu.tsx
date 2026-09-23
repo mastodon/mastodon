@@ -116,7 +116,7 @@ export const AccountMenuItems: React.FC<{
       <MenuItemLink to={accountBasePath} exact icon={UserIcon}>
         <FormattedMessage
           id='account.view_profile'
-          defaultMessage='View profile'
+          defaultMessage='View Profile'
         />
       </MenuItemLink>
 
