@@ -6,17 +6,74 @@ on:
       pull_request_number:
         description: "PR number to (re)deploy"
         required: true
+
+env:
+  RAILS_ENV: development
+  NODE_ENV: development
+  BUNDLE_FROZEN: true
+  # Traffic from Kittengrid arrives on the agent's tunnel interface, not on
+  # loopback, so puma and the streaming server must listen on all interfaces.
+  BIND: 0.0.0.0
+  DB_HOST: localhost
+  DB_USER: postgres
+  DB_PASS: postgres
+  REDIS_HOST: localhost
+  REDIS_PORT: '6379'
+
 jobs:
   kittengrid:
     runs-on: ubuntu-latest
     permissions:
       actions: write
       contents: read
+
+    # Postgres and Redis run as job services and stay up for as long as the
+    # Kittengrid agent keeps the job alive. They are reachable on localhost.
+    services:
+      postgres:
+        image: postgres:14-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
+        ports:
+          - 6379:6379
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
-      # install your project dependencies here
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
+        with:
+          additional-system-dependencies: ffmpeg
+
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
+
+      # Build the frontend once here so the Rails server can serve it from
+      # public/packs-dev without a Vite dev server (see config/vite.yml).
+      - name: Build frontend assets
+        run: yarn build:development
+
+      # Creates the database, loads the schema and seeds the default
+      # admin@localhost / mastodonadmin user.
+      - name: Prepare database
+        run: bin/rails db:prepare
 
       - name: Kittengrid
         uses: kittengrid/actions/preview@latest
