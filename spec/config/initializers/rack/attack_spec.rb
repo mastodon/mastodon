@@ -71,6 +71,18 @@ RSpec.describe Rack::Attack, type: :request do
   let(:remote_ip) { '1.2.3.5' }
   let(:discriminator) { remote_ip }
 
+  describe 'throttle excessive confirmation e-mail requests by e-mail address' do
+    let(:throttle) { 'throttle_email_confirmations/email' }
+    let(:limit) { 5 }
+    let(:period) { 30.minutes }
+    let(:request) { -> { post path, params: { user: { email: email } } } }
+    let(:path) { '/auth/confirmation' }
+    let(:email) { 'foo@bar.com' }
+    let(:discriminator) { email }
+
+    it_behaves_like 'throttled endpoint'
+  end
+
   describe 'throttle excessive sign-up requests by IP address' do
     context 'when accessed through the website' do
       let(:throttle) { 'throttle_sign_up_attempts/ip' }
