@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback } from 'react';
+import { lazy, Suspense, useCallback, useRef, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -11,7 +11,6 @@ import { CollectionPreviewCard } from '@/mastodon/features/collections/component
 import MediaCard from '@/mastodon/features/status/components/card';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
-import { useToggle } from '@/mastodon/hooks/useToggle';
 import { displayMedia } from '@/mastodon/initial_state';
 import type {
   CardShape,
@@ -144,12 +143,24 @@ const MediaAttachments: React.FC<{
     selectPictureInPicture(state, statusId),
   );
 
-  const [showMedia, { onToggle: handleToggleMediaVisibility }] = useToggle(
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [showMedia, setShowMedia] = useState(
     () =>
       mediaFilters.length === 0 &&
       ((displayMedia !== 'hide_all' && !sensitive) ||
         displayMedia === 'show_all'),
   );
+  const handleToggleMediaVisibility = useCallback(() => {
+    setShowMedia((prev) => {
+      // Pause the video or audio if hiding the media
+      if (prev && wrapperRef.current) {
+        wrapperRef.current
+          .querySelector<HTMLVideoElement | HTMLAudioElement>('video, audio')
+          ?.pause();
+      }
+      return !prev;
+    });
+  }, []);
 
   const dispatch = useAppDispatch();
   const handleOpenMedia: OnOpenMediaCallback = useCallback(
@@ -227,6 +238,7 @@ const MediaAttachments: React.FC<{
     onToggle: handleToggleMediaVisibility,
     aspectRatio,
     mediaFilters,
+    wrapperRef,
   } satisfies Omit<
     React.ComponentProps<typeof MediaAttachmentWrapper>,
     'children'
@@ -294,6 +306,7 @@ const MediaAttachmentWrapper: React.FC<{
   children: React.ReactNode;
   aspectRatio: string;
   mediaFilters: string[];
+  wrapperRef: React.RefObject<HTMLDivElement | null>;
 }> = ({
   sensitive,
   visible,
@@ -302,6 +315,7 @@ const MediaAttachmentWrapper: React.FC<{
   children,
   aspectRatio,
   mediaFilters,
+  wrapperRef,
 }) => {
   let message = (
     <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />
@@ -329,7 +343,7 @@ const MediaAttachmentWrapper: React.FC<{
   const showSpoiler = sensitive || mediaFilters.length > 0 || !visible;
 
   return (
-    <div className={classes.galleryWrapper}>
+    <div className={classes.galleryWrapper} ref={wrapperRef}>
       {showSpoiler && (
         <div className={classes.gallerySpoilerWrapper}>
           <span className={classes.gallerySpoilerContent}>{message}</span>
