@@ -4,7 +4,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import { StatusBoostIcon } from '@/mastodon/components/status/icons';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
@@ -57,7 +57,7 @@ export const BoostModal: React.FC<{
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__header'>
           <div className='safety-action-modal__header__icon'>
-            <Icon icon={RepeatIcon} id='retweet' />
+            <Icon icon={StatusBoostIcon} id='retweet' />
           </div>
 
           <div>
@@ -81,7 +81,8 @@ export const BoostModal: React.FC<{
                 values={{
                   combo: (
                     <span className='hotkey-combination'>
-                      <kbd>Shift</kbd>+<Icon id='retweet' icon={RepeatIcon} />
+                      <kbd>Shift</kbd>+
+                      <Icon id='retweet' icon={StatusBoostIcon} />
                     </span>
                   ),
                 }}

@@ -60,12 +60,18 @@ ko:
       custom: 사용자 지정
       delete: 데이터 삭제
       deleted: 삭제됨
+      deletion_irreversible: 이 계정의 데이터는 되돌릴 수 없도록 삭제되었습니다.
+      deletion_reversible_hint_html: 이 계정은 삭제 대기중이며, %{date}에 완전히 삭제될 것입니다.
       demote: 강등
       destroyed_msg: "%{username}의 데이터는 곧 삭제되도록 대기열에 들어갔습니다"
       disable: 동결
       disable_sign_in_token_auth: 이메일 토큰 인증 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
       disabled: 동결됨
+      discoverable:
+        disabled: 작성자가 발견되도록 허용하지 않았습니다
+        enabled: 작성자가 발견되도록 허용했습니다
+        title: 발견 가능
       display_name: 표시되는 이름
       domain: 도메인
       edit: 수정
@@ -75,6 +81,12 @@ ko:
       enable_sign_in_token_auth: 이메일 토큰 인증 활성화
       enabled: 활성
       enabled_msg: "%{username}의 동결을 성공적으로 해제 했습니다."
+      follow_recommendations:
+        allowed: 허용됨
+        suppress: 팔로우 추천 모두 숨기기
+        suppressed: 숨겨짐
+        title: 팔로우 추천
+        unsuppress: 팔로우 추천 모두 복원
       followers: 팔로워
       follows: 팔로우
       header: 헤더
@@ -119,6 +131,7 @@ ko:
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 프로필 업데이트
       redownloaded_msg: 성공적으로 %{username}의 프로필을 원본으로부터 업데이트 하였습니다
+      registration_app: 가입한 앱
       reject: 거부
       rejected_msg: 성공적으로 %{username}의 가입 신청서를 반려하였습니다
       remote_suspension_irreversible: 이 계정의 데이터는 되돌릴 수 없도록 삭제되었습니다.
@@ -158,6 +171,12 @@ ko:
       suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제되었습니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
       suspension_reversible_hint_html: 계정이 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 어떤 안 좋은 효과 없이 계정이 복구 될 수 있습니다. 만약 지금 당장 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 행할 수 있습니다.
       title: 계정
+      trends:
+        allow: 허용
+        allowed: 허용됨
+        disallow: 미허용
+        disallowed: 허용되지 않음
+        title: 유행하는 게시물
       unblock_email: 이메일 차단 해제하기
       unblocked_email_msg: "%{username}의 이메일 주소를 성공적으로 차단 해제했습니다"
       unconfirmed_email: 확인되지 않은 이메일 주소
@@ -193,6 +212,7 @@ ko:
         create_user_role: 역할 생성
         create_username_block: 새 사용자명 규칙 만들기
         demote_user: 사용자 강등
+        destroy_account: 계정 정보 삭제
         destroy_announcement: 공지사항 삭제
         destroy_canonical_email_block: 이메일 차단 삭제
         destroy_custom_emoji: 커스텀 에모지 삭제
@@ -284,7 +304,11 @@ ko:
         enable_relay_html: "%{name} 님이 릴레이 %{target}를 활성화했습니다"
         enable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 활성화했습니다"
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화했습니다"
+        listable_tag_html: 추천될 수 있음
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 고인의 계정 페이지로 전환했습니다"
+        not_listable_tag_html: 추천될 수 없음
+        not_trendable_tag_html: 유행 목록에 나타나지 않음
+        not_usable_tag_html: 사용 불가
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
         publish_terms_of_service_html: "%{name} 님이 이용 약관을 업데이트했습니다"
         reject_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 거절했습니다"
@@ -297,6 +321,7 @@ ko:
         sensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감함으로 표시했습니다"
         silence_account_html: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
         suspend_account_html: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
+        trendable_tag_html: 유행 목록에 나타날 수 있음
         unassigned_report_html: "%{name} 님이 신고 %{target}을 할당 해제했습니다"
         unblock_email_account_html: "%{name} 님이 %{target}의 이메일 주소를 차단 해제했습니다"
         unsensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감하지 않음으로 표시했습니다"
@@ -311,6 +336,7 @@ ko:
         update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트했습니다"
         update_user_role_html: "%{name} 님이 %{target} 역할을 수정했습니다"
         update_username_block_html: "%{name} 님이 %{target}를 포함하는 사용자명에 대한 규칙을 수정했습니다"
+        usable_tag_html: 사용할 수 없음;
       deleted_account: 계정을 삭제했습니다
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 동작 별 필터
@@ -496,6 +522,7 @@ ko:
           hint: 구독자를 가진 계정이 없습니다.
           no_lists_yet: 리스트가 없습니다
         last_email: 최근 이메일
+        lead: 해당 기능을 활성화하고 구독자를 보유한 계정은 아래에 표시됩니다.
         show:
           date: 가입 날짜
           disable_feature: 기능 비활성화
@@ -706,6 +733,8 @@ ko:
       new:
         title: 새 IP 규칙 만들기
       no_ip_block_selected: 아무 것도 선택 되지 않아 어떤 IP 규칙도 변경 되지 않았습니다
+      reset: 초기화
+      search: 검색
       title: IP 규칙들
     relationships:
       title: "%{acct}의 관계"
@@ -842,6 +871,7 @@ ko:
         delete_user_data: 사용자 데이터 삭제
         delete_user_data_description: 사용자가 다른 사용자의 데이터를 지체 없이 삭제할 수 있도록 허용
         invite_bypass_approval: 심사 없이 사용자 초대
+        invite_bypass_approval_description: 이 사용자가 초대한 사람들이 가입 심사를 자동으로 통과하도록 허용
         invite_users: 사용자 초대
         invite_users_description: 사용자가 다른 사람들을 서버에 초대할 수 있도록 허용
         manage_announcements: 공지 관리
@@ -977,12 +1007,14 @@ ko:
       description: 최신 수정 사항과 기능을 활용하기 위해 Mastodon 설치를 최신 상태로 유지하기를 권장합니다. 더욱이, 때로는 보안 문제를 피하기 위해 Mastodon을 적절한 시점에 긴급 업데이트해야 하는 경우도 있습니다. 따라서 Mastodon은 30분마다 업데이트를 확인하며, 이메일 알림 환경설정에 따라 사용자에게 알려드립니다.
       documentation_link: 더 알아보기
       release_notes: 릴리스 노트
+      supported_until: "%{date}에 지원 종료"
       title: 사용 가능한 업데이트
       type: 유형
       types:
         major: 메이저 릴리스
         minor: 마이너 릴리스
         patch: 패치 릴리스 — 버그픽스이며 변경을 적용하기 쉽습니다
+      unsupported_since: "%{date}에 지원 종료됨"
       version: 버전
     statuses:
       account: 작성자
@@ -1192,6 +1224,7 @@ ko:
           other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
       title: 추천과 유행
       trending: 유행 중
+    update_available: 업데이트 사용 가능
     username_blocks:
       add_new: 새로 추가
       block_registrations: 가입 차단
@@ -1860,6 +1893,7 @@ ko:
     next: 다음
     older: 이전
     prev: 이전
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: 이미 참여한 설문

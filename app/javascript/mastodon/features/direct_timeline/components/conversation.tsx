@@ -13,6 +13,7 @@ import type {
 
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
+import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 import StatusContent from '@/mastodon/components/status/legacy/content';
 import type { Account } from '@/mastodon/models/account';
 import type { StatusShape } from '@/mastodon/models/status';
@@ -22,7 +23,6 @@ import {
   useAppSelector,
 } from '@/mastodon/store';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { replyCompose } from 'mastodon/actions/compose';
 import {
   markConversationRead,
@@ -256,7 +256,7 @@ export const Conversation: React.FC<{
               className='status__action-bar-button'
               title={intl.formatMessage(messages.reply)}
               icon='reply'
-              iconComponent={ReplyIcon}
+              iconComponent={StatusReplyIcon}
               onClick={handleReply}
             />
 

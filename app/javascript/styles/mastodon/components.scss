@@ -1491,7 +1491,7 @@ body > [data-popover-placement] {
 
 .focusable {
   &:focus-visible {
-    outline: 2px solid var(--color-border-brand);
+    outline: var(--outline-focus-default);
     outline-offset: -2px;
     background: var(--color-bg-brand-softest);
   }
@@ -11051,10 +11051,14 @@ noscript {
 }
 
 .column-footer {
-  padding: 16px;
   position: sticky;
   bottom: 0;
+  padding: 16px;
   background: var(--color-bg-primary);
+
+  @media (width <= $mobile-menu-breakpoint) {
+    padding-bottom: calc(16px + var(--mobile-bottom-nav-height, 0));
+  }
 }
 
 .lists-scrollable {

@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import FormatQuoteIcon from '@/material-icons/400-24px/format_quote-fill.svg?react';
+import { StatusQuoteIcon } from '@/mastodon/components/status/icons';
 import type { NotificationGroupQuote } from 'mastodon/models/notification_group';
 
 import type { LabelRenderer } from './notification_group_with_status';
@@ -21,7 +21,7 @@ export const NotificationQuote: React.FC<{
   return (
     <NotificationWithStatus
       type='quote'
-      icon={FormatQuoteIcon}
+      icon={StatusQuoteIcon}
       iconId='quote'
       accountIds={notification.sampleAccountIds}
       count={notification.notifications_count}

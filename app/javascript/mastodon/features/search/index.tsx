@@ -2,6 +2,8 @@ import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
@@ -26,6 +28,7 @@ import type { Hashtag as HashtagType } from 'mastodon/models/tags';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { CollectionListItem } from '../collections/components/collection_list_item';
+import exploreRedesignClasses from '../explore/redesign.module.scss';
 
 import { SearchSection } from './components/search_section';
 
@@ -240,7 +243,12 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
 
   const extraStickyHeaderContent = (
     <>
-      <div className='explore__search-header'>
+      <div
+        className={classNames(
+          'explore__search-header',
+          isRedesignEnabled() && exploreRedesignClasses.searchHeader,
+        )}
+      >
         <Search singleColumn initialValue={trimmedValue} key={trimmedValue} />
       </div>
 

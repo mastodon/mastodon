@@ -217,6 +217,7 @@ es:
         create_user_role: Crear Rol
         create_username_block: Crear regla de nombre de usuario
         demote_user: Degradar Usuario
+        destroy_account: Borrar Datos de la Cuenta
         destroy_announcement: Eliminar Anuncio
         destroy_canonical_email_block: Eliminar Bloqueo de Correo Electrónico
         destroy_custom_emoji: Eliminar Emoji Personalizado
@@ -285,6 +286,7 @@ es:
         create_user_role_html: "%{name} creó el rol %{target}"
         create_username_block_html: "%{name} agregó una regla para los nombres de usuario que contienen %{target}"
         demote_user_html: "%{name} degradó al usuario %{target}"
+        destroy_account_html: "%{name} borró los datos de la cuenta de %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueó el correo electrónico con el hash %{target}"
         destroy_collection_html: "%{name} eliminó la colección de %{target}"
@@ -1210,7 +1212,7 @@ es:
           other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison:
-          one: Compartido %{count} vez hoy, compara con %{yesterday} ayer
+          one: Compartido %{count} vez hoy, comparado con %{yesterday} ayer
           other: Compartido %{count} veces hoy, comparado con %{yesterday} ayer
       not_allowed_to_trend: No permitido para tendencia
       only_allowed: Solo las permitidas

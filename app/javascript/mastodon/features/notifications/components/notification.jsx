@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { ImmutablePureComponent } from 'react-immutable-pure-component';
 
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import FlagIcon from '@/material-icons/400-24px/flag-fill.svg?react';
-import FormatQuoteIcon from '@/material-icons/400-24px/format_quote-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
 import PersonIcon from '@/material-icons/400-24px/person-fill.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
-import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
-import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import { Account } from 'mastodon/components/account';
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { Icon }  from 'mastodon/components/icon';
@@ -31,9 +28,12 @@ import FollowRequestContainer from '../containers/follow_request_container';
 import { ModerationWarning } from './moderation_warning';
 import { RelationshipsSeveranceEvent } from './relationships_severance_event';
 import Report from './report';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { StatusBoostIcon, StatusLikeIcon, StatusQuoteIcon } from '@/mastodon/components/status/icons';
 
 const messages = defineMessages({
   favourite: { id: 'notification.favourite', defaultMessage: '{name} favorited your post' },
+  favourite_redesign: { id: 'notification.like', defaultMessage: '{name} liked your post' },
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
   ownPoll: { id: 'notification.own_poll', defaultMessage: 'Your poll has ended' },
   poll: { id: 'notification.poll', defaultMessage: 'A poll you voted in has ended' },
@@ -182,14 +182,16 @@ class Notification extends ImmutablePureComponent {
   renderFavourite (notification, link) {
     const { intl, unread } = this.props;
 
+    const likeMessage = isRedesignEnabled() ? messages.favourite_redesign : messages.favourite;
+
     return (
       <Hotkeys handlers={this.getHandlers()}>
-        <div className={classNames('notification notification-favourite focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.favourite, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
+        <div className={classNames('notification notification-favourite focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(likeMessage, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='star' icon={StarIcon} className='star-icon' />
+            <Icon id='star' icon={StatusLikeIcon} className='star-icon' />
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.favourite' defaultMessage='{name} favorited your post' values={{ name: link }} />
+              <FormattedMessage {...likeMessage} values={{ name: link }} />
             </span>
           </div>
 
@@ -216,7 +218,7 @@ class Notification extends ImmutablePureComponent {
       <Hotkeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-reblog focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.reblog, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='retweet' icon={RepeatIcon} />
+            <Icon icon={StatusBoostIcon} />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your post' values={{ name: link }} />
@@ -246,7 +248,7 @@ class Notification extends ImmutablePureComponent {
       <Hotkeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-quote focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.quote, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='quote' icon={FormatQuoteIcon} />
+            <Icon id='quote' icon={StatusQuoteIcon} />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.label.quote' defaultMessage='{name} quoted your post' values={{ name: link }} />

@@ -2,15 +2,19 @@ import { defineMessages } from 'react-intl';
 import type { MessageDescriptor } from 'react-intl';
 
 import type { StatusConditions } from '@/mastodon/selectors/statuses';
-import FormatQuote from '@/material-icons/400-24px/format_quote-fill.svg?react';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import FormatQuoteOff from '@/material-icons/400-24px/format_quote_off-fill.svg?react';
-import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
-import RepeatActiveIcon from '@/svg-icons/repeat_active.svg?react';
 import RepeatDisabledIcon from '@/svg-icons/repeat_disabled.svg?react';
 import RepeatPrivateIcon from '@/svg-icons/repeat_private.svg?react';
 import RepeatPrivateActiveIcon from '@/svg-icons/repeat_private_active.svg?react';
 
 import type { IconProp } from '../icon';
+
+import {
+  StatusBoostActiveIcon,
+  StatusBoostIcon,
+  StatusQuoteIcon,
+} from './icons';
 
 export const messages = defineMessages({
   all_disabled: {
@@ -76,20 +80,27 @@ export function boostItemState({
   if (isBoosted) {
     return {
       title: messages.reblog_cancel,
-      iconComponent: isPublic ? RepeatActiveIcon : RepeatPrivateActiveIcon,
+      iconComponent:
+        isPublic || isRedesignEnabled()
+          ? StatusBoostActiveIcon
+          : RepeatPrivateActiveIcon,
     };
   }
   const iconText: MenuItemState = {
     title: messages.reblog,
-    iconComponent: RepeatIcon,
+    iconComponent: StatusBoostIcon,
   };
 
   if (isPrivateReblog) {
     iconText.meta = messages.reblog_private;
-    iconText.iconComponent = RepeatPrivateIcon;
+    if (!isRedesignEnabled()) {
+      iconText.iconComponent = RepeatPrivateIcon;
+    }
   } else if (!isPublic) {
     iconText.meta = messages.reblog_cannot;
-    iconText.iconComponent = RepeatDisabledIcon;
+    if (!isRedesignEnabled()) {
+      iconText.iconComponent = RepeatDisabledIcon;
+    }
     iconText.disabled = true;
   }
   return iconText;
@@ -105,12 +116,14 @@ export function quoteItemState({
 }: StatusConditions): MenuItemState {
   const iconText: MenuItemState = {
     title: messages.quote,
-    iconComponent: FormatQuote,
+    iconComponent: StatusQuoteIcon,
   };
 
   if (!isPublic && !isMine) {
     iconText.disabled = true;
-    iconText.iconComponent = FormatQuoteOff;
+    if (!isRedesignEnabled()) {
+      iconText.iconComponent = FormatQuoteOff;
+    }
     iconText.meta = messages.quote_private;
   } else if (isQuoteAutomaticallyAccepted) {
     iconText.title = messages.quote;
@@ -120,7 +133,9 @@ export function quoteItemState({
     // We don't show the disabled state when logged out
   } else if (isLoggedIn) {
     iconText.disabled = true;
-    iconText.iconComponent = FormatQuoteOff;
+    if (!isRedesignEnabled()) {
+      iconText.iconComponent = FormatQuoteOff;
+    }
     iconText.meta = isQuoteFollowersOnly
       ? messages.quote_followers_only
       : messages.quote_cannot;

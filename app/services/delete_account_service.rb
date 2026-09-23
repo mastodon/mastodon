@@ -11,6 +11,7 @@ class DeleteAccountService < BaseService
     block_relationships
     blocked_by_relationships
     collections
+    collection_items
     conversation_mutes
     conversations
     custom_filters
@@ -252,6 +253,8 @@ class DeleteAccountService < BaseService
     @account.also_known_as       = []
     @account.avatar.destroy
     @account.header.destroy
+    @account.avatar_description = ''
+    @account.header_description = ''
     @account.save!
   end
 

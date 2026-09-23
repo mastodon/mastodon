@@ -18,6 +18,7 @@ import type { StatusLike } from '@/mastodon/components/status/legacy/hashtag_bar
 import { getHashtagBarForStatus } from '@/mastodon/components/status/legacy/hashtag_bar';
 import { PictureInPicturePlaceholder } from '@/mastodon/components/status/legacy/picture_in_picture_placeholder';
 import { QuotedStatus } from '@/mastodon/components/status/legacy/quoted';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import { Avatar } from 'mastodon/components/avatar';
@@ -391,18 +392,33 @@ export const DetailedStatus: React.FC<{
       to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/favourites`}
       className='detailed-status__link'
     >
-      <FormattedMessage
-        id='status.favourites_count'
-        defaultMessage='{count, plural, one {{counter} favorite} other {{counter} favorites}}'
-        values={{
-          count: status.get('favourites_count'),
-          counter: (
-            <span className='detailed-status__favorites'>
-              <AnimatedNumber value={status.get('favourites_count')} />
-            </span>
-          ),
-        }}
-      />
+      {isRedesignEnabled() ? (
+        <FormattedMessage
+          id='status.likes_count'
+          defaultMessage='{count, plural, one {{counter} like} other {{counter} likes}}'
+          values={{
+            count: status.get('favourites_count'),
+            counter: (
+              <span className='detailed-status__favorites'>
+                <AnimatedNumber value={status.get('favourites_count')} />
+              </span>
+            ),
+          }}
+        />
+      ) : (
+        <FormattedMessage
+          id='status.favourites_count'
+          defaultMessage='{count, plural, one {{counter} favorite} other {{counter} favorites}}'
+          values={{
+            count: status.get('favourites_count'),
+            counter: (
+              <span className='detailed-status__favorites'>
+                <AnimatedNumber value={status.get('favourites_count')} />
+              </span>
+            ),
+          }}
+        />
+      )}
     </Link>
   );
 

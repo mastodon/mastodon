@@ -8,7 +8,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { ImmutablePureComponent } from 'react-immutable-pure-component';
 
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
-import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import { Hotkeys } from '@/mastodon/components/hotkeys';
 import { Icon }  from '@/mastodon/components/icon';
 import { PictureInPicturePlaceholder } from './picture_in_picture_placeholder';
@@ -34,6 +33,7 @@ import { getHashtagBarForStatus } from './hashtag_bar';
 import StatusActionBar from './action_bar';
 import StatusContent from './content';
 import { StatusThreadLabel } from './thread_label';
+import { StatusBoostIcon } from '../icons';
 
 const domParser = new DOMParser();
 
@@ -438,7 +438,7 @@ class Status extends ImmutablePureComponent {
 
       prepend = (
         <div className='status__prepend'>
-          <div className='status__prepend__icon'><Icon id='retweet' icon={RepeatIcon} /></div>
+          <div className='status__prepend__icon'><Icon id='retweet' icon={StatusBoostIcon} /></div>
           <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name }} tagName='span' />
         </div>
       );

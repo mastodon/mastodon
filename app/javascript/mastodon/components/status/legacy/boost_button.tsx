@@ -28,6 +28,7 @@ import {
   messages,
   quoteItemState,
 } from '../boost_button_utils';
+import { useStatusIcons } from '../hooks';
 
 const StandaloneBoostButton: FC<ReblogButtonProps> = ({
   statusId,
@@ -135,6 +136,8 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
     );
   }, [dispatch, status]);
 
+  const { boost, quote } = useStatusIcons(statusId);
+
   const items = useMemo(() => {
     const boostItem = boostItemState(statusState);
     const quoteItem = quoteItemState(statusState);
@@ -144,7 +147,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
         description: boostItem.meta
           ? intl.formatMessage(boostItem.meta)
           : undefined,
-        icon: boostItem.iconComponent,
+        icon: boost.icon,
         highlighted: wasBoosted,
         disabled: boostItem.disabled,
         action: (event) => {
@@ -156,14 +159,22 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
         description: quoteItem.meta
           ? intl.formatMessage(quoteItem.meta)
           : undefined,
-        icon: quoteItem.iconComponent,
+        icon: quote.icon,
         disabled: quoteItem.disabled,
         action: () => {
           dispatch(quoteComposeById(statusId));
         },
       },
     ] satisfies [ActionMenuItemWithIcon, ActionMenuItemWithIcon];
-  }, [dispatch, intl, statusId, statusState, wasBoosted]);
+  }, [
+    boost.icon,
+    dispatch,
+    intl,
+    quote.icon,
+    statusId,
+    statusState,
+    wasBoosted,
+  ]);
 
   const boostIcon = items[0].icon;
 

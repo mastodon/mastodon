@@ -23,10 +23,7 @@ export interface ScrollBehaviorContextType {
   registerElement: (
     key: string,
     element: HTMLElement,
-    shouldUpdateScroll: (
-      prevLocationContext: MastodonLocation | null,
-      locationContext: MastodonLocation,
-    ) => boolean,
+    shouldUpdateScroll: ShouldUpdateScrollFn,
   ) => void;
   unregisterElement: (key: string) => void;
   scrollBehavior?: ScrollBehaviorInstance;

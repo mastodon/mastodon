@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { CopyIconButton } from '@/mastodon/components/copy_button';
+import { CopyIconButtonLegacy } from '@/mastodon/components/copy_button';
 
 import classes from './copy_link_field.module.scss';
 import { FormFieldWrapper } from './form_field_wrapper';
@@ -73,7 +73,7 @@ export const CopyLinkField = forwardRef<HTMLInputElement, CopyLinkFieldProps>(
               onFocus={handleFocus}
               className={classNames(className, classes.input)}
             />
-            <CopyIconButton
+            <CopyIconButtonLegacy
               value={value}
               title={intl.formatMessage({
                 id: 'copy_icon_button.copy_this_text',

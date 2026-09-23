@@ -120,6 +120,12 @@
   @include mixins.type-body;
 
   padding: var(--space-2);
+
+  // Prevent automatic page zoom in Safari when focusing
+  // text fields with font-sizes below 16px
+  @media (width <= #{variables.$mobile-menu-breakpoint}) {
+    font-size: var(--fs-16);
+  }
 }
 
 .textarea {
@@ -132,9 +138,10 @@
   width: 100%;
   outline: none;
   background: none;
+  min-height: 3lh;
 
   &:focus {
-    outline: 2px solid var(--color-border-brand);
+    outline: var(--outline-focus-default);
     outline-offset: -2px;
 
     &::placeholder {

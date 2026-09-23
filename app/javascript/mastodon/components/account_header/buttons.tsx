@@ -3,6 +3,8 @@ import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import { BellIcon, BellSlashIcon } from '@phosphor-icons/react';
+
 import { followAccount } from '@/mastodon/actions/accounts';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
@@ -11,11 +13,11 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
-import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 
-import { CopyIconButton } from '../copy_button';
+import { ToggleIconButton } from '../button/redesign';
+import { CopyIconButton, CopyIconButtonLegacy } from '../copy_button';
 import { FollowButton } from '../follow_button';
-import { IconButton } from '../icon_button';
+import { IconButton as LegacyIconButton } from '../icon_button';
 
 import { AccountMenu } from './menu';
 import classes from './styles.module.scss';
@@ -71,18 +73,9 @@ const AccountButtonsOther: FC<
   const dispatch = useAppDispatch();
   const handleNotifyToggle = useCallback(() => {
     if (account) {
-      // @ts-expect-error this action is not typed yet
       dispatch(followAccount(account.id, { notify: !relationship?.notifying }));
     }
   }, [dispatch, account, relationship]);
-  const accountUrl = account?.url;
-  const handleShare = useCallback(() => {
-    if (accountUrl) {
-      void navigator.share({
-        url: accountUrl,
-      });
-    }
-  }, [accountUrl]);
 
   const reference = useFollowReference('profile');
 
@@ -105,35 +98,51 @@ const AccountButtonsOther: FC<
           reference={reference}
         />
       )}
-      {isFollowing && (
-        <IconButton
-          icon={relationship.notifying ? 'bell' : 'bell-o'}
-          iconComponent={
-            relationship.notifying ? NotificationsActiveIcon : NotificationsIcon
-          }
-          active={relationship.notifying}
-          title={intl.formatMessage(
-            relationship.notifying
-              ? messages.disableNotifications
-              : messages.enableNotifications,
-            { name: account.username },
-          )}
-          onClick={handleNotifyToggle}
-        />
-      )}
-      {!noShare &&
-        ('share' in navigator ? (
-          <IconButton
-            className='optional'
-            icon=''
-            iconComponent={ShareIcon}
-            title={intl.formatMessage(messages.share, {
+      {isFollowing &&
+        (isRedesignEnabled() ? (
+          <ToggleIconButton
+            size='sm'
+            icon={relationship.notifying ? BellSlashIcon : BellIcon}
+            active={relationship.notifying}
+            onClick={handleNotifyToggle}
+            title={intl.formatMessage(
+              relationship.notifying
+                ? messages.disableNotifications
+                : messages.enableNotifications,
+              { name: account.username },
+            )}
+          >
+            {intl.formatMessage(messages.enableNotifications, {
               name: account.username,
             })}
-            onClick={handleShare}
+          </ToggleIconButton>
+        ) : (
+          <LegacyIconButton
+            icon={relationship.notifying ? 'bell' : 'bell-o'}
+            iconComponent={
+              relationship.notifying
+                ? NotificationsActiveIcon
+                : NotificationsIcon
+            }
+            active={relationship.notifying}
+            title={intl.formatMessage(
+              relationship.notifying
+                ? messages.disableNotifications
+                : messages.enableNotifications,
+              { name: account.username },
+            )}
+            onClick={handleNotifyToggle}
+          />
+        ))}
+      {!noShare &&
+        (isRedesignEnabled() ? (
+          <CopyIconButton
+            title={intl.formatMessage(messages.copy)}
+            value={account.url}
+            size='sm'
           />
         ) : (
-          <CopyIconButton
+          <CopyIconButtonLegacy
             className='optional'
             title={intl.formatMessage(messages.copy)}
             value={account.url}
