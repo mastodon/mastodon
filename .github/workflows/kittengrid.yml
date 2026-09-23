@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       pull_request_number:
-        description: "PR number to (re)deploy"
+        description: 'PR number to (re)deploy'
         required: true
 
 env:
