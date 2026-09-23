@@ -1,0 +1,74 @@
+# Kittengrid preview environment for Mastodon.
+#
+# Dependencies (Ruby gems, JS packages, compiled assets, database) are
+# prepared by .github/workflows/kittengrid.yml before the agent starts.
+# Postgres and Redis run as GitHub Actions job services on localhost.
+start_services: false
+start_terminal: false
+
+services:
+  # Rails web server (puma). Mastodon needs to know the public hostname it is
+  # served from (host authorization, generated URLs, CSP), so derive it from the
+  # public URL Kittengrid assigns to this service. The streaming service URL
+  # follows the same naming scheme, with the service name swapped.
+  - name: web
+    cmd: sh
+    port: 3000
+    args:
+      - -c
+      - |
+        url="${KITTENGRID_PUBLIC_URL:-http://localhost:3000}"
+        host="${url#*://}"
+        host="${host%%/*}"
+        case "$url" in
+          https://*) https=true; ws=wss ;;
+          *) https=false; ws=ws ;;
+        esac
+        export LOCAL_DOMAIN="$host"
+        export LOCAL_HTTPS="$https"
+        export STREAMING_API_BASE_URL="$ws://$(echo "$host" | sed 's/-web\./-streaming./')"
+        exec bundle exec puma -C config/puma.rb
+    env:
+      PORT: '3000'
+      # Requests arrive through the Kittengrid proxy; skip the Origin/base URL
+      # comparison so form submissions and logins are not rejected.
+      DISABLE_FORGERY_REQUEST_PROTECTION: 'true'
+    health_check:
+      interval: 5
+      timeout: 5
+      retries: 60
+      path: /health
+
+  # Node streaming API (websockets for live timelines and notifications).
+  - name: streaming
+    cmd: node
+    port: 4000
+    args:
+      - ./streaming/index.js
+    env:
+      PORT: '4000'
+    health_check:
+      interval: 5
+      timeout: 5
+      retries: 60
+      path: /api/v1/streaming/health
+
+  # Background job worker. Sidekiq has no HTTP interface of its own, so expose
+  # Mastodon's in-process Prometheus exporter to give the service a port and a
+  # health check.
+  - name: sidekiq
+    cmd: bundle
+    port: 9394
+    args:
+      - exec
+      - sidekiq
+    env:
+      MASTODON_PROMETHEUS_EXPORTER_ENABLED: 'true'
+      MASTODON_PROMETHEUS_EXPORTER_LOCAL: 'true'
+      MASTODON_PROMETHEUS_EXPORTER_HOST: 0.0.0.0
+      MASTODON_PROMETHEUS_EXPORTER_PORT: '9394'
+    health_check:
+      interval: 5
+      timeout: 5
+      retries: 60
+      path: /metrics
