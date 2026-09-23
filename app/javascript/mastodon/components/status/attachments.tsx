@@ -82,11 +82,17 @@ export const StatusAttachments: React.FC<{
   return null;
 };
 
+type OnOpenMediaCallback = (
+  media: Immutable.List<MediaAttachment>,
+  index: number,
+  lang?: string,
+) => void;
+
 type TMediaGallery = React.ComponentClass<
   {
     media: Immutable.List<MediaAttachment>;
     height: number;
-    onOpenMedia: (index: number) => void;
+    onOpenMedia: OnOpenMediaCallback;
     onToggleVisibility?: () => void;
     sensitive?: boolean;
     lang?: string;
@@ -146,21 +152,21 @@ const MediaAttachments: React.FC<{
   );
 
   const dispatch = useAppDispatch();
-  const handleOpenMedia = useCallback(
-    (index: number) => {
+  const handleOpenMedia: OnOpenMediaCallback = useCallback(
+    (media, index, lang) => {
       dispatch(
         openModal({
           modalType: 'MEDIA',
           modalProps: {
             statusId,
-            media: immutableAttachments,
+            media,
             index,
-            lang: language,
+            lang,
           },
         }),
       );
     },
-    [immutableAttachments, dispatch, language, statusId],
+    [dispatch, statusId],
   );
   const handleOpenVideo = useCallback(
     (options: {
