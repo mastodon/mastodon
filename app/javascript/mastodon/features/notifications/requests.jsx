@@ -29,7 +29,9 @@ import { NotificationRequest } from './components/notification_request';
 import { PolicyControls } from './components/policy_controls';
 import SettingToggle from './components/setting_toggle';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import { ColumnHeader } from '@/mastodon/components/column_header';
+import { ColumnHeader, ColumnHeaderButton } from '@/mastodon/components/column_header';
+import { GearIcon } from '@phosphor-icons/react';
+import { NotificationRequestsSettings } from './components/notification_requests_settings';
 
 const messages = defineMessages({
   title: { id: 'notification_requests.title', defaultMessage: 'Filtered notifications' },
@@ -44,38 +46,6 @@ const messages = defineMessages({
   confirmDismissMultipleMessage: { id: 'notification_requests.confirm_dismiss_multiple.message', defaultMessage: "You are about to dismiss {count, plural, one {one notification request} other {# notification requests}}. You won't be able to easily access {count, plural, one {it} other {them}} again. Are you sure you want to proceed?" },
   confirmDismissMultipleButton: { id: 'notification_requests.confirm_dismiss_multiple.button', defaultMessage: '{count, plural, one {Dismiss request} other {Dismiss requests}}' },
 });
-
-const ColumnSettings = () => {
-  const dispatch = useDispatch();
-  const settings = useSelector((state) => state.settings.get('notifications'));
-
-  const onChange = useCallback(
-    (key, checked) => {
-      dispatch(changeSetting(['notifications', ...key], checked));
-    },
-    [dispatch],
-  );
-
-  return (
-    <div className='column-settings'>
-      <section>
-        <div className='column-settings__row'>
-          <SettingToggle
-            prefix='notifications'
-            settings={settings}
-            settingPath={['minimizeFilteredBanner']}
-            onChange={onChange}
-            label={
-              <FormattedMessage id='notification_requests.minimize_banner' defaultMessage='Minimize filtered notifications banner' />
-            }
-          />
-        </div>
-      </section>
-
-      <PolicyControls />
-    </div>
-  );
-};
 
 const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionMode, setSelectionMode}) => {
   const intl = useIntl();
@@ -209,6 +179,15 @@ export const NotificationRequests = ({ multiColumn }) => {
     dispatch(fetchNotificationRequests());
   }, [dispatch]);
 
+  const openNotificationRequestsSettings = useCallback(() => {
+    dispatch(
+      openModal({
+        modalType: 'NOTIFICATION_REQUESTS_SETTINGS',
+        modalProps: {},
+      }),
+    );
+  }, [dispatch]);
+    
   const selectionRow = notificationRequests.length > 0 && (
     <SelectRow selectionMode={selectionMode} setSelectionMode={setSelectionMode} selectAllChecked={selectAllChecked} toggleSelectAll={toggleSelectAll} selectedItems={checkedRequestIds} />
   );
@@ -219,6 +198,14 @@ export const NotificationRequests = ({ multiColumn }) => {
         <ColumnHeader
           withBackButton
           title={intl.formatMessage(messages.title)}
+          extraButtons={
+            <ColumnHeaderButton icon={GearIcon} onClick={openNotificationRequestsSettings}>
+                <FormattedMessage
+                  id='notifications.settings'
+                  defaultMessage='Notification Settings'
+                />
+            </ColumnHeaderButton>
+          }
           extraStickyContent={selectionRow}
         />
       ) : (
@@ -231,7 +218,7 @@ export const NotificationRequests = ({ multiColumn }) => {
           scrollTopOnClick
           appendContent={selectionRow}
         >
-          <ColumnSettings />
+          <NotificationRequestsSettings />
         </LegacyColumnHeader>
       )}
 

@@ -111,6 +111,7 @@ export const MODAL_COMPONENTS = {
   'COMPOSER_SWITCH_TO_POST': () => import('@/mastodon/features/compose/redesign/modal_switch'),
   'COMPOSER_ADD_QUOTE': () => import('@/mastodon/features/compose/redesign/modal_quote'),
   'NOTIFICATION_SETTINGS': () => import('@/mastodon/features/notifications_v2/components/notification_settings_modal'),
+  'NOTIFICATION_REQUESTS_SETTINGS': () => import('@/mastodon/features/notifications/components/notification_requests_settings').then(module => ({default: module.NotificationRequestsSettingsModal})),
   'HASHTAG_SETTINGS': () => import('@/mastodon/features/hashtag_timeline/components/column_settings_modal'),
 };
 
