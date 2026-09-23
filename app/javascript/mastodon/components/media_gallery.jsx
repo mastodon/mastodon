@@ -16,6 +16,8 @@ import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { formatTime } from 'mastodon/features/video';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
+import { isRedesignStatusEnabled } from '../utils/environment';
+import { Button } from './button/redesign';
 
 class Item extends PureComponent {
 
@@ -320,6 +322,8 @@ class MediaGallery extends PureComponent {
       children = media.map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
+    const ButtonComp = isRedesignStatusEnabled() ? Button : 'button';
+
     return (
       <div className={`media-gallery media-gallery--layout-${size}`} style={style} ref={this.handleRef}>
         {children}
@@ -328,7 +332,15 @@ class MediaGallery extends PureComponent {
 
         {(visible && !uncached) && (
           <div className='media-gallery__actions'>
-            <button type='button' className='media-gallery__actions__pill' onClick={this.handleOpen}><FormattedMessage id='media_gallery.hide' defaultMessage='Hide' /></button>
+            <ButtonComp
+              size='xs'
+              type='button'
+              variant='solid'
+              className='media-gallery__actions__pill'
+              onClick={this.handleOpen}
+            >
+              <FormattedMessage id='media_gallery.hide' defaultMessage='Hide' />
+            </ButtonComp>
           </div>
         )}
       </div>
