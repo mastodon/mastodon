@@ -44,10 +44,15 @@ class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
     current_user.update(created_by_application_id: context.auth.pre_auth.client.id) if session.delete(:created_by_app_id) == context.auth.pre_auth.client.id && current_user.created_by_application_id.nil?
   end
 
-  # TODO: we can skip the confirmation screen if we ensure more guardrails, such as unsetting `created_by_app_id` in log-in flow
-  # def skip_authorization?
-  #   params['prompt'] == 'create && session[:created_by_app_id] == Doorkeeper::OAuth::Client.find(params[:client_id]).id && current_user.created_by_application_id.nil? || super
-  # end
+  # When dealing with a new account that has been explicitly created through the OAuth flow, skip authorization prompt
+  # to match the old `POST /api/v1/accounts` UX
+  def skip_authorization?
+    user_created_through_app? || super
+  end
+
+  def user_created_through_app?
+    params['prompt'] == 'create' && session[:created_by_app_id].present? && params[:client_id].present? && current_user.present? && current_user.created_by_application_id.nil? && session[:created_by_app_id] == Doorkeeper::OAuth::Client.find(params[:client_id])&.id
+  end
 
   # Don't require a confirmed or approved account if we are in the app sign-up flow
   def require_functional!
