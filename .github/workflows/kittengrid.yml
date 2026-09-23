@@ -1,0 +1,25 @@
+name: kittengrid
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      pull_request_number:
+        description: "PR number to (re)deploy"
+        required: true
+jobs:
+  kittengrid:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # install your project dependencies here
+
+      - name: Kittengrid
+        uses: kittengrid/actions/preview@latest
+        with:
+          pull-request-number: ${{ github.event.inputs.pull_request_number }}
+          api-key: ${{ secrets.KITTENGRID_API_KEY }}

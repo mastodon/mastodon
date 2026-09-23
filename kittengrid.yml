@@ -1,0 +1,30 @@
+services:
+  - name: server
+    cmd: npm
+    port: 3000
+    args:
+      - run
+      - start
+
+# Rails example:
+# services:
+#   - name: rails-server
+#     cmd: bundle
+#     port: 3000
+#     args:
+#       - exec
+#       - rails
+#       - server
+#       - -b
+#       - 0.0.0.0
+
+# Laravel example:
+# services:
+#   - name: laravel-server
+#     cmd: php
+#     port: 8000
+#     args:
+#       - artisan
+#       - serve
+#       - --host=0.0.0.0
+#       - --port=8000
