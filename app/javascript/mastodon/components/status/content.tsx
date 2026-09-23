@@ -58,6 +58,8 @@ export const StatusContent: React.FC<
 
   const htmlHandlers = useHandlersForStatus(status);
 
+  const text =
+    statusContent ?? status.translation?.contentHtml ?? status.contentHtml;
   const language = status.translation?.language ?? status.language;
 
   const isCollapsed = !!onReadMore && collapsible && collapsed;
@@ -79,18 +81,16 @@ export const StatusContent: React.FC<
         style={style}
         ref={onRef}
       >
-        <EmojiHTML
-          className={classes.contentText}
-          ref={onRef}
-          lang={language}
-          htmlString={
-            statusContent ??
-            status.translation?.contentHtml ??
-            status.contentHtml
-          }
-          extraEmojis={status.emojis}
-          {...htmlHandlers}
-        />
+        {text.trim().length > 0 && (
+          <EmojiHTML
+            className={classes.contentText}
+            ref={onRef}
+            lang={language}
+            htmlString={text}
+            extraEmojis={status.emojis}
+            {...htmlHandlers}
+          />
+        )}
 
         {children}
       </div>
