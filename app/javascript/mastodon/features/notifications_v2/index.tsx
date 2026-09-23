@@ -52,6 +52,8 @@ import {
 } from 'mastodon/selectors/settings';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { Announcements } from '../announcements';
+import { useHasAnnouncements } from '../announcements/hooks';
 import {
   FilteredNotificationsBanner,
   FilteredNotificationsIconButton,
@@ -220,9 +222,12 @@ export const Notifications: React.FC<{
     );
   }, [notifications, isLoading, hasMore, lastReadId, handleLoadGap]);
 
+  const { showAnnouncements } = useHasAnnouncements();
+
   const prepend = (
     <>
       {needsNotificationPermission && <NotificationsPermissionBanner />}
+      {showAnnouncements && <Announcements />}
       <FilteredNotificationsBanner />
     </>
   );

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import type {
   List as ImmutableList,
@@ -27,14 +27,17 @@ export function useHasAnnouncements() {
     (state) =>
       !(state.announcements as AnnouncementsState).get('items').isEmpty(),
   );
-  const showAnnouncements = useAppSelector((state) =>
-    (state.announcements as AnnouncementsState).get('show'),
-  );
   const unreadAnnouncementCount = useAppSelector((state) =>
     (state.announcements as AnnouncementsState)
       .get('items')
       .count((item) => !item.get('read')),
   );
+  const hasUnreadAnnouncements = !!unreadAnnouncementCount;
+
+  const [showAnnouncements, setShowAnnouncements] = useState(false);
+  if (hasUnreadAnnouncements && !showAnnouncements) {
+    setShowAnnouncements(true);
+  }
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -46,5 +49,10 @@ export function useHasAnnouncements() {
     };
   }, [dispatch]);
 
-  return { hasAnnouncements, showAnnouncements, unreadAnnouncementCount };
+  return {
+    hasAnnouncements,
+    hasUnreadAnnouncements,
+    showAnnouncements,
+    unreadAnnouncementCount,
+  };
 }
