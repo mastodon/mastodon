@@ -2505,15 +2505,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/icu-messageformat-parser@npm:3.5.19":
-  version: 3.5.19
-  resolution: "@formatjs/icu-messageformat-parser@npm:3.5.19"
-  dependencies:
-    "@formatjs/icu-skeleton-parser": "npm:2.1.12"
-  checksum: 10c0/806a7b6567fd7277dfeaa2dcaf562cdd4c1c590014bc16657dad22ee2c954cfc63f5256ca8b0b4bdcdf8268f643eca9fecb6678e6161d8936f88923446496422
-  languageName: node
-  linkType: hard
-
 "@formatjs/icu-messageformat-parser@npm:3.5.20":
   version: 3.5.20
   resolution: "@formatjs/icu-messageformat-parser@npm:3.5.20"
@@ -2567,24 +2558,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ts-transformer@npm:4.4.21":
-  version: 4.4.21
-  resolution: "@formatjs/ts-transformer@npm:4.4.21"
-  dependencies:
-    "@formatjs/icu-messageformat-parser": "npm:3.5.19"
-    "@types/babel__core": "npm:7"
-    "@types/node": "npm:22 || 24"
-    json-stable-stringify: "npm:1"
-    typescript: "npm:^5.6 || 6 || 7"
-  peerDependencies:
-    ts-jest: 29
-  peerDependenciesMeta:
-    ts-jest:
-      optional: true
-  checksum: 10c0/60929c0f79983756bf729e282fc32f4863733a872be3f55ef98d23624ad460a17a13ca2f20ebd1b208a65d62b3e0d7ed16cb7cce7b476c1ff04422ced38882ce
-  languageName: node
-  linkType: hard
-
 "@formatjs/ts-transformer@npm:4.4.22":
   version: 4.4.22
   resolution: "@formatjs/ts-transformer@npm:4.4.22"
@@ -2603,13 +2576,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/unplugin@npm:1.2.11":
-  version: 1.2.11
-  resolution: "@formatjs/unplugin@npm:1.2.11"
+"@formatjs/unplugin@npm:1.2.12":
+  version: 1.2.12
+  resolution: "@formatjs/unplugin@npm:1.2.12"
   dependencies:
     "@bazel/runfiles": "npm:6"
-    "@formatjs/icu-messageformat-parser": "npm:3.5.19"
-    "@formatjs/ts-transformer": "npm:4.4.21"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.20"
+    "@formatjs/ts-transformer": "npm:4.4.22"
     "@types/node": "npm:22 || 24"
     decode-named-character-reference: "npm:1"
     magic-string: "npm:1"
@@ -2632,7 +2605,7 @@ __metadata:
       optional: true
     webpack:
       optional: true
-  checksum: 10c0/d4f0cc7f3f2c3de7aeebec5d9429a5507a7e8b3517fd1d72dbc6a4d6e0448d88f90ea6dbf287bf5a11067b95a27e549c10131a5de9aa40aff3df842896aed4aa
+  checksum: 10c0/4d32b58fd2112b1b92064c49c4adae11dd6d79547f77269c04123d7c0bf0621ef189429ff9bf3cfab03960565cdf0f3ce65e1077c613695b6f47cb487471e0af
   languageName: node
   linkType: hard
 
@@ -2873,7 +2846,7 @@ __metadata:
     "@floating-ui/react-dom": "npm:2.1.9"
     "@formatjs/cli": "npm:6.14.4"
     "@formatjs/intl-pluralrules": "npm:6.3.13"
-    "@formatjs/unplugin": "npm:1.2.11"
+    "@formatjs/unplugin": "npm:1.2.12"
     "@gamestdio/websocket": "npm:0.3.2"
     "@github/webauthn-json": "npm:2.1.1"
     "@optimize-lodash/rollup-plugin": "npm:6.0.0"
