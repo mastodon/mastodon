@@ -27,6 +27,7 @@ import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { getOrderedLists } from '@/mastodon/selectors/lists';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
 import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationFooterLinks } from './footer_links';
@@ -151,6 +152,7 @@ export const RedesignNavigationPanel: React.FC<{
                 state: { focusTarget: FOCUS_TARGET.SEARCH },
               }}
               iconComponent={MagnifyingGlassIcon}
+              onClick={invokeVirtualIosKeyboard}
             >
               <FormattedMessage
                 id='tabs_bar.explore'

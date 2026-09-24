@@ -25,6 +25,7 @@ import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
 import { RedesignNavigationPanel } from '.';
 import { AccountMenuItems } from './account_card_and_menu';
@@ -59,6 +60,7 @@ export const RedesignMobileNavigation: React.FC = () => {
                 state: { focusTarget: FOCUS_TARGET.SEARCH },
               }}
               iconComponent={MagnifyingGlassIcon}
+              onClick={invokeVirtualIosKeyboard}
             >
               <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
             </MobileNavLink>
