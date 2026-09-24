@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -14,7 +14,6 @@ import type { RenderSlideFn } from '@/mastodon/components/carousel';
 import { Carousel } from '@/mastodon/components/carousel';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import { useCustomEmojis } from '@/mastodon/hooks/useCustomEmojis';
-import { usePrevious } from '@/mastodon/hooks/usePrevious';
 import { mascot } from '@/mastodon/initial_state';
 import {
   createAppSelector,
@@ -25,7 +24,6 @@ import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 import type { IAnnouncement } from './announcement';
 import { Announcement } from './announcement';
-import { selectUnreadAnnouncements } from './hooks';
 
 const announcementSelector = createAppSelector(
   [(state) => state.announcements as Map<string, List<Map<string, unknown>>>],
@@ -39,25 +37,6 @@ export const Announcements: FC = () => {
   const dispatch = useAppDispatch();
   const announcements = useAppSelector(announcementSelector);
   const emojis = useCustomEmojis();
-
-  const unreadAnnouncementCount = useAppSelector(selectUnreadAnnouncements);
-  const hasUnread = !!unreadAnnouncementCount;
-  const previousHasUnread = usePrevious(hasUnread);
-  // We hide the announcements when all previously
-  // unread announcements were read.
-  const shouldHideAnnouncementsOnUnmount =
-    isRedesignEnabled() && !hasUnread && previousHasUnread;
-
-  useEffect(() => {
-    if (shouldHideAnnouncementsOnUnmount) {
-      return () => {
-        // Note this is only triggered on unmount
-        dispatch(hideAnnouncements());
-      };
-    } else {
-      return () => undefined;
-    }
-  }, [dispatch, shouldHideAnnouncementsOnUnmount]);
 
   const closeAnnouncements = useCallback(() => {
     dispatch(hideAnnouncements());
