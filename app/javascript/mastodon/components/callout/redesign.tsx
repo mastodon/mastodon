@@ -13,9 +13,11 @@ type RenameKeysStartingWith<
   TPrefix extends string,
   TReplacement extends string,
 > = {
-  [TKey in keyof TObject as TKey extends `${TPrefix}${infer TSuffix}`
-    ? `${TReplacement}${TSuffix}`
-    : TKey]: TObject[TKey];
+  [
+    TKey in keyof TObject as TKey extends `${TPrefix}${infer TSuffix}`
+      ? `${TReplacement}${TSuffix}`
+      : TKey
+  ]: TObject[TKey];
 };
 
 type ActionProps =
