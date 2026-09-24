@@ -9,7 +9,7 @@ export function invokeVirtualIosKeyboard() {
   dummyInput.className = classes.dummyInput ?? '';
   dummyInput.onblur = () => {
     // Cleanup: Remove the dummy input after focus was moved away from it
-    // dummyInput.remove();
+    dummyInput.remove();
   };
   document.body.appendChild(dummyInput);
   dummyInput.focus();
