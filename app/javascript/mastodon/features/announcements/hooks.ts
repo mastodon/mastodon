@@ -10,11 +10,7 @@ import {
   showAnnouncements,
 } from '@/mastodon/actions/announcements';
 import type { ApiAnnouncementJSON } from '@/mastodon/api_types/announcements';
-import {
-  createAppSelector,
-  useAppDispatch,
-  useAppSelector,
-} from '@/mastodon/store';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 type AnnouncementItem = ImmutableRecord<ApiAnnouncementJSON>;
@@ -24,12 +20,6 @@ type AnnouncementsState = ImmutableRecord<{
   isLoading: boolean;
   show: boolean;
 }>;
-
-export const selectUnreadAnnouncements = createAppSelector(
-  [(state) => state.announcements as AnnouncementsState],
-  (announcements) =>
-    announcements.get('items').count((item) => !item.get('read')),
-);
 
 export function useHasAnnouncements({
   fetch = true,
@@ -42,7 +32,11 @@ export function useHasAnnouncements({
   const shouldShowAnnouncements = useAppSelector((state) =>
     (state.announcements as AnnouncementsState).get('show'),
   );
-  const unreadAnnouncementCount = useAppSelector(selectUnreadAnnouncements);
+  const unreadAnnouncementCount = useAppSelector((state) =>
+    (state.announcements as AnnouncementsState)
+      .get('items')
+      .count((item) => !item.get('read')),
+  );
   const hasUnreadAnnouncements = !!unreadAnnouncementCount;
 
   useEffect(() => {
