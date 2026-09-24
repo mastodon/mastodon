@@ -81,7 +81,9 @@ function useFollowedHashtags() {
   return { followedHashtags: tags };
 }
 
-function useFollowRequestsCount() {
+export function useFollowRequestsCount({
+  fetch = true,
+}: { fetch?: boolean } = {}) {
   const followRequestsCount = useAppSelector(
     (state) =>
       (
@@ -93,8 +95,10 @@ function useFollowRequestsCount() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFollowRequests());
-  }, [dispatch]);
+    if (fetch) {
+      dispatch(fetchFollowRequests());
+    }
+  }, [dispatch, fetch]);
 
   return followRequestsCount;
 }
