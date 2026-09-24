@@ -173,8 +173,30 @@ class User < ApplicationRecord
     redis.publish("timeline:system:#{account.id}", { event: :kill }.to_json)
   end
 
+  def mails_disabled?
+    disabled? && confirmed_at.nil? && confirmation_sent_at.nil?
+  end
+
   def enable!
     update!(disabled: false)
+
+    # Users that are disabled at creation-time do not generate a confirmation link,
+    # so generate one on re-enable if that's the case
+    send_confirmation_instructions if confirmation_sent_at.nil? && confirmed_at.nil?
+  end
+
+  # Redefined so users that are created disabled do not cause a confirmation mail to be sent
+  def generate_confirmation_token
+    return if mails_disabled?
+
+    super
+  end
+
+  # Redefined so users that are created disabled do not cause a confirmation mail to be sent
+  def send_confirmation_instructions
+    return if mails_disabled?
+
+    super
   end
 
   def to_log_human_identifier
@@ -239,6 +261,7 @@ class User < ApplicationRecord
   def approve!
     return if approved?
 
+    enable! if disabled?
     update!(approved: true)
 
     # Avoid extremely unlikely race condition when approving and confirming
