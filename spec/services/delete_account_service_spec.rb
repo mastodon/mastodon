@@ -7,6 +7,7 @@ RSpec.describe DeleteAccountService do
     subject { described_class.new.call(account) }
 
     let!(:status) { Fabricate(:status, account: account) }
+    let!(:reported_status) { Fabricate(:status, account: account) }
     let!(:mention) { Fabricate(:mention, account: local_follower) }
     let!(:status_with_mention) { Fabricate(:status, account: account, mentions: [mention]) }
     let!(:media_attachment) { Fabricate(:media_attachment, account: account) }
@@ -28,8 +29,13 @@ RSpec.describe DeleteAccountService do
     let!(:account_note) { Fabricate(:account_note, account: account) }
     let!(:generated_annual_report) { Fabricate(:generated_annual_report, account: account) }
 
+    before do
+      Fabricate(:report, target_account: account, status_ids: [reported_status.id])
+    end
+
     it 'deletes associated owned and target records and target notifications' do
-      subject
+      expect { subject }
+        .to change { reported_status.reload.deleted_at }.from(nil)
 
       expect_deletion_of_associated_owned_records
       expect_deletion_of_associated_target_records
