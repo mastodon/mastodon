@@ -8543,6 +8543,13 @@ noscript {
     width: 100%;
   }
 
+  &__close-button {
+    position: absolute;
+    top: var(--space-2);
+    inset-inline-end: var(--space-2);
+    z-index: 1;
+  }
+
   &__root {
     background: var(--color-bg-brand-softest);
     font-size: 13px;
@@ -8584,18 +8591,17 @@ noscript {
     display: block;
     font-weight: 500;
     margin-bottom: 10px;
-    padding-inline-end: 18px;
+    padding-inline-end: 28px;
   }
 
   &__unread {
-    position: absolute;
-    top: 19px;
-    inset-inline-end: 19px;
-    display: block;
-    background: var(--color-text-brand);
-    border-radius: 50%;
+    display: inline-block;
     width: 0.625rem;
     height: 0.625rem;
+    margin-inline-start: 8px;
+    border-radius: 50%;
+    vertical-align: 0.05em;
+    background: var(--color-text-brand);
   }
 
   &__pagination {

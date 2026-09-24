@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import type {
   List as ImmutableList,
   Record as ImmutableRecord,
 } from 'immutable';
 
-import { fetchAnnouncements } from '@/mastodon/actions/announcements';
+import {
+  fetchAnnouncements,
+  showAnnouncements,
+} from '@/mastodon/actions/announcements';
+import type { ApiAnnouncementJSON } from '@/mastodon/api_types/announcements';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
-type AnnouncementItem = ImmutableRecord<{
-  id: string;
-  starts_at: string;
-  published_at: string;
-  read: boolean;
-}>;
+type AnnouncementItem = ImmutableRecord<ApiAnnouncementJSON>;
 
 type AnnouncementsState = ImmutableRecord<{
   items: ImmutableList<AnnouncementItem>;
@@ -39,17 +39,11 @@ export function useHasAnnouncements({
   );
   const hasUnreadAnnouncements = !!unreadAnnouncementCount;
 
-  // Announcements display is transient – it's toggled on when
-  // there are unread announcements or the `show` Redux state is
-  // enabled, but resets to hidden when the page is left (by virtue
-  // of React simply losing this state).
-  const [showAnnouncements, setShowAnnouncements] = useState(false);
-  if (
-    (hasUnreadAnnouncements || shouldShowAnnouncements) &&
-    !showAnnouncements
-  ) {
-    setShowAnnouncements(true);
-  }
+  useEffect(() => {
+    if (hasUnreadAnnouncements && isRedesignEnabled()) {
+      dispatch(showAnnouncements());
+    }
+  }, [hasUnreadAnnouncements, dispatch]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -66,7 +60,7 @@ export function useHasAnnouncements({
   return {
     hasAnnouncements,
     hasUnreadAnnouncements,
-    showAnnouncements,
+    shouldShowAnnouncements,
     unreadAnnouncementCount,
   };
 }
