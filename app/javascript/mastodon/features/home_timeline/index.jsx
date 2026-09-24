@@ -19,6 +19,7 @@ import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { withBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
+import { Announcements } from '@/mastodon/features/announcements';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { expandHomeTimeline } from '../../actions/timelines';
@@ -26,7 +27,6 @@ import StatusListContainer from '../ui/containers/status_list_container';
 
 import { ColumnSettings } from './components/column_settings';
 import { CriticalUpdateBanner } from './components/critical_update_banner';
-import { Announcements } from './components/announcements';
 import { AnnualReportTimeline } from '../annual_report/timeline';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { ColumnHeader } from '@/mastodon/components/column_header';
@@ -83,7 +83,9 @@ class HomeTimeline extends PureComponent {
   };
 
   componentDidMount () {
-    setTimeout(() => this.props.dispatch(fetchAnnouncements()), 700);
+    if (!isRedesignEnabled()) {
+      setTimeout(() => this.props.dispatch(fetchAnnouncements()), 700);
+    }
     this._checkIfReloadNeeded(false, this.props.isPartial);
   }
 

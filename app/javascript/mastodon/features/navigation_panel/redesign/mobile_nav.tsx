@@ -23,11 +23,10 @@ import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
-import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
-import { RedesignNavigationPanel } from '.';
+import { RedesignNavigationPanel, useNotificationsCount } from '.';
 import { AccountMenuItems } from './account_card_and_menu';
 import { LogoLockup } from './header';
 import classes from './mobile_nav.module.scss';
@@ -38,9 +37,7 @@ export const RedesignMobileNavigation: React.FC = () => {
   const { accountId, signedIn } = useIdentity();
   const account = useAccount(accountId);
 
-  const notificationsCount = useAppSelector(
-    selectUnreadNotificationGroupsCount,
-  );
+  const notificationsCount = useNotificationsCount();
 
   const openMobileNav = useCallback(() => {
     dispatch(openNavigation());

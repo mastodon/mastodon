@@ -29,6 +29,8 @@ import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifi
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
+import { useHasAnnouncements } from '../../announcements/hooks';
+
 import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationFooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
@@ -76,6 +78,15 @@ function useFollowedHashtags() {
   return { followedHashtags: tags };
 }
 
+export function useNotificationsCount() {
+  const unreadNotificationsCount = useAppSelector(
+    selectUnreadNotificationGroupsCount,
+  );
+  const { unreadAnnouncementCount } = useHasAnnouncements();
+
+  return unreadNotificationsCount + unreadAnnouncementCount;
+}
+
 const isFediverseFeedsLinkActive = (
   match: unknown,
   { pathname }: { pathname: string },
@@ -97,9 +108,7 @@ export const RedesignNavigationPanel: React.FC<{
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
-  const notificationsCount = useAppSelector(
-    selectUnreadNotificationGroupsCount,
-  );
+  const notificationsCount = useNotificationsCount();
 
   const openComposer = useCallback(() => {
     dispatch(closeNavigation());
