@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 const normalizeFrequencies = (arr: Float32Array): number[] => {
-  return new Array(...arr).map((value: number) => {
+  return [...arr].map((value: number) => {
     if (value === -Infinity) {
       return 0;
     }
