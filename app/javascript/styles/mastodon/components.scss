@@ -8543,6 +8543,13 @@ noscript {
     width: 100%;
   }
 
+  &__close-button {
+    position: absolute;
+    top: var(--space-2);
+    inset-inline-end: var(--space-2);
+    z-index: 1;
+  }
+
   &__root {
     background: var(--color-bg-brand-softest);
     font-size: 13px;

@@ -222,12 +222,12 @@ export const Notifications: React.FC<{
     );
   }, [notifications, isLoading, hasMore, lastReadId, handleLoadGap]);
 
-  const { showAnnouncements } = useHasAnnouncements();
+  const { shouldShowAnnouncements } = useHasAnnouncements();
 
   const prepend = (
     <>
       {needsNotificationPermission && <NotificationsPermissionBanner />}
-      {showAnnouncements && <Announcements />}
+      {shouldShowAnnouncements && <Announcements />}
       <FilteredNotificationsBanner />
     </>
   );
