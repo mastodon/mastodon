@@ -1450,11 +1450,16 @@ en:
     security: Security
     set_new_password: Set new password
     setup:
+      correct_email: Correct address
       email_below_hint_html: Check your spam folder, or request another one. You can correct your email address if it's wrong.
       email_settings_hint_html: Click the link we sent to %{email} to begin using Mastodon. We'll wait right here.
+      email_settings_hint_wait_html: Your application is being reviewed. You should soon receive a mail on %{email}. Once you do, click the link to begin using Mastodon. We'll wait right here.
       link_not_received: Didn't get a link?
       new_confirmation_instructions_sent: You will receive a new email with the confirmation link in a few minutes!
       title: Check your inbox
+      title_wait: Keep an eye on your inbox
+      wrong_email: Wrong email address?
+      wrong_email_below_hint_html: Don't panic! You can correct your email address below.
     sign_in:
       preamble_html: Login with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
       title: Login to %{domain}
