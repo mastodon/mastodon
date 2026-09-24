@@ -63,19 +63,21 @@ export const selectUnreadNotificationGroupsCount = createSelector(
     selectPendingNotificationGroups,
   ],
   (notificationMarker, groups, pendingGroups) => {
+    function filterRelevantNotifications(
+      group: NotificationGap | NotificationGroup,
+    ) {
+      return (
+        // Pending follow requests are counted separately
+        group.type !== 'follow_request' &&
+        group.type !== 'gap' &&
+        group.page_max_id &&
+        compareId(group.page_max_id, notificationMarker) > 0
+      );
+    }
+
     return (
-      groups.filter(
-        (group) =>
-          group.type !== 'gap' &&
-          group.page_max_id &&
-          compareId(group.page_max_id, notificationMarker) > 0,
-      ).length +
-      pendingGroups.filter(
-        (group) =>
-          group.type !== 'gap' &&
-          group.page_max_id &&
-          compareId(group.page_max_id, notificationMarker) > 0,
-      ).length
+      groups.filter(filterRelevantNotifications).length +
+      pendingGroups.filter(filterRelevantNotifications).length
     );
   },
 );
