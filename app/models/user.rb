@@ -111,7 +111,7 @@ class User < ApplicationRecord
   scope :matches_ip, ->(value) { left_joins(:ips).merge(UserIp.contained_by(value)).group(users: [:id]) }
 
   before_validation :sanitize_role
-  before_create :set_approved
+  before_create :set_approved, prepend: true # Must be called before Devise callbacks
   before_create :set_age_verified_at
   after_commit :send_pending_devise_notifications
   after_create_commit :trigger_webhooks
@@ -436,6 +436,8 @@ class User < ApplicationRecord
         open_registrations? || valid_bypassing_invitation? || external?
       end
     end
+
+    self.disabled ||= !approved && Setting.postpone_confirmation_emails
   end
 
   def set_age_verified_at
