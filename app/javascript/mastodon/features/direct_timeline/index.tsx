@@ -123,19 +123,33 @@ const DirectTimeline: React.FC<ColumnBase> = ({ columnId, multiColumn }) => {
         trackScroll={!pinned}
         scrollKey={`direct_timeline-${columnId}`}
         emptyMessage={
-          <FormattedMessage
-            id='empty_column.direct'
-            defaultMessage="You don't have any private mentions yet. When you send or receive one, it will show up here."
-          />
+          isRedesignEnabled() ? (
+            <FormattedMessage
+              id='empty_column.messages'
+              defaultMessage="You don't have any messages yet. When you send or receive one, it will show up here."
+            />
+          ) : (
+            <FormattedMessage
+              id='empty_column.direct'
+              defaultMessage="You don't have any private mentions yet. When you send or receive one, it will show up here."
+            />
+          )
         }
         bindToDocument={!multiColumn}
         prepend={
           <div className='follow_requests-unlocked_explanation'>
             <span>
-              <FormattedMessage
-                id='compose_form.encryption_warning'
-                defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.'
-              />{' '}
+              {isRedesignEnabled() ? (
+                <FormattedMessage
+                  id='compose_form.encryption_warning_messages'
+                  defaultMessage='Messages on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.'
+                />
+              ) : (
+                <FormattedMessage
+                  id='compose_form.encryption_warning'
+                  defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.'
+                />
+              )}{' '}
               <a
                 href='https://docs.joinmastodon.org/user/posting/#private'
                 rel='noreferrer'
