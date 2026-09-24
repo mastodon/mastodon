@@ -164,12 +164,14 @@ export default tseslint.config([
     },
 
     rules: {
+      'formatjs/blocklist-elements': 'off', // CrowdIn supports `select` translation
       'formatjs/enforce-description': 'off', // description values not currently used
       'formatjs/enforce-id': 'off', // Explicit IDs are used in the project
       'formatjs/enforce-placeholders': 'off', // Issues in short_number.jsx
       'formatjs/no-invalid-icu': 'error',
       'formatjs/no-literal-string-in-jsx': 'off', // Should be looked at, but mainly flagging punctuation outside of strings
       'formatjs/no-multiple-plurals': 'off', // Should be looked at
+      'formatjs/prefer-full-sentence': 'off', // Multiple locations needs ICU/Intl unit updates, should enable after that
 
       'jsx-a11y/click-events-have-key-events': 'off',
       'jsx-a11y/label-has-associated-control': 'off',
