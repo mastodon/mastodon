@@ -6,6 +6,7 @@ import { defineMessage, FormattedMessage } from 'react-intl';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { expandFollowers, fetchFollowers } from '@/mastodon/actions/accounts';
+import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
@@ -71,6 +72,12 @@ const Followers: FC = () => {
 
   return (
     <AccountList
+      title={
+        <FormattedMessage
+          {...titleText}
+          values={{ name: <DisplayNameSimple account={account} /> }}
+        />
+      }
       accountId={accountId}
       header={
         accountId && (
