@@ -18,7 +18,7 @@ module Admin
       @instance_moderation_note = @instance.moderation_notes.new
       @instance_moderation_notes = @instance.moderation_notes.includes(:account).chronological
       @advisories = SubscribedAdvisory.domain_target_type.where(target_key: @instance.domain).by_subscription_priority.to_a
-      @suggestions = ModerationSuggestion.domain_target_type.where(state: ['new', 'mailed']).where(target_key: @instance.domain).includes(:moderation_subscription)
+      @suggestions = ModerationSuggestion.domain_target_type.pending_review.where(target_key: @instance.domain).includes(:moderation_subscription)
       @time_period = (6.days.ago.to_date..Time.now.utc.to_date)
       @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(LOGS_LIMIT)
     end

@@ -34,6 +34,8 @@ class ModerationSuggestion < ApplicationRecord
     domain: 0,
   }, suffix: :target_type
 
+  scope :pending_review, -> { where(state: %w(new mailed)) }
+
   before_validation :normalize_target_key
 
   def mark_as_applied!
