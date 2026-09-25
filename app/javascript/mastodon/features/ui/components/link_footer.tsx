@@ -2,6 +2,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import {
   domain,
   version,
@@ -19,19 +20,25 @@ export const LinkFooter: React.FC<{
   const multiColumn = context === 'multi-column';
 
   return (
-    <footer className={classes.wrapper} data-context={context}>
+    <footer
+      className={classes.wrapper}
+      data-context={context}
+      data-redesign={isRedesignEnabled()}
+    >
       <section>
         <h2 className={classes.heading}>{`${domain}:`}</h2>
         <ul className={classes.list}>
-          <li>
-            <Link to='/about' target={multiColumn ? '_blank' : undefined}>
-              <FormattedMessage
-                id='footer.about_this_server'
-                defaultMessage='About'
-              />
-              <span className='sr-only'> {domain}</span>
-            </Link>
-          </li>
+          {context !== 'about' && (
+            <li>
+              <Link to='/about' target={multiColumn ? '_blank' : undefined}>
+                <FormattedMessage
+                  id='footer.about_this_server'
+                  defaultMessage='About'
+                />
+                <span className='sr-only'> {domain}</span>
+              </Link>
+            </li>
+          )}
           {statusPageUrl && (
             <li>
               <a href={statusPageUrl} target='_blank' rel='noopener'>

@@ -21,8 +21,10 @@
     font-size: 15px;
     line-height: 22px;
 
-    @media screen and (width >= 1175px) {
-      display: none;
+    &[data-redesign='false'] {
+      @media screen and (width >= 1175px) {
+        display: none;
+      }
     }
   }
 }
