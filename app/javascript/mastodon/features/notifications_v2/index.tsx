@@ -14,7 +14,6 @@ import {
 } from '@/mastodon/actions/columns';
 import { submitMarkers } from '@/mastodon/actions/markers';
 import { openModal } from '@/mastodon/actions/modal';
-import { Button } from '@/mastodon/components/button/redesign';
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import {
@@ -24,6 +23,7 @@ import {
 } from '@/mastodon/components/column_header';
 import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 import { LoadGap } from '@/mastodon/components/load_gap';
+import { MenuItem } from '@/mastodon/components/menu';
 import ScrollableList from '@/mastodon/components/scrollable_list';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
@@ -239,18 +239,6 @@ export const Notifications: React.FC<{
         <FollowRequestsBanner />
         <FilteredNotificationsBanner />
       </div>
-      {canMarkAsRead && (
-        <div className={classes.markAsReadButtonWrapper}>
-          <Button
-            onClick={handleMarkAsRead}
-            variant='ghost'
-            size='sm'
-            leadingIcon={ChecksIcon}
-          >
-            {intl.formatMessage(messages.markAsReadRedesign)}
-          </Button>
-        </div>
-      )}
     </>
   );
 
@@ -312,17 +300,25 @@ export const Notifications: React.FC<{
                   defaultMessage='Notification Settings'
                 />
               </ColumnHeaderButton>
-              {multiColumn && (
-                <ColumnSettingsMenu
-                  labelPrefix={intl.formatMessage(messages.title)}
+              <ColumnSettingsMenu
+                labelPrefix={intl.formatMessage(messages.title)}
+              >
+                <MenuItem
+                  disabled={!canMarkAsRead}
+                  onClick={handleMarkAsRead}
+                  icon={ChecksIcon}
                 >
+                  {intl.formatMessage(messages.markAsReadRedesign)}
+                </MenuItem>
+                {multiColumn && (
                   <MultiColumnMenuItems
+                    withDivider
                     pinned={pinned}
                     onPin={handlePin}
                     onMove={handleMove}
                   />
-                </ColumnSettingsMenu>
-              )}
+                )}
+              </ColumnSettingsMenu>
             </>
           }
           extraStickyContent={filterBar}
