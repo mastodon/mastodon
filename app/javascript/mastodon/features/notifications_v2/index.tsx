@@ -12,7 +12,7 @@ import { Helmet } from '@unhead/react/helmet';
 import { isEqual } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { showAnnouncements } from '@/mastodon/actions/announcements';
+import { toggleShowAnnouncements } from '@/mastodon/actions/announcements';
 import {
   addColumn,
   removeColumn,
@@ -199,7 +199,7 @@ export const Notifications: React.FC<{
   }, [dispatch]);
 
   const handleToggleAnnouncements = useCallback(() => {
-    dispatch(showAnnouncements());
+    dispatch(toggleShowAnnouncements());
   }, [dispatch]);
 
   const handleClearNotifications = useCallback(() => {
