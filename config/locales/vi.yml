@@ -132,6 +132,7 @@ vi:
       push_subscription_expires: Đăng ký PuSH hết hạn
       redownload: Làm mới trang hồ sơ
       redownloaded_msg: Đã tiếp nhận tài khoản %{username} thành công
+      registration_app: Ứng dụng đăng ký
       reject: Từ chối
       rejected_msg: Đã từ chối đăng ký tài khoản %{username}
       remote_suspension_irreversible: Dữ liệu của người này đã bị xóa vĩnh viễn.
@@ -212,6 +213,7 @@ vi:
         create_user_role: Tạo vai trò
         create_username_block: Tạo quy tắc tên người dùng
         demote_user: Hạ vai trò
+        destroy_account: Xóa dữ liệu tài khoản
         destroy_announcement: Xóa thông báo
         destroy_canonical_email_block: Bỏ chặn địa chỉ email biến thể
         destroy_custom_emoji: Xóa emoji
@@ -280,6 +282,7 @@ vi:
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
         create_username_block_html: "%{name} thêm quy tắc cho tên người dùng chứa %{target}"
         demote_user_html: "%{name} đã hạ vai trò của %{target}"
+        destroy_account_html: "%{name} đã xóa dữ liệu tài khoản %{target}"
         destroy_announcement_html: "%{name} đã xóa thông báo %{target}"
         destroy_canonical_email_block_html: "%{name} đã bỏ chặn địa chỉ email biến thể %{target}"
         destroy_collection_html: "%{name} đã gỡ gói khởi đầu của %{target}"
@@ -1188,6 +1191,8 @@ vi:
         shared_by_over_week:
           other: "%{count} người chia sẻ tuần rồi"
         title: Xu hướng tin tức
+        usage_comparison:
+          other: Được chia sẻ %{count} lần hôm nay, so với %{yesterday} hôm qua
       not_allowed_to_trend: Không được phép thành xu hướng
       only_allowed: Đã cho phép
       pending_review: Đang chờ
@@ -1231,6 +1236,8 @@ vi:
         trendable: Cho phép lên xu hướng
         trending_rank: 'Xu hướng #%{rank}'
         usable: Có thể dùng
+        usage_comparison:
+          other: Được dùng %{count} lần hôm nay, so với %{yesterday} hôm qua
         used_by_over_week:
           other: "%{count} người dùng tuần rồi"
       title: Đề xuất và Xu hướng
@@ -1679,6 +1686,8 @@ vi:
       invalid_csv_file: 'Tệp CSV không hợp lệ. Lỗi: %{error}'
       invalid_json_file: 'Tệp JSON không hợp lệ. Lỗi: %{error}'
       no_data: Tệp này không chứa dữ liệu nào khớp với loại đã chỉ định
+      over_rows_processing_limit:
+        other: chứa nhiều hơn %{count} hàng
       status_not_found_warning: Một số bộ lọc của bạn ẩn các tút cụ thể mà máy chủ này không biết đến. Những tút này sẽ không tự động bị lọc nếu máy chủ phát hiện ra chúng sau này.
       too_large: Tệp quá lớn
     failures: Thất bại
@@ -1814,6 +1823,8 @@ vi:
     incoming_migrations_html: Để chuyển từ tài khoản khác sang tài khoản này, trước tiên bạn cần <a href="%{path}">kết nối tài khoản</a>.
     moved_msg: Tài khoản của bạn hiện đang chuyển hướng đến %{acct} và những người theo dõi bạn cũng sẽ được chuyển đi.
     not_redirecting: Tài khoản của bạn hiện không chuyển hướng đến bất kỳ tài khoản nào khác.
+    on_cooldown:
+      other: Bạn vừa mới chuyển tài khoản của bạn đi nơi khác. Chỉ có thể sử dụng tiếp tính năng này sau %{count} ngày.
     past_migrations: Những lần dời nhà cũ
     proceed_with_move: Chuyển hướng người theo dõi
     redirected_msg: Tài khoản của bạn đã chuyển hướng đến %{acct}.
@@ -2000,6 +2011,10 @@ vi:
       account: Những tút công khai của @%{acct}
       tag: 'Những tút #%{hashtag} công khai'
   scheduled_statuses:
+    over_daily_limit:
+      other: Bạn đã vượt hạn mức được lên lịch đăng %{count} tút hôm nay
+    over_total_limit:
+      other: Bạn đã vượt hạn mức được lên lịch đăng %{count} tút
     too_soon: ngày phải ở tương lai
   self_destruct:
     lead_html: Rất tiếc, <strong>%{domain}</strong>đã đóng cửa vĩnh viễn. Nếu bạn có tài khoản ở đó, bạn sẽ không thể tiếp tục sử dụng tài khoản đó nhưng bạn vẫn có thể yêu cầu bản sao lưu dữ liệu của mình.
