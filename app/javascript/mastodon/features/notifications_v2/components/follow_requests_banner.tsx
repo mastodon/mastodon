@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { UserPlusIcon } from '@phosphor-icons/react';
 
 import { Icon } from 'mastodon/components/icon';
-import { useAppSelector } from 'mastodon/store';
 
 import { useFollowRequestsCount } from '../../navigation_panel/redesign';
 
@@ -16,14 +15,8 @@ import { useFollowRequestsCount } from '../../navigation_panel/redesign';
  */
 export const FollowRequestsBanner: React.FC = () => {
   const followRequestsCount = useFollowRequestsCount({ fetch: false });
-  const isUserRejectingNonFollowerNotifications = useAppSelector(
-    ({ notificationPolicy }) =>
-      notificationPolicy
-        ? notificationPolicy.for_not_followers !== 'accept'
-        : null,
-  );
 
-  if (followRequestsCount === 0 || !isUserRejectingNonFollowerNotifications) {
+  if (followRequestsCount === 0) {
     return null;
   }
 
