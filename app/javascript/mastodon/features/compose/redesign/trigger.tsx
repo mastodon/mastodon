@@ -4,6 +4,7 @@ import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { useRouteMatch } from 'react-router';
 
 import {
   ChatCircleDotsIcon,
@@ -12,6 +13,7 @@ import {
   ReadCvLogoIcon,
 } from '@phosphor-icons/react';
 
+import type { IconButtonProps } from '@/mastodon/components/button/redesign';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import {
   Menu,
@@ -44,9 +46,13 @@ export const ComposeRedesignButton: React.FC<{
    * Render the button in regular document flow instead of fixed positioning for mobile layout
    */
   inline?: boolean;
-}> = ({ inline }) => {
+}> = ({ inline = false }) => {
   const displayState = useAppSelector((state) => state.composer.displayState);
   const isMobile = useBreakpoint('openable');
+
+  const hasMobileFloatingActionButton = useHasMobileFloatingActionButton({
+    isMobile,
+  });
 
   // Update viewport based on visual size in order to account for the virtual keyboard.
   const [viewportHeight, setViewportHeight] = useState<null | number>(null);
@@ -87,20 +93,19 @@ export const ComposeRedesignButton: React.FC<{
   }
 
   const floatingButtonProps = {
-    variant: 'solid',
-    size: 'lg',
-    className: classNames(classes.button, inline && classes.buttonInline),
+    inline,
+    hidden: !hasMobileFloatingActionButton,
   } as const;
 
   if (displayState === 'minimized') {
     return isMobile ? (
-      <IconButton
+      <FloatingActionButton
         icon={ReadCvLogoIcon}
         onClick={toggleMinimize}
         {...floatingButtonProps}
       >
         <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
-      </IconButton>
+      </FloatingActionButton>
     ) : (
       <MenuCard className={classes.composerMinimized} elevation={2}>
         <ComposeFormHeader />
@@ -116,12 +121,16 @@ export const ComposeRedesignButton: React.FC<{
     return (
       <Suspense
         fallback={
-          <IconButton loading icon={PenNibIcon} {...floatingButtonProps}>
+          <FloatingActionButton
+            loading
+            icon={PenNibIcon}
+            {...floatingButtonProps}
+          >
             <FormattedMessage
               id='compose.new'
               defaultMessage='Write a new post or messsage'
             />
-          </IconButton>
+          </FloatingActionButton>
         }
       >
         <ComposeLazyForm autoFocus className={classes.composer} style={style} />
@@ -131,7 +140,11 @@ export const ComposeRedesignButton: React.FC<{
 
   return (
     <Menu>
-      <MenuTrigger as={IconButton} icon={PenNibIcon} {...floatingButtonProps}>
+      <MenuTrigger
+        as={FloatingActionButton}
+        icon={PenNibIcon}
+        {...floatingButtonProps}
+      >
         <FormattedMessage
           id='compose.new'
           defaultMessage='Write a new post or messsage'
@@ -158,3 +171,57 @@ export const ComposeRedesignButton: React.FC<{
     </Menu>
   );
 };
+
+const FloatingActionButton: React.FC<
+  {
+    inline: boolean;
+    hidden: boolean;
+  } & IconButtonProps
+> = ({ inline, hidden, ...otherProps }) => {
+  return (
+    // This component uses a wrapper element to prevent its
+    // CSS transitions from messing with the button's own transitions
+    <div
+      className={classNames(
+        classes.buttonWrapper,
+        inline && classes.buttonWrapperInline,
+        hidden && classes.buttonWrapperHidden,
+      )}
+      inert={hidden}
+    >
+      <IconButton variant='solid' size='lg' {...otherProps} />
+    </div>
+  );
+};
+
+function includeMultiColumnPaths(paths: string[]) {
+  return [...paths, ...paths.map((path) => `/deck${path}`)];
+}
+
+const MOBILE_COMPOSE_BUTTON_ALLOW_ROUTES = includeMultiColumnPaths([
+  '/home',
+  '/public',
+  '/lists',
+  '/tags',
+]);
+const MOBILE_COMPOSE_BUTTON_BLOCK_ROUTES = includeMultiColumnPaths([
+  '/lists/new',
+]);
+
+function useHasMobileFloatingActionButton({ isMobile }: { isMobile: boolean }) {
+  const isRouteWithMobileComposeButton = !!useRouteMatch({
+    path: MOBILE_COMPOSE_BUTTON_ALLOW_ROUTES,
+    exact: false,
+  });
+
+  const isRouteWithoutMobileComposeButton = !!useRouteMatch({
+    path: MOBILE_COMPOSE_BUTTON_BLOCK_ROUTES,
+    exact: true,
+  });
+
+  const shouldHideMobileComposeButton =
+    isMobile &&
+    (!isRouteWithMobileComposeButton || isRouteWithoutMobileComposeButton);
+
+  return !shouldHideMobileComposeButton;
+}
