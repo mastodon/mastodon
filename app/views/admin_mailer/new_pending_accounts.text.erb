@@ -1,0 +1,12 @@
+<%= raw t('admin_mailer.new_pending_accounts.body') %>
+
+<% @accounts.each do |account| %>
+- <%= account.user_email %> (@<%= account.username %>)
+  <%= account.user_sign_up_ip %>
+  <% if account.user&.invite_request&.text.present? %>
+
+  <%= quote_wrap(account.user&.invite_request&.text) %>
+  <% end %>
+  <%= raw t('application_mailer.view')%> <%= admin_account_url(account.id) %>
+
+<% end %>
