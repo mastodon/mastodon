@@ -252,7 +252,7 @@ export const Notifications: React.FC<{
       {needsNotificationPermission && <NotificationsPermissionBanner />}
       {shouldShowAnnouncements && <Announcements />}
       <div className={isRedesignEnabled() ? classes.topLinks : undefined}>
-        <FollowRequestsBanner />
+        {isRedesignEnabled() && <FollowRequestsBanner />}
         <FilteredNotificationsBanner />
       </div>
     </>
