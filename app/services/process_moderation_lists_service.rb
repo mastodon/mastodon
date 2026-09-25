@@ -81,14 +81,7 @@ class ProcessModerationListsService < BaseService
     DomainBlock.where(moderation_subscription_id: subscription.id).where.not(domain: subscription.advisories.domain_target_type.where(action: ['limit', 'reject']).pluck(:target_key)).find_each do |domain_block|
       next if domain_block.noop?
 
-      action = begin
-        case domain_block.severity
-        when 'silence'
-          'limit'
-        when 'suspend'
-          'reject'
-        end
-      end
+      action = ModerationSubscription::DOMAIN_BLOCK_SEVERITY_TO_ACTION[domain_block.severity]
 
       @retractions[domain_block.domain] = Retraction.new(
         action:,

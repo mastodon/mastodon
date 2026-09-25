@@ -22,6 +22,11 @@
 class ModerationSubscription < ApplicationRecord
   self.inheritance_column = nil
 
+  DOMAIN_BLOCK_SEVERITY_TO_ACTION = {
+    'suspend' => 'reject',
+    'silence' => 'limit',
+  }.freeze
+
   PRIORITY_LIMIT = (2**31) - 1
 
   has_many :advisories, class_name: 'SubscribedAdvisory', inverse_of: :moderation_subscription, dependent: :delete_all

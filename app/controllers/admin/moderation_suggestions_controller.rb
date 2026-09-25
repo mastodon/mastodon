@@ -135,16 +135,7 @@ class Admin::ModerationSuggestionsController < Admin::BaseController
       @current_state_by_target.default = 'reject'
     else
       @current_state_by_target = DomainBlock.where(domain: @moderation_suggestion_targets.filter_map { |type, key| key if type == 'domain' }).to_h do |domain_block|
-        action = begin
-          case domain_block.severity
-          when 'suspend'
-            'reject'
-          when 'silence'
-            'limit'
-          else
-            'accept'
-          end
-        end
+        action = ModerationSubscription::DOMAIN_BLOCK_SEVERITY_TO_ACTION.fetch(domain_block.severity, 'accept')
 
         [['domain', domain_block.domain], action]
       end
