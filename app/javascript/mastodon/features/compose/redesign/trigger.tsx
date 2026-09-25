@@ -9,6 +9,7 @@ import {
   ChatCircleDotsIcon,
   NewspaperIcon,
   PenNibIcon,
+  ReadCvLogoIcon,
 } from '@phosphor-icons/react';
 
 import { IconButton } from '@/mastodon/components/button/redesign';
@@ -20,9 +21,14 @@ import {
 } from '@/mastodon/components/menu';
 import { MenuCard } from '@/mastodon/components/menu/card';
 import { useIdentity } from '@/mastodon/identity_context';
-import { openNewComposer } from '@/mastodon/reducers/slices/composer';
+import {
+  minimizeComposerToggle,
+  openNewComposer,
+} from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
+
+import { useBreakpoint } from '../../ui/hooks/useBreakpoint';
 
 import { ComposeFormHeader } from './header';
 import classes from './trigger.module.scss';
@@ -40,6 +46,7 @@ export const ComposeRedesignButton: React.FC<{
   inline?: boolean;
 }> = ({ inline }) => {
   const displayState = useAppSelector((state) => state.composer.displayState);
+  const isMobile = useBreakpoint('openable');
 
   // Update viewport based on visual size in order to account for the virtual keyboard.
   const [viewportHeight, setViewportHeight] = useState<null | number>(null);
@@ -69,14 +76,32 @@ export const ComposeRedesignButton: React.FC<{
       [dispatch],
     );
 
+  const toggleMinimize = useCallback(() => {
+    dispatch(minimizeComposerToggle());
+  }, [dispatch]);
+
   const { signedIn } = useIdentity();
 
   if (!isRedesignEnabled() || !signedIn) {
     return null;
   }
 
+  const floatingButtonProps = {
+    variant: 'solid',
+    size: 'lg',
+    className: classNames(classes.button, inline && classes.buttonInline),
+  } as const;
+
   if (displayState === 'minimized') {
-    return (
+    return isMobile ? (
+      <IconButton
+        icon={ReadCvLogoIcon}
+        onClick={toggleMinimize}
+        {...floatingButtonProps}
+      >
+        <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
+      </IconButton>
+    ) : (
       <MenuCard className={classes.composerMinimized} elevation={2}>
         <ComposeFormHeader />
       </MenuCard>
@@ -91,16 +116,7 @@ export const ComposeRedesignButton: React.FC<{
     return (
       <Suspense
         fallback={
-          <IconButton
-            loading
-            icon={PenNibIcon}
-            className={classNames(
-              classes.button,
-              inline && classes.buttonInline,
-            )}
-            variant='solid'
-            size='lg'
-          >
+          <IconButton loading icon={PenNibIcon} {...floatingButtonProps}>
             <FormattedMessage
               id='compose.new'
               defaultMessage='Write a new post or messsage'
@@ -115,13 +131,7 @@ export const ComposeRedesignButton: React.FC<{
 
   return (
     <Menu>
-      <MenuTrigger
-        as={IconButton}
-        icon={PenNibIcon}
-        variant='solid'
-        className={classNames(classes.button, inline && classes.buttonInline)}
-        size='lg'
-      >
+      <MenuTrigger as={IconButton} icon={PenNibIcon} {...floatingButtonProps}>
         <FormattedMessage
           id='compose.new'
           defaultMessage='Write a new post or messsage'
