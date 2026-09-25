@@ -2,8 +2,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { UserPlusIcon } from '@phosphor-icons/react';
 
-import { Icon } from 'mastodon/components/icon';
-
 import { useFollowRequestsCount } from '../../navigation_panel/redesign';
 import { LinkBanner } from '../../notifications/components/filtered_notifications_banner';
 
@@ -22,7 +20,7 @@ export const FollowRequestsBanner: React.FC = () => {
   return (
     <LinkBanner
       to='/follow_requests'
-      icon={<Icon icon={UserPlusIcon} id='filtered-notifications' />}
+      icon={<UserPlusIcon size={24} />}
       title={
         <FormattedMessage
           id='column.follow_requests'

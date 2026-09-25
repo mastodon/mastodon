@@ -91,7 +91,7 @@ export const FilteredNotificationsBanner: React.FC = () => {
       to='/notifications/requests'
       icon={
         isRedesignEnabled() ? (
-          <TrayIcon size={30} />
+          <TrayIcon size={24} />
         ) : (
           <Icon icon={InventoryIcon} id='filtered-notifications' />
         )
