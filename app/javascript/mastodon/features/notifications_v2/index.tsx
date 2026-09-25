@@ -235,8 +235,10 @@ export const Notifications: React.FC<{
     <>
       {needsNotificationPermission && <NotificationsPermissionBanner />}
       {shouldShowAnnouncements && <Announcements />}
-      <FilteredNotificationsBanner />
-      <FollowRequestsBanner />
+      <div className={isRedesignEnabled() ? classes.topLinks : undefined}>
+        <FollowRequestsBanner />
+        <FilteredNotificationsBanner />
+      </div>
       {canMarkAsRead && (
         <div className={classes.markAsReadButtonWrapper}>
           <Button

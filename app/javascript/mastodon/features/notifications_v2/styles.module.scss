@@ -1,3 +1,14 @@
+.topLinks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  gap: var(--space-4);
+  margin: var(--space-4) var(--space-4) var(--space-2);
+
+  > * {
+    --lockup-padding-block: var(--space-3);
+  }
+}
+
 .markAsReadButtonWrapper {
   padding: var(--space-2);
   text-align: end;
