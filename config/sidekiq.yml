@@ -76,3 +76,7 @@
       interval: 1 hour
       class: Scheduler::CollectionItemCleanupScheduler
       queue: scheduler
+    pending_accounts_notification_scheduler:
+      every: '15m'
+      class: Scheduler::PendingAccountsNotificationScheduler
+      queue: scheduler
