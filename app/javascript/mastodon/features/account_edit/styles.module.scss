@@ -25,7 +25,7 @@
 
 .avatar {
   margin-top: -64px;
-  margin-left: 22px;
+  margin-left: calc(var(--space-4) - 2px);
   position: relative;
   width: 82px;
 
@@ -251,7 +251,7 @@
 // Section component
 
 .section {
-  padding: 24px;
+  padding: var(--space-6) var(--space-4);
   border-bottom: 1px solid var(--color-border-primary);
   font-size: 15px;
 
