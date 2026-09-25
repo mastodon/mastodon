@@ -31,6 +31,8 @@ class SubscribedAdvisory < ApplicationRecord
 
   before_validation :normalize_target_key
 
+  scope :by_subscription_priority, -> { includes(:moderation_subscription).references(:moderation_subscription).order(moderation_subscription: { priority: :asc }) }
+
   # TODO: handle subdomains
   scope :conflicting_advisories, lambda { |advisory|
     joins(:moderation_subscription)
