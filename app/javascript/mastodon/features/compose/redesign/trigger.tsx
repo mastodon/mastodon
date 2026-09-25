@@ -103,6 +103,7 @@ export const ComposeRedesignButton: React.FC<{
         icon={ReadCvLogoIcon}
         onClick={toggleMinimize}
         {...floatingButtonProps}
+        hidden={false} // never hide minimized composer button
       >
         <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
       </FloatingActionButton>
