@@ -19,6 +19,7 @@ and provided thanks to the work of the following contributors:
 * [abcang](https://github.com/abcang)
 * [yiskah](https://github.com/yiskah)
 * [mayaeh](https://github.com/mayaeh)
+* [synmux](https://github.com/synmux)
 * [nolanlawson](https://github.com/nolanlawson)
 * [ysksn](https://github.com/ysksn)
 * [sorin-davidoi](https://github.com/sorin-davidoi)
