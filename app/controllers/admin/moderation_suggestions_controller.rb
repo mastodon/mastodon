@@ -102,7 +102,7 @@ class Admin::ModerationSuggestionsController < Admin::BaseController
   end
 
   def set_moderation_suggestion_targets
-    @moderation_suggestion_targets = ModerationSuggestion.where(state: ['new', 'mailed']).reorder([target_type: :asc, target_key: :asc]).distinct.pluck(:target_type, :target_key)
+    @moderation_suggestion_targets = ModerationSuggestion.pending_review.reorder([target_type: :asc, target_key: :asc]).distinct.pluck(:target_type, :target_key)
   end
 
   def set_moderation_suggestions_by_target
