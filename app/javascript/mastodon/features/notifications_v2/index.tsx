@@ -2,11 +2,17 @@ import { useCallback, useEffect, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { ChecksIcon, GearIcon } from '@phosphor-icons/react';
+import {
+  ChecksIcon,
+  GearIcon,
+  NewspaperIcon,
+  TrashIcon,
+} from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 import { isEqual } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
+import { showAnnouncements } from '@/mastodon/actions/announcements';
 import {
   addColumn,
   removeColumn,
@@ -23,7 +29,7 @@ import {
 } from '@/mastodon/components/column_header';
 import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 import { LoadGap } from '@/mastodon/components/load_gap';
-import { MenuItem } from '@/mastodon/components/menu';
+import { MenuItem, MenuItemDivider } from '@/mastodon/components/menu';
 import ScrollableList from '@/mastodon/components/scrollable_list';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
@@ -178,17 +184,27 @@ export const Notifications: React.FC<{
     [dispatch, columnId],
   );
 
-  const handleMarkAsRead = useCallback(() => {
-    dispatch(markNotificationsAsRead());
-    void dispatch(submitMarkers({ immediate: true }));
-  }, [dispatch]);
-
   const openSettingsModal = useCallback(() => {
     dispatch(
       openModal({
         modalType: 'NOTIFICATION_SETTINGS',
         modalProps: {},
       }),
+    );
+  }, [dispatch]);
+
+  const handleMarkAsRead = useCallback(() => {
+    dispatch(markNotificationsAsRead());
+    void dispatch(submitMarkers({ immediate: true }));
+  }, [dispatch]);
+
+  const handleToggleAnnouncements = useCallback(() => {
+    dispatch(showAnnouncements());
+  }, [dispatch]);
+
+  const handleClearNotifications = useCallback(() => {
+    dispatch(
+      openModal({ modalType: 'CONFIRM_CLEAR_NOTIFICATIONS', modalProps: {} }),
     );
   }, [dispatch]);
 
@@ -229,7 +245,7 @@ export const Notifications: React.FC<{
     );
   }, [notifications, isLoading, hasMore, lastReadId, handleLoadGap]);
 
-  const { shouldShowAnnouncements } = useHasAnnouncements();
+  const { hasAnnouncements, shouldShowAnnouncements } = useHasAnnouncements();
 
   const prepend = (
     <>
@@ -309,6 +325,35 @@ export const Notifications: React.FC<{
                   icon={ChecksIcon}
                 >
                   {intl.formatMessage(messages.markAsReadRedesign)}
+                </MenuItem>
+                {hasAnnouncements && (
+                  <MenuItem
+                    onClick={handleToggleAnnouncements}
+                    icon={NewspaperIcon}
+                  >
+                    {shouldShowAnnouncements ? (
+                      <FormattedMessage
+                        id='notifications.hide_server_announcements'
+                        defaultMessage='Hide server announcements'
+                      />
+                    ) : (
+                      <FormattedMessage
+                        id='notifications.show_server_announcements'
+                        defaultMessage='Show server announcements'
+                      />
+                    )}
+                  </MenuItem>
+                )}
+                <MenuItemDivider />
+                <MenuItem
+                  destructive
+                  icon={TrashIcon}
+                  onClick={handleClearNotifications}
+                >
+                  <FormattedMessage
+                    id='notifications.clear'
+                    defaultMessage='Clear notifications'
+                  />
                 </MenuItem>
                 {multiColumn && (
                   <MultiColumnMenuItems
