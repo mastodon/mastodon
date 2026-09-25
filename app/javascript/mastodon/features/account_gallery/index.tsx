@@ -9,10 +9,13 @@ import { expandAccountMediaTimeline } from '@/mastodon/actions/timelines';
 import { AccountHeader } from '@/mastodon/components/account_header';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column/back_button';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import ScrollableList from '@/mastodon/components/scrollable_list';
 import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
+import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
 import type { MediaAttachment } from '@/mastodon/models/media_attachment';
@@ -21,6 +24,7 @@ import {
   useAppDispatch,
   createAppSelector,
 } from '@/mastodon/store';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 import { MediaItem } from './components/media_item';
 
@@ -96,6 +100,7 @@ export const AccountGallery: React.FC<{
 }> = ({ multiColumn }) => {
   const dispatch = useAppDispatch();
   const accountId = useAccountId();
+  const account = useAccount(accountId);
   const {
     isLoading,
     items: attachments,
@@ -211,7 +216,14 @@ export const AccountGallery: React.FC<{
 
   return (
     <Column>
-      <ColumnBackButton />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={<DisplayNameSimple account={account} />}
+        />
+      ) : (
+        <ColumnBackButton />
+      )}
 
       <ScrollableList
         className='account-gallery__container'
