@@ -2,11 +2,17 @@ import { useCallback, useEffect, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { GearIcon } from '@phosphor-icons/react';
+import {
+  ChecksIcon,
+  GearIcon,
+  NewspaperIcon,
+  TrashIcon,
+} from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 import { isEqual } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
+import { toggleShowAnnouncements } from '@/mastodon/actions/announcements';
 import {
   addColumn,
   removeColumn,
@@ -23,6 +29,7 @@ import {
 } from '@/mastodon/components/column_header';
 import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 import { LoadGap } from '@/mastodon/components/load_gap';
+import { MenuItem, MenuItemDivider } from '@/mastodon/components/menu';
 import ScrollableList from '@/mastodon/components/scrollable_list';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
@@ -64,12 +71,17 @@ import ColumnSettingsContainer from '../notifications/containers/column_settings
 import { FollowRequestsBanner } from './components/follow_requests_banner';
 import { NotificationGroup } from './components/notification_group';
 import { FilterBar } from './filter_bar';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
   markAsRead: {
     id: 'notifications.mark_as_read',
     defaultMessage: 'Mark every notification as read',
+  },
+  markAsReadRedesign: {
+    id: 'notifications.mark_all_as_read',
+    defaultMessage: 'Mark all as read',
   },
 });
 
@@ -172,17 +184,27 @@ export const Notifications: React.FC<{
     [dispatch, columnId],
   );
 
-  const handleMarkAsRead = useCallback(() => {
-    dispatch(markNotificationsAsRead());
-    void dispatch(submitMarkers({ immediate: true }));
-  }, [dispatch]);
-
   const openSettingsModal = useCallback(() => {
     dispatch(
       openModal({
         modalType: 'NOTIFICATION_SETTINGS',
         modalProps: {},
       }),
+    );
+  }, [dispatch]);
+
+  const handleMarkAsRead = useCallback(() => {
+    dispatch(markNotificationsAsRead());
+    void dispatch(submitMarkers({ immediate: true }));
+  }, [dispatch]);
+
+  const handleToggleAnnouncements = useCallback(() => {
+    dispatch(toggleShowAnnouncements());
+  }, [dispatch]);
+
+  const handleClearNotifications = useCallback(() => {
+    dispatch(
+      openModal({ modalType: 'CONFIRM_CLEAR_NOTIFICATIONS', modalProps: {} }),
     );
   }, [dispatch]);
 
@@ -223,14 +245,16 @@ export const Notifications: React.FC<{
     );
   }, [notifications, isLoading, hasMore, lastReadId, handleLoadGap]);
 
-  const { shouldShowAnnouncements } = useHasAnnouncements();
+  const { hasAnnouncements, shouldShowAnnouncements } = useHasAnnouncements();
 
   const prepend = (
     <>
       {needsNotificationPermission && <NotificationsPermissionBanner />}
       {shouldShowAnnouncements && <Announcements />}
-      <FilteredNotificationsBanner />
-      <FollowRequestsBanner />
+      <div className={isRedesignEnabled() ? classes.topLinks : undefined}>
+        {isRedesignEnabled() && <FollowRequestsBanner />}
+        <FilteredNotificationsBanner />
+      </div>
     </>
   );
 
@@ -292,17 +316,54 @@ export const Notifications: React.FC<{
                   defaultMessage='Notification Settings'
                 />
               </ColumnHeaderButton>
-              {multiColumn && (
-                <ColumnSettingsMenu
-                  labelPrefix={intl.formatMessage(messages.title)}
+              <ColumnSettingsMenu
+                labelPrefix={intl.formatMessage(messages.title)}
+              >
+                <MenuItem
+                  disabled={!canMarkAsRead}
+                  onClick={handleMarkAsRead}
+                  icon={ChecksIcon}
                 >
+                  {intl.formatMessage(messages.markAsReadRedesign)}
+                </MenuItem>
+                {hasAnnouncements && (
+                  <MenuItem
+                    onClick={handleToggleAnnouncements}
+                    icon={NewspaperIcon}
+                  >
+                    {shouldShowAnnouncements ? (
+                      <FormattedMessage
+                        id='notifications.hide_server_announcements'
+                        defaultMessage='Hide server announcements'
+                      />
+                    ) : (
+                      <FormattedMessage
+                        id='notifications.show_server_announcements'
+                        defaultMessage='Show server announcements'
+                      />
+                    )}
+                  </MenuItem>
+                )}
+                <MenuItemDivider />
+                <MenuItem
+                  destructive
+                  icon={TrashIcon}
+                  onClick={handleClearNotifications}
+                >
+                  <FormattedMessage
+                    id='notifications.clear'
+                    defaultMessage='Clear notifications'
+                  />
+                </MenuItem>
+                {multiColumn && (
                   <MultiColumnMenuItems
+                    withDivider
                     pinned={pinned}
                     onPin={handlePin}
                     onMove={handleMove}
                   />
-                </ColumnSettingsMenu>
-              )}
+                )}
+              </ColumnSettingsMenu>
             </>
           }
           extraStickyContent={filterBar}

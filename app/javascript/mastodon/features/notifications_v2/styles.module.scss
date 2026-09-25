@@ -1,0 +1,11 @@
+.topLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: var(--space-4) var(--space-4) var(--space-2);
+
+  > * {
+    min-width: 250px;
+    flex: 1 1 0;
+  }
+}
