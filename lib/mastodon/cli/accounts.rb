@@ -104,12 +104,13 @@ module Mastodon::CLI
       user.account = account
 
       if user.save
+        # Not using approve! here, it would prepare the new user a second time
+        user.update!(approved: true) if options[:approve]
+
         if options[:confirmed]
           user.confirmed_at = nil
           user.mark_email_as_confirmed!
         end
-
-        user.approve! if options[:approve]
 
         say('OK', :green)
         say("New password: #{password}")
