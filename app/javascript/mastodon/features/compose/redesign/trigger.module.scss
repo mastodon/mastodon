@@ -48,6 +48,18 @@
     max-width: 500px;
     margin: var(--space-4);
   }
+
+  @media (width < #{variables.$mobile-menu-breakpoint}) {
+    // Add a backdrop for the mobile composer to cover up the page
+    // behind the composer that can be visible on Safari iOS
+    &::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-color: var(--color-bg-primary);
+    }
+  }
 }
 
 .composerMinimized {
