@@ -1,11 +1,14 @@
 .topLinks {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-4);
   margin: var(--space-4) var(--space-4) var(--space-2);
 
   > * {
     --lockup-padding-block: var(--space-3);
+
+    min-width: 250px;
+    flex: 1 1 0;
   }
 }
 
