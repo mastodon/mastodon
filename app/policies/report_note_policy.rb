@@ -5,6 +5,10 @@ class ReportNotePolicy < ApplicationPolicy
     role.can?(:manage_reports)
   end
 
+  def show?
+    role.can?(:manage_reports)
+  end
+
   def destroy?
     owner? || (role.can?(:manage_reports) && role.overrides?(record.account.user_role))
   end
