@@ -136,21 +136,10 @@ export const LinkBanner: React.FC<LinkBannerProps> = ({
     );
   }
   return (
-    <Link
-      className={
-        isRedesignEnabled() ? classes.root : 'filtered-notifications-banner'
-      }
-      to={to}
-    >
+    <Link className='filtered-notifications-banner' to={to}>
       <div className='notification-group__icon'>{icon}</div>
 
-      <div
-        className={
-          isRedesignEnabled()
-            ? classes.text
-            : 'filtered-notifications-banner__text'
-        }
-      >
+      <div className='filtered-notifications-banner__text'>
         <strong>{title}</strong>
         <span>{subtitle}</span>
       </div>
