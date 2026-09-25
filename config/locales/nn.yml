@@ -72,6 +72,10 @@ nn:
       disable_sign_in_token_auth: Slå av e-post-token-autentisering
       disable_two_factor_authentication: Slå av 2FA
       disabled: Inaktiv
+      discoverable:
+        disabled: Forfattaren har ikkje valt å kunna bli oppdaga
+        enabled: Forfattaren har valt å kunna bli oppdaga
+        title: Synleg
       display_name: Synleg namn
       domain: Domene
       edit: Rediger
@@ -81,6 +85,12 @@ nn:
       enable_sign_in_token_auth: Slå på e-post-token-autentisering
       enabled: Aktivert
       enabled_msg: Gjenaktiverte %{username} sin konto
+      follow_recommendations:
+        allowed: Tillate
+        suppress: Demp fylgjeforslag
+        suppressed: Dempa
+        title: Fylgjeforslag
+        unsuppress: Nullstill fylgjeforslag
       followers: Fylgjarar
       follows: Fylgje
       header: Overskrift
@@ -126,6 +136,7 @@ nn:
       push_subscription_expires: PuSH-abonnent utløper
       redownload: Last inn profil på nytt
       redownloaded_msg: Oppdaterte %{username} sin profil frå opphavstenar
+      registration_app: Registreringsapp
       reject: Avvis
       rejected_msg: Avviste %{username} sin registreringssøknad
       remote_suspension_irreversible: Data for denne kontoen har blitt sletta for alltid.
@@ -165,6 +176,12 @@ nn:
       suspension_irreversible: Data frå denne kontoen har blitt ikkje-reverserbart sletta. Du kan oppheve suspenderinga av kontoen for å bruke den, men det vil ikkje gjenopprette alle data den tidligare har hatt.
       suspension_reversible_hint_html: Kontoen har vorte stengd, og data vil bli fullstendig fjerna den %{date}. Fram til då kandu gjenoppretta kontoen utan negative konsekvensar. Om du ynskjer å fjerna kontodata no, kan du gjera det nedanfor.
       title: Kontoar
+      trends:
+        allow: Tillat
+        allowed: Tillate
+        disallow: Ikkje tillat
+        disallowed: Ikkje tillate
+        title: Populære innlegg
       unblock_email: Avblokker e-postadresse
       unblocked_email_msg: Avblokkerte %{username} si e-postadresse
       unconfirmed_email: E-post utan stadfesting
@@ -200,6 +217,7 @@ nn:
         create_user_role: Opprett rolle
         create_username_block: Lag regel for brukarnamn
         demote_user: Degrader brukar
+        destroy_account: Slett kontodata
         destroy_announcement: Slett lysinga
         destroy_canonical_email_block: Fjern e-postblokkering
         destroy_custom_emoji: Slett tilpassa emoji
