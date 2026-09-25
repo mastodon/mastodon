@@ -28,7 +28,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    super
+    super do |resource|
+      # If created through an app, mark it as such
+      session[:created_by_app_id] = session.delete(:registration_app_id) if resource.persisted? && session[:registration_app_id]
+    end
   end
 
   def update
@@ -67,6 +70,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(_resource)
+    last_url = stored_location_for(:user)
+    return last_url if last_url.present? && Rails.application.routes.recognize_path(last_url)[:controller] == 'oauth/authorizations'
+
     auth_setup_path
   end
 

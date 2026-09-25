@@ -163,6 +163,63 @@ RSpec.describe 'Using OAuth from an external app' do
     end
   end
 
+  context 'when creating a new user' do
+    let(:params) do
+      { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read', prompt: 'create' }
+    end
+
+    let!(:rule) { Fabricate :rule, text: 'You must be seven meters tall' }
+
+    it 'allows creating a new user' do
+      subject
+
+      # Shows rules
+      expect(page)
+        .to have_title(I18n.t('auth.register'))
+        .and have_text(rule.text)
+
+      click_on I18n.t('auth.rules.accept')
+
+      # It presents the user with a sign-up page
+      expect(page)
+        .to have_text(I18n.t('auth.register'))
+
+      # Avoid the registration spam check
+      travel_to 10.seconds.from_now
+
+      fill_in 'user_account_attributes_username', with: 'alice'
+      fill_in 'user_email', with: 'test@example.com'
+      fill_in 'user_password', with: 'Test.123.Pass'
+      fill_in 'user_password_confirmation', with: 'Test.123.Pass'
+
+      # Click without approving user agreement
+      click_on(I18n.t('auth.register'))
+
+      # Brings user back to registration page
+      expect(page)
+        .to have_text(I18n.t('auth.register'))
+
+      fill_in 'user_password', with: 'Test.123.Pass'
+      fill_in 'user_password_confirmation', with: 'Test.123.Pass'
+      check 'user_agreement'
+
+      click_on(I18n.t('auth.register'))
+
+      # Directly authorizes the app
+      user = User.find_by(email: 'test@example.com')
+      expect(Doorkeeper::AccessGrant.exists?(
+               application: client_app,
+               resource_owner_id: user.id
+             )).to be true
+
+      # Marks the user as created by the app
+      expect(user.created_by_application_id).to eq client_app.id
+
+      # Redirects to the app's callback URL
+      expect(page).to redirect_to_callback_url
+    end
+  end
+
   context 'when the user is not already logged in' do
     let(:email)    { 'test@example.com' }
     let(:password) { 'testpassword' }
