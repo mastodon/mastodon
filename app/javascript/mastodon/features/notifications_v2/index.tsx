@@ -61,6 +61,7 @@ import {
 import NotificationsPermissionBanner from '../notifications/components/notifications_permission_banner';
 import ColumnSettingsContainer from '../notifications/containers/column_settings_container';
 
+import { FollowRequestsBanner } from './components/follow_requests_banner';
 import { NotificationGroup } from './components/notification_group';
 import { FilterBar } from './filter_bar';
 
@@ -229,6 +230,7 @@ export const Notifications: React.FC<{
       {needsNotificationPermission && <NotificationsPermissionBanner />}
       {shouldShowAnnouncements && <Announcements />}
       <FilteredNotificationsBanner />
+      <FollowRequestsBanner />
     </>
   );
 
