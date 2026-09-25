@@ -247,6 +247,7 @@ const SlideOutNavigation: React.FC = () => {
       className={classes.slideOutWrapper}
       data-is-open={isOpen}
       ref={overlayRef}
+      inert={!isOpen}
     >
       <animated.div className={classes.slideOut} {...bind()} style={{ x }}>
         <RedesignNavigationPanel mode='slide-out' />

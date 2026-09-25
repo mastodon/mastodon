@@ -1,12 +1,24 @@
 @use '@/styles/mastodon/variables';
 
-.button {
-  &:not(.buttonInline) {
+.buttonWrapper {
+  position: relative;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: all 200ms ease-out;
+  }
+
+  &:not(.buttonWrapperInline) {
     position: fixed;
     bottom: var(--space-4);
     right: var(--space-4);
     z-index: 2;
   }
+}
+
+.buttonWrapperHidden {
+  transform: translateX(calc(100% + var(--space-4)));
+  opacity: 0;
+  transition-timing-function: ease-in;
 }
 
 .composer,
