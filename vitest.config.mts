@@ -11,7 +11,6 @@ import {
 import { config as viteConfig } from './vite.config.mjs';
 
 const storybookTests: TestProjectInlineConfiguration = {
-  extends: true,
   plugins: [
     // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
     storybookTest({
@@ -31,7 +30,6 @@ const storybookTests: TestProjectInlineConfiguration = {
 };
 
 const legacyTests: TestProjectInlineConfiguration = {
-  extends: true,
   test: {
     name: 'legacy-tests',
     environment: 'jsdom',
