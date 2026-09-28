@@ -1,0 +1,17 @@
+{
+  "$schema": "../node_modules/oxlint/configuration_schema.json",
+  "extends": ["../.oxlintrc.json"],
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "no-delete-var": "off",
+    "import-js/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.config.mjs"]
+      }
+    ],
+    "import/extensions": "off"
+  }
+}
