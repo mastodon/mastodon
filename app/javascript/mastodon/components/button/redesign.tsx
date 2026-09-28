@@ -11,6 +11,8 @@ import { CaretDownIcon } from '@phosphor-icons/react';
 import { CircularProgress } from '../circular_progress';
 import type { IconProp } from '../icon';
 import { Icon } from '../icon';
+import type { PopoverProps } from '../popover';
+import { Tooltip } from '../tooltip';
 
 import classes from './redesign.module.scss';
 
@@ -132,22 +134,31 @@ export const Button: React.FC<ButtonProps> = ({
 
 export type IconButtonProps = BaseButtonProps & {
   icon: IconProp;
+  tooltipPlacement?: PopoverProps['placement'];
 };
 
 export const IconButton: React.FC<IconButtonProps> = ({
   icon,
   className,
+  tooltipPlacement,
   children,
   ...props
 }) => (
-  <BaseButton {...props} className={classNames(className, classes.iconOnly)}>
-    {props.loading ? (
-      <LoadingIcon />
-    ) : (
-      <Icon id='icon' icon={icon} className={classes.icon} />
+  <Tooltip text={children} placement={tooltipPlacement}>
+    {({ getTooltipProps }) => (
+      <BaseButton
+        {...getTooltipProps(props)}
+        className={classNames(className, classes.iconOnly)}
+      >
+        {props.loading ? (
+          <LoadingIcon />
+        ) : (
+          <Icon id='icon' icon={icon} className={classes.icon} />
+        )}
+        <span className='sr-only'>{children}</span>
+      </BaseButton>
     )}
-    <span className='sr-only'>{children}</span>
-  </BaseButton>
+  </Tooltip>
 );
 
 export const CaretIcon = (
