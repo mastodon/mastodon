@@ -18,7 +18,7 @@
     "fix": "yarn fix:js && yarn fix:css",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "i18n:extract": "formatjs extract 'app/javascript/**/*.{js,jsx,ts,tsx}' config/vite/plugin-sw-locales.ts --ignore '**/*.d.ts' --out-file app/javascript/mastodon/locales/en.json --format config/formatjs-formatter.js",
+    "i18n:extract": "formatjs extract 'app/javascript/**/*.{js,jsx,ts,tsx}' config/vite/plugin-sw-locales.mts --ignore '**/*.d.ts' --out-file app/javascript/mastodon/locales/en.json --format config/formatjs-formatter.js",
     "lint:js": "cd $INIT_CWD && eslint --cache --report-unused-disable-directives",
     "lint:css": "stylelint \"**/*.{css,scss}\"",
     "lint": "yarn lint:js && yarn lint:css",

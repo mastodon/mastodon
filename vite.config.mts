@@ -19,10 +19,10 @@ import {
 import manifestSRI from 'vite-plugin-manifest-sri';
 import svgr from 'vite-plugin-svgr';
 
-import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
-import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
-import { MastodonServiceWorkerChunkPaths } from './config/vite/plugin-sw-chunk-paths';
-import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
+import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest.mts';
+import { MastodonThemes } from './config/vite/plugin-mastodon-themes.mts';
+import { MastodonServiceWorkerChunkPaths } from './config/vite/plugin-sw-chunk-paths.mts';
+import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales.mts';
 
 const jsRoot = path.resolve(import.meta.dirname, 'app/javascript');
 
