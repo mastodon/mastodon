@@ -116,5 +116,5 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
   );
 };
 
-// eslint-disable-next-line import/no-default-export
+// oxlint-disable-next-line import/no-default-export
 export default Favourites;

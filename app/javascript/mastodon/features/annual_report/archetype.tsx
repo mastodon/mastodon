@@ -141,7 +141,7 @@ export const Archetype: React.FC<{
   return (
     <div
       className={classNames(styles.box, styles.archetype)}
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+      // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={0}
       ref={wrapperRef}
     >
