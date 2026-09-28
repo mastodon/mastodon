@@ -61,6 +61,7 @@ const ErrorComponent = (props: { onRetry: () => void }) => (
 const renderLoading = (columnId: string) => {
   const LoadingComponent =
     columnId === 'COMPOSE' ? <DrawerLoading /> : <ColumnLoading multiColumn />;
+  // oxlint-disable-next-line react/display-name
   return () => LoadingComponent;
 };
 
