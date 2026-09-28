@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
+  include Redisable
+
   prepend_before_action :store_current_location
 
   layout 'modal'
@@ -41,7 +43,9 @@ class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
 
   # This is used to record with which application the user was created
   def after_successful_authorization(context)
-    current_user.update(created_by_application_id: context.auth.pre_auth.client.id) if session.delete(:created_by_app_id) == context.auth.pre_auth.client.id && current_user.created_by_application_id.nil?
+    redis.set("track_created_by_application_id:#{current_user.id}", context.auth.pre_auth.client.id, ex: context.auth.issued_token.expires_in || 15.minutes) if session.delete(:created_by_app_id) == context.auth.pre_auth.client.id && current_user.created_by_application_id.nil?
+
+    super
   end
 
   # When dealing with a new account that has been explicitly created through the OAuth flow, skip authorization prompt
