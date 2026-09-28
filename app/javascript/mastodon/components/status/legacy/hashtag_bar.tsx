@@ -176,7 +176,6 @@ export function computeHashtagBarForStatus(
   const hasMedia = status.media_attachments.length > 0;
   const hasSpoiler = !!status.spoiler_text;
 
-  // oxlint-disable-next-line @typescript-eslint/no-unnecessary-condition -- due to https://github.com/microsoft/TypeScript/issues/9998
   if (onlyHashtags && ((hasMedia && !hasSpoiler) || !isOnlyOneLine)) {
     // if the last line only contains hashtags, and we either:
     // - have other content in the status

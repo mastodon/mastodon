@@ -155,8 +155,6 @@ export const termsOfServiceEnabled = getMeta('terms_of_service_enabled');
 export const wrapstodon = getMeta('wrapstodon');
 
 const displayNames =
-  // Intl.DisplayNames can be undefined in old browsers
-  // oxlint-disable-next-line @typescript-eslint/no-unnecessary-condition
   Intl.DisplayNames &&
   (new Intl.DisplayNames(getMeta('locale'), {
     type: 'language',
