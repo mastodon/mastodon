@@ -3042,6 +3042,7 @@ __metadata:
     msw-storybook-addon: "npm:3.0.3"
     oxfmt: "npm:0.70.0"
     oxlint: "npm:^1.85.0"
+    oxlint-tsgolint: "npm:^7.0.2003"
     path-complete-extname: "npm:1.0.0"
     playwright: "npm:1.63.0"
     postcss-preset-env: "npm:11.6.1"
@@ -3800,6 +3801,48 @@ __metadata:
 "@oxfmt/binding-win32-x64-msvc@npm:0.70.0":
   version: 0.70.0
   resolution: "@oxfmt/binding-win32-x64-msvc@npm:0.70.0"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@oxlint-tsgolint/darwin-arm64@npm:7.0.2003":
+  version: 7.0.2003
+  resolution: "@oxlint-tsgolint/darwin-arm64@npm:7.0.2003"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@oxlint-tsgolint/darwin-x64@npm:7.0.2003":
+  version: 7.0.2003
+  resolution: "@oxlint-tsgolint/darwin-x64@npm:7.0.2003"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@oxlint-tsgolint/linux-arm64@npm:7.0.2003":
+  version: 7.0.2003
+  resolution: "@oxlint-tsgolint/linux-arm64@npm:7.0.2003"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@oxlint-tsgolint/linux-x64@npm:7.0.2003":
+  version: 7.0.2003
+  resolution: "@oxlint-tsgolint/linux-x64@npm:7.0.2003"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@oxlint-tsgolint/win32-arm64@npm:7.0.2003":
+  version: 7.0.2003
+  resolution: "@oxlint-tsgolint/win32-arm64@npm:7.0.2003"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@oxlint-tsgolint/win32-x64@npm:7.0.2003":
+  version: 7.0.2003
+  resolution: "@oxlint-tsgolint/win32-x64@npm:7.0.2003"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -10939,6 +10982,35 @@ __metadata:
   bin:
     oxfmt: bin/oxfmt
   checksum: 10c0/9641cb661ed50183daacd90ecae767972f6c1cc8725b44d4f093014a9104cdc05659575ba94178b830fbe1ea53238bc0f81e70e132b4bcaaca2cbd4bb8ebbd42
+  languageName: node
+  linkType: hard
+
+"oxlint-tsgolint@npm:^7.0.2003":
+  version: 7.0.2003
+  resolution: "oxlint-tsgolint@npm:7.0.2003"
+  dependencies:
+    "@oxlint-tsgolint/darwin-arm64": "npm:7.0.2003"
+    "@oxlint-tsgolint/darwin-x64": "npm:7.0.2003"
+    "@oxlint-tsgolint/linux-arm64": "npm:7.0.2003"
+    "@oxlint-tsgolint/linux-x64": "npm:7.0.2003"
+    "@oxlint-tsgolint/win32-arm64": "npm:7.0.2003"
+    "@oxlint-tsgolint/win32-x64": "npm:7.0.2003"
+  dependenciesMeta:
+    "@oxlint-tsgolint/darwin-arm64":
+      optional: true
+    "@oxlint-tsgolint/darwin-x64":
+      optional: true
+    "@oxlint-tsgolint/linux-arm64":
+      optional: true
+    "@oxlint-tsgolint/linux-x64":
+      optional: true
+    "@oxlint-tsgolint/win32-arm64":
+      optional: true
+    "@oxlint-tsgolint/win32-x64":
+      optional: true
+  bin:
+    tsgolint: ./bin/tsgolint.js
+  checksum: 10c0/f7be5deb91f140635c7cc2cd4f14f9f89fd4ac54aff3191ea76a081d59841d0fba000ac9cc06cb50769ccc79783a43b50161efeab4083cf5ed63327590671dca
   languageName: node
   linkType: hard
 
