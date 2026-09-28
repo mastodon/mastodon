@@ -41,7 +41,7 @@ export const WithAction: Story = {
   args: {
     ...Default.args,
     children: (
-      // oxlint-disable-next-line react/jsx-no-bind
+      // oxlint-disable-next-line react-js/jsx-no-bind
       <Button variant='solid' color='accent' onClick={() => action('Refresh')}>
         Refresh
       </Button>
