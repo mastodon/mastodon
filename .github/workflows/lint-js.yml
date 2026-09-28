@@ -10,7 +10,8 @@ on:
       - 'yarn.lock'
       - 'tsconfig.json'
       - '.nvmrc'
-      - 'eslint.config.mjs'
+      - '.oxlintrc.json'
+      - 'streaming/.oxlintrc.json'
       - '**/*.js'
       - '**/*.jsx'
       - '**/*.ts'
@@ -23,7 +24,8 @@ on:
       - 'yarn.lock'
       - 'tsconfig.json'
       - '.nvmrc'
-      - 'eslint.config.mjs'
+      - '.oxlintrc.json'
+      - 'streaming/.oxlintrc.json'
       - '**/*.js'
       - '**/*.jsx'
       - '**/*.ts'
@@ -42,7 +44,7 @@ jobs:
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
-      - name: ESLint
+      - name: JS Linting
         run: yarn workspaces foreach --all --parallel run lint:js --max-warnings 0
 
       - name: Typecheck
