@@ -75,7 +75,7 @@ export const ImmutableHashtag = ({ hashtag }: ImmutableHashtagProps) => (
       >
     )
       .reverse()
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      // oxlint-disable-next-line @typescript-eslint/no-non-null-assertion
       .map((day) => day.get('uses')!)
       .toArray()}
   />

@@ -23,7 +23,7 @@ export const deployPictureInPicture = createAppAsyncThunk(
     // Do not open a player for a toot that does not exist
 
     // @ts-expect-error state.statuses is not yet typed
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    // oxlint-disable-next-line @typescript-eslint/no-unsafe-call
     if (getState().hasIn(['statuses', statusId])) {
       dispatch(deployPictureInPictureAction(args));
     }

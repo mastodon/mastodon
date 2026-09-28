@@ -257,7 +257,7 @@ const collectionSlice = createSlice({
 
     builder.addCase(deleteCollection.fulfilled, (state, action) => {
       const { collectionId } = action.meta.arg;
-      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+      // oxlint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete state.collections[collectionId];
       if (me) {
         let accountCollectionIds = state.createdBy[me]?.collectionIds;

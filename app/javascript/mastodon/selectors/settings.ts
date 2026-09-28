@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import type { RootState } from 'mastodon/store';
 
-/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
+/* oxlint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
 // state.settings is not yet typed, so we disable some ESLint checks for those selectors
 export const selectSettingsNotificationsShows = createSelector(
   [
@@ -69,4 +69,4 @@ export const selectSettingsNotificationsMinimizeFilteredBanner = (
 export const selectSettingsNotificationsGroupFollows = (state: RootState) =>
   state.settings.getIn(['notifications', 'group', 'follow']) as boolean;
 
-/* eslint-enable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
+/* oxlint-enable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */

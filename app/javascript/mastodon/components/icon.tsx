@@ -29,7 +29,6 @@ export const Icon: React.FC<Props> = ({
   noFill = false,
   ...other
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!IconComponent) {
     if (!isProduction()) {
       throw new Error(
@@ -44,7 +43,7 @@ export const Icon: React.FC<Props> = ({
   const role = !ariaHidden ? 'img' : undefined;
 
   // Set the title to an empty string to remove the built-in SVG one if any
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  // oxlint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const title = ariaLabel || '';
 
   return (
