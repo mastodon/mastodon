@@ -7,7 +7,7 @@ import {
   createSelector,
   createAction,
 } from '@reduxjs/toolkit';
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+// oxlint-disable-next-line @typescript-eslint/no-restricted-imports
 import { useDispatch, useSelector } from 'react-redux';
 
 import type { AppDispatch, RootState } from './store';

@@ -77,7 +77,7 @@ async function loadIntlPluralRulesPolyfills(locale: string) {
 // }
 
 export async function loadIntlPolyfills() {
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we want to match empty strings
+  // oxlint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we want to match empty strings
   const locale = document.querySelector('html')?.lang || 'en';
 
   // order is important here
