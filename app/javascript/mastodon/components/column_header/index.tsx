@@ -53,6 +53,24 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
     (withBackButton === 'auto' && location.state?.fromMastodon);
   const hasExtraStickyContent = hasReactChildren(extraStickyContent);
 
+  const handleHeaderClick = useCallback<React.MouseEventHandler>(
+    (e) => {
+      // Only scroll to top when clicking outside
+      // of the leftButton/rightButtons containers
+      if (
+        e.target instanceof Element &&
+        !e.target.matches(`
+          .${classes.leftButton},
+          .${classes.leftButton} *,
+          .${classes.rightButtons},
+          .${classes.rightButtons} *`)
+      ) {
+        scrollTop();
+      }
+    },
+    [scrollTop],
+  );
+
   return (
     <header
       {...props}
@@ -62,7 +80,14 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         hasExtraStickyContent && classes.withStickyContent,
       )}
     >
-      <div className={classes.layout} data-has-unread={withUnreadMarker}>
+      {/* eslint-disable-next-line
+          jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+        */}
+      <div
+        className={classes.layout}
+        data-has-unread={withUnreadMarker}
+        onClick={handleHeaderClick}
+      >
         {hasBackButton ? <BackButton /> : <MobileMenuButton />}
         <NavigationFocusTarget
           className={classes.title}
