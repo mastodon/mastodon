@@ -72,7 +72,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
 
     const useFallback = async fallback => {
       await fallback(dispatch, getState);
-      // eslint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
+      // oxlint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
       pollingId = setTimeout(() => useFallback(fallback), 20000 + randomUpTo(20000));
     };
 

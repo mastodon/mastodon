@@ -244,7 +244,7 @@ const NewList: React.FC<{ list?: List | null }> = ({ list }) => {
       )}
 
       <div className='fields-group'>
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        {/* oxlint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className='app-form__toggle'>
           <div className='app-form__toggle__label'>
             <strong>
@@ -333,5 +333,5 @@ const NewListWrapper: React.FC<{
   );
 };
 
-// eslint-disable-next-line import/no-default-export
+// oxlint-disable-next-line import/no-default-export
 export default NewListWrapper;

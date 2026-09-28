@@ -71,7 +71,7 @@ export const ScrollContext: React.FC<ScrollContextProps> = ({
    * than a ref to simplify the types and ensure it's defined immediately.
    */
   const [scrollBehavior] = useState(
-    // eslint-disable-next-line react-hooks/refs
+    // oxlint-disable-next-line react-hooks/refs
     (): ScrollBehaviorInstance =>
       new ScrollBehavior({
         addNavigationListener: history.listen.bind(history),
@@ -84,7 +84,7 @@ export const ScrollContext: React.FC<ScrollContextProps> = ({
         ) =>
           // Hack to allow accessing scrollBehavior._stateStorage
           shouldUpdateScroll.call(
-            // eslint-disable-next-line react-hooks/immutability
+            // oxlint-disable-next-line react-hooks/immutability
             scrollBehavior,
             prevLocationContext,
             locationContext,

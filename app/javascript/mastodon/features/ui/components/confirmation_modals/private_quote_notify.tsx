@@ -39,7 +39,7 @@ export const PrivateQuoteNotify = forwardRef<
 >(
   (
     { onClose },
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // oxlint-disable-next-line @typescript-eslint/no-unused-vars
     _ref,
   ) => {
     const intl = useIntl();

@@ -64,7 +64,7 @@ describe('html', () => {
       html.htmlStringToComponents(input, { onElement });
       expect(onElement).toHaveBeenCalledExactlyOnceWith(
         expect.objectContaining({ tagName: 'P' }),
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        // oxlint-disable-next-line @typescript-eslint/no-unsafe-assignment
         expect.objectContaining({ key: expect.any(String) }),
         expect.arrayContaining(['lorem ipsum']),
         {},
@@ -77,7 +77,7 @@ describe('html', () => {
       const output = html.htmlStringToComponents(input, { onElement });
       expect(onElement).toHaveBeenCalledExactlyOnceWith(
         expect.objectContaining({ tagName: 'P' }),
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        // oxlint-disable-next-line @typescript-eslint/no-unsafe-assignment
         expect.objectContaining({ key: expect.any(String) }),
         expect.arrayContaining(['lorem ipsum']),
         {},

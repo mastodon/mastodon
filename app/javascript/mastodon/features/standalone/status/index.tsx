@@ -45,7 +45,7 @@ const Embed: React.FC<{ id: string }> = ({ id }) => {
     dispatchRenderSignal();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+  // oxlint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   const permalink = status?.get('url') as string;
 
   return (

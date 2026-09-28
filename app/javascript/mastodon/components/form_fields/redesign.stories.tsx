@@ -13,7 +13,7 @@ interface FieldProps {
 
 const meta = {
   title: 'Redesign/Form Fields',
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- We need to add args or TS doesn't see it in other render functions.
+  // oxlint-disable-next-line @typescript-eslint/no-unused-vars -- We need to add args or TS doesn't see it in other render functions.
   render(args) {
     return <>Empty</>; // Override elsewhere
   },
