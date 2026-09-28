@@ -1,3 +1,4 @@
+// oxlint-disable jsx-a11y/no-noninteractive-element-to-interactive-role
 import { useEffect, useRef } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
