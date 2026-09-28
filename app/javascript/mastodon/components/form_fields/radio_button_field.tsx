@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+/* oxlint-disable @typescript-eslint/prefer-nullish-coalescing */
 
 import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
 import { forwardRef, useContext } from 'react';

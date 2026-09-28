@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* oxlint-disable jsx-a11y/anchor-is-valid */
 
 import type { MouseEvent } from 'react';
 import { useCallback, useState } from 'react';
