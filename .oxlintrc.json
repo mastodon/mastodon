@@ -585,12 +585,13 @@
         "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
         "import/no-default-export": "warn",
         "jsdoc/require-param": "off",
-        "react/function-component-definition": [
-          "error",
-          {
-            "namedComponents": "arrow-function"
-          }
-        ],
+        "react/function-component-definition": "off", // TODO: re-enable below config and resolve once oxlint false positives gone
+        // "react/function-component-definition": [
+        //   "error",
+        //   {
+        //     "namedComponents": "arrow-function"
+        //   }
+        // ],
         "no-restricted-imports": [
           "warn",
           {
