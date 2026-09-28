@@ -143,13 +143,13 @@ export const CollectionEditorPage: React.FC<{
             <Route
               exact
               path={path}
-              // oxlint-disable-next-line react/jsx-no-bind
+              // oxlint-disable-next-line react-js/jsx-no-bind
               render={() => <CollectionAccounts collection={collection} />}
             />
             <Route
               exact
               path={`${path}/details`}
-              // oxlint-disable-next-line react/jsx-no-bind
+              // oxlint-disable-next-line react-js/jsx-no-bind
               render={() => <CollectionDetails />}
             />
           </Switch>
