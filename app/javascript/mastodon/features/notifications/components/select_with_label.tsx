@@ -121,7 +121,7 @@ export const SelectWithLabel: React.FC<PropsWithChildren<Props>> = ({
   return (
     // This label is only used for its click-forwarding behaviour,
     // accessible names are assigned manually
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
+    // oxlint-disable-next-line jsx-a11y/label-has-associated-control
     <label className='app-form__toggle'>
       <div className='app-form__toggle__label'>
         <strong id={labelId}>{label}</strong>
