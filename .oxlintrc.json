@@ -1,7 +1,13 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "plugins": ["import", "jsdoc", "promise", "typescript", "react", "jsx-a11y"],
-  "jsPlugins": ["eslint-plugin-formatjs"],
+  "jsPlugins": [
+    "eslint-plugin-formatjs",
+    {
+      "name": "import-js",
+      "specifier": "eslint-plugin-import"
+    }
+  ],
   "categories": {
     "correctness": "off"
   },
