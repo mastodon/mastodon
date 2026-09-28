@@ -110,6 +110,7 @@ export const ConfirmationModal: React.FC<
           type='submit'
           loading={updating}
           disabled={disabled}
+          // oxlint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={!noFocusButton}
           variant='solid'
           color={destructive ? 'destructive' : 'accent'}

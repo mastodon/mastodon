@@ -26,7 +26,6 @@ export const isFullscreen = () => {
 export const exitFullscreen = () => {
   const d = document as DocumentWithFullscreen;
 
-  // oxlint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (d.exitFullscreen) {
     void d.exitFullscreen();
   } else if (d.webkitExitFullscreen) {
@@ -41,7 +40,6 @@ export const requestFullscreen = (el: HTMLElementWithFullscreen | null) => {
     return;
   }
 
-  // oxlint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (el.requestFullscreen) {
     void el.requestFullscreen();
   } else if (el.webkitRequestFullscreen) {
