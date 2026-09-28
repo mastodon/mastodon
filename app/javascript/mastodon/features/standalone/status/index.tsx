@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return,
+/* oxlint-disable @typescript-eslint/no-unsafe-return,
                   @typescript-eslint/no-explicit-any,
                   @typescript-eslint/no-unsafe-assignment */
 
