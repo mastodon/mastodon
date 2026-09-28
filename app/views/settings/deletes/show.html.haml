@@ -2,6 +2,8 @@
   = t('settings.delete')
 
 = simple_form_for @confirmation, url: settings_delete_path, method: :delete do |f|
+  .flash-message= t('deletes.explanation_html', acct: current_account.local_username_and_domain)
+
   %p.hint= t('deletes.warning.before')
 
   %ul.hint
