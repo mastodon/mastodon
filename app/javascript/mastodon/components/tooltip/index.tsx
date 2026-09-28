@@ -47,7 +47,7 @@ interface TooltipProps extends Omit<
  */
 export const Tooltip: React.FC<TooltipProps> = ({
   text,
-  placement = 'top',
+  placement = 'bottom',
   offset = 4,
   id,
   className,
