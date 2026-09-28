@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-no-useless-fragment */
+/* oxlint-disable react/jsx-no-useless-fragment */
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 
 import { domain } from 'mastodon/initial_state';

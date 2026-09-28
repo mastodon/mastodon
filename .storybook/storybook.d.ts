@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* oxlint-disable @typescript-eslint/no-explicit-any */
 // The addon package.json incorrectly exports types, so we need to override them here.
 
 import type { PartialDeep } from 'type-fest';
