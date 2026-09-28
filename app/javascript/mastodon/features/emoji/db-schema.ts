@@ -217,7 +217,7 @@ function createLocaleTable(
 }
 
 function deleteOldIndexes(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Type is too complex, so only any works here.
+  // oxlint-disable-next-line @typescript-eslint/no-explicit-any -- Type is too complex, so only any works here.
   table: IDBPObjectStore<any, any, any, 'versionchange'>,
   indexes: readonly string[],
 ) {

@@ -247,5 +247,5 @@ const AccountFeaturedWrapper = ({
   );
 };
 
-// eslint-disable-next-line import/no-default-export
+// oxlint-disable-next-line import/no-default-export
 export default AccountFeatured;
