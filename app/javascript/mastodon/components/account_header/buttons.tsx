@@ -105,16 +105,13 @@ const AccountButtonsOther: FC<
             icon={relationship.notifying ? BellSlashIcon : BellIcon}
             active={relationship.notifying}
             onClick={handleNotifyToggle}
-            title={intl.formatMessage(
+          >
+            {intl.formatMessage(
               relationship.notifying
                 ? messages.disableNotifications
                 : messages.enableNotifications,
               { name: account.username },
             )}
-          >
-            {intl.formatMessage(messages.enableNotifications, {
-              name: account.username,
-            })}
           </ToggleIconButton>
         ) : (
           <LegacyIconButton

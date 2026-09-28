@@ -39,12 +39,14 @@ interface ButtonPropsBase<As extends 'a' | 'button'> {
   children: ReactNode;
 }
 
+type AttributesToExclude = 'children' | 'title';
+
 type ButtonButtonProps = { as?: 'button' } & ButtonPropsBase<'button'> &
-  Omit<React.ComponentPropsWithRef<'button'>, 'children'>;
+  Omit<React.ComponentPropsWithRef<'button'>, AttributesToExclude>;
 type ButtonAnchorProps = { as: 'a' } & ButtonPropsBase<'a'> &
-  Omit<React.ComponentPropsWithRef<'a'>, 'children'>;
+  Omit<React.ComponentPropsWithRef<'a'>, AttributesToExclude>;
 type ButtonLinkProps = { as: 'link' } & ButtonPropsBase<'a'> &
-  Omit<LinkProps, 'children'>;
+  Omit<LinkProps, AttributesToExclude>;
 
 type BaseButtonProps = ButtonButtonProps | ButtonAnchorProps | ButtonLinkProps;
 
@@ -109,28 +111,47 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   );
 };
 
+interface ButtonTooltip {
+  type: 'label' | 'description';
+  text: React.ReactNode;
+}
+
 export type ButtonProps = BaseButtonProps & {
   leadingIcon?: IconProp;
   trailingIcon?: IconProp;
+  tooltip?: ButtonTooltip;
 };
 
 export const Button: React.FC<ButtonProps> = ({
   children,
   leadingIcon,
   trailingIcon,
+  tooltip,
   ...props
-}) => (
-  <BaseButton {...props}>
-    {leadingIcon && !props.loading && (
-      <Icon id='leading' icon={leadingIcon} className={classes.icon} />
-    )}
-    {props.loading && <LoadingIcon />}
-    {children}
-    {trailingIcon && (
-      <Icon id='trailing' icon={trailingIcon} className={classes.icon} />
-    )}
-  </BaseButton>
-);
+}) => {
+  return (
+    <Tooltip text={tooltip?.text}>
+      {({ getTooltipProps, tooltipId }) => (
+        <BaseButton
+          {...getTooltipProps(props)}
+          aria-label={tooltip?.type === 'label' ? tooltipId : undefined}
+          aria-describedby={
+            tooltip?.type === 'description' ? tooltipId : undefined
+          }
+        >
+          {leadingIcon && !props.loading && (
+            <Icon id='leading' icon={leadingIcon} className={classes.icon} />
+          )}
+          {props.loading && <LoadingIcon />}
+          {children}
+          {trailingIcon && (
+            <Icon id='trailing' icon={trailingIcon} className={classes.icon} />
+          )}
+        </BaseButton>
+      )}
+    </Tooltip>
+  );
+};
 
 export type IconButtonProps = BaseButtonProps & {
   icon: IconProp;
