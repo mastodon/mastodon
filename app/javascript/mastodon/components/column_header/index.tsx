@@ -89,11 +89,12 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         onClick={handleHeaderClick}
       >
         {hasBackButton ? <BackButton /> : <MobileMenuButton />}
-        <NavigationFocusTarget
-          className={classes.title}
-          id={getColumnSkipLinkId(columnIndex)}
-        >
-          <button type='button' onClick={scrollTop}>
+        <NavigationFocusTarget className={classes.title}>
+          <button
+            type='button'
+            onClick={scrollTop}
+            id={getColumnSkipLinkId(columnIndex)}
+          >
             {title}
             {withUnreadMarker && (
               <span className='sr-only'>
