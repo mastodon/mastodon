@@ -6,7 +6,6 @@ import {
   TestProjectInlineConfiguration,
 } from 'vitest/config';
 
-// oxlint-disable-next-line import/extensions
 import { config as viteConfig } from './vite.config.mjs';
 
 const storybookTests: TestProjectInlineConfiguration = {
