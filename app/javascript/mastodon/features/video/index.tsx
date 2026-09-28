@@ -787,7 +787,7 @@ export const Video: React.FC<{
   // The outer wrapper is necessary to avoid reflowing the layout when going into full screen
   return (
     <div>
-      <div /* eslint-disable-line jsx-a11y/click-events-have-key-events */
+      <div /* oxlint-disable-line jsx-a11y/click-events-have-key-events */
         role='menuitem'
         className={classNames('video-player', {
           inactive: !revealed,
