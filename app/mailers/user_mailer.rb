@@ -235,6 +235,23 @@ class UserMailer < Devise::Mailer
     end
   end
 
+  def sign_in_token(user, remote_ip, user_agent, timestamp)
+    @resource   = user
+    @instance   = Rails.configuration.x.local_domain
+    @remote_ip  = remote_ip
+    @user_agent = user_agent
+    @detection  = Browser.new(user_agent)
+    @timestamp  = timestamp.to_time.utc
+
+    return if @resource.disabled?
+
+    I18n.with_locale(@resource.locale || I18n.default_locale) do
+      mail to: @resource.email,
+           subject: I18n.t('user_mailer.sign_in_token.subject'),
+           reply_to: Setting.site_contact_email
+    end
+  end
+
   private
 
   def default_devise_subject

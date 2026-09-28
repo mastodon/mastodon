@@ -2328,6 +2328,14 @@ en:
       further_actions_html: If this wasn't you, we recommend that you %{action} immediately as it may be compromised.
       subject: Second factor authentication failure
       title: Failed second factor authentication
+    sign_in_token:
+      change_password: change your password
+      details: 'Here are details of the attempt:'
+      explanation: 'We detected an attempt to sign in to your account after a long time of inactivity. If this is you, please enter the security code below on the sign in challenge page:'
+      further_actions: 'If this wasn''t you, please change your password and enable two-factor authentication on your account. You can do so here:'
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Please confirm attempted sign in
+      title: Sign in attempt
     suspicious_sign_in:
       change_password: change your password
       details: 'Here are details of the sign-in:'
@@ -2417,12 +2425,15 @@ en:
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
+    generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
     go_to_sso_account_settings: Go to your identity provider's account settings
     invalid_otp_token: Invalid two-factor code
+    invalid_sign_in_token: Invalid security code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     rate_limited: Too many authentication attempts, try again later.
     seamless_external_login: You are logged in via an external service, so password and email settings are not available.
     signed_in_as: 'Signed in as:'
+    suspicious_sign_in_confirmation: You appear to not have logged in from this device before, and you haven't logged in for a while, so we're sending a security code to your e-mail address to confirm that it's you.
   verification:
     extra_instructions_html: <strong>Tip:</strong> The link on your website can be invisible. The important part is <code>rel="me"</code> which prevents impersonation on websites with user-generated content. You can even use a <code>link</code> tag in the header of the page instead of <code>a</code>, but the HTML must be accessible without executing JavaScript.
     here_is_how: Here's how

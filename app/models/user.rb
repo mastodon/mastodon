@@ -42,6 +42,8 @@
 #
 
 class User < ApplicationRecord
+  TIME_TO_INACTIVE = -> { 6.months.ago }.freeze
+
   self.ignored_columns += %w(
     encrypted_otp_secret
     encrypted_otp_secret_iv
@@ -124,7 +126,7 @@ class User < ApplicationRecord
 
   delegate :can?, to: :role
 
-  attr_reader :invite_code
+  attr_reader :invite_code, :sign_in_token_attempt
   attr_writer :current_account
 
   attribute :external, :boolean, default: false
@@ -218,6 +220,13 @@ class User < ApplicationRecord
 
   def active_for_authentication?
     !account.memorial?
+  end
+
+  def inactive_sign_in?
+    !otp_required_for_login? &&
+      encrypted_password.present? &&
+      current_sign_in_at.present? &&
+      current_sign_in_at < TIME_TO_INACTIVE.call
   end
 
   def functional?
@@ -363,6 +372,15 @@ class User < ApplicationRecord
 
     # Then, remove all authorized applications and connected push subscriptions
     revoke_access!
+  end
+
+  def sign_in_token_expired?
+    sign_in_token_sent_at.nil? || sign_in_token_sent_at < 5.minutes.ago
+  end
+
+  def generate_sign_in_token
+    self.sign_in_token         = Devise.friendly_token(6)
+    self.sign_in_token_sent_at = Time.now.utc
   end
 
   protected
