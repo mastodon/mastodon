@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-dynamic-delete */
+/* oxlint-disable @typescript-eslint/no-dynamic-delete */
 import { createReducer } from '@reduxjs/toolkit';
 import type { Draft, UnknownAction } from '@reduxjs/toolkit';
 import type { List as ImmutableList } from 'immutable';
