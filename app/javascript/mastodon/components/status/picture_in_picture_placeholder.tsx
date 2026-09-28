@@ -28,7 +28,7 @@ export const PictureInPicturePlaceholder: React.FC<{ aspectRatio: string }> = ({
   );
 
   return (
-    <div /* eslint-disable-line jsx-a11y/click-events-have-key-events */
+    <div /* oxlint-disable-line jsx-a11y/click-events-have-key-events */
       className='picture-in-picture-placeholder'
       style={{ aspectRatio }}
       role='button'
