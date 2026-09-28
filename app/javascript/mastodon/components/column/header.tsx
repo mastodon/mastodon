@@ -270,7 +270,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   }
 
   const hasIcon = icon && iconComponent;
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  // oxlint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const hasTitle = (hasIcon || backButton) && title;
   const columnIndex = useColumnIndexContext();
 

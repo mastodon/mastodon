@@ -113,5 +113,5 @@ const EmptyMessage: FC<EmptyMessageProps> = (props) => (
   />
 );
 
-// eslint-disable-next-line import/no-default-export -- Used by async components.
+// oxlint-disable-next-line import/no-default-export -- Used by async components.
 export default Followers;
