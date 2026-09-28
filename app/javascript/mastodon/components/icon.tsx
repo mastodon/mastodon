@@ -29,7 +29,6 @@ export const Icon: React.FC<Props> = ({
   noFill = false,
   ...other
 }) => {
-  // oxlint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!IconComponent) {
     if (!isProduction()) {
       throw new Error(
