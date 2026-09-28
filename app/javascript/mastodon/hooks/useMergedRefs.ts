@@ -24,6 +24,5 @@ export function useMergedRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
     },
     [refs],
   );
-  // oxlint-disable-next-line react-hooks/immutability
   return setRef;
 }

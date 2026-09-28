@@ -213,7 +213,6 @@ export function useOverflowObservers({
   // Watch the wrapper for size changes, and recalculate when it resizes.
   const wrapperRef = useRef<HTMLElement>(null);
   const wrapperRefCallback = useCallback(
-    // oxlint-disable-next-line react-hooks/immutability
     (node: HTMLElement | null) => {
       if (node) {
         wrapperRef.current = node; // oxlint-disable-line react-hooks/immutability -- https://github.com/facebook/react/issues/34955
@@ -230,7 +229,6 @@ export function useOverflowObservers({
 
   // If there are changes to the children, recalculate which are visible.
   const listRefCallback = useCallback(
-    // oxlint-disable-next-line react-hooks/immutability
     (node: HTMLElement | null) => {
       if (node) {
         listRef.current = node;
