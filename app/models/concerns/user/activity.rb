@@ -27,7 +27,7 @@ module User::Activity
   # We consider suspicious any log in of users that have been inactive for SUSPICIOUS_INACTIVITY_DURATION
   # Users with OTP enabled or that are managed through SSO, LDAP or PAM are not taken into account
   def suspicious_inactive_sign_in?
-    !otp_required_for_login? &&
+    !two_factor_enabled? &&
       encrypted_password? &&
       current_sign_in_at? &&
       current_sign_in_at < SUSPICIOUS_INACTIVITY_DURATION.ago
