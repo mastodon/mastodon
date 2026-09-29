@@ -5,7 +5,8 @@
                   as: resource_name,
                   url: session_path(resource_name),
                   method: :post) do |f|
-  %p.hint.otp-hint= t('users.suspicious_sign_in_confirmation')
+  %h1.title= t('users.inactive_sign_in_title')
+  %p.lead= t('users.inactive_sign_in_confirmation')
 
   .fields-group
     = f.input :sign_in_token_attempt,
