@@ -312,12 +312,17 @@ export const Notifications: React.FC<{
             <>
               <ColumnHeaderButton icon={GearIcon} onClick={openSettingsModal}>
                 <FormattedMessage
-                  id='notifications.settings'
-                  defaultMessage='Notification Settings'
+                  id='notifications.open_settings'
+                  defaultMessage='Open notification settings'
                 />
               </ColumnHeaderButton>
               <ColumnSettingsMenu
-                labelPrefix={intl.formatMessage(messages.title)}
+                label={
+                  <FormattedMessage
+                    id='notifications.more_options'
+                    defaultMessage='More options'
+                  />
+                }
               >
                 <MenuItem
                   disabled={!canMarkAsRead}
