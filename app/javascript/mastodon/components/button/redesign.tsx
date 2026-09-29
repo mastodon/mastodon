@@ -129,24 +129,33 @@ export const Button: React.FC<ButtonProps> = ({
   tooltip,
   ...props
 }) => {
+  const buttonContent = (
+    <>
+      {leadingIcon && !props.loading && (
+        <Icon id='leading' icon={leadingIcon} className={classes.icon} />
+      )}
+      {props.loading && <LoadingIcon />}
+      {children}
+      {trailingIcon && (
+        <Icon id='trailing' icon={trailingIcon} className={classes.icon} />
+      )}
+    </>
+  );
+
+  if (!tooltip?.text) {
+    return <BaseButton {...props}>{buttonContent}</BaseButton>;
+  }
   return (
-    <Tooltip text={tooltip?.text}>
+    <Tooltip text={tooltip.text}>
       {({ getTooltipProps, tooltipId }) => (
         <BaseButton
           {...getTooltipProps(props)}
-          aria-label={tooltip?.type === 'label' ? tooltipId : undefined}
+          aria-labelledby={tooltip.type === 'label' ? tooltipId : undefined}
           aria-describedby={
-            tooltip?.type === 'description' ? tooltipId : undefined
+            tooltip.type === 'description' ? tooltipId : undefined
           }
         >
-          {leadingIcon && !props.loading && (
-            <Icon id='leading' icon={leadingIcon} className={classes.icon} />
-          )}
-          {props.loading && <LoadingIcon />}
-          {children}
-          {trailingIcon && (
-            <Icon id='trailing' icon={trailingIcon} className={classes.icon} />
-          )}
+          {buttonContent}
         </BaseButton>
       )}
     </Tooltip>
