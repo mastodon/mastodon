@@ -624,4 +624,12 @@ RSpec.describe User do
       expect(subject.sign_in_token_sent_at).to_not be_nil
     end
   end
+
+  describe '#disable_sign_in_token!' do
+    subject { Fabricate(:user, current_sign_in_at: 8.months.ago) }
+
+    before { subject.disable_sign_in_token! }
+
+    it { is_expected.to_not be_suspicious_inactive_sign_in }
+  end
 end

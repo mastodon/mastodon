@@ -13,6 +13,10 @@ class UserPolicy < ApplicationPolicy
     role.can?(:manage_user_access) && role.overrides?(record.role)
   end
 
+  def disable_sign_in_token?
+    role.can?(:manage_user_access) && role.overrides?(record.role)
+  end
+
   def change_role?
     role.can?(:manage_roles) && role.overrides?(record.role)
   end

@@ -374,6 +374,17 @@ class User < ApplicationRecord
     self.sign_in_token_sent_at = Time.now.utc
   end
 
+  def disable_sign_in_token!
+    self.sign_in_token         = nil
+    self.sign_in_token_sent_at = nil
+
+    # Reset #current_sign_in_at so the system doesn't try to
+    # send a security code for inactive accounts
+    self.current_sign_in_at = Time.now.utc
+
+    save!
+  end
+
   protected
 
   def send_devise_notification(notification, *args, **kwargs)
