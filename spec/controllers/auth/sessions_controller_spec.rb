@@ -448,7 +448,7 @@ RSpec.describe Auth::SessionsController do
 
         it 'renders sign in token authentication page' do
           expect(response.parsed_body)
-            .to have_css('p.hint.otp-hint', text: I18n.t('users.suspicious_sign_in_confirmation'))
+            .to have_css('p.lead', text: I18n.t('users.inactive_sign_in_confirmation'))
         end
 
         it 'generates sign in token' do
