@@ -56,13 +56,12 @@ export const Tooltip: React.FC<TooltipProps> = ({
   placement = 'bottom',
   offset = 4,
   renderTextWhenClosed = false,
-  id,
+  id = '',
   className,
   children,
   ...otherProps
 }) => {
   const uniqueId = useId();
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const tooltipId = id || uniqueId;
 
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
