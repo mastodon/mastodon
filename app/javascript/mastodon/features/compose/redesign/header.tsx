@@ -92,6 +92,7 @@ export const ComposeFormHeader: React.FC<{
           variant='ghost'
           icon={isMinimized ? ArrowsOutSimpleIcon : MinusIcon}
           onClick={onMinimize}
+          tooltipPlacement='top'
         >
           {isMinimized ? (
             <FormattedMessage
@@ -107,7 +108,13 @@ export const ComposeFormHeader: React.FC<{
         </IconButton>
       )}
 
-      <IconButton icon={XIcon} variant='ghost' size='sm' onClick={onClose}>
+      <IconButton
+        icon={XIcon}
+        variant='ghost'
+        size='sm'
+        onClick={onClose}
+        tooltipPlacement='top'
+      >
         <FormattedMessage id='lightbox.close' defaultMessage='Close' />
       </IconButton>
     </header>
