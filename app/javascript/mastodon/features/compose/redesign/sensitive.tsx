@@ -13,7 +13,7 @@ import { selectComposeSensitive } from './selectors';
 const messages = defineMessages({
   sensitiveText: {
     id: 'compose.sensitive.text',
-    defaultMessage: 'Sensitive content description',
+    defaultMessage: 'Content warning',
   },
 });
 
