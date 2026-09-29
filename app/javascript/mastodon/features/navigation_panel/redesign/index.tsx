@@ -20,6 +20,7 @@ import { fetchFollowRequests } from '@/mastodon/actions/accounts';
 import { fetchLists } from '@/mastodon/actions/lists';
 import { closeNavigation } from '@/mastodon/actions/navigation';
 import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
+import { Button } from '@/mastodon/components/button/redesign';
 import { Callout } from '@/mastodon/components/callout/redesign';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
@@ -170,17 +171,21 @@ export const RedesignNavigationPanel: React.FC<{
         <>
           {transientSingleColumn && <TransientSingleColumnCallout />}
           <ul className={classes.list}>
-            <NavigationLink
-              withSpaceAfter
-              as='button'
-              onClick={openComposer}
-              iconComponent={PenNibIcon}
-            >
-              <FormattedMessage
-                id='tabs_bar.publish'
-                defaultMessage='New Post'
-              />
-            </NavigationLink>
+            <li>
+              <Button
+                leadingIcon={PenNibIcon}
+                onClick={openComposer}
+                variant='solid'
+                color='accent'
+                size='md'
+                className={classes.newPostButton}
+              >
+                <FormattedMessage
+                  id='tabs_bar.publish'
+                  defaultMessage='New Post'
+                />
+              </Button>
+            </li>
             <NavigationLink to='/home' iconComponent={HouseIcon}>
               <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
             </NavigationLink>
