@@ -197,6 +197,21 @@ textarea.textarea {
   gap: var(--space-1);
 }
 
+.calloutError {
+  @include mixins.type-body-compact;
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 32px;
+  color: var(--color-text-error);
+
+  > svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 // Language selector
 
 .languageMenu {

@@ -21,6 +21,7 @@ import { TextArea } from '@/mastodon/components/form_fields';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import {
+  clearComposerErrors,
   clearComposerFocusRequest,
   COMPOSER_TEXTAREA_ID,
 } from '@/mastodon/reducers/slices/composer';
@@ -142,6 +143,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       dispatch(changeCompose(event.target.value));
+      dispatch(clearComposerErrors());
       onTextChange(event);
     },
     [dispatch, onTextChange],
