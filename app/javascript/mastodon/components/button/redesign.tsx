@@ -146,7 +146,7 @@ export const Button: React.FC<ButtonProps> = ({
     return <BaseButton {...props}>{buttonContent}</BaseButton>;
   }
   return (
-    <Tooltip text={tooltip.text}>
+    <Tooltip text={tooltip.text} renderTextWhenClosed>
       {({ getTooltipProps, tooltipId }) => (
         <BaseButton
           {...getTooltipProps(props)}

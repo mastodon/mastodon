@@ -36,6 +36,12 @@ interface TooltipProps extends Omit<
   text: React.ReactNode;
   placement?: PopoverProps['placement'];
   offset?: PopoverProps['offset'];
+  /**
+   * Enable this to render the tooltip text in a hidden element
+   * when the tooltip is closed, so that it can be referenced by
+   * ID to provide an accessible label or description.
+   */
+  renderTextWhenClosed?: boolean;
   children: (options: {
     getTooltipProps: GetTooltipProps;
     tooltipId: string;
@@ -49,6 +55,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   text,
   placement = 'bottom',
   offset = 4,
+  renderTextWhenClosed = false,
   id,
   className,
   children,
@@ -135,6 +142,11 @@ export const Tooltip: React.FC<TooltipProps> = ({
           tooltipId,
         })
       }
+      {!isOpen && renderTextWhenClosed && (
+        <span hidden id={tooltipId}>
+          {text}
+        </span>
+      )}
       <Popover
         isOpen={isOpen}
         reference={referenceElement}
