@@ -54,7 +54,33 @@ export const ComposeHints = () => {
   const guess = useLanguageGuess();
   const isDifferentLanguage = lang && guess && lang !== guess;
 
+  const publishErrors = useAppSelector((state) => state.composer.publishErrors);
+
   const messages: React.ReactNode[] = [];
+
+  if (publishErrors.includes('empty')) {
+    messages.push(
+      defaultWrapper(
+        <FormattedMessage
+          id='compose.hints.empty'
+          defaultMessage="Post can't be blank"
+        />,
+        'empty',
+      ),
+    );
+  }
+
+  if (publishErrors.includes('too-long')) {
+    messages.push(
+      defaultWrapper(
+        <FormattedMessage
+          id='compose.hints.too-long'
+          defaultMessage='Post exceeds character maximum'
+        />,
+        'too-long',
+      ),
+    );
+  }
 
   if (replyFollowersHandle) {
     messages.push(

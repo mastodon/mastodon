@@ -28,11 +28,7 @@ import { ComposeFormHeader } from './header';
 import { ComposeHints } from './hints';
 import { LanguageButton } from './language';
 import { ComposeReply } from './reply';
-import {
-  selectComposeCanSubmit,
-  selectComposeSensitive,
-  selectComposeType,
-} from './selectors';
+import { selectComposeSensitive, selectComposeType } from './selectors';
 import { ComposeSensitiveField } from './sensitive';
 import classes from './styles.module.scss';
 import { ComposeTextarea } from './textarea';
@@ -163,11 +159,10 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
   );
 
   // Submit status
-  const canSubmit = useAppSelector(selectComposeCanSubmit);
   const onSubmit = useCallback(
     (event?: React.SubmitEvent) => {
-      if (!canSubmit || event?.defaultPrevented) {
-        return;
+      if (event?.defaultPrevented) {
+        return false;
       }
       dispatch(
         submitComposer({
@@ -175,11 +170,10 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
         }),
       );
 
-      if (event) {
-        event.preventDefault();
-      }
+      event?.preventDefault();
+      return false;
     },
-    [canSubmit, dispatch, redirectOnSuccess],
+    [dispatch, redirectOnSuccess],
   );
 
   return {
