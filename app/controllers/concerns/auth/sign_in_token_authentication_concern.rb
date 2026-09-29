@@ -8,7 +8,7 @@ module Auth::SignInTokenAuthenticationConcern
   end
 
   def sign_in_token_required?
-    find_user&.inactive_sign_in?
+    find_user&.suspicious_inactive_sign_in?
   end
 
   def valid_sign_in_token_attempt?(user)

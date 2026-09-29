@@ -11,6 +11,10 @@ module User::Activity
   # amount of background processing that happens when people become active.
   ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days
 
+  # If a user hasn't logged in before this time, we consider new login ins suspicious
+  # and start a security code challenge to verify users
+  SUSPICIOUS_INACTIVITY_DURATION = 6.months.freeze
+
   included do
     scope :signed_in_recently, -> { where(current_sign_in_at: ACTIVE_DURATION.ago..) }
     scope :not_signed_in_recently, -> { where(current_sign_in_at: ...ACTIVE_DURATION.ago) }
@@ -18,6 +22,15 @@ module User::Activity
 
   def signed_in_recently?
     current_sign_in_at.present? && current_sign_in_at >= ACTIVE_DURATION.ago
+  end
+
+  # We consider suspicious any log in of users that have been inactive for SUSPICIOUS_INACTIVITY_DURATION
+  # Users with OTP enabled or that are managed through SSO, LDAP or PAM are not taken into account
+  def suspicious_inactive_sign_in?
+    !otp_required_for_login? &&
+      encrypted_password? &&
+      current_sign_in_at? &&
+      current_sign_in_at < SUSPICIOUS_INACTIVITY_DURATION.ago
   end
 
   private

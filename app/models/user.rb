@@ -42,8 +42,6 @@
 #
 
 class User < ApplicationRecord
-  TIME_TO_INACTIVE = -> { 6.months.ago }.freeze
-
   self.ignored_columns += %w(
     encrypted_otp_secret
     encrypted_otp_secret_iv
@@ -220,13 +218,6 @@ class User < ApplicationRecord
 
   def active_for_authentication?
     !account.memorial?
-  end
-
-  def inactive_sign_in?
-    !otp_required_for_login? &&
-      encrypted_password.present? &&
-      current_sign_in_at.present? &&
-      current_sign_in_at < TIME_TO_INACTIVE.call
   end
 
   def functional?
