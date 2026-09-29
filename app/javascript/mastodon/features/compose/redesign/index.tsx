@@ -1,7 +1,7 @@
 import type React from 'react';
 import { useCallback, useEffect, useId } from 'react';
 
-import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -9,17 +9,14 @@ import { FlagIcon, LockSimpleOpenIcon } from '@phosphor-icons/react';
 
 import {
   changeComposeSpoilerness,
-  changeComposeSpoilerText,
   insertEmojiCompose,
 } from '@/mastodon/actions/compose';
 import { ToggleButton } from '@/mastodon/components/button/redesign';
-import { TextInputField } from '@/mastodon/components/form_fields/redesign';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import { Icon, useIconWeight } from '@/mastodon/components/icon';
 import {
   closeComposer,
   getComposerTextarea,
-  requestComposerFocus,
   submitComposer,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -36,16 +33,10 @@ import {
   selectComposeSensitive,
   selectComposeType,
 } from './selectors';
+import { ComposeSensitiveField } from './sensitive';
 import classes from './styles.module.scss';
 import { ComposeTextarea } from './textarea';
 import { ComposeVisibility } from './visibility';
-
-const messages = defineMessages({
-  sensitiveText: {
-    id: 'compose.sensitive.text',
-    defaultMessage: 'Sensitive content description',
-  },
-});
 
 interface RedesignComposeFormProps {
   autoFocus?: boolean;
@@ -58,12 +49,11 @@ export const RedesignComposeForm: React.FC<
   RedesignComposeFormProps & React.ComponentPropsWithRef<'form'>
 > = ({ autoFocus, className, noMinimize, redirectOnSuccess, ...props }) => {
   const type = useAppSelector(selectComposeType);
-  const { sensitive, sensitiveText } = useAppSelector(selectComposeSensitive);
+  const { sensitive } = useAppSelector(selectComposeSensitive);
 
-  const { onSensitiveChange, onSensitiveTextChange, onEmojiPick, onSubmit } =
+  const { onSensitiveChange, onEmojiPick, onSubmit } =
     useComposeHandlers(redirectOnSuccess);
 
-  const intl = useIntl();
   const titleId = useId();
 
   const sensitiveIcon = useIconWeight(FlagIcon, sensitive && 'fill');
@@ -110,15 +100,7 @@ export const RedesignComposeForm: React.FC<
         </p>
       )}
 
-      {sensitive && (
-        <TextInputField
-          label={intl.formatMessage(messages.sensitiveText)}
-          value={sensitiveText}
-          onChange={onSensitiveTextChange}
-          // eslint-disable-next-line jsx-a11y/no-autofocus -- Focuses on open
-          autoFocus
-        />
-      )}
+      <ComposeSensitiveField />
 
       <ComposeTextarea
         // eslint-disable-next-line jsx-a11y/no-autofocus
@@ -162,24 +144,9 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
     };
   }, [dispatch, isModalOpen]);
 
-  // Sensitive handling
-  const isSensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
-  useEffect(() => {
-    if (!isSensitive) {
-      dispatch(requestComposerFocus());
-    }
-  }, [isSensitive, dispatch]);
-
   const onSensitiveChange = useCallback(() => {
     dispatch(changeComposeSpoilerness());
   }, [dispatch]);
-  const onSensitiveTextChange: React.ChangeEventHandler<HTMLInputElement> =
-    useCallback(
-      (event) => {
-        dispatch(changeComposeSpoilerText(event.target.value));
-      },
-      [dispatch],
-    );
 
   const onEmojiPick: OnEmojiPick = useCallback(
     (emoji) => {
@@ -219,6 +186,5 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
     onSubmit,
     onEmojiPick,
     onSensitiveChange,
-    onSensitiveTextChange,
   };
 }
