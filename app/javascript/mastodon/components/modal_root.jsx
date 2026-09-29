@@ -59,6 +59,13 @@ class ModalRoot extends PureComponent {
     }
   };
 
+  handleBackgroundClick = (e) => {
+    // Close modal, but only when clicking outside of the modal's content
+    if (!e.target.matches('.modal-root__container *')) {
+      this.props.onClose();
+    }
+  }
+
   componentDidMount () {
     window.addEventListener('keydown', this.handleKeyDown, false);
     this.history = this.props.history || createBrowserHistory();
@@ -137,7 +144,7 @@ class ModalRoot extends PureComponent {
   };
 
   render () {
-    const { children, onClose } = this.props;
+    const { children } = this.props;
     const visible = !!children;
 
     if (!visible) {
@@ -156,9 +163,10 @@ class ModalRoot extends PureComponent {
     }
 
     return (
-      <div className='modal-root' ref={this.setRef}>
-        <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
-          <div role='presentation' className='modal-root__overlay' onClick={onClose} style={{ backgroundColor }} />
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+      <div className='modal-root' ref={this.setRef} onClick={this.handleBackgroundClick}>
+        <div>
+          <div className='modal-root__overlay' style={{ backgroundColor }} />
           <div role='dialog' className='modal-root__container'>{children}</div>
         </div>
       </div>
