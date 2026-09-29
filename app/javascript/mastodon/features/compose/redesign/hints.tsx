@@ -17,6 +17,7 @@ import {
 
 import { languageName, useLanguageGuess } from './hooks';
 import { selectComposeAttachments } from './selectors';
+import classes from './styles.module.scss';
 
 const selectComposeAttachmentsWithoutAlt = createAppSelector(
   [selectComposeAttachments],
@@ -99,7 +100,7 @@ export const ComposeHints = () => {
     return null;
   }
 
-  return <div>{messages}</div>;
+  return <div className={classes.calloutWrapper}>{messages}</div>;
 };
 
 const defaultWrapper = (children: React.ReactNode, key: string) => (
