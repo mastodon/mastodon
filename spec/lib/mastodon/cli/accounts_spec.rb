@@ -403,6 +403,17 @@ RSpec.describe Mastodon::CLI::Accounts do
         end
       end
 
+      context 'with --disable-sign-in-token option' do
+        let(:user) { Fabricate(:user, current_sign_in_at: 8.months.ago) }
+        let(:options) { { disable_sign_in_token: true } }
+
+        it 'disables the sign in token for the user' do
+          expect { subject }
+            .to output_results('OK')
+            .and change { user.reload.suspicious_inactive_sign_in? }.from(true).to(false)
+        end
+      end
+
       context 'when provided data is invalid' do
         let(:user) { Fabricate(:user) }
         let(:options) { { email: 'invalid' } }
