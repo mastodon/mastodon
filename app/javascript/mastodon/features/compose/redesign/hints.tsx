@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -7,6 +6,7 @@ import { WarningIcon } from '@phosphor-icons/react';
 
 import { changeComposeLanguage } from '@/mastodon/actions/compose';
 import { Callout } from '@/mastodon/components/callout/redesign';
+import { Icon } from '@/mastodon/components/icon';
 import { useDismissible } from '@/mastodon/hooks/useDismissible';
 import { selectAccountStatus } from '@/mastodon/selectors/statuses';
 import {
@@ -60,25 +60,23 @@ export const ComposeHints = () => {
 
   if (publishErrors.includes('empty')) {
     messages.push(
-      defaultWrapper(
+      <ComposerError key='empty'>
         <FormattedMessage
           id='compose.hints.empty'
           defaultMessage="Post can't be blank"
-        />,
-        'empty',
-      ),
+        />
+      </ComposerError>,
     );
   }
 
   if (publishErrors.includes('too-long')) {
     messages.push(
-      defaultWrapper(
+      <ComposerError key='too-long'>
         <FormattedMessage
           id='compose.hints.too-long'
           defaultMessage='Post exceeds character maximum'
-        />,
-        'too-long',
-      ),
+        />
+      </ComposerError>,
     );
   }
 
@@ -134,6 +132,18 @@ const defaultWrapper = (children: React.ReactNode, key: string) => (
     {children}
   </Callout>
 );
+
+const ComposerError: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return (
+    <div className={classes.calloutError}>
+      <Icon icon={WarningIcon} />
+
+      {children}
+    </div>
+  );
+};
 
 const LanguageHint: React.FC<{ guess: string }> = ({ guess }) => {
   const language = languageName(guess);
