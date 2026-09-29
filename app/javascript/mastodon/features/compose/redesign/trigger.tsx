@@ -6,21 +6,10 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { useRouteMatch } from 'react-router';
 
-import {
-  ChatCircleDotsIcon,
-  NewspaperIcon,
-  PenNibIcon,
-  ReadCvLogoIcon,
-} from '@phosphor-icons/react';
+import { PenNibIcon, ReadCvLogoIcon } from '@phosphor-icons/react';
 
 import type { IconButtonProps } from '@/mastodon/components/button/redesign';
 import { IconButton } from '@/mastodon/components/button/redesign';
-import {
-  Menu,
-  MenuTrigger,
-  MenuList,
-  MenuItem,
-} from '@/mastodon/components/menu';
 import { MenuCard } from '@/mastodon/components/menu/card';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
@@ -70,17 +59,9 @@ export const ComposeRedesignButton: React.FC<{
 
   const dispatch = useAppDispatch();
   const handleComposerOpen: React.MouseEventHandler<HTMLButtonElement> =
-    useCallback(
-      (event) => {
-        const {
-          currentTarget: { name },
-        } = event;
-        if (name === 'post' || name === 'message') {
-          dispatch(openNewComposer({ type: name }));
-        }
-      },
-      [dispatch],
-    );
+    useCallback(() => {
+      dispatch(openNewComposer({ type: 'post' }));
+    }, [dispatch]);
 
   const toggleMinimize = useCallback(() => {
     dispatch(minimizeComposerToggle());
@@ -104,6 +85,7 @@ export const ComposeRedesignButton: React.FC<{
         onClick={toggleMinimize}
         {...floatingButtonProps}
         hidden={false} // never hide minimized composer button
+        color='neutral'
       >
         <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
       </FloatingActionButton>
@@ -140,36 +122,13 @@ export const ComposeRedesignButton: React.FC<{
   }
 
   return (
-    <Menu>
-      <MenuTrigger
-        as={FloatingActionButton}
-        icon={PenNibIcon}
-        {...floatingButtonProps}
-      >
-        <FormattedMessage
-          id='compose.new'
-          defaultMessage='Write a new post or messsage'
-        />
-      </MenuTrigger>
-
-      <MenuList maxWidth={180} placement='top-end'>
-        <MenuItem name='post' onClick={handleComposerOpen} icon={NewspaperIcon}>
-          <FormattedMessage id='compose.new.post' defaultMessage='Post' />
-        </MenuItem>
-
-        <MenuItem
-          name='message'
-          onClick={handleComposerOpen}
-          icon={ChatCircleDotsIcon}
-        >
-          <FormattedMessage
-            id='compose.new.message'
-            defaultMessage='Message'
-            description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
-          />
-        </MenuItem>
-      </MenuList>
-    </Menu>
+    <FloatingActionButton
+      icon={PenNibIcon}
+      onClick={handleComposerOpen}
+      {...floatingButtonProps}
+    >
+      <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
+    </FloatingActionButton>
   );
 };
 
@@ -190,7 +149,7 @@ const FloatingActionButton: React.FC<
       )}
       inert={hidden}
     >
-      <IconButton variant='solid' size='lg' {...otherProps} />
+      <IconButton variant='solid' color='accent' size='lg' {...otherProps} />
     </div>
   );
 };
@@ -221,8 +180,9 @@ function useHasMobileFloatingActionButton({ isMobile }: { isMobile: boolean }) {
   });
 
   const shouldHideMobileComposeButton =
-    isMobile &&
-    (!isRouteWithMobileComposeButton || isRouteWithoutMobileComposeButton);
+    !isMobile ||
+    !isRouteWithMobileComposeButton ||
+    isRouteWithoutMobileComposeButton;
 
   return !shouldHideMobileComposeButton;
 }
