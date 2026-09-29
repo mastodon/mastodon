@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_20_142255) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_29_161747) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -205,7 +205,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_20_142255) do
     t.bigint "moved_to_account_id"
     t.text "note", default: "", null: false
     t.string "outbox_url", default: "", null: false
-    t.text "private_key"
     t.integer "protocol", default: 0, null: false
     t.text "public_key", default: "", null: false
     t.datetime "requested_deletion_at"
