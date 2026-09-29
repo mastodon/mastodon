@@ -83,9 +83,11 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
   const close = useCallback(() => {
     clearOpenTimeout();
+    if (isOpen) {
+      suppressEnterDelayTemporarily();
+    }
     setIsOpen(false);
-    suppressEnterDelayTemporarily();
-  }, [clearOpenTimeout]);
+  }, [clearOpenTimeout, isOpen]);
 
   const handleFocus = useCallback<React.KeyboardEventHandler>(
     (e) => {
