@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin Settings Branding' do
+RSpec.describe 'Admin Settings External Discovery' do
   describe 'When signed in as an admin' do
     before { sign_in Fabricate(:admin_user) }
 
