@@ -164,7 +164,8 @@ export function useStatusHandlers({
       if (
         !(target instanceof HTMLElement) ||
         target.closest('a, button') ||
-        contextType === 'detailed'
+        contextType === 'detailed' ||
+        window.getSelection()?.type === 'Range'
       ) {
         return;
       }
