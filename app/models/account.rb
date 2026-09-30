@@ -40,7 +40,6 @@
 #  memorial                      :boolean          default(FALSE), not null
 #  note                          :text             default(""), not null
 #  outbox_url                    :string           default(""), not null
-#  private_key                   :text
 #  protocol                      :integer          default("ostatus"), not null
 #  public_key                    :text             default(""), not null
 #  requested_deletion_at         :datetime
@@ -64,6 +63,8 @@
 #
 
 class Account < ApplicationRecord
+  self.ignored_columns += %w(private_key)
+
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
   REFRESH_DEADLINE = 6.hours
   STALE_THRESHOLD = 1.day
@@ -538,7 +539,7 @@ class Account < ApplicationRecord
   before_destroy :clean_feed_manager
 
   def ensure_keys!
-    return unless local? && private_key.blank? && public_key.blank? && keypairs.empty?
+    return unless local? && public_key.blank? && keypairs.empty?
 
     generate_keys
     save!
@@ -564,7 +565,7 @@ class Account < ApplicationRecord
   end
 
   def generate_keys
-    return unless local? && private_key.blank? && public_key.blank? && keypairs.empty?
+    return unless local? && public_key.blank? && keypairs.empty?
 
     keypair = OpenSSL::PKey::RSA.new(2048)
     keypairs << keypairs.build(local_fragment: "#rsa-#{SecureRandom.hex(8)}", type: :rsa, public_key: keypair.public_key.to_pem, private_key: keypair.to_pem)
