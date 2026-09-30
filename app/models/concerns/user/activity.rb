@@ -11,8 +11,8 @@ module User::Activity
   # amount of background processing that happens when people become active.
   ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days
 
-  # If a user hasn't logged in before this time, we consider new login ins suspicious
-  # and start a security code challenge to verify users
+  # If a user hasn't logged in in this period of time, we consider new attempts suspicious
+  # and start a security code challenge to verify said user
   SUSPICIOUS_INACTIVITY_DURATION = 6.months.freeze
 
   included do
