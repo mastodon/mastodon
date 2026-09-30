@@ -198,7 +198,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
             statusContent={statusContent}
             onReadMore={onOpenCallback}
             onTranslate={onTranslate}
-            collapsible
+            collapsible={variant !== 'page'}
           >
             {!!status.poll && (
               <Poll
