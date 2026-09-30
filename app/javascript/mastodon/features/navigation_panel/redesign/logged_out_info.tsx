@@ -58,13 +58,19 @@ export const LoggedOutInfo: React.FC = () => {
       description={<p>{serverItem?.description ?? ''}</p>}
       isLoading={isLoading}
     >
-      <Button as='a' href='/auth/sign_up' variant='solid'>
+      <Button
+        as='a'
+        href='/auth/sign_up'
+        size='lg'
+        variant='solid'
+        color='accent'
+      >
         <FormattedMessage
           id='server_banner.create_account'
           defaultMessage='Create an account'
         />
       </Button>
-      <Button as='a' href='/auth/sign_in'>
+      <Button as='a' href='/auth/sign_in' size='lg'>
         <FormattedMessage id='server_banner.log_in' defaultMessage='Log in' />
       </Button>
     </NavigationFooterLayout>
@@ -129,7 +135,7 @@ export const DisabledAccountBanner: React.FC = () => {
         </Callout>
       }
     >
-      <Button as='a' href='/auth/edit' variant='solid'>
+      <Button as='a' href='/auth/edit' variant='solid' color='accent'>
         <FormattedMessage
           id='disabled_account_banner.account_settings'
           defaultMessage='Account settings'

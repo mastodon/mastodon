@@ -5,10 +5,6 @@
   padding-bottom: var(--space-half);
 }
 
-.wrapperWithSpace {
-  padding-bottom: var(--space-4);
-}
-
 @mixin link-base {
   --icon-size: 20px;
   --border-radius: var(--radius-3);
@@ -49,14 +45,14 @@
   @include link-base;
 
   min-height: 40px;
-  @include mixins.type-body;
+  @include mixins.type-body-compact;
 
   @media (width < variables.$mobile-menu-breakpoint) {
     min-height: 48px;
   }
 
   &[aria-current='page']:not(:where(.linkStacked, .linkMobile)) {
-    @include mixins.type-body-strong;
+    font-weight: bold;
   }
 }
 

@@ -13,6 +13,7 @@ import {
   ChatCircleDotsIcon,
   BookmarkSimpleIcon,
   PlusIcon,
+  InfoIcon,
 } from '@phosphor-icons/react';
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
@@ -25,8 +26,13 @@ import { Callout } from '@/mastodon/components/callout/redesign';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import { useIdentity } from '@/mastodon/identity_context';
-import { disabledAccountId } from '@/mastodon/initial_state';
+import {
+  disabledAccountId,
+  localLiveFeedAccess,
+  remoteLiveFeedAccess,
+} from '@/mastodon/initial_state';
 import { transientSingleColumn } from '@/mastodon/is_mobile';
+import { canViewFeed } from '@/mastodon/permissions';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { getOrderedLists } from '@/mastodon/selectors/lists';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
@@ -189,30 +195,8 @@ export const RedesignNavigationPanel: React.FC<{
             <NavigationLink to='/home' iconComponent={HouseIcon}>
               <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
             </NavigationLink>
-            <NavigationLink
-              to={{
-                pathname: '/explore',
-                state: { focusTarget: FOCUS_TARGET.SEARCH },
-              }}
-              iconComponent={MagnifyingGlassIcon}
-              onClick={invokeVirtualIosKeyboard}
-            >
-              <FormattedMessage
-                id='tabs_bar.explore'
-                defaultMessage='Explore'
-              />
-            </NavigationLink>
-            <NavigationLink
-              withSpaceAfter
-              to='/public/local'
-              iconComponent={FediIcon}
-              isActive={isFediverseFeedsLinkActive}
-            >
-              <FormattedMessage
-                id='tabs_bar.fediverse_feeds'
-                defaultMessage='Fediverse Feeds'
-              />
-            </NavigationLink>
+            <ExploreLink />
+            <PublicFeedsLink />
             <ListSection
               id='custom-feeds'
               title={
@@ -317,16 +301,84 @@ export const RedesignNavigationPanel: React.FC<{
         </>
       )}
       {!signedIn && (
-        <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
-          {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
-          <NavigationFooterLinks
-            multiColumn={multiColumn}
-            siteName={siteName}
-          />
-        </footer>
+        <>
+          <ul className={classes.list}>
+            <NavigationLink to='/about' iconComponent={InfoIcon}>
+              <FormattedMessage
+                id='footer.about_this_server'
+                defaultMessage='About'
+              />
+            </NavigationLink>
+            <ExploreLink />
+            <PublicFeedsLink />
+          </ul>
+          <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
+            {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
+            <NavigationFooterLinks
+              multiColumn={multiColumn}
+              siteName={siteName}
+            />
+          </footer>
+        </>
       )}
       {bottomSensor}
     </nav>
+  );
+};
+
+const ExploreLink: React.FC = () => {
+  return (
+    <NavigationLink
+      to={{
+        pathname: '/explore',
+        state: { focusTarget: FOCUS_TARGET.SEARCH },
+      }}
+      iconComponent={MagnifyingGlassIcon}
+      onClick={invokeVirtualIosKeyboard}
+    >
+      <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
+    </NavigationLink>
+  );
+};
+
+const PublicFeedsLink: React.FC = () => {
+  const { signedIn, permissions } = useIdentity();
+
+  const canViewLocalFeed = canViewFeed(
+    signedIn,
+    permissions,
+    localLiveFeedAccess,
+  );
+  const canViewRemoteFeed = canViewFeed(
+    signedIn,
+    permissions,
+    remoteLiveFeedAccess,
+  );
+
+  if (!canViewLocalFeed && !canViewRemoteFeed) {
+    return null;
+  }
+
+  const canViewOnlyOneFeed = canViewLocalFeed !== canViewRemoteFeed;
+
+  return (
+    <NavigationLink
+      to={canViewLocalFeed ? '/public/local' : '/public/remote'}
+      iconComponent={FediIcon}
+      isActive={isFediverseFeedsLinkActive}
+    >
+      {canViewOnlyOneFeed ? (
+        <FormattedMessage
+          id='tabs_bar.public_feed'
+          defaultMessage='Public Feed'
+        />
+      ) : (
+        <FormattedMessage
+          id='tabs_bar.public_feeds'
+          defaultMessage='Public Feeds'
+        />
+      )}
+    </NavigationLink>
   );
 };
 

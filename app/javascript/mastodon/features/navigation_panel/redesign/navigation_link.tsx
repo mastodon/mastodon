@@ -15,7 +15,6 @@ type NavigationLinkProps = {
   stacked?: boolean;
   iconComponent?: Icon | React.FC<SVGProps<SVGSVGElement>>;
   badgeCount?: number;
-  withSpaceAfter?: boolean;
 } & (
   | ({ as?: 'button' } & React.ComponentPropsWithRef<'button'>)
   | ({ as?: 'link' } & NavLinkProps)
@@ -26,7 +25,6 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
   as = 'link',
   iconComponent: IconComp,
   badgeCount = 0,
-  withSpaceAfter,
   children,
   ...otherProps
 }) => {
@@ -40,12 +38,7 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
   );
 
   return (
-    <li
-      className={classNames(
-        classes.wrapper,
-        withSpaceAfter && classes.wrapperWithSpace,
-      )}
-    >
+    <li className={classes.wrapper}>
       <Comp
         {...otherProps}
         type={as === 'button' ? 'button' : undefined}
