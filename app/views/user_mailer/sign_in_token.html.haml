@@ -12,7 +12,7 @@
             %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr
                 %td.email-frame-wrapper-td
-                  = render 'application/mailer/frame', text: @resource.sign_in_token
+                  = render 'application/mailer/frame', text: tag.strong(@resource.sign_in_token)
             %p= t 'user_mailer.sign_in_token.details'
             %p
               %strong #{t('sessions.ip')}:
