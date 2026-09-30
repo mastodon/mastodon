@@ -1,0 +1,5 @@
+---
+ignore:
+  - CVE-2026-85396 # We only use rubyzip for compressing, not extracting
+  - CVE-2026-53727 # We only use css_parser for CSS bundled in Mastodon itself
+  - GHSA-42qh-8mx8-7wqm # We only use rack-proxy in development mode
