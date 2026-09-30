@@ -3,6 +3,10 @@ import { useMemo } from 'react';
 import classNames from 'classnames';
 
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
+import {
+  isRedesignEnabled,
+  isRedesignStatusEnabled,
+} from '@/mastodon/utils/environment';
 import { replyComposeById } from 'mastodon/actions/compose';
 import { toggleReblog, toggleFavourite } from 'mastodon/actions/interactions';
 import {
@@ -97,6 +101,8 @@ export const NotificationWithStatus: React.FC<{
           {
             'notification-ungrouped--unread': unread,
             'notification-ungrouped--direct': isPrivateMention,
+            'notification-ungrouped--redesign':
+              isRedesignEnabled() && isRedesignStatusEnabled(),
           },
         )}
         tabIndex={0}
