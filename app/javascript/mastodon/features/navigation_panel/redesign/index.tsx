@@ -13,6 +13,7 @@ import {
   ChatCircleDotsIcon,
   BookmarkSimpleIcon,
   PlusIcon,
+  InfoIcon,
 } from '@phosphor-icons/react';
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
@@ -194,19 +195,7 @@ export const RedesignNavigationPanel: React.FC<{
             <NavigationLink to='/home' iconComponent={HouseIcon}>
               <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
             </NavigationLink>
-            <NavigationLink
-              to={{
-                pathname: '/explore',
-                state: { focusTarget: FOCUS_TARGET.SEARCH },
-              }}
-              iconComponent={MagnifyingGlassIcon}
-              onClick={invokeVirtualIosKeyboard}
-            >
-              <FormattedMessage
-                id='tabs_bar.explore'
-                defaultMessage='Explore'
-              />
-            </NavigationLink>
+            <ExploreLink />
             <PublicFeedsLink />
             <ListSection
               id='custom-feeds'
@@ -312,16 +301,43 @@ export const RedesignNavigationPanel: React.FC<{
         </>
       )}
       {!signedIn && (
-        <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
-          {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
-          <NavigationFooterLinks
-            multiColumn={multiColumn}
-            siteName={siteName}
-          />
-        </footer>
+        <>
+          <ul className={classes.list}>
+            <NavigationLink to='/about' iconComponent={InfoIcon}>
+              <FormattedMessage
+                id='footer.about_this_server'
+                defaultMessage='About'
+              />
+            </NavigationLink>
+            <ExploreLink />
+            <PublicFeedsLink />
+          </ul>
+          <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
+            {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
+            <NavigationFooterLinks
+              multiColumn={multiColumn}
+              siteName={siteName}
+            />
+          </footer>
+        </>
       )}
       {bottomSensor}
     </nav>
+  );
+};
+
+const ExploreLink: React.FC = () => {
+  return (
+    <NavigationLink
+      to={{
+        pathname: '/explore',
+        state: { focusTarget: FOCUS_TARGET.SEARCH },
+      }}
+      iconComponent={MagnifyingGlassIcon}
+      onClick={invokeVirtualIosKeyboard}
+    >
+      <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
+    </NavigationLink>
   );
 };
 
