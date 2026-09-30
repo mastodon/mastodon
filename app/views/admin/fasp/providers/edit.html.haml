@@ -1,14 +1,21 @@
 - content_for :page_title do
   = t('admin.fasp.providers.edit')
 
-= simple_form_for [:admin, @provider] do |f|
-  = render 'shared/error_messages', object: @provider
+%h2= t('admin.fasp.providers.capabilities')
 
-  %h2= t('admin.fasp.providers.select_capabilities')
+.announcements-list
+  - @provider.fasp_capabilities.each do |capability|
+    .announcements-list__item{ id: dom_id(capability) }
+      %span.announcements-list__item__title
+        - if capability.enabled?
+          = material_symbol 'check'
+        - else
+          = material_symbol 'power_off'
 
-  .fields_group
-    = f.fields_for :fasp_capabilities do |cf|
-      = cf.input :enabled, as: :boolean, label: cf.object.name, wrapper: :with_label
-
-  .actions
-    = f.button :button, t('admin.fasp.providers.save'), type: :submit
+        = capability.name
+      .announcements-list__item__action-bar
+        .announcements-list__item__actions
+          - if capability.enabled?
+            = table_link_to 'power_off', t('admin.fasp.capabilities.disable'), admin_fasp_capability_activation_path(capability), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+          - else
+            = table_link_to 'check', t('admin.fasp.capabilities.enable'), admin_fasp_capability_activation_path(capability), method: :post
