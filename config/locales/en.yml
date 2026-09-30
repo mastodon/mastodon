@@ -1303,9 +1303,11 @@ en:
   deletes:
     challenge_not_passed: The information you entered was not correct
     confirm_password: Enter your current password to verify your identity
-    confirm_username: Enter your username to confirm the procedure
+    confirm_username: Confirm username
+    confirm_username_hint_html: Please type <code>%{username}</code> to confirm the account you want to delete
     proceed: Delete account
     success_msg: Your account was successfully deleted
+    title: Delete account %{acct}
     warning:
       before: 'Before proceeding, please read these notes carefully:'
       caches: Content that has been cached by other servers may persist
@@ -1823,7 +1825,6 @@ en:
     appearance: Appearance
     authorized_apps: Authorized apps
     back: Back to Mastodon
-    delete: Account deletion
     development: Development
     edit_profile: Edit profile
     export: Export
