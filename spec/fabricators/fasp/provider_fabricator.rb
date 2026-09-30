@@ -60,3 +60,12 @@ Fabricator(:account_search_fasp, from: :fasp_provider) do
     def fasp.update_remote_capabilities = true
   end
 end
+
+Fabricator(:data_sharing_fasp, from: :fasp_provider) do
+  confirmed true
+  fasp_capabilities do
+    [
+      Fabricate.build(:fasp_capability, name: 'data_sharing', enabled: true),
+    ]
+  end
+end
