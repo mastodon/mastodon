@@ -6,7 +6,7 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import StackTrace from 'stacktrace-js';
 
 import Bundle from '../components/bundle';
-import BundleColumnError from '../components/bundle_column_error';
+import { BundleColumnError } from '../components/bundle_column_error';
 import { ColumnLoading } from '../components/column_loading';
 import { forceSingleColumn, hasMultiColumnPath } from '@/mastodon/initial_state';
 
