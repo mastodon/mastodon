@@ -42,7 +42,6 @@ module Auth::SignInTokenAuthenticationConcern
     end
 
     register_attempt_in_session(user)
-    @body_classes = 'lighter'
     render :sign_in_token
   end
 end
