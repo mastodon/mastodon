@@ -626,7 +626,7 @@ RSpec.describe User do
   end
 
   describe '#disable_sign_in_token!' do
-    subject { Fabricate(:user, current_sign_in_at: 8.months.ago) }
+    subject { Fabricate(:user, current_sign_in_at: 95.days.ago) }
 
     before { subject.disable_sign_in_token! }
 

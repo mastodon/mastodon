@@ -13,7 +13,7 @@ module User::Activity
 
   # If a user hasn't logged in in this period of time, we consider new attempts suspicious
   # and start a security code challenge to verify said user
-  SUSPICIOUS_INACTIVITY_DURATION = 6.months.freeze
+  SUSPICIOUS_INACTIVITY_DURATION = 90.days.freeze
 
   included do
     scope :signed_in_recently, -> { where(current_sign_in_at: ACTIVE_DURATION.ago..) }

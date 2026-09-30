@@ -9,7 +9,7 @@ RSpec.describe 'Admin Users SignInTokenAuthentications' do
 
   describe 'Disabling Sign In Token for users' do
     context 'when user has been inactive for too long' do
-      before { user.update(current_sign_in_at: 8.months.ago) }
+      before { user.update(current_sign_in_at: 95.days.ago) }
 
       it 'disables sign in token and redirects to admin account page' do
         visit admin_account_path(user.account.id)

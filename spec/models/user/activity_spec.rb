@@ -56,13 +56,13 @@ RSpec.describe User::Activity do
     end
 
     context 'when current_sign_in_at is before the threshold' do
-      let(:current_sign_in_at) { 5.months.ago }
+      let(:current_sign_in_at) { 80.days.ago }
 
       it { is_expected.to_not be_suspicious_inactive_sign_in }
     end
 
     context 'when current_sign_in_at is after the threshold' do
-      let(:current_sign_in_at) { 6.months.ago }
+      let(:current_sign_in_at) { 91.days.ago }
 
       it { is_expected.to be_suspicious_inactive_sign_in }
     end
