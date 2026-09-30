@@ -1022,7 +1022,15 @@ da:
         warning_hint: Vi anbefaler brug af "Godkendelse kræves ved tilmelding", medmindre du er sikker på, at moderationsteamet kan håndtere spam og ondsindede registreringer i tide.
       security:
         authorized_fetch: Kræver godkendelse fra fødererede servere
-        authorized_fetch_hint: Krav om godkendelse fra fødererede servere muliggør strengere håndhævelse af både bruger- og serverniveaublokeringer. Omkostningen er dog en ydelsesreduktion, reduceret udstrækning af dine svar samt potentielle kompatibilitetsproblemer med visse fødererede tjenester. Derudover vil dette ikke hindre målrettede aktører i at hente dine offentlige indlæg og konti.
+        authorized_fetch_hint: Beslut, hvornår eksterne servere skal godkende sig, når de henter indhold fra denne server.
+        authorized_fetch_hints:
+          actors: Ved at kræve autentificering for profiler kan man spore, hvilken server der på et tidspunkt har opdaget hver af dine lokale konti, hvilket i høj grad kan reducere antallet af unødvendige anmodninger, der udføres, når serverne underrettes om sletning af en konto. Denne indstilling medfører en mindre ydeevneforringelse ved levering af profiler på grund af den nævnte sporing og det faktum, at reverse-proxyen ikke kan cache svarene på disse anmodninger. Dette kan også medføre kompatibilitetsproblemer med visse fødererede tjenester.
+          all: Ud over fordele og ulemper ved at kræve autentificering for profiler giver et ubetinget krav om autentificering fra fødererede servere mulighed for en strengere håndhævelse af blokeringer på både bruger- og serverniveau, men forhindrer samtidig cachelagring af de fleste anmodninger. Det vil også mindske rækkevidden af dine svar, da videresendelse af svar vil være deaktiveret.
+          none: Ved kun at kræve autentificering, når det er strengt nødvendigt, kan din reverse proxy gemme flere anmodninger i cachen. Denne indstilling kan blive fjernet i fremtiden. Brug den kun, hvis de andre indstillinger giver problemer.
+        authorized_fetch_modes:
+          actors: For profiler og privat indhold
+          all: For hver forespørgsel
+          none: Kun for privat indhold
         authorized_fetch_overridden_hint: Da denne indstilling tilsidesættes af en miljøvariabel, kan du p.t. ikke ændre den.
         federation_authentication: Håndhævelse af føderationsgodkendelse
       title: Serverindstillinger

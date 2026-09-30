@@ -1022,7 +1022,15 @@ es-AR:
         warning_hint: Recomendamos el uso de la opción “Se requiere aprobación para registrarse”, a menos que estés seguro de que tu equipo de moderación puede manejar el spam y los registros maliciosos de forma oportuna.
       security:
         authorized_fetch: Requiere autenticación de servidores federados
-        authorized_fetch_hint: Requerir autenticación de servidores federados permite un cumplimiento más estricto tanto de los bloques de nivel de usuario como de nivel de servidor. Sin embargo, esto se produce a costa de una penalidad en el rendimiento, reduce el alcance de tus respuestas y puede introducir problemas de compatibilidad con algunos servicios federados. Además, esto no impedirá que actores dedicados obtengan tus mensajes y cuentas públicas.
+        authorized_fetch_hint: Decidí cuándo se requiere autenticación de servidores remotos cuando se obtiene contenido de este servidor.
+        authorized_fetch_hints:
+          actors: Requerir autenticación para perfiles permite el seguimiento de qué servidor ha descubierto cada una de tus cuentas locales, que puede reducir en gran medida el número de peticiones innecesarias realizadas al notificar a los servidores de la eliminación de una cuenta. Esta opción viene a un ligero costo de rendimiento al servir perfiles, debido a dicho seguimiento y a la incapacidad para que el proxy inverso para almacenar las respuestas en caché para estas solicitudes. Esto también podría introducir problemas de compatibilidad con algunos servicios federados.
+          all: Además de los beneficios e inconvenientes de requerir autenticación para los perfiles, requerir incondicionalmente autenticación de servidores federados permite un cumplimiento más estricto, tanto de los bloques de nivel de usuario como de nivel de servidor, pero también previene el almacenamiento en caché de la mayoría de las solicitudes. También reducirá el alcance de tus respuestas, ya que el reenvío de las respuestas se desactivará.
+          none: Requerir autenticación solo cuando sea estrictamente necesario permite a tu proxy inverso almacenar más solicitudes. Esta opción puede ser eliminada en el futuro. Usalo solo si las otras opciones causan problemas.
+        authorized_fetch_modes:
+          actors: Para perfiles y contenido privado
+          all: Para cada solicitud
+          none: Solo para contenido privado
         authorized_fetch_overridden_hint: Actualmente no podés cambiar esta configuración porque está sobreescrita por una variable de entorno.
         federation_authentication: Ejecución de autenticación de federación
       title: Configuración del servidor

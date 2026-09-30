@@ -1024,7 +1024,11 @@ is:
         warning_hint: Við mælum með því að nota "Krafist er samþykkt nýskráningar" nema ef þú sért viss um að umsjónarteymið þitt geti brugðist tímanlega við ruslpósti og skráningum í misjöfnum tilgangi.
       security:
         authorized_fetch: Krefjast auðkenningar frá netþjónum í skýjasambandi
-        authorized_fetch_hint: Að krefjast auðkenningar frá netþjónum í skýjasambandi kallar fram strangari útfærslu á útilokunum, bæði varðandi notendur og netþjóna. Hins vegar kemur þetta niður á afköstum, minnkar útbreiðslu á svörum þínum og gæti valdið samhæfnivandamálum við sumar sambandsþjónustur. Að auki kemur þetta ekki í veg fyrir að aðilar sem ætla sér að ná í opinberar færslur og notendaaðganga frá þér geri það.
+        authorized_fetch_hint: Ákveddu hvenær fjartengdir netþjónar þurfi að auðkenna sig við að sækja efni af þessum netþjóni.
+        authorized_fetch_modes:
+          actors: Fyrir notendasnið og einkaefni
+          all: Fyrir allar beiðnir
+          none: Einungis fyrir einkaefni
         authorized_fetch_overridden_hint: Þú getur eins og er ekki breytt þessari stillingu því hún er yfirtekin af umhverfisbreytu.
         federation_authentication: Krafa um auðkenningu í skýjasambandi
       title: Stillingar netþjóns

@@ -1022,7 +1022,15 @@ sv:
         warning_hint: Vi rekommenderar att du använder “Godkännande krävs för registrering” om du inte är säker på att ditt moderatorsteam kan hantera skräppost och skadliga registreringar i tid.
       security:
         authorized_fetch: Kräv autentisering från federerade servrar
-        authorized_fetch_hint: Att kräva autentisering från federerade servrar möjliggör striktare tillämpning av både blockering på användarnivå och servernivå. Detta sker dock på bekostnad av prestanda, minskar räckvidden på dina svar, och kan införa kompatibilitet problem med vissa federerade tjänster. Dessutom kommer detta inte att hindra dedikerade aktörer från att hämta dina offentliga inlägg och konton.
+        authorized_fetch_hint: Bestäm när fjärrservrar krävs för att autentisera när innehåll hämtas från denna server.
+        authorized_fetch_hints:
+          actors: Att kräva autentisering för profiler gör det möjligt att spåra vilken server som vid något tillfälle har upptäckt vart och ett av dina lokala konton, vilket avsevärt kan minska antalet onödiga anrop vid avisering till servrar om att ett konto har raderats. Detta alternativ medför en viss prestandaförlust vid leverans av profiler på grund av nämnda spårning och att omvänd proxy inte kan cachelagra svaren för dessa anrop. Det kan även ge upphov till kompatibilitetsproblem med vissa federerade tjänster.
+          all: Utöver för- och nackdelarna med att kräva autentisering för profiler innebär ett ovillkorligt krav på autentisering från federerade servrar att blockeringar, både på användar- och servernivå, kan upprätthållas striktare, samtidigt som det förhindrar cachning av de flesta anrop. Det minskar också räckvidden för dina svar, eftersom vidarebefordran av svar inaktiveras.
+          none: Att endast kräva autentisering när det absolut är nödvändigt gör att din omvända proxy kan cachelagra fler förfrågningar. Detta alternativ kan komma att tas bort i framtiden. Använd det endast om de andra alternativen orsakar problem.
+        authorized_fetch_modes:
+          actors: För profiler och privat innehåll
+          all: För varje förfrågan
+          none: Endast för privat innehåll
         authorized_fetch_overridden_hint: Du kan för närvarande inte ändra den här inställningen eftersom den åsidosätts av en miljövariabel.
         federation_authentication: Federationen autentisering verkställighet
       title: Serverinställningar

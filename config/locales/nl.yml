@@ -1022,7 +1022,15 @@ nl:
         warning_hint: We raden je aan om “Goedkeuring vereist om te kunnen registreren” te gebruiken, tenzij je er zeker van bent dat jouw moderatieteam spam en kwaadwillende registraties tijdig kan afhandelen.
       security:
         authorized_fetch: Verificatie van gefedeerde servers vereisen
-        authorized_fetch_hint: Verificatie vereisen van gefedereerde servers maakt een striktere handhaving van blokkades op gebruikersniveau en serverniveau mogelijk. Dit gaat echter ten koste van de prestaties, vermindert het bereik van je reacties en kan compatibiliteitsproblemen met sommige gefedereerde services opleveren. Bovendien voorkomt dit niet dat personen met slechte bedoelingen je openbare berichten en accounts kunnen ophalen.
+        authorized_fetch_hint: Bepaal wanneer externe servers moeten worden geverifieerd bij het ophalen van inhoud van deze server.
+        authorized_fetch_hints:
+          actors: Door authenticatie voor profielen te vereisen, kan worden bijgehouden welke server ooit elk van uw lokale accounts heeft ontdekt, wat het aantal onnodige verzoeken dat wordt uitgevoerd bij het informeren van servers over het verwijderen van een account aanzienlijk kan verminderen. Deze optie brengt lichte prestatiekosten met zich mee bij het serveren van profielen vanwege de genoemde tracking en het onvermogen van de reverse-proxy om antwoorden op deze verzoeken in de cache op te slaan. Dit kan ook compatibiliteitsproblemen met sommige federatieve diensten met zich meebrengen.
+          all: Naast de voor- en nadelen van het vereisen van authenticatie voor profielen, maakt het onvoorwaardelijk vereisen van authenticatie van gefedereerde servers strengere handhaving van zowel blokkades op gebruikersniveau als op serverniveau mogelijk, maar voorkomt het ook het cachen van de meeste verzoeken. Het zal ook het bereik van uw antwoorden verminderen, aangezien het doorsturen van antwoorden zal worden uitgeschakeld.
+          none: Het alleen vereisen van authenticatie wanneer dit strikt noodzakelijk is, stelt uw reverse proxy in staat om meer verzoeken te cachen. Deze optie kan in de toekomst worden verwijderd. Gebruik deze optie alleen als de andere opties problemen veroorzaken.
+        authorized_fetch_modes:
+          actors: Voor profielen en privé-inhoud
+          all: Voor elke aanvraag
+          none: Alleen voor privé-inhoud
         authorized_fetch_overridden_hint: Je kunt momenteel deze instelling niet wijzigen, omdat deze is overschreven door een omgevingsvariabele.
         federation_authentication: Afgedwongen federatie-verificatie
       title: Serverinstellingen
