@@ -109,10 +109,7 @@ export const ComposeRedesignButton: React.FC<{
             icon={PenNibIcon}
             {...floatingButtonProps}
           >
-            <FormattedMessage
-              id='compose.new'
-              defaultMessage='Write a new post or messsage'
-            />
+            <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
           </FloatingActionButton>
         }
       >
