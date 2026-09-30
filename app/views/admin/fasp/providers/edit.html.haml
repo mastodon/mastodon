@@ -7,10 +7,8 @@
   %h2= t('admin.fasp.providers.select_capabilities')
 
   .fields_group
-    = f.fields_for :capabilities do |cf|
-      = cf.input :id, as: :hidden
-      = cf.input :version, as: :hidden
-      = cf.input :enabled, as: :boolean, label: cf.object.id, wrapper: :with_label
+    = f.fields_for :fasp_capabilities do |cf|
+      = cf.input :enabled, as: :boolean, label: cf.object.name, wrapper: :with_label
 
   .actions
     = f.button :button, t('admin.fasp.providers.save'), type: :submit
