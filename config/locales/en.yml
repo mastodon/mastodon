@@ -620,6 +620,11 @@ en:
         title: Import domain blocks
       no_file: No file selected
     fasp:
+      capabilities:
+        activation_msg: Capability successfully enabled.
+        deactivation_msg: Capability successfully disabled.
+        disable: Disable
+        enable: Enable
       debug:
         callbacks:
           created_at: Created at
@@ -631,6 +636,7 @@ en:
         active: Active
         base_url: Base URL
         callback: Callback
+        capabilities: Capabilities
         delete: Delete
         edit: Edit Provider
         finish_registration: Finish registration
@@ -643,8 +649,6 @@ en:
           description: You received a registration from a FASP. Reject it if you did not initiate this. If you initiated this, carefully compare name and key fingerprint before confirming the registration.
           reject: Reject
           title: Confirm FASP Registration
-        save: Save
-        select_capabilities: Select Capabilities
         sign_in: Sign In
         status: Status
         title: Fediverse Auxiliary Service Providers
