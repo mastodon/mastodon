@@ -66,7 +66,7 @@ const baseMessages = defineMessages({
 const redesignMessages = defineMessages({
   favourite: { id: 'status.like', defaultMessage: 'Like' },
   removeFavourite: { id: 'status.unlike', defaultMessage: 'Unlike' },
-  bookmark: { id: 'status.save', defaultMessage: 'Save' },
+  bookmark: { id: 'status.save', defaultMessage: 'Save post' },
   removeBookmark: { id: 'status.remove_from_saved', defaultMessage: 'Remove from Saved' },
 });
 

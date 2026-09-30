@@ -281,10 +281,10 @@ const iconMessages = defineMessages({
     id: 'status.unlike',
     defaultMessage: 'Unlike',
   },
-  bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
+  bookmark: { id: 'status.save', defaultMessage: 'Save post' },
   removeBookmark: {
-    id: 'status.remove_bookmark',
-    defaultMessage: 'Remove bookmark',
+    id: 'status.remove_from_saved',
+    defaultMessage: 'Remove from Saved',
   },
 });
 
