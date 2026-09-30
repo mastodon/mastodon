@@ -1,11 +1,6 @@
 import debug from 'debug';
 
 import { EMOJI_DB_NAME_SHORTCODES, EMOJI_TYPE_CUSTOM } from './constants';
-import {
-  importCustomEmojiData,
-  importEmojiData,
-  importLegacyShortcodes,
-} from './loader';
 import type { EmojiWorkerMessage } from './types';
 
 addEventListener('message', handleMessage);
@@ -21,6 +16,8 @@ function handleMessage(event: MessageEvent<EmojiWorkerMessage>) {
 }
 
 async function loadData(storeName: string) {
+  const { importCustomEmojiData, importEmojiData, importLegacyShortcodes } =
+    await import('./loader');
   let importCount: number | undefined;
   if (storeName === EMOJI_TYPE_CUSTOM) {
     importCount = (await importCustomEmojiData())?.length;
