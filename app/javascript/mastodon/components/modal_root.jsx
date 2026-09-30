@@ -61,9 +61,11 @@ class ModalRoot extends PureComponent {
 
   handleBackgroundClick = (e) => {
     // Close modal, but only when clicking outside of the modal's content
-    if (!e.target.matches('.modal-root__container *')) {
-      this.props.onClose();
+    if (e.target.matches('.modal-root__container *') || !e.target.matches('.modal-root *')) {
+      return;
     }
+
+    this.props.onClose();
   }
 
   componentDidMount () {
