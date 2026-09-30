@@ -20,6 +20,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   skip_before_action :require_functional!, only: [:edit, :update]
 
   def new
+    extend_csp_for_oauth! if session[:registration_app_id]
+
     super(&:build_invite_request)
   end
 
@@ -28,6 +30,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    extend_csp_for_oauth! if session[:registration_app_id]
+
     super do |resource|
       # If created through an app, mark it as such
       session[:created_by_app_id] = session.delete(:registration_app_id) if resource.persisted? && session[:registration_app_id]
@@ -109,6 +113,19 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  def extend_csp_for_oauth!
+    # When registering from an application, we redirect to it after submitting the form.
+    # As we do that through redirects, some browsers apply the `form-action` Content Security Policy,
+    # which would block the redirect if left to our application-wide default.
+    #
+    # We could set it to include the application's `redirect_uri` specifically, but the
+    # benefits from that are marginal, as it would most probably be attacker-controlled to begin with.
+
+    request.content_security_policy = request.content_security_policy.clone.tap do |p|
+      p.form_action(false)
+    end
+  end
 
   def set_invite
     @invite = begin
