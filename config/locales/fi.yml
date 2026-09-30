@@ -1022,7 +1022,11 @@ fi:
         warning_hint: Suosittelemme käyttämään asetusta ”Rekisteröityminen vaatii hyväksynnän”, ellet ole varma siitä, että moderaattorit ovat valmiina käsittelemään roskapostia ja haittarekisteröitymisiä oikea-aikaisesti.
       security:
         authorized_fetch: Vaadi todennus federoivilta palvelimilta
-        authorized_fetch_hint: Todennuksen vaatiminen federoivilta palvelimilta mahdollistaa sekä käyttäjä- että palvelintason estojen tiukemman valvonnan. Tämä tapahtuu kuitenkin suorituskyvyn kustannuksella, vähentää vastauksiesi tavoittavuutta ja voi aiheuttaa yhteensopivuusongelmia joidenkin federoivien palvelujen kanssa. Tämä ei myöskään estä asialleen omistautuneita toimijoita hakemasta julkisia julkaisujasi ja tilejäsi.
+        authorized_fetch_hint: Päätä, milloin etäpalvelinten on todennuttava, kun ne hakevat sisältöä tältä palvelimelta.
+        authorized_fetch_modes:
+          actors: Profiileille ja yksityiselle sisällölle
+          all: Kaikille pyynnöille
+          none: Vain yksityiselle sisällölle
         authorized_fetch_overridden_hint: Et voi tällä hetkellä muuttaa tätä asetusta, koska se on ohitettu ympäristömuuttujalla.
         federation_authentication: Federoinnin todennuksen valvonta
       title: Palvelimen asetukset

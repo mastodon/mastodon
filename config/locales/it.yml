@@ -1022,7 +1022,15 @@ it:
         warning_hint: Ti consigliamo di utilizzare “Approvazione richiesta per la registrazione” a meno che tu non sia sicuro che il tuo team di moderazione possa gestire lo spam e le registrazioni dannose in modo tempestivo.
       security:
         authorized_fetch: Richiede l'autenticazione dai server federati
-        authorized_fetch_hint: Richiedere l'autenticazione da server federati consente un'applicazione più rigorosa dei blocchi sia a livello utente che a livello server. Tuttavia, ciò comporta un calo delle prestazioni, riduce la visibilità delle tue risposte e potrebbe causare problemi di compatibilità con alcuni servizi federati. Inoltre, questo non impedirà ad attori dedicati di accedere ai tuoi post e account pubblici.
+        authorized_fetch_hint: Decidi quando i server remoti devono autenticarsi durante il recupero dei contenuti da questo server.
+        authorized_fetch_hints:
+          actors: Richiedere l'autenticazione per i profili consente di tracciare quali server hanno scoperto ciascuno dei tuoi account locali, il che può ridurre notevolmente il numero di richieste non necessarie eseguite durante la notifica ai server dell'eliminazione di un account. Questa opzione comporta un lieve calo delle prestazioni nell'erogazione dei profili, dovuto alla suddetta attività di tracciamento e all'impossibilità per il reverse proxy di memorizzare nella cache le risposte a tali richieste. Potrebbe inoltre introdurre problemi di compatibilità con alcuni servizi federati.
+          all: Oltre ai vantaggi e agli svantaggi legati alla richiesta di autenticazione per i profili, imporre l'autenticazione senza eccezioni da server federati consente di applicare con maggiore rigore i blocchi, sia a livello di utente che di server, ma impedisce anche la memorizzazione nella cache della maggior parte delle richieste. Inoltre, ridurrà la portata delle tue risposte, poiché la funzionalità di inoltro delle stesse verrà disabilitata.
+          none: Richiedere l'autenticazione solo quando strettamente necessario consente al tuo reverse proxy di memorizzare nella cache più richieste. Questa opzione potrebbe essere rimossa in futuro. Usala solo se le altre opzioni causano problemi.
+        authorized_fetch_modes:
+          actors: Per profili e contenuti privati
+          all: Per ogni richiesta
+          none: Solo per contenuti privati
         authorized_fetch_overridden_hint: Al momento non puoi modificare questa impostazione perché è sostituita da una variabile di ambiente.
         federation_authentication: Applicazione dell'autenticazione della federazione
       title: Impostazioni del server

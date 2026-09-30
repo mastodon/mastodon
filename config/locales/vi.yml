@@ -1006,7 +1006,15 @@ vi:
         warning_hint: Chúng tôi khuyên bạn nên sử dụng "Duyệt đăng ký thủ công" trừ khi bạn tin tưởng đội ngũ kiểm duyệt của mình có thể xử lý kịp thời các đăng ký spam và độc hại.
       security:
         authorized_fetch: Yêu cầu xác thực từ các máy chủ liên hợp
-        authorized_fetch_hint: Yêu cầu xác thực từ các máy chủ liên hợp cho phép thực thi chặt chẽ hơn việc chặn cấp độ người dùng và cấp độ máy chủ. Tuy nhiên, điều này phải trả giá bằng một hình phạt về hiệu suất, làm giảm phạm vi tiếp cận của các lượt trả lời của bạn và có thể gây ra các vấn đề về khả năng tương thích với một số dịch vụ được liên hợp. Ngoài ra, điều này sẽ không ngăn cản các tác nhân chuyên dụng tìm nạp các tút và tài khoản công khai của bạn.
+        authorized_fetch_hint: Xác định thời điểm các máy chủ từ xa cần xác thực khi lấy nội dung từ máy chủ này.
+        authorized_fetch_hints:
+          actors: Việc yêu cầu xác thực đối với hồ sơ người dùng cho phép theo dõi xem máy chủ nào đã từng phát hiện các tài khoản cục bộ của bạn; điều này giúp giảm đáng kể số lượng yêu cầu không cần thiết khi thông báo cho các máy chủ về việc xóa tài khoản. Tuy nhiên, tùy chọn này có thể làm giảm nhẹ hiệu năng khi phục vụ dữ liệu hồ sơ do quá trình theo dõi nêu trên và việc reverse-proxy không thể lưu vào bộ nhớ đệm các phản hồi cho những yêu cầu này. Ngoài ra, nó cũng có thể gây ra vấn đề tương thích với một số dịch vụ liên hợp.
+          all: Ngoài những ưu và nhược điểm của việc yêu cầu xác thực đối với hồ sơ người dùng, việc bắt buộc xác thực từ các máy chủ liên hợp cho phép thực thi nghiêm ngặt hơn các lệnh chặn ở cả cấp độ người dùng lẫn máy chủ, nhưng đồng thời cũng ngăn chặn việc lưu vào bộ nhớ đệm đối với hầu hết các yêu cầu. Điều này cũng sẽ làm giảm phạm vi tiếp cận các phản hồi của bạn, do tính năng chuyển tiếp phản hồi sẽ bị vô hiệu hóa.
+          none: Việc chỉ yêu cầu xác thực khi thực sự cần thiết sẽ cho phép reverse proxy của bạn lưu vào bộ nhớ đệm nhiều yêu cầu hơn. Tùy chọn này có thể sẽ bị loại bỏ trong tương lai. Chỉ nên sử dụng nó nếu các tùy chọn khác gây ra vấn đề.
+        authorized_fetch_modes:
+          actors: Với hồ sơ và nội dung riêng tư
+          all: Với mọi yêu cầu
+          none: Với nội dung riêng tư
         authorized_fetch_overridden_hint: Hiện tại, bạn không thể thay đổi cài đặt này vì nó bị ghi đè bởi biến môi trường.
         federation_authentication: Thực thi xác thực liên hợp
       title: Cài đặt máy chủ
