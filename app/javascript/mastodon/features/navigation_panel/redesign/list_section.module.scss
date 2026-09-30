@@ -3,9 +3,7 @@
 @use './navigation_link.module.scss' as navigation-link;
 
 .root {
-  &:not(:last-child) {
-    margin-bottom: var(--space-4);
-  }
+  padding-top: var(--space-4);
 
   :any-link {
     color: inherit;
