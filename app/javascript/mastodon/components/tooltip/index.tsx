@@ -19,6 +19,7 @@ import classes from './styles.module.scss';
 
 interface ForwardedReferenceProps {
   ref: (element: HTMLElement | null) => void;
+  onClick: React.MouseEventHandler;
   onMouseEnter: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
   onFocus: React.KeyboardEventHandler;
@@ -121,6 +122,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     <T extends Record<string, unknown>>(outerProps: T) => {
       const referenceProps = {
         ref: setReferenceElement,
+        onClick: close,
         onMouseEnter: open,
         onMouseLeave: close,
         onFocus: handleFocus,
