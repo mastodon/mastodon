@@ -57,6 +57,7 @@ class User < ApplicationRecord
   include User::LdapAuthenticable
   include User::Omniauthable
   include User::PamAuthenticable
+  include User::SignInToken
 
   devise :two_factor_authenticatable,
          otp_secret_length: 32
@@ -124,7 +125,7 @@ class User < ApplicationRecord
 
   delegate :can?, to: :role
 
-  attr_reader :invite_code, :sign_in_token_attempt
+  attr_reader :invite_code
   attr_writer :current_account
 
   attribute :external, :boolean, default: false
@@ -363,26 +364,6 @@ class User < ApplicationRecord
 
     # Then, remove all authorized applications and connected push subscriptions
     revoke_access!
-  end
-
-  def sign_in_token_expired?
-    sign_in_token_sent_at.nil? || sign_in_token_sent_at < 5.minutes.ago
-  end
-
-  def generate_sign_in_token
-    self.sign_in_token         = Devise.friendly_token(6)
-    self.sign_in_token_sent_at = Time.now.utc
-  end
-
-  def disable_sign_in_token!
-    self.sign_in_token         = nil
-    self.sign_in_token_sent_at = nil
-
-    # Reset #current_sign_in_at so the system doesn't try to
-    # send a security code for inactive accounts
-    self.current_sign_in_at = Time.now.utc
-
-    save!
   end
 
   protected

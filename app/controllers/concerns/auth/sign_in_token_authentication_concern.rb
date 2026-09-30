@@ -11,10 +11,6 @@ module Auth::SignInTokenAuthenticationConcern
     find_user&.suspicious_inactive_sign_in?
   end
 
-  def valid_sign_in_token_attempt?(user)
-    Devise.secure_compare(user.sign_in_token, user_params[:sign_in_token_attempt])
-  end
-
   def authenticate_with_sign_in_token
     user = self.resource = find_user
 
@@ -26,7 +22,7 @@ module Auth::SignInTokenAuthenticationConcern
   end
 
   def authenticate_with_sign_in_token_attempt(user)
-    if valid_sign_in_token_attempt?(user)
+    if user.valid_sign_in_token?(user_params[:sign_in_token_attempt])
       clear_attempt_from_session
       sign_in(user)
     else
