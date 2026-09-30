@@ -11,7 +11,7 @@ RSpec.describe 'Settings Deletes' do
     it 'requires password and deletes user record', :inline_jobs do
       visit settings_delete_path
       expect(page)
-        .to have_title(I18n.t('settings.delete'))
+        .to have_title(I18n.t('deletes.title', acct: user.account.local_username_and_domain))
         .and have_private_cache_control
 
       # Wrong confirmation value
