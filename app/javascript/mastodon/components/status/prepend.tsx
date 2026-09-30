@@ -117,10 +117,6 @@ const StatusPrependReply: React.FC<{ replyId: string }> = ({ replyId }) => {
           <Link {...accountLinkProps} className={classes.account}>
             <DisplayName variant='simple' account={account} />
           </Link>
-          &bull;
-          <Link to={statusLink(status)}>
-            <RelativeTimestamp timestamp={status.created_at} />
-          </Link>
         </span>
 
         {!!content && (
