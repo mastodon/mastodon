@@ -581,7 +581,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_25_094651) do
 
   create_table "fasp_providers", force: :cascade do |t|
     t.string "base_url", null: false
-    t.jsonb "cap"
     t.boolean "confirmed", default: false, null: false
     t.string "contact_email"
     t.datetime "created_at", null: false
