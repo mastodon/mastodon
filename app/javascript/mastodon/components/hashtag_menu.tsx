@@ -1,3 +1,5 @@
+import { useCallback, useState } from 'react';
+
 import { FormattedMessage } from 'react-intl';
 
 import { useHashtag } from '@/mastodon/hooks/useHashtag';
@@ -19,24 +21,33 @@ export const HashtagMenu: React.FC<{
   accountId?: string;
   children?: React.ReactNode;
 }> = ({ tagId, accountId, children }) => {
-  const { tag, toggleFollow } = useHashtag(tagId);
+  const [wasMenuOpened, setWasMenuOpened] = useState(false);
+  const { tag, toggleFollow } = useHashtag(wasMenuOpened ? tagId : undefined);
   const account = useAppSelector((state) =>
     selectPlainAccount(state, accountId),
   );
   const { signedIn } = useIdentity();
 
-  if (!tag) {
-    return null;
-  }
+  const handleMenuOpen = useCallback(() => {
+    setWasMenuOpened(true);
+  }, []);
+
+  const tagName = tag?.name ?? tagId;
+  const tagNameForUrl = tag ? encodeURIComponent(tag.name) : tagId;
 
   return (
-    <Menu>
+    <Menu onOpen={handleMenuOpen}>
       {children}
 
       <MenuList container={undefined}>
         {signedIn && (
-          <MenuItem onClick={toggleFollow}>
-            {tag.following ? (
+          <MenuItem onClick={toggleFollow} disabled={!tag}>
+            {!tag ? (
+              <FormattedMessage
+                id='loading_indicator.label'
+                defaultMessage='Loading…'
+              />
+            ) : tag.following ? (
               <FormattedMessage
                 id='hashtag.unfollow'
                 defaultMessage='Unfollow hashtag'
@@ -49,23 +60,21 @@ export const HashtagMenu: React.FC<{
             )}
           </MenuItem>
         )}
-        <MenuItemLink to={`/tags/${encodeURIComponent(tag.name)}`}>
+        <MenuItemLink to={`/tags/${tagNameForUrl}`}>
           <FormattedMessage
             id='hashtag.browse'
             defaultMessage='Browse posts in #{hashtag}'
-            values={{ hashtag: tag.name }}
+            values={{ hashtag: tagName }}
           />
         </MenuItemLink>
         {!!account && (
-          <MenuItemLink
-            to={`/@${account.acct}/tagged/${encodeURIComponent(tag.name)}`}
-          >
+          <MenuItemLink to={`/@${account.acct}/tagged/${tagNameForUrl}`}>
             <FormattedMessage
               id='hashtag.browse_from_account'
               defaultMessage='Browse posts from @{name} in #{hashtag}'
               values={{
                 name: account.username,
-                hashtag: tag.name,
+                hashtag: tagName,
               }}
             />
           </MenuItemLink>
@@ -77,7 +86,7 @@ export const HashtagMenu: React.FC<{
               <FormattedMessage
                 id='hashtag.mute'
                 defaultMessage='Mute #{hashtag}'
-                values={{ hashtag: tag.name }}
+                values={{ hashtag: tagName }}
               />
             </MenuItemLink>
           </>
