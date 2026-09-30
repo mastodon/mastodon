@@ -149,6 +149,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         onClick={onOpenClick}
         className={classNames(
           classes.root,
+          variant === 'feed' && classes.variantFeed,
           variant === 'thread' && classes.variantThread,
           variant === 'page' && classes.variantPage,
           isQuotedPost && classes.isQuote,
