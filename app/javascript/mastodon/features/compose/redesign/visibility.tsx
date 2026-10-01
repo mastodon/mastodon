@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -6,15 +6,10 @@ import {
   ChatCircleDotsIcon,
   MagnifyingGlassIcon,
   NewspaperIcon,
-  QuotesIcon,
 } from '@phosphor-icons/react';
 
-import {
-  changeComposeVisibility,
-  setComposeQuotePolicy,
-} from '@/mastodon/actions/compose_typed';
+import { changeComposeVisibility } from '@/mastodon/actions/compose_typed';
 import { openModal } from '@/mastodon/actions/modal';
-import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import { Button, CaretIcon } from '@/mastodon/components/button/redesign';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
@@ -109,18 +104,6 @@ const ComposeVisibilityMenu: React.FC = () => {
   const defaultPrivacy = useAppSelector(
     (state) => state.compose.get('default_privacy') as StatusVisibility,
   );
-  const currentQuotePolicy = useAppSelector(
-    (state) => state.compose.get('quote_policy') as ApiQuotePolicy | undefined,
-  );
-  const defaultQuotePolicy = useAppSelector(
-    (state) => state.compose.get('default_quote_policy') as ApiQuotePolicy,
-  );
-
-  // Track the last public quote policy, so the picker remembers what was last used before quoting was disabled.
-  const [lastQuotePolicy, setLastQuotePolicy] = useState(
-    defaultQuotePolicy !== 'nobody' ? defaultQuotePolicy : 'public',
-  );
-  const quotePolicy = currentQuotePolicy ?? defaultQuotePolicy;
 
   const isReply = useAppSelector((state) => !!state.compose.get('in_reply_to'));
 
@@ -142,31 +125,6 @@ const ComposeVisibilityMenu: React.FC = () => {
       }
     },
     [defaultPrivacy, dispatch, privacy],
-  );
-
-  const handleQuotePolicyChange = useCallback(
-    ({ value, checked }: { value: string; checked?: boolean }) => {
-      let newQuotePolicy: ApiQuotePolicy = 'nobody';
-      switch (value) {
-        case 'public':
-          newQuotePolicy = 'public';
-          setLastQuotePolicy(newQuotePolicy);
-          break;
-        case 'followers':
-          newQuotePolicy = 'followers';
-          setLastQuotePolicy(newQuotePolicy);
-          break;
-        case 'others':
-          // If it's not checked, then it's nobody.
-          if (checked) {
-            // Only use the default if it's not nobody, as then it'll never be enabled.
-            newQuotePolicy = lastQuotePolicy;
-          }
-          break;
-      }
-      dispatch(setComposeQuotePolicy(newQuotePolicy));
-    },
-    [dispatch, lastQuotePolicy],
   );
 
   const handleSwitchToMessage: React.MouseEventHandler<HTMLButtonElement> =
@@ -222,58 +180,7 @@ const ComposeVisibilityMenu: React.FC = () => {
             defaultMessage='Discoverable in public feeds & search results'
           />
         </MenuItemCheckbox>
-
-        <MenuItemCheckbox
-          value='others'
-          disabled={privacy === 'private'}
-          checked={quotePolicy !== 'nobody' && privacy !== 'private'}
-          onChange={handleQuotePolicyChange}
-          icon={QuotesIcon}
-          keepMenuOpenOnClick
-        >
-          <FormattedMessage
-            id='compose.quotable'
-            defaultMessage='Allow others to quote'
-          />
-        </MenuItemCheckbox>
       </MenuItemGroup>
-
-      {quotePolicy !== 'nobody' && privacy !== 'private' && (
-        <MenuItemGroup
-          label={
-            <FormattedMessage
-              id='compose.visibility.quote_policy'
-              defaultMessage='Who can quote'
-            />
-          }
-        >
-          <MenuItemRadio
-            name='quote_policy'
-            value='public'
-            checked={quotePolicy === 'public'}
-            onChange={handleQuotePolicyChange}
-            keepMenuOpenOnClick
-          >
-            <FormattedMessage
-              id='compose.visibility.quote_policy.anyone'
-              defaultMessage='Anyone'
-            />
-          </MenuItemRadio>
-
-          <MenuItemRadio
-            name='quote_policy'
-            value='followers'
-            checked={quotePolicy === 'followers'}
-            onChange={handleQuotePolicyChange}
-            keepMenuOpenOnClick
-          >
-            <FormattedMessage
-              id='compose.visibility.quote_policy.followers'
-              defaultMessage='Followers'
-            />
-          </MenuItemRadio>
-        </MenuItemGroup>
-      )}
 
       <MenuItemDivider />
 
