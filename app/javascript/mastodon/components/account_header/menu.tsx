@@ -289,17 +289,19 @@ function getMenuItems({
 
   // Mention and direct message options
   if (signedIn && !account.suspended) {
-    items.push(null);
     if (!account.invalid_handle) {
       if (isRedesignEnabled()) {
-        items.push({
-          text: intl.formatMessage(messages.redesignMessage),
-          action: () => {
-            dispatch(directCompose(account));
-          },
-        });
+        if (!relationship?.following) {
+          items.push(null, {
+            text: intl.formatMessage(messages.redesignMessage),
+            action: () => {
+              dispatch(directCompose(account));
+            },
+          });
+        }
       } else {
         items.push(
+          null,
           {
             text: intl.formatMessage(messages.mention),
             action: () => {
