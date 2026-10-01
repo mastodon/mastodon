@@ -34,6 +34,19 @@ const config: StorybookConfig = {
     // For an unknown reason, Storybook does not use the root
     // from the Vite config so we need to set it manually.
     config.root = resolve(import.meta.dirname, '../app/javascript');
+
+    // Pre-bundle deps to avoid mid-run reloading
+    config.optimizeDeps = {
+      ...config.optimizeDeps,
+      include: [
+        ...(config.optimizeDeps?.include ?? []),
+        'lodash/debounce.js',
+        'lodash/groupBy.js',
+        'lodash/minBy.js',
+        'lodash/throttle.js',
+      ],
+    };
+
     return config;
   },
 };
