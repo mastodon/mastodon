@@ -198,6 +198,7 @@ gl:
         create_user_role: Crear Rol
         create_username_block: Crear regra para Identificadores
         demote_user: Degradar usuaria
+        destroy_account: Eliminar os datos da conta
         destroy_announcement: Eliminar anuncio
         destroy_canonical_email_block: Eliminar bloqueo do correo
         destroy_custom_emoji: Eliminar emoticona personalizada
@@ -266,6 +267,7 @@ gl:
         create_user_role_html: "%{name} creou o rol %{target}"
         create_username_block_html: "%{name} engadiu unha regra para identificadores que contén %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
+        destroy_account_html: "%{name} eliminou os datos da conta %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o correo con suma de comprobación %{target}"
         destroy_collection_html: "%{name} eliminou a colección de %{target}"
@@ -1470,7 +1472,6 @@ gl:
   deletes:
     challenge_not_passed: A información introducida non é correcta
     confirm_password: Escribe o contrasinal actual para verificar a túa identidade
-    confirm_username: Introduce o nome de usuaria para confirmar o procedemento
     proceed: Eliminar conta
     success_msg: A súa conta eliminouse correctamente
     warning:
@@ -2065,7 +2066,6 @@ gl:
     appearance: Aparencia
     authorized_apps: Apps autorizadas
     back: Volver a Mastodon
-    delete: Eliminación da conta
     development: Desenvolvemento
     edit_profile: Editar perfil
     export: Exportar

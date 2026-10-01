@@ -198,6 +198,7 @@ es-MX:
         create_user_role: Crear rol
         create_username_block: Crear regla de nombre de usuario
         demote_user: Degradar Usuario
+        destroy_account: Borrar Datos de la Cuenta
         destroy_announcement: Eliminar Anuncio
         destroy_canonical_email_block: Eliminar bloqueo de correo electrónico
         destroy_custom_emoji: Eliminar Emoji Personalizado
@@ -266,6 +267,7 @@ es-MX:
         create_user_role_html: "%{name} creó el rol %{target}"
         create_username_block_html: "%{name} añadió regla para nombres de usuario que contienen %{target}"
         demote_user_html: "%{name} degradó al usuario %{target}"
+        destroy_account_html: "%{name} borró los datos de la cuenta de %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha desbloqueado el correo electrónico con el hash %{target}"
         destroy_collection_html: "%{name} eliminó la colección de %{target}"
@@ -1470,7 +1472,6 @@ es-MX:
   deletes:
     challenge_not_passed: Los datos introducidos son incorrectos
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
-    confirm_username: Escribe tu nombre de usuario para confirmar
     proceed: Eliminar cuenta
     success_msg: Tu cuenta se eliminó con éxito
     warning:
@@ -2065,7 +2066,6 @@ es-MX:
     appearance: Apariencia
     authorized_apps: Aplicaciones autorizadas
     back: Volver al inicio
-    delete: Eliminar cuenta
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar
