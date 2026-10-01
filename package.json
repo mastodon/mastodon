@@ -31,8 +31,7 @@
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic -d storybook-static",
-    "msw:updateWorker": "msw init"
+    "chromatic": "npx chromatic -d storybook-static"
   },
   "repository": {
     "type": "git",
@@ -175,7 +174,7 @@
     "globals": "17.13.0",
     "husky": "9.1.7",
     "lint-staged": "17.5.1",
-    "msw": "2.12.14",
+    "msw": "3.0.1",
     "msw-storybook-addon": "3.0.3",
     "oxfmt": "0.70.0",
     "playwright": "1.63.0",
@@ -197,10 +196,5 @@
     "react-router-dom": {
       "optional": true
     }
-  },
-  "msw": {
-    "workerDirectory": [
-      ".storybook/static"
-    ]
   }
 }
