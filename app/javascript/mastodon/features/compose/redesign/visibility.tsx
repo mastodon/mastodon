@@ -2,12 +2,14 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { ChatCircleDotsIcon, NewspaperIcon } from '@phosphor-icons/react';
+import classNames from 'classnames';
+
+import { ChatCircleDotsIcon, EyeIcon } from '@phosphor-icons/react';
 
 import { changeComposeVisibility } from '@/mastodon/actions/compose_typed';
-import { openModal } from '@/mastodon/actions/modal';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import { Button, CaretIcon } from '@/mastodon/components/button/redesign';
+import { Icon } from '@/mastodon/components/icon';
 import {
   Menu,
   MenuList,
@@ -22,12 +24,25 @@ import { Tooltip } from '@/mastodon/components/tooltip';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { selectComposePrivacy } from './selectors';
+import classes from './styles.module.scss';
 
 export const ComposeVisibility: React.FC<{ className?: string }> = ({
   className,
 }) => {
   const privacy = useAppSelector(selectComposePrivacy);
   const isEditing = useAppSelector((state) => !!state.compose.get('id'));
+
+  if (privacy === 'direct') {
+    return (
+      <div className={classNames(className, classes.toolbarMessage)}>
+        <Icon icon={EyeIcon} />
+        <FormattedMessage
+          id='compose.privacy.direct.hint'
+          defaultMessage='Visible to everyone mentioned. Not encrypted.'
+        />
+      </div>
+    );
+  }
 
   if (isEditing) {
     return (
@@ -63,11 +78,7 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
           <ComposeVisibilityButtonText privacy={privacy} />
         </MenuTrigger>
 
-        {privacy !== 'direct' ? (
-          <ComposeVisibilityMenu />
-        ) : (
-          <ComposeDirectMenu />
-        )}
+        <ComposeVisibilityMenu />
       </Menu>
     </div>
   );
@@ -200,54 +211,6 @@ const ComposeVisibilityMenu: React.FC = () => {
             id='compose.post.to_message'
             defaultMessage='Convert to private message'
             description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
-          />
-        )}
-      </MenuItem>
-    </MenuList>
-  );
-};
-
-const ComposeDirectMenu: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const handleSwitchToPost: React.MouseEventHandler<HTMLButtonElement> =
-    useCallback(() => {
-      dispatch(
-        openModal({ modalType: 'COMPOSER_SWITCH_TO_POST', modalProps: {} }),
-      );
-    }, [dispatch]);
-
-  const isReply = useAppSelector((state) => !!state.compose.get('in_reply_to'));
-
-  return (
-    <MenuList placement='bottom-start' offset={4} maxWidth={280}>
-      <MenuItemGroup
-        label={
-          <FormattedMessage
-            id='compose.visibility.title'
-            defaultMessage='Visibility'
-          />
-        }
-      >
-        <MenuItemRadio value='direct' disabled checked>
-          <FormattedMessage
-            id='compose.visibility.direct_note'
-            defaultMessage='Everyone mentioned'
-          />
-        </MenuItemRadio>
-      </MenuItemGroup>
-
-      <MenuItemDivider />
-
-      <MenuItem icon={NewspaperIcon} onClick={handleSwitchToPost}>
-        {isReply ? (
-          <FormattedMessage
-            id='compose.visibility.to_reply'
-            defaultMessage='Reply publicly instead'
-          />
-        ) : (
-          <FormattedMessage
-            id='compose.visibility.to_post'
-            defaultMessage='Compose a post instead'
           />
         )}
       </MenuItem>

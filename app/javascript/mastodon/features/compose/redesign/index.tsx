@@ -1,15 +1,10 @@
 import type React from 'react';
 import { useCallback, useEffect, useId } from 'react';
 
-import { FormattedMessage } from 'react-intl';
-
 import classNames from 'classnames';
-
-import { LockSimpleOpenIcon } from '@phosphor-icons/react';
 
 import { insertEmojiCompose } from '@/mastodon/actions/compose';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
-import { Icon } from '@/mastodon/components/icon';
 import {
   closeComposer,
   getComposerTextarea,
@@ -70,17 +65,6 @@ export const RedesignComposeForm: React.FC<
 
         <ComposeSettingsMenu />
       </div>
-
-      {type === 'message' && (
-        <p className={classes.toolbarMessage}>
-          <Icon id='lock-open' icon={LockSimpleOpenIcon} />
-          <FormattedMessage
-            id='compose.message.notice'
-            defaultMessage='Messages are not end-to-end encrypted'
-            description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
-          />
-        </p>
-      )}
 
       <ComposeSensitiveField />
 
