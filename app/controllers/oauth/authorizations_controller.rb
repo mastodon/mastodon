@@ -48,7 +48,7 @@ class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
   end
 
   def require_reauth!
-    return unless %w(create).include?(params['prompt'])
+    return unless %w(login create).include?(params['prompt'])
 
     if current_user
       if session.delete(:reauthed_for) != "#{params[:client_id]}:#{params[:state]}"
