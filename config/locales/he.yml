@@ -630,6 +630,11 @@ he:
         title: יבוא רשימת שרתים חסומים
       no_file: לא נבחר קובץ
     fasp:
+      capabilities:
+        activation_msg: יכולת אופשרה בהצלחה.
+        deactivation_msg: יכולת בוטלה בהצלחה.
+        disable: כבוי
+        enable: פעיל
       debug:
         callbacks:
           created_at: תאריך יצירה
@@ -641,6 +646,7 @@ he:
         active: פעילים
         base_url: קישור בסיס
         callback: קריאה חוזרת
+        capabilities: יכולות
         delete: מחיקה
         edit: עריכת ספק
         finish_registration: סיום הרשמה
@@ -653,8 +659,6 @@ he:
           description: קיבלת הרשמה דרך FASP. יש לדחות אותה אם לא ביקשת את ההרשמה הזו מיוזמתך. אם זו בקשה מיוזמתך, יש להשוות בהקפדה אם השם וטביעת האצבע של המפתח הציבורי תואמים לפני אישור הרישום.
           reject: דחיה
           title: אישור הרשמת FASP
-        save: שמירה
-        select_capabilities: בחירת יכולות
         sign_in: כניסה
         status: מצב
         title: ספקי משנה לפדיוורס
@@ -1548,9 +1552,11 @@ he:
   deletes:
     challenge_not_passed: המידע שהכנסת לא היה נכון
     confirm_password: נא להכניס את הסיסמה הנוכחית כדי לאמת את זהותך
-    confirm_username: נא להכניס את שם המשתמש כדאי לאשר את הפעולה
+    confirm_username: אשרו שם משתמש
+    confirm_username_hint_html: נא להקליד <code>%{username}</code> כדי לאשרר את שם החשבון שתרצו למחוק
     proceed: מחיקת חשבון
     success_msg: חשבונך נמחק בהצלחה
+    title: למחוק חשבון %{acct}
     warning:
       before: 'לפני שנמשיך, נא לקרוא בזהירות את ההערות הבאות:'
       caches: מידע שהוטמן על ידי שרתים אחרים עשוי להתמיד
@@ -2182,7 +2188,6 @@ he:
     appearance: תצוגה
     authorized_apps: ישומים מאושרים
     back: חזרה למסטודון
-    delete: מחיקת חשבון
     development: פיתוח
     edit_profile: עריכת פרופיל
     export: ייצוא

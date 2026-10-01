@@ -610,6 +610,11 @@ vi:
         title: Nhập máy chủ chặn
       no_file: Không có tệp nào được chọn
     fasp:
+      capabilities:
+        activation_msg: Tính năng đã được kích hoạt thành công.
+        deactivation_msg: Tính năng đã được tắt thành công.
+        disable: Tắt
+        enable: Bật
       debug:
         callbacks:
           created_at: Đã tạo lúc
@@ -621,6 +626,7 @@ vi:
         active: Hoạt động
         base_url: URL cơ sở
         callback: Callback
+        capabilities: Khả năng
         delete: Xóa
         edit: Chỉnh sửa nhà cung cấp
         finish_registration: Hoàn tất đăng ký
@@ -633,8 +639,6 @@ vi:
           description: Bạn đã nhận được đăng ký từ FASP. Hãy từ chối nếu bạn không phải là người khởi tạo. Nếu bạn đã khởi tạo, hãy so sánh cẩn thận tên và dấu vân tay khóa trước khi xác nhận đăng ký.
           reject: Từ chối
           title: Xác nhận đăng ký FASP
-        save: Lưu
-        select_capabilities: Chọn khả năng
         sign_in: Đăng nhập
         status: Trạng thái
         title: Fediverse Auxiliary Service Providers
@@ -922,7 +926,7 @@ vi:
         view_dashboard_description: Cho phép truy cập trang tổng quan và các chỉ số khác
         view_devops: Nhà phát triển
         view_devops_description: Cho phép truy cập trang tổng quan Sidekiq và pgHero
-        view_feeds: Xem nguồn cấp dữ liệu trực tiếp và theo chủ đề
+        view_feeds: Xem nguồn tin và chủ đề
         view_feeds_description: Cho phép người dùng truy cập nguồn cấp dữ liệu trực tiếp và theo chủ đề bất kể cài đặt máy chủ
       requires_2fa: Bắt buộc xác thực 2 bước
       title: Danh sách vai trò
@@ -1502,9 +1506,11 @@ vi:
   deletes:
     challenge_not_passed: Thông tin bạn nhập không chính xác
     confirm_password: Nhập mật khẩu hiện tại của bạn để xác minh
-    confirm_username: Nhập tên người dùng của bạn để hoàn tất thủ tục
+    confirm_username: Xác nhận tên người dùng
+    confirm_username_hint_html: Vui lòng nhập <code>%{username}</code> để xác nhận tài khoản bạn muốn xóa
     proceed: Xóa tài khoản
     success_msg: Tài khoản của bạn đã được xóa thành công
+    title: Xóa tài khoản %{acct}
     warning:
       before: 'Trước khi tiếp tục, xin vui lòng xem xét cẩn thận:'
       caches: Nội dung đã lưu trữ trên các máy chủ khác có thể vẫn tồn tại
@@ -2080,7 +2086,6 @@ vi:
     appearance: Giao diện
     authorized_apps: Ứng dụng
     back: Quay lại Mastodon
-    delete: Xóa tài khoản
     development: Lập trình
     edit_profile: Sửa hồ sơ
     export: Xuất dữ liệu

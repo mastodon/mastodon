@@ -612,6 +612,11 @@ zh-TW:
         title: 匯入網域黑名單
       no_file: 尚未選擇檔案
     fasp:
+      capabilities:
+        activation_msg: 功能已成功啟用。
+        deactivation_msg: 功能已成功停用。
+        disable: 停用
+        enable: 啟用
       debug:
         callbacks:
           created_at: 建立於
@@ -623,6 +628,7 @@ zh-TW:
         active: 生效
         base_url: Base URL
         callback: Callback
+        capabilities: 功能
         delete: 刪除
         edit: 編輯提供商
         finish_registration: 完成註冊
@@ -635,8 +641,6 @@ zh-TW:
           description: 您收到 FASP的註冊。若您未發起此請求，請拒絕它。若您發起了此請求，請仔細比較名稱與金鑰指紋再確認註冊。
           reject: 拒絕
           title: 確認 FASP 註冊
-        save: 儲存
-        select_capabilities: 選擇功能
         sign_in: 登入
         status: 狀態
         title: 聯邦宇宙輔助服務提供商（Fediverse Auxiliary Service Providers）
@@ -1506,9 +1510,11 @@ zh-TW:
   deletes:
     challenge_not_passed: 您所輸入的資料不正確
     confirm_password: 輸入您目前的密碼以驗證身份
-    confirm_username: 請輸入您的使用者名稱以確認
+    confirm_username: 確認帳號名稱
+    confirm_username_hint_html: 請輸入 <code>%{username}</code> 以確認您欲刪除之帳號
     proceed: 刪除帳號
     success_msg: 您的帳號已經成功刪除
+    title: 刪除帳號 %{acct}
     warning:
       before: 在進行下一步驟之前，請詳細閱讀以下説明：
       caches: 已被其他節點快取的內容可能會殘留其中
@@ -2084,7 +2090,6 @@ zh-TW:
     appearance: 外觀設定
     authorized_apps: 已授權應用程式
     back: 回到 Mastodon
-    delete: 刪除帳號
     development: 開發者
     edit_profile: 編輯個人檔案
     export: 匯出

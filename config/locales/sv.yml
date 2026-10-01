@@ -620,6 +620,11 @@ sv:
         title: Importera domänblockeringar
       no_file: Ingen fil vald
     fasp:
+      capabilities:
+        activation_msg: Funktionen har aktiverats.
+        deactivation_msg: Funktionen har inaktiverats.
+        disable: Inaktivera
+        enable: Aktivera
       debug:
         callbacks:
           created_at: Skapad den
@@ -631,6 +636,7 @@ sv:
         active: Aktiv
         base_url: Bas-URL
         callback: Återanrop
+        capabilities: Funktioner
         delete: Ta bort
         edit: Redigera leverantör
         finish_registration: Slutför registrering
@@ -643,8 +649,6 @@ sv:
           description: Du fick en registrering från en FASP. Avvisa den om du inte initierade detta. Om du initierat detta, jämför noggrant namn och nyckelns fingeravtryck innan du bekräftar registreringen.
           reject: Avvisa
           title: Bekräfta registrering av FASP
-        save: Spara
-        select_capabilities: Välj funktioner
         sign_in: Logga in
         status: Status
         title: Fediverse Auxiliary Service Providers
@@ -1525,9 +1529,11 @@ sv:
   deletes:
     challenge_not_passed: Informationen som du angav var inte korrekt
     confirm_password: Ange ditt lösenord för att verifiera din identitet
-    confirm_username: Fyll i ditt användarnamn för att bekräfta proceduren
+    confirm_username: Bekräfta användarnamn
+    confirm_username_hint_html: Vänligen skriv <code>%{username}</code> för att bekräfta det konto du vill ta bort
     proceed: Radera konto
     success_msg: Ditt konto har raderats
+    title: Ta bort konto %{acct}
     warning:
       before: 'Läs dessa noteringar noga innan du fortsätter:'
       caches: Innehåll som har cachats av andra servrar kan bibehållas
@@ -2131,7 +2137,6 @@ sv:
     appearance: Utseende
     authorized_apps: Godkända appar
     back: Tillbaka till Mastodon
-    delete: Konto radering
     development: Utveckling
     edit_profile: Redigera profil
     export: Exportera
