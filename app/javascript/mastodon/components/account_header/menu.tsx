@@ -221,6 +221,14 @@ const messages = defineMessages({
     id: 'status.admin_domain',
     defaultMessage: 'Open moderation interface for {domain}',
   },
+  enableNotifications: {
+    id: 'account.notify_me',
+    defaultMessage: 'Notify me about new posts',
+  },
+  disableNotifications: {
+    id: 'account.stop_notifying_me',
+    defaultMessage: 'Stop notifying me about new posts',
+  },
   languages: {
     id: 'account.languages',
     defaultMessage: 'Change subscribed languages',
@@ -402,6 +410,21 @@ function getMenuItems({
 
   // Timeline options
   if (relationship?.following && !relationship.muting) {
+    if (isRedesignEnabled()) {
+      items.push({
+        text: intl.formatMessage(
+          relationship.notifying
+            ? messages.disableNotifications
+            : messages.enableNotifications,
+          { name: account.username },
+        ),
+        action: () => {
+          dispatch(
+            followAccount(account.id, { notify: !relationship.notifying }),
+          );
+        },
+      });
+    }
     items.push(
       {
         text: intl.formatMessage(
