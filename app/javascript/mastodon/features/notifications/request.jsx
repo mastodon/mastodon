@@ -100,6 +100,7 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
               <ColumnHeaderButton
                 icon={CheckIcon}
                 variant='solid'
+                color='accent'
                 onClick={handleAccept}
               >
                 {intl.formatMessage(messages.accept)}

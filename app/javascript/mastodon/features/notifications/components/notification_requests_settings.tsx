@@ -74,7 +74,7 @@ export const NotificationRequestsSettingsModal: React.FC = () => {
       </ModalTitle>
       <NotificationRequestsSettings />
       <ModalActions>
-        <Button variant='solid' onClick={handleCloseModal}>
+        <Button variant='solid' color='accent' onClick={handleCloseModal}>
           <FormattedMessage id='alt_text_modal.done' defaultMessage='Done' />
         </Button>
       </ModalActions>

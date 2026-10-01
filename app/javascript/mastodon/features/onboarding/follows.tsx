@@ -157,7 +157,12 @@ export const Follows: React.FC<{
 
             <div className='column-footer'>
               {isRedesignEnabled() ? (
-                <Button variant='solid' as='link' to='/start/profile'>
+                <Button
+                  variant='solid'
+                  color='accent'
+                  as='link'
+                  to='/start/profile'
+                >
                   <FormattedMessage
                     id='onboarding.follows.next'
                     defaultMessage='Next: Setup your profile'
