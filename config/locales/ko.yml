@@ -189,6 +189,7 @@ ko:
         create_user_role: 역할 생성
         create_username_block: 새 사용자명 규칙 만들기
         demote_user: 사용자 강등
+        destroy_account: 계정 정보 삭제
         destroy_announcement: 공지사항 삭제
         destroy_canonical_email_block: 이메일 차단 삭제
         destroy_custom_emoji: 커스텀 에모지 삭제
@@ -333,7 +334,7 @@ ko:
       unpublish: 게시 취소
       unpublished_msg: 공지가 성공적으로 발행 취소되었습니다!
       updated_msg: 공지가 성공적으로 업데이트되었습니다!
-    critical_update_pending: 긴급 업데이트 보류 중
+    critical_update_pending: 긴급 업데이트 대기중
     custom_emojis:
       assign_category: 분류 지정
       by_domain: 도메인
@@ -827,6 +828,7 @@ ko:
         title: 사용자들이 기본적으로 검색엔진에 인덱싱되지 않도록 합니다
       discovery:
         follow_recommendations: 팔로우 추천
+        preamble: 흥미로운 콘텐츠를 노출하는 것은 마스토돈을 알지 못할 수도 있는 신규 사용자를 유입시키는 데 중요합니다. 이 서버에서 작동하는 다양한 발견하기 기능을 제어합니다.
         privacy: 개인정보
         profile_directory: 프로필 책자
         public_timelines: 공개 타임라인
@@ -1322,7 +1324,6 @@ ko:
   deletes:
     challenge_not_passed: 입력한 정보가 올바르지 않습니다
     confirm_password: 본인 확인을 위해 현재 사용 중인 암호를 입력해 주십시오
-    confirm_username: 절차를 진행하려면 당신의 사용자명을 입력하세요
     proceed: 계정 삭제
     success_msg: 계정이 성공적으로 삭제되었습니다
     warning:
@@ -1562,7 +1563,7 @@ ko:
     table:
       expires_at: 만료
       uses: 이용 수
-    title: 초대하기
+    title: 초대
   link_preview:
     author_html: "%{name} 작성"
     potentially_sensitive_content:
@@ -1625,7 +1626,7 @@ ko:
     past_migrations: 과거 이주
     proceed_with_move: 팔로워 이동
     redirected_msg: 당신의 계정은 이제 %{acct} 로 리다이렉트됩니다.
-    redirecting_to: 당신의 계정은 %{acct} 로 리다이렉트됩니다.
+    redirecting_to: 내 계정이 %{acct}에 리디렉트됩니다.
     set_redirect: 리디렉션 설정
     warning:
       backreference_required: 새 계정은 이 계정으로 역참조를 하도록 설정되어 있어야 합니다
@@ -1827,7 +1828,7 @@ ko:
       windows: 윈도우
       windows_mobile: 윈도우 모바일
       windows_phone: 윈도우 폰
-    revoke: 취소
+    revoke: 삭제
     revoke_success: 세션을 성공적으로 취소하였습니다
     title: 세션
     view_authentication_history: 내 계정에 대한 인증 이력 보기
@@ -1838,7 +1839,6 @@ ko:
     appearance: 외관
     authorized_apps: 승인된 애플리케이션
     back: 마스토돈으로 돌아가기
-    delete: 계정 삭제
     development: 개발
     edit_profile: 프로필 편집
     export: 내보내기

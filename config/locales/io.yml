@@ -1236,7 +1236,6 @@ io:
   deletes:
     challenge_not_passed: Informo quan vu insertis es nekorekta
     confirm_password: Insertez nuna pasvorto por verifikar vua identeso
-    confirm_username: Insertez vua uzantonomo por konfirmar procedo
     proceed: Efacez konto
     success_msg: Vua konto sucesoze efacesis
     warning:
@@ -1467,6 +1466,16 @@ io:
     unsubscribe:
       action: Yes, desabonez
       complete: Desabonita
+      confirmation_html: Ka vu esas certa ke vu volas retroabonar de ganar %{type} por Mastodon che %{domain} al vua retposto %{email}? Vu povas riabonar per <a href="%{settings_path}">retpostosavigpreferaji</a>.
+      emails:
+        notification_emails:
+          favourite: savigretposti pri favoriziti
+          follow: retposti pri sequsavigi
+          follow_request: retposti pri sequdemandi
+          mention: retposti pri mencionsavigi
+          reblog: retposti pri diskonocsavigi
+      resubscribe_html: Se vu erore retroabonis, vu povas riabonar che <a href="%{settings_path}">retpostosavigpreferaji</a>.
+      success_html: Vu ne plue recevos %{type} por Mastodon che %{domain} a vua retpostadreso %{email}.
       title: Desabonez
   media_attachments:
     validations:
@@ -1693,7 +1702,6 @@ io:
     appearance: Aspekto
     authorized_apps: Yurizita apliki
     back: Retro a Mastodon
-    delete: Kontoefaco
     development: Developo
     edit_profile: Redaktar la profilo
     featured_tags: Estelata hashtagi
@@ -1786,6 +1794,7 @@ io:
     contrast: Mastodon (Alta kontrasteso)
     default: Mastodon (Obskura)
     mastodon-light: Mastodon (Brila)
+    system: Automata (sistemtemo)
   time:
     formats:
       default: "%d %b, %Y, %H:%M"

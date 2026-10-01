@@ -90,7 +90,7 @@ zh-CN:
         backups_retention_period: 用户可以生成其嘟文存档以供之后下载。当该值被设为正值时，这些存档将在指定的天数后自动从你的存储中删除。
         bootstrap_timeline_accounts: 这些账号将在新用户关注推荐中置顶显示。
         closed_registrations_message: 在关闭注册时显示
-        content_cache_retention_period: 来自其它实例的所有嘟文（包括转嘟与回复）都将在指定天数后被删除，不论本实例用户是否与这些嘟文产生过交互。这包括被本实例用户喜欢和收藏的嘟文。实例间用户的私下提及也将丢失并无法恢复。此设置针对的是特殊用途的实例，用于一般用途时会打破许多用户的期望。
+        content_cache_retention_period: 来自其他实例的所有嘟文（包括转嘟与回复）都将在指定天数后被删除，不论本实例用户是否与这些嘟文产生过交互。这包括被本实例用户喜欢和收藏的嘟文。实例间用户的私下提及也将丢失并无法恢复。此设置针对的是特殊用途的实例，用于一般用途时会打破许多用户的期望。
         custom_css: 你可以为网页版 Mastodon 应用自定义样式。
         favicon: WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖 Mastodon 的默认图标。
         landing_page: 选择新访客首次访问你的服务器时看到的页面。 如果选择“热门”，则需要在“发现”设置中启用热门趋势。 如果选择“本站动态”，则在“发现”设置中“展示本站嘟文的实时动态访问权限”一项需要设置为“所有人”。
@@ -122,7 +122,7 @@ zh-CN:
         expires_in: IP 地址是一种有限的资源，它们有时是共享的，并且常常变化。因此，不推荐无限期的 IP 封禁。
         ip: 输入 IPv4 或 IPv6 地址。你可以使用 CIDR 语法屏蔽 IP 段。小心不要屏蔽自己！
         severities:
-          no_access: 阻止访问所有资源
+          no_access: 阻止访问全部资源
           sign_up_block: 无法进行新的账号注册
           sign_up_requires_approval: 新注册需要你的批准
         severity: 选择如何处理来自此 IP 的请求。

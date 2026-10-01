@@ -21,9 +21,15 @@ kab:
         locale: Tutlayt n ugrudem, imaylen d yilɣa yettudemren
         password: Seqdec ma drus 8 n yisekkilen
         setting_always_send_emails: S umata, ilɣa s yimayl ur d-ttwaceyyεen ara mi ara tesseqdaceḍ Mastodon s wudem urmid
+        setting_default_quote_policy_unlisted: |-
+          Mi ara k-id-bdren wiyyaḍ, ula d izen-nsen ad yettwaffer seg yizirigen n wakud
+          yufraren.
         setting_display_media_default: Ffer imidyaten yettwacreḍ d infariyen
         setting_display_media_hide_all: Ffer yal tikkelt akk taywalt
         setting_display_media_show_all: Ffer yal tikkelt teywalt yettwacreḍ d tanafrit
+        setting_emoji_style: |-
+          Amek ara d-banen yimujiyen. "Awurman" ad iɛreḍ ad isseqdec imujiyen inasliyen, maca
+          ad yuɣal ɣer Twemoji i yiminigen iqburen.
         username: Tzemreḍ ad tesqedceḍ isekkilen, uṭṭunen akked yijerriden n wadda
       featured_tag:
         name: 'Ha-t-an kra seg ihacṭagen i tesseqdaceḍ ussan-a ineggura maḍi :'
@@ -49,6 +55,7 @@ kab:
         fields:
           name: Tabzimt
           value: Agbur
+        unlocked: Qbel ineḍfaren imaynuten s wudem awurman
       account_alias:
         acct: Asulay n umiḍan aqbur
       account_migration:
@@ -97,12 +104,15 @@ kab:
         setting_advanced_layout: Rmed agrudem n web leqqayen
         setting_always_send_emails: Dima ttazen-d ilɣa s yimayl
         setting_default_language: Tutlayt n usuffeɣ
+        setting_default_privacy: Abani n tsuffeɣt
         setting_default_quote_policy: Anwa i izemren ad d-yebder
         setting_display_media: Askanay n imidyaten
         setting_display_media_default: Akk-a kan
         setting_display_media_hide_all: Ffer-iten akk
         setting_display_media_show_all: Sken-iten-id akk
+        setting_emoji_style: Aɣanib n yimujiten
         setting_hide_network: Ffer azetta-k·m inmetti
+        setting_system_font_ui: Seqdec tasefsit tamezwert n unagraw
         setting_theme: Asental n wesmel
         setting_trends: Sken-d inezzaɣ n wass-a
         setting_use_pending_items: Askar aleɣwayan
@@ -114,11 +124,15 @@ kab:
         whole_word: Awal akk
       featured_tag:
         name: Ahacṭag
+      filters:
+        actions:
+          hide: Ffer-it akk
       form_admin_settings:
         app_icon: Tignit n usnas
         custom_css: CSS udmawan
         profile_directory: Rmed akaram n imaγnuten
         site_contact_email: Imayl n unermas
+        site_contact_username: Asulay n unermas
         site_short_description: Aglam n uqeddac
         site_terms: Tasertit tabaḍnit
         site_title: Isem n uqeddac
@@ -148,6 +162,8 @@ kab:
         pending_account: Amiḍan amaynut yesran asenqed
         reblog: Yella win yesselhan adda-dik·im
         report: Aneqis amaynut yettwazen
+        software_updates:
+          label: Yella lqem amaynut n Mastodon
       rule:
         hint: Isallen-nniḍen
         text: Alugen
@@ -165,6 +181,7 @@ kab:
         role: Tamlilt
         time_zone: Tamnaḍt tasragant
       user_role:
+        color: Ini n tsakezt
         name: Isem
         permissions_as_keys: Tisirag
       webhook:
