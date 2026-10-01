@@ -28,7 +28,7 @@
   &:hover:not(
       :active,
       :disabled,
-      [aria-disabled],
+      [aria-disabled='true'],
       [aria-pressed='true'],
       [aria-expanded='true']
     ) {
@@ -42,7 +42,7 @@
   }
 
   &:disabled,
-  &[aria-disabled] {
+  &[aria-disabled='true'] {
     cursor: not-allowed;
     opacity: 0.5;
   }
