@@ -56,7 +56,7 @@ const ComposerModalSwitch: React.FC = () => {
           />
         </Button>
 
-        <Button variant='solid' onClick={handleContinue}>
+        <Button variant='solid' color='accent' onClick={handleContinue}>
           <FormattedMessage
             id='compose.switch_modal.continue'
             defaultMessage='Continue'

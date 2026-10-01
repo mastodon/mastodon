@@ -32,7 +32,7 @@ const NotificationSettingsModal: React.FC = () => {
       </ModalTitle>
       <NotificationSettings />
       <ModalActions>
-        <Button variant='solid' onClick={handleCloseModal}>
+        <Button variant='solid' color='accent' onClick={handleCloseModal}>
           <FormattedMessage id='alt_text_modal.done' defaultMessage='Done' />
         </Button>
       </ModalActions>

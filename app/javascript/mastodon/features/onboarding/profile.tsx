@@ -312,7 +312,12 @@ export const Profile: React.FC<{
 
         <div className='column-footer'>
           {isRedesignEnabled() ? (
-            <Button variant='solid' onClick={handleSubmit} loading={isSaving}>
+            <Button
+              variant='solid'
+              color='accent'
+              onClick={handleSubmit}
+              loading={isSaving}
+            >
               <FormattedMessage
                 id='onboarding.profile.finish'
                 defaultMessage='Finish'

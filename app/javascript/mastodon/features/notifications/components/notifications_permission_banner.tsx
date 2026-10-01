@@ -67,7 +67,7 @@ const NotificationsPermissionBanner: React.FC = () => {
         />
       </p>
       {isRedesignEnabled() ? (
-        <Button onClick={handleClick} variant='solid' size='sm'>
+        <Button onClick={handleClick} variant='solid' color='accent' size='sm'>
           <FormattedMessage
             id='notifications_permission_banner.enable'
             defaultMessage='Enable desktop notifications'

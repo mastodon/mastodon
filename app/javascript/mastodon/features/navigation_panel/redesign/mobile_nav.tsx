@@ -115,6 +115,7 @@ export const RedesignMobileNavigation: React.FC = () => {
               as='a'
               href='/auth/sign_up'
               variant='solid'
+              color='accent'
               size='sm'
               className={classes.signUpButton}
             >
