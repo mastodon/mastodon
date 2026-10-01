@@ -74,6 +74,8 @@ class FeedManager
   def push_to_home(account, status, update: false)
     return false unless account.user&.signed_in_recently?
     return false unless add_to_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
+    return false if own_post?(account, status) && !account.user&.setting_display_own_posts
+    return false if boosted_by_actor?(account, status) && !account.user&.setting_display_own_boosts
 
     trim(:home, account.id)
     PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}", { 'update' => update }) if push_update_required?("timeline:#{account.id}")
@@ -670,5 +672,17 @@ class FeedManager
       .where(status_id: statuses.flat_map { |status| [status.id, status.reblog_of_id] }.compact)
       .pluck(:status_id, :account_id)
       .each_with_object({}) { |(id, account_id), mapping| (mapping[id] ||= []).push(account_id) }
+  end
+
+  def own_post?(account, status)
+    return false if status.reply?
+
+    account.id == status.account_id
+  end
+
+  def boosted_by_actor?(account, status)
+    return false if status.reblog_of_id.blank?
+
+    account.id == status.account_id
   end
 end
