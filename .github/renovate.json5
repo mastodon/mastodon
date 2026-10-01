@@ -3,6 +3,7 @@
   extends: [
     'config:recommended',
     'customManagers:dockerfileVersions',
+    'helpers:pinGitHubActionDigests',
     ':labels(dependencies)',
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
     ':enableVulnerabilityAlertsWithLabel(security)',
