@@ -610,6 +610,11 @@ zh-CN:
         title: 导入域名列表
       no_file: 没有选择文件
     fasp:
+      capabilities:
+        activation_msg: 能力已成功启用。
+        deactivation_msg: 能力已成功禁用。
+        disable: 禁用
+        enable: 启用
       debug:
         callbacks:
           created_at: 创建于
@@ -621,6 +626,7 @@ zh-CN:
         active: 有效
         base_url: 基础 URL
         callback: 回调
+        capabilities: 能力
         delete: 删除
         edit: 编辑提供商
         finish_registration: 完成注册
@@ -633,8 +639,6 @@ zh-CN:
           description: 你收到了来自FASP的注册。若你没有发起这个请求，请拒绝。若你发起了这个请求，请仔细比对名称和密钥指纹后再确认注册。
           reject: 拒绝
           title: 确认FASP注册
-        save: 保存
-        select_capabilities: 选择能力
         sign_in: 登录
         status: 状态
         title: 联邦宇宙辅助服务提供商
@@ -1502,9 +1506,11 @@ zh-CN:
   deletes:
     challenge_not_passed: 你输入的信息不正确
     confirm_password: 输入你当前的密码来验证身份
-    confirm_username: 输入你的用户名以继续
+    confirm_username: 确认用户名
+    confirm_username_hint_html: 请输入 <code>%{username}</code> 以确认你要删除的账号
     proceed: 删除账号
     success_msg: 你的账号已成功删除
+    title: 删除账号 %{acct}
     warning:
       before: 在删除前，请仔细阅读下列说明：
       caches: 已被其他服务器缓存的内容可能还会保留
@@ -2080,7 +2086,6 @@ zh-CN:
     appearance: 外观
     authorized_apps: 已授权的应用
     back: 返回 Mastodon
-    delete: 删除账号
     development: 开发
     edit_profile: 更改个人资料
     export: 导出

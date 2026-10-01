@@ -620,6 +620,11 @@ de:
         title: Domains importieren
       no_file: Keine Datei ausgewählt
     fasp:
+      capabilities:
+        activation_msg: Funktion erfolgreich aktiviert.
+        deactivation_msg: Funktion erfolgreich deaktiviert.
+        disable: Deaktivieren
+        enable: Aktivieren
       debug:
         callbacks:
           created_at: Erstellt am
@@ -631,6 +636,7 @@ de:
         active: Aktiv
         base_url: Basis-URL
         callback: Callback
+        capabilities: Funktionen
         delete: Entfernen
         edit: Anbieter bearbeiten
         finish_registration: Registrierung abschließen
@@ -643,8 +649,6 @@ de:
           description: Sie haben eine Registrierung von einer FASP erhalten. Lehnen Sie ab, wenn Sie dies nicht initiiert haben. Wenn Sie dies initiiert haben, vergleichen Sie Namen und Fingerabdruck vor der Bestätigung der Registrierung.
           reject: Ablehnen
           title: FASP-Registrierung bestätigen
-        save: Speichern
-        select_capabilities: Leistungsfähigkeit auswählen
         sign_in: Anmelden
         status: Status
         title: Fediverse Auxiliary Service Providers
@@ -1022,6 +1026,11 @@ de:
         warning_hint: Wir empfehlen die Einstellung „Registrierung muss genehmigt werden“ zu verwenden, es sei denn, du bist dir sicher, dass dein Moderationsteam Spam und böswillige Registrierungen rechtzeitig bearbeiten kann.
       security:
         authorized_fetch: Authentisierung von föderierten Servern erforderlich machen
+        authorized_fetch_hint: Bestimme, wann externe Server eine Authentifizierung durchführen müssen, wenn sie Inhalte dieses Servers abrufen.
+        authorized_fetch_modes:
+          actors: Für Profile und private Inhalte
+          all: Für jede Anfrage
+          none: Für private Inhalte
         authorized_fetch_overridden_hint: Diese Einstellung wird derzeit von einer Umgebungsvariable überschrieben und kann daher nicht geändert werden.
         federation_authentication: Authentisierung von föderierten Servern durchsetzen
       title: Servereinstellungen
@@ -1510,9 +1519,11 @@ de:
   deletes:
     challenge_not_passed: Die eingegebenen Informationen waren nicht korrekt
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
-    confirm_username: Gib deinen Profilnamen ein, um den Vorgang zu bestätigen
+    confirm_username: Profilname eingeben
+    confirm_username_hint_html: Gib deinen Profilnamen <code>%{username}</code> in das Feld ein, um dein Konto zu löschen
     proceed: Konto löschen
     success_msg: Dein Konto wurde erfolgreich gelöscht
+    title: Konto (%{acct}) löschen
     warning:
       before: 'Bevor du fortfährst, lies bitte diese Hinweise sorgfältig durch:'
       caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können fortbestehen
@@ -2117,7 +2128,6 @@ de:
     appearance: Design
     authorized_apps: Genehmigte Apps
     back: Zurück zu Mastodon
-    delete: Kontolöschung
     development: Entwicklung
     edit_profile: Profil bearbeiten
     export: Exportieren

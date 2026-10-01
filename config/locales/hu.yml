@@ -620,6 +620,11 @@ hu:
         title: Domain tiltások importálása
       no_file: Nincs fájl kiválasztva
     fasp:
+      capabilities:
+        activation_msg: A képesség sikeresen engedélyezve.
+        deactivation_msg: A képesség sikeresen letiltva.
+        disable: Letiltás
+        enable: Engedélyezés
       debug:
         callbacks:
           created_at: Létrehozva
@@ -631,6 +636,7 @@ hu:
         active: Aktív
         base_url: Alapwebcím
         callback: Visszahívás
+        capabilities: Képességek
         delete: Törlés
         edit: Szolgáltató szerkesztése
         finish_registration: Regisztráció befejezése
@@ -643,8 +649,6 @@ hu:
           description: Regisztrációt kaptál egy FASP-től. Ha nem te kérted, utasítsd el. Ha te kérted, akkor a regisztráció megerősítése előtt figyelmesen hasonlítsd össze a nevét és a kulcsának ujjlenyomatát.
           reject: Elutasítás
           title: FASP regisztráció megerősítése
-        save: Mentés
-        select_capabilities: Képességek kiválasztása
         sign_in: Bejelentkezés
         status: Állapot
         title: A Födiverzum segédszolgáltatói
@@ -1022,6 +1026,15 @@ hu:
         warning_hint: Javasoljuk a "Jóváhagyás szükséges a regisztrációhoz” lehetőség használatát, hacsak nem vagy biztos abban, hogy a moderátor csapatod időben tudja kezelni a szemetet és a rosszindulatú regisztrációkat.
       security:
         authorized_fetch: Hitelesítés szükséges a föderációs kiszolgálóktól
+        authorized_fetch_hint: Döntsd el, hogy mikor kell a távoli kiszolgálóknak hitelesíteniük, amikor tartalmat kérnek le erről a kiszolgálóról.
+        authorized_fetch_hints:
+          actors: A profilok kötelező hitelesítésének engedélyezése lehetővé teszi annak nyomon követését, hogy melyik kiszolgáló fedezte fel az egyes helyi fiókjaidat, ami jelentősen csökkentheti a fiók törléséről szóló értesítés során végrehajtott felesleges kérések számát. Ez a lehetőség a profilok kiszolgálásakor enyhe teljesítménycsökkenéssel jár, mivel a nyomon követés miatt a fordított proxy nem tudja gyorsítótárazni az ezekre a kérésekre adott válaszokat. Ez emellett kompatibilitási problémákat is okozhat egyes föderált szolgáltatásoknál.
+          all: A profilok kötelező hitelesítésének előnyei és hátrányai mellett, a föderált kiszolgálóktól feltétel nélkül megkövetelt hitelesítés lehetővé teszi mind a felhasználó-, mind a kiszolgálószintű blokkolás szigorúbb érvényesítését, ugyanakkor megakadályozza a legtöbb kérés gyorsítótárazását is. Emellett csökkenti a válaszok elérését is, mivel a válaszok továbbítása le lesz tiltva.
+          none: Ha a hitelesítést csak akkor követeled meg, amikor az feltétlenül szükséges, a fordított proxy több kérést tud gyorsítótárazni. Ez az lehetőség a jövőben eltűnhet. Csak akkor használd, ha a többi választás problémákat okoz.
+        authorized_fetch_modes:
+          actors: Profilokhoz és privát tartalomhoz
+          all: Minden kéréshez
+          none: Csak privát tartalomhoz
         authorized_fetch_overridden_hint: Jelenleg nem lehet ezt a beállítást megváltoztatni, mert azt egy környezeti változó felülbírálja.
         federation_authentication: Föderációs hitelesítés kikényszerítése
       title: Kiszolgáló-beállítások
@@ -1516,9 +1529,11 @@ hu:
   deletes:
     challenge_not_passed: A beírt információ helytelen
     confirm_password: Személyazonosságod megerősítéséhez írd be a jelenlegi jelszavad
-    confirm_username: Add meg a felhasználói nevedet a jóváhagyáshoz
+    confirm_username: Felhasználónév megerősítése
+    confirm_username_hint_html: 'Írd be ezt: <code>%{username}</code>, hogy megerősítsd a törlendő fiókot'
     proceed: Felhasználói fiók törlése
     success_msg: Felhasználói fiókod sikeresen töröltük
+    title: "%{acct} fiók törlése"
     warning:
       before: 'Mielőtt továbbmész, alaposan olvasd el ezt:'
       caches: Más szerverek által cache-elt tartalmak még megmaradhatnak
@@ -2122,7 +2137,6 @@ hu:
     appearance: Megjelenés
     authorized_apps: Jóváhagyott alkalmazások
     back: Vissza a Mastodonhoz
-    delete: Fiók törlése
     development: Fejlesztőknek
     edit_profile: Profil szerkesztése
     export: Exportálás

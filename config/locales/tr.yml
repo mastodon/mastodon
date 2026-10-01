@@ -643,8 +643,6 @@ tr:
           description: FASP'tan bir kayıt aldınız. Eğer bunu siz başlatmadıysanız reddedin. Eğer siz başlattıysanız, kaydı onaylamadan önce ad ve anahtar parmak izini dikkatlice karşılaştırın.
           reject: Reddet
           title: FASP Kaydını Onayla
-        save: Kaydet
-        select_capabilities: Yetenekleri Seç
         sign_in: Oturum Aç
         status: Durum
         title: Fediverse Yardımcı Hizmet Sağlayıcıları (FASP)
@@ -1022,6 +1020,15 @@ tr:
         warning_hint: Denetleyici ekibinizin istenmeyen ve kötü niyetli kayıtları ele alabilecekleri konusunda emin değilseniz "Kayıt için onay gerekli" seçeneğini kullanmanızı öneririz.
       security:
         authorized_fetch: Dağıtık sunuculardan kimlik doğrulama gerektir
+        authorized_fetch_hint: Bu sunucudan içerik alırken uzak sunucuların kimlik doğrulaması yapması gereken durumları belirleyin.
+        authorized_fetch_hints:
+          actors: Profiller için kimlik doğrulama zorunluluğu getirilmesi, her bir yerel hesabınızın hangi sunucu tarafından daha önce keşfedildiğinin izlenmesini sağlar; bu da, bir hesabın silinmesi durumunda sunuculara bildirimde bulunurken yapılan gereksiz isteklerin sayısını büyük ölçüde azaltabilir. Söz konusu izleme işlemi ve ters proxy’nin bu istekler için yanıtları önbelleğe alamaması nedeniyle, bu seçenek profillerin sunulması sırasında hafif bir performans kaybına yol açar. Bu durum, bazı federasyon hizmetleriyle uyumluluk sorunlarına da yol açabilir.
+          all: Profiller için kimlik doğrulama zorunluluğunun avantaj ve dezavantajlarının yanı sıra, federasyon sunucularından koşulsuz olarak kimlik doğrulama talep edilmesi, hem kullanıcı düzeyinde hem de sunucu düzeyinde engellemelerin daha sıkı bir şekilde uygulanmasını sağlar; ancak aynı zamanda çoğu isteğin önbelleğe alınmasını da engeller. Ayrıca, yanıtların iletilmesi devre dışı bırakılacağından, yanıtlarınızın erişim alanı da daralacaktır.
+          none: Kimlik doğrulamayı yalnızca kesinlikle gerekli olduğunda zorunlu kılmak, ters proxy’nizin daha fazla isteği önbelleğe almasını sağlar. Bu seçenek ileride kaldırılabilir. Yalnızca diğer seçenekler sorun yaratıyorsa bu seçeneği kullanın.
+        authorized_fetch_modes:
+          actors: Profiller ve özel içerik için
+          all: Her istek için
+          none: Sadece özel içerik için
         authorized_fetch_overridden_hint: Bir ortam değişkeni tarafından geçersiz kılındığı için şu anda bu ayarı değiştiremezsiniz.
         federation_authentication: Dağıtık kimlik doğrulama uygulaması
       title: Sunucu ayarları
@@ -1516,9 +1523,11 @@ tr:
   deletes:
     challenge_not_passed: Girdiğiniz bilgi hatalı
     confirm_password: Kimliğinizi doğrulamak için mevcut parolanızı girin
-    confirm_username: Prosedürü doğrulamak için kullanıcı adınızı girin
+    confirm_username: Kullanıcı adını onayla
+    confirm_username_hint_html: Silmek istediğiniz hesabı onaylamak için lütfen <code>%{username}</code> yazın
     proceed: Hesabı sil
     success_msg: Hesabınız başarıyla silindi
+    title: "%{acct} hesabını sil"
     warning:
       before: 'Devam etmeden önce, lütfen bu notları dikkatlice okuyun:'
       caches: Diğer sunucular tarafından ön belleğe alınan içerik kalabilir
@@ -2122,7 +2131,6 @@ tr:
     appearance: Görünüm
     authorized_apps: Yetkili uygulamalar
     back: Mastodon'a geri dön
-    delete: Hesap silme
     development: Geliştirme
     edit_profile: Profili düzenle
     export: Dışa Aktar

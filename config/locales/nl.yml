@@ -620,6 +620,11 @@ nl:
         title: Domeinblokkades importeren
       no_file: Geen bestand geselecteerd
     fasp:
+      capabilities:
+        activation_msg: Mogelijkheden met succes ingeschakeld.
+        deactivation_msg: Mogelijkheid met succes uitgeschakeld.
+        disable: Uitschakelen
+        enable: Inschakelen
       debug:
         callbacks:
           created_at: Aangemaakt op
@@ -631,6 +636,7 @@ nl:
         active: Ingeschakeld
         base_url: Basis-URL
         callback: Callback
+        capabilities: Mogelijkheden
         delete: Verwijderen
         edit: Aanbieder bewerken
         finish_registration: Registratie voltooien
@@ -643,8 +649,6 @@ nl:
           description: Je hebt een registratie ontvangen van een FASP. Weiger deze als je dit niet hebt aangevraagd. Heb je dit wel aangevraagd, vergelijk dan zorgvuldig de naam en de vingerafdruk van de sleutel voordat je de registratie bevestigt.
           reject: Afwijzen
           title: FASP-registratie bevestigen
-        save: Opslaan
-        select_capabilities: Mogelijkheden selecteren
         sign_in: Inloggen
         status: Status
         title: Fediverse Auxiliary Service Providers
@@ -1525,9 +1529,11 @@ nl:
   deletes:
     challenge_not_passed: De informatie die u hebt ingevoerd is ongeldig
     confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
-    confirm_username: Voer uw gebruikersnaam in om de procedure te bevestigen
+    confirm_username: Gebruikersnaam bevestigen
+    confirm_username_hint_html: Typ <code>%{username}</code> om het account dat u wilt verwijderen te bevestigen
     proceed: Account verwijderen
     success_msg: Jouw account is succesvol verwijderd
+    title: Account %{acct} verwijderen
     warning:
       before: 'Lees deze tekst zorgvuldig voordat je verder gaat:'
       caches: Berichten en media die op andere servers zijn opgeslagen kunnen daar achterblijven
@@ -2131,7 +2137,6 @@ nl:
     appearance: Uiterlijk
     authorized_apps: Geautoriseerde apps
     back: Terug naar Mastodon
-    delete: Account verwijderen
     development: Ontwikkelaars
     edit_profile: Profiel bewerken
     export: Exporteren
