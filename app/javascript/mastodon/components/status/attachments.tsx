@@ -373,7 +373,7 @@ const MediaAttachmentWrapper: React.FC<{
         data-color-scheme='dark'
         className={classNames(
           mainClasses.contentWrapper,
-          !visible && mainClasses.isFiltered,
+          !visible && mainClasses.hasContentWarning,
           !visible && classes.galleryHideButtons,
         )}
       >

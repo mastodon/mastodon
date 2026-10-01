@@ -60,10 +60,6 @@
   --content-col: span 2;
 }
 
-.isFiltered {
-  content: '';
-}
-
 .header {
   grid-column: span 2;
 }
@@ -114,6 +110,10 @@
   overflow: clip;
   border-radius: var(--radius-4);
 
+  &.isFiltered {
+    display: none;
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -144,7 +144,7 @@
     }
   }
 
-  &.isFiltered::after {
+  &.hasContentWarning::after {
     visibility: visible;
     opacity: 1;
     transition:

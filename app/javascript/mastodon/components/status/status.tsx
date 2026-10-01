@@ -188,7 +188,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         <div
           className={classNames(
             classes.contentWrapper,
-            isHidden && classes.isFiltered,
+            isHidden && classes.hasContentWarning,
+            !showDespiteFilter && isFiltered && classes.isFiltered,
           )}
           id={contentWrapperId}
           inert={isHidden}
