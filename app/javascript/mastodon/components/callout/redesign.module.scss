@@ -20,6 +20,8 @@
 }
 
 .textWrapper {
+  @include mixins.type-body-compact;
+
   flex-grow: 1;
 
   a {
