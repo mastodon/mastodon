@@ -189,6 +189,7 @@ vi:
         create_user_role: Tạo vai trò
         create_username_block: Tạo quy tắc tên người dùng
         demote_user: Hạ vai trò
+        destroy_account: Xóa dữ liệu tài khoản
         destroy_announcement: Xóa thông báo
         destroy_canonical_email_block: Bỏ chặn địa chỉ email biến thể
         destroy_custom_emoji: Xóa emoji
@@ -257,6 +258,7 @@ vi:
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
         create_username_block_html: "%{name} thêm quy tắc cho tên người dùng chứa %{target}"
         demote_user_html: "%{name} đã hạ vai trò của %{target}"
+        destroy_account_html: "%{name} đã xóa dữ liệu tài khoản %{target}"
         destroy_announcement_html: "%{name} đã xóa thông báo %{target}"
         destroy_canonical_email_block_html: "%{name} đã bỏ chặn địa chỉ email biến thể %{target}"
         destroy_custom_emoji_html: "%{name} đã xóa emoji %{target}"
@@ -466,7 +468,7 @@ vi:
     export_domain_allows:
       new:
         title: Nhập tên miền cho phép
-      no_file: Không có tập tin nào được chọn
+      no_file: Không có tệp nào được chọn
     export_domain_blocks:
       import:
         description_html: Bạn sắp nhập danh sách các tên miền chặn. Vui lòng xem lại danh sách này thật cẩn thận, đặc biệt nếu bạn không phải là tác giả của danh sách này.
@@ -477,7 +479,7 @@ vi:
       invalid_domain_block: 'Một hoặc nhiều tên miền đã bị bỏ qua do (các) lỗi sau: %{error}'
       new:
         title: Nhập máy chủ chặn
-      no_file: Không có tập tin nào được chọn
+      no_file: Không có tệp nào được chọn
     fasp:
       debug:
         callbacks:
@@ -578,7 +580,7 @@ vi:
         created_msg: Thêm lưu ý kiểm duyệt máy chủ thành công!
         description_html: Xem và để lại lưu ý cho các kiểm duyệt viên khác
         destroyed_msg: Xóa lưu ý kiểm duyệt máy chủ thành công!
-        placeholder: Thông tin về máy chủ này, hành động trước đây, hoặc bất cứ lưu ý giúp bạn kiểm duyệt máy chủ này trong tương lai.
+        placeholder: Thông tin về máy chủ này, hành động trước đây, hoặc mọi lưu ý giúp bạn kiểm duyệt máy chủ này trong tương lai.
         title: Lưu ý kiểm duyệt
       private_comment: Bình luận riêng
       public_comment: Bình luận công khai
@@ -782,7 +784,7 @@ vi:
         view_dashboard_description: Cho phép truy cập trang tổng quan và các chỉ số khác
         view_devops: Nhà phát triển
         view_devops_description: Cho phép truy cập trang tổng quan Sidekiq và pgHero
-        view_feeds: Xem nguồn cấp dữ liệu trực tiếp và theo chủ đề
+        view_feeds: Xem nguồn tin và chủ đề
         view_feeds_description: Cho phép người dùng truy cập nguồn cấp dữ liệu trực tiếp và theo chủ đề bất kể cài đặt máy chủ
       title: Danh sách vai trò
     rules:
@@ -854,7 +856,7 @@ vi:
         modes:
           approved: Yêu cầu phê duyệt để đăng ký
           none: Không ai có thể đăng ký
-          open: Bất cứ ai cũng có thể đăng ký
+          open: Bất kỳ ai cũng có thể đăng ký
         warning_hint: Chúng tôi khuyên bạn nên sử dụng "Duyệt đăng ký thủ công" trừ khi bạn tin tưởng đội ngũ kiểm duyệt của mình có thể xử lý kịp thời các đăng ký spam và độc hại.
       security:
         authorized_fetch: Yêu cầu xác thực từ các máy chủ liên hợp
@@ -863,8 +865,8 @@ vi:
         federation_authentication: Thực thi xác thực liên hợp
       title: Cài đặt máy chủ
     site_uploads:
-      delete: Xóa tập tin đã tải lên
-      destroyed_msg: Đã xóa tập tin tải lên thành công!
+      delete: Xóa tệp đã tải lên
+      destroyed_msg: Đã xóa tệp tải lên thành công!
     software_updates:
       critical_update: Quan trọng — vui lòng cập nhật sớm
       description: Bạn nên cập nhật Mastodon phiên bản mới nhất để được hưởng lợi từ các bản sửa lỗi và thêm tính năng mới. Nhất là để tránh các vấn đề bảo mật. Vì những lý do này, Mastodon sẽ kiểm tra các bản cập nhật 30 phút một lần và sẽ thông báo cho bạn theo tùy chọn thông báo qua email của bạn.
@@ -1177,9 +1179,9 @@ vi:
     hint_html: Nếu bạn muốn chuyển từ máy chủ khác sang máy chủ này, bắt buộc bạn phải tạo tên người dùng mới thì mới có thể tiến hành chuyển được người theo dõi. Hành động này <strong>không ảnh hưởng gì và có thể đảo ngược</strong>. <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong>.
     remove: Bỏ liên kết bí danh
   appearance:
-    advanced_settings: Cài đặt nâng cao
+    advanced_settings: Nâng cao
     animations_and_accessibility: Hiệu ứng
-    boosting_preferences: Thiết lập đăng lại
+    boosting_preferences: Đăng lại
     boosting_preferences_info_html: "<strong>Mẹo:</strong> Bất kể cài đặt, <kbd>Shift</kbd> + <kbd>Click</kbd> trên biểu tượng %{icon} Đăng lại sẽ lập tức đăng lại."
     discovery: Khám phá
     localization:
@@ -1201,7 +1203,7 @@ vi:
     logout: Đăng xuất
     regenerate_token: Tạo lại mã truy cập
     token_regenerated: Mã truy cập được tạo lại thành công
-    warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất cứ ai!
+    warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất kỳ ai!
     your_token: Mã truy cập của bạn
   auth:
     apply_for_account: Xin đăng ký
@@ -1321,9 +1323,11 @@ vi:
   deletes:
     challenge_not_passed: Thông tin bạn nhập không chính xác
     confirm_password: Nhập mật khẩu hiện tại của bạn để xác minh
-    confirm_username: Nhập tên người dùng của bạn để hoàn tất thủ tục
+    confirm_username: Xác nhận tên người dùng
+    confirm_username_hint_html: Vui lòng nhập <code>%{username}</code> để xác nhận tài khoản bạn muốn xóa
     proceed: Xóa tài khoản
     success_msg: Tài khoản của bạn đã được xóa thành công
+    title: Xóa tài khoản %{acct}
     warning:
       before: 'Trước khi tiếp tục, xin vui lòng xem xét cẩn thận:'
       caches: Nội dung đã lưu trữ trên các máy chủ khác có thể vẫn tồn tại
@@ -1399,13 +1403,13 @@ vi:
       in_progress: Đang tổng hợp dữ liệu của bạn...
       request: Tải về dữ liệu của bạn
       size: Dung lượng
-    blocks: Người chặn
+    blocks: Tài khoản đã chặn
     bookmarks: Tút đã lưu
     csv: CSV
-    domain_blocks: Máy chủ chặn
+    domain_blocks: Máy chủ đã chặn
     lists: Danh sách
-    mutes: Tài khoản bị phớt lờ
-    storage: Tập tin
+    mutes: Tài khoản đã phớt lờ
+    storage: Tệp
   featured_tags:
     add_new: Thêm mới
     errors:
@@ -1469,14 +1473,14 @@ vi:
       other: Chọn tất cả%{count} mục trùng hợp với tìm kiếm của bạn.
     today: hôm nay
     validation_errors:
-      other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
+      other: Đã xảy ra %{count} lỗi! Xem chi tiết bên dưới
   imports:
     errors:
       empty: File CSV trống
       incompatible_type: Không tương thích với loại nhập đã chọn
-      invalid_csv_file: 'Tập tin CSV không hợp lệ. Lỗi: %{error}'
+      invalid_csv_file: 'Tệp CSV không hợp lệ. Lỗi: %{error}'
       over_rows_processing_limit: chứa nhiều hơn %{count} hàng
-      too_large: Tập tin quá lớn
+      too_large: Tệp quá lớn
     failures: Thất bại
     imported: Đã nhập
     mismatched_types_warning: Có vẻ như bạn đã chọn sai loại cho lần nhập này, vui lòng kiểm tra lại.
@@ -1602,7 +1606,7 @@ vi:
     validations:
       images_and_video: Không thể đính kèm video vào tút đã chứa hình ảnh
       not_found: Không tìm thấy %{ids} hoặc nó đã bị đính kèm với tút khác
-      not_ready: Tập tin này vẫn chưa xử lý xong. Hãy thử lại sau!
+      not_ready: Tệp này vẫn chưa xử lý xong. Hãy thử lại sau!
       too_many: Không thể đính kèm hơn 4 tệp
   migrations:
     acct: Chuyển sang
@@ -1837,7 +1841,6 @@ vi:
     appearance: Giao diện
     authorized_apps: Ứng dụng
     back: Quay lại Mastodon
-    delete: Xóa tài khoản
     development: Lập trình
     edit_profile: Sửa hồ sơ
     export: Xuất dữ liệu
@@ -1850,7 +1853,7 @@ vi:
     profile: Hồ sơ
     relationships: Quan hệ
     severed_relationships: Quan hệ đứt gãy
-    statuses_cleanup: Tự động xóa tút cũ
+    statuses_cleanup: Xóa tút cũ tự động
     strikes: Lần cảnh cáo
     two_factor_authentication: Xác thực 2 bước
     webauthn_authentication: Khóa bảo mật
@@ -1900,7 +1903,7 @@ vi:
     quote_policies:
       followers: Chỉ người theo dõi
       nobody: Chỉ tôi
-      public: Bất cứ ai
+      public: Bất kỳ ai
     quote_post_author: Trích dẫn từ tút của @%{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1909,9 +1912,9 @@ vi:
       public: Công khai
       public_long: Bất kỳ ai trong và ngoài Mastodon
       unlisted: Hạn chế
-      unlisted_long: Ẩn khỏi kết quả tìm kiếm, xu hướng và dòng thời gian công khai của Mastodon
+      unlisted_long: Ẩn khỏi kết quả tìm kiếm, xu hướng và bảng tin công khai
   statuses_cleanup:
-    enabled: Tự động xóa những tút cũ
+    enabled: Xóa những tút cũ tự động
     enabled_hint: Trừ những ngoại lệ bên dưới
     exceptions: Ngoại lệ
     explanation: Số lượng tút sẽ tăng dần theo năm tháng. Bạn nên xóa những tút cũ khi tới một thời điểm nhất định.

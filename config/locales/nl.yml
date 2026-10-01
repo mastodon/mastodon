@@ -164,7 +164,7 @@ nl:
       undo_silenced: Niet langer beperken
       undo_suspension: Niet langer opschorten
       unsilenced_msg: Het opheffen van de beperkingen van %{username} zijn geslaagd
-      unsubscribe: Opzeggen
+      unsubscribe: Afmelden
       unsuspended_msg: Het niet langer opschorten van %{username} is geslaagd
       username: Gebruikersnaam
       view_domain: Samenvatting voor domein bekijken
@@ -192,6 +192,7 @@ nl:
         create_user_role: Rol aanmaken
         create_username_block: Gebruikersnaam-regel aanmaken
         demote_user: Gebruiker degraderen
+        destroy_account: Accountgegevens Verwijderen
         destroy_announcement: Mededeling verwijderen
         destroy_canonical_email_block: E-mailblokkade verwijderen
         destroy_custom_emoji: Lokale emoji verwijderen
@@ -260,6 +261,7 @@ nl:
         create_user_role_html: "%{name} maakte de rol %{target} aan"
         create_username_block_html: "%{name} heeft regel toegevoegd voor gebruikersnamen die %{target} bevatten"
         demote_user_html: Gebruiker %{target} is door %{name} gedegradeerd
+        destroy_account_html: "%{name} heeft accountgegevens voor %{target} verwijderd"
         destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_canonical_email_block_html: "%{name} deblokkeerde e-mail met de hash %{target}"
         destroy_custom_emoji_html: "%{name} verwijderde de emoji %{target}"
@@ -707,7 +709,7 @@ nl:
       reported_with_application: Gerapporteerd met applicatie
       resolved: Opgelost
       resolved_msg: Rapportage succesvol opgelost!
-      skip_to_actions: Ga direct naar de maatregelen
+      skip_to_actions: Ga naar de acties
       status: Rapportages
       statuses: Gerapporteerde inhoud
       statuses_description_html: De problematische inhoud wordt aan het gerapporteerde account medegedeeld
@@ -1283,7 +1285,7 @@ nl:
       email_settings_hint_html: Klik op de link die we naar %{email} hebben gestuurd om Mastodon te gebruiken. We wachten wel even.
       link_not_received: Geen link ontvangen?
       new_confirmation_instructions_sent: Je ontvangt binnen enkele minuten een nieuwe e-mail met de bevestigingslink!
-      title: Kijk in je mailbox
+      title: Kijk in je e-mail
     sign_in:
       preamble_html: Log in met de inloggegevens van <strong>%{domain}</strong>. Als jouw account zich op een andere server bevindt, kun je hier niet inloggen.
       title: Inloggen op %{domain}
@@ -1340,9 +1342,11 @@ nl:
   deletes:
     challenge_not_passed: De informatie die u hebt ingevoerd is ongeldig
     confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
-    confirm_username: Voer uw gebruikersnaam in om de procedure te bevestigen
+    confirm_username: Gebruikersnaam bevestigen
+    confirm_username_hint_html: Typ <code>%{username}</code> om het account dat u wilt verwijderen te bevestigen
     proceed: Account verwijderen
     success_msg: Jouw account is succesvol verwijderd
+    title: Account %{acct} verwijderen
     warning:
       before: 'Lees deze tekst zorgvuldig voordat je verder gaat:'
       caches: Berichten en media die op andere servers zijn opgeslagen kunnen daar achterblijven
@@ -1876,7 +1880,6 @@ nl:
     appearance: Uiterlijk
     authorized_apps: Geautoriseerde apps
     back: Terug naar Mastodon
-    delete: Account verwijderen
     development: Ontwikkelaars
     edit_profile: Profiel bewerken
     export: Exporteren
@@ -2136,8 +2139,8 @@ nl:
         one: "%{people} persoon in de afgelopen 2 dagen"
         other: "%{people} mensen in de afgelopen 2 dagen"
       hashtags_subtitle: Wat er in de afgelopen 2 dagen is gebeurd verkennen
-      hashtags_title: Populaire hashtags
-      hashtags_view_more: Meer populaire hashtags bekijken
+      hashtags_title: Trending hashtags
+      hashtags_view_more: Meer trending hashtags bekijken
       post_action: Opstellen
       post_step: Zeg hallo tegen de wereld met tekst, foto's, video's of peilingen.
       post_title: Je eerste bericht schrijven

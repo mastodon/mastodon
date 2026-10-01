@@ -7,7 +7,7 @@ fr-CA:
       send_paranoid_instructions: Si votre adresse courriel existe dans notre base de données, vous allez recevoir un courriel contenant les instructions de confirmation de votre adresse. Veuillez vérifier votre dossier de pourriels si vous n'avez pas reçu ce message.
     failure:
       already_authenticated: Vous êtes déjà connecté·e.
-      closed_registrations: Votre tentative d'inscription a été bloquée en raison d'une politique de réseau. Si vous pensez qu'il s'agit d'une erreur, contactez %{email}.
+      closed_registrations: Votre inscription a été bloquée en raison d'une politique réseau. Si vous pensez qu'il s'agit d'une erreur, contacter %{email}.
       inactive: Votre compte n’est pas encore activé.
       invalid: "%{authentication_keys} ou mot de passe invalide."
       last_attempt: Vous avez droit à une dernière tentative avant que votre compte ne soit verrouillé.
@@ -49,12 +49,12 @@ fr-CA:
         subject: 'Mastodon: Instructions pour changer votre mot de passe'
         title: Réinitialisation du mot de passe
       two_factor_disabled:
-        explanation: La connexion est maintenant possible en n'utilisant uniquement l'adresse e-mail et le mot de passe.
+        explanation: La connexion est maintenant possible en utilisant uniquement l'adresse de courriel et le mot de passe.
         subject: 'Mastodon: authentification à deux facteurs désactivée'
         subtitle: L'authentification à deux facteurs pour votre compte a été désactivée.
         title: A2F désactivée
       two_factor_enabled:
-        explanation: Un jeton généré par l'application appairée TOTP sera nécessaire pour vous connecter.
+        explanation: Un jeton généré par l'application TOTP appairée sera nécessaire pour vous connecter.
         subject: 'Mastodon: authentification à deux facteurs activée'
         subtitle: L'authentification à deux facteurs est maintenant activée pour votre compte.
         title: A2F activée

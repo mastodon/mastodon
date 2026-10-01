@@ -202,6 +202,7 @@ ar:
         create_relay: إنشاء خادم ترحيل
         create_unavailable_domain: إنشاء نطاق غير متوفر
         create_user_role: انشاء دور
+        create_username_block: إنشاء قاعدة اسم المستخدم
         demote_user: إنزال رتبة المستخدم
         destroy_announcement: احذف الإعلان
         destroy_canonical_email_block: إلغاء حظر لبريد إلكتروني
@@ -899,9 +900,13 @@ ar:
         all: للجميع
         disabled: لا أحد
         users: للمستخدمين المتصلين محليا
+      feed_access:
+        modes:
+          public: الجميع
       landing_page:
         values:
           about: عن
+          local_feed: الخيط المحلي
           trends: المتداوَلة
       registrations:
         moderation_recommandation: الرجاء التأكد من أن لديك فريق إشراف كافي وفعال قبل فتح التسجيلات للجميع!
@@ -1400,7 +1405,6 @@ ar:
   deletes:
     challenge_not_passed: المعلومات التي أدخلتها لم تكن صحيحة
     confirm_password: قم بإدخال كلمتك السرية الحالية للتحقق من هويتك
-    confirm_username: ادخل اسم المستخدم الخاص بك لتأكيد الإجراء
     proceed: احذف الحساب
     success_msg: تم حذف حسابك بنجاح
     warning:
@@ -1742,7 +1746,9 @@ ar:
       uses: عدد الاستخدامات
     title: دعوة أشخاص
   link_preview:
+    author_html: مِن %{name}
     potentially_sensitive_content:
+      action: اضغط للعرض
       hide_button: إخفاء
   lists:
     errors:
@@ -2010,7 +2016,6 @@ ar:
     appearance: المظهر
     authorized_apps: التطبيقات المرخص لها
     back: عودة إلى ماستدون
-    delete: حذف الحسابات
     development: التطوير
     edit_profile: تعديل الصفحة التعريفية
     export: تصدير
@@ -2085,10 +2090,14 @@ ar:
       limit: لقد بلغت الحد الأقصى للمنشورات المثبتة
       ownership: لا يمكن تثبيت منشور نشره شخص آخر
       reblog: لا يمكن تثبيت إعادة نشر
+    quote_error:
+      not_available: المنشور غير متوفر
+      revoked: تمت إزالة المنشور من قبل صاحبه
     quote_policies:
       followers: للمتابِعين فقط
       nobody: لي فقط
       public: أيا كان
+    quote_post_author: اقتبس منشور من قبل %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: إشارة خاصة

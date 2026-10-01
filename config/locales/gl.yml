@@ -181,17 +181,18 @@ gl:
         confirm_user: Confirmar usuaria
         create_account_warning: Crear aviso
         create_announcement: Crear anuncio
-        create_canonical_email_block: Crear Bloqueo de Correo
+        create_canonical_email_block: Crear bloqueo de correo
         create_custom_emoji: Crear emoticonas personalizadas
         create_domain_allow: Crear Dominio Permitido
         create_domain_block: Crear bloquedo do Dominio
-        create_email_domain_block: Crear Bloqueo de Dominio do correo
+        create_email_domain_block: Crear bloqueo de dominio do correo
         create_ip_block: Crear regra IP
         create_relay: Crear Repetidor
         create_unavailable_domain: Crear dominio Non dispoñible
         create_user_role: Crear Rol
         create_username_block: Crear regra para Identificadores
         demote_user: Degradar usuaria
+        destroy_account: Eliminar os datos da conta
         destroy_announcement: Eliminar anuncio
         destroy_canonical_email_block: Eliminar bloqueo do correo
         destroy_custom_emoji: Eliminar emoticona personalizada
@@ -208,11 +209,11 @@ gl:
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
         disable_relay: Desactivar Repetidor
-        disable_sign_in_token_auth_user: Desactivar Autenticación por Token no Correo para a Usuaria
+        disable_sign_in_token_auth_user: Desactivar autenticación cun token no correo da usuaria
         disable_user: Desactivar usuaria
         enable_custom_emoji: Activar emoticona personalizada
         enable_relay: Activar Repetidor
-        enable_sign_in_token_auth_user: Activar Autenticación con Token no Correo para a Usuaria
+        enable_sign_in_token_auth_user: Activar a autenticación cun token no correo da usuaria
         enable_user: Activar usuaria
         memorialize_account: Transformar en conta conmemorativa
         promote_user: Promover usuaria
@@ -236,7 +237,7 @@ gl:
         update_custom_emoji: Actualizar emoticona personalizada
         update_domain_block: Actualizar bloqueo do dominio
         update_ip_block: Actualizar regra IP
-        update_report: Actualización da denuncia
+        update_report: Actualizar a denuncia
         update_status: Actualizar publicación
         update_user_role: Actualizar Rol
         update_username_block: Actualizar regra para Identificadores
@@ -260,6 +261,7 @@ gl:
         create_user_role_html: "%{name} creou o rol %{target}"
         create_username_block_html: "%{name} engadiu unha regra para identificadores que contén %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
+        destroy_account_html: "%{name} eliminou os datos da conta %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o correo con suma de comprobación %{target}"
         destroy_custom_emoji_html: "%{name} eliminou o emoji %{target}"
@@ -546,7 +548,7 @@ gl:
       confirm_purge: Tes a certeza de querer eliminar permanentemente os datos deste dominio?
       content_policies:
         comment: Nota interna
-        description_html: Podes definir políticas acerca do contido que serán aplicadas a tódalas contas deste dominio e tódolos seus subdominios.
+        description_html: Podes definir políticas sobre o contido que serán aplicadas a todas as contas de este dominio e todos os seus subdominios.
         limited_federation_mode_description_html: Podes escoller se permites ou non a federación con este dominio.
         policies:
           reject_media: Rexeitar multimedia
@@ -1340,7 +1342,6 @@ gl:
   deletes:
     challenge_not_passed: A información introducida non é correcta
     confirm_password: Escribe o contrasinal actual para verificar a túa identidade
-    confirm_username: Introduce o nome de usuaria para confirmar o procedemento
     proceed: Eliminar conta
     success_msg: A súa conta eliminouse correctamente
     warning:
@@ -1704,7 +1705,7 @@ gl:
     mention:
       action: Responder
       body: "%{name} mencionoute en:"
-      subject: Foches mencionada por %{name}
+      subject: "%{name} mencionoute"
       title: Nova mención
     poll:
       subject: A enquisa de %{name} rematou
@@ -1876,7 +1877,6 @@ gl:
     appearance: Aparencia
     authorized_apps: Apps autorizadas
     back: Volver a Mastodon
-    delete: Eliminación da conta
     development: Desenvolvemento
     edit_profile: Editar perfil
     export: Exportar

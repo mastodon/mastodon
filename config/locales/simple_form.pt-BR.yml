@@ -4,7 +4,7 @@ pt-BR:
     hints:
       account:
         attribution_domains: Um por linha. Protege contra atribuições falsas.
-        discoverable: Suas publicações e perfil públicos podem ser destaques ou recomendados em várias áreas de Mastodon, e seu perfil pode ser sugerido a outros usuários.
+        discoverable: Seu perfil e publicações talvez sejam destacados ou recomendados no Mastodon e seu perfil pode ser sugerido para outros usuários.
         display_name: Seu nome completo ou apelido.
         fields: Sua página inicial, pronomes, idade ou qualquer coisa que quiser.
         indexable: Suas publicações abertas podem aparecer nos resultados da busca em Mastodon. As pessoas que interagiram com suas publicações podem conseguir pesquisá-las independentemente disso.
@@ -61,12 +61,12 @@ pt-BR:
         setting_default_quote_policy_private: Publicações exclusivas de seguidores criadas no Mastodon não podem ser citadas por outras pessoas.
         setting_default_quote_policy_unlisted: Quando as pessoas citarem você, suas publicações também ficarão ocultas da linha do tempo.
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
-        setting_display_media_default: Sempre ocultar mídia sensível
-        setting_display_media_hide_all: Sempre ocultar todas as mídias
-        setting_display_media_show_all: Sempre mostrar mídia sensível
+        setting_display_media_default: Ocultar mídia marcada como sensível
+        setting_display_media_hide_all: Sempre ocultar mídias
+        setting_display_media_show_all: Sempre exibir mídias
         setting_emoji_style: Como exibir emojis. "Automáticos" tentará usar emojis nativos, mas voltará para o Twemoji para navegadores legados.
         setting_quick_boosting_html: Quando ativado, clicar no ícone de impulsionamento %{boost_icon} impulsionará imediatamente o texto, em vez de abrir o menu suspenso de impulsionamento/citação. Move a ação de citação para o menu %{options_icon} (Opções).
-        setting_system_scrollbars_ui: Se aplica apenas para navegadores de computador baseado no Safari e Chrome
+        setting_system_scrollbars_ui: Aplica somente a navegadores de desktop baseados no Safari e Chrome
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
         username: Você pode usar letras, números e underlines
@@ -79,7 +79,7 @@ pt-BR:
       featured_tag:
         name: 'Aqui estão algumas hashtags usadas recentemente:'
       filters:
-        action: Escolher qual ação executar quando uma publicação corresponder ao filtro
+        action: Escolher qual ação executar se uma publicação corresponde ao filtro
         actions:
           blur: Oculte a mídia com um aviso, porém mantenha o texto visível
           hide: Esconder completamente o conteúdo filtrado, comportando-se como se ele não existisse
@@ -88,7 +88,7 @@ pt-BR:
         activity_api_enabled: Contagem de publicações locais, usuários ativos e novos usuários semanais
         app_icon: WEBP, PNG, GIF ou JPG. Sobrescrever o ícone padrão do aplicativo em dispositivos móveis com um ícone personalizado.
         backups_retention_period: Os usuários podem gerar arquivos de suas postagens para baixar mais tarde. Quando definido como um valor positivo, esses arquivos serão automaticamente excluídos do seu armazenamento após o número especificado de dias.
-        bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
+        bootstrap_timeline_accounts: Estas contas estarão fixas no topo das recomendações para novos usuários.
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
         content_cache_retention_period: Todas as postagens de outros servidores (incluindo boosts e respostas) serão excluídas após o número especificado de dias, sem levar a qualquer interação do usuário local com esses posts. Isto inclui postagens onde um usuário local o marcou como favorito ou favoritos. Menções privadas entre usuários de diferentes instâncias também serão perdidas e impossíveis de restaurar. O uso desta configuração destina-se a instâncias especiais de propósitos e quebra muitas expectativas dos usuários quando implementadas para uso de propósito geral.
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
@@ -152,7 +152,7 @@ pt-BR:
         jurisdiction: Liste o país onde quem paga as contas reside. Se for uma empresa ou outra entidade, liste o país onde ela está incorporada, e a cidade, região, território ou estado, conforme apropriado.
         min_age: Não deve ter menos que a idade mínima exigida pelas suas leis locais.
       user:
-        chosen_languages: Apenas as publicações dos idiomas selecionados serão exibidas nas linhas públicas
+        chosen_languages: Somente publicações de idiomas selecionados aparecerão nas timelines públicas
         date_of_birth:
           one: Precisamos ter certeza de que você tem, no mínimo, %{count} anos para usar o %{domain} Não armazenaremos essa informação.
           other: Temos que ter certeza de que você é pelo menos %{count} para usar o %{domain} Não vamos armazenar isso.

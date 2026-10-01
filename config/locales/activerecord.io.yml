@@ -49,8 +49,14 @@ io:
           attributes:
             reblog:
               taken: de postajo ja existas
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: esas tro antea, mustas esar post %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: esas sub la evlimito
             email:
               blocked: uzas nepermisata retpostodomeno
               unreachable: semblas ne existar

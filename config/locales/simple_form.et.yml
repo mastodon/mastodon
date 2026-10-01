@@ -9,12 +9,12 @@ et:
         fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
         indexable: Sinu avalikud postitused võivad ilmuda Mastodoni otsingutulemustes. Inimesed, kes on sinu postitustele reageerinud, saavad neid otsida nii või naa.
         note: 'Saad @mainida teisi inimesi või #teemaviiteid.'
-        show_collections: Inimesed saavad sirvida su jälgijaid ja jälgitavaid. Inimesed, keda sa jälgid, näevad seda sõltumata häälestuse valikust.
+        show_collections: Inimesed saavad sirvida su jälgijaid ja jälgitavaid. Inimesed, keda sa jälgid, näevad seda sõltumata seadistusest.
         unlocked: Teised kasutajad saavad sind jälgima hakata nõusolekut küsimata. Eemalda märge, kui soovid jälgimistaotlusi üle vaadata ja valida, kas nõustuda või keelduda uute jälgijatega.
       account_alias:
         acct: Sisesta konto kasutajanimi@domeen, mille soovid siia ümber kolida
       account_migration:
-        acct: Sisesta kasutajanimi@domeen, kuhu soovid konto siit kolida
+        acct: Sisesta kasutajanimi@domeen, kuhu soovid kasutajakonto siit kolida
       account_warning_preset:
         text: Saad kasutada postituse süntaksi, näiteks võrguaadresse, teemaviiteid ja mainimisi
         title: Valikuline. Ei ole nähtav saajale
@@ -77,7 +77,7 @@ et:
         domain: See võib olla e-postiaadressis näha olev domeen või MX-kirje, mida aadress kasutab. Kontroll toimub liitumise käigus.
         with_dns_records: Püütakse lahendada selle domeeni DNS-kirjed ja ühtlasi blokeerida ka selle tulemused
       featured_tag:
-        name: 'Siin on mõned nendest teemaviiteid, mida oled viimati kasutanud:'
+        name: 'Siin on mõned neist teemaviidetest, mida oled viimati kasutanud:'
       filters:
         action: Tegevuse valik, kui postitus vastab filtrile
         actions:
@@ -86,11 +86,11 @@ et:
           warn: Varja filtreeritud sisu hoiatusega, nimetades filtri pealkirja
       form_admin_settings:
         activity_api_enabled: Kohalike postituste, aktiivsete kasutajate ja uute registreerumistr arv nädala kaupa grupeeritult
-        app_icon: WEBP, PNG, GIF või JPG. Asendab mobiilsel seadmel äpi vaikeikooni kohandatud ikooniga.
+        app_icon: WEBP, PNG, GIF või JPG. Asendab mobiilses seadmes rakenduse vaikeikooni kohandatud ikooniga.
         backups_retention_period: Kasutajatel on võimalus genereerida oma postitustest hiljem allalaaditav arhiiv. Kui määrad positiivse arvu, siis kustutatakse need arhiivid serveri andmeruumist määratud arvu päevade järel automaatselt.
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
-        content_cache_retention_period: Kõik teiste serverite postitused (sealhulgas jagamised ja vastused) kustutatakse pärast määratud arvu päevade möödumist, sõltumata, kuidas kohalik kasutaja on nende postitustega interakteerunud. Hõlmatud on ka postitused, mille kohalik kasutaja on märkinud järjehoidjaks või lemmikuks. Ka eri instantside kasutajate vahelised privaatsed mainimised kaovad ja neid on võimatu taastada. See seadistus on mõeldud eriotstarbeliste instantside jaoks ja rikub paljude kasutajate ootusi, kui seda rakendatakse üldotstarbelise kasutuse puhul.
+        content_cache_retention_period: Kõik teiste serverite postitused (sealhulgas jagamised ja vastused) kustutatakse pärast määratud arvu päevade möödumist, sõltumata, kuidas kohalik kasutaja on nende postitustega suhestunud. Hõlmatud on ka postitused, mille kohalik kasutaja on märkinud järjehoidjaks või lemmikuks. Ka eri serverite kasutajate vahelised privaatsed mainimised kaovad ja neid on võimatu taastada. See seadistus on mõeldud eriotstarbeliste serverite jaoks ja rikub paljude kasutajate ootusi, kui seda rakendatakse üldotstarbelise kasutuse puhul.
         custom_css: Mastodoni veebiliideses on võimalik kasutada kohandatud stiile.
         favicon: WEBP, PNG, GIF või JPG. Asendab Mastodoni vaike- favicon ikooni kohandatud ikooniga.
         landing_page: Sellega valid lehe, mida uued külastajad sinu serverisse tulles näevad. Kui sa valid „Trendid“, siis peavad nad olema lubatud. Kui sa valid „Kohalike postituste voog“, siis seadistuse „Ligipääs kohalike postituste voole“ väärtus peab olema „Kõik“.
@@ -220,14 +220,14 @@ et:
         data: Andmed
         display_name: Kuvanimi
         email: E-posti aadress
-        expires_in: Aegu pärast
+        expires_in: Aegumine
         fields: Veebiviited
         header: Päis
         honeypot: "%{label} (ära sisesta)"
         inbox_url: Sõnumivahendusserveri sisendkausta võrguaadress
         irreversible: Kustuta selle asemel, et peita
         locale: Kasutajaliidese keel
-        max_uses: Maksimum kasutajate arv
+        max_uses: Kasutajate arvu ülempiir
         new_password: Uus salasõna
         note: Elulugu
         otp_attempt: Kaheastmeline kood
@@ -280,7 +280,7 @@ et:
           warn: Peida hoiatusega
       form_admin_settings:
         activity_api_enabled: Avalda agregeeritud statistika kasutajaaktiivsuse kohta API-s
-        app_icon: Äpi ikoon
+        app_icon: Rakenduse ikoon
         backups_retention_period: Kasutajate arhiivi talletusperiood
         bootstrap_timeline_accounts: Alati soovita neid kontosid uutele kasutajatele
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
@@ -351,7 +351,7 @@ et:
         text: Reegel
       settings:
         indexable: Kaasa profiilileht otsimootoritesse
-        show_application: Näita, millisest äpist postituse saatsid
+        show_application: Näita, millisest rakendusest sa postitasid
       tag:
         listable: Luba sellel teemaviitel ilmuda profiilide kataloogis
         name: Teemaviide

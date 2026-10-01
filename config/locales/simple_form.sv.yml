@@ -27,7 +27,7 @@ sv:
           disable: Förhindra användaren från att använda sitt konto, men radera eller dölj inte innehållet.
           none: Använd det här för att skicka en varning till användaren, utan att vidta någon ytterligare åtgärd.
           sensitive: Tvinga alla denna användares mediebilagor till att flaggas som känsliga.
-          silence: Hindra användaren från att kunna göra offentliga inlägg, göm deras inlägg och notiser från folk som inte följer dem. Stänger alla anmälningar mot detta kontot.
+          silence: Hindra användaren från att göra offentliga inlägg, dölj hens inlägg och aviseringar för personer som inte följer hen. Stänger alla anmälningar mot detta konto.
           suspend: Förhindrar all interaktion från eller till detta konto och ta bort dess innehåll. Går att ångra inom 30 dagar. Stänger alla anmälningar mot detta konto.
         warning_preset_id: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
       announcement:
@@ -65,7 +65,7 @@ sv:
         setting_display_media_hide_all: Dölj alltid all media
         setting_display_media_show_all: Visa alltid media markerad som känslig
         setting_emoji_style: Hur emojier visas. "Automatiskt" kommer att försöka använda webbläsarens emojier, men faller tillbaka till Twemoji för äldre webbläsare.
-        setting_quick_boosting_html: När aktiverad, klicka på %{boost_icon} Boost-ikonen för att omedelbart boosta istället för att öppna boost/citera-rullgardinsmenyn. Flyttar citering till %{options_icon} (Alternativ)-menyn.
+        setting_quick_boosting_html: När detta är aktiverat boostas inlägget direkt när du klickar på ikonen %{boost_icon} Boosta, i stället för att öppna rullgardinsmenyn för boost/citat. Citatåtgärden flyttas till menyn %{options_icon} (Alternativ).
         setting_system_scrollbars_ui: Gäller endast för webbläsare som är baserade på Safari och Chrome
         setting_use_blurhash: Gradienter är baserade på färgerna av de dolda objekten men fördunklar alla detaljer
         setting_use_pending_items: Dölj tidslinjeuppdateringar bakom ett klick istället för att automatiskt bläddra i flödet
@@ -90,7 +90,7 @@ sv:
         backups_retention_period: Användare har möjlighet att generera arkiv av sina inlägg för att ladda ned senare. När det sätts till ett positivt värde raderas dessa arkiv automatiskt från din lagring efter det angivna antalet dagar.
         bootstrap_timeline_accounts: Dessa konton kommer fästas högst upp i nya användares följrekommendationer.
         closed_registrations_message: Visas när nyregistreringar är avstängda
-        content_cache_retention_period: Alla inlägg från andra servrar (inklusive booster och svar) kommer att raderas efter det angivna antalet dagar, utan hänsyn till någon lokal användarinteraktion med dessa inlägg. Detta inkluderar inlägg där en lokal användare har markerat det som bokmärke eller favoriter. Privata omnämnanden mellan användare från olika instanser kommer också att gå förlorade och blir omöjliga att återställa. Användningen av denna inställning är avsedd för specialfall och bryter många användarförväntningar när de implementeras för allmänt bruk.
+        content_cache_retention_period: Alla inlägg från andra servrar (inklusive boostar och svar) raderas efter det angivna antalet dagar, utan hänsyn till lokal användarinteraktion med dessa inlägg. Det gäller även inlägg som en lokal användare har lagt till som bokmärke eller favorit. Privata omnämnanden mellan användare på olika instanser går också förlorade och kan inte återställas. Den här inställningen är avsedd för specialiserade instanser och bryter mot många användares förväntningar om den används på allmänna instanser.
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
         favicon: WEBP, PNG, GIF eller JPG. Används på mobila enheter istället för appens egen ikon.
         landing_page: Väljer vilken sida nya besökare ser när de först anländer till din server. Om du väljer "Trender" måste trenderna aktiveras i Upptäckningsinställningarna. Om du väljer "Lokalt flöde" måste "Åtkomst till live-flöden med lokala inlägg" sättas till "Alla" i Upptäckningsinställningarna.
@@ -237,7 +237,7 @@ sv:
         setting_aggregate_reblogs: Gruppera boostar i tidslinjer
         setting_always_send_emails: Skicka alltid e-postnotiser
         setting_auto_play_gif: Spela upp GIF:ar automatiskt
-        setting_boost_modal: Kontrollera boost-synlighet
+        setting_boost_modal: Styr synligheten för boostar
         setting_default_language: Inläggsspråk
         setting_default_privacy: Inläggssynlighet
         setting_default_quote_policy: Vem kan citera
@@ -250,10 +250,10 @@ sv:
         setting_display_media_hide_all: Dölj alla
         setting_display_media_show_all: Visa alla
         setting_emoji_style: Emoji-stil
-        setting_expand_spoilers: Utöka alltid tutningar markerade med innehållsvarningar
+        setting_expand_spoilers: Utöka alltid inlägg markerade med innehållsvarningar
         setting_hide_network: Göm ditt nätverk
         setting_missing_alt_text_modal: Varna mig innan jag gör mediainlägg utan alt-text
-        setting_quick_boosting: Aktivera snabb-boostande
+        setting_quick_boosting: Aktivera snabb boostning
         setting_reduce_motion: Minska rörelser i animationer
         setting_system_font_ui: Använd systemets standardfont
         setting_system_scrollbars_ui: Använd systemets standardrullningsfält
@@ -267,7 +267,7 @@ sv:
         title: Rubrik
         type: Importtyp
         username: Användarnamn
-        username_or_email: Användarnamn eller e-mail
+        username_or_email: Användarnamn eller e-post
         whole_word: Hela ord
       email_domain_block:
         with_dns_records: Inkludera MX-poster och IP-adresser för domänen

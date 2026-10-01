@@ -1,8 +1,8 @@
 ---
 zh-CN:
   about:
-    about_mastodon_html: 来自未来的社交网络：无广告、无监视、去中心化、合乎道德！使用 Mastodon 夺回你的数据！
-    contact_missing: 未设定
+    about_mastodon_html: 迎接未来的社交网络：拒绝广告，告别商业监视，坚持伦理设计，拥抱去中心化！加入 Mastodon，夺回你的数据主权！
+    contact_missing: 未设置
     contact_unavailable: 未公开
     hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     title: 关于本站
@@ -10,8 +10,8 @@ zh-CN:
     followers:
       other: 关注者
     following: 正在关注
-    instance_actor_flash: 该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。该账号用于联合目的，不应该被停用。
-    last_active: 上次活跃
+    instance_actor_flash: 该账号代表服务器虚拟主体，专为联邦宇宙互联而生。请勿封禁。
+    last_active: 上次活跃时间
     link_verified_on: 此链接的所有权已在 %{date} 验证
     nothing_here: 空空如也！
     pin_errors:
@@ -78,7 +78,7 @@ zh-CN:
       invite_request_text: 加入理由
       invited_by: 邀请者为
       ip: IP 地址
-      joined: 加入于
+      joined: 加入时间
       location:
         all: 全部
         local: 本站
@@ -86,9 +86,9 @@ zh-CN:
         title: 位置
       login_status: 登录状态
       media_attachments: 媒体文件
-      memorialize: 设为追悼账号
-      memorialized: 已设为追悼账号
-      memorialized_msg: 成功将 %{username} 转换为追悼账号
+      memorialize: 转为纪念账号
+      memorialized: 已转为纪念账号
+      memorialized_msg: 成功将 %{username} 转为纪念账号
       moderation:
         active: 活跃
         all: 全部
@@ -109,11 +109,11 @@ zh-CN:
       previous_strikes: 既往处罚
       previous_strikes_description_html:
         other: 此账号已有<strong>%{count}</strong>次处罚。
-      promote: 设为管理员
+      promote: 提升权限
       protocol: 协议
       public: 公开页面
       push_subscription_expires: PuSH 订阅过期时间
-      redownload: 刷新账号信息
+      redownload: 刷新个人资料
       redownloaded_msg: 成功从来源站点刷新 %{username} 的账号信息
       reject: 拒绝
       rejected_msg: 已拒绝 %{username} 的注册申请
@@ -189,6 +189,7 @@ zh-CN:
         create_user_role: 创建角色
         create_username_block: 新建用户名规则
         demote_user: 取消管理员
+        destroy_account: 删除账号数据
         destroy_announcement: 删除公告
         destroy_canonical_email_block: 解除邮箱封禁
         destroy_custom_emoji: 删除自定义表情符号
@@ -211,7 +212,7 @@ zh-CN:
         enable_relay: 启用中继站
         enable_sign_in_token_auth_user: 为用户启用邮件令牌身份验证
         enable_user: 启用用户
-        memorialize_account: 设为追悼账号
+        memorialize_account: 转为纪念账号
         promote_user: 指派管理员
         publish_terms_of_service: 发布服务条款
         reject_appeal: 驳回申诉
@@ -257,6 +258,7 @@ zh-CN:
         create_user_role_html: "%{name} 创建了角色 %{target}"
         create_username_block_html: "%{name} 新增了有关包含 %{target} 的用户名的规则"
         demote_user_html: "%{name} 撤销了用户 %{target} 的管理权限"
+        destroy_account_html: "%{name} 删除了 %{target} 的账号数据"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 解封了 hash 为 %{target} 的邮箱地址"
         destroy_custom_emoji_html: "%{name} 删除了自定义表情 %{target}"
@@ -279,7 +281,7 @@ zh-CN:
         enable_relay_html: "%{name} 启用了中继站 %{target}"
         enable_sign_in_token_auth_user_html: "%{name} 为 %{target} 启用了邮件令牌身份验证"
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
-        memorialize_account_html: "%{name} 将 %{target} 设置为追悼账号"
+        memorialize_account_html: "%{name} 将 %{target} 转为纪念账号"
         promote_user_html: "%{name} 将用户 %{target} 设为管理员"
         publish_terms_of_service_html: "%{name} 更新了服务条款"
         reject_appeal_html: "%{name} 驳回了 %{target} 对审核结果的申诉"
@@ -506,7 +508,7 @@ zh-CN:
         select_capabilities: 选择能力
         sign_in: 登录
         status: 状态
-        title: 联邦宇宙辅助服务提供商（Fediverse Auxiliary Service Providers）
+        title: 联邦宇宙辅助服务提供商
       title: FASP
     follow_recommendations:
       description_html: "<strong>“关注推荐”可帮助新用户快速找到有趣的内容</strong>。 当用户与他人的互动不足以形成个性化的建议时，就会推荐关注这些账号。推荐会每日更新，基于选定语言的近期最高互动数和最多本站关注者数综合评估得出。"
@@ -734,7 +736,7 @@ zh-CN:
         invites: 邀请
         moderation: 审核
         special: 特殊
-      delete: 刪除
+      delete: 删除
       description_html: 使用 <strong>用户角色</strong>，你可以自定义你的用户可以访问的 Mastodon 功能和区域。
       edit: 编辑角色 '%{name}'
       everyone: 默认权限
@@ -1002,7 +1004,7 @@ zh-CN:
       history: 历史记录
       live: 生效中
       no_history: 尚无服务条款变更记录。
-      no_terms_of_service_html: 你还没有设置任何服务条款。设置服务条款可以清晰地界定责任，并在与用户发生争议时有效保护您的权益。
+      no_terms_of_service_html: 你还没有设置任何服务条款。设置服务条款可以清晰地界定责任，并在与用户发生争议时有效保护你的权益。
       notified_on_html: 已于 %{date} 通知用户
       notify_users: 通知用户
       preview:
@@ -1224,7 +1226,7 @@ zh-CN:
     description:
       prefix_invited_by_user: "@%{name} 邀请你加入这个Mastodon服务器！"
       prefix_sign_up: 现在就注册 Mastodon 吧！
-      suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其它任何 Mastodon 服务器上的用户交流，而且还有其它更多功能！
+      suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其他任何 Mastodon 服务器上的用户交流，而且还有其他更多功能！
     didnt_get_confirmation: 没有收到确认链接？
     dont_have_your_security_key: 没有你的安全密钥？
     forgot_password: 忘记密码？
@@ -1321,9 +1323,11 @@ zh-CN:
   deletes:
     challenge_not_passed: 你输入的信息不正确
     confirm_password: 输入你当前的密码来验证身份
-    confirm_username: 输入你的用户名以继续
+    confirm_username: 确认用户名
+    confirm_username_hint_html: 请输入 <code>%{username}</code> 以确认你要删除的账号
     proceed: 删除账号
     success_msg: 你的账号已成功删除
+    title: 删除账号 %{acct}
     warning:
       before: 在删除前，请仔细阅读下列说明：
       caches: 已被其他服务器缓存的内容可能还会保留
@@ -1448,7 +1452,7 @@ zh-CN:
       batch:
         remove: 从过滤规则中移除
       index:
-        hint: 此过滤规则适用于选中的个别嘟文，不受其它条件限制。你可以通过网页界面向此过滤规则添加更多嘟文。
+        hint: 此过滤规则适用于选中的个别嘟文，不受其他条件限制。你可以通过网页界面向此过滤规则添加更多嘟文。
         title: 过滤的嘟文
   generic:
     all: 全部
@@ -1474,7 +1478,7 @@ zh-CN:
     errors:
       empty: CSV 文件为空
       incompatible_type: 与所选导入类型不兼容
-      invalid_csv_file: '无效的 CSV 文件。错误: %{error}'
+      invalid_csv_file: 无效的 CSV 文件。错误：%{error}
       over_rows_processing_limit: 包含行数超过了 %{count}
       too_large: 文件过大
     failures: 失败
@@ -1616,7 +1620,7 @@ zh-CN:
       not_found: 找不到
       on_cooldown: 你正处于冷却状态
     followers_count: 迁移时的关注者
-    incoming_migrations: 从其它账号迁入
+    incoming_migrations: 从其他账号迁入
     incoming_migrations_html: 要把另一个账号移动到本账号，首先你需要<a href="%{path}">创建一个账号别名</a> 。
     moved_msg: 你的账号现在会跳转到 %{acct} ，同时关注者也会一并迁移 。
     not_redirecting: 你的账号当前未跳转到其它账号。
@@ -1633,7 +1637,7 @@ zh-CN:
       disabled_account: 此后，你的当前账号将无法使用。但是，你仍然有权导出数据或者重新激活。
       followers: 这步操作将把全部关注者从当前账号移动到新账号
       only_redirect_html: 或者，你可以<a href="%{path}">只在你的账号资料上设置一个跳转</a>。
-      other_data: 不会自动移动其它数据
+      other_data: 不会自动移动其他数据
       redirect: 在收到一个跳转通知后，你当前的账号资料将会更新，并被排除在搜索范围外
   moderation:
     title: 审核
@@ -1837,7 +1841,6 @@ zh-CN:
     appearance: 外观
     authorized_apps: 已授权的应用
     back: 返回 Mastodon
-    delete: 删除账号
     development: 开发
     edit_profile: 更改个人资料
     export: 导出
@@ -2075,9 +2078,9 @@ zh-CN:
       edit_profile_title: 个性化你的个人资料
       explanation: 下面是几个小贴士，希望它们能帮到你
       feature_action: 详细了解
-      feature_audience: Mastodon 为你提供了无需中间商即可管理受众的独特可能。Mastodon 可被部署在你自己的基础设施上，允许你关注其它任何 Mastodon 在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受你之外的任何人控制。
+      feature_audience: Mastodon 为你提供了无需中间商即可管理受众的独特可能。Mastodon 可被部署在你自己的基础设施上，允许你关注其他任何 Mastodon 在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受你之外的任何人控制。
       feature_audience_title: 自由吸引你的受众
-      feature_control: 你最清楚你想在你自己的主页中看到什么动态。没有算法或广告浪费你的时间。你可以用一个账号关注任何 Mastodon 服务器上的任何人，并按时间顺序获得他们发布的嘟文，让你的互联网的角落更合自己的心意。
+      feature_control: 主页想看什么，只有你说了算。告别浪费时间的算法与广告，只需一个账号，即可跨服关注 Mastodon 上的任何人。他们的动态按时间顺序严格呈现。让互联网的一隅，契合你的灵魂。
       feature_control_title: 掌控自己的时间线
       feature_creativity: Mastodon 支持音频、视频和图片、无障碍描述、投票、内容警告， 动画头像、自定义表情包、缩略图裁剪控制等功能，帮助你在网上尽情表达自己。无论你是要发布你的艺术作品、音乐还是播客，Mastodon 都能为你服务。
       feature_creativity_title: 尽情发挥创造力

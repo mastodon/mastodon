@@ -818,6 +818,7 @@ ja:
         title: デフォルトで検索エンジンによるインデックスを拒否する
       discovery:
         follow_recommendations: おすすめフォロー
+        preamble: 必ずしも知っている人がMastodonに居ない新規ユーザーに定着してもらうには、興味深いコンテンツを表示することが役に立ちます。あなたのサーバーの種々のディスカバリー機能の動作を設定してください。
         privacy: プライバシー
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
@@ -828,6 +829,11 @@ ja:
         all: 誰にでも許可
         disabled: 誰にも許可しない
         users: ログイン済みローカルユーザーのみ許可
+      feed_access:
+        modes:
+          authenticated: ログイン済みユーザーのみ
+          disabled: 特定ロールのユーザーのみ
+          public: 制限なし
       landing_page:
         values:
           trends: トレンド
@@ -1302,7 +1308,6 @@ ja:
   deletes:
     challenge_not_passed: 入力された情報は正しくありません
     confirm_password: 本人確認のため、現在のパスワードを入力してください
-    confirm_username: 確認のためユーザー名を入力してください
     proceed: アカウントを削除する
     success_msg: アカウントは正常に削除されました
     warning:
@@ -1351,7 +1356,7 @@ ja:
     hint_html: "<strong>アカウントのトップページや投稿の隣に表示される公開情報です。</strong>プロフィールとアイコンを設定することで、ほかのユーザーは親しみやすく、またフォローしやすくなります。"
     other: その他
   emoji_styles:
-    auto: オート
+    auto: 自動
     native: ネイティブ
     twemoji: Twemoji
   errors:
@@ -1810,7 +1815,6 @@ ja:
     appearance: 外観
     authorized_apps: 認証済みアプリ
     back: Mastodonに戻る
-    delete: アカウントの削除
     development: 開発
     edit_profile: プロフィールを編集
     export: エクスポート
@@ -1870,6 +1874,9 @@ ja:
       direct: 非公開の返信
       private: フォロワーのみ
       public: 公開
+      public_long: すべての人 (Mastodon以外も含む)
+      unlisted: ひかえめな公開
+      unlisted_long: Mastodonの検索結果、トレンド、公開タイムラインに表示しない
   statuses_cleanup:
     enabled: 古い投稿を自動的に削除する
     enabled_hint: 設定した期間を過ぎた投稿は、以下の例外に該当しない限り、自動的に削除されます

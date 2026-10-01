@@ -192,6 +192,7 @@ es-AR:
         create_user_role: Crear rol
         create_username_block: Crear regla de nombre de usuario
         demote_user: Descender usuario
+        destroy_account: Eliminar datos de la cuenta
         destroy_announcement: Eliminar anuncio
         destroy_canonical_email_block: Eliminar bloqueo de correo electrónico
         destroy_custom_emoji: Eliminar emoji personalizado
@@ -260,6 +261,7 @@ es-AR:
         create_user_role_html: "%{name} creó el rol %{target}"
         create_username_block_html: "%{name} agregó una regla para los nombres de usuario que contienen %{target}"
         demote_user_html: "%{name} bajó de nivel al usuario %{target}"
+        destroy_account_html: "%{name} eliminó datos de la cuenta de %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueó el correo electrónico con el hash %{target}"
         destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
@@ -1340,9 +1342,11 @@ es-AR:
   deletes:
     challenge_not_passed: La información que ingresaste no es correcta
     confirm_password: Ingresá tu contraseña actual para verificar tu identidad
-    confirm_username: Ingresá tu nombre de usuario para confirmar el procedimiento
+    confirm_username: Confirmar nombre de usuario
+    confirm_username_hint_html: Por favor, escribí <code>%{username}</code> para confirmar la cuenta que querés eliminar
     proceed: Eliminar cuenta
     success_msg: Tu cuenta fue eliminada exitosamente
+    title: Eliminar cuenta %{acct}
     warning:
       before: 'Antes de proceder, por favor, leé estas notas cuidadosamente:'
       caches: El contenido que fue almacenado en caché por otros servidores puede persistir
@@ -1876,7 +1880,6 @@ es-AR:
     appearance: Apariencia
     authorized_apps: Aplicaciones autorizadas
     back: Volver a Mastodon
-    delete: Eliminación de la cuenta
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar

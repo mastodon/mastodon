@@ -192,6 +192,7 @@ da:
         create_user_role: Opret rolle
         create_username_block: Opret brugernavn-regel
         demote_user: Degradér bruger
+        destroy_account: Slet kontodata
         destroy_announcement: Slet bekendtgørelse
         destroy_canonical_email_block: Slet e-mailblokering
         destroy_custom_emoji: Slet tilpasset emoji
@@ -260,6 +261,7 @@ da:
         create_user_role_html: "%{name} oprettede %{target}-rolle"
         create_username_block_html: "%{name} tilføjede regel for brugernavne indeholdende %{target}"
         demote_user_html: "%{name} degraderede brugeren %{target}"
+        destroy_account_html: "%{name} slettede kontodata for %{target}"
         destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
         destroy_canonical_email_block_html: "%{name} afblokerede e-mailen med hash'et %{target}"
         destroy_custom_emoji_html: "%{name} slettede emojien %{target}"
@@ -1301,7 +1303,7 @@ da:
       view_strikes: Se tidligere anmeldelser af din konto
     too_fast: Formularen indsendt for hurtigt, forsøg igen.
     use_security_key: Brug sikkerhedsnøgle
-    user_agreement_html: Jeg accepterer <a href="%{terms_of_service_path}" target="_blank">Tjenestevilkår</a> og <a href="%{privacy_policy_path}" target="_blank">Fortrolighedspolitik</a>
+    user_agreement_html: Jeg accepterer <a href="%{terms_of_service_path}" target="_blank">Tjenestevilkår</a> og <a href="%{privacy_policy_path}" target="_blank">Privatlivspolitik</a>
     user_privacy_agreement_html: Jeg accepterer <a href="%{privacy_policy_path}" target="_blank">fortrolighedspolitikken</a>
   author_attribution:
     example_title: Eksempeltekst
@@ -1340,9 +1342,11 @@ da:
   deletes:
     challenge_not_passed: De angivne oplysninger er forkerte
     confirm_password: Angiv din nuværende adgangskode for at bekræfte din identitet
-    confirm_username: Angiv dit brugernavn for at bekræfte proceduren
+    confirm_username: Bekræft brugernavn
+    confirm_username_hint_html: Skriv venligst <code>%{username}</code> for at bekræfte den konto, du vil slette
     proceed: Slet konto
     success_msg: Din konto er nu slettet
+    title: Slet konto %{acct}
     warning:
       before: 'Inder der fortsættes, læs venligst disse notater omhyggeligt:'
       caches: Indhold, cachelagret af andre servere, kan fortsat eksistere
@@ -1351,7 +1355,7 @@ da:
       email_contact_html: Hvis den stadig ikke modtages, send en e-mail til <a href="mailto:%{email}">%{email}</a> for hjælp
       email_reconfirmation_html: Modtages bekræftelsesmailen ikke, kan man <a href="%{path}">anmode om en ny</a>
       irreversible: Du vil ikke kunne gendanne eller genaktivere din konto
-      more_details_html: For yderligere oplysningerer, tjek <a href="%{terms_path}">privatlivspolitikken</a>.
+      more_details_html: For yderligere oplysninger, tjek <a href="%{terms_path}">privatlivspolitikken</a>.
       username_available: Dit brugernavn vil blive tilgængeligt igen
       username_unavailable: Dit brugernavn vil forblive utilgængeligt
   disputes:
@@ -1876,7 +1880,6 @@ da:
     appearance: Udseende
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
-    delete: Kontosletning
     development: Udvikling
     edit_profile: Redigér profil
     export: Eksport

@@ -192,6 +192,7 @@ is:
         create_user_role: Útbúa hlutverk
         create_username_block: Búa til notandanafnsreglu
         demote_user: Lækka notanda í tign
+        destroy_account: Eyða aðgangsgögnum
         destroy_announcement: Eyða tilkynningu
         destroy_canonical_email_block: Eyða útilokunarblokk tölvupósts
         destroy_custom_emoji: Eyða sérsniðnu lyndistákni
@@ -260,6 +261,7 @@ is:
         create_user_role_html: "%{name} útbjó %{target} hlutverk"
         create_username_block_html: "%{name} bætti við reglu varðandi notendanöfn sem innihalda %{target}"
         demote_user_html: "%{name} lækkaði notandann %{target} í tign"
+        destroy_account_html: "%{name} eyddi aðgangsgögnum fyrir %{target}"
         destroy_announcement_html: "%{name} eyddi tilkynninguni %{target}"
         destroy_canonical_email_block_html: "%{name} tók af útilokun á tölvupósti með tætigildið %{target}"
         destroy_custom_emoji_html: "%{name} eyddi emoji-tákni %{target}"
@@ -663,7 +665,7 @@ is:
         suspend_description_html: Notandaaðgangurinn og allt efni á honum mun verða óaðgengilegt og á endanum eytt út og samskipti við aðganginn verða ekki möguleg. Hægt að afturkalla innan 30 daga. Lokar öllum kærum gagnvart þessum aðgangi.
       actions_description_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Ef þú ákveður að refsa kærða notandaaðgangnum, verður viðkomandi send tilkynning í tölvupósti, nema ef flokkurinn <strong>Ruslpóstur</strong> sé valinn.
       actions_description_remote_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Þetta mun aðeins hafa áhrif á hvernig <strong>netþjónninn þinn</strong> meðhöndlar þennan fjartengda aðgang og efnið á honum.
-      actions_no_posts: Þessi kæra er ekki með neinar tengdar færslur til að eyða
+      actions_no_posts: Þessi tilkynning er ekki með neinar tengdar færslur til að eyða
       add_to_report: Bæta fleiru í kæru
       already_suspended_badges:
         local: Þegar frystur á þessum netþjóni
@@ -859,7 +861,7 @@ is:
           public: Allir
       landing_page:
         values:
-          about: Um hugbúnaðinn
+          about: Um
           local_feed: Staðbundið streymi
           trends: Vinsælt
       registrations:
@@ -1344,9 +1346,11 @@ is:
   deletes:
     challenge_not_passed: Upplýsingarnar sem þú settir inn eru ekki réttar
     confirm_password: Settu inn núverandi lykilorð þitt til að staðfesta auðkennin þín
-    confirm_username: Skrifaðu inn notandanafnið þitt til að halda áfram með ferlið
+    confirm_username: Staðfestu notandanafn
+    confirm_username_hint_html: Skrifaðu <code>%{username}</code> til að staðfesta aðganginn sem þú ætlar að eyða
     proceed: Eyða notandaaðgangi
     success_msg: Það tókst að eyða notandaaðgangnum þínum
+    title: Eyða aðgangnum %{acct}
     warning:
       before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
       caches: Efni sem aðrir netþjónar hafa sett í skyndiminni gæti verið til staðar áfram
@@ -1405,7 +1409,7 @@ is:
     '422':
       content: Öryggisprófun mistókst. Ertu að loka á vefkökur/fótspor?
       title: Öryggisprófun mistókst
-    '429': Í hægagangi
+    '429': Of margar beiðnir
     '500':
       content: Því miður, en eitthvað fór úrskeiðis á okkar enda.
       title: Þessi síða er ekki rétt
@@ -1880,7 +1884,6 @@ is:
     appearance: Útlit
     authorized_apps: Leyfð forrit
     back: Til baka í Mastodon
-    delete: Eyðing notandaaðgangs
     development: Þróun
     edit_profile: Breyta notandasniði
     export: Flytja út
