@@ -4,18 +4,17 @@ import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
-import { ArrowsClockwiseIcon } from '@phosphor-icons/react';
-
 import { useAccountStatus } from '@/mastodon/hooks/useStatus';
 import type { ExpandedStatusShape } from '@/mastodon/models/status';
+import { selectPlainAccount } from '@/mastodon/selectors/accounts';
+import { useAppSelector } from '@/mastodon/store';
 
 import { Avatar } from '../avatar';
 import { DisplayName } from '../display_name';
-import { EmojiHTML } from '../emoji/html';
 import { Icon } from '../icon';
 import { RelativeTimestamp } from '../relative_timestamp';
 
-import { onStatusLinksDisabled } from './hooks';
+import { StatusBoostIcon } from './icons';
 import classes from './prepend.module.scss';
 import { statusLink } from './utils';
 
@@ -31,15 +30,21 @@ export const StatusPrepend: React.FC<{
   return (
     <>
       {!!reblogId && <StatusPrependReblog reblogId={reblogId} />}
-      {showThread && !!status.in_reply_to_id && (
-        <StatusPrependReply replyId={status.in_reply_to_id} />
-      )}
+      {showThread &&
+        !!status.in_reply_to_id &&
+        !!status.in_reply_to_account_id && (
+          <StatusPrependReply
+            statusAccountId={status.account.id}
+            replyId={status.in_reply_to_id}
+            replyAccountId={status.in_reply_to_account_id}
+          />
+        )}
     </>
   );
 };
 
 const StatusPrependReblog: React.FC<{ reblogId: string }> = ({ reblogId }) => {
-  const status = useAccountStatus(reblogId, true);
+  const status = useAccountStatus(reblogId);
   if (!status) {
     return null;
   }
@@ -57,7 +62,7 @@ const StatusPrependReblog: React.FC<{ reblogId: string }> = ({ reblogId }) => {
   };
   return (
     <div className={classes.root}>
-      <Icon icon={ArrowsClockwiseIcon} className={classes.reblogIcon} />
+      <Icon icon={StatusBoostIcon} className={classes.reblogIcon} />
 
       <span className={classes.contents}>
         <Link {...accountLinkProps} role='presentation' tabIndex={-1}>
@@ -81,56 +86,48 @@ const StatusPrependReblog: React.FC<{ reblogId: string }> = ({ reblogId }) => {
   );
 };
 
-const StatusPrependReply: React.FC<{ replyId: string }> = ({ replyId }) => {
-  const status = useAccountStatus(replyId, true);
+const StatusPrependReply: React.FC<{
+  statusAccountId: string;
+  replyId: string;
+  replyAccountId: string;
+}> = ({ statusAccountId, replyId, replyAccountId }) => {
+  const accountId = replyAccountId;
+  const account = useAppSelector((state) =>
+    selectPlainAccount(state, accountId),
+  );
 
-  if (!status) {
-    return null;
+  let label: React.ReactNode;
+  if (statusAccountId === replyAccountId) {
+    label = (
+      <FormattedMessage
+        id='status.continuing_thread'
+        defaultMessage='Continuing a thread'
+      />
+    );
+  } else if (account) {
+    label = (
+      <FormattedMessage
+        id='status.replying_to'
+        defaultMessage='Replying to {name}'
+        values={{
+          name: <DisplayName account={account} variant='simple' />,
+        }}
+      />
+    );
+  } else {
+    label = (
+      <FormattedMessage
+        id='status.replying_to_thread'
+        defaultMessage='Replying to thread'
+      />
+    );
   }
-
-  const account = status.account;
-  const accountLinkProps = {
-    to: {
-      pathname: `/@${account.acct}`,
-      state: { reference: 'status' },
-    },
-    title: `@${account.acct}`,
-    'data-id': account.id,
-    'data-hover-card-account': account.id,
-    'data-hover-card-reference': 'status',
-  };
-
-  const language = status.translation?.language ?? status.language;
-  const content = (
-    status.translation?.contentHtml ?? status.contentHtml
-  ).trim();
 
   return (
     <div className={classes.root}>
       <div className={classes.replyIcon} />
 
-      <div>
-        <span className={classes.contents}>
-          <Link {...accountLinkProps} role='presentation' tabIndex={-1}>
-            <Avatar account={account} />
-          </Link>
-          <Link {...accountLinkProps} className={classes.account}>
-            <DisplayName variant='simple' account={account} />
-          </Link>
-        </span>
-
-        {!!content && (
-          <Link to={statusLink(status)} className={classes.text}>
-            <EmojiHTML
-              as='blockquote'
-              lang={language}
-              htmlString={content}
-              extraEmojis={status.emojis}
-              onElement={onStatusLinksDisabled}
-            />
-          </Link>
-        )}
-      </div>
+      <Link to={statusLink({ id: replyId, account: accountId })}>{label}</Link>
     </div>
   );
 };
