@@ -107,9 +107,6 @@
 .contentWrapper {
   --fade-time: 100ms;
 
-  overflow: clip;
-  border-radius: var(--radius-4);
-
   &.isFiltered {
     display: none;
   }
@@ -144,16 +141,23 @@
     }
   }
 
-  &.hasContentWarning::after {
-    visibility: visible;
-    opacity: 1;
-    transition:
-      visibility 0s linear 0s,
-      opacity var(--fade-time) ease-in-out;
+  &.hasContentWarning {
+    overflow: clip;
+    border-radius: var(--radius-4);
+
+    &::after {
+      visibility: visible;
+      opacity: 1;
+      transition:
+        visibility 0s linear 0s,
+        opacity var(--fade-time) ease-in-out;
+    }
   }
 }
 
 .content {
+  @include mixins.type-body;
+
   --mask-height: 80px;
 
   overflow-y: clip;
@@ -170,8 +174,6 @@
 }
 
 .contentText {
-  @include mixins.type-body;
-
   p:not(:last-child) {
     margin-block-end: 1em;
   }
