@@ -413,6 +413,10 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
     rel: 'noopener',
   } as const;
 
+  const authors = card.authors
+    .map(({ accountId }) => accountId)
+    .filter((id): id is string => !!id);
+
   return (
     <Card>
       <CardTitle
@@ -440,18 +444,18 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
         </CardBody>
       )}
 
-      {card.authors.length > 0 && (
+      {authors.length > 0 && (
         <CardActions>
           <FormattedMessage
             id='status.link_preview.authors'
             defaultMessage='{count, plural, one {Find the author in the Fediverse:} other {Find the authors in the Fediverse:}}'
             values={{
-              count: card.authors.length,
+              count: authors.length,
             }}
             tagName='span'
           />
 
-          {card.authors.map(({ accountId }) => (
+          {authors.map((accountId) => (
             <LinkCardAuthor authorId={accountId} key={accountId} />
           ))}
         </CardActions>
