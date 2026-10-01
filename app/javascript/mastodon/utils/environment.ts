@@ -18,7 +18,7 @@ export function isServerFeatureEnabled(feature: ServerFeatures) {
   return initialState?.features.includes(feature) ?? false;
 }
 
-type ClientFeatures = 'redesign' | 'redesign-status';
+type ClientFeatures = 'redesign';
 
 export function isClientFeatureEnabled(feature: ClientFeatures) {
   try {
@@ -36,8 +36,4 @@ export function isRedesignEnabled() {
   return (
     isServerFeatureEnabled('redesign') || isClientFeatureEnabled('redesign')
   );
-}
-
-export function isRedesignStatusEnabled() {
-  return isRedesignEnabled() && isClientFeatureEnabled('redesign-status');
 }

@@ -27,7 +27,7 @@ import { getAccountHidden } from 'mastodon/selectors/accounts';
 import type { RootState } from 'mastodon/store';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { isRedesignStatusEnabled } from '../../../utils/environment';
+import { isRedesignEnabled } from '../../../utils/environment';
 import { Button } from '../../button';
 import { IconButton } from '../../icon_button';
 import { LoadingIndicator } from '../../loading_indicator';
@@ -396,7 +396,7 @@ export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
   });
   const quote = status?.get('quote') as QuoteMap | undefined;
 
-  if (isRedesignStatusEnabled()) {
+  if (isRedesignEnabled()) {
     return (
       <Suspense fallback={<LoadingIndicator />}>
         <LazyStatusRedesign {...props} />

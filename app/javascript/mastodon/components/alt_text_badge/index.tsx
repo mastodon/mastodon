@@ -5,7 +5,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import classNames from 'classnames';
 
 import { useSelectableClick } from '@/mastodon/hooks/useSelectableClick';
-import { isRedesignStatusEnabled } from '@/mastodon/utils/environment';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
 import { Button } from '../button/redesign';
@@ -42,7 +42,7 @@ export const AltTextBadge: React.FC<{
 
   const [handleMouseDown, handleMouseUp] = useSelectableClick(handleClose);
 
-  const ButtonComp = isRedesignStatusEnabled() ? Button : 'button';
+  const ButtonComp = isRedesignEnabled() ? Button : 'button';
 
   return (
     <>
@@ -73,7 +73,7 @@ export const AltTextBadge: React.FC<{
               className={classNames(
                 'info-tooltip',
                 'dropdown-animation',
-                isRedesignStatusEnabled() && classes.redesignPopover,
+                isRedesignEnabled() && classes.redesignPopover,
               )}
               role='dialog'
               aria-labelledby={titleId}

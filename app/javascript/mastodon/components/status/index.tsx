@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 
-import { isRedesignStatusEnabled } from '@/mastodon/utils/environment';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 import { LoadingIndicator } from '../loading_indicator';
 
@@ -19,6 +19,4 @@ const StatusRedesign = (props: StatusContainerProps) => (
   </Suspense>
 );
 
-export const Status = isRedesignStatusEnabled()
-  ? StatusRedesign
-  : StatusQuoteManager;
+export const Status = isRedesignEnabled() ? StatusRedesign : StatusQuoteManager;
