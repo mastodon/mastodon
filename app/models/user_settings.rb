@@ -29,6 +29,7 @@ class UserSettings
     setting :use_system_scrollbars, default: false
     setting :disable_swiping, default: false
     setting :disable_hover_cards, default: false
+    setting :display_own_posts, default: true
     setting :delete_modal, default: true
     setting :reblog_modal, default: false
     setting :quick_boosting, default: false

@@ -43,6 +43,10 @@ module User::HasSettings
     settings['web.delete_modal']
   end
 
+  def setting_display_own_posts
+    settings['web.display_own_posts']
+  end
+
   def setting_reduce_motion
     settings['web.reduce_motion']
   end
