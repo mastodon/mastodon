@@ -6,6 +6,8 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { ChatCircleDotsIcon, UserMinusIcon } from '@phosphor-icons/react';
 
 import { followAccount } from '@/mastodon/actions/accounts';
+import { directCompose } from '@/mastodon/actions/compose';
+import { openModal } from '@/mastodon/actions/modal';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
@@ -71,11 +73,26 @@ const AccountButtonsOther: FC<
   );
 
   const dispatch = useAppDispatch();
+
   const handleNotifyToggle = useCallback(() => {
     if (account) {
       dispatch(followAccount(account.id, { notify: !relationship?.notifying }));
     }
   }, [dispatch, account, relationship]);
+
+  const sendDirectMessage = useCallback(() => {
+    if (account) {
+      dispatch(directCompose(account));
+    }
+  }, [dispatch, account]);
+
+  const confirmUnfollow = useCallback(() => {
+    if (account) {
+      dispatch(
+        openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
+      );
+    }
+  }, [dispatch, account]);
 
   const reference = useFollowReference('profile');
 
@@ -107,6 +124,7 @@ const AccountButtonsOther: FC<
             size='sm'
             variant='solid'
             color='accent'
+            onClick={sendDirectMessage}
           >
             <FormattedMessage
               id='account.menu.message'
@@ -114,7 +132,7 @@ const AccountButtonsOther: FC<
               description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
             />
           </Button>
-          <IconButton icon={UserMinusIcon} size='sm'>
+          <IconButton icon={UserMinusIcon} size='sm' onClick={confirmUnfollow}>
             <FormattedMessage id='account.unfollow' defaultMessage='Unfollow' />
           </IconButton>
         </>
