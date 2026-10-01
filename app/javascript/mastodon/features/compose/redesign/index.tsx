@@ -1,19 +1,10 @@
 import type React from 'react';
 import { useCallback, useEffect, useId } from 'react';
 
-import { FormattedMessage } from 'react-intl';
-
 import classNames from 'classnames';
 
-import { FlagIcon, LockSimpleOpenIcon } from '@phosphor-icons/react';
-
-import {
-  changeComposeSpoilerness,
-  insertEmojiCompose,
-} from '@/mastodon/actions/compose';
-import { ToggleButton } from '@/mastodon/components/button/redesign';
+import { insertEmojiCompose } from '@/mastodon/actions/compose';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
-import { Icon, useIconWeight } from '@/mastodon/components/icon';
 import {
   closeComposer,
   getComposerTextarea,
@@ -28,8 +19,9 @@ import { ComposeFormHeader } from './header';
 import { ComposeHints } from './hints';
 import { LanguageButton } from './language';
 import { ComposeReply } from './reply';
-import { selectComposeSensitive, selectComposeType } from './selectors';
+import { selectComposeType } from './selectors';
 import { ComposeSensitiveField } from './sensitive';
+import { ComposeSettingsMenu } from './settings';
 import classes from './styles.module.scss';
 import { ComposeTextarea } from './textarea';
 import { ComposeVisibility } from './visibility';
@@ -45,14 +37,10 @@ export const RedesignComposeForm: React.FC<
   RedesignComposeFormProps & React.ComponentPropsWithRef<'form'>
 > = ({ autoFocus, className, noMinimize, redirectOnSuccess, ...props }) => {
   const type = useAppSelector(selectComposeType);
-  const { sensitive } = useAppSelector(selectComposeSensitive);
 
-  const { onSensitiveChange, onEmojiPick, onSubmit } =
-    useComposeHandlers(redirectOnSuccess);
+  const { onEmojiPick, onSubmit } = useComposeHandlers(redirectOnSuccess);
 
   const titleId = useId();
-
-  const sensitiveIcon = useIconWeight(FlagIcon, sensitive && 'fill');
 
   return (
     <form
@@ -75,26 +63,8 @@ export const RedesignComposeForm: React.FC<
 
         <LanguageButton />
 
-        <ToggleButton
-          size='sm'
-          active={sensitive}
-          onClick={onSensitiveChange}
-          leadingIcon={sensitiveIcon}
-        >
-          <FormattedMessage id='compose.sensitive' defaultMessage='Sensitive' />
-        </ToggleButton>
+        <ComposeSettingsMenu />
       </div>
-
-      {type === 'message' && (
-        <p className={classes.toolbarMessage}>
-          <Icon id='lock-open' icon={LockSimpleOpenIcon} />
-          <FormattedMessage
-            id='compose.message.notice'
-            defaultMessage='Messages are not end-to-end encrypted'
-            description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
-          />
-        </p>
-      )}
 
       <ComposeSensitiveField />
 
@@ -140,10 +110,6 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
     };
   }, [dispatch, isModalOpen]);
 
-  const onSensitiveChange = useCallback(() => {
-    dispatch(changeComposeSpoilerness());
-  }, [dispatch]);
-
   const onEmojiPick: OnEmojiPick = useCallback(
     (emoji) => {
       const position = getComposerTextarea()?.selectionStart ?? 0;
@@ -179,6 +145,5 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
   return {
     onSubmit,
     onEmojiPick,
-    onSensitiveChange,
   };
 }

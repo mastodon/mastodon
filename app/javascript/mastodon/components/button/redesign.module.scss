@@ -28,6 +28,7 @@
   &:hover:not(
       :active,
       :disabled,
+      [aria-disabled='true'],
       [aria-pressed='true'],
       [aria-expanded='true']
     ) {
@@ -40,7 +41,8 @@
     outline-offset: 2px;
   }
 
-  &:disabled {
+  &:disabled,
+  &[aria-disabled='true'] {
     cursor: not-allowed;
     opacity: 0.5;
   }

@@ -22,8 +22,8 @@ interface ForwardedReferenceProps {
   onClick: React.MouseEventHandler;
   onMouseEnter: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
-  onFocus: React.KeyboardEventHandler;
-  onBlur: React.KeyboardEventHandler;
+  onFocus: React.FocusEventHandler;
+  onBlur: React.FocusEventHandler;
 }
 
 type GetTooltipProps = <T extends Record<string, unknown>>(
@@ -96,7 +96,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     setIsOpen(false);
   }, [clearOpenTimeout, isOpen]);
 
-  const handleFocus = useCallback<React.KeyboardEventHandler>(
+  const handleFocus: React.FocusEventHandler = useCallback(
     (e) => {
       if (
         e.target instanceof HTMLElement &&
