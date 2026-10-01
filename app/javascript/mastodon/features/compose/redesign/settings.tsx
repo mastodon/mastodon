@@ -25,7 +25,7 @@ import {
   useAppSelector,
 } from '@/mastodon/store/typed_functions';
 
-import { selectComposeSensitive } from './selectors';
+import { selectComposeQuotePolicy, selectComposeSensitive } from './selectors';
 
 export const ComposeSettingsMenu: React.FC = () => {
   return (
@@ -43,13 +43,7 @@ export const ComposeSettingsMenu: React.FC = () => {
 
 const ComposeSettingsInnerMenu: React.FC = () => {
   // Quote policy
-  const currentQuotePolicy = useAppSelector(
-    (state) => state.compose.get('quote_policy') as ApiQuotePolicy | undefined,
-  );
-  const defaultQuotePolicy = useAppSelector(
-    (state) => state.compose.get('default_quote_policy') as ApiQuotePolicy,
-  );
-  const quotePolicy = currentQuotePolicy ?? defaultQuotePolicy;
+  const quotePolicy = useAppSelector(selectComposeQuotePolicy);
 
   const dispatch = useAppDispatch();
   const handleQuotePolicyChange = useCallback(
@@ -155,6 +149,7 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           name='media_spoiler'
           value='on'
           checked={mediaSensitive}
+          disabled={sensitive}
           onChange={onMediaSensitiveChange}
           keepMenuOpenOnClick
           icon={EyeSlashIcon}
