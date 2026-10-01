@@ -14,27 +14,32 @@ import {
   GavelIcon,
   ShieldStarIcon,
   SignOutIcon,
+  MastodonLogoIcon,
+  GithubLogoIcon,
 } from '@phosphor-icons/react';
 
 import { openModal } from '@/mastodon/actions/modal';
 import { Avatar } from '@/mastodon/components/avatar';
+import { IconButton } from '@/mastodon/components/button/redesign';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { useAccountHandle } from '@/mastodon/components/display_name/default';
 import {
-  LockupButton,
   LockupContent,
+  LockupLink,
   LockupWrapper,
 } from '@/mastodon/components/lockup';
 import {
   Menu,
   MenuItem,
   MenuItemDivider,
+  MenuItemGroup,
   MenuItemLink,
   MenuList,
   MenuTrigger,
 } from '@/mastodon/components/menu';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
+import { source_url, version } from '@/mastodon/initial_state';
 import {
   canManageReports,
   canViewAdminDashboard,
@@ -45,46 +50,35 @@ import classes from './account_card_and_menu.module.scss';
 
 export const NavigationAccountCardAndMenu: React.FC = () => {
   const { accountId } = useIdentity();
+  const account = useAccount(accountId);
+  const handle = useAccountHandle(account);
+  const accountBasePath = `/@${account?.acct}`;
 
   if (!accountId) {
     return null;
   }
 
   return (
-    <Menu type='navigation'>
-      <MenuTrigger as={AccountMenuTrigger}>
-        <FormattedMessage
-          id='tabs_bar.account_settings'
-          defaultMessage='Account settings'
-        />
-      </MenuTrigger>
-      <MenuList
-        placement='top-start'
-        offset={{ mainAxis: 12, crossAxis: -20 }}
-        strategy='fixed'
-      >
-        <AccountMenuItems />
-      </MenuList>
-    </Menu>
-  );
-};
-
-const AccountMenuTrigger: React.FC<React.ComponentPropsWithoutRef<'button'>> = (
-  props,
-) => {
-  const { accountId } = useIdentity();
-  const account = useAccount(accountId);
-  const handle = useAccountHandle(account);
-
-  return (
     <LockupWrapper
       icon={<Avatar account={account} size={32} />}
-      sideContent={<DotsThreeIcon size={20} className={classes.dotsIcon} />}
+      sideContent={
+        <Menu type='navigation'>
+          <MenuTrigger as={IconButton} icon={DotsThreeIcon} size='sm'>
+            <FormattedMessage
+              id='tabs_bar.account_settings'
+              defaultMessage='Account settings'
+            />
+          </MenuTrigger>
+          <MenuList placement='top' offset={12} strategy='fixed'>
+            <AccountMenuItems />
+          </MenuList>
+        </Menu>
+      }
       className={classes.root}
     >
-      <LockupButton {...props} subtitle={handle}>
+      <LockupLink to={accountBasePath} subtitle={handle}>
         <DisplayName variant='simple' account={account} />
-      </LockupButton>
+      </LockupLink>
     </LockupWrapper>
   );
 };
@@ -191,6 +185,24 @@ export const AccountMenuItems: React.FC<{
           )}
         </>
       )}
+
+      <MenuItemDivider />
+
+      <MenuItemGroup label={`Mastodon v${version}`}>
+        <MenuItemLink as='a' href={source_url} icon={GithubLogoIcon}>
+          <FormattedMessage
+            id='navigation_bar.source_code'
+            defaultMessage='Source Code'
+          />
+        </MenuItemLink>
+
+        <MenuItemLink as='a' href='/blocks' icon={MastodonLogoIcon}>
+          <FormattedMessage
+            id='navigation_bar.about_mastodon'
+            defaultMessage='About Mastodon'
+          />
+        </MenuItemLink>
+      </MenuItemGroup>
 
       <MenuItemDivider />
 
