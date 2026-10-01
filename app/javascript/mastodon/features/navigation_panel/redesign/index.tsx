@@ -114,9 +114,10 @@ export function useNotificationsCount() {
   const unreadNotificationsCount = useAppSelector(
     selectUnreadNotificationGroupsCount,
   );
-  const followRequestsCount = useFollowRequestsCount();
+  const { signedIn } = useIdentity();
+  const followRequestsCount = useFollowRequestsCount({ fetch: signedIn });
 
-  const { unreadAnnouncementCount } = useHasAnnouncements();
+  const { unreadAnnouncementCount } = useHasAnnouncements({ fetch: signedIn });
 
   return (
     unreadNotificationsCount + followRequestsCount + unreadAnnouncementCount
