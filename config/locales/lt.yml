@@ -446,7 +446,10 @@ lt:
       delete: Ištrinti
       domain: Domenas
       new:
-        create: Pridėto domeną
+        create: Pridėti domeną
+        resolve: Patikrinti domeną
+        title: Blokuoti el. pašto domeną
+      resolved_dns_records_hint_html: Domeno vardas nukreipia į šiuos MX domenus, kurie galiausiai yra atsakingi už el. laiškų priėmimą. Užblokuojant MX domeną, bus užblokuota registracija iš bet kurio el. pašto adreso, kuris naudoja tą patį MX domeną, net jei matomas domeno vardas yra kitoks. <strong>Būkite atsargūs, kad neužblokuotumėte pagrindinių el. pašto paslaugų teikėjų.</strong>
     export_domain_allows:
       new:
         title: Importuoti domeno leidžiamus
@@ -516,7 +519,13 @@ lt:
         title: Filtras
       title: Kvietimai
     ip_blocks:
+      add_new: Kurti taisyklę
+      created_msg: Nauja IP taisyklė sėkmingai pridėta
       delete: Ištrinti
+      new:
+        title: Kurti naują IP taisyklę
+      no_ip_block_selected: IP taisyklės nebuvo pakeistos, nes nė viena nebuvo pasirinkta
+      title: IP taisyklės
     relays:
       add_new: Pridėti naują pamainą
       delete: Ištrinti
@@ -579,7 +588,11 @@ lt:
         invite_users_description: Leidžia naudotojams pakviesti naujus žmones į serverį.
         manage_invites: Tvarkyti kvietimus
         manage_invites_description: Leidžia naudotojams naršyti ir deaktyvuoti kvietimų nuorodas.
+        manage_rules_description: Leidžia vartotojams keisti serverio taisykles
         manage_taxonomies_description: Leidžia naudotojams peržiūrėti tendencingą turinį ir atnaujinti grotažymių nustatymus
+        manage_user_access_description: Leidžia vartotojams išjungti kitų vartotojų dviejų veiksnių autentifikavimą, pakeisti jų el. pašto adresą ir atkurti jų slaptažodį
+    rules:
+      description_html: Nors dauguma teigia, kad perskaitė paslaugų teikimo sąlygas ir su jomis sutinka, paprastai žmonės jas perskaito tik tada, kai kyla problema. <strong>Padarykite, kad jūsų serverio taisykles būtų lengviau peržvelgti iš pirmo žvilgsnio, pateikdami jas paprastu sąrašu su punkteliais.</strong> Stenkitės, kad atskiros taisyklės būtų trumpos ir paprastos, tačiau taip pat stenkitės jų neskaidyti į daug atskirų punktų.
     settings:
       branding:
         preamble: Jūsų serverio pavadinimas išskiria jį iš kitų tinklo serverių. Ši informacija gali būti rodoma įvairiose aplinkose, pavyzdžiui, „Mastodon“ žiniatinklio sąsajoje, programėlėse, nuorodų peržiūrose kitose svetainėse, žinučių programėlėse ir pan. Dėl to geriausia, kad ši informacija būtų aiški, trumpa ir glausta.
@@ -649,6 +662,7 @@ lt:
       elasticsearch_health_yellow:
         message_html: Elasticsearch klasteris yra nesveikas (geltona būsena), galbūt norėsi išsiaiškinti priežastį
       elasticsearch_preset:
+        action: Žiūrėti dokumentaciją
         message_html: Tavo Elasticsearch klasteris turi daugiau nei vieną mazgą, bet Mastodon nėra sukonfigūruotas juos naudoti.
       elasticsearch_preset_single_node:
         action: Žiūrėti dokumentaciją
@@ -926,7 +940,6 @@ lt:
   deletes:
     challenge_not_passed: Įvesta informacija buvo neteisinga
     confirm_password: Įvesk dabartinį slaptažodį, kad patvirtintum savo tapatybę
-    confirm_username: Procedūros patvirtinimui įvesk savo naudotojo vardą
     proceed: Ištrinti paskyrą
     success_msg: Tavo paskyra buvo sėkmingai ištrinta
   disputes:
@@ -970,6 +983,8 @@ lt:
     storage: Medijos saugykla
   featured_tags:
     add_new: Pridėti naują
+    errors:
+      limit: Jūs jau panaudojote maksimalų grotažymių skaičių
     hint_html: "<strong>Savo profilyje parodyk svarbiausias grotažymes.</strong> Tai puikus įrankis kūrybiniams darbams ir ilgalaikiams projektams sekti, todėl svarbiausios grotažymės rodomos matomoje vietoje profilyje ir leidžia greitai pasiekti tavo paties įrašus."
   filters:
     contexts:
@@ -1063,6 +1078,7 @@ lt:
     cancel: Atšaukti nukreipimą
     warning:
       disabled_account: Po to tavo dabartine paskyra nebus galima naudotis visiškai. Tačiau turėsi prieigą prie duomenų eksporto ir pakartotinio aktyvavimo.
+      redirect: Jūsų dabartinės paskyros profilis bus atnaujintas, įtraukiant pranešimą apie nukreipimą, ir bus pašalintas iš paieškos rezultatų
   moderation:
     title: Prižiūrėjimas
   notification_mailer:
@@ -1109,6 +1125,9 @@ lt:
     older: Senesnis
     prev: Ankstesnis
     truncate: "&hellip;"
+  polls:
+    errors:
+      over_character_limit: negali būti ilgesnis nei %{max} simbolių
   preferences:
     other: Kita
     posting_defaults: Skelbimo numatytosios nuostatos
@@ -1184,7 +1203,6 @@ lt:
     appearance: Išvaizda
     authorized_apps: Leidžiamos programėlės
     back: Grįžti į Mastodon
-    delete: Paskyros trynimas
     development: Kūrimas
     edit_profile: Redaguoti profilį
     export: Eksportuoti

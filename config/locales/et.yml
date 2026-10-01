@@ -31,16 +31,16 @@ et:
     account_moderation_notes:
       create: Jäta teade
       created_msg: Modereerimisteade edukalt koostatud!
-      destroyed_msg: Modereerimisteade edukalt kustutatud!
+      destroyed_msg: Modereerimisteate kustutamine õnnestus!
     accounts:
       add_email_domain_block: Blokeeri e-posti domeen
       approve: Võta vastu
       approved_msg: Kasutaja %{username} liitumisavaldus rahuldatud
       are_you_sure: Kas oled kindel?
-      avatar: Profiilipilt
+      avatar: Tunnuspilt
       by_domain: Domeen
       change_email:
-        changed_msg: E-posti aadress vahetatud!
+        changed_msg: E-posti aadress on vahetatud!
         current_email: Praegune e-postiaadress
         label: Muuda e-posti aadressi
         new_email: Uus е-posti aadress
@@ -58,8 +58,8 @@ et:
       custom: Kohandatud
       delete: Kustuta andmed
       deleted: Kustutatud
-      demote: Alanda
-      destroyed_msg: "%{username} andmed on nüüd lõpliku kustutamise ootel"
+      demote: Vähenda õigusi
+      destroyed_msg: Kasutaja %{username} andmed on nüüd lõpliku kustutamise ootel
       disable: Lukusta
       disable_sign_in_token_auth: E-posti võtme abil autentimise väljalülitamine
       disable_two_factor_authentication: Keela 2FA
@@ -67,8 +67,8 @@ et:
       display_name: Kuvanimi
       domain: Domeen
       edit: Muuda
-      email: E-post
-      email_status: E-posti olek
+      email: E-posti aadress
+      email_status: E-posti aadressi olek
       enable: Luba
       enable_sign_in_token_auth: Luba e-posti võtme abil autentimine
       enabled: Lubatud
@@ -76,11 +76,11 @@ et:
       followers: Jälgijad
       follows: Jälgib
       header: Päis
-      inbox_url: Sisendkausta URL
+      inbox_url: Sisendkausta võrguaadress
       invite_request_text: Põhjendused liitumiseks
       invited_by: Kutsuja
-      ip: IP
-      joined: Liitus
+      ip: IP-aadress
+      joined: Liitumise aeg
       location:
         all: Kõik
         local: Kohalik
@@ -191,6 +191,7 @@ et:
         create_unavailable_domain: Kättesaamatu domeeni lisamine
         create_user_role: Loo roll
         demote_user: Alandas kasutaja
+        destroy_account: Kustuta kasutajakonto andmed
         destroy_announcement: Eemaldas teadaande
         destroy_canonical_email_block: Kustuta e-posti blokeering
         destroy_custom_emoji: Eemaldas kohandatud emotikoni
@@ -256,6 +257,7 @@ et:
         create_unavailable_domain_html: "%{name} lõpetas edastamise domeeni %{target}"
         create_user_role_html: "%{name} lõi rolli %{target}"
         demote_user_html: "%{name} alandas kasutajat %{target}"
+        destroy_account_html: "%{name} kustutas kasutajakonto andmed asukohas %{target}"
         destroy_announcement_html: "%{name} kustutas teadaande %{target}"
         destroy_canonical_email_block_html: "%{name} eemaldas blokeeringu e-postilt räsiga %{target}"
         destroy_custom_emoji_html: "%{name} kustutas emotikoni %{target}"
@@ -268,8 +270,8 @@ et:
         destroy_status_html: "%{name} kustutas %{target} postituse"
         destroy_unavailable_domain_html: "%{name} taastas edastamise domeeni %{target}"
         destroy_user_role_html: "%{name} kustutas %{target} rolli"
-        disable_2fa_user_html: "%{name} eemaldas kasutaja %{target} kahe etapise nõude"
-        disable_custom_emoji_html: "%{name} keelas emotikooni %{target}"
+        disable_2fa_user_html: "%{name} eemaldas kasutajalt %{target} kahefaktorilise autentimise nõude"
+        disable_custom_emoji_html: "%{name} keelas emoji %{target}"
         disable_relay_html: "%{name} eemaldas sõnumivahendusserveri kasutuselt: %{target}"
         disable_sign_in_token_auth_user_html: "%{name} keelas e-posti võtme abil autentimise %{target} jaoks"
         disable_user_html: "%{name} keelas %{target} sisenemise"
@@ -284,7 +286,7 @@ et:
         reject_user_html: "%{name} lükkas %{target} liitumissoovi tagasi"
         remove_avatar_user_html: "%{name} eemaldas %{target} avatari"
         reopen_report_html: "%{name} taasavas raporti %{target}"
-        resend_user_html: "%{name} lähtestas %{target} kinnituskirja e-posti"
+        resend_user_html: "%{name} saatis kasutajale %{target} e-postiga uue kinnituskirja"
         reset_password_user_html: "%{name} lähtestas %{target} kasutaja salasõna"
         resolve_report_html: "%{name} lahendas raporti %{target}"
         sensitive_account_html: "%{name} märkis %{target} meedia kui tundlik sisu"
@@ -567,7 +569,7 @@ et:
         stop: Peata edastus
         unavailable: Pole saadaval
       delivery_available: Üleandmine on saadaval
-      delivery_error_days: Edastustõrgete päevad
+      delivery_error_days: Päevad, millal tekkis edastusvigu
       delivery_error_hint: Kui edastus pole võimalik %{count} päeva, märgitakse automaatselt edastamatuks.
       destroyed_msg: Domeeni %{domain} andmed on märgitud lõplikuks kustutamiseks.
       empty: Domeene ei leidu.
@@ -1068,7 +1070,7 @@ et:
           tag_servers_dimension: Populaarseimad serverid
           tag_servers_measure: erinevat serverit
           tag_uses_measure: kasutajaid kokku
-        description_html: Need teemaviited ilmuvad praegu paljudes postitutes, mida su server näeb. See võib aidata su kasutajatel leida seda millest kõige rohkem parajasti räägitakse. Ühtegi teemaviidet ei näidata enne nende heaks kiitmist avalikult.
+        description_html: Need teemaviited ilmuvad praegu paljudes postitustes, mida su server näeb. Need võivad aidata su kasutajatel leida seda, millest hetkel kõige rohkem räägitakse. Ühtegi teemaviidet ei näidata enne heaks kiitmist avalikult.
         listable: Võib olla soovitatud
         no_tag_selected: Silte ei muudetud, kuna ühtegi polnud valitud
         not_listable: Ei soovitata
@@ -1301,7 +1303,6 @@ et:
   deletes:
     challenge_not_passed: Info, mille sisestasid, oli ebakorrektne
     confirm_password: Praegune salasõna isikusamasuse kinnitamiseks
-    confirm_username: Sisesta tegevuse kinnitamiseks oma kasutajanimi
     proceed: Kustuta konto
     success_msg: Konto kustutamine õnnestus
     warning:
@@ -1457,7 +1458,7 @@ et:
     errors:
       empty: Tühi CSV-fail
       incompatible_type: Ei sobi kokku valitud importimistüübiga
-      invalid_csv_file: 'Vigane CSV-fail. Tõrge: %{error}'
+      invalid_csv_file: 'Vigane CSV-fail. Veateade: %{error}'
       over_rows_processing_limit: sisaldab rohkem, kui %{count} rida
       too_large: Fail on liiga suur
     failures: Ebaõnnestumised
@@ -1550,7 +1551,7 @@ et:
     invalid: See kutse pole kehtiv
     invited_by: 'Sind kutsus:'
     max_uses:
-      one: 1 kasutus
+      one: 1 kasutaja
       other: "%{count} kasutust"
     max_uses_prompt: Piiranguteta
     prompt: Loo ja jaga linke teistega, et lubada neil liituda selle serveriga
@@ -1820,7 +1821,6 @@ et:
     appearance: Välimus
     authorized_apps: Lubatud rakendused
     back: Tagasi Mastodoni
-    delete: Konto kustutamine
     development: Arendus
     edit_profile: Muuda profiili
     export: Eksport
@@ -2095,20 +2095,20 @@ et:
     extra_instructions_html: <strong>Soovitus:</strong> Sinu kodulehel olev link võib olla nähtamatu. Oluline osa on <code>rel="me"</code>, mis väldib kasutaja loodud sisuga lehtedel libaisikustamist. Sa saad isegi kasutada lehe HEADER osas silti <code>link</code> sildi <code>a</code> asemel, kuid HTML peab olema kättesaadav ilma JavaScripti käivitamata.
     here_is_how: Siin on, kuidas
     hint_html: "<strong>Oma isiku tuvastamine on Mastodonis kõigi jaoks.</strong> Toetub avatud veebistandarditele, nüüd ja igavesti tasuta. Kõik, mida vajad, on isiklik veebileht, mille järgi inimesed sind tunnevad. Kui lingid oma profiililt sellele veebilehele, kontrollime me, et see veebileht lingib tagasi sinu profiilile ning näitame profiilil visuaalset tähist."
-    instructions_html: Kopeeri ja kleebi allpool olev kood oma lehe HTML lähtekoodi. Seejärel lisa oma kodulehe aadress profiili "Muuda profiili" vahekaardi ühte lisavälja ning salvesta muudatused.
+    instructions_html: Kopeeri ja aseta allpool olev kood oma lehe HTML lähtekoodi. Seejärel lisa oma kodulehe aadress profiili „Muuda profiili“ vahekaardi ühte lisavälja ning salvesta muudatused.
     verification: Kinnitamine
     verified_links: Sinu kontrollitud lingid
     website_verification: Veebilehe kontrollimine
   webauthn_credentials:
     add: Uue turvavõtme lisamine
     create:
-      error: Turvavõtme lisamisel tekkis tõrge. Proovi palun uuesti.
+      error: Turvavõtme lisamisel tekkis viga või probleem. Proovi palun uuesti.
       success: Turvavõti edukalt lisatud.
     delete: Kustuta
     delete_confirmation: Kindel, et kustutada see turvavõti?
     description_html: Lubades <strong>turvavõtmega autentimise</strong> on sisenemisel tarvis ühte turvavõtmetest.
     destroy:
-      error: Turvavõtme kustutamisel tekkis tõrge. Palun proovi uuesti.
+      error: Turvavõtme kustutamisel tekkis viga või probleem. Palun proovi uuesti.
       success: Turvavõtmed edukalt kustutatud.
     invalid_credential: Vigane turvavõti
     nickname_hint: Uue turvavõtme hüüdnimi

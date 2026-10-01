@@ -11,7 +11,7 @@ pt-BR:
       one: Seguidor
       other: Seguidores
     following: Seguindo
-    instance_actor_flash: Esta conta é um ator virtual usado para representar o próprio servidor e não um usuário individual. É utilizada para fins de federação e não deve ser suspensa.
+    instance_actor_flash: Esta conta é um agente virtual usado para representar o próprio servidor e não um usuário individual. É utilizada para fins de federação e não deve ser suspensa.
     last_active: última atividade
     link_verified_on: A propriedade do link foi verificada em %{date}
     nothing_here: Nada aqui!
@@ -27,7 +27,7 @@ pt-BR:
       action: Efetuar uma ação
       already_silenced: Esta conta já foi limitada.
       already_suspended: Esta conta já foi suspensa.
-      title: Moderar %{acct}
+      title: Executar ação de moderação em %{acct}
     account_moderation_notes:
       create: Deixar nota
       created_msg: Nota de moderação criada!
@@ -47,31 +47,31 @@ pt-BR:
         submit: Alterar e-mail
         title: Alterar e-mail para %{username}
       change_role:
-        changed_msg: Função alterada com sucesso!
-        edit_roles: Gerenciar funções do usuário
-        label: Alterar função
-        no_role: Nenhuma função
-        title: Alterar função para %{username}
+        changed_msg: Cargo alterado com sucesso!
+        edit_roles: Gerenciar cargos do usuário
+        label: Alterar cargo
+        no_role: Nenhum cargo
+        title: Alterar cargo de %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
-      custom: Personalizar
+      custom: Personalizado
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
       destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
       disable: Congelar
-      disable_sign_in_token_auth: Desativar autenticação via token por email
+      disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar autenticação de dois fatores
-      disabled: Congelada
+      disabled: Desativada
       display_name: Nome de exibição
       domain: Domínio
       edit: Editar
       email: E-mail
       email_status: Estado do e-mail
       enable: Descongelar
-      enable_sign_in_token_auth: Ativar autenticação via token por email
-      enabled: Ativada
+      enable_sign_in_token_auth: Ativar token de autenticação por e-mail
+      enabled: Ativado
       enabled_msg: A conta de %{username} foi descongelada
       followers: Seguidores
       follows: Seguindo
@@ -87,17 +87,17 @@ pt-BR:
         remote: Remoto
         title: Localização
       login_status: Situação da conta
-      media_attachments: Mídias anexadas
+      media_attachments: Anexos de mídia
       memorialize: Converter em memorial
       memorialized: Convertidas em memorial
       memorialized_msg: A conta de %{username} foi transformada em uma conta memorial
       moderation:
-        active: Ativo
-        all: Todos
+        active: Ativa
+        all: Todas
         disabled: Desativado
         pending: Pendente
         silenced: Limitado
-        suspended: Suspendido
+        suspended: Suspenso
         title: Moderação
       moderation_notes: Notas de moderação
       most_recent_activity: Atividade mais recente
@@ -106,12 +106,12 @@ pt-BR:
       no_limits_imposed: Sem limite imposto
       no_role_assigned: Sem cargo
       not_subscribed: Não inscrito
-      pending: Revisão pendente
+      pending: Pendente de revisão
       perform_full_suspension: Suspender
       previous_strikes: Avisos anteriores
       previous_strikes_description_html:
         one: Esta conta tem <strong>um</strong> aviso.
-        other: Esta conta tem <strong>%{count}</strong> ataques.
+        other: Esta conta tem <strong>%{count}</strong> avisos.
       promote: Promover
       protocol: Protocolo
       public: Público
@@ -124,8 +124,8 @@ pt-BR:
       remote_suspension_reversible_hint_html: A conta foi suspensa em seu servidor, e todos os dados serão removidos em %{date}. Até lá, o servidor remoto pode restaurar essa conta sem nenhum efeito negativo. Se você quer remover todos os dados desta conta imediatamente, você pode fazer isso abaixo.
       remove_avatar: Remover imagem de perfil
       remove_header: Remover capa
-      removed_avatar_msg: A imagem de perfil de %{username} foi removida
-      removed_header_msg: A capa de %{username} foi removida
+      removed_avatar_msg: Imagem de perfil de %{username} removida com sucesso
+      removed_header_msg: Imagem de capa de %{username} removida com sucesso
       resend_confirmation:
         already_confirmed: Este usuário já está confirmado
         send: Reenviar link de confirmação
@@ -141,8 +141,8 @@ pt-BR:
       security_measures:
         only_password: Apenas senha
         password_and_2fa: Senha e autenticação de dois fatores
-      sensitive: Sensíveis
-      sensitized: Marcadas como sensíveis
+      sensitive: Marcar como sensível
+      sensitized: Marcada como sensível
       shared_inbox_url: Link da caixa de entrada compartilhada
       show:
         created_reports: Denúncias criadas
@@ -153,27 +153,27 @@ pt-BR:
       strikes: Avisos anteriores
       subscribe: Inscrever-se
       suspend: Suspender
-      suspended: Suspendido
-      suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas ela não recuperará nenhum dado que ela possuía anteriormente.
+      suspended: Suspenso
+      suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas isto não recuperará nenhum dado que ela possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente removidos em %{date}. Até lá, a conta pode ser restaurada sem nenhum efeito negativo. Se você deseja remover todos os dados da conta imediatamente, você pode fazer isso abaixo.
       title: Contas
       unblock_email: Desbloquear endereço de e-mail
       unblocked_email_msg: O endereço de e-mail de %{username} foi desbloqueado
       unconfirmed_email: E-mail não confirmado
-      undo_sensitized: Desfazer sensível
-      undo_silenced: Desfazer silêncio
-      undo_suspension: Desbanir
-      unsilenced_msg: As limitações da conta de %{username} foram removidas
+      undo_sensitized: Desmarcar como sensível
+      undo_silenced: Dessilenciar
+      undo_suspension: Desfazer suspensão
+      unsilenced_msg: "%{username} dessilenciado com sucesso"
       unsubscribe: Cancelar inscrição
       unsuspended_msg: A suspensão da conta de %{username} foi removida
       username: Nome de usuário
       view_domain: Ver resumo para o domínio
       warn: Notificar
       web: Web
-      whitelisted: Permitido
+      whitelisted: Permitido para federação
     action_logs:
       action_types:
-        approve_appeal: Aprovar revisão
+        approve_appeal: Aprovar recurso
         approve_user: Aprovar usuário
         assigned_to_self_report: Atribuir denúncia
         change_email_user: Alterar o Email para o usuário
@@ -181,28 +181,29 @@ pt-BR:
         confirm_user: Confirmar usuário
         create_account_warning: Criar aviso
         create_announcement: Criar anúncio
-        create_canonical_email_block: Criar bloqueio de Email
+        create_canonical_email_block: Criar bloqueio de e-mail
         create_custom_emoji: Criar emoji personalizado
-        create_domain_allow: Permitir domínio
-        create_domain_block: Bloquear domínio
-        create_email_domain_block: Criar Bloqueio de Domínio de Email
+        create_domain_allow: Criar permissão de domínio
+        create_domain_block: Criar bloqueio de domínio
+        create_email_domain_block: Criar bloqueio de domínio de e-mail
         create_ip_block: Criar regra de IP
-        create_relay: Criar Retransmissão
+        create_relay: Criar retransmissor
         create_unavailable_domain: Criar domínio indisponível
         create_user_role: Criar cargo
         demote_user: Rebaixar usuário
+        destroy_account: Excluir dados da conta
         destroy_announcement: Excluir anúncio
-        destroy_canonical_email_block: Deletar bloqueio de Email
+        destroy_canonical_email_block: Excluir bloqueio de e-mail
         destroy_custom_emoji: Excluir emoji personalizado
-        destroy_domain_allow: Excluir domínio permitido
-        destroy_domain_block: Desbloquear domínio
-        destroy_email_domain_block: Deletar bloqueio de domínio Email
+        destroy_domain_allow: Excluir permissão de domínio
+        destroy_domain_block: Excluir bloqueio de domínio
+        destroy_email_domain_block: Excluir bloqueio de domínio de e-mail
         destroy_instance: Limpar domínio
         destroy_ip_block: Excluir regra de IP
         destroy_relay: Excluir Retransmissão
         destroy_status: Excluir publicação
         destroy_unavailable_domain: Excluir domínio indisponível
-        destroy_user_role: Destruir cargo
+        destroy_user_role: Destruir função
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar emoji personalizado
         disable_relay: Desativar Retransmissão
@@ -215,10 +216,10 @@ pt-BR:
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
         publish_terms_of_service: Publicar termos de serviço
-        reject_appeal: Rejeitar revisão
+        reject_appeal: Rejeitar recurso
         reject_user: Rejeitar usuário
         remove_avatar_user: Remover imagem de perfil
-        reopen_report: Reabrir relatório
+        reopen_report: Reabrir denúncia
         resend_user: Reenviar o e-mail de confirmação
         reset_password_user: Redefinir a senha
         resolve_report: Resolver denúncia
@@ -234,12 +235,12 @@ pt-BR:
         update_custom_emoji: Editar Emoji Personalizado
         update_domain_block: Atualizar bloqueio de domínio
         update_ip_block: Atualizar regra de IP
-        update_report: Atualizar Relatório
-        update_status: Editar Status
+        update_report: Atualizar denúncia
+        update_status: Editar publicação
         update_user_role: Atualizar cargo
       actions:
         approve_appeal_html: "%{name} aprovou a revisão da decisão da moderação em %{target}"
-        approve_user_html: "%{name} aprovado inscrição de %{target}"
+        approve_user_html: "%{name} aprovou a inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu a denúncia %{target} para si"
         change_email_user_html: "%{name} alterou o endereço de e-mail do usuário %{target}"
         change_role_user_html: "%{name} alterou o cargo de %{target}"
@@ -256,13 +257,14 @@ pt-BR:
         create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
         create_user_role_html: "%{name} criou o cargo %{target}"
         demote_user_html: "%{name} rebaixou o usuário %{target}"
+        destroy_account_html: "%{name} excluiu os dadas da conta para %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o endereço e-mail com o hash %{target}"
         destroy_custom_emoji_html: "%{name} apagou o emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueou federação com domínio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o domínio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueou o domínio de e-mail %{target}"
-        destroy_instance_html: "%{name} limpou o domínio %{target}"
+        destroy_instance_html: "%{name} purgou o domínio %{target}"
         destroy_ip_block_html: "%{name} excluiu a regra para o IP %{target}"
         destroy_relay_html: "%{name} excluiu uma retransmissão %{target}"
         destroy_status_html: "%{name} removeu a publicação de %{target}"
@@ -288,18 +290,18 @@ pt-BR:
         reset_password_user_html: "%{name} redefiniu a senha de %{target}"
         resolve_report_html: "%{name} resolveu a denúncia %{target}"
         sensitive_account_html: "%{name} marcou a mídia de %{target} como sensível"
-        silence_account_html: "%{name} limitou a conta de %{target}"
+        silence_account_html: "%{name} silenciou a conta de %{target}"
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
         unassigned_report_html: "%{name} desatribuiu a denúncia %{target}"
         unblock_email_account_html: "%{name} desbloqueou o endereço de e-mail de %{target}"
         unsensitive_account_html: "%{name} desmarcou a mídia de %{target} como sensível"
         unsilence_account_html: "%{name} removeu a limitação da conta de %{target}"
-        unsuspend_account_html: "%{name} removeu a suspenção da conta de %{target}"
+        unsuspend_account_html: "%{name} removeu a suspensão da conta de %{target}"
         update_announcement_html: "%{name} atualizou o anúncio %{target}"
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio de %{target}"
         update_ip_block_html: "%{name} alterou a regra para o IP %{target}"
-        update_report_html: "%{name} atualizou o relatório %{target}"
+        update_report_html: "%{name} atualizou a denúncia %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_user_role_html: "%{name} alterou o cargo %{target}"
       deleted_account: conta excluída
@@ -314,7 +316,7 @@ pt-BR:
       edit:
         title: Editar anúncio
       empty: Sem anúncios.
-      live: Ao vivo
+      live: No ar
       new:
         create: Criar anúncio
         title: Novo anúncio
@@ -328,13 +330,13 @@ pt-BR:
       scheduled_msg: Anúncio agendado para publicação!
       title: Anúncios
       unpublish: Cancelar publicação
-      unpublished_msg: Anúncio desfeito!
+      unpublished_msg: Anúncio retirado do ar!
       updated_msg: Anúncio atualizado!
     critical_update_pending: Atualização crítica pendente
     custom_emojis:
       assign_category: Atribuir categoria
       by_domain: Domínio
-      copied_msg: Emoji copiado localmente
+      copied_msg: Emoji copiado localmente com sucesso
       copy: Copiar
       copy_failed_msg: Não foi possível criar cópia local do emoji
       create_new_category: Criar nova categoria
@@ -359,9 +361,9 @@ pt-BR:
       shortcode: Atalho
       shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e underlines ("_")
       title: Emojis personalizados
-      uncategorized: Não categorizado
+      uncategorized: Não categorizados
       unlist: Não listar
-      unlisted: Não-listado
+      unlisted: Não listado
       update_failed_msg: Não foi possível atualizar esse emoji
       updated_msg: Emoji atualizado!
       upload: Enviar
@@ -388,7 +390,7 @@ pt-BR:
       sources: Origem das inscrições
       space: Uso de espaço em disco
       title: Painel de controle
-      top_languages: Línguas mais ativas
+      top_languages: Idiomas mais ativos
       top_servers: Servidores mais ativos
       website: Site
     disputes:
@@ -396,8 +398,8 @@ pt-BR:
         empty: Sem revisões.
         title: Revisões
     domain_allows:
-      add_new: Permitir domínio
-      created_msg: Domínio foi permitido
+      add_new: Permitir federação com domínio
+      created_msg: A federação com o domínio foi permitida com sucesso
       destroyed_msg: Domínio foi proibido de federar
       export: Exportar
       import: Importar
@@ -435,13 +437,13 @@ pt-BR:
       obfuscate: Ofuscar nome de domínio
       obfuscate_hint: Ofuscar parcialmente o domínio na lista se a exibição da lista de domínios limitados estiver habilitada
       private_comment: Comentário privado
-      private_comment_hint: Comente sobre essa restrição ao domínio para uso interno dos moderadores.
+      private_comment_hint: Comente sobre esta restrição de domínio para uso interno dos moderadores.
       public_comment: Comentário público
-      public_comment_hint: Comente sobre essa restrição ao domínio para o público geral, caso a divulgação da lista de bloqueio esteja ativada.
+      public_comment_hint: Comente sobre esta restrição ao domínio para o público geral, caso a divulgação da lista de bloqueio esteja ativada.
       reject_media: Rejeitar arquivos de mídia
       reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa fazer download de qualquer um no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar denúncias
-      reject_reports_hint: Ignora todas as denúncias vindo deste domínio. Irrelevante para suspensões
+      reject_reports_hint: Ignora todas as denúncias vindas deste domínio. Irrelevante para suspensões
       undo: Desfazer bloqueio de domínio
       view: Ver domínios bloqueados
     email_domain_blocks:
@@ -460,7 +462,7 @@ pt-BR:
         create: Adicionar domínio
         resolve: Resolver domínio
         title: Bloquear novo domínio de e-mail
-      no_email_domain_block_selected: Nenhum bloco de domínio de email foi alterado, pois, nenhum foi selecionado
+      no_email_domain_block_selected: Nenhum bloqueio de domínio de email foi alterado, pois nenhum foi selecionado
       not_permitted: Não permitido
       resolved_dns_records_hint_html: O nome de domínio é associado aos seguintes domínios MX, que são responsáveis por aceitar e-mails. Ao bloquear um domínio MX, você bloqueará as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Tenha cuidado para não bloquear os principais provedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
@@ -484,7 +486,7 @@ pt-BR:
       debug:
         callbacks:
           created_at: Criado em
-          delete: Apagar
+          delete: Excluir
           ip: Endereço de IP
           request_body: Corpo da solicitação
           title: Depurar Callbacks
@@ -492,7 +494,7 @@ pt-BR:
         active: Ativo
         base_url: URL Base
         callback: Callback
-        delete: Apagar
+        delete: Excluir
         edit: Editar provedor
         finish_registration: Finalizar o cadastro
         name: Nome
@@ -512,16 +514,16 @@ pt-BR:
       title: FASP
     follow_recommendations:
       description_html: "<strong>A recomendação de contas ajuda os novos usuários a encontrar rapidamente conteúdo interessante</strong>. Quando um usuário ainda não tiver interagido o suficiente para gerar recomendações de contas, essas contas serão recomendadas. Essas recomendações são recalculadas diariamente a partir de uma lista de contas com alto engajamento e maior número de seguidores locais em uma dada língua."
-      language: Na língua
-      status: Situação
+      language: No idioma
+      status: Estado
       suppress: Remover recomendação de contas
       suppressed: Removida
       title: Recomendações de contas
       unsuppress: Restaurar recomendação de contas
     instances:
       audit_log:
-        title: Logs de auditoria recentes
-        view_all: Ver todos os logs de auditoria
+        title: Registros de auditoria recentes
+        view_all: Ver todos os registros de auditoria
       availability:
         description_html:
           one: Se a entrega ao domínio falhar em <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>do</em> domínio seja recebida.
@@ -530,7 +532,7 @@ pt-BR:
         failures_recorded:
           one: Falha na tentativa em %{count} dia.
           other: Tentativas falhas em %{count} dias diferentes.
-        no_failures_recorded: Sem falhas no registro.
+        no_failures_recorded: Sem falhas registradas.
         title: Disponibilidade
         warning: A última tentativa de se conectar a este servidor não foi bem sucedida
       back_to_all: Todas
@@ -742,7 +744,7 @@ pt-BR:
         moderation: Moderação
         special: Especial
       delete: Excluir
-      description_html: Com as <strong>funções de usuário</strong>, você pode personalizar quais funções e áreas do Mastodon seus usuários podem acessar.
+      description_html: Com os <strong>cargos de usuário</strong>, você pode personalizar quais funções e áreas do Mastodon seus usuários podem acessar.
       edit: Editar cargo '%{name}'
       everyone: Permissões padrão
       everyone_full_description_html: Este é o <strong>cargo base</strong> que afeta <strong>todos os usuários</strong>, mesmo aqueles sem um cargo atribuído. Todos os outros cargos herdam as permissões dele.
@@ -751,12 +753,12 @@ pt-BR:
         other: "%{count} permissões"
       privileges:
         administrator: Administrador
-        administrator_description: Usuários com essa permissão irão ignorar todas as permissões
+        administrator_description: Usuários com essa permissão irão contornar todas as permissões
         delete_user_data: Apagar Dados de Usuário
         delete_user_data_description: Permitir aos usuários apagar os dados de outros usuários instantaneamente
         invite_users: Convidar Usuários
         invite_users_description: Permite que os usuários convidem novas pessoas para o servidor
-        manage_announcements: Gerenciar Avisos
+        manage_announcements: Gerenciar anúncios
         manage_announcements_description: Permite aos usuários gerenciar anúncios no servidor
         manage_appeals: Gerenciar revisões
         manage_appeals_description: Permite aos usuários visualizar as revisões das decisões da moderação
@@ -1301,9 +1303,10 @@ pt-BR:
   deletes:
     challenge_not_passed: As informações que você inseriu não estão corretas
     confirm_password: Digite a sua senha atual para verificar a sua identidade
-    confirm_username: Digite seu nome de usuário para confirmar o procedimento
+    confirm_username: Confirmar nome de usuário
     proceed: Excluir conta
     success_msg: Sua conta foi excluída
+    title: Excluir conta %{acct}
     warning:
       before: 'Antes de prosseguir, leia com cuidado:'
       caches: Conteúdo que foi armazenado em cache por outros servidores pode continuar a existir
@@ -1821,7 +1824,6 @@ pt-BR:
     appearance: Aparência
     authorized_apps: Aplicativos autorizados
     back: Voltar para o Mastodon
-    delete: Exclusão de conta
     development: Desenvolvimento
     edit_profile: Editar perfil
     export: Exportar
@@ -2051,7 +2053,7 @@ pt-BR:
       checklist_title: Lista de verificação de boas-vindas
       edit_profile_action: Personalizar
       edit_profile_step: Aumente suas interações tendo um perfil completo.
-      edit_profile_title: Customize seu perfil
+      edit_profile_title: Personalize seu perfil
       explanation: Aqui estão algumas dicas para você começar
       feature_action: Saiba mais
       feature_audience: O Mastodon oferece a você uma oportunidade única de gerenciar seu público sem intermediários. O Mastodon implantado em sua própria infraestrutura permite que você siga e seja seguido por qualquer outro servidor Mastodon online e está única e exclusivamente sob o seu controle.

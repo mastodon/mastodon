@@ -191,6 +191,7 @@ sv:
         create_unavailable_domain: Skapa otillgänglig domän
         create_user_role: Skapa roll
         demote_user: Degradera användare
+        destroy_account: Radera kontodata
         destroy_announcement: Radera notis
         destroy_canonical_email_block: Ta bort e-post block
         destroy_custom_emoji: Radera egen emoji
@@ -256,6 +257,7 @@ sv:
         create_unavailable_domain_html: "%{name} stoppade leverans till domänen %{target}"
         create_user_role_html: "%{name} skapade rollen %{target}"
         demote_user_html: "%{name} nedgraderade användare %{target}"
+        destroy_account_html: "%{name} raderade kontodata för %{target}"
         destroy_announcement_html: "%{name} raderade kungörelsen %{target}"
         destroy_canonical_email_block_html: "%{name} avblockerade e-post med hash%{target}"
         destroy_custom_emoji_html: "%{name} raderade emoji %{target}"
@@ -1051,7 +1053,7 @@ sv:
         confirm_allow_account: Är du säker på att du vill tillåta valda konton?
         confirm_disallow: Är du säker på att du vill förbjuda valda statusar?
         confirm_disallow_account: Är du säker på att du vill förbjuda valda konton?
-        description_html: Detta är inlägg som din server vet om som för närvarande delas och favoriseras mycket just nu. Det kan hjälpa dina nya och återvändande användare att hitta fler människor att följa. Inga inlägg visas offentligt förrän du godkänner författaren, och författaren tillåter att deras konto föreslås till andra. Du kan också tillåta eller avvisa enskilda inlägg.
+        description_html: Detta är inlägg som din server vet om som för närvarande delas och favoritmarkeras mycket just nu. Det kan hjälpa dina nya och återvändande användare att hitta fler människor att följa. Inga inlägg visas offentligt förrän du godkänner författaren, och författaren tillåter att deras konto föreslås till andra. Du kan också tillåta eller avvisa enskilda inlägg.
         disallow: Tillåt inte inlägg
         disallow_account: Tillåt inte författare
         no_status_selected: Inga trendande inlägg ändrades eftersom inga valdes
@@ -1301,9 +1303,11 @@ sv:
   deletes:
     challenge_not_passed: Informationen som du angav var inte korrekt
     confirm_password: Ange ditt lösenord för att verifiera din identitet
-    confirm_username: Fyll i ditt användarnamn för att bekräfta proceduren
+    confirm_username: Bekräfta användarnamn
+    confirm_username_hint_html: Vänligen skriv <code>%{username}</code> för att bekräfta det konto du vill ta bort
     proceed: Radera konto
     success_msg: Ditt konto har raderats
+    title: Ta bort konto %{acct}
     warning:
       before: 'Läs dessa noteringar noga innan du fortsätter:'
       caches: Innehåll som har cachats av andra servrar kan bibehållas
@@ -1363,7 +1367,7 @@ sv:
       content: Vi är ledsna, men något gick fel från vårat håll.
       title: Den här sidan är inte korrekt
     '503': Sidan kunde inte visas på grund av ett tillfälligt serverfel.
-    noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="%{apps_path}">inhemska appar</a> för Mastodon för din plattform.
+    noscript_html: Aktivera JavaScript för att använda Mastodons webbapplikation. Alternativt kan du prova någon av Mastodons <a href="%{apps_path}">plattformsspecifika appar</a> för din plattform.
   existing_username_validator:
     not_found: kunde inte hitta en lokal användare med det användarnamnet
     not_found_multiple: kunde inte hitta %{usernames}
@@ -1579,18 +1583,18 @@ sv:
       confirmation_html: Är du säker på att du vill avregistrera dig från att ta emot %{type} för Mastodon på %{domain} med din e-post på %{email}? Du kan alltid återprenumerera bland dina <a href="%{settings_path}">e-postmeddelandeinställningar</a>.
       emails:
         notification_emails:
-          favourite: aviseringsmejl för favoriserade inlägg
+          favourite: aviseringsmejl om favoriter
           follow: aviseringsmejl för följda inlägg
           follow_request: aviseringsmejl för följdförfrågningar
           mention: aviseringsmejl för inlägg där du nämns
-          reblog: aviseringsmejl för förhöjda inlägg
+          reblog: aviseringsmejl om boostar
       resubscribe_html: Om du slutat prenumerera av misstag kan du återprenumerera i dina <a href="%{settings_path}">e-postaviseringsinställningar</a>.
       success_html: Du får inte längre %{type} för Mastodon på %{domain} till din e-post på %{email}.
       title: Avsluta prenumeration
   media_attachments:
     validations:
       images_and_video: Det går inte att bifoga en video till ett inlägg som redan innehåller bilder
-      not_found: Media %{ids} hittades inte eller är redan anslutet till ett annat inlägg
+      not_found: Media %{ids} hittades inte eller har redan bifogats till ett annat inlägg
       not_ready: Kan inte bifoga filer som inte har behandlats färdigt. Försök igen om ett ögonblick!
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
@@ -1685,7 +1689,7 @@ sv:
     description_html: Om du aktiverar <strong>tvåfaktorsautentisering</strong> med en autentiseringsapp kommer du behöva din mobiltelefon för att logga in, som kommer generera koder för dig att ange.
     enable: Aktivera
     instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app i din telefon</strong>. Från och med nu så kommer den appen att generera symboler som du måste skriva in när du ska logga in."
-    manual_instructions: 'Om du inte kan skanna QR-koden och istället behöver skriva in nyckeln i oformatterad text, finns den här:'
+    manual_instructions: 'Om du inte kan skanna QR-koden och behöver ange den manuellt finns klartextnyckeln här:'
     setup: Konfigurera
     wrong_code: Den ifyllda koden är ogiltig! Är server-tiden och enhetens tid korrekt?
   pagination:
@@ -1820,10 +1824,9 @@ sv:
     appearance: Utseende
     authorized_apps: Godkända appar
     back: Tillbaka till Mastodon
-    delete: Konto radering
     development: Utveckling
     edit_profile: Redigera profil
-    export: Export
+    export: Exportera
     featured_tags: Utvalda hashtaggar
     import: Importera
     import_and_export: Import och export
@@ -1896,7 +1899,7 @@ sv:
     ignore_favs: Bortse från favoriter
     ignore_reblogs: Ignorera boostar
     interaction_exceptions: Undantag baserat på interaktioner
-    interaction_exceptions_explanation: Observera att det inte finns någon garanti att inlägg blir raderade om de går under favorit- eller boost-tröskeln efter att en gång ha gått över dem.
+    interaction_exceptions_explanation: Observera att det inte finns någon garanti att inlägg blir raderade om de går under favorit- eller boosttröskeln efter att en gång ha gått över dem.
     keep_direct: Behåll direktmeddelanden
     keep_direct_hint: Tar inte bort någon av dina direktmeddelanden
     keep_media: Behåll inlägg med mediebilagor
@@ -1938,8 +1941,8 @@ sv:
     review_link: Granska villkoren för tjänsten
     title: Villkoren för tjänsten i %{domain} ändras
   themes:
-    contrast: Mastodon (Hög kontrast)
-    default: Mastodon (Mörk)
+    contrast: Mastodon (hög kontrast)
+    default: Mastodon (mörkt)
     mastodon-light: Mastodon (ljust)
     system: Automatisk (använd systemtema)
   time:
@@ -2090,7 +2093,7 @@ sv:
     seamless_external_login: Du är inloggad via en extern tjänst. Därför finns inställningar för lösenord och e-post inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   verification:
-    extra_instructions_html: <strong>Tips:</strong> Länken på din webbplats kan vara osynlig. Den viktiga delen är <code>rel="me"</code> som förhindrar personifiering på webbplatser med användargenererat innehåll. Du kan även använda en <code>länk</code> tagg i huvudet på sidan istället för <code>en</code>, men HTML:en måste vara tillgänglig utan att exekvera JavaScript.
+    extra_instructions_html: <strong>Tips:</strong> Länken på din webbplats kan vara osynlig. Den viktiga delen är <code>rel="me"</code>, som förhindrar personifiering på webbplatser med användargenererat innehåll. Du kan även använda en <code>link</code>-tagg i sidhuvudet i stället för <code>a</code>, men HTML-koden måste vara tillgänglig utan att JavaScript körs.
     here_is_how: Så här gör du
     hint_html: "<strong>Verifiera din identitet på Mastodon är för alla.</strong> Baserat på öppna webbstandarder, nu och för evigt fria. Allt du behöver är en personlig webbplats som folk känner igen dig med. När du länkar till denna webbplats från din profil kommer vi att kontrollera att webbplatsen länkar tillbaka till din profil och visa en visuell indikator på den."
     instructions_html: Kopiera och klistra in koden nedan in i HTML-koden på din webbplats. Lägg sedan till adressen till din webbplats i ett av de extra fälten på din profil från fliken "Redigera profil" och spara ändringar.

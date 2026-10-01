@@ -200,6 +200,7 @@ ga:
         create_unavailable_domain: Cruthaigh Fearann ​​Gan Fáil
         create_user_role: Cruthaigh Ról
         demote_user: Ísligh úsáideoir
+        destroy_account: Scrios Sonraí an Chuntais
         destroy_announcement: Scrios Fógra
         destroy_canonical_email_block: Scrios Bloc Ríomhphoist
         destroy_custom_emoji: Scrios Saincheaptha Emoji
@@ -265,6 +266,7 @@ ga:
         create_unavailable_domain_html: Chuir %{name} deireadh leis an seachadadh chuig fearann ​​%{target}
         create_user_role_html: Chruthaigh %{name} %{target} ról
         demote_user_html: "%{name} úsáideoir scriosta %{target}"
+        destroy_account_html: Scrios %{name} sonraí cuntais le haghaidh %{target}
         destroy_announcement_html: "%{name} fógra scriosta %{target}"
         destroy_canonical_email_block_html: "%{name} ríomhphost díchoiscthe leis an hash %{target}"
         destroy_custom_emoji_html: Scriosadh %{name} emoji %{target}
@@ -1110,7 +1112,7 @@ ga:
           one: Roinnte nó is fearr leat am amháin
           other: Roinnte agus ansa leat %{friendly_count} uair
           two: Roinnte agus ansa leat %{friendly_count} uair
-        title: Poist trending
+        title: Poist ag treocht
       tags:
         current_score: Scór reatha %{score}
         dashboard:
@@ -1202,7 +1204,7 @@ ga:
       new_trending_links:
         title: Naisc treochta
       new_trending_statuses:
-        title: Poist trending
+        title: Poist ag treocht
       new_trending_tags:
         title: Hashtags treochta
       subject: Treochtaí nua le hathbhreithniú ar %{instance}
@@ -1358,7 +1360,6 @@ ga:
   deletes:
     challenge_not_passed: Ní raibh an fhaisnéis a d'iontráil tú ceart
     confirm_password: Cuir isteach do phasfhocal reatha chun d'aitheantas a fhíorú
-    confirm_username: Cuir isteach d'ainm úsáideora chun an nós imeachta a dhearbhú
     proceed: Scrios cuntas
     success_msg: Scriosadh do chuntas go rathúil
     warning:
@@ -1937,7 +1938,6 @@ ga:
     appearance: Cuma
     authorized_apps: Aipeanna údaraithe
     back: Ar ais go Mastodon
-    delete: Scriosadh cuntais
     development: Forbairt
     edit_profile: Cuir an phróifíl in eagar
     export: Easpórtáil
