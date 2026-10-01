@@ -200,6 +200,7 @@ nl:
         create_user_role: Rol aanmaken
         create_username_block: Gebruikersnaam-regel aanmaken
         demote_user: Gebruiker degraderen
+        destroy_account: Accountgegevens Verwijderen
         destroy_announcement: Mededeling verwijderen
         destroy_canonical_email_block: E-mailblokkade verwijderen
         destroy_custom_emoji: Lokale emoji verwijderen
@@ -268,6 +269,7 @@ nl:
         create_user_role_html: "%{name} maakte de rol %{target} aan"
         create_username_block_html: "%{name} heeft regel toegevoegd voor gebruikersnamen die %{target} bevatten"
         demote_user_html: Gebruiker %{target} is door %{name} gedegradeerd
+        destroy_account_html: "%{name} heeft accountgegevens voor %{target} verwijderd"
         destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_canonical_email_block_html: "%{name} deblokkeerde e-mail met de hash %{target}"
         destroy_collection_html: "%{name} heeft een verzameling van %{target} verwijderd"
@@ -1494,9 +1496,11 @@ nl:
   deletes:
     challenge_not_passed: De informatie die u hebt ingevoerd is ongeldig
     confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
-    confirm_username: Voer uw gebruikersnaam in om de procedure te bevestigen
+    confirm_username: Gebruikersnaam bevestigen
+    confirm_username_hint_html: Typ <code>%{username}</code> om het account dat u wilt verwijderen te bevestigen
     proceed: Account verwijderen
     success_msg: Jouw account is succesvol verwijderd
+    title: Account %{acct} verwijderen
     warning:
       before: 'Lees deze tekst zorgvuldig voordat je verder gaat:'
       caches: Berichten en media die op andere servers zijn opgeslagen kunnen daar achterblijven
@@ -1596,6 +1600,7 @@ nl:
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
     '503': De pagina kon door een tijdelijke serverstoring niet worden geladen.
+    go_home: Ga naar Start
     noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="%{apps_path}">Mastodon-app</a> zoeken voor jouw platform.
   existing_username_validator:
     not_found: Kon geen lokale gebruiker met die gebruikersnaam vinden
@@ -1692,6 +1697,7 @@ nl:
       incompatible_type: Incompatibel met het geselecteerde importtype
       invalid_csv_file: 'Ongeldig CSV-bestand. Fout: %{error}'
       invalid_json_file: 'Ongeldig JSON-bestand. Foutmelding: %{error}'
+      no_data: Dit bestand bevat geen gegevens die overeenkomen met het gegeven type import
       over_rows_processing_limit: bevat meer dan %{count} rijen
       status_not_found_warning: Sommige van je filters verbergen specifieke berichten die niet bekend zijn bij deze server. Deze berichten worden niet automatisch gefilterd wanneer ze later alsnog door de server worden ontdekt.
       too_large: Bestand is te groot
@@ -2090,7 +2096,6 @@ nl:
     appearance: Uiterlijk
     authorized_apps: Geautoriseerde apps
     back: Terug naar Mastodon
-    delete: Account verwijderen
     development: Ontwikkelaars
     edit_profile: Profiel bewerken
     export: Exporteren
@@ -2371,8 +2376,8 @@ nl:
         one: "%{people} persoon in de afgelopen 2 dagen"
         other: "%{people} mensen in de afgelopen 2 dagen"
       hashtags_subtitle: Wat er in de afgelopen 2 dagen is gebeurd verkennen
-      hashtags_title: Populaire hashtags
-      hashtags_view_more: Meer populaire hashtags bekijken
+      hashtags_title: Trending hashtags
+      hashtags_view_more: Meer trending hashtags bekijken
       post_action: Opstellen
       post_step: Zeg hallo tegen de wereld met tekst, foto's, video's of peilingen.
       post_title: Je eerste bericht schrijven

@@ -200,6 +200,7 @@ hu:
         create_user_role: Szerepkör létrehozása
         create_username_block: Felhasználónév-szabály létrehozása
         demote_user: Felhasználó lefokozása
+        destroy_account: Fiókadatok törlése
         destroy_announcement: Közlemény törlése
         destroy_canonical_email_block: E-mail-tiltás törlése
         destroy_custom_emoji: Egyéni emodzsi törlése
@@ -268,6 +269,7 @@ hu:
         create_user_role_html: "%{name} létrehozta a(z) %{target} szerepkört"
         create_username_block_html: "%{name} az ezt tartalmazó felhasználónevekre vonatkozó szabályt hozott létre: %{target}"
         demote_user_html: "%{name} lefokozta %{target} felhasználót"
+        destroy_account_html: "%{name} törölte %{target} fiókadatait"
         destroy_announcement_html: "%{name} törölte a %{target} közleményt"
         destroy_canonical_email_block_html: "%{name} engedélyezte a(z) %{target} hashű e-mailt"
         destroy_collection_html: "%{name} eltávolította %{target} felhasználó gyűjteményét"
@@ -1494,9 +1496,11 @@ hu:
   deletes:
     challenge_not_passed: A beírt információ helytelen
     confirm_password: Személyazonosságod megerősítéséhez írd be a jelenlegi jelszavad
-    confirm_username: Add meg a felhasználói nevedet a jóváhagyáshoz
+    confirm_username: Felhasználónév megerősítése
+    confirm_username_hint_html: 'Írd be ezt: <code>%{username}</code>, hogy megerősítsd a törlendő fiókot'
     proceed: Felhasználói fiók törlése
     success_msg: Felhasználói fiókod sikeresen töröltük
+    title: "%{acct} fiók törlése"
     warning:
       before: 'Mielőtt továbbmész, alaposan olvasd el ezt:'
       caches: Más szerverek által cache-elt tartalmak még megmaradhatnak
@@ -1596,6 +1600,7 @@ hu:
       content: Sajnáljuk, valami hiba történt a mi oldalunkon.
       title: Az oldal nem megfelelő
     '503': Az oldalt átmeneti kiszolgálóprobléma miatt nem lehet kiszolgálni.
+    go_home: Ugrás a kezdőlapra
     noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálsz egy platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
   existing_username_validator:
     not_found: ezzel a névvel nem találtunk helyi felhasználót
@@ -1692,6 +1697,7 @@ hu:
       incompatible_type: Nem kompatibilis a kiválasztott importálási típussal
       invalid_csv_file: 'Érvénytelen CSV-fájl. Hiba: %{error}'
       invalid_json_file: 'Érvénytelen JSON-fájl. Hiba: %{error}'
+      no_data: Ez a fájl nem tartalmaz az adott importálási típusnak megfelelő adatot
       over_rows_processing_limit: több mint %{count} sort tartalmaz
       status_not_found_warning: A szűrőid olyan bejegyzéseket rejtenek el, melyeket ez a kiszolgáló nem ismer. Ezek a bejegyzések nem lesznek automatikusan kiszűrve, ha a kiszolgáló később felfedezi őket.
       too_large: A fájl túl nagy
@@ -1970,8 +1976,8 @@ hu:
       invalid_choice: A kiválasztott szavazási lehetőség nem létezik
       over_character_limit: egyik sem lehet %{max} karakternél hosszabb
       self_vote: Nem szavazhatsz a saját szavazásodon
-      too_few_options: több, mint egy opciónak kell lennie
-      too_many_options: nem lehet több, mint %{max} opció
+      too_few_options: több, mint egy elemnek kell lennie
+      too_many_options: nem lehet több, mint %{max} elem
     vote: Szavazás
   posting_defaults:
     explanation: Ezek a beállítások lesznek alapértelmezésként használva, amikor új bejegyzéseket hoz létre, de a szerkesztő segítségével bejegyzésenként szerkeszthetők.
@@ -2090,7 +2096,6 @@ hu:
     appearance: Megjelenés
     authorized_apps: Jóváhagyott alkalmazások
     back: Vissza a Mastodonhoz
-    delete: Fiók törlése
     development: Fejlesztőknek
     edit_profile: Profil szerkesztése
     export: Exportálás

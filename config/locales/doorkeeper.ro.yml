@@ -83,6 +83,10 @@ ro:
         access_denied: Proprietarul de resurse sau serverul de autorizare a refuzat cererea.
         credential_flow_not_configured: Fluxul Resurselor de Acreditări Parole a eșuat din cauza faptului că Doorkeeper.configure.resource_owner_from_credentials nu este configurat.
         invalid_client: Autentificarea clientului a eșuat din cauza unui client necunoscut, nici o autentificare client inclusă, sau metodă de autentificare nesuportată.
+        invalid_code_challenge_method:
+          few: The code_challenge_method must be %{challenge_methods}.
+          one: code_challenge_method trebuie să fie %{challenge_methods}.
+          other: code_challenge_method trebuie să fie una dintre %{challenge_methods}.
         invalid_grant: Acordarea autorizației furnizată este invalidă, expirată, revocată, nu corespunde URI-ului de redirecționare folosit în cererea de autorizare, sau a fost eliberat altui client.
         invalid_redirect_uri: Uri-ul de redirecționare inclus nu este valid.
         invalid_request:

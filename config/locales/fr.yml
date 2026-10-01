@@ -125,11 +125,11 @@ fr:
       public: Public
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir le profil
-      redownloaded_msg: Le profil de %{username} a été actualisé avec succès depuis l’origine
+      redownloaded_msg: Le profil de %{username} a été actualisé avec succès depuis son serveur d'origine
       reject: Rejeter
       rejected_msg: La demande d’inscription de %{username} a été rejetée avec succès
       remote_suspension_irreversible: Les données de ce compte ont été supprimées définitivement.
-      remote_suspension_reversible_hint_html: Ce compte a été suspendu par son serveur d'accueil, et les données rattachées seront supprimées le %{date}. Jusqu'à cette date, il peut être restauré sans aucune perte par le serveur distant. Si vous souhaitez supprimer immédiatement toutes les données de ce compte, vous pouvez le faire ci-dessous.
+      remote_suspension_reversible_hint_html: Ce compte a été suspendu par son serveur, et les données rattachées seront supprimées le %{date}. Jusqu'à cette date, il peut être restauré sans aucune perte par le serveur distant. Si vous souhaitez supprimer immédiatement toutes les données de ce compte, vous pouvez le faire ci-dessous.
       remove_avatar: Supprimer l’avatar
       remove_header: Supprimer l'image de couverture
       removed_avatar_msg: L’avatar de %{username} a été supprimé avec succès
@@ -200,6 +200,7 @@ fr:
         create_user_role: Créer un rôle
         create_username_block: Créer une règle de nom d'utilisateur·rice
         demote_user: Rétrograder un·e utilisateur·ice
+        destroy_account: Supprimer les données de compte
         destroy_announcement: Supprimer une annonce
         destroy_canonical_email_block: Supprimer un blocage de courriel
         destroy_custom_emoji: Supprimer un émoji personnalisé
@@ -268,6 +269,7 @@ fr:
         create_user_role_html: "%{name} a créé le rôle %{target}"
         create_username_block_html: "%{name} a ajouté une règle pour les noms d'utilisateur·rice contenant %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
+        destroy_account_html: "%{name} a supprimé les données de compte pour %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
         destroy_canonical_email_block_html: "%{name} a débloqué l'adresse courriel ayant l'empreinte %{target}"
         destroy_collection_html: "%{name} a supprimé la collection de %{target}"
@@ -1494,7 +1496,6 @@ fr:
   deletes:
     challenge_not_passed: Les renseignements que vous avez entrés n'étaient pas exacts
     confirm_password: Entrez votre mot de passe actuel pour vérifier votre identité
-    confirm_username: Entrez votre identifiant pour confirmer la procédure
     proceed: Supprimer le compte
     success_msg: Votre compte a été supprimé avec succès
     warning:
@@ -1596,6 +1597,7 @@ fr:
       content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre côté.
       title: Cette page n’est pas correcte
     '503': La page n'a pas pu être servie en raison d'une défaillance temporaire du serveur.
+    go_home: Accéder à l’accueil
     noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l’une des <a href="%{apps_path}">applications natives</a> pour Mastodon pour votre plate-forme.
   existing_username_validator:
     not_found: impossible de trouver un·e utilisateur·rice local·e de ce nom
@@ -1692,6 +1694,7 @@ fr:
       incompatible_type: Incompatible avec le type d’import sélectionné
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
       invalid_json_file: 'Fichier JSON non valide. Erreur : %{error}'
+      no_data: Ce fichier ne contient aucune donnée correspondant au type d'import sélectionné
       over_rows_processing_limit: contient plus de %{count} lignes
       status_not_found_warning: Certains de vos filtres masquent des messages spécifiques qui ne sont pas connus par ce serveur. Ces messages ne seront pas filtrés automatiquement s'ils sont découverts plus tard par le serveur.
       too_large: Le fichier est trop lourd
@@ -2090,7 +2093,6 @@ fr:
     appearance: Apparence
     authorized_apps: Applications autorisées
     back: Retour vers Mastodon
-    delete: Suppression du compte
     development: Développement
     edit_profile: Modifier le profil
     export: Exportation

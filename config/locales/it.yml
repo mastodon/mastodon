@@ -200,6 +200,7 @@ it:
         create_user_role: Crea Ruolo
         create_username_block: Crea regola del nome utente
         demote_user: Retrocedi Utente
+        destroy_account: Elimina i dati dell'account
         destroy_announcement: Elimina Annuncio
         destroy_canonical_email_block: Elimina il blocco dell'e-mail
         destroy_custom_emoji: Elimina Emoji Personalizzata
@@ -268,6 +269,7 @@ it:
         create_user_role_html: "%{name} ha creato il ruolo %{target}"
         create_username_block_html: "%{name} ha aggiunto la regola per i nomi utente contenenti %{target}"
         demote_user_html: "%{name} ha retrocesso l'utente %{target}"
+        destroy_account_html: "%{name} ha eliminato i dati dell'account per %{target}"
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha sbloccato l'e-mail con l'hash %{target}"
         destroy_collection_html: "%{name} ha rimosso la collezione di %{target}"
@@ -1494,9 +1496,11 @@ it:
   deletes:
     challenge_not_passed: Le informazioni che hai inserito non sono corrette
     confirm_password: Inserisci la tua password attuale per verificare la tua identità
-    confirm_username: Inserisci il tuo nome utente per confermare la procedura
+    confirm_username: Conferma il nome utente
+    confirm_username_hint_html: Per favore digita <code>%{username}</code> per confermare l'account che vuoi eliminare
     proceed: Cancella l'account
     success_msg: Il tuo account è stato cancellato
+    title: Elimina l'account %{acct}
     warning:
       before: 'Prima di procedere, per favore leggi attentamente queste note:'
       caches: Il contenuto che è stato memorizzato in cache da altri server può continuare ad esistere
@@ -1596,6 +1600,7 @@ it:
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
     '503': La pagina non può essere trasmessa a causa di un errore temporaneo del server.
+    go_home: Vai alla Home
     noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
   existing_username_validator:
     not_found: impossibile trovare un utente locale con quel nome utente
@@ -1692,6 +1697,7 @@ it:
       incompatible_type: Incompatibile con il tipo di importazione selezionato
       invalid_csv_file: 'File CSV non valido. Errore: %{error}'
       invalid_json_file: 'File JSON non valido. Errore: %{error}'
+      no_data: Questo file non contiene dati corrispondenti al tipo di importazione specificato
       over_rows_processing_limit: contiene più di %{count} righe
       status_not_found_warning: Alcuni dei tuoi filtri nascondono post specifici che non sono noti a questo server. Questi post non verranno filtrati automaticamente se vengono scoperti in seguito dal server.
       too_large: Il file è troppo grande
@@ -2090,7 +2096,6 @@ it:
     appearance: Interfaccia
     authorized_apps: Applicazioni autorizzate
     back: Torna su Mastodon
-    delete: Cancellazione account
     development: Sviluppo
     edit_profile: Modifica profilo
     export: Esporta

@@ -186,7 +186,7 @@ de:
         assigned_to_self_report: Meldung zuweisen
         change_email_user: E-Mail des Profils ändern
         change_role_user: Rolle des Profils ändern
-        confirm_user: Benutzer*in bestätigen
+        confirm_user: Profil bestätigen
         create_account_warning: Warnung erstellen
         create_announcement: Ankündigung erstellen
         create_canonical_email_block: E-Mail-Sperre erstellen
@@ -200,6 +200,7 @@ de:
         create_user_role: Rolle erstellen
         create_username_block: Regel für Profilnamen erstellen
         demote_user: Benutzer*in herabstufen
+        destroy_account: Kontodaten löschen
         destroy_announcement: Ankündigung löschen
         destroy_canonical_email_block: E-Mail-Sperre entfernen
         destroy_custom_emoji: Eigenes Emojis löschen
@@ -268,6 +269,7 @@ de:
         create_user_role_html: "%{name} erstellte die Rolle %{target}"
         create_username_block_html: "%{name} erstellte eine Regel für Profilnamen mit %{target}"
         demote_user_html: "%{name} stufte %{target} herunter"
+        destroy_account_html: "%{name} löschte die Kontodaten von %{target}"
         destroy_announcement_html: "%{name} löschte die Ankündigung %{target}"
         destroy_canonical_email_block_html: "%{name} entsperrte die E-Mail mit dem Hash %{target}"
         destroy_collection_html: "%{name} entfernte Sammlung von %{target}"
@@ -302,7 +304,7 @@ de:
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} entfernte das Profilbild von %{target}"
         reopen_report_html: "%{name} öffnete die Meldung %{target} wieder"
-        resend_user_html: "%{name} versendete erneut die E-Mail-Bestätigung für %{target}"
+        resend_user_html: "%{name} verschickte erneut die E-Mail-Bestätigung für %{target}"
         reset_password_user_html: "%{name} setzte das Passwort von %{target} zurück"
         resolve_report_html: "%{name} klärte die Meldung %{target}"
         sensitive_account_html: "%{name} versah die Medien von %{target} mit einer Inhaltswarnung"
@@ -516,12 +518,12 @@ de:
         last_email: Letzte E-Mail
         lead: Konten, die die Funktion aktiviert haben und abonniert wurden, werden unten angezeigt.
         show:
-          confirm_disable_feature: E-Mail-Newsletter für %{name} deaktivieren? Für dieses Konto werden keine Neuigkeiten mehr über E-Mail versendet. Das Profil kann die Funktion in den Kontoeinstellungen weiterhin reaktivieren. Um den Zugriff auf diese Funktion dauerhaft zu entfernen, passe die Berechtigung in der Rollenverwaltung an.
+          confirm_disable_feature: E-Mail-Newsletter für %{name} deaktivieren? Für dieses Konto werden keine Neuigkeiten mehr über E-Mail verschickt. Das Profil kann die Funktion in den Kontoeinstellungen weiterhin reaktivieren. Um den Zugriff auf diese Funktion dauerhaft zu entfernen, passe die Berechtigung in der Rollenverwaltung an.
           confirm_remove_subscriber: "%{email} wird keine E-Mails mehr von %{name} erhalten. Die Aktion lässt sich nicht rückgängig machen."
           consent: Abonnent*innen haben ausschließlich dem Erhalt von Beiträgen per E-Mail zugestimmt. Verwende diese Liste nicht zu anderen Zwecken.
           date: Registrierungsdatum
           disable_feature: Funktion deaktivieren
-          disabled: Die Funktion wurde deaktiviert und E-Mails werden nicht länger diese Liste gesendet.
+          disabled: Die Funktion wurde deaktiviert und E-Mails werden nicht länger diese Liste verschickt.
           email: E-Mail-Adresse
           empty:
             hint: Noch hat niemand dieses Konto abonniert.
@@ -584,7 +586,7 @@ de:
             1_permission_explanation: Wenn die Funktion aktiviert ist, können alle berechtigten Konten ein E-Mail-Formular zu ihrem Profil hinzufügen.
             2_feature_explanation: Sobald Gäste ein Profil abonnieren und das Abonnement bestätigen, werden sie E-Mails über neue öffentliche Beiträge des betreffenden Profils erhalten.
             3_privacy_policy_warning: Server-Admins werden Zugriff auf persönlich identifizierbare Informationen (E-Mail-Adressen) haben. Daher müssen die Datenschutzerklärung und Nutzungsbedingungen im Vorfeld aktualisiert werden, bevor diese Funktion verwendet werden kann.
-            4_cost_warning: Abhängig vom Hosting-Provider können Gebühren für den E-Mail-Versand anfallen. Kläre für deinen Server vorher alle Details, da diese Funktion die Anzahl versendeter E-Mails drastisch erhöhen kann.
+            4_cost_warning: Abhängig vom Hosting-Provider können Gebühren für das Verschicken von E-Mails anfallen. Kläre vorher alle Details für deinen Server, da diese Funktion die Anzahl verschickter E-Mails drastisch erhöhen kann.
     export_domain_allows:
       new:
         title: Erlaubte Domains importieren
@@ -634,10 +636,10 @@ de:
       description_html: "<strong>Follower-Empfehlungen helfen neuen Nutzer*innen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer*in noch nicht genug mit anderen interagiert hat, um personalisierte Follower-Empfehlungen zu erhalten, werden stattdessen diese Profile vorgeschlagen. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache neu berechnet."
       language: Für Sprache
       status: Status
-      suppress: Folgeempfehlung unterbinden
+      suppress: Follower-Empfehlungen unterbinden
       suppressed: Unterdrückt
       title: Follower-Empfehlungen
-      unsuppress: Folgeempfehlung nicht mehr unterbinden
+      unsuppress: Follower-Empfehlungen wiederherstellen
     instances:
       audit_log:
         title: Neueste Protokolle
@@ -777,7 +779,7 @@ de:
         resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen und der Vorgang wird nicht aufgezeichnet – die Meldung wird hiermit geschlossen.
         silence_description_html: Das Konto wird nur für diejenigen sichtbar sein, die dem Konto bereits folgen oder es manuell suchen, was die Reichweite stark einschränkt. Kann jederzeit rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
         suspend_description_html: Das Konto und alle Inhalte werden unzugänglich und ggf. gelöscht. Eine Interaktion mit dem Konto wird unmöglich. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
-      actions_description_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, wird eine E-Mail-Benachrichtigung an dieses gesendet, außer wenn die <strong>Spam</strong>-Kategorie ausgewählt ist.
+      actions_description_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, erhält es eine E-Mail-Benachrichtigung, sofern nicht die <strong>Spam</strong>-Kategorie ausgewählt ist.
       actions_description_remote_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Dies wirkt sich lediglich darauf aus, wie <strong>dein</strong> Server mit diesem externen Konto kommuniziert und dessen Inhalt handhabt.
       actions_no_posts: Diese Meldung enthält keine zu löschenden Beiträge
       add_to_report: Meldung ergänzen
@@ -1065,7 +1067,7 @@ de:
         delete_statuses: "%{name} entfernte die Beiträge von %{target}"
         disable: "%{name} fror das Konto von %{target} ein"
         mark_statuses_as_sensitive: "%{name} hat die Beiträge von %{target} mit einer Inhaltswarnung versehen"
-        none: "%{name} hat eine Warnung an %{target} gesendet"
+        none: "%{name} schickte eine Warnung an %{target}"
         sensitive: "%{name} versah das Konto von %{target} mit einer Inhaltswarnung"
         silence: "%{name} schaltete das Konto von %{target} stumm"
         suspend: "%{name} sperrte das Konto von %{target}"
@@ -1156,7 +1158,7 @@ de:
       notified_on_html: Nutzer*innen wurden am %{date} benachrichtigt
       notify_users: Nutzer*innen benachrichtigen
       preview:
-        explanation_html: 'Die E-Mail wird an <strong>%{display_count} Nutzer*innen</strong> gesendet, die sich vor dem %{date} registriert haben. Folgendes wird in der E-Mail enthalten sein:'
+        explanation_html: 'Die E-Mail wird an <strong>%{display_count} Nutzer*innen</strong> geschickt, die sich vor dem %{date} registriert haben. Folgendes wird in der E-Mail enthalten sein:'
         send_preview: Vorschau an %{email} senden
         send_to_all:
           one: "%{display_count} E-Mail senden"
@@ -1494,9 +1496,11 @@ de:
   deletes:
     challenge_not_passed: Die eingegebenen Informationen waren nicht korrekt
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
-    confirm_username: Gib deinen Profilnamen ein, um den Vorgang zu bestätigen
+    confirm_username: Profilname eingeben
+    confirm_username_hint_html: Gib deinen Profilnamen <code>%{username}</code> in das Feld ein, um dein Konto zu löschen
     proceed: Konto löschen
     success_msg: Dein Konto wurde erfolgreich gelöscht
+    title: Konto (%{acct}) löschen
     warning:
       before: 'Bevor du fortfährst, lies bitte diese Hinweise sorgfältig durch:'
       caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können fortbestehen
@@ -1521,7 +1525,7 @@ de:
       approve_appeal: Einspruch annehmen
       associated_report: Zugehörige Meldung
       created_at: Datum
-      description_html: Dies sind Maßnahmen, die gegen dein Konto ergriffen worden sind, und Warnungen, die dir die Mitarbeiter*innen von %{instance} gesendet haben.
+      description_html: Dies sind Maßnahmen, die gegen dein Konto ergriffen worden sind, und Warnungen, die dir die Mitarbeiter*innen von %{instance} geschickt haben.
       recipient: Adressiert an
       reject_appeal: Einspruch ablehnen
       status: "%{id}. Beitrag"
@@ -1596,6 +1600,7 @@ de:
       content: Wir bitten um Verzeihung, aber etwas ist bei uns schiefgegangen.
       title: Diese Seite enthält einen Fehler
     '503': Die Seite konnte wegen eines temporären Serverfehlers nicht angezeigt werden.
+    go_home: Zur Startseite
     noscript_html: Bitte aktiviere JavaScript, um das Webinterface von Mastodon zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Apps</a> für Mastodon verwenden.
   existing_username_validator:
     not_found: kann kein lokales Konto mit diesem Profilnamen finden
@@ -1692,6 +1697,7 @@ de:
       incompatible_type: Inkompatibel mit dem ausgewählten Importtyp
       invalid_csv_file: 'Ungültige CSV-Datei. Fehler: %{error}'
       invalid_json_file: 'Ungültige JSON-Datei. Fehler: %{error}'
+      no_data: Diese Datei enthält keinerlei Daten, die zu diesem Dateitypen passen
       over_rows_processing_limit: enthält mehr als %{count} Zeilen
       status_not_found_warning: Einige deiner Filter blenden bestimmte Beiträge aus, die diesem Server nicht bekannt sind. Diese Beiträge werden nicht automatisch gefiltert, wenn sie dem Server später bekannt werden.
       too_large: Datei ist zu groß
@@ -2091,7 +2097,6 @@ de:
     appearance: Design
     authorized_apps: Genehmigte Apps
     back: Zurück zu Mastodon
-    delete: Kontolöschung
     development: Entwicklung
     edit_profile: Profil bearbeiten
     export: Exportieren

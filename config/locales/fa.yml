@@ -4,6 +4,7 @@ fa:
     about_mastodon_html: 'شبکهٔ اجتماعی آینده: بدون تبلیغ، بدون شنود شرکت‌ها، طراحی اخلاق مدار و معماری نامتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
     contact_missing: تنظیم نشده
     contact_unavailable: موجود نیست
+    default_thumbnail_description: دو ماستودون (که شبیه فیل است) کارتونی موشکی کاغذی را برای هم پرت می‌کنند. در پشت سرشان آسمانی آبی روشن و سیّاره‌هایی معلّق با درخت‌ها و ماستودون‌های بیش‌تر رویشان قرار داد.
     hosted_on: ماستودون میزبانی شده روی %{domain}
     title: درباره
   accounts:
@@ -63,6 +64,7 @@ fa:
       custom: سفارشی
       delete: حذف داده‌ها
       deleted: حذف شده
+      deletion_irreversible: داده‌های این حساب به طور غیرقابل برگشت حذف شده است.
       demote: تنزل‌دادن
       destroyed_msg: داده‌های %{username} در صف حدف قرار گرفتند
       disable: از کار انداختن
@@ -288,7 +290,11 @@ fa:
         enable_relay_html: "%{name} رله %{target} را فعال کرد"
         enable_sign_in_token_auth_user_html: "%{name}، احراز هویت با توکن رایانامه را برای %{target} فعال کرد"
         enable_user_html: "%{name} ورود را برای کاربر %{target} فعال کرد"
+        listable_tag_html: می‌تواند پیشنهاد شود
         memorialize_account_html: "%{name} حساب %{target} را تبدیل به صفحهٔ یادمان کرد"
+        not_listable_tag_html: پیشنهاد نخواهد شد
+        not_trendable_tag_html: در داغ‌ها ظاهر نخواهد شد
+        not_usable_tag_html: غیر قابل استفاده
         promote_user_html: "%{name} کاربر %{target} را ترفیع داد"
         publish_terms_of_service_html: "%{name} به‌روزرسانی‌های شرایط خدمات را منتشر کرد"
         reject_appeal_html: "%{name} درخواست تجدیدنظر تصمیم مدیر را از %{target} رد کرد"
@@ -301,6 +307,7 @@ fa:
         sensitive_account_html: "%{name} رسانهٔ %{target} را به عنوان حساس علامت‌گذاری کرد"
         silence_account_html: "%{name} حساب %{target} را محدود کرد"
         suspend_account_html: "%{name} حساب %{target} را تعلیق کرد"
+        trendable_tag_html: می تواند در داغ‌ها ظاهر شود
         unassigned_report_html: "%{name} گزارش %{target} را از حالت محول شده خارج کرد"
         unblock_email_account_html: "%{name} مسدودی نشانی رایانامهٔ %{target} را رفع کرد"
         unsensitive_account_html: "%{name} علامت حساس رسانهٔ %{target} را برداشت"
@@ -313,6 +320,7 @@ fa:
         update_ip_block_html: "%{name} قانون آی‌پی %{target} را تغییر داد"
         update_report_html: "%{name} گزارش %{target} را به‌روز کرد"
         update_status_html: "%{name} نوشتهٔ %{target} را به‌روز کرد"
+        update_tag_html: "%{name} تنظیمات %{target} را تغییر داد به: "
         update_user_role_html: "%{name} نقش %{target} را تغییر داد"
         update_username_block_html: "‫‏%{name} قانونی برای نام‌های کاربری دارای %{target} را به‌روز کرد"
       deleted_account: حساب حذف شد
@@ -349,6 +357,7 @@ fa:
       back_to_report: بازگشت به صفحهٔ گزارش
       batch:
         add_to_report: 'افزودن به گزارش #%{id}'
+        remove_from_report: برداشتن از گزارش
         report: گزارش
       collection_title: محموعه به دست %{name}
       contents: محتوا
@@ -503,6 +512,16 @@ fa:
           hint: هنوز هیچ حسابی مشترک نشده.
           no_lists_yet: هنوز سیاهه‌ای وجود ندارد
         last_email: آخرین رایانامه
+        show:
+          date: تاریخ ثبت‌نام
+          disable_feature: از کار انداختن ویژگی
+          email: نشانی رایانامه
+          empty:
+            hint: هنوز کسی مشترک این حساب نشده.
+            no_subscribers_yet: هنوز بدون مشترک
+          enable_feature: به کار انداختن ویژگی
+          title: خبرنامهٔ رایانامه‌ای %{name}
+          view_account: دیدن حساب
         status: وضعیت
         subscribers: مشترکان
         title: سیاهه‌های پستی
@@ -512,6 +531,7 @@ fa:
       compliance_settings:
         additional_footer_text:
           action: مدیریت
+          hint: متنی اختیاری که فقط در پانویس رایانامه‌های خبرنامه ظاهر می‌شود
           title: متن پانویس اضافی
         privacy_policy:
           action: مدیریت
@@ -696,6 +716,7 @@ fa:
       new:
         title: ایجاد قانون جدید آی پی
       no_ip_block_selected: هیچ قاعدهٔ آی‌پی‌ای تغییری نکرد زیرا هیچ‌کدام گزیده نشده بودند
+      reset: بازنشانی
       search: جست‌و‌جو
       title: قوانین آی پی
     relationships:
@@ -753,6 +774,7 @@ fa:
       confirm: تأیید
       confirm_action: تأیید کنش مدیریتی برای ‪@%{acct}‬
       created_at: گزارش‌شده
+      delete_and_resolve: حذف محتوا
       forwarded: هدایت شده
       forwarded_replies_explanation: این گزارش از یک کاربر راه دور و در مورد محتوای راه دور است. برای شما ارسال شده است زیرا محتوای گزارش شده در پاسخ به یکی از کاربران شما است.
       forwarded_to: هدایت شده به %{domain}
@@ -934,6 +956,8 @@ fa:
           public: هرکسی
       landing_page:
         values:
+          about: صفحهٔ درباره
+          local_feed: خوراک زندهٔ محلی
           overview: نمای کلی
           trends: پرطرفدار
       registrations:
@@ -955,6 +979,7 @@ fa:
     site_uploads:
       delete: پرونده بارگذاری شده را پاک کنید
       destroyed_msg: بارگذاری پایگاه با موفقیت حذف شد!
+    skip_to_content: پرش به محتوا
     software_updates:
       critical_update: بحرانی — لطفاً به سرعت به‌روز کنید
       description: توصیه می‌شود نصب ماستودونتان را به‌روز نگه داشته تا از جدیدترین اصلاحات و ویژگی‌ها بهره‌مند شوید. همچنین گاهی به‌روز رسانی به‌موقع ماستودون برای پیشگیری از مشکلات امنیتی ضروریست. برای همین ماستودون هر ۳۰ دقیقه به‌روز رسانی‌ها را بررسی کرده و بنا به ترجیحات آگاهی رایانامه‌ایتان آگاهتان خواهد کرد.
@@ -1425,7 +1450,6 @@ fa:
   deletes:
     challenge_not_passed: اطلاعاتی که وارد کردید اشتباه بود
     confirm_password: گذرواژه کنونی خود را وارد کنید تا هویتتان را تایید کنید
-    confirm_username: برای تأیید این فرایند نام کاربری خود را وارد کنید
     proceed: پاک‌کردن حساب
     success_msg: حساب شما با موفقیت پاک شد
     warning:
@@ -1495,6 +1519,7 @@ fa:
         unsubscribe: لغو اشتراک
     disabled: از کار افتاده
     inactive: غیرفعّال
+    no_access: بدون دسترسی
     status: وضعیت
     subscribers: مشترکان
   emoji_styles:
@@ -1515,6 +1540,7 @@ fa:
       content: شرمنده، یک چیزی از سمت ما اشتباه شده.
       title: این صفحه درست نیست
     '503': این صفحه به خاطر یک مشکل موقت در کارساز در دسترس نیست.
+    go_home: رفتن به خانه
     noscript_html: برای استفاده از کارهٔ وب ماستودون، لطفاً جاوااسکریپت را به کار بیندازید. یا به جایش می‌توانید <a href="%{apps_path}">یک کارهٔ بومی</a> را به کار ببرید.
   existing_username_validator:
     not_found: کاربری با این نام کاربری در این کارساز پیدا نشد
@@ -1530,6 +1556,7 @@ fa:
     blocks: حساب‌های مسدودشده
     bookmarks: نشانک‌ها
     csv: CSV
+    custom_filters: پالایه‌ها
     domain_blocks: دامنه‌های مسدود شده
     json: JSON
     lists: سیاهه‌ها
@@ -1681,6 +1708,7 @@ fa:
     types:
       blocking: سیاههٔ انسداد
       bookmarks: نشانک‌ها
+      custom_filters: پالایه‌ها
       domain_blocking: سیاههٔ انسداد دامنه
       following: سیاههٔ پی‌گیری
       lists: سیاهه‌ها
@@ -1836,6 +1864,7 @@ fa:
     administration_emails: آگاهی‌های رایانامه‌ای مدیر
     email_events: رویدادها برای آگاهی‌های رایانامه‌ای
     email_events_hint: 'گزینش رویدادهایی که می‌خواهید برایشان آگاهی دریافت کنید:'
+    moderation_emails: آگاهی‌های رایانامه‌ای نظارت
   number:
     human:
       decimal_units:
@@ -1988,7 +2017,6 @@ fa:
     appearance: نما
     authorized_apps: برنامه‌های مجاز
     back: بازگشت به ماستودون
-    delete: پاک‌کردن حساب
     development: فرابری
     edit_profile: ویرایش نمایه
     export: برون‌ریزی

@@ -200,6 +200,7 @@ is:
         create_user_role: Útbúa hlutverk
         create_username_block: Búa til notandanafnsreglu
         demote_user: Lækka notanda í tign
+        destroy_account: Eyða aðgangsgögnum
         destroy_announcement: Eyða tilkynningu
         destroy_canonical_email_block: Eyða útilokunarblokk tölvupósts
         destroy_custom_emoji: Eyða sérsniðnu lyndistákni
@@ -268,6 +269,7 @@ is:
         create_user_role_html: "%{name} útbjó %{target} hlutverk"
         create_username_block_html: "%{name} bætti við reglu varðandi notendanöfn sem innihalda %{target}"
         demote_user_html: "%{name} lækkaði notandann %{target} í tign"
+        destroy_account_html: "%{name} eyddi aðgangsgögnum fyrir %{target}"
         destroy_announcement_html: "%{name} eyddi tilkynninguni %{target}"
         destroy_canonical_email_block_html: "%{name} tók af útilokun á tölvupósti með tætigildið %{target}"
         destroy_collection_html: "%{name} fjarlægði safn frá %{target}"
@@ -1498,9 +1500,11 @@ is:
   deletes:
     challenge_not_passed: Upplýsingarnar sem þú settir inn eru ekki réttar
     confirm_password: Settu inn núverandi lykilorð þitt til að staðfesta auðkennin þín
-    confirm_username: Skrifaðu inn notandanafnið þitt til að halda áfram með ferlið
+    confirm_username: Staðfestu notandanafn
+    confirm_username_hint_html: Skrifaðu <code>%{username}</code> til að staðfesta aðganginn sem þú ætlar að eyða
     proceed: Eyða notandaaðgangi
     success_msg: Það tókst að eyða notandaaðgangnum þínum
+    title: Eyða aðgangnum %{acct}
     warning:
       before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
       caches: Efni sem aðrir netþjónar hafa sett í skyndiminni gæti verið til staðar áfram
@@ -1600,6 +1604,7 @@ is:
       content: Því miður, en eitthvað fór úrskeiðis á okkar enda.
       title: Þessi síða er ekki rétt
     '503': Ekki var hægt að afgreiða síðuna vegna tímabundinnar bilunar á vefþjóni.
+    go_home: Fara heim
     noscript_html: Til að nota vefútgáfu Mastodon þarftu að virkja JavaScript. Þú getur líka prófað eitt af Mastodon <a href="%{apps_path}">forritunum</a> fyrir stýrikerfið þitt.
   existing_username_validator:
     not_found: Fann ekki staðværan notanda með þetta notandanafn
@@ -1696,6 +1701,7 @@ is:
       incompatible_type: Ekki samhæfanlegt valinni tegund innflutnings
       invalid_csv_file: 'Ógild CSV-skrá. Villa: %{error}'
       invalid_json_file: 'Ógild JSON-skrá. Villa: %{error}'
+      no_data: Þessi skrá inniheldur ekki nein gögn sem samsvata uppgefinni tegund innflutnings
       over_rows_processing_limit: inniheldur meira en %{count} raðir
       status_not_found_warning: Sumar af síunum þínum fela tilteknar færslur sem þessi netþjónn kann ekki skil á. Þessar færslur verða ekki síaðar sjálfkrafa ef netþjónninn uppgötvar þær síðar.
       too_large: Skráin er of stór
@@ -2094,7 +2100,6 @@ is:
     appearance: Útlit
     authorized_apps: Leyfð forrit
     back: Til baka í Mastodon
-    delete: Eyðing notandaaðgangs
     development: Þróun
     edit_profile: Breyta notandasniði
     export: Flytja út
