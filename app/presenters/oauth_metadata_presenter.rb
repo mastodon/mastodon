@@ -70,7 +70,7 @@ class OAuthMetadataPresenter < ActiveModelSerializers::Model
   end
 
   def prompt_values_supported
-    ['create']
+    %w(login create)
   end
 
   private

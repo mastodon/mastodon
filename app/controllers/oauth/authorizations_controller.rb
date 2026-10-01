@@ -3,6 +3,7 @@
 class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
   include Redisable
 
+  prepend_before_action :require_reauth!, only: :new
   prepend_before_action :store_current_location
 
   layout 'modal'
@@ -12,6 +13,11 @@ class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
   end
 
   include Localized
+
+  # Make the action explicit so that rubocop does not complain
+  def new
+    super
+  end
 
   private
 
@@ -39,6 +45,20 @@ class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
     end
 
     super
+  end
+
+  def require_reauth!
+    return unless %w(login create).include?(params['prompt'])
+
+    if current_user
+      if session.delete(:reauthed_for) != "#{params[:client_id]}:#{params[:state]}"
+        session[:require_reauth_for] = "#{params[:client_id]}:#{params[:state]}"
+
+        render :require_reauth
+      end
+    else
+      session[:require_reauth_for] = "#{params[:client_id]}:#{params[:state]}"
+    end
   end
 
   # This is used to record with which application the user was created
