@@ -314,6 +314,15 @@ export const submitComposer = createAppThunk(
           modalProps: {},
         }),
       );
+    } else if (!!compose.get('spoiler') && !compose.get('spoiler_text')) {
+      dispatch(
+        openModal({
+          modalType: 'COMPOSER_ADD_CONTENT_WARNING',
+          modalProps: {
+            redirectOnSuccess,
+          },
+        }),
+      );
     } else {
       dispatch(
         submitCompose((status: ApiStatusJSON) => {
