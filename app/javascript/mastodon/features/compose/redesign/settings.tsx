@@ -49,7 +49,7 @@ const ComposeSettingsInnerMenu: React.FC = () => {
   // Quote policy
   const quotePolicy = useAppSelector(selectComposeQuotePolicy);
   const privacy = useAppSelector(selectComposePrivacy);
-  const disablePublicQuotes = privacy === 'direct' || privacy === 'private';
+  const disablePublicQuotes = privacy === 'private';
 
   const dispatch = useAppDispatch();
   const onQuotePolicyChange = useCallback(
@@ -80,65 +80,67 @@ const ComposeSettingsInnerMenu: React.FC = () => {
 
   return (
     <>
-      <MenuItemGroup
-        label={
-          <FormattedMessage
-            id='compose.visibility.quote_policy'
-            defaultMessage='Who can quote'
-          />
-        }
-      >
-        <MenuItemRadio
-          name='quote_policy'
-          value='public'
-          checked={quotePolicy === 'public'}
-          onChange={onQuotePolicyChange}
-          disabled={disablePublicQuotes}
-          keepMenuOpenOnClick
-        >
-          <FormattedMessage
-            id='visibility_modal.quote_public'
-            defaultMessage='Anyone'
-          />
-        </MenuItemRadio>
-
-        <MenuItemRadio
-          name='quote_policy'
-          value='followers'
-          checked={quotePolicy === 'followers'}
-          onChange={onQuotePolicyChange}
-          disabled={disablePublicQuotes}
-          keepMenuOpenOnClick
-        >
-          <FormattedMessage
-            id='compose.visibility.quote_policy.followers'
-            defaultMessage='Followers'
-          />
-        </MenuItemRadio>
-
-        <MenuItemRadio
-          name='quote_policy'
-          value='nobody'
-          checked={quotePolicy === 'nobody'}
-          onChange={onQuotePolicyChange}
-          description={
-            disablePublicQuotes && (
-              <FormattedMessage
-                id='compose.visibility.quote_policy.only_me_hint'
-                defaultMessage="When your post's visibility is set to Followers, it can only be quoted by you."
-              />
-            )
+      {privacy !== 'direct' && (
+        <MenuItemGroup
+          label={
+            <FormattedMessage
+              id='compose.visibility.quote_policy'
+              defaultMessage='Who can quote'
+            />
           }
-          keepMenuOpenOnClick
         >
-          <FormattedMessage
-            id='visibility_modal.quote_nobody'
-            defaultMessage='Just me'
-          />
-        </MenuItemRadio>
-      </MenuItemGroup>
+          <MenuItemRadio
+            name='quote_policy'
+            value='public'
+            checked={quotePolicy === 'public'}
+            onChange={onQuotePolicyChange}
+            disabled={disablePublicQuotes}
+            keepMenuOpenOnClick
+          >
+            <FormattedMessage
+              id='visibility_modal.quote_public'
+              defaultMessage='Anyone'
+            />
+          </MenuItemRadio>
 
-      <MenuItemDivider />
+          <MenuItemRadio
+            name='quote_policy'
+            value='followers'
+            checked={quotePolicy === 'followers'}
+            onChange={onQuotePolicyChange}
+            disabled={disablePublicQuotes}
+            keepMenuOpenOnClick
+          >
+            <FormattedMessage
+              id='compose.visibility.quote_policy.followers'
+              defaultMessage='Followers'
+            />
+          </MenuItemRadio>
+
+          <MenuItemRadio
+            name='quote_policy'
+            value='nobody'
+            checked={quotePolicy === 'nobody'}
+            onChange={onQuotePolicyChange}
+            description={
+              disablePublicQuotes && (
+                <FormattedMessage
+                  id='compose.visibility.quote_policy.only_me_hint'
+                  defaultMessage="When your post's visibility is set to Followers, it can only be quoted by you."
+                />
+              )
+            }
+            keepMenuOpenOnClick
+          >
+            <FormattedMessage
+              id='visibility_modal.quote_nobody'
+              defaultMessage='Just me'
+            />
+          </MenuItemRadio>
+        </MenuItemGroup>
+      )}
+
+      {privacy !== 'direct' && <MenuItemDivider />}
 
       <MenuItemGroup
         label={
