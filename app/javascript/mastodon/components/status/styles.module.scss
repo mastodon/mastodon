@@ -100,18 +100,6 @@
   margin-inline-start: auto;
 }
 
-.spoiler {
-  display: flex;
-  align-items: center;
-}
-
-.spoilerContent {
-  @include mixins.type-body-strong;
-
-  font-style: italic;
-  flex-grow: 1;
-}
-
 .contentWrapper,
 .content {
   display: flex;
