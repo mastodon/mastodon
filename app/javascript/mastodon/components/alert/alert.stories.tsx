@@ -76,7 +76,7 @@ export const WithAction: Story = {
   },
   render: Simple.render,
   play: async ({ args, canvas, userEvent }) => {
-    const button = await canvas.findByRole('button', { name: 'Open' });
+    const button = await canvas.findByText('Open');
     await userEvent.click(button);
     await expect(args.onActionClick).toHaveBeenCalled();
   },

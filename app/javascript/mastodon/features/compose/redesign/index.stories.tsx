@@ -15,6 +15,9 @@ const meta = {
   parameters: {
     redesign: true,
     state: {
+      compose: {
+        language: 'en',
+      },
       media_attachments: {
         accept_content_types: [
           'image/jpeg',
