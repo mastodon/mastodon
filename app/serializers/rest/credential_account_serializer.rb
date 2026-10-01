@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class REST::CredentialAccountSerializer < REST::AccountSerializer
-  attributes :source
+  attributes :source, :state
 
   has_one :role, serializer: REST::RoleSerializer
 
@@ -25,5 +25,17 @@ class REST::CredentialAccountSerializer < REST::AccountSerializer
 
   def role
     object.user_role
+  end
+
+  def state
+    error = object.user.nonfunctional_reason
+
+    {
+      functional: object.user.functional?,
+      confirmed: object.user.confirmed?,
+      approved: object.user.approved?,
+      error_code: error,
+      error: error.nil? ? nil : I18n.t(error, scope: 'accounts.api_errors'),
+    }
   end
 end

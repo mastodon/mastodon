@@ -75,6 +75,7 @@ ignore_unused:
   - 'admin.terms_of_service.generate' # temporarily disabled
   - 'admin.username_blocks.matches_exactly_html'
   - 'admin.username_blocks.contains_html'
+  - 'accounts.api_errors.{2fa_required,account_deleted,account_suspended,login_disabled,memorial,pending_approval,pending_confirmation}'
 
 ignore_inconsistent_interpolations:
   - '*.one'
