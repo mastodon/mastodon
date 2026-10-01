@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Auth::RegistrationsController < Devise::RegistrationsController
+  include ReauthConcern
   include RegistrationHelper
   include Auth::RegistrationSpamConcern
 
@@ -33,8 +34,12 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     extend_csp_for_oauth! if session[:registration_app_id]
 
     super do |resource|
-      # If created through an app, mark it as such
-      session[:created_by_app_id] = session.delete(:registration_app_id) if resource.persisted? && session[:registration_app_id]
+      if resource.persisted?
+        # If created through an app, mark it as such
+        session[:created_by_app_id] = session.delete(:registration_app_id) if session[:registration_app_id]
+
+        fulfil_reauth_request
+      end
     end
   rescue ActiveRecord::MultiparameterAssignmentErrors => e
     handle_multiparameter_assignment_error(e.errors)
