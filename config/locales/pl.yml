@@ -274,24 +274,24 @@ pl:
         destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
         destroy_user_role_html: "%{name} usunął rolę %{target}"
-        disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwuskładnikowe użytkownikowi %{target}"
+        disable_2fa_user_html: Użytkownik %{name} wyłączył uwierzytelnianie dwuskładnikowe użytkownikowi %{target}
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
         disable_relay_html: "%{name} wyłączył przekaźnik %{target}"
         disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
-        disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
+        disable_user_html: Użytkownik %{name} zablokował możliwość logowania użytkownikowi %{target}
         enable_custom_emoji_html: "%{name} włączył(a) emoji %{target}"
         enable_relay_html: "%{name} włączył przekaźnik %{target}"
         enable_sign_in_token_auth_user_html: "%{name} włączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
-        enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
+        enable_user_html: Użytkownik %{name} przywrócił możliwość logowania użytkownikowi %{target}
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
-        promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
+        promote_user_html: Użytkownik %{name} podniósł uprawnienia użytkownikowi %{target}
         publish_terms_of_service_html: "%{name} opublikował aktualizacje warunków korzystania z usługi"
         reject_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
         reject_user_html: "%{name} odrzucił rejestrację od %{target}"
-        remove_avatar_user_html: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
+        remove_avatar_user_html: Użytkownik %{name} usunął awatar użytkownikowi %{target}
         reopen_report_html: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
         resend_user_html: "%{name} ponownie wysłał(a) e-mail z potwierdzeniem dla %{target}"
-        reset_password_user_html: "%{name} resetuje hasło użytkownika %{target}"
+        reset_password_user_html: Użytkownik %{name} przywrócił hasło użytkownikowi %{target}
         resolve_report_html: "%{name} rozwiązał(a) zgłoszenie %{target}"
         sensitive_account_html: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
         silence_account_html: "%{name} wyciszył(a) konto %{target}"
@@ -695,7 +695,7 @@ pl:
       confirm: Potwierdź
       confirm_action: Potwierdzenie działań moderacyjnych wobec @%{acct}
       created_at: Zgłoszono
-      delete_and_resolve: Usuń posty
+      delete_and_resolve: Usuń wpisy
       forwarded: Przekazano
       forwarded_replies_explanation: Ten raport nadszedł od zdalnego użytkownika i dotyczy zdalnej treści. Został ci przekazany, bo raportowana treść jest odpowiedzią na jednego z twoich użytkowników.
       forwarded_to: Przekazano do %{domain}
@@ -708,7 +708,7 @@ pl:
         create_and_resolve: Rozwiąż i pozostaw notatkę
         create_and_unresolve: Cofnij rozwiązanie i pozostaw notatkę
         delete: Usuń
-        placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
+        placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia...
         title: Notatki
       notes_description_html: Przeglądaj i zostaw notatki innym moderatorom i sobie samemu
       processed_msg: 'Zgłoszenie #%{id} zostało pomyślnie przetworzone'
@@ -834,6 +834,9 @@ pl:
         preamble: Podaj szczegółowe informacje na temat sposobu działania, moderacji i finansowania serwera.
         rules_hint: Istnieje dedykowany obszar dla reguł, których twoi użytkownicy mają przestrzegać.
         title: O...
+      allow_referrer_origin:
+        desc: Gdy użytkownicy klikają w linki do zewnętrznych stron, ich przeglądarka może wysłać adres Twojego serwera Mastodona jako stronę odsyłającą. Wyłącz tę opcję, jeśli mogłoby to jednoznacznie zidentyfikować Twoich użytkowników, np. jeśli jest to osobisty serwer Mastodona.
+        title: Zezwalaj zewnętrznym stronom na rozpoznawanie Twojego serwera Mastodona jako źródła ruchu
       appearance:
         preamble: Dostosuj interfejs www Mastodon.
         title: Wygląd
@@ -852,7 +855,7 @@ pl:
         title: Domyślnie żądaj nieindeksowania użytkowników przez wyszukiwarki
       discovery:
         follow_recommendations: Polecane konta
-        preamble: Prezentowanie interesujących treści ma kluczowe znaczenie dla nowych użytkowników, którzy mogą nie znać nikogo z Mastodona. Kontroluj, jak różne funkcje odkrywania działają na Twoim serwerze.
+        preamble: Prezentowanie ciekawych treści jest kluczowe przy wdrażaniu nowych użytkowników, którzy mogą jeszcze nikogo nie znać na Mastodonie. Tutaj kontrolujesz, jak działają różne funkcje odkrywania treści na Twoim serwerze.
         privacy: Prywatność
         profile_directory: Katalog profilów
         public_timelines: Publiczne osie czasu
@@ -1329,7 +1332,6 @@ pl:
   deletes:
     challenge_not_passed: Wprowadzone informacje za nieprawidłowe
     confirm_password: Wprowadź aktualne hasło, aby potwierdzić tożsamość
-    confirm_username: Wprowadź swoją nazwę użytkownika aby potwierdzić procedurę
     proceed: Usuń konto
     success_msg: Twoje konto zostało pomyślnie usunięte
     warning:
@@ -1695,7 +1697,7 @@ pl:
   moderation:
     title: Moderacja
   move_handler:
-    carry_blocks_over_text: Ten użytkownik przeniósł się z konta %{acct}, które zablokowałeś(-aś).
+    carry_blocks_over_text: Ten użytkownik przeniósł się z konta %{acct}, które zablokowano.
     carry_mutes_over_text: Ten użytkownik przeniósł się z konta %{acct}, które wyciszyłeś(-aś).
     copy_account_note_text: 'Ten użytkownik przeniósł się z konta %{acct}, oto Twoje poprzednie notatki o nim:'
   navigation:
@@ -1782,11 +1784,11 @@ pl:
   privacy:
     hint_html: "<strong>Dostosuj tryb odnajdowania twojego profilu i wpisów.</strong> Funkcje Mastodona mogą pomóc ci zwiększać twoją publiczność – przejrzyj te ustawienia i dostosuj je do swojego sposobu użytkowania."
     privacy: Prywatność
-    privacy_hint_html: Ustaw, ile chcesz ujawniać innym. Ciekawe profile i programy często znajduje się przy przeglądaniu cudzych list obserwowanych i tego, z jakich programów zamieszczają, ale może wolisz to ukryć.
+    privacy_hint_html: Kontroluj, ile chcesz ujawniać innym. Ludzie odkrywają ciekawe profile i aplikacje przy przeglądaniu cudzych list obserwowanych i tego, z jakich aplikacji publikują posty, ale może wolisz to ukryć.
     reach: Zasięg
     reach_hint_html: Ustaw, czy chcesz dać się odkryć i zaobserwować. Chcesz, żeby twoje wpisy pojawiały się w zakładce "Odkrywaj"? Chcesz, żeby sugerowano twoje konto do obserwacji? Chcesz przyjmować nowych obserwujących automatycznie, czy aprobować ich ręcznie?
     search: Wyszukiwanie
-    search_hint_html: Ustaw, w jakim zakresie będziesz znajdowalny(a). Chcesz pojawiać się w wynikach po twoich publicznych wpisach? Chcesz by twój profil dało się znaleźć spoza Mastodona? Pamiętaj, że nie da się zapewnić całkowitego wykluczenia wszystkich informacji publicznie dostępnych z wyszukiwarek.
+    search_hint_html: Kontroluj zakres znajdowalności swojego profilu. Chcesz, aby inni mogli znaleźć Cię po Twoich publicznych wpisach? Chcesz, aby Twój profil dało się znaleźć poza Mastodonem podczas przeszukiwania internetu? Pamiętaj, że nie da się zapewnić całkowitego wykluczenia wszystkich publicznie dostępnych informacji z wyszukiwarek.
     title: Prywatność i zasięg
   privacy_policy:
     title: Polityka prywatności
@@ -1845,7 +1847,7 @@ pl:
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
-      generic: nieznana przeglądarka
+      generic: Nieznana przeglądarka
       huawei_browser: Przeglądarka Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
@@ -1888,7 +1890,6 @@ pl:
     appearance: Wygląd
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
-    delete: Usuń konto
     development: Tworzenie aplikacji
     edit_profile: Edytuj profil
     export: Eksportowanie danych
@@ -1957,6 +1958,7 @@ pl:
       public: Każdy
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Wzmianka prywatna
       private: Tylko dla obserwujących
       private_long: Widoczne tylko dla osób, które Cię obserwują
       public: Publiczne

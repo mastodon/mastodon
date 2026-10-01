@@ -26,7 +26,7 @@ pt-PT:
         types:
           disable: Impede o utilizador de usar a sua conta, mas não elimina ou oculta o seu conteúdo.
           none: Use isto para enviar um aviso ao utilizador, sem espoletar nenhuma outra ação.
-          sensitive: Forçar todos os anexos multimédia deste utilizador a serem assinalados como sensíveis.
+          sensitive: Força todos os anexos de media deste utilizador a serem sinalizados como sensíveis.
           silence: Impede que o utilizador possa publicar com visibilidade pública, ocultando as suas publicações e notificações de pessoas que não o seguem. Encerra todas as denúncias contra esta conta.
           suspend: Evita qualquer interação de ou para esta conta e elimina o seu conteúdo. Reversível num período de 30 dias. Encerra todas as denúncias contra esta conta.
         warning_preset_id: Opcional. Tu ainda podes adicionar texto personalizado no fim do predefinido
@@ -57,10 +57,10 @@ pt-PT:
         setting_aggregate_reblogs: Não mostrar as novas partilhas para publicações que tenham sido partilhadas recentemente (apenas afeta as partilhas recebidas recentemente)
         setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o Mastodon
         setting_default_quote_policy: Esta configuração só terá efeito nas publicações criadas com a próxima versão do Mastodon, mas pode desde já selecionar a sua preferência.
-        setting_default_sensitive: Os multimédia sensíveis são ocultados por predefinição e podem ser revelados com um clique/toque
-        setting_display_media_default: Esconder multimédia marcada como sensível
-        setting_display_media_hide_all: Esconder sempre toda a multimédia
-        setting_display_media_show_all: Mostrar sempre a multimédia
+        setting_default_sensitive: Os media sensíveis são ocultados por predefinição e podem ser revelados com um clique
+        setting_display_media_default: Ocultar media marcada como sensível
+        setting_display_media_hide_all: Ocultar sempre toda a media
+        setting_display_media_show_all: Mostrar sempre a media
         setting_system_scrollbars_ui: Aplica-se apenas a navegadores de desktop baseados no Safari e Chrome
         setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer pormenores
         setting_use_pending_items: Ocultar as atualizações da cronologia após um clique em vez de percorrer automaticamente a cronologia
@@ -76,7 +76,7 @@ pt-PT:
       filters:
         action: Escolha qual a ação a executar quando uma publicação corresponde ao filtro
         actions:
-          blur: Esconder multimédia com um aviso à frente, sem esconder o texto
+          blur: Ocultar o conteúdo media por trás de um aviso, sem ocultar o próprio texto
           hide: Ocultar completamente o conteúdo filtrado, comportando-se como se não existisse
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
       form_admin_settings:
@@ -203,7 +203,7 @@ pt-PT:
       defaults:
         autofollow: Convidar para seguir a sua conta
         avatar: Imagem de perfil
-        bot: Esta é uma conta robô
+        bot: Esta é uma conta automatizada
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirmar nova palavra-passe
         confirm_password: Confirmar palavra-passe
@@ -233,24 +233,24 @@ pt-PT:
         setting_default_language: Idioma de publicação
         setting_default_privacy: Privacidade da publicação
         setting_default_quote_policy: Quem pode citar
-        setting_default_sensitive: Marcar sempre os multimédia como sensíveis
+        setting_default_sensitive: Marcar sempre os media como sensíveis
         setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
         setting_disable_hover_cards: Desativar visualização de perfil ao passar o cursor
         setting_disable_swiping: Desativar os movimentos de deslize
-        setting_display_media: Visualização de multimédia
+        setting_display_media: Visualização de media
         setting_display_media_default: Pré-definição
-        setting_display_media_hide_all: Esconder todos
+        setting_display_media_hide_all: Ocultar todos
         setting_display_media_show_all: Mostrar todos
         setting_expand_spoilers: Expandir sempre as publicações marcadas com avisos de conteúdo
         setting_hide_network: Esconder a tua rede
-        setting_missing_alt_text_modal: Mostrar janela de confirmação antes de publicar multimédia sem texto alternativo
+        setting_missing_alt_text_modal: Mostrar janela de confirmação antes de publicar media sem texto alternativo
         setting_reduce_motion: Reduzir movimento em animações
         setting_system_font_ui: Usar o tipo de letra padrão do sistema
         setting_system_scrollbars_ui: Utilizar a barra de deslocação predefinida do sistema
         setting_theme: Tema do sítio
         setting_trends: Mostrar as tendências de hoje
         setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
-        setting_use_blurhash: Mostrar gradientes coloridos para multimédias ocultas
+        setting_use_blurhash: Mostrar gradientes coloridos para medias ocultas
         setting_use_pending_items: Modo lento
         severity: Gravidade
         sign_in_token_attempt: Código de segurança
@@ -265,7 +265,7 @@ pt-PT:
         name: Etiqueta
       filters:
         actions:
-          blur: Esconder multimédia com um aviso
+          blur: Ocultar media com um aviso
           hide: Ocultar por completo
           warn: Ocultar com um aviso
       form_admin_settings:

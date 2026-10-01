@@ -27,7 +27,7 @@ sv:
           disable: Förhindra användaren från att använda sitt konto, men radera eller dölj inte innehållet.
           none: Använd det här för att skicka en varning till användaren, utan att vidta någon ytterligare åtgärd.
           sensitive: Tvinga alla denna användares mediebilagor till att flaggas som känsliga.
-          silence: Hindra användaren från att kunna göra offentliga inlägg, göm deras inlägg och notiser från folk som inte följer dem. Stänger alla anmälningar mot detta kontot.
+          silence: Hindra användaren från att göra offentliga inlägg, dölj hens inlägg och aviseringar för personer som inte följer hen. Stänger alla anmälningar mot detta konto.
           suspend: Förhindrar all interaktion från eller till detta konto och ta bort dess innehåll. Går att ångra inom 30 dagar. Stänger alla anmälningar mot detta konto.
         warning_preset_id: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
       announcement:
@@ -85,7 +85,7 @@ sv:
         backups_retention_period: Användare har möjlighet att generera arkiv av sina inlägg för att ladda ned senare. När det sätts till ett positivt värde raderas dessa arkiv automatiskt från din lagring efter det angivna antalet dagar.
         bootstrap_timeline_accounts: Dessa konton kommer fästas högst upp i nya användares följrekommendationer.
         closed_registrations_message: Visas när nyregistreringar är avstängda
-        content_cache_retention_period: Alla inlägg från andra servrar (inklusive booster och svar) kommer att raderas efter det angivna antalet dagar, utan hänsyn till någon lokal användarinteraktion med dessa inlägg. Detta inkluderar inlägg där en lokal användare har markerat det som bokmärke eller favoriter. Privata omnämnanden mellan användare från olika instanser kommer också att gå förlorade och blir omöjliga att återställa. Användningen av denna inställning är avsedd för specialfall och bryter många användarförväntningar när de implementeras för allmänt bruk.
+        content_cache_retention_period: Alla inlägg från andra servrar (inklusive boostar och svar) raderas efter det angivna antalet dagar, utan hänsyn till lokal användarinteraktion med dessa inlägg. Det gäller även inlägg som en lokal användare har lagt till som bokmärke eller favorit. Privata omnämnanden mellan användare på olika instanser går också förlorade och kan inte återställas. Den här inställningen är avsedd för specialiserade instanser och bryter mot många användares förväntningar om den används på allmänna instanser.
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
         favicon: WEBP, PNG, GIF eller JPG. Används på mobila enheter istället för appens egen ikon.
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
@@ -241,7 +241,7 @@ sv:
         setting_display_media_default: Standard
         setting_display_media_hide_all: Dölj alla
         setting_display_media_show_all: Visa alla
-        setting_expand_spoilers: Utöka alltid tutningar markerade med innehållsvarningar
+        setting_expand_spoilers: Utöka alltid inlägg markerade med innehållsvarningar
         setting_hide_network: Göm ditt nätverk
         setting_missing_alt_text_modal: Visa bekräftelsedialog innan du skickar media utan alt-text
         setting_reduce_motion: Minska rörelser i animationer
@@ -257,7 +257,7 @@ sv:
         title: Rubrik
         type: Importtyp
         username: Användarnamn
-        username_or_email: Användarnamn eller e-mail
+        username_or_email: Användarnamn eller e-post
         whole_word: Hela ord
       email_domain_block:
         with_dns_records: Inkludera MX-poster och IP-adresser för domänen

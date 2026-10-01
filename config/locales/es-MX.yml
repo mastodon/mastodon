@@ -1,8 +1,8 @@
 ---
 es-MX:
   about:
-    about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
-    contact_missing: No especificado
+    about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, con un diseño ético y descentralizada! ¡Sé dueño de tus datos con Mastodon!'
+    contact_missing: No establecido
     contact_unavailable: No disponible
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
@@ -12,8 +12,8 @@ es-MX:
       other: Seguidores
     following: Siguiendo
     instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al servidor en sí mismo y no a ningún usuario individual. Se utiliza para propósitos de la federación y no se debe suspender.
-    last_active: última conexión
-    link_verified_on: La propiedad de este vínculo fue verificada el %{date}
+    last_active: última actividad
+    link_verified_on: Se ha comprobado la propiedad de este enlace el %{date}
     nothing_here: "¡No hay nada aquí!"
     pin_errors:
       following: Debes estar siguiendo a la persona a la que quieres aprobar
@@ -191,6 +191,7 @@ es-MX:
         create_unavailable_domain: Crear Dominio No Disponible
         create_user_role: Crear rol
         demote_user: Degradar Usuario
+        destroy_account: Borrar Datos de la Cuenta
         destroy_announcement: Eliminar Anuncio
         destroy_canonical_email_block: Eliminar bloqueo de correo electrónico
         destroy_custom_emoji: Eliminar Emoji Personalizado
@@ -256,6 +257,7 @@ es-MX:
         create_unavailable_domain_html: "%{name} detuvo las entregas al dominio %{target}"
         create_user_role_html: "%{name} creó el rol %{target}"
         demote_user_html: "%{name} degradó al usuario %{target}"
+        destroy_account_html: "%{name} borró los datos de la cuenta de %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha desbloqueado el correo electrónico con el hash %{target}"
         destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
@@ -1301,7 +1303,6 @@ es-MX:
   deletes:
     challenge_not_passed: Los datos introducidos son incorrectos
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
-    confirm_username: Escribe tu nombre de usuario para confirmar
     proceed: Eliminar cuenta
     success_msg: Tu cuenta se eliminó con éxito
     warning:
@@ -1820,7 +1821,6 @@ es-MX:
     appearance: Apariencia
     authorized_apps: Aplicaciones autorizadas
     back: Volver al inicio
-    delete: Eliminar cuenta
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar

@@ -4,7 +4,7 @@ pt-BR:
     hints:
       account:
         attribution_domains: Um por linha. Protege contra atribuições falsas.
-        discoverable: Suas publicações e perfil públicos podem ser destaques ou recomendados em várias áreas de Mastodon, e seu perfil pode ser sugerido a outros usuários.
+        discoverable: Seu perfil e publicações talvez sejam destacados ou recomendados no Mastodon e seu perfil pode ser sugerido para outros usuários.
         display_name: Seu nome completo ou apelido.
         fields: Sua página inicial, pronomes, idade ou qualquer coisa que quiser.
         indexable: Suas publicações abertas podem aparecer nos resultados da busca em Mastodon. As pessoas que interagiram com suas publicações podem conseguir pesquisá-las independentemente disso.
@@ -56,12 +56,12 @@ pt-BR:
         scopes: Quais APIs o aplicativo vai ter permissão de acessar. Se você selecionar uma autorização de alto nível, você não precisa selecionar individualmente os outros.
         setting_aggregate_reblogs: Não mostrar novos impulsos para publicações que já foram impulsionadas recentemente (afeta somente os impulsos mais recentes)
         setting_always_send_emails: Normalmente, as notificações por e-mail não serão enviadas enquanto você estiver usando ativamente o Mastodon
-        setting_default_quote_policy: Esta configuração só terá efeito para posts criados com a próxima versão do Mastodon, mas você pode selecionar sua preferência na preparação.
+        setting_default_quote_policy: Esta opção entrará em vigor apenas com publicações criadas na próxima versão do Mastodon, mas você pode selecionar suas preferências antes.
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
-        setting_display_media_default: Sempre ocultar mídia sensível
-        setting_display_media_hide_all: Sempre ocultar todas as mídias
-        setting_display_media_show_all: Sempre mostrar mídia sensível
-        setting_system_scrollbars_ui: Se aplica apenas para navegadores de computador baseado no Safari e Chrome
+        setting_display_media_default: Ocultar mídia marcada como sensível
+        setting_display_media_hide_all: Sempre ocultar mídias
+        setting_display_media_show_all: Sempre exibir mídias
+        setting_system_scrollbars_ui: Aplica somente a navegadores de desktop baseados no Safari e Chrome
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
         username: Você pode usar letras, números e underlines
@@ -74,7 +74,7 @@ pt-BR:
       featured_tag:
         name: 'Aqui estão algumas hashtags usadas recentemente:'
       filters:
-        action: Escolher qual ação executar quando uma publicação corresponder ao filtro
+        action: Escolher qual ação executar se uma publicação corresponde ao filtro
         actions:
           blur: Oculte a mídia com um aviso, porém mantenha o texto visível
           hide: Esconder completamente o conteúdo filtrado, comportando-se como se ele não existisse
@@ -83,7 +83,7 @@ pt-BR:
         activity_api_enabled: Contagem de publicações locais, usuários ativos e novos usuários semanais
         app_icon: WEBP, PNG, GIF ou JPG. Sobrescrever o ícone padrão do aplicativo em dispositivos móveis com um ícone personalizado.
         backups_retention_period: Os usuários podem gerar arquivos de suas postagens para baixar mais tarde. Quando definido como um valor positivo, esses arquivos serão automaticamente excluídos do seu armazenamento após o número especificado de dias.
-        bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
+        bootstrap_timeline_accounts: Estas contas estarão fixas no topo das recomendações para novos usuários.
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
         content_cache_retention_period: Todas as postagens de outros servidores (incluindo boosts e respostas) serão excluídas após o número especificado de dias, sem levar a qualquer interação do usuário local com esses posts. Isto inclui postagens onde um usuário local o marcou como favorito ou favoritos. Menções privadas entre usuários de diferentes instâncias também serão perdidas e impossíveis de restaurar. O uso desta configuração destina-se a instâncias especiais de propósitos e quebra muitas expectativas dos usuários quando implementadas para uso de propósito geral.
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
@@ -103,10 +103,10 @@ pt-BR:
         status_page_url: URL de uma página onde as pessoas podem ver o status deste servidor durante uma interrupção
         theme: Tema que visitantes e novos usuários veem.
         thumbnail: Uma imagem de aproximadamente 2:1 exibida ao lado da informação de sua instância.
-        timeline_preview: Visitantes conseguirão navegar pelas postagens públicas mais recentes disponíveis na instância.
+        timeline_preview: Visitantes conseguirão navegar pelas publicações mais recentes disponíveis no servidor.
         trendable_by_default: Pular a revisão manual do conteúdo em tendência. Itens individuais ainda poderão ser removidos das tendências após a sua exibição.
         trends: Tendências mostram quais publicações, hashtags e notícias estão ganhando destaque na sua instância.
-        trends_as_landing_page: Mostrar conteúdo de tendências para usuários deslogados e visitantes em vez de uma descrição deste servidor. Requer que as tendências sejam ativadas.
+        trends_as_landing_page: Exibir conteúdo em alta para usuários não registrados e visitantes ao invés de uma descrição deste servidor. Exige a ativação das tendências.
       form_challenge:
         current_password: Você está entrando em uma área segura
       imports:
@@ -148,7 +148,7 @@ pt-BR:
         jurisdiction: Liste o país onde quem paga as contas reside. Se for uma empresa ou outra entidade, liste o país onde ela está incorporada, e a cidade, região, território ou estado, conforme apropriado.
         min_age: Não deve ter menos que a idade mínima exigida pelas suas leis locais.
       user:
-        chosen_languages: Apenas as publicações dos idiomas selecionados serão exibidas nas linhas públicas
+        chosen_languages: Somente publicações de idiomas selecionados aparecerão nas timelines públicas
         date_of_birth:
           one: Precisamos ter certeza de que você tem, no mínimo, %{count} anos para usar o %{domain} Não armazenaremos essa informação.
           other: Temos que ter certeza de que você é pelo menos %{count} para usar o %{domain} Não vamos armazenar isso.
@@ -243,7 +243,7 @@ pt-BR:
         setting_display_media_show_all: Mostrar tudo
         setting_expand_spoilers: Sempre expandir toots com Aviso de Conteúdo
         setting_hide_network: Ocultar suas relações
-        setting_missing_alt_text_modal: Mostrar caixa de diálogo de confirmação antes de postar mídia sem texto alternativo.
+        setting_missing_alt_text_modal: Exibir diálogo de confirmação antes de publicar mídia sem texto alternativo
         setting_reduce_motion: Reduzir animações
         setting_system_font_ui: Usar fonte padrão do sistema
         setting_system_scrollbars_ui: Usar barra de rolagem padrão do sistema
@@ -295,7 +295,7 @@ pt-BR:
         status_page_url: Endereço da página de status
         theme: Tema padrão
         thumbnail: Miniatura do servidor
-        timeline_preview: Permitir acesso não autenticado às linhas do tempo públicas
+        timeline_preview: Permitir acesso não autenticado às timelines públicas
         trendable_by_default: Permitir tendências sem revisão prévia
         trends: Habilitar tendências
         trends_as_landing_page: Usar tendências como página inicial

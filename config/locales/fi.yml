@@ -12,7 +12,7 @@ fi:
       other: seuraajaa
     following: seurattavaa
     instance_actor_flash: Tämä tili on virtuaalinen toimija, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään federointitarkoituksiin, eikä sitä tule jäädyttää.
-    last_active: viimeksi aktiivinen
+    last_active: viimeksi aktiivisena
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
     nothing_here: Täällä ei ole mitään!
     pin_errors:
@@ -164,7 +164,7 @@ fi:
       undo_silenced: Kumoa rajoitus
       undo_suspension: Kumoa jäädytys
       unsilenced_msg: Tilin %{username} rajoitus kumottiin onnistuneesti
-      unsubscribe: Lopeta tilaus
+      unsubscribe: Peruuta tilaus
       unsuspended_msg: Tilin %{username} jäädytys kumottiin onnistuneesti
       username: Käyttäjänimi
       view_domain: Näytä verkkotunnuksen yhteenveto
@@ -191,6 +191,7 @@ fi:
         create_unavailable_domain: Luo ei-saatavilla oleva verkkotunnus
         create_user_role: Luo rooli
         demote_user: Alenna käyttäjä
+        destroy_account: Poista tilin tiedot
         destroy_announcement: Poista tiedote
         destroy_canonical_email_block: Poista sähköpostiosoitteen esto
         destroy_custom_emoji: Poista mukautettu emoji
@@ -256,6 +257,7 @@ fi:
         create_unavailable_domain_html: "%{name} pysäytti toimituksen verkkotunnukseen %{target}"
         create_user_role_html: "%{name} loi roolin %{target}"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
+        destroy_account_html: "%{name} poisti tilin %{target} tiedot"
         destroy_announcement_html: "%{name} poisti tiedotteen %{target}"
         destroy_canonical_email_block_html: "%{name} kumosi eston tiivistettä %{target} vastaavalta sähköpostiosoitteelta"
         destroy_custom_emoji_html: "%{name} poisti emojin %{target}"
@@ -1171,7 +1173,7 @@ fi:
     notification_preferences: Muuta sähköpostiasetuksia
     salutation: "%{name}"
     settings: 'Muuta sähköpostiasetuksia: %{link}'
-    unsubscribe: Lopeta tilaus
+    unsubscribe: Peruuta tilaus
     view: 'Näytä:'
     view_profile: Näytä profiili
     view_status: Näytä julkaisu
@@ -1301,9 +1303,11 @@ fi:
   deletes:
     challenge_not_passed: Antamasi tiedot eivät olleet oikeat
     confirm_password: Tunnistaudu syöttämällä nykyinen salasanasi
-    confirm_username: Vahvista toimenpide antamalla käyttäjänimesi
+    confirm_username: Vahvista käyttäjänimi
+    confirm_username_hint_html: Vahvista tili, jonka haluat poistaa, kirjoittamalla <code>%{username}</code>
     proceed: Poista tili
     success_msg: Tilin poisto onnistui
+    title: Poista tili %{acct}
     warning:
       before: 'Ennen kuin etenet, lue nämä huomautukset huolellisesti:'
       caches: Muiden palvelinten välimuistiinsa tallentamaa sisältöä voi säilyä
@@ -1470,42 +1474,42 @@ fi:
       overwrite_long: Korvaa nykyiset tietueet uusilla
     overwrite_preambles:
       blocking_html:
-        one: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
       domain_blocking_html:
-        one: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
       following_html:
-        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
-        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
       lists_html:
-        one: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tili</strong>.
-        other: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tiliä</strong>.
+        one: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tili</strong>.
+        other: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tiliä</strong>.
       muting_html:
-        one: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
     preambles:
       blocking_html:
-        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisun</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
-        other: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
+        one: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisun</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
+        other: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
       domain_blocking_html:
-        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnuksen</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnusta</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnuksen</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnusta</strong> tiedostosta <strong>%{filename}</strong>.
       following_html:
-        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
       lists_html:
-        one: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
-        other: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
+        one: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
+        other: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
       muting_html:
-        one: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
-        other: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+        one: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
     preface: Voit tuoda toiselta palvelimelta viemiäsi tietoja, kuten seuraamiesi tai estämiesi käyttäjien luettelon.
     recent_imports: Viimeksi tuotu
     states:
@@ -1574,8 +1578,8 @@ fi:
     title: Todennushistoria
   mail_subscriptions:
     unsubscribe:
-      action: Kyllä, peru tilaus
-      complete: Tilaus lopetettiin
+      action: Kyllä, peruuta tilaus
+      complete: Tilaus peruutettiin
       confirmation_html: Haluatko varmasti lopettaa Mastodonin sähköposti-ilmoitusten vastaanottamisen aiheesta %{type} palvelimelta %{domain} osoitteeseesi %{email}? Voit tilata ilmoitusviestejä milloin tahansa uudelleen <a href="%{settings_path}">sähköposti-ilmoitusten asetuksista</a>.
       emails:
         notification_emails:
@@ -1584,9 +1588,9 @@ fi:
           follow_request: sähköposti-ilmoituksia seurantapyynnöistä
           mention: sähköposti-ilmoituksia maininnoista
           reblog: sähköposti-ilmoituksia tehostuksista
-      resubscribe_html: Jos olet perunut tilauksen erehdyksessä, voit tilata ilmoitusviestejä uudelleen <a href="%{settings_path}">sähköposti-ilmoitusten asetuksista</a>.
+      resubscribe_html: Jos olet peruuttanut tilauksen erehdyksessä, voit tilata ilmoitusviestejä uudelleen <a href="%{settings_path}">sähköposti-ilmoitusten asetuksista</a>.
       success_html: Sinulle ei enää lähetetä Mastodonin %{type} palvelimelta %{domain} osoitteeseen %{email}.
-      title: Lopeta tilaus
+      title: Peruuta tilaus
   media_attachments:
     validations:
       images_and_video: Videota ei voi liittää tilapäivitykseen, jossa on jo kuvia
@@ -1740,7 +1744,7 @@ fi:
     followers: Seuraajat
     following: Seurattavat
     invited: Kutsutut
-    last_active: Viimeksi aktiivinen
+    last_active: Viimeksi aktiivisena
     most_recent: Tuorein
     moved: Muuttaneet
     mutual: Seuraatte toisianne
@@ -1761,8 +1765,8 @@ fi:
       account: Julkiset julkaisut tililtä @%{acct}
       tag: 'Julkiset julkaisut aihetunnisteella #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Olet ylittänyt %{limit} ajastetun julkaisun rajan tälle päivälle
-    over_total_limit: Olet ylittänyt %{limit} ajastetun julkaisun rajan
+    over_daily_limit: Olet ylittänyt päivittäisen %{limit} ajastetun julkaisun rajan
+    over_total_limit: Olet ylittänyt %{limit} ajastetun julkaisun rajan
     too_soon: päivämäärän on oltava tulevaisuudessa
   self_destruct:
     lead_html: Valitettavasti <strong>%{domain}</strong> sulkeutuu pysyvästi. Jos sinulla on siellä tili, et voi jatkaa sen käyttöä mutta voit yhä pyytää varmuuskopiota tiedoistasi.
@@ -1820,7 +1824,6 @@ fi:
     appearance: Ulkoasu
     authorized_apps: Valtuutetut sovellukset
     back: Takaisin Mastodoniin
-    delete: Tilin poisto
     development: Kehitys
     edit_profile: Muokkaa profiilia
     export: Vie
@@ -2007,7 +2010,7 @@ fi:
       description: 'Sait tämän sähköpostiviestin, koska muutamme palvelun %{domain} käyttöehtoja. Muutokset tulevat voimaan %{date}. Kehotamme tutustumaan päivitettyihin ehtoihin kokonaisuudessaan täällä:'
       description_html: Sait tämän sähköpostiviestin, koska muutamme palvelun %{domain} käyttöehtoja. Muutokset tulevat voimaan <strong>%{date}</strong>. Kehotamme tutustumaan <a href="%{path}" target="_blank">päivitettyihin ehtoihin kokonaisuudessaan täällä</a>.
       sign_off: Palvelimen %{domain} tiimi
-      subject: Käyttöehtojemme päivitykset
+      subject: Päivityksiä käyttöehtoihimme
       subtitle: Palvelimen %{domain} käyttöehdot muuttuvat
       title: Tärkeä päivitys
     warning:
@@ -2022,7 +2025,7 @@ fi:
         mark_statuses_as_sensitive: Palvelimen %{instance} moderaattorit ovat merkinneet osan julkaisuistasi arkaluonteisiksi. Tämä tarkoittaa sitä, että mediaa täytyy napauttaa ennen kuin sen esikatselu näytetään. Voit merkitä median itse arkaluonteiseksi, kun julkaiset tulevaisuudessa.
         sensitive: Tästä lähtien kaikki lähetetyt mediatiedostot merkitään arkaluonteisiksi ja piilotetaan napsautusvaroituksen taakse.
         silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat käyttäjät näkevät julkaisusi tällä palvelimella ja sinut voidaan sulkea pois eri löydettävyysominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
-        suspend: Et voi enää käyttää tiliäsi, eivätkä profiilisi ja muut tiedot ole enää käytettävissä. Voit silti kirjautua sisään pyytääksesi tietojesi varmuuskopiota, kunnes tiedot on poistettu kokonaan noin 30 päivän kuluttua. Säilytämme kuitenkin joitain perustietoja, jotka estävät sinua kiertämästä jäädytystä.
+        suspend: Et voi enää käyttää tiliäsi, eivätkä profiilisi ja muut tiedot ole enää käytettävissä. Voit silti kirjautua sisään pyytääksesi tietojesi varmuuskopiota, kunnes tiedot on poistettu kokonaan noin 30 päivän kuluttua. Säilytämme kuitenkin joitain perustietoja, jotka estävät sinua kiertämästä jäädytystä.
       reason: 'Syy:'
       statuses: 'Viitatut julkaisut:'
       subject:
@@ -2057,7 +2060,7 @@ fi:
       feature_audience_title: Rakenna yleisöäsi luottavaisin mielin
       feature_control: Tiedät itse parhaiten, mitä haluat nähdä kotisyötteessäsi. Ei algoritmeja eikä mainoksia tuhlaamassa aikaasi. Seuraa yhdellä tilillä ketä tahansa, miltä tahansa Mastodon-palvelimelta, vastaanota heidän julkaisunsa aikajärjestyksessä ja tee omasta internetin nurkastasi hieman enemmän omanlaisesi.
       feature_control_title: Pidä aikajanasi hallussasi
-      feature_creativity: Mastodon tukee ääni-, video- ja kuvajulkaisuja, saavutettavuuskuvauksia, äänestyksiä, sisältövaroituksia, animoituja avattaria, mukautettuja emojeita, pienoiskuvien rajauksen hallintaa ja paljon muuta, mikä auttaa ilmaisemaan itseäsi verkossa. Julkaisetpa sitten taidetta, musiikkia tai podcastia, Mastodon on sinua varten.
+      feature_creativity: Mastodon tukee ääni-, video- ja kuvajulkaisuja, saavutettavuuskuvauksia, äänestyksiä, sisältövaroituksia, animoituja avattaria, mukautettuja emojeita, pikkukuvien rajauksen hallintaa ja paljon muuta, mikä auttaa ilmaisemaan itseäsi verkossa. Julkaisetpa sitten taidetta, musiikkia tai podcastia, Mastodon on sinua varten.
       feature_creativity_title: Luovuutta vertaansa vailla
       feature_moderation: Mastodon palauttaa päätöksenteon käsiisi. Jokainen palvelin luo omat sääntönsä ja määräyksensä, joita valvotaan paikallisesti eikä ylhäältä alas kuten kaupallisessa sosiaalisessa mediassa, mikä tekee siitä joustavimman vastaamaan eri ihmisryhmien tarpeisiin. Liity palvelimelle, jonka säännöt sopivat sinulle, tai ylläpidä omaa palvelinta.
       feature_moderation_title: Moderointi juuri kuten sen pitäisi olla
@@ -2073,7 +2076,7 @@ fi:
       hashtags_subtitle: Tutki, mikä on ollut suosittua viimeisenä 2 päivänä
       hashtags_title: Suositut aihetunnisteet
       hashtags_view_more: Näytä lisää suosittuja aihetunnisteita
-      post_action: Kirjoita
+      post_action: Laadi
       post_step: Tervehdi maailmaa sanoin, kuvin, videoin ja äänestyksin.
       post_title: Tee ensimmäinen julkaisusi
       share_step: Kerro ystävillesi, kuinka sinut voi löytää Mastodonista.

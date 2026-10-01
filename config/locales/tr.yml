@@ -191,6 +191,7 @@ tr:
         create_unavailable_domain: Mevcut Olmayan Alan Adı Oluştur
         create_user_role: Rol Oluştur
         demote_user: Kullanıcıyı Düşür
+        destroy_account: Hesap Verilerini Sil
         destroy_announcement: Duyuru Sil
         destroy_canonical_email_block: E-Posta Engelini Sil
         destroy_custom_emoji: Özel İfadeyi Sil
@@ -256,6 +257,7 @@ tr:
         create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
+        destroy_account_html: "%{name} %{target} hesabının verilerini sildi"
         destroy_announcement_html: "%{name}, %{target} duyurusunu sildi"
         destroy_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelini kaldırdı"
         destroy_custom_emoji_html: "%{name}, %{target} ifadesini sildi"
@@ -1158,7 +1160,7 @@ tr:
     remove: Takma adların bağlantısını kaldır
   appearance:
     advanced_web_interface: Gelişmiş web arayüzü
-    advanced_web_interface_hint: 'Tüm ekran genişliğinizden yararlanmak istiyorsanız, gelişmiş web arayüzü istediğiniz kadar bilgi görecek kadar çok sayıda farklı sütunu yapılandırmanıza olanak tanır: Anasayfa, bildirimler, birleşik zaman çizelgesi, istediğiniz sayıda liste ve etiket.'
+    advanced_web_interface_hint: 'Tüm ekran genişliğinizden yararlanmak istiyorsanız, gelişmiş web arayüzü istediğiniz kadar bilgi görecek kadar çok sayıda farklı sütunu yapılandırmanıza olanak tanır: Ana sayfa, bildirimler, birleşik zaman çizelgesi, istediğiniz sayıda liste ve etiket.'
     animations_and_accessibility: Animasyonlar ve erişilebilirlik
     confirmation_dialogs: Onay iletişim kutuları
     discovery: Keşfet
@@ -1301,9 +1303,11 @@ tr:
   deletes:
     challenge_not_passed: Girdiğiniz bilgi hatalı
     confirm_password: Kimliğinizi doğrulamak için mevcut parolanızı girin
-    confirm_username: Prosedürü doğrulamak için kullanıcı adınızı girin
+    confirm_username: Kullanıcı adını onayla
+    confirm_username_hint_html: Silmek istediğiniz hesabı onaylamak için lütfen <code>%{username}</code> yazın
     proceed: Hesabı sil
     success_msg: Hesabınız başarıyla silindi
+    title: "%{acct} hesabını sil"
     warning:
       before: 'Devam etmeden önce, lütfen bu notları dikkatlice okuyun:'
       caches: Diğer sunucular tarafından ön belleğe alınan içerik kalabilir
@@ -1820,7 +1824,6 @@ tr:
     appearance: Görünüm
     authorized_apps: Yetkili uygulamalar
     back: Mastodon'a geri dön
-    delete: Hesap silme
     development: Geliştirme
     edit_profile: Profili düzenle
     export: Dışa Aktar
@@ -2063,7 +2066,7 @@ tr:
       feature_moderation_title: Olması gerektiği gibi moderasyon
       follow_action: Takip et
       follow_step: Kendi akışınızı düzenliyorsunuz. Hadi onu ilginç kullanıcılarla dolduralım.
-      follow_title: Anasayfa akışınızı kişiselleştirin
+      follow_title: Ana sayfa akışınızı kişiselleştirin
       follows_subtitle: Tanınmış hesapları takip edin
       follows_title: Takip edebileceklerin
       follows_view_more: Takip edecek daha fazla kişi görüntüleyin
