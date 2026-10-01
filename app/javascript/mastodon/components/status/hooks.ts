@@ -406,15 +406,25 @@ export function useTextForScreenReader({
 
     const spoilerText = status.translation?.spoiler_text ?? status.spoiler_text;
     const contentHtml = status.translation?.contentHtml ?? status.contentHtml;
-    const contentText = domParser.parseFromString(contentHtml, 'text/html')
-      .documentElement.textContent;
+    let contentText = spoilerText;
+    if (!status.hidden) {
+      contentText = '';
+      for (const paragraph of domParser
+        .parseFromString(contentHtml, 'text/html')
+        .querySelectorAll('p')) {
+        const text = paragraph.textContent.trim();
+        if (text) {
+          contentText += ` ${text}`;
+        }
+      }
+    }
 
     const values = [
       isQuote ? intl.formatMessage(screenReaderMessages.quote_noun) : undefined,
       displayName.length === 0
         ? status.account.acct.split('@')[0]
         : displayName,
-      spoilerText && status.hidden ? spoilerText : contentText,
+      contentText,
       status.quote
         ? intl.formatMessage(screenReaderMessages.contains_quote)
         : undefined,
