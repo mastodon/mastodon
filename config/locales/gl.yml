@@ -200,6 +200,7 @@ gl:
         create_user_role: Crear Rol
         create_username_block: Crear regra para Identificadores
         demote_user: Degradar usuaria
+        destroy_account: Eliminar os datos da conta
         destroy_announcement: Eliminar anuncio
         destroy_canonical_email_block: Eliminar bloqueo do correo
         destroy_custom_emoji: Eliminar emoticona personalizada
@@ -268,6 +269,7 @@ gl:
         create_user_role_html: "%{name} creou o rol %{target}"
         create_username_block_html: "%{name} engadiu unha regra para identificadores que contén %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
+        destroy_account_html: "%{name} eliminou os datos da conta %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o correo con suma de comprobación %{target}"
         destroy_collection_html: "%{name} eliminou a colección de %{target}"
@@ -1494,7 +1496,6 @@ gl:
   deletes:
     challenge_not_passed: A información introducida non é correcta
     confirm_password: Escribe o contrasinal actual para verificar a túa identidade
-    confirm_username: Introduce o nome de usuaria para confirmar o procedemento
     proceed: Eliminar conta
     success_msg: A súa conta eliminouse correctamente
     warning:
@@ -1596,6 +1597,7 @@ gl:
       content: Sentímolo, pero algo do noso lado falloou.
       title: Esta páxina non é correcta
     '503': A páxina non se puido servir debido a un fallo temporal no servidor.
+    go_home: Ir ao inicio
     noscript_html: Para utilizar a aplicación web de Mastodon debes activar JavaScript. De xeito alternativo, proba cunha das <a href="%{apps_path}">apps nativas</a> para Mastodon na túa plataforma.
   existing_username_validator:
     not_found: non se atopou unha usuaria local con ese alcume
@@ -1692,6 +1694,7 @@ gl:
       incompatible_type: Non é compatible co tipo de importación seleccionado
       invalid_csv_file: 'Ficheiro CSV non válido. Erro: %{error}'
       invalid_json_file: 'Ficheiro JSON non válido. Erro: %{error}'
+      no_data: Este ficheiro non contén datos que concorden co tipo de importación indicado
       over_rows_processing_limit: contén máis de %{count} filas
       status_not_found_warning: Algún dos teus filtros oculta publicacións concretas que non son coñecidas por este servidor. Estas publicacións non se van filtrar automaticamente se son descubertas máis tarde polo servidor.
       too_large: O ficheiro é demasiado grande
@@ -2090,7 +2093,6 @@ gl:
     appearance: Aparencia
     authorized_apps: Apps autorizadas
     back: Volver a Mastodon
-    delete: Eliminación da conta
     development: Desenvolvemento
     edit_profile: Editar perfil
     export: Exportar

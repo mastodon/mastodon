@@ -200,6 +200,7 @@ tr:
         create_user_role: Rol Oluştur
         create_username_block: Kullanıcı Adı Kuralı Oluştur
         demote_user: Kullanıcıyı Düşür
+        destroy_account: Hesap Verilerini Sil
         destroy_announcement: Duyuru Sil
         destroy_canonical_email_block: E-Posta Engelini Sil
         destroy_custom_emoji: Özel İfadeyi Sil
@@ -268,6 +269,7 @@ tr:
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
         create_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural ekledi"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
+        destroy_account_html: "%{name} %{target} hesabının verilerini sildi"
         destroy_announcement_html: "%{name}, %{target} duyurusunu sildi"
         destroy_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelini kaldırdı"
         destroy_collection_html: "%{name}, %{target} kullanıcısının koleksiyonunu kaldırdı"
@@ -1494,9 +1496,11 @@ tr:
   deletes:
     challenge_not_passed: Girdiğiniz bilgi hatalı
     confirm_password: Kimliğinizi doğrulamak için mevcut parolanızı girin
-    confirm_username: Prosedürü doğrulamak için kullanıcı adınızı girin
+    confirm_username: Kullanıcı adını onayla
+    confirm_username_hint_html: Silmek istediğiniz hesabı onaylamak için lütfen <code>%{username}</code> yazın
     proceed: Hesabı sil
     success_msg: Hesabınız başarıyla silindi
+    title: "%{acct} hesabını sil"
     warning:
       before: 'Devam etmeden önce, lütfen bu notları dikkatlice okuyun:'
       caches: Diğer sunucular tarafından ön belleğe alınan içerik kalabilir
@@ -1596,6 +1600,7 @@ tr:
       content: Üzgünüz, ancak bir şey ters gitti.
       title: Bu sayfa doğru değil
     '503': Geçici sunucu hatası nedeniyle sayfa görüntülenemedi.
+    go_home: Ana sayfaya git
     noscript_html: Mastodon web uygulamasını kullanmak için lütfen JavaScript'i etkinleştirin. Alternatif olarak, platformunuz için Mastodon <a href="%{apps_path}">yerel uygulamalardan</a> birini deneyin.
   existing_username_validator:
     not_found: bu kullanıcı adına sahip yerel bir kullanıcı bulunamadı
@@ -1692,6 +1697,7 @@ tr:
       incompatible_type: Seçilen içe aktarma türüyle uyumsuz
       invalid_csv_file: 'Geçersiz CSV dosyası. Hata: %{error}'
       invalid_json_file: 'Geçersiz JSON dosyası. Hata: %{error}'
+      no_data: Bu dosya, belirtilen içe aktarma türüne uyan herhangi bir veri içermemektedir
       over_rows_processing_limit: "%{count} satırdan fazlasını içeriyor"
       status_not_found_warning: Filtrelerinizden bazıları, bu sunucu tarafından tanınmayan belirli gönderileri gizler. Bu gönderiler, daha sonra sunucu tarafından tespit edildiklerinde otomatik olarak filtrelenmeyecektir.
       too_large: Dosya çok büyük
@@ -2090,7 +2096,6 @@ tr:
     appearance: Görünüm
     authorized_apps: Yetkili uygulamalar
     back: Mastodon'a geri dön
-    delete: Hesap silme
     development: Geliştirme
     edit_profile: Profili düzenle
     export: Dışa Aktar

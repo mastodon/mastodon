@@ -196,6 +196,7 @@ zh-CN:
         create_user_role: 创建角色
         create_username_block: 新建用户名规则
         demote_user: 取消管理员
+        destroy_account: 删除账号数据
         destroy_announcement: 删除公告
         destroy_canonical_email_block: 解除邮箱封禁
         destroy_custom_emoji: 删除自定义表情符号
@@ -264,6 +265,7 @@ zh-CN:
         create_user_role_html: "%{name} 创建了角色 %{target}"
         create_username_block_html: "%{name} 新增了有关包含 %{target} 的用户名的规则"
         demote_user_html: "%{name} 撤销了用户 %{target} 的管理权限"
+        destroy_account_html: "%{name} 删除了 %{target} 的账号数据"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 解封了 hash 为 %{target} 的邮箱地址"
         destroy_collection_html: "%{name} 移除了 %{target} 的收藏列表"
@@ -1473,9 +1475,11 @@ zh-CN:
   deletes:
     challenge_not_passed: 你输入的信息不正确
     confirm_password: 输入你当前的密码来验证身份
-    confirm_username: 输入你的用户名以继续
+    confirm_username: 确认用户名
+    confirm_username_hint_html: 请输入 <code>%{username}</code> 以确认你要删除的账号
     proceed: 删除账号
     success_msg: 你的账号已成功删除
+    title: 删除账号 %{acct}
     warning:
       before: 在删除前，请仔细阅读下列说明：
       caches: 已被其他服务器缓存的内容可能还会保留
@@ -1574,6 +1578,7 @@ zh-CN:
       content: 抱歉，服务器出现了一些故障。
       title: 页面无法正确加载
     '503': 服务器出现临时故障，无法加载页面。
+    go_home: 回到主页
     noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Mastodon 应用</a>。
   existing_username_validator:
     not_found: 在本站找不到此用户
@@ -1663,6 +1668,7 @@ zh-CN:
       incompatible_type: 与所选导入类型不兼容
       invalid_csv_file: 无效的 CSV 文件。错误：%{error}
       invalid_json_file: 无效的 JSON 文件。错误：%{error}
+      no_data: 此文件不包含任何匹配指定导入类型的数据
       over_rows_processing_limit: 包含行数超过了 %{count}
       status_not_found_warning: 你的部分过滤器将会隐藏此服务器暂时未知的特定嘟文。如果这些嘟文以后被服务器发现，则将不会被自动过滤。
       too_large: 文件过大
@@ -2045,7 +2051,6 @@ zh-CN:
     appearance: 外观
     authorized_apps: 已授权的应用
     back: 返回 Mastodon
-    delete: 删除账号
     development: 开发
     edit_profile: 更改个人资料
     export: 导出

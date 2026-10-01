@@ -200,6 +200,7 @@ da:
         create_user_role: Opret rolle
         create_username_block: Opret brugernavn-regel
         demote_user: Degradér bruger
+        destroy_account: Slet kontodata
         destroy_announcement: Slet bekendtgørelse
         destroy_canonical_email_block: Slet e-mailblokering
         destroy_custom_emoji: Slet tilpasset emoji
@@ -268,6 +269,7 @@ da:
         create_user_role_html: "%{name} oprettede %{target}-rolle"
         create_username_block_html: "%{name} tilføjede regel for brugernavne indeholdende %{target}"
         demote_user_html: "%{name} degraderede brugeren %{target}"
+        destroy_account_html: "%{name} slettede kontodata for %{target}"
         destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
         destroy_canonical_email_block_html: "%{name} afblokerede e-mailen med hash'et %{target}"
         destroy_collection_html: "%{name} fjernede samling af %{target}"
@@ -1494,9 +1496,11 @@ da:
   deletes:
     challenge_not_passed: De angivne oplysninger er forkerte
     confirm_password: Angiv din nuværende adgangskode for at bekræfte din identitet
-    confirm_username: Angiv dit brugernavn for at bekræfte proceduren
+    confirm_username: Bekræft brugernavn
+    confirm_username_hint_html: Skriv venligst <code>%{username}</code> for at bekræfte den konto, du vil slette
     proceed: Slet konto
     success_msg: Din konto er nu slettet
+    title: Slet konto %{acct}
     warning:
       before: 'Inder der fortsættes, læs venligst disse notater omhyggeligt:'
       caches: Indhold, cachelagret af andre servere, kan fortsat eksistere
@@ -1596,6 +1600,7 @@ da:
       content: Beklager, noget gik galt hos os.
       title: Denne side er forkert
     '503': Siden kunne ikke vises grundet en midlertidig serverfejl.
+    go_home: Gå hjem
     noscript_html: For brug af Mastodon-webapplikationen, så aktivér JavaScript. Alternativt, prøv en af disse <a href="%{apps_path}">apps</a> til Mastodon til din platform.
   existing_username_validator:
     not_found: kunne ikke finde en lokal bruger med dette brugenavn
@@ -1692,6 +1697,7 @@ da:
       incompatible_type: Inkompatibel med valgte importtype
       invalid_csv_file: 'Ugyldig CSV-fil. Fejl: %{error}'
       invalid_json_file: 'Ugyldig JSON-fil. Fejl: %{error}'
+      no_data: Denne fil indeholder ikke nogen data, der matcher den givne importtype
       over_rows_processing_limit: indeholder mere end %{count} rækker
       status_not_found_warning: Nogle af dine filtre skjuler bestemte indlæg, som denne server ikke kender til. Disse indlæg bliver ikke automatisk filtreret, hvis serveren finder dem senere.
       too_large: Filen for stor
@@ -2090,7 +2096,6 @@ da:
     appearance: Udseende
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
-    delete: Kontosletning
     development: Udvikling
     edit_profile: Redigér profil
     export: Eksport

@@ -200,6 +200,7 @@ el:
         create_user_role: Δημιουργία Ρόλου
         create_username_block: Δημιουργία Κανόνα Ονόματος Χρήστη
         demote_user: Υποβιβασμός Χρήστη
+        destroy_account: Διαγραφή δεδομένων λογαριασμού
         destroy_announcement: Διαγραφή Ανακοίνωσης
         destroy_canonical_email_block: Διαγραφή Αποκλεισμού Email
         destroy_custom_emoji: Διαγραφή Προσαρμοσμένου Emoji
@@ -268,6 +269,7 @@ el:
         create_user_role_html: Ο/Η %{name} δημιούργησε ρόλο %{target}
         create_username_block_html: "%{name} πρόσθεσε κανόνα για ονόματα χρηστών που περιέχουν %{target}"
         demote_user_html: Ο/Η %{name} υποβίβασε τον χρήστη %{target}
+        destroy_account_html: Ο/Η %{name} διέγραψε τα δεδομένα λογαριασμού για %{target}
         destroy_announcement_html: Ο/Η %{name} διέγραψε την ανακοίνωση %{target}
         destroy_canonical_email_block_html: Ο χρήστης %{name} έκανε άρση αποκλεισμού email με το hash %{target}
         destroy_collection_html: Ο/Η %{name} αφαίρεσε τη συλλογή του/της %{target}
@@ -1494,7 +1496,6 @@ el:
   deletes:
     challenge_not_passed: Οι πληροφορίες που εισήγαγες δεν ήταν σωστές
     confirm_password: Γράψε το τρέχον συνθηματικό σου για να επαληθεύσεις την ταυτότητά σου
-    confirm_username: Γράψε το όνομα χρήστη σου για επιβεβαίωση
     proceed: Διαγραφή λογαριασμού
     success_msg: Ο λογαριασμός σου διαγράφηκε με επιτυχία
     warning:
@@ -1596,6 +1597,7 @@ el:
       content: Λυπούμαστε, κάτι πήγε στραβά από τη δική μας μεριά.
       title: Η σελίδα αυτή δεν είναι σωστή
     '503': Η σελίδα δε μπόρεσε να εμφανιστεί λόγω προσωρινού σφάλματος του διακομιστή.
+    go_home: Μετάβαση στην Αρχική
     noscript_html: Για να χρησιμοποιήσεις την εφαρμογή ιστού του Mastodon, παρακαλούμε ενεργοποίησε την Javascript. Εναλλακτικά, δοκίμασε μια από τις <a href="%{apps_path}">εφαρμογές</a> για το Mastodon για την πλατφόρμα σου.
   existing_username_validator:
     not_found: δεν βρέθηκε τοπικός χρήστης με αυτό το όνομα
@@ -1692,6 +1694,7 @@ el:
       incompatible_type: Μη συμβατό με τον επιλεγμένο τύπο εισαγωγής
       invalid_csv_file: 'Μη έγκυρο αρχείο CSV. Σφάλμα: %{error}'
       invalid_json_file: 'Μη έγκυρο αρχείο JSON. Σφάλμα: %{error}'
+      no_data: Αυτό το αρχείο δεν περιέχει δεδομένα που να ταιριάζουν με τον δεδομένο τύπο εισαγωγής
       over_rows_processing_limit: περιέχει περισσότερες από %{count} γραμμές
       status_not_found_warning: Μερικά από τα φίλτρα σας κρύβουν συγκεκριμένες αναρτήσεις που δεν είναι γνωστές από αυτόν τον διακομιστή. Αυτές οι αναρτήσεις δεν θα φιλτραριστούν αυτόματα εάν ανακαλυφθούν αργότερα από τον διακομιστή.
       too_large: Το αρχείο είναι πολύ μεγάλο
@@ -2031,7 +2034,7 @@ el:
       account: Δημόσιες αναρτήσεις από @%{acct}
       tag: 'Δημόσιες αναρτήσεις με ετικέτα #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Έχεις υπερβεί το όριο των %{limit} προγραμματισμένων αναρτήσεων για εκείνη τη μέρα
+    over_daily_limit: Έχεις υπερβεί το όριο των %{limit} προγραμματισμένων αναρτήσεων για σήμερα
     over_total_limit: Έχεις υπερβεί το όριο των %{limit} προγραμματισμένων αναρτήσεων
     too_soon: η ημερομηνία πρέπει να είναι στο μέλλον
   self_destruct:
@@ -2090,7 +2093,6 @@ el:
     appearance: Εμφάνιση
     authorized_apps: Εγκεκριμένες εφαρμογές
     back: Πίσω στο Mastodon
-    delete: Διαγραφή λογαριασμού
     development: Ανάπτυξη
     edit_profile: Επεξεργασία προφίλ
     export: Εξαγωγή

@@ -4,12 +4,12 @@ et:
     about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse jälitamiseta, eetiline kujundus ning hajutatus! Mastodonis omad sa enda andmeid ka päriselt!'
     contact_missing: Määramata
     contact_unavailable: Pole saadaval
-    default_thumbnail_description: Kaks naeratavat mammutit (kes näevad tavaliste londiste moodi välja) loobivad omavahel paberlennukit. Nende taustal on sinine taevas ning ringilendavad planeedid, igal planeedil on puud ja veel palju teisi mastodone.
+    default_thumbnail_description: Kaks naeratavat mammutit (kes näevad tavaliste londiste moodi välja) loobivad omavahel paberlennukit. Nende taustal on sinine taevas ning ringilendavad planeedid, igal planeedil on puud ja veel palju teisi mammuteid.
     hosted_on: Mastodoni teenus serveris %{domain}
     title: Veebirakenduse teave
   accounts:
     errors:
-      cannot_be_added_to_collections: Seda kontot ei saa kogumikku lisada.
+      cannot_be_added_to_collections: Seda kasutajakontot ei saa kogumikku lisada.
     followers:
       one: Jälgija
       other: Jälgijaid
@@ -200,6 +200,7 @@ et:
         create_user_role: Loo roll
         create_username_block: Lisa kasutajanime reegel
         demote_user: Alandas kasutaja
+        destroy_account: Kustuta kasutajakonto andmed
         destroy_announcement: Eemaldas teadaande
         destroy_canonical_email_block: Kustuta e-posti blokeering
         destroy_custom_emoji: Eemaldas kohandatud emotikoni
@@ -268,6 +269,7 @@ et:
         create_user_role_html: "%{name} lõi rolli %{target}"
         create_username_block_html: "%{name} lisas kasutajanime reegli, milles sisaldub %{target}"
         demote_user_html: "%{name} alandas kasutajat %{target}"
+        destroy_account_html: "%{name} kustutas kasutajakonto andmed asukohas %{target}"
         destroy_announcement_html: "%{name} kustutas teadaande %{target}"
         destroy_canonical_email_block_html: "%{name} eemaldas blokeeringu e-postilt räsiga %{target}"
         destroy_collection_html: "%{name} eemaldas kasutaja %{target} kogumiku"
@@ -1494,7 +1496,6 @@ et:
   deletes:
     challenge_not_passed: Info, mille sisestasid, oli ebakorrektne
     confirm_password: Praegune salasõna isikusamasuse kinnitamiseks
-    confirm_username: Sisesta tegevuse kinnitamiseks oma kasutajanimi
     proceed: Kustuta konto
     success_msg: Konto kustutamine õnnestus
     warning:
@@ -1596,6 +1597,7 @@ et:
       content: Palume vabandust, midagi läks valesti meie pool.
       title: See lehekülg pole õige
     '503': Lehekülge ei saanud serveerida ajutise serveri vea tõttu.
+    go_home: Mine avalehele
     noscript_html: Et kasutada Mastodoni veebirakendust, palun luba JavaScript. Teise võimalusena proovi mõnda <a href="%{apps_path}">rakendust</a> su platvormile.
   existing_username_validator:
     not_found: ei suutnud leida kohalikku kasutajat selle kasutajanimega
@@ -1692,6 +1694,7 @@ et:
       incompatible_type: Ei sobi kokku valitud importimistüübiga
       invalid_csv_file: 'Vigane CSV-fail. Veateade: %{error}'
       invalid_json_file: 'Vigane JSON-fail. Viga: %{error}'
+      no_data: See fail ei sisalda mitte mingisuguseid andmeid, mis vastaksid antud importtüübile
       over_rows_processing_limit: sisaldab rohkem, kui %{count} rida
       status_not_found_warning: Mõned sinu filtrid peidavad teatavaid postitusi, mis pole sellele serverile teada. Kui server neid tuvastab, siis nad jäävad automaatselt filtreerimata.
       too_large: Fail on liiga suur
@@ -2090,7 +2093,6 @@ et:
     appearance: Välimus
     authorized_apps: Lubatud rakendused
     back: Tagasi Mastodoni
-    delete: Konto kustutamine
     development: Arendus
     edit_profile: Muuda profiili
     export: Eksport
