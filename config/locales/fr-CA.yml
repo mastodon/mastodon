@@ -198,6 +198,7 @@ fr-CA:
         create_user_role: Créer le rôle
         create_username_block: Créer une règle de nom d'utilisateur·rice
         demote_user: Rétrograder l’utilisateur·ice
+        destroy_account: Supprimer les données de compte
         destroy_announcement: Supprimer l’annonce
         destroy_canonical_email_block: Supprimer un blocage de courriel
         destroy_custom_emoji: Supprimer des émojis personnalisés
@@ -266,6 +267,7 @@ fr-CA:
         create_user_role_html: "%{name} a créé le rôle %{target}"
         create_username_block_html: "%{name} a ajouté une règle pour les noms d'utilisateur·rice contenant %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
+        destroy_account_html: "%{name} a supprimé les données de compte pour %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
         destroy_canonical_email_block_html: "%{name} a débloqué l'adresse courriel ayant l'empreinte %{target}"
         destroy_collection_html: "%{name} a supprimé la collection de %{target}"
@@ -1470,7 +1472,6 @@ fr-CA:
   deletes:
     challenge_not_passed: Les renseignements que vous avez entrés n'étaient pas exacts
     confirm_password: Entrez votre mot de passe actuel pour vérifier votre identité
-    confirm_username: Entrez votre nom d'utilisateur pour confirmer la procédure
     proceed: Supprimer le compte
     success_msg: Votre compte a été supprimé avec succès
     warning:
@@ -2065,7 +2066,6 @@ fr-CA:
     appearance: Apparence
     authorized_apps: Applications autorisées
     back: Retour vers Mastodon
-    delete: Suppression du compte
     development: Développement
     edit_profile: Modifier le profil
     export: Exportation
