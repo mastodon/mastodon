@@ -22,8 +22,14 @@ export const selectComposeQuotePolicy = createAppSelector(
   [
     (state) => state.compose.get('quote_policy') as ApiQuotePolicy | undefined,
     (state) => state.compose.get('default_quote_policy') as ApiQuotePolicy,
+    selectComposePrivacy,
   ],
-  (quotePolicy, defaultQuotePolicy) => quotePolicy ?? defaultQuotePolicy,
+  (quotePolicy, defaultQuotePolicy, privacy) => {
+    if (privacy === 'private' || privacy === 'direct') {
+      return 'nobody';
+    }
+    return quotePolicy ?? defaultQuotePolicy;
+  },
 );
 
 export const selectComposeType = createAppSelector(

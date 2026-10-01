@@ -25,7 +25,11 @@ import {
   useAppSelector,
 } from '@/mastodon/store/typed_functions';
 
-import { selectComposeQuotePolicy, selectComposeSensitive } from './selectors';
+import {
+  selectComposePrivacy,
+  selectComposeQuotePolicy,
+  selectComposeSensitive,
+} from './selectors';
 
 export const ComposeSettingsMenu: React.FC = () => {
   return (
@@ -44,6 +48,8 @@ export const ComposeSettingsMenu: React.FC = () => {
 const ComposeSettingsInnerMenu: React.FC = () => {
   // Quote policy
   const quotePolicy = useAppSelector(selectComposeQuotePolicy);
+  const privacy = useAppSelector(selectComposePrivacy);
+  const disablePublicQuotes = privacy === 'direct' || privacy === 'private';
 
   const dispatch = useAppDispatch();
   const onQuotePolicyChange = useCallback(
@@ -87,6 +93,7 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           value='public'
           checked={quotePolicy === 'public'}
           onChange={onQuotePolicyChange}
+          disabled={disablePublicQuotes}
           keepMenuOpenOnClick
         >
           <FormattedMessage
@@ -100,6 +107,7 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           value='followers'
           checked={quotePolicy === 'followers'}
           onChange={onQuotePolicyChange}
+          disabled={disablePublicQuotes}
           keepMenuOpenOnClick
         >
           <FormattedMessage
@@ -113,6 +121,14 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           value='nobody'
           checked={quotePolicy === 'nobody'}
           onChange={onQuotePolicyChange}
+          description={
+            disablePublicQuotes && (
+              <FormattedMessage
+                id='compose.visibility.quote_policy.only_me_hint'
+                defaultMessage="When your post's visibility is set to Followers, it can only be quoted by you."
+              />
+            )
+          }
           keepMenuOpenOnClick
         >
           <FormattedMessage
