@@ -26,11 +26,6 @@ Fabricator(:debug_fasp, from: :fasp_provider) do
       Fabricate.build(:fasp_capability, name: 'callback', enabled: true),
     ]
   end
-
-  after_build do |fasp|
-    # Prevent fabrication from attempting an HTTP call to the provider
-    def fasp.update_remote_capabilities = true
-  end
 end
 
 Fabricator(:follow_recommendation_fasp, from: :fasp_provider) do
@@ -40,11 +35,6 @@ Fabricator(:follow_recommendation_fasp, from: :fasp_provider) do
       Fabricate.build(:fasp_capability, name: 'follow_recommendation', enabled: true),
     ]
   end
-
-  after_build do |fasp|
-    # Prevent fabrication from attempting an HTTP call to the provider
-    def fasp.update_remote_capabilities = true
-  end
 end
 
 Fabricator(:account_search_fasp, from: :fasp_provider) do
@@ -53,11 +43,6 @@ Fabricator(:account_search_fasp, from: :fasp_provider) do
     [
       Fabricate.build(:fasp_capability, name: 'account_search', enabled: true),
     ]
-  end
-
-  after_build do |fasp|
-    # Prevent fabrication from attempting an HTTP call to the provider
-    def fasp.update_remote_capabilities = true
   end
 end
 
