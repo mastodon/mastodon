@@ -1,8 +1,6 @@
 @use '@/styles/mastodon/mixins';
 
-// Header
-
-.header {
+.root {
   display: grid;
   grid-template-columns: subgrid;
   grid-template-rows: 1fr;
@@ -24,7 +22,7 @@
   }
 }
 
-.headerAvatar {
+.avatar {
   padding-inline-end: var(--col-gap);
 
   > span {
@@ -34,7 +32,7 @@
   }
 }
 
-.headerName {
+.name {
   @include mixins.type-body;
 
   display: flex;
@@ -42,10 +40,13 @@
 }
 
 // Overrides .header a
-a.headerNameLink {
+a.nameLink {
   @include mixins.type-body-strong;
 
   color: var(--color-text-primary);
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   // Overrides .display-name
   > span {
@@ -53,6 +54,13 @@ a.headerNameLink {
   }
 }
 
-.headerHandle {
+.date {
+  flex-shrink: 0;
+}
+
+.handle {
   @include mixins.type-meta;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
