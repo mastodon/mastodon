@@ -8,7 +8,6 @@ import { changeComposeVisibility } from '@/mastodon/actions/compose_typed';
 import { openModal } from '@/mastodon/actions/modal';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import { Button, CaretIcon } from '@/mastodon/components/button/redesign';
-import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import {
   Menu,
   MenuList,
@@ -19,10 +18,9 @@ import {
   MenuItemRadio,
   MenuItemCheckbox,
 } from '@/mastodon/components/menu';
-import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { selectComposeMentions, selectComposePrivacy } from './selectors';
+import { selectComposePrivacy } from './selectors';
 
 export const ComposeVisibility: React.FC<{ className?: string }> = ({
   className,
@@ -32,16 +30,11 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
 
   return (
     <div className={className}>
-      <FormattedMessage
-        id='compose.post.to'
-        defaultMessage='To:'
-        description='Before button that indicates who a post is for (Public, Followers, mentioned people)'
-      />
       <Menu>
         <MenuTrigger
           as={Button}
           size='sm'
-          trailingIcon={CaretIcon}
+          trailingIcon={!isEditing ? CaretIcon : undefined}
           disabled={isEditing}
         >
           <ComposeVisibilityButtonText privacy={privacy} />
@@ -60,34 +53,22 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
 const ComposeVisibilityButtonText: React.FC<{
   privacy: StatusVisibility;
 }> = ({ privacy }) => {
-  const mentions = useAppSelector(selectComposeMentions);
-  const firstMentionedAccount = useAppSelector((state) =>
-    selectPlainAccount(state, mentions.at(0)),
-  );
-
-  if (privacy === 'public' || privacy === 'unlisted') {
+  if (privacy === 'public') {
     return (
       <FormattedMessage id='privacy.public.short' defaultMessage='Public' />
+    );
+  } else if (privacy === 'unlisted') {
+    return (
+      <FormattedMessage
+        id='compose.privacy.unlisted'
+        defaultMessage='Public, hidden from search'
+      />
     );
   } else if (privacy === 'private') {
     return (
       <FormattedMessage
-        id='compose.post.privacy.followers'
-        defaultMessage='Followers {count, plural, =0 {} one {+ # other} other {+ # others}}'
-        description='Count is # of other people mentioned in the post. If zero, just output "Followers".'
-        values={{ count: mentions.length }}
-      />
-    );
-  } else if (mentions.length > 0) {
-    return (
-      <FormattedMessage
-        id='compose.message.direct.followers'
-        defaultMessage='{name} {count, plural, =0 {} one {+ # other} other {+ # others}}'
-        description='Name is the primary display name, count is # of other people mentioned in the post'
-        values={{
-          name: <DisplayNameSimple account={firstMentionedAccount} />,
-          count: mentions.length - 1,
-        }}
+        id='compose.privacy.followers'
+        defaultMessage='Followers (+ mentions)'
       />
     );
   }
