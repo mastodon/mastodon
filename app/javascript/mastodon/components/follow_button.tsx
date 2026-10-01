@@ -269,6 +269,7 @@ const FollowButtonRedesign: React.FC<
       onClick={onClick}
       disabled={disabled}
       variant={secondary ? 'tonal' : 'solid'}
+      color={secondary ? undefined : 'accent'}
     >
       {label}
     </RedesignButton>
