@@ -46,7 +46,7 @@ const ComposeSettingsInnerMenu: React.FC = () => {
   const quotePolicy = useAppSelector(selectComposeQuotePolicy);
 
   const dispatch = useAppDispatch();
-  const handleQuotePolicyChange = useCallback(
+  const onQuotePolicyChange = useCallback(
     ({ value }: { value: string }) => {
       let newQuotePolicy: ApiQuotePolicy = 'nobody';
       switch (value) {
@@ -86,7 +86,7 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           name='quote_policy'
           value='public'
           checked={quotePolicy === 'public'}
-          onChange={handleQuotePolicyChange}
+          onChange={onQuotePolicyChange}
           keepMenuOpenOnClick
         >
           <FormattedMessage
@@ -99,7 +99,7 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           name='quote_policy'
           value='followers'
           checked={quotePolicy === 'followers'}
-          onChange={handleQuotePolicyChange}
+          onChange={onQuotePolicyChange}
           keepMenuOpenOnClick
         >
           <FormattedMessage
@@ -112,7 +112,7 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           name='quote_policy'
           value='nobody'
           checked={quotePolicy === 'nobody'}
-          onChange={handleQuotePolicyChange}
+          onChange={onQuotePolicyChange}
           keepMenuOpenOnClick
         >
           <FormattedMessage
@@ -156,7 +156,7 @@ const ComposeSettingsInnerMenu: React.FC = () => {
         >
           <FormattedMessage
             id='compose.blur_media'
-            defaultMessage='Blur media only'
+            defaultMessage='Blur media'
           />
         </MenuItemCheckbox>
       </MenuItemGroup>
