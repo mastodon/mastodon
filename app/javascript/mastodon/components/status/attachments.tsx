@@ -4,6 +4,8 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { WarningIcon } from '@phosphor-icons/react';
+
 import { openModal } from '@/mastodon/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import { deployPictureInPicture } from '@/mastodon/actions/picture_in_picture';
@@ -27,6 +29,7 @@ import { decodeIDNA } from '@/mastodon/utils/links';
 
 import { Avatar } from '../avatar';
 import { Button } from '../button/redesign';
+import { Callout } from '../callout/redesign';
 import { Card, CardActions, CardBody, CardTitle } from '../card';
 import { DisplayName } from '../display_name';
 import { RelativeTimestamp } from '../relative_timestamp';
@@ -345,10 +348,12 @@ const MediaAttachmentWrapper: React.FC<{
   return (
     <div className={classes.galleryWrapper} ref={wrapperRef}>
       {showSpoiler && (
-        <div className={classes.gallerySpoilerWrapper}>
-          <span className={classes.gallerySpoilerContent}>{message}</span>
-          <Button variant='solid' size='sm' onClick={onToggle}>
-            {visible ? (
+        <Callout
+          className={classes.gallerySpoilerWrapper}
+          icon={WarningIcon}
+          actionClick={onToggle}
+          actionText={
+            visible ? (
               <FormattedMessage
                 id='content_warning.media.hide_short'
                 defaultMessage='Hide media'
@@ -358,15 +363,17 @@ const MediaAttachmentWrapper: React.FC<{
                 id='content_warning.media.show_short'
                 defaultMessage='Show media'
               />
-            )}
-          </Button>
-        </div>
+            )
+          }
+        >
+          {message}
+        </Callout>
       )}
       <div
         data-color-scheme='dark'
         className={classNames(
           mainClasses.contentWrapper,
-          !visible && mainClasses.isFiltered,
+          !visible && mainClasses.hasContentWarning,
           !visible && classes.galleryHideButtons,
         )}
       >
