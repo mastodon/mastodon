@@ -2,11 +2,7 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import {
-  ChatCircleDotsIcon,
-  MagnifyingGlassIcon,
-  NewspaperIcon,
-} from '@phosphor-icons/react';
+import { ChatCircleDotsIcon, NewspaperIcon } from '@phosphor-icons/react';
 
 import { changeComposeVisibility } from '@/mastodon/actions/compose_typed';
 import { openModal } from '@/mastodon/actions/modal';
@@ -160,8 +156,8 @@ const ComposeVisibilityMenu: React.FC = () => {
           keepMenuOpenOnClick
         >
           <FormattedMessage
-            id='privacy.private.short'
-            defaultMessage='Followers'
+            id='compose.privacy.followers'
+            defaultMessage='Followers (+ mentions)'
           />
         </MenuItemRadio>
 
@@ -170,14 +166,19 @@ const ComposeVisibilityMenu: React.FC = () => {
         <MenuItemCheckbox
           value='unlisted'
           disabled={privacy === 'private'}
-          checked={privacy === 'public'}
+          checked={privacy === 'unlisted' || privacy === 'private'}
           onChange={handlePrivacyChange}
-          icon={MagnifyingGlassIcon}
           keepMenuOpenOnClick
+          description={
+            <FormattedMessage
+              id='compose.discoverable.hint'
+              defaultMessage='Also applies to discovery feeds'
+            />
+          }
         >
           <FormattedMessage
             id='compose.discoverable'
-            defaultMessage='Discoverable in public feeds & search results'
+            defaultMessage='Hide from search results'
           />
         </MenuItemCheckbox>
       </MenuItemGroup>
@@ -193,7 +194,7 @@ const ComposeVisibilityMenu: React.FC = () => {
         ) : (
           <FormattedMessage
             id='compose.post.to_message'
-            defaultMessage='Compose a message instead'
+            defaultMessage='Convert to private message'
             description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
           />
         )}
