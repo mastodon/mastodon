@@ -16,7 +16,7 @@ import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { formatTime } from 'mastodon/features/video';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
-import { isRedesignStatusEnabled } from '../utils/environment';
+import { isRedesignEnabled } from '../utils/environment';
 import { Button } from './button/redesign';
 
 class Item extends PureComponent {
@@ -322,7 +322,7 @@ class MediaGallery extends PureComponent {
       children = media.map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
-    const ButtonComp = isRedesignStatusEnabled() ? Button : 'button';
+    const ButtonComp = isRedesignEnabled() ? Button : 'button';
 
     return (
       <div className={`media-gallery media-gallery--layout-${size}`} style={style} ref={this.handleRef}>

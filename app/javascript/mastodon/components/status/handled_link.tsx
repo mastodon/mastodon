@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import type { ApiMentionJSON } from '@/mastodon/api_types/statuses';
 import { getCollectionPath } from '@/mastodon/features/collections/utils';
-import { isRedesignStatusEnabled } from '@/mastodon/utils/environment';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
 import { HashtagMenu } from '../hashtag_menu';
@@ -44,7 +44,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   ) {
     const hashtag = text.slice(1).trim();
 
-    if (isRedesignStatusEnabled()) {
+    if (isRedesignEnabled()) {
       return (
         <HashtagMenu tagId={hashtag} accountId={hashtagAccountId}>
           <MenuTrigger as='button' className={classes.hashtag}>
