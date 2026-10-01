@@ -196,7 +196,11 @@ export const AccountMenuItems: React.FC<{
           />
         </MenuItemLink>
 
-        <MenuItemLink as='a' href='/blocks' icon={MastodonLogoIcon}>
+        <MenuItemLink
+          as='a'
+          href='https://joinmastodon.org'
+          icon={MastodonLogoIcon}
+        >
           <FormattedMessage
             id='navigation_bar.about_mastodon'
             defaultMessage='About Mastodon'
