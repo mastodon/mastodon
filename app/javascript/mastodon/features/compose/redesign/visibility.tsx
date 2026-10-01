@@ -18,6 +18,7 @@ import {
   MenuItemRadio,
   MenuItemCheckbox,
 } from '@/mastodon/components/menu';
+import { Tooltip } from '@/mastodon/components/tooltip';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { selectComposePrivacy } from './selectors';
@@ -28,15 +29,37 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
   const privacy = useAppSelector(selectComposePrivacy);
   const isEditing = useAppSelector((state) => !!state.compose.get('id'));
 
+  if (isEditing) {
+    return (
+      <div className={className}>
+        <Tooltip
+          renderTextWhenClosed
+          text={
+            <FormattedMessage
+              id='compose.privacy.editing'
+              defaultMessage='Visibility can’t be edited after a post has been published.'
+            />
+          }
+        >
+          {({ getTooltipProps, tooltipId }) => (
+            <Button
+              {...getTooltipProps()}
+              size='sm'
+              aria-disabled
+              aria-describedby={tooltipId}
+            >
+              <ComposeVisibilityButtonText privacy={privacy} />
+            </Button>
+          )}
+        </Tooltip>
+      </div>
+    );
+  }
+
   return (
     <div className={className}>
       <Menu>
-        <MenuTrigger
-          as={Button}
-          size='sm'
-          trailingIcon={!isEditing ? CaretIcon : undefined}
-          disabled={isEditing}
-        >
+        <MenuTrigger as={Button} size='sm' trailingIcon={CaretIcon}>
           <ComposeVisibilityButtonText privacy={privacy} />
         </MenuTrigger>
 
