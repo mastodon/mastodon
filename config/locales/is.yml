@@ -620,6 +620,11 @@ is:
         title: Flytja inn útilokanir léna
       no_file: Engin skrá valin
     fasp:
+      capabilities:
+        activation_msg: Tókst að virkja réttindi.
+        deactivation_msg: Tókst að gera réttindi óvirk.
+        disable: Gera óvirkt
+        enable: Virkja
       debug:
         callbacks:
           created_at: Búið til
@@ -631,6 +636,7 @@ is:
         active: Virkt
         base_url: Grunnslóð
         callback: Bakrakning (callback)
+        capabilities: Réttindi
         delete: Eyða
         edit: Breyta þjónustuaðila
         finish_registration: Ljúka skráningu
@@ -983,10 +989,8 @@ is:
       discovery:
         follow_recommendations: Meðmæli um að fylgjast með
         preamble: Að láta áhugavert efni koma skýrt fram er sérstaklega mikilvægt til að nálgast nýja notendur sem ekki þekkja neinn sem er á Mastodon. Stýrðu því hvernig hinir ýmsu eiginleikar við uppgötvun efnis virka á netþjóninum þínum.
-        privacy: Persónuvernd
         profile_directory: Notendamappa
         public_timelines: Opinberar tímalínur
-        publish_statistics: Birta tölfræði
         title: Uppgötvun
         trends: Vinsælt
         wrapstodon: Ársuppgjörið
@@ -994,6 +998,9 @@ is:
         all: Til allra
         disabled: Til engra
         users: Til innskráðra staðværra notenda
+      external:
+        privacy: Persónuvernd
+        publish_statistics: Birta tölfræði
       feed_access:
         modes:
           authenticated: Einungis auðkenndir notendur
@@ -1523,8 +1530,11 @@ is:
   deletes:
     challenge_not_passed: Upplýsingarnar sem þú settir inn eru ekki réttar
     confirm_password: Settu inn núverandi lykilorð þitt til að staðfesta auðkennin þín
+    confirm_username: Staðfestu notandanafn
+    confirm_username_hint_html: Skrifaðu <code>%{username}</code> til að staðfesta aðganginn sem þú ætlar að eyða
     proceed: Eyða notandaaðgangi
     success_msg: Það tókst að eyða notandaaðgangnum þínum
+    title: Eyða aðgangnum %{acct}
     warning:
       before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
       caches: Efni sem aðrir netþjónar hafa sett í skyndiminni gæti verið til staðar áfram
@@ -1655,7 +1665,7 @@ is:
       home: Heimatímalína
       notifications: Tilkynningar
       public: Opinberar tímalínur
-      thread: Samtöl
+      thread: Samræður
     edit:
       add_keyword: Bæta við stikkorði
       keywords: Stikkorð

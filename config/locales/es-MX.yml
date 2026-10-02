@@ -620,6 +620,11 @@ es-MX:
         title: Importar bloqueos de dominio
       no_file: No hay archivo seleccionado
     fasp:
+      capabilities:
+        activation_msg: Capacidad activada correctamente.
+        deactivation_msg: Capacidad desactivada correctamente.
+        disable: Desactivar
+        enable: Activar
       debug:
         callbacks:
           created_at: Creado el
@@ -631,6 +636,7 @@ es-MX:
         active: Activo
         base_url: URL base
         callback: Devolución de llamada
+        capabilities: Capacidades
         delete: Eliminar
         edit: Editar proveedor
         finish_registration: Terminar el registro
@@ -981,10 +987,8 @@ es-MX:
       discovery:
         follow_recommendations: Recomendaciones de cuentas
         preamble: Mostrar contenido interesante es fundamental para atraer a nuevos usuarios que quizá no conozcan a nadie en Mastodon. Controla cómo funcionan las distintas funciones de descubrimiento en tu servidor.
-        privacy: Privacidad
         profile_directory: Directorio de perfiles
         public_timelines: Lineas de tiempo públicas
-        publish_statistics: Publicar estadísticas
         title: Descubrimiento
         trends: Tendencias
         wrapstodon: Wrapstodon
@@ -992,6 +996,11 @@ es-MX:
         all: A todos
         disabled: A nadie
         users: Para los usuarios locales que han iniciado sesión
+      external:
+        preamble: Controla cuánta información sobre tu servidor se comparte con otros servicios, y qué tan fácil de encontrar debería ser tu servidor.
+        privacy: Privacidad
+        publish_statistics: Publicar estadísticas
+        title: Descubrimiento Externo
       feed_access:
         modes:
           authenticated: Solo usuarios registrados
@@ -1020,6 +1029,15 @@ es-MX:
         warning_hint: Recomendamos el uso de la "Aprobación requerida para el registro", a menos de que confíes en que tu equipo de moderación puede manejar el spam y los registros maliciosos en un tiempo razonable.
       security:
         authorized_fetch: Requerir autenticación de servidores federados
+        authorized_fetch_hint: Decidir cuándo los servidores remotos requieren autenticación para obtener contenido de este servidor.
+        authorized_fetch_hints:
+          actors: Requerir autenticación para perfiles permite tener un seguimiento de qué servidor ha descubierto cada una de las cuentas locales, lo que puede reducir enormemente la cantidad de peticiones necesarias para notificar a los servidores sobre la eliminación de una cuenta. Esta opción lleva associado un pequeño coste de rendimiento al servir perfiles, debido a dicho seguimiento, y a la imposibilidad del proxy inverso de poder usar la antememoria para las respuestas a estas solicitudes. Esto también podría introducir problemas de compatibilidad con algunos servicios federados.
+          all: Además de los beneficios e inconvenientes de requerir autenticación para los perfiles, requerir la autenticación incondicional a servidores federados permite un cumplimiento más estricto tanto de los bloqueos a nivel de usuario como a nivel de servidor, pero también previene el uso de la antememoria para la mayoría de las solicitudes. También reducirá el alcance de tus respuestas, ya que se desactivará el reenvío de las respuestas hacia otros servidores.
+          none: Requerir autenticación solo cuando sea estrictamente necesario permite al proxy inverso usar la antememoria para más solicitudes. Esta opción puede ser eliminada en el futuro. Úsala solo si las otras opciones causan problemas.
+        authorized_fetch_modes:
+          actors: Para perfiles y contenido privado
+          all: Para cada solicitud
+          none: Solo para contenido privado
         authorized_fetch_overridden_hint: No puedes cambiar esta configuración porque está sobreescrita por una variable de entorno.
         federation_authentication: Forzar autenticación federada
       title: Ajustes del servidor
@@ -1514,8 +1532,11 @@ es-MX:
   deletes:
     challenge_not_passed: Los datos introducidos son incorrectos
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
+    confirm_username: Confirma el nombre de usuario
+    confirm_username_hint_html: Escribe <code>%{username}</code> para confirmar la cuenta que deseas eliminar
     proceed: Eliminar cuenta
     success_msg: Tu cuenta se eliminó con éxito
+    title: Eliminar cuenta %{acct}
     warning:
       before: 'Antes de continuar, por favor lee con atención las siguientes notas:'
       caches: El contenido que ha sido almacenado en caché por otros servidores puede persistir

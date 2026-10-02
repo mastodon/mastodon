@@ -72,6 +72,10 @@ pt-PT:
       disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar autenticação por dois fatores (2FA)
       disabled: Congelada
+      discoverable:
+        disabled: O autor não optou por ficar detetável
+        enabled: O autor optou por ficar detetável
+        title: Detetável
       display_name: Nome a mostrar
       domain: Domínio
       edit: Editar
@@ -81,6 +85,12 @@ pt-PT:
       enable_sign_in_token_auth: Ativar token de autenticação por e-mail
       enabled: Ativado
       enabled_msg: Descongelou a conta %{username}
+      follow_recommendations:
+        allowed: Autorizado
+        suppress: Suprimir qualquer recomendação de seguimento
+        suppressed: Suprimido
+        title: Recomendações de seguimento
+        unsuppress: Restaurar recomendações de seguimento
       followers: Seguidores
       follows: A seguir
       header: Cabeçalho
@@ -126,6 +136,7 @@ pt-PT:
       push_subscription_expires: A inscrição PuSH expira
       redownload: Atualizar perfil
       redownloaded_msg: Perfil de %{username} atualizado a partir da origem com sucesso
+      registration_app: Aplicação de inscrições
       reject: Rejeitar
       rejected_msg: Inscrição de %{username} rejeitada com sucesso
       remote_suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente.
@@ -165,6 +176,12 @@ pt-PT:
       suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente. Podes cancelar a suspensão da conta para torná-la utilizável, mas não irás recuperar os dados que possuías anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente eliminados em %{date}. Até lá, a conta poderá ser recuperada sem quaisquer efeitos negativos. Se desejas eliminar todos os dados desta conta imediatamente, podes fazê-lo em baixo.
       title: Contas
+      trends:
+        allow: Permitir
+        allowed: Permitido
+        disallow: Rejeitar
+        disallowed: Rejeitado
+        title: Publicações populares
       unblock_email: Desbloquear endereço de e-mail
       unblocked_email_msg: Endereço de e-mail de %{username} desbloqueado com sucesso
       unconfirmed_email: E-mail por confirmar
@@ -200,6 +217,7 @@ pt-PT:
         create_user_role: Criar função
         create_username_block: Criar Regra de Nome de Utilizador
         demote_user: Despromover utilizador
+        destroy_account: Apagar Dados da Conta
         destroy_announcement: Eliminar mensagem de manutenção
         destroy_canonical_email_block: Eliminar bloqueio de e-mail
         destroy_custom_emoji: Eliminar emoji personalizado
@@ -268,6 +286,7 @@ pt-PT:
         create_user_role_html: "%{name} criou a função %{target}"
         create_username_block_html: "%{name} adicionou regra para nomes de utilizadores que contêm %{target}"
         demote_user_html: "%{name} despromoveu o utilizador %{target}"
+        destroy_account_html: "%{name} apagou dados da conta de %{target}"
         destroy_announcement_html: "%{name} eliminou a mensagem de manutenção %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o e-mail com a hash %{target}"
         destroy_collection_html: "%{name} removeu a coleção de %{target}"
@@ -601,6 +620,11 @@ pt-PT:
         title: Importar bloqueios de domínio
       no_file: Nenhum ficheiro selecionado
     fasp:
+      capabilities:
+        activation_msg: Capacidade ativada com sucesso.
+        deactivation_msg: Capacidade desativada com sucesso.
+        disable: Desativar
+        enable: Ativar
       debug:
         callbacks:
           created_at: Criado em
@@ -612,6 +636,7 @@ pt-PT:
         active: Ativo
         base_url: URL base
         callback: Callback
+        capabilities: Capacidades
         delete: Eliminar
         edit: Editar Fornecedor
         finish_registration: Terminar inscrição
@@ -962,10 +987,8 @@ pt-PT:
       discovery:
         follow_recommendations: Recomendações de contas
         preamble: Apresentar conteúdos interessantes é fundamental para atrair novos utilizadores que talvez não conheçam ninguém no Mastodon. Controle como várias funcionalidades de descoberta funcionam no seu servidor.
-        privacy: Privacidade
         profile_directory: Diretório de perfis
         public_timelines: Cronologias públicas
-        publish_statistics: Publicar estatísticas
         title: Descobrir
         trends: Tendências
         wrapstodon: Wrapstodon
@@ -973,6 +996,11 @@ pt-PT:
         all: Para toda a gente
         disabled: Para ninguém
         users: Para utilizadores locais que se encontrem autenticados
+      external:
+        preamble: Controle quantas informações do seu servidor são partilhadas com outros serviços e como o seu servidor deve ser encontrado.
+        privacy: Privacidade
+        publish_statistics: Publicar estatísticas
+        title: Descoberta Externa
       feed_access:
         modes:
           authenticated: Apesar utilizadores autenticados
@@ -1001,6 +1029,15 @@ pt-PT:
         warning_hint: Recomendamos a utilização de “É necessária aprovação para o registo”, a menos que esteja confiante de que a sua equipa de moderação pode tratar o spam e os registos maliciosos de forma atempada.
       security:
         authorized_fetch: Exigir autenticação de servidores federados
+        authorized_fetch_hint: Decida quando os servidores remotos são necessários para autenticar ao buscar conteúdo deste servidor.
+        authorized_fetch_hints:
+          actors: Exigir autenticação para perfis permite o rastreamento de qual servidor já descobriu cada uma das suas contas locais, que pode reduzir significativamente o número de solicitações desnecessárias realizadas ao notificar os servidores de uma exclusão de conta. Esta opção vem a um ligeiro custo de desempenho ao servir perfis devido a esse rastreamento e à incapacidade para o proxy reverso armazenar em cache respostas para estas solicitações. Isto pode também introduzir problemas de compatibilidade com alguns serviços federados.
+          all: Além dos benefícios e desvantagens de exigir autenticação para perfis, exigindo autenticação incondicional de servidores federados permite uma aplicação mais rigorosa de blocos a nível de utilizador e servidor, e também impede o cache da maioria dos pedidos. Além disso, reduzirá o alcance das suas respostas, uma vez que o encaminhamento de resposta será desativado.
+          none: Exigir a autenticação apenas quando estritamente necessário permite que o seu proxy reverso guarde em cache mais solicitações. Esta opção pode ser removida no futuro. Use-a apenas se as outras opções causarem problemas.
+        authorized_fetch_modes:
+          actors: Para perfis e conteúdo privado
+          all: Para cada pedido
+          none: Apenas para conteúdo privado
         authorized_fetch_overridden_hint: Atualmente não pode alterar esta configuração porque ela é substituída por uma variável de ambiente.
         federation_authentication: Imposição de autenticação da federação
       title: Definições do servidor
@@ -1187,6 +1224,9 @@ pt-PT:
           one: Partilhado por uma pessoa na última semana
           other: Partilhado por %{count} pessoas na última semana
         title: Hiperligações em destaque
+        usage_comparison:
+          one: Partilhado %{count} vez hoje, em comparação com %{yesterday} ontem
+          other: Partilhado %{count} vezes hoje, em comparação com %{yesterday} ontem
       not_allowed_to_trend: Não permitido para destaque
       only_allowed: Apenas permitidos
       pending_review: Pendente de revisão
@@ -1231,6 +1271,9 @@ pt-PT:
         trendable: Pode aparecer nos destaques
         trending_rank: 'Tendência #%{rank}'
         usable: Pode ser utilizada
+        usage_comparison:
+          one: Utilizada %{count} vez hoje, em comparação com %{yesterday} ontem
+          other: Utilizada %{count} vezes hoje, em comparação com %{yesterday} ontem
         used_by_over_week:
           one: Utilizada por uma pessoa na última semana
           other: Utilizada por %{count} pessoas na última semana
@@ -1489,8 +1532,11 @@ pt-PT:
   deletes:
     challenge_not_passed: A informação que inseriste não estava correta
     confirm_password: Introduz a palavra-passe atual para verificar a tua identidade
+    confirm_username: Confirmar nome de utilizador
+    confirm_username_hint_html: Digite <code>%{username}</code> para confirmar a conta que deseja eliminar
     proceed: Eliminar conta
     success_msg: A tua conta foi eliminada com sucesso
+    title: Eliminar conta %{acct}
     warning:
       before: 'Antes de continuares, por favor lê cuidadosamente estas notas:'
       caches: O conteúdo que foi armazenado em cache por outras instâncias pode perdurar
@@ -1590,6 +1636,7 @@ pt-PT:
       content: Pedimos desculpa, mas algo correu mal da nossa parte.
       title: Esta página não está correta
     '503': A página não pôde ser apresentada devido a uma falha temporária do servidor.
+    go_home: Ir para a Página Inicial
     noscript_html: Para usar a aplicação web do Mastodon, ativa o JavaScript. Alternativamente, experimenta uma das <a href="%{apps_path}">aplicações nativas</a> para o Mastodon na tua plataforma.
   existing_username_validator:
     not_found: não foi possível encontrar um utilizador local com esse nome
@@ -1686,6 +1733,10 @@ pt-PT:
       incompatible_type: Incompatível com o tipo de importação selecionado
       invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
       invalid_json_file: 'Ficheiro JSON inválido. Erro: %{error}'
+      no_data: Este ficheiro não contém nenhum dado correspondente a este tipo de importação
+      over_rows_processing_limit:
+        one: contém mais de %{count} linha
+        other: contém mais de %{count} linhas
       status_not_found_warning: Alguns dos teus filtros ocultam publicações específicas que não são conhecidas por este servidor. Estas publicações não serão filtradas automaticamente se forem descobertas mais tarde pelo servidor.
       too_large: O ficheiro é demasiado grande
     failures: Falhas
@@ -1836,6 +1887,9 @@ pt-PT:
     incoming_migrations_html: Para passar de outra conta para esta, primeiro é necessário <a href="%{path}">criar um pseudónimo de conta</a>.
     moved_msg: A tua conta está agora a ser redirecionada para %{acct} e os teus seguidores estão a ser transferidos.
     not_redirecting: A rua conta não está atualmente a ser redirecionada para nenhuma outra conta.
+    on_cooldown:
+      one: Migrou recentemente a sua conta. Esta função ficará disponível novamente em %{count} dia.
+      other: Migrou recentemente a sua conta. Esta função ficará disponível novamente em %{count} dias.
     past_migrations: Migrações anteriores
     proceed_with_move: Migrar seguidores
     redirected_msg: A tua conta está agora a redirecionar para %{acct}.
@@ -2023,6 +2077,12 @@ pt-PT:
       account: Publicações públicas de @%{acct}
       tag: 'Publicações públicas marcadas com #%{hashtag}'
   scheduled_statuses:
+    over_daily_limit:
+      one: Excedeste o limite de %{count} publicação agendada para hoje
+      other: Excedeste o limite de %{count} publicações agendadas para hoje
+    over_total_limit:
+      one: Excedeste o limite de %{count} publicação agendada
+      other: Excedeste o limite de %{count} publicações agendadas
     too_soon: a data tem de ser no futuro
   self_destruct:
     lead_html: Infelizmente, <strong>%{domain}</strong> vai fechar definitivamente. Se tinhas conta nele, não podes continuar a usá-lo, mas ainda podes pedir uma cópia dos teus dados.
