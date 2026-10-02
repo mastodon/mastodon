@@ -149,7 +149,13 @@ module Mastodon::CLI
 
       With the --disable-sign-in-token option, an account that has been
       inactive for a long time won't have to introduce a security code that
-      has been sent to their email when trying to log in.
+      has been sent to their email when trying to log in. This option
+      only disables the security code check for a limited amount of time
+      (up to 92 hours)
+
+      With the --enable-sign-in-token option, ensure that the account
+      generates a security code challenge if it has been inactive for too
+      long.
 
       With the --reset-password option, the user's password is replaced by
       a randomly-generated one, printed in the output.
@@ -175,6 +181,7 @@ module Mastodon::CLI
       user.approved = true if options[:approve]
       user.disable_two_factor! if options[:disable_2fa]
       user.disable_sign_in_token! if options[:disable_sign_in_token]
+      user.enable_sign_in_token! if options[:enable_sign_in_token]
 
       # Password changes are a little different, as we also need to ensure
       # sessions, subscriptions, and access tokens are revoked after changing:
