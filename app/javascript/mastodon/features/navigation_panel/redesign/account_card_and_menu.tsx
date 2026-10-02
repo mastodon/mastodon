@@ -76,7 +76,11 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
       }
       className={classes.root}
     >
-      <LockupLink to={accountBasePath} subtitle={handle}>
+      <LockupLink
+        to={accountBasePath}
+        subtitle={handle}
+        className={classes.accountLink}
+      >
         <DisplayName variant='simple' account={account} />
       </LockupLink>
     </LockupWrapper>
