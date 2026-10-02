@@ -997,6 +997,13 @@ en:
         disabled: To no one
         users: To logged-in local users
       external:
+        directory: Server Directory
+        opt_in_server_directory:
+          description: Let your server be listet. Opt in allows you to add your server to the servers folder in github.com/mastodon/server_directory
+          title: Opt your server in for the server directory
+        opt_in_server_recommendation:
+          description: Let your server be listet as recommended server when new users join mastodon. Opt in allows you to add your server to the default_servers folder in github.com/mastodon/server_directory
+          title: Opt your server in for server recommendation
         preamble: Control how much information about your server gets shared with other services and how discoverable your server should be.
         privacy: Privacy
         publish_statistics: Publish statistics
