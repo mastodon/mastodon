@@ -83,13 +83,21 @@ export const selectComposeHasAttachments = createAppSelector(
         | Immutable.List<unknown>
         | undefined,
     (state) => Number(state.compose.get('pending_media_attachments')),
+    (state) => state.compose.get('fetching_link') !== null,
   ],
-  (hasPoll, quotedStatusId, attachments, pendingAttachments) => {
+  (
+    hasPoll,
+    quotedStatusId,
+    attachments,
+    pendingAttachments,
+    isFetchingLink,
+  ) => {
     return {
       hasPoll,
       hasAttachments:
         (attachments && attachments.size > 0) || pendingAttachments > 0,
       quotedStatusId,
+      isFetchingLink,
     };
   },
 );
