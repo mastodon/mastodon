@@ -1,5 +1,6 @@
 import type React from 'react';
 
+import { StatusQuotePending } from '@/mastodon/components/status/quote';
 import { useAppSelector } from '@/mastodon/store';
 
 import classes from './attachments.module.scss';
@@ -14,11 +15,10 @@ import { ComposeUpload } from './upload';
 export const ComposeAttachments: React.FC<{ className?: string }> = ({
   className,
 }) => {
-  const { hasPoll, hasAttachments, quotedStatusId } = useAppSelector(
-    selectComposeHasAttachments,
-  );
+  const { hasPoll, hasAttachments, quotedStatusId, isFetchingLink } =
+    useAppSelector(selectComposeHasAttachments);
 
-  if (!hasPoll && !hasAttachments && !quotedStatusId) {
+  if (!hasPoll && !hasAttachments && !quotedStatusId && !isFetchingLink) {
     return null;
   }
 
@@ -27,6 +27,7 @@ export const ComposeAttachments: React.FC<{ className?: string }> = ({
       {hasPoll && <ComposePoll />}
       {hasAttachments && <ComposeMediaAttachments />}
       {quotedStatusId && <ComposeQuote id={quotedStatusId} />}
+      {!quotedStatusId && isFetchingLink && <StatusQuotePending />}
     </div>
   );
 };
