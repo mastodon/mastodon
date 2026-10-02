@@ -40,8 +40,17 @@ RSpec.describe 'Auth Registration' do
     subject { visit new_user_registration_path }
 
     shared_examples 'approval is required' do
+      around do |example|
+        queue_adapter = ActiveJob::Base.queue_adapter
+        example.run
+        ActiveJob::Base.queue_adapter = queue_adapter
+      end
+
       context 'when reason to join is not required' do
-        before { Setting.require_invite_text = false }
+        before do
+          ActiveJob::Base.queue_adapter = :test
+          Setting.require_invite_text = false
+        end
 
         it 'asks for an optional reason to join, creates the user as unapproved' do
           subject
@@ -54,9 +63,13 @@ RSpec.describe 'Auth Registration' do
 
           expect { fill_in_and_submit_form(apply: true) }
             .to change(User, :count).by(1)
+            .and have_enqueued_job(ActionMailer::MailDeliveryJob)
 
           expect(User.find_by(email: 'test@example.com'))
             .to have_attributes(approved: false)
+
+          expect(page)
+            .to have_title(I18n.t('auth.setup.title'))
         end
       end
 
@@ -84,6 +97,34 @@ RSpec.describe 'Auth Registration' do
 
           expect(User.find_by(email: 'test@example.com'))
             .to have_attributes(approved: false)
+        end
+      end
+
+      context 'when confirmation e-mails are postponed' do
+        before do
+          ActiveJob::Base.queue_adapter = :test
+          Setting.require_invite_text = false
+          Setting.postpone_confirmation_emails = true
+        end
+
+        it 'asks for an optional reason to join, creates the user as unapproved, does not send a confirmation mail' do
+          subject
+
+          expect(page)
+            .to have_title(I18n.t('auth.register'))
+
+          expect(page)
+            .to have_text(I18n.t('simple_form.labels.invite_request.text'))
+
+          expect { fill_in_and_submit_form(apply: true) }
+            .to change(User, :count).by(1)
+            .and have_enqueued_job(ActionMailer::MailDeliveryJob).exactly(0).times
+
+          expect(User.find_by(email: 'test@example.com'))
+            .to have_attributes(approved: false, disabled: true, confirmation_sent_at: nil)
+
+          expect(page)
+            .to have_title(I18n.t('auth.setup.title_wait'))
         end
       end
     end

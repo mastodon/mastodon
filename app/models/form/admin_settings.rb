@@ -47,6 +47,7 @@ class Form::AdminSettings
     landing_page
     wrapstodon
     email_footer_text
+    postpone_confirmation_emails
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -69,6 +70,7 @@ class Form::AdminSettings
     require_invite_text
     captcha_enabled
     wrapstodon
+    postpone_confirmation_emails
   ).freeze
 
   UPLOAD_KEYS = %i(
