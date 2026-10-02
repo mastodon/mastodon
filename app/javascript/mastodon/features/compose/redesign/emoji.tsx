@@ -195,7 +195,6 @@ const ComposeEmojiDropdown: React.FC<
           showSkinTones={false}
           // We need to cast as unknown as this requires a legacy class component.
           notFound={NotFound as unknown as () => React.Component}
-          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           emojiTooltip
         />

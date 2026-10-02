@@ -56,7 +56,6 @@ export const ComposeSensitiveField: React.FC = () => {
       value={sensitiveText}
       onChange={onChange}
       onKeyDown={onKeyDown}
-      // eslint-disable-next-line jsx-a11y/no-autofocus -- Focuses on open
       autoFocus
     />
   );

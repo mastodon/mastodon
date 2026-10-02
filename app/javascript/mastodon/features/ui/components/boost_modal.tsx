@@ -123,7 +123,6 @@ export const BoostModal: React.FC<{
                 ? messages.cancel_reblog
                 : messages.reblog,
             )}
-            /* eslint-disable-next-line jsx-a11y/no-autofocus -- We are in the modal */
             autoFocus
           />
         </div>

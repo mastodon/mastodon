@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-autofocus */
 import { useEffect, useCallback, Suspense, lazy } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
