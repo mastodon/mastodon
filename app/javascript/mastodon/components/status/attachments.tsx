@@ -55,7 +55,7 @@ export const StatusAttachments: React.FC<{
       <MediaAttachments
         statusId={statusId}
         accountId={status.account.id}
-        sensitive={status.sensitive && !status.spoiler_text}
+        sensitive={status.sensitive}
         language={status.translation?.language ?? status.language}
         attachment={attachment}
         restAttachments={status.media_attachments.slice(1)}
@@ -349,7 +349,7 @@ const MediaAttachmentWrapper: React.FC<{
     <div className={classes.galleryWrapper} ref={wrapperRef}>
       {showSpoiler && (
         <Callout
-          className={classes.gallerySpoilerWrapper}
+          className={classes.gallerySpoiler}
           icon={WarningIcon}
           actionClick={onToggle}
           actionText={
@@ -373,6 +373,7 @@ const MediaAttachmentWrapper: React.FC<{
         data-color-scheme='dark'
         className={classNames(
           mainClasses.contentWrapper,
+          classes.galleryContent,
           !visible && mainClasses.hasContentWarning,
           !visible && classes.galleryHideButtons,
         )}
