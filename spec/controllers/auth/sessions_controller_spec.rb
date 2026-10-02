@@ -462,7 +462,8 @@ RSpec.describe Auth::SessionsController do
 
       context 'when using a valid sign in token' do
         before do
-          user.generate_sign_in_token && user.save
+          user.generate_sign_in_token
+          user.save
           post :create, params: { user: { sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_id: user.id }
         end
 
@@ -486,6 +487,34 @@ RSpec.describe Auth::SessionsController do
 
         it "doesn't log the user in" do
           expect(controller.current_user).to be_nil
+        end
+      end
+
+      context 'when requesting a new sign in token' do
+        subject do
+          post :create, params: { sign_in_token_resend: '', user: { sign_in_token_attempt: '' } }, session: { attempt_user_id: user.id }
+        end
+
+        before do
+          user.generate_sign_in_token
+          user.save
+        end
+
+        it 'renders sign in token authentication page' do
+          subject
+
+          expect(response.parsed_body)
+            .to have_css('p.lead', text: I18n.t('users.inactive_sign_in_confirmation'))
+        end
+
+        it 'generates a new sign in token' do
+          expect { subject }.to(change { user.reload.sign_in_token })
+        end
+
+        it 'sends sign in token e-mail' do
+          subject
+
+          expect(UserMailer).to have_received(:sign_in_token)
         end
       end
     end

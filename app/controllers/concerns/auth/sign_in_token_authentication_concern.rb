@@ -14,7 +14,9 @@ module Auth::SignInTokenAuthenticationConcern
   def authenticate_with_sign_in_token
     user = self.resource = find_user
 
-    if user_params[:sign_in_token_attempt].present? && session[:attempt_user_id]
+    if params.key?(:sign_in_token_resend) && session[:attempt_user_id]
+      prompt_for_sign_in_token(user, resend: true)
+    elsif user_params[:sign_in_token_attempt].present? && session[:attempt_user_id]
       authenticate_with_sign_in_token_attempt(user)
     elsif user.present? && user.valid_password?(user_params[:password])
       prompt_for_sign_in_token(user)
@@ -31,8 +33,8 @@ module Auth::SignInTokenAuthenticationConcern
     end
   end
 
-  def prompt_for_sign_in_token(user)
-    if user.sign_in_token_expired?
+  def prompt_for_sign_in_token(user, resend: false)
+    if resend || user.sign_in_token_expired?
       user.generate_sign_in_token && user.save
       UserMailer.sign_in_token(user, request.remote_ip, request.user_agent, Time.now.utc.to_s).deliver_later!
     end

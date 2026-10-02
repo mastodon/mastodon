@@ -10,13 +10,14 @@
 
   .fields-group
     = f.input :sign_in_token_attempt,
-              type: :number,
               wrapper: :with_label,
               label: t('simple_form.labels.defaults.sign_in_token_attempt'),
               input_html: { 'aria-label' => t('simple_form.labels.defaults.sign_in_token_attempt'), :autocomplete => 'off' },
+              required: true,
               autofocus: true
 
   .actions
+    = f.button :button, t('simple_form.labels.defaults.sign_in_token_resend'), type: :submit, name: :sign_in_token_resend, class: 'secondary'
     = f.button :button, t('auth.login'), type: :submit
 
   - if Setting.site_contact_email.present?
