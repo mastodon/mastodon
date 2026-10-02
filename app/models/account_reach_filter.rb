@@ -102,7 +102,7 @@ class AccountReachFilter < ApplicationRecord
     bloom_filters << BloomFit.new(capacity: BLOOM_FILTER_TARGET_CAPACITIES.first, false_positive_rate: TARGET_FALSE_POSITIVE_RATE) if bloom_filters.empty?
 
     next_filter_class = bloom_filters.size
-    threshold = ((next_filter_class.nil? ? TARGET_SATURATION_FALSE_POSITIVE_RATE : TARGET_FALSE_POSITIVE_RATE)**(1.0 / bloom_filters.last.k)) * bloom_filters.last.m
+    threshold = ((next_filter_class >= BLOOM_FILTER_TARGET_CAPACITIES.size ? TARGET_SATURATION_FALSE_POSITIVE_RATE : TARGET_FALSE_POSITIVE_RATE)**(1.0 / bloom_filters.last.k)) * bloom_filters.last.m
 
     hosts.each do |host|
       next if include?(host)
@@ -116,7 +116,7 @@ class AccountReachFilter < ApplicationRecord
         bloom_filters << BloomFit.new(capacity: BLOOM_FILTER_TARGET_CAPACITIES[next_filter_class], false_positive_rate: TARGET_FALSE_POSITIVE_RATE)
 
         next_filter_class = bloom_filter.size
-        threshold = ((next_filter_class.nil? ? TARGET_SATURATION_FALSE_POSITIVE_RATE : TARGET_FALSE_POSITIVE_RATE)**(1.0 / bloom_filters.last.k)) * bloom_filters.last.m
+        threshold = ((next_filter_class >= BLOOM_FILTER_TARGET_CAPACITIES.size ? TARGET_SATURATION_FALSE_POSITIVE_RATE : TARGET_FALSE_POSITIVE_RATE)**(1.0 / bloom_filters.last.k)) * bloom_filters.last.m
       else
         update!(saturated: true, bloom_filter: nil)
 
