@@ -74,6 +74,14 @@ interface ComboboxProps<
    */
   getIsItemDisabled?: (item: Item) => boolean;
   /**
+   * Show an empty state for empty groups instead of hiding them (the default).
+   * Group will be hidden when a falsy value is returned.
+   *
+   * Use only where necessary: This message will not be conveyed to users of
+   * assistive technology.
+   */
+  getGroupEmptyMessage?: (groupKey: GroupKey) => React.ReactNode;
+  /**
    * Customise the rendering of each option.
    * The rendered content must not contain other interactive content!
    */
@@ -103,6 +111,13 @@ interface ComboboxProps<
    * Set to true to open as soon as there is focus
    */
   openOnFocus?: boolean;
+  /**
+   * Keep this enabled for autocomplete-like menu suggestions, where pressing
+   * Enter should select the first item in the suggestion dropdown.
+   * Disable when suggested items aren't necessarily related to user input, or
+   * when pressing Enter should submit a search instead.
+   */
+  autoHighlightFirstItem?: boolean;
   /**
    * Set to false to keep the menu open when an item is selected
    */
@@ -225,6 +240,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     getItemId = (item) => item.id,
     getIsItemDisabled,
     getIsItemSelected,
+    getGroupEmptyMessage,
     disabled,
     renderGroupTitle,
     renderItem,
@@ -234,6 +250,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     onKeyDown,
     openOnFocus = false,
     closeOnSelect = true,
+    autoHighlightFirstItem = true,
     suppressMenu = false,
     icon = SearchIcon,
     className,
@@ -271,6 +288,13 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     [hasGroups, items],
   );
 
+  const hasGroupEmptyMessages =
+    hasGroups &&
+    !!getGroupEmptyMessage &&
+    Object.keys(items).some(
+      (groupKey) => !!getGroupEmptyMessage(groupKey as GroupKey),
+    );
+
   const statusMessage = useGetA11yStatusMessage({
     value,
     isLoading,
@@ -281,7 +305,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
   const hasMenuContent =
     !disabled &&
     !suppressMenu &&
-    (flatItems.length > 0 || showStatusMessageInMenu);
+    (flatItems.length > 0 || hasGroupEmptyMessages || showStatusMessageInMenu);
   const isMenuOpen = shouldMenuOpen && hasMenuContent;
 
   const openMenu = useCallback(() => {
@@ -309,20 +333,24 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
   );
 
   const resetHighlight = useCallback(() => {
-    const firstItem = flatItems[0];
-    const firstItemId = firstItem ? getItemId(firstItem) : null;
-    highlightItem(firstItemId);
-  }, [flatItems, getItemId, highlightItem]);
+    if (autoHighlightFirstItem) {
+      const firstItem = flatItems[0];
+      const firstItemId = firstItem ? getItemId(firstItem) : null;
+      highlightItem(firstItemId);
+    } else {
+      highlightItem(null);
+    }
+  }, [autoHighlightFirstItem, flatItems, getItemId, highlightItem]);
 
   // Reset scroll & highlight when menu items change
   useEffect(() => {
-    if (flatItems.length) {
+    if (flatItems.length && autoHighlightFirstItem) {
       // This only runs when the items change so should be safe from
       // cascade renders.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       resetHighlight();
     }
-  }, [flatItems, resetHighlight]);
+  }, [flatItems, resetHighlight, autoHighlightFirstItem]);
 
   const handleFocus: React.FocusEventHandler<HTMLInputElement> = useCallback(
     (e) => {
@@ -457,7 +485,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
         }
       }
       if (e.key === 'Enter') {
-        if (isMenuOpen) {
+        if (isMenuOpen && highlightedItemId) {
           e.preventDefault();
           selectHighlightedItem();
         }
@@ -475,6 +503,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
       moveHighlight,
       onKeyDown,
       openMenu,
+      highlightedItemId,
       selectHighlightedItem,
     ],
   );
@@ -581,7 +610,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
             className={classNames(classes.popover, placement)}
           >
             <StatusMessageWrapper
-              showStatus={showStatusMessageInMenu}
+              showStatus={showStatusMessageInMenu && !hasGroupEmptyMessages}
               isLoading={isLoading}
               status={statusMessage}
             >
@@ -595,11 +624,18 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
                       groupTitleId,
                     );
                     const hasTitle = customGroupTitle !== null;
+                    const hasGroupItems = !!groupItems?.length;
+                    const groupEmptyState = getGroupEmptyMessage?.(groupKey);
 
-                    if (!groupItems?.length) return null;
+                    if (!hasGroupItems && !groupEmptyState) {
+                      return null;
+                    }
+
+                    const showEmptyState = !hasGroupItems && groupEmptyState;
+                    const GroupWrapperElement = showEmptyState ? 'div' : 'ul';
 
                     return (
-                      <ul
+                      <GroupWrapperElement
                         key={groupKey}
                         role='group'
                         aria-labelledby={hasTitle ? groupTitleId : undefined}
@@ -610,8 +646,14 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
                               {groupKey}
                             </ComboboxMenuGroupTitle>
                           ))}
-                        {renderItems(groupItems)}
-                      </ul>
+                        {hasGroupItems ? (
+                          renderItems(groupItems)
+                        ) : (
+                          <div className={classes.groupEmptyMessage}>
+                            {groupEmptyState}
+                          </div>
+                        )}
+                      </GroupWrapperElement>
                     );
                   })}
                 </div>
