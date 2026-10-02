@@ -621,8 +621,8 @@ nl:
       no_file: Geen bestand geselecteerd
     fasp:
       capabilities:
-        activation_msg: Mogelijkheden met succes ingeschakeld.
-        deactivation_msg: Mogelijkheid met succes uitgeschakeld.
+        activation_msg: Functie met succes ingeschakeld.
+        deactivation_msg: Functie met succes uitgeschakeld.
         disable: Uitschakelen
         enable: Inschakelen
       debug:
@@ -636,7 +636,7 @@ nl:
         active: Ingeschakeld
         base_url: Basis-URL
         callback: Callback
-        capabilities: Mogelijkheden
+        capabilities: Functies
         delete: Verwijderen
         edit: Aanbieder bewerken
         finish_registration: Registratie voltooien
@@ -987,10 +987,8 @@ nl:
       discovery:
         follow_recommendations: Aanbevolen accounts
         preamble: Interessante inhoud uitlichten is van essentieel belang voor onboarding van nieuwe gebruikers, die mogelijk niemand op Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
-        privacy: Privacy
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
-        publish_statistics: Statistieken publiceren
         title: Ontdekken
         trends: Trends
         wrapstodon: Wrapstodon
@@ -998,6 +996,11 @@ nl:
         all: Aan iedereen
         disabled: Aan niemand
         users: Aan ingelogde lokale gebruikers
+      external:
+        preamble: Bepaal hoeveel informatie over jouw server met andere diensten wordt gedeeld en hoe goed jouw server te ontdekken moet zijn.
+        privacy: Privacy
+        publish_statistics: Statistieken publiceren
+        title: Externe ontdekking
       feed_access:
         modes:
           authenticated: Alleen ingelogde gebruikers
@@ -1028,9 +1031,9 @@ nl:
         authorized_fetch: Verificatie van gefedeerde servers vereisen
         authorized_fetch_hint: Bepaal wanneer externe servers moeten worden geverifieerd bij het ophalen van inhoud van deze server.
         authorized_fetch_hints:
-          actors: Door authenticatie voor profielen te vereisen, kan worden bijgehouden welke server ooit elk van uw lokale accounts heeft ontdekt, wat het aantal onnodige verzoeken dat wordt uitgevoerd bij het informeren van servers over het verwijderen van een account aanzienlijk kan verminderen. Deze optie brengt lichte prestatiekosten met zich mee bij het serveren van profielen vanwege de genoemde tracking en het onvermogen van de reverse-proxy om antwoorden op deze verzoeken in de cache op te slaan. Dit kan ook compatibiliteitsproblemen met sommige federatieve diensten met zich meebrengen.
-          all: Naast de voor- en nadelen van het vereisen van authenticatie voor profielen, maakt het onvoorwaardelijk vereisen van authenticatie van gefedereerde servers strengere handhaving van zowel blokkades op gebruikersniveau als op serverniveau mogelijk, maar voorkomt het ook het cachen van de meeste verzoeken. Het zal ook het bereik van uw antwoorden verminderen, aangezien het doorsturen van antwoorden zal worden uitgeschakeld.
-          none: Het alleen vereisen van authenticatie wanneer dit strikt noodzakelijk is, stelt uw reverse proxy in staat om meer verzoeken te cachen. Deze optie kan in de toekomst worden verwijderd. Gebruik deze optie alleen als de andere opties problemen veroorzaken.
+          actors: Door profielauthenticatie te vereisen, kan worden bijgehouden welke server ooit elk van jouw lokale accounts heeft ontdekt. Wat het aantal onnodige verzoeken dat wordt uitgevoerd tijdens het informeren van servers over het verwijderen van een account, aanzienlijk kan verminderen. Deze optie zorgt voor een geringe prestatievermindering tijdens het aanbieden van profielen, vanwege het eerder genoemde bijhouden van servers en het onvermogen van de reverse-proxy om antwoorden op deze verzoeken in de cache op te slaan. Dit kan ook compatibiliteitsproblemen met sommige gefedereerde diensten met zich meebrengen.
+          all: Naast de voor- en nadelen van het vereisen van profielauthenticatie, maakt het onvoorwaardelijk vereisen van authenticatie van gefedereerde servers strengere handhaving van zowel blokkades op gebruikersniveau als op serverniveau mogelijk, maar voorkomt het ook het cachen van de meeste verzoeken. Het zal ook het bereik van jouw reacties verminderen, aangezien het doorsturen van reacties zal worden uitgeschakeld.
+          none: Het alleen vereisen van authenticatie wanneer dit strikt noodzakelijk is, stelt jouw reverse-proxy in staat om meer verzoeken te cachen. Deze optie kan in de toekomst worden verwijderd. Gebruik deze optie alleen als de andere opties problemen veroorzaken.
         authorized_fetch_modes:
           actors: Voor profielen en privé-inhoud
           all: Voor elke aanvraag
@@ -1530,7 +1533,7 @@ nl:
     challenge_not_passed: De informatie die u hebt ingevoerd is ongeldig
     confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
     confirm_username: Gebruikersnaam bevestigen
-    confirm_username_hint_html: Typ <code>%{username}</code> om het account dat u wilt verwijderen te bevestigen
+    confirm_username_hint_html: Typ <code>%{username}</code> om het account dat je wilt verwijderen te bevestigen
     proceed: Account verwijderen
     success_msg: Jouw account is succesvol verwijderd
     title: Account %{acct} verwijderen

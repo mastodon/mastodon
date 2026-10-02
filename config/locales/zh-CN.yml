@@ -971,10 +971,8 @@ zh-CN:
       discovery:
         follow_recommendations: 关注推荐
         preamble: 展示有趣的内容有助于新加入 Mastodon 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。
-        privacy: 隐私
         profile_directory: 个人资料目录
         public_timelines: 公共时间线
-        publish_statistics: 发布统计数据
         title: 发现
         trends: 热门
         wrapstodon: Wrapstodon 年度回顾
@@ -982,6 +980,11 @@ zh-CN:
         all: 对每个人
         disabled: 不对任何人
         users: 对已登录的本站用户
+      external:
+        preamble: 控制服务器信息共享的程度及服务器的可发现性。
+        privacy: 隐私
+        publish_statistics: 发布统计数据
+        title: 外部发现
       feed_access:
         modes:
           authenticated: 仅已登录用户

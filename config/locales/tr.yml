@@ -620,6 +620,11 @@ tr:
         title: Domain bloklarını içe aktar
       no_file: Dosya seçilmedi
     fasp:
+      capabilities:
+        activation_msg: Özellik başarıyla etkinleştirildi.
+        deactivation_msg: Özellik başarıyla devre dışı bırakıldı.
+        disable: Devre dışı bırak
+        enable: Etkinleştir
       debug:
         callbacks:
           created_at: Oluşturulma tarihi
@@ -631,6 +636,7 @@ tr:
         active: Etkin
         base_url: Temel URL
         callback: Geri çağırma
+        capabilities: Özellikler
         delete: Sil
         edit: Sağlayıcıyı Düzenle
         finish_registration: Kaydı tamamla
@@ -981,10 +987,8 @@ tr:
       discovery:
         follow_recommendations: Takip önerileri
         preamble: İlginç içeriği gezinmek, Mastodon'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
-        privacy: Gizlilik
         profile_directory: Profil dizini
         public_timelines: Genel zaman çizelgeleri
-        publish_statistics: İstatistikleri yayınla
         title: Keşfet
         trends: Öne çıkanlar
         wrapstodon: Wrapstodon

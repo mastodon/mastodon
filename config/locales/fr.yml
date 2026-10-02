@@ -620,17 +620,23 @@ fr:
         title: Importer des blocages de domaine
       no_file: Aucun fichier sélectionné
     fasp:
+      capabilities:
+        activation_msg: Capacité activée avec succès.
+        deactivation_msg: Capacité désactivée avec succès.
+        disable: Désactiver
+        enable: Activer
       debug:
         callbacks:
           created_at: Créé à
           delete: Supprimer
           ip: Adresse IP
           request_body: Corps de la demande
-          title: Déboguer les rappels
+          title: Rappels de débogage
       providers:
-        active: Activé
+        active: Actif
         base_url: URL de base
         callback: Rappel
+        capabilities: Capacités
         delete: Supprimer
         edit: Modifier un fournisseur
         finish_registration: Terminer l'inscription
@@ -981,10 +987,8 @@ fr:
       discovery:
         follow_recommendations: Suivre les recommandations
         preamble: Il est essentiel de donner de la visibilité à des contenus intéressants pour attirer des utilisateur⋅rice⋅s néophytes qui ne connaissent peut-être personne sur Mastodon. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
-        privacy: Vie privée
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
-        publish_statistics: Publier les statistiques
         title: Découverte
         trends: Tendances
         wrapstodon: Wrapstodon
