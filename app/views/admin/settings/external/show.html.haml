@@ -10,6 +10,22 @@
 
   %p.lead= t('admin.settings.external.preamble')
 
+  %h2= t('admin.settings.external.directory')
+
+  .fields-group
+    = f.input :opt_in_server_directory,
+              as: :boolean,
+              hint: t('admin.settings.external.opt_in_server_directory.description'),
+              label: t('admin.settings.external.opt_in_server_directory.title'),
+              wrapper: :with_label
+
+  .fields-group
+    = f.input :opt_in_server_recommendation,
+              as: :boolean,
+              hint: t('admin.settings.external.opt_in_server_recommendation.description'),
+              label: t('admin.settings.external.opt_in_server_recommendation.title'),
+              wrapper: :with_label
+
   %h2= t('admin.settings.external.privacy')
 
   .fields-group
