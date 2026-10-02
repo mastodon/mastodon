@@ -6,6 +6,7 @@ import { fn } from 'storybook/test';
 import { accountFactoryImmutable } from '@/testing/factories';
 
 import { TextArea } from '../form_fields';
+import { Menu } from '../menu';
 import menuClasses from '../menu/styles.module.scss';
 
 import { useAutosuggestMenu } from './hooks';
@@ -104,17 +105,19 @@ export const Textarea: Story = {};
 export const Static: Story = {
   render() {
     return (
-      <div className={menuClasses.card} style={{ width: '300px' }}>
-        {Object.values(suggestionsMap)
-          .flat()
-          .map((suggestion) => (
-            <AutosuggestItem
-              suggestion={suggestion}
-              key={suggestion.id}
-              className={menuClasses.item}
-            />
-          ))}
-      </div>
+      <Menu>
+        <div className={menuClasses.card} style={{ width: '300px' }}>
+          {Object.values(suggestionsMap)
+            .flat()
+            .map((suggestion) => (
+              <AutosuggestItem
+                suggestion={suggestion}
+                key={suggestion.id}
+                className={menuClasses.item}
+              />
+            ))}
+        </div>
+      </Menu>
     );
   },
 };
