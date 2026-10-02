@@ -21,7 +21,6 @@ const meta = {
           'image/png',
           'image/gif',
           'image/webp',
-          'image/avif',
           'video/mp4',
           'video/quicktime',
           'video/ogg',

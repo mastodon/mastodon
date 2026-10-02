@@ -1,8 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAction } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+
+import { length } from 'stringz';
 
 import {
   changeCompose,
   clearComposeSuggestions,
+  COMPOSE_DIRECT,
+  COMPOSE_FOCUS,
+  COMPOSE_MENTION,
+  COMPOSE_REPLY,
+  COMPOSE_SET_STATUS,
   directCompose,
   replyComposeById,
   resetCompose,
@@ -13,6 +21,7 @@ import {
   PRIVATE_QUOTE_MODAL_ID,
 } from '@/mastodon/actions/compose_typed';
 import { openModal } from '@/mastodon/actions/modal';
+import { REDRAFT } from '@/mastodon/actions/statuses';
 import type {
   ApiStatusJSON,
   StatusVisibility,
@@ -30,30 +39,31 @@ export function getComposerTextarea() {
   }
   return null;
 }
-/**
- * Focuses on the composer textarea.
- * @param defer Waits before focusing. Useful if the composer may not be focusable immediately.
- */
-export function focusComposerTextarea(defer = false) {
-  if (defer) {
-    requestAnimationFrame(() => {
-      getComposerTextarea()?.focus();
-    });
-  } else {
-    getComposerTextarea()?.focus();
-  }
+export interface ComposerTextareaSelection {
+  start: number;
+  end: number;
+}
+
+interface PendingFocus {
+  selection: ComposerTextareaSelection | null;
 }
 
 type DisplayState = 'hidden' | 'showing' | 'minimized';
 
-export type ComposeType = 'post' | 'message' | 'reply';
+export type ComposeType = 'post' | 'message' | 'reply' | 'replyPrivate';
+
+export type ComposerPublishError = 'empty' | 'too-long';
 
 interface ComposerState {
   displayState: DisplayState;
+  pendingFocus: PendingFocus | null;
+  publishErrors: ComposerPublishError[];
 }
 
 const initialState: ComposerState = {
   displayState: 'hidden',
+  pendingFocus: null,
+  publishErrors: [],
 };
 
 const composerSlice = createSlice({
@@ -70,10 +80,50 @@ const composerSlice = createSlice({
     hideComposer(state) {
       state.displayState = 'hidden';
     },
+    requestFocus(
+      state,
+      action: PayloadAction<ComposerTextareaSelection | undefined>,
+    ) {
+      state.pendingFocus = { selection: action.payload ?? null };
+    },
+    clearPendingFocus(state) {
+      state.pendingFocus = null;
+    },
+    addError(state, action: PayloadAction<ComposerPublishError>) {
+      if (!state.publishErrors.includes(action.payload)) {
+        state.publishErrors.push(action.payload);
+      }
+    },
+    clearErrors(state) {
+      state.publishErrors = [];
+    },
+  },
+  extraReducers(builder) {
+    builder.addMatcher(
+      (action) =>
+        isAction(action) &&
+        [
+          COMPOSE_REPLY,
+          COMPOSE_FOCUS,
+          COMPOSE_MENTION,
+          COMPOSE_DIRECT,
+          COMPOSE_SET_STATUS,
+          REDRAFT,
+        ].includes(action.type),
+      (state) => {
+        state.displayState = 'showing';
+      },
+    );
   },
 });
 
 export const composer = composerSlice.reducer;
+
+export const {
+  requestFocus: requestComposerFocus,
+  clearPendingFocus: clearComposerFocusRequest,
+  clearErrors: clearComposerErrors,
+} = composerSlice.actions;
 
 export const minimizeComposerToggle = createAppThunk(
   (_arg, { dispatch, getState }) => {
@@ -126,6 +176,9 @@ type ComposeNewPayload = (
 
 export const openNewComposer = createAppThunk(
   (payload: ComposeNewPayload, { dispatch, getState }) => {
+    // Always show the composer if it is closed or minimized.
+    dispatch(composerSlice.actions.showComposer());
+
     if (!payload.force && selectComposerIsChanged(getState())) {
       dispatch(
         openModal({
@@ -139,6 +192,7 @@ export const openNewComposer = createAppThunk(
     }
 
     dispatch(resetCompose());
+    dispatch(composerSlice.actions.clearErrors());
     if (payload.type === 'message') {
       const account =
         !!payload.toAccountId && getState().accounts.get(payload.toAccountId);
@@ -146,18 +200,19 @@ export const openNewComposer = createAppThunk(
         dispatch(directCompose(account));
       } else {
         dispatch(changeComposeVisibility('direct'));
+        dispatch(requestComposerFocus());
       }
     } else if (payload.type === 'reply') {
       dispatch(replyComposeById(payload.toStatusId));
+    } else {
+      dispatch(requestComposerFocus());
     }
-    dispatch(composerSlice.actions.showComposer());
-
-    focusComposerTextarea(true);
   },
 );
 
 export const resetComposer = createAppThunk((_arg, { dispatch }) => {
   dispatch(composerSlice.actions.hideComposer());
+  dispatch(composerSlice.actions.clearErrors());
   dispatch(resetCompose());
   dispatch(clearComposeSuggestions());
 });
@@ -210,7 +265,19 @@ export const submitComposer = createAppThunk(
       dispatch(changeCompose(textareaValue));
     }
 
-    const { compose, meta, statuses, settings } = getState();
+    const { compose, meta, statuses, server, settings } = getState();
+
+    const maxChars =
+      server.server.item?.configuration.statuses.max_characters ?? 500;
+    const textLength = length(compose.get('text') as string);
+    if (textLength === 0) {
+      dispatch(composerSlice.actions.addError('empty'));
+      return;
+    } else if (textLength > maxChars) {
+      dispatch(composerSlice.actions.addError('too-long'));
+      return;
+    }
+
     const privacy = compose.get('privacy') as StatusVisibility;
     const missingAltText = (
       compose.get('media_attachments') as unknown as Immutable.List<
@@ -247,12 +314,24 @@ export const submitComposer = createAppThunk(
           modalProps: {},
         }),
       );
+    } else if (!!compose.get('spoiler') && !compose.get('spoiler_text')) {
+      dispatch(
+        openModal({
+          modalType: 'COMPOSER_ADD_CONTENT_WARNING',
+          modalProps: {
+            redirectOnSuccess,
+          },
+        }),
+      );
     } else {
       dispatch(
         submitCompose((status: ApiStatusJSON) => {
           if (redirectOnSuccess) {
             window.location.assign(status.url);
           }
+
+          // Hide composer on successful publish
+          dispatch(composerSlice.actions.hideComposer());
         }),
       );
     }

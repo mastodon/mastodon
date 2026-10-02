@@ -83,6 +83,7 @@ namespace :admin do
     resource :about, only: [:show, :update], controller: 'about'
     resource :appearance, only: [:show, :update], controller: 'appearance'
     resource :discovery, only: [:show, :update], controller: 'discovery'
+    resource :external, only: [:show, :update], controller: 'external'
   end
 
   resources :site_uploads, only: [:destroy]
@@ -173,6 +174,14 @@ namespace :admin do
       collection do
         post :resend
       end
+    end
+
+    namespace :trends do
+      resource :approval, only: [:create, :destroy]
+    end
+
+    namespace :follow_recommendations do
+      resource :suppression, only: [:create, :destroy]
     end
   end
 

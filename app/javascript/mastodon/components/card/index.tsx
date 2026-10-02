@@ -1,4 +1,3 @@
-import type React from 'react';
 import { createContext, use, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -107,15 +106,17 @@ type CardBodyProps<As extends React.ElementType> = PolymorphicProps<
   {
     children: React.ReactNode;
     className?: string;
+    isDescription?: boolean;
     noClamp?: boolean;
   },
   As
 >;
 
-export const CardBody = <As extends React.ElementType>({
+export const CardBody = <As extends React.ElementType = 'div'>({
   as: asComp,
   children,
   className,
+  isDescription,
   noClamp,
   ...props
 }: CardBodyProps<As>) => {
@@ -123,8 +124,35 @@ export const CardBody = <As extends React.ElementType>({
   return (
     <Comp
       {...props}
-      className={classNames(className, classes.body, !noClamp && classes.clamp)}
+      className={classNames(
+        className,
+        classes.body,
+        !noClamp && classes.clamp,
+        isDescription && classes.description,
+      )}
     >
+      {children}
+    </Comp>
+  );
+};
+
+type CardActionProps<As extends React.ElementType> = PolymorphicProps<
+  {
+    children: React.ReactNode;
+    className?: string;
+  },
+  As
+>;
+
+export const CardActions = <As extends React.ElementType = 'div'>({
+  as: asComp,
+  children,
+  className,
+  ...props
+}: CardActionProps<As>) => {
+  const Comp = asComp ?? 'div';
+  return (
+    <Comp {...props} className={classNames(className, classes.actions)}>
       {children}
     </Comp>
   );

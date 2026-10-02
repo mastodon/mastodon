@@ -21,7 +21,7 @@ import { Column } from '@/mastodon/components/column';
 import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
-import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import { BundleColumnError } from 'mastodon/features/ui/components/bundle_column_error';
 import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';

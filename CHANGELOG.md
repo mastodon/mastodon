@@ -2,9 +2,63 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.7.3] - 2026-10-01
+
+### Security
+
+- Update dependencies
+
+### Added
+
+- Add logging of account data removal (#40572 by @ClearlyClaire)
+- Add link to homepage to 404 error page (#40369 by @diondiondion)
+
+### Changed
+
+- Change account self-deletion page to always ask to confirm username (#40576 and #40733 by @ClearlyClaire)
+
+### Fixed
+
+- Fix error handling for malformed webfinger subjects (#40731 by @ClearlyClaire)
+- Fix threads leak by updating dependency aws-sdk-s3
+- Fix occasional installation-time error by updating dependency yarn to v4.18.1 (#40722 by @renovate[bot])
+- Fix inconsistent horizontal page padding between profile and profile editor (#40700 by @diondiondion)
+- Fix server error on registration for wrong DOB (#40607 by @sudeeptarlekar)
+- Fix quotes disclaimer disappearing on posts with no quote (#40587 by @crafkaz)
+- Fix `POST /api/v1/accounts` still being accessible when `SSO_ACCOUNT_SIGN_UP` is set (#40681 by @ClearlyClaire)
+- Fix reported statuses not being deleted after account deletion (#40650 by @ClearlyClaire)
+- Fix mobile navigation covering up "Next step" button during onboarding (#40634 by @diondiondion)
+- Fix rate limits not normalizing submitted e-mail addresses (#40658 by @Gargron)
+- Fix moderators being able to issue a warning on moderators of higher position (#40646 by @ClearlyClaire)
+- Fix deleted-because-of-suspension accounts being marked as manually deleted (#40645 by @ClearlyClaire)
+- Fix description text overflowing on Overview landing page (#40272 by @diondiondion)
+- Fix account avatar and header descriptions not being deleted when an account is deleted (#40621 by @ClearlyClaire)
+- Fix deleted accounts not being removed from featured collections (#40623 by @ClearlyClaire)
+- Fix `PreviewCardsStatus` records not being deleted on account deletion (#40624 by @ClearlyClaire)
+- Fix z-index of PIP video player to be above the side panel (#40484 by @tribela)
+- Fix replies order (#40481 by @OmmyZhang)
+- Fix missing confirmation when leaving with an unsent post (#40478 by @crafkaz)
+- Fix email footer spacing around custom footer text (#40440 by @mjankowski)
+
+## [4.7.2] - 2026-09-15
+
+### Security
+
+- Temporarily disable HEIF support
+
+### Fixes
+
+- Fix relative privacy policy links in subscription emails (#40486 by @crafkaz)
+- Fix canonical email blocks interfering with freezing or approving users (#40463 by @ClearlyClaire)
+- Fix 500 error when trying to upload a non-custom-filter JSON import (#40449 and #40451 by @ClearlyClaire)
+- Fix 500 error when submitting a status twice (#40439 by @ClearlyClaire)
+- Fix self-deleted accounts not being un-deleted when using `tootctl accounts create --reattach` (#40430 by @mjankowski)
+- Fix account deletion not deleting generated annual reports (#40394 by @ClearlyClaire)
+- Fix notifications not being cleaned up when notification requests are deleted in bulk (#40393 by @ClearlyClaire)
+
 ## [4.7.1] - 2026-09-01
 
-## Security
+### Security
 
 - Fix password authentication bypass in 2FA auth for LDAP/PAM/SSO accounts ([GHSA-vx32-x96w-qq65](https://github.com/mastodon/mastodon/security/advisories/GHSA-vx32-x96w-qq65))
 - Fix Denial of Service when processing pathological JSON-LD activities ([GHSA-vgm8-frgh-rh2v](https://github.com/mastodon/mastodon/security/advisories/GHSA-vgm8-frgh-rh2v))

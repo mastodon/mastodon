@@ -47,12 +47,10 @@ const getCollectionItems = createAppSelector(
       state.collections.collections[collectionId ?? '']?.items,
   ],
   (accounts, collectionAccountItems) =>
-    (collectionAccountItems ?? []).map(
-      (item): CollectionItemWithAccount => ({
-        ...item,
-        account: item.account_id ? accounts.get(item.account_id) : null,
-      }),
-    ),
+    (collectionAccountItems ?? []).map((item): CollectionItemWithAccount => ({
+      ...item,
+      account: item.account_id ? accounts.get(item.account_id) : null,
+    })),
 );
 
 function sortAccounts(

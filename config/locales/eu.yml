@@ -520,8 +520,6 @@ eu:
           description: Erregistro bat jaso duzu FASP batetik. Ukatu ez baduzu zuk zeuk abiarazi. Zuk abiarazi baduzu, alderatu arretaz izena eta gakoaren hatz-marka erregistroa berretsi aurretik.
           reject: Ukatu
           title: Berretsi FASP erregistroa
-        save: Gorde
-        select_capabilities: Hautatu ahalmenak
         sign_in: Hasi saioa
         status: Egoera
         title: Fedibertsoko zerbitzu osagarrien hornitzaileak
@@ -841,10 +839,8 @@ eu:
       discovery:
         follow_recommendations: Jarraitzeko gomendioak
         preamble: Eduki interesgarria aurkitzea garrantzitsua da Mastodoneko erabiltzaile berrientzat, behar bada inor ez dutelako ezagutuko. Kontrolatu zure zerbitzariko aurkikuntza-ezaugarriek nola funtzionatzen duten.
-        privacy: Pribatutasuna
         profile_directory: Profil-direktorioa
         public_timelines: Denbora-lerro publikoak
-        publish_statistics: Argitaratu estatistikak
         title: Aurkitzea
         trends: Joerak
         wrapstodon: Wrapstodon
@@ -869,7 +865,6 @@ eu:
         warning_hint: "“Izena emateko onarpena behar da” erabiltzea gomendatzen dugu, baldin eta ez badakizu ziur zure moderazio-taldeak spama eta erregistro maltzurrak arrazoizko denboran erantzun ditzakeela."
       security:
         authorized_fetch: Eskatu autentifikazioa federatutako zerbitzarietatik
-        authorized_fetch_hint: Zerbitzari federatuen autentifikazioa eskatzeak erabiltzaile-mailako zein zerbitzari-mailako blokeak zorrotzago betearaztea ahalbidetzen du. Hala ere, horrek errendimendu galera dakar, zure erantzunen irismena murrizten du eta baliteke federatutako zerbitzu batzuekin bateragarritasun-arazoak sortu ahal izatea. Horrez gain, horrek ez du eragotziko aktore dedikatuek zure mezu eta kontu publikoak eskuratzea.
         authorized_fetch_overridden_hint: Une honetan ezin duzu ezarpen hau aldatu ingurune-aldagai batek gainidazten duelako.
         federation_authentication: Federazio autentifikazioaren betearaztea
       title: Zerbitzariko ezarpenak
@@ -1038,7 +1033,6 @@ eu:
           one: Pertsona batek partekatua azken astean
           other: "%{count} pertsonak partekatua azken astean"
         title: Esteken joerak
-        usage_comparison: "%{today} aldiz partekatua gaur, atzo %{yesterday} aldiz"
       not_allowed_to_trend: Joeretan agertzeko baimenik gabe
       only_allowed: Soilik onartutakoak
       pending_review: Berrikusketaren zain
@@ -1079,7 +1073,6 @@ eu:
         trendable: Joeretan agertuko da
         trending_rank: "%{rank}. joera"
         usable: Erabili daiteke
-        usage_comparison: "%{today} aldiz erabili da gaur, atzo %{yesterday} aldiz"
         used_by_over_week:
           one: Pertsona batek erabilia azken astean
           other: "%{count} pertsonak erabilia azken astean"
@@ -1304,7 +1297,6 @@ eu:
   deletes:
     challenge_not_passed: Sartu duzun informazioa ez da zuzena
     confirm_password: Sartu zure oraingo pasahitza zure identitatea egiaztatzeko
-    confirm_username: Sartu zure erabiltzaile-izena prozedura berresteko
     proceed: Ezabatu kontua
     success_msg: Zure kontua ongi ezabatu da
     warning:
@@ -1459,7 +1451,6 @@ eu:
       empty: CSV fitxategi hutsa
       incompatible_type: Ez da bateragarria aukeratutako inportatze-motarekin
       invalid_csv_file: 'CSV fitxategi baliogabea. Errorea: %{error}'
-      over_rows_processing_limit: "%{count} lerro baina gehiago ditu"
       too_large: Fitxategia handiegia da
     failures: Akatsak
     imported: Inportatuta
@@ -1563,7 +1554,6 @@ eu:
     incoming_migrations_html: Beste kontu batetik hona migratzeko, aurretik <a href="%{path}">kontuaren ezizen bat sortu</a> behar duzu.
     moved_msg: Zure kontuak orain %{acct} kontura birbideratzen du, eta zure jarraitzaileak hara migratuak izaten ari dira.
     not_redirecting: Zure kontuak ez du orain beste konturen batera birbideratzen.
-    on_cooldown: Duela gutxi migratu duzu. Funtzio hau %{count} egun barru egongo da berriro eskuragarri.
     past_migrations: Aurreko migrazioak
     proceed_with_move: Mugitu jarraitzaileak
     redirected_msg: 'Zure kontuak hona birbideratzen du orain: %{acct}.'
@@ -1726,8 +1716,6 @@ eu:
       account: "@%{acct} kontuaren bidalketa publikoak"
       tag: "#%{hashtag} traola duten bidalketa publikoak"
   scheduled_statuses:
-    over_daily_limit: 'Egun horretarako programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'
-    over_total_limit: 'Programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'
     too_soon: datak etorkizunekoa izan behar du
   self_destruct:
     lead_html: Zoritxarrez, <strong>%{domain}</strong> betirako itxiko da. Kontu bat baduzu bertan, ezin izango duzu erabiltzen jarraitu, baina, oraindik zure datuen babeskopia bat eska dezakezu.
@@ -1785,7 +1773,6 @@ eu:
     appearance: Itxura
     authorized_apps: Baimendutako aplikazioak
     back: Itzuli Mastodon-era
-    delete: Kontuaren ezabaketa
     development: Garapena
     edit_profile: Editatu profila
     export: Esportatu

@@ -1,0 +1,10 @@
+@use '@/styles/mastodon/mixins';
+
+.tooltip {
+  display: block;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-3);
+  color: var(--color-text-inverted);
+  background-color: var(--color-bg-inverted);
+  @include mixins.type-meta;
+}

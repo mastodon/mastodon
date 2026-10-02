@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -21,8 +21,9 @@ import { TextArea } from '@/mastodon/components/form_fields';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import {
+  clearComposerErrors,
+  clearComposerFocusRequest,
   COMPOSER_TEXTAREA_ID,
-  focusComposerTextarea,
 } from '@/mastodon/reducers/slices/composer';
 import {
   createAppSelector,
@@ -93,7 +94,6 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
       dispatch(
         selectComposeSuggestion(tokenStart, token, suggestion, ['text']),
       );
-      focusComposerTextarea(true);
     },
     [dispatch],
   );
@@ -104,6 +104,22 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 
   const suggestions = useAppSelector(selectSuggestions);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Applies a focus/selection requested from elsewhere (e.g. reply, mention) once this textarea exists,
+  // which also covers it not being mounted yet when the request was made (it's lazy-loaded).
+  const pendingFocus = useAppSelector((state) => state.composer.pendingFocus);
+  useEffect(() => {
+    if (!pendingFocus) {
+      return;
+    }
+
+    const { selection } = pendingFocus;
+    if (selection) {
+      textAreaRef.current?.setSelectionRange(selection.start, selection.end);
+    }
+    textAreaRef.current?.focus({ preventScroll: true });
+    dispatch(clearComposerFocusRequest());
+  }, [pendingFocus, dispatch]);
 
   const {
     onTextChange,
@@ -127,6 +143,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       dispatch(changeCompose(event.target.value));
+      dispatch(clearComposerErrors());
       onTextChange(event);
     },
     [dispatch, onTextChange],
@@ -142,6 +159,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
           event.preventDefault();
           onSuggestionClear();
         } else if (key === 'escape') {
+          event.preventDefault();
           // Dismiss the suggestions if we're displaying any.
           if (suggestions.length > 0) {
             onSuggestionClear();

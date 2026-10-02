@@ -1,0 +1,56 @@
+@use '@/styles/mastodon/mixins';
+
+.dialog {
+  width: 100%;
+  max-width: unset;
+  max-height: 100dvh;
+  margin: initial;
+  margin-top: auto;
+  padding: 0;
+  border: none;
+  background: none;
+  overscroll-behavior: contain;
+
+  &::backdrop {
+    --bg: #{rgb(from var(--color-bg-overlay) r g b / 90%)};
+
+    background: var(--bg);
+
+    // Paint a bit (or nothing) of the the bottom sheet's primary
+    // background color at the bottom of the ::backdrop to get
+    // Safari on iOS to paint the background behind its address bar
+    // in the same primary bg color rather than the dark overlay color.
+    background: linear-gradient(
+      to top,
+      var(--color-bg-primary) env(safe-area-inset-bottom),
+      var(--bg) env(safe-area-inset-bottom)
+    );
+  }
+
+  &::after {
+    @include mixins.scroll-gradient(bottom);
+
+    position: fixed;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity ease 250ms;
+  }
+}
+
+.withGradient::after {
+  opacity: 1;
+}
+
+.sheet {
+  margin-top: var(--space-10);
+  padding: var(--space-4);
+  border-radius: var(--radius-5) var(--radius-5) 0 0;
+  background: var(--color-bg-primary);
+  overflow: hidden;
+  text-align: start;
+
+  @include mixins.elevation-1;
+
+  border-inline: none;
+  border-bottom: none;
+}

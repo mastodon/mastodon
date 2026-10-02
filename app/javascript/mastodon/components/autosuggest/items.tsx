@@ -2,8 +2,11 @@ import type React from 'react';
 
 import classNames from 'classnames';
 
+import { SealCheckIcon } from '@phosphor-icons/react';
+
 import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { useAppSelector } from '@/mastodon/store';
+import { urlToDomain } from '@/mastodon/utils/links';
 
 import { Avatar } from '../avatar';
 import { DisplayName } from '../display_name';
@@ -53,6 +56,10 @@ const AutosuggestAccount: React.FC<{ id: string }> = ({ id }) => {
     return null;
   }
 
+  const verifiedField = account.fields.find(
+    (field) => field.verified_at !== null,
+  );
+
   return (
     <>
       <Avatar account={account} className={classes.itemIcon} size={32} />
@@ -61,7 +68,14 @@ const AutosuggestAccount: React.FC<{ id: string }> = ({ id }) => {
           account={account}
           variant='noDomain'
           className={classes.itemAccountName}
-        />
+        >
+          {verifiedField?.value_plain && (
+            <span className={classes.itemAccountVerified}>
+              <SealCheckIcon weight='fill' />
+              {urlToDomain(verifiedField.value_plain)}
+            </span>
+          )}
+        </DisplayName>
         <span className={classes.itemAccountHandle}>{account.acct}</span>
       </div>
     </>

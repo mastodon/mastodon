@@ -32,7 +32,7 @@ const NotificationSettingsModal: React.FC = () => {
       </ModalTitle>
       <NotificationSettings />
       <ModalActions>
-        <Button variant='solid' onClick={handleCloseModal}>
+        <Button variant='solid' color='accent' onClick={handleCloseModal}>
           <FormattedMessage id='alt_text_modal.done' defaultMessage='Done' />
         </Button>
       </ModalActions>
@@ -40,5 +40,4 @@ const NotificationSettingsModal: React.FC = () => {
   );
 };
 
-// eslint-disable-next-line import/no-default-export
 export default NotificationSettingsModal;

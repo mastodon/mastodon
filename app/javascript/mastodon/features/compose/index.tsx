@@ -10,7 +10,9 @@ import { Helmet } from '@unhead/react/helmet';
 
 import elephantUIPlane from '@/images/elephant_ui_plane.svg';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import EditIcon from '@/material-icons/400-24px/edit_square.svg?react';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
@@ -19,7 +21,11 @@ import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
-import { mountCompose, unmountCompose } from 'mastodon/actions/compose';
+import {
+  changeComposing,
+  mountCompose,
+  unmountCompose,
+} from 'mastodon/actions/compose';
 import { openModal } from 'mastodon/actions/modal';
 import { Icon } from 'mastodon/components/icon';
 import { mascot, reduceMotion } from 'mastodon/initial_state';
@@ -61,6 +67,10 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     return () => {
       dispatch(unmountCompose());
     };
+  }, [dispatch]);
+
+  const handleFocus = useCallback(() => {
+    dispatch(changeComposing(true));
   }, [dispatch]);
 
   const handleLogoutClick = useCallback(
@@ -164,7 +174,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           role='region'
           aria-label={intl.formatMessage(navbarMessages.publish)}
         >
-          <div className='drawer__inner'>
+          <div className='drawer__inner' onFocus={handleFocus}>
             <ComposeFormContainer />
 
             <div className='drawer__inner__mastodon with-zig-zag-decoration'>
@@ -181,13 +191,20 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       bindToDocument={!multiColumn}
       label={intl.formatMessage(navbarMessages.publish)}
     >
-      <ColumnHeader
-        icon='pencil'
-        iconComponent={EditIcon}
-        title={intl.formatMessage(navbarMessages.publish)}
-        multiColumn={multiColumn}
-        showBackButton
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={intl.formatMessage(navbarMessages.publish)}
+        />
+      ) : (
+        <LegacyColumnHeader
+          icon='pencil'
+          iconComponent={EditIcon}
+          title={intl.formatMessage(navbarMessages.publish)}
+          multiColumn={multiColumn}
+          showBackButton
+        />
+      )}
 
       <div className='scrollable'>
         <ComposeFormContainer

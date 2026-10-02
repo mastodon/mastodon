@@ -1,3 +1,5 @@
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+
 import {
   getColumnSkipLinkId,
   getNavigationSkipLinkId,
@@ -45,11 +47,24 @@ function focusColumnTitle(index: number, multiColumn: boolean) {
   }
 }
 
+function focusRedesignColumnTitle(index: number) {
+  const idToFocus =
+    index === 1 ? getNavigationSkipLinkId() : getColumnSkipLinkId(index - 1);
+
+  document.querySelector<HTMLElement>(`#${idToFocus}`)?.focus();
+}
+
 /**
  * Move focus to the column of the passed index (1-based).
  * Focus is placed on the topmost visible item, or the column title.
  */
 export function focusColumn(index = 1) {
+  if (isRedesignEnabled()) {
+    // In the redesign, always focus the column title
+    focusRedesignColumnTitle(index);
+    return;
+  }
+
   // Skip the leftmost drawer in multi-column mode
   const isMultiColumnLayout = !!document.querySelector(
     'body.layout-multiple-columns',

@@ -127,7 +127,7 @@ const ComposerModalRearrange: React.FC<{ onClose: () => void }> = ({
           />
         </Button>
 
-        <Button variant='solid' onClick={handleSave}>
+        <Button variant='solid' color='accent' onClick={handleSave}>
           <FormattedMessage
             id='compose.rearrange_modal.save'
             defaultMessage='Save'
@@ -189,5 +189,4 @@ const ComposeRearrangeItemDisplay: React.FC<
   );
 };
 
-// eslint-disable-next-line import/no-default-export -- Modals import from default
 export default ComposerModalRearrange;

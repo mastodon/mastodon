@@ -1,9 +1,25 @@
 # frozen_string_literal: true
 
-SimpleCov.configure do
-  # During parallel runs, ensure unique names for post-run merge
-  command_name "job-#{ENV['TEST_ENV_NUMBER']}" if ENV['TEST_ENV_NUMBER']
+# TODO: https://github.com/briandunn/flatware/pull/123
+# Monitor for updated instructions / automation
+if defined?(Flatware)
+  Flatware.configure do |config|
+    config.before_fork do
+      parent_pid = Process.pid
+      at_exit do
+        next if Process.pid != parent_pid
 
+        begin
+          Process.waitall
+        rescue Errno::ECHILD
+          # No remaining children — already reaped elsewhere.
+        end
+      end
+    end
+  end
+end
+
+SimpleCov.configure do
   if ENV['CI']
     require 'simplecov-lcov'
     formatter SimpleCov::Formatter::LcovFormatter

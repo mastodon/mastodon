@@ -9,6 +9,7 @@ import { Callout } from '@/mastodon/components/callout';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 import classes from '../styles.module.scss';
 
@@ -22,11 +23,13 @@ export const AccountListHeader: FC<{
   const currentId = useCurrentAccountId();
   return (
     <>
-      <h1 className={classes.title}>
-        {intl.formatMessage(titleText, {
-          name: <DisplayNameSimple account={account} />,
-        })}
-      </h1>
+      {!isRedesignEnabled() && (
+        <h1 className={classes.title}>
+          {intl.formatMessage(titleText, {
+            name: <DisplayNameSimple account={account} />,
+          })}
+        </h1>
+      )}
       {!!total && (
         <h2 className={classes.subtitle}>
           <FormattedMessage

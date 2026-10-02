@@ -69,6 +69,10 @@ zh-CN:
       disable_sign_in_token_auth: 禁用邮件令牌身份验证
       disable_two_factor_authentication: 停用双因素认证
       disabled: 已冻结
+      discoverable:
+        disabled: 作者选择不被发现
+        enabled: 作者选择被发现
+        title: 可发现
       display_name: 昵称
       domain: 域名
       edit: 编辑
@@ -78,6 +82,12 @@ zh-CN:
       enable_sign_in_token_auth: 启用邮件令牌身份验证
       enabled: 已启用
       enabled_msg: 成功解冻 %{username} 的账号
+      follow_recommendations:
+        allowed: 已允许
+        suppress: 禁用推荐关注
+        suppressed: 已禁用
+        title: 关注推荐
+        unsuppress: 恢复推荐关注
       followers: 关注者
       follows: 关注
       header: 封面图
@@ -122,6 +132,7 @@ zh-CN:
       push_subscription_expires: PuSH 订阅过期时间
       redownload: 刷新个人资料
       redownloaded_msg: 成功从来源站点刷新 %{username} 的账号信息
+      registration_app: 注册应用程序
       reject: 拒绝
       rejected_msg: 已拒绝 %{username} 的注册申请
       remote_suspension_irreversible: 此账号的数据已被不可逆转地删除。
@@ -161,6 +172,12 @@ zh-CN:
       suspension_irreversible: 该账号的数据已被不可逆转地删除。你可以取消暂停该账号以使其可用，但它不会恢复以前拥有的任何数据。
       suspension_reversible_hint_html: 账号已封禁，数据将在 %{date} 完全删除。 在此之前，账号仍可恢复，并且没有任何不良影响。 如果你想立即移除该账号的所有数据，可以在下面进行。
       title: 用户
+      trends:
+        allow: 允许
+        allowed: 已允许
+        disallow: 不允许
+        disallowed: 不允许
+        title: 热门嘟文
       unblock_email: 取消屏蔽邮件地址
       unblocked_email_msg: 成功取消屏蔽了 %{username} 的邮件地址
       unconfirmed_email: 待验证的邮箱地址
@@ -196,6 +213,7 @@ zh-CN:
         create_user_role: 创建角色
         create_username_block: 新建用户名规则
         demote_user: 取消管理员
+        destroy_account: 删除账号数据
         destroy_announcement: 删除公告
         destroy_canonical_email_block: 解除邮箱封禁
         destroy_custom_emoji: 删除自定义表情符号
@@ -264,6 +282,7 @@ zh-CN:
         create_user_role_html: "%{name} 创建了角色 %{target}"
         create_username_block_html: "%{name} 新增了有关包含 %{target} 的用户名的规则"
         demote_user_html: "%{name} 撤销了用户 %{target} 的管理权限"
+        destroy_account_html: "%{name} 删除了 %{target} 的账号数据"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 解封了 hash 为 %{target} 的邮箱地址"
         destroy_collection_html: "%{name} 移除了 %{target} 的收藏列表"
@@ -591,6 +610,11 @@ zh-CN:
         title: 导入域名列表
       no_file: 没有选择文件
     fasp:
+      capabilities:
+        activation_msg: 能力已成功启用。
+        deactivation_msg: 能力已成功禁用。
+        disable: 禁用
+        enable: 启用
       debug:
         callbacks:
           created_at: 创建于
@@ -602,6 +626,7 @@ zh-CN:
         active: 有效
         base_url: 基础 URL
         callback: 回调
+        capabilities: 能力
         delete: 删除
         edit: 编辑提供商
         finish_registration: 完成注册
@@ -614,8 +639,6 @@ zh-CN:
           description: 你收到了来自FASP的注册。若你没有发起这个请求，请拒绝。若你发起了这个请求，请仔细比对名称和密钥指纹后再确认注册。
           reject: 拒绝
           title: 确认FASP注册
-        save: 保存
-        select_capabilities: 选择能力
         sign_in: 登录
         status: 状态
         title: 联邦宇宙辅助服务提供商
@@ -948,10 +971,8 @@ zh-CN:
       discovery:
         follow_recommendations: 关注推荐
         preamble: 展示有趣的内容有助于新加入 Mastodon 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。
-        privacy: 隐私
         profile_directory: 个人资料目录
         public_timelines: 公共时间线
-        publish_statistics: 发布统计数据
         title: 发现
         trends: 热门
         wrapstodon: Wrapstodon 年度回顾
@@ -959,6 +980,11 @@ zh-CN:
         all: 对每个人
         disabled: 不对任何人
         users: 对已登录的本站用户
+      external:
+        preamble: 控制服务器信息共享的程度及服务器的可发现性。
+        privacy: 隐私
+        publish_statistics: 发布统计数据
+        title: 外部发现
       feed_access:
         modes:
           authenticated: 仅已登录用户
@@ -987,7 +1013,15 @@ zh-CN:
         warning_hint: 我们建议使用“注册必须经过批准”，除非你确信你的管理团队能够及时处理骚扰和恶意注册。
       security:
         authorized_fetch: 与外站联合时要求身份验证
-        authorized_fetch_hint: 要求外站请求通过验证能够使用户级别与服务器级别的封锁更为严格。然而，这将带来额外的性能负担、减少回复触达范围、并可能导致与一些联邦宇宙服务的兼容性问题。此外，这并不能阻止他人针对性地获取公开嘟文与账号。
+        authorized_fetch_hint: 决定远程服务器从此服务器获取什么内容时要求进行身份验证。
+        authorized_fetch_hints:
+          actors: 要求对个人资料进行身份验证，可以跟踪哪些服务器曾经发现过你服务器的各个本地账号，从而大幅减少在通知服务器账号删除时执行的不必要的请求数量。由于需要进行上述跟踪，以及反向代理无法缓存这些请求的响应，此选项在提供个人资料时会带来轻微的性能开销。这也可能会与某些其他联邦宇宙服务产生兼容性问题。
+          all: 除了要求对个人资料进行身份验证所具备的优点和缺点之外，无条件要求外站请求通过验证能够使用户级别与服务器级别的封锁更为严格，但也会阻止大多数请求的缓存。这还会降低你服务器回复嘟文的触达范围，因为这样做回复转发将会被禁用。
+          none: 仅在绝对必要时要求身份验证，这样可以让你的反向代理缓存更多请求。此选项未来可能会被移除。只有在其他选项导致问题时才使用它。
+        authorized_fetch_modes:
+          actors: 个人资料及私密内容
+          all: 每个请求
+          none: 仅私密内容
         authorized_fetch_overridden_hint: 由于此设置被环境变量覆盖，目前无法更改。
         federation_authentication: 联合时强制要求身份验证
       title: 服务器设置
@@ -1172,7 +1206,8 @@ zh-CN:
         shared_by_over_week:
           other: 过去一周内被 %{count} 个人分享过
         title: 热门链接
-        usage_comparison: 今日被分享 %{today} 次，前一日为 %{yesterday} 次
+        usage_comparison:
+          other: 今日被分享 %{count} 次，前一日为 %{yesterday} 次
       not_allowed_to_trend: 不允许进入热门
       only_allowed: 仅显示已允许的内容
       pending_review: 待审核
@@ -1216,7 +1251,8 @@ zh-CN:
         trendable: 可显示在热门列表中
         trending_rank: '热门 #%{rank}'
         usable: 可以使用
-        usage_comparison: 今日被使用 %{today} 次，前一日为 %{yesterday} 次
+        usage_comparison:
+          other: 今日被使用 %{count} 次，前一日为 %{yesterday} 次
         used_by_over_week:
           other: 过去一周内被 %{count} 个人使用过
       title: 推荐与热门
@@ -1473,9 +1509,11 @@ zh-CN:
   deletes:
     challenge_not_passed: 你输入的信息不正确
     confirm_password: 输入你当前的密码来验证身份
-    confirm_username: 输入你的用户名以继续
+    confirm_username: 确认用户名
+    confirm_username_hint_html: 请输入 <code>%{username}</code> 以确认你要删除的账号
     proceed: 删除账号
     success_msg: 你的账号已成功删除
+    title: 删除账号 %{acct}
     warning:
       before: 在删除前，请仔细阅读下列说明：
       caches: 已被其他服务器缓存的内容可能还会保留
@@ -1664,7 +1702,9 @@ zh-CN:
       incompatible_type: 与所选导入类型不兼容
       invalid_csv_file: 无效的 CSV 文件。错误：%{error}
       invalid_json_file: 无效的 JSON 文件。错误：%{error}
-      over_rows_processing_limit: 包含行数超过了 %{count}
+      no_data: 此文件不包含任何匹配指定导入类型的数据
+      over_rows_processing_limit:
+        other: 包含行数超过了 %{count}
       status_not_found_warning: 你的部分过滤器将会隐藏此服务器暂时未知的特定嘟文。如果这些嘟文以后被服务器发现，则将不会被自动过滤。
       too_large: 文件过大
     failures: 失败
@@ -1800,7 +1840,8 @@ zh-CN:
     incoming_migrations_html: 要把另一个账号移动到本账号，首先你需要<a href="%{path}">创建一个账号别名</a> 。
     moved_msg: 你的账号现在会跳转到 %{acct} ，同时关注者也会一并迁移 。
     not_redirecting: 你的账号当前未跳转到其它账号。
-    on_cooldown: 你最近已经迁移过你的账号。此功能将在%{count} 天后再次可用。
+    on_cooldown:
+      other: 你最近已经迁移过你的账号。此功能将在 %{count} 天后再次可用。
     past_migrations: 迁移记录
     proceed_with_move: 移动关注者
     redirected_msg: 你的账号现在会跳转至 %{acct}
@@ -1987,8 +2028,10 @@ zh-CN:
       account: "@%{acct} 的公开嘟文"
       tag: "#%{hashtag} 标签下的公开嘟文"
   scheduled_statuses:
-    over_daily_limit: 你已超出每日定时嘟文的上限（%{limit} 条）
-    over_total_limit: 你已超出定时嘟文的上限（%{limit} 条）
+    over_daily_limit:
+      other: 你已超出每日定时嘟文的上限（%{count} 条）
+    over_total_limit:
+      other: 你已超出定时嘟文的上限（%{count} 条）
     too_soon: 日期必须晚于当前时间
   self_destruct:
     lead_html: 很遗憾，<strong>%{domain}</strong> 即将永久关闭。 如果你在其中设有账号，那么你将无法再继续使用，但你仍可以请求获得本人数据的备份。
@@ -2046,7 +2089,6 @@ zh-CN:
     appearance: 外观
     authorized_apps: 已授权的应用
     back: 返回 Mastodon
-    delete: 删除账号
     development: 开发
     edit_profile: 更改个人资料
     export: 导出

@@ -72,6 +72,10 @@ sv:
       disable_sign_in_token_auth: Inaktivera autentisering med pollett via e-post
       disable_two_factor_authentication: Inaktivera 2FA
       disabled: Inaktiverad
+      discoverable:
+        disabled: Författaren har inte valt att vara upptäckbar
+        enabled: Författaren har valt att vara upptäckbar
+        title: Upptäckbar
       display_name: Visningsnamn
       domain: Domän
       edit: Redigera
@@ -81,6 +85,12 @@ sv:
       enable_sign_in_token_auth: Aktivera autentisering med pollett via e-post
       enabled: Aktiverad
       enabled_msg: Uppfrysningen av %{username}s konto lyckades
+      follow_recommendations:
+        allowed: Tillåtet
+        suppress: Tysta alla följrekommendationer
+        suppressed: Tystad
+        title: Följrekommendationer
+        unsuppress: Återställ alla följrekommendationer
       followers: Följare
       follows: Följs
       header: Rubrik
@@ -126,6 +136,7 @@ sv:
       push_subscription_expires: PuSH-prenumerationen löper ut
       redownload: Uppdatera profil
       redownloaded_msg: Uppdaterade %{username}s profil från server
+      registration_app: Registreringsapp
       reject: Förkasta
       rejected_msg: Avvisade %{username}s registreringsansökan
       remote_suspension_irreversible: Detta konto har raderats och uppgifterna kan inte återkallas.
@@ -165,6 +176,12 @@ sv:
       suspension_irreversible: All data som tillhör detta konto har permanent raderats. Du kan låsa upp kontot om du vill att det ska gå att använda, men ingen data kommer finnas kvar.
       suspension_reversible_hint_html: Kontot har stängts av och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       title: Konton
+      trends:
+        allow: Tillåt
+        allowed: Tillåtet
+        disallow: Neka
+        disallowed: Nekat
+        title: Trendande inlägg
       unblock_email: Avblockera e-postadress
       unblocked_email_msg: "%{username}s e-postadress avblockerad"
       unconfirmed_email: Obekräftad e-postadress
@@ -200,6 +217,7 @@ sv:
         create_user_role: Skapa roll
         create_username_block: Skapa användarnamnsregel
         demote_user: Degradera användare
+        destroy_account: Radera kontodata
         destroy_announcement: Radera notis
         destroy_canonical_email_block: Ta bort e-post block
         destroy_custom_emoji: Radera egen emoji
@@ -268,6 +286,7 @@ sv:
         create_user_role_html: "%{name} skapade rollen %{target}"
         create_username_block_html: "%{name} lade till regel för användarnamn som innehåller %{target}"
         demote_user_html: "%{name} nedgraderade användare %{target}"
+        destroy_account_html: "%{name} raderade kontodata för %{target}"
         destroy_announcement_html: "%{name} raderade kungörelsen %{target}"
         destroy_canonical_email_block_html: "%{name} avblockerade e-post med hash%{target}"
         destroy_collection_html: "%{name} tog bort samlingen av %{target}"
@@ -601,6 +620,11 @@ sv:
         title: Importera domänblockeringar
       no_file: Ingen fil vald
     fasp:
+      capabilities:
+        activation_msg: Funktionen har aktiverats.
+        deactivation_msg: Funktionen har inaktiverats.
+        disable: Inaktivera
+        enable: Aktivera
       debug:
         callbacks:
           created_at: Skapad den
@@ -612,6 +636,7 @@ sv:
         active: Aktiv
         base_url: Bas-URL
         callback: Återanrop
+        capabilities: Funktioner
         delete: Ta bort
         edit: Redigera leverantör
         finish_registration: Slutför registrering
@@ -624,8 +649,6 @@ sv:
           description: Du fick en registrering från en FASP. Avvisa den om du inte initierade detta. Om du initierat detta, jämför noggrant namn och nyckelns fingeravtryck innan du bekräftar registreringen.
           reject: Avvisa
           title: Bekräfta registrering av FASP
-        save: Spara
-        select_capabilities: Välj funktioner
         sign_in: Logga in
         status: Status
         title: Fediverse Auxiliary Service Providers
@@ -964,10 +987,8 @@ sv:
       discovery:
         follow_recommendations: Följrekommendationer
         preamble: Att visa intressant innehåll är viktigt för att introducera nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din server.
-        privacy: Integritet
         profile_directory: Profilkatalog
         public_timelines: Offentliga tidslinjer
-        publish_statistics: Publicera statistik
         title: Upptäck
         trends: Trender
         wrapstodon: Wrapstodon
@@ -975,6 +996,11 @@ sv:
         all: Till alla
         disabled: För ingen
         users: För inloggade lokala användare
+      external:
+        preamble: Kontrollera hur mycket information om din server som delas med andra tjänster och hur identifierbar din server ska vara.
+        privacy: Integritet
+        publish_statistics: Publicera statistik
+        title: Extern upptäckbarhet
       feed_access:
         modes:
           authenticated: Endast autentiserade användare
@@ -1003,7 +1029,15 @@ sv:
         warning_hint: Vi rekommenderar att du använder “Godkännande krävs för registrering” om du inte är säker på att ditt moderatorsteam kan hantera skräppost och skadliga registreringar i tid.
       security:
         authorized_fetch: Kräv autentisering från federerade servrar
-        authorized_fetch_hint: Att kräva autentisering från federerade servrar möjliggör striktare tillämpning av både blockering på användarnivå och servernivå. Detta sker dock på bekostnad av prestanda, minskar räckvidden på dina svar, och kan införa kompatibilitet problem med vissa federerade tjänster. Dessutom kommer detta inte att hindra dedikerade aktörer från att hämta dina offentliga inlägg och konton.
+        authorized_fetch_hint: Bestäm när fjärrservrar krävs för att autentisera när innehåll hämtas från denna server.
+        authorized_fetch_hints:
+          actors: Att kräva autentisering för profiler gör det möjligt att spåra vilken server som vid något tillfälle har upptäckt vart och ett av dina lokala konton, vilket avsevärt kan minska antalet onödiga anrop vid avisering till servrar om att ett konto har raderats. Detta alternativ medför en viss prestandaförlust vid leverans av profiler på grund av nämnda spårning och att omvänd proxy inte kan cachelagra svaren för dessa anrop. Det kan även ge upphov till kompatibilitetsproblem med vissa federerade tjänster.
+          all: Utöver för- och nackdelarna med att kräva autentisering för profiler innebär ett ovillkorligt krav på autentisering från federerade servrar att blockeringar, både på användar- och servernivå, kan upprätthållas striktare, samtidigt som det förhindrar cachning av de flesta anrop. Det minskar också räckvidden för dina svar, eftersom vidarebefordran av svar inaktiveras.
+          none: Att endast kräva autentisering när det absolut är nödvändigt gör att din omvända proxy kan cachelagra fler förfrågningar. Detta alternativ kan komma att tas bort i framtiden. Använd det endast om de andra alternativen orsakar problem.
+        authorized_fetch_modes:
+          actors: För profiler och privat innehåll
+          all: För varje förfrågan
+          none: Endast för privat innehåll
         authorized_fetch_overridden_hint: Du kan för närvarande inte ändra den här inställningen eftersom den åsidosätts av en miljövariabel.
         federation_authentication: Federationen autentisering verkställighet
       title: Serverinställningar
@@ -1190,7 +1224,9 @@ sv:
           one: Delad av en person under den senaste veckan
           other: Delad av %{count} personer under den senaste veckan
         title: Trendande länkar
-        usage_comparison: Delade %{today} gånger idag, jämfört med %{yesterday} igår
+        usage_comparison:
+          one: Delad %{count} gång idag, jämfört med %{yesterday} igår
+          other: Delad %{count} gånger idag, jämfört med %{yesterday} igår
       not_allowed_to_trend: Inte tillåtet att trenda
       only_allowed: Endast tillåtna
       pending_review: Väntar på granskning
@@ -1235,7 +1271,9 @@ sv:
         trendable: Kan visas under trender
         trending_rank: 'Trendande #%{rank}'
         usable: Kan användas
-        usage_comparison: Använd %{today} gånger idag, jämfört med %{yesterday} igår
+        usage_comparison:
+          one: Använd %{count} gång idag, jämfört med %{yesterday} igår
+          other: Använd %{count} gånger idag, jämfört med %{yesterday} igår
         used_by_over_week:
           one: Använd av en person under den senaste veckan
           other: Använd av %{count} personer under den senaste veckan
@@ -1494,9 +1532,11 @@ sv:
   deletes:
     challenge_not_passed: Informationen som du angav var inte korrekt
     confirm_password: Ange ditt lösenord för att verifiera din identitet
-    confirm_username: Fyll i ditt användarnamn för att bekräfta proceduren
+    confirm_username: Bekräfta användarnamn
+    confirm_username_hint_html: Vänligen skriv <code>%{username}</code> för att bekräfta det konto du vill ta bort
     proceed: Radera konto
     success_msg: Ditt konto har raderats
+    title: Ta bort konto %{acct}
     warning:
       before: 'Läs dessa noteringar noga innan du fortsätter:'
       caches: Innehåll som har cachats av andra servrar kan bibehållas
@@ -1579,7 +1619,7 @@ sv:
     status: Status
     subscribers: Prenumeranter
   emoji_styles:
-    auto: Automatiskt
+    auto: Auto
     native: Ursprunglig
     twemoji: Twemoji
   errors:
@@ -1693,7 +1733,10 @@ sv:
       incompatible_type: Inkompatibel med den valda importtypen
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
       invalid_json_file: 'Ogiltig JSON-fil. Fel: %{error}'
-      over_rows_processing_limit: innehåller fler än %{count} rader
+      no_data: Den här filen innehåller ingen data som matchar den angivna importtypen
+      over_rows_processing_limit:
+        one: innehåller fler än %{count} rad
+        other: innehåller fler än %{count} rader
       status_not_found_warning: Några av dina filter döljer specifika inlägg som inte är kända av denna server. Dessa inlägg filtreras inte automatiskt om de upptäcks senare av servern.
       too_large: Filen är för stor
     failures: Misslyckanden
@@ -1844,7 +1887,9 @@ sv:
     incoming_migrations_html: För att flytta från ett annat konto till det här så behöver du först <a href="%{path}">skapa ett konto-alias</a>.
     moved_msg: Ditt konto omdirigerar nu till %{acct} och dina följare flyttas över.
     not_redirecting: Ditt konto omdirigerar inte till något annat konto för tillfället.
-    on_cooldown: Du har nyss migrerat ditt konto. Den här funktionen kommer att vara tillgänglig igen om %{count} dagar.
+    on_cooldown:
+      one: Du har nyligen migrerat ditt konto. Denna funktion kommer att bli tillgänglig igen om %{count} dag.
+      other: Du har nyligen migrerat ditt konto. Denna funktion kommer att bli tillgänglig igen om %{count} dagar.
     past_migrations: Föregående migreringar
     proceed_with_move: Flytta följare
     redirected_msg: Ditt konto dirigeras om till %{acct}.
@@ -2032,8 +2077,12 @@ sv:
       account: Offentliga inlägg från @%{acct}
       tag: 'Offentliga inlägg taggade med #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du har överskridit dygnsgränsen på %{limit} schemalagda inlägg
-    over_total_limit: Du har överskridit gränsen på %{limit} schemalagda inlägg
+    over_daily_limit:
+      one: Du har överskridit gränsen för %{count} schemalagt inlägg för idag
+      other: Du har överskridit gränsen för %{count} schemalagda inlägg för idag
+    over_total_limit:
+      one: Du har överskridit gränsen för %{count} schemalagt inlägg
+      other: Du har överskridit gränsen för %{count} schemalagda inlägg
     too_soon: datumet måste vara i framtiden
   self_destruct:
     lead_html: Tyvärr stänger <strong>%{domain}</strong> för gott. Om du hade ett konto där kommer du inte längre kunna använda det, men du kan fortfarande begära en säkerhetskopia av din data.
@@ -2091,7 +2140,6 @@ sv:
     appearance: Utseende
     authorized_apps: Godkända appar
     back: Tillbaka till Mastodon
-    delete: Konto radering
     development: Utveckling
     edit_profile: Redigera profil
     export: Exportera

@@ -100,7 +100,8 @@ module Mastodon::CLI
       end
 
       account.suspended_at = nil
-      user.account         = account
+      account.requested_deletion_at = nil
+      user.account = account
 
       if user.save
         if options[:confirmed]

@@ -69,6 +69,10 @@ vi:
       disable_sign_in_token_auth: Tắt xác minh bằng email
       disable_two_factor_authentication: Vô hiệu hóa xác thực 2 bước
       disabled: Tạm khóa
+      discoverable:
+        disabled: Tác giả đã chọn không tham gia mục khám phá
+        enabled: Tác giả đã chọn tham gia mục khám phá
+        title: Khả năng khám phá
       display_name: Tên gọi
       domain: Máy chủ
       edit: Chỉnh sửa
@@ -78,6 +82,12 @@ vi:
       enable_sign_in_token_auth: Bật xác minh bằng email
       enabled: Đã duyệt
       enabled_msg: Đã kích hoạt lại tài khoản %{username} thành công
+      follow_recommendations:
+        allowed: Cho phép
+        suppress: Tắt gợi ý theo dõi
+        suppressed: Đã tắt
+        title: Gợi ý theo dõi
+        unsuppress: Mở lại gợi ý theo dõi
       followers: Người theo dõi
       follows: Đang theo dõi
       header: Ảnh bìa
@@ -122,6 +132,7 @@ vi:
       push_subscription_expires: Đăng ký PuSH hết hạn
       redownload: Làm mới trang hồ sơ
       redownloaded_msg: Đã tiếp nhận tài khoản %{username} thành công
+      registration_app: Ứng dụng đăng ký
       reject: Từ chối
       rejected_msg: Đã từ chối đăng ký tài khoản %{username}
       remote_suspension_irreversible: Dữ liệu của người này đã bị xóa vĩnh viễn.
@@ -161,6 +172,12 @@ vi:
       suspension_irreversible: Toàn bộ dữ liệu của người này sẽ bị xóa hết. Bạn vẫn có thể ngừng vô hiệu hóa nhưng dữ liệu sẽ không thể phục hồi.
       suspension_reversible_hint_html: Mọi dữ liệu của người này sẽ bị xóa sạch vào %{date}. Trước thời hạn này, dữ liệu vẫn có thể phục hồi. Nếu bạn muốn xóa dữ liệu của người này ngay lập tức, hãy tiếp tục.
       title: Tài khoản
+      trends:
+        allow: Cho phép
+        allowed: Cho phép
+        disallow: Cấm
+        disallowed: Cấm
+        title: Xu hướng tút
       unblock_email: Bỏ chặn địa chỉ email
       unblocked_email_msg: Đã bỏ chặn địa chỉ email của %{username}
       unconfirmed_email: Email chưa được xác minh
@@ -196,6 +213,7 @@ vi:
         create_user_role: Tạo vai trò
         create_username_block: Tạo quy tắc tên người dùng
         demote_user: Hạ vai trò
+        destroy_account: Xóa dữ liệu tài khoản
         destroy_announcement: Xóa thông báo
         destroy_canonical_email_block: Bỏ chặn địa chỉ email biến thể
         destroy_custom_emoji: Xóa emoji
@@ -264,6 +282,7 @@ vi:
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
         create_username_block_html: "%{name} thêm quy tắc cho tên người dùng chứa %{target}"
         demote_user_html: "%{name} đã hạ vai trò của %{target}"
+        destroy_account_html: "%{name} đã xóa dữ liệu tài khoản %{target}"
         destroy_announcement_html: "%{name} đã xóa thông báo %{target}"
         destroy_canonical_email_block_html: "%{name} đã bỏ chặn địa chỉ email biến thể %{target}"
         destroy_collection_html: "%{name} đã gỡ gói khởi đầu của %{target}"
@@ -591,6 +610,11 @@ vi:
         title: Nhập máy chủ chặn
       no_file: Không có tệp nào được chọn
     fasp:
+      capabilities:
+        activation_msg: Tính năng đã được kích hoạt thành công.
+        deactivation_msg: Tính năng đã được tắt thành công.
+        disable: Tắt
+        enable: Bật
       debug:
         callbacks:
           created_at: Đã tạo lúc
@@ -602,6 +626,7 @@ vi:
         active: Hoạt động
         base_url: URL cơ sở
         callback: Callback
+        capabilities: Khả năng
         delete: Xóa
         edit: Chỉnh sửa nhà cung cấp
         finish_registration: Hoàn tất đăng ký
@@ -614,8 +639,6 @@ vi:
           description: Bạn đã nhận được đăng ký từ FASP. Hãy từ chối nếu bạn không phải là người khởi tạo. Nếu bạn đã khởi tạo, hãy so sánh cẩn thận tên và dấu vân tay khóa trước khi xác nhận đăng ký.
           reject: Từ chối
           title: Xác nhận đăng ký FASP
-        save: Lưu
-        select_capabilities: Chọn khả năng
         sign_in: Đăng nhập
         status: Trạng thái
         title: Fediverse Auxiliary Service Providers
@@ -903,7 +926,7 @@ vi:
         view_dashboard_description: Cho phép truy cập trang tổng quan và các chỉ số khác
         view_devops: Nhà phát triển
         view_devops_description: Cho phép truy cập trang tổng quan Sidekiq và pgHero
-        view_feeds: Xem nguồn cấp dữ liệu trực tiếp và theo chủ đề
+        view_feeds: Xem nguồn tin và chủ đề
         view_feeds_description: Cho phép người dùng truy cập nguồn cấp dữ liệu trực tiếp và theo chủ đề bất kể cài đặt máy chủ
       requires_2fa: Bắt buộc xác thực 2 bước
       title: Danh sách vai trò
@@ -948,10 +971,8 @@ vi:
       discovery:
         follow_recommendations: Gợi ý theo dõi
         preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trên Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
-        privacy: Riêng tư
         profile_directory: Danh bạ
         public_timelines: Bảng tin
-        publish_statistics: Công khai số liệu thống kê
         title: Khám phá
         trends: Xu hướng
         wrapstodon: Wrapstodon
@@ -959,6 +980,11 @@ vi:
         all: Tới mọi người
         disabled: Không ai
         users: Để đăng nhập người cục bộ
+      external:
+        preamble: Kiểm soát thông tin về máy chủ của bạn được chia sẻ với các dịch vụ khác và mức độ dễ dàng tìm thấy máy chủ của bạn.
+        privacy: Riêng tư
+        publish_statistics: Công khai số liệu thống kê
+        title: Khám phá bên ngoài
       feed_access:
         modes:
           authenticated: Chỉ những người dùng đã xác minh
@@ -987,7 +1013,15 @@ vi:
         warning_hint: Chúng tôi khuyên bạn nên sử dụng "Duyệt đăng ký thủ công" trừ khi bạn tin tưởng đội ngũ kiểm duyệt của mình có thể xử lý kịp thời các đăng ký spam và độc hại.
       security:
         authorized_fetch: Yêu cầu xác thực từ các máy chủ liên hợp
-        authorized_fetch_hint: Yêu cầu xác thực từ các máy chủ liên hợp cho phép thực thi chặt chẽ hơn việc chặn cấp độ người dùng và cấp độ máy chủ. Tuy nhiên, điều này phải trả giá bằng một hình phạt về hiệu suất, làm giảm phạm vi tiếp cận của các lượt trả lời của bạn và có thể gây ra các vấn đề về khả năng tương thích với một số dịch vụ được liên hợp. Ngoài ra, điều này sẽ không ngăn cản các tác nhân chuyên dụng tìm nạp các tút và tài khoản công khai của bạn.
+        authorized_fetch_hint: Xác định thời điểm các máy chủ từ xa cần xác thực khi lấy nội dung từ máy chủ này.
+        authorized_fetch_hints:
+          actors: Việc yêu cầu xác thực đối với hồ sơ người dùng cho phép theo dõi xem máy chủ nào đã từng phát hiện các tài khoản cục bộ của bạn; điều này giúp giảm đáng kể số lượng yêu cầu không cần thiết khi thông báo cho các máy chủ về việc xóa tài khoản. Tuy nhiên, tùy chọn này có thể làm giảm nhẹ hiệu năng khi phục vụ dữ liệu hồ sơ do quá trình theo dõi nêu trên và việc reverse-proxy không thể lưu vào bộ nhớ đệm các phản hồi cho những yêu cầu này. Ngoài ra, nó cũng có thể gây ra vấn đề tương thích với một số dịch vụ liên hợp.
+          all: Ngoài những ưu và nhược điểm của việc yêu cầu xác thực đối với hồ sơ người dùng, việc bắt buộc xác thực từ các máy chủ liên hợp cho phép thực thi nghiêm ngặt hơn các lệnh chặn ở cả cấp độ người dùng lẫn máy chủ, nhưng đồng thời cũng ngăn chặn việc lưu vào bộ nhớ đệm đối với hầu hết các yêu cầu. Điều này cũng sẽ làm giảm phạm vi tiếp cận các phản hồi của bạn, do tính năng chuyển tiếp phản hồi sẽ bị vô hiệu hóa.
+          none: Việc chỉ yêu cầu xác thực khi thực sự cần thiết sẽ cho phép reverse proxy của bạn lưu vào bộ nhớ đệm nhiều yêu cầu hơn. Tùy chọn này có thể sẽ bị loại bỏ trong tương lai. Chỉ nên sử dụng nó nếu các tùy chọn khác gây ra vấn đề.
+        authorized_fetch_modes:
+          actors: Với hồ sơ và nội dung riêng tư
+          all: Với mọi yêu cầu
+          none: Với nội dung riêng tư
         authorized_fetch_overridden_hint: Hiện tại, bạn không thể thay đổi cài đặt này vì nó bị ghi đè bởi biến môi trường.
         federation_authentication: Thực thi xác thực liên hợp
       title: Cài đặt máy chủ
@@ -1172,7 +1206,8 @@ vi:
         shared_by_over_week:
           other: "%{count} người chia sẻ tuần rồi"
         title: Xu hướng tin tức
-        usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
+        usage_comparison:
+          other: Được chia sẻ %{count} lần hôm nay, so với %{yesterday} hôm qua
       not_allowed_to_trend: Không được phép thành xu hướng
       only_allowed: Đã cho phép
       pending_review: Đang chờ
@@ -1216,7 +1251,8 @@ vi:
         trendable: Cho phép lên xu hướng
         trending_rank: 'Xu hướng #%{rank}'
         usable: Có thể dùng
-        usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
+        usage_comparison:
+          other: Được dùng %{count} lần hôm nay, so với %{yesterday} hôm qua
         used_by_over_week:
           other: "%{count} người dùng tuần rồi"
       title: Đề xuất và Xu hướng
@@ -1473,9 +1509,11 @@ vi:
   deletes:
     challenge_not_passed: Thông tin bạn nhập không chính xác
     confirm_password: Nhập mật khẩu hiện tại của bạn để xác minh
-    confirm_username: Nhập tên người dùng của bạn để hoàn tất thủ tục
+    confirm_username: Xác nhận tên người dùng
+    confirm_username_hint_html: Vui lòng nhập <code>%{username}</code> để xác nhận tài khoản bạn muốn xóa
     proceed: Xóa tài khoản
     success_msg: Tài khoản của bạn đã được xóa thành công
+    title: Xóa tài khoản %{acct}
     warning:
       before: 'Trước khi tiếp tục, xin vui lòng xem xét cẩn thận:'
       caches: Nội dung đã lưu trữ trên các máy chủ khác có thể vẫn tồn tại
@@ -1664,7 +1702,9 @@ vi:
       incompatible_type: Không tương thích với loại nhập đã chọn
       invalid_csv_file: 'Tệp CSV không hợp lệ. Lỗi: %{error}'
       invalid_json_file: 'Tệp JSON không hợp lệ. Lỗi: %{error}'
-      over_rows_processing_limit: chứa nhiều hơn %{count} hàng
+      no_data: Tệp này không chứa dữ liệu nào khớp với loại đã chỉ định
+      over_rows_processing_limit:
+        other: chứa nhiều hơn %{count} hàng
       status_not_found_warning: Một số bộ lọc của bạn ẩn các tút cụ thể mà máy chủ này không biết đến. Những tút này sẽ không tự động bị lọc nếu máy chủ phát hiện ra chúng sau này.
       too_large: Tệp quá lớn
     failures: Thất bại
@@ -1800,7 +1840,8 @@ vi:
     incoming_migrations_html: Để chuyển từ tài khoản khác sang tài khoản này, trước tiên bạn cần <a href="%{path}">kết nối tài khoản</a>.
     moved_msg: Tài khoản của bạn hiện đang chuyển hướng đến %{acct} và những người theo dõi bạn cũng sẽ được chuyển đi.
     not_redirecting: Tài khoản của bạn hiện không chuyển hướng đến bất kỳ tài khoản nào khác.
-    on_cooldown: Bạn vừa mới chuyển tài khoản của bạn đi nơi khác. Chỉ có thể sử dụng tiếp tính năng này sau %{count} ngày.
+    on_cooldown:
+      other: Bạn vừa mới chuyển tài khoản của bạn đi nơi khác. Chỉ có thể sử dụng tiếp tính năng này sau %{count} ngày.
     past_migrations: Những lần dời nhà cũ
     proceed_with_move: Chuyển hướng người theo dõi
     redirected_msg: Tài khoản của bạn đã chuyển hướng đến %{acct}.
@@ -1987,8 +2028,10 @@ vi:
       account: Những tút công khai của @%{acct}
       tag: 'Những tút #%{hashtag} công khai'
   scheduled_statuses:
-    over_daily_limit: Bạn đã vượt qua giới hạn được lên lịch đăng tút %{limit} hôm nay
-    over_total_limit: Bạn đã vượt quá giới hạn %{limit} của các tút được lên lịch
+    over_daily_limit:
+      other: Bạn đã vượt hạn mức được lên lịch đăng %{count} tút hôm nay
+    over_total_limit:
+      other: Bạn đã vượt hạn mức được lên lịch đăng %{count} tút
     too_soon: ngày phải ở tương lai
   self_destruct:
     lead_html: Rất tiếc, <strong>%{domain}</strong>đã đóng cửa vĩnh viễn. Nếu bạn có tài khoản ở đó, bạn sẽ không thể tiếp tục sử dụng tài khoản đó nhưng bạn vẫn có thể yêu cầu bản sao lưu dữ liệu của mình.
@@ -2046,7 +2089,6 @@ vi:
     appearance: Giao diện
     authorized_apps: Ứng dụng
     back: Quay lại Mastodon
-    delete: Xóa tài khoản
     development: Lập trình
     edit_profile: Sửa hồ sơ
     export: Xuất dữ liệu

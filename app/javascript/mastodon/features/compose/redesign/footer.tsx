@@ -23,7 +23,6 @@ import type { OnEmojiPick } from './emoji';
 import { ComposeEmojiButton } from './emoji';
 import {
   selectComposeAttachments,
-  selectComposeCanSubmit,
   selectComposeCharsCount,
   selectComposeHasAttachments,
   selectComposeType,
@@ -42,7 +41,6 @@ export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
   const isSubmitting = useAppSelector(
     (state) => !!state.compose.get('is_submitting'),
   );
-  const canSubmit = useAppSelector(selectComposeCanSubmit);
 
   const dispatch = useAppDispatch();
   const handlePoll = useCallback(() => {
@@ -84,14 +82,13 @@ export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
 
         <Button
           variant='solid'
+          color='accent'
           type='submit'
-          disabled={!canSubmit}
           loading={isSubmitting}
         >
-          {type !== 'message' && (
+          {type !== 'message' && type !== 'replyPrivate' ? (
             <FormattedMessage id='compose.publish' defaultMessage='Publish' />
-          )}
-          {type === 'message' && (
+          ) : (
             <FormattedMessage
               id='compose.message.publish'
               defaultMessage='Send'

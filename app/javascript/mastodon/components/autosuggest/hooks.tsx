@@ -19,6 +19,7 @@ export type OnSuggestionSelect = (
 
 interface UseAutosuggestMenuOptions {
   suggestions: Suggestion[];
+  sourceRef: Source;
   onSelect: OnSuggestionSelect;
   onFetch?: (token: string) => void;
   onClear?: () => void;
@@ -31,6 +32,7 @@ type SourceProps = React.DetailedHTMLProps<
 
 export function useAutosuggestMenu({
   suggestions,
+  sourceRef,
   onSelect,
   onFetch,
   onClear,
@@ -108,6 +110,7 @@ export function useAutosuggestMenu({
     suggestProps: {
       suggestions,
       onSuggestionClick,
+      source: sourceToElement(sourceRef),
       listRef,
       tokenCb,
     } satisfies AutosuggestMenuProps,
@@ -122,13 +125,11 @@ export function useAutosuggestMenu({
 
 interface UseAutosuggestFloatingMenuOptions extends UseAutosuggestMenuOptions {
   text?: string;
-  sourceRef: Source;
   className?: string;
 }
 
 export function useAutosuggestFloatingMenu({
   text,
-  sourceRef,
   className,
   ...suggestOptions
 }: UseAutosuggestFloatingMenuOptions) {
@@ -138,9 +139,9 @@ export function useAutosuggestFloatingMenu({
 
   const { getToken, ...autosuggestProps } = useAutosuggestMenu(suggestOptions);
 
-  const { onClear } = suggestOptions;
+  const source = autosuggestProps.suggestProps.source;
 
-  const source = sourceToElement(sourceRef);
+  const { onClear } = suggestOptions;
 
   // Update the popover on scroll or select.
   const onUpdate = useCallback(() => {

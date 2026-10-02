@@ -2,27 +2,21 @@
 
 .root {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-xs);
-  margin-top: var(--space-xl);
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  color: var(--color-text-secondary);
 
-  @include mixins.type-label-sm;
-}
-
-.heading {
-  margin-inline-end: auto;
-}
-
-.list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-xs);
+  @include mixins.type-caption;
 
   a {
-    color: var(--color-text-secondary);
+    color: inherit;
     text-decoration: underline;
+
+    &[aria-current='page'] {
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
 
     &:hover,
     &:focus,
@@ -30,4 +24,11 @@
       text-decoration: none;
     }
   }
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
 }

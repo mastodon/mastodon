@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { useLocation } from 'react-router';
 
 import { ArrowLeftIcon, ListIcon } from '@phosphor-icons/react';
+import type { DistributedOmit } from 'type-fest';
 
 import { openNavigation } from '@/mastodon/actions/navigation';
 import { getColumnSkipLinkId } from '@/mastodon/features/ui/components/skip_links';
@@ -25,12 +26,13 @@ import classes from './styles.module.scss';
 export { ColumnSettingsMenu } from './column_settings_menu';
 
 export interface ColumnHeaderProps {
-  title: string;
+  title: React.ReactNode;
   // Set to auto to display the back button based on
   // the `fromMastodon` location state
   withBackButton?: boolean | 'auto';
   withUnreadMarker?: boolean;
   extraButtons?: React.ReactNode;
+  extraStickyContent?: React.ReactNode;
   className?: string;
 }
 
@@ -39,6 +41,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   withBackButton,
   withUnreadMarker,
   extraButtons,
+  extraStickyContent,
   className,
   ...props
 }: ColumnHeaderProps) => {
@@ -48,10 +51,43 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   const hasBackButton =
     withBackButton === true ||
     (withBackButton === 'auto' && location.state?.fromMastodon);
+  const hasExtraStickyContent = hasReactChildren(extraStickyContent);
+
+  const handleHeaderClick = useCallback<React.MouseEventHandler>(
+    (e) => {
+      // Only scroll to top when clicking outside
+      // of the leftButton/rightButtons containers
+      if (
+        e.target instanceof Element &&
+        !e.target.matches(`
+          .${classes.leftButton},
+          .${classes.leftButton} *,
+          .${classes.rightButtons},
+          .${classes.rightButtons} *`)
+      ) {
+        scrollTop();
+      }
+    },
+    [scrollTop],
+  );
 
   return (
-    <header {...props} className={classNames(className, classes.root)}>
-      <div className={classes.layout} data-has-unread={withUnreadMarker}>
+    <header
+      {...props}
+      className={classNames(
+        className,
+        classes.root,
+        hasExtraStickyContent && classes.withStickyContent,
+      )}
+    >
+      {/* eslint-disable-next-line
+          jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+        */}
+      <div
+        className={classes.layout}
+        data-has-unread={withUnreadMarker}
+        onClick={handleHeaderClick}
+      >
         {hasBackButton ? <BackButton /> : <MobileMenuButton />}
         <NavigationFocusTarget className={classes.title}>
           <button
@@ -75,11 +111,14 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
           <div className={classes.rightButtons}>{extraButtons}</div>
         )}
       </div>
+      {hasExtraStickyContent && (
+        <div className={classes.extraStickyContent}>{extraStickyContent}</div>
+      )}
     </header>
   );
 };
 
-type ColumnHeaderButtonProps = IconButtonProps & {
+type ColumnHeaderButtonProps = DistributedOmit<IconButtonProps, 'size'> & {
   showTextOnDesktop?: boolean;
 };
 
@@ -94,14 +133,14 @@ export const ColumnHeaderButton: React.FC<ColumnHeaderButtonProps> = ({
 
   if (showTextOnDesktop && !isMobile) {
     return (
-      <Button {...props} variant={variant}>
+      <Button {...props} variant={variant} size='sm'>
         {children}
       </Button>
     );
   }
 
   return (
-    <IconButton icon={icon} variant={variant} {...props}>
+    <IconButton icon={icon} {...props} variant={variant} size='sm'>
       {children}
     </IconButton>
   );

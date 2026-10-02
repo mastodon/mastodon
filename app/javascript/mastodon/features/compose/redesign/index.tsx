@@ -1,22 +1,12 @@
 import type React from 'react';
 import { useCallback, useEffect, useId } from 'react';
 
-import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
-
 import classNames from 'classnames';
 
-import { LockSimpleOpenIcon, PepperIcon } from '@phosphor-icons/react';
-
+import { insertEmojiCompose } from '@/mastodon/actions/compose';
+import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import {
-  changeComposeSpoilerness,
-  changeComposeSpoilerText,
-  insertEmojiCompose,
-} from '@/mastodon/actions/compose';
-import { ToggleButton } from '@/mastodon/components/button/redesign';
-import { TextInputField } from '@/mastodon/components/form_fields/redesign';
-import { Icon } from '@/mastodon/components/icon';
-import {
-  focusComposerTextarea,
+  closeComposer,
   getComposerTextarea,
   submitComposer,
 } from '@/mastodon/reducers/slices/composer';
@@ -29,21 +19,12 @@ import { ComposeFormHeader } from './header';
 import { ComposeHints } from './hints';
 import { LanguageButton } from './language';
 import { ComposeReply } from './reply';
-import {
-  selectComposeCanSubmit,
-  selectComposeSensitive,
-  selectComposeType,
-} from './selectors';
+import { selectComposeType } from './selectors';
+import { ComposeSensitiveField } from './sensitive';
+import { ComposeSettingsMenu } from './settings';
 import classes from './styles.module.scss';
 import { ComposeTextarea } from './textarea';
 import { ComposeVisibility } from './visibility';
-
-const messages = defineMessages({
-  sensitiveText: {
-    id: 'compose.sensitive.text',
-    defaultMessage: 'Sensitive content description',
-  },
-});
 
 interface RedesignComposeFormProps {
   autoFocus?: boolean;
@@ -56,12 +37,9 @@ export const RedesignComposeForm: React.FC<
   RedesignComposeFormProps & React.ComponentPropsWithRef<'form'>
 > = ({ autoFocus, className, noMinimize, redirectOnSuccess, ...props }) => {
   const type = useAppSelector(selectComposeType);
-  const { sensitive, sensitiveText } = useAppSelector(selectComposeSensitive);
 
-  const { onSensitiveChange, onSensitiveTextChange, onEmojiPick, onSubmit } =
-    useComposeHandlers(redirectOnSuccess);
+  const { onEmojiPick, onSubmit } = useComposeHandlers(redirectOnSuccess);
 
-  const intl = useIntl();
   const titleId = useId();
 
   return (
@@ -72,7 +50,9 @@ export const RedesignComposeForm: React.FC<
       aria-labelledby={titleId}
       className={classNames(className, classes.root)}
     >
-      {type === 'message' && <div className={classes.background} />}
+      {(type === 'message' || type === 'replyPrivate') && (
+        <div className={classes.background} />
+      )}
 
       <ComposeFormHeader id={titleId} noMinimize={noMinimize} />
 
@@ -83,35 +63,10 @@ export const RedesignComposeForm: React.FC<
 
         <LanguageButton />
 
-        <ToggleButton
-          size='sm'
-          active={sensitive}
-          onClick={onSensitiveChange}
-          leadingIcon={PepperIcon}
-        >
-          <FormattedMessage id='compose.sensitive' defaultMessage='Sensitive' />
-        </ToggleButton>
+        <ComposeSettingsMenu />
       </div>
 
-      {type === 'message' && (
-        <p className={classes.toolbarMessage}>
-          <Icon id='lock-open' icon={LockSimpleOpenIcon} />
-          <FormattedMessage
-            id='compose.message.notice'
-            defaultMessage='Messages are not end-to-end encrypted'
-          />
-        </p>
-      )}
-
-      {sensitive && (
-        <TextInputField
-          label={intl.formatMessage(messages.sensitiveText)}
-          value={sensitiveText}
-          onChange={onSensitiveTextChange}
-          // eslint-disable-next-line jsx-a11y/no-autofocus -- Focuses on open
-          autoFocus
-        />
-      )}
+      <ComposeSensitiveField />
 
       <ComposeTextarea
         // eslint-disable-next-line jsx-a11y/no-autofocus
@@ -136,24 +91,24 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
 
   const dispatch = useAppDispatch();
 
-  // Sensitive handling
-  const isSensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
+  const isModalOpen = useAppSelector((state) => state.modal.stack.size > 0);
   useEffect(() => {
-    if (!isSensitive) {
-      focusComposerTextarea();
-    }
-  }, [isSensitive]);
+    function escapeComposer(event: KeyboardEvent) {
+      const key = normalizeKey(event.key);
+      if (key !== 'escape' || isModalOpen) {
+        return;
+      }
 
-  const onSensitiveChange = useCallback(() => {
-    dispatch(changeComposeSpoilerness());
-  }, [dispatch]);
-  const onSensitiveTextChange: React.ChangeEventHandler<HTMLInputElement> =
-    useCallback(
-      (event) => {
-        dispatch(changeComposeSpoilerText(event.target.value));
-      },
-      [dispatch],
-    );
+      if (!event.defaultPrevented) {
+        dispatch(closeComposer());
+      }
+    }
+
+    document.addEventListener('keydown', escapeComposer);
+    return () => {
+      document.removeEventListener('keydown', escapeComposer);
+    };
+  }, [dispatch, isModalOpen]);
 
   const onEmojiPick: OnEmojiPick = useCallback(
     (emoji) => {
@@ -170,11 +125,10 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
   );
 
   // Submit status
-  const canSubmit = useAppSelector(selectComposeCanSubmit);
   const onSubmit = useCallback(
     (event?: React.SubmitEvent) => {
-      if (!canSubmit || event?.defaultPrevented) {
-        return;
+      if (event?.defaultPrevented) {
+        return false;
       }
       dispatch(
         submitComposer({
@@ -182,17 +136,14 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
         }),
       );
 
-      if (event) {
-        event.preventDefault();
-      }
+      event?.preventDefault();
+      return false;
     },
-    [canSubmit, dispatch, redirectOnSuccess],
+    [dispatch, redirectOnSuccess],
   );
 
   return {
     onSubmit,
     onEmojiPick,
-    onSensitiveChange,
-    onSensitiveTextChange,
   };
 }

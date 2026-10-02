@@ -1,14 +1,11 @@
 import type { ComponentType, ReactNode } from 'react';
 
-import StatusContainer from '@/mastodon/containers/status_container';
+import StatusContainer from '@/mastodon/components/status/legacy/container';
 import type { Account as TAccount } from '@/mastodon/models/account';
 import type { Status as TStatus } from '@/mastodon/models/status';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
-import Status from '../status';
-
-import type { StatusHeaderRenderFn } from './header';
-import { StatusRedesign } from './status';
+import type { StatusHeaderRenderFn } from './legacy/header';
+import Status from './legacy/status';
 
 export type StatusContextType =
   | 'account'
@@ -53,9 +50,8 @@ export interface StatusContainerProps {
   withDismiss?: boolean;
 }
 
-export const TypedStatusContainer = isRedesignEnabled()
-  ? StatusRedesign
-  : (StatusContainer as ComponentType<StatusContainerProps>);
+export const TypedStatusContainer =
+  StatusContainer as ComponentType<StatusContainerProps>;
 
 // Taken from the Status component.
 export interface StatusProps extends Omit<StatusContainerProps, 'nextId'> {

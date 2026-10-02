@@ -72,6 +72,10 @@ nn:
       disable_sign_in_token_auth: Slå av e-post-token-autentisering
       disable_two_factor_authentication: Slå av 2FA
       disabled: Inaktiv
+      discoverable:
+        disabled: Forfattaren har ikkje valt å kunna bli oppdaga
+        enabled: Forfattaren har valt å kunna bli oppdaga
+        title: Synleg
       display_name: Synleg namn
       domain: Domene
       edit: Rediger
@@ -81,6 +85,12 @@ nn:
       enable_sign_in_token_auth: Slå på e-post-token-autentisering
       enabled: Aktivert
       enabled_msg: Gjenaktiverte %{username} sin konto
+      follow_recommendations:
+        allowed: Tillate
+        suppress: Demp fylgjeforslag
+        suppressed: Dempa
+        title: Fylgjeforslag
+        unsuppress: Nullstill fylgjeforslag
       followers: Fylgjarar
       follows: Fylgje
       header: Overskrift
@@ -126,6 +136,7 @@ nn:
       push_subscription_expires: PuSH-abonnent utløper
       redownload: Last inn profil på nytt
       redownloaded_msg: Oppdaterte %{username} sin profil frå opphavstenar
+      registration_app: Registreringsapp
       reject: Avvis
       rejected_msg: Avviste %{username} sin registreringssøknad
       remote_suspension_irreversible: Data for denne kontoen har blitt sletta for alltid.
@@ -165,6 +176,12 @@ nn:
       suspension_irreversible: Data frå denne kontoen har blitt ikkje-reverserbart sletta. Du kan oppheve suspenderinga av kontoen for å bruke den, men det vil ikkje gjenopprette alle data den tidligare har hatt.
       suspension_reversible_hint_html: Kontoen har vorte stengd, og data vil bli fullstendig fjerna den %{date}. Fram til då kandu gjenoppretta kontoen utan negative konsekvensar. Om du ynskjer å fjerna kontodata no, kan du gjera det nedanfor.
       title: Kontoar
+      trends:
+        allow: Tillat
+        allowed: Tillate
+        disallow: Ikkje tillat
+        disallowed: Ikkje tillate
+        title: Populære innlegg
       unblock_email: Avblokker e-postadresse
       unblocked_email_msg: Avblokkerte %{username} si e-postadresse
       unconfirmed_email: E-post utan stadfesting
@@ -200,6 +217,7 @@ nn:
         create_user_role: Opprett rolle
         create_username_block: Lag regel for brukarnamn
         demote_user: Degrader brukar
+        destroy_account: Slett kontodata
         destroy_announcement: Slett lysinga
         destroy_canonical_email_block: Fjern e-postblokkering
         destroy_custom_emoji: Slett tilpassa emoji
@@ -624,8 +642,6 @@ nn:
           description: Du har fått ei registrering frå ein tenesteleverandør. Avslå registreringa viss du ikkje sette i gang dette. Viss du sette i gang registreringa, må du samanlikna namnet og nøkkelavtrykket nøye før du stadfestar registreringa.
           reject: Avslå
           title: Stadfest registrering via tenestetilbydar
-        save: Lagre
-        select_capabilities: Vel eigenskapar
         sign_in: Logg inn
         status: Status
         title: Tilleggstenesteleverandørar for allheimen
@@ -964,10 +980,8 @@ nn:
       discovery:
         follow_recommendations: Fylgjeforslag
         preamble: Å framheva interessant innhald er viktig for å ta imot nye brukarar som ikkje nødvendigvis kjenner nokon på Mastodon. Kontroller korleis oppdagingsfunksjonane på tenaren din fungerer.
-        privacy: Personvern
         profile_directory: Profilkatalog
         public_timelines: Offentlege tidsliner
-        publish_statistics: Publiser statistikk
         title: Oppdaging
         trends: Populært
         wrapstodon: Mastodon-året
@@ -1003,7 +1017,6 @@ nn:
         warning_hint: Me rår til at du bruker "Godkjenning krevst for å registrera seg" viss du ikkje er sikker på at moderatorane kan handtera søppel og illmeinte registreringar kvikt.
       security:
         authorized_fetch: Krev autentisering frå fødererte tenarar
-        authorized_fetch_hint: Krav om autentisering frå fødererte tenarar gjer det mogleg med strengare handheving av blokkering, både på brukar- og tenar-nivå. Likevel, dette har ein kostnad når det gjeld yting, reduserer rekkevidda til svara dine og kan medføra kompabilitetsproblem med enkelte fødererte tenester. Dette vil heller ikkje hindra dei som verkeleg vil i å henta dei offentlege innlegga eller kontoane dine.
         authorized_fetch_overridden_hint: Du kan ikkje endre denne innstillinga no, fordi den er overstyrt av ein miljøvariabel.
         federation_authentication: Krav om autentisering ved føderering
       title: Tenarinstillingar
@@ -1190,7 +1203,6 @@ nn:
           one: Delt av %{count} person i løpet av den siste uken
           other: Delt av %{count} personer i løpet av den siste uken
         title: Populære lenkjer
-        usage_comparison: Delt %{today} ganger i dag, sammenlignet med %{yesterday} i går
       not_allowed_to_trend: Har ikkje lov å trenda
       only_allowed: Kun tillatne
       pending_review: Avventer gjennomgang
@@ -1235,7 +1247,6 @@ nn:
         trendable: Kan vises under trender
         trending_rank: 'Trender #%{rank}'
         usable: Kan brukes
-        usage_comparison: Brukt %{today} ganger i dag, sammenlignet med %{yesterday} i går
         used_by_over_week:
           one: Brukt av én person i løpet av den seneste uken
           other: Brukt av %{count} personer i løpet av den seneste uken
@@ -1494,7 +1505,6 @@ nn:
   deletes:
     challenge_not_passed: Det du skreiv var ikkje rett
     confirm_password: Skriv det noverande passordet ditt for å stadfesta identiteten din
-    confirm_username: Skriv inn brukarnamnet ditt for å stadfesta
     proceed: Slett konto
     success_msg: Kontoen din er sletta
     warning:
@@ -1692,7 +1702,6 @@ nn:
       incompatible_type: Ikkje kompatibel med importtypen du valde
       invalid_csv_file: 'Ugyldig CSV-fil. Feil: %{error}'
       invalid_json_file: 'Ugyldig JSON-fil. Feil: %{error}'
-      over_rows_processing_limit: inneholder flere enn %{count} rader
       status_not_found_warning: Nokre av filtra dine gøymer visse innlegg som denne tenaren ikkje kjenner til. Desse innlegga blir ikkje gøymde automatisk viss dei blir oppdaga av tenaren din seinare.
       too_large: Fila er for stor
     failures: Feil
@@ -1843,7 +1852,6 @@ nn:
     incoming_migrations_html: For å flytta frå ein annnan konto til denne må du fyrst <a href="%{path}">laga eit kallenamn til kontoen</a>.
     moved_msg: Kontoen din vidaresender no til %{acct}, og fylgjarane dine blir flytte over dit.
     not_redirecting: Kontoen din omdirigeres ikke til noen andre kontoer for øyeblikket.
-    on_cooldown: Du har nylig overført kontoen din. Denne funksjonen blir tilgjengelig igjen om %{count} dager.
     past_migrations: Tidlegare vandringar
     proceed_with_move: Flytt fylgjarar
     redirected_msg: Kontoen din omdirigerer no til %{acct}.
@@ -2031,8 +2039,6 @@ nn:
       account: Offentlige innlegg fra @%{acct}
       tag: 'Offentlige innlegg merket med #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
-    over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
     too_soon: datoen må vera i framtida
   self_destruct:
     lead_html: Diverre stengjer <strong>%{domain}</strong> dørene for godt. Viss du hadde ein brukarkonto der, vil du ikkje kunna halda fram å bruka han, men du kan få ut ein tryggingskopi av dataa dine.
@@ -2090,7 +2096,6 @@ nn:
     appearance: Utsjånad
     authorized_apps: Godkjende appar
     back: Tilbake til Mastodon
-    delete: Kontosletting
     development: Utvikling
     edit_profile: Endr profil
     export: Eksporter

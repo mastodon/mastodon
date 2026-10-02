@@ -72,6 +72,10 @@ da:
       disable_sign_in_token_auth: Deaktivér e-mailtoken godkendelse
       disable_two_factor_authentication: Deaktivér 2FA
       disabled: Frosset
+      discoverable:
+        disabled: Forfatteren har ikke valgt at kunne findes
+        enabled: Forfatteren har valgt at kunne findes
+        title: Kan findes
       display_name: Visningsnavn
       domain: Domæne
       edit: Rediger
@@ -81,6 +85,12 @@ da:
       enable_sign_in_token_auth: Aktivér e-mailtoken godkendelse
       enabled: Aktiveret
       enabled_msg: "%{username}s konto er optøet"
+      follow_recommendations:
+        allowed: Tilladt
+        suppress: Undertryk enhver følg-anbefaling
+        suppressed: Undertrykt
+        title: Følg-anbefalinger
+        unsuppress: Genopret enhver følg-anbefaling
       followers: Følgere
       follows: Følger
       header: Banner
@@ -126,6 +136,7 @@ da:
       push_subscription_expires: PuSH-abonnement udløber
       redownload: Opfrisk profil
       redownloaded_msg: "%{username}s profil opfrisket fra oprindelsesserver"
+      registration_app: Registreringsapp
       reject: Afvis
       rejected_msg: "%{username}s tilmeldingsansøgning afvist"
       remote_suspension_irreversible: Denne kontos data er slettet permanent.
@@ -165,6 +176,12 @@ da:
       suspension_irreversible: Denne kontos data er blevet slettet permanent. Kontoen kan genaktiveres for at gøre den brugbar, imidlertid gendanner dette ikke tidligere kontodata.
       suspension_reversible_hint_html: Kontoen er blevet suspenderet, og dens data fjernes helt d. %{date}. Indtil da kan kontoen genoprettes uden datatab mv. Ønsker alle kontodata fjernet straks, kan dette gøres nedenfor.
       title: Konti
+      trends:
+        allow: Tillad
+        allowed: Tilladt
+        disallow: Tillad ikke
+        disallowed: Ikke tilladt
+        title: Indlæg, der trender
       unblock_email: Afblokér e-mailadresse
       unblocked_email_msg: "%{username}s e-mail-adresse afblokeret"
       unconfirmed_email: Ubekræftet e-mail
@@ -200,6 +217,7 @@ da:
         create_user_role: Opret rolle
         create_username_block: Opret brugernavn-regel
         demote_user: Degradér bruger
+        destroy_account: Slet kontodata
         destroy_announcement: Slet bekendtgørelse
         destroy_canonical_email_block: Slet e-mailblokering
         destroy_custom_emoji: Slet tilpasset emoji
@@ -268,6 +286,7 @@ da:
         create_user_role_html: "%{name} oprettede %{target}-rolle"
         create_username_block_html: "%{name} tilføjede regel for brugernavne indeholdende %{target}"
         demote_user_html: "%{name} degraderede brugeren %{target}"
+        destroy_account_html: "%{name} slettede kontodata for %{target}"
         destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
         destroy_canonical_email_block_html: "%{name} afblokerede e-mailen med hash'et %{target}"
         destroy_collection_html: "%{name} fjernede samling af %{target}"
@@ -601,6 +620,11 @@ da:
         title: Import af domæneblokeringer
       no_file: Ingen fill udvalgt
     fasp:
+      capabilities:
+        activation_msg: Kapacitet aktiveret.
+        deactivation_msg: Kapacitet deaktiveret.
+        disable: Deaktivér
+        enable: Aktivér
       debug:
         callbacks:
           created_at: Oprettet d.
@@ -612,6 +636,7 @@ da:
         active: Aktiv
         base_url: Basis-URL
         callback: Tilbagekald
+        capabilities: Kapaciteter
         delete: Slet
         edit: Redigér udbyder
         finish_registration: Færdiggør registrering
@@ -624,8 +649,6 @@ da:
           description: Er en registrering er modtaget fra en FASP, så afvis den, hvis man ikke startede pocessen. Startede man processen, tjek omhyggeligt navn og nøglefingeraftryk, før registreringen bekræftes.
           reject: Afvis
           title: Bekræft FASP-registrering
-        save: Gem
-        select_capabilities: Vælg kapaciteter
         sign_in: Log ind
         status: Status
         title: Udbydere af Fediverse-hjælpetjenester
@@ -964,10 +987,8 @@ da:
       discovery:
         follow_recommendations: Følg-anbefalinger
         preamble: At bringe interessant indhold frem er afgørende for at engagere nye brugere, der måske ikke kender nogen på Mastodon. Kontroller, hvordan forskellige funktioner til at finde indhold fungerer på din server.
-        privacy: Fortrolighed
         profile_directory: Profiloversigt
         public_timelines: Offentlige tidslinjer
-        publish_statistics: Udgiv statistik
         title: Opdagelse
         trends: Trends
         wrapstodon: Wrapstodon
@@ -975,6 +996,11 @@ da:
         all: Til alle
         disabled: Til ingen
         users: Til indloggede lokale brugere
+      external:
+        preamble: Bestem, hvor mange oplysninger om din server der deles med andre tjenester, og hvor synlig din server skal være.
+        privacy: Privatliv
+        publish_statistics: Offentliggør statistikker
+        title: Ekstern opdagelse
       feed_access:
         modes:
           authenticated: Kun godkendte brugere
@@ -1003,7 +1029,15 @@ da:
         warning_hint: Vi anbefaler brug af "Godkendelse kræves ved tilmelding", medmindre du er sikker på, at moderationsteamet kan håndtere spam og ondsindede registreringer i tide.
       security:
         authorized_fetch: Kræver godkendelse fra fødererede servere
-        authorized_fetch_hint: Krav om godkendelse fra fødererede servere muliggør strengere håndhævelse af både bruger- og serverniveaublokeringer. Omkostningen er dog en ydelsesreduktion, reduceret udstrækning af dine svar samt potentielle kompatibilitetsproblemer med visse fødererede tjenester. Derudover vil dette ikke hindre målrettede aktører i at hente dine offentlige indlæg og konti.
+        authorized_fetch_hint: Beslut, hvornår eksterne servere skal godkende sig, når de henter indhold fra denne server.
+        authorized_fetch_hints:
+          actors: Ved at kræve autentificering for profiler kan man spore, hvilken server der på et tidspunkt har opdaget hver af dine lokale konti, hvilket i høj grad kan reducere antallet af unødvendige anmodninger, der udføres, når serverne underrettes om sletning af en konto. Denne indstilling medfører en mindre ydeevneforringelse ved levering af profiler på grund af den nævnte sporing og det faktum, at reverse-proxyen ikke kan cache svarene på disse anmodninger. Dette kan også medføre kompatibilitetsproblemer med visse fødererede tjenester.
+          all: Ud over fordele og ulemper ved at kræve autentificering for profiler giver et ubetinget krav om autentificering fra fødererede servere mulighed for en strengere håndhævelse af blokeringer på både bruger- og serverniveau, men forhindrer samtidig cachelagring af de fleste anmodninger. Det vil også mindske rækkevidden af dine svar, da videresendelse af svar vil være deaktiveret.
+          none: Ved kun at kræve autentificering, når det er strengt nødvendigt, kan din reverse proxy gemme flere anmodninger i cachen. Denne indstilling kan blive fjernet i fremtiden. Brug den kun, hvis de andre indstillinger giver problemer.
+        authorized_fetch_modes:
+          actors: For profiler og privat indhold
+          all: For hver forespørgsel
+          none: Kun for privat indhold
         authorized_fetch_overridden_hint: Da denne indstilling tilsidesættes af en miljøvariabel, kan du p.t. ikke ændre den.
         federation_authentication: Håndhævelse af føderationsgodkendelse
       title: Serverindstillinger
@@ -1190,7 +1224,9 @@ da:
           one: Delt af én person den seneste uge
           other: Delt af %{count} personer den seneste uge
         title: Links, der trender
-        usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
+        usage_comparison:
+          one: Delt %{count} gang i dag, sammenlignet med %{yesterday} i går
+          other: Delt %{count} gange i dag, sammenlignet med %{yesterday} i går
       not_allowed_to_trend: Ikke tilladt at trende
       only_allowed: Kun tilladte
       pending_review: Afventer gennemgang
@@ -1235,7 +1271,9 @@ da:
         trendable: Kan vises under tendenser
         trending_rank: 'Populær #%{rank}'
         usable: Kan anvendes
-        usage_comparison: Anvendt %{today} gange i dag, sammenlignet med %{yesterday} i går
+        usage_comparison:
+          one: Brugt %{count} gang i dag, sammenlignet med %{yesterday} i går
+          other: Brugt %{count} gange i dag, sammenlignet med %{yesterday} i går
         used_by_over_week:
           one: Brugt af én person den seneste uge
           other: Brugt af %{count} personer den seneste uge
@@ -1494,9 +1532,11 @@ da:
   deletes:
     challenge_not_passed: De angivne oplysninger er forkerte
     confirm_password: Angiv din nuværende adgangskode for at bekræfte din identitet
-    confirm_username: Angiv dit brugernavn for at bekræfte proceduren
+    confirm_username: Bekræft brugernavn
+    confirm_username_hint_html: Skriv venligst <code>%{username}</code> for at bekræfte den konto, du vil slette
     proceed: Slet konto
     success_msg: Din konto er nu slettet
+    title: Slet konto %{acct}
     warning:
       before: 'Inder der fortsættes, læs venligst disse notater omhyggeligt:'
       caches: Indhold, cachelagret af andre servere, kan fortsat eksistere
@@ -1693,7 +1733,10 @@ da:
       incompatible_type: Inkompatibel med valgte importtype
       invalid_csv_file: 'Ugyldig CSV-fil. Fejl: %{error}'
       invalid_json_file: 'Ugyldig JSON-fil. Fejl: %{error}'
-      over_rows_processing_limit: indeholder mere end %{count} rækker
+      no_data: Denne fil indeholder ikke nogen data, der matcher den givne importtype
+      over_rows_processing_limit:
+        one: indeholder mere end %{count} række
+        other: indeholder mere end %{count} rækker
       status_not_found_warning: Nogle af dine filtre skjuler bestemte indlæg, som denne server ikke kender til. Disse indlæg bliver ikke automatisk filtreret, hvis serveren finder dem senere.
       too_large: Filen for stor
     failures: Mislykket
@@ -1844,7 +1887,9 @@ da:
     incoming_migrations_html: For at flytte fra en anden konto til denne skal der først <a href="%{path}">oprettes et kontoalias</a>.
     moved_msg: Din konto omdirigeres nu til %{acct} og dine følgere overflyttes.
     not_redirecting: Din konto omdirigerer pt. ikke til nogen anden konto.
-    on_cooldown: Du har for nylig migreret din konto. Denne funktion tilgængeliggøres igen om %{count} dage.
+    on_cooldown:
+      one: Du har for nylig flyttet din konto. Denne funktion vil igen være tilgængelig om %{count} dag.
+      other: Du har for nylig flyttet din konto. Denne funktion vil igen være tilgængelig om %{count} dage.
     past_migrations: Tidligere migreringer
     proceed_with_move: Flyt følgere
     redirected_msg: Din konto omdirigerer nu til %{acct}.
@@ -2032,8 +2077,12 @@ da:
       account: Offentlige indlæg fra @%{acct}
       tag: 'Offentlige indlæg tagget #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Den daglige grænse på %{limit} planlagte indlæg er nået
-    over_total_limit: Grænsen på %{limit} planlagte indlæg er nået
+    over_daily_limit:
+      one: Du har overskredet grænsen på %{count} planlagt indlæg for i dag
+      other: Du har overskredet grænsen på %{count} planlagte indlæg for i dag
+    over_total_limit:
+      one: Du har overskredet grænsen på %{count} planlagt indlæg
+      other: Du har overskredet grænsen på %{count} planlagte indlæg
     too_soon: dato skal være i fremtiden
   self_destruct:
     lead_html: Desværre lukker <strong>%{domain}</strong> permanent. Har man en konto dér, vil fortsat brug heraf ikke være mulig. Man kan dog stadig anmode om en sikkerhedskopi af sine data.
@@ -2091,7 +2140,6 @@ da:
     appearance: Udseende
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
-    delete: Kontosletning
     development: Udvikling
     edit_profile: Redigér profil
     export: Eksport

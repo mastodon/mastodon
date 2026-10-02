@@ -3,7 +3,6 @@ import { useCallback } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { ArrowsOutSimpleIcon, MinusIcon, XIcon } from '@phosphor-icons/react';
-import { ReadCvLogoIcon } from '@phosphor-icons/react/dist/ssr';
 
 import { IconButton } from '@/mastodon/components/button/redesign';
 import {
@@ -16,8 +15,6 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store';
-
-import { useBreakpoint } from '../../ui/hooks/useBreakpoint';
 
 import { selectComposeType } from './selectors';
 import classes from './styles.module.scss';
@@ -36,8 +33,16 @@ const messages = defineMessages({
     defaultMessage: 'New reply',
   },
   replyEdit: {
-    id: 'compose_form.reply.title.edit',
+    id: 'compose.reply.title.edit',
     defaultMessage: 'Edit reply',
+  },
+  replyPrivateNew: {
+    id: 'compose.reply_private.title.new',
+    defaultMessage: 'New private reply',
+  },
+  replyPrivateEdit: {
+    id: 'compose.reply_private.title.edit',
+    defaultMessage: 'Edit private reply',
   },
   messageNew: {
     id: 'compose_form.message.title.new',
@@ -65,26 +70,17 @@ export const ComposeFormHeader: React.FC<{
   noMinimize?: boolean;
 }> = ({ id, noMinimize }) => {
   const intl = useIntl();
+  const dispatch = useAppDispatch();
   const titleMessage = useAppSelector(selectComposeFormTitle);
   const isMinimized = useAppSelector(selectIsMinimized);
 
-  const dispatch = useAppDispatch();
   const onClose = useCallback(() => {
     dispatch(closeComposer());
   }, [dispatch]);
+
   const onMinimize = useCallback(() => {
     dispatch(minimizeComposerToggle());
   }, [dispatch]);
-
-  const isMobile = useBreakpoint('openable');
-
-  if (isMobile && isMinimized && !noMinimize) {
-    return (
-      <IconButton icon={ReadCvLogoIcon} onClick={onMinimize} size='lg'>
-        <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
-      </IconButton>
-    );
-  }
 
   return (
     <header className={classes.header}>
@@ -96,6 +92,7 @@ export const ComposeFormHeader: React.FC<{
           variant='ghost'
           icon={isMinimized ? ArrowsOutSimpleIcon : MinusIcon}
           onClick={onMinimize}
+          tooltipPlacement='top'
         >
           {isMinimized ? (
             <FormattedMessage
@@ -111,7 +108,13 @@ export const ComposeFormHeader: React.FC<{
         </IconButton>
       )}
 
-      <IconButton icon={XIcon} variant='ghost' size='sm' onClick={onClose}>
+      <IconButton
+        icon={XIcon}
+        variant='ghost'
+        size='sm'
+        onClick={onClose}
+        tooltipPlacement='top'
+      >
         <FormattedMessage id='lightbox.close' defaultMessage='Close' />
       </IconButton>
     </header>

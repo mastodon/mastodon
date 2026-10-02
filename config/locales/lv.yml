@@ -505,8 +505,6 @@ lv:
           description: Tu saņēmi reģistrēšanos no FĀPS. Tā ir jānoraida, ja to neveici. Ja veici, rūpīgi jāsalīdzina nosaukums un atslēgas pirkstu nospiedums, pirms reģistrēšanās apstiprināšanas.
           reject: Noraidīt
           title: Apstiprināt FĀPS reģistrēšanos
-        save: Saglabāt
-        select_capabilities: Atlasīt spējas
         sign_in: Pieteikties
         status: Stāvoklis
         title: Fediverse ārējie pakalpojumu sniedzēji
@@ -828,10 +826,8 @@ lv:
         title: Pēc noklusējuma lietotāji būs atteikušies no meklētājprogrammu indeksēšanas
       discovery:
         follow_recommendations: Sekošanas ieteikumi
-        privacy: Konfidencialitāte
         profile_directory: Profila direktorija
         public_timelines: Publiskās ziņu lentas
-        publish_statistics: Publicēt statistiku
         title: Atklāt
         trends: Tendences
       domain_blocks:
@@ -850,7 +846,6 @@ lv:
         warning_hint: Mēs iesakām izmantot "Nepieciešams reģistrēšanās apstiprinājums", izņemot, ja esi pārliecināts, ka Tava satura pārraudzības komanda var laicīgi apstrādāt mēstules un ļaunprātīgas reģistrācijas.
       security:
         authorized_fetch: Pieprasīt autentifikāciju no federētajiem serveriem
-        authorized_fetch_hint: Pieprasot autentifikāciju no federētajiem serveriem, tiek nodrošināta stingrāka gan lietotāja līmeņa, gan servera līmeņa bloku izpilde. Tomēr tas ir saistīts ar izpildes sodu, samazina tavu atbilžu sasniedzamību un var radīt saderības problēmas ar dažiem federētajiem pakalpojumiem. Turklāt tas netraucēs īpašiem dalībniekiem ienest tavas publiskās ziņas un kontus.
         authorized_fetch_overridden_hint: Tu pašlaik nevari mainīt šo iestatījumu, jo to aizstāj vides mainīgais.
         federation_authentication: Federācijas autentifikācijas izpilde
       title: Servera iestatījumi
@@ -1033,7 +1028,6 @@ lv:
           other: Pēdējās nedēļas laikā kopīgoja %{count} cilvēki
           zero: Pēdējās nedēļas laikā kopīgoja %{count} cilvēku
         title: Populārākās saites
-        usage_comparison: Šodien kopīgota %{today} reizes, salīdzinot ar %{yesterday} vakar
       not_allowed_to_trend: Popularizešana nav atļauta
       only_allowed: Tikai atļautās
       pending_review: Gaida pārskatīšanu
@@ -1079,7 +1073,6 @@ lv:
         trendable: Var parādīsies pie tendencēm
         trending_rank: 'Populārākie #%{rank}'
         usable: Var tikt lietots
-        usage_comparison: Šodien izmantots %{today} reizes, salīdzinot ar %{yesterday} vakar
         used_by_over_week:
           one: Pēdējās nedēļas laikā izmantoja viens cilvēks
           other: Pēdējās nedēļas laikā izmantoja %{count} cilvēki
@@ -1302,7 +1295,6 @@ lv:
   deletes:
     challenge_not_passed: Tevis ievadītā informācija nebija pareiza
     confirm_password: Ievadi savu pašreizējo paroli, lai pārbaudītu savu identitāti
-    confirm_username: Ievadi savu lietotājvārdu, lai apstiprinātu procedūru
     proceed: Dzēst kontu
     success_msg: Tavs konts tika sekmīgi izdzēsts
     warning:
@@ -1462,7 +1454,6 @@ lv:
       empty: Tukšs CSV fails
       incompatible_type: Nesavietojams ar izvēlēto importēšanas veidu
       invalid_csv_file: 'Nederīgs CSV fails. Kļūda: %{error}'
-      over_rows_processing_limit: satur vairāk, nekā %{count} rindas
       too_large: Fails ir pārāk liels
     failures: Kļūmes
     imported: Importēti
@@ -1611,7 +1602,6 @@ lv:
     incoming_migrations_html: Lai pārnāktu no cita konta uz šo, vispirms tev <a href="%{path}">jāizveido konta aizstājvārds</a>.
     moved_msg: Tavs konts tagad tiek novirzīts uz %{acct}, un tavi sekotāji tiek pārvietoti.
     not_redirecting: Tavs konts pašlaik netiek novirzīts uz jebkādu citu kontu.
-    on_cooldown: Tu nesen pārcēli savu kontu. Šī iespēja bīs atkal pieejama pēc %{count} dienām.
     past_migrations: Pagātnes migrācijas
     proceed_with_move: Pārvietot sekotājus
     redirected_msg: Tavs konts tagad tiek novirzīts uz %{acct}.
@@ -1762,8 +1752,6 @@ lv:
       account: Visiem redzami ieraksti no @%{acct}
       tag: 'Visiem redzami ieraksti ar tēmturi #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Tu esi pārsniedzis šodien ieplānoto %{limit} ziņu ierobežojumu
-    over_total_limit: Tu esi pārsniedzis ieplānoto %{limit} ziņu ierobežojumu
     too_soon: datumam jābūt nākotnē
   self_destruct:
     lead_html: Diemžēl domēns <strong>%{domain}</strong> tiek neatgriezeniski slēgts. Ja tev tur bija konts, tu nevarēsi turpināt to lietot, taču joprojām vari pieprasīt savu datu kopiju.
@@ -1821,7 +1809,6 @@ lv:
     appearance: Izskats
     authorized_apps: Pilnvarotās lietotnes
     back: Atgriezties Mastodon
-    delete: Konta izdzēšana
     development: Izstrāde
     edit_profile: Labot profilu
     export: Izgūt

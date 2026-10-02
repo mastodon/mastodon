@@ -11,6 +11,8 @@ import { CaretDownIcon } from '@phosphor-icons/react';
 import { CircularProgress } from '../circular_progress';
 import type { IconProp } from '../icon';
 import { Icon } from '../icon';
+import type { PopoverProps } from '../popover';
+import { Tooltip } from '../tooltip';
 
 import classes from './redesign.module.scss';
 
@@ -24,15 +26,27 @@ interface ButtonPropsBase<As extends 'a' | 'button'> {
     As extends 'button' ? HTMLButtonElement : HTMLAnchorElement
   >;
   loading?: boolean;
+  /**
+   * Prevents visual highlight on the button when `aria-expanded`
+   * or `aria-pressed` are used.
+   */
+  noActiveHighlight?: boolean;
+  /**
+   * Adds a negative margin to a button to align the text
+   * with the starting edge of its parent.
+   */
+  clipPadding?: boolean;
   children: ReactNode;
 }
 
+type AttributesToExclude = 'children' | 'title';
+
 type ButtonButtonProps = { as?: 'button' } & ButtonPropsBase<'button'> &
-  Omit<React.ComponentPropsWithRef<'button'>, 'children'>;
+  Omit<React.ComponentPropsWithRef<'button'>, AttributesToExclude>;
 type ButtonAnchorProps = { as: 'a' } & ButtonPropsBase<'a'> &
-  Omit<React.ComponentPropsWithRef<'a'>, 'children'>;
+  Omit<React.ComponentPropsWithRef<'a'>, AttributesToExclude>;
 type ButtonLinkProps = { as: 'link' } & ButtonPropsBase<'a'> &
-  Omit<LinkProps, 'children'>;
+  Omit<LinkProps, AttributesToExclude>;
 
 type BaseButtonProps = ButtonButtonProps | ButtonAnchorProps | ButtonLinkProps;
 
@@ -45,6 +59,8 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   className,
   onClick,
   loading,
+  clipPadding,
+  noActiveHighlight,
   'aria-disabled': ariaDisabled,
   'aria-live': ariaLive,
   ...props
@@ -79,6 +95,8 @@ const BaseButton: React.FC<BaseButtonProps> = ({
         classes[size],
         classes[color],
         classes[variant],
+        clipPadding && classes.clipPadding,
+        noActiveHighlight && classes.noActiveHighlight,
       )}
       onClick={handleClick}
       // Disabled buttons can't have focus, so we don't really
@@ -93,47 +111,84 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   );
 };
 
-type ButtonProps = BaseButtonProps & {
+interface ButtonTooltip {
+  type: 'label' | 'description';
+  text: React.ReactNode;
+}
+
+export type ButtonProps = BaseButtonProps & {
   leadingIcon?: IconProp;
   trailingIcon?: IconProp;
+  tooltip?: ButtonTooltip;
 };
 
 export const Button: React.FC<ButtonProps> = ({
   children,
   leadingIcon,
   trailingIcon,
+  tooltip,
   ...props
-}) => (
-  <BaseButton {...props}>
-    {leadingIcon && !props.loading && (
-      <Icon id='leading' icon={leadingIcon} className={classes.icon} />
-    )}
-    {props.loading && <LoadingIcon />}
-    {children}
-    {trailingIcon && (
-      <Icon id='trailing' icon={trailingIcon} className={classes.icon} />
-    )}
-  </BaseButton>
-);
+}) => {
+  const buttonContent = (
+    <>
+      {leadingIcon && !props.loading && (
+        <Icon id='leading' icon={leadingIcon} className={classes.icon} />
+      )}
+      {props.loading && <LoadingIcon />}
+      {children}
+      {trailingIcon && (
+        <Icon id='trailing' icon={trailingIcon} className={classes.icon} />
+      )}
+    </>
+  );
+
+  if (!tooltip?.text) {
+    return <BaseButton {...props}>{buttonContent}</BaseButton>;
+  }
+  return (
+    <Tooltip text={tooltip.text} renderTextWhenClosed>
+      {({ getTooltipProps, tooltipId }) => (
+        <BaseButton
+          {...getTooltipProps(props)}
+          aria-labelledby={tooltip.type === 'label' ? tooltipId : undefined}
+          aria-describedby={
+            tooltip.type === 'description' ? tooltipId : undefined
+          }
+        >
+          {buttonContent}
+        </BaseButton>
+      )}
+    </Tooltip>
+  );
+};
 
 export type IconButtonProps = BaseButtonProps & {
   icon: IconProp;
+  tooltipPlacement?: PopoverProps['placement'];
 };
 
 export const IconButton: React.FC<IconButtonProps> = ({
   icon,
   className,
+  tooltipPlacement,
   children,
   ...props
 }) => (
-  <BaseButton {...props} className={classNames(className, classes.iconOnly)}>
-    {props.loading ? (
-      <LoadingIcon />
-    ) : (
-      <Icon id='icon' icon={icon} className={classes.icon} />
+  <Tooltip text={children} placement={tooltipPlacement}>
+    {({ getTooltipProps }) => (
+      <BaseButton
+        {...getTooltipProps(props)}
+        className={classNames(className, classes.iconOnly)}
+      >
+        {props.loading ? (
+          <LoadingIcon />
+        ) : (
+          <Icon id='icon' icon={icon} className={classes.icon} />
+        )}
+        <span className='sr-only'>{children}</span>
+      </BaseButton>
     )}
-    <span className='sr-only'>{children}</span>
-  </BaseButton>
+  </Tooltip>
 );
 
 export const CaretIcon = (
@@ -162,6 +217,18 @@ export const ToggleButton: React.FC<ButtonProps & { active?: boolean }> = ({
   ...props
 }) => (
   <Button
+    aria-pressed={active}
+    {...props}
+    // Toggle buttons always have neutral until pressed.
+    color='neutral'
+    className={classNames(className, classes.toggle)}
+  />
+);
+
+export const ToggleIconButton: React.FC<
+  IconButtonProps & { active?: boolean }
+> = ({ active, className, ...props }) => (
+  <IconButton
     aria-pressed={active}
     {...props}
     // Toggle buttons always have neutral until pressed.

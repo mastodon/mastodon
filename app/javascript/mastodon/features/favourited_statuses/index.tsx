@@ -72,27 +72,31 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
 
   const pinned = !!columnId;
 
-  const emptyMessage = (
+  const emptyMessage = isRedesignEnabled() ? (
+    <FormattedMessage
+      id='empty_column.liked_posts'
+      defaultMessage="You don't have any liked posts yet. When you like one, it will show up here."
+    />
+  ) : (
     <FormattedMessage
       id='empty_column.favourited_statuses'
       defaultMessage="You don't have any favorite posts yet. When you favorite one, it will show up here."
     />
   );
 
+  const title = intl.formatMessage(
+    isRedesignEnabled() ? messages.heading_redesign : messages.heading,
+  );
+
   return (
-    <Column
-      bindToDocument={!multiColumn}
-      label={intl.formatMessage(messages.heading)}
-    >
+    <Column bindToDocument={!multiColumn} label={title}>
       {isRedesignEnabled() ? (
         <ColumnHeader
-          title={intl.formatMessage(messages.heading_redesign)}
+          title={title}
           withBackButton={multiColumn && !pinned && 'auto'}
           extraButtons={
             multiColumn && (
-              <ColumnSettingsMenu
-                labelPrefix={intl.formatMessage(messages.heading_redesign)}
-              >
+              <ColumnSettingsMenu labelPrefix={title}>
                 <MultiColumnMenuItems
                   onPin={handlePin}
                   onMove={handleMove}
@@ -106,7 +110,7 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
         <LegacyColumnHeader
           icon='star'
           iconComponent={StarIcon}
-          title={intl.formatMessage(messages.heading)}
+          title={title}
           onPin={handlePin}
           onMove={handleMove}
           pinned={pinned}
@@ -128,7 +132,7 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
       />
 
       <Helmet>
-        <title>{intl.formatMessage(messages.heading)}</title>
+        <title>{title}</title>
         <meta name='robots' content='noindex' />
       </Helmet>
     </Column>

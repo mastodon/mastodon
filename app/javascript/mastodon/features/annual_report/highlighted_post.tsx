@@ -11,8 +11,9 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { Status } from 'mastodon/components/status';
 import { InterceptStatusClicks } from 'mastodon/components/status/intercept_status_clicks';
-import { StatusQuoteManager } from 'mastodon/components/status_quoted';
 import type { TopStatuses } from 'mastodon/models/annual_report';
 import { makeGetStatus } from 'mastodon/selectors';
 import { useAppSelector } from 'mastodon/store';
@@ -65,7 +66,13 @@ export const HighlightedPost: React.FC<{
       />
     );
   } else if (by_favourites) {
-    label = (
+    label = isRedesignEnabled() ? (
+      <FormattedMessage
+        id='annual_report.summary.highlighted_post.like_count'
+        defaultMessage='This post was liked {count, plural, one {once} other {# times}}.'
+        values={{ count: status.get('favourites_count') }}
+      />
+    ) : (
       <FormattedMessage
         id='annual_report.summary.highlighted_post.favourite_count'
         defaultMessage='This post was favorited {count, plural, one {once} other {# times}}.'
@@ -95,7 +102,7 @@ export const HighlightedPost: React.FC<{
       </div>
 
       <InterceptStatusClicks onPreventedClick={handleClick}>
-        <StatusQuoteManager showActions={false} id={statusId} />
+        <Status showActions={false} id={statusId} />
       </InterceptStatusClicks>
     </div>
   );

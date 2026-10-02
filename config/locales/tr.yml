@@ -72,6 +72,10 @@ tr:
       disable_sign_in_token_auth: E-posta token doğrulamayı devre dışı bırak
       disable_two_factor_authentication: 2 aşamalı doğrulamayı kapat
       disabled: Kapalı
+      discoverable:
+        disabled: Yazar keşfedilebilir olmamayı seçiyor
+        enabled: Yazar keşfedilebilir olmayı seçiyor
+        title: Keşfedilebilir
       display_name: Görünen isim
       domain: Alan adı
       edit: Düzenle
@@ -81,6 +85,12 @@ tr:
       enable_sign_in_token_auth: E-posta token doğrulamayı etkinleştir
       enabled: Etkin
       enabled_msg: "%{username} hesabı başarıyla çözüldü"
+      follow_recommendations:
+        allowed: İzin verildi
+        suppress: Herhangi bir takip önerisini baskıla
+        suppressed: Baskılandı
+        title: Takip önerileri
+        unsuppress: Herhangi bir takip önerisini geri getir
       followers: Takipçi
       follows: Takip edilen
       header: Üstbilgi
@@ -126,6 +136,7 @@ tr:
       push_subscription_expires: PuSH aboneliği sona erdi
       redownload: Profili yenile
       redownloaded_msg: "%{username} kullanıcısının profili kökenden başarıyla yenilendi"
+      registration_app: Kayıt uygulaması
       reject: Reddet
       rejected_msg: "%{username} adlı kullanıcının kayıt başvurusu başarıyla reddedildi"
       remote_suspension_irreversible: Bu hesaba ait veriler geri dönüşümsüz bir şekilde silindi.
@@ -165,6 +176,12 @@ tr:
       suspension_irreversible: Bu hesabın verileri geri dönüşümsüz olarak silindi. Hesabı kullanılabilir hale getirmek için hesabın askıya alınmasını kaldırabilirsiniz, ancak daha önce sahip olduğu herhangi bir veri kurtarılamaz.
       suspension_reversible_hint_html: Hesap askıya alındı ve veriler %{date} tarihinde tamamen kaldırılacak. O zamana kadar, hesap herhangi bir olumsuz etki olmaksızın geri yüklenebilir. Hesabın tüm verilerini hemen kaldırmak isterseniz, bunu aşağıdan yapabilirsiniz.
       title: Hesaplar
+      trends:
+        allow: İzin ver
+        allowed: İzin verildi
+        disallow: İzin verilmesin
+        disallowed: İzin verilmedi
+        title: Öne çıkan gönderiler
       unblock_email: E-posta adresinin engelini kaldır
       unblocked_email_msg: "%{username} kişisinin e-posta adresinin engeli başarıyla kaldırıldı"
       unconfirmed_email: Onaylanmamış e-posta
@@ -200,6 +217,7 @@ tr:
         create_user_role: Rol Oluştur
         create_username_block: Kullanıcı Adı Kuralı Oluştur
         demote_user: Kullanıcıyı Düşür
+        destroy_account: Hesap Verilerini Sil
         destroy_announcement: Duyuru Sil
         destroy_canonical_email_block: E-Posta Engelini Sil
         destroy_custom_emoji: Özel İfadeyi Sil
@@ -268,6 +286,7 @@ tr:
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
         create_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural ekledi"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
+        destroy_account_html: "%{name} %{target} hesabının verilerini sildi"
         destroy_announcement_html: "%{name}, %{target} duyurusunu sildi"
         destroy_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelini kaldırdı"
         destroy_collection_html: "%{name}, %{target} kullanıcısının koleksiyonunu kaldırdı"
@@ -601,6 +620,11 @@ tr:
         title: Domain bloklarını içe aktar
       no_file: Dosya seçilmedi
     fasp:
+      capabilities:
+        activation_msg: Özellik başarıyla etkinleştirildi.
+        deactivation_msg: Özellik başarıyla devre dışı bırakıldı.
+        disable: Devre dışı bırak
+        enable: Etkinleştir
       debug:
         callbacks:
           created_at: Oluşturulma tarihi
@@ -612,6 +636,7 @@ tr:
         active: Etkin
         base_url: Temel URL
         callback: Geri çağırma
+        capabilities: Özellikler
         delete: Sil
         edit: Sağlayıcıyı Düzenle
         finish_registration: Kaydı tamamla
@@ -624,8 +649,6 @@ tr:
           description: FASP'tan bir kayıt aldınız. Eğer bunu siz başlatmadıysanız reddedin. Eğer siz başlattıysanız, kaydı onaylamadan önce ad ve anahtar parmak izini dikkatlice karşılaştırın.
           reject: Reddet
           title: FASP Kaydını Onayla
-        save: Kaydet
-        select_capabilities: Yetenekleri Seç
         sign_in: Oturum Aç
         status: Durum
         title: Fediverse Yardımcı Hizmet Sağlayıcıları (FASP)
@@ -964,10 +987,8 @@ tr:
       discovery:
         follow_recommendations: Takip önerileri
         preamble: İlginç içeriği gezinmek, Mastodon'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
-        privacy: Gizlilik
         profile_directory: Profil dizini
         public_timelines: Genel zaman çizelgeleri
-        publish_statistics: İstatistikleri yayınla
         title: Keşfet
         trends: Öne çıkanlar
         wrapstodon: Wrapstodon
@@ -1003,7 +1024,15 @@ tr:
         warning_hint: Denetleyici ekibinizin istenmeyen ve kötü niyetli kayıtları ele alabilecekleri konusunda emin değilseniz "Kayıt için onay gerekli" seçeneğini kullanmanızı öneririz.
       security:
         authorized_fetch: Dağıtık sunuculardan kimlik doğrulama gerektir
-        authorized_fetch_hint: Dağıtık sunuculardan kimlik doğrulaması istemek, hem kullanıcı düzeyinde hem de sunucu düzeyinde blokların daha sıkı bir şekilde uygulanmasını sağlar. Ancak bu performans kaybına sebep olur, yanıtlarınızın erişimini azaltır ve bazı dağıtık hizmetlerle uyumluluk sorunları ortaya çıkarabilir. Ayrıca bu, özel aktörlerin herkese açık gönderilerinizi ve hesaplarınızı getirilmesini engellemez.
+        authorized_fetch_hint: Bu sunucudan içerik alırken uzak sunucuların kimlik doğrulaması yapması gereken durumları belirleyin.
+        authorized_fetch_hints:
+          actors: Profiller için kimlik doğrulama zorunluluğu getirilmesi, her bir yerel hesabınızın hangi sunucu tarafından daha önce keşfedildiğinin izlenmesini sağlar; bu da, bir hesabın silinmesi durumunda sunuculara bildirimde bulunurken yapılan gereksiz isteklerin sayısını büyük ölçüde azaltabilir. Söz konusu izleme işlemi ve ters proxy’nin bu istekler için yanıtları önbelleğe alamaması nedeniyle, bu seçenek profillerin sunulması sırasında hafif bir performans kaybına yol açar. Bu durum, bazı federasyon hizmetleriyle uyumluluk sorunlarına da yol açabilir.
+          all: Profiller için kimlik doğrulama zorunluluğunun avantaj ve dezavantajlarının yanı sıra, federasyon sunucularından koşulsuz olarak kimlik doğrulama talep edilmesi, hem kullanıcı düzeyinde hem de sunucu düzeyinde engellemelerin daha sıkı bir şekilde uygulanmasını sağlar; ancak aynı zamanda çoğu isteğin önbelleğe alınmasını da engeller. Ayrıca, yanıtların iletilmesi devre dışı bırakılacağından, yanıtlarınızın erişim alanı da daralacaktır.
+          none: Kimlik doğrulamayı yalnızca kesinlikle gerekli olduğunda zorunlu kılmak, ters proxy’nizin daha fazla isteği önbelleğe almasını sağlar. Bu seçenek ileride kaldırılabilir. Yalnızca diğer seçenekler sorun yaratıyorsa bu seçeneği kullanın.
+        authorized_fetch_modes:
+          actors: Profiller ve özel içerik için
+          all: Her istek için
+          none: Sadece özel içerik için
         authorized_fetch_overridden_hint: Bir ortam değişkeni tarafından geçersiz kılındığı için şu anda bu ayarı değiştiremezsiniz.
         federation_authentication: Dağıtık kimlik doğrulama uygulaması
       title: Sunucu ayarları
@@ -1190,7 +1219,9 @@ tr:
           one: Geçen hafta bir kişi paylaştı
           other: Geçen hafta %{count} kişi paylaştı
         title: Öne çıkan bağlantılar
-        usage_comparison: Bugün %{today} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
+        usage_comparison:
+          one: Bugün %{count} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
+          other: Bugün %{count} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
       not_allowed_to_trend: Öne çıkma izni yok
       only_allowed: Sadece izin verilenler
       pending_review: İnceleme bekliyor
@@ -1235,7 +1266,9 @@ tr:
         trendable: Öne çıkanlar altında görünebilir
         trending_rank: 'Öne çıkanlar #%{rank}'
         usable: Kullanılabilir
-        usage_comparison: Bugün %{today} kere kullanıldı, dün %{yesterday} kere kullanılmıştı
+        usage_comparison:
+          one: Bugün %{count} kere kullanıldı, dün %{yesterday} kere kullanılmıştı
+          other: Bugün %{count} kere kullanıldı, dün %{yesterday} kere kullanılmıştı
         used_by_over_week:
           one: Geçen hafta bir kişi tarafından kullanıldı
           other: Geçen hafta %{count} kişi tarafından kullanıldı
@@ -1494,9 +1527,11 @@ tr:
   deletes:
     challenge_not_passed: Girdiğiniz bilgi hatalı
     confirm_password: Kimliğinizi doğrulamak için mevcut parolanızı girin
-    confirm_username: Prosedürü doğrulamak için kullanıcı adınızı girin
+    confirm_username: Kullanıcı adını onayla
+    confirm_username_hint_html: Silmek istediğiniz hesabı onaylamak için lütfen <code>%{username}</code> yazın
     proceed: Hesabı sil
     success_msg: Hesabınız başarıyla silindi
+    title: "%{acct} hesabını sil"
     warning:
       before: 'Devam etmeden önce, lütfen bu notları dikkatlice okuyun:'
       caches: Diğer sunucular tarafından ön belleğe alınan içerik kalabilir
@@ -1596,6 +1631,7 @@ tr:
       content: Üzgünüz, ancak bir şey ters gitti.
       title: Bu sayfa doğru değil
     '503': Geçici sunucu hatası nedeniyle sayfa görüntülenemedi.
+    go_home: Ana sayfaya git
     noscript_html: Mastodon web uygulamasını kullanmak için lütfen JavaScript'i etkinleştirin. Alternatif olarak, platformunuz için Mastodon <a href="%{apps_path}">yerel uygulamalardan</a> birini deneyin.
   existing_username_validator:
     not_found: bu kullanıcı adına sahip yerel bir kullanıcı bulunamadı
@@ -1692,7 +1728,10 @@ tr:
       incompatible_type: Seçilen içe aktarma türüyle uyumsuz
       invalid_csv_file: 'Geçersiz CSV dosyası. Hata: %{error}'
       invalid_json_file: 'Geçersiz JSON dosyası. Hata: %{error}'
-      over_rows_processing_limit: "%{count} satırdan fazlasını içeriyor"
+      no_data: Bu dosya, belirtilen içe aktarma türüne uyan herhangi bir veri içermemektedir
+      over_rows_processing_limit:
+        one: "%{count} satırdan fazlasını içeriyor"
+        other: "%{count} satırdan fazlasını içeriyor"
       status_not_found_warning: Filtrelerinizden bazıları, bu sunucu tarafından tanınmayan belirli gönderileri gizler. Bu gönderiler, daha sonra sunucu tarafından tespit edildiklerinde otomatik olarak filtrelenmeyecektir.
       too_large: Dosya çok büyük
     failures: Başarısızlıklar
@@ -1843,7 +1882,9 @@ tr:
     incoming_migrations_html: Başka bir hesaptan bu hesaba taşınmak için önce bir <a href="%{path}">hesap takma adı oluşturmanız</a> gerekmektedir.
     moved_msg: Hesabınız şimdi %{acct} adresine yönlendiriliyor ve takipçileriniz taşınıyor.
     not_redirecting: Hesabınız şu anda başka bir hesaba yönlendirilmemektedir.
-    on_cooldown: Son zamanlarda hesabınızı taşıdınız. Bu işlev %{count} gün içinde tekrar kullanılabilir olacaktır.
+    on_cooldown:
+      one: Son zamanlarda hesabınızı taşıdınız. Bu işlev %{count} gün içinde tekrar kullanılabilir olacaktır.
+      other: Son zamanlarda hesabınızı taşıdınız. Bu işlev %{count} gün içinde tekrar kullanılabilir olacaktır.
     past_migrations: Geçmiş taşınmalar
     proceed_with_move: Takipçileri taşı
     redirected_msg: Hesabınız artık %{acct} adresine yönlendiriliyor.
@@ -2031,8 +2072,12 @@ tr:
       account: "@%{acct} hesabından herkese açık gönderiler"
       tag: "#%{hashtag} etiketli herkese açık gönderiler"
   scheduled_statuses:
-    over_daily_limit: Bugün için %{limit} zamanlanmış gönderi sınırını aştınız
-    over_total_limit: "%{limit} zamanlanmış gönderi sınırını aştınız"
+    over_daily_limit:
+      one: Bugün için %{count} zamanlanmış gönderi sınırını aştınız
+      other: Bugün için %{count} zamanlanmış gönderi sınırını aştınız
+    over_total_limit:
+      one: "%{count} zamanlanmış gönderi sınırını aştınız"
+      other: "%{count} zamanlanmış gönderi sınırını aştınız"
     too_soon: tarih ileri bir tarih olmalıdır
   self_destruct:
     lead_html: Maalesef <strong>%{domain}</strong> kalıcı olarak kapanıyor. Eğer orada hesabınız varsa, onu kullanmaya devam edemeyeceksiniz, ancak yine de verinizin bir yedeğini isteyebilirsiniz.
@@ -2090,7 +2135,6 @@ tr:
     appearance: Görünüm
     authorized_apps: Yetkili uygulamalar
     back: Mastodon'a geri dön
-    delete: Hesap silme
     development: Geliştirme
     edit_profile: Profili düzenle
     export: Dışa Aktar

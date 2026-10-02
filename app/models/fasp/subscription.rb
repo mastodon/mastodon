@@ -29,6 +29,7 @@ class Fasp::Subscription < ApplicationRecord
   scope :category_account, -> { where(category: 'account') }
   scope :lifecycle, -> { where(subscription_type: 'lifecycle') }
   scope :trends, -> { where(subscription_type: 'trends') }
+  scope :active, -> { joins(fasp_provider: :fasp_capabilities).where(fasp_capabilities: { name: 'data_sharing', enabled: true }) }
 
   def threshold=(threshold)
     self.threshold_timeframe = threshold['timeframe'] || 15

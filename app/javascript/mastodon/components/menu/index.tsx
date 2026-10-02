@@ -25,6 +25,7 @@ export {
   MenuItemRadio,
   MenuItemCheckbox,
 } from './items';
+export { LegacyDropdownMenuItems } from './legacy_dropdown_items';
 
 interface PopoverState {
   isMenuOpen: boolean;
@@ -90,12 +91,29 @@ interface MenuProps {
    * Note that navigation menus don't support `MenuItemRadio` and `MenuItemCheckbox`.
    */
   type?: MenuType;
+  /**
+   * Callback that is run before the menu is opened. Can be used for side effects
+   * or to prevent opening the menu by returning `false`.
+   */
+  onOpen?: (() => void) | (() => boolean);
+  /**
+   * Callback that is run before the menu is closed. Can be used for side effects
+   * or to prevent closing the menu by returning `false`.
+   * Prefer the `keepMenuOpenOnClick` prop on `MenuItem`.
+   */
+  onClose?: (() => void) | (() => boolean);
   children: React.ReactNode;
+  /**
+   * Don't set initial focus on the first menu item when opening the menu.
+   * Not recommended for normal usage.
+   */
   noFocus?: boolean;
 }
 
 export const Menu: React.FC<MenuProps> = ({
   type = 'actions',
+  onOpen,
+  onClose,
   children,
   noFocus,
 }) => {
@@ -113,7 +131,7 @@ export const Menu: React.FC<MenuProps> = ({
       if (element && type === 'actions' && !noFocus) {
         const menuItems = getAllMenuItems(element);
         const elementToFocus = menuItems[0] ?? element;
-        elementToFocus.focus();
+        elementToFocus.focus({ preventScroll: true });
       }
     },
     [noFocus, type],
@@ -122,13 +140,21 @@ export const Menu: React.FC<MenuProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const openMenu = useCallback(() => {
+    const shouldOpen = onOpen?.();
+    if (shouldOpen === false) return;
+
     setIsMenuOpen(true);
-  }, []);
+  }, [onOpen]);
 
   const closeMenu = useCallback(() => {
+    const shouldClose = onClose?.();
+    if (shouldClose === false) return;
+
     setIsMenuOpen(false);
-    triggerElement?.focus();
-  }, [triggerElement]);
+    if (listElement?.contains(document.activeElement)) {
+      triggerElement?.focus();
+    }
+  }, [listElement, triggerElement, onClose]);
 
   const toggleMenu = isMenuOpen ? closeMenu : openMenu;
 
@@ -266,7 +292,7 @@ export type MenuListProps<As extends React.ElementType> = Omit<
   'isOpen' | 'onClose' | 'reference' | 'popoverElement'
 >;
 
-export const MenuList = <As extends React.ElementType>({
+export const MenuList = <As extends React.ElementType = 'div'>({
   children,
   ...props
 }: MenuListProps<As>) => {

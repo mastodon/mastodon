@@ -43,6 +43,7 @@ class Admin::BaseAction
   private
 
   def process_strike!(action = type)
+    authorize(target_account, :warn?)
     @warning = target_account.strikes.create!(
       account: current_account,
       report: report,

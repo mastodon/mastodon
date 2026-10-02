@@ -647,7 +647,6 @@ sk:
         follow_recommendations: Odporúčania pre nasledovanie
         profile_directory: Katalóg profilov
         public_timelines: Verejné časové osi
-        publish_statistics: Zverejni štatistiky
         title: Objavovanie
         trends: Trendy
       domain_blocks:
@@ -662,8 +661,6 @@ sk:
           none: Nikto sa nemôže registrovať
           open: Ktokoľvek sa môže zaregistrovať
         warning_hint: Odporúčame používať "Pre registráciu je potrebné schválenie", pokiaľ si niesi istý/á, že tvoj moderovací tím vie zvládnuť spam a záškodné registrácie včas.
-      security:
-        authorized_fetch_hint: Vyžadovanie overenia od federovaných serverov umožňuje dôkladnejšie vykonávania blokov na úrovni používateľa aj severa. Prináša to so sebou však aj zhoršenie výkonu a dosahu vašich odpovedí a môže spôsobiť problémy s kompatibilitou s niektorými federovanými službami. Okrem toho to nezabráni prístupu k vašim verejným príspevkom a účtom.
       title: Nastavenia servera
     site_uploads:
       delete: Vymazať nahratý súbor
@@ -903,7 +900,6 @@ sk:
   deletes:
     challenge_not_passed: Údaje, ktoré si zadal/a, sú nesprávne
     confirm_password: Napíš svoje terajšie heslo pre overenie tvojej identity
-    confirm_username: Zadaj svoju prezývku, na potvrdenie úkonu
     proceed: Odstrániť účet
     success_msg: Tvoj účet bol úspešne vymazaný
     warning:
@@ -1011,7 +1007,6 @@ sk:
       other: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chyby uvedené nižšie
   imports:
     errors:
-      over_rows_processing_limit: obsahuje viac než %{count} riadkov
       too_large: Súbor je príliš veľký
     failures: Zlyhaní(a)
     imported: Nahrané
@@ -1095,7 +1090,6 @@ sk:
     incoming_migrations_html: Ak sa chcete na tento účet presunúť z iného účtu, najprv si <a href="%{path}">vytvorte nový alias</a>.
     moved_msg: Tvoj účet teraz presmerováva na %{acct} a tvoji sledovatelia sú presúvaní tam.
     not_redirecting: Tvoj účet v súčasnosti nepresmerováva na žiaden iný účet.
-    on_cooldown: Účet si si presunul/a len nedávno. Táto vymoženosť bude znovu sprístupnená za %{count} dní.
     past_migrations: Predošlé presuny
     proceed_with_move: Presuň sledovateľov
     redirected_msg: Tvoj účet teraz presmerováva na %{acct}.
@@ -1215,9 +1209,6 @@ sk:
     descriptions:
       account: Verejné príspevky od @%{acct}
       tag: 'Verejné príspevky otagované #%{hashtag}'
-  scheduled_statuses:
-    over_daily_limit: Prekročil/a si denný limit %{limit} predplánovaných príspevkov
-    over_total_limit: Prekročil/a si limit %{limit} predplánovaných príspevkov
   sessions:
     activity: Posledná aktivita
     browser: Prehliadač
@@ -1253,7 +1244,6 @@ sk:
     appearance: Vzhľad
     authorized_apps: Povolené aplikácie
     back: Späť na Mastodon
-    delete: Vymazanie účtu
     development: Vývoj
     edit_profile: Úprava profilu
     featured_tags: Zvýraznené hashtagy
