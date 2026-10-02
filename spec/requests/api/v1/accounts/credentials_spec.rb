@@ -43,6 +43,44 @@ RSpec.describe 'credentials API' do
         })
       end
     end
+
+    context 'when the user is not confirmed' do
+      before do
+        user.update!(confirmed_at: nil)
+      end
+
+      it 'returns 403' do
+        subject
+
+        expect(response)
+          .to have_http_status(403)
+      end
+
+      context 'when passing “allow_nonfunctional”' do
+        it 'returns http success with expected content' do
+          get '/api/v1/accounts/verify_credentials?allow_nonfunctional=true', headers: headers
+
+          expect(response)
+            .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body).to include({
+            source: hash_including({
+              discoverable: false,
+              indexable: false,
+            }),
+            locked: true,
+            state: hash_including({
+              functional: false,
+              confirmed: false,
+              approved: true,
+              error_code: 'pending_confirmation',
+              error: I18n.t('accounts.api_errors.pending_confirmation'),
+            }),
+          })
+        end
+      end
+    end
   end
 
   describe 'PATCH /api/v1/accounts/update_credentials' do

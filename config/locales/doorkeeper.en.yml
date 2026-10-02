@@ -63,6 +63,10 @@ en:
         prompt_html: "%{client_name} would like permission to access your account. <strong>Only approve this request if you recognize and trust this source.</strong>"
         review_permissions: Review permissions
         title: Authorization required
+      require_reauth:
+        log_out_and_continue: Log out and continue
+        prompt_html: You are currently logged in as <strong>%{handle}</strong>, but to continue, you will have to log out.
+        title: Re-authentication required
       show:
         title: Copy this authorization code and paste it to the application.
     authorized_applications:
