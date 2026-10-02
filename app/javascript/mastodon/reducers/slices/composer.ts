@@ -330,8 +330,7 @@ export const submitComposer = createAppThunk(
             window.location.assign(status.url);
           }
 
-          // Hide composer on successful publish
-          dispatch(composerSlice.actions.hideComposer());
+          dispatch(resetComposer());
         }),
       );
     }
