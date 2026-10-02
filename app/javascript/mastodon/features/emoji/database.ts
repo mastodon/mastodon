@@ -6,7 +6,6 @@ import { onceAsync } from '@/mastodon/utils/promises';
 
 import { openEmojiDB } from './db-schema';
 import type { Database } from './db-schema';
-import { importEmojiData } from './loader';
 import { localeToSegmenter, toSupportedLocale } from './locale';
 import {
   skinHexcodeToEmoji,
@@ -237,6 +236,7 @@ async function toLoadedLocale(localeString: string) {
   }
   if (!loadedLocales.has(locale)) {
     log('Locale %s not loaded, importing...', locale);
+    const { importEmojiData } = await import('./loader');
     await importEmojiData(locale);
     return locale;
   }

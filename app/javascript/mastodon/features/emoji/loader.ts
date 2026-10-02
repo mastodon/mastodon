@@ -3,13 +3,6 @@ import type { CompactEmoji, Locale, ShortcodesDataset } from 'emojibase';
 
 import { onceAsyncByArgs } from '@/mastodon/utils/promises';
 
-import {
-  putEmojiData,
-  putCustomEmojiData,
-  putCacheValue,
-  putLegacyShortcodes,
-  loadCacheValue,
-} from './database';
 import { toSupportedLocale, toValidCacheKey } from './locale';
 import type { CustomEmojiData } from './types';
 import { emojiLogger } from './utils';
@@ -54,11 +47,14 @@ async function importEmojiDataImpl(locale: Locale, shortcodes: boolean) {
 
   emojis = joinShortcodes(emojis, shortcodesData);
 
+  const { putEmojiData } = await import('./database');
   await putEmojiData(emojis, locale);
   return emojis;
 }
 
 export async function importCustomEmojiData() {
+  const { loadCacheValue, putCacheValue, putCustomEmojiData } =
+    await import('./database');
   const response = await fetchAndCheckEtag({
     oldEtag: await loadCacheValue('custom'),
     path: '/api/v1/custom_emojis',
@@ -98,6 +94,7 @@ export async function importLegacyShortcodes() {
   if (!shortcodesData) {
     return;
   }
+  const { putLegacyShortcodes } = await import('./database');
   await putLegacyShortcodes(shortcodesData);
   return Object.keys(shortcodesData);
 }
@@ -145,6 +142,7 @@ async function fetchIfNotLoaded<ResultType extends object[] | object>({
 }): Promise<ResultType | null> {
   const key = toValidCacheKey(rawKey);
 
+  const { loadCacheValue, putCacheValue } = await import('./database');
   const value = await loadCacheValue(key);
 
   if (value === path) {

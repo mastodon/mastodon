@@ -1,12 +1,6 @@
 import { log } from 'debug';
 import type { ArrayValues, KeysOfUnion } from 'type-fest';
 
-import {
-  loadCustomEmojiKeys,
-  loadEmojiByHexcode,
-  rawSearch,
-  searchCustomEmojisByShortcodes,
-} from './database';
 import { localeToSegmenter, toSupportedLocale } from './locale';
 import { extractTokens } from './normalize';
 import type { AnyEmojiData, CustomEmojiData } from './types';
@@ -73,6 +67,7 @@ export async function search({
   const segmenter = localeToSegmenter(locale);
   const query = rawQuery.toLowerCase();
   const queryTokens = extractTokens(query, segmenter);
+  const { loadEmojiByHexcode, rawSearch } = await import('./database');
 
   if (queryTokens.length === 0) {
     log('no tokens extracted from query "%s"', query);
@@ -386,6 +381,7 @@ async function fullCustomSearch(query: string, existing = new Set<string>()) {
   let index = 0;
   let lastKey: string | null = null;
   let keys: string[] = [];
+  const { loadCustomEmojiKeys } = await import('./database');
   do {
     keys = await loadCustomEmojiKeys(lastKey, chunkSize);
 
@@ -407,6 +403,7 @@ async function fullCustomSearch(query: string, existing = new Set<string>()) {
   } while (keys.length === chunkSize);
 
   // Next get the full emojis for all matches.
+  const { searchCustomEmojisByShortcodes } = await import('./database');
   const emojis = await searchCustomEmojisByShortcodes(Array.from(foundEmojis));
   const results: (CustomEmojiData & { scores: ScoreRanking })[] = [];
   for (const emoji of emojis) {
