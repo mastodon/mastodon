@@ -238,7 +238,7 @@ export const StatusPage: React.FC = () => {
         shouldUpdateScroll={shouldUpdateScroll}
       >
         <div
-          className={classNames({
+          className={classNames('scrollable', {
             fullscreen,
           })}
         >
