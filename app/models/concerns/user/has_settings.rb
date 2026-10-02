@@ -127,6 +127,10 @@ module User::HasSettings
     settings['default_quote_policy'] || 'public'
   end
 
+  def setting_default_spoiler_field
+    settings['default_spoiler_field']
+  end
+
   def allows_report_emails?
     settings['notification_emails.report']
   end

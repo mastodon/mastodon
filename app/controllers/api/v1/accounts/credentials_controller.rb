@@ -51,6 +51,7 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
         default_sensitive: source_params.fetch(:sensitive, @account.user.setting_default_sensitive),
         default_language: source_params.fetch(:language, @account.user.setting_default_language),
         default_quote_policy: source_params.fetch(:quote_policy, @account.user.setting_default_quote_policy),
+        default_spoiler_field: source_params.fetch(:spoiler_field, @account.user.setting_default_spoiler_field),
       },
     }
   end
