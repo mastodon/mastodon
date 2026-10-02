@@ -200,6 +200,25 @@ RSpec.describe 'Notifications' do
       end
     end
 
+    context 'with ungrouped notifications' do
+      before do
+        user.account.notifications.destroy_all
+
+        5.times do
+          actor = Fabricate(:account)
+          Notification.create!(account: user.account, activity: actor, type: :follow_request)
+        end
+      end
+
+      it 'loads source accounts in bulk when building notification groups' do
+        sql_events = capture_notifications('sql.active_record') { subject }
+        account_loads = sql_events.count { |event| event.payload[:name] == 'Account Load' }
+
+        expect(response).to have_http_status(200)
+        expect(account_loads).to be <= 2
+      end
+    end
+
     context 'with grouped_types param' do
       let(:params) { { grouped_types: %w(reblog) } }
 
