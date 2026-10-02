@@ -40,7 +40,7 @@ namespace :settings do
   end
 
   scope module: :two_factor_authentication do
-    resource :otp_authentication, only: [:show, :create], controller: :otp_authentication
+    resource :otp_authentication, only: [:show, :create, :destroy], controller: :otp_authentication
 
     resources :webauthn_credentials, only: [:index, :new, :create, :destroy], path: 'security_keys' do
       collection do
@@ -50,7 +50,7 @@ namespace :settings do
   end
 
   namespace :two_factor_authentication do
-    resources :recovery_codes, only: [:create]
+    resources :recovery_codes, only: [:index, :create]
     resource :confirmation, only: [:new, :create]
   end
 
