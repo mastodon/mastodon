@@ -278,7 +278,9 @@ export default tseslint.config([
 
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ['vitest.shims.d.ts'],
+        },
       },
     },
 
