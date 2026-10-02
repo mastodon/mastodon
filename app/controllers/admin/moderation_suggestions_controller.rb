@@ -26,80 +26,21 @@ class Admin::ModerationSuggestionsController < Admin::BaseController
   def apply
     authorize @moderation_suggestion, :apply?
 
-    case [@moderation_suggestion.target_type, @moderation_suggestion.action]
-    when ['domain', 'accept']
-      domain_allow = @moderation_suggestion.to_domain_allow
-
-      ApplicationRecord.transaction do
-        # TODO: log
-        domain_allow.save!
-        @moderation_suggestion.mark_as_applied!
-      end
-
-      redirect_to admin_moderation_suggestions_path, notice: I18n.t('admin.moderation_suggestions.applied_msg', target_key: @moderation_suggestion.target_key)
-    when ['domain', 'reject'], ['domain', 'limit']
-      domain_block = @moderation_suggestion.to_domain_block
-
-      # TODO: factor with `DomainBlocksController#create`?
-      existing_domain_block = DomainBlock.rule_for(domain_block.domain)
-
-      # We can't create a laxer block for a subdomain than we have for a domain
-      if existing_domain_block.present? && existing_domain_block.domain != TagManager.instance.normalize_domain(domain_block.domain) && !domain_block.stricter_than?(existing_domain_block)
-        return redirect_to admin_moderation_suggestions_path,
-                           alert: I18n.t('admin.moderation_suggestions.unable_to_apply_msg',
-                                         target_key: @moderation_suggestion.target_key)
-      end
-
-      update = false
-
-      # Allow transparently upgrading a domain block
-      if existing_domain_block.present? && existing_domain_block.domain == TagManager.instance.normalize_domain(domain_block.domain)
-        # Downgrading requires confirmation
-        return render :confirm_downgrade unless domain_block.stricter_than?(existing_domain_block) || params[:confirm_downgrade]
-
-        # Transparent upgrading is allowed
-        existing_domain_block.assign_attributes(domain_block.attributes.without('id', 'created_at', 'updated_at'))
-        domain_block = existing_domain_block
-
-        update = domain_block.severity_changed?
-      end
-
-      # Require explicit confirmation on block
-      return render :confirm_reject if requires_confirmation?(domain_block)
-
-      domain_block.save!
-      # TODO: is this the way we want to log it?
-      log_action (update ? :update : :create), domain_block, moderation_subscription_id: domain_block.moderation_subscription_id
-      DomainBlockWorker.perform_async(domain_block.id, update)
-      @moderation_suggestion.mark_as_applied!
-
-      redirect_to admin_moderation_suggestions_path, notice: I18n.t('admin.moderation_suggestions.applied_msg', target_key: @moderation_suggestion.target_key)
-    when ['domain', 'retract']
-      ApplicationRecord.transaction do
-        if Rails.configuration.x.mastodon.limited_federation_mode
-          domain_allow = DomainAllow.find_by(domain: @moderation_suggestion.target_key)
-          UnallowDomainService.new.call(domain_allow)
-          # TODO: is this the way we want to log it?
-          log_action :destroy, domain_allow, moderation_subscription_id: domain_block.moderation_subscription_id
-        else
-          domain_block = DomainBlock.find_by(domain: @moderation_suggestion.target_key)
-          UnblockDomainService.new.call(domain_block)
-          # TODO: is this the way we want to log it?
-          log_action :destroy, domain_block, moderation_subscription_id: domain_block.moderation_subscription_id
-        end
-
-        @moderation_suggestion.mark_as_applied!
-      end
-
+    case ApplyModerationSuggestion.new.call(@moderation_suggestion, confirm_downgrade: params[:confirm_downgrade], confirm: params[:confirm])
+    when :applied
+      redirect_to admin_moderation_suggestion_path, notice: I18n.t('admin.moderation_suggestions.applied_msg', target_key: @moderation_suggestion.target_key)
+    when :unable_to_apply
+      redirect_to admin_moderation_suggestions_path, alert: I18n.t('admin.moderation_suggestions.unable_to_apply_msg', target_key: @moderation_suggestion.target_key)
+    when :retracted
       redirect_to admin_moderation_suggestions_path, notice: I18n.t('admin.moderation_suggestions.retracted_msg', target_key: @moderation_suggestion.target_key)
+    when :downgrade_confirmation_required
+      render :confirm_downgrade
+    when :reject_confirmation_required
+      render :confirm_reject
     end
   end
 
   private
-
-  def requires_confirmation?(domain_block)
-    domain_block.valid? && (domain_block.new_record? || domain_block.severity_changed?) && domain_block.suspend? && !params[:confirm]
-  end
 
   def set_moderation_suggestion_targets
     @moderation_suggestion_targets = ModerationSuggestion.pending_review.reorder([target_type: :asc, target_key: :asc]).distinct.pluck(:target_type, :target_key)
