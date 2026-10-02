@@ -6,24 +6,24 @@
   border-radius: var(--radius-3);
   transition: background-color 200ms;
 
-  &:has(a:hover) {
+  &:has(.accountLink:hover) {
     background-color: var(--color-bg-highlight);
   }
 
-  &:has(a:focus-visible) {
+  &:has(.accountLink:focus-visible) {
     outline: var(--outline-focus-default);
     background-color: var(--color-bg-highlight);
   }
+}
 
-  // Disable default hover & focus styles for LockupLink
-  & a {
-    &:hover {
-      text-decoration: none !important;
-    }
+.accountLink {
+  // Disable default hover & focus styles
+  &:hover {
+    text-decoration: none !important;
+  }
 
-    &:focus-visible {
-      outline: none;
-    }
+  &:focus-visible {
+    outline: none;
   }
 }
 
