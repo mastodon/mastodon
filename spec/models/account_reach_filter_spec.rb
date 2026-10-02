@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe AccountReachFilter do
   describe 'basic functionality' do
-    let(:filter) { Fabricate(:account_reach_filter) }
+    let(:filter) { Fabricate(:account_reach_filter, salt: 'test') }
 
     it 'allows correct membership tests' do
       filter.add('mastodon.social')
@@ -22,7 +22,7 @@ RSpec.describe AccountReachFilter do
   end
 
   describe '#add' do
-    let(:filter) { Fabricate(:account_reach_filter) }
+    let(:filter) { Fabricate(:account_reach_filter, salt: 'test') }
 
     context 'with a single argument' do
       it 'allows correct membership tests' do
@@ -90,7 +90,7 @@ RSpec.describe AccountReachFilter do
   end
 
   describe '#include?' do
-    let(:filter) { Fabricate(:account_reach_filter) }
+    let(:filter) { Fabricate(:account_reach_filter, salt: 'test') }
 
     context 'with a saturated filter' do
       before { filter.update!(saturated: true) }
@@ -108,7 +108,7 @@ RSpec.describe AccountReachFilter do
     end
 
     context 'when the filter is empty' do
-      let(:filter) { Fabricate(:account_reach_filter) }
+      let(:filter) { Fabricate(:account_reach_filter, salt: 'test') }
 
       it 'returns an empty array' do
         expect(filter.filter_inboxes(inboxes))
@@ -117,7 +117,7 @@ RSpec.describe AccountReachFilter do
     end
 
     context 'when the filter has items' do
-      let(:filter) { Fabricate(:account_reach_filter) }
+      let(:filter) { Fabricate(:account_reach_filter, salt: 'test') }
 
       before do
         filter.add('mastodon.social')
