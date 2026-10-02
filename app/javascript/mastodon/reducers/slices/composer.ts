@@ -175,7 +175,7 @@ type ComposeNewPayload = (
 ) & { force?: boolean };
 
 export const openNewComposer = createAppThunk(
-  (payload: ComposeNewPayload, { dispatch, getState }) => {
+  (payload: ComposeNewPayload | undefined = {}, { dispatch, getState }) => {
     // Always show the composer if it is closed or minimized.
     dispatch(composerSlice.actions.showComposer());
 

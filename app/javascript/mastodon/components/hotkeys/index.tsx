@@ -126,6 +126,7 @@ const hotkeyMatcherMap = {
   back: just('backspace'),
   new: just('n'),
   forceNew: optionPlus('n'),
+  newMessage: optionPlus('m'),
   focusColumn: any('1', '2', '3', '4', '5', '6', '7', '8', '9'),
   focusLoadMore: just('l'),
   reply: just('r'),
