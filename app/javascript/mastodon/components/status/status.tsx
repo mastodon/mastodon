@@ -158,7 +158,9 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
             isNextReplyingToMe &&
             !showThread &&
             classes.connectNextReply,
+          !unfocusable && 'focusable',
         )}
+        tabIndex={unfocusable ? undefined : -1}
         data-featured={featured ? 'true' : null}
         aria-label={screenReaderText}
         data-nosnippet={status.account.noindex || undefined}
