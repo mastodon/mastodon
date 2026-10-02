@@ -294,7 +294,7 @@ function focusListSibling(direction: 1 | -1) {
   }
 
   // Get all item lists in the current column or page
-  const currentColumn = container.closest('.column') ?? document;
+  const currentColumn = container.closest('[data-column-root]') ?? document;
 
   const columnItemLists = Array.from(
     currentColumn.querySelectorAll('.item-list'),
