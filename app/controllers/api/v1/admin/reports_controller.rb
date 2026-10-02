@@ -26,7 +26,13 @@ class Api::V1::Admin::ReportsController < Api::BaseController
 
   def index
     authorize :report, :index?
-    render json: @reports, each_serializer: REST::Admin::ReportSerializer
+
+    statuses = report_statuses
+    render json: @reports,
+           each_serializer: REST::Admin::ReportSerializer,
+           report_statuses: records_by_report(statuses, :status_ids),
+           report_rules: records_by_report(report_rules, :rule_ids),
+           relationships: StatusRelationshipsPresenter.new(statuses, current_account.id)
   end
 
   def show
@@ -81,6 +87,21 @@ class Api::V1::Admin::ReportsController < Api::BaseController
 
   def filtered_reports
     ReportFilter.new(filter_params).results
+  end
+
+  def report_statuses
+    Status.with_discarded.where(id: @reports.flat_map { |report| Array(report.status_ids) }).with_includes.to_a
+  end
+
+  def report_rules
+    Rule.with_discarded.where(id: @reports.flat_map { |report| Array(report.rule_ids) }).includes(:translations).to_a
+  end
+
+  def records_by_report(records, ids_method)
+    @reports.to_h do |report|
+      record_ids = Array(report.public_send(ids_method))
+      [report.id, records.select { |record| record_ids.include?(record.id) }]
+    end
   end
 
   def report_params
