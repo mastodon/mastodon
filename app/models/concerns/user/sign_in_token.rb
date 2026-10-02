@@ -6,6 +6,8 @@ module User::SignInToken
   # If a user hasn't logged in in this period of time, we consider new attempts suspicious
   # and start a security code challenge to verify said user
   SUSPICIOUS_INACTIVITY_DURATION = 90.days.freeze
+  SIGN_IN_TOKEN_DISABLED_KEY = 'user.%d.sign_in_token_disabled'
+  SIGN_IN_TOKEN_DISABLED_TTL = 96.hours.freeze
 
   included do
     attr_reader :sign_in_token_attempt
@@ -14,7 +16,8 @@ module User::SignInToken
   # We consider suspicious any log in of users that have been inactive for SUSPICIOUS_INACTIVITY_DURATION
   # Users with OTP enabled or that are managed through SSO, LDAP or PAM are not taken into account
   def suspicious_inactive_sign_in?
-    !two_factor_enabled? &&
+    !sign_in_token_disabled? &&
+      !two_factor_enabled? &&
       encrypted_password? &&
       current_sign_in_at? &&
       current_sign_in_at < SUSPICIOUS_INACTIVITY_DURATION.ago
@@ -37,10 +40,22 @@ module User::SignInToken
     self.sign_in_token         = nil
     self.sign_in_token_sent_at = nil
 
-    # Reset #current_sign_in_at so the system doesn't try to
-    # send a security code for inactive accounts
-    self.current_sign_in_at = Time.now.utc
+    redis.set(sign_in_token_disabled_key, true, ex: SIGN_IN_TOKEN_DISABLED_TTL.seconds.to_i)
 
     save!
+  end
+
+  def enable_sign_in_token!
+    redis.del(sign_in_token_disabled_key)
+  end
+
+  def sign_in_token_disabled?
+    redis.exists?(sign_in_token_disabled_key)
+  end
+
+  private
+
+  def sign_in_token_disabled_key
+    SIGN_IN_TOKEN_DISABLED_KEY % id
   end
 end

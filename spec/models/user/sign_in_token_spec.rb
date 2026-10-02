@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe User::SignInToken do
   describe '#valid_sign_in_token?' do
-    subject { Fabricate.build(:user) }
+    subject { Fabricate(:user) }
 
     before { subject.generate_sign_in_token }
 
@@ -22,7 +22,7 @@ RSpec.describe User::SignInToken do
   end
 
   describe '#suspicious_inactive_sign_in?' do
-    subject { Fabricate.build(:user, current_sign_in_at:) }
+    subject { Fabricate(:user, current_sign_in_at:) }
 
     context 'when current_sign_in_at is nil' do
       let(:current_sign_in_at) { nil }
@@ -45,11 +45,13 @@ RSpec.describe User::SignInToken do
     context 'when the user is external' do
       subject { Fabricate.build(:user, password: nil, current_sign_in_at: 7.months.ago) }
 
+      before { subject.save!(validate: false) }
+
       it { is_expected.to_not be_suspicious_inactive_sign_in }
     end
 
     context 'when the otp is required for login' do
-      subject { Fabricate.build(:user, otp_required_for_login: true, current_sign_in_at: 7.months.ago) }
+      subject { Fabricate(:user, otp_required_for_login: true, current_sign_in_at: 7.months.ago) }
 
       it { is_expected.to_not be_suspicious_inactive_sign_in }
     end

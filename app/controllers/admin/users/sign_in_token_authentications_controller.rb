@@ -4,6 +4,13 @@ module Admin
   class Users::SignInTokenAuthenticationsController < BaseController
     before_action :set_target_user
 
+    def create
+      authorize @user, :enable_sign_in_token?
+      @user.enable_sign_in_token!
+      log_action :enable_sign_in_token, @user
+      redirect_to admin_account_path(@user.account_id)
+    end
+
     def destroy
       authorize @user, :disable_sign_in_token?
       @user.disable_sign_in_token!
