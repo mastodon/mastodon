@@ -8,7 +8,8 @@ const domParser = new DOMParser();
 
 export function searchTextFromRawStatus (status) {
   const spoilerText   = status.spoiler_text || '';
-  const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+  const content       = stripQuoteFallback(status.content || '');
+  const searchContent = ([spoilerText, content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
   return domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
 }
 
@@ -88,10 +89,9 @@ export function normalizeStatus(status, normalOldStatus, { bogusQuotePolicy = fa
       normalStatus.spoiler_text = '';
     }
 
-    const spoilerText   = normalStatus.spoiler_text || '';
-    const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+    const spoilerText = normalStatus.spoiler_text || '';
 
-    normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
+    normalStatus.search_index = searchTextFromRawStatus(status);
     normalStatus.contentHtml  = normalStatus.content;
     normalStatus.spoilerHtml  = escapeTextContentForBrowser(spoilerText);
     normalStatus.hidden       = expandSpoilers ? false : spoilerText.length > 0 || normalStatus.sensitive;
