@@ -3,9 +3,6 @@
 class Api::V1::DonationCampaignsController < Api::BaseController
   before_action :require_user!
 
-  STOPLIGHT_COOL_OFF_TIME = 60
-  STOPLIGHT_FAILURE_THRESHOLD = 10
-
   def index
     return head 204 if api_url.blank?
 
@@ -65,11 +62,7 @@ class Api::V1::DonationCampaignsController < Api::BaseController
   end
 
   def stoplight_wrapper
-    Stoplight(
-      'donation_campaigns',
-      cool_off_time: STOPLIGHT_COOL_OFF_TIME,
-      threshold: STOPLIGHT_FAILURE_THRESHOLD
-    )
+    Stoplight.light('api:donation_campaigns')
   end
 
   def request_key
