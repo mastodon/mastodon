@@ -71,6 +71,32 @@ RSpec.describe AccountReachFilter do
           .to contain_exactly('mastodon.social', 'mastodon.online', 'example.com', 'joinmastodon.org')
       end
 
+      context 'when adding to a filter so much that it nears saturation' do
+        before do
+          stub_const('AccountReachFilter::BLOOM_FILTER_TARGET_CAPACITIES', [2, 10])
+          filter.add('mastodon.social')
+          filter.save!
+        end
+
+        it 'upgrades the filter and keeps functionality but does not saturate', :aggregate_failures do
+          expect do
+            filter.add(*Array.new(30) { |i| "https://test#{i}.example.com" })
+            filter.save!
+          end
+            .to change { filter.bloom_filters.size }.from(1).to(2)
+            .and not_change(filter, :saturated)
+
+          # Includes all the explicitly-added domains
+          expect(Array.new(30) { |i| "https://test#{i}.example.com" }.all? { |domain| filter.include?(domain) })
+            .to be true
+
+          # Matches the expected false-positive rate (between 10% and 40% false positives here)
+          expect(Array.new(20) { |i| "https://test#{i + 30}.example.com" }.count { |domain| filter.include?(domain) })
+            .to (be < 8)
+            .and be > 2
+        end
+      end
+
       context 'when adding to a filter so much that it saturates' do
         before do
           stub_const('AccountReachFilter::BLOOM_FILTER_TARGET_CAPACITIES', [2, 5])
@@ -80,7 +106,7 @@ RSpec.describe AccountReachFilter do
 
         it 'upgrades the filter and keeps functionality', :aggregate_failures do
           expect do
-            filter.add(*Array.new(100) { |i| "https://test#{i}.example.com" })
+            filter.add(*Array.new(50) { |i| "https://test#{i}.example.com" })
             filter.save!
           end
             .to(change(filter, :saturated).to(true))
