@@ -72,6 +72,7 @@ export const Column: React.FC<ColumnProps> = ({
         isRedesignEnabled() ? classes.root : 'column',
         className,
       )}
+      data-column-root // Used by hotkey handling code
       aria-label={label}
       aria-labelledby={
         label === undefined ? getColumnSkipLinkId(columnIndex) : undefined
