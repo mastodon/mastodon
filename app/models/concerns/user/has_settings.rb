@@ -44,7 +44,7 @@ module User::HasSettings
   end
 
   def setting_display_own_posts
-    settings['web.display_own_posts']
+    settings['display_own_posts']
   end
 
   def setting_reduce_motion

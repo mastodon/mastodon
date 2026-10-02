@@ -259,6 +259,15 @@ RSpec.describe FeedManager do
       expect(redis.zcard("feed:home:#{account.id}")).to eq described_class::MAX_ITEMS
     end
 
+    it 'does not save a status to home when user has display_own_posts disabled' do
+      user = Fabricate(:user)
+      post = Fabricate(:status, account: user.account)
+      user.settings['display_own_posts'] = false
+
+      # post will be ignored
+      expect(subject.push_to_home(user.account, post)).to be false
+    end
+
     context 'with reblogs' do
       it 'saves reblogs of unseen statuses' do
         account = Fabricate(:account)

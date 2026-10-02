@@ -17,6 +17,7 @@ class UserSettings
   setting :default_privacy, default: nil, in: %w(public unlisted private)
   setting :default_quote_policy, default: 'public', in: %w(public followers nobody)
   setting :email_subscriptions, default: false
+  setting :display_own_posts, default: true
 
   setting_inverse_alias :indexable, :noindex
 
@@ -29,7 +30,6 @@ class UserSettings
     setting :use_system_scrollbars, default: false
     setting :disable_swiping, default: false
     setting :disable_hover_cards, default: false
-    setting :display_own_posts, default: true
     setting :delete_modal, default: true
     setting :reblog_modal, default: false
     setting :quick_boosting, default: false
