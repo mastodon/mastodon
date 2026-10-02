@@ -28,6 +28,7 @@ import { ComposeVisibility } from './visibility';
 
 interface RedesignComposeFormProps {
   autoFocus?: boolean;
+  headless?: boolean;
   className?: string;
   noMinimize?: boolean;
   redirectOnSuccess?: boolean;
@@ -35,7 +36,14 @@ interface RedesignComposeFormProps {
 
 export const RedesignComposeForm: React.FC<
   RedesignComposeFormProps & React.ComponentPropsWithRef<'form'>
-> = ({ autoFocus, className, noMinimize, redirectOnSuccess, ...props }) => {
+> = ({
+  autoFocus,
+  headless,
+  className,
+  noMinimize,
+  redirectOnSuccess,
+  ...props
+}) => {
   const type = useAppSelector(selectComposeType);
 
   const { onEmojiPick, onSubmit } = useComposeHandlers(redirectOnSuccess);
@@ -48,13 +56,17 @@ export const RedesignComposeForm: React.FC<
       role='dialog'
       onSubmit={onSubmit}
       aria-labelledby={titleId}
-      className={classNames(className, classes.root)}
+      className={classNames(
+        className,
+        classes.root,
+        headless && classes.headless,
+      )}
     >
       {(type === 'message' || type === 'replyPrivate') && (
         <div className={classes.background} />
       )}
 
-      <ComposeFormHeader id={titleId} noMinimize={noMinimize} />
+      {!headless && <ComposeFormHeader id={titleId} noMinimize={noMinimize} />}
 
       <ComposeReply />
 
@@ -68,10 +80,7 @@ export const RedesignComposeForm: React.FC<
 
       <ComposeSensitiveField />
 
-      <ComposeTextarea
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus={autoFocus}
-      >
+      <ComposeTextarea autoFocus={autoFocus}>
         <ComposeAttachments className={classes.attachments} />
       </ComposeTextarea>
 
