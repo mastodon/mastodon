@@ -71,7 +71,6 @@ export const RedesignComposeForm: React.FC<
       <ComposeTextarea
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={autoFocus}
-        onSubmit={onSubmit}
       >
         <ComposeAttachments className={classes.attachments} />
       </ComposeTextarea>
