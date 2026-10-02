@@ -66,7 +66,7 @@ RSpec.describe 'The well-known node-info endpoints' do
         nodeName:	'Mastodon',
         nodeDescription:	'',
         optInServerDirectory: 'true',
-        optInServerRecommendation: nil,
+        optInServerRecommendation: false,
       }
     end
 
