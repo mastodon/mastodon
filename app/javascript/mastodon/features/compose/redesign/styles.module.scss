@@ -18,6 +18,14 @@
   }
 }
 
+.headless {
+  border: 0;
+  box-shadow: none;
+  flex-grow: 1;
+  border-radius: 0;
+  padding-block-start: 0;
+}
+
 .background {
   mask-repeat: repeat;
   mask-image: url('@/images/composer_message.svg');
