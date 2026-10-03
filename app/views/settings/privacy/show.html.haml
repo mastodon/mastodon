@@ -19,6 +19,11 @@
   .fields-group
     = f.input :unlocked, as: :boolean, wrapper: :with_label
 
+  - if Relay.where(requires_opt_in: true).enabled.any?
+    %p.lead
+      = t('privacy.relays_hint_html')
+      = link_to t('privacy.view_relays'), settings_relay_preferences_path
+
   %h2= t('privacy.search')
 
   %p.lead= t('privacy.search_hint_html')

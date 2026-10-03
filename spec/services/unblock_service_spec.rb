@@ -20,6 +20,18 @@ RSpec.describe UnblockService do
     end
   end
 
+  context 'when the unblocking affects a relay actor' do
+    let(:relay) { Fabricate(:relay) }
+
+    before do
+      sender.block!(relay.account)
+    end
+
+    it 'disables relay preference' do
+      expect { subject.call(sender, relay.account) }.to change { RelayPreference.find_by(relay: relay, account: sender)&.enabled }.from(nil).to(true)
+    end
+  end
+
   describe 'remote ActivityPub' do
     let(:bob) { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 

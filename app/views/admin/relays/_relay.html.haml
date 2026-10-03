@@ -1,25 +1,33 @@
-%tr
-  %td
-    %samp= relay.inbox_url
-  %td
-    - if relay.accepted?
-      %span.positive-hint
+.applications-list__item
+  %strong.announcements-list__item__title
+    = relay.display_name
+    %span.information-badge{ class: relay_badge_class(relay) }
+      - if relay.accepted?
         = material_symbol('check')
-        &nbsp;
         = t 'admin.relays.enabled'
-    - elsif relay.pending?
-      = material_symbol('hourglass')
-      &nbsp;
-      = t 'admin.relays.pending'
-    - else
-      %span.negative-hint
+      - elsif relay.pending?
+        = material_symbol('hourglass')
+        = t 'admin.relays.pending'
+      - else
         = material_symbol('close')
-        &nbsp;
         = t 'admin.relays.disabled'
-  %td
-    - if relay.accepted?
-      = table_link_to 'power_off', t('admin.relays.disable'), disable_admin_relay_path(relay), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
-    - elsif !relay.pending?
-      = table_link_to 'power_off', t('admin.relays.enable'), enable_admin_relay_path(relay), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+  .announcements-list__item__action-bar
+    .announcements-list__item__meta
+      %samp= relay.uri
+      ·
+      - if relay.bidirectional?
+        = t 'admin.relays.bidirectional'
+      - else
+        = t 'admin.relays.broadcast'
+      ·
+      - if relay.requires_opt_in?
+        = t 'admin.relays.opt_in'
+      - else
+        = t 'admin.relays.opt_out'
+    .announcements-list__item__actions
+      - if relay.accepted?
+        = table_link_to 'power_off', t('admin.relays.disable'), disable_admin_relay_path(relay), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+      - elsif !relay.pending?
+        = table_link_to 'power_off', t('admin.relays.enable'), enable_admin_relay_path(relay), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
 
-    = table_link_to 'close', t('admin.relays.delete'), admin_relay_path(relay), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+      = table_link_to 'close', t('admin.relays.delete'), admin_relay_path(relay), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
