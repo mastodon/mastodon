@@ -64,6 +64,7 @@ namespace :settings do
   resource :migration, only: [:show, :create]
   resource :verification, only: [:show, :update]
   resource :privacy, only: [:show, :update], controller: 'privacy'
+  resource :relay_preferences, only: [:show, :update]
 
   namespace :migration do
     resource :redirect, only: [:new, :create, :destroy]

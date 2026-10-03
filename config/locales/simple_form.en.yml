@@ -133,6 +133,13 @@ en:
           sign_up_block: New sign-ups will not be possible
           sign_up_requires_approval: New sign-ups will require your approval
         severity: Choose what will happen with requests from this IP
+      relay:
+        acct: In the format username@domain.
+        direction: How would you like to participate in the relay
+        directions:
+          bidirectional: Broadcast to the relay and accept content from other members of the relay
+          broadcast: Broadcast to the relay only
+        requires_opt_in: Only send content to the relay for users who explicitly opt-in to this relay
       rule:
         hint: Optional. Provide more details about the rule
         text: Describe a rule or requirement for users on this server. Try to keep it short and simple
@@ -378,6 +385,13 @@ en:
           none: Never notify of updates (not recommended)
           patch: Notify on bugfix updates
         trending_tag: New trend requires review
+      relay:
+        acct: Handle of the relay
+        direction: Participation level
+        directions:
+          bidirectional: Bidirectional
+          broadcast: Broadcast-only
+        requires_opt_in: Require user opt-in
       rule:
         hint: Additional information
         text: Rule

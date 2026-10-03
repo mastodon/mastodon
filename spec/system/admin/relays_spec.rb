@@ -14,11 +14,15 @@ RSpec.describe 'Admin Relays' do
 
         expect(page)
           .to have_text(I18n.t('admin.relays.title'))
-          .and have_text(relay.inbox_url)
+          .and have_text(relay.uri)
       end
     end
 
     describe 'Creating a new relay' do
+      before do
+        Fabricate(:account, username: 'hoge', domain: 'example.com', protocol: :activitypub, uri: 'https://example.com/actor', inbox_url: 'https://example.com/inbox', actor_type: 'Service')
+      end
+
       it 'creates new record with valid attributes' do
         visit admin_relays_path
 
@@ -28,14 +32,14 @@ RSpec.describe 'Admin Relays' do
           .to have_text(I18n.t('admin.relays.add_new'))
 
         # Invalid submission
-        fill_in 'relay_inbox_url', with: ''
+        fill_in 'relay_acct', with: ''
         expect { submit_form }
           .to_not change(Relay, :count)
         expect(page)
-          .to have_text(/errors below/)
+          .to have_text(/errors? below/)
 
         # Valid submission
-        fill_in 'relay_inbox_url', with: 'https://host.example/hooks/123'
+        fill_in 'relay_acct', with: 'hoge@example.com'
         expect { submit_form }
           .to change(Relay, :count).by(1)
         expect(page)
