@@ -4,14 +4,17 @@
   --main-column-max-width: 600px;
   --navigation-min-width: 280px;
   --navigation-max-width: 320px;
+  --page-max-width: 1400px;
 
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
+  max-width: var(--page-max-width);
   height: 100%;
   min-height: 100vh;
   min-height: 100dvh;
+  margin-inline: auto;
   padding-bottom: env(safe-area-inset-bottom);
 
   @media (min-width: $no-gap-breakpoint) {
