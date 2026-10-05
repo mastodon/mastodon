@@ -41,7 +41,7 @@ class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
     if params['prompt'] == 'create' && !current_user
       session[:registration_app_id] = Doorkeeper::OAuth::Client.find(params[:client_id]).id
 
-      return redirect_to(new_user_registration_path)
+      return redirect_to(new_user_registration_path(params.permit(:invite_code)))
     end
 
     super

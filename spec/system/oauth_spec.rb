@@ -165,10 +165,11 @@ RSpec.describe 'Using OAuth from an external app' do
 
   context 'when creating a new user' do
     let(:params) do
-      { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read', prompt: 'create' }
+      { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read', prompt: 'create', invite_code: invite.code }
     end
 
     let!(:rule) { Fabricate :rule, text: 'You must be seven meters tall' }
+    let(:invite) { Fabricate :invite, autofollow: true }
 
     it 'allows creating a new user' do
       subject
@@ -183,6 +184,7 @@ RSpec.describe 'Using OAuth from an external app' do
       # It presents the user with a sign-up page
       expect(page)
         .to have_text(I18n.t('auth.register'))
+        .and have_text(I18n.t('invites.invited_by'))
 
       # Avoid the registration spam check
       travel_to 10.seconds.from_now
