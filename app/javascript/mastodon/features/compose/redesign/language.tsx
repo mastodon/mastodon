@@ -1,7 +1,7 @@
 import type React from 'react';
 import { useCallback, useId, useMemo, useState } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { MagnifyingGlassIcon, TranslateIcon } from '@phosphor-icons/react';
 
@@ -47,6 +47,15 @@ export const LanguageButton: React.FC = () => {
         size='sm'
         leadingIcon={TranslateIcon}
         aria-expanded={isOpen}
+        tooltip={{
+          type: 'description',
+          text: (
+            <FormattedMessage
+              id='compose.language.change'
+              defaultMessage='Change language'
+            />
+          ),
+        }}
         onClick={toggle}
       >
         {langCode.toLocaleUpperCase()}
