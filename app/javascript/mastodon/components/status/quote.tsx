@@ -364,7 +364,7 @@ function useQuoteError({
     selectPlainAccount(state, accountId),
   );
   const quoteAuthorName = account?.acct;
-  const domain = quoteAuthorName?.split('@')[1];
+  const accountDomain = quoteAuthorName?.split('@')[1];
   const dispatch = useAppDispatch();
   const onRevealAccount = useCallback(() => {
     if (accountId) {
@@ -476,7 +476,7 @@ function useQuoteError({
           <FormattedMessage
             id='status.quote_error.blocked_domain_hint.title'
             defaultMessage="This post is hidden because you've blocked {domain}."
-            values={{ domain }}
+            values={{ domain: accountDomain }}
           />
         );
         break;
