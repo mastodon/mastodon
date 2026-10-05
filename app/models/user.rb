@@ -525,7 +525,7 @@ class User < ApplicationRecord
   end
 
   def reload_home_feed
-    if display_boosts_changed?
+    if display_own_boosts_changed?
       FeedManager.instance.merge_into_home(account, account) if saved_change_to_settings.last['display_own_boosts'] == true
       FeedManager.instance.unmerge_from_home(account, account) if saved_change_to_settings.last['display_own_boosts'] == false
     elsif display_own_posts_changed?
@@ -534,11 +534,11 @@ class User < ApplicationRecord
     end
   end
 
-  def display_boosts_changed?
+  def display_own_boosts_changed?
     true if saved_change_to_settings.first['display_own_boosts'] != saved_change_to_settings.last['display_own_boosts']
   end
 
-  def display_posts_changed?
+  def display_own_posts_changed?
     true if saved_change_to_settings.first['display_own_posts'] != saved_change_to_settings.last['display_own_posts']
   end
 end
