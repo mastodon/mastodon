@@ -23,6 +23,7 @@ import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
+import { trendsEnabled } from '@/mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
@@ -53,7 +54,7 @@ export const RedesignMobileNavigation: React.FC = () => {
             </MobileNavLink>
             <MobileNavLink
               to={{
-                pathname: '/explore',
+                pathname: trendsEnabled ? '/explore' : '/search',
                 state: { focusTarget: FOCUS_TARGET.SEARCH },
               }}
               iconComponent={MagnifyingGlassIcon}

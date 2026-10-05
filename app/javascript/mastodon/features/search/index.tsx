@@ -33,7 +33,8 @@ import exploreRedesignClasses from '../explore/redesign.module.scss';
 import { SearchSection } from './components/search_section';
 
 const messages = defineMessages({
-  title: { id: 'search_results.title', defaultMessage: 'Search for "{q}"' },
+  searchFor: { id: 'search_results.title', defaultMessage: 'Search for "{q}"' },
+  search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
 });
 
 const INITIAL_PAGE_LIMIT = 10;
@@ -294,7 +295,9 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
     </>
   );
 
-  const pageTitle = intl.formatMessage(messages.title, { q });
+  const pageTitle = q
+    ? intl.formatMessage(messages.searchFor, { q })
+    : intl.formatMessage(messages.search);
 
   return (
     <Column bindToDocument={!multiColumn} label={pageTitle}>

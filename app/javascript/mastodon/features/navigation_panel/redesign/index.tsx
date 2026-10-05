@@ -30,6 +30,7 @@ import {
   disabledAccountId,
   localLiveFeedAccess,
   remoteLiveFeedAccess,
+  trendsEnabled,
 } from '@/mastodon/initial_state';
 import { transientSingleColumn } from '@/mastodon/is_mobile';
 import { canViewFeed } from '@/mastodon/permissions';
@@ -325,13 +326,17 @@ const ExploreLink: React.FC = () => {
   return (
     <NavigationLink
       to={{
-        pathname: '/explore',
+        pathname: trendsEnabled ? '/explore' : '/search',
         state: { focusTarget: FOCUS_TARGET.SEARCH },
       }}
       iconComponent={MagnifyingGlassIcon}
       onClick={invokeVirtualIosKeyboard}
     >
-      <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
+      {trendsEnabled ? (
+        <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
+      ) : (
+        <FormattedMessage id='navigation_bar.search' defaultMessage='Search' />
+      )}
     </NavigationLink>
   );
 };
