@@ -2,12 +2,6 @@
 
 .closeButton {
   position: absolute;
-  top: var(--space-2);
-  inset-inline-end: var(--space-2);
-}
-
-.legacyCloseButton {
-  position: absolute;
   top: 5px;
   inset-inline-end: 2px;
   padding: 10px;
@@ -37,5 +31,12 @@
 
   h4 {
     @include mixins.type-body-strong;
+  }
+
+  .closeButton {
+    top: 0;
+    inset-inline-end: 0;
+    border-end-start-radius: var(--radius-4);
+    border-start-end-radius: var(--radius-4);
   }
 }
