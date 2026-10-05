@@ -3,6 +3,8 @@
 class Api::V1::Accounts::CredentialsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :profile, :read, :'read:accounts' }, except: [:update]
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:update]
+
+  skip_before_action :require_functional!, only: [:show]
   before_action :require_user!, except: [:show]
   before_action :require_potential_user!, only: [:show]
 
