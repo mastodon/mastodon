@@ -22,6 +22,10 @@
     border-radius: var(--radius-round);
     padding-inline: var(--space-2);
   }
+
+  :global(.spoiler-button) {
+    display: none;
+  }
 }
 
 .galleryContent {
@@ -34,6 +38,12 @@
 
 .galleryHideButtons {
   :global(.media-gallery__item__badges),
+  :global(.media-gallery__actions) {
+    display: none;
+  }
+}
+
+.galleryHideActions {
   :global(.media-gallery__actions) {
     display: none;
   }
