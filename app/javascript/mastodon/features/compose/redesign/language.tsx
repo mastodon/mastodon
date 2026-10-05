@@ -11,6 +11,7 @@ import { Combobox } from '@/mastodon/components/form_fields';
 import { ComboboxMenuItem } from '@/mastodon/components/form_fields/combobox_field';
 import { PopoverMenuCard } from '@/mastodon/components/menu/card';
 import { useToggle } from '@/mastodon/hooks/useToggle';
+import { languages as initialStateLanguages } from '@/mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { useLanguageList } from './hooks';
@@ -22,6 +23,13 @@ const messages = defineMessages({
     defaultMessage: 'Search languages...',
   },
 });
+
+function getLanguageNameFromCode(code: string) {
+  const language = initialStateLanguages?.find(
+    ([languageCode]) => code === languageCode,
+  );
+  return language ? language[1] : undefined;
+}
 
 export const LanguageButton: React.FC = () => {
   const langCode = useAppSelector(
@@ -42,6 +50,7 @@ export const LanguageButton: React.FC = () => {
         onClick={toggle}
       >
         {langCode.toLocaleUpperCase()}
+        <span className='sr-only'>({getLanguageNameFromCode(langCode)})</span>
       </Button>
 
       <PopoverMenuCard
@@ -119,11 +128,11 @@ export const LanguageDropdown: React.FC<{ onClose: () => void }> = ({
   );
 };
 
-function renderLanguageItem(language: LanguageObject) {
+function renderLanguageItem({ code, name, localName }: LanguageObject) {
   return (
     <ComboboxMenuItem>
       <span>
-        <strong>{language.localName}</strong> ({language.name})
+        <strong lang={code}>{localName}</strong> ({name})
       </span>
     </ComboboxMenuItem>
   );
