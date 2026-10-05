@@ -237,8 +237,10 @@ AutosuggestTextarea.propTypes = {
   onPaste: PropTypes.func.isRequired,
   onDrop: PropTypes.func,
   onFocus:PropTypes.func,
+  onBlur: PropTypes.func,
   autoFocus: PropTypes.bool,
   lang: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default AutosuggestTextarea;
