@@ -27,7 +27,7 @@
   color: var(--color-text-primary);
   box-shadow: none;
   backdrop-filter: none;
-  word-break: break-all;
+  overflow-wrap: anywhere;
 
   h4 {
     @include mixins.type-body-strong;
