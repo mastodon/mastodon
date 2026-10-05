@@ -675,6 +675,8 @@ class FeedManager
   end
 
   def own_post?(account, status)
+    return false if status.reply?
+
     account.id == status.account_id
   end
 

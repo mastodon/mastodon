@@ -270,6 +270,16 @@ RSpec.describe FeedManager do
       expect(subject.push_to_home(user.account, post)).to be false
     end
 
+    it 'saves replies to home when user has display_own_posts disabled' do
+      user = Fabricate(:user)
+      user.settings['display_own_posts'] = false
+      status = Fabricate(:status, text: 'Hello world', account: alice)
+      reply  = Fabricate(:status, text: 'Nay', thread: status, account: user.account)
+
+      # post will be added
+      expect(subject.push_to_home(user.account, reply)).to be true
+    end
+
     it 'does not save a status to home when user has display_own_boosts on standard setting (disabled)' do
       user = Fabricate(:user)
       status = Fabricate(:status, text: 'Hello world', account: alice)
@@ -287,6 +297,17 @@ RSpec.describe FeedManager do
 
       # post will be added
       expect(subject.push_to_home(user.account, reblog)).to be true
+    end
+
+    it 'saves replies on a boosted post to home when user has display_own_boosts disabled' do
+      user = Fabricate(:user)
+      user.settings['display_own_boosts'] = false
+      status = Fabricate(:status, text: 'Hello world', account: alice)
+      reblog = Fabricate(:status, reblog: status, account: user.account)
+      reply  = Fabricate(:status, text: 'Nay', thread: reblog, account: user.account)
+
+      # post will be added
+      expect(subject.push_to_home(user.account, reply)).to be true
     end
 
     context 'with reblogs' do
