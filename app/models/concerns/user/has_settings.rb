@@ -43,6 +43,10 @@ module User::HasSettings
     settings['web.delete_modal']
   end
 
+  def setting_display_own_boosts
+    settings['display_own_boosts']
+  end
+
   def setting_display_own_posts
     settings['display_own_posts']
   end

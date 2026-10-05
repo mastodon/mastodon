@@ -10,6 +10,7 @@ class REST::PreferencesSerializer < ActiveModel::Serializer
   attribute :reading_default_sensitive_text, key: 'reading:expand:spoilers'
   attribute :reading_autoplay_gifs, key: 'reading:autoplay:gifs'
 
+  attribute :displaying_own_boosts, key: 'displaying:own:boosts'
   attribute :displaying_own_posts, key: 'displaying:own:posts'
 
   def posting_default_privacy
@@ -38,6 +39,10 @@ class REST::PreferencesSerializer < ActiveModel::Serializer
 
   def reading_autoplay_gifs
     object.user.setting_auto_play_gif
+  end
+
+  def displaying_own_boosts
+    object.user.setting_display_own_boosts
   end
 
   def displaying_own_posts

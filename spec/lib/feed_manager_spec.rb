@@ -248,6 +248,8 @@ RSpec.describe FeedManager do
   end
 
   describe '#push_to_home' do
+    let(:alice) { Fabricate(:account, username: 'alice') }
+
     it 'trims timelines if they will have more than FeedManager::MAX_ITEMS' do
       account = Fabricate(:account)
       status = Fabricate(:status)
@@ -266,6 +268,25 @@ RSpec.describe FeedManager do
 
       # post will be ignored
       expect(subject.push_to_home(user.account, post)).to be false
+    end
+
+    it 'does not save a status to home when user has display_own_boosts on standard setting (disabled)' do
+      user = Fabricate(:user)
+      status = Fabricate(:status, text: 'Hello world', account: alice)
+      reblog = Fabricate(:status, reblog: status, account: user.account)
+
+      # post will be ignored
+      expect(subject.push_to_home(user.account, reblog)).to be false
+    end
+
+    it 'saves a status to home when user has display_own_boosts enabled' do
+      user = Fabricate(:user)
+      user.settings['display_own_boosts'] = true
+      status = Fabricate(:status, text: 'Hello world', account: alice)
+      reblog = Fabricate(:status, reblog: status, account: user.account)
+
+      # post will be added
+      expect(subject.push_to_home(user.account, reblog)).to be true
     end
 
     context 'with reblogs' do
