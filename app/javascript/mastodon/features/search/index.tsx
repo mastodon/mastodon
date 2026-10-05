@@ -314,7 +314,14 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
         />
       )}
 
-      <div className='explore__search-results' data-nosnippet>
+      <div
+        className={
+          isRedesignEnabled()
+            ? 'scrollable scrollable--flex'
+            : 'explore__search-results'
+        }
+        data-nosnippet
+      >
         <ScrollableList
           scrollKey='search-results'
           isLoading={isLoading}
