@@ -51,12 +51,12 @@ export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
   let publishText = (
     <FormattedMessage id='compose.publish' defaultMessage='Publish' />
   );
-  if (type === 'message' || type === 'replyPrivate') {
+  if (isEditing) {
+    publishText = <FormattedMessage id='compose.save' defaultMessage='Save' />;
+  } else if (type === 'message' || type === 'replyPrivate') {
     publishText = (
       <FormattedMessage id='compose.message.publish' defaultMessage='Send' />
     );
-  } else if (isEditing) {
-    publishText = <FormattedMessage id='compose.save' defaultMessage='Save' />;
   }
 
   return (
