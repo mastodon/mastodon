@@ -26,6 +26,7 @@ import type {
   ApiStatusJSON,
   StatusVisibility,
 } from '@/mastodon/api_types/statuses';
+import { countableText } from '@/mastodon/features/compose/util/counter';
 import {
   createAppSelector,
   createAppThunk,
@@ -269,7 +270,12 @@ export const submitComposer = createAppThunk(
 
     const maxChars =
       server.server.item?.configuration.statuses.max_characters ?? 500;
-    const textLength = length(compose.get('text') as string);
+    let text = compose.get('text') as string;
+    const spoilerText = compose.get('spoiler_text');
+    if (compose.get('spoiler') && typeof spoilerText === 'string') {
+      text += spoilerText;
+    }
+    const textLength = length(countableText(text));
     if (textLength === 0) {
       dispatch(composerSlice.actions.addError('empty'));
       return;
