@@ -92,14 +92,9 @@ export const IconOnly: Story = {
 };
 
 export const Link: Story = {
-  render(args) {
-    if (args.as === 'link') {
-      return <Button {...args} to='/example' />;
-    }
-    return <Button {...args} />;
-  },
   args: {
     as: 'link',
+    to: '/example',
   },
 };
 
