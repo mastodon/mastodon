@@ -46,9 +46,15 @@
       = t 'admin.accounts.security_measures.password_and_2fa'
     - else
       = t 'admin.accounts.security_measures.only_password'
-  %td
-    - if account.user&.two_factor_enabled? && can?(:disable_2fa, account.user)
+  - if account.user&.two_factor_enabled? && can?(:disable_2fa, account.user)
+    %td
       = table_link_to 'lock_open', t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(account.user.id), method: :delete
+  - elsif account.user&.suspicious_inactive_sign_in? && can?(:disable_sign_in_token, account.user)
+    %td
+      = table_link_to 'lock_open', t('admin.accounts.disable_sign_in_token'), admin_user_sign_in_token_authentication_path(account.user.id), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+  - elsif account.user&.sign_in_token_disabled? && can?(:enable_sign_in_token, account.user)
+    %td
+      = table_link_to 'lock', t('admin.accounts.enable_sign_in_token'), admin_user_sign_in_token_authentication_path(account.user.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
 - if can?(:reset_password, account.user)
   %tr
     %td

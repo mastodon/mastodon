@@ -374,4 +374,20 @@ RSpec.describe UserMailer do
 
     it_behaves_like 'optional bulk mailer settings'
   end
+
+  describe '#sign_in_token' do
+    let(:ip) { '192.168.0.1' }
+    let(:agent) { 'NCSA_Mosaic/2.0 (Windows 3.1)' }
+    let(:timestamp) { Time.now.utc }
+    let(:mail) { described_class.sign_in_token(receiver, ip, agent, timestamp) }
+
+    it 'renders security code notification' do
+      receiver.update!(locale: nil)
+
+      expect(mail.text_part.body)
+        .to match(I18n.t('user_mailer.sign_in_token.explanation'))
+    end
+
+    it_behaves_like 'localized subject', 'user_mailer.sign_in_token.subject'
+  end
 end
