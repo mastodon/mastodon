@@ -460,6 +460,18 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
+      context 'when using an invalid password' do
+        before do
+          post :create, params: { user: { email: user.email, password: 'wrongpw' } }
+        end
+
+        it 'shows a login error and does not log the user in' do
+          expect(flash[:alert]).to match(/#{failure_message_invalid_email}/i)
+
+          expect(controller.current_user).to be_nil
+        end
+      end
+
       context 'when using a valid sign in token' do
         before do
           user.generate_sign_in_token
