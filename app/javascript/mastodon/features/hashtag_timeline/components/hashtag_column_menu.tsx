@@ -97,7 +97,6 @@ export const HashtagColumnMenu: React.FC<{
             <FormattedMessage
               id='hashtags.add_more_tags'
               defaultMessage='Add more tags to this column…'
-              values={{ tag: tagId }}
             />
           </MenuItem>
         </>
