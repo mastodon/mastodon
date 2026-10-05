@@ -69,6 +69,7 @@ en:
       demote: Demote
       destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
       disable: Freeze
+      disable_sign_in_token: Temporarily disable security code challenge
       disable_sign_in_token_auth: Disable email token authentication
       disable_two_factor_authentication: Disable 2FA
       disabled: Frozen
@@ -82,6 +83,7 @@ en:
       email: Email
       email_status: Email status
       enable: Unfreeze
+      enable_sign_in_token: Enable security code challenge
       enable_sign_in_token_auth: Enable email token authentication
       enabled: Enabled
       enabled_msg: Successfully unfroze %{username}'s account
@@ -2344,6 +2346,14 @@ en:
       further_actions_html: If this wasn't you, we recommend that you %{action} immediately as it may be compromised.
       subject: Second factor authentication failure
       title: Failed second factor authentication
+    sign_in_token:
+      change_password: change your password
+      details: 'Here are details of the attempt:'
+      explanation: 'We detected an attempt to sign in to your account after a long time of inactivity. If this is you, please enter the security code below on the sign in challenge page:'
+      further_actions: 'If this wasn''t you, please change your password and enable two-factor authentication on your account. You can do so here:'
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Please confirm attempted sign in
+      title: Sign in attempt
     suspicious_sign_in:
       change_password: change your password
       details: 'Here are details of the sign-in:'
@@ -2433,8 +2443,12 @@ en:
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
+    generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
     go_to_sso_account_settings: Go to your identity provider's account settings
+    inactive_sign_in_confirmation: It's been a while since you logged in, so we're sending a security code to your e-mail address to confirm that it's you.
+    inactive_sign_in_title: Please confirm security code
     invalid_otp_token: Invalid two-factor code
+    invalid_sign_in_token: Invalid security code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     rate_limited: Too many authentication attempts, try again later.
     seamless_external_login: You are logged in via an external service, so password and email settings are not available.
