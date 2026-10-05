@@ -1,5 +1,5 @@
 - content_for :page_title do
-  = t('settings.delete')
+  = t('deletes.title', acct: current_account.local_username_and_domain)
 
 = simple_form_for @confirmation, url: settings_delete_path, method: :delete do |f|
   %p.hint= t('deletes.warning.before')
@@ -20,10 +20,17 @@
 
   %hr.spacer/
 
+  = f.input :username,
+            wrapper: :with_block_label,
+            input_html: { autocomplete: 'off' },
+            label: t('deletes.confirm_username'),
+            hint: t('deletes.confirm_username_hint_html', username: current_account.username)
+
   - if current_user.encrypted_password.present?
-    = f.input :password, wrapper: :with_block_label, input_html: { autocomplete: 'current-password' }, hint: t('deletes.confirm_password')
-  - else
-    = f.input :username, wrapper: :with_block_label, input_html: { autocomplete: 'off' }, hint: t('deletes.confirm_username')
+    = f.input :password,
+              wrapper: :with_block_label,
+              input_html: { autocomplete: 'current-password' },
+              hint: t('deletes.confirm_password')
 
   .actions
     = f.button :button, t('deletes.proceed'), type: :submit, class: 'negative'

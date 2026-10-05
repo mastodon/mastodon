@@ -7,6 +7,7 @@ RSpec.describe DeleteAccountService do
     subject { described_class.new.call(account) }
 
     let!(:status) { Fabricate(:status, account: account) }
+    let!(:reported_status) { Fabricate(:status, account: account) }
     let!(:mention) { Fabricate(:mention, account: local_follower) }
     let!(:status_with_mention) { Fabricate(:status, account: account, mentions: [mention]) }
     let!(:media_attachment) { Fabricate(:media_attachment, account: account) }
@@ -28,8 +29,13 @@ RSpec.describe DeleteAccountService do
     let!(:account_note) { Fabricate(:account_note, account: account) }
     let!(:generated_annual_report) { Fabricate(:generated_annual_report, account: account) }
 
+    before do
+      Fabricate(:report, target_account: account, status_ids: [reported_status.id])
+    end
+
     it 'deletes associated owned and target records and target notifications' do
-      subject
+      expect { subject }
+        .to change { reported_status.reload.deleted_at }.from(nil)
 
       expect_deletion_of_associated_owned_records
       expect_deletion_of_associated_target_records
@@ -75,20 +81,42 @@ RSpec.describe DeleteAccountService do
     before do
       stub_request(:post, remote_alice.inbox_url).to_return(status: 201)
       stub_request(:post, remote_bob.inbox_url).to_return(status: 201)
+      stub_request(:post, remote_eve.inbox_url).to_return(status: 201)
     end
 
     let!(:remote_alice) { Fabricate(:account, inbox_url: 'https://alice.com/inbox', domain: 'alice.com', protocol: :activitypub) }
-    let!(:remote_bob) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', domain: 'bob.com', protocol: :activitypub) }
+    let!(:remote_bob)   { Fabricate(:account, inbox_url: 'https://bob.com/inbox', domain: 'bob.com', protocol: :activitypub) }
+    let!(:remote_eve)   { Fabricate(:account, inbox_url: 'https://eve.com/inbox', domain: 'eve.com', protocol: :activitypub) }
 
     it_behaves_like 'common behavior' do
       let(:account) { Fabricate(:account) }
       let(:local_follower) { Fabricate(:account) }
       let!(:collection) { Fabricate(:collection, account:) } # rubocop:disable RSpec/LetSetup
 
-      it 'sends a delete actor activity to all known inboxes' do
-        subject
-        expect(a_request(:post, remote_alice.inbox_url)).to have_been_made.once
-        expect(a_request(:post, remote_bob.inbox_url)).to have_been_made.once
+      context 'without a reach filter' do
+        before { account.reach_filter&.destroy }
+
+        it 'sends a delete actor activity to all known inboxes' do
+          subject
+          expect(a_request(:post, remote_alice.inbox_url)).to have_been_made.once
+          expect(a_request(:post, remote_bob.inbox_url)).to have_been_made.once
+          expect(a_request(:post, remote_eve.inbox_url)).to have_been_made.once
+        end
+      end
+
+      context 'with a reach filter' do
+        before do
+          account.build_reach_filter
+          account.reach_filter.add('alice.com')
+          account.reach_filter.add('bob.com')
+        end
+
+        it 'sends a delete actor activity to inboxes matching the reach filter' do
+          subject
+          expect(a_request(:post, remote_alice.inbox_url)).to have_been_made.once
+          expect(a_request(:post, remote_bob.inbox_url)).to have_been_made.once
+          expect(a_request(:post, remote_eve.inbox_url)).to_not have_been_made
+        end
       end
     end
   end

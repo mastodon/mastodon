@@ -311,7 +311,7 @@ const startServer = async () => {
   /**
    * @callback SubscriptionListener
    * @param {ReturnType<parseJSON>} json of the message
-   * @returns void
+   * @returns {void}
    */
 
   /**

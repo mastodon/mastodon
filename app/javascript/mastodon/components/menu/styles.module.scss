@@ -6,9 +6,9 @@
 
   display: flex;
   flex-direction: column;
-  padding: var(--space-2xs);
+  padding: var(--space-1);
   inset: unset; // override default [popover] UA styles
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-4);
   background: var(--color-bg-primary);
   overflow: hidden;
   z-index: calc(infinity);
@@ -25,16 +25,16 @@
 }
 
 .itemGroupLabel {
-  @include mixins.type-label-sm;
+  @include mixins.type-caption;
 
   color: var(--color-text-tertiary);
-  padding: var(--space-xs) var(--space-sm) 0;
+  padding: var(--space-2) var(--space-3) 0;
 }
 
 .itemDivider {
   height: 1px;
   background-color: var(--color-border-primary);
-  margin: var(--space-2xs) var(--space-sm);
+  margin: var(--space-1) var(--space-3);
   border: none;
 }
 
@@ -46,9 +46,9 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  border-radius: var(--radius-sm);
-  gap: var(--space-xs);
-  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-3);
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
   color: var(--color-text-primary);
   text-decoration: none;
   cursor: var(--cursor);
@@ -76,9 +76,14 @@
     background-color: var(--color-bg-highlight);
   }
 
+  &[aria-current='page'] {
+    font-weight: bold;
+    background-color: var(--color-bg-highlight);
+  }
+
   &:focus {
     // Override overeager global styles
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-3);
   }
 
   &:focus-visible {
@@ -109,10 +114,10 @@
 }
 
 .itemDescription {
-  @include mixins.type-label-sm;
+  @include mixins.type-caption;
 
   display: block;
-  margin-top: var(--space-3xs);
+  margin-top: var(--space-half);
   color: var(--color-text-secondary);
 
   .item[aria-disabled='true'] &,
@@ -124,13 +129,13 @@
 }
 
 .itemIcon {
-  width: var(--space-lg);
-  height: var(--space-lg);
+  width: var(--space-5);
+  height: var(--space-5);
 }
 
 .itemTrailingContent {
   margin-inline-start: auto;
 
   // Add additional space after the text.
-  padding-inline-start: var(--space-xs);
+  padding-inline-start: var(--space-2);
 }

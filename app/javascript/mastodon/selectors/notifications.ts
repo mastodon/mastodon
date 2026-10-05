@@ -5,6 +5,8 @@ import type { NotificationGroup } from 'mastodon/models/notification_group';
 import type { NotificationGap } from 'mastodon/reducers/notification_groups';
 import type { RootState } from 'mastodon/store';
 
+import { isRedesignEnabled } from '../utils/environment';
+
 import {
   selectSettingsNotificationsExcludedTypes,
   selectSettingsNotificationsQuickFilterActive,
@@ -63,19 +65,23 @@ export const selectUnreadNotificationGroupsCount = createSelector(
     selectPendingNotificationGroups,
   ],
   (notificationMarker, groups, pendingGroups) => {
+    function filterRelevantNotifications(
+      group: NotificationGap | NotificationGroup,
+    ) {
+      if (isRedesignEnabled() && group.type === 'follow_request') {
+        // Pending follow requests are counted separately in the redesign
+        return false;
+      }
+      return (
+        group.type !== 'gap' &&
+        group.page_max_id &&
+        compareId(group.page_max_id, notificationMarker) > 0
+      );
+    }
+
     return (
-      groups.filter(
-        (group) =>
-          group.type !== 'gap' &&
-          group.page_max_id &&
-          compareId(group.page_max_id, notificationMarker) > 0,
-      ).length +
-      pendingGroups.filter(
-        (group) =>
-          group.type !== 'gap' &&
-          group.page_max_id &&
-          compareId(group.page_max_id, notificationMarker) > 0,
-      ).length
+      groups.filter(filterRelevantNotifications).length +
+      pendingGroups.filter(filterRelevantNotifications).length
     );
   },
 );

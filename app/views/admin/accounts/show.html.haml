@@ -31,6 +31,11 @@
           = render 'admin/accounts/local_account', account: @account
         - else
           = render 'admin/accounts/remote_account', account: @account, domain_block: @domain_block
+        - if @account&.user&.created_by_application.present?
+          %tr
+            %th= t('admin.accounts.registration_app')
+            %td= @account&.user&.created_by_application&.name
+            %td
         %tr
           %th= t('admin.accounts.discoverable.title')
           %td= @account.discoverable? ? t('admin.accounts.discoverable.enabled') : t('admin.accounts.discoverable.disabled')

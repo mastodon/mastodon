@@ -11,6 +11,8 @@ import { AccountHeader } from '@/mastodon/components/account_header';
 import { AccountListItem } from '@/mastodon/components/account_list_item';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column/back_button';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import {
@@ -26,6 +28,7 @@ import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
 import { me } from '@/mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 
 import { CollectionListItem } from '../collections/components/collection_list_item';
@@ -129,7 +132,14 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
 
   return (
     <Column>
-      <ColumnBackButton />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={<DisplayNameSimple account={account} />}
+        />
+      ) : (
+        <ColumnBackButton />
+      )}
 
       <Scrollable>
         {accountId && (
@@ -218,9 +228,17 @@ const AccountFeaturedWrapper = ({
   children,
   accountId,
 }: React.PropsWithChildren<{ accountId?: string }>) => {
+  const account = useAccount(accountId);
   return (
     <Column>
-      <ColumnBackButton />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={<DisplayNameSimple account={account} />}
+        />
+      ) : (
+        <ColumnBackButton />
+      )}
       <div className='scrollable scrollable--flex'>
         {accountId && <AccountHeader accountId={accountId} />}
         {children}

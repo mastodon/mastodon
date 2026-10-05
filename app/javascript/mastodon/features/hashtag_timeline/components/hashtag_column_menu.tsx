@@ -12,12 +12,13 @@ import {
   MenuItemDivider,
 } from '@/mastodon/components/menu';
 import type { MenuItemCheckboxChangeHandler } from '@/mastodon/components/menu/items';
+import { useHashtag } from '@/mastodon/hooks/useHashtag';
 import { useIdentity } from '@/mastodon/identity_context';
 import { useAppDispatch } from 'mastodon/store';
 
 import { useColumnSettings } from '../../public_timeline/components/feed_column_settings';
 
-import { useHashtag, messages } from './hashtag_header';
+import { messages } from './hashtag_header';
 
 export const HashtagColumnMenu: React.FC<{
   tagId: string;
@@ -96,7 +97,6 @@ export const HashtagColumnMenu: React.FC<{
             <FormattedMessage
               id='hashtags.add_more_tags'
               defaultMessage='Add more tags to this column…'
-              values={{ tag: tagId }}
             />
           </MenuItem>
         </>

@@ -54,31 +54,43 @@ export const selectStatusFilters = createAppSelector(
     (state, { statusId }: { statusId?: string | null }) =>
       selectExpandedStatus(state, statusId ?? undefined),
     selectPlainFilters,
-    (_, { warnInsteadOfHide }: { warnInsteadOfHide?: boolean }) =>
-      warnInsteadOfHide,
+    (state) => state.meta.get('me') as string | undefined,
+    (_, { contextType }: { contextType?: StatusContextType }) => contextType,
   ],
-  (status, filters) => {
+  (status, filters, currentAccountId, contextType) => {
     const results: FilterShape[] = [];
-    if (!status || !filters) {
-      return results;
+    let filterAction: 'warn' | 'hide' | null = null;
+    if (!status || !filters || status.account.acct === currentAccountId) {
+      return { filters: results, filterAction };
     }
-    const filtered = status.reblog?.filtered ?? status.filtered;
+
+    const warnInsteadOfHide =
+      !!contextType &&
+      ['detailed', 'bookmarks', 'favourites', 'search'].includes(contextType);
+
+    const filtered = status.reblog?.filtered ?? status.filtered ?? [];
     for (const result of filtered) {
       const filter = filters[result.filter];
       if (!filter) {
         continue;
       }
 
+      if (filter.filter_action === 'hide' && !warnInsteadOfHide) {
+        filterAction = 'hide';
+      } else {
+        filterAction ??= 'warn';
+      }
+
       results.push(filter);
     }
 
-    return results;
+    return { filters: results, filterAction };
   },
 );
 
 export const selectMediaFilters = createAppSelector(
   [selectStatusFilters],
-  (filters) =>
+  ({ filters }) =>
     filters
       .filter((filter) => filter.filter_action === 'blur')
       .map((filter) => filter.title),

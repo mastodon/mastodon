@@ -148,6 +148,7 @@ ga:
       push_subscription_expires: Téann síntiús PuSH in éag
       redownload: Athnuaigh próifíl
       redownloaded_msg: D'éirigh le hathnuachan próifíl %{username} ón mbunús
+      registration_app: Aip chlárúcháin
       reject: Diúltaigh
       rejected_msg: D'éirigh le diúltú le feidhmchlár sínithe %{username}
       remote_suspension_irreversible: Scriosadh sonraí an chuntais seo go do-aisiompaithe.
@@ -228,6 +229,7 @@ ga:
         create_user_role: Cruthaigh Ról
         create_username_block: Cruthaigh Riail Ainm Úsáideora
         demote_user: Ísligh úsáideoir
+        destroy_account: Scrios Sonraí an Chuntais
         destroy_announcement: Scrios Fógra
         destroy_canonical_email_block: Scrios Bloc Ríomhphoist
         destroy_custom_emoji: Scrios Saincheaptha Emoji
@@ -296,6 +298,7 @@ ga:
         create_user_role_html: Chruthaigh %{name} %{target} ról
         create_username_block_html: Chuir %{name} riail leis d'ainmneacha úsáideora ina bhfuil %{target}
         demote_user_html: "%{name} úsáideoir scriosta %{target}"
+        destroy_account_html: Scrios %{name} sonraí cuntais le haghaidh %{target}
         destroy_announcement_html: "%{name} fógra scriosta %{target}"
         destroy_canonical_email_block_html: "%{name} ríomhphost díchoiscthe leis an hash %{target}"
         destroy_collection_html: Bhain %{name} bailiúchán le %{target}
@@ -647,6 +650,11 @@ ga:
         title: Iompórtáil bloic fearainn
       no_file: Níor roghnaíodh aon chomhad
     fasp:
+      capabilities:
+        activation_msg: Cumas curtha i ngníomh go rathúil.
+        deactivation_msg: Díchumasaíodh an cumas go rathúil.
+        disable: Díchumasaigh
+        enable: Cumasaigh
       debug:
         callbacks:
           created_at: Cruthaithe ag
@@ -658,6 +666,7 @@ ga:
         active: Gníomhach
         base_url: Bun-URL
         callback: Glao ar ais
+        capabilities: Cumais
         delete: Scrios
         edit: Cuir Soláthraí in Eagar
         finish_registration: Críochnaigh clárú
@@ -670,8 +679,6 @@ ga:
           description: Fuair ​​tú clárú ó FASP. Diúltaigh é murar chuir tú tús leis seo. Má thionscain tú é seo, déan comparáid chúramach idir an t-ainm agus an eochair-mhéarlorg sula ndearbhaítear an clárúchán.
           reject: Diúltaigh
           title: Deimhnigh Clárú FASP
-        save: Sábháil
-        select_capabilities: Roghnaigh Cumais
         sign_in: Sínigh Isteach
         status: Stádas
         title: Soláthraithe Seirbhíse Cúnta Fediverse
@@ -1028,10 +1035,8 @@ ga:
       discovery:
         follow_recommendations: Lean na moltaí
         preamble: Tá sé ríthábhachtach ábhar suimiúil a chur chun cinn chun úsáideoirí nua a thabhairt isteach ar Mastodon, úsáideoirí nach mbeadh aithne acu ar aon duine. Rialú conas a oibríonn gnéithe éagsúla fionnachtana ar do fhreastalaí.
-        privacy: Príobháideacht
         profile_directory: Eolaire próifíle
         public_timelines: Amlínte poiblí
-        publish_statistics: Staitisticí a fhoilsiú
         title: Fionnachtain
         trends: Treochtaí
         wrapstodon: Wrapstodon
@@ -1039,6 +1044,11 @@ ga:
         all: Do chách
         disabled: Do dhuine ar bith
         users: Chun úsáideoirí áitiúla logáilte isteach
+      external:
+        preamble: Rialaigh an méid eolais faoi do fhreastalaí a roinntear le seirbhísí eile agus cé chomh furasta is atá sé do fhreastalaí a aimsiú.
+        privacy: Príobháideachas
+        publish_statistics: Foilsigh staitisticí
+        title: Fionnachtain Sheachtrach
       feed_access:
         modes:
           authenticated: Úsáideoirí fíordheimhnithe amháin
@@ -1067,7 +1077,15 @@ ga:
         warning_hint: Molaimid úsáid a bhaint as “Faomhadh riachtanach chun clárú” ach amháin má tá tú muiníneach gur féidir le d’fhoireann mhodhnóireachta clárú turscair agus mailíseach a láimhseáil go tráthúil.
       security:
         authorized_fetch: Teastaíonn fíordheimhniú ó fhreastalaithe cónasctha
-        authorized_fetch_hint: Toisc go n-éilítear fíordheimhniú ó fhreastalaithe cónasctha, is féidir bloic ar leibhéal an úsáideora agus ar leibhéal an fhreastalaí araon a fhorfheidhmiú níos déine. Mar sin féin, tagann sé seo ar chostas pionós feidhmíochta, laghdaítear an teacht ar do chuid freagraí, agus d'fhéadfadh saincheisteanna comhoiriúnachta a thabhairt isteach le roinnt seirbhísí cónasctha. Ina theannta sin, ní chuirfidh sé seo cosc ​​ar aisteoirí tiomnaithe do phoist phoiblí agus do chuntais phoiblí a fháil.
+        authorized_fetch_hint: Socraigh cathain a bheidh sé riachtanach do fhfreastalaithe cianda fíordheimhniú a dhéanamh agus ábhar á fháil ón bhfreastalaí seo.
+        authorized_fetch_hints:
+          actors: Trí fhíordheimhniú a éileamh le haghaidh próifílí, is féidir a rianú cé na freastalaithe a d’aimsigh gach ceann de do chuntais áitiúla; laghdaíonn sé seo go mór líon na n-iarratas neamhriachtanach a dhéantar nuair a chuirtear freastalaithe ar an eolas faoi scriosadh cuntais. Bíonn tionchar beag diúltach ag an rogha seo ar an bhfeidhmíocht agus próifílí á seachadadh, mar gheall ar an rianú sin agus ar an bhfíric nach féidir leis an bhfrith-sheachfhreastalaí freagraí ar na hiarratais seo a thaisceadh. D’fhéadfadh fadhbanna comhoiriúnachta le seirbhísí cónasctha áirithe teacht chun cinn dá bharr freisin.
+          all: Chomh maith leis na buntáistí agus na míbhuntáistí a bhaineann le fíordheimhniú a éileamh le haghaidh próifílí, cuireann fíordheimhniú gan choinníoll ó fhreastalaithe cónaidhme ar chumas forfheidhmiú níos déine ar bhloic ar leibhéal an úsáideora agus ar leibhéal an fhreastalaí araon, ach cuireann sé cosc ​​​​ar thaisceadh fhormhór na n-iarratas freisin. Laghdóidh sé raon do fhreagraí freisin, toisc go mbeidh atreorú freagraí díchumasaithe.
+          none: Trí fhíordheimhniú a éileamh ach amháin nuair is gá go hiomlán, is féidir le do sheachfhreastalaí droim ar ais níos mó iarratas a chur i dtaisce. D’fhéadfaí an rogha seo a bhaint amach amach anseo. Ná húsáid é ach amháin má chruthaíonn na roghanna eile fadhbanna.
+        authorized_fetch_modes:
+          actors: Le haghaidh próifílí agus ábhair phríobháidigh
+          all: I gcás gach iarratais
+          none: Le haghaidh ábhair phríobháidigh amháin
         authorized_fetch_overridden_hint: Ní féidir leat an socrú seo a athrú faoi láthair toisc go bhfuil sé sáraithe ag athróg timpeallachta.
         federation_authentication: Forghníomhú fíordheimhnithe Cónaidhm
       title: Socruithe freastalaí
@@ -1260,7 +1278,12 @@ ga:
           other: Roinnte ag %{count} duine le seachtain anuas
           two: Roinnte ag %{count} duine le seachtain anuas
         title: Naisc treochta
-        usage_comparison: Roinnte %{today} uair inniu, i gcomparáid le %{yesterday} inné
+        usage_comparison:
+          few: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          many: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          one: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          other: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          two: Roinnte %{count} uair inniu, i gcomparáid le %{yesterday} inné
       not_allowed_to_trend: Ní cheadaítear treocht
       only_allowed: Ní cheadaítear ach
       pending_review: Athbhreithniú ar feitheamh
@@ -1308,7 +1331,12 @@ ga:
         trendable: Is féidir le feiceáil faoi threochtaí
         trending_rank: 'Ag treochtáil # %{rank}'
         usable: Is féidir é a úsáid
-        usage_comparison: Úsáidte %{today} uair inniu, i gcomparáid le %{yesterday} inné
+        usage_comparison:
+          few: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          many: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          one: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          other: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
+          two: Úsáidte %{count} uair inniu, i gcomparáid le %{yesterday} inné
         used_by_over_week:
           few: Úsáidte ag %{count} duine le seachtain anuas
           many: Úsáidte ag %{count} duine le seachtain anuas
@@ -1575,9 +1603,11 @@ ga:
   deletes:
     challenge_not_passed: Ní raibh an fhaisnéis a d'iontráil tú ceart
     confirm_password: Cuir isteach do phasfhocal reatha chun d'aitheantas a fhíorú
-    confirm_username: Cuir isteach d'ainm úsáideora chun an nós imeachta a dhearbhú
+    confirm_username: Deimhnigh ainm úsáideora
+    confirm_username_hint_html: Clóscríobh <code>%{username}</code> le do thoil chun an cuntas is mian leat a scriosadh a dhearbhú
     proceed: Scrios cuntas
     success_msg: Scriosadh do chuntas go rathúil
+    title: Scrios an cuntas %{acct}
     warning:
       before: 'Sula dtéann tú ar aghaidh, léigh na nótaí seo go cúramach le do thoil:'
       caches: Seans go seasfaidh inneachar atá i dtaisce ag freastalaithe eile
@@ -1799,7 +1829,12 @@ ga:
       invalid_csv_file: 'Comhad CSV neamhbhailí. Earráid: %{error}'
       invalid_json_file: 'Comhad JSON neamhbhailí. Earráid: %{error}'
       no_data: Níl aon sonraí sa chomhad seo a thagann leis an gcineál iompórtála a tugadh
-      over_rows_processing_limit: níos mó ná %{count} sraitheanna
+      over_rows_processing_limit:
+        few: tá níos mó ná %{count} ró ann
+        many: tá níos mó ná %{count} ró ann
+        one: tá níos mó ná %{count} ró ann
+        other: tá níos mó ná %{count} ró ann
+        two: tá níos mó ná %{count} ró ann
       status_not_found_warning: Cuireann cuid de do scagairí poist shonracha i bhfolach nach bhfuil ar eolas ag an bhfreastalaí seo. Ní scagfar na poist seo go huathoibríoch má aimsíonn an freastalaí iad níos déanaí.
       too_large: Tá an comhad ró-mhór
     failures: Teipeanna
@@ -1995,7 +2030,12 @@ ga:
     incoming_migrations_html: Chun bogadh ó chuntas eile go dtí an ceann seo, ní mór duit <a href="%{path}">ailias cuntais a chruthú</a> ar dtús.
     moved_msg: Tá do chuntas á atreorú chuig %{acct} anois agus tá do leantóirí á bhogadh anonn.
     not_redirecting: Níl do chuntas á atreorú chuig aon chuntas eile faoi láthair.
-    on_cooldown: D'aistrigh tú do chuntas le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+    on_cooldown:
+      few: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      many: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      one: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      other: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
+      two: Tá do chuntas aistrithe agat le déanaí. Beidh an fheidhm seo ar fáil arís i gceann %{count} lá.
     past_migrations: Imirce san am a chuaigh thart
     proceed_with_move: Bog leantóirí
     redirected_msg: Tá do chuntas á atreorú chuig %{acct} anois.
@@ -2186,8 +2226,18 @@ ga:
       account: Postálacha poiblí ó @%{acct}
       tag: 'Postálacha poiblí clibáilte # %{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Tá an teorainn de %{limit} postáil sceidealaithe sáraithe agat don lá atá inniu ann
-    over_total_limit: Tá an teorainn de %{limit} postáil sceidealaithe sáraithe agat
+    over_daily_limit:
+      few: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      many: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      one: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      other: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+      two: Tá an teorainn de %{count} postáil sceidealaithe don lá inniu sáraithe agat
+    over_total_limit:
+      few: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      many: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      one: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      other: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
+      two: Tá an teorainn de %{count} post sceidealaithe sáraithe agat
     too_soon: caithfidh dáta a bheith sa todhchaí
   self_destruct:
     lead_html: Ar an drochuair, tá <strong>%{domain}</strong> ag dúnadh síos go buan. Má bhí cuntas agat ann, ní bheidh tú in ann leanúint ar aghaidh á úsáid, ach is féidir leat cúltaca de do shonraí a iarraidh fós.
@@ -2245,7 +2295,6 @@ ga:
     appearance: Cuma
     authorized_apps: Aipeanna údaraithe
     back: Ar ais go Mastodon
-    delete: Scriosadh cuntais
     development: Forbairt
     edit_profile: Cuir an phróifíl in eagar
     export: Easpórtáil

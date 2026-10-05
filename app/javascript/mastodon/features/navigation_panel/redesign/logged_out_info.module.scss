@@ -1,7 +1,33 @@
 @use '@/styles/mastodon/mixins';
 
+.meta {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding-top: var(--space-4);
+
+  @include mixins.type-caption;
+
+  dd {
+    @include mixins.type-label;
+
+    padding-top: var(--space-1);
+  }
+}
+
+.adminLink {
+  --lockup-padding: 0;
+  --lockup-gap: var(--space-1);
+
+  font: inherit;
+
+  :any-link {
+    font-size: var(--fs-13);
+  }
+}
+
 .description {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-4);
 
   @include mixins.type-body-compact;
 
@@ -11,5 +37,5 @@
 .buttons {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-2);
 }

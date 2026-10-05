@@ -2,7 +2,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
-import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import { StatusBoostIcon } from '@/mastodon/components/status/icons';
 import type { NotificationGroupReblog } from 'mastodon/models/notification_group';
 import { useAppSelector } from 'mastodon/store';
 
@@ -47,7 +47,7 @@ export const NotificationReblog: React.FC<{
   return (
     <NotificationGroupWithStatus
       type='reblog'
-      icon={RepeatIcon}
+      icon={StatusBoostIcon}
       iconId='repeat'
       accountIds={notification.sampleAccountIds}
       statusId={notification.statusId}

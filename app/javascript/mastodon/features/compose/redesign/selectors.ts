@@ -1,6 +1,7 @@
 import { length } from 'stringz';
 
 import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
+import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import { immutableListToSuggestions } from '@/mastodon/components/autosuggest/utils';
 import type { StatusVisibility } from '@/mastodon/models/status';
 import type { ComposeType } from '@/mastodon/reducers/slices/composer';
@@ -15,6 +16,20 @@ export const selectComposePrivacy = createAppSelector(
     (state) => state.compose.get('default_privacy') as StatusVisibility,
   ],
   (privacy, defaultPrivacy) => privacy ?? defaultPrivacy,
+);
+
+export const selectComposeQuotePolicy = createAppSelector(
+  [
+    (state) => state.compose.get('quote_policy') as ApiQuotePolicy | undefined,
+    (state) => state.compose.get('default_quote_policy') as ApiQuotePolicy,
+    selectComposePrivacy,
+  ],
+  (quotePolicy, defaultQuotePolicy, privacy) => {
+    if (privacy === 'private' || privacy === 'direct') {
+      return 'nobody';
+    }
+    return quotePolicy ?? defaultQuotePolicy;
+  },
 );
 
 export const selectComposeType = createAppSelector(
@@ -49,7 +64,7 @@ export const selectComposeCharsCount = createAppSelector(
         : '',
   ],
   (maxChars, text, spoilerText) => {
-    const allText = (countableText(text) as string) + spoilerText;
+    const allText = countableText(text) + spoilerText;
     return {
       text,
       allText,
@@ -68,13 +83,21 @@ export const selectComposeHasAttachments = createAppSelector(
         | Immutable.List<unknown>
         | undefined,
     (state) => Number(state.compose.get('pending_media_attachments')),
+    (state) => state.compose.get('fetching_link') !== null,
   ],
-  (hasPoll, quotedStatusId, attachments, pendingAttachments) => {
+  (
+    hasPoll,
+    quotedStatusId,
+    attachments,
+    pendingAttachments,
+    isFetchingLink,
+  ) => {
     return {
       hasPoll,
       hasAttachments:
         (attachments && attachments.size > 0) || pendingAttachments > 0,
       quotedStatusId,
+      isFetchingLink,
     };
   },
 );
@@ -131,10 +154,12 @@ export const selectComposeSensitive = createAppSelector(
   [
     (state) => !!state.compose.get('spoiler'),
     (state) => state.compose.get('spoiler_text'),
+    (state) => !!state.compose.get('sensitive'),
   ],
-  (sensitive, text) => ({
-    sensitive,
+  (spoiler, text, sensitive) => ({
+    sensitive: spoiler,
     sensitiveText: typeof text === 'string' ? text : '',
+    mediaSensitive: sensitive || spoiler,
   }),
 );
 

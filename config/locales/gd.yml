@@ -644,8 +644,6 @@ gd:
           description: Fhuair thu clàradh o FASP. Diùlt e mur an do chuir thu fhèin seo a’ dol. Mas e tusa a bh’ ann, dèan coimeas cùramach air ainm agus lorg-meòir na h-iuchraiche mus dearbh thu an clàradh.
           reject: Diùlt
           title: Dearbh an clàradh FASP
-        save: Sàbhail
-        select_capabilities: Tagh comasan
         sign_in: Clàraich a-steach
         status: Staid
         title: Fediverse Auxiliary Service Providers
@@ -996,10 +994,8 @@ gd:
       discovery:
         follow_recommendations: Molaidhean leantainn
         preamble: Tha tighinn an uachdar susbainte inntinniche fìor-chudromach airson toiseach-tòiseachaidh an luchd-cleachdaidh ùr nach eil eòlach air duine sam bith air Mastodon, ma dh’fhaoidte. Stiùirich mar a dh’obraicheas gleusan an rùrachaidh air an fhrithealaiche agad.
-        privacy: Prìobhaideachd
         profile_directory: Eòlaire nam pròifil
         public_timelines: Loidhnichean-ama poblach
-        publish_statistics: Foillsich an stadastaireachd
         title: Rùrachadh
         trends: Treandaichean
         wrapstodon: Wrapstodon
@@ -1035,7 +1031,6 @@ gd:
         warning_hint: Mholamaid gun chleachd thu “Tha aontachadh riatanach airson clàradh” mur eil earbsa agad gur urrainn dhan sgioba agad spama agus clàraidhean droch-rùnach a làimhseachadh gu sgiobalta.
       security:
         authorized_fetch: Iarr dearbhadh o fhrithealaichean co-naisgte
-        authorized_fetch_hint: Ma dh’iarras tu dearbhadh o fhrithealaichean cho-naisgte, gheibh thu an comas gus bacaidhean èigneachadh nas teinne an dà chuid air ìre an luchd-cleachdaidh ’s an fhrithealaiche. Gidheadh, ceannaichidh tu an comas seo le dèanadas nas miosa is ruigsinn nas lugha nam freagairtean agad agus dh’fhaoidte gun èirich duilgheadasan co-chòrdalachd le cuid a sheirbheisean cho-naisgte. A bharrachd air sin, cha bhac seo an fheadhainn dian o fhaighinn nam postaichean is cunntasan poblach agad.
         authorized_fetch_overridden_hint: Chan urrainn dhut an roghainn seo atharrachadh an-dràsta on a tha caochladair àrainne ’ga thar-àithneadh.
         federation_authentication: Èigneachadh dearbhadh a’ cho-nasgaidh
       title: Roghainnean an fhrithealaiche
@@ -1226,7 +1221,6 @@ gd:
           other: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
           two: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
         title: Ceanglaichean a’ treandadh
-        usage_comparison: Chaidh a cho-roinneadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
       not_allowed_to_trend: Chan fhaod seo treandadh
       only_allowed: An fheadhainn cheadaichte a-mhàin
       pending_review: A’ feitheamh air lèirmheas
@@ -1273,7 +1267,6 @@ gd:
         trendable: Nochd sna treandaichean
         trending_rank: 'A’ treandadh #%{rank}'
         usable: Gabhaidh a chleachdadh
-        usage_comparison: Chaidh a chleachdadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
         used_by_over_week:
           few: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
           one: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
@@ -1536,7 +1529,6 @@ gd:
   deletes:
     challenge_not_passed: Chan eil am fiosrachadh a chuir thu a-steach mar bu chòir
     confirm_password: Cuir a-steach am facal-faire làithreach a dhearbhadh cò thusa
-    confirm_username: Cuir a-steach an t-ainm-cleachdaiche agad a dhearbhadh a’ ghnìomha
     proceed: Sguab às an cunntas
     success_msg: Chaidh an cunntas agad a sguabadh às
     warning:
@@ -1750,7 +1742,6 @@ gd:
       incompatible_type: Chan eil e co-chòrdail le seòrsa an ion-phortaidh a thagh thu
       invalid_csv_file: 'Faidhle CSV mì-dhligheach. Mearachd: %{error}'
       invalid_json_file: 'Faidhle JSON mì-dhligheach. Mearachd: %{error}'
-      over_rows_processing_limit: tha còrr is %{count} ràgh(an) ann
       status_not_found_warning: Falaichidh cuid dhe na criathragan agad postaichean sònraichte air nach eil am frithealaiche seo eòlach. Cha dèid na postaichean seo a chriathradh gu fèin-obrachail ma gheibh am frithealaiche lorg orra uaireigin sam àm ri teachd.
       too_large: Tha am faidhle ro mhòr
     failures: Fàilligidhean
@@ -1931,7 +1922,6 @@ gd:
     incoming_migrations_html: Airson imrich o chunntas eile dhan fhear seo, feumaidh tu <a href="%{path}">alias cunntais a chruthachadh</a> an toiseach.
     moved_msg: Tha an cunntas agad ’ga ath-stiùireadh gu %{acct} a-nis ’s an luchd-leantainn agad ’gan imrich.
     not_redirecting: Chan eil an cunntas agad ’ga ath-stiùireadh gu cunntas sam bith eile aig an àm seo.
-    on_cooldown: Rinn thu imrich air a’ chunntas agad o chionn goirid. Bidh an gleus seo ri làimh dhut a-rithist an ceann %{count} là(ithean).
     past_migrations: Imrichean roimhpe
     proceed_with_move: Imrich an luchd-leantainn
     redirected_msg: Tha an cunntas agad ’ga ath-stiùireadh gu %{acct} a-nis.
@@ -2121,8 +2111,6 @@ gd:
       account: Postaichean poblach o @%{acct}
       tag: 'Postaichean poblach le taga #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte an-diugh
-    over_total_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte
     too_soon: feumaidh an ceann-latha a bhith san àm ri teachd
   self_destruct:
     lead_html: Gu mì-fhortanach, thèid <strong>%{domain}</strong> a dhùnadh gu buan. Ma tha cunntas agad ann, chan urrainn dhut cumail a’ gol ’ga chleachdadh ach ’s urrainn dhut lethbhreac-glèidhidh dhen dàta agad iarraidh fhathast.
@@ -2180,7 +2168,6 @@ gd:
     appearance: Coltas
     authorized_apps: Aplacaidean ùghdarraichte
     back: Till gu Mastodon
-    delete: Sguabadh às cunntais
     development: Leasachadh
     edit_profile: Deasaich a’ phròifil
     export: Às-phortadh

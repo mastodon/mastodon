@@ -1,13 +1,13 @@
 @use '@/styles/mastodon/mixins';
 
 .loadingWrapper {
-  @include mixins.type-label-md;
+  @include mixins.type-meta;
 
   display: grid;
   justify-items: center;
   align-content: center;
   height: 100%;
-  gap: var(--space-sm);
+  gap: var(--space-3);
   opacity: 0;
   animation: fade-in 300ms ease-in 1.2s forwards;
 }

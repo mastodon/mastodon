@@ -21,7 +21,7 @@ import { isFulfilled } from '@reduxjs/toolkit';
 
 import {
   FOCUS_TARGET,
-  useFocusOnNavigation,
+  useFocusAfterNavigation,
 } from '@/mastodon/components/navigation_focus_target';
 import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
@@ -111,7 +111,14 @@ export const Search: React.FC<{
   const [expanded, setExpanded] = useState(false);
   const [selectedOption, setSelectedOption] = useState(-1);
   const [quickActions, setQuickActions] = useState<SearchOption[]>([]);
-  const focusOnNavigation = useFocusOnNavigation(FOCUS_TARGET.SEARCH);
+  const [shouldOpenOnFocus, setShouldOpenOnFocus] =
+    useState(!isRedesignEnabled());
+  const focusAfterNavigation = useFocusAfterNavigation(
+    FOCUS_TARGET.SEARCH,
+    () => {
+      setShouldOpenOnFocus(true);
+    },
+  );
 
   const unfocus = useCallback(() => {
     document.querySelector('.ui')?.parentElement?.focus();
@@ -318,6 +325,8 @@ export const Search: React.FC<{
   const handleChange = useCallback(
     ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
       setValue(value);
+      setExpanded(true);
+      setSelectedOption(-1);
 
       const trimmedValue = value.trim();
       const newQuickActions = [];
@@ -504,8 +513,10 @@ export const Search: React.FC<{
   );
 
   const handleInputFocus = useCallback(() => {
-    setExpanded(true);
-    setSelectedOption(-1);
+    if (shouldOpenOnFocus) {
+      setExpanded(true);
+      setSelectedOption(-1);
+    }
 
     if (searchInputRef.current && !singleColumn) {
       const { left, right } = searchInputRef.current.getBoundingClientRect();
@@ -517,7 +528,7 @@ export const Search: React.FC<{
         searchInputRef.current.scrollIntoView();
       }
     }
-  }, [setExpanded, setSelectedOption, singleColumn]);
+  }, [shouldOpenOnFocus, singleColumn]);
 
   const handleInputBlur = useCallback(() => {
     setSelectedOption(-1);
@@ -567,7 +578,7 @@ export const Search: React.FC<{
       <input
         ref={useMergedRefs(
           searchInputRef,
-          isRedesignEnabled() ? focusOnNavigation : null,
+          isRedesignEnabled() ? focusAfterNavigation : null,
         )}
         className='search__input'
         type='text'

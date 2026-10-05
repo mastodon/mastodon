@@ -1,4 +1,5 @@
 import { on } from 'delegated-events';
+import punycode from 'punycode/punycode';
 
 export function setupLinkListeners() {
   on('click', 'a[data-confirm]', handleConfirmLink);
@@ -17,6 +18,19 @@ export function urlToDomain(input: string | URL) {
   } catch {
     return null;
   }
+}
+
+const IDNA_PREFIX = 'xn--';
+
+export function decodeIDNA(domain: string) {
+  return domain
+    .split('.')
+    .map((part) =>
+      part.startsWith(IDNA_PREFIX)
+        ? punycode.decode(part.slice(IDNA_PREFIX.length))
+        : part,
+    )
+    .join('.');
 }
 
 function handleConfirmLink(event: MouseEvent) {

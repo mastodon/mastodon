@@ -4,12 +4,17 @@ import { defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { CopyIcon } from '@phosphor-icons/react';
+import type { DistributedOmit } from 'type-fest';
+
 import ContentCopyIcon from '@/material-icons/400-24px/content_copy.svg?react';
 import { showAlert } from 'mastodon/actions/alerts';
-import { IconButton } from 'mastodon/components/icon_button';
+import { IconButton as LegacyIconButton } from 'mastodon/components/icon_button';
 import { useAppDispatch } from 'mastodon/store';
 
 import { Button } from './button';
+import type { IconButtonProps } from './button/redesign';
+import { IconButton } from './button/redesign';
 
 const messages = defineMessages({
   copied: {
@@ -54,7 +59,7 @@ export const CopyButton: React.FC<
   );
 };
 
-export const CopyIconButton: React.FC<{
+export const CopyIconButtonLegacy: React.FC<{
   title: string;
   value: string;
   className?: string;
@@ -63,7 +68,7 @@ export const CopyIconButton: React.FC<{
   const { copyText, wasCopied } = useCopyToClipboard({ text: value });
 
   return (
-    <IconButton
+    <LegacyIconButton
       className={classNames(className, wasCopied ? 'copied' : 'copyable')}
       title={title}
       onClick={copyText}
@@ -71,5 +76,25 @@ export const CopyIconButton: React.FC<{
       iconComponent={ContentCopyIcon}
       aria-describedby={ariaDescribedBy}
     />
+  );
+};
+
+export const CopyIconButton: React.FC<
+  {
+    title: string;
+    value: string;
+  } & DistributedOmit<IconButtonProps, 'icon' | 'children'>
+> = ({ title, value, ...otherProps }) => {
+  const { copyText, wasCopied } = useCopyToClipboard({ text: value });
+
+  return (
+    <IconButton
+      {...otherProps}
+      onClick={copyText}
+      icon={CopyIcon}
+      variant={wasCopied ? 'solid' : otherProps.variant}
+    >
+      {title}
+    </IconButton>
   );
 };

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_25_094651) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -88,6 +88,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
     t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id", "target_account_id"], name: "index_account_pins_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_account_pins_on_target_account_id"
+  end
+
+  create_table "account_reach_filters", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.binary "bloom_filter"
+    t.datetime "created_at", null: false
+    t.string "salt", null: false
+    t.boolean "saturated", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_reach_filters_on_account_id", unique: true
   end
 
   create_table "account_relationship_severance_events", force: :cascade do |t|
@@ -540,6 +550,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
     t.index ["fasp_provider_id"], name: "index_fasp_backfill_requests_on_fasp_provider_id"
   end
 
+  create_table "fasp_capabilities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.boolean "enabled", default: false, null: false
+    t.bigint "fasp_provider_id", null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.string "version", null: false
+    t.index ["fasp_provider_id", "name", "version"], name: "idx_on_fasp_provider_id_name_version_68e2668987", unique: true
+    t.index ["fasp_provider_id"], name: "index_fasp_capabilities_on_fasp_provider_id"
+  end
+
   create_table "fasp_debug_callbacks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.bigint "fasp_provider_id", null: false
@@ -560,7 +581,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
 
   create_table "fasp_providers", force: :cascade do |t|
     t.string "base_url", null: false
-    t.jsonb "capabilities", default: [], null: false
     t.boolean "confirmed", default: false, null: false
     t.string "contact_email"
     t.datetime "created_at", null: false
@@ -1492,6 +1512,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
   add_foreign_key "account_notes", "accounts", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", on_delete: :cascade
+  add_foreign_key "account_reach_filters", "accounts", on_delete: :cascade
   add_foreign_key "account_relationship_severance_events", "accounts", on_delete: :cascade
   add_foreign_key "account_relationship_severance_events", "relationship_severance_events", on_delete: :cascade
   add_foreign_key "account_stats", "accounts", on_delete: :cascade
@@ -1535,6 +1556,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
   add_foreign_key "email_subscriptions", "accounts", on_delete: :cascade
   add_foreign_key "fasp_backfill_requests", "fasp_providers"
+  add_foreign_key "fasp_capabilities", "fasp_providers"
   add_foreign_key "fasp_debug_callbacks", "fasp_providers"
   add_foreign_key "fasp_follow_recommendations", "accounts", column: "recommended_account_id"
   add_foreign_key "fasp_follow_recommendations", "accounts", column: "requesting_account_id"

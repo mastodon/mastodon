@@ -1,47 +1,49 @@
 @use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
+@use './navigation_link.module.scss' as navigation-link;
 
 .root {
-  &:not(:last-child) {
-    margin-bottom: var(--space-md);
-  }
-}
+  padding-top: var(--space-4);
 
-.titleWrapper {
-  display: flex;
-  align-items: center;
-  padding-inline: var(--space-xs);
-  padding-block: calc(var(--space-xs) - var(--space-3xs));
+  :any-link {
+    color: inherit;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+    }
+  }
 }
 
 .title {
-  @include mixins.type-label-sm;
+  @include navigation-link.link-base;
+
+  min-height: 32px;
+  padding: var(--space-1) var(--space-2);
+  margin-bottom: var(--space-half);
+
+  @include mixins.type-meta;
 
   color: var(--color-text-secondary);
-  cursor: default;
-}
 
-.toggleButton {
-  // Compensate for the button's outer spacing
-  --button-padding: calc(var(--space-xs) - var(--space-3xs));
-
-  margin: calc(-1 * var(--button-padding));
-  margin-inline-end: var(--button-padding);
-
-  svg {
-    transition: rotate 100ms ease-in;
-  }
-
-  &[aria-expanded='false'] svg {
-    rotate: -90deg;
+  @media (width < variables.$mobile-menu-breakpoint) {
+    min-height: 40px;
   }
 }
 
-.action {
+.toggleIcon {
+  width: 20px;
+  height: 20px;
   margin-inline-start: auto;
+  transition: rotate 100ms ease-in;
+
+  .title[aria-expanded='true'] & {
+    rotate: -180deg;
+  }
 }
 
 .emptyState {
-  @include mixins.type-label-sm;
+  @include mixins.type-caption;
 
-  padding-inline: var(--space-xs);
+  padding-inline: var(--space-2);
 }

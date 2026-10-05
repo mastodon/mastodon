@@ -11,7 +11,7 @@
 
 .mediaGrid {
   display: grid;
-  gap: var(--space-3xs);
+  gap: var(--space-half);
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   aspect-ratio: 3/2;
@@ -26,7 +26,7 @@
 }
 
 .mediaUpload {
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-4);
   position: relative;
   background-size: cover;
   background-position: center;
@@ -51,21 +51,21 @@
 
 .mediaMenuButton {
   position: absolute;
-  top: var(--space-xs);
-  right: var(--space-xs);
+  top: var(--space-2);
+  right: var(--space-2);
 }
 
 .mediaAlt {
   @include mixins.type-micro;
 
   display: block;
-  padding: var(--space-2xs);
-  border-radius: var(--radius-xs);
+  padding: var(--space-1);
+  border-radius: var(--radius-2);
   background: var(--color-bg-inverted);
   color: var(--color-text-inverted);
   position: absolute;
-  bottom: var(--space-xs);
-  right: var(--space-xs);
+  bottom: var(--space-2);
+  right: var(--space-2);
   text-transform: uppercase;
 }
 
@@ -76,26 +76,26 @@
 // Audio
 
 .audioWrapper {
-  --height: var(--space-5xl);
+  --height: var(--space-10);
 
   display: flex;
   align-items: center;
-  border-radius: var(--radius-md);
-  gap: var(--space-2xs);
+  border-radius: var(--radius-4);
+  gap: var(--space-1);
   border: 0.5px solid var(--color-text-tertiary);
-  padding: var(--space-xs);
+  padding: var(--space-2);
 }
 
 .audioCover {
   height: var(--height);
   width: auto;
   aspect-ratio: 1;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-3);
 }
 
 .audioControl {
   overflow: hidden;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-3);
   display: block;
   box-sizing: border-box;
   flex-grow: 1;
@@ -107,27 +107,27 @@
 .poll {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-3);
   border: 0.5px solid var(--color-text-tertiary);
-  border-radius: var(--radius-md);
-  padding: var(--space-xs);
+  border-radius: var(--radius-4);
+  padding: var(--space-2);
 
   ol {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: var(--space-2);
     counter-reset: poll;
     width: 100%;
   }
 
   label {
-    @include mixins.type-label-sm;
+    @include mixins.type-caption;
   }
 }
 
 .pollOption {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--space-3);
   align-items: center;
   counter-increment: poll;
 
@@ -135,18 +135,18 @@
     @include mixins.type-micro;
 
     content: counter(poll, upper-alpha);
-    width: var(--space-lg);
-    height: var(--space-lg);
+    width: var(--space-5);
+    height: var(--space-5);
     flex-shrink: 0;
-    line-height: var(--space-lg);
+    line-height: var(--space-5);
     text-align: center;
-    border-radius: var(--radius-xs);
+    border-radius: var(--radius-2);
     background: var(--color-bg-highlight);
   }
 }
 
 .pollAddNew {
-  margin-left: var(--space-lg);
+  margin-left: var(--space-5);
 }
 
 .pollMultipleToggle {
@@ -173,9 +173,9 @@
 
 .quoteSpoiler {
   background: var(--color-bg-highlight);
-  border-radius: var(--radius-sm);
-  margin: var(--space-2xs) 0;
-  padding: var(--space-xs);
+  border-radius: var(--radius-3);
+  margin: var(--space-1) 0;
+  padding: var(--space-2);
 }
 
 .quoteBody {
@@ -194,11 +194,11 @@
 
 .quoteReply {
   color: var(--color-text-tertiary);
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-2);
 }
 
 .quoteMedia {
-  margin-top: var(--space-2xs);
+  margin-top: var(--space-1);
 
   &.mediaGrid {
     height: 260px;
@@ -206,22 +206,22 @@
 
   .mediaUpload {
     max-height: 260px;
-    border-radius: var(--radius-xs);
+    border-radius: var(--radius-2);
   }
 }
 
 .quoteVideoDuration {
-  @include mixins.type-label-md;
+  @include mixins.type-meta;
 
   display: flex;
-  gap: var(--space-2xs);
+  gap: var(--space-1);
   align-items: center;
   position: absolute;
-  inset-block-end: var(--space-xs);
-  inset-inline-start: var(--space-xs);
-  padding: var(--space-2xs) var(--space-3xs);
+  inset-block-end: var(--space-2);
+  inset-inline-start: var(--space-2);
+  padding: var(--space-1) var(--space-half);
   background: var(--color-bg-highlight);
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-2);
   color: var(--color-text-primary);
 
   svg {

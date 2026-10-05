@@ -1,13 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import { Card, CardBody, CardTitle } from './index';
+import { Button } from '../button/redesign';
+
+import { Card, CardActions, CardBody, CardTitle } from './index';
 
 interface StoryProps {
+  actions: boolean;
   avatar: boolean;
   bodyText: string;
   clamp: boolean;
   delete: boolean;
+  descriptionText: string;
   image: boolean;
   linked: boolean;
   timestamp: boolean;
@@ -16,25 +20,30 @@ interface StoryProps {
 
 const img =
   'https://images.pexels.com/photos/16859306/pexels-photo-16859306.jpeg';
+const actionCb = fn().mockName('action click');
 const deleteCb = fn().mockName('onDelete');
 
 const meta = {
   title: 'Redesign/Card',
   args: {
+    actions: false,
     avatar: false,
     bodyText: 'Here is some card text.',
     clamp: true,
     delete: false,
+    descriptionText: '',
     image: false,
     linked: false,
     timestamp: false,
     titleText: 'Example title',
   },
   render({
+    actions,
     avatar,
     bodyText,
     clamp,
     delete: deleteBtn,
+    descriptionText,
     image,
     linked,
     timestamp,
@@ -65,6 +74,16 @@ const meta = {
           {titleText}
         </CardTitle>
         <CardBody noClamp={!clamp}>{body}</CardBody>
+
+        {descriptionText && (
+          <CardBody isDescription>{descriptionText}</CardBody>
+        )}
+
+        {actions && (
+          <CardActions>
+            <Button onClick={actionCb}>Click me</Button>
+          </CardActions>
+        )}
       </Card>
     );
   },
@@ -108,6 +127,12 @@ export const Linked: Story = {
   },
 };
 
+export const Description: Story = {
+  args: {
+    descriptionText: 'This is a description',
+  },
+};
+
 export const Long: Story = {
   args: {
     bodyText: [
@@ -116,5 +141,11 @@ export const Long: Story = {
       'Illo dolorem quasi quasi porro consequatur ut culpa. Impedit omnis mollitia molestiae voluptates et. Quisquam incidunt at rerum. Eum eos aut et. Architecto sed et non.',
       'Suscipit quisquam et saepe officia. Dolores natus reiciendis beatae. Nisi aut porro nihil vel placeat inventore. Sed deserunt voluptatem est aut non praesentium sit error.',
     ].join('\n'),
+  },
+};
+
+export const Actions: Story = {
+  args: {
+    actions: true,
   },
 };

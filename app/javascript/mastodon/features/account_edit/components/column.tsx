@@ -54,6 +54,7 @@ export const AccountEditColumn: FC<{
               <ColumnHeaderButton
                 showTextOnDesktop
                 variant='solid'
+                color='accent'
                 as='link'
                 to={to}
                 icon={CheckIcon}

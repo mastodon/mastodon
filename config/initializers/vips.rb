@@ -17,7 +17,6 @@ Vips.block('VipsForeign', true)
   VipsForeignLoadJpeg
   VipsForeignLoadPng
   VipsForeignLoadWebp
-  VipsForeignLoadHeif
   VipsForeignSavePng
   VipsForeignSaveSpng
   VipsForeignSaveJpeg

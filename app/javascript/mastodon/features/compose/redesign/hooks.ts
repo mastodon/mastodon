@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import type { Fuzzysort } from 'fuzzysort';
 import { useDebouncedCallback } from 'use-debounce';
 
 import type { InitialStateLanguage } from '@/mastodon/initial_state';
@@ -104,7 +105,7 @@ export function useLanguageList() {
     });
   }, [currentLang, frequentlyUsed, guess]);
 
-  const fuzzySortRef = useRef<Fuzzysort.Fuzzysort>(null);
+  const fuzzySortRef = useRef<Fuzzysort>(null);
   useEffect(() => {
     void import('fuzzysort').then((fuzzySort) => {
       fuzzySortRef.current = fuzzySort;

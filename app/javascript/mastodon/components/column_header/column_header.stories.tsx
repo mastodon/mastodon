@@ -52,6 +52,7 @@ export const WithButtons: Story = {
           showTextOnDesktop
           icon={UserPlusIcon}
           variant='solid'
+          color='accent'
         >
           Follow
         </ColumnHeaderButton>

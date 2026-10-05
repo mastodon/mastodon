@@ -1,12 +1,24 @@
 @use '@/styles/mastodon/variables';
 
-.button {
-  &:not(.buttonInline) {
+.buttonWrapper {
+  position: relative;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: all 200ms ease-out;
+  }
+
+  &:not(.buttonWrapperInline) {
     position: fixed;
-    bottom: var(--space-md);
-    right: var(--space-md);
+    bottom: var(--space-4);
+    right: var(--space-4);
     z-index: 2;
   }
+}
+
+.buttonWrapperHidden {
+  transform: translateX(calc(100% + var(--space-4)));
+  opacity: 0;
+  transition-timing-function: ease-in;
 }
 
 .composer,
@@ -19,6 +31,7 @@
 .composer {
   width: 100%;
   top: env(safe-area-inset-top);
+  padding-block-end: max(env(safe-area-inset-bottom), var(--space-4));
 
   // Set from the visualViewport API.
   height: var(--viewport-height, 100vh);
@@ -29,28 +42,32 @@
     bottom: 0;
     min-height: 270px;
     height: auto;
-    max-height: calc(100vh - (var(--space-md) * 2));
+    max-height: calc(100vh - (var(--space-4) * 2));
     min-width: 300px;
-    width: calc(100vw - var(--space-md) * 2);
+    width: calc(100vw - var(--space-4) * 2);
     max-width: 500px;
-    margin: var(--space-md);
+    margin: var(--space-4);
   }
-}
 
-// When in the mobile view and the composer is open, disable scroll on the body element.
-// This prevents scrolling the textarea accidentally hitting the body instead.
-@media (width < #{variables.$mobile-menu-breakpoint}) {
-  body:has(.composer) {
-    overflow-y: hidden !important;
+  @media (width < #{variables.$mobile-menu-breakpoint}) {
+    // Add a backdrop for the mobile composer to cover up the page
+    // behind the composer that can be visible on Safari iOS
+    &::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-color: var(--color-bg-primary);
+    }
   }
 }
 
 .composerMinimized {
   bottom: 0;
-  width: min(320px, calc(100vw - var(--space-md) * 2));
-  padding: var(--space-md);
-  margin: var(--space-md);
-  border-radius: var(--radius-xl);
+  width: min(320px, calc(100vw - var(--space-4) * 2));
+  padding: var(--space-4);
+  margin: var(--space-4);
+  border-radius: var(--radius-6);
 
   @media (width < #{variables.$mobile-menu-breakpoint}) {
     bottom: var(--mobile-bottom-nav-height);

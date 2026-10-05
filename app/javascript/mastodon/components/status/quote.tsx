@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { PlayIcon } from '@phosphor-icons/react';
 
 import { revealAccount } from '@/mastodon/actions/accounts_typed';
+import { cancelPasteLinkCompose } from '@/mastodon/actions/compose_typed';
 import { fetchStatus } from '@/mastodon/actions/statuses';
 import type {
   ApiAudioAttachmentJSON,
@@ -42,6 +43,7 @@ import { EmojiHTML } from '../emoji/html';
 import { Icon } from '../icon';
 import { PopoverMenuCard } from '../menu/card';
 import { RelativeTimestamp } from '../relative_timestamp';
+import { Skeleton } from '../skeleton';
 
 import { onStatusLinksDisabled } from './hooks';
 import { StatusImage } from './image';
@@ -68,6 +70,29 @@ export const StatusQuote: React.FC<StatusQuoteProps> = (props) => {
   }
 
   return <QuotedStatus id={quotedId} />;
+};
+
+export const StatusQuotePending: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const onCancel = useCallback(() => {
+    dispatch(cancelPasteLinkCompose());
+  }, [dispatch]);
+
+  return (
+    <Card onDelete={onCancel}>
+      <CardTitle
+        className={classes.title}
+        image={<Skeleton width={20} height={20} style={{ display: 'block' }} />}
+        afterContent={<Skeleton width='5ch' />}
+      >
+        <Skeleton className='display-name__html' width='10ch' />
+      </CardTitle>
+      <CardBody className={classes.body} noClamp>
+        <Skeleton width='100%' />
+        <Skeleton width='100%' />
+      </CardBody>
+    </Card>
+  );
 };
 
 export const QuotedStatus: React.FC<{
@@ -339,7 +364,7 @@ function useQuoteError({
     selectPlainAccount(state, accountId),
   );
   const quoteAuthorName = account?.acct;
-  const domain = quoteAuthorName?.split('@')[1];
+  const accountDomain = quoteAuthorName?.split('@')[1];
   const dispatch = useAppDispatch();
   const onRevealAccount = useCallback(() => {
     if (accountId) {
@@ -451,7 +476,7 @@ function useQuoteError({
           <FormattedMessage
             id='status.quote_error.blocked_domain_hint.title'
             defaultMessage="This post is hidden because you've blocked {domain}."
-            values={{ domain }}
+            values={{ domain: accountDomain }}
           />
         );
         break;

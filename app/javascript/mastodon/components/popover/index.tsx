@@ -175,14 +175,15 @@ export const Popover: React.FC<PopoverProps> = ({
 
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === 'Escape') {
+        event.preventDefault();
         onClose(event);
       }
     }
 
-    document.addEventListener('keyup', closeOnEscape);
+    document.addEventListener('keydown', closeOnEscape);
 
     return () => {
-      document.removeEventListener('keyup', closeOnEscape);
+      document.removeEventListener('keydown', closeOnEscape);
     };
   }, [isOpen, onClose]);
 
