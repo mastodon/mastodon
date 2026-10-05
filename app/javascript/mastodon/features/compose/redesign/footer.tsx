@@ -41,11 +41,23 @@ export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
   const isSubmitting = useAppSelector(
     (state) => !!state.compose.get('is_submitting'),
   );
+  const isEditing = useAppSelector((state) => !!state.compose.get('id'));
 
   const dispatch = useAppDispatch();
   const handlePoll = useCallback(() => {
     dispatch(addPoll());
   }, [dispatch]);
+
+  let publishText = (
+    <FormattedMessage id='compose.publish' defaultMessage='Publish' />
+  );
+  if (type === 'message' || type === 'replyPrivate') {
+    publishText = (
+      <FormattedMessage id='compose.message.publish' defaultMessage='Send' />
+    );
+  } else if (isEditing) {
+    publishText = <FormattedMessage id='compose.save' defaultMessage='Save' />;
+  }
 
   return (
     <footer className={classes.footer}>
@@ -86,14 +98,7 @@ export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
           type='submit'
           loading={isSubmitting}
         >
-          {type !== 'message' && type !== 'replyPrivate' ? (
-            <FormattedMessage id='compose.publish' defaultMessage='Publish' />
-          ) : (
-            <FormattedMessage
-              id='compose.message.publish'
-              defaultMessage='Send'
-            />
-          )}
+          {publishText}
         </Button>
       </div>
     </footer>
