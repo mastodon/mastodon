@@ -22,19 +22,23 @@
   }
 }
 
-.popover {
-  z-index: 9999;
+.listBoxWrapper {
+  position: relative;
   box-sizing: border-box;
-  max-height: min(320px, 50dvh);
   border-radius: 4px;
-  color: var(--color-text-primary);
-  background: var(--color-bg-primary);
-  border: 1px solid var(--color-border-primary);
-  box-shadow: var(--dropdown-shadow);
+  max-height: min(320px, 50dvh);
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
   overscroll-behavior-y: contain;
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+}
+
+.listBoxWrapperPopover {
+  z-index: 9999;
+  border: 1px solid var(--color-border-primary);
+  box-shadow: var(--dropdown-shadow);
 }
 
 .groupTitle {
