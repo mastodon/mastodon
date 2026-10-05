@@ -64,7 +64,7 @@ export const selectComposeCharsCount = createAppSelector(
         : '',
   ],
   (maxChars, text, spoilerText) => {
-    const allText = (countableText(text) as string) + spoilerText;
+    const allText = countableText(text) + spoilerText;
     return {
       text,
       allText,
