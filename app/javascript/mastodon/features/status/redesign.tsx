@@ -6,7 +6,6 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import classNames from 'classnames';
 import { useParams } from 'react-router';
 
-import { BookmarkSimpleIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
 import { statusInteraction } from '@/mastodon/actions/interactions_typed';
@@ -18,7 +17,6 @@ import {
   ColumnSettingsMenu,
 } from '@/mastodon/components/column_header';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
-import { useIconWeight } from '@/mastodon/components/icon';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { LegacyDropdownMenuItems } from '@/mastodon/components/menu';
 import {
@@ -29,6 +27,10 @@ import {
   useStatusMenuActions,
   useTextForScreenReader,
 } from '@/mastodon/components/status/hooks';
+import {
+  StatusBookmarkActiveIcon,
+  StatusBookmarkIcon,
+} from '@/mastodon/components/status/icons';
 import { StatusRedesign as Status } from '@/mastodon/components/status/status';
 import { ScrollContainer } from '@/mastodon/containers/scroll_container';
 import type { ShouldUpdateScrollFn } from '@/mastodon/containers/scroll_container/default_should_update_scroll';
@@ -121,7 +123,6 @@ export const StatusPage: React.FC = () => {
         return [0, statusFocusRef.current.offsetTop];
       }
 
-      // Do not scroll otherwise, `componentDidUpdate` will take care of that
       return false;
     },
     [],
@@ -136,10 +137,6 @@ export const StatusPage: React.FC = () => {
       }),
     );
   }, [dispatch, statusId]);
-  const bookmarkIcon = useIconWeight(
-    BookmarkSimpleIcon,
-    status?.bookmarked && 'fill',
-  );
 
   if (isLoading) {
     return (
@@ -204,7 +201,11 @@ export const StatusPage: React.FC = () => {
               size='sm'
               variant='ghost'
               active={status.bookmarked}
-              icon={bookmarkIcon}
+              icon={
+                status.bookmarked
+                  ? StatusBookmarkActiveIcon
+                  : StatusBookmarkIcon
+              }
               onClick={handleBookmarkClick}
             >
               {!status.bookmarked ? (
@@ -238,7 +239,7 @@ export const StatusPage: React.FC = () => {
         shouldUpdateScroll={shouldUpdateScroll}
       >
         <div
-          className={classNames('scrollable', {
+          className={classNames('item-list scrollable', {
             fullscreen,
           })}
         >
