@@ -50,6 +50,15 @@
   &[data-stuck='true']::before {
     opacity: 1;
   }
+
+  @media (height < 560px) {
+    position: relative;
+    margin-top: var(--space-4);
+
+    &::before {
+      display: none;
+    }
+  }
 }
 
 .footerNav {
