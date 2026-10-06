@@ -147,7 +147,7 @@
       opacity var(--fade-time) ease-in-out;
 
     // Show only if backdrop-filter is unsupported.
-    background-color: var(--color-bg-blend);
+    background-color: var(--color-bg-desktop);
 
     @supports (backdrop-filter: blur(20px)) {
       background-color: transparent;
