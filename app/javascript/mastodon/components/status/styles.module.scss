@@ -36,6 +36,22 @@
   padding: var(--space-3);
 }
 
+.isHighlighted {
+  :global(.no-reduce-motion) & {
+    animation: highlight-fade 0.7s both 0.3s;
+  }
+}
+
+@keyframes highlight-fade {
+  from {
+    background: var(--color-bg-brand-softest);
+  }
+
+  to {
+    background: transparent;
+  }
+}
+
 .isMessage {
   position: relative;
 

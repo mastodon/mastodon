@@ -84,6 +84,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   withDismiss,
   onOpen,
   showThread,
+  shouldHighlightOnMount,
   headerContents,
   variant = contextToVariant(contextType),
   nextId,
@@ -162,6 +163,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           variant === 'thread' && classes.variantThread,
           variant === 'page' && classes.variantPage,
           isQuotedPost && classes.isQuote,
+          shouldHighlightOnMount && classes.isHighlighted,
           status.visibility === 'direct' && classes.isMessage,
           variant === 'thread' &&
             isNextReplyingToMe &&

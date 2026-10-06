@@ -105,9 +105,52 @@ export const StatusPage: React.FC = () => {
     getDescendantsIds(state, statusId),
   );
 
+  const [replyTracking, setReplyTracking] = useState<{
+    statusId: string;
+    descendantIds: string[];
+    newReplyIds: string[];
+  }>({ statusId, descendantIds, newReplyIds: [] });
+  if (
+    replyTracking.statusId !== statusId ||
+    replyTracking.descendantIds !== descendantIds
+  ) {
+    const isSameThread =
+      replyTracking.statusId === statusId &&
+      replyTracking.descendantIds.length > 0;
+    const addedIds = isSameThread
+      ? descendantIds.filter((id) => !replyTracking.descendantIds.includes(id))
+      : [];
+
+    setReplyTracking({
+      statusId,
+      descendantIds,
+      newReplyIds:
+        isSameThread && addedIds.length === 0
+          ? replyTracking.newReplyIds
+          : addedIds,
+    });
+  }
+
   const screenReaderText = useTextForScreenReader({ statusId });
 
+  // Scroll into view when the main status changes or ancestors change.
   const statusFocusRef = useRef<HTMLDivElement>(null);
+  const hasStatus = !!status;
+  const lastScrolledRef = useRef<{ statusId: string; ancestors: number }>(null);
+  useEffect(() => {
+    const node = statusFocusRef.current;
+    if (!node) {
+      lastScrolledRef.current = null;
+      return;
+    }
+
+    const last = lastScrolledRef.current;
+    if (last?.statusId !== statusId || last.ancestors < ancestorIds.length) {
+      node.scrollIntoView(true);
+    }
+    lastScrolledRef.current = { statusId, ancestors: ancestorIds.length };
+  }, [statusId, ancestorIds.length, isLoading, hasStatus]);
+
   const shouldUpdateScroll: ShouldUpdateScrollFn = useCallback(
     (prevLocation, location) => {
       // Do not change scroll when opening a modal
@@ -265,7 +308,11 @@ export const StatusPage: React.FC = () => {
 
           {descendantIds.length > 0 && (
             <div className={classes.thread}>
-              <StatusRelativeList statusIds={descendantIds} rootId={statusId} />
+              <StatusRelativeList
+                statusIds={descendantIds}
+                rootId={statusId}
+                highlightIds={replyTracking.newReplyIds}
+              />
             </div>
           )}
 
@@ -314,7 +361,8 @@ const StatusMenuItems: React.FC<{ status: ExpandedStatusShape }> = ({
 const StatusRelativeList: React.FC<{
   statusIds: string[];
   rootId: string;
-}> = ({ statusIds, rootId }) => {
+  highlightIds?: string[];
+}> = ({ statusIds, rootId, highlightIds }) => {
   return (
     statusIds
       // Omits the current post ID, but it still is in statusIds so nextId can link correctly.
@@ -327,6 +375,7 @@ const StatusRelativeList: React.FC<{
           contextType='thread'
           previousId={statusIds[index - 1]}
           nextId={statusIds[index + 1]}
+          shouldHighlightOnMount={highlightIds?.includes(statusId)}
         />
       ))
   );
