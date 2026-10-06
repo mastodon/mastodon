@@ -50,5 +50,16 @@
 
 // Add a tag to override .root a
 a.account {
+  @include mixins.text-ellipsis;
+
   font-weight: bold;
+}
+
+.time {
+  flex-shrink: 0;
+
+  &::before {
+    content: '•';
+    margin-inline-end: var(--space-1);
+  }
 }

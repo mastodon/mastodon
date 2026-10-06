@@ -171,9 +171,9 @@ const hotkeyMatcherMap = {
   ),
 } as const;
 
-type HotkeyName = keyof typeof hotkeyMatcherMap;
+export type HotkeyName = keyof typeof hotkeyMatcherMap;
 
-type HandlerFunction =
+export type HotkeyHandlerFunction =
   // When a handler returns a boolean, it should indicate whether the
   // hotkey was handled (i.e. it resulted in an action).
   // If `false` is returned, `preventDefault` and `stopPropagation`
@@ -181,9 +181,11 @@ type HandlerFunction =
   // native behaviour.
   ((event: KeyboardEvent) => boolean) | ((event: KeyboardEvent) => void);
 
-export type HandlerMap = Partial<Record<HotkeyName, HandlerFunction>>;
+export type HotkeyHandlerMap = Partial<
+  Record<HotkeyName, HotkeyHandlerFunction>
+>;
 
-export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
+export function useHotkeys<T extends HTMLElement>(handlers: HotkeyHandlerMap) {
   const ref = useRef<T>(null);
   const bufferedKeys = useRef<string[]>([]);
   const sequenceTimer = useRef<ReturnType<typeof setTimeout>>(null);
@@ -216,7 +218,7 @@ export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
         const matchCandidates: {
           // A candidate can have an undefined handler if it's matched,
           // but handled in a parent component rather than this one.
-          handler: HandlerFunction | undefined;
+          handler: HotkeyHandlerFunction | undefined;
           priority: number;
         }[] = [];
 
@@ -278,7 +280,7 @@ interface HotkeysProps {
    * An object containing functions to be run when a hotkey is pressed.
    * The key must be the name of a registered hotkey, e.g. "help" or "search"
    */
-  handlers: HandlerMap;
+  handlers: HotkeyHandlerMap;
   /**
    * When enabled, hotkeys will be matched against the document root
    * rather than only inside of this component's DOM node.

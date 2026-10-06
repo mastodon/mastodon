@@ -77,7 +77,7 @@ export const selectStatusFilters = createAppSelector(
 
       if (filter.filter_action === 'hide' && !warnInsteadOfHide) {
         filterAction = 'hide';
-      } else {
+      } else if (filter.filter_action !== 'blur') {
         filterAction ??= 'warn';
       }
 
