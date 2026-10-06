@@ -11,8 +11,6 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { WarningIcon } from '@phosphor-icons/react';
-
 import { openModal } from '@/mastodon/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import { deployPictureInPicture } from '@/mastodon/actions/picture_in_picture';
@@ -36,7 +34,6 @@ import { decodeIDNA } from '@/mastodon/utils/links';
 
 import { Avatar } from '../avatar';
 import { Button } from '../button/redesign';
-import { Callout } from '../callout/redesign';
 import { Card, CardActions, CardBody, CardTitle } from '../card';
 import { DisplayName } from '../display_name';
 import { RelativeTimestamp } from '../relative_timestamp';
@@ -359,31 +356,17 @@ const MediaAttachmentWrapper: React.FC<{
     );
   }
 
-  const showSpoiler = sensitive || mediaFilters.length > 0 || !visible;
-
   return (
     <div className={classes.galleryWrapper} ref={wrapperRef}>
-      {showSpoiler && (
-        <Callout
+      {!visible && (
+        <Button
+          size='sm'
+          variant='solid'
           className={classes.gallerySpoiler}
-          icon={WarningIcon}
-          actionClick={onToggle}
-          actionText={
-            visible ? (
-              <FormattedMessage
-                id='content_warning.media.hide_short'
-                defaultMessage='Hide media'
-              />
-            ) : (
-              <FormattedMessage
-                id='content_warning.media.show_short'
-                defaultMessage='Show media'
-              />
-            )
-          }
+          onClick={onToggle}
         >
           {message}
-        </Callout>
+        </Button>
       )}
       <div
         data-color-scheme='dark'
@@ -392,7 +375,7 @@ const MediaAttachmentWrapper: React.FC<{
           classes.galleryContent,
           !visible && mainClasses.hasContentWarning,
           !visible && classes.galleryHideButtons,
-          showSpoiler && classes.galleryHideActions,
+          !visible && classes.galleryHideActions,
         )}
       >
         <Suspense
