@@ -66,18 +66,12 @@
     border-top-left-radius: var(--radius-6);
     border-top-right-radius: var(--radius-6);
   }
+}
 
-  &[data-has-unread='true']::after {
-    content: '';
-    grid-row: 1;
-    grid-column: 2;
-    width: var(--space-2);
-    height: var(--space-2);
-    background-color: var(--color-text-brand);
-    border-radius: var(--radius-round);
-    justify-self: center;
-    align-self: end;
-  }
+.unreadButton {
+  position: absolute;
+  top: 100%;
+  justify-self: center;
 }
 
 .leftButton {
