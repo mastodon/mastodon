@@ -581,7 +581,10 @@ export function useStatusMenuActions({
   const interactions = useAppSelector((state) =>
     selectStatusInteractionsAllowed(state, status.id),
   );
-  const statusInteractionFactory = useStatusInteractionFactory(status.id);
+  const statusInteractionFactory = useStatusInteractionFactory(
+    status.id,
+    contextType,
+  );
 
   return useMemo(
     () =>
