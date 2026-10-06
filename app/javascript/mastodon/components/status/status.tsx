@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import type { Merge } from 'type-fest';
 
 import type { ExpandedStatusShape } from '@/mastodon/models/status';
-import { selectExpandedStatus } from '@/mastodon/selectors/statuses';
+import { selectStatusLoadingState } from '@/mastodon/selectors/statuses';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
 import { Hotkeys } from '../hotkeys';
@@ -43,19 +43,28 @@ type StatusRedesignProps = Merge<
 export type StatusVariant = 'feed' | 'thread' | 'page';
 
 const selectStatusReblog = createAppSelector(
-  [(state, id?: string | null) => selectExpandedStatus(state, id ?? undefined)],
-  (status) => {
+  [
+    (
+      state,
+      {
+        statusId,
+        contextType,
+      }: { statusId?: string | null; contextType?: StatusContextType },
+    ) => selectStatusLoadingState(state, { statusId, contextType }),
+  ],
+  ({ status, state }) => {
     if (!status) {
-      return {};
+      return { state };
     }
     if (!status.reblog) {
-      return { status };
+      return { status, state };
     }
 
     const { reblog, ...statusRest } = status;
     return {
       status: reblog,
       parent: statusRest,
+      state,
     };
   },
 );
@@ -81,7 +90,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 }) => {
   // Select data from store
   const { status, parent } = useAppSelector((state) =>
-    selectStatusReblog(state, id),
+    selectStatusReblog(state, { statusId: id, contextType }),
   );
   const statusId = status?.id;
 
