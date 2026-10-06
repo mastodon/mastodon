@@ -210,7 +210,7 @@ export const DisabledAccountBanner: React.FC = () => {
       <Button onClick={handleLogOutClick}>
         <FormattedMessage
           id='confirmations.logout.confirm'
-          defaultMessage='Log out'
+          defaultMessage='Sign out'
         />
       </Button>
     </NavigationFooterLayout>
