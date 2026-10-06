@@ -174,24 +174,26 @@ export const replyComposeById = createAppThunk(
     if (!statusId) {
       return;
     }
+
     let status = getState().statuses.get(statusId);
     if (!status) {
       return;
     }
 
+    const touched = selectComposerIsChanged(getState());
+    if (touched && !force) {
+      dispatch(
+        openModal({ modalType: 'CONFIRM_REPLY', modalProps: { statusId } }),
+      );
+      return;
+    }
+
+    // Set the account as the reducer doesn't check the plain account field for ID.
     const account = getState().accounts.get(status.get('account') as string);
     if (account) {
       status = status.set('account', account);
     }
-
-    const touched = selectComposerIsChanged(getState());
-    if (touched && !force) {
-      dispatch(
-        openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }),
-      );
-    } else {
-      dispatch(replyCompose(status));
-    }
+    dispatch(replyCompose(status));
   },
 );
 
