@@ -19,7 +19,13 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
+import {
+  FOCUS_TARGET,
+  useFocusAfterNavigation,
+} from '@/mastodon/components/navigation_focus_target';
 import { getCollectionPath } from '@/mastodon/features/collections/utils';
+import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
@@ -105,6 +111,14 @@ export const Search: React.FC<{
   const [expanded, setExpanded] = useState(false);
   const [selectedOption, setSelectedOption] = useState(-1);
   const [quickActions, setQuickActions] = useState<SearchOption[]>([]);
+  const [shouldOpenOnFocus, setShouldOpenOnFocus] =
+    useState(!isRedesignEnabled());
+  const focusAfterNavigation = useFocusAfterNavigation(
+    FOCUS_TARGET.SEARCH,
+    () => {
+      setShouldOpenOnFocus(true);
+    },
+  );
 
   const unfocus = useCallback(() => {
     document.querySelector('.ui')?.parentElement?.focus();
@@ -311,6 +325,8 @@ export const Search: React.FC<{
   const handleChange = useCallback(
     ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
       setValue(value);
+      setExpanded(true);
+      setSelectedOption(-1);
 
       const trimmedValue = value.trim();
       const newQuickActions = [];
@@ -497,8 +513,10 @@ export const Search: React.FC<{
   );
 
   const handleInputFocus = useCallback(() => {
-    setExpanded(true);
-    setSelectedOption(-1);
+    if (shouldOpenOnFocus) {
+      setExpanded(true);
+      setSelectedOption(-1);
+    }
 
     if (searchInputRef.current && !singleColumn) {
       const { left, right } = searchInputRef.current.getBoundingClientRect();
@@ -510,7 +528,7 @@ export const Search: React.FC<{
         searchInputRef.current.scrollIntoView();
       }
     }
-  }, [setExpanded, setSelectedOption, singleColumn]);
+  }, [shouldOpenOnFocus, singleColumn]);
 
   const handleInputBlur = useCallback(() => {
     setSelectedOption(-1);
@@ -558,7 +576,10 @@ export const Search: React.FC<{
       className={classNames('search', { active: expanded })}
     >
       <input
-        ref={searchInputRef}
+        ref={useMergedRefs(
+          searchInputRef,
+          isRedesignEnabled() ? focusAfterNavigation : null,
+        )}
         className='search__input'
         type='text'
         inputMode='search'

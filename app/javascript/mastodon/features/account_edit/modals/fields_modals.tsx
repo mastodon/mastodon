@@ -155,9 +155,7 @@ export const EditFieldModal = forwardRef<
       if (value.length > RECOMMENDED_LIMIT) {
         return {
           variant: 'warning',
-          message: intl.formatMessage(messages.warningLength, {
-            max: RECOMMENDED_LIMIT,
-          }),
+          message: intl.formatMessage(messages.warningLength),
         };
       }
 

@@ -546,8 +546,6 @@ en-GB:
           description: You received a registration from a FASP. Reject it if you did not initiate this. If you initiated this, carefully compare name and key fingerprint before confirming the registration.
           reject: Reject
           title: Confirm FASP Registration
-        save: Save
-        select_capabilities: Select Capabilities
         sign_in: Sign In
         status: Status
         title: Fediverse Auxiliary Service Providers
@@ -881,10 +879,8 @@ en-GB:
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone on Mastodon. Control how various discovery features work on your server.
-        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
-        publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
         wrapstodon: Wrapstodon
@@ -909,7 +905,6 @@ en-GB:
         warning_hint: We recommend using “Approval required for sign up” unless you are confident your moderation team can handle spam and malicious registrations in a timely fashion.
       security:
         authorized_fetch: Require authentication from federated servers
-        authorized_fetch_hint: Requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks. However, this comes at the cost of a performance penalty, reduces the reach of your replies, and may introduce compatibility issues with some federated services. In addition, this will not prevent dedicated actors from fetching your public posts and accounts.
         authorized_fetch_overridden_hint: You are currently unable to change this setting because it is overridden by an environment variable.
         federation_authentication: Federation authentication enforcement
       title: Server settings
@@ -1091,7 +1086,6 @@ en-GB:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
         title: Trending links
-        usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
       not_allowed_to_trend: Not allowed to trend
       only_allowed: Only allowed
       pending_review: Pending review
@@ -1136,7 +1130,6 @@ en-GB:
         trendable: Can appear under trends
         trending_rank: 'Trending #%{rank}'
         usable: Can be used
-        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
         used_by_over_week:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
@@ -1385,7 +1378,6 @@ en-GB:
   deletes:
     challenge_not_passed: The information you entered was not correct
     confirm_password: Enter your current password to verify your identity
-    confirm_username: Enter your username to confirm the procedure
     proceed: Delete account
     success_msg: Your account was successfully deleted
     warning:
@@ -1577,7 +1569,6 @@ en-GB:
       empty: Empty CSV file
       incompatible_type: Incompatible with the selected import type
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
-      over_rows_processing_limit: contains more than %{count} rows
       too_large: File is too large
     failures: Failures
     imported: Imported
@@ -1720,7 +1711,6 @@ en-GB:
     incoming_migrations_html: To move from another account to this one, first you need to <a href="%{path}">create an account alias</a>.
     moved_msg: Your account is now redirecting to %{acct} and your followers are being moved over.
     not_redirecting: Your account is not redirecting to any other account currently.
-    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
     past_migrations: Past migrations
     proceed_with_move: Move followers
     redirected_msg: Your account is now redirecting to %{acct}.
@@ -1885,8 +1875,6 @@ en-GB:
       account: Public posts from @%{acct}
       tag: 'Public posts tagged #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
-    over_total_limit: You have exceeded the limit of %{limit} scheduled posts
     too_soon: date must be in the future
   self_destruct:
     lead_html: Unfortunately, <strong>%{domain}</strong> is permanently closing down. If you had an account there, you will not be able to continue using it, but you can still request a backup of your data.
@@ -1944,7 +1932,6 @@ en-GB:
     appearance: Appearance
     authorized_apps: Authorised apps
     back: Back to Mastodon
-    delete: Account deletion
     development: Development
     edit_profile: Edit profile
     export: Export

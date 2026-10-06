@@ -23,7 +23,6 @@ import type { OnEmojiPick } from './emoji';
 import { ComposeEmojiButton } from './emoji';
 import {
   selectComposeAttachments,
-  selectComposeCanSubmit,
   selectComposeCharsCount,
   selectComposeHasAttachments,
   selectComposeType,
@@ -42,12 +41,23 @@ export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
   const isSubmitting = useAppSelector(
     (state) => !!state.compose.get('is_submitting'),
   );
-  const canSubmit = useAppSelector(selectComposeCanSubmit);
+  const isEditing = useAppSelector((state) => !!state.compose.get('id'));
 
   const dispatch = useAppDispatch();
   const handlePoll = useCallback(() => {
     dispatch(addPoll());
   }, [dispatch]);
+
+  let publishText = (
+    <FormattedMessage id='compose.publish' defaultMessage='Publish' />
+  );
+  if (isEditing) {
+    publishText = <FormattedMessage id='compose.save' defaultMessage='Save' />;
+  } else if (type === 'message' || type === 'replyPrivate') {
+    publishText = (
+      <FormattedMessage id='compose.message.publish' defaultMessage='Send' />
+    );
+  }
 
   return (
     <footer className={classes.footer}>
@@ -83,20 +93,12 @@ export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
         </span>
 
         <Button
-          color='neutral'
+          variant='solid'
+          color='accent'
           type='submit'
-          disabled={!canSubmit}
           loading={isSubmitting}
         >
-          {type !== 'message' && (
-            <FormattedMessage id='compose.publish' defaultMessage='Publish' />
-          )}
-          {type === 'message' && (
-            <FormattedMessage
-              id='compose.message.publish'
-              defaultMessage='Send'
-            />
-          )}
+          {publishText}
         </Button>
       </div>
     </footer>
@@ -118,7 +120,7 @@ const selectUpload = createAppSelector(
     (state) => state.compose.get('resetFileKey') as number,
   ],
   (
-    fileTypes,
+    fileTypesList,
     isUploading,
     attachments,
     pendingAttachments,
@@ -129,8 +131,14 @@ const selectUpload = createAppSelector(
       (attachment) =>
         attachment.type === 'audio' || attachment.type === 'video',
     );
+    const hasImages = attachments.some(
+      (attachment) => attachment.type === 'image' || attachment.type === 'gifv',
+    );
+    const fileTypes = (fileTypesList?.toArray() ?? []).filter(
+      (fileType) => !hasImages || fileType.startsWith('image/'),
+    );
     return {
-      accepted: (fileTypes?.toArray() ?? []).join(','),
+      accepted: fileTypes.join(','),
       loading: isUploading || pendingAttachments > 0,
       disabled:
         attachments.length + pendingAttachments >= maxAttachments ||

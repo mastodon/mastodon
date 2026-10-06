@@ -65,7 +65,11 @@ export const TextInput: RedesignComponent<typeof OldTextInput> = ({
   className,
   ...props
 }) => (
-  <OldTextInput {...props} className={classNames(className, classes.input)} />
+  <OldTextInput
+    {...props}
+    className={classNames(className, classes.input)}
+    iconClassName={classes.inputIcon}
+  />
 );
 
 // Toggles

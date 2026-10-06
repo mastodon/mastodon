@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe MediaComponentHelper do
   before { helper.extend controller_helpers }
 
-  let(:media) { Fabricate.build(:media_attachment, type:, status: Fabricate.build(:status)) }
+  let(:media) { Fabricate.build(:media_attachment, type:, status: Fabricate.build(:status), id: 1234) }
 
   describe 'render_video_component' do
     let(:type) { :video }

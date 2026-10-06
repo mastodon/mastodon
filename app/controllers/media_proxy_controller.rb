@@ -56,7 +56,7 @@ class MediaProxyController < ApplicationController
   end
 
   def media_attachment_file_path
-    if @media_attachment.discarded?
+    if @media_attachment.on_hold?
       expiring_asset_url(media_attachment_file, 10.minutes)
     else
       full_asset_url(media_attachment_file.url(attachment_style))
@@ -76,6 +76,6 @@ class MediaProxyController < ApplicationController
   end
 
   def requires_file_streaming?
-    Paperclip::Attachment.default_options[:storage] == :filesystem && @media_attachment.discarded?
+    Paperclip::Attachment.default_options[:storage] == :filesystem && @media_attachment.on_hold?
   end
 end

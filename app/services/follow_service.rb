@@ -15,6 +15,7 @@ class FollowService < BaseService
   # @option [Boolean] :bypass_locked
   # @option [Boolean] :bypass_limit Allow following past the total follow number
   # @option [Boolean] :with_rate_limit
+  # @option [String] :ref Client-side feature reference
   def call(source_account, target_account, options = {})
     @source_account = source_account
     @target_account = target_account
@@ -30,6 +31,7 @@ class FollowService < BaseService
     end
 
     ActivityTracker.increment('activity:interactions')
+    FeatureUsageTracker.for(:follow).increment(@options[:ref])
 
     # When an account follows someone for the first time, avoid showing
     # an empty home feed while the follow request is being processed

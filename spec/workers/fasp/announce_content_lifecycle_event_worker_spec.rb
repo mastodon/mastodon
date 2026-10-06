@@ -8,7 +8,7 @@ RSpec.describe Fasp::AnnounceContentLifecycleEventWorker do
   subject { described_class.new.perform(status_uri, 'new') }
 
   let(:status_uri) { 'https://masto.example.com/status/1' }
-  let(:provider) { Fabricate(:confirmed_fasp) }
+  let(:provider) { Fabricate(:data_sharing_fasp) }
   let(:subscription) do
     Fabricate(:fasp_subscription, fasp_provider: provider)
   end
@@ -42,5 +42,17 @@ RSpec.describe Fasp::AnnounceContentLifecycleEventWorker do
     end
 
     it_behaves_like('worker handling fasp delivery failures')
+  end
+
+  context 'when `data_sharing` is disabled for provider' do
+    before do
+      provider.fasp_capabilities.where(name: 'data_sharing').update_all(enabled: false)
+    end
+
+    it 'does not send anything to the provider' do
+      subject
+
+      expect(stubbed_request).to_not have_been_made
+    end
   end
 end

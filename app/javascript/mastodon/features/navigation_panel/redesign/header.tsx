@@ -1,21 +1,43 @@
-import type React from 'react';
-
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { IconLogo } from '@/mastodon/components/logo';
-import { domain } from '@/mastodon/initial_state';
+import { customAppIcon, domain, title } from '@/mastodon/initial_state';
+
+import { getNavigationSkipLinkId } from '../../ui/components/skip_links';
 
 import classes from './header.module.scss';
 
-export const NavigationHeader: React.FC<{ siteName?: string }> = ({
-  siteName = domain,
-}) => {
+export const NavigationHeader: React.FC<{
+  siteName?: string;
+  isStuck: boolean;
+}> = ({ siteName, isStuck }) => {
   return (
-    <header className={classes.root}>
-      <Link to='/' className={classes.siteNameLink}>
-        <span className={classes.serverName}>{siteName}</span>
+    <header className={classes.root} data-stuck={isStuck}>
+      <LogoLockup siteName={siteName} />
+    </header>
+  );
+};
+
+export const LogoLockup: React.FC<{
+  siteName?: string;
+  className?: string;
+}> = ({ siteName, className }) => {
+  return (
+    <Link
+      to='/'
+      className={classNames(classes.siteNameLink, className)}
+      id={getNavigationSkipLinkId()}
+    >
+      {customAppIcon && (
+        <img src={customAppIcon} alt='' className={classes.appIcon} />
+      )}
+      <span className={classes.content}>
+        <span className={classes.serverName}>
+          {siteName ?? title ?? domain}
+        </span>
         <span className={classes.poweredBy}>
           <FormattedMessage
             id='navigation_bar.powered_by_mastodon'
@@ -25,7 +47,7 @@ export const NavigationHeader: React.FC<{ siteName?: string }> = ({
             }}
           />
         </span>
-      </Link>
-    </header>
+      </span>
+    </Link>
   );
 };

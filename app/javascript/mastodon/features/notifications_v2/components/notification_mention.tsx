@@ -2,8 +2,8 @@ import { FormattedMessage } from 'react-intl';
 
 import { isEqual } from 'lodash';
 
+import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { me } from 'mastodon/initial_state';
 import type { NotificationGroupMention } from 'mastodon/models/notification_group';
 import { useAppSelector } from 'mastodon/store';
@@ -59,7 +59,7 @@ export const NotificationMention: React.FC<{
   return (
     <NotificationWithStatus
       type='mention'
-      icon={isReply ? ReplyIcon : AlternateEmailIcon}
+      icon={isReply ? StatusReplyIcon : AlternateEmailIcon}
       iconId='reply'
       accountIds={notification.sampleAccountIds}
       count={notification.notifications_count}

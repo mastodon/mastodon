@@ -59,7 +59,7 @@ module Admin
 
     def filter_by_domain
       scope = EmailDomainBlock.parents.includes(:children).order(id: :desc)
-      scope.merge!(EmailDomainBlock.matches_domain(params[:domain])) if params[:domain].present?
+      scope.merge!(EmailDomainBlock.matches_domain(params[:by_domain])) if params[:by_domain].present?
       scope
     end
 

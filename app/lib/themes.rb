@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'singleton'
-require 'yaml'
-
 class Themes
   include Singleton
 

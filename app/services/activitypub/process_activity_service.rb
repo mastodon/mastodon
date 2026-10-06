@@ -22,10 +22,10 @@ class ActivityPub::ProcessActivityService < BaseService
     # issues like attacks involving swapping external context documents between processing steps.
     begin
       @json = compact(@json) if @json['signature'].is_a?(Hash)
-      if unsupported_jsonld_features?(@json)
-        Rails.logger.debug { "JSON-LD document for #{value_or_id(@json['actor'])} contains unsupported JSON-LD features" }
-        @json = original_json.without('signature')
-      end
+      check_jsonld_limits!(@json)
+    rescue Mastodon::InvalidJsonLdError => e
+      Rails.logger.debug { "JSON-LD handling for document from #{value_or_id(@json['actor'])} skipped: #{e.message}" }
+      @json = original_json.without('signature')
     rescue JSON::LD::JsonLdError => e
       Rails.logger.debug { "Error when compacting JSON-LD document for #{value_or_id(@json['actor'])}: #{e.message}" }
       @json = original_json.without('signature')

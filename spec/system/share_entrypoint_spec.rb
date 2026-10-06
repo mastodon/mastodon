@@ -18,7 +18,6 @@ RSpec.describe 'Share page', :js, :streaming do
     expect(page)
       .to have_css('.modal-layout__mastodon')
       .and have_css('div#mastodon-compose')
-      .and have_css('.compose-form__submit')
     expect(find_by_id('mastodon-compose')['data-props'])
       .to eq('{"locale":"en"}')
 
@@ -29,10 +28,10 @@ RSpec.describe 'Share page', :js, :streaming do
   end
 
   def fill_in_form
-    within('.compose-form') do
-      fill_in frontend_translations('compose_form.placeholder'),
+    within('form') do
+      fill_in frontend_translations('compose.post.placeholder'),
               with: 'This is a new status!'
-      click_on frontend_translations('compose_form.publish')
+      click_on frontend_translations('compose.publish')
     end
   end
 end

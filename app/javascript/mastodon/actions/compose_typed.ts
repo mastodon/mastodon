@@ -8,12 +8,18 @@ import { apiGetSearch } from '@/mastodon/api/search';
 import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import type { MediaAttachment } from '@/mastodon/models/media_attachment';
-import type { Status, StatusVisibility } from '@/mastodon/models/status';
+import type {
+  MediaAttachmentShape,
+  Status,
+  StatusVisibility,
+} from '@/mastodon/models/status';
 import type { RootState } from '@/mastodon/store';
 import {
   createDataLoadingThunk,
   createAppThunk,
 } from '@/mastodon/store/typed_functions';
+
+import { isRedesignEnabled } from '../utils/environment';
 
 import { showAlert } from './alerts';
 import { changeCompose, focusCompose, uploadCompose } from './compose';
@@ -59,10 +65,13 @@ const simulateModifiedApiResponse = (
 ): SimulatedMediaAttachmentJSON => {
   const [x, y] = (params.focus ?? '').split(',');
 
+  const jsMedia = media.toJS() as MediaAttachmentShape;
+
   const data = {
-    ...media.toJS(),
+    ...jsMedia,
     ...params,
     meta: {
+      ...jsMedia.meta,
       focus: {
         x: parseFloat(x ?? '0'),
         y: parseFloat(y ?? '0'),
@@ -147,6 +156,10 @@ export const changeUploadCompose = createDataLoadingThunk(
   },
 );
 
+export const rearrangeComposeAttachments = createAction<string[]>(
+  'compose/rearrangeAttachments',
+);
+
 export const quoteCompose = createAppThunk(
   'compose/quoteComposeStatus',
   (status: Status, { dispatch }) => {
@@ -165,6 +178,8 @@ export const quoteComposeByStatus = createAppThunk(
       ['dismissed_banners', 'quote/quiet_post_hint'],
       false,
     );
+
+    const statusId = status.get('id') as string;
 
     if (composeState.get('id')) {
       dispatch(showAlert({ message: messages.quoteErrorEdit }));
@@ -196,6 +211,17 @@ export const quoteComposeByStatus = createAppThunk(
         openModal({
           modalType: 'CONFIRM_QUIET_QUOTE',
           modalProps: { status },
+        }),
+      );
+    } else if (
+      composeState.get('in_reply_to') &&
+      statusId &&
+      isRedesignEnabled()
+    ) {
+      dispatch(
+        openModal({
+          modalType: 'COMPOSER_ADD_QUOTE',
+          modalProps: { statusId },
         }),
       );
     } else {

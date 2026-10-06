@@ -1,128 +1,148 @@
 import type React from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useId, useMemo, useState } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { TranslateIcon } from '@phosphor-icons/react';
+import { MagnifyingGlassIcon, TranslateIcon } from '@phosphor-icons/react';
 
 import { changeComposeLanguage } from '@/mastodon/actions/compose';
-import { IconButton } from '@/mastodon/components/button/redesign';
-import { DropdownPopover } from '@/mastodon/components/dropdown/redesign';
+import { Button } from '@/mastodon/components/button/redesign';
+import { Combobox } from '@/mastodon/components/form_fields';
+import { ComboboxMenuItem } from '@/mastodon/components/form_fields/combobox_field';
+import { PopoverMenuCard } from '@/mastodon/components/menu/card';
+import { useToggle } from '@/mastodon/hooks/useToggle';
+import { languages as initialStateLanguages } from '@/mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { LanguageDropdownMenu } from '../components/language_dropdown';
-
+import { useLanguageList } from './hooks';
 import classes from './styles.module.scss';
 
+const messages = defineMessages({
+  searchPlaceholder: {
+    id: 'compose.language.search',
+    defaultMessage: 'Search languages...',
+  },
+});
+
+function getLanguageNameFromCode(code: string) {
+  const language = initialStateLanguages?.find(
+    ([languageCode]) => code === languageCode,
+  );
+  return language ? language[1] : undefined;
+}
+
 export const LanguageButton: React.FC = () => {
-  const [open, setOpen] = useState(false);
-  const [trigger, setTrigger] = useState<HTMLElement | null>(null);
-  const activeElementRef = useRef<HTMLElement | null>(null);
+  const langCode = useAppSelector(
+    (state) => state.compose.get('language') as string,
+  );
 
-  const handleMouseDown = useCallback(() => {
-    if (!open && document.activeElement instanceof HTMLElement) {
-      activeElementRef.current = document.activeElement;
-    }
-  }, [open]);
-
-  const handleToggle = useCallback(() => {
-    if (open && activeElementRef.current)
-      activeElementRef.current.focus({ preventScroll: true });
-
-    setOpen(!open);
-  }, [open]);
-
-  const handleClose = useCallback(() => {
-    if (open && activeElementRef.current)
-      activeElementRef.current.focus({ preventScroll: true });
-
-    setOpen(false);
-  }, [open]);
+  const [isOpen, { onToggle: toggle, onFalse: close }] = useToggle(false);
+  const [triggerElement, setTriggerElement] =
+    useState<HTMLButtonElement | null>(null);
 
   return (
     <>
-      <IconButton
-        icon={TranslateIcon}
+      <Button
+        ref={setTriggerElement}
         size='sm'
-        ref={setTrigger}
-        aria-expanded={open}
-        onClick={handleToggle}
-        onMouseDown={handleMouseDown}
+        leadingIcon={TranslateIcon}
+        aria-expanded={isOpen}
+        tooltip={{
+          type: 'description',
+          text: (
+            <FormattedMessage
+              id='compose.language.change'
+              defaultMessage='Change language'
+            />
+          ),
+        }}
+        onClick={toggle}
       >
-        <FormattedMessage
-          id='compose.language.change'
-          defaultMessage='Change language'
-        />
-      </IconButton>
+        {langCode.toLocaleUpperCase()}
+        <span className='sr-only'>({getLanguageNameFromCode(langCode)})</span>
+      </Button>
 
-      <DropdownPopover
-        isOpen={open}
-        onClose={handleClose}
-        offset={4}
+      <PopoverMenuCard
+        isOpen={isOpen}
         placement='bottom-end'
-        reference={trigger}
+        reference={triggerElement}
+        container={null}
         className={classes.languageMenu}
         maxWidth={280}
+        onClose={close}
       >
-        <LanguageDropdown onClose={handleClose} />
-      </DropdownPopover>
+        <LanguageDropdown onClose={close} />
+      </PopoverMenuCard>
     </>
   );
 };
 
+interface LanguageObject {
+  id: string;
+  code: string;
+  name: string;
+  localName: string;
+}
+
 export const LanguageDropdown: React.FC<{ onClose: () => void }> = ({
   onClose,
 }) => {
-  const language = useAppSelector(
-    (state) => state.compose.get('language') as string,
-  );
-  const guess = useLanguageGuess();
-
+  const intl = useIntl();
   const dispatch = useAppDispatch();
-  const handleChange = useCallback(
-    (newLanguage: string) => {
-      dispatch(changeComposeLanguage(newLanguage));
-      onClose();
+
+  const [inputValue, setInputValue] = useState('');
+  const { languages, onSearch } = useLanguageList();
+
+  const handleSearch: React.ChangeEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      setInputValue(event.target.value);
+      onSearch(event.target.value);
+    },
+    [onSearch],
+  );
+  const handleSelectLanguage = useCallback(
+    ({ code }: LanguageObject) => {
+      if (code) {
+        dispatch(changeComposeLanguage(code));
+        onClose();
+      }
     },
     [dispatch, onClose],
   );
 
+  const uniqueId = useId();
+  const languageObjects = useMemo(
+    () =>
+      languages.map(([code, name, localName]) => ({
+        id: `${uniqueId}-${code}`,
+        code,
+        name,
+        localName,
+      })),
+    [languages, uniqueId],
+  );
+
   return (
-    <LanguageDropdownMenu
-      value={language}
-      guess={guess}
-      onChange={handleChange}
-      onClose={onClose}
+    <Combobox
+      autoFocus
+      listBoxType='in-place'
+      value={inputValue}
+      onChange={handleSearch}
+      placeholder={intl.formatMessage(messages.searchPlaceholder)}
+      icon={MagnifyingGlassIcon}
+      items={languageObjects}
+      renderItem={renderLanguageItem}
+      onSelectItem={handleSelectLanguage}
     />
   );
 };
 
-function useLanguageGuess() {
-  const text = useAppSelector((state) => state.compose.get('text') as string);
-  const [guess, setGuess] = useState('');
-
-  useEffect(() => {
-    void import('../util/language_detection').then(({ debouncedGuess }) => {
-      if (text.length > 20) {
-        debouncedGuess(text, setGuess);
-      } else {
-        debouncedGuess.cancel();
-      }
-    });
-  }, [text]);
-
-  // Keeping track of the previous render's text length here
-  // to be able to reset the guess when the text length drops
-  // below the threshold needed to make a guess
-  const isLongText = text.length > 20;
-  const [wasLongText, setWasLongText] = useState(() => isLongText);
-  if (wasLongText !== isLongText) {
-    setWasLongText(isLongText);
-
-    if (wasLongText) {
-      setGuess('');
-    }
-  }
-
-  return guess;
+function renderLanguageItem({ code, name, localName }: LanguageObject) {
+  return (
+    <ComboboxMenuItem>
+      <span>
+        <strong lang={code}>{localName}</strong> ({name})
+      </span>
+    </ComboboxMenuItem>
+  );
 }

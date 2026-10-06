@@ -5,7 +5,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from '@unhead/react/helmet';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { ImmutablePureComponent } from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
@@ -17,7 +17,9 @@ import { Column } from '@/mastodon/components/column';
 import { injectIntl } from '@/mastodon/components/intl';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import ScrollableList from '@/mastodon/components/scrollable_list';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 
 
 const messages = defineMessages({
@@ -65,7 +67,14 @@ class Mutes extends ImmutablePureComponent {
 
     return (
       <Column bindToDocument={!multiColumn}>
-        <ColumnHeader icon='volume-off' iconComponent={VolumeOffIcon} title={intl.formatMessage(messages.heading)} showBackButton />
+        {isRedesignEnabled() ? (
+          <ColumnHeader
+            withBackButton
+            title={intl.formatMessage(messages.heading)}
+          />
+        ) : (
+          <LegacyColumnHeader icon='volume-off' iconComponent={VolumeOffIcon} title={intl.formatMessage(messages.heading)} showBackButton />
+        )}
         <ScrollableList
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}

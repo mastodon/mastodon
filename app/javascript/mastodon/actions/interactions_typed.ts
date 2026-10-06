@@ -6,6 +6,7 @@ import {
   apiRevokeQuote,
   apiGetQuotes,
 } from '@/mastodon/api/interactions';
+import { browserHistory } from '@/mastodon/components/router';
 import type { StatusContextType } from '@/mastodon/components/status/types';
 import type { VisibilityModalCallback } from '@/mastodon/features/ui/components/visibility_modal';
 import type { StatusShape, StatusVisibility } from '@/mastodon/models/status';
@@ -18,7 +19,7 @@ import { deleteModal } from '../initial_state';
 import { selectStatusInteractions } from '../selectors/statuses';
 
 import { showAlert, showGenericAlert } from './alerts';
-import { replyCompose } from './compose';
+import { replyComposeById } from './compose';
 import { quoteComposeById } from './compose_typed';
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import {
@@ -42,6 +43,7 @@ import {
 
 export type StatusInteractionIntent =
   | 'bookmark'
+  | 'copy'
   | 'delete'
   | 'editQuotePolicy'
   | 'edit'
@@ -59,6 +61,10 @@ export type StatusInteractionIntent =
   | 'translate';
 
 const messages = defineMessages({
+  copied: {
+    id: 'status.copied',
+    defaultMessage: 'Copied post link to clipboard',
+  },
   noEdits: {
     id: 'status.cannot_edit',
     defaultMessage: 'You are not allowed to edit this post',
@@ -72,6 +78,11 @@ const messages = defineMessages({
     defaultMessage: 'You are not quoted in this post',
   },
 });
+
+function navigateHomeAfterDelete() {
+  // Avoid the multi-column UI scrolling away from the composer
+  browserHistory.push('/', { preventMultiColumnAutoScroll: 'true' });
+}
 
 export const statusInteraction = createAppThunk(
   (
@@ -136,18 +147,29 @@ export const statusInteraction = createAppThunk(
           dispatch(bookmark(statusImmutable));
         }
         return;
-      case 'delete':
+      case 'copy':
+        void navigator.clipboard
+          .writeText(status.url ?? status.uri)
+          .then(() => {
+            dispatch(showAlert({ message: messages.copied }));
+          });
+        return;
+      case 'delete': {
+        // The detailed view no longer has a status to show once it's deleted.
+        const onDeleteSuccess =
+          contextType === 'detailed' ? navigateHomeAfterDelete : undefined;
         if (!deleteModal) {
-          void dispatch(deleteStatus(statusId));
+          void dispatch(deleteStatus(statusId)).then(onDeleteSuccess);
         } else {
           dispatch(
             openModal({
               modalType: 'CONFIRM_DELETE_STATUS',
-              modalProps: { statusId },
+              modalProps: { statusId, onDeleteSuccess },
             }),
           );
         }
         return;
+      }
       case 'edit': {
         const composerText = state.compose.get('text');
         if (typeof composerText === 'string' && composerText.trim()) {
@@ -238,7 +260,7 @@ export const statusInteraction = createAppThunk(
         }
         return;
       case 'reply':
-        dispatch(replyCompose(statusImmutable));
+        dispatch(replyComposeById(statusId));
         return;
       case 'report':
         dispatch(

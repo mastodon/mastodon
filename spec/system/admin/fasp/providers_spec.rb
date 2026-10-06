@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'FASP Management', feature: :fasp do
+  include ActionView::RecordIdentifier
   include ProviderRequestHelper
 
   before { sign_in Fabricate(:admin_user) }
@@ -19,16 +20,8 @@ RSpec.describe 'FASP Management', feature: :fasp do
                             method: :delete,
                             path: '/capabilities/callback/0/activation')
     end
-
-    before do
-      # We currently err on the side of caution and prefer to send
-      # a "disable capability" call too often over risking to miss
-      # one. So the following call _can_ happen here, and if it does
-      # that is fine, but it has no bearing on the behavior that is
-      # being tested.
-      stub_provider_request(provider,
-                            method: :delete,
-                            path: '/capabilities/data_sharing/0/activation')
+    let(:callback_capability) do
+      provider.fasp_capabilities.find_by(name: 'callback')
     end
 
     it 'allows enabling and disabling of capabilities' do
@@ -41,23 +34,19 @@ RSpec.describe 'FASP Management', feature: :fasp do
 
       expect(page).to have_css('h1', text: I18n.t('admin.fasp.providers.edit'))
 
-      check 'callback'
+      within css_id(callback_capability) do
+        click_on I18n.t('admin.fasp.capabilities.enable')
+      end
 
-      click_on I18n.t('admin.fasp.providers.save')
-
-      expect(page).to have_css('h1', text: I18n.t('admin.fasp.providers.title'))
       expect(provider.reload).to be_capability_enabled('callback')
       expect(enable_call).to have_been_requested
 
-      click_on I18n.t('admin.fasp.providers.edit')
-
       expect(page).to have_css('h1', text: I18n.t('admin.fasp.providers.edit'))
 
-      uncheck 'callback'
+      within css_id(callback_capability) do
+        click_on I18n.t('admin.fasp.capabilities.disable')
+      end
 
-      click_on I18n.t('admin.fasp.providers.save')
-
-      expect(page).to have_css('h1', text: I18n.t('admin.fasp.providers.title'))
       expect(provider.reload).to_not be_capability_enabled('callback')
       expect(disable_call).to have_been_requested
     end

@@ -1,14 +1,29 @@
-import { lazy, Suspense, useCallback } from 'react';
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
+import { WarningIcon } from '@phosphor-icons/react';
 
 import { openModal } from '@/mastodon/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import { deployPictureInPicture } from '@/mastodon/actions/picture_in_picture';
 import { CollectionPreviewCard } from '@/mastodon/features/collections/components/collection_preview_card';
-import Card from '@/mastodon/features/status/components/card';
+import MediaCard from '@/mastodon/features/status/components/card';
+import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
-import { useToggle } from '@/mastodon/hooks/useToggle';
 import { displayMedia } from '@/mastodon/initial_state';
 import type {
+  CardShape,
+  ExpandedStatusShape,
   MediaAttachment,
   MediaAttachmentShape,
 } from '@/mastodon/models/status';
@@ -17,13 +32,24 @@ import { selectMediaFilters } from '@/mastodon/selectors/filters';
 import { selectPictureInPicture } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { compareUrls } from '@/mastodon/utils/compare_urls';
+import { decodeIDNA } from '@/mastodon/utils/links';
 
-import { PictureInPicturePlaceholder } from '../picture_in_picture_placeholder';
+import { Avatar } from '../avatar';
+import { Button } from '../button/redesign';
+import { Callout } from '../callout/redesign';
+import { Card, CardActions, CardBody, CardTitle } from '../card';
+import { DisplayName } from '../display_name';
+import { RelativeTimestamp } from '../relative_timestamp';
+
+import classes from './attachments.module.scss';
+import { useStatusContext } from './hooks';
+import { PictureInPicturePlaceholder } from './legacy/picture_in_picture_placeholder';
+import { StatusQuote } from './quote';
+import mainClasses from './styles.module.scss';
 
 export const StatusAttachments: React.FC<{
   statusId: string;
-  contextType?: string;
-}> = ({ statusId, contextType }) => {
+}> = ({ statusId }) => {
   const status = useExpandedStatus(statusId);
 
   if (!status) {
@@ -36,7 +62,6 @@ export const StatusAttachments: React.FC<{
       <MediaAttachments
         statusId={statusId}
         accountId={status.account.id}
-        contextType={contextType}
         sensitive={status.sensitive}
         language={status.translation?.language ?? status.language}
         attachment={attachment}
@@ -48,7 +73,7 @@ export const StatusAttachments: React.FC<{
 
   // Don't display the card or collection if this is a quote.
   if (status.quote) {
-    return null;
+    return <StatusQuote {...status.quote} parentId={statusId} />;
   }
 
   const card = status.card;
@@ -56,13 +81,7 @@ export const StatusAttachments: React.FC<{
     ? status.tagged_collections.find(({ url }) => compareUrls(url, card.url))
     : status.tagged_collections[0];
   if (card && !collection) {
-    return (
-      <Card
-        key={`${status.id}-${status.edited_at}`}
-        card={card}
-        sensitive={status.sensitive}
-      />
-    );
+    return <LinkCard card={card} status={status} />;
   }
 
   if (collection) {
@@ -72,11 +91,17 @@ export const StatusAttachments: React.FC<{
   return null;
 };
 
+type OnOpenMediaCallback = (
+  media: Immutable.List<MediaAttachment>,
+  index: number,
+  lang?: string,
+) => void;
+
 type TMediaGallery = React.ComponentClass<
   {
     media: Immutable.List<MediaAttachment>;
     height: number;
-    onOpenMedia: (index: number) => void;
+    onOpenMedia: OnOpenMediaCallback;
     onToggleVisibility?: () => void;
     sensitive?: boolean;
     lang?: string;
@@ -98,7 +123,6 @@ const Video = lazy(() => import('@/mastodon/features/video'));
 const MediaAttachments: React.FC<{
   statusId: string;
   accountId: string;
-  contextType?: string;
   sensitive: boolean;
   language: string;
   attachment: MediaAttachmentShape;
@@ -107,11 +131,11 @@ const MediaAttachments: React.FC<{
 }> = ({
   statusId,
   accountId,
-  contextType,
   sensitive,
   language,
   attachment,
   defaultPosterUrl,
+  restAttachments,
 }) => {
   const description =
     attachment.translation?.description ?? attachment.description;
@@ -122,6 +146,7 @@ const MediaAttachments: React.FC<{
       'media_attachments',
     ]) as Immutable.List<MediaAttachment>;
   });
+  const { contextType, registerHotkeyCallback } = useStatusContext();
   const mediaFilters = useAppSelector((state) =>
     selectMediaFilters(state, { statusId, contextType }),
   );
@@ -129,24 +154,45 @@ const MediaAttachments: React.FC<{
     selectPictureInPicture(state, statusId),
   );
 
-  const [showMedia, { onToggle: handleToggleMediaVisibility }] = useToggle(
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [showMedia, setShowMedia] = useState(
     () =>
       mediaFilters.length === 0 &&
       ((displayMedia !== 'hide_all' && !sensitive) ||
         displayMedia === 'show_all'),
   );
+  const handleToggleMediaVisibility = useCallback(() => {
+    setShowMedia((prev) => {
+      // Pause the video or audio if hiding the media
+      if (prev && wrapperRef.current) {
+        wrapperRef.current
+          .querySelector<HTMLVideoElement | HTMLAudioElement>('video, audio')
+          ?.pause();
+      }
+      return !prev;
+    });
+  }, []);
+
+  useEffect(() => {
+    registerHotkeyCallback?.('toggleSensitive', handleToggleMediaVisibility);
+  }, [handleToggleMediaVisibility, registerHotkeyCallback]);
 
   const dispatch = useAppDispatch();
-  const handleOpenMedia = useCallback(
-    (index: number) => {
+  const handleOpenMedia: OnOpenMediaCallback = useCallback(
+    (media, index, lang) => {
       dispatch(
         openModal({
           modalType: 'MEDIA',
-          modalProps: { statusId, media: attachment, index, lang: language },
+          modalProps: {
+            statusId,
+            media,
+            index,
+            lang,
+          },
         }),
       );
     },
-    [attachment, dispatch, language, statusId],
+    [dispatch, statusId],
   );
   const handleOpenVideo = useCallback(
     (options: {
@@ -188,7 +234,8 @@ const MediaAttachments: React.FC<{
 
   let aspectRatio = '3 / 2';
   if (
-    isMediaAttachmentOfType(attachment, 'image') ||
+    (isMediaAttachmentOfType(attachment, 'image') &&
+      restAttachments.length === 0) ||
     isMediaAttachmentOfType(attachment, 'video') ||
     isMediaAttachmentOfType(attachment, 'gifv')
   ) {
@@ -201,38 +248,44 @@ const MediaAttachments: React.FC<{
     return <PictureInPicturePlaceholder aspectRatio={aspectRatio} />;
   }
 
+  const wrapperProps = {
+    sensitive,
+    visible: showMedia,
+    onToggle: handleToggleMediaVisibility,
+    aspectRatio,
+    mediaFilters,
+    wrapperRef,
+  } satisfies Omit<
+    React.ComponentProps<typeof MediaAttachmentWrapper>,
+    'children'
+  >;
+
   if (isMediaAttachmentOfType(attachment, 'audio')) {
     const { colors, original } = attachment.meta;
     return (
-      <Suspense
-        fallback={<div className='audio-player' style={{ aspectRatio }} />}
-      >
+      <MediaAttachmentWrapper {...wrapperProps} type='audio'>
         <Audio
           src={attachment.url}
           alt={description}
           lang={language}
           poster={attachment.preview_url || defaultPosterUrl}
-          backgroundColor={colors.background}
-          foregroundColor={colors.foreground}
-          accentColor={colors.accent}
+          backgroundColor={colors?.background}
+          foregroundColor={colors?.foreground}
+          accentColor={colors?.accent}
           duration={original.duration}
           deployPictureInPicture={handleDeployPictureInPicture}
-          sensitive={sensitive}
           blurhash={attachment.blurhash}
-          visible={showMedia}
           onToggleVisibility={handleToggleMediaVisibility}
-          matchedFilters={mediaFilters}
+          visible={showMedia}
         />
-      </Suspense>
+      </MediaAttachmentWrapper>
     );
   }
 
   if (isMediaAttachmentOfType(attachment, 'video')) {
     const { original } = attachment.meta;
     return (
-      <Suspense
-        fallback={<div className='video-player' style={{ aspectRatio }} />}
-      >
+      <MediaAttachmentWrapper {...wrapperProps} type='video'>
         <Video
           src={attachment.url}
           alt={description}
@@ -241,31 +294,212 @@ const MediaAttachments: React.FC<{
           frameRate={original.frame_rate}
           aspectRatio={aspectRatio}
           blurhash={attachment.blurhash}
-          sensitive={sensitive}
           onOpenVideo={handleOpenVideo}
           deployPictureInPicture={handleDeployPictureInPicture}
-          visible={showMedia}
           onToggleVisibility={handleToggleMediaVisibility}
-          matchedFilters={mediaFilters}
+          visible={showMedia}
         />
-      </Suspense>
+      </MediaAttachmentWrapper>
     );
   }
 
   return (
-    <Suspense
-      fallback={<div className='media-player' style={{ aspectRatio }} />}
-    >
+    <MediaAttachmentWrapper {...wrapperProps} type='gallery'>
       <MediaGallery
         media={immutableAttachments}
         lang={language}
-        sensitive={sensitive}
         height={110}
         onOpenMedia={handleOpenMedia}
-        visible={showMedia}
         onToggleVisibility={handleToggleMediaVisibility}
-        matchedFilters={mediaFilters}
+        visible={showMedia}
       />
-    </Suspense>
+    </MediaAttachmentWrapper>
+  );
+};
+
+const MediaAttachmentWrapper: React.FC<{
+  sensitive: boolean;
+  visible: boolean;
+  onToggle: () => void;
+  type?: 'gallery' | 'video' | 'audio';
+  children: React.ReactNode;
+  aspectRatio: string;
+  mediaFilters: string[];
+  wrapperRef: React.RefObject<HTMLDivElement | null>;
+}> = ({
+  sensitive,
+  visible,
+  type = 'gallery',
+  onToggle,
+  children,
+  aspectRatio,
+  mediaFilters,
+  wrapperRef,
+}) => {
+  let message = (
+    <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />
+  );
+  if (sensitive) {
+    message = (
+      <FormattedMessage
+        id='status.sensitive_warning'
+        defaultMessage='Sensitive content'
+      />
+    );
+  } else if (mediaFilters.length > 0) {
+    message = (
+      <FormattedMessage
+        id='filter_warning.matches_filter'
+        defaultMessage='Matches filter “<span>{title}</span>”'
+        values={{
+          title: mediaFilters.join(', '),
+          span: (chunks) => <span className='filter-name'>{chunks}</span>,
+        }}
+      />
+    );
+  }
+
+  const showSpoiler = sensitive || mediaFilters.length > 0 || !visible;
+
+  return (
+    <div className={classes.galleryWrapper} ref={wrapperRef}>
+      {showSpoiler && (
+        <Callout
+          className={classes.gallerySpoiler}
+          icon={WarningIcon}
+          actionClick={onToggle}
+          actionText={
+            visible ? (
+              <FormattedMessage
+                id='content_warning.media.hide_short'
+                defaultMessage='Hide media'
+              />
+            ) : (
+              <FormattedMessage
+                id='content_warning.media.show_short'
+                defaultMessage='Show media'
+              />
+            )
+          }
+        >
+          {message}
+        </Callout>
+      )}
+      <div
+        data-color-scheme='dark'
+        className={classNames(
+          mainClasses.contentWrapper,
+          classes.galleryContent,
+          !visible && mainClasses.hasContentWarning,
+          !visible && classes.galleryHideButtons,
+          showSpoiler && classes.galleryHideActions,
+        )}
+      >
+        <Suspense
+          fallback={<div className={`media-${type}`} style={{ aspectRatio }} />}
+        >
+          {children}
+        </Suspense>
+      </div>
+    </div>
+  );
+};
+
+const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
+  card,
+  status,
+}) => {
+  // Use the old card if we have authors as the new design doesn't have attribution yet.
+  if (card.type === 'video') {
+    return (
+      <div className={classes.cardMedia}>
+        <MediaCard
+          key={`${status.id}-${status.edited_at}`}
+          card={card}
+          sensitive={status.sensitive}
+        />
+      </div>
+    );
+  }
+
+  const providerUrl = new URL(card.provider_url || card.url);
+
+  const cardLinkProps = {
+    as: 'a',
+    href: card.url,
+    target: '_blank',
+    rel: 'noopener',
+  } as const;
+
+  const authors = card.authors
+    .map(({ accountId }) => accountId)
+    .filter((id): id is string => !!id);
+
+  return (
+    <Card>
+      <CardTitle
+        afterContent={
+          card.published_at && (
+            <RelativeTimestamp timestamp={card.published_at} />
+          )
+        }
+        lang={card.language ?? undefined}
+      >
+        <a
+          href={`${providerUrl.protocol}//${providerUrl.host}`}
+          target='_blank'
+          rel='noopener'
+        >
+          {card.author_name ||
+            card.provider_name ||
+            decodeIDNA(providerUrl.host)}
+        </a>
+      </CardTitle>
+      <CardBody {...cardLinkProps}>{card.title}</CardBody>
+      {card.description && (
+        <CardBody {...cardLinkProps} isDescription>
+          {card.description}
+        </CardBody>
+      )}
+
+      {authors.length > 0 && (
+        <CardActions>
+          <FormattedMessage
+            id='status.link_preview.authors'
+            defaultMessage='{count, plural, one {Find the author in the Fediverse:} other {Find the authors in the Fediverse:}}'
+            values={{
+              count: authors.length,
+            }}
+            tagName='span'
+          />
+
+          {authors.map((accountId) => (
+            <LinkCardAuthor authorId={accountId} key={accountId} />
+          ))}
+        </CardActions>
+      )}
+    </Card>
+  );
+};
+
+const LinkCardAuthor: React.FC<{ authorId?: string }> = ({ authorId }) => {
+  const author = useAccount(authorId);
+
+  if (!author) {
+    return null;
+  }
+
+  return (
+    <Button
+      as='link'
+      size='sm'
+      color='accent'
+      variant='ghost'
+      to={`/@${author.get('acct')}`}
+      className={classes.cardAuthor}
+    >
+      <Avatar account={author} />
+      <DisplayName variant='simple' account={author} />
+    </Button>
   );
 };

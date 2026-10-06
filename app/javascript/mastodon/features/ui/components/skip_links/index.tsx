@@ -2,15 +2,16 @@ import { useCallback, useId } from 'react';
 
 import { useIntl } from 'react-intl';
 
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { useAppSelector } from 'mastodon/store';
 
 import classes from './skip_links.module.scss';
 
 export const getNavigationSkipLinkId = () => 'skip-link-target-nav';
-export const getColumnSkipLinkId = (index: number) =>
-  `skip-link-target-content-${index}`;
+export const getColumnSkipLinkId = (index: number | null) =>
+  `skip-link-target-content-${index ?? ''}`;
 
-export const SkipLinks: React.FC<{
+const LegacySkipLinks: React.FC<{
   multiColumn: boolean;
   onFocusGettingStartedColumn: () => void;
 }> = ({ multiColumn, onFocusGettingStartedColumn }) => {
@@ -54,6 +55,23 @@ export const SkipLinks: React.FC<{
   );
 };
 
+const RedesignSkipLinks: React.FC = () => {
+  const intl = useIntl();
+
+  return (
+    <div className={classes.list}>
+      <div className={classes.listItem}>
+        <SkipLink target={getColumnSkipLinkId(1)} hotkey='2'>
+          {intl.formatMessage({
+            id: 'skip_links.skip_to_content',
+            defaultMessage: 'Skip to main content',
+          })}
+        </SkipLink>
+      </div>
+    </div>
+  );
+};
+
 const SkipLink: React.FC<{
   children: string;
   target: string;
@@ -82,3 +100,7 @@ const SkipLink: React.FC<{
     </>
   );
 };
+
+export const SkipLinks = isRedesignEnabled()
+  ? RedesignSkipLinks
+  : LegacySkipLinks;

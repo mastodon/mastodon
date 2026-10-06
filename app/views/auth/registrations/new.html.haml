@@ -60,7 +60,7 @@
                 required: true,
                 wrapper: :with_block_label
 
-  - if approved_registrations? && @invite.blank?
+  - if approved_registrations? && !@invite&.bypass_approval?
     .fields-group
       = f.simple_fields_for :invite_request, resource.invite_request || resource.build_invite_request do |invite_request_fields|
         = invite_request_fields.input :text,
@@ -81,4 +81,4 @@
               wrapper: :with_label
 
   .actions
-    = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit
+    = f.button :button, @invite&.bypass_approval? ? t('auth.register') : sign_up_message, type: :submit

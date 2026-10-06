@@ -72,10 +72,6 @@ export function KeyboardShortcuts () {
   return import('../../keyboard_shortcuts');
 }
 
-export function PinnedStatuses () {
-  return import('../../pinned_statuses');
-}
-
 export function AccountTimeline () {
   return import('../../account_timeline');
 }

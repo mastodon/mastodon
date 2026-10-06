@@ -12,6 +12,7 @@ import classes from './text_input.module.scss';
 
 export interface TextInputProps extends ComponentPropsWithoutRef<'input'> {
   icon?: IconProp;
+  iconClassName?: string;
 }
 
 interface Props extends TextInputProps, CommonFieldWrapperProps {}
@@ -44,8 +45,18 @@ export const TextInputField = forwardRef<HTMLInputElement, Props>(
 TextInputField.displayName = 'TextInputField';
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  ({ type = 'text', icon, className, autoComplete, ...otherProps }, ref) => (
-    <WrapFieldWithIcon icon={icon}>
+  (
+    {
+      type = 'text',
+      icon,
+      iconClassName,
+      className,
+      autoComplete,
+      ...otherProps
+    },
+    ref,
+  ) => (
+    <WrapFieldWithIcon icon={icon} iconClassName={iconClassName}>
       <input
         type={type}
         {...otherProps}
@@ -69,11 +80,12 @@ TextInput.displayName = 'TextInput';
 
 const WrapFieldWithIcon: React.FC<{
   icon?: IconProp;
+  iconClassName?: string;
   children: React.ReactElement;
-}> = ({ icon, children }) => {
+}> = ({ icon, iconClassName, children }) => {
   if (icon) {
     return (
-      <div className={classes.iconWrapper}>
+      <div className={classNames(classes.iconWrapper, iconClassName)}>
         <Icon icon={icon} id='input-icon' className={classes.icon} />
         {children}
       </div>

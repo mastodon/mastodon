@@ -506,8 +506,6 @@ ja:
           description: FASPから登録を受け取りました。自分で登録していないなら拒否してください。自分で登録した場合は、登録を確定する前に名前と鍵のフィンガープリントを慎重に比較してください。
           reject: 拒否
           title: FASP登録を確認
-        save: 保存
-        select_capabilities: 機能選択
         sign_in: サインイン
         status: ステータス
         title: フェディバース補助サービスプロバイダ
@@ -824,10 +822,8 @@ ja:
       discovery:
         follow_recommendations: おすすめフォロー
         preamble: 必ずしも知っている人がMastodonに居ない新規ユーザーに定着してもらうには、興味深いコンテンツを表示することが役に立ちます。あなたのサーバーの種々のディスカバリー機能の動作を設定してください。
-        privacy: プライバシー
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
-        publish_statistics: 統計情報を公開する
         title: 見つける
         trends: トレンド
       domain_blocks:
@@ -851,7 +847,6 @@ ja:
         warning_hint: モデレーションチームがスパムや悪意のある登録を迅速に処理できる自信がない限り、サインアップを承認制にすることをお勧めします。
       security:
         authorized_fetch: 連合サーバーによる署名なしでの情報取得を拒否する
-        authorized_fetch_hint: ほかの連合サーバーから受け付けるリクエストに署名を必須にすることで、ユーザーによるブロックおよびドメインブロック両方の効果をより強力にします。ただし連合の処理コストが増えてパフォーマンス面で不利になるほか、このサーバーから送られた反応が届く範囲が狭まったり、連合における互換性の問題を招く可能性もあります。また、この機能は公開投稿やプロフィールへのアクセスをブロックした相手から完全に遮断できるものではありません。
         authorized_fetch_overridden_hint: この設定は環境変数で指定されているため、ここでは変更できません。
         federation_authentication: 連合に署名を必須にする
       title: サーバー設定
@@ -1031,7 +1026,6 @@ ja:
         shared_by_over_week:
           other: 週間%{count}人に共有されました
         title: トレンドリンク
-        usage_comparison: 今日は%{today}回、昨日は%{yesterday}回共有されました
       not_allowed_to_trend: 未許可のトレンド
       only_allowed: 許可済み
       pending_review: 保留中
@@ -1075,7 +1069,6 @@ ja:
         trendable: トレンドに表示する
         trending_rank: '人気: %{rank}位'
         usable: 使用を許可
-        usage_comparison: 今日は%{today}回、昨日は%{yesterday}回使用されました。
         used_by_over_week:
           other: 週間%{count}人に使用されました
       title: おすすめとトレンド
@@ -1316,7 +1309,6 @@ ja:
   deletes:
     challenge_not_passed: 入力された情報は正しくありません
     confirm_password: 本人確認のため、現在のパスワードを入力してください
-    confirm_username: 確認のためユーザー名を入力してください
     proceed: アカウントを削除する
     success_msg: アカウントは正常に削除されました
     warning:
@@ -1466,7 +1458,6 @@ ja:
       empty: CSVファイルの内容がありません
       incompatible_type: 選択したインポート項目とファイルの内容が異なります
       invalid_csv_file: '無効なCSVファイルです。エラー: %{error}'
-      over_rows_processing_limit: "%{count}行以上"
       too_large: ファイルが大きすぎます
     failures: 失敗
     imported: インポート済み
@@ -1592,7 +1583,6 @@ ja:
     incoming_migrations_html: 別のアカウントからこのアカウントに引っ越すには、まず<a href="%{path}">アカウントエイリアスを作成</a>する必要があります。
     moved_msg: アカウントは%{acct}に引っ越し設定されており、フォロワーは引っ越し先に引き継がれています。
     not_redirecting: アカウントは現在引っ越し設定されていません。
-    on_cooldown: あなたは最近アカウントを引っ越しました。この機能は%{count}日後に再度利用できるようになります。
     past_migrations: 過去の引っ越し
     proceed_with_move: フォロワーを引き継ぐ
     redirected_msg: あなたのアカウントは現在%{acct}にリダイレクトされています。
@@ -1744,8 +1734,6 @@ ja:
       account: "@%{acct}からの公開投稿"
       tag: "#%{hashtag}が付けられた公開投稿"
   scheduled_statuses:
-    over_daily_limit: その日予約できる投稿数 %{limit}を超えています
-    over_total_limit: 予約できる投稿数 %{limit}を超えています
     too_soon: 日付は未来でなければなりません
   self_destruct:
     lead_html: 残念ながら、<strong>%{domain}</strong> は恒久的に閉鎖されます。ここにお持ちだったアカウントを今後使うことはできませんが、これまでのデータのバックアップを要求することはまだ可能です。
@@ -1803,7 +1791,6 @@ ja:
     appearance: 外観
     authorized_apps: 認証済みアプリ
     back: Mastodonに戻る
-    delete: アカウントの削除
     development: 開発
     edit_profile: プロフィールを編集
     export: エクスポート

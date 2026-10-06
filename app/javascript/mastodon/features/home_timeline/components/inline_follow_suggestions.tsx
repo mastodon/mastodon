@@ -142,13 +142,27 @@ const Card: React.FC<{
       />
 
       <div className='inline-follow-suggestions__body__scrollable__card__avatar'>
-        <Link to={`/@${account?.acct}`} data-hover-card-account={account?.id}>
+        <Link
+          to={{
+            pathname: `/@${account?.acct}`,
+            state: { reference: 'inline_suggestions' },
+          }}
+          data-hover-card-account={account?.id}
+          data-hover-card-reference='inline_suggestions'
+        >
           <Avatar account={account} size={72} />
         </Link>
       </div>
 
       <div className='inline-follow-suggestions__body__scrollable__card__text-stack'>
-        <Link to={`/@${account?.acct}`} data-hover-card-account={account?.id}>
+        <Link
+          to={{
+            pathname: `/@${account?.acct}`,
+            state: { reference: 'inline_suggestions' },
+          }}
+          data-hover-card-account={account?.id}
+          data-hover-card-reference='inline_suggestions'
+        >
           <DisplayName account={account} />
         </Link>
         {firstVerifiedField ? (
@@ -158,7 +172,7 @@ const Card: React.FC<{
         )}
       </div>
 
-      <FollowButton accountId={id} />
+      <FollowButton accountId={id} reference='inline_suggestions' />
     </div>
   );
 };
@@ -199,7 +213,7 @@ export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
   }
 
   if (hidden) {
-    return <div className='inline-follow-suggestions' />;
+    return <div className='inline-follow-suggestions focusable' />;
   }
 
   return (

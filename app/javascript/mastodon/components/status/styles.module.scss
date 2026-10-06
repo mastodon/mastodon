@@ -1,0 +1,260 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  --col-gap: var(--space-2);
+  --avatar-size: 40px;
+  --first-col-width: calc(var(--avatar-size) + var(--col-gap));
+  --content-col: 2;
+
+  display: grid;
+  grid-template-columns: var(--first-col-width) minmax(
+      calc(100% - var(--first-col-width)),
+      1fr
+    );
+  grid-auto-rows: auto;
+  row-gap: var(--space-2);
+  padding: var(--space-4);
+  cursor: pointer;
+}
+
+.variantFeed {
+  border-bottom: var(--border-thin);
+}
+
+.variantPage {
+  padding: var(--space-2) var(--space-4);
+  cursor: auto;
+}
+
+.variantThread {
+  --avatar-size: 32px;
+
+  padding: 0;
+}
+
+.isQuote {
+  padding: var(--space-3);
+}
+
+.isHighlighted {
+  :global(.no-reduce-motion) & {
+    animation: highlight-fade 0.7s both 0.3s;
+  }
+}
+
+@keyframes highlight-fade {
+  from {
+    background: var(--color-bg-brand-softest);
+  }
+
+  to {
+    background: transparent;
+  }
+}
+
+.isMessage {
+  position: relative;
+
+  &::before {
+    content: '';
+    mask-repeat: repeat;
+    mask-image: url('@/images/composer_message.svg');
+    mask-size: 311.36px auto;
+    background-color: var(--color-border-brand);
+    opacity: 0.15;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+}
+
+.variantPage,
+.isQuote {
+  --content-col: span 2;
+}
+
+.header {
+  grid-column: span 2;
+}
+
+.spoiler,
+.translate,
+.contentWrapper,
+.footer {
+  grid-column: var(--content-col);
+}
+
+.connectNextReply {
+  &::after {
+    content: '';
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    border-inline-start: var(--bw-thick) solid var(--color-border-primary);
+    width: calc(var(--avatar-size) / 2 - 1px);
+    margin-inline-end: var(--col-gap);
+    justify-self: end;
+  }
+}
+
+.translate {
+  display: flex;
+  align-items: center;
+}
+
+.translateInfo {
+  @include mixins.type-meta;
+
+  color: var(--color-text-secondary);
+  margin-inline-start: auto;
+}
+
+.contentWrapper {
+  --fade-time: 100ms;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  position: relative;
+  overflow: clip;
+  border-radius: var(--radius-2);
+
+  &.isFiltered {
+    display: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      var(--color-bg-highlight) 1px,
+      transparent 0
+    );
+    background-size: var(--space-2) var(--space-2);
+    background-repeat: repeat;
+
+    // Override .media-gallery__item
+    z-index: 2;
+
+    // See: https://css-tricks.com/snippets/css/toggle-visibility-when-hiding-elements/
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      visibility 0s linear var(--fade-time),
+      opacity var(--fade-time) ease-in-out;
+
+    // Show only if backdrop-filter is unsupported.
+    background-color: var(--color-bg-desktop);
+
+    @supports (backdrop-filter: blur(20px)) {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+    }
+  }
+
+  &.hasContentWarning {
+    &::after {
+      visibility: visible;
+      opacity: 1;
+      transition:
+        visibility 0s linear 0s,
+        opacity var(--fade-time) ease-in-out;
+    }
+  }
+}
+
+.variantPage .content {
+  @include mixins.type-body-lg;
+}
+
+.contentImage {
+  border-radius: var(--radius-4);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.contentBlurHash {
+  width: 100%;
+  height: 100%;
+}
+
+.hashtagsWrapper,
+.hashtags {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: nowrap;
+}
+
+.hashtagsWrapper {
+  padding: var(--space-1) 0;
+}
+
+.hashtags {
+  overflow: hidden;
+  position: relative;
+
+  > button {
+    flex-shrink: 0;
+  }
+}
+
+.hashtagsShowAll {
+  flex-wrap: wrap;
+  overflow: visible;
+  max-width: none !important;
+}
+
+.meta {
+  @include mixins.type-meta;
+
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: var(--color-text-secondary);
+  padding-block-start: var(--space-2);
+  margin-block-start: var(--space-2);
+  border-block-start: var(--border-default);
+  margin-inline: calc(-1 * var(--space-4));
+  padding-inline: var(--space-4);
+
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  li:not(:first-child) {
+    &::before {
+      content: '• ';
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:hover * {
+      text-decoration: underline;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+
+  > button:not(:hover, :active, [aria-pressed='true'], [aria-expanded='true']) {
+    opacity: 0.7;
+  }
+}
+
+.actionsButtonGap {
+  margin-inline-end: auto;
+}

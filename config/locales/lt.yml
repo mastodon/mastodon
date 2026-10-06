@@ -162,6 +162,8 @@ lt:
       suspension_irreversible: Šios paskyros duomenys negrįžtamai ištrinti. Gali atšaukti paskyros pristabdymą, kad ja būtų galima naudotis, bet nebus atkurti jokie anksčiau turėti duomenys.
       suspension_reversible_hint_html: Paskyra pristabdyta, o duomenys bus visiškai pašalinti %{date}. Iki to laiko paskyrą galima atkurti be jokių neigiamų pasekmių. Jei nori iš karto pašalinti visus paskyros duomenis, gali tai padaryti toliau.
       title: Naudotojai
+      trends:
+        title: Tendencingi įrašai
       unblock_email: Atblokuoti el. pašto adresą
       unblocked_email_msg: Sėkmingai atblokuotas %{username} el. pašto adresas.
       unconfirmed_email: Nepatvirtintas el. pašto adresas.
@@ -625,7 +627,6 @@ lt:
         warning_hint: Rekomenduojame naudoti „Registracijai privalomas patvirtinimas“, nebent esi tikras (-a), kad tavo prižiūrėjimo komanda gali laiku apdoroti šlamštus ir kenkėjiškas registracijas.
       security:
         authorized_fetch: Reikalauti tapatybės nustatymo iš federacinių serverių
-        authorized_fetch_hint: Reikalauti tapatybės nustatymo iš federacinių serverių leidžia griežčiau užtikrinti tiek naudotojo, tiek serverio lygio blokų vykdymą. Tačiau dėl to nukenčia našumas, sumažėja atsakymų pasiekiamumas ir gali kilti suderinamumo su kai kuriomis federacinėmis paslaugomis problemų. Be to, tai nesutrukdys skirtiems dalyviams gauti tavo viešų įrašų ir paskyrų.
         authorized_fetch_overridden_hint: Šiuo metu negali pakeisti šio nustatymo, nes jį pakeičia aplinkos kintamasis.
         federation_authentication: Federacijos tapatybės nustatymo vykdymas
     software_updates:
@@ -756,7 +757,6 @@ lt:
         publishers:
           no_publisher_selected: Jokie leidėjai nebuvo pakeisti, nes nė vienas nebuvo pasirinktas
         title: Tendencingos nuorodos
-        usage_comparison: Bendrinta %{today} kartų šiandien, palyginti su %{yesterday} vakar
       not_allowed_to_trend: Neleidžiama tendencinguoti
       only_allowed: Leidžiama tik
       pending_review: Laukiama peržiūros
@@ -969,7 +969,6 @@ lt:
   deletes:
     challenge_not_passed: Įvesta informacija buvo neteisinga
     confirm_password: Įvesk dabartinį slaptažodį, kad patvirtintum savo tapatybę
-    confirm_username: Procedūros patvirtinimui įvesk savo naudotojo vardą
     proceed: Ištrinti paskyrą
     success_msg: Tavo paskyra buvo sėkmingai ištrinta
   disputes:
@@ -1049,6 +1048,7 @@ lt:
     today: šiandien
   imports:
     errors:
+      no_data: Šiame faile nėra jokių duomenų, atitinkančių nurodytą importo tipą.
       too_large: Failas per didelis.
     modes:
       merge: Sujungti
@@ -1197,8 +1197,6 @@ lt:
     descriptions:
       tag: 'Vieši įrašai su grotažymėmis #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Jūs pasieketė limitą (%{limit}) galimų toot'ų per dieną
-    over_total_limit: Jūs pasieketė %{limit} limitą galimų toot'ų
     too_soon: data turi būti ateityje.
   sessions:
     activity: Paskutinė veikla
@@ -1235,7 +1233,6 @@ lt:
     appearance: Išvaizda
     authorized_apps: Leidžiamos programėlės
     back: Grįžti į Mastodon
-    delete: Paskyros trynimas
     development: Kūrimas
     edit_profile: Redaguoti profilį
     export: Eksportuoti

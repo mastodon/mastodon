@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import ArrowBackIcon from '@/material-icons/400-24px/arrow_back.svg?react';
 import { Icon } from 'mastodon/components/icon';
 import { getColumnSkipLinkId } from 'mastodon/features/ui/components/skip_links';
-import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
+import { RenderIntoTabsBarPortal } from 'mastodon/features/ui/util/columns_context';
 
 import { useAppHistory } from '../router';
 
@@ -49,5 +49,5 @@ export const ColumnBackButton: React.FC<{ onClick?: OnClickCallback }> = ({
     </button>
   );
 
-  return <ButtonInTabsBar>{component}</ButtonInTabsBar>;
+  return <RenderIntoTabsBarPortal>{component}</RenderIntoTabsBarPortal>;
 };

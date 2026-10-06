@@ -15,13 +15,15 @@ const meta = {
   parameters: {
     redesign: true,
     state: {
+      compose: {
+        language: 'en',
+      },
       media_attachments: {
         accept_content_types: [
           'image/jpeg',
           'image/png',
           'image/gif',
           'image/webp',
-          'image/avif',
           'video/mp4',
           'video/quicktime',
           'video/ogg',

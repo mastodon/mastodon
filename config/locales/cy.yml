@@ -84,6 +84,10 @@ cy:
       disable_sign_in_token_auth: Analluogi dilysu tocyn e-bost
       disable_two_factor_authentication: Diffodd 2FA
       disabled: Wedi rhewi
+      discoverable:
+        disabled: Dyw'r awdur heb ddewis bod yn ddarganfyddadwy
+        enabled: Mae'r awdur wedi dewis bod yn ddarganfyddadwy
+        title: Darganfyddadwy
       display_name: Enw sgrin
       domain: Parth
       edit: Golygu
@@ -93,6 +97,12 @@ cy:
       enable_sign_in_token_auth: Galluogi dilysu tocyn e-bost
       enabled: Wedi ei alluogi
       enabled_msg: Wedi dadrewi cyfrif %{username} yn llwyddiannus
+      follow_recommendations:
+        allowed: Caniatawyd
+        suppress: Atal unrhyw argymhelliad dilyn
+        suppressed: Cyfyngwyd
+        title: Dilyn yr argymhellion
+        unsuppress: Adfer unrhyw argymhelliad dilyn
       followers: Dilynwyr
       follows: Yn dilyn
       header: Pennyn
@@ -142,6 +152,7 @@ cy:
       push_subscription_expires: Tanysgrifiad gwthiadwy yn dod i ben
       redownload: Adnewyddu proffil
       redownloaded_msg: Adnewyddwyd proffil %{username} o'r gweinydd gwreiddiol
+      registration_app: Ap cofrestru
       reject: Gwrthod
       rejected_msg: Wedi gwrthod cais cofrestru %{username}
       remote_suspension_irreversible: Mae data'r cyfrif hwn wedi'i ddileu'n ddiwrthdro.
@@ -181,6 +192,12 @@ cy:
       suspension_irreversible: Mae data'r cyfrif hwn wedi'i ddileu'n ddiwrthdro. Gallwch ddad-atal y cyfrif i'w wneud yn ddefnyddiadwy ond ni fydd yn adennill unrhyw ddata a oedd ganddo o'r blaen.
       suspension_reversible_hint_html: Mae'r cyfrif wedi'i atal, a bydd y data'n cael ei ddileu yn llawn ar %{date}. Tan hynny, mae modd adfer y cyfrif heb unrhyw effeithiau gwael. Os dymunwch gael gwared ar holl ddata'r cyfrif ar unwaith, gallwch wneud hynny isod.
       title: Cyfrifon
+      trends:
+        allow: Caniatáu
+        allowed: Caniatawyd
+        disallow: Peidio Caniatáu
+        disallowed: Peidio Caniatáu
+        title: Postiadau sy'n trendio
       unblock_email: Dadflocio cyfeiriad e-bost
       unblocked_email_msg: Llwyddwyd i ddadflocio cyfeiriad e-bost %{username}
       unconfirmed_email: E-bost heb ei gadarnhau
@@ -216,6 +233,7 @@ cy:
         create_user_role: Creu Rôl
         create_username_block: Creu Rheol Enw Defnyddiwr
         demote_user: Diraddio Defnyddiwr
+        destroy_account: Dileu Data Cyfrif
         destroy_announcement: Dileu Cyhoeddiad
         destroy_canonical_email_block: Dileu Rhwystr E-bost
         destroy_custom_emoji: Dileu Emoji Addasedig
@@ -284,6 +302,7 @@ cy:
         create_user_role_html: Mae %{name} wedi creu rôl %{target}
         create_username_block_html: Mae %{name} wedi ychwanegu rheol ar gyfer enwau defnyddwyr sy'n cynnwys %{target}
         demote_user_html: Mae %{name} wedi israddio defnyddiwr %{target}
+        destroy_account_html: Mae %{name} wedi dileu data cyfrif ar gyfer %{target}
         destroy_announcement_html: Mae %{name} wedi dileu cyhoeddiad %{target}
         destroy_canonical_email_block_html: Mae %{name} wedi dad-rwystro parth e-bost %{target}
         destroy_collection_html: Mae %{name} wedi tynnu casgliad gan %{target}
@@ -641,6 +660,11 @@ cy:
         title: Mewnforio blociau parth
       no_file: Heb ddewis ffeil
     fasp:
+      capabilities:
+        activation_msg: Galluogwyd y gallu yn llwyddiannus.
+        deactivation_msg: Analluogwyd y gallu yn llwyddiannus.
+        disable: Analluogi
+        enable: Galluogi
       debug:
         callbacks:
           created_at: Crëwyd am
@@ -652,6 +676,7 @@ cy:
         active: Gweithredol
         base_url: URL sylfaen
         callback: Adalwad
+        capabilities: Galluoedd
         delete: Dileu
         edit: Golygu Darparwr
         finish_registration: Gorffen cofrestru
@@ -664,8 +689,6 @@ cy:
           description: Rydych wedi derbyn cofrestriad gan FASP. Gwrthodwch hyn os nad chi ofynnodd amdano. Os taw chi gychwynnodd hyn, cymharwch yr enw ac allwedd yr ôl bys yn ofalus cyn cadarnhau'r cofrestriad.
           reject: Gwrthod
           title: Cadarnhau Cofrestriad FASP
-        save: Cadw
-        select_capabilities: Dewis Galluoedd
         sign_in: Mewngofnodi
         status: Statws
         title: Fediverse Auxiliary Service Providers
@@ -1028,10 +1051,8 @@ cy:
       discovery:
         follow_recommendations: Dilyn yr argymhellion
         preamble: Mae amlygu cynnwys diddorol yn allweddol wrth ddenu defnyddwyr newydd sydd ddim o bosib yn adnabod neb ar Mastodon. Rheolwch sut mae gwahanol nodweddion darganfod yn gweithio ar eich gweinydd.
-        privacy: Preifatrwydd
         profile_directory: Cyfeiriadur proffiliau
         public_timelines: Ffrydiau cyhoeddus
-        publish_statistics: Cyhoeddi ystadegau
         title: Darganfod
         trends: Tueddiadau
         wrapstodon: Wrapstodon
@@ -1039,6 +1060,11 @@ cy:
         all: I bawb
         disabled: I neb
         users: I ddefnyddwyr lleol wedi'u mewngofnodi
+      external:
+        preamble: Rheoli faint o wybodaeth am eich gweinydd sy'n cael ei rhannu gyda gwasanaethau eraill a pha mor hawdd ei darganfod y dylai eich gweinydd fod.
+        privacy: Preifatrwydd
+        publish_statistics: Cyhoeddi ystadegau
+        title: Darganfod Allanol
       feed_access:
         modes:
           authenticated: Defnyddwyr dilys yn unig
@@ -1067,7 +1093,15 @@ cy:
         warning_hint: Rydym yn argymell defnyddio “Mae angen cymeradwyaeth ar gyfer cofrestru” oni bai eich bod yn hyderus y gall eich tîm cymedroli ymdrin â chofrestriadau sbam a rhai maleisus mewn modd amserol.
       security:
         authorized_fetch: Mae angen dilysu gan weinyddion ffederal
-        authorized_fetch_hint: Mae gofyn am ddilysiad gan weinyddion ffederal yn galluogi gorfodi llymach ar flociau lefel defnyddiwr a lefel gweinydd. Fodd bynnag, daw hyn ar gost perfformiad arafach, mae'n lleihau cyrhaeddiad eich atebion, a gall gyflwyno materion cydnawsedd gyda rhai gwasanaethau ffederal. Yn ogystal, ni fydd hyn yn atal actorion ymroddedig rhag estyn eich postiadau a'ch cyfrifon cyhoeddus.
+        authorized_fetch_hint: Penderfynwch pryd mae angen i weinyddion o bell ddilysu wrth nôl cynnwys o'r gweinydd hwn.
+        authorized_fetch_hints:
+          actors: Mae gofyn am ddilysu ar gyfer proffiliau yn galluogi olrhain pa weinydd sydd erioed wedi darganfod pob un o'ch cyfrifon lleol, a all leihau nifer y ceisiadau diangen a gyflawnir wrth hysbysu gweinyddion am ddileu cyfrif yn fawr. Daw'r opsiwn hwn ar gost perfformiad fach wrth weini proffiliau oherwydd yr olrhain hwnnw a'r anallu i'r dirprwy gwrthdro storio ymatebion mewn storfa dros dro ar gyfer y ceisiadau hyn. Gallai hyn hefyd gyflwyno problemau cydnawsedd gyda rhai gwasanaethau ffederal.
+          all: Yn ogystal â manteision ac anfanteision gofyn am ddilysu ar gyfer proffiliau, mae gofyn am ddilysu heb amodau gan weinyddion ffederal yn galluogi gorfodi blociau lefel defnyddiwr a lefel gweinydd yn fwy llym, ond mae hefyd yn atal storio'r rhan fwyaf o geisiadau dros y storfa. Bydd hefyd yn lleihau cyrhaeddiad eich atebion, gan y bydd anfon atebion ymlaen yn cael ei analluogi.
+          none: Mae gofyn am ddilysu dim ond pan fo'n gwbl angenrheidiol yn caniatáu i'ch dirprwy gwrthdro storio mwy o geisiadau yn y storfa. Efallai y bydd yr opsiwn hwn yn cael ei ddileu yn y dyfodol. Defnyddiwch ef dim ond os yw'r opsiynau eraill yn achosi problemau.
+        authorized_fetch_modes:
+          actors: Ar gyfer proffiliau a chynnwys preifat
+          all: Ar gyfer pob cais
+          none: Ar gyfer cynnwys preifat yn unig
         authorized_fetch_overridden_hint: Nid oes modd i chi newid y gosodiad hwn ar hyn o bryd oherwydd ei fod yn cael ei ddiystyru gan newidyn amgylcheddol.
         federation_authentication: Gorfodi dilysu ffederasiwn
       title: Gosodiadau gweinydd
@@ -1262,7 +1296,13 @@ cy:
           two: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
           zero: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
         title: Dolenni sy'n trendio
-        usage_comparison: Wedi'i rannu %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+        usage_comparison:
+          few: Wedi'i rannu %{count} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+          many: Wedi'i rannu %{count} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+          one: Wedi'i rannu %{count} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+          other: Wedi'i rannu %{count} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+          two: Wedi'i rannu %{count} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+          zero: Wedi'i rannu %{count} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
       not_allowed_to_trend: Dim caniatâd i trendio
       only_allowed: Derbyniwyd yn unig
       pending_review: Yn aros am adolygiad
@@ -1311,7 +1351,13 @@ cy:
         trendable: Gall ymddangos o dan trendiau
         trending_rank: 'Yn trendio #%{rank}'
         usable: Mae modd ei ddefnyddio
-        usage_comparison: Wedi'i ddefnyddio %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+        usage_comparison:
+          few: Wedi'i ddefnyddio %{count} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+          many: Wedi'i ddefnyddio %{count} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+          one: Wedi'i ddefnyddio %{count} o amser heddiw, o'i gymharu â %{yesterday} ddoe
+          other: Wedi'i ddefnyddio %{count} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+          two: Wedi'i ddefnyddio %{count} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
+          zero: Wedi'i ddefnyddio %{count} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
         used_by_over_week:
           few: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
           many: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
@@ -1578,9 +1624,11 @@ cy:
   deletes:
     challenge_not_passed: Nid oedd y wybodaeth a roesoch yn gywir
     confirm_password: Mewnbynnwch eich cyfrinair presennol i gadarnhau mai chi sydd yno
-    confirm_username: Rhowch eich enw defnyddiwr i gadarnhau'r weithdrefn
+    confirm_username: Cadarnhau enw defnyddiwr
+    confirm_username_hint_html: Teipiwch <code>%{username}</code> i gadarnhau'r cyfrif rydych chi am ei ddileu
     proceed: Dileu cyfrif
     success_msg: Llwyddwyd i ddileu eich cyfrif
+    title: Dileu cyfrif %{acct}
     warning:
       before: 'Cyn bwrw ymlaen, darllenwch y nodiadau hyn yn ofalus:'
       caches: Efallai bydd cynnwys sydd wedi'i storio dros dro gan weinyddion eraill yn parhau
@@ -1684,6 +1732,7 @@ cy:
       content: Ymddiheuriadau, ond fe aeth rhywbeth o'i le ar ein pen ni.
       title: Nid yw'r dudalen hon yn gywir
     '503': Ni fu modd gwasanaethu'r dudalen oherwydd methiant gweinydd dros dro.
+    go_home: Mynd adref
     noscript_html: I ddefnyddio ap gwe Mastodon, galluogwch JavaScript os gwelwch yn dda. Fel arall, gallwch drio un o'r <a href="%{apps_path}">apiau cynhenid</a> ar gyfer Mastodon ar eich platfform.
   existing_username_validator:
     not_found: methu dod o hyd i ddefnyddiwr lleol gyda'r enw defnyddiwr hwnnw
@@ -1808,7 +1857,14 @@ cy:
       incompatible_type: Nid yw'n gydnaws â'r math mewnforio a ddewiswyd
       invalid_csv_file: 'Ffeil CSV annilys. Gwall: %{error}'
       invalid_json_file: 'Ffeil JSON annilys. Gwall: %{error}'
-      over_rows_processing_limit: yn cynnwys mwy na %{count} o resi
+      no_data: Dyw'r ffeil hon ddim yn cynnwys unrhyw ddata sy'n cyfateb i'r math mewnforio sy'n cael ei roi
+      over_rows_processing_limit:
+        few: yn cynnwys mwy na %{count} rhes
+        many: yn cynnwys mwy na %{count} rhes
+        one: yn cynnwys mwy na %{count} rhes
+        other: yn cynnwys mwy na %{count} rhes
+        two: yn cynnwys mwy na %{count} rhes
+        zero: yn cynnwys mwy na %{count} rhes
       status_not_found_warning: Mae rhai o'ch hidlau yn cuddio postiadau penodol nad yw'r gweinydd hwn yn eu hadnabod. Fydd y cofnodion hyn ddim yn cael eu hidlo'n awtomatig os fyddan nhw'n cael eu darganfod yn ddiweddarach gan y gweinydd.
       too_large: Mae'r ffeil yn rhy fawr
     failures: Methiannau
@@ -2019,7 +2075,13 @@ cy:
     incoming_migrations_html: I symud o gyfrif arall i'r un hwn, yn gyntaf mae angen i chi <a href="%{path}">greu enwarall (alias) cyfrif</a>.
     moved_msg: Mae eich cyfrif bellach yn ailgyfeirio i %{acct} ac mae eich dilynwyr yn cael eu symud drosodd.
     not_redirecting: Nid yw eich cyfrif yn ailgyfeirio i unrhyw gyfrif arall ar hyn o bryd.
-    on_cooldown: Rydych chi wedi mudo'ch cyfrif yn ddiweddar. Bydd y swyddogaeth hon ar gael eto ymhen %{count} diwrnod.
+    on_cooldown:
+      few: Rydych chi wedi mudo'ch cyfrif yn ddiweddar. Bydd y swyddogaeth hon ar gael eto ymhen %{count} diwrnod.
+      many: Rydych chi wedi mudo'ch cyfrif yn ddiweddar. Bydd y swyddogaeth hon ar gael eto ymhen %{count} diwrnod.
+      one: Rydych chi wedi mudo'ch cyfrif yn ddiweddar. Bydd y swyddogaeth hon ar gael eto ymhen %{count} diwrnod.
+      other: Rydych chi wedi mudo'ch cyfrif yn ddiweddar. Bydd y swyddogaeth hon ar gael eto ymhen %{count} diwrnod.
+      two: Rydych chi wedi mudo'ch cyfrif yn ddiweddar. Bydd y swyddogaeth hon ar gael eto ymhen %{count} diwrnod.
+      zero: Rydych chi wedi mudo'ch cyfrif yn ddiweddar. Bydd y swyddogaeth hon ar gael eto ymhen %{count} diwrnod.
     past_migrations: Mudo'r gorffennol
     proceed_with_move: Symud dilynwyr
     redirected_msg: Mae eich cyfrif yn awr yn ailgyfeirio at %{acct}.
@@ -2211,8 +2273,20 @@ cy:
       account: Postiadau cyhoeddus gan @%{acct}
       tag: 'Postiadau cyhoeddus wedi''u tagio #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd ar gyfer heddiw
-    over_total_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd
+    over_daily_limit:
+      few: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} o bostiadau wedi'u hamserlennu ar gyfer heddiw
+      many: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} o bostiadau wedi'u hamserlennu ar gyfer heddiw
+      one: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} post wedi'i amserlennu ar gyfer heddiw
+      other: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} o bostiadau wedi'u hamserlennu ar gyfer heddiw
+      two: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} o bostiadau wedi'u hamserlennu ar gyfer heddiw
+      zero: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} o bostiadau wedi'u hamserlennu ar gyfer heddiw
+    over_total_limit:
+      few: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} o bostiadau wedi'u hamserlennu
+      many: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} o bostiadau wedi'u hamserlennu
+      one: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} post wedi'i amserlennu
+      other: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} o bostiadau wedi'u hamserlennu
+      two: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} o bostiadau wedi'u hamserlennu
+      zero: Rydych chi wedi mynd y tu hwnt i'r terfyn o %{count} o bostiadau wedi'u hamserlennu
     too_soon: rhaid i'r dyddiad fod yn y dyfodol
   self_destruct:
     lead_html: Yn anffodus mae <strong>%{domain}</strong> yn cau'n barhaol. Os oedd gennych gyfrif yno, ni fydd modd i chi barhau i'w ddefnyddio, ond mae dal modd gofyn i gael copi wrth gefn o'ch data.
@@ -2270,7 +2344,6 @@ cy:
     appearance: Golwg
     authorized_apps: Apiau awdurdodedig
     back: Nôl i Mastodon
-    delete: Dileu cyfrif
     development: Datblygu
     edit_profile: Golygu'r proffil
     export: Allforio

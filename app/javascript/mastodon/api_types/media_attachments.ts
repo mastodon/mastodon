@@ -31,7 +31,7 @@ export interface ApiImageAttachmentJSON extends BaseApiMediaAttachmentJSON {
 export interface ApiAudioAttachmentJSON extends BaseApiMediaAttachmentJSON {
   type: 'audio';
   meta: {
-    colors: ApiColorsAttachmentMetaJSON;
+    colors?: ApiColorsAttachmentMetaJSON;
     original: ApiVideoAttachmentMetaJSON;
     small: ApiImageAttachmentMetaJSON;
   };
@@ -40,7 +40,7 @@ export interface ApiAudioAttachmentJSON extends BaseApiMediaAttachmentJSON {
 export interface ApiVideoAttachmentJSON extends BaseApiMediaAttachmentJSON {
   type: 'video';
   meta: {
-    colors: ApiColorsAttachmentMetaJSON;
+    colors?: ApiColorsAttachmentMetaJSON;
     original: ApiVideoAttachmentMetaJSON;
     small: ApiImageAttachmentMetaJSON;
     focus?: ApiFocusAttachmentMetaJSON;
@@ -58,7 +58,7 @@ export interface ApiGifvAttachmentJSON extends BaseApiMediaAttachmentJSON {
 
 export interface ApiUnknownAttachmentJSON extends BaseApiMediaAttachmentJSON {
   type: 'unknown';
-  meta: unknown;
+  meta: Record<string, unknown>;
 }
 
 export type ApiMediaAttachmentJSON =

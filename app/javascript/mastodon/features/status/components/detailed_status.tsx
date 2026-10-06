@@ -11,22 +11,23 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import StatusContent from '@/mastodon/components/status/legacy/content';
+import { ContentWarning } from '@/mastodon/components/status/legacy/content_warning';
+import { FilterWarning } from '@/mastodon/components/status/legacy/filter_warning';
+import type { StatusLike } from '@/mastodon/components/status/legacy/hashtag_bar';
+import { getHashtagBarForStatus } from '@/mastodon/components/status/legacy/hashtag_bar';
+import { PictureInPicturePlaceholder } from '@/mastodon/components/status/legacy/picture_in_picture_placeholder';
+import { QuotedStatus } from '@/mastodon/components/status/legacy/quoted';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import { Avatar } from 'mastodon/components/avatar';
-import { ContentWarning } from 'mastodon/components/content_warning';
 import { DisplayName } from 'mastodon/components/display_name';
 import { EditedTimestamp } from 'mastodon/components/edited_timestamp';
-import { FilterWarning } from 'mastodon/components/filter_warning';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
-import type { StatusLike } from 'mastodon/components/hashtag_bar';
-import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';
 import { Icon } from 'mastodon/components/icon';
 import { IconLogo } from 'mastodon/components/logo';
 import MediaGallery from 'mastodon/components/media_gallery';
-import { PictureInPicturePlaceholder } from 'mastodon/components/picture_in_picture_placeholder';
-import StatusContent from 'mastodon/components/status_content';
-import { QuotedStatus } from 'mastodon/components/status_quoted';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
 import { Audio } from 'mastodon/features/audio';
 import { CollectionPreviewCard } from 'mastodon/features/collections/components/collection_preview_card';
@@ -391,18 +392,33 @@ export const DetailedStatus: React.FC<{
       to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/favourites`}
       className='detailed-status__link'
     >
-      <FormattedMessage
-        id='status.favourites_count'
-        defaultMessage='{count, plural, one {{counter} favorite} other {{counter} favorites}}'
-        values={{
-          count: status.get('favourites_count'),
-          counter: (
-            <span className='detailed-status__favorites'>
-              <AnimatedNumber value={status.get('favourites_count')} />
-            </span>
-          ),
-        }}
-      />
+      {isRedesignEnabled() ? (
+        <FormattedMessage
+          id='status.likes_count'
+          defaultMessage='{count, plural, one {{counter} like} other {{counter} likes}}'
+          values={{
+            count: status.get('favourites_count'),
+            counter: (
+              <span className='detailed-status__favorites'>
+                <AnimatedNumber value={status.get('favourites_count')} />
+              </span>
+            ),
+          }}
+        />
+      ) : (
+        <FormattedMessage
+          id='status.favourites_count'
+          defaultMessage='{count, plural, one {{counter} favorite} other {{counter} favorites}}'
+          values={{
+            count: status.get('favourites_count'),
+            counter: (
+              <span className='detailed-status__favorites'>
+                <AnimatedNumber value={status.get('favourites_count')} />
+              </span>
+            ),
+          }}
+        />
+      )}
     </Link>
   );
 
@@ -441,8 +457,12 @@ export const DetailedStatus: React.FC<{
           </div>
         )}
         <Link
-          to={`/@${status.getIn(['account', 'acct'])}`}
+          to={{
+            pathname: `/@${status.getIn(['account', 'acct'])}`,
+            state: { reference: 'status' },
+          }}
           data-hover-card-account={status.getIn(['account', 'id'])}
+          data-hover-card-reference='status'
           className='detailed-status__display-name'
         >
           <div className='detailed-status__display-avatar'>

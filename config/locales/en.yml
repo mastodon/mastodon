@@ -8,6 +8,14 @@ en:
     hosted_on: Mastodon hosted on %{domain}
     title: About
   accounts:
+    api_errors:
+      2fa_required: Your account cannot be used without a second authentification factor set up
+      account_deleted: Your account has been deleted
+      account_suspended: Your account has been suspended
+      login_disabled: Your account is currently disabled
+      memorial: Your account has been turned into a memorial
+      pending_approval: Your account is currently pending moderation approval
+      pending_confirmation: Your account is missing a confirmed e-mail address
     errors:
       cannot_be_added_to_collections: This account cannot be added to collections.
     followers:
@@ -69,18 +77,30 @@ en:
       demote: Demote
       destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
       disable: Freeze
+      disable_sign_in_token: Temporarily disable security code challenge
       disable_sign_in_token_auth: Disable email token authentication
       disable_two_factor_authentication: Disable 2FA
       disabled: Frozen
+      discoverable:
+        disabled: Author has not opted-in to being discoverable
+        enabled: Author has opted-in to being discoverable
+        title: Discoverable
       display_name: Display name
       domain: Domain
       edit: Edit
       email: Email
       email_status: Email status
       enable: Unfreeze
+      enable_sign_in_token: Enable security code challenge
       enable_sign_in_token_auth: Enable email token authentication
       enabled: Enabled
       enabled_msg: Successfully unfroze %{username}'s account
+      follow_recommendations:
+        allowed: Allowed
+        suppress: Suppress any follow recommendation
+        suppressed: Suppressed
+        title: Follow recommendations
+        unsuppress: Restore any follow recommendation
       followers: Followers
       follows: Follows
       header: Header
@@ -126,6 +146,7 @@ en:
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh profile
       redownloaded_msg: Successfully refreshed %{username}'s profile from origin
+      registration_app: Registration app
       reject: Reject
       rejected_msg: Successfully rejected %{username}'s sign-up application
       remote_suspension_irreversible: The data of this account has been irreversibly deleted.
@@ -165,6 +186,12 @@ en:
       suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
       suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       title: Accounts
+      trends:
+        allow: Allow
+        allowed: Allowed
+        disallow: Disallow
+        disallowed: Disallowed
+        title: Trending posts
       unblock_email: Unblock email address
       unblocked_email_msg: Successfully unblocked %{username}'s email address
       unconfirmed_email: Unconfirmed email
@@ -200,6 +227,7 @@ en:
         create_user_role: Create Role
         create_username_block: Create Username Rule
         demote_user: Demote User
+        destroy_account: Delete Account Data
         destroy_announcement: Delete Announcement
         destroy_canonical_email_block: Delete Email Block
         destroy_custom_emoji: Delete Custom Emoji
@@ -268,6 +296,7 @@ en:
         create_user_role_html: "%{name} created %{target} role"
         create_username_block_html: "%{name} added rule for usernames containing %{target}"
         demote_user_html: "%{name} demoted user %{target}"
+        destroy_account_html: "%{name} deleted account data for %{target}"
         destroy_announcement_html: "%{name} deleted announcement %{target}"
         destroy_canonical_email_block_html: "%{name} unblocked email with the hash %{target}"
         destroy_collection_html: "%{name} removed collection by %{target}"
@@ -601,6 +630,11 @@ en:
         title: Import domain blocks
       no_file: No file selected
     fasp:
+      capabilities:
+        activation_msg: Capability successfully enabled.
+        deactivation_msg: Capability successfully disabled.
+        disable: Disable
+        enable: Enable
       debug:
         callbacks:
           created_at: Created at
@@ -612,6 +646,7 @@ en:
         active: Active
         base_url: Base URL
         callback: Callback
+        capabilities: Capabilities
         delete: Delete
         edit: Edit Provider
         finish_registration: Finish registration
@@ -624,8 +659,6 @@ en:
           description: You received a registration from a FASP. Reject it if you did not initiate this. If you initiated this, carefully compare name and key fingerprint before confirming the registration.
           reject: Reject
           title: Confirm FASP Registration
-        save: Save
-        select_capabilities: Select Capabilities
         sign_in: Sign In
         status: Status
         title: Fediverse Auxiliary Service Providers
@@ -964,10 +997,8 @@ en:
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone on Mastodon. Control how various discovery features work on your server.
-        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
-        publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
         wrapstodon: Wrapstodon
@@ -975,6 +1006,18 @@ en:
         all: To everyone
         disabled: To no one
         users: To logged-in local users
+      external:
+        directory: Server Directory
+        opt_in_server_directory:
+          description: Allow your server to be listed in server directories such as the one featured on https://joinmastodon.org/servers.
+          title: Opt your server in for the server directory
+        opt_in_server_recommendation:
+          description: Allow your server to be recommended at sign-up time in applications such as the official Mastodon clients.
+          title: Opt your server in for server recommendation
+        preamble: Control how much information about your server gets shared with other services and how discoverable your server should be.
+        privacy: Privacy
+        publish_statistics: Publish statistics
+        title: External Discovery
       feed_access:
         modes:
           authenticated: Authenticated users only
@@ -1003,7 +1046,15 @@ en:
         warning_hint: We recommend using “Approval required for sign up” unless you are confident your moderation team can handle spam and malicious registrations in a timely fashion.
       security:
         authorized_fetch: Require authentication from federated servers
-        authorized_fetch_hint: Requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks. However, this comes at the cost of a performance penalty, reduces the reach of your replies, and may introduce compatibility issues with some federated services. In addition, this will not prevent dedicated actors from fetching your public posts and accounts.
+        authorized_fetch_hint: Decide when remote servers are required to authenticate when fetching content from this server.
+        authorized_fetch_hints:
+          actors: Requiring authentication for profiles enables tracking of which server has ever discovered each of your local accounts, which can greatly reduce the number of unnecessary requests performed when notifying servers of an account deletion. This option comes at a slight performance cost when serving profiles due to said tracking and the inability for the reverse-proxy to cache responses for these requests. This might also introduce compatibility issues with some federated services.
+          all: In addition to the benefits and drawbacks of requiring authentication for profiles, unconditionally requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks, but and also prevents caching of most requests. It will also reduce the reach of your replies, as reply forwarding will be disabled.
+          none: Requiring authentication only when strictly necessary allows your reverse proxy to cache more requests. This option might get removed in the future. Only use it if the other options cause issues.
+        authorized_fetch_modes:
+          actors: For profiles and private content
+          all: For every request
+          none: For private content only
         authorized_fetch_overridden_hint: You are currently unable to change this setting because it is overridden by an environment variable.
         federation_authentication: Federation authentication enforcement
       title: Server settings
@@ -1190,7 +1241,9 @@ en:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
         title: Trending links
-        usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+        usage_comparison:
+          one: Shared %{count} time today, compared to %{yesterday} yesterday
+          other: Shared %{count} times today, compared to %{yesterday} yesterday
       not_allowed_to_trend: Not allowed to trend
       only_allowed: Only allowed
       pending_review: Pending review
@@ -1235,7 +1288,9 @@ en:
         trendable: Can appear under trends
         trending_rank: 'Trending #%{rank}'
         usable: Can be used
-        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
+        usage_comparison:
+          one: Used %{count} time today, compared to %{yesterday} yesterday
+          other: Used %{count} times today, compared to %{yesterday} yesterday
         used_by_over_week:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
@@ -1494,9 +1549,11 @@ en:
   deletes:
     challenge_not_passed: The information you entered was not correct
     confirm_password: Enter your current password to verify your identity
-    confirm_username: Enter your username to confirm the procedure
+    confirm_username: Confirm username
+    confirm_username_hint_html: Please type <code>%{username}</code> to confirm the account you want to delete
     proceed: Delete account
     success_msg: Your account was successfully deleted
+    title: Delete account %{acct}
     warning:
       before: 'Before proceeding, please read these notes carefully:'
       caches: Content that has been cached by other servers may persist
@@ -1596,6 +1653,7 @@ en:
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
     '503': The page could not be served due to a temporary server failure.
+    go_home: Go home
     noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
   existing_username_validator:
     not_found: could not find a local user with that username
@@ -1692,7 +1750,10 @@ en:
       incompatible_type: Incompatible with the selected import type
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
       invalid_json_file: 'Invalid JSON file. Error: %{error}'
-      over_rows_processing_limit: contains more than %{count} rows
+      no_data: This file does not contain any data matching the given import type
+      over_rows_processing_limit:
+        one: contains more than %{count} row
+        other: contains more than %{count} rows
       status_not_found_warning: Some of your filters hide specific posts that are not known by this server. These posts will not be automatically filtered if they are discovered later by the server.
       too_large: File is too large
     failures: Failures
@@ -1843,7 +1904,9 @@ en:
     incoming_migrations_html: To move from another account to this one, first you need to <a href="%{path}">create an account alias</a>.
     moved_msg: Your account is now redirecting to %{acct} and your followers are being moved over.
     not_redirecting: Your account is not redirecting to any other account currently.
-    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
+    on_cooldown:
+      one: You have recently migrated your account. This function will become available again in %{count} day.
+      other: You have recently migrated your account. This function will become available again in %{count} days.
     past_migrations: Past migrations
     proceed_with_move: Move followers
     redirected_msg: Your account is now redirecting to %{acct}.
@@ -2034,8 +2097,12 @@ en:
       account: Public posts from @%{acct}
       tag: 'Public posts tagged #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
-    over_total_limit: You have exceeded the limit of %{limit} scheduled posts
+    over_daily_limit:
+      one: You have exceeded the limit of %{count} scheduled post for today
+      other: You have exceeded the limit of %{count} scheduled posts for today
+    over_total_limit:
+      one: You have exceeded the limit of %{count} scheduled post
+      other: You have exceeded the limit of %{count} scheduled posts
     too_soon: date must be in the future
   self_destruct:
     lead_html: Unfortunately, <strong>%{domain}</strong> is permanently closing down. If you had an account there, you will not be able to continue using it, but you can still request a backup of your data.
@@ -2093,7 +2160,6 @@ en:
     appearance: Appearance
     authorized_apps: Authorized apps
     back: Back to Mastodon
-    delete: Account deletion
     development: Development
     edit_profile: Edit profile
     export: Export
@@ -2297,6 +2363,14 @@ en:
       further_actions_html: If this wasn't you, we recommend that you %{action} immediately as it may be compromised.
       subject: Second factor authentication failure
       title: Failed second factor authentication
+    sign_in_token:
+      change_password: change your password
+      details: 'Here are details of the attempt:'
+      explanation: 'We detected an attempt to sign in to your account after a long time of inactivity. If this is you, please enter the security code below on the sign in challenge page:'
+      further_actions: 'If this wasn''t you, please change your password and enable two-factor authentication on your account. You can do so here:'
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Please confirm attempted sign in
+      title: Sign in attempt
     suspicious_sign_in:
       change_password: change your password
       details: 'Here are details of the sign-in:'
@@ -2386,8 +2460,12 @@ en:
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
+    generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
     go_to_sso_account_settings: Go to your identity provider's account settings
+    inactive_sign_in_confirmation: It's been a while since you logged in, so we're sending a security code to your e-mail address to confirm that it's you.
+    inactive_sign_in_title: Please confirm security code
     invalid_otp_token: Invalid two-factor code
+    invalid_sign_in_token: Invalid security code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     rate_limited: Too many authentication attempts, try again later.
     seamless_external_login: You are logged in via an external service, so password and email settings are not available.

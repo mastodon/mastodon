@@ -7,7 +7,9 @@ import { isFulfilled } from '@reduxjs/toolkit';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import {
   fetchFollowedHashtags,
@@ -20,7 +22,7 @@ import ScrollableList from 'mastodon/components/scrollable_list';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
-  heading: { id: 'followed_tags', defaultMessage: 'Followed hashtags' },
+  heading: { id: 'followed_tags', defaultMessage: 'Followed Hashtags' },
 });
 
 const FollowedTag: React.FC<{
@@ -97,14 +99,21 @@ const FollowedTags: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.heading)}
     >
-      <ColumnHeader
-        icon='hashtag'
-        iconComponent={TagIcon}
-        title={intl.formatMessage(messages.heading)}
-        multiColumn={multiColumn}
-        showBackButton
-        scrollTopOnClick
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={intl.formatMessage(messages.heading)}
+        />
+      ) : (
+        <LegacyColumnHeader
+          icon='hashtag'
+          iconComponent={TagIcon}
+          title={intl.formatMessage(messages.heading)}
+          multiColumn={multiColumn}
+          showBackButton
+          scrollTopOnClick
+        />
+      )}
 
       <ScrollableList
         scrollKey='followed_tags'
