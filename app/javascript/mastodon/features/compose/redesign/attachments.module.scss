@@ -49,28 +49,18 @@
   }
 }
 
-.mediaMenuButton {
+.mediaMenuButtons {
+  display: flex;
+  gap: var(--space-2);
   position: absolute;
-  top: var(--space-2);
-  right: var(--space-2);
+  inset-block-start: var(--space-2);
+  inset-inline-end: var(--space-2);
 }
 
-.mediaAlt {
-  @include mixins.type-micro;
-
-  display: block;
-  padding: var(--space-1);
-  border-radius: var(--radius-2);
-  background: var(--color-bg-inverted);
-  color: var(--color-text-inverted);
+.mediaMenuAltButton {
   position: absolute;
-  bottom: var(--space-2);
-  right: var(--space-2);
-  text-transform: uppercase;
-}
-
-.mediaMenuDelete {
-  color: var(--color-text-error);
+  inset-block-end: var(--space-2);
+  inset-inline-end: var(--space-2);
 }
 
 // Audio
