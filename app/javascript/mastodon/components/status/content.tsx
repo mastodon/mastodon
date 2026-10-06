@@ -15,8 +15,8 @@ import type {
 import { Button } from '../button/redesign';
 import { EmojiHTML } from '../emoji/html';
 
+import classes from './content.module.scss';
 import { useHandlersForStatus } from './hooks';
-import classes from './styles.module.scss';
 
 const MAX_LINES = 35;
 
