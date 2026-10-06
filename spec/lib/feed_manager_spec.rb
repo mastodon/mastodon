@@ -276,7 +276,7 @@ RSpec.describe FeedManager do
       status = Fabricate(:status, text: 'Hello world', account: alice)
       reply  = Fabricate(:status, text: 'Nay', thread: status, account: user.account)
 
-      # post will be added
+      # post will be ignored
       expect(subject.push_to_home(user.account, reply)).to be false
     end
 

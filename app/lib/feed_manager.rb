@@ -74,7 +74,7 @@ class FeedManager
   def push_to_home(account, status, update: false)
     return false unless account.user&.signed_in_recently?
     return false if own_post?(account, status) && !account.user&.setting_display_own_posts
-    return false if boosted_by_actor?(account, status) && !account.user&.setting_display_own_boosts
+    return false if own_boost?(account, status) && !account.user&.setting_display_own_boosts
     return false unless add_to_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
 
     trim(:home, account.id)
@@ -680,7 +680,7 @@ class FeedManager
     account.id == status.account_id
   end
 
-  def boosted_by_actor?(account, status)
+  def own_boost?(account, status)
     return false if status.reblog_of_id.blank?
 
     account.id == status.account_id
