@@ -270,14 +270,14 @@ RSpec.describe FeedManager do
       expect(subject.push_to_home(user.account, post)).to be false
     end
 
-    it 'saves replies to home when user has display_own_posts disabled' do
+    it 'does not save replies to home when user has display_own_posts disabled' do
       user = Fabricate(:user)
       user.settings['display_own_posts'] = false
       status = Fabricate(:status, text: 'Hello world', account: alice)
       reply  = Fabricate(:status, text: 'Nay', thread: status, account: user.account)
 
       # post will be added
-      expect(subject.push_to_home(user.account, reply)).to be true
+      expect(subject.push_to_home(user.account, reply)).to be false
     end
 
     it 'does not save a status to home when user has display_own_boosts on standard setting (disabled)' do
