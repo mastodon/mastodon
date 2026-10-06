@@ -1,0 +1,135 @@
+@use '@/styles/mastodon/mixins';
+
+.content {
+  @include mixins.type-body;
+
+  --mask-height: 80px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  position: relative;
+  overflow-y: clip;
+
+  &.collapsed {
+    max-height: var(--max-height); // Set via JS.
+    overflow-y: clip;
+    mask-image: linear-gradient(
+      to bottom,
+      black calc(100% - var(--mask-height)),
+      transparent
+    );
+  }
+}
+
+.contentText {
+  p,
+  pre,
+  blockquote,
+  & > ul,
+  & > ol {
+    white-space: pre-wrap;
+    unicode-bidi: plaintext;
+
+    &:not(:last-child) {
+      margin-block-end: var(--space-4);
+    }
+  }
+
+  strong,
+  b {
+    font-weight: bold;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  a,
+  button {
+    color: var(--color-text-brand);
+  }
+
+  blockquote {
+    padding-inline-start: var(--space-8);
+    white-space: normal;
+    position: relative;
+
+    &::before {
+      display: block;
+      content: '';
+      width: 24px;
+      height: 20px;
+      mask-image: url('@/images/quote.svg');
+      background-color: var(--color-bg-brand-soft);
+      position: absolute;
+      inset-inline-start: 0;
+      top: 0;
+    }
+
+    blockquote {
+      margin-block-start: var(--space-1);
+      border-inline-start: var(--border-thick);
+      padding-inline-start: var(--space-4);
+    }
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  ul,
+  ol {
+    padding-inline-start: var(--space-4);
+
+    li {
+      padding-inline-start: var(--space-2);
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+
+    li::marker {
+      text-align: start;
+    }
+  }
+
+  ol {
+    list-style-type: decimal;
+
+    li::marker {
+      text-align: end;
+    }
+  }
+
+  code,
+  pre {
+    background-color: var(--color-bg-brand-soft);
+    border-radius: var(--radius-2);
+  }
+
+  code {
+    padding: var(--space-1);
+    font-size: var(--fs-13);
+  }
+
+  pre {
+    padding: var(--space-2);
+
+    code {
+      padding: 0;
+      background: transparent;
+    }
+  }
+}
+
+.contentReadMore {
+  grid-column: var(--content-col);
+  width: max-content;
+}

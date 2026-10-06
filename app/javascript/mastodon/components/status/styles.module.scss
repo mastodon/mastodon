@@ -67,7 +67,6 @@
 .spoiler,
 .translate,
 .contentWrapper,
-.contentReadMore,
 .footer {
   grid-column: var(--content-col);
 }
@@ -96,17 +95,13 @@
   margin-inline-start: auto;
 }
 
-.contentWrapper,
-.content {
+.contentWrapper {
+  --fade-time: 100ms;
+
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   position: relative;
-}
-
-.contentWrapper {
-  --fade-time: 100ms;
-
   overflow: clip;
   border-radius: var(--radius-2);
 
@@ -155,35 +150,6 @@
   }
 }
 
-.content {
-  @include mixins.type-body;
-
-  --mask-height: 80px;
-
-  overflow-y: clip;
-
-  &.collapsed {
-    max-height: var(--max-height); // Set via JS.
-    overflow-y: clip;
-    mask-image: linear-gradient(
-      to bottom,
-      black calc(100% - var(--mask-height)),
-      transparent
-    );
-  }
-}
-
-.contentText {
-  p:not(:last-child) {
-    margin-block-end: 1em;
-  }
-
-  a,
-  button {
-    color: var(--color-text-brand);
-  }
-}
-
 .contentImage {
   border-radius: var(--radius-4);
   position: relative;
@@ -196,10 +162,6 @@
 .contentBlurHash {
   width: 100%;
   height: 100%;
-}
-
-.contentReadMore {
-  width: max-content;
 }
 
 .hashtagsWrapper,
