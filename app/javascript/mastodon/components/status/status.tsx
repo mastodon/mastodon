@@ -311,7 +311,6 @@ const StatusHotkeys = ({
         open: handlers.onOpenCallback,
         openProfile: handlers.onOpenProfile,
         toggleHidden: handlers.onToggleHidden,
-        // toggleSensitive: onMediaShowToggle,
         openMedia: handlers.onOpenMedia,
         onTranslate: handlers.onTranslate,
         ...registeredHandlers,

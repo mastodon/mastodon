@@ -104,32 +104,7 @@ export const StatusPage: React.FC = () => {
   const descendantIds = useAppSelector((state) =>
     getDescendantsIds(state, statusId),
   );
-
-  const [replyTracking, setReplyTracking] = useState<{
-    statusId: string;
-    descendantIds: string[];
-    newReplyIds: string[];
-  }>({ statusId, descendantIds, newReplyIds: [] });
-  if (
-    replyTracking.statusId !== statusId ||
-    replyTracking.descendantIds !== descendantIds
-  ) {
-    const isSameThread =
-      replyTracking.statusId === statusId &&
-      replyTracking.descendantIds.length > 0;
-    const addedIds = isSameThread
-      ? descendantIds.filter((id) => !replyTracking.descendantIds.includes(id))
-      : [];
-
-    setReplyTracking({
-      statusId,
-      descendantIds,
-      newReplyIds:
-        isSameThread && addedIds.length === 0
-          ? replyTracking.newReplyIds
-          : addedIds,
-    });
-  }
+  const newReplyIds = useNewReplies({ statusId, descendantIds });
 
   const screenReaderText = useTextForScreenReader({ statusId });
 
@@ -311,7 +286,7 @@ export const StatusPage: React.FC = () => {
               <StatusRelativeList
                 statusIds={descendantIds}
                 rootId={statusId}
-                highlightIds={replyTracking.newReplyIds}
+                highlightIds={newReplyIds}
               />
             </div>
           )}
@@ -380,3 +355,40 @@ const StatusRelativeList: React.FC<{
       ))
   );
 };
+
+/**
+ * Hook to determine new replies.
+ */
+function useNewReplies({
+  statusId,
+  descendantIds,
+}: {
+  statusId: string;
+  descendantIds: string[];
+}) {
+  const [prevStatusId, setPrevStatusId] = useState(statusId);
+  const [prevDescendantIds, setPrevDescendantIds] = useState(descendantIds);
+  const [newReplyIds, setNewReplyIds] = useState<string[]>([]);
+
+  // If the status or descendants change, detect new replies.
+  if (prevStatusId !== statusId || prevDescendantIds !== descendantIds) {
+    setPrevStatusId(statusId);
+    setPrevDescendantIds(descendantIds);
+
+    // If it's the same status and we have descendants, recalculate new ones.
+    if (prevStatusId === statusId && prevDescendantIds.length > 0) {
+      const addedIds = descendantIds.filter(
+        (id) => !prevDescendantIds.includes(id),
+      );
+
+      if (addedIds.length > 0) {
+        setNewReplyIds(addedIds);
+      }
+    } else {
+      // ...otherwise reset.
+      setNewReplyIds([]);
+    }
+  }
+
+  return newReplyIds;
+}
