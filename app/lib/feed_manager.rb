@@ -675,7 +675,7 @@ class FeedManager
   end
 
   def own_post?(account, status)
-    return false if status.reply?
+    return false if status.reblog_of_id.present?
 
     account.id == status.account_id
   end
