@@ -526,11 +526,11 @@ class User < ApplicationRecord
 
   def reload_home_feed
     if display_own_boosts_changed?
-      FeedManager.instance.merge_into_home(account, account) if saved_change_to_settings.last['display_own_boosts'] == true
-      FeedManager.instance.unmerge_from_home(account, account) if saved_change_to_settings.last['display_own_boosts'] == false
+      FeedManager.instance.merge_into_own_home(account, :reblog) if saved_change_to_settings.last['display_own_boosts'] == true
+      FeedManager.instance.unmerge_from_own_home(account, :reblog) if saved_change_to_settings.last['display_own_boosts'] == false
     elsif display_own_posts_changed?
-      FeedManager.instance.merge_into_home(account, account) if saved_change_to_settings.last['display_own_posts'] == true
-      FeedManager.instance.unmerge_from_home(account, account) if saved_change_to_settings.last['display_own_posts'] == false
+      FeedManager.instance.merge_into_own_home(account, :post) if saved_change_to_settings.last['display_own_posts'] == true
+      FeedManager.instance.unmerge_from_own_home(account, :post) if saved_change_to_settings.last['display_own_posts'] == false
     end
   end
 

@@ -73,9 +73,9 @@ class FeedManager
   # @return [Boolean]
   def push_to_home(account, status, update: false)
     return false unless account.user&.signed_in_recently?
+    return false if own_post?(account.id, status) && !account.user&.setting_display_own_posts
+    return false if boosted_by_actor?(account.id, status) && !account.user&.setting_display_own_boosts
     return false unless add_to_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
-    return false if own_post?(account, status) && !account.user&.setting_display_own_posts
-    return false if boosted_by_actor?(account, status) && !account.user&.setting_display_own_boosts
 
     trim(:home, account.id)
     PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}", { 'update' => update }) if push_update_required?("timeline:#{account.id}")
@@ -149,6 +149,34 @@ class FeedManager
     trim(:home, into_account.id)
   end
 
+  # Fill a home feed with an account's own statuses or boosts
+  # @param [Account] account
+  # @param [Symbol] post_type - either [:post, :reblog]
+  # @return [void]
+  def merge_into_own_home(account, post_type)
+    timeline_key = key(:home, account.id)
+    aggregate    = account.user&.aggregates_reblogs?
+
+    query = if post_type == :post
+              account.statuses.includes(reblog: :account).where(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
+            elsif post_type == :reblog
+              account.statuses.includes(reblog: :account).where.not(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
+            end
+
+    if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS / 4
+      oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
+      query = query.where('id > ?', oldest_home_score)
+    end
+
+    statuses = query.to_a
+
+    statuses.each do |status|
+      add_to_feed(:home, account.id, status, aggregate_reblogs: aggregate)
+    end
+
+    trim(:home, account.id)
+  end
+
   # Fill a list feed with an account's statuses
   # @param [Account] from_account
   # @param [List] list
@@ -187,6 +215,25 @@ class FeedManager
 
     from_account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil).find_each do |status|
       remove_from_feed(:home, into_account.id, status, aggregate_reblogs: into_account.user&.aggregates_reblogs?)
+    end
+  end
+
+  # Remove an account's statuses or boosts from their home feed
+  # @param [Account] account
+  # @param [Symbol] post_type - can be [:post, :reblog]
+  # @return [void]
+  def unmerge_from_own_home(account, post_type)
+    timeline_key        = key(:home, account.id)
+    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+
+    if post_type == :post
+      account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where(reblog_of_id: nil).reorder(nil).find_each do |status|
+        remove_from_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
+      end
+    elsif post_type == :reblog
+      account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where.not(reblog_of_id: nil).reorder(nil).find_each do |status|
+        remove_from_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
+      end
     end
   end
 
@@ -674,15 +721,15 @@ class FeedManager
       .each_with_object({}) { |(id, account_id), mapping| (mapping[id] ||= []).push(account_id) }
   end
 
-  def own_post?(account, status)
-    return false if status.reply?
+  def own_post?(account_id, status)
+    return false if status.reblog_of_id.present?
 
-    account.id == status.account_id
+    account_id == status.account_id
   end
 
-  def boosted_by_actor?(account, status)
+  def boosted_by_actor?(account_id, status)
     return false if status.reblog_of_id.blank?
 
-    account.id == status.account_id
+    account_id == status.account_id
   end
 end
