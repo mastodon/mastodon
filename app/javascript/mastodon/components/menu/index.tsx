@@ -7,6 +7,8 @@ import {
   useState,
 } from 'react';
 
+import { mergeProps } from '@react-aria/utils';
+
 import type { PolymorphicProps } from '@/types/polymorphic';
 
 import { Button } from '../button/redesign';
@@ -273,15 +275,26 @@ export const Menu: React.FC<MenuProps> = ({
   return <MenuContext value={contextValue}>{children}</MenuContext>;
 };
 
+interface MenuTriggerProps {
+  forwardedAs?: 'a' | 'button' | 'link';
+}
+
 export const MenuTrigger = <As extends React.ElementType = typeof Button>({
   as: asComp,
   children,
+  forwardedAs,
   ...props
-}: PolymorphicProps<object, As>) => {
+}: PolymorphicProps<MenuTriggerProps, As>) => {
   const Component = asComp ?? Button;
   const { menuTriggerProps } = useMenuContext();
   return (
-    <Component {...props} {...menuTriggerProps}>
+    <Component
+      as={forwardedAs}
+      {...mergeProps(
+        props as Omit<React.ComponentPropsWithRef<'button'>, 'color'>,
+        menuTriggerProps,
+      )}
+    >
       {children}
     </Component>
   );

@@ -6,8 +6,7 @@ import { useOverflowButton } from '@/mastodon/hooks/useOverflow';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 
 import { Button } from '../button/redesign';
-import { HashtagMenu } from '../hashtag_menu';
-import { MenuTrigger } from '../menu';
+import { HashtagMenu, MenuTriggerLink } from '../hashtag_menu';
 
 import classes from './styles.module.scss';
 
@@ -35,12 +34,15 @@ export const StatusHashtagBar: React.FC<{
       >
         {hashtags.map((hashtag, index) => (
           <HashtagMenu tagId={hashtag} accountId={accountId} key={hashtag}>
-            <MenuTrigger
+            <MenuTriggerLink
               size='xs'
+              as={Button}
+              forwardedAs='a'
               inert={hiddenIndex > 0 && index >= hiddenIndex}
+              href={`/tags/${encodeURIComponent(hashtag)}`}
             >
               #{hashtag}
-            </MenuTrigger>
+            </MenuTriggerLink>
           </HashtagMenu>
         ))}
       </div>

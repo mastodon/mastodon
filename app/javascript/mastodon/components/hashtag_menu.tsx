@@ -6,13 +6,47 @@ import { useIdentity } from '@/mastodon/identity_context';
 import { selectPlainAccount } from '../selectors/accounts';
 import { useAppSelector } from '../store';
 
+import { normalizeKey } from './hotkeys/utils';
 import {
   Menu,
+  MenuTrigger,
   MenuItem,
   MenuItemDivider,
   MenuItemLink,
   MenuList,
 } from './menu';
+
+export const MenuTriggerLink: React.FC<React.ComponentPropsWithoutRef<'a'>> = ({
+  children,
+  ...otherProps
+}) => {
+  const onClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.button === 0 && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+    }
+  }, []);
+
+  const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLAnchorElement>) => {
+    if (normalizeKey(e.key) === 'space') {
+      e.preventDefault();
+      if (e.target instanceof HTMLElement) {
+        e.target.click();
+      }
+    }
+  }, []);
+
+  return (
+    <MenuTrigger
+      as='a'
+      {...otherProps}
+      role='button'
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+    >
+      {children}
+    </MenuTrigger>
+  );
+};
 
 export const HashtagMenu: React.FC<{
   tagId: string;
