@@ -1,4 +1,4 @@
-import { useId, useMemo } from 'react';
+import { useCallback, useId, useMemo, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -8,6 +8,11 @@ import type { ExpandedStatusShape } from '@/mastodon/models/status';
 import { selectStatusLoadingState } from '@/mastodon/selectors/statuses';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
+import type {
+  HotkeyHandlerFunction,
+  HotkeyHandlerMap,
+  HotkeyName,
+} from '../hotkeys';
 import { Hotkeys } from '../hotkeys';
 import { Poll } from '../poll';
 
@@ -126,6 +131,14 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     onOpen,
   });
 
+  const [hotkeyHandlers, setHotkeyHandlers] = useState<HotkeyHandlerMap>({});
+  const registerHotkey = useCallback(
+    (hotkey: HotkeyName, handler: HotkeyHandlerFunction) => {
+      setHotkeyHandlers((prev) => ({ ...prev, [hotkey]: handler }));
+    },
+    [],
+  );
+
   if (!status) {
     return null; // loading state
   }
@@ -136,6 +149,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     muted,
     unfocusable,
     'data-id': id,
+    handlers: hotkeyHandlers,
   };
 
   const isHidden =
@@ -153,7 +167,9 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   }
 
   return (
-    <StatusContext.Provider value={{ id, contextType }}>
+    <StatusContext.Provider
+      value={{ id, contextType, registerHotkeyCallback: registerHotkey }}
+    >
       <StatusHotkeys
         {...hotkeysProps}
         onClick={onOpenClick}
@@ -256,6 +272,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 interface StatusHotkeysProps {
   children: React.ReactNode;
   status: ExpandedStatusShape;
+  handlers: HotkeyHandlerMap;
   onOpen?: () => void;
   muted?: boolean;
   unfocusable?: boolean;
@@ -267,6 +284,7 @@ const StatusHotkeys = ({
   onOpen,
   muted,
   unfocusable,
+  handlers: registeredHandlers,
   ...props
 }: StatusHotkeysProps & React.ComponentPropsWithoutRef<'article'>) => {
   const { contextType } = useStatusContext();
@@ -293,10 +311,10 @@ const StatusHotkeys = ({
         open: handlers.onOpenCallback,
         openProfile: handlers.onOpenProfile,
         toggleHidden: handlers.onToggleHidden,
-        // TODO: This is handled in a child component, so needs to be fixed.
         // toggleSensitive: onMediaShowToggle,
         openMedia: handlers.onOpenMedia,
         onTranslate: handlers.onTranslate,
+        ...registeredHandlers,
       }}
       focusable={!unfocusable}
     >
