@@ -17,7 +17,9 @@ const messages = defineMessages({
   },
 });
 
-export const ComposeSensitiveField: React.FC = () => {
+export const ComposeSensitiveField: React.FC<
+  React.ComponentPropsWithRef<'input'>
+> = (props) => {
   const { sensitive, sensitiveText } = useAppSelector(selectComposeSensitive);
 
   const intl = useIntl();
@@ -52,6 +54,7 @@ export const ComposeSensitiveField: React.FC = () => {
   }
   return (
     <TextInputField
+      {...props}
       label={intl.formatMessage(messages.sensitiveText)}
       value={sensitiveText}
       onChange={onChange}

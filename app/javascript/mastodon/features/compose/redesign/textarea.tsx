@@ -56,7 +56,7 @@ type ComposeTextareaProps = Omit<
   | 'onDrop'
   | 'onChange'
   | 'onKeyDown'
->;
+> & { beforeTextArea?: React.ReactNode };
 
 const selectComposeTextState = createAppSelector(
   [(state) => state.compose],
@@ -71,6 +71,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   className,
   disabled,
   children,
+  beforeTextArea,
   ...props
 }) => {
   const intl = useIntl();
@@ -192,6 +193,8 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
       data-scroll-down={!isInViewport}
       onScrollCapture={onScroll} // Requires capture so it fires before TextArea.
     >
+      {beforeTextArea}
+
       <TextArea
         {...props}
         dir='auto'
