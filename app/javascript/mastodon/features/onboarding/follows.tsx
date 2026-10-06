@@ -2,11 +2,18 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 import { useDebouncedCallback } from 'use-debounce';
 
+import { Button } from '@/mastodon/components/button/redesign';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnSearchHeader } from '@/mastodon/components/column/search_header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import PersonIcon from '@/material-icons/400-24px/person.svg?react';
 import { fetchRelationships } from 'mastodon/actions/accounts';
 import { importFetchedAccounts } from 'mastodon/actions/importer';
@@ -15,9 +22,6 @@ import { markAsPartial } from 'mastodon/actions/timelines';
 import { apiRequest } from 'mastodon/api';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { Account } from 'mastodon/components/account';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
-import { ColumnSearchHeader } from 'mastodon/components/column_search_header';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
@@ -116,12 +120,19 @@ export const Follows: React.FC<{
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.title)}
     >
-      <ColumnHeader
-        title={intl.formatMessage(messages.title)}
-        icon='person'
-        iconComponent={PersonIcon}
-        multiColumn={multiColumn}
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={intl.formatMessage(messages.title)}
+        />
+      ) : (
+        <LegacyColumnHeader
+          title={intl.formatMessage(messages.title)}
+          icon='person'
+          iconComponent={PersonIcon}
+          multiColumn={multiColumn}
+        />
+      )}
 
       <ColumnSearchHeader
         placeholder={intl.formatMessage(messages.search)}
@@ -145,12 +156,32 @@ export const Follows: React.FC<{
             {displayedAccountIds.length > 0 && <div className='spacer' />}
 
             <div className='column-footer'>
-              <Link className='button button--block' to='/start/profile'>
-                <FormattedMessage
-                  id='onboarding.follows.next'
-                  defaultMessage='Next: Setup your profile'
-                />
-              </Link>
+              {isRedesignEnabled() ? (
+                <Button
+                  variant='solid'
+                  color='accent'
+                  as='link'
+                  to='/start/profile'
+                >
+                  <FormattedMessage
+                    id='onboarding.follows.next'
+                    defaultMessage='Next: Setup your profile'
+                  />
+                </Button>
+              ) : (
+                <Link
+                  className={classNames(
+                    'button',
+                    !isRedesignEnabled() && 'button--block',
+                  )}
+                  to='/start/profile'
+                >
+                  <FormattedMessage
+                    id='onboarding.follows.next'
+                    defaultMessage='Next: Setup your profile'
+                  />
+                </Link>
+              )}
             </div>
           </>
         }
@@ -169,7 +200,13 @@ export const Follows: React.FC<{
         }
       >
         {displayedAccountIds.map((accountId) => (
-          <Account id={accountId} key={accountId} withBio withMenu={false} />
+          <Account
+            id={accountId}
+            key={accountId}
+            withBio
+            withMenu={false}
+            reference='onboarding'
+          />
         ))}
       </ScrollableList>
 

@@ -45,7 +45,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def follow
-    follow  = FollowService.new.call(current_user.account, @account, reblogs: params.key?(:reblogs) ? truthy_param?(:reblogs) : nil, notify: params.key?(:notify) ? truthy_param?(:notify) : nil, languages: params.key?(:languages) ? params[:languages] : nil, with_rate_limit: true)
+    follow  = FollowService.new.call(current_user.account, @account, reblogs: params.key?(:reblogs) ? truthy_param?(:reblogs) : nil, notify: params.key?(:notify) ? truthy_param?(:notify) : nil, languages: params.key?(:languages) ? params[:languages] : nil, with_rate_limit: true, ref: params[:ref])
     options = @account.locked? || current_user.account.silenced? ? {} : { following_map: { @account.id => { reblogs: follow.show_reblogs?, notify: follow.notify?, languages: follow.languages } }, requested_map: { @account.id => false } }
 
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(**options)
@@ -88,7 +88,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def set_accounts
-    @accounts = Account.where(id: account_ids).without_unapproved
+    @accounts = Account.where(id: account_ids).without_unapproved.without_requested_deletion
   end
 
   def check_account_approval
@@ -128,6 +128,6 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def check_enabled_registrations
-    forbidden unless allowed_registration?(request.remote_ip, invite)
+    forbidden if ENV['SSO_ACCOUNT_SIGN_UP'].present? || !allowed_registration?(request.remote_ip, invite)
   end
 end

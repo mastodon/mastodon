@@ -61,6 +61,10 @@
 
 .input:checked + .toggle::before {
   transform: translateX(calc(var(--diameter) - (var(--padding) * 2)));
+
+  :global([dir='rtl']) & {
+    transform: translateX(calc(-1 * (var(--diameter) - (var(--padding) * 2))));
+  }
 }
 
 .input:disabled {
@@ -69,8 +73,4 @@
 
 .input:disabled + .toggle {
   opacity: 0.6;
-}
-
-:global([dir='rtl']) .input:checked + .toggle::before {
-  transform: translateX(calc(-1 * (var(--diameter) - (var(--padding) * 2))));
 }

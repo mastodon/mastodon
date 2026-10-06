@@ -114,7 +114,7 @@ export const Popover: React.FC<PopoverProps> = ({
   popoverElement,
   placement = 'bottom',
   offset,
-  strategy = 'fixed',
+  strategy = 'absolute',
   flip = true,
   container,
   matchReferenceWidth = false,
@@ -175,14 +175,15 @@ export const Popover: React.FC<PopoverProps> = ({
 
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === 'Escape') {
+        event.preventDefault();
         onClose(event);
       }
     }
 
-    document.addEventListener('keyup', closeOnEscape);
+    document.addEventListener('keydown', closeOnEscape);
 
     return () => {
-      document.removeEventListener('keyup', closeOnEscape);
+      document.removeEventListener('keydown', closeOnEscape);
     };
   }, [isOpen, onClose]);
 
@@ -190,18 +191,22 @@ export const Popover: React.FC<PopoverProps> = ({
     return null;
   }
 
+  const props: PopoverChildProps = {
+    style: floatingStyles,
+    'data-popover-placement': computedPlacement,
+    'data-popover-reference-hidden': middlewareData.hide?.referenceHidden,
+    'data-popover-escaped': middlewareData.hide?.escaped,
+  };
+  if (!popoverElement) {
+    props.ref = refs.setFloating;
+  }
+
   return (
     <Portal container={container}>
       {children({
         placement: computedPlacement,
         update,
-        props: {
-          ref: popoverElement ? undefined : refs.setFloating,
-          style: floatingStyles,
-          'data-popover-placement': computedPlacement,
-          'data-popover-reference-hidden': middlewareData.hide?.referenceHidden,
-          'data-popover-escaped': middlewareData.hide?.escaped,
-        },
+        props,
       })}
     </Portal>
   );

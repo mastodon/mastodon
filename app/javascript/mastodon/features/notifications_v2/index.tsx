@@ -1,11 +1,37 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import {
+  ChecksIcon,
+  GearIcon,
+  NewspaperIcon,
+  TrashIcon,
+} from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 import { isEqual } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
+import { toggleShowAnnouncements } from '@/mastodon/actions/announcements';
+import {
+  addColumn,
+  removeColumn,
+  moveColumn,
+} from '@/mastodon/actions/columns';
+import { submitMarkers } from '@/mastodon/actions/markers';
+import { openModal } from '@/mastodon/actions/modal';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import {
+  ColumnHeader,
+  ColumnHeaderButton,
+  ColumnSettingsMenu,
+} from '@/mastodon/components/column_header';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
+import { LoadGap } from '@/mastodon/components/load_gap';
+import { MenuItem, MenuItemDivider } from '@/mastodon/components/menu';
+import ScrollableList from '@/mastodon/components/scrollable_list';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import {
@@ -33,13 +59,8 @@ import {
 } from 'mastodon/selectors/settings';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import { submitMarkers } from '../../actions/markers';
-import { Column } from '../../components/column';
-import type { ColumnRef } from '../../components/column';
-import { ColumnHeader } from '../../components/column_header';
-import { LoadGap } from '../../components/load_gap';
-import ScrollableList from '../../components/scrollable_list';
+import { Announcements } from '../announcements';
+import { useHasAnnouncements } from '../announcements/hooks';
 import {
   FilteredNotificationsBanner,
   FilteredNotificationsIconButton,
@@ -47,14 +68,20 @@ import {
 import NotificationsPermissionBanner from '../notifications/components/notifications_permission_banner';
 import ColumnSettingsContainer from '../notifications/containers/column_settings_container';
 
+import { FollowRequestsBanner } from './components/follow_requests_banner';
 import { NotificationGroup } from './components/notification_group';
 import { FilterBar } from './filter_bar';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
   markAsRead: {
     id: 'notifications.mark_as_read',
     defaultMessage: 'Mark every notification as read',
+  },
+  markAsReadRedesign: {
+    id: 'notifications.mark_all_as_read',
+    defaultMessage: 'Mark all as read',
   },
 });
 
@@ -95,8 +122,6 @@ export const Notifications: React.FC<{
   const needsNotificationPermission = useAppSelector(
     selectNeedsNotificationPermission,
   );
-
-  const columnRef = useRef<ColumnRef>(null);
 
   // Keep track of mounted components for unread notification handling
   useEffect(() => {
@@ -159,13 +184,28 @@ export const Notifications: React.FC<{
     [dispatch, columnId],
   );
 
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
+  const openSettingsModal = useCallback(() => {
+    dispatch(
+      openModal({
+        modalType: 'NOTIFICATION_SETTINGS',
+        modalProps: {},
+      }),
+    );
+  }, [dispatch]);
 
   const handleMarkAsRead = useCallback(() => {
     dispatch(markNotificationsAsRead());
     void dispatch(submitMarkers({ immediate: true }));
+  }, [dispatch]);
+
+  const handleToggleAnnouncements = useCallback(() => {
+    dispatch(toggleShowAnnouncements());
+  }, [dispatch]);
+
+  const handleClearNotifications = useCallback(() => {
+    dispatch(
+      openModal({ modalType: 'CONFIRM_CLEAR_NOTIFICATIONS', modalProps: {} }),
+    );
   }, [dispatch]);
 
   const pinned = !!columnId;
@@ -205,10 +245,16 @@ export const Notifications: React.FC<{
     );
   }, [notifications, isLoading, hasMore, lastReadId, handleLoadGap]);
 
+  const { hasAnnouncements, shouldShowAnnouncements } = useHasAnnouncements();
+
   const prepend = (
     <>
       {needsNotificationPermission && <NotificationsPermissionBanner />}
-      <FilteredNotificationsBanner />
+      {shouldShowAnnouncements && <Announcements />}
+      <div className={isRedesignEnabled() ? classes.topLinks : undefined}>
+        {isRedesignEnabled() && <FollowRequestsBanner />}
+        <FilteredNotificationsBanner />
+      </div>
     </>
   );
 
@@ -255,25 +301,96 @@ export const Notifications: React.FC<{
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={columnRef}
       label={intl.formatMessage(messages.title)}
     >
-      <ColumnHeader
-        icon='bell'
-        iconComponent={NotificationsIcon}
-        active={isUnread}
-        title={intl.formatMessage(messages.title)}
-        onPin={handlePin}
-        onMove={handleMove}
-        onClick={handleHeaderClick}
-        pinned={pinned}
-        multiColumn={multiColumn}
-        extraButton={extraButton}
-      >
-        <ColumnSettingsContainer />
-      </ColumnHeader>
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          title={intl.formatMessage(messages.title)}
+          withUnreadMarker={isUnread}
+          withBackButton={multiColumn && !pinned && 'auto'}
+          extraButtons={
+            <>
+              <ColumnHeaderButton icon={GearIcon} onClick={openSettingsModal}>
+                <FormattedMessage
+                  id='notifications.open_settings'
+                  defaultMessage='Open notification settings'
+                />
+              </ColumnHeaderButton>
+              <ColumnSettingsMenu
+                label={
+                  <FormattedMessage
+                    id='notifications.more_options'
+                    defaultMessage='More options'
+                  />
+                }
+              >
+                <MenuItem
+                  disabled={!canMarkAsRead}
+                  onClick={handleMarkAsRead}
+                  icon={ChecksIcon}
+                >
+                  {intl.formatMessage(messages.markAsReadRedesign)}
+                </MenuItem>
+                {hasAnnouncements && (
+                  <MenuItem
+                    onClick={handleToggleAnnouncements}
+                    icon={NewspaperIcon}
+                  >
+                    {shouldShowAnnouncements ? (
+                      <FormattedMessage
+                        id='notifications.hide_server_announcements'
+                        defaultMessage='Hide server announcements'
+                      />
+                    ) : (
+                      <FormattedMessage
+                        id='notifications.show_server_announcements'
+                        defaultMessage='Show server announcements'
+                      />
+                    )}
+                  </MenuItem>
+                )}
+                <MenuItemDivider />
+                <MenuItem
+                  destructive
+                  icon={TrashIcon}
+                  onClick={handleClearNotifications}
+                >
+                  <FormattedMessage
+                    id='notifications.clear'
+                    defaultMessage='Clear notifications'
+                  />
+                </MenuItem>
+                {multiColumn && (
+                  <MultiColumnMenuItems
+                    withDivider
+                    pinned={pinned}
+                    onPin={handlePin}
+                    onMove={handleMove}
+                  />
+                )}
+              </ColumnSettingsMenu>
+            </>
+          }
+          extraStickyContent={filterBar}
+        />
+      ) : (
+        <LegacyColumnHeader
+          icon='bell'
+          iconComponent={NotificationsIcon}
+          active={isUnread}
+          title={intl.formatMessage(messages.title)}
+          onPin={handlePin}
+          onMove={handleMove}
+          pinned={pinned}
+          multiColumn={multiColumn}
+          extraButton={extraButton}
+          scrollTopOnClick
+        >
+          <ColumnSettingsContainer />
+        </LegacyColumnHeader>
+      )}
 
-      {filterBar}
+      {!isRedesignEnabled() && filterBar}
 
       {scrollContainer}
 

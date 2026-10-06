@@ -1,0 +1,40 @@
+@use '@/styles/mastodon/mixins';
+
+.rootLarge,
+.rootSmall {
+  align-items: center;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-highlight);
+  border-radius: var(--radius-3);
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.rootLarge {
+  padding: var(--space-3);
+}
+
+.rootSmall {
+  padding: var(--space-2);
+}
+
+.textWrapper {
+  @include mixins.type-body-compact;
+
+  flex-grow: 1;
+
+  a {
+    color: inherit;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+    }
+  }
+}
+
+.icon {
+  width: var(--space-5);
+  height: var(--space-5);
+}

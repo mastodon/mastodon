@@ -21,6 +21,7 @@ const isHoverCardAnchor = (element: HTMLElement) =>
 export const HoverCardController: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [accountId, setAccountId] = useState<string | undefined>();
+  const [reference, setReference] = useState<string | undefined>();
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [setLeaveTimeout, cancelLeaveTimeout] = useTimeout();
@@ -53,6 +54,9 @@ export const HoverCardController: React.FC = () => {
       setOpen(true);
       setAnchor(target);
       setAccountId(target.getAttribute('data-hover-card-account') ?? undefined);
+      setReference(
+        target.getAttribute('data-hover-card-reference') ?? undefined,
+      );
     };
 
     const close = () => {
@@ -61,6 +65,7 @@ export const HoverCardController: React.FC = () => {
       setOpen(false);
       setAnchor(null);
       setAccountId(undefined);
+      setReference(undefined);
     };
 
     const handleTouchStart = () => {
@@ -216,7 +221,11 @@ export const HoverCardController: React.FC = () => {
     >
       {({ props }) => (
         <div {...props} className='hover-card-controller'>
-          <HoverCardAccount accountId={accountId} ref={cardRef} />
+          <HoverCardAccount
+            accountId={accountId}
+            reference={reference}
+            ref={cardRef}
+          />
         </div>
       )}
     </Popover>

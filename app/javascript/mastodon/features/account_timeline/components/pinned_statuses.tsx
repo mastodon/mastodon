@@ -8,8 +8,8 @@ import IconPinned from '@/images/icons/icon_pinned.svg?react';
 import { Badge } from '@/mastodon/components/badge';
 import { Button } from '@/mastodon/components/button';
 import { Icon } from '@/mastodon/components/icon';
-import { StatusHeader } from '@/mastodon/components/status/header';
-import type { StatusHeaderRenderFn } from '@/mastodon/components/status/header';
+import { StatusHeader } from '@/mastodon/components/status/legacy/header';
+import type { StatusHeaderRenderFn } from '@/mastodon/components/status/legacy/header';
 
 import { useAccountContext } from '../hooks/useAccountContext';
 import classes from '../styles.module.scss';

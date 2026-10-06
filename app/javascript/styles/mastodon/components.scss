@@ -1491,7 +1491,7 @@ body > [data-popover-placement] {
 
 .focusable {
   &:focus-visible {
-    outline: 2px solid var(--color-border-brand);
+    outline: var(--outline-focus-default);
     outline-offset: -2px;
     background: var(--color-bg-brand-softest);
   }
@@ -3043,6 +3043,7 @@ a.account__display-name {
         position: fixed;
         width: 285px;
         height: 100%;
+        z-index: 1;
       }
     }
 
@@ -3218,7 +3219,6 @@ a.account__display-name {
 }
 
 .ui {
-  --mobile-bottom-nav-height: 55px;
   --last-content-item-border-width: 2px;
 
   flex: 0 0 auto;
@@ -4624,6 +4624,10 @@ a.status-card {
   align-items: center;
   gap: 8px;
 
+  html[data-redesign='true'] & {
+    border-inline: none;
+  }
+
   &__checkbox .check-box {
     display: flex;
   }
@@ -5120,6 +5124,14 @@ a.status-card {
 
     &:last-child {
       border-bottom: 0;
+    }
+  }
+
+  [data-redesign='true'] & section {
+    padding-inline: 0;
+
+    &:first-child {
+      padding-top: 0;
     }
   }
 
@@ -6079,29 +6091,32 @@ a.status-card {
   height: 100%;
   max-width: 100vw;
   max-height: 100vh;
+  padding: var(--space-5);
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: space-around;
   z-index: 9999;
-  pointer-events: none;
-  user-select: none;
   overscroll-behavior: none;
+  overflow-y: auto;
+
+  @media screen and (width <= $mobile-breakpoint) {
+    padding-bottom: 0;
+    padding-inline: var(--space-2);
+  }
+
+  > * {
+    margin: auto;
+  }
 }
 
 .modal-root__modal {
-  pointer-events: auto;
-  user-select: text;
   display: flex;
   max-width: 100vw;
 
   @media screen and (width <= $mobile-breakpoint) {
-    margin-top: auto;
+    margin-bottom: initial;
 
     &.video-modal {
-      margin-top: 0;
+      margin-bottom: auto;
     }
   }
 }
@@ -8044,9 +8059,12 @@ a.status-card {
   display: flex;
   flex-shrink: 0;
 
+  [data-redesign='true'] & {
+    border-inline: none;
+  }
+
   @media screen and (max-width: ($no-gap-breakpoint - 1px)) {
-    border-right: 0;
-    border-left: 0;
+    border-inline: none;
   }
 
   button {
@@ -8259,6 +8277,10 @@ noscript {
   justify-content: center;
   align-items: center;
 
+  img {
+    user-select: none;
+  }
+
   &.dragging {
     cursor: grabbing;
   }
@@ -8270,7 +8292,7 @@ noscript {
     transform: translate(-50%, -50%);
     border: 2px solid var(--color-text-on-media);
     border-radius: 50%;
-    box-shadow: 0 0 0 9999em var(--color-shadow-primary);
+    box-shadow: 0 0 0 9999em rgb(from black r g b / 25%);
     pointer-events: none;
   }
 }
@@ -8517,6 +8539,13 @@ noscript {
     width: 100%;
   }
 
+  &__close-button {
+    position: absolute;
+    top: var(--space-2);
+    inset-inline-end: var(--space-2);
+    z-index: 1;
+  }
+
   &__root {
     background: var(--color-bg-brand-softest);
     font-size: 13px;
@@ -8558,18 +8587,17 @@ noscript {
     display: block;
     font-weight: 500;
     margin-bottom: 10px;
-    padding-inline-end: 18px;
+    padding-inline-end: 28px;
   }
 
   &__unread {
-    position: absolute;
-    top: 19px;
-    inset-inline-end: 19px;
-    display: block;
-    background: var(--color-text-brand);
-    border-radius: 50%;
+    display: inline-block;
     width: 0.625rem;
     height: 0.625rem;
+    margin-inline-start: 8px;
+    border-radius: 50%;
+    vertical-align: 0.05em;
+    background: var(--color-text-brand);
   }
 
   &__pagination {
@@ -8735,6 +8763,8 @@ noscript {
   bottom: 20px;
   inset-inline-end: 20px;
   width: 300px;
+  z-index: 100;
+  background-color: var(--color-bg-primary);
   box-shadow: var(--dropdown-shadow);
 
   &__footer {
@@ -10624,6 +10654,16 @@ noscript {
   padding: 16px 24px;
   border-bottom: 1px solid var(--color-border-primary);
 
+  &--redesign {
+    padding-inline: 0;
+    padding-bottom: 0;
+
+    .notification-ungrouped__header {
+      margin-bottom: 0;
+      padding-inline-start: var(--space-4);
+    }
+  }
+
   &__header {
     display: flex;
     align-items: center;
@@ -10996,11 +11036,13 @@ noscript {
   display: flex;
   gap: 12px;
   align-items: center;
-  border: 1px solid var(--color-border-primary);
-  border-top: 0;
-  border-bottom: 0;
+  border-inline: 1px solid var(--color-border-primary);
   padding: 16px;
   padding-bottom: 8px;
+
+  [data-redesign='true'] & {
+    border-inline: none;
+  }
 
   input {
     background: var(--color-bg-secondary);
@@ -11025,10 +11067,14 @@ noscript {
 }
 
 .column-footer {
-  padding: 16px;
   position: sticky;
   bottom: 0;
+  padding: 16px;
   background: var(--color-bg-primary);
+
+  @media (width <= $mobile-menu-breakpoint) {
+    padding-bottom: calc(16px + var(--mobile-bottom-nav-height, 0));
+  }
 }
 
 .lists-scrollable {

@@ -1,0 +1,232 @@
+@use '@/styles/mastodon/mixins';
+
+// Attachments
+
+.mediaSingle .mediaUpload {
+  min-width: 120px;
+  max-width: min(100%, 400px);
+  max-height: var(--max-media-height-large);
+  aspect-ratio: var(--aspect);
+}
+
+.mediaGrid {
+  display: grid;
+  gap: var(--space-half);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  aspect-ratio: 3/2;
+
+  &[data-number='2'] {
+    grid-template-rows: 1fr;
+  }
+
+  &[data-number='3'] .mediaUpload:first-child {
+    grid-row: span 2;
+  }
+}
+
+.mediaUpload {
+  border-radius: var(--radius-4);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.mediaUploadPending {
+  animation: pulse 1s ease-in-out infinite;
+  background-color: var(--color-bg-disabled);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.mediaMenuButton {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+}
+
+.mediaAlt {
+  @include mixins.type-micro;
+
+  display: block;
+  padding: var(--space-1);
+  border-radius: var(--radius-2);
+  background: var(--color-bg-inverted);
+  color: var(--color-text-inverted);
+  position: absolute;
+  bottom: var(--space-2);
+  right: var(--space-2);
+  text-transform: uppercase;
+}
+
+.mediaMenuDelete {
+  color: var(--color-text-error);
+}
+
+// Audio
+
+.audioWrapper {
+  --height: var(--space-10);
+
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-4);
+  gap: var(--space-1);
+  border: 0.5px solid var(--color-text-tertiary);
+  padding: var(--space-2);
+}
+
+.audioCover {
+  height: var(--height);
+  width: auto;
+  aspect-ratio: 1;
+  border-radius: var(--radius-3);
+}
+
+.audioControl {
+  overflow: hidden;
+  border-radius: var(--radius-3);
+  display: block;
+  box-sizing: border-box;
+  flex-grow: 1;
+  height: var(--height);
+}
+
+// Polls
+
+.poll {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  border: 0.5px solid var(--color-text-tertiary);
+  border-radius: var(--radius-4);
+  padding: var(--space-2);
+
+  ol {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    counter-reset: poll;
+    width: 100%;
+  }
+
+  label {
+    @include mixins.type-caption;
+  }
+}
+
+.pollOption {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  counter-increment: poll;
+
+  &::before {
+    @include mixins.type-micro;
+
+    content: counter(poll, upper-alpha);
+    width: var(--space-5);
+    height: var(--space-5);
+    flex-shrink: 0;
+    line-height: var(--space-5);
+    text-align: center;
+    border-radius: var(--radius-2);
+    background: var(--color-bg-highlight);
+  }
+}
+
+.pollAddNew {
+  margin-left: var(--space-5);
+}
+
+.pollMultipleToggle {
+  align-self: flex-start;
+}
+
+.pollControls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pollDurationSelect {
+  text-align: center;
+}
+
+// Quotes
+
+// If hovering over an account link, underline all account links.
+.quoteTitle:has(.quoteAccountLink:hover) {
+  .quoteAccountLink {
+    text-decoration: underline;
+  }
+}
+
+.quoteSpoiler {
+  background: var(--color-bg-highlight);
+  border-radius: var(--radius-3);
+  margin: var(--space-1) 0;
+  padding: var(--space-2);
+}
+
+.quoteBody {
+  color: inherit;
+  text-decoration: none;
+
+  // If a body only has an empty div (such as when quoting just a link), just hide it.
+  &:has(> div:only-child:empty) {
+    display: none;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+}
+
+.quoteReply {
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-2);
+}
+
+.quoteMedia {
+  margin-top: var(--space-1);
+
+  &.mediaGrid {
+    height: 260px;
+  }
+
+  .mediaUpload {
+    max-height: 260px;
+    border-radius: var(--radius-2);
+  }
+}
+
+.quoteVideoDuration {
+  @include mixins.type-meta;
+
+  display: flex;
+  gap: var(--space-1);
+  align-items: center;
+  position: absolute;
+  inset-block-end: var(--space-2);
+  inset-inline-start: var(--space-2);
+  padding: var(--space-1) var(--space-half);
+  background: var(--color-bg-highlight);
+  border-radius: var(--radius-2);
+  color: var(--color-text-primary);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+  }
+}

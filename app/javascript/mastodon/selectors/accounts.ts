@@ -64,6 +64,11 @@ export const selectIsAccountLocal = createAppSelector(
   (account) => !!account && account.username === account.acct,
 );
 
+export const selectAccountAvatarUrl = createAppSelector(
+  [(state) => state.accounts, (state) => state.meta.get('me') as string],
+  (accounts, myId) => accounts.get(myId)?.avatar_static,
+);
+
 export const getAccountHidden = createAppSelector(
   [
     (state, id: string) => state.accounts.get(id)?.hidden,

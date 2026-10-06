@@ -14,7 +14,7 @@ et:
       account_alias:
         acct: Sisesta konto kasutajanimi@domeen, mille soovid siia ümber kolida
       account_migration:
-        acct: Sisesta kasutajanimi@domeen, kuhu soovid konto siit kolida
+        acct: Sisesta kasutajanimi@domeen, kuhu soovid kasutajakonto siit kolida
       account_warning_preset:
         text: Saad kasutada postituse süntaksi, näiteks võrguaadresse, teemaviiteid ja mainimisi
         title: Valikuline. Ei ole nähtav saajale
@@ -85,11 +85,11 @@ et:
           warn: Varja filtreeritud sisu hoiatusega, nimetades filtri pealkirja
       form_admin_settings:
         activity_api_enabled: Kohalike postituste, aktiivsete kasutajate ja uute registreerumistr arv nädala kaupa grupeeritult
-        app_icon: WEBP, PNG, GIF või JPG. Asendab mobiilsel seadmel äpi vaikeikooni kohandatud ikooniga.
+        app_icon: WEBP, PNG, GIF või JPG. Asendab mobiilses seadmes rakenduse vaikeikooni kohandatud ikooniga.
         backups_retention_period: Kasutajatel on võimalus genereerida oma postitustest hiljem allalaaditav arhiiv. Kui määrad positiivse arvu, siis kustutatakse need arhiivid serveri andmeruumist määratud arvu päevade järel automaatselt.
         bootstrap_timeline_accounts: Järgnevad kasutajakontod kinnitatakse vaate ülaossa ning on mõeldud jälgitavate kontode soovituseks uutele kasutajatele. Sisend peab olema komadega eraldatud kasutajakontode loend.
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
-        content_cache_retention_period: Kõik teiste serverite postitused (sealhulgas jagamised ja vastused) kustutatakse pärast määratud arvu päevade möödumist, sõltumata, kuidas kohalik kasutaja on nende postitustega interakteerunud. Hõlmatud on ka postitused, mille kohalik kasutaja on märkinud järjehoidjaks või lemmikuks. Ka eri instantside kasutajate vahelised privaatsed mainimised kaovad ja neid on võimatu taastada. See seadistus on mõeldud eriotstarbeliste instantside jaoks ja rikub paljude kasutajate ootusi, kui seda rakendatakse üldotstarbelise kasutuse puhul.
+        content_cache_retention_period: Kõik teiste serverite postitused (sealhulgas jagamised ja vastused) kustutatakse pärast määratud arvu päevade möödumist, sõltumata, kuidas kohalik kasutaja on nende postitustega suhestunud. Hõlmatud on ka postitused, mille kohalik kasutaja on märkinud järjehoidjaks või lemmikuks. Ka eri serverite kasutajate vahelised privaatsed mainimised kaovad ja neid on võimatu taastada. See seadistus on mõeldud eriotstarbeliste serverite jaoks ja rikub paljude kasutajate ootusi, kui seda rakendatakse üldotstarbelise kasutuse puhul.
         custom_css: Mastodoni veebiliideses on võimalik kasutada kohandatud stiile.
         email_footer_text: Valikuline tekst, mida kuvatakse ainult uudis-e-kirjade jaluses.
         favicon: WEBP, PNG, GIF või JPG. Asendab Mastodoni vaike- favicon ikooni kohandatud ikooniga.
@@ -112,7 +112,7 @@ et:
         thumbnail_description: Pildi selgitus, mis aitab nägemispuudega inimestel aru saada pildi sisust.
         trendable_by_default: Populaarse sisu ülevaatuse vahele jätmine. Pärast seda on siiski võimalik üksikuid üksusi trendidest eemaldada.
         trends: Trendid näitavad, millised postitused, teemaviited ja uudislood koguvad sinu serveris tähelepanu.
-        wrapstodon: Paku kohalikele kasutajatele luua nende Mastodoni kasutamise aastast mänguline kokkuvõte. See võimalus on saadaval igal aastal 10. ja 31. detsembri vahel ja seda pakutakse kasutajatele, kes tegid vähemalt ühe avaliku või vaikse avaliku postituse ja kes kasutas aasta jooksul vähemalt ühte teemaviidet.
+        wrapstodon: Paku kohalikele kasutajatele võimalust luua nende Mastodoni kasutamise aastast mänguline kokkuvõte. See võimalus on saadaval igal aastal 10. ja 31. detsembri vahel ja seda pakutakse kasutajatele, kes tegid vähemalt ühe avaliku või vaikse avaliku postituse ja kes kasutas aasta jooksul vähemalt ühte teemaviidet.
       form_challenge:
         current_password: Sisened turvalisse alasse
       imports:
@@ -225,7 +225,7 @@ et:
         data: Andmed
         display_name: Kuvanimi
         email: E-posti aadress
-        expires_in: Aegu pärast
+        expires_in: Aegumine
         fields: Veebiviited
         filter_action: Filtritoimingud
         header: Päis
@@ -233,7 +233,7 @@ et:
         inbox_url: Sõnumivahendusserveri sisendkausta võrguaadress
         irreversible: Kustuta selle asemel, et peita
         locale: Kasutajaliidese keel
-        max_uses: Maksimum kasutajate arv
+        max_uses: Kasutajate arvu ülempiir
         new_password: Uus salasõna
         note: Elulugu
         otp_attempt: Kaheastmeline kood
@@ -288,7 +288,7 @@ et:
           warn: Peida hoiatusega
       form_admin_settings:
         activity_api_enabled: Avalda agregeeritud statistika kasutajaaktiivsuse kohta API-s
-        app_icon: Äpi ikoon
+        app_icon: Rakenduse ikoon
         backups_retention_period: Kasutajate arhiivi talletusperiood
         bootstrap_timeline_accounts: Alati soovita neid kontosid uutele kasutajatele
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
@@ -367,7 +367,7 @@ et:
       settings:
         email_subscriptions: Luba e-posti aadressiga liitumised
         indexable: Kaasa profiilileht otsimootoritesse
-        show_application: Näita, millisest äpist postituse saatsid
+        show_application: Näita, millisest rakendusest sa postitasid
       tag:
         listable: Luba sellel teemaviitel ilmuda profiilide kataloogis
         name: Teemaviide

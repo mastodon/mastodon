@@ -24,7 +24,7 @@ jobs:
 
       # Download the translation files from Crowdin
       - name: crowdin action
-        uses: crowdin/github-action@52aa776766211d83d975df51f3b9c53c2f8ba35f # v2
+        uses: crowdin/github-action@8f01d54f70f1713ee3f09d82c2bbb2daeac28689 # v2
         with:
           upload_sources: false
           upload_translations: false
@@ -50,7 +50,7 @@ jobs:
 
       # Create or update the pull request
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           commit-message: 'New Crowdin translations'
           title: 'New Crowdin Translations for ${{ github.base_ref || github.ref_name }} (automated)'

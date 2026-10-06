@@ -1,12 +1,15 @@
 import { defineMessages, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { DisplayNameSimple } from 'mastodon/components/display_name/simple';
 import { Scrollable } from 'mastodon/components/scrollable_list/components';
 import { TabLink, TabList } from 'mastodon/components/tab_list';
@@ -68,13 +71,24 @@ export const Collections: React.FC<{
 
   return (
     <Column bindToDocument={!multiColumn} label={pageTitle}>
-      <ColumnHeader showBackButton multiColumn={multiColumn} />
+      {isRedesignEnabled() ? (
+        <ColumnHeader title={pageTitle} />
+      ) : (
+        <LegacyColumnHeader showBackButton multiColumn={multiColumn} />
+      )}
 
       <Scrollable>
-        <header className={classes.header}>
-          <NavigationFocusTarget as='h1' className={classes.heading}>
-            {pageTitleHtml}
-          </NavigationFocusTarget>
+        <header
+          className={classNames(
+            classes.header,
+            isRedesignEnabled() && classes.headerRedesign,
+          )}
+        >
+          {!isRedesignEnabled() && (
+            <NavigationFocusTarget as='h1' className={classes.heading}>
+              {pageTitleHtml}
+            </NavigationFocusTarget>
+          )}
           <TabList plain>
             <TabLink exact to={`/@${account?.acct}/collections`}>
               {intl.formatMessage(createdByTabMessage, {

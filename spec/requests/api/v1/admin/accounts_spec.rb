@@ -30,6 +30,7 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:accounts admin:write admin:write:accounts'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     context 'when requesting active local staff accounts' do
       let(:expected_results) { [admin_account] }
@@ -107,6 +108,7 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:accounts admin:write admin:write:accounts'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns the requested account successfully', :aggregate_failures do
       subject
@@ -144,6 +146,7 @@ RSpec.describe 'Accounts' do
 
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for disabled user'
 
       it 'approves the user successfully', :aggregate_failures do
         subject
@@ -202,6 +205,7 @@ RSpec.describe 'Accounts' do
 
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for disabled user'
 
       it 'removes the user successfully and logs action', :aggregate_failures do
         subject
@@ -255,6 +259,7 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'enables the user successfully', :aggregate_failures do
       subject
@@ -290,6 +295,7 @@ RSpec.describe 'Accounts' do
 
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for disabled user'
 
       it 'unsuspends the account successfully', :aggregate_failures do
         subject
@@ -335,6 +341,7 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'unsensitizes the account successfully', :aggregate_failures do
       subject
@@ -369,6 +376,7 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'unsilences the account successfully', :aggregate_failures do
       subject
@@ -404,6 +412,7 @@ RSpec.describe 'Accounts' do
 
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for disabled user'
 
       it 'deletes the account successfully', :aggregate_failures do
         allow(Admin::AccountDeletionWorker).to receive(:perform_async)

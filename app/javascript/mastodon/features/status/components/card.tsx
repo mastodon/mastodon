@@ -6,8 +6,7 @@ import classNames from 'classnames';
 
 import { isMap } from 'immutable';
 
-import punycode from 'punycode/';
-
+import { decodeIDNA } from '@/mastodon/utils/links';
 import DescriptionIcon from '@/material-icons/400-24px/description-fill.svg?react';
 import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
 import PlayArrowIcon from '@/material-icons/400-24px/play_arrow-fill.svg?react';
@@ -17,19 +16,6 @@ import { MoreFromAuthor } from 'mastodon/components/more_from_author';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { displayMedia, useBlurhash } from 'mastodon/initial_state';
 import type { CardShape, Card as CardType } from 'mastodon/models/status';
-
-const IDNA_PREFIX = 'xn--';
-
-const decodeIDNA = (domain: string) => {
-  return domain
-    .split('.')
-    .map((part) =>
-      part.startsWith(IDNA_PREFIX)
-        ? punycode.decode(part.slice(IDNA_PREFIX.length))
-        : part,
-    )
-    .join('.');
-};
 
 const getHostname = (url: string) => {
   const parser = document.createElement('a');

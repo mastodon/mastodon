@@ -506,8 +506,6 @@ eo:
           description: Vi ricevis registradon de FASP. Malakcepti ĝin se vi ne komencis ĉi tiun. Se vi ja, zorge kompari nomon kaj ŝloŝilafingrospuron antaŭ ol konfirmas la registradon.
           reject: Malakcepti
           title: Konfirmi registradon de FASP
-        save: Konservi
-        select_capabilities: Elekti mandatojn
         sign_in: Ensaluti
         status: Stato
         title: Fediversaj helpaj servicaj donantoj
@@ -827,10 +825,8 @@ eo:
         title: Defaŭltigi, ke uzantoj ne estu aŭtomate aldonitaj al la serĉilo-indekso sen sia konsento
       discovery:
         follow_recommendations: Sekvorekomendoj
-        privacy: Privateco
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
-        publish_statistics: Publikigi statistikojn
         title: Eltrovado
         trends: Tendencoj
       domain_blocks:
@@ -849,7 +845,6 @@ eo:
         warning_hint: Ni rekomendas uzi "Konsento neprigas por enskribiĝi" krom se vi memcertas, ke via teamo de moderistoj povas ellabori spamon kaj malignajn registradojn rapide.
       security:
         authorized_fetch: Devigi aŭtentigon de frataraj serviloj
-        authorized_fetch_hint: Neprigante aŭtentigon por federataj serviloj permesas pli striktan devigon de ambaŭ uzanto-nivelaj kaj servilo-nivelaj blokoj. Tamen, ĉi tiu uzas pli risurcojn, reduktas la ĝisiradon de viaj respondoj, kaj povas enkonduki aferoj, pri kongruoj. Plu, ĉi tiu ne preventos homojn el alporti viajn afiŝojn kaj uzantojn.
         authorized_fetch_overridden_hint: Vi nuntempe ne povas ŝanĝi ĉi tiun agordon ĉar ĝi estas anstataŭita de mediovariablo.
         federation_authentication: Devigado de la aŭtentigo de la federacio
       title: Agordoj de la servilo
@@ -1029,7 +1024,6 @@ eo:
           one: Diskonita de 1 persono ekde lasta semajno
           other: Diskonita de %{count} personoj ekde lasta semajno
         title: Tendencantaj ligiloj
-        usage_comparison: Diskonita %{today}-foje hodiau, sed estas %{yesterday} hierau
       not_allowed_to_trend: Ne rajtas fariĝi furoraĵo
       only_allowed: Nur permesitas
       pending_review: Atendante revizion
@@ -1074,7 +1068,6 @@ eo:
         trendable: Povas aperi en tendencoj
         trending_rank: 'Populara #%{rank}'
         usable: Povas esti uzata
-        usage_comparison: Uzita %{today}-foje hodiau, sed estas %{yesterday} hierau
         used_by_over_week:
           one: Uzita de 1 persono ekde lasta semajno
           other: Uzita de %{count} personoj ekde lasta semajno
@@ -1310,7 +1303,6 @@ eo:
   deletes:
     challenge_not_passed: La informaĵo ke vi enigis estis malĝusta
     confirm_password: Enmetu vian nunan pasvorton por konfirmi vian identecon
-    confirm_username: Enigi vian uzantnomon por konfirmi la procedo
     proceed: Forigi konton
     success_msg: Via konto estis sukcese forigita
     warning:
@@ -1469,7 +1461,6 @@ eo:
       empty: Malpena CSV-dosiero
       incompatible_type: Nekongrua kun la elektita importotipo
       invalid_csv_file: Nevalida CSV-dosiero. %{error}
-      over_rows_processing_limit: enhavas pli ol %{count} vicoj
       too_large: La dosiero estas tro larĝa
     failures: Malsukcesoj
     imported: Importitaj
@@ -1605,7 +1596,6 @@ eo:
     incoming_migrations_html: Por moviĝi el alia konto al ĉi tiu, vi unue devas <a href="%{path}">krei kromnomo de konto</a>.
     moved_msg: Vua konto nun alidirektas al %{acct} kaj via sekvantoj translokigitas.
     not_redirecting: Via konto ne alidirektas al ajn alia konto nun.
-    on_cooldown: Vi lastatempe translokigis vian konton. Ĝi estos disponebla malantau ol %{count} dioj.
     past_migrations: Pasintaj translokaj
     proceed_with_move: Translokigi sekvantoj
     redirected_msg: Via konto nun alidirektas al %{acct}.
@@ -1761,8 +1751,6 @@ eo:
       account: Publikaj mesaĝoj de @%{acct}
       tag: 'Publikaj afiŝoj pri #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Vi transpasis la limigon al %{limit} samtage planitaj mesaĝoj
-    over_total_limit: Vi transpasis la limigon al %{limit} planitaj mesaĝoj
     too_soon: dato devas esti en la futuro
   self_destruct:
     lead_html: Bedaŭrinde, <strong>%{domain}</strong> konstante fermiĝas. Se vi havis konton tie, vi ne povos daŭrigi uzi ĝin, sed vi ankoraŭ povas peti sekurkopion de viaj datumoj.
@@ -1820,7 +1808,6 @@ eo:
     appearance: Apero
     authorized_apps: Rajtigitaj aplikaĵoj
     back: Reveni al Mastodon
-    delete: Konta forigo
     development: Evoluigado
     edit_profile: Redakti profilon
     export: Eksporti

@@ -50,7 +50,6 @@ require_relative '../lib/action_dispatch/remote_ip_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
 require_relative '../lib/simple_navigation/item_extensions'
-require_relative '../lib/vite_ruby/sri_extensions'
 require_relative '../lib/json-canonicalization/floats_fix'
 
 Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
@@ -86,6 +85,7 @@ module Mastodon
     # We use our own middleware for this
     config.public_file_server.enabled = false
 
+    config.middleware.use Rack::Deflater if ENV['RACK_COMPRESS'] == 'true'
     config.middleware.use Mastodon::Middleware::PublicFileServer if Rails.env.local? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::Middleware::SocketCleanup

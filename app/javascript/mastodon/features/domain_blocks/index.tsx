@@ -1,14 +1,15 @@
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import BlockIcon from '@/material-icons/400-24px/block-fill.svg?react';
 import { apiGetDomainBlocks } from 'mastodon/api/domain_blocks';
-import { Column } from 'mastodon/components/column';
-import type { ColumnRef } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { Domain } from 'mastodon/components/domain';
 import ScrollableList from 'mastodon/components/scrollable_list';
 
@@ -22,7 +23,6 @@ const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const [loading, setLoading] = useState(true);
   const [next, setNext] = useState<string | undefined>();
   const hasMore = !!next;
-  const columnRef = useRef<ColumnRef>(null);
 
   useEffect(() => {
     void apiGetDomainBlocks()
@@ -58,10 +58,6 @@ const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       });
   }, [setLoading, setDomains, setNext, next]);
 
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
-
   const handleUnblock = useCallback((domain: string) => {
     setDomains((prev) => prev.filter((d) => d !== domain));
   }, []);
@@ -76,17 +72,23 @@ const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={columnRef}
       label={intl.formatMessage(messages.heading)}
     >
-      <ColumnHeader
-        icon='ban'
-        iconComponent={BlockIcon}
-        title={intl.formatMessage(messages.heading)}
-        onClick={handleHeaderClick}
-        multiColumn={multiColumn}
-        showBackButton
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={intl.formatMessage(messages.heading)}
+        />
+      ) : (
+        <LegacyColumnHeader
+          icon='ban'
+          iconComponent={BlockIcon}
+          title={intl.formatMessage(messages.heading)}
+          multiColumn={multiColumn}
+          showBackButton
+          scrollTopOnClick
+        />
+      )}
 
       <ScrollableList
         scrollKey='domain_blocks'

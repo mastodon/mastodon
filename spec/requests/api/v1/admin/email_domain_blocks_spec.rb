@@ -15,6 +15,7 @@ RSpec.describe 'Email Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'read:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     context 'when there is no email domain block' do
       it 'returns an empty list' do
@@ -90,6 +91,7 @@ RSpec.describe 'Email Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'read:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     context 'when email domain block exists' do
       it 'returns the correct blocked domain', :aggregate_failures do
@@ -123,6 +125,7 @@ RSpec.describe 'Email Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'read:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns the correct blocked email domain', :aggregate_failures do
       subject
@@ -182,6 +185,7 @@ RSpec.describe 'Email Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'read:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     it 'deletes email domain block', :aggregate_failures do
       subject

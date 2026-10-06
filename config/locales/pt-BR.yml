@@ -64,12 +64,16 @@ pt-BR:
       custom: Personalizado
       delete: Excluir dados
       deleted: Excluído
+      deletion_irreversible: Os dados desta conta foram excluídos de forma irreversível.
+      deletion_reversible_hint_html: Esta conta está com uma exclusão pendente, os dados serão totalmente excluídos em %{date}.
       demote: Rebaixar
       destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
       disable: Congelar
       disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar autenticação de dois fatores
       disabled: Desativada
+      discoverable:
+        title: Visível
       display_name: Nome de exibição
       domain: Domínio
       edit: Editar
@@ -163,6 +167,12 @@ pt-BR:
       suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas isto não recuperará nenhum dado que ela possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente removidos em %{date}. Até lá, a conta pode ser restaurada sem nenhum efeito negativo. Se você deseja remover todos os dados da conta imediatamente, você pode fazer isso abaixo.
       title: Contas
+      trends:
+        allow: Permitir
+        allowed: Permitido
+        disallow: Não permitir
+        disallowed: Não permitido
+        title: Publicações em alta
       unblock_email: Desbloquear endereço de e-mail
       unblocked_email_msg: O endereço de e-mail de %{username} foi desbloqueado
       unconfirmed_email: E-mail não confirmado
@@ -198,12 +208,13 @@ pt-BR:
         create_user_role: Criar cargo
         create_username_block: Criar regra de usuário
         demote_user: Rebaixar usuário
+        destroy_account: Excluir dados da conta
         destroy_announcement: Excluir anúncio
         destroy_canonical_email_block: Excluir bloqueio de e-mail
         destroy_custom_emoji: Excluir emoji personalizado
         destroy_domain_allow: Excluir permissão de domínio
         destroy_domain_block: Excluir bloqueio de domínio
-        destroy_email_domain_block: Deletar bloqueio de domínio Email
+        destroy_email_domain_block: Excluir bloqueio de domínio de e-mail
         destroy_instance: Limpar domínio
         destroy_ip_block: Excluir regra de IP
         destroy_relay: Excluir Retransmissão
@@ -266,6 +277,7 @@ pt-BR:
         create_user_role_html: "%{name} criou o cargo %{target}"
         create_username_block_html: "%{name} adicionou regra para nomes de usuário contendo %{target}"
         demote_user_html: "%{name} rebaixou o usuário %{target}"
+        destroy_account_html: "%{name} excluiu os dadas da conta para %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o endereço e-mail com o hash %{target}"
         destroy_collection_html: "%{name} removeu coleção de %{target}"
@@ -319,9 +331,9 @@ pt-BR:
         update_ip_block_html: "%{name} alterou a regra para o IP %{target}"
         update_report_html: "%{name} atualizou a denúncia %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
-        update_tag_html: "%{name} alterou as opções de %{target} para: "
+        update_tag_html: "%{name} alterou as configurações de %{target} para: "
         update_user_role_html: "%{name} alterou o cargo %{target}"
-        update_username_block_html: Regra %{name} atualizada para nomes de usuários contendo %{target}
+        update_username_block_html: "%{name} Atualizou a regra para nomes de usuários contendo %{target}"
         usable_tag_html: pode ser usado;
       deleted_account: conta excluída
       empty: Nenhum registro encontrado.
@@ -473,13 +485,13 @@ pt-BR:
       obfuscate: Ofuscar nome de domínio
       obfuscate_hint: Ofuscar parcialmente o domínio na lista se a exibição da lista de domínios limitados estiver habilitada
       private_comment: Comentário privado
-      private_comment_hint: Comente sobre essa restrição ao domínio para uso interno dos moderadores.
+      private_comment_hint: Comente sobre esta restrição de domínio para uso interno dos moderadores.
       public_comment: Comentário público
-      public_comment_hint: Comente sobre essa restrição ao domínio para o público geral, caso a divulgação da lista de bloqueio esteja ativada.
+      public_comment_hint: Comente sobre esta restrição ao domínio para o público geral, caso a divulgação da lista de bloqueio esteja ativada.
       reject_media: Rejeitar arquivos de mídia
       reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa fazer download de qualquer um no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar denúncias
-      reject_reports_hint: Ignora todas as denúncias vindo deste domínio. Irrelevante para suspensões
+      reject_reports_hint: Ignora todas as denúncias vindas deste domínio. Irrelevante para suspensões
       undo: Desfazer bloqueio de domínio
       view: Ver domínios bloqueados
     email_domain_blocks:
@@ -516,7 +528,7 @@ pt-BR:
         show:
           confirm_disable_feature: Desativar e-mails de notícia de %{name}? Os e-mails de notícia não serão mais enviados a esta conta. O usuário poderá reativar este recurso através das opções da conta. Para remover acesso permanente a este recurso, edite as permissões da conta em Cargos.
           confirm_remove_subscriber: "%{email} não receberá mais e-mails de %{name}. Esta ação não pode ser desfeita."
-          consent: Os inscritos só permitiram receber publicações por e-mail. Não use esta lista para outra coisa.
+          consent: Os inscritos consentiram somente o envio de publicações por e-mail. Não use esta lista para outra coisa.
           date: Data de registro
           disable_feature: Desativar recurso
           disabled: O recurso foi desativado e os e-mails não são mais enviados a esta lista.
@@ -599,10 +611,13 @@ pt-BR:
         title: Importar bloqueio de domínios
       no_file: Nenhum arquivo selecionado
     fasp:
+      capabilities:
+        disable: Desativar
+        enable: Ativar
       debug:
         callbacks:
           created_at: Criado em
-          delete: Apagar
+          delete: Excluir
           ip: Endereço de IP
           request_body: Corpo da solicitação
           title: Depurar Callbacks
@@ -610,7 +625,7 @@ pt-BR:
         active: Ativo
         base_url: URL Base
         callback: Callback
-        delete: Apagar
+        delete: Excluir
         edit: Editar provedor
         finish_registration: Finalizar o cadastro
         name: Nome
@@ -622,24 +637,22 @@ pt-BR:
           description: Você recebeu um registro de um FASP. Rejeite se você não tiver iniciado isso. Se você iniciou isso, compare cuidadosamente o nome e a impressão digital da chave antes de confirmar o registro.
           reject: Rejeitar
           title: Confirmar o registro FASP
-        save: Salvar
-        select_capabilities: Selecionar recursos
         sign_in: Entrar
         status: Estado
         title: Provedores de serviços auxiliares do Fediverso
       title: FASP
     follow_recommendations:
       description_html: "<strong>A recomendação de contas ajuda os novos usuários a encontrar rapidamente conteúdo interessante</strong>. Quando um usuário ainda não tiver interagido o suficiente para gerar recomendações de contas, essas contas serão recomendadas. Essas recomendações são recalculadas diariamente a partir de uma lista de contas com alto engajamento e maior número de seguidores locais em uma dada língua."
-      language: Na língua
-      status: Situação
+      language: No idioma
+      status: Estado
       suppress: Remover recomendação de contas
       suppressed: Removida
       title: Recomendações de contas
       unsuppress: Restaurar recomendação de contas
     instances:
       audit_log:
-        title: Logs de auditoria recentes
-        view_all: Ver todos os logs de auditoria
+        title: Registros de auditoria recentes
+        view_all: Ver todos os registros de auditoria
       availability:
         description_html:
           one: Se a entrega ao domínio falhar em <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>do</em> domínio seja recebida.
@@ -648,7 +661,7 @@ pt-BR:
         failures_recorded:
           one: Falha na tentativa em %{count} dia.
           other: Tentativas falhas em %{count} dias diferentes.
-        no_failures_recorded: Sem falhas no registro.
+        no_failures_recorded: Sem falhas registradas.
         title: Disponibilidade
         warning: A última tentativa de se conectar a este servidor não foi bem sucedida
       back_to_all: Todas
@@ -962,10 +975,8 @@ pt-BR:
       discovery:
         follow_recommendations: Seguir recomendações
         preamble: A exibição de conteúdo interessante é fundamental para a integração de novos usuários que podem não conhecer ninguém no Mastodon. Controle o funcionamento de vários recursos de descoberta no seu servidor.
-        privacy: Privacidade
         profile_directory: Diretório de perfis
         public_timelines: Timelines públicas
-        publish_statistics: Publicar estatísticas
         title: Descobrir
         trends: Tendências
         wrapstodon: Wrapstodon
@@ -973,6 +984,8 @@ pt-BR:
         all: Para todos
         disabled: Para ninguém
         users: Para usuários locais logados
+      external:
+        privacy: Privacidade
       feed_access:
         modes:
           authenticated: Apenas usuários autenticados
@@ -1001,7 +1014,12 @@ pt-BR:
         warning_hint: Recomendamos o uso de "Aprovação necessária para se cadastrar", a menos que você esteja confiante de que sua equipe de moderação pode lidar com spam e registros maliciosos em tempo hábil.
       security:
         authorized_fetch: Exigir autenticação por parte de servidores federados
-        authorized_fetch_hint: Exigir autenticação de servidores federados permite uma aplicação mais rigorosa de bloqueios tanto de nível de usuário como de servidor. No entanto, isso traz como custo uma penalidade no desempenho, reduz o alcance das suas respostas e pode introduzir problemas de compatibilidade com alguns serviços federados. Além disso, não impedirá atores dedicados de consultar suas publicações e contas públicas.
+        authorized_fetch_hints:
+          none: Exigir autenticação apenas quando estritamente necessário permite que seu proxy reverso armazene mais solicitações em cache. Essa opção pode ser removida no futuro. Utilize-a apenas se as outras opções causarem problemas.
+        authorized_fetch_modes:
+          actors: Para perfis e conteúdo privado
+          all: Para cada solicitação
+          none: Somente para conteúdo privado
         authorized_fetch_overridden_hint: Você atualmente não pode alterar esta configuração porque ela é sobreposta por uma variável de ambiente.
         federation_authentication: Aplicação de autenticação da Federação
       title: Configurações do servidor
@@ -1188,7 +1206,6 @@ pt-BR:
           one: Compartilhado por uma pessoa na última semana
           other: Compartilhado por %{count} pessoas na última semana
         title: Em alta no momento
-        usage_comparison: Compartilhado %{today} vezes hoje, em comparação com %{yesterday} de ontem
       not_allowed_to_trend: Não tem permissão para criar tendências
       only_allowed: Somente permitido
       pending_review: Revisão pendente
@@ -1233,7 +1250,6 @@ pt-BR:
         trendable: Aparecerá em alta
         trending_rank: 'Em alta #%{rank}'
         usable: Pode ser usado
-        usage_comparison: Usado %{today} vezes hoje, em comparação com %{yesterday} de ontem
         used_by_over_week:
           one: Usado por uma pessoa na última semana
           other: Usado por %{count} pessoas na última semana
@@ -1492,9 +1508,10 @@ pt-BR:
   deletes:
     challenge_not_passed: As informações que você inseriu não estão corretas
     confirm_password: Digite a sua senha atual para verificar a sua identidade
-    confirm_username: Digite seu nome de usuário para confirmar o procedimento
+    confirm_username: Confirmar nome de usuário
     proceed: Excluir conta
     success_msg: Sua conta foi excluída
+    title: Excluir conta %{acct}
     warning:
       before: 'Antes de prosseguir, leia com cuidado:'
       caches: Conteúdo que foi armazenado em cache por outros servidores pode continuar a existir
@@ -1594,6 +1611,7 @@ pt-BR:
       content: Desculpe, algo deu errado por aqui.
       title: Esta página não está certa
     '503': A página não pôde ser carregada devido a uma falha temporária do servidor.
+    go_home: Ir à página principal
     noscript_html: Para usar o aplicativo web do Mastodon, ative o JavaScript. Ou, se quiser, experimente um dos <a href="%{apps_path}">aplicativos nativos</a> para o Mastodon em sua plataforma.
   existing_username_validator:
     not_found: não foi possível encontrar um usuário local com esse nome de usuário
@@ -1690,7 +1708,6 @@ pt-BR:
       incompatible_type: Incompatível com o tipo de importação selecionado
       invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
       invalid_json_file: 'Arquivo JSON inválido. Erro: %{error}'
-      over_rows_processing_limit: contém mais de %{count} linhas
       status_not_found_warning: Alguns filtros seus ocultam publicações específicas que não são conhecidas neste servidor. Estas publicações serão filtradas automaticamente se forem descobertas depois pelo servidor.
       too_large: O arquivo é muito grande
     failures: Falhas
@@ -1841,7 +1858,9 @@ pt-BR:
     incoming_migrations_html: Para mover de outra conta para esta, você precisa <a href="%{path}">criar um alias</a>.
     moved_msg: Agora sua conta está redirecionando para %{acct} e seus seguidores estão sendo movidos.
     not_redirecting: Sua conta não está redirecionando para nenhuma outra conta atualmente.
-    on_cooldown: Você migrou recentemente sua conta. Esta função ficará disponível novamente em %{count} dias.
+    on_cooldown:
+      one: Você migrou recentemente sua conta. Esta função estará disponível novamente em %{count} dia.
+      other: Você migrou recentemente sua conta. Esta função estará disponível novamente em %{count} dias.
     past_migrations: Migrações passadas
     proceed_with_move: Migrar seguidores
     redirected_msg: Agora sua conta está redirecionando para %{acct}.
@@ -2030,8 +2049,12 @@ pt-BR:
       account: Publicações públicas de @%{acct}
       tag: 'Publicações públicas marcadas com #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Você excedeu o limite de %{limit} publicações agendadas para hoje
-    over_total_limit: Você excedeu o limite de %{limit} publicações agendadas
+    over_daily_limit:
+      one: Você excedeu o limite de %{count} publicação agendada para hoje
+      other: Você excedeu o limite de %{count} publicações agendadas para hoje
+    over_total_limit:
+      one: Você excedeu o limite de %{count} publicação agendada
+      other: Você excedeu o limite de %{count} publicações agendadas
     too_soon: a data deve ser no futuro
   self_destruct:
     lead_html: Infelizmente, <strong>%{domain}</strong> está se encerrando de forma permanente. Se você tem uma conta lá, não poderá continuar a usá-la, mas ainda pode solicitar uma cópia dos seus dados.
@@ -2089,7 +2112,6 @@ pt-BR:
     appearance: Aparência
     authorized_apps: Aplicativos autorizados
     back: Voltar para o Mastodon
-    delete: Exclusão de conta
     development: Desenvolvimento
     edit_profile: Editar perfil
     export: Exportar

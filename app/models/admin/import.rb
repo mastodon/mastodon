@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 # A non-activerecord helper class for csv upload
 class Admin::Import
   include ActiveModel::Model

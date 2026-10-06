@@ -2,6 +2,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "allowJs": true,
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
@@ -19,8 +20,7 @@
       "mastodon/*": ["./app/javascript/mastodon/*"],
       "images/*": ["./app/javascript/images/*"],
       "styles/*": ["./app/javascript/styles/*"]
-    },
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    }
   },
   "include": [
     "vite.config.mts",

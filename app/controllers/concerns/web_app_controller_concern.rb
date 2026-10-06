@@ -6,6 +6,7 @@ module WebAppControllerConcern
   included do
     vary_by 'Accept, Accept-Language, Cookie'
 
+    before_action :adjust_format_for_zip_tlds
     before_action :redirect_unauthenticated_to_permalinks!
     before_action :set_referer_header
     before_action :redirect_to_tos_interstitial!
@@ -26,10 +27,7 @@ module WebAppControllerConcern
   end
 
   def redirect_unauthenticated_to_permalinks!
-    return if user_signed_in? && current_account.moved_to_account_id.nil?
-
-    permalink_redirector = PermalinkRedirector.new(request.original_fullpath)
-    return if permalink_redirector.redirect_path.blank?
+    return if (user_signed_in? && current_account.moved_to_account_id.nil?) || permalink_redirector.redirect_path.blank?
 
     expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.day) unless user_signed_in?
 
@@ -45,6 +43,14 @@ module WebAppControllerConcern
   end
 
   protected
+
+  # This endpoint will never serve zip files, but may serve paths ending with `.zip` due to the `.zip` TLD.
+  # When that happens from a browser, Rails will unfortunately determine the requested format to be `:zip`
+  # instead of `:html`, so override this.
+  # We don't just override `format` in all cases, because we want to handle `:json` as well.
+  def adjust_format_for_zip_tlds
+    request.format = :html if request.format == :zip
+  end
 
   def redirect_to_tos_interstitial!
     return unless current_user&.require_tos_interstitial?
@@ -62,5 +68,9 @@ module WebAppControllerConcern
 
   def set_referer_header
     response.set_header('Referrer-Policy', Setting.allow_referrer_origin ? 'strict-origin-when-cross-origin' : 'same-origin')
+  end
+
+  def permalink_redirector
+    @permalink_redirector ||= PermalinkRedirector.new(request.original_fullpath)
   end
 end

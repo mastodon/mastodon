@@ -111,8 +111,11 @@ const collectionSlice = createSlice({
         items: getEditorCollectionItems(collection.items),
       };
     },
-    reset(state) {
-      state.editor = initialCollectionState.editor;
+    reset(state, action: PayloadAction<EditorCollectionItem | undefined>) {
+      state.editor =
+        action.payload !== undefined
+          ? { ...initialCollectionState.editor, items: [action.payload] }
+          : initialCollectionState.editor;
     },
     updateEditorField<K extends keyof EditorState>(
       state: CollectionState,

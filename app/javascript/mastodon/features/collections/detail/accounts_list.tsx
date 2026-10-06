@@ -47,12 +47,10 @@ const getCollectionItems = createAppSelector(
       state.collections.collections[collectionId ?? '']?.items,
   ],
   (accounts, collectionAccountItems) =>
-    (collectionAccountItems ?? []).map(
-      (item): CollectionItemWithAccount => ({
-        ...item,
-        account: item.account_id ? accounts.get(item.account_id) : null,
-      }),
-    ),
+    (collectionAccountItems ?? []).map((item): CollectionItemWithAccount => ({
+      ...item,
+      account: item.account_id ? accounts.get(item.account_id) : null,
+    })),
 );
 
 function sortAccounts(
@@ -143,7 +141,12 @@ export const CollectionAccountsList: React.FC<{
     ({ relationship, accountId }: RenderButtonOptions) => {
       if (!me || !relationship) {
         // Show follow button when logged out (it will trigger the remote interaction modal)
-        return <AccountListItemFollowButton accountId={accountId} />;
+        return (
+          <AccountListItemFollowButton
+            accountId={accountId}
+            reference='collection'
+          />
+        );
       }
 
       // When viewing your own collection, only show the Follow button
@@ -165,7 +168,12 @@ export const CollectionAccountsList: React.FC<{
         );
       }
 
-      return <AccountListItemFollowButton accountId={accountId} />;
+      return (
+        <AccountListItemFollowButton
+          accountId={accountId}
+          reference='collection'
+        />
+      );
     },
     [collectionOwnerId, confirmRevoke],
   );
@@ -187,6 +195,7 @@ export const CollectionAccountsList: React.FC<{
           withBorder={!isLastElement}
           badge={item.state === 'pending' ? <PendingBadge /> : null}
           renderButton={renderAccountItemButton}
+          reference='collection'
         />
       </Article>
     ),

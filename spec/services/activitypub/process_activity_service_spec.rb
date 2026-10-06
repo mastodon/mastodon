@@ -162,6 +162,46 @@ RSpec.describe ActivityPub::ProcessActivityService do
         expect(ActivityPub::Activity).to_not have_received(:factory)
       end
 
+      context 'when receiving a status with an unsupported JSON-LD keyword' do
+        let(:payload) do
+          {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            id: 'foo',
+            type: 'Announce',
+            actor: ActivityPub::TagManager.instance.uri_for(actor),
+            '@reverse': {
+              object: {
+                type: 'Undo',
+                id: 'bar',
+                actor: ActivityPub::TagManager.instance.uri_for(actor),
+              },
+            },
+            object: {
+              id: 'bar',
+              type: 'Note',
+              content: 'Lorem ipsum',
+            },
+            signature: {
+              type: 'RsaSignature2017',
+              creator: "#{ActivityPub::TagManager.instance.uri_for(actor)}#foo",
+              created: '2022-03-09T21:57:25Z',
+              signatureValue: 'foo',
+            },
+          }
+        end
+
+        it 'does not process payload' do
+          signature_double = instance_double(ActivityPub::LinkedDataSignature, verify_actor!: nil)
+          allow(ActivityPub::LinkedDataSignature).to receive(:new).and_return(signature_double)
+          allow(ActivityPub::Activity).to receive(:factory)
+
+          subject.call(json, forwarder)
+
+          expect(signature_double).to_not have_received(:verify_actor!)
+          expect(ActivityPub::Activity).to_not have_received(:factory)
+        end
+      end
+
       context 'when receiving a fabricated status' do
         let!(:actor) do
           Fabricate(:account,
@@ -320,6 +360,23 @@ RSpec.describe ActivityPub::ProcessActivityService do
 
           expect(Status.exists?(uri: 'https://example.com/users/bob/fake-status')).to be false
         end
+      end
+    end
+
+    context 'with OpenTelemetry traces' do
+      let(:span) { instance_double(OpenTelemetry::Trace::Span) }
+
+      before do
+        allow(OpenTelemetry::Trace).to receive(:current_span).and_return(span)
+        allow(span).to receive(:recording?).and_return(true)
+        allow(span).to receive(:set_attribute)
+      end
+
+      it 'adds attributes to current span' do
+        subject.call(json, actor)
+
+        expect(span).to have_received(:set_attribute).with('activitypub.activity.id', payload[:id])
+        expect(span).to have_received(:set_attribute).with('activitypub.activity.type', payload[:type])
       end
     end
   end

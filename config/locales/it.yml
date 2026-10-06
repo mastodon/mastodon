@@ -64,12 +64,18 @@ it:
       custom: Personalizzato
       delete: Elimina i dati
       deleted: Eliminato
+      deletion_irreversible: I dati di questo account sono stati cancellati in modo irreversibile.
+      deletion_reversible_hint_html: Questo account è in attesa di eliminazione e i dati saranno completamente rimossi in data %{date}.
       demote: Retrocedi
       destroyed_msg: I dati di %{username} sono ora accodati per l'imminente eliminazione
       disable: Congela
       disable_sign_in_token_auth: Disabilitare l'autenticazione del token e-mail
       disable_two_factor_authentication: Disabilita A2F
       disabled: Congelato
+      discoverable:
+        disabled: L’autore/trice non ha optato di essere scopribile
+        enabled: L’autore/trice ha optato di essere scopribile
+        title: Scopribile
       display_name: Nome mostrato
       domain: Dominio
       edit: Modifica
@@ -79,6 +85,12 @@ it:
       enable_sign_in_token_auth: Abilitare l'autenticazione del token e-mail
       enabled: Abilitato
       enabled_msg: Il profilo di %{username} è stato scongelato correttamente
+      follow_recommendations:
+        allowed: Autorizzati
+        suppress: Nascondi qualsiasi suggerimento di account
+        suppressed: Nascosti
+        title: Suggerimenti di account
+        unsuppress: Ripristina qualsiasi suggerimento di account
       followers: Follower
       follows: Seguiti
       header: Intestazione
@@ -124,6 +136,7 @@ it:
       push_subscription_expires: L'iscrizione PuSH scade il
       redownload: Aggiorna profilo
       redownloaded_msg: Il profilo di %{username} è stato aggiornato correttamente dall'origine
+      registration_app: App di registrazione
       reject: Rifiuta
       rejected_msg: Richiesta d'iscrizione di %{username} rifiutata correttamente
       remote_suspension_irreversible: I dati di questo account sono stati cancellati in modo irreversibile.
@@ -163,6 +176,12 @@ it:
       suspension_irreversible: I dati di questo profilo sono stati eliminati irreversibilmente. Puoi annullare la sospensione del profilo per renderlo utilizzabile, ma non recuperà alcun dato precedente.
       suspension_reversible_hint_html: Il profilo è stato sospeso e i dati saranno rimossi completamente il %{date}. Fino ad allora, il profilo è ripristinabile senza alcun effetto negativo. Se desideri rimuovere immediatamente tutti i dati del profilo, puoi farlo di seguito.
       title: Profili
+      trends:
+        allow: Autorizza
+        allowed: Autorizzati
+        disallow: Non autorizzare
+        disallowed: Non autorizzati
+        title: Post di tendenza
       unblock_email: Sblocca indirizzo email
       unblocked_email_msg: Indirizzo email di %{username} sbloccato correttamente
       unconfirmed_email: Email non confermata
@@ -198,6 +217,7 @@ it:
         create_user_role: Crea Ruolo
         create_username_block: Crea regola del nome utente
         demote_user: Retrocedi Utente
+        destroy_account: Elimina i dati dell'account
         destroy_announcement: Elimina Annuncio
         destroy_canonical_email_block: Elimina il blocco dell'e-mail
         destroy_custom_emoji: Elimina Emoji Personalizzata
@@ -266,6 +286,7 @@ it:
         create_user_role_html: "%{name} ha creato il ruolo %{target}"
         create_username_block_html: "%{name} ha aggiunto la regola per i nomi utente contenenti %{target}"
         demote_user_html: "%{name} ha retrocesso l'utente %{target}"
+        destroy_account_html: "%{name} ha eliminato i dati dell'account per %{target}"
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha sbloccato l'e-mail con l'hash %{target}"
         destroy_collection_html: "%{name} ha rimosso la collezione di %{target}"
@@ -599,6 +620,11 @@ it:
         title: Importare i blocchi di dominio
       no_file: Nessun file selezionato
     fasp:
+      capabilities:
+        activation_msg: Funzionalità abilitata con successo.
+        deactivation_msg: Funzionalità disabilitata con successo.
+        disable: Disabilita
+        enable: Abilita
       debug:
         callbacks:
           created_at: Creato il
@@ -610,6 +636,7 @@ it:
         active: Attivo
         base_url: Url di base
         callback: Callback
+        capabilities: Funzionalità
         delete: Cancella
         edit: Modifica Provider
         finish_registration: Registrazione terminata
@@ -622,8 +649,6 @@ it:
           description: Hai ricevuto una registrazione da un FASP. Rifiutala se non l'hai avviata tu. Se l'hai avviata tu, confronta attentamente nome e impronta della chiave prima di confermare la registrazione.
           reject: Rifiuta
           title: Conferma registrazione FASP
-        save: Salva
-        select_capabilities: Seleziona Capacità
         sign_in: Connettiti
         status: Stato
         title: Fornitori di Servizi Ausiliari per il Fediverso
@@ -962,10 +987,8 @@ it:
       discovery:
         follow_recommendations: Segui le raccomandazioni
         preamble: La scoperta di contenuti interessanti è fondamentale per l'inserimento di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla l'andamento delle varie funzionalità di scoperta sul tuo server.
-        privacy: Privacy
         profile_directory: Directory del profilo
         public_timelines: Timeline pubbliche
-        publish_statistics: Pubblica le statistiche
         title: Scopri
         trends: Tendenze
         wrapstodon: Wrapstodon
@@ -973,6 +996,11 @@ it:
         all: A tutti
         disabled: A nessuno
         users: Agli utenti locali connessi
+      external:
+        preamble: Controlla quante informazioni sul tuo server vengono condivise con altri servizi e quanto dovrebbe essere individuabile il tuo server.
+        privacy: Privacy
+        publish_statistics: Pubblica le statistiche
+        title: Rilevabilità esterna
       feed_access:
         modes:
           authenticated: Solo utenti autenticati
@@ -1001,7 +1029,15 @@ it:
         warning_hint: Ti consigliamo di utilizzare “Approvazione richiesta per la registrazione” a meno che tu non sia sicuro che il tuo team di moderazione possa gestire lo spam e le registrazioni dannose in modo tempestivo.
       security:
         authorized_fetch: Richiede l'autenticazione dai server federati
-        authorized_fetch_hint: Richiedere l'autenticazione da server federati consente un'applicazione più rigorosa dei blocchi sia a livello utente che a livello server. Tuttavia, ciò comporta un calo delle prestazioni, riduce la visibilità delle tue risposte e potrebbe causare problemi di compatibilità con alcuni servizi federati. Inoltre, questo non impedirà ad attori dedicati di accedere ai tuoi post e account pubblici.
+        authorized_fetch_hint: Decidi quando i server remoti devono autenticarsi durante il recupero dei contenuti da questo server.
+        authorized_fetch_hints:
+          actors: Richiedere l'autenticazione per i profili consente di tracciare quali server hanno scoperto ciascuno dei tuoi account locali, il che può ridurre notevolmente il numero di richieste non necessarie eseguite durante la notifica ai server dell'eliminazione di un account. Questa opzione comporta un lieve calo delle prestazioni nell'erogazione dei profili, dovuto alla suddetta attività di tracciamento e all'impossibilità per il reverse proxy di memorizzare nella cache le risposte a tali richieste. Potrebbe inoltre introdurre problemi di compatibilità con alcuni servizi federati.
+          all: Oltre ai vantaggi e agli svantaggi legati alla richiesta di autenticazione per i profili, imporre l'autenticazione senza eccezioni da server federati consente di applicare con maggiore rigore i blocchi, sia a livello di utente che di server, ma impedisce anche la memorizzazione nella cache della maggior parte delle richieste. Inoltre, ridurrà la portata delle tue risposte, poiché la funzionalità di inoltro delle stesse verrà disabilitata.
+          none: Richiedere l'autenticazione solo quando strettamente necessario consente al tuo reverse proxy di memorizzare nella cache più richieste. Questa opzione potrebbe essere rimossa in futuro. Usala solo se le altre opzioni causano problemi.
+        authorized_fetch_modes:
+          actors: Per profili e contenuti privati
+          all: Per ogni richiesta
+          none: Solo per contenuti privati
         authorized_fetch_overridden_hint: Al momento non puoi modificare questa impostazione perché è sostituita da una variabile di ambiente.
         federation_authentication: Applicazione dell'autenticazione della federazione
       title: Impostazioni del server
@@ -1188,7 +1224,9 @@ it:
           one: Condiviso da una persona nell'ultima settimana
           other: Condiviso da %{count} persone nell'ultima settimana
         title: Link in tendenza
-        usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
+        usage_comparison:
+          one: Condiviso %{count} volta oggi, rispetto alle %{yesterday} di ieri
+          other: Condiviso %{count} volte oggi, rispetto alle %{yesterday} di ieri
       not_allowed_to_trend: Non è consentito il trend
       only_allowed: Solo consentiti
       pending_review: Revisione in sospeso
@@ -1233,7 +1271,9 @@ it:
         trendable: Può comparire nelle tendenze
         trending_rank: 'In tendenza #%{rank}'
         usable: Utilizzabile
-        usage_comparison: Usato %{today} volte oggi, rispetto a %{yesterday} ieri
+        usage_comparison:
+          one: Usato %{count} volta oggi, rispetto alle %{yesterday} di ieri
+          other: Usato %{count} volte oggi, rispetto alle %{yesterday} di ieri
         used_by_over_week:
           one: Usato da una persona nell'ultima settimana
           other: Usato da %{count} persone nell'ultima settimana
@@ -1462,9 +1502,9 @@ it:
     invalid_password: Password non valida
     prompt: Conferma la tua password per continuare
   color_scheme:
-    auto: Automatica
-    dark: Scura
-    light: Chiara
+    auto: Automatico
+    dark: Scuro
+    light: Chiaro
   contrast:
     auto: Automatico
     high: Alto
@@ -1492,9 +1532,11 @@ it:
   deletes:
     challenge_not_passed: Le informazioni che hai inserito non sono corrette
     confirm_password: Inserisci la tua password attuale per verificare la tua identità
-    confirm_username: Inserisci il tuo nome utente per confermare la procedura
+    confirm_username: Conferma il nome utente
+    confirm_username_hint_html: Per favore digita <code>%{username}</code> per confermare l'account che vuoi eliminare
     proceed: Cancella l'account
     success_msg: Il tuo account è stato cancellato
+    title: Elimina l'account %{acct}
     warning:
       before: 'Prima di procedere, per favore leggi attentamente queste note:'
       caches: Il contenuto che è stato memorizzato in cache da altri server può continuare ad esistere
@@ -1594,6 +1636,7 @@ it:
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
     '503': La pagina non può essere trasmessa a causa di un errore temporaneo del server.
+    go_home: Vai alla Home
     noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
   existing_username_validator:
     not_found: impossibile trovare un utente locale con quel nome utente
@@ -1690,7 +1733,10 @@ it:
       incompatible_type: Incompatibile con il tipo di importazione selezionato
       invalid_csv_file: 'File CSV non valido. Errore: %{error}'
       invalid_json_file: 'File JSON non valido. Errore: %{error}'
-      over_rows_processing_limit: contiene più di %{count} righe
+      no_data: Questo file non contiene dati corrispondenti al tipo di importazione specificato
+      over_rows_processing_limit:
+        one: contiene più di %{count} riga
+        other: contiene più di %{count} righe
       status_not_found_warning: Alcuni dei tuoi filtri nascondono post specifici che non sono noti a questo server. Questi post non verranno filtrati automaticamente se vengono scoperti in seguito dal server.
       too_large: Il file è troppo grande
     failures: Fallimenti
@@ -1841,7 +1887,9 @@ it:
     incoming_migrations_html: Per spostarti da un altro account a questo, devi prima creare <a href="%{path}">un alias</a>.
     moved_msg: Il tuo account è ora reindirizzato a %{acct} e i tuoi follower sono stati spostati.
     not_redirecting: Il tuo account attualmente non è reindirizzato ad alcun altro account.
-    on_cooldown: Hai recentemente trasferito il tuo account. Questa funzione sarà nuovamente disponibile tra %{count} giorni.
+    on_cooldown:
+      one: Hai migrato il tuo account di recente. Questa funzione tornerà disponibile tra %{count} giorno.
+      other: Hai migrato il tuo account di recente. Questa funzione tornerà disponibile tra %{count} giorni.
     past_migrations: Trasferimenti passati
     proceed_with_move: Sposta i follower
     redirected_msg: Il tuo account sta reindirizzando a %{acct}.
@@ -2029,8 +2077,12 @@ it:
       account: Post pubblici di @%{acct}
       tag: 'Post pubblici taggati #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Hai superato il limite di %{limit} post programmati per questo giorno
-    over_total_limit: Hai superato il limite di %{limit} post programmati
+    over_daily_limit:
+      one: Hai superato il limite di %{count} post programmato per oggi
+      other: Hai superato il limite di %{count} post programmati per oggi
+    over_total_limit:
+      one: Hai superato il limite di %{count} post programmato
+      other: Hai superato il limite di %{count} post programmati
     too_soon: la data deve essere nel futuro
   self_destruct:
     lead_html: Sfortunatamente, <strong>%{domain}</strong> sta chiudendo definitivamente. Se hai un account lì, non potrai continuare a usarlo, ma puoi ancora richiedere un backup dei tuoi dati.
@@ -2087,8 +2139,7 @@ it:
     aliases: Alias dell'account
     appearance: Interfaccia
     authorized_apps: Applicazioni autorizzate
-    back: Torna a Mastodon
-    delete: Cancellazione account
+    back: Torna su Mastodon
     development: Sviluppo
     edit_profile: Modifica profilo
     export: Esporta

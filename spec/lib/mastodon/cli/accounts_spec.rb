@@ -194,6 +194,20 @@ RSpec.describe Mastodon::CLI::Accounts do
 
           it_behaves_like 'a new user with given email address and username'
         end
+
+        context "when account's user is not present and account was previously deleted" do
+          let(:options) { { email: 'tootctl@example.com', reattach: true } }
+
+          before do
+            Fabricate(:account, username: 'tootctl_username', user: nil, requested_deletion_at: 10.days.ago)
+          end
+
+          it 'removes requested deletion timestamp' do
+            expect { subject }
+              .to output_results('OK')
+              .and change { Account.find_local('tootctl_username').requested_deletion_at }.to(nil)
+          end
+        end
       end
     end
 
@@ -374,7 +388,7 @@ RSpec.describe Mastodon::CLI::Accounts do
             .to output_results(new_password)
 
           expect(user).to have_received(:change_password!).with(new_password)
-          expect(user.reload).to_not be_external_or_valid_password(original_password)
+          expect(user.reload).to_not be_valid_password(original_password)
         end
       end
 
@@ -386,6 +400,30 @@ RSpec.describe Mastodon::CLI::Accounts do
           expect { subject }
             .to output_results('OK')
             .and change { user.reload.otp_required_for_login }.from(true).to(false)
+        end
+      end
+
+      context 'with --disable-sign-in-token option' do
+        let(:user) { Fabricate(:user, current_sign_in_at: 8.months.ago) }
+        let(:options) { { disable_sign_in_token: true } }
+
+        it 'disables the sign in token for the user' do
+          expect { subject }
+            .to output_results('OK')
+            .and change { user.reload.suspicious_inactive_sign_in? }.from(true).to(false)
+        end
+      end
+
+      context 'with --enable-sign-in-token option' do
+        let(:user) { Fabricate(:user, current_sign_in_at: 8.months.ago) }
+        let(:options) { { enable_sign_in_token: true } }
+
+        before { user.disable_sign_in_token! }
+
+        it 'enables the sign in token for the user' do
+          expect { subject }
+            .to output_results('OK')
+            .and change { user.reload.suspicious_inactive_sign_in? }.from(false).to(true)
         end
       end
 

@@ -13,10 +13,12 @@ import {
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { Callout } from 'mastodon/components/callout';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import { useIdentity } from 'mastodon/identity_context';
@@ -119,13 +121,17 @@ export const CollectionEditorPage: React.FC<{
 
   return (
     <Column bindToDocument={!multiColumn} label={pageTitle}>
-      <ColumnHeader
-        title={pageTitle}
-        icon='list-ul'
-        iconComponent={ListAltIcon}
-        multiColumn={multiColumn}
-        showBackButton
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader title={pageTitle} withBackButton='auto' />
+      ) : (
+        <LegacyColumnHeader
+          title={pageTitle}
+          icon='list-ul'
+          iconComponent={ListAltIcon}
+          multiColumn={multiColumn}
+          showBackButton
+        />
+      )}
 
       <div className='scrollable'>
         {isLoading ? (

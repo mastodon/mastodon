@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useRef, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
@@ -12,15 +12,18 @@ import { addColumn } from 'mastodon/actions/columns';
 import { changeSetting } from 'mastodon/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { localLiveFeedAccess, remoteLiveFeedAccess, domain } from 'mastodon/initial_state';
 import { canViewFeed } from 'mastodon/permissions';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
 import SettingToggle from '../notifications/components/setting_toggle';
 import StatusListContainer from '../ui/containers/status_list_container';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { ColumnHeader, ColumnSettingsMenu } from '@/mastodon/components/column_header';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 
 const messages = defineMessages({
   title: { id: 'column.firehose', defaultMessage: 'Live feeds' },
@@ -32,6 +35,8 @@ const messages = defineMessages({
     id: 'column.firehose_singular',
     defaultMessage: 'Live feed',
   },
+  title_redesign: { id: 'tabs_bar.public_feeds', defaultMessage: 'Public Feeds' },
+  title_singular_redesign: { id: 'tabs_bar.public_feed', defaultMessage: 'Public Feed' },
 });
 
 const ColumnSettings = () => {
@@ -62,7 +67,6 @@ const Firehose = ({ feedType, multiColumn }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const { signedIn, permissions } = useIdentity();
-  const columnRef = useRef(null);
 
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
   const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
@@ -100,8 +104,6 @@ const Firehose = ({ feedType, multiColumn }) => {
     },
     [dispatch, onlyMedia, feedType],
   );
-
-  const handleHeaderClick = useCallback(() => columnRef.current?.scrollTop(), []);
 
   useEffect(() => {
     let disconnect;
@@ -169,29 +171,52 @@ const Firehose = ({ feedType, multiColumn }) => {
     />
   );
 
-  let title;
+  const canViewLocalFeed = canViewFeed(signedIn, permissions, localLiveFeedAccess);
+  const canViewRemoteFeed = canViewFeed(signedIn, permissions, remoteLiveFeedAccess);
 
-  if (canViewFeed(signedIn, permissions, localLiveFeedAccess) && canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) {
+  let title;
+  if (canViewLocalFeed && canViewRemoteFeed) {
     title = messages.title;
-  } else if (canViewFeed(signedIn, permissions, localLiveFeedAccess)) {
+  } else if (canViewLocalFeed) {
     title = messages.title_local;
   } else {
     title = messages.title_singular;
   }
 
+  if (isRedesignEnabled()) {
+    const canOnlyViewSingleFeed = canViewLocalFeed !== canViewRemoteFeed;
+
+    title = canOnlyViewSingleFeed
+      ? intl.formatMessage(messages.title_singular_redesign)
+      : intl.formatMessage(messages.title_redesign);
+  }
+
   return (
-    <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
-      <ColumnHeader
-        icon='globe'
-        iconComponent={PublicIcon}
-        active={hasUnread}
-        title={intl.formatMessage(title)}
-        onPin={handlePin}
-        onClick={handleHeaderClick}
-        multiColumn={multiColumn}
-      >
-        <ColumnSettings />
-      </ColumnHeader>
+    <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          title={title}
+          withBackButton={multiColumn && 'auto'}
+          withUnreadMarker={hasUnread}
+          extraButtons={multiColumn &&
+            <ColumnSettingsMenu labelPrefix={intl.formatMessage(messages.title_redesign)}>
+              <MultiColumnMenuItems onPin={handlePin} />
+            </ColumnSettingsMenu>
+          }
+        />
+      ) : (
+        <LegacyColumnHeader
+          icon='globe'
+          iconComponent={PublicIcon}
+          active={hasUnread}
+          title={intl.formatMessage(title)}
+          onPin={handlePin}
+          multiColumn={multiColumn}
+          scrollTopOnClick
+        >
+          <ColumnSettings />
+        </LegacyColumnHeader>
+      )}
 
       {(canViewFeed(signedIn, permissions, localLiveFeedAccess) && canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) && (
         <div className='account__section-headline'>

@@ -13,8 +13,8 @@ import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { connectHashtagStream } from 'mastodon/actions/streaming';
 import { expandHashtagTimeline, clearTimeline } from 'mastodon/actions/timelines';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { remoteTopicFeedAccess, me, localTopicFeedAccess } from 'mastodon/initial_state';
 
@@ -22,6 +22,9 @@ import StatusListContainer from '../ui/containers/status_list_container';
 
 import { HashtagHeader } from './components/hashtag_header';
 import ColumnSettingsContainer from './containers/column_settings_container';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { HashtagColumnMenu } from './components/hashtag_column_menu';
 
 const mapStateToProps = (state, props) => {
   const local = props.params.local || (!me && remoteTopicFeedAccess !== 'public');
@@ -90,10 +93,6 @@ class HashtagTimeline extends PureComponent {
     dispatch(moveColumn(columnId, dir));
   };
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
   _subscribe (dispatch, id, tags = {}, local) {
     const { signedIn } = this.props.identity;
 
@@ -156,10 +155,6 @@ class HashtagTimeline extends PureComponent {
     this._unsubscribe();
   }
 
-  setRef = c => {
-    this.column = c;
-  };
-
   handleLoadMore = maxId => {
     const { dispatch, params, local } = this.props;
     const { id, tags }  = params;
@@ -171,26 +166,47 @@ class HashtagTimeline extends PureComponent {
     const { hasUnread, columnId, multiColumn, local, hasFeedAccess } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
+    const withHeadingSection = !isRedesignEnabled() && !pinned;
+
+    const title = <>#{this.title()}</>;
+    const titleAsString = `#${id}`;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={`#${id}`}>
-        <ColumnHeader
-          icon='hashtag'
-          iconComponent={TagIcon}
-          active={hasUnread}
-          title={this.title()}
-          onPin={this.handlePin}
-          onMove={this.handleMove}
-          onClick={this.handleHeaderClick}
-          pinned={pinned}
-          multiColumn={multiColumn}
-          showBackButton
-        >
-          {columnId && <ColumnSettingsContainer columnId={columnId} />}
-        </ColumnHeader>
+      <Column bindToDocument={!multiColumn} label={titleAsString}>
+        {isRedesignEnabled() ? (
+          <ColumnHeader
+            title={title}
+            withUnreadMarker={hasUnread}
+            withBackButton={multiColumn && !pinned && 'auto'}
+            extraButtons={
+              <HashtagColumnMenu
+                tagId={id}
+                multiColumn={multiColumn}
+                columnId={columnId}
+                onPin={this.handlePin}
+                onMove={this.handleMove}
+              />
+            }
+          />
+        ) : (
+          <LegacyColumnHeader
+            icon='hashtag'
+            iconComponent={TagIcon}
+            active={hasUnread}
+            title={this.title()}
+            onPin={this.handlePin}
+            onMove={this.handleMove}
+            pinned={pinned}
+            multiColumn={multiColumn}
+            showBackButton
+            scrollTopOnClick
+          >
+            {columnId && <ColumnSettingsContainer columnId={columnId} />}
+          </LegacyColumnHeader>
+        )}
 
         <StatusListContainer
-          prepend={pinned ? null : <HashtagHeader tagId={id} />}
+          prepend={withHeadingSection && <HashtagHeader tagId={id} />}
           alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`hashtag_timeline-${columnId}`}
@@ -214,7 +230,7 @@ class HashtagTimeline extends PureComponent {
         />
 
         <Helmet>
-          <title>#{id}</title>
+          <title>{titleAsString}</title>
           <meta name='robots' content='noindex' />
         </Helmet>
       </Column>

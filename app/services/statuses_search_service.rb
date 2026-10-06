@@ -3,6 +3,8 @@
 class StatusesSearchService < BaseService
   include SearchStoplight
 
+  ES_QUERY_TIMEOUT = ENV.fetch('ES_QUERY_TIMEOUT', '10s')
+
   def call(query, account = nil, options = {})
     MastodonOTELTracer.in_span('StatusesSearchService#call') do |span|
       @query   = query&.strip
@@ -28,7 +30,7 @@ class StatusesSearchService < BaseService
 
   def status_search_results
     request             = parsed_query.request
-    results             = elastic_stoplight_wrapper.run { request.collapse(field: :id).order(id: { order: :desc }).limit(@limit).offset(@offset).objects.compact }
+    results             = elastic_stoplight_wrapper.run { request.timeout(ES_QUERY_TIMEOUT).collapse(field: :id).order(id: { order: :desc }).limit(@limit).offset(@offset).objects.compact }
     account_ids         = results.map(&:account_id)
     account_domains     = results.map(&:account_domain)
 

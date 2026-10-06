@@ -18,13 +18,13 @@ RSpec.describe SearchQueryTransformer do
       ['"12345678"', '12345678'],
       ['"2024-10-31T23:47:20Z"', '2024-10-31T23:47:20Z'],
     ].each do |value, parsed|
-      context "with #{operator}:#{value}" do
-        let(:query) { "#{operator}:#{value}" }
+      context "with \"foo #{operator}:#{value}\"" do
+        let(:query) { "foo #{operator}:#{value}" }
 
         it 'transforms clauses' do
           ops = statement_operations.index_with { |_op| parsed }
 
-          expect(subject.send(:must_clauses)).to be_empty
+          expect(subject.send(:must_clauses).map(&:term)).to contain_exactly('foo')
           expect(subject.send(:must_not_clauses)).to be_empty
           expect(subject.send(:filter_clauses).map(&:term)).to contain_exactly(**ops, time_zone: 'UTC')
         end
@@ -36,6 +36,122 @@ RSpec.describe SearchQueryTransformer do
 
       it 'raises an exception' do
         expect { subject }.to raise_error(Date::Error)
+      end
+    end
+  end
+
+  context 'when there is no positive clause' do
+    context 'with "-hello"' do
+      let(:query) { '-hello' }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
+      end
+    end
+
+    context 'with "after:0000"' do
+      let(:query) { 'after:0000' }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
+      end
+    end
+
+    context 'with "before:9999"' do
+      let(:query) { 'before:9999' }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
+      end
+    end
+
+    context 'with "is:reply"' do
+      let(:query) { 'is:reply' }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
+      end
+    end
+
+    context 'with \'is:reply " "\'' do
+      let(:query) { 'is:reply " "' }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
+      end
+    end
+
+    context 'with "in:library after:0000"' do
+      let(:query) { 'in:library after:0000' }
+
+      it 'does not raise an exception' do
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'with "from:me after:0000"' do
+      let(:query) { 'from:me after:0000' }
+
+      it 'does not raise an exception' do
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'with "from:me before:2026-08-28"' do
+      let(:query) { 'from:me before:2026-08-28' }
+
+      it 'does not raise an exception' do
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'with "from:me during:2024"' do
+      let(:query) { 'from:me during:2024' }
+
+      it 'does not raise an exception' do
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'with "from:<own username> after:0000"' do
+      let(:query) { "from:#{account.username} after:0000" }
+
+      it 'does not raise an exception' do
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'with "from:<own username>@<local domain> after:0000"' do
+      let(:query) { "from:#{account.username}@#{Rails.configuration.x.local_domain} after:0000" }
+
+      it 'does not raise an exception' do
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'with "from:<other user> after:0000"' do
+      let(:other_account) { Fabricate(:account) }
+      let(:query) { "from:#{other_account.username} after:0000" }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
+      end
+    end
+
+    context 'with "from:<remote user> after:0000"' do
+      let(:remote_account) { Fabricate(:account, domain: 'remote.host', username: 'remoteuser') }
+      let(:query) { "from:#{remote_account.username}@#{remote_account.domain} after:0000" }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
+      end
+    end
+
+    context 'with "-from:me after:0000"' do
+      let(:query) { '-from:me after:0000' }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
       end
     end
   end
@@ -94,17 +210,17 @@ RSpec.describe SearchQueryTransformer do
     let(:query) { '"hello world"' }
 
     it 'transforms clauses' do
-      expect(subject.send(:must_clauses).map(&:phrase)).to contain_exactly('hello world')
+      expect(subject.send(:must_clauses).map(&:term)).to contain_exactly('hello world')
       expect(subject.send(:must_not_clauses)).to be_empty
       expect(subject.send(:filter_clauses)).to be_empty
     end
   end
 
-  context 'with \'is:"foo bar"\'' do
-    let(:query) { 'is:"foo bar"' }
+  context 'with \'foo is:"foo bar"\'' do
+    let(:query) { 'foo is:"foo bar"' }
 
     it 'transforms clauses' do
-      expect(subject.send(:must_clauses)).to be_empty
+      expect(subject.send(:must_clauses).map(&:term)).to contain_exactly('foo')
       expect(subject.send(:must_not_clauses)).to be_empty
       expect(subject.send(:filter_clauses).map(&:term)).to contain_exactly('foo bar')
     end

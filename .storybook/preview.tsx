@@ -8,7 +8,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
 import type { Preview } from '@storybook/react-vite';
-import { initialize, mswLoader } from 'msw-storybook-addon';
+import { mswLoader } from 'msw-storybook-addon/csf3';
+import { setupWorker } from 'msw/browser';
 import { action } from 'storybook/actions';
 
 import {
@@ -27,14 +28,14 @@ import { modes } from './modes';
 import '../app/javascript/styles/application.scss';
 import './styles.css';
 
-// Disabling locales in Storybook as it's breaking with Vite 8.
-// const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
-//   query: { as: 'json' },
-// });
+const startMsw = mswLoader(async () => {
+  const worker = setupWorker();
 
-// Initialize MSW
-initialize({
-  onUnhandledRequest: unhandledRequestHandler,
+  await worker.start({
+    onUnhandledRequest: unhandledRequestHandler,
+  });
+
+  return worker;
 });
 
 const preview: Preview = {
@@ -122,7 +123,7 @@ const preview: Preview = {
             locale,
           },
         },
-        state as Record<string, unknown>,
+        state,
         stateFnState,
         argsState,
       );
@@ -170,7 +171,7 @@ const preview: Preview = {
     (Story, { globals }) => {
       const theme = globals.theme;
       useEffect(() => {
-        document.body.setAttribute('data-color-scheme', theme);
+        document.documentElement.dataset.colorScheme = theme;
       }, [theme]);
       return <Story />;
     },
@@ -214,10 +215,15 @@ const preview: Preview = {
     },
   ],
   loaders: [
-    mswLoader,
-    importCustomEmojiData,
-    importLegacyShortcodes,
-    ({ globals: { locale } }) => importEmojiData(locale),
+    // Storybook runs loaders concurrently, so wait for msw to be ready
+    async (context) => {
+      await startMsw(context);
+      await Promise.all([
+        importCustomEmojiData(),
+        importLegacyShortcodes(),
+        importEmojiData(context.globals.locale),
+      ]);
+    },
   ],
   parameters: {
     layout: 'centered',

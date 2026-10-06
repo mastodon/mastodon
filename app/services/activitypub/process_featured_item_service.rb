@@ -70,7 +70,7 @@ class ActivityPub::ProcessFeaturedItemService
     return false if Account.exists?(uri: @actor_uri)
 
     object_json = fetch_resource(@actor_uri, true, raise_on_error: :temporary)
-    object_json.nil? || (as_array(object_json['fetch']) & ActivityPub::FetchRemoteActorService::SUPPORTED_TYPES).empty?
+    object_json.nil? || (as_array(object_json['type']) & ActivityPub::FetchRemoteActorService::SUPPORTED_TYPES).empty?
   end
 
   def verify_authorization!

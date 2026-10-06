@@ -1,0 +1,89 @@
+@use '@/styles/mastodon/variables' as *;
+
+.root {
+  --main-column-max-width: 600px;
+  --navigation-min-width: 280px;
+  --navigation-max-width: 320px;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom);
+
+  @media (min-width: $no-gap-breakpoint) {
+    padding-inline: var(--space-1);
+  }
+
+  @media (min-width: $mobile-menu-breakpoint) {
+    display: grid;
+    grid-template-columns:
+      minmax(var(--navigation-min-width), 1fr)
+      minmax(0, var(--main-column-max-width))
+      minmax(0, 1fr);
+    gap: var(--space-2);
+  }
+}
+
+.rootMinimal {
+  // In `minimalShell` layout, no sidebar navigation is shown,
+  // so we allow the column to collapse
+  --navigation-min-width: 0;
+}
+
+.multiColumnRoot {
+  --multi-column-navigation-width: 320px;
+  --multi-column-gap: var(--space-2);
+
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  gap: var(--multi-column-gap);
+  padding-inline-end: var(--multi-column-gap);
+  overflow-x: auto;
+}
+
+.navigationWrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  max-width: var(--navigation-max-width);
+  height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom);
+
+  .multiColumnRoot & {
+    height: initial;
+    min-width: var(--multi-column-navigation-width);
+    inset-inline-start: 0;
+    z-index: 100;
+    background: var(--color-bg-blend);
+  }
+
+  @media (max-width: ($mobile-menu-breakpoint - 1)) {
+    display: none;
+  }
+}
+
+.main {
+  box-sizing: border-box;
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
+  contain: inline-size layout paint style;
+  container: column / inline-size;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+
+  :global(.scrollable) {
+    contain: content;
+    overflow: visible;
+    border: none;
+    border-radius: 0;
+  }
+}

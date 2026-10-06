@@ -23,10 +23,7 @@ export interface ScrollBehaviorContextType {
   registerElement: (
     key: string,
     element: HTMLElement,
-    shouldUpdateScroll: (
-      prevLocationContext: MastodonLocation | null,
-      locationContext: MastodonLocation,
-    ) => boolean,
+    shouldUpdateScroll: ShouldUpdateScrollFn,
   ) => void;
   unregisterElement: (key: string) => void;
   scrollBehavior?: ScrollBehaviorInstance;
@@ -74,6 +71,7 @@ export const ScrollContext: React.FC<ScrollContextProps> = ({
    * than a ref to simplify the types and ensure it's defined immediately.
    */
   const [scrollBehavior] = useState(
+    // eslint-disable-next-line react-hooks/refs
     (): ScrollBehaviorInstance =>
       new ScrollBehavior({
         addNavigationListener: history.listen.bind(history),

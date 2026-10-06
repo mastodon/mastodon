@@ -1,0 +1,127 @@
+@use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
+
+.root {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-top: 0;
+
+  // Make bottom half of column header transparent to make the
+  // overlay gradient on the `.layout` class work
+  --column-header-gradient-start: calc(100% - var(--space-3));
+
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-blend) var(--column-header-gradient-start),
+    transparent var(--column-header-gradient-start)
+  );
+
+  // If there's additional sticky content, don't render overscroll
+  // blend gradient
+  &.withStickyContent {
+    background: var(--color-bg-blend);
+  }
+
+  @media (width >= variables.$mobile-menu-breakpoint) {
+    border-top: 10px solid var(--color-bg-blend);
+  }
+
+  // Fix bg color for legacy column headers.
+  // Remove when new column headers are in.
+  & :global(.column-header) {
+    background: var(--color-bg-primary);
+  }
+}
+
+.layout {
+  --column-header-padding: var(--space-3);
+
+  position: relative;
+  display: grid;
+
+  // Ensure title is centered regardless of side-content
+  grid-template-columns:
+    minmax(min-content, 1fr)
+    minmax(0, auto)
+    minmax(min-content, 1fr);
+  align-items: center;
+
+  // Ensure that a header without buttons is as tall as one with buttons
+  min-height: 56px;
+  text-align: center;
+  color: var(--color-text-primary);
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-primary) var(--column-header-gradient-start, 55%),
+    transparent
+  );
+  cursor: pointer;
+
+  .withStickyContent & {
+    background: var(--color-bg-primary);
+  }
+
+  @media (width >= variables.$mobile-menu-breakpoint) {
+    border-top-left-radius: var(--radius-6);
+    border-top-right-radius: var(--radius-6);
+  }
+
+  &[data-has-unread='true']::after {
+    content: '';
+    grid-row: 1;
+    grid-column: 2;
+    width: var(--space-2);
+    height: var(--space-2);
+    background-color: var(--color-text-brand);
+    border-radius: var(--radius-round);
+    justify-self: center;
+    align-self: end;
+  }
+}
+
+.leftButton {
+  grid-area: 1 / 1;
+  justify-self: start;
+  padding: var(--column-header-padding);
+  cursor: default;
+}
+
+.rightButtons {
+  grid-area: 1 / 3;
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  padding: var(--column-header-padding);
+  cursor: default;
+}
+
+.title {
+  @include mixins.type-heading-sm;
+
+  grid-area: 1 / 2;
+  white-space: nowrap;
+  min-width: 0;
+  padding: var(--column-header-padding);
+
+  > button {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border-radius: var(--radius-2);
+
+    &:focus-visible {
+      outline: var(--outline-focus-default);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.extraStickyContent {
+  background: var(--color-bg-primary);
+}

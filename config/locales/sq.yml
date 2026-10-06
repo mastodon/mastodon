@@ -64,6 +64,8 @@ sq:
       custom: Vetjake
       delete: Fshiji të dhënat
       deleted: U fshi
+      deletion_irreversible: Të dhënat e kësaj llogarie janë fshirë në mënyrë të pakthyeshme.
+      deletion_reversible_hint_html: Kjo llogari është në pritje të fshirjes dhe të dhënat do të hiqen plotësisht më %{date}.
       demote: Zhgradoje
       destroyed_msg: Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme
       disable: Çaktivizoje
@@ -619,8 +621,6 @@ sq:
           description: Morët një regjistrim nga një FASP. Nëse s’e filluat ju, hidheni tej. Nëse e filluat ju, krahasoni me kujdes emrin dhe shenjat e gishtave, para se të ripohoni regjistrimin.
           reject: Hidhe tej
           title: Ripohoni Regjistrim në FASP
-        save: Ruaje
-        select_capabilities: Përzgjidhni Aftësi
         sign_in: Hyni
         status: Gjendje
         title: Shërbyes Shërbimesh Ndihmëse Fediversi
@@ -954,10 +954,8 @@ sq:
       discovery:
         follow_recommendations: Rekomandime ndjekjeje
         preamble: Shpërfaqja e lëndës interesante është me rëndësi për mirëseardhjen e përdoruesve të rinj, të cilët mund të mos njohin njeri në Mastodon. Kontrolloni se funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi lënde.
-        privacy: Privatësi
         profile_directory: Drejtori profilesh
         public_timelines: Rrjedha kohore publike
-        publish_statistics: Publiko statistika
         title: Zbulim
         trends: Në modë
         wrapstodon: Përmbledhjedon
@@ -993,7 +991,6 @@ sq:
         warning_hint: Rekomandojmë përdorimin e “Për regjistrim lypset miratim”. veç nëse jeni i bindur se ekipi juaj i moderimit mund të trajtojë në kohë mesazhe të padëshiruar dhe regjistrime dashakeqe.
       security:
         authorized_fetch: Kërko doemos mirëfilltësim prej shërbyes të federuar
-        authorized_fetch_hint: Kërkimi doemos i kryerjes së mirëfilltësimit për shërbyes të federuar aktivizon detyrim më strikt të bllokimeve si në shkallë përdoruesi, ashtu edhe në shkallë shërbyesi. Por kjo vjen me koston e një keqësimi të funksionimit, redukton përhapjen e përgjigjeve tuaja dhe mund të sjellë probleme përputhshmërie me disa shërbime të federuara. Veç kësaj, kjo s’do t’ua pengojë, aktorëve vënë kësaj, të sjellin postimet dhe llogaritë tuaja publike.
         authorized_fetch_overridden_hint: Aktualisht s’jeni në gjendje të ndryshoni këtë rregullim, ngaqë anashkalohet nga një ndryshore mjedisi.
         federation_authentication: Detyrim mirëfilltësimi të federuarish
       title: Rregullime shërbyesi
@@ -1178,7 +1175,6 @@ sq:
           one: Ndarë me të tjerë nga një person gjatë javës së kaluar
           other: Ndarë me të tjerë nga %{count} vetë gjatë javës së kaluar
         title: Lidhje në modë
-        usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
       only_allowed: Lejuar vetëm
       pending_review: Në pritje të shqyrtimit
       preview_card_providers:
@@ -1222,7 +1218,6 @@ sq:
         trendable: Mund të shfaqet nën të modës
         trending_rank: 'Trending #%{rank}'
         usable: Mund të përdoret
-        usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
         used_by_over_week:
           one: Përdorur nga një person gjatë javës së kaluar
           other: Përdorur nga %{count} vetë gjatë javës së kaluar
@@ -1481,7 +1476,6 @@ sq:
   deletes:
     challenge_not_passed: Hollësitë që dhatë s’qenë të sakta
     confirm_password: Që të verifikohet identiteti juaj, jepni fjalëkalimin tuaj të tanishëm
-    confirm_username: Që të ripohohet procedura, jepni emrin tuaj të përdoruesit
     proceed: Fshini llogarinë
     success_msg: Llogaria juaj u fshi me sukses
     warning:
@@ -1675,7 +1669,6 @@ sq:
       incompatible_type: E papërputhshme me llojin e përzgjedhur për importim
       invalid_csv_file: 'Kartelë CSV e pavlefshme. Gabim: %{error}'
       invalid_json_file: 'Kartelë JSON e pavlefshme. Gabim: %{error}'
-      over_rows_processing_limit: përmban më shumë se %{count} rreshta
       status_not_found_warning: Disa nga filtrat tuaj fshehin postime specifike që s’njihen nga ky shërbyes. Këto postime s’do të filtrohen automatikisht, nëse zbulohen më vonë nga shërbyesi.
       too_large: Kartela është shumë e madhe
     failures: Dështime
@@ -1826,7 +1819,6 @@ sq:
     incoming_migrations_html: Për të kaluar prej një llogarie tjetër te kjo këtu, së pari lypset të <a href="%{path}">krijoni një alias llogarie</a>.
     moved_msg: Llogaria juaj tani ridrejton te %{acct} dhe ndjekësit tuaj po sillen në të.
     not_redirecting: Llogaria juaj nuk ridrejton aktualisht te ndonjë llogari tjetër.
-    on_cooldown: E keni migruar llogarinë tuaj tani afër. Ky funksion do të jetë sërish i përdorshëm pas %{count} ditësh.
     past_migrations: Migrime të kaluar
     proceed_with_move: Lëvizi ndjekësit
     redirected_msg: Llogaria juaj tani ridrejton te %{acct}.
@@ -2014,8 +2006,6 @@ sq:
       account: Postime publike prej @%{acct}
       tag: 'Postime publike etiketuar me #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara për atë ditë
-    over_total_limit: Keni tejkaluar kufirin prej %{limit} mesazhesh të planifikuara
     too_soon: data duhet të jetë në të ardhmen
   self_destruct:
     lead_html: Mjerisht, <strong>%{domain}</strong> po mbyllet përgjithmonë. Nëse patët një llogari këtu, s’do të jeni në gjendje të vazhdoni ta përdorni, por mundeni ende të kërkoni një kopjeruajtje të të dhënave tuaja.
@@ -2073,7 +2063,6 @@ sq:
     appearance: Dukje
     authorized_apps: Aplikacione të autorizuara
     back: Mbrapsht te Mastodon
-    delete: Fshirje llogarie
     development: Zhvillim
     edit_profile: Përpunoni profilin
     export: Eksportim

@@ -4,6 +4,7 @@ en-GB:
     about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralisation! Own your data with Mastodon!'
     contact_missing: Not set
     contact_unavailable: N/A
+    default_thumbnail_description: Two smiling cartoon mastodons (who look like elephants) toss a paper plane between them. They're surrounded by a bright blue sky and floating planets with trees and more mastodons on them.
     hosted_on: Mastodon hosted on %{domain}
     title: About
   accounts:
@@ -63,6 +64,8 @@ en-GB:
       custom: Custom
       delete: Delete data
       deleted: Deleted
+      deletion_irreversible: The data of this account has been irreversibly deleted.
+      deletion_reversible_hint_html: This account is pending deletion, and the data will be fully removed on %{date}.
       demote: Demote
       destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
       disable: Freeze
@@ -288,7 +291,11 @@ en-GB:
         enable_relay_html: "%{name} enabled the relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} enabled email token authentication for %{target}"
         enable_user_html: "%{name} enabled login for user %{target}"
+        listable_tag_html: can be suggested
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
+        not_listable_tag_html: won't be suggested
+        not_trendable_tag_html: won't appear under trends
+        not_usable_tag_html: cannot be used
         promote_user_html: "%{name} promoted user %{target}"
         publish_terms_of_service_html: "%{name} published updates to the terms of service"
         reject_appeal_html: "%{name} rejected moderation decision appeal from %{target}"
@@ -301,6 +308,7 @@ en-GB:
         sensitive_account_html: "%{name} marked %{target}'s media as sensitive"
         silence_account_html: "%{name} limited %{target}'s account"
         suspend_account_html: "%{name} suspended %{target}'s account"
+        trendable_tag_html: can appear under trends
         unassigned_report_html: "%{name} unassigned report %{target}"
         unblock_email_account_html: "%{name} unblocked %{target}'s email address"
         unsensitive_account_html: "%{name} unmarked %{target}'s media as sensitive"
@@ -313,8 +321,10 @@ en-GB:
         update_ip_block_html: "%{name} changed rule for IP %{target}"
         update_report_html: "%{name} updated report %{target}"
         update_status_html: "%{name} updated post by %{target}"
+        update_tag_html: "%{name} changed %{target} settings to: "
         update_user_role_html: "%{name} changed %{target} role"
         update_username_block_html: "%{name} updated rule for usernames containing %{target}"
+        usable_tag_html: can be used;
       deleted_account: deleted account
       empty: No logs found.
       filter_by_action: Filter by action
@@ -345,12 +355,20 @@ en-GB:
       updated_msg: Announcement successfully updated!
     collections:
       accounts: Accounts
+      back_to_account: Back to account page
+      back_to_report: Back to report page
+      batch:
+        add_to_report: 'Add to report #%{id}'
+        remove_from_report: Remove from report
+        report: Report
       collection_title: Collection by %{name}
       contents: Contents
+      no_collection_selected: No collections were changed as none were selected
       number_of_accounts:
         one: 1 account
         other: "%{count} accounts"
       open: Open
+      title: Account collections - @%{name}
       view_publicly: View publicly
     critical_update_pending: Critical update pending
     custom_emojis:
@@ -484,8 +502,10 @@ en-GB:
         title: Block new email domain
       no_email_domain_block_selected: No email domain blocks were changed as none were selected
       not_permitted: Not permitted
+      reset: Reset
       resolved_dns_records_hint_html: The domain name resolves to the following MX domains, which are ultimately responsible for accepting email. Blocking an MX domain will block sign-ups from any email address which uses the same MX domain, even if the visible domain name is different. <strong>Be careful not to block major email providers.</strong>
       resolved_through_html: Resolved through %{domain}
+      search: Search
       title: Blocked email domains
     export_domain_allows:
       new:
@@ -526,8 +546,6 @@ en-GB:
           description: You received a registration from a FASP. Reject it if you did not initiate this. If you initiated this, carefully compare name and key fingerprint before confirming the registration.
           reject: Reject
           title: Confirm FASP Registration
-        save: Save
-        select_capabilities: Select Capabilities
         sign_in: Sign In
         status: Status
         title: Fediverse Auxiliary Service Providers
@@ -861,10 +879,8 @@ en-GB:
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone on Mastodon. Control how various discovery features work on your server.
-        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
-        publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
         wrapstodon: Wrapstodon
@@ -889,7 +905,6 @@ en-GB:
         warning_hint: We recommend using “Approval required for sign up” unless you are confident your moderation team can handle spam and malicious registrations in a timely fashion.
       security:
         authorized_fetch: Require authentication from federated servers
-        authorized_fetch_hint: Requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks. However, this comes at the cost of a performance penalty, reduces the reach of your replies, and may introduce compatibility issues with some federated services. In addition, this will not prevent dedicated actors from fetching your public posts and accounts.
         authorized_fetch_overridden_hint: You are currently unable to change this setting because it is overridden by an environment variable.
         federation_authentication: Federation authentication enforcement
       title: Server settings
@@ -1071,7 +1086,6 @@ en-GB:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
         title: Trending links
-        usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
       not_allowed_to_trend: Not allowed to trend
       only_allowed: Only allowed
       pending_review: Pending review
@@ -1116,7 +1130,6 @@ en-GB:
         trendable: Can appear under trends
         trending_rank: 'Trending #%{rank}'
         usable: Can be used
-        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
         used_by_over_week:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
@@ -1365,7 +1378,6 @@ en-GB:
   deletes:
     challenge_not_passed: The information you entered was not correct
     confirm_password: Enter your current password to verify your identity
-    confirm_username: Enter your username to confirm the procedure
     proceed: Delete account
     success_msg: Your account was successfully deleted
     warning:
@@ -1557,7 +1569,6 @@ en-GB:
       empty: Empty CSV file
       incompatible_type: Incompatible with the selected import type
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
-      over_rows_processing_limit: contains more than %{count} rows
       too_large: File is too large
     failures: Failures
     imported: Imported
@@ -1700,7 +1711,6 @@ en-GB:
     incoming_migrations_html: To move from another account to this one, first you need to <a href="%{path}">create an account alias</a>.
     moved_msg: Your account is now redirecting to %{acct} and your followers are being moved over.
     not_redirecting: Your account is not redirecting to any other account currently.
-    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
     past_migrations: Past migrations
     proceed_with_move: Move followers
     redirected_msg: Your account is now redirecting to %{acct}.
@@ -1865,8 +1875,6 @@ en-GB:
       account: Public posts from @%{acct}
       tag: 'Public posts tagged #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
-    over_total_limit: You have exceeded the limit of %{limit} scheduled posts
     too_soon: date must be in the future
   self_destruct:
     lead_html: Unfortunately, <strong>%{domain}</strong> is permanently closing down. If you had an account there, you will not be able to continue using it, but you can still request a backup of your data.
@@ -1924,7 +1932,6 @@ en-GB:
     appearance: Appearance
     authorized_apps: Authorised apps
     back: Back to Mastodon
-    delete: Account deletion
     development: Development
     edit_profile: Edit profile
     export: Export

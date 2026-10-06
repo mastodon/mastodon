@@ -1,42 +1,57 @@
+@use '@/styles/mastodon/mixins';
+
 .base {
   --bg: transparent;
   --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
   --fg: var(--color-text-primary);
+  --inline-padding: var(--space-2);
+
+  @include mixins.type-label;
 
   background-color: var(--bg);
   border-radius: var(--radius-round);
   color: var(--fg);
   transition:
     background-color 200ms,
-    color 200ms;
+    color 200ms,
+    opacity 200ms;
   border: 0;
   appearance: none;
   cursor: pointer;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--fs-sm);
-  line-height: 1;
+  column-gap: var(--space-1);
+  padding-inline: var(--inline-padding);
   box-sizing: border-box;
 
-  &:hover:not(:active) {
+  &:hover:not(
+      :active,
+      :disabled,
+      [aria-disabled='true'],
+      [aria-pressed='true'],
+      [aria-expanded='true']
+    ) {
     background-color: var(--bg-hover);
   }
 
   &:focus-visible,
   &:focus-within {
-    outline: 2px solid var(--color-bg-brand-base);
+    outline: var(--outline-focus-default);
     outline-offset: 2px;
   }
 
   &:disabled,
-  &:hover:disabled {
-    cursor: auto;
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 
 // Override default anchor styles
 a.base {
+  text-decoration: none;
+
   &:focus {
     border-radius: var(--radius-round);
   }
@@ -46,26 +61,38 @@ a.base {
   }
 }
 
+@mixin active {
+  &:active,
+  &[aria-pressed='true']:not(.noActiveHighlight),
+  &[aria-expanded='true']:not(.noActiveHighlight) {
+    @content;
+  }
+}
+
 // Sizes
 
 .xs {
-  padding: var(--space-3xs) var(--space-2xs);
-  font-size: var(--fs-2xs);
   min-height: 20px;
 }
 
 .sm {
-  padding: var(--space-xs);
+  --inline-padding: var(--space-3);
+
+  padding-block: var(--space-1);
   min-height: 32px;
 }
 
 .md {
-  padding: var(--space-xs) var(--space-sm);
+  --inline-padding: var(--space-4);
+
+  padding-block: var(--space-2);
   min-height: 40px;
 }
 
 .lg {
-  padding: var(--space-sm) var(--space-md);
+  --inline-padding: var(--space-5);
+
+  padding-block: var(--space-3);
   min-height: 48px;
 }
 
@@ -77,36 +104,64 @@ a.base {
 
   &.accent {
     --bg: var(--color-bg-brand-base);
-    --bg-hover: var(--color-bg-brand-base-hover);
-  }
-
-  .neutral {
-    // This technically is a duplicate, but it's added so TS realizes this class is an option.
-    --bg: var(--color-bg-inverted);
-    --fg: var(--color-text-inverted);
-  }
-
-  &.tonal:not(:active) {
-    --bg: var(--color-bg-highlight);
-    --fg: var(--color-text-primary);
+    --fg: var(--color-text-on-brand-base);
   }
 
   &.destructive {
     --bg: var(--color-bg-error-base);
-    --bg-hover: var(--color-bg-error-base-hover);
+    --fg: var(--color-text-on-error-base);
+  }
+}
+
+// Tonal
+
+.tonal {
+  --bg-color: var(--color-text-primary);
+  --bg-opacity: 4%;
+  --bg: rgb(from var(--bg-color) r g b / var(--bg-opacity));
+  --bg-hover-opacity: 10%;
+  --bg-hover: rgb(from var(--bg-color) r g b / var(--bg-hover-opacity));
+
+  &.neutral {
+    @include active {
+      --bg: var(--color-bg-inverted);
+      --fg: var(--color-text-inverted);
+    }
   }
 
-  &.solid:disabled {
-    --bg: var(--color-bg-disabled);
-    --bg-hover: var(--bg);
-    --fg: var(--color-text-on-disabled);
+  &.accent,
+  &.destructive {
+    --bg-opacity: 10%;
+    --bg-hover-opacity: 20%;
+
+    @include active {
+      --bg-opacity: 100%;
+    }
+  }
+
+  &.accent {
+    --bg-color: var(--color-bg-brand-base);
+    --fg: var(--color-text-brand);
+
+    @include active {
+      --fg: var(--color-text-on-brand-base);
+    }
+  }
+
+  &.destructive {
+    --bg-color: var(--color-bg-error-base);
+    --fg: var(--color-text-error);
+
+    @include active {
+      --fg: var(--color-text-on-error-base);
+    }
   }
 }
 
 // Ghost
 
 .ghost {
-  &:active {
+  @include active {
     --bg: var(--color-bg-inverted);
     --fg: var(--color-text-inverted);
   }
@@ -114,7 +169,7 @@ a.base {
   &.accent {
     --fg: var(--color-text-brand);
 
-    &:active {
+    @include active {
       --bg: var(--color-bg-brand-base);
       --fg: var(--color-text-on-brand-base);
     }
@@ -123,17 +178,38 @@ a.base {
   &.destructive {
     --fg: var(--color-text-error);
 
-    &:active {
-      --fg: var(--color-text-on-error-base);
+    @include active {
       --bg: var(--color-bg-error-base);
+      --fg: var(--color-text-on-error-base);
+    }
+  }
+}
+
+// Toggle buttons
+.toggle {
+  &:hover {
+    background-color: var(--bg-hover);
+  }
+
+  &.solid {
+    @include active {
+      --bg: var(--color-bg-brand-base);
+      --fg: var(--color-text-on-brand-base);
     }
   }
 
-  &:disabled,
-  &:hover:disabled {
-    --fg: var(--color-text-disabled);
-    --bg: transparent;
-    --bg-hover: transparent;
+  &.tonal {
+    @include active {
+      --bg: rgb(from var(--color-bg-brand-base) r g b / 10%);
+      --fg: var(--color-text-brand);
+    }
+  }
+
+  &.ghost {
+    @include active {
+      --bg: transparent;
+      --fg: var(--color-text-brand);
+    }
   }
 }
 
@@ -141,18 +217,13 @@ a.base {
 
 .icon,
 .loading {
-  width: var(--fs-xl);
-  height: var(--fs-xl);
+  width: var(--fs-20);
+  height: var(--fs-20);
 }
 
-// Adds padding to the text label. This is supposed to be there even if there is no icon.
-.content {
-  display: inline-block;
-  margin: 0 var(--space-2xs);
-
-  .xs & {
-    margin: 0 var(--space-3xs);
-  }
+.iconCustom {
+  width: inherit;
+  height: inherit;
 }
 
 .iconOnly {
@@ -162,4 +233,8 @@ a.base {
 
 .loading {
   color: inherit;
+}
+
+.clipPadding {
+  margin-inline-start: calc(-1 * var(--inline-padding));
 }

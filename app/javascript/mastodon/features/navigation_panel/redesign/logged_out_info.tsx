@@ -1,0 +1,218 @@
+import { useCallback, useEffect } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import { Link } from 'react-router-dom';
+
+import { WarningIcon } from '@phosphor-icons/react';
+
+import { openModal } from '@/mastodon/actions/modal';
+import { fetchServer } from '@/mastodon/actions/server';
+import type { ApiInstanceJSON } from '@/mastodon/api_types/instance';
+import { Avatar } from '@/mastodon/components/avatar';
+import { Button } from '@/mastodon/components/button/redesign';
+import { Callout } from '@/mastodon/components/callout/redesign';
+import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
+import { LockupLink, LockupWrapper } from '@/mastodon/components/lockup';
+import { ShortNumber } from '@/mastodon/components/short_number';
+import { Skeleton } from '@/mastodon/components/skeleton';
+import { useAccount } from '@/mastodon/hooks/useAccount';
+import {
+  disabledAccountId,
+  domain,
+  movedToAccountId,
+} from '@/mastodon/initial_state';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+
+import classes from './logged_out_info.module.scss';
+
+const NavigationFooterLayout: React.FC<{
+  isLoading?: boolean;
+  description: React.ReactNode;
+  children: React.ReactNode;
+}> = ({ description, isLoading, children }) => (
+  <>
+    <div className={classes.description}>
+      {isLoading ? (
+        <>
+          <Skeleton width='100%' />
+          <br />
+          <Skeleton width='100%' />
+          <br />
+          <Skeleton width='70%' />
+        </>
+      ) : (
+        description
+      )}
+    </div>
+    <div className={classes.buttons}>{children}</div>
+  </>
+);
+
+export const LoggedOutInfo: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { item: serverItem, isLoading } = useAppSelector(
+    (state) => state.server.server,
+  );
+
+  useEffect(() => {
+    void dispatch(fetchServer());
+  }, [dispatch]);
+
+  return (
+    <NavigationFooterLayout
+      description={
+        <>
+          <p>{serverItem?.description ?? ''}</p>
+          <ServerMeta serverItem={serverItem} />
+        </>
+      }
+      isLoading={isLoading}
+    >
+      <Button
+        as='a'
+        href='/auth/sign_up'
+        size='lg'
+        variant='solid'
+        color='accent'
+      >
+        <FormattedMessage
+          id='server_banner.create_account'
+          defaultMessage='Create an account'
+        />
+      </Button>
+      <Button as='a' href='/auth/sign_in' size='lg'>
+        <FormattedMessage id='server_banner.log_in' defaultMessage='Log in' />
+      </Button>
+    </NavigationFooterLayout>
+  );
+};
+
+const ServerMeta: React.FC<{ serverItem: ApiInstanceJSON | undefined }> = ({
+  serverItem,
+}) => {
+  const adminId = serverItem?.contact.account?.id;
+  const adminAccount = useAccount(adminId);
+  const activeUserCount = serverItem?.usage.users.active_month;
+
+  if (!adminId && !activeUserCount) {
+    return null;
+  }
+
+  return (
+    <dl className={classes.meta}>
+      {adminId && adminAccount && (
+        <div>
+          <dt>
+            <FormattedMessage
+              id='server_banner.administered_by'
+              defaultMessage='Administered by:'
+            />
+          </dt>
+
+          <dd>
+            <LockupWrapper
+              icon={<Avatar account={adminAccount} size={20} />}
+              className={classes.adminLink}
+            >
+              <LockupLink
+                to={`/@${adminAccount.acct}`}
+                data-hover-card-account={adminId}
+                as='span' // changes lockup title element, not link
+              >
+                <DisplayNameSimple account={adminAccount} />
+              </LockupLink>
+            </LockupWrapper>
+          </dd>
+        </div>
+      )}
+      {activeUserCount && (
+        <div>
+          <dt>
+            <FormattedMessage
+              id='server_banner.active_users_title'
+              defaultMessage='Active users'
+            />
+          </dt>
+          <dd>
+            <ShortNumber value={activeUserCount} />
+          </dd>
+        </div>
+      )}
+    </dl>
+  );
+};
+
+export const DisabledAccountBanner: React.FC = () => {
+  const disabledAccount = useAppSelector((state) =>
+    disabledAccountId ? state.accounts.get(disabledAccountId) : undefined,
+  );
+  const movedToAccount = useAppSelector((state) =>
+    movedToAccountId ? state.accounts.get(movedToAccountId) : undefined,
+  );
+  const dispatch = useAppDispatch();
+
+  const handleLogOutClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT', modalProps: {} }));
+
+      return false;
+    },
+    [dispatch],
+  );
+
+  const disabledAccountLink = (
+    <Link to={`/@${disabledAccount?.acct}`}>
+      {disabledAccount?.acct}@{domain}
+    </Link>
+  );
+
+  return (
+    <NavigationFooterLayout
+      description={
+        <Callout icon={WarningIcon}>
+          {movedToAccount ? (
+            <FormattedMessage
+              id='moved_to_account_banner.text'
+              defaultMessage='Your account {disabledAccount} is currently disabled because you moved to {movedToAccount}.'
+              values={{
+                disabledAccount: disabledAccountLink,
+                movedToAccount: (
+                  <Link to={`/@${movedToAccount.acct}`}>
+                    {movedToAccount.acct.includes('@')
+                      ? movedToAccount.acct
+                      : `${movedToAccount.acct}@${domain}`}
+                  </Link>
+                ),
+              }}
+            />
+          ) : (
+            <FormattedMessage
+              id='disabled_account_banner.text'
+              defaultMessage='Your account {disabledAccount} is currently disabled.'
+              values={{
+                disabledAccount: disabledAccountLink,
+              }}
+            />
+          )}
+        </Callout>
+      }
+    >
+      <Button as='a' href='/auth/edit' variant='solid' color='accent'>
+        <FormattedMessage
+          id='disabled_account_banner.account_settings'
+          defaultMessage='Account settings'
+        />
+      </Button>
+      <Button onClick={handleLogOutClick}>
+        <FormattedMessage
+          id='confirmations.logout.confirm'
+          defaultMessage='Log out'
+        />
+      </Button>
+    </NavigationFooterLayout>
+  );
+};

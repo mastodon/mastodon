@@ -282,11 +282,7 @@ const StepUpload: FC<{
         }}
         tagName='p'
       />
-      <Button
-        onClick={handleUploadClick}
-        // eslint-disable-next-line jsx-a11y/no-autofocus -- This is the main input, so auto-focus on it.
-        autoFocus
-      >
+      <Button onClick={handleUploadClick} autoFocus>
         <FormattedMessage
           id='account_edit.upload_modal.step_upload.button'
           defaultMessage='Browse files'

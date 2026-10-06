@@ -28,6 +28,13 @@ export const Default: Story = {
   },
 };
 
+export const Accent: Story = {
+  args: {
+    label: 'Example',
+    variant: 'accent',
+  },
+};
+
 export const Domain: Story = {
   args: {
     ...Default.args,

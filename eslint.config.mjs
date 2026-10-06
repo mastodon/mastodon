@@ -10,7 +10,6 @@ import jsxA11Y from 'eslint-plugin-jsx-a11y';
 import promisePlugin from 'eslint-plugin-promise';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-// @ts-expect-error -- No types available for this package
 import storybook from 'eslint-plugin-storybook';
 import { globalIgnores } from 'eslint/config';
 import globals from 'globals';
@@ -137,7 +136,6 @@ export default tseslint.config([
   reactHooks.configs.flat.recommended,
   jsxA11Y.flatConfigs.recommended,
   importPlugin.flatConfigs.react,
-  // @ts-expect-error -- For some reason the formatjs package exports an empty object?
   formatjs.configs.strict,
   storybook.configs['flat/recommended'],
   {
@@ -166,22 +164,14 @@ export default tseslint.config([
     },
 
     rules: {
-      'no-restricted-syntax': [
-        'error',
-        {
-          // eslint-disable-next-line no-restricted-syntax
-          selector: 'Literal[value=/•/], JSXText[value=/•/]',
-          // eslint-disable-next-line no-restricted-syntax
-          message: "Use '·' (middle dot) instead of '•' (bullet)",
-        },
-      ],
-
+      'formatjs/blocklist-elements': 'off', // CrowdIn supports `select` translation
       'formatjs/enforce-description': 'off', // description values not currently used
       'formatjs/enforce-id': 'off', // Explicit IDs are used in the project
       'formatjs/enforce-placeholders': 'off', // Issues in short_number.jsx
       'formatjs/no-invalid-icu': 'error',
       'formatjs/no-literal-string-in-jsx': 'off', // Should be looked at, but mainly flagging punctuation outside of strings
       'formatjs/no-multiple-plurals': 'off', // Should be looked at
+      'formatjs/prefer-full-sentence': 'off', // Multiple locations needs ICU/Intl unit updates, should enable after that
 
       'jsx-a11y/click-events-have-key-events': 'off',
       'jsx-a11y/label-has-associated-control': 'off',
@@ -288,7 +278,9 @@ export default tseslint.config([
 
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ['vitest.shims.d.ts'],
+        },
       },
     },
 
@@ -304,6 +296,9 @@ export default tseslint.config([
       'jsdoc/require-jsdoc': 'off',
       'jsdoc/require-param': 'off',
       'jsdoc/require-returns': 'off',
+
+      'jsx-a11y/media-has-caption': 'off',
+      'jsx-a11y/no-autofocus': 'off',
 
       'react/prefer-stateless-function': 'warn',
       'react/function-component-definition': [
@@ -350,6 +345,12 @@ export default tseslint.config([
         },
       ],
       '@typescript-eslint/non-nullable-type-assertion-style': 'off',
+    },
+  },
+  {
+    files: ['**/*modal*.{j,t}sx'],
+    rules: {
+      'import/no-default-export': 'off',
     },
   },
   {

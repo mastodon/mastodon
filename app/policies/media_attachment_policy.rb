@@ -2,7 +2,7 @@
 
 class MediaAttachmentPolicy < ApplicationPolicy
   def download?
-    (record.discarded? && role.can?(:manage_reports)) || show_status?
+    (record.on_hold? && role.can?(:manage_reports)) || show_status?
   end
 
   private

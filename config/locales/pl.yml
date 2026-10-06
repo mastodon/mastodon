@@ -579,7 +579,6 @@ pl:
           confirm: Zatwierdź
           reject: Odrzuć
           title: Potwierdź rejestrację FASP
-        save: Zapisz
         sign_in: Zaloguj się
         status: Status
         title: Dostawcy usług pomocniczych Fediverse (Fediverse Auxiliary Service Providers)
@@ -927,10 +926,8 @@ pl:
       discovery:
         follow_recommendations: Polecane konta
         preamble: Prezentowanie ciekawych treści jest kluczowe przy wdrażaniu nowych użytkowników, którzy mogą jeszcze nikogo nie znać na Mastodonie. Tutaj kontrolujesz, jak działają różne funkcje odkrywania treści na Twoim serwerze.
-        privacy: Prywatność
         profile_directory: Katalog profilów
         public_timelines: Publiczne osie czasu
-        publish_statistics: Publikuj statystyki
         title: Odkrywanie
         trends: Trendy
         wrapstodon: Wrapstodon
@@ -955,7 +952,6 @@ pl:
         warning_hint: Polecamy "Przyjęcie jest wymagane do rejestracji" chyba że masz pewność, że twój zespół moderacyjny może szybko obsłużyć spam i złośliwe rejestracje.
       security:
         authorized_fetch: Wymagaj uwierzytelnienia od sfederowanych serwerów
-        authorized_fetch_hint: Wymaganie uwierzytelnienia ze sfederowanych serwerów pozwala na ściślejsze wymuszanie bloków z poziomu użytkowników i serwera, ale jest wolniejsze, redukuje zasięg odpowiedzi, i może być niekompatybilne z niektórymi sfederowanymi usługami. Nie chroni również publicznych kont i wpisów przed oddanymi użytkownikami.
         authorized_fetch_overridden_hint: Nie możesz zmienić tego ustawienia bo jest nadpisane przez zmienną środowiskową.
         federation_authentication: Wymuszanie uwierzytelnienia dla federacji
       title: Ustawienia serwera
@@ -1137,7 +1133,6 @@ pl:
           one: Udostępnione przez jedną osobę w ciągu ostatniego tygodnia
           other: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
         title: Popularne linki
-        usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
       not_allowed_to_trend: Wyłączona widoczność w popularnych
       only_allowed: Tylko dozwolone
       pending_review: Oczekuje na przegląd
@@ -1184,7 +1179,6 @@ pl:
         trendable: Może pojawić się pod trendami
         trending_rank: 'Popularne #%{rank}'
         usable: Może być użyty
-        usage_comparison: Używane %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
         used_by_over_week:
           few: Użyte przez %{count} osoby w ciągu ostatniego tygodnia
           many: Użyte przez %{count} osób w ciągu ostatniego tygodnia
@@ -1433,7 +1427,6 @@ pl:
   deletes:
     challenge_not_passed: Wprowadzone informacje za nieprawidłowe
     confirm_password: Wprowadź aktualne hasło, aby potwierdzić tożsamość
-    confirm_username: Wprowadź swoją nazwę użytkownika aby potwierdzić procedurę
     proceed: Usuń konto
     success_msg: Twoje konto zostało pomyślnie usunięte
     warning:
@@ -1618,7 +1611,6 @@ pl:
       empty: Pusty plik CSV
       incompatible_type: Niezgodny z wybranym typem importu
       invalid_csv_file: 'Nieprawidłowy plik CSV. Błąd: %{error}'
-      over_rows_processing_limit: zawiera więcej niż %{count} wierszy
       too_large: Plik jest zbyt duży
     failures: Błędy
     imported: Zaimportowano
@@ -1785,7 +1777,6 @@ pl:
     incoming_migrations_html: Aby przenieść się z innego konta na to, musisz najpierw <a href="%{path}">utworzyć alias konta</a>.
     moved_msg: Twoje konto przekierowuje teraz na %{acct}, a obserwujący są przenoszeni.
     not_redirecting: Twoje konto nie przekierowuje obecnie na żadne inne konto.
-    on_cooldown: Ostatnio przeniosłeś(-aś) swoje konto. Ta funkcja będzie dostępna ponownie za %{count} dni.
     past_migrations: Poprzednie migracje
     proceed_with_move: Przenieś obserwujących
     redirected_msg: Twoje konto przekierowuje teraz na %{acct}.
@@ -1941,8 +1932,6 @@ pl:
       account: Publiczne posty od @%{acct}
       tag: 'Publiczne wpisy oznaczone #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów na ten dzień
-    over_total_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów
     too_soon: musi to być przyszła data
   self_destruct:
     lead_html: Niestety, <strong>%{domain}</strong> jest permanentnie zamykane. Konta z tego serwera nie będą dostępne, ale można jeszcze odzyskać kopię zapasową danych.
@@ -2000,7 +1989,6 @@ pl:
     appearance: Wygląd
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
-    delete: Usuń konto
     development: Tworzenie aplikacji
     edit_profile: Edytuj profil
     export: Eksportowanie danych

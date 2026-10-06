@@ -13,19 +13,40 @@
   = f.simple_fields_for :settings, current_user.settings do |ff|
     .flash-message= t('posting_defaults.explanation')
 
-    .fields-group
-      = ff.input :default_privacy,
-                 collection: Status.selectable_visibilities,
-                 selected: current_user.setting_default_privacy,
-                 hint: false,
-                 include_blank: false,
-                 label_method: ->(visibility) { visibility == 'private' ? I18n.t('statuses.visibilities.private') : safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') },
-                 label: I18n.t('simple_form.labels.defaults.setting_default_privacy'),
-                 required: false,
-                 wrapper: :with_label
+    - if Mastodon::Feature.redesign_enabled?
+      .fields-group
+        = ff.input :split_default_privacy,
+                   collection: Status.selectable_visibilities - ['unlisted'],
+                   selected: split_default_privacy,
+                   hint: false,
+                   include_blank: false,
+                   label_method: ->(visibility) { visibility == 'private' ? I18n.t('statuses.visibilities.private') : safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') },
+                   label: I18n.t('simple_form.labels.defaults.setting_default_privacy'),
+                   required: false,
+                   wrapper: :with_label
+
+      .fields-group
+        = ff.input :split_default_privacy_discoverable,
+                   disabled: split_default_privacy == 'private',
+                   as: :boolean,
+                   input_html: { checked: split_default_privacy_discoverable? },
+                   label: I18n.t('simple_form.labels.defaults.setting_split_default_privacy_discoverable'),
+                   wrapper: :with_label
+    - else
+      .fields-group
+        = ff.input :default_privacy,
+                   collection: Status.selectable_visibilities,
+                   selected: current_user.setting_default_privacy,
+                   hint: false,
+                   include_blank: false,
+                   label_method: ->(visibility) { visibility == 'private' ? I18n.t('statuses.visibilities.private') : safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') },
+                   label: I18n.t('simple_form.labels.defaults.setting_default_privacy'),
+                   required: false,
+                   wrapper: :with_label
 
     .fields-group
       = ff.input :default_quote_policy,
+                 disabled: current_user.setting_default_privacy == 'private',
                  collection: user_settings_collection('default_quote_policy'),
                  include_blank: false,
                  label_method: ->(policy) { I18n.t("statuses.quote_policies.#{policy}") },

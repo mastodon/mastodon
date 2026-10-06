@@ -55,4 +55,25 @@ RSpec.describe 'The well-known node-info endpoints' do
       { 'foo' => 0 }
     end
   end
+
+  describe '#nodeinfo/2.0 endpoint containing opt in metadata' do
+    before do
+      Setting.opt_in_server_directory = 'true'
+    end
+
+    let(:expected_metadata) do
+      {
+        nodeName:	'Mastodon',
+        nodeDescription:	'',
+        optInServerDirectory: 'true',
+        optInServerRecommendation: false,
+      }
+    end
+
+    it 'returns server directory opt in data' do
+      get '/nodeinfo/2.0'
+
+      expect(response.parsed_body[:metadata].symbolize_keys).to eq(expected_metadata)
+    end
+  end
 end

@@ -3,6 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe EmailSubscriptionMailer do
+  shared_examples 'an absolute privacy policy link' do
+    it 'links to the privacy policy with an absolute URL' do
+      expect(mail.html_part.body.decoded)
+        .to include(%(href="#{privacy_policy_url}"))
+    end
+  end
+
   describe '.confirmation' do
     let(:email_subscription) { Fabricate(:email_subscription) }
     let(:mail) { described_class.with(subscription: email_subscription).confirmation }
@@ -15,6 +22,8 @@ RSpec.describe EmailSubscriptionMailer do
           subject: I18n.t('email_subscription_mailer.confirmation.subject')
         )
     end
+
+    it_behaves_like 'an absolute privacy policy link'
   end
 
   describe '.notification' do
@@ -33,6 +42,8 @@ RSpec.describe EmailSubscriptionMailer do
             subject: I18n.t('email_subscription_mailer.notification.subject.singular', name: email_subscription.account.display_name, excerpt: statuses.first.text.truncate(17))
           )
       end
+
+      it_behaves_like 'an absolute privacy policy link'
     end
 
     context 'with multiple statuses' do

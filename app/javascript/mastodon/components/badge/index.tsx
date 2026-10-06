@@ -8,16 +8,17 @@ import AdminIcon from '@/images/icons/icon_admin.svg?react';
 import ClockIcon from '@/images/icons/icon_clock.svg?react';
 import FollowerIcon from '@/images/icons/icon_follower.svg?react';
 import IconVerified from '@/images/icons/icon_verified.svg?react';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import type { OnAttributeHandler } from '@/mastodon/utils/html';
 import BlockIcon from '@/material-icons/400-24px/block.svg?react';
 import GroupsIcon from '@/material-icons/400-24px/group.svg?react';
-import PersonIcon from '@/material-icons/400-24px/person.svg?react';
 import SmartToyIcon from '@/material-icons/400-24px/smart_toy.svg?react';
 import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
 
 import { EmojiHTML } from '../emoji/html';
 import { Icon } from '../icon';
 
+import redesignClasses from './redesign.module.scss';
 import classes from './styles.module.scss';
 
 interface BadgeProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -28,6 +29,7 @@ interface BadgeProps extends React.ComponentPropsWithoutRef<'div'> {
   variant?:
     | 'default'
     | 'subtle'
+    | 'accent'
     | 'inverted'
     | 'success'
     | 'warning'
@@ -40,7 +42,7 @@ type PresetBadgeProps = Omit<
 >;
 
 export const Badge: FC<BadgeProps> = ({
-  icon = <PersonIcon />,
+  icon,
   variant = 'default',
   label,
   className,
@@ -52,7 +54,8 @@ export const Badge: FC<BadgeProps> = ({
     {...otherProps}
     className={classNames(
       classes.badge,
-      !icon && classes.badgeWithoutIcon,
+      isRedesignEnabled() && redesignClasses.badge,
+      !icon && [classes.badgeWithoutIcon, redesignClasses.badgeWithoutIcon],
       classes[variant],
       className,
     )}

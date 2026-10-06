@@ -1,0 +1,141 @@
+@use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
+
+.card {
+  @include mixins.elevation-1;
+
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-1);
+  inset: unset; // override default [popover] UA styles
+  border-radius: var(--radius-4);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+  z-index: calc(infinity);
+  max-width: var(--_max-card-width, 100vw);
+  text-align: start;
+
+  &[data-elevation='2'] {
+    @include mixins.elevation-2;
+  }
+}
+
+.popoverCard {
+  width: 100%;
+}
+
+.itemGroupLabel {
+  @include mixins.type-caption;
+
+  color: var(--color-text-tertiary);
+  padding: var(--space-2) var(--space-3) 0;
+}
+
+.itemDivider {
+  height: 1px;
+  background-color: var(--color-border-primary);
+  margin: var(--space-1) var(--space-3);
+  border: none;
+}
+
+.item {
+  @include mixins.type-body-compact;
+
+  --cursor: pointer;
+
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-3);
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  cursor: var(--cursor);
+  transition:
+    background 200ms,
+    color 200ms;
+
+  &:where(button) {
+    appearance: none;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: start;
+  }
+
+  @media (width < variables.$mobile-menu-breakpoint) {
+    min-height: 48px;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:hover:not([aria-disabled='true']) {
+    background-color: var(--color-bg-highlight);
+  }
+
+  &[aria-current='page'] {
+    font-weight: bold;
+    background-color: var(--color-bg-highlight);
+  }
+
+  &:focus {
+    // Override overeager global styles
+    border-radius: var(--radius-3);
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+  }
+
+  &:active:not([aria-disabled='true']),
+  .itemActive {
+    background-color: var(--color-bg-inverted);
+    color: var(--color-text-inverted);
+
+    label {
+      color: var(--color-text-inverted);
+    }
+  }
+
+  &:has(:disabled),
+  &[aria-disabled='true'] {
+    --cursor: not-allowed;
+
+    opacity: 0.5;
+  }
+}
+
+.itemDestructive {
+  color: var(--color-text-error);
+}
+
+.itemDescription {
+  @include mixins.type-caption;
+
+  display: block;
+  margin-top: var(--space-half);
+  color: var(--color-text-secondary);
+
+  .item[aria-disabled='true'] &,
+  .item:active &,
+  .itemActive &,
+  .itemDestructive & {
+    color: inherit;
+  }
+}
+
+.itemIcon {
+  width: var(--space-5);
+  height: var(--space-5);
+}
+
+.itemTrailingContent {
+  margin-inline-start: auto;
+
+  // Add additional space after the text.
+  padding-inline-start: var(--space-2);
+}

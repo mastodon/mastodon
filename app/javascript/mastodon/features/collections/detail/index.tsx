@@ -7,6 +7,10 @@ import { Link } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import HelpIcon from '@/material-icons/400-24px/help.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
@@ -18,8 +22,6 @@ import type {
 } from 'mastodon/api_types/collections';
 import { Badge } from 'mastodon/components/badge';
 import { Callout } from 'mastodon/components/callout';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { DisplayName } from 'mastodon/components/display_name';
 import { useAccountHandle } from 'mastodon/components/display_name/default';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
@@ -312,13 +314,17 @@ export const CollectionDetailPage: React.FC<{
 
   return (
     <Column bindToDocument={!multiColumn} label={pageTitle}>
-      <ColumnHeader
-        showBackButton
-        title={pageTitle}
-        icon='collection-icon'
-        iconComponent={ListAltIcon}
-        multiColumn={multiColumn}
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader withBackButton title={pageTitle} />
+      ) : (
+        <LegacyColumnHeader
+          showBackButton
+          title={pageTitle}
+          icon='collection-icon'
+          iconComponent={ListAltIcon}
+          multiColumn={multiColumn}
+        />
+      )}
 
       <Scrollable>
         {collection ? (

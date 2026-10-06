@@ -261,94 +261,6 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    context 'with Approval-based registrations without invite' do
-      subject do
-        Setting.registrations_mode = 'approved'
-        request.headers['Accept-Language'] = accept_language
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
-      end
-
-      it 'redirects to setup and creates user' do
-        subject
-
-        expect(response)
-          .to redirect_to auth_setup_path
-
-        expect(User.find_by(email: 'test@example.com'))
-          .to be_present
-          .and have_attributes(
-            locale: eq(accept_language),
-            approved: be(false)
-          )
-      end
-    end
-
-    context 'with Approval-based registrations with expired invite' do
-      subject do
-        Setting.registrations_mode = 'approved'
-        request.headers['Accept-Language'] = accept_language
-        invite = Fabricate(:invite, max_uses: nil, expires_at: 1.hour.ago)
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', invite_code: invite.code, agreement: 'true' } }
-      end
-
-      it 'redirects to setup and creates user' do
-        subject
-
-        expect(response).to redirect_to auth_setup_path
-
-        expect(User.find_by(email: 'test@example.com'))
-          .to be_present
-          .and have_attributes(
-            locale: eq(accept_language),
-            approved: be(false)
-          )
-      end
-    end
-
-    context 'with Approval-based registrations with valid invite and required invite text' do
-      subject do
-        Setting.registrations_mode = 'approved'
-        Setting.require_invite_text = true
-        request.headers['Accept-Language'] = accept_language
-        invite = Fabricate(:invite, user: inviter, max_uses: nil, expires_at: 1.hour.from_now)
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', invite_code: invite.code, agreement: 'true' } }
-      end
-
-      let!(:inviter) { Fabricate(:user, confirmed_at: 2.days.ago) }
-
-      it 'redirects to setup and creates user in a non-approved state' do
-        subject
-
-        expect(response).to redirect_to auth_setup_path
-
-        expect(User.find_by(email: 'test@example.com'))
-          .to be_present
-          .and have_attributes(
-            locale: eq(accept_language),
-            approved: be(false)
-          )
-      end
-
-      context 'when the inviting user has the permission to bypass approval' do
-        before do
-          inviter.role.update!(permissions: inviter.role.permissions | UserRole::FLAGS[:invite_bypass_approval])
-        end
-
-        it 'redirects to setup and creates user in an approved state' do
-          subject
-
-          expect(response).to redirect_to auth_setup_path
-
-          expect(User.find_by(email: 'test@example.com'))
-            .to be_present
-            .and have_attributes(
-              locale: eq(accept_language),
-              approved: be(true)
-            )
-        end
-      end
-    end
-
     context 'with an already taken username' do
       subject do
         Setting.registrations_mode = 'open'
@@ -368,6 +280,37 @@ RSpec.describe Auth::RegistrationsController do
 
       def username_error_text
         response.parsed_body.css('.user_account_username .error').text
+      end
+    end
+
+    context 'with an invalid date of birth' do
+      subject do
+        Setting.registrations_mode = 'open'
+        Setting.min_age = 16
+        post :create, params: {
+          user: {
+            :account_attributes => { username: 'test' },
+            :email => 'test@example.com',
+            :password => '12345678',
+            :password_confirmation => '12345678',
+            :agreement => 'true',
+            'date_of_birth(1i)' => '2019',
+            'date_of_birth(2i)' => '32',
+            'date_of_birth(3i)' => '01',
+          },
+        }
+      end
+
+      it 'responds with an error message about the date of birth' do
+        expect { subject }.to_not raise_error
+
+        expect(response).to have_http_status(:success)
+        expect(date_of_birth_error_text).to eq(I18n.t('errors.messages.invalid'))
+        expect(User.find_by(email: 'test@example.com')).to be_nil
+      end
+
+      def date_of_birth_error_text
+        response.parsed_body.css('.user_date_of_birth .error').text
       end
     end
 

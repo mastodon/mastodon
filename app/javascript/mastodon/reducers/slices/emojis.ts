@@ -14,14 +14,16 @@ interface EmojisState {
   localesLoaded: Locale[];
 }
 
+const initialState: EmojisState = {
+  custom: {},
+  customCategories: {},
+  customLoaded: false,
+  localesLoaded: [],
+};
+
 const emojisSlice = createSlice({
   name: 'emojis',
-  initialState: {
-    custom: {},
-    customCategories: {},
-    customLoaded: false,
-    localesLoaded: [],
-  } as EmojisState,
+  initialState,
   reducers: {
     loadLocale(state, action: PayloadAction<string>) {
       const locale = toSupportedLocale(action.payload);

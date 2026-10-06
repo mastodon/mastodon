@@ -8,17 +8,18 @@ import {
 
 import { useLocation } from 'react-router-dom';
 
-import { polymorphicForwardRef } from '@/types/polymorphic';
+import type { PolymorphicProps } from '@/types/polymorphic';
 
 import type { MastodonLocation } from '../router';
 
 export const FOCUS_TARGET = {
   POST: 'detailed-status',
+  SEARCH: 'search',
 } as const;
 
-export type FocusTarget =
-  | boolean
-  | (typeof FOCUS_TARGET)[keyof typeof FOCUS_TARGET];
+export type NamedFocusTarget = (typeof FOCUS_TARGET)[keyof typeof FOCUS_TARGET];
+
+export type FocusTarget = boolean | NamedFocusTarget;
 
 const FocusTargetContext = createContext<React.RefObject<FocusTarget> | null>(
   null,
@@ -98,41 +99,58 @@ export const FocusTargetProvider: React.FC<{
   );
 };
 
-export function useFocusOnNavigation(targetName?: string) {
+export function useFocusAfterNavigation(
+  targetName?: NamedFocusTarget,
+  onAfterFocus?: (hasSetFocus: boolean) => void,
+) {
   const focusTargetRef = useContext(FocusTargetContext);
+  const hasFocusedOnceRef = useRef(false);
 
   return useCallback(
     (element: HTMLElement | null) => {
       const focusTarget = focusTargetRef?.current;
 
       // Bail out if focusTarget was set to `false`
-      if (!element || !focusTarget) {
+      if (!element || !focusTarget || hasFocusedOnceRef.current) {
+        onAfterFocus?.(false);
         return;
       }
 
-      if (focusTarget === true || focusTarget === targetName) {
+      const shouldSetFocus = targetName
+        ? focusTarget === targetName
+        : focusTarget === true;
+
+      if (shouldSetFocus) {
         setTimeout(() => {
           element.focus({ preventScroll: true });
+          onAfterFocus?.(true);
+          // Prevent this focus handler from setting focus again
+          hasFocusedOnceRef.current = true;
         }, 0);
+      } else {
+        onAfterFocus?.(false);
       }
     },
-    [focusTargetRef, targetName],
+    [focusTargetRef, onAfterFocus, targetName],
   );
 }
 
 interface FocusTargetElementProps extends React.ComponentPropsWithoutRef<'h1'> {
-  focusTargetName?: string;
+  focusTargetName?: NamedFocusTarget;
 }
 
-export const NavigationFocusTarget = polymorphicForwardRef<
-  'h1',
-  FocusTargetElementProps
->(({ as: Component = 'h1', focusTargetName, children, ...otherProps }) => {
-  const focusOnNavigation = useFocusOnNavigation(focusTargetName);
+export const NavigationFocusTarget = <As extends React.ElementType = 'h1'>({
+  as: asComp,
+  focusTargetName,
+  children,
+  ...otherProps
+}: PolymorphicProps<FocusTargetElementProps, As>) => {
+  const Component = asComp ?? 'h1';
+  const focusAfterNavigation = useFocusAfterNavigation(focusTargetName);
 
   return (
-    <Component ref={focusOnNavigation} tabIndex={-1} {...otherProps}>
+    <Component ref={focusAfterNavigation} tabIndex={-1} {...otherProps}>
       {children}
     </Component>
   );
-});
+};

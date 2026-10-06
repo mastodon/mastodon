@@ -23,6 +23,8 @@ export const ANNOUNCEMENTS_REACTION_REMOVE_FAIL    = 'ANNOUNCEMENTS_REACTION_REM
 export const ANNOUNCEMENTS_REACTION_UPDATE = 'ANNOUNCEMENTS_REACTION_UPDATE';
 
 export const ANNOUNCEMENTS_TOGGLE_SHOW = 'ANNOUNCEMENTS_TOGGLE_SHOW';
+export const ANNOUNCEMENTS_SHOW = 'ANNOUNCEMENTS_TOGGLE_SHOW';
+export const ANNOUNCEMENTS_HIDE = 'ANNOUNCEMENTS_TOGGLE_SHOW';
 
 const noOp = () => {};
 
@@ -173,6 +175,14 @@ export const updateReaction = reaction => ({
 
 export const toggleShowAnnouncements = () => ({
   type: ANNOUNCEMENTS_TOGGLE_SHOW,
+});
+
+export const hideAnnouncements = () => ({
+  type: ANNOUNCEMENTS_HIDE,
+});
+
+export const showAnnouncements = () => ({
+  type: ANNOUNCEMENTS_SHOW,
 });
 
 export const deleteAnnouncement = id => ({

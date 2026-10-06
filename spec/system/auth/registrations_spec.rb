@@ -36,6 +36,120 @@ RSpec.describe 'Auth Registration' do
     end
   end
 
+  context 'with approval-based registrations' do
+    subject { visit new_user_registration_path }
+
+    shared_examples 'approval is required' do
+      context 'when reason to join is not required' do
+        before { Setting.require_invite_text = false }
+
+        it 'asks for an optional reason to join, creates the user as unapproved' do
+          subject
+
+          expect(page)
+            .to have_title(I18n.t('auth.register'))
+
+          expect(page)
+            .to have_text(I18n.t('simple_form.labels.invite_request.text'))
+
+          expect { fill_in_and_submit_form(apply: true) }
+            .to change(User, :count).by(1)
+
+          expect(User.find_by(email: 'test@example.com'))
+            .to have_attributes(approved: false)
+        end
+      end
+
+      context 'when reason to join is required' do
+        before { Setting.require_invite_text = true }
+
+        it 'asks for a required reason to join, creates the user unapproved' do
+          subject
+
+          expect(page)
+            .to have_title(I18n.t('auth.register'))
+
+          expect(page)
+            .to have_text(I18n.t('simple_form.labels.invite_request.text'))
+
+          # Not providing the invite text results in an error
+          expect { fill_in_and_submit_form(apply: true) }
+            .to_not change(User, :count)
+          expect(page)
+            .to have_text(/error below/)
+
+          # Providing the invite text succeeds
+          expect { fill_in_and_submit_form(apply: true, invite_text: 'Hello world') }
+            .to change(User, :count).by(1)
+
+          expect(User.find_by(email: 'test@example.com'))
+            .to have_attributes(approved: false)
+        end
+      end
+    end
+
+    before do
+      Setting.registrations_mode = 'approved'
+    end
+
+    it_behaves_like 'approval is required'
+
+    context 'with an invitation' do
+      subject { visit new_user_registration_path(invite_code: invite.code) }
+
+      let!(:inviter) { Fabricate(:user, confirmed_at: 2.days.ago, bypass_registration_checks: true) }
+      let(:invite) { Fabricate(:invite, user: inviter) }
+
+      before do
+        inviter.approve!
+      end
+
+      it_behaves_like 'approval is required'
+
+      context 'when the invite allows bypassing approval' do
+        before do
+          inviter.role.update!(permissions: inviter.role.permissions | UserRole::FLAGS[:invite_bypass_approval])
+        end
+
+        it 'does not ask for a required reason to join, creates the user approved' do
+          subject
+
+          expect(page)
+            .to have_title(I18n.t('auth.register'))
+
+          expect(page)
+            .to have_no_text(I18n.t('simple_form.labels.invite_request.text'))
+
+          expect { fill_in_and_submit_form(apply: false) }
+            .to change(User, :count).by(1)
+
+          expect(User.find_by(email: 'test@example.com'))
+            .to have_attributes(approved: true)
+        end
+      end
+
+      context 'when invite has expired' do
+        let(:invite) { Fabricate(:invite, user: inviter, expires_at: 1.hour.ago) }
+
+        it_behaves_like 'approval is required'
+      end
+    end
+
+    def fill_in_and_submit_form(apply: false, invite_text: nil)
+      # Avoid the registration spam check
+      travel_to 10.seconds.from_now
+
+      fill_in 'user_account_attributes_username', with: 'test'
+      fill_in 'user_email', with: 'test@example.com'
+      fill_in 'user_password', with: 'Test.123.Pass'
+      fill_in 'user_password_confirmation', with: 'Test.123.Pass'
+      fill_in 'user_invite_request_attributes_text', with: invite_text if invite_text.present?
+      check 'user_agreement'
+
+      click_on(apply ? I18n.t('auth.apply_for_account') : I18n.t('auth.register'))
+    end
+  end
+
   context 'when age verification is enabled' do
     before { Setting.min_age = 16 }
 

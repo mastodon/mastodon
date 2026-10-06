@@ -1,3 +1,5 @@
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+
 import {
   getColumnSkipLinkId,
   getNavigationSkipLinkId,
@@ -45,11 +47,93 @@ function focusColumnTitle(index: number, multiColumn: boolean) {
   }
 }
 
+function focusRedesignColumnTitle(index: number) {
+  const idToFocus =
+    index === 1 ? getNavigationSkipLinkId() : getColumnSkipLinkId(index - 1);
+  const title = document.querySelector<HTMLElement>(`#${idToFocus}`);
+
+  if (!title) {
+    return false;
+  }
+
+  title.focus();
+  return true;
+}
+
+/**
+ * Move focus to the column of the passed index (1-based).
+ * Focus is placed on the topmost visible item, or the column title.
+ */
+export function focusFirstVisibleItemInColumn(columnIndex: number) {
+  const allColumns = Array.from(
+    document.querySelectorAll(`[data-column-root]`),
+  );
+  const column = allColumns[columnIndex - 1];
+
+  if (!column) {
+    return false;
+  }
+
+  function fallback() {
+    focusRedesignColumnTitle(columnIndex);
+    return false;
+  }
+
+  const itemContainer = column.querySelector('.scrollable');
+
+  if (!itemContainer) {
+    return fallback();
+  }
+
+  const focusableItems = Array.from(
+    itemContainer.querySelectorAll<HTMLElement>('.focusable'),
+  );
+
+  // Find first item visible in the viewport
+  const itemToFocus = findFirstVisibleWithRect(focusableItems);
+
+  if (!itemToFocus) {
+    return fallback();
+  }
+
+  const viewportWidth =
+    window.innerWidth || document.documentElement.clientWidth;
+  const { item, rect } = itemToFocus;
+
+  const isMultiColumnLayout = !!document.querySelector(
+    'body.layout-multiple-columns',
+  );
+  const scrollParent = isMultiColumnLayout
+    ? itemContainer
+    : document.documentElement;
+
+  const columnHeaderHeight =
+    parseInt(
+      getComputedStyle(scrollParent).getPropertyValue('--column-header-height'),
+    ) || 0;
+
+  if (
+    scrollParent.scrollTop > item.offsetTop - columnHeaderHeight ||
+    rect.right > viewportWidth ||
+    rect.left < 0
+  ) {
+    itemToFocus.item.scrollIntoView(true);
+  }
+  itemToFocus.item.focus();
+  return true;
+}
+
 /**
  * Move focus to the column of the passed index (1-based).
  * Focus is placed on the topmost visible item, or the column title.
  */
 export function focusColumn(index = 1) {
+  if (isRedesignEnabled()) {
+    // In the redesign, always focus the column title
+    focusRedesignColumnTitle(index);
+    return;
+  }
+
   // Skip the leftmost drawer in multi-column mode
   const isMultiColumnLayout = !!document.querySelector(
     'body.layout-multiple-columns',
@@ -129,11 +213,13 @@ export function getFocusedItemIndex() {
  * Get the index of the column that contains the user's focus
  */
 export function getFocusedColumnIndex() {
-  const columnWithFocus = document.activeElement?.closest('.column');
+  const columnWithFocus = document.activeElement?.closest('[data-column-root]');
 
   if (!columnWithFocus) return 1;
 
-  const allColumns = Array.from(document.querySelectorAll('.column'));
+  const allColumns = Array.from(
+    document.querySelectorAll('[data-column-root]'),
+  );
   return allColumns.indexOf(columnWithFocus) + 1;
 }
 
@@ -182,7 +268,6 @@ export function focusItemSibling(index: number, direction: 1 | -1) {
   if (!targetElement && siblingItem.matches('.load-more')) {
     targetElement = siblingItem;
   }
-
   // If sibling element is empty, we skip it
   if (!targetElement || siblingItem.matches(':empty')) {
     return focusItemSibling(index + direction, direction);
@@ -209,7 +294,7 @@ function focusListSibling(direction: 1 | -1) {
   }
 
   // Get all item lists in the current column or page
-  const currentColumn = container.closest('.column') ?? document;
+  const currentColumn = container.closest('[data-column-root]') ?? document;
 
   const columnItemLists = Array.from(
     currentColumn.querySelectorAll('.item-list'),

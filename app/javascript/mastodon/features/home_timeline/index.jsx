@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 
 import CampaignIcon from '@/material-icons/400-24px/campaign.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { injectIntl } from '@/mastodon/components/intl';
 import { SymbolLogo } from 'mastodon/components/logo';
 import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/announcements';
@@ -17,20 +19,23 @@ import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { withBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
+import { Announcements } from '@/mastodon/features/announcements';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { expandHomeTimeline } from '../../actions/timelines';
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import { ColumnSettings } from './components/column_settings';
 import { CriticalUpdateBanner } from './components/critical_update_banner';
-import { Announcements } from './components/announcements';
 import { AnnualReportTimeline } from '../annual_report/timeline';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { HomeColumnSettings } from './components/column_settings_redesign';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
+  following: { id: 'column.following', defaultMessage: 'Following' },
   show_announcements: { id: 'home.show_announcements', defaultMessage: 'Show announcements' },
   hide_announcements: { id: 'home.hide_announcements', defaultMessage: 'Hide announcements' },
 });
@@ -73,20 +78,14 @@ class HomeTimeline extends PureComponent {
     dispatch(moveColumn(columnId, dir));
   };
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
-  setRef = c => {
-    this.column = c;
-  };
-
   handleLoadMore = maxId => {
     this.props.dispatch(expandHomeTimeline({ maxId }));
   };
 
   componentDidMount () {
-    setTimeout(() => this.props.dispatch(fetchAnnouncements()), 700);
+    if (!isRedesignEnabled()) {
+      setTimeout(() => this.props.dispatch(fetchAnnouncements()), 700);
+    }
     this._checkIfReloadNeeded(false, this.props.isPartial);
   }
 
@@ -150,22 +149,42 @@ class HomeTimeline extends PureComponent {
     }
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
-        <ColumnHeader
-          icon='home'
-          iconComponent={matchesBreakpoint ? SymbolLogo : HomeIcon}
-          active={hasUnread}
-          title={intl.formatMessage(messages.title)}
-          onPin={this.handlePin}
-          onMove={this.handleMove}
-          onClick={this.handleHeaderClick}
-          pinned={pinned}
-          multiColumn={multiColumn}
-          extraButton={announcementsButton}
-          appendContent={hasAnnouncements && showAnnouncements && <Announcements />}
-        >
-          <ColumnSettings />
-        </ColumnHeader>
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
+        {isRedesignEnabled() ? (
+          <ColumnHeader
+            title={intl.formatMessage(messages.following)}
+            withBackButton={multiColumn && !pinned && 'auto'}
+            withUnreadMarker={hasUnread}
+            extraButtons={
+              <HomeColumnSettings>
+                {multiColumn &&
+                  <MultiColumnMenuItems
+                    withDivider
+                    pinned={pinned}
+                    onPin={this.handlePin}
+                    onMove={this.handleMove}
+                  />
+                }
+              </HomeColumnSettings>
+            }
+          />
+        ) : (
+          <LegacyColumnHeader
+            icon='home'
+            iconComponent={matchesBreakpoint ? SymbolLogo : HomeIcon}
+            active={hasUnread}
+            title={intl.formatMessage(messages.title)}
+            onPin={this.handlePin}
+            onMove={this.handleMove}
+            pinned={pinned}
+            multiColumn={multiColumn}
+            extraButton={announcementsButton}
+            appendContent={hasAnnouncements && showAnnouncements && <Announcements />}
+            scrollTopOnClick
+          >
+            <ColumnSettings />
+          </LegacyColumnHeader>
+        )}
 
         {signedIn ? (
           <StatusListContainer

@@ -1,0 +1,53 @@
+@use '@/styles/mastodon/mixins';
+
+// Attachment rearrange modal
+
+.attachmentRoot {
+  min-width: 400px;
+  padding: var(--space-4) 0;
+
+  .title,
+  .footer {
+    padding: 0 var(--space-4);
+  }
+}
+
+.attachmentItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-2);
+  margin: 0 var(--space-2);
+  transition:
+    opacity 200ms,
+    var(--transition, none);
+  border-bottom: 0.5px solid var(--color-border-primary);
+
+  &:focus {
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+  }
+
+  img {
+    height: 60px;
+    width: 90px;
+    object-fit: cover;
+    border-radius: var(--radius-4);
+  }
+}
+
+.attachmentHandle {
+  padding: var(--space-2) 0;
+  aspect-ratio: auto;
+  cursor: inherit;
+}
+
+.attachmentGrabbed > * {
+  opacity: 0;
+}
+
+.attachmentOverlay {
+  cursor: grabbing;
+  border-bottom: 0;
+  margin: 0;
+}

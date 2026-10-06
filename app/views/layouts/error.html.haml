@@ -12,8 +12,9 @@
     = theme_style_tags Setting.default_settings['theme']
     = vite_typescript_tag 'error.ts', crossorigin: 'anonymous'
   %body.error
-    .dialog
+    %main.dialog
       .dialog__illustration
         %img{ alt: Setting.default_settings['site_title'], src: '/oops.png' }/
       .dialog__message
         %h1= yield :content
+        %a{ class: 'button button-secondary', href: '/' }= t('errors.go_home')

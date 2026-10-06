@@ -62,7 +62,7 @@ gem 'ipaddr', '~> 1.2'
 gem 'irb', '~> 1.8'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
-gem 'linzer', '~> 0.7.7'
+gem 'linzer', '~> 0.8.0'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'mime-types', '~> 3.7.0', require: 'mime/types/columnar'
 gem 'mutex_m'
@@ -74,6 +74,7 @@ gem 'public_suffix', '~> 7.0'
 gem 'pundit', '~> 2.3'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', require: 'rack/cors'
+gem 'rack-proxy', require: 'rack/proxy'
 gem 'rails-i18n', '~> 8.0'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 5'
@@ -95,7 +96,7 @@ gem 'tzinfo-data', '~> 1.2023'
 gem 'webauthn', '~> 3.0'
 gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
 
-gem 'json'
+gem 'json', '< 3'
 gem 'json-canonicalization', '~> 1.0'
 gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
@@ -106,7 +107,7 @@ gem 'prometheus_exporter', '~> 2.2', require: false
 gem 'opentelemetry-api', '~> 1.11.0'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.34.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.37.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.13.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.25.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.25.0', require: false
@@ -115,7 +116,7 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-http', '~> 0.30.0', require: false
   gem 'opentelemetry-instrumentation-http_client', '~> 0.29.0', require: false
   gem 'opentelemetry-instrumentation-net_http', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-pg', '~> 0.36.0', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.37.0', require: false
   gem 'opentelemetry-instrumentation-rack', '~> 0.31.0', require: false
   gem 'opentelemetry-instrumentation-rails', '~> 0.42.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.29.0', require: false
@@ -231,6 +232,6 @@ gem 'hcaptcha', '~> 7.1'
 
 gem 'mail', '~> 2.8'
 
-gem 'vite_rails'
-
 gem 'base58', '~> 0.2.3'
+
+gem 'bloom_fit', '~> 1.2'

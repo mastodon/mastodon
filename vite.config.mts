@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import formatjs from '@formatjs/unplugin/vite';
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
-import babel from '@rolldown/plugin-babel';
+import babel, { defineRolldownBabelPreset } from '@rolldown/plugin-babel';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
 import browserslist from 'browserslist';
@@ -19,15 +19,24 @@ import {
 import manifestSRI from 'vite-plugin-manifest-sri';
 import svgr from 'vite-plugin-svgr';
 
-import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
-import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
-import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
-import { MastodonServiceWorkerChunkPaths } from './config/vite/plugin-sw-chunk-paths';
-import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
+import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest.mts';
+import { MastodonThemes } from './config/vite/plugin-mastodon-themes.mts';
+import { MastodonServiceWorkerChunkPaths } from './config/vite/plugin-sw-chunk-paths.mts';
+import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales.mts';
 
-const jsRoot = path.resolve(__dirname, 'app/javascript');
+const jsRoot = path.resolve(import.meta.dirname, 'app/javascript');
 
 const cssAliasClasses: ReadonlyArray<string> = ['components', 'features'];
+
+// Avoid parsing files which don't reference `propTypes`
+const removePropTypesPreset = defineRolldownBabelPreset({
+  preset: () => ({ plugins: ['transform-react-remove-prop-types'] }),
+  rolldown: {
+    filter: {
+      code: /propTypes/i,
+    },
+  },
+});
 
 export const config: UserConfigFnPromise = async ({ mode, command }) => {
   const isProdBuild = mode === 'production' && command === 'build';
@@ -41,7 +50,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
   return {
     root: jsRoot,
     base: `/${outDirName}/`,
-    envDir: __dirname,
+    envDir: import.meta.dirname,
     resolve: {
       tsconfigPaths: true,
       alias: {
@@ -105,10 +114,14 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         // but it needs to be scoped to the whole domain
         'Service-Worker-Allowed': '/',
       },
-      hmr: {
+      hmr: true,
+      ws: {
         // Forcing the protocol to be insecure helps if you are proxying your dev server with SSL,
         // because Vite still tries to connect to localhost.
         protocol: 'ws',
+        // The client can't connect through the main Rails app proxy since it doesn't support
+        // WebSockets. It needs to connect directly to Vite's server, that's why we set the port again
+        clientPort: 3036,
       },
       port: 3036,
     },
@@ -178,7 +191,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     plugins: [
       react(),
       babel({
-        plugins: ['transform-react-remove-prop-types'],
+        presets: [removePropTypesPreset],
       }),
       formatjs(),
       MastodonThemes(),
@@ -202,7 +215,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         (visualizer({
           template: process.env.CI ? 'raw-data' : 'treemap',
         }) as PluginOption),
-      MastodonNameLookup(),
     ],
   } satisfies UserConfig;
 };
