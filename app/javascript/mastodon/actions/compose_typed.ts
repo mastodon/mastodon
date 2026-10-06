@@ -19,10 +19,16 @@ import {
   createAppThunk,
 } from '@/mastodon/store/typed_functions';
 
+import { selectComposerIsChanged } from '../reducers/slices/composer';
 import { isRedesignEnabled } from '../utils/environment';
 
 import { showAlert } from './alerts';
-import { changeCompose, focusCompose, uploadCompose } from './compose';
+import {
+  changeCompose,
+  focusCompose,
+  replyCompose,
+  uploadCompose,
+} from './compose';
 import { importFetchedStatuses } from './importer';
 import { openModal } from './modal';
 
@@ -158,6 +164,35 @@ export const changeUploadCompose = createDataLoadingThunk(
 
 export const rearrangeComposeAttachments = createAction<string[]>(
   'compose/rearrangeAttachments',
+);
+
+export const replyComposeById = createAppThunk(
+  (
+    { statusId, force = false }: { statusId?: string; force?: boolean },
+    { dispatch, getState },
+  ) => {
+    if (!statusId) {
+      return;
+    }
+    let status = getState().statuses.get(statusId);
+    if (!status) {
+      return;
+    }
+
+    const account = getState().accounts.get(status.get('account') as string);
+    if (account) {
+      status = status.set('account', account);
+    }
+
+    const touched = selectComposerIsChanged(getState());
+    if (touched && !force) {
+      dispatch(
+        openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }),
+      );
+    } else {
+      dispatch(replyCompose(status));
+    }
+  },
 );
 
 export const quoteCompose = createAppThunk(
