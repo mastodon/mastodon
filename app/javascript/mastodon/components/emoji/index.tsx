@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -19,6 +19,7 @@ import {
   stringToEmojiState,
   tokenizeText,
 } from '@/mastodon/features/emoji/render';
+import { useToggle } from '@/mastodon/hooks/useToggle';
 
 import { AnimateEmojiContext, CustomEmojiContext } from './context';
 
@@ -50,10 +51,7 @@ export const Emoji: FC<EmojiProps> = ({
 
   const animate = useContext(AnimateEmojiContext);
 
-  const [error, setError] = useState(false);
-  const handleError = useCallback(() => {
-    setError(true);
-  }, [setError]);
+  const [error, { onTrue: handleError }] = useToggle();
 
   const fallback = showFallback ? code : null;
 
