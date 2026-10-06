@@ -8,6 +8,14 @@ de:
     hosted_on: Mastodon, eingerichtet auf %{domain}
     title: Über
   accounts:
+    api_errors:
+      2fa_required: Dein Konto darf ohne eine zweite Authentisierungsmethode nicht verwendet werden
+      account_deleted: Dein Konto wurde gelöscht
+      account_suspended: Dein Konto wurde gesperrt
+      login_disabled: Dein Konto wurde deaktiviert
+      memorial: Dein Konto wurde in eine Gedenkseite umgewandelt
+      pending_approval: Dein Konto steht noch zur Überprüfung aus
+      pending_confirmation: Dein Konto hat noch keine bestätigte E-Mail-Adresse
     errors:
       cannot_be_added_to_collections: Dieses Konto darf keinen Sammlungen hinzugefügt werden.
     followers:
@@ -69,6 +77,7 @@ de:
       demote: Zurückstufen
       destroyed_msg: Die Daten von %{username} befinden sich nun in der Warteschlange und werden in Kürze gelöscht
       disable: Einfrieren
+      disable_sign_in_token: Sicherheitscode für die Anmeldung vorübergehend deaktivieren
       disable_sign_in_token_auth: E-Mail-Token-Authentisierung deaktivieren
       disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
       disabled: Eingefroren
@@ -82,6 +91,7 @@ de:
       email: E-Mail-Adresse
       email_status: Status der E-Mail-Adresse
       enable: Freischalten
+      enable_sign_in_token: Sicherheitscode für die Anmeldung aktivieren
       enable_sign_in_token_auth: E-Mail-Token-Authentisierung aktivieren
       enabled: Freigegeben
       enabled_msg: Konto von %{username} erfolgreich freigegeben
@@ -997,6 +1007,13 @@ de:
         disabled: Niemandem
         users: Für angemeldete lokale Benutzer*innen
       external:
+        directory: Serververzeichnis
+        opt_in_server_directory:
+          description: Erlaubt die Aufnahme deines Servers in öffentlichen Verzeichnissen (wie z. B. unter https://joinmastodon.org/servers).
+          title: Diesen Server in Serververzeichnissen aufnehmen
+        opt_in_server_recommendation:
+          description: Ermöglicht, dass dieser Server bei Registrierungen in Apps (wie den offiziellen Mastodon-Apps) empfohlen wird.
+          title: Diesen Server in Serverempfehlungen aufnehmen
         preamble: Lege fest, wie viele Informationen über deinen Server mit anderen Diensten und Servern geteilt werden – und bestimme so, wie gut sich die Inhalte deines Servers verbreiten dürfen.
         privacy: Datenschutz
         publish_statistics: Statistiken bekanntgeben
@@ -2334,6 +2351,14 @@ de:
       further_actions_html: Solltest du das nicht gewesen sein, empfehlen wir dir, sofort %{action}, da dein Konto möglicherweise kompromittiert ist.
       subject: Zwei-Faktor-Authentisierung fehlgeschlagen
       title: Zwei-Faktor-Authentisierung fehlgeschlagen
+    sign_in_token:
+      change_password: dein Passwort zu ändern
+      details: 'Details zum Anmeldeversuch:'
+      explanation: 'Du hast dich nach längerer Zeit wieder in dein Konto angemeldet. Um sicherzugehen, dass du das warst, gib den unten aufgeführten Sicherheitscode bei der Anmeldung an:'
+      further_actions: 'Wenn du dich nicht angemeldet hast, ändere dein Passwort und aktiviere die Zwei-Faktor-Authentisierung für dein Konto:'
+      further_actions_html: Wenn du dich nicht angemeldet hast, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentisierung für dein Konto zu aktivieren, um es abzusichern.
+      subject: Bitte bestätige deinen Anmeldeversuch
+      title: Anmeldeversuch
     suspicious_sign_in:
       change_password: dein Passwort zu ändern
       details: 'Hier sind die Details zu den Anmeldeversuchen:'
@@ -2423,8 +2448,12 @@ de:
       title: Willkommen an Bord, %{name}!
   users:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Profilen folgen
+    generic_access_help_html: Falls du Probleme hast, auf dein Konto zuzugreifen, tritt bitte mit uns über die E-Mail %{email} in Kontakt
     go_to_sso_account_settings: Kontoeinstellungen des Identitätsanbieters aufrufen
+    inactive_sign_in_confirmation: Du hast dich nach längerer Zeit wieder in dein Konto angemeldet. Um sicherzugehen, dass du das warst, haben wir einen Sicherheitscode an deine E-Mail-Adresse verschickt.
+    inactive_sign_in_title: Sicherheitscode bestätigen
     invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung (2FA)
+    invalid_sign_in_token: Ungültiger Sicherheitscode
     otp_lost_help_html: Wenn du sowohl die E-Mail-Adresse als auch das Passwort nicht mehr weißt, melde dich bitte bei uns unter %{email}
     rate_limited: Zu viele Authentisierungsversuche. Bitte versuche es später noch einmal.
     seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.

@@ -8,6 +8,14 @@ is:
     hosted_on: Mastodon hýst á %{domain}
     title: Um hugbúnaðinn
   accounts:
+    api_errors:
+      2fa_required: Notandaaðganginn þinn er ekki hægt að nota án uppsetningar á annarri auðkenningarleið
+      account_deleted: Notandaaðgangnum þínum hefur verið eytt
+      account_suspended: Notandaaðgangurinn þinn hefur verið settur í frysti
+      login_disabled: Notandaaðgangurinn þinn er óvirkur sem stendur
+      memorial: Notandaaðgangnum þínum hefur verið breytt í minningargrein
+      pending_approval: Notandaaðgangurinn þinn bíður eftir samþykki umsjónarfólks
+      pending_confirmation: Notandaaðganginn þinn vantar staðfest tölvupóstfang
     errors:
       cannot_be_added_to_collections: Þessum aðgangi er ekki hægt að bæta í söfn.
     followers:
@@ -69,6 +77,7 @@ is:
       demote: Lækka í tign
       destroyed_msg: Gögn notandans %{username} eru núna í bið eftir að vera endanlega eytt
       disable: Gera óvirkt
+      disable_sign_in_token: Gera áskorun með öryggiskóða tímabundið óvirka
       disable_sign_in_token_auth: Gera óvirka auðkenningu með teikni í tölvupósti
       disable_two_factor_authentication: Gera tveggja-þátta auðkenningu óvirka
       disabled: Óvirkt
@@ -82,6 +91,7 @@ is:
       email: Tölvupóstfang
       email_status: Staða tölvupósts
       enable: Virkja
+      enable_sign_in_token: Gera áskorun með öryggiskóða virka
       enable_sign_in_token_auth: Virkja auðkenningu með teikni í tölvupósti
       enabled: Virkt
       enabled_msg: Tókst að affrysta aðgang notandans %{username}
@@ -999,8 +1009,17 @@ is:
         disabled: Til engra
         users: Til innskráðra staðværra notenda
       external:
+        directory: Skrá yfir netþjóna
+        opt_in_server_directory:
+          description: Láttu netþjóninn þinn vera á skrám yfir netþjóna í líkingu við þá sem birtist á https://joinmastodon.org/servers.
+          title: Settu netþjóninn þinn á skrána yfir netþjóna
+        opt_in_server_recommendation:
+          description: Láttu netþjóninn þinn vera einn af þeim sem mælt er með við nýskráningu í forritum eins og opinbera Mastodon-forritinu.
+          title: Settu netþjóninn þinn á skrá yfir netþjóna sem mælt er með
+        preamble: Stýrðu því hve miklum upplýsingum um netþjóninn þinn sé deilt með öðrum þjónustum og því hve auðvelt eigi að vera að finna hann.
         privacy: Persónuvernd
         publish_statistics: Birta tölfræði
+        title: Útvær uppgötvun
       feed_access:
         modes:
           authenticated: Einungis auðkenndir notendur
@@ -2341,6 +2360,14 @@ is:
       further_actions_html: Ef þetta varst ekki þú, þá mælum við eindregið með því að þú %{action} samstundis, þar sem það gæti verið berskjaldað.
       subject: Bilun í seinna þrepi auðkenningar
       title: Seinna þrep auðkenningar brást
+    sign_in_token:
+      change_password: breytir lykilorðinu þínu
+      details: 'Hér eru nánari upplýsingar um atvikið:'
+      explanation: 'Við sjáum að reynt hefur verið að skrá sig inn á aðganginn þinn eftir langa fjarveru. Ef það varst þú, skaltu setja inn öryggiskóðann neðst á staðfestingarsíðu innskráningar:'
+      further_actions: 'Ef þetta varst ekki þú, skaltu endilega skipta um lykilorð og virkja tveggja-þrepa auðkenningu fyrir aðganginn þinn. Þú getur gert það hér:'
+      further_actions_html: Ef þetta varst ekki þú, þá mælum við með að þú %{action} strax og virkjir tveggja-þátta auðkenningu til að halda aðgangnum þínum öruggum.
+      subject: Endilega staðfestu tilraun til innskráningar
+      title: Tilraun til innskráningar
     suspicious_sign_in:
       change_password: breytir lykilorðinu þínu
       details: 'Hér eru nánari upplýsingar um innskráninguna:'
@@ -2430,8 +2457,12 @@ is:
       title: Velkomin/n um borð, %{name}!
   users:
     follow_limit_reached: Þú getur ekki fylgst með fleiri en %{limit} aðilum
+    generic_access_help_html: Vandamál við að tengjast aðgangnum þínum? Þú getur sett þig í samband við %{email} til að fá aðstoð
     go_to_sso_account_settings: Fara í stillingar aðgangsins hjá auðkennisveitunni þinni
+    inactive_sign_in_confirmation: Það er nokkuð síðan þú skráðir þig inn síðast, þannig að þú færð sendan öryggiskóða á tölvupóstfangið þitt til að staðfesta að þetta sért þú.
+    inactive_sign_in_title: Staðfestu öryggiskóða
     invalid_otp_token: Ógildur tveggja-þátta kóði
+    invalid_sign_in_token: Ógildur öryggiskóði
     otp_lost_help_html: Ef þú hefur misst aðganginn að hvoru tveggja, geturðu sett þig í samband við %{email}
     rate_limited: Of margar tilraunir til auðkenningar, prófaðu aftur síðar.
     seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.

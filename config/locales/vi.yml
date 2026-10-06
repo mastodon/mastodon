@@ -8,6 +8,14 @@ vi:
     hosted_on: "%{domain} vận hành nhờ Mastodon"
     title: Giới thiệu
   accounts:
+    api_errors:
+      2fa_required: Tài khoản của bạn không thể được sử dụng nếu chưa thiết lập yếu tố xác thực thứ hai
+      account_deleted: Tài khoản của bạn đã bị xóa
+      account_suspended: Tài khoản của bạn đã bị vô hiệu hóa
+      login_disabled: Tài khoản của bạn tạm thời bị cấm đăng nhập
+      memorial: Tài khoản của bạn đã được chuyển thành tài khoản tưởng niệm
+      pending_approval: Tài khoản của bạn hiện đang chờ phê duyệt kiểm duyệt
+      pending_confirmation: Tài khoản của bạn chưa được xác minh địa chỉ email
     errors:
       cannot_be_added_to_collections: Tài khoản này không thể thêm vào gói khởi đầu.
     followers:
@@ -66,6 +74,7 @@ vi:
       demote: Hạ vai trò
       destroyed_msg: Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ
       disable: Khóa
+      disable_sign_in_token: Tạm thời tắt yêu cầu nhập mã bảo mật
       disable_sign_in_token_auth: Tắt xác minh bằng email
       disable_two_factor_authentication: Vô hiệu hóa xác thực 2 bước
       disabled: Tạm khóa
@@ -79,6 +88,7 @@ vi:
       email: Email
       email_status: Trạng thái
       enable: Mở lại
+      enable_sign_in_token: Bật yêu cầu nhập mã bảo mật
       enable_sign_in_token_auth: Bật xác minh bằng email
       enabled: Đã duyệt
       enabled_msg: Đã kích hoạt lại tài khoản %{username} thành công
@@ -981,6 +991,13 @@ vi:
         disabled: Không ai
         users: Để đăng nhập người cục bộ
       external:
+        directory: Danh mục Máy chủ
+        opt_in_server_directory:
+          description: Hãy cho phép máy chủ của bạn được liệt kê trong các danh mục máy chủ, chẳng hạn như danh mục có trên trang https://joinmastodon.org/servers.
+          title: Đăng ký máy chủ của bạn vào danh mục máy chủ
+        opt_in_server_recommendation:
+          description: Cho phép máy chủ của bạn được đề xuất khi người dùng đăng ký trên các ứng dụng như ứng dụng Mastodon chính thức.
+          title: Cho phép máy chủ của bạn tham gia tính năng đề xuất máy chủ
         preamble: Kiểm soát thông tin về máy chủ của bạn được chia sẻ với các dịch vụ khác và mức độ dễ dàng tìm thấy máy chủ của bạn.
         privacy: Riêng tư
         publish_statistics: Công khai số liệu thống kê
@@ -2288,6 +2305,14 @@ vi:
       further_actions_html: Nếu không phải bạn, hãy lập tức %{action} vì có thể có rủi ro.
       subject: Xác thực 2 bước thất bại
       title: Xác thực 2 bước thất bại
+    sign_in_token:
+      change_password: đổi mật khẩu của bạn
+      details: 'Dưới đây là thông tin chi tiết:'
+      explanation: 'Tài khoản của bạn vừa đăng nhập sau một khoảng thời gian dài không hoạt động. Nếu thật là bạn, hãy nhập mã bảo mật bên dưới vào trang đăng nhập:'
+      further_actions: 'Nếu không phải là bạn, hãy lập tức thay đổi mật khẩu và kích hoạt xác thực hai bước ở đây:'
+      further_actions_html: Nếu đây không phải là bạn, hãy %{action} lập tức và bật xác thực 2 bước để giữ tài khoản được an toàn.
+      subject: Xác nhận đăng nhập
+      title: Đăng nhập
     suspicious_sign_in:
       change_password: đổi mật khẩu của bạn
       details: 'Chi tiết thông tin đăng nhập:'
@@ -2376,8 +2401,12 @@ vi:
       title: Xin chào %{name}!
   users:
     follow_limit_reached: Bạn chỉ có thể theo dõi tối đa %{limit} người
+    generic_access_help_html: Gặp trục trặc với tài khoản? Liên hệ %{email} để được trợ giúp
     go_to_sso_account_settings: Thiết lập tài khoản nhà cung cấp danh tính
+    inactive_sign_in_confirmation: Đã khá lâu kể từ lần cuối bạn đăng nhập, vì vậy chúng tôi sẽ gửi mã bảo mật đến địa chỉ email của bạn để xác minh.
+    inactive_sign_in_title: Vui lòng nhập mã bảo mật
     invalid_otp_token: Mã xác thực 2 bước không hợp lệ
+    invalid_sign_in_token: Mã bảo mật không hợp lệ
     otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể đăng nhập bằng %{email}
     rate_limited: Quá nhiều lần thử, vui lòng thử lại sau.
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.

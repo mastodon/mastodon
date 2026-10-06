@@ -8,6 +8,10 @@ fi:
     hosted_on: Mastodon palvelimella %{domain}
     title: Tietoja
   accounts:
+    api_errors:
+      account_deleted: Tilisi on poistettu
+      account_suspended: Tilisi on jäädytetty
+      pending_confirmation: Tililtäsi puuttuu vahvistettu sähköpostiosoite
     errors:
       cannot_be_added_to_collections: Tätä tiliä ei voi lisätä kokoelmiin.
     followers:
@@ -2339,6 +2343,8 @@ fi:
       further_actions_html: Jos se et ollut sinä, suosittelemme, että %{action} välittömästi, sillä se on saattanut vaarantua.
       subject: Kaksivaiheisen todennuksen virhe
       title: Kaksivaiheisen todennuksen toinen vaihe epäonnistui
+    sign_in_token:
+      title: Kirjautumisyritys
     suspicious_sign_in:
       change_password: vaihdat salasanasi
       details: 'Tässä on tiedot kirjautumisesta:'
