@@ -107,8 +107,8 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
             className={classes.unreadButton}
           >
             <FormattedMessage
-              id='column_header.new_posts'
-              defaultMessage='New posts'
+              id='column_header.newer_posts'
+              defaultMessage='Newer posts'
             />
           </Button>
         )}
