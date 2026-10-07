@@ -27,7 +27,7 @@ html:not([data-color-scheme]) {
 
   &[data-contrast='high'],
   [data-contrast='high'] & {
-    @include dark.contrast-overrides;
+    @include dark.base-indigo-contrast;
   }
 }
 
@@ -40,6 +40,6 @@ html:not([data-color-scheme]) {
 
   &[data-contrast='high'],
   [data-contrast='high'] & {
-    @include light.contrast-overrides;
+    @include light.base-indigo-contrast;
   }
 }

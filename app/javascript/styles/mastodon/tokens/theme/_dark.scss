@@ -1,12 +1,29 @@
 @use 'utils';
 
 @mixin base-indigo {
-  --base-color-fg: var(--color-indigo-50);
   --base-color-bg: var(--color-indigo-950);
   --base-color-bg-desktop: var(--base-color-bg);
+  --base-color-fg: var(--color-indigo-50);
+  --base-color-fg-on-accent: var(--base-color-bg);
   --base-color-accent: var(--color-indigo-300);
   --base-color-danger: var(--color-red-200);
   --base-highlight-strength: 8%;
+}
+@mixin base-indigo-contrast {
+  --base-color-accent: var(--color-indigo-200);
+}
+
+@mixin base-lime {
+  --base-color-bg: var(--color-lime-950);
+  --base-color-bg-desktop: var(--base-color-bg);
+  --base-color-fg: var(--color-lime-50);
+  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-accent: var(--color-lime-500);
+  --base-color-danger: var(--color-red-200);
+  --base-highlight-strength: 8%;
+}
+@mixin base-lime-contrast {
+  --base-color-accent: var(--color-lime-300);
 }
 
 @mixin tokens {
@@ -23,7 +40,7 @@
     var(--color-text-brand)
   ); // legacy
 
-  --color-text-on-brand-base: var(--color-text-inverted);
+  --color-text-on-brand-base: var(--base-color-fg-on-accent);
   --color-text-brand-on-inverted: var(--color-indigo-600); // legacy
   --color-text-error: var(--base-color-danger);
   --color-text-on-error-base: var(--color-text-inverted);
@@ -132,8 +149,4 @@
   --rich-text-container-color: rgb(87 24 60 / 100%);
   --rich-text-text-color: rgb(255 175 212 / 100%);
   --rich-text-decorations-color: rgb(128 58 95 / 100%);
-}
-
-@mixin contrast-overrides {
-  --base-color-accent: var(--color-indigo-200);
 }
