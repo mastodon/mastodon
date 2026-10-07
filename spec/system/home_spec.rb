@@ -26,6 +26,21 @@ RSpec.describe 'Home page' do
         .and have_css('body', class: 'app-body')
     end
 
+    context 'when the local live feed page is loaded' do
+      it 'returns page with links to rss feed' do
+        get '/public/local'
+        expect(rss_links.first[:href]).to eq('/public/local.rss')
+      end
+
+      def rss_links
+        alternate_links.css('[type="application/rss+xml"]')
+      end
+
+      def alternate_links
+        response.parsed_body.css('link[rel=alternate]')
+      end
+    end
+
     context 'when the landing page is set to about' do
       before do
         Setting.landing_page = 'about'
