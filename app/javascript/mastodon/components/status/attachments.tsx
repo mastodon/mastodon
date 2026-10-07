@@ -357,8 +357,8 @@ const MediaAttachmentWrapper: React.FC<{
           )}
           <Button size='sm' variant='solid' onClick={onToggle}>
             <FormattedMessage
-              id='content_warning.media.hide_short'
-              defaultMessage='Hide media'
+              id='content_warning.media.show_short'
+              defaultMessage='Show media'
             />
           </Button>
         </div>
