@@ -68,8 +68,6 @@ export const RedesignComposeForm: React.FC<
 
       {!headless && <ComposeFormHeader id={titleId} noMinimize={noMinimize} />}
 
-      <ComposeReply />
-
       <div className={classes.toolbar}>
         <ComposeVisibility className={classes.flexGrowWrap} />
 
@@ -78,9 +76,16 @@ export const RedesignComposeForm: React.FC<
         <ComposeSettingsMenu />
       </div>
 
-      <ComposeSensitiveField />
+      <ComposeTextarea
+        autoFocus={autoFocus}
+        beforeTextArea={
+          <>
+            <ComposeReply />
 
-      <ComposeTextarea autoFocus={autoFocus}>
+            <ComposeSensitiveField />
+          </>
+        }
+      >
         <ComposeAttachments className={classes.attachments} />
       </ComposeTextarea>
 
