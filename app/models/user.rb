@@ -525,20 +525,21 @@ class User < ApplicationRecord
   end
 
   def reload_home_feed
-    if display_own_boosts_changed?
-      FeedManager.instance.merge_into_own_home(account, :reblog) if saved_change_to_settings.last['display_own_boosts'] == true
-      FeedManager.instance.unmerge_from_own_home(account, :reblog) if saved_change_to_settings.last['display_own_boosts'] == false
-    elsif display_own_posts_changed?
-      FeedManager.instance.merge_into_own_home(account, :post) if saved_change_to_settings.last['display_own_posts'] == true
-      FeedManager.instance.unmerge_from_own_home(account, :post) if saved_change_to_settings.last['display_own_posts'] == false
-    end
+    display_reblog = display_own_boosts_changed_to
+    display_post = display_own_posts_changed_to
+
+    MultiMergeIntoOwnHomeWorker.perform_async(account.id, display_post, display_reblog)
   end
 
-  def display_own_boosts_changed?
-    true if saved_change_to_settings.first['display_own_boosts'] != saved_change_to_settings.last['display_own_boosts']
+  def display_own_boosts_changed_to
+    return nil unless saved_change_to_settings.first['display_own_boosts'] != saved_change_to_settings.last['display_own_boosts']
+
+    saved_change_to_settings.last['display_own_boosts']
   end
 
-  def display_own_posts_changed?
-    true if saved_change_to_settings.first['display_own_posts'] != saved_change_to_settings.last['display_own_posts']
+  def display_own_posts_changed_to
+    return nil unless saved_change_to_settings.first['display_own_posts'] != saved_change_to_settings.last['display_own_posts']
+
+    saved_change_to_settings.last['display_own_posts']
   end
 end
