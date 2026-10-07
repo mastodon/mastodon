@@ -4,9 +4,10 @@ import classes from './invoke_virtual_ios_keyboard.module.css';
  * To ensure that a virtual keyboard is shown on iOS when
  * auto-focusing an input that isn't available synchronously,
  * we create a dummy input that we briefly attach to the DOM
- * to capture focus, then let our regular FocusNavigationTarget
- * handling take over.
- * Ensure that this is only used when you're
+ * to capture focus, then let regular focus handling take over.
+ *
+ * Ensure that this is only used when necessary, and at the same time
+ * as a UI change that causes an element to be auto-focused.
  */
 export function invokeVirtualIosKeyboard() {
   const prevFocusedElement = document.activeElement as HTMLElement | null;
