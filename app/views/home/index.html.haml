@@ -1,6 +1,8 @@
 - content_for :header_tags do
   - unless request.path == '/'
     %meta{ name: 'robots', content: 'noindex' }/
+  - if request.path == '/public/local'
+    %link{ rel: 'alternate', type: 'application/rss+xml', href: "#{request.path}.rss" }/
 
   = render partial: 'shared/og'
 
