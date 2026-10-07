@@ -19,6 +19,7 @@ import {
   stringToEmojiState,
   tokenizeText,
 } from '@/mastodon/features/emoji/render';
+import { useToggle } from '@/mastodon/hooks/useToggle';
 
 import { AnimateEmojiContext, CustomEmojiContext } from './context';
 
@@ -50,6 +51,8 @@ export const Emoji: FC<EmojiProps> = ({
 
   const animate = useContext(AnimateEmojiContext);
 
+  const [error, { onTrue: handleError }] = useToggle();
+
   const fallback = showFallback ? code : null;
 
   // If the code is invalid or we otherwise know it's not valid, show the fallback.
@@ -79,11 +82,12 @@ export const Emoji: FC<EmojiProps> = ({
     const shortcode = `:${state.code}:`;
     return (
       <img
-        src={animate ? state.data.url : state.data.static_url}
+        src={animate && !error ? state.data.url : state.data.static_url}
         alt={shortcode}
         title={shortcode}
         className='emojione custom-emoji'
         loading='lazy'
+        onError={handleError}
       />
     );
   }
