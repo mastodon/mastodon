@@ -8,6 +8,14 @@ he:
     hosted_on: מסטודון שיושב בכתובת %{domain}
     title: אודות
   accounts:
+    api_errors:
+      2fa_required: לא ניתן להשתמש בחשבונך ללא יצירת אימות כפול
+      account_deleted: חשבונך נמחק
+      account_suspended: חשבונך הושעה
+      login_disabled: חשבונך הושבת
+      memorial: חשבונך הומר לפרופיל זכרון
+      pending_approval: חשבונך ממתין לאישור מנחה
+      pending_confirmation: בחשבונך חסרה כתובת דואל מאומתת
     errors:
       cannot_be_added_to_collections: לא ניתן להוסיף חשבון זה לאוספים.
     followers:
@@ -1015,6 +1023,13 @@ he:
         disabled: לאף אחד
         users: למשתמשים מקומיים מחוברים
       external:
+        directory: מדריך שרתים
+        opt_in_server_directory:
+          description: אפשרו לרשום את השרת שלכם במדריך שרתים, כגון זה המוצג ב־ https://joinmastodon.org/servers.
+          title: בחירה להוסיף את שרתך למדריך שרתים
+        opt_in_server_recommendation:
+          description: לאפשר לשרתך להיות מומלץ בעת ההרשמה ביישומונים כגון היישומונים הרשמיים של מסטודון.
+          title: בחירה להוסיף את שרתך להמלצות שרתים
         preamble: שלטו בכמות המידע אודות השרת שלך שמשותף עם שירותים אחרים ועד כמה השרת שלך צריך להיות גלוי.
         privacy: פרטיות
         publish_statistics: פרסום הסטטיסטיקות בפומבי

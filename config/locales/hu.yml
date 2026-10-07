@@ -8,6 +8,14 @@ hu:
     hosted_on: "%{domain} Mastodon-kiszolgáló"
     title: Névjegy
   accounts:
+    api_errors:
+      2fa_required: A fiók nem használható második hitelesítési lépcső beállítása nélkül
+      account_deleted: A fiókodat törölték
+      account_suspended: A fiókodat felfüggesztették
+      login_disabled: A fiókod jelenleg le van tiltva
+      memorial: A fiókodat emlékfiókká alakították
+      pending_approval: A fiókod jelenleg moderátori jóváhagyásra vár
+      pending_confirmation: A fiókodból hiányzik egy megerősített e-mail-cím
     errors:
       cannot_be_added_to_collections: Ez a fiók nem adható hozzá gyűjteményekhez.
     followers:
@@ -999,6 +1007,13 @@ hu:
         disabled: Senkinek
         users: Bejelentkezett helyi felhasználóknak
       external:
+        directory: Kiszolgálócímtár
+        opt_in_server_directory:
+          description: Engedélyezés, hogy a kiszolgálódat felsorolják a kiszolgálócímtárakban, például a https://joinmastodon.org/servers címen találhatóban.
+          title: A kiszolgáló szerepelhet a kiszolgálócímtárban
+        opt_in_server_recommendation:
+          description: Engedélyezés, hogy a kiszolgálódat javasolják az alkalmazásokban történő regisztrációkor, mint például a hivatalos Mastodon-kliensekben.
+          title: A kiszolgáló szerepelhet a kiszolgálójavaslatokban
         preamble: Állítsd be, hogy a kiszolgálódról mennyi információt osztasz meg más szolgáltatásokkal, és hogy a kiszolgálód mennyire legyen felfedezhező.
         privacy: Adatvédelem
         publish_statistics: Statisztikák közzététele
