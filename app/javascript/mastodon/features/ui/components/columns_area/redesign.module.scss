@@ -51,9 +51,11 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  width: 100%;
   max-width: var(--navigation-max-width);
   height: 100dvh;
   padding-bottom: env(safe-area-inset-bottom);
+  justify-self: end;
 
   .multiColumnRoot & {
     height: initial;
