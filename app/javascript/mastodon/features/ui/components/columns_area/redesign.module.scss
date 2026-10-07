@@ -2,8 +2,7 @@
 
 .root {
   --main-column-max-width: 600px;
-  --navigation-min-width: 280px;
-  --navigation-max-width: 320px;
+  --navigation-width: 320px;
 
   display: flex;
   flex-direction: column;
@@ -21,7 +20,7 @@
   @media (min-width: $mobile-menu-breakpoint) {
     display: grid;
     grid-template-columns:
-      minmax(var(--navigation-min-width), 1fr)
+      minmax(var(--navigation-width), 1fr)
       minmax(0, var(--main-column-max-width))
       minmax(0, 1fr);
     gap: var(--space-2);
@@ -31,7 +30,7 @@
 .rootMinimal {
   // In `minimalShell` layout, no sidebar navigation is shown,
   // so we allow the column to collapse
-  --navigation-min-width: 0;
+  --navigation-width: 0;
 }
 
 .multiColumnRoot {
@@ -51,9 +50,11 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  max-width: var(--navigation-max-width);
+  width: 100%;
+  max-width: var(--navigation-width);
   height: 100dvh;
   padding-bottom: env(safe-area-inset-bottom);
+  justify-self: end;
 
   .multiColumnRoot & {
     height: initial;
