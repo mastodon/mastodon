@@ -1,4 +1,4 @@
-@use 'theme/base';
+@use 'theme/palette';
 @use 'theme/dark';
 @use 'theme/light';
 @use 'theme/utils';
@@ -7,7 +7,7 @@
 @use 'type';
 
 html {
-  @include base.palette;
+  @include palette.palette;
   @include border.border-widths;
   @include border.borders;
   @include shape.space;
@@ -21,6 +21,7 @@ html {
 html:not([data-color-scheme]) {
   color-scheme: dark;
 
+  @include dark.base-indigo;
   @include dark.tokens;
   @include utils.invert-on-dark;
 
@@ -33,6 +34,7 @@ html:not([data-color-scheme]) {
 [data-color-scheme='light'] {
   color-scheme: light;
 
+  @include light.base-indigo;
   @include light.tokens;
   @include utils.invert-on-light;
 

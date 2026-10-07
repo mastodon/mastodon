@@ -1,13 +1,15 @@
 @use 'utils';
 
-@mixin tokens {
+@mixin base-indigo {
   --base-color-fg: var(--color-indigo-50);
   --base-color-bg: var(--color-indigo-950);
   --base-color-bg-desktop: var(--base-color-bg);
   --base-color-accent: var(--color-indigo-300);
   --base-color-danger: var(--color-red-200);
   --base-highlight-strength: 8%;
+}
 
+@mixin tokens {
   /* TEXT TOKENS */
 
   --color-text-primary: var(--base-color-fg);
