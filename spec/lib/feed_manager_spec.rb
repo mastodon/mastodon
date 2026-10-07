@@ -523,6 +523,54 @@ RSpec.describe FeedManager do
     end
   end
 
+  describe '#unmerge_from_own_home' do
+    it 'removes statuses from own home feed' do
+      account = Fabricate(:account, id: 0)
+      post = Fabricate(:status, account: account)
+      subject.push_to_home(account, post)
+
+      subject.unmerge_from_own_home(account, :post)
+
+      expect(redis.zscore('feed:home:0', post.id)).to be_nil
+      expect(redis.zrange('feed:home:0', 0, -1)).to_not include(post.id.to_s)
+    end
+
+    it 'removes reblogs from own home feed' do
+      account = Fabricate(:account, id: 0)
+      reblog = Fabricate(:status)
+      status = Fabricate(:status, reblog: reblog, account: account)
+      subject.push_to_home(account, status)
+
+      subject.unmerge_from_own_home(account, :reblog)
+
+      expect(redis.zscore('feed:home:0', status.id)).to be_nil
+      expect(redis.zrange('feed:home:0', 0, -1)).to_not include(status.id.to_s)
+    end
+  end
+
+  describe '#merge_into_own_home' do
+    it 'inserts own posts into home feed' do
+      account = Fabricate(:account, id: 0)
+      post = Fabricate(:status, account: account)
+      subject.push_to_home(account, post)
+
+      subject.merge_into_own_home(account, :post)
+
+      expect(redis.zrange('feed:home:0', 0, -1)).to include(post.id.to_s)
+    end
+
+    it 'inserts own reblogs into home feed' do
+      account = Fabricate(:account, id: 0)
+      reblog = Fabricate(:status)
+      status = Fabricate(:status, reblog: reblog, account: account)
+      subject.push_to_home(account, status)
+
+      subject.merge_into_own_home(account, :reblog)
+
+      expect(redis.zrange('feed:home:0', 0, -1)).to include(status.id.to_s)
+    end
+  end
+
   describe '#merge_into_home' do
     it "does not push source account's statuses whose reblogs are already inserted" do
       account = Fabricate(:account, id: 0)
