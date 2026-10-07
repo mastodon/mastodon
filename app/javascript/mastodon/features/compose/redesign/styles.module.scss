@@ -133,6 +133,10 @@
   }
 }
 
+.sensitive {
+  outline-offset: -2px;
+}
+
 .textarea,
 .textareaMirror {
   @include mixins.type-body;

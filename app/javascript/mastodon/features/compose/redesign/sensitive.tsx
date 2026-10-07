@@ -9,6 +9,7 @@ import { requestComposerFocus } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { selectComposeSensitive } from './selectors';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   sensitiveText: {
@@ -55,6 +56,7 @@ export const ComposeSensitiveField: React.FC<
   return (
     <TextInputField
       {...props}
+      className={classes.sensitive}
       label={intl.formatMessage(messages.sensitiveText)}
       value={sensitiveText}
       onChange={onChange}
