@@ -63,10 +63,10 @@
   );
   cursor: pointer;
 
-  html[data-color-scheme='dark'] & {
-    border: var(--border-default);
-    border-bottom: none;
-  }
+  // html[data-color-scheme='dark'] & {
+  //   border: var(--border-default);
+  //   border-bottom: none;
+  // }
 
   .withStickyContent & {
     background: var(--color-bg-primary);
@@ -129,7 +129,7 @@
 .extraStickyContent {
   background: var(--color-bg-primary);
 
-  html[data-color-scheme='dark'] & {
-    border-inline: var(--border-default);
-  }
+  // html[data-color-scheme='dark'] & {
+  //   border-inline: var(--border-default);
+  // }
 }
