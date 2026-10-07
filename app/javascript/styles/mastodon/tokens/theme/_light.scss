@@ -4,8 +4,9 @@
   --color-root-fg: var(--color-grey-950);
   --color-root-bg: var(--color-indigo-50);
   --color-root-bg-desktop: var(--color-indigo-100);
-  --color-root-accent: var(--color-indigo-600); // 300 dark, 200 dark-contrast
+  --color-root-accent: var(--color-indigo-600);
   --color-root-danger: var(--color-red-700);
+  --root-highlight-strength: 8%;
 
   /* TEXT TOKENS */
 
@@ -40,7 +41,10 @@
   // Neutrals
   --color-bg-primary: var(--color-root-bg);
   --color-bg-desktop: var(--color-root-bg-desktop);
-  --color-bg-highlight: #{utils.css-alpha(var(--color-root-accent), 8%)};
+  --color-bg-highlight: #{utils.css-alpha(
+      var(--color-root-accent),
+      var(--root-highlight-strength)
+    )};
   --overlay-strength-secondary: 4%; // legacy
   --color-bg-secondary: var(--color-bg-highlight); // legacy
   --color-bg-tertiary: var(--color-bg-highlight); // legacy
