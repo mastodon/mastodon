@@ -1,5 +1,3 @@
-import { resolve } from 'node:path';
-
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
 import {

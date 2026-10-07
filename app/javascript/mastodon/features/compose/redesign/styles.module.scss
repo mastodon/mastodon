@@ -18,6 +18,23 @@
   }
 }
 
+.headless {
+  border: 0;
+  box-shadow: none;
+  flex-grow: 1;
+  border-radius: 0;
+  padding-block-start: 0;
+}
+
+:global(.compose-standalone) .headless {
+  min-height: 200px;
+
+  // 138px = header, 235px = footer, 8px padding
+  height: calc(100vh - (138px + 235px + var(--space-2)));
+  max-width: 400px;
+  margin-inline: auto;
+}
+
 .background {
   mask-repeat: repeat;
   mask-image: url('@/images/composer_message.svg');
@@ -89,6 +106,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  gap: var(--space-4);
   scrollbar-width: thin;
   overscroll-behavior-y: contain;
   position: relative;
@@ -115,11 +133,15 @@
   }
 }
 
+.sensitive {
+  outline-offset: -2px;
+}
+
 .textarea,
 .textareaMirror {
   @include mixins.type-body;
 
-  padding: var(--space-2);
+  padding: var(--space-1);
 
   // Prevent automatic page zoom in Safari when focusing
   // text fields with font-sizes below 16px

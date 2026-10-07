@@ -8,6 +8,7 @@ import {
 
 import { useLocation } from 'react-router-dom';
 
+import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import type { PolymorphicProps } from '@/types/polymorphic';
 
 import type { MastodonLocation } from '../router';
@@ -149,7 +150,11 @@ export const NavigationFocusTarget = <As extends React.ElementType = 'h1'>({
   const focusAfterNavigation = useFocusAfterNavigation(focusTargetName);
 
   return (
-    <Component ref={focusAfterNavigation} tabIndex={-1} {...otherProps}>
+    <Component
+      {...otherProps}
+      ref={useMergedRefs(focusAfterNavigation, otherProps.ref)}
+      tabIndex={-1}
+    >
       {children}
     </Component>
   );

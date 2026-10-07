@@ -16,7 +16,7 @@
 
   scroll-padding-block: var(--header-height) var(--footer-height);
 
-  --navigation-background-color: var(--color-bg-blend);
+  --navigation-background-color: var(--color-bg-desktop);
 
   &[data-mode='slide-out'] {
     --navigation-background-color: var(--color-bg-primary);
@@ -49,6 +49,15 @@
 
   &[data-stuck='true']::before {
     opacity: 1;
+  }
+
+  @media (height < 560px) {
+    position: relative;
+    margin-top: var(--space-4);
+
+    &::before {
+      display: none;
+    }
   }
 }
 

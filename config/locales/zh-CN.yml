@@ -8,6 +8,14 @@ zh-CN:
     hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     title: 关于本站
   accounts:
+    api_errors:
+      2fa_required: 在设置双因素认证方式前，你的账号无法使用
+      account_deleted: 你的账号已被删除
+      account_suspended: 你的账号已被封禁
+      login_disabled: 你的账号目前已被禁用
+      memorial: 你的账号已被转为纪念账号
+      pending_approval: 你的账号正在等待审核批准
+      pending_confirmation: 你的账号缺少已确认的电子邮件地址
     errors:
       cannot_be_added_to_collections: 此账号无法被添加到收藏列表内。
     followers:
@@ -66,6 +74,7 @@ zh-CN:
       demote: 取消管理员
       destroyed_msg: "%{username} 的数据已被安排至删除队列"
       disable: 冻结
+      disable_sign_in_token: 临时禁用安全码挑战
       disable_sign_in_token_auth: 禁用邮件令牌身份验证
       disable_two_factor_authentication: 停用双因素认证
       disabled: 已冻结
@@ -79,6 +88,7 @@ zh-CN:
       email: 电子邮箱地址
       email_status: 邮箱地址状态
       enable: 解冻
+      enable_sign_in_token: 启用安全码挑战
       enable_sign_in_token_auth: 启用邮件令牌身份验证
       enabled: 已启用
       enabled_msg: 成功解冻 %{username} 的账号
@@ -971,10 +981,8 @@ zh-CN:
       discovery:
         follow_recommendations: 关注推荐
         preamble: 展示有趣的内容有助于新加入 Mastodon 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。
-        privacy: 隐私
         profile_directory: 个人资料目录
         public_timelines: 公共时间线
-        publish_statistics: 发布统计数据
         title: 发现
         trends: 热门
         wrapstodon: Wrapstodon 年度回顾
@@ -982,6 +990,18 @@ zh-CN:
         all: 对每个人
         disabled: 不对任何人
         users: 对已登录的本站用户
+      external:
+        directory: 服务器目录
+        opt_in_server_directory:
+          description: 允许你的服务器被列入服务器目录，例如 https://joinmastodon.org/servers 上的服务器目录。
+          title: 允许你的服务器被列入服务器目录
+        opt_in_server_recommendation:
+          description: 允许用户在应用程序内注册时，比如官方 Mastodon 客户端等应用程序中，推荐你的服务器。
+          title: 允许你的服务器被列入服务器推荐
+        preamble: 控制服务器信息共享的程度及服务器的可发现性。
+        privacy: 隐私
+        publish_statistics: 发布统计数据
+        title: 外部发现
       feed_access:
         modes:
           authenticated: 仅已登录用户
@@ -2285,6 +2305,14 @@ zh-CN:
       further_actions_html: 如果这不是你所为，你的密码可能已经泄露，建议你立即 %{action} 。
       subject: 辅助认证失败
       title: 辅助认证失败
+    sign_in_token:
+      change_password: 更改密码
+      details: 该尝试详情如下：
+      explanation: 我们检查到在账号长时间未活跃后首次出现了登录请求。如果这确实是你，请在登录确认页面输入下方的安全码：
+      further_actions: 如果这不是你，请更换你的密码并且在你的账号上开启双重认证。你可以在这里设置：
+      further_actions_html: 如果不是你本人操作，我们建议你立即 %{action} 并启用双因素认证，以确保账号安全。
+      subject: 请确认登录请求
+      title: 登录请求
     suspicious_sign_in:
       change_password: 更改密码
       details: 以下是该次登录的详细信息：
@@ -2373,8 +2401,12 @@ zh-CN:
       title: "%{name}，欢迎你的加入！"
   users:
     follow_limit_reached: 你不能关注超过 %{limit} 个人
+    generic_access_help_html: 登录账号出现问题？你可以向 %{email} 寻求帮助
     go_to_sso_account_settings: 转到你的身份提供商进行账号设置
+    inactive_sign_in_confirmation: 距你上次登录已有一段时间，因此我们给你的电子邮箱发了封邮件，想确认一下确实是你。
+    inactive_sign_in_title: 请确认安全码
     invalid_otp_token: 输入的双因素认证代码无效
+    invalid_sign_in_token: 无效安全码
     otp_lost_help_html: 如果你不慎丢失了全部的代码，请联系 %{email} 寻求帮助
     rate_limited: 验证尝试次数过多，请稍后再试。
     seamless_external_login: 你通过外部服务登录，因此密码和邮件设置不可用。

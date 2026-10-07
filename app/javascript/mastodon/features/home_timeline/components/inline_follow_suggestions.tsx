@@ -213,7 +213,7 @@ export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
   }
 
   if (hidden) {
-    return <div className='inline-follow-suggestions' />;
+    return <div className='inline-follow-suggestions focusable' />;
   }
 
   return (

@@ -8,6 +8,14 @@ it:
     hosted_on: Mastodon ospitato su %{domain}
     title: Info
   accounts:
+    api_errors:
+      2fa_required: Il tuo account non può essere utilizzato senza un secondo fattore di autenticazione impostato
+      account_deleted: Il tuo account è stato eliminato
+      account_suspended: Il tuo account è stato sospeso
+      login_disabled: Il tuo profilo è attualmente disabilitato
+      memorial: Il tuo account è stato trasformato in un memoriale
+      pending_approval: Il tuo account è attualmente in attesa di approvazione della moderazione
+      pending_confirmation: Al tuo account manca un indirizzo e-mail confermato
     errors:
       cannot_be_added_to_collections: Questo account non può essere aggiunto alle collezioni.
     followers:
@@ -69,6 +77,7 @@ it:
       demote: Retrocedi
       destroyed_msg: I dati di %{username} sono ora accodati per l'imminente eliminazione
       disable: Congela
+      disable_sign_in_token: Disattiva temporaneamente la verifica del codice di sicurezza
       disable_sign_in_token_auth: Disabilitare l'autenticazione del token e-mail
       disable_two_factor_authentication: Disabilita A2F
       disabled: Congelato
@@ -82,6 +91,7 @@ it:
       email: Email
       email_status: Stato dell'email
       enable: Scongela
+      enable_sign_in_token: Abilita la verifica tramite il codice di sicurezza
       enable_sign_in_token_auth: Abilitare l'autenticazione del token e-mail
       enabled: Abilitato
       enabled_msg: Il profilo di %{username} è stato scongelato correttamente
@@ -987,10 +997,8 @@ it:
       discovery:
         follow_recommendations: Segui le raccomandazioni
         preamble: La scoperta di contenuti interessanti è fondamentale per l'inserimento di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla l'andamento delle varie funzionalità di scoperta sul tuo server.
-        privacy: Privacy
         profile_directory: Directory del profilo
         public_timelines: Timeline pubbliche
-        publish_statistics: Pubblica le statistiche
         title: Scopri
         trends: Tendenze
         wrapstodon: Wrapstodon
@@ -998,6 +1006,18 @@ it:
         all: A tutti
         disabled: A nessuno
         users: Agli utenti locali connessi
+      external:
+        directory: Directory dei Server
+        opt_in_server_directory:
+          description: Permetti al tuo server di essere elencato nelle directory dei server come quella presente su https://joinmastodon.org/servers.
+          title: Includi il tuo server nella directory dei server
+        opt_in_server_recommendation:
+          description: Consenti al tuo server di essere consigliato al momento dell'iscrizione in applicazioni come i client Mastodon ufficiali.
+          title: Includi il tuo server nei server consigliati
+        preamble: Controlla quante informazioni sul tuo server vengono condivise con altri servizi e quanto dovrebbe essere individuabile il tuo server.
+        privacy: Privacy
+        publish_statistics: Pubblica le statistiche
+        title: Rilevabilità esterna
       feed_access:
         modes:
           authenticated: Solo utenti autenticati
@@ -2340,6 +2360,14 @@ it:
       further_actions_html: Se non eri tu, ti consigliamo di %{action} immediatamente poiché potrebbe essere compromesso.
       subject: Errore di autenticazione del secondo fattore
       title: Autenticazione del secondo fattore non riuscita
+    sign_in_token:
+      change_password: cambia la tua password
+      details: 'Questi sono i dettagli del tentativo:'
+      explanation: 'Abbiamo rilevato un tentativo di accesso al tuo account dopo un lungo periodo di inattività. Se sei stato/a tu, per favore inserisci il codice di sicurezza riportato di seguito nella pagina di verifica dell''accesso:'
+      further_actions: 'Se non sei stato/a tu, ti preghiamo di cambiare la password e di attivare l''autenticazione a due fattori sul tuo account. Puoi farlo qui:'
+      further_actions_html: Se non sei stato/a tu, ti consigliamo di %{action} immediatamente e di attivare l'autenticazione a due fattori per mantenere il tuo account al sicuro.
+      subject: Si prega di confermare il tentativo di accesso
+      title: Tentativo di accesso
     suspicious_sign_in:
       change_password: cambiare la tua password
       details: 'Questi sono i dettagli del tentativo di accesso:'
@@ -2429,8 +2457,12 @@ it:
       title: Benvenuto a bordo, %{name}!
   users:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
+    generic_access_help_html: Hai problemi ad accedere al tuo account? Puoi contattare %{email} per ricevere assistenza
     go_to_sso_account_settings: Vai alle impostazioni dell'account del tuo provider di identità
+    inactive_sign_in_confirmation: È passato un po' di tempo dall'ultimo accesso, quindi ti stiamo inviando un codice di sicurezza al tuo indirizzo e-mail per confermare che sei tu.
+    inactive_sign_in_title: Si prega di confermare il codice di sicurezza
     invalid_otp_token: Codice d'accesso non valido
+    invalid_sign_in_token: Codice di sicurezza non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
     rate_limited: Troppi tentativi di autenticazione, per favore riprova più tardi.
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, pertanto le impostazioni relative alla password e all'e-mail non sono disponibili.

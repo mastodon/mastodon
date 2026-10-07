@@ -2,26 +2,15 @@
 
 .root {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
   gap: var(--space-2);
-  margin-top: var(--space-6);
+  margin-top: var(--space-4);
+  color: var(--color-text-secondary);
 
   @include mixins.type-caption;
-}
-
-.heading {
-  margin-inline-end: auto;
-}
-
-.list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-2);
 
   a {
-    color: var(--color-text-secondary);
+    color: inherit;
     text-decoration: underline;
 
     &[aria-current='page'] {
@@ -35,4 +24,11 @@
       text-decoration: none;
     }
   }
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
 }

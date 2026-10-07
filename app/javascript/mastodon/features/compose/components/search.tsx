@@ -111,7 +111,8 @@ export const Search: React.FC<{
   const [expanded, setExpanded] = useState(false);
   const [selectedOption, setSelectedOption] = useState(-1);
   const [quickActions, setQuickActions] = useState<SearchOption[]>([]);
-  const [shouldOpenOnFocus, setShouldOpenOnFocus] = useState(false);
+  const [shouldOpenOnFocus, setShouldOpenOnFocus] =
+    useState(!isRedesignEnabled());
   const focusAfterNavigation = useFocusAfterNavigation(
     FOCUS_TARGET.SEARCH,
     () => {

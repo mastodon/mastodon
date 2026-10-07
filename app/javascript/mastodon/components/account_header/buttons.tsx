@@ -1,11 +1,13 @@
 import { useCallback } from 'react';
 import type { FC } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { BellIcon, BellSlashIcon } from '@phosphor-icons/react';
+import { ChatCircleDotsIcon, UserMinusIcon } from '@phosphor-icons/react';
 
 import { followAccount } from '@/mastodon/actions/accounts';
+import { directCompose } from '@/mastodon/actions/compose';
+import { openModal } from '@/mastodon/actions/modal';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
@@ -14,7 +16,7 @@ import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
 
-import { ToggleIconButton } from '../button/redesign';
+import { Button, IconButton } from '../button/redesign';
 import { CopyIconButton, CopyIconButtonLegacy } from '../copy_button';
 import { FollowButton } from '../follow_button';
 import { IconButton as LegacyIconButton } from '../icon_button';
@@ -71,11 +73,26 @@ const AccountButtonsOther: FC<
   );
 
   const dispatch = useAppDispatch();
+
   const handleNotifyToggle = useCallback(() => {
     if (account) {
       dispatch(followAccount(account.id, { notify: !relationship?.notifying }));
     }
   }, [dispatch, account, relationship]);
+
+  const sendDirectMessage = useCallback(() => {
+    if (account) {
+      dispatch(directCompose(account));
+    }
+  }, [dispatch, account]);
+
+  const confirmUnfollow = useCallback(() => {
+    if (account) {
+      dispatch(
+        openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
+      );
+    }
+  }, [dispatch, account]);
 
   const reference = useFollowReference('profile');
 
@@ -86,9 +103,11 @@ const AccountButtonsOther: FC<
   const isMovedAndUnfollowedAccount = account.moved && !relationship?.following;
   const isFollowing = relationship?.requested || relationship?.following;
 
+  const shouldHideMainFollowButton = isRedesignEnabled() && isFollowing;
+
   return (
     <>
-      {!isMovedAndUnfollowedAccount && (
+      {!shouldHideMainFollowButton && !isMovedAndUnfollowedAccount && (
         <FollowButton
           compact={isRedesignEnabled()}
           accountId={accountId}
@@ -98,39 +117,42 @@ const AccountButtonsOther: FC<
           reference={reference}
         />
       )}
-      {isFollowing &&
-        (isRedesignEnabled() ? (
-          <ToggleIconButton
+      {isFollowing && isRedesignEnabled() && (
+        <>
+          <Button
+            leadingIcon={ChatCircleDotsIcon}
             size='sm'
-            icon={relationship.notifying ? BellSlashIcon : BellIcon}
-            active={relationship.notifying}
-            onClick={handleNotifyToggle}
+            variant='solid'
+            color='accent'
+            onClick={sendDirectMessage}
           >
-            {intl.formatMessage(
-              relationship.notifying
-                ? messages.disableNotifications
-                : messages.enableNotifications,
-              { name: account.username },
-            )}
-          </ToggleIconButton>
-        ) : (
-          <LegacyIconButton
-            icon={relationship.notifying ? 'bell' : 'bell-o'}
-            iconComponent={
-              relationship.notifying
-                ? NotificationsActiveIcon
-                : NotificationsIcon
-            }
-            active={relationship.notifying}
-            title={intl.formatMessage(
-              relationship.notifying
-                ? messages.disableNotifications
-                : messages.enableNotifications,
-              { name: account.username },
-            )}
-            onClick={handleNotifyToggle}
-          />
-        ))}
+            <FormattedMessage
+              id='account.menu.message'
+              defaultMessage='Message'
+              description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
+            />
+          </Button>
+          <IconButton icon={UserMinusIcon} size='sm' onClick={confirmUnfollow}>
+            <FormattedMessage id='account.unfollow' defaultMessage='Unfollow' />
+          </IconButton>
+        </>
+      )}
+      {isFollowing && !isRedesignEnabled() && (
+        <LegacyIconButton
+          icon={relationship.notifying ? 'bell' : 'bell-o'}
+          iconComponent={
+            relationship.notifying ? NotificationsActiveIcon : NotificationsIcon
+          }
+          active={relationship.notifying}
+          title={intl.formatMessage(
+            relationship.notifying
+              ? messages.disableNotifications
+              : messages.enableNotifications,
+            { name: account.username },
+          )}
+          onClick={handleNotifyToggle}
+        />
+      )}
       {!noShare &&
         (isRedesignEnabled() ? (
           <CopyIconButton

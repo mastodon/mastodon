@@ -10,6 +10,14 @@ zh-TW:
     hosted_on: 於 %{domain} 託管之 Mastodon 站點
     title: 關於本站
   accounts:
+    api_errors:
+      2fa_required: 您的帳號必須設定兩階段驗證方能使用
+      account_deleted: 您的帳號已被刪除
+      account_suspended: 您的帳號已被停權
+      login_disabled: 您的帳號目前已被停用
+      memorial: 您的帳號已被轉換為紀念帳號
+      pending_approval: 您的帳號目前正在等待管理員審核
+      pending_confirmation: 您的帳號欠缺已驗證之電子郵件地址
     errors:
       cannot_be_added_to_collections: 此帳號無法被加至收藏名單中。
     followers:
@@ -68,6 +76,7 @@ zh-TW:
       demote: 降級
       destroyed_msg: 即將刪除 %{username} 的資料
       disable: 停用
+      disable_sign_in_token: 暫時停用安全碼驗證 (security code challenge)
       disable_sign_in_token_auth: 停用電子郵件 token 驗證
       disable_two_factor_authentication: 停用兩階段驗證
       disabled: 已停用
@@ -81,6 +90,7 @@ zh-TW:
       email: 電子郵件地址
       email_status: 電子郵件狀態
       enable: 啟用
+      enable_sign_in_token: 啟用安全碼驗證 (security code challenge)
       enable_sign_in_token_auth: 啟用電子郵件 token 驗證
       enabled: 已啟用
       enabled_msg: 成功解除 %{username} 帳號的凍結
@@ -975,10 +985,8 @@ zh-TW:
       discovery:
         follow_recommendations: 跟隨建議
         preamble: 呈現有趣的內容有助於 Mastodon 上一人不識的新手上路。控制您伺服器上各類探索功能之運作方式。
-        privacy: 隱私權
         profile_directory: 個人檔案目錄
         public_timelines: 公開時間軸
-        publish_statistics: 公開統計資料
         title: 探索
         trends: 熱門趨勢
         wrapstodon: Mastodon 年度回顧
@@ -986,6 +994,18 @@ zh-TW:
         all: 至任何人
         disabled: 至沒有人
         users: 套用至所有登入的本站使用者
+      external:
+        directory: 伺服器目錄
+        opt_in_server_directory:
+          description: 允許您的伺服器被列於像是 https://joinmastodon.org/servers 上推薦之伺服器目錄中。
+          title: 將您的伺服器加入伺服器目錄中
+        opt_in_server_recommendation:
+          description: 允許您的伺服器於註冊流程時被像是官方 Mastodon 客戶端等應用程式中推薦。
+          title: 允許您的伺服器加入伺服器推薦中
+        preamble: 控制您的伺服器與其他伺服器分享多少資訊以及您的伺服器之可發現性。
+        privacy: 隱私權
+        publish_statistics: 公開統計資料
+        title: 外部可發現性
       feed_access:
         modes:
           authenticated: 僅限已登入之使用者
@@ -2289,6 +2309,14 @@ zh-TW:
       further_actions_html: 若這並非您所為，我們建議您立刻 %{action}，因為其可能已被入侵。
       subject: 兩階段驗證失敗
       title: 兩階段驗證失敗
+    sign_in_token:
+      change_password: 變更密碼
+      details: 以下是嘗試登入的詳細資訊：
+      explanation: 我們偵測到有人於長期無活動後試圖登入您的帳號。如果這是您，請在「登入確認」頁面輸入安全碼：
+      further_actions: 如果這不是您，請立即到這裡變更您的密碼，並啟用兩階段驗證。您可於此處進行：
+      further_actions_html: 如果這個不是您，我們建議您立即 %{action} ，並且啟用兩階段驗證 (2FA) 以確保帳號安全。
+      subject: 請確認登入嘗試
+      title: 登入嘗試
     suspicious_sign_in:
       change_password: 變更密碼
       details: 以下是該登入之詳細資訊：
@@ -2381,8 +2409,12 @@ zh-TW:
       title: "%{name} 誠摯歡迎您的加入！"
   users:
     follow_limit_reached: 您無法跟隨多於 %{limit} 個人
+    generic_access_help_html: 是否於存取您的帳號時遇到困難？您可以透過 %{email} 取得協助
     go_to_sso_account_settings: 前往您的身分提供商 (identity provider) 之帳號設定
+    inactive_sign_in_confirmation: 距離您上次登入已經過一段時間，所以我們寄送一段安全碼至您的電子郵件地址以確認這是您本人。
+    inactive_sign_in_title: 請確認安全碼
     invalid_otp_token: 兩階段驗證碼不正確
+    invalid_sign_in_token: 安全碼無效
     otp_lost_help_html: 如果您無法存取這兩者，您可以透過 %{email} 與我們聯繫
     rate_limited: 過多次身份驗證嘗試，請稍後再試。
     seamless_external_login: 由於您是透過外部服務登入，所以不能設定密碼與電子郵件。

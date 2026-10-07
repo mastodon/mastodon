@@ -22,8 +22,8 @@ interface ForwardedReferenceProps {
   onClick: React.MouseEventHandler;
   onMouseEnter: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
-  onFocus: React.KeyboardEventHandler;
-  onBlur: React.KeyboardEventHandler;
+  onFocus: React.FocusEventHandler;
+  onBlur: React.FocusEventHandler;
 }
 
 type GetTooltipProps = <T extends Record<string, unknown>>(
@@ -96,7 +96,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     setIsOpen(false);
   }, [clearOpenTimeout, isOpen]);
 
-  const handleFocus = useCallback<React.KeyboardEventHandler>(
+  const handleFocus: React.FocusEventHandler = useCallback(
     (e) => {
       if (
         e.target instanceof HTMLElement &&
@@ -202,7 +202,7 @@ const TooltipElement: React.FC<React.ComponentPropsWithRef<'span'>> = ({
 
   useLayoutEffect(() => {
     const popover = popoverRef.current;
-    if (!popover) return;
+    if (!popover || !isPopoverAPISupported()) return;
 
     popover.showPopover();
 
@@ -217,3 +217,7 @@ const TooltipElement: React.FC<React.ComponentPropsWithRef<'span'>> = ({
     </span>
   );
 };
+
+function isPopoverAPISupported() {
+  return 'popover' in HTMLElement.prototype;
+}

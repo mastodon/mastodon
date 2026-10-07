@@ -28,6 +28,8 @@
   padding-inline-end: var(--col-gap);
   justify-self: end;
   color: var(--color-text-tertiary);
+  width: 1rem;
+  height: 1rem;
 }
 
 .replyIcon {
@@ -48,16 +50,16 @@
 
 // Add a tag to override .root a
 a.account {
+  @include mixins.text-ellipsis;
+
   font-weight: bold;
 }
 
-.text blockquote {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  margin-block-start: var(--space-1);
+.time {
+  flex-shrink: 0;
 
-  > p {
-    display: inline;
+  &::before {
+    content: '•';
+    margin-inline-end: var(--space-1);
   }
 }

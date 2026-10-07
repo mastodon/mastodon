@@ -601,6 +601,11 @@ sq:
         title: Importoni bllokime përkatësish
       no_file: S’u përzgjodh kartelë
     fasp:
+      capabilities:
+        activation_msg: Aftësia u aktivizua me sukses.
+        deactivation_msg: Aftësia u çaktivizua me sukses.
+        disable: Çaktivizoje
+        enable: Aktivizoje
       debug:
         callbacks:
           created_at: Krijuar më
@@ -609,6 +614,7 @@ sq:
           request_body: Lëndë kërkese
       providers:
         active: Aktivë
+        capabilities: Aftësi
         delete: Fshije
         edit: Përpunoni Shërbim
         finish_registration: Përfundoje regjistrimin
@@ -954,10 +960,8 @@ sq:
       discovery:
         follow_recommendations: Rekomandime ndjekjeje
         preamble: Shpërfaqja e lëndës interesante është me rëndësi për mirëseardhjen e përdoruesve të rinj, të cilët mund të mos njohin njeri në Mastodon. Kontrolloni se funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi lënde.
-        privacy: Privatësi
         profile_directory: Drejtori profilesh
         public_timelines: Rrjedha kohore publike
-        publish_statistics: Publiko statistika
         title: Zbulim
         trends: Në modë
         wrapstodon: Përmbledhjedon
@@ -965,6 +969,14 @@ sq:
         all: Për këdo
         disabled: Për askënd
         users: Për përdorues vendorë që kanë bërë hyrjen
+      external:
+        directory: Drejtori Shërbyesish
+        opt_in_server_directory:
+          description: Lejoni që shërbyesi juaj të paraqitet në drejtori shërbyesish të tilla si ajo e pranishme te https://joinmastodon.org/servers.
+        preamble: Kontrolloni sa informacion rreth shërbyesit tuaj u jepet shërbimeve të tjera dhe sa i zbulueshëm duhet të jetë shërbyesi juaj.
+        privacy: Privatësi
+        publish_statistics: Botoni statistika
+        title: Zbulim Së Jashtmi
       feed_access:
         modes:
           authenticated: Vetëm përdorues të mirëfilltësuar

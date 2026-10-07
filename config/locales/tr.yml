@@ -8,6 +8,14 @@ tr:
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
     title: Hakkında
   accounts:
+    api_errors:
+      2fa_required: İkinci bir kimlik doğrulama faktörü ayarlanmadan hesabınız kullanılamaz
+      account_deleted: Hesabınız silindi
+      account_suspended: Hesabınız askıya alındı
+      login_disabled: Hesabınız şu an devre dışı
+      memorial: Hesabınız anma hesabına dönüştürüldü
+      pending_approval: Hesabınız şu anda moderasyon onayı bekliyor
+      pending_confirmation: Hesabınızda onaylanmış bir e-posta adresi bulunmuyor
     errors:
       cannot_be_added_to_collections: Bu hesap koleksiyonlara eklenemez.
     followers:
@@ -69,6 +77,7 @@ tr:
       demote: Düşür
       destroyed_msg: "%{username} adlı kullanıcının verilerinin silinmesi sıraya alındı"
       disable: Dondur
+      disable_sign_in_token: Güvenlik kodu doğrulamasını geçici olarak devre dışı bırak
       disable_sign_in_token_auth: E-posta token doğrulamayı devre dışı bırak
       disable_two_factor_authentication: 2 aşamalı doğrulamayı kapat
       disabled: Kapalı
@@ -82,6 +91,7 @@ tr:
       email: E-posta
       email_status: E-posta durumu
       enable: Etkinleştir
+      enable_sign_in_token: Güvenlik kodu doğrulamasını etkinleştir
       enable_sign_in_token_auth: E-posta token doğrulamayı etkinleştir
       enabled: Etkin
       enabled_msg: "%{username} hesabı başarıyla çözüldü"
@@ -620,6 +630,11 @@ tr:
         title: Domain bloklarını içe aktar
       no_file: Dosya seçilmedi
     fasp:
+      capabilities:
+        activation_msg: Özellik başarıyla etkinleştirildi.
+        deactivation_msg: Özellik başarıyla devre dışı bırakıldı.
+        disable: Devre dışı bırak
+        enable: Etkinleştir
       debug:
         callbacks:
           created_at: Oluşturulma tarihi
@@ -631,6 +646,7 @@ tr:
         active: Etkin
         base_url: Temel URL
         callback: Geri çağırma
+        capabilities: Özellikler
         delete: Sil
         edit: Sağlayıcıyı Düzenle
         finish_registration: Kaydı tamamla
@@ -981,10 +997,8 @@ tr:
       discovery:
         follow_recommendations: Takip önerileri
         preamble: İlginç içeriği gezinmek, Mastodon'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
-        privacy: Gizlilik
         profile_directory: Profil dizini
         public_timelines: Genel zaman çizelgeleri
-        publish_statistics: İstatistikleri yayınla
         title: Keşfet
         trends: Öne çıkanlar
         wrapstodon: Wrapstodon
@@ -992,6 +1006,18 @@ tr:
         all: Herkes için
         disabled: Hiç kimseye
         users: Oturum açan yerel kullanıcılara
+      external:
+        directory: Sunucu Dizini
+        opt_in_server_directory:
+          description: Sunucunuzun, https://joinmastodon.org/servers adresinde yer alan gibi sunucu dizinlerinde listelenmesine izin verin.
+          title: Sunucunuzu sunucu dizinine ekleyin
+        opt_in_server_recommendation:
+          description: Resmi Mastodon istemcileri gibi uygulamalarda, kayıt sırasında sunucunuzun önerilmesine izin verin.
+          title: Sunucunuzu sunucu önerilerine ekleyin
+        preamble: Sunucunuzla ilgili bilgilerin diğer hizmetlerle ne ölçüde paylaşılacağını ve sunucunuzun ne kadar kolay bulunabilir olacağını kontrol edin.
+        privacy: Gizlilik
+        publish_statistics: İstatistikleri yayınla
+        title: Dış Keşif
       feed_access:
         modes:
           authenticated: Sadece yetkilendirilmiş kullanıcılar
@@ -2334,6 +2360,14 @@ tr:
       further_actions_html: Eğer bu kişi siz değilseniz, hemen %{action} yapmanızı öneriyoruz çünkü hesabınız ifşa olmuş olabilir.
       subject: İki aşamalı doğrulama başarısızlığı
       title: Başarısız iki aşamalı kimlik doğrulama
+    sign_in_token:
+      change_password: parolanızı değiştirin
+      details: 'İşte bu girişimin ayrıntıları:'
+      explanation: 'Hesabınızda uzun bir süre etkinlik görülmedikten sonra, hesaba giriş yapma girişimi tespit ettik. Bu durum size aitse, lütfen giriş doğrulama sayfasında aşağıdaki güvenlik kodunu girin:'
+      further_actions: 'Bu siz değildiyseniz, lütfen şifrenizi değiştirin ve hesabınızda iki faktörlü kimlik doğrulamayı etkinleştirin. Bunu buradan yapabilirsiniz:'
+      further_actions_html: Eğer oturum açan siz değildiyseniz, hesabınızı güvenli tutmanız için hemen %{action} yapmanızı ve iki aşamalı yetkilendirmeyi etkinleştirmenizi öneriyoruz.
+      subject: Lütfen oturum açma girişimini onaylayın
+      title: Oturum açma girişimi
     suspicious_sign_in:
       change_password: parolanızı değiştirin
       details: 'Oturum açma ayrıntıları şöyledir:'
@@ -2423,8 +2457,12 @@ tr:
       title: Gemiye hoşgeldin, %{name}!
   users:
     follow_limit_reached: "%{limit} kişiden daha fazlasını takip edemezsiniz"
+    generic_access_help_html: Hesabınıza erişirken sorun mu yaşıyorsunuz? Yardım için %{email} ile iletişime geçebilirsiniz
     go_to_sso_account_settings: Kimlik sağlayıcı hesap ayarlarına gidin
+    inactive_sign_in_confirmation: En son giriş yapalı epey zaman geçti; bu nedenle, sizin olduğunuzu doğrulamak amacıyla e-posta adresinize bir güvenlik kodu gönderiyoruz.
+    inactive_sign_in_title: Lütfen güvenlik kodunu doğrulayın
     invalid_otp_token: Geçersiz iki adımlı doğrulama kodu
+    invalid_sign_in_token: Geçersiz güvenlik kodu
     otp_lost_help_html: Her ikisine de erişiminizi kaybettiyseniz, %{email} ile irtibata geçebilirsiniz
     rate_limited: Çok fazla kimlik doğrulama denemesi. Daha sonra tekrar deneyin.
     seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.

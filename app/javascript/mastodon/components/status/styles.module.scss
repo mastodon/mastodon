@@ -36,6 +36,22 @@
   padding: var(--space-3);
 }
 
+.isHighlighted {
+  :global(.no-reduce-motion) & {
+    animation: highlight-fade 0.7s both 0.3s;
+  }
+}
+
+@keyframes highlight-fade {
+  from {
+    background: var(--color-bg-brand-softest);
+  }
+
+  to {
+    background: transparent;
+  }
+}
+
 .isMessage {
   position: relative;
 
@@ -60,10 +76,6 @@
   --content-col: span 2;
 }
 
-.isFiltered {
-  content: '';
-}
-
 .header {
   grid-column: span 2;
 }
@@ -71,7 +83,6 @@
 .spoiler,
 .translate,
 .contentWrapper,
-.contentReadMore,
 .footer {
   grid-column: var(--content-col);
 }
@@ -100,31 +111,19 @@
   margin-inline-start: auto;
 }
 
-.spoiler {
-  display: flex;
-  align-items: center;
-}
+.contentWrapper {
+  --fade-time: 100ms;
 
-.spoilerContent {
-  @include mixins.type-body-strong;
-
-  font-style: italic;
-  flex-grow: 1;
-}
-
-.contentWrapper,
-.content {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   position: relative;
-}
-
-.contentWrapper {
-  --fade-time: 100ms;
-
   overflow: clip;
   border-radius: var(--radius-2);
+
+  &.isFiltered {
+    display: none;
+  }
 
   &::after {
     content: '';
@@ -148,7 +147,7 @@
       opacity var(--fade-time) ease-in-out;
 
     // Show only if backdrop-filter is unsupported.
-    background-color: var(--color-bg-blend);
+    background-color: var(--color-bg-desktop);
 
     @supports (backdrop-filter: blur(20px)) {
       background-color: transparent;
@@ -156,42 +155,19 @@
     }
   }
 
-  &.isFiltered::after {
-    visibility: visible;
-    opacity: 1;
-    transition:
-      visibility 0s linear 0s,
-      opacity var(--fade-time) ease-in-out;
+  &.hasContentWarning {
+    &::after {
+      visibility: visible;
+      opacity: 1;
+      transition:
+        visibility 0s linear 0s,
+        opacity var(--fade-time) ease-in-out;
+    }
   }
 }
 
-.content {
-  --mask-height: 80px;
-
-  overflow-y: clip;
-
-  &.collapsed {
-    max-height: var(--max-height); // Set via JS.
-    overflow-y: clip;
-    mask-image: linear-gradient(
-      to bottom,
-      black calc(100% - var(--mask-height)),
-      transparent
-    );
-  }
-}
-
-.contentText {
-  @include mixins.type-body;
-
-  p:not(:last-child) {
-    margin-block-end: 1em;
-  }
-
-  a,
-  button {
-    color: var(--color-text-brand);
-  }
+.variantPage .content {
+  @include mixins.type-body-lg;
 }
 
 .contentImage {
@@ -206,10 +182,6 @@
 .contentBlurHash {
   width: 100%;
   height: 100%;
-}
-
-.contentReadMore {
-  width: max-content;
 }
 
 .hashtagsWrapper,
@@ -239,7 +211,7 @@
 }
 
 .meta {
-  @include mixins.type-micro;
+  @include mixins.type-meta;
 
   display: flex;
   gap: var(--space-4);

@@ -8,6 +8,10 @@ fi:
     hosted_on: Mastodon palvelimella %{domain}
     title: Tietoja
   accounts:
+    api_errors:
+      account_deleted: Tilisi on poistettu
+      account_suspended: Tilisi on jäädytetty
+      pending_confirmation: Tililtäsi puuttuu vahvistettu sähköpostiosoite
     errors:
       cannot_be_added_to_collections: Tätä tiliä ei voi lisätä kokoelmiin.
     followers:
@@ -987,10 +991,8 @@ fi:
       discovery:
         follow_recommendations: Seurantasuositukset
         preamble: Mielenkiintoisen sisällön esille tuominen on keskeistä perehdyttäessä uusia käyttäjiä, jotka eivät ehkä tunne ketään Mastodonissa. Hallitse, miten eri löydettävyysominaisuudet toimivat palvelimellasi.
-        privacy: Yksityisyys
         profile_directory: Profiilihakemisto
         public_timelines: Julkiset aikajanat
-        publish_statistics: Julkaise tilastot
         title: Löydettävyys
         trends: Trendit
         wrapstodon: Wrapstodon
@@ -998,6 +1000,11 @@ fi:
         all: Kaikille
         disabled: Ei kellekään
         users: Kirjautuneille paikallisille käyttäjille
+      external:
+        preamble: Määritä, kuinka paljon tietoja palvelimestasi jaetaan muiden palvelujen kanssa ja kuinka löydettävä palvelimesi pitäisi olla.
+        privacy: Yksityisyys
+        publish_statistics: Julkaise tilastoja
+        title: Ulkoinen löydettävyys
       feed_access:
         modes:
           authenticated: Vain todennetut käyttäjät
@@ -2336,6 +2343,8 @@ fi:
       further_actions_html: Jos se et ollut sinä, suosittelemme, että %{action} välittömästi, sillä se on saattanut vaarantua.
       subject: Kaksivaiheisen todennuksen virhe
       title: Kaksivaiheisen todennuksen toinen vaihe epäonnistui
+    sign_in_token:
+      title: Kirjautumisyritys
     suspicious_sign_in:
       change_password: vaihdat salasanasi
       details: 'Tässä on tiedot kirjautumisesta:'

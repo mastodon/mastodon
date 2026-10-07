@@ -30,6 +30,7 @@ import {
   disabledAccountId,
   localLiveFeedAccess,
   remoteLiveFeedAccess,
+  trendsEnabled,
 } from '@/mastodon/initial_state';
 import { transientSingleColumn } from '@/mastodon/is_mobile';
 import { canViewFeed } from '@/mastodon/permissions';
@@ -114,9 +115,10 @@ export function useNotificationsCount() {
   const unreadNotificationsCount = useAppSelector(
     selectUnreadNotificationGroupsCount,
   );
-  const followRequestsCount = useFollowRequestsCount();
+  const { signedIn } = useIdentity();
+  const followRequestsCount = useFollowRequestsCount({ fetch: signedIn });
 
-  const { unreadAnnouncementCount } = useHasAnnouncements();
+  const { unreadAnnouncementCount } = useHasAnnouncements({ fetch: signedIn });
 
   return (
     unreadNotificationsCount + followRequestsCount + unreadAnnouncementCount
@@ -293,10 +295,7 @@ export const RedesignNavigationPanel: React.FC<{
                 <NavigationAccountCardAndMenu />
               </>
             )}
-            <NavigationFooterLinks
-              multiColumn={multiColumn}
-              siteName={siteName}
-            />
+            <NavigationFooterLinks multiColumn={multiColumn} />
           </footer>
         </>
       )}
@@ -314,10 +313,7 @@ export const RedesignNavigationPanel: React.FC<{
           </ul>
           <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
             {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
-            <NavigationFooterLinks
-              multiColumn={multiColumn}
-              siteName={siteName}
-            />
+            <NavigationFooterLinks withVersionInfo multiColumn={multiColumn} />
           </footer>
         </>
       )}
@@ -330,13 +326,17 @@ const ExploreLink: React.FC = () => {
   return (
     <NavigationLink
       to={{
-        pathname: '/explore',
+        pathname: trendsEnabled ? '/explore' : '/search',
         state: { focusTarget: FOCUS_TARGET.SEARCH },
       }}
       iconComponent={MagnifyingGlassIcon}
       onClick={invokeVirtualIosKeyboard}
     >
-      <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
+      {trendsEnabled ? (
+        <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
+      ) : (
+        <FormattedMessage id='navigation_bar.search' defaultMessage='Search' />
+      )}
     </NavigationLink>
   );
 };

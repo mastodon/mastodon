@@ -87,6 +87,7 @@ const DirectTimeline: React.FC<ColumnBase> = ({ columnId, multiColumn }) => {
               <ColumnHeaderButton
                 showTextOnDesktop
                 variant='solid'
+                color='accent'
                 icon={PlusIcon}
                 onClick={composeNewMessage}
               >
@@ -142,7 +143,7 @@ const DirectTimeline: React.FC<ColumnBase> = ({ columnId, multiColumn }) => {
               {isRedesignEnabled() ? (
                 <FormattedMessage
                   id='compose_form.encryption_warning_messages'
-                  defaultMessage='Messages on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.'
+                  defaultMessage='Messages are not end-to-end encrypted. Never share sensitive information, such as your phone number or banking details, on Mastodon.'
                 />
               ) : (
                 <FormattedMessage

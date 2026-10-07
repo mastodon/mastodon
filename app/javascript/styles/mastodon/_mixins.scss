@@ -195,6 +195,12 @@
  * Utilities
  */
 
+@mixin text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 @mixin line-clamp($lines) {
   overflow: hidden;
   display: -webkit-box;

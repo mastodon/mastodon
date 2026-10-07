@@ -6,5 +6,5 @@ Fabricator(:account_reach_filter) do
     Fabricate(:account).tap { |account| account.reach_filter&.destroy }
   end
 
-  salt { SecureRandom.alphanumeric(4) }
+  salt { nil }
 end

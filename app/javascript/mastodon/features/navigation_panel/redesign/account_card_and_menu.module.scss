@@ -6,24 +6,24 @@
   border-radius: var(--radius-3);
   transition: background-color 200ms;
 
-  &:hover {
+  &:has(.accountLink:hover) {
     background-color: var(--color-bg-highlight);
   }
 
-  &:has(button:focus-visible) {
+  &:has(.accountLink:focus-visible) {
     outline: var(--outline-focus-default);
     background-color: var(--color-bg-highlight);
   }
+}
 
-  // Disable default styles for LockupButton component
-  & button {
-    &:hover {
-      text-decoration: none;
-    }
+.accountLink {
+  // Disable default hover & focus styles
+  &:hover {
+    text-decoration: none !important;
+  }
 
-    &:focus-visible {
-      outline: none;
-    }
+  &:focus-visible {
+    outline: none;
   }
 }
 

@@ -27,10 +27,7 @@ module WebAppControllerConcern
   end
 
   def redirect_unauthenticated_to_permalinks!
-    return if user_signed_in? && current_account.moved_to_account_id.nil?
-
-    permalink_redirector = PermalinkRedirector.new(request.original_fullpath)
-    return if permalink_redirector.redirect_path.blank?
+    return if (user_signed_in? && current_account.moved_to_account_id.nil?) || permalink_redirector.redirect_path.blank?
 
     expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.day) unless user_signed_in?
 
@@ -71,5 +68,9 @@ module WebAppControllerConcern
 
   def set_referer_header
     response.set_header('Referrer-Policy', Setting.allow_referrer_origin ? 'strict-origin-when-cross-origin' : 'same-origin')
+  end
+
+  def permalink_redirector
+    @permalink_redirector ||= PermalinkRedirector.new(request.original_fullpath)
   end
 end

@@ -620,17 +620,23 @@ fr:
         title: Importer des blocages de domaine
       no_file: Aucun fichier sélectionné
     fasp:
+      capabilities:
+        activation_msg: Capacité activée avec succès.
+        deactivation_msg: Capacité désactivée avec succès.
+        disable: Désactiver
+        enable: Activer
       debug:
         callbacks:
           created_at: Créé à
           delete: Supprimer
           ip: Adresse IP
           request_body: Corps de la demande
-          title: Déboguer les rappels
+          title: Rappels de débogage
       providers:
-        active: Activé
+        active: Actif
         base_url: URL de base
         callback: Rappel
+        capabilities: Capacités
         delete: Supprimer
         edit: Modifier un fournisseur
         finish_registration: Terminer l'inscription
@@ -981,10 +987,8 @@ fr:
       discovery:
         follow_recommendations: Suivre les recommandations
         preamble: Il est essentiel de donner de la visibilité à des contenus intéressants pour attirer des utilisateur⋅rice⋅s néophytes qui ne connaissent peut-être personne sur Mastodon. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
-        privacy: Vie privée
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
-        publish_statistics: Publier les statistiques
         title: Découverte
         trends: Tendances
         wrapstodon: Wrapstodon
@@ -992,6 +996,18 @@ fr:
         all: À tout le monde
         disabled: À personne
         users: Aux utilisateur·rice·s connecté·e·s localement
+      external:
+        directory: Annuaire des serveurs
+        opt_in_server_directory:
+          description: Permettre à votre serveur d'être répertorié dans des annuaires de serveurs, comme celui présent sur https://joinmastodon.org/servers.
+          title: Autoriser la présence dans des annuaires de serveurs
+        opt_in_server_recommendation:
+          description: Permettre la recommandation de votre serveur lors de la création d'un compte depuis les applications telles que les clients Mastodon officiels.
+          title: Autoriser la recommandation de votre serveur
+        preamble: Contrôlez les informations partagées par votre serveur avec d'autres services et la manière dont votre serveur peut être découvert.
+        privacy: Vie privée
+        publish_statistics: Publier les statistiques
+        title: Découverte externe
       feed_access:
         modes:
           authenticated: Utilisateurs authentifiés uniquement
@@ -1020,6 +1036,15 @@ fr:
         warning_hint: Nous vous recommandons d’utiliser « Approbation requise pour s’inscrire » à moins que vous n’ayez confiance dans la capacité de votre équipe de modération à gérer les messages indésirables et les inscriptions malveillantes suffisamment rapidement.
       security:
         authorized_fetch: Exiger une authentification de la part des serveurs fédérés
+        authorized_fetch_hint: Choisir quand les serveurs distants doivent s'authentifier pour récupérer du contenu depuis ce serveur.
+        authorized_fetch_hints:
+          actors: Demander une authentification pour les profils permet de suivre les serveurs ayant découvert chacun de vos comptes locaux, ce qui peut réduire considérablement le nombre de requêtes inutiles émisses lors de la suppression d'un compte. Cette option diminue quelque peu les performances pour traiter les requêtes de profils en raison de ce suivi et de l'impossibilité du proxy inverse de mettre en cache les réponses. Il peut également y avoir des problèmes de compatibilité avec certains services fédérés.
+          all: En plus des avantages et inconvénients de l'obligation d'authentification pour les profils, demander une authentification inconditionnelle aux serveurs fédérés permet une application plus stricte des blocages aussi bien au niveau des utilisateur·rice·s qu'au niveau des serveurs, mais cela empêche également la mise en cache de la plupart des requêtes. Cela réduit également la portée de vos réponses, car le transfert de réponse (« reply forwarding ») sera désactivé.
+          none: Demander une authentification uniquement lorsque cela est strictement nécessaire permet à votre proxy inverse de mettre en cache plus de requêtes. Cette option pourra être supprimée dans le futur. À n'utiliser qu'en cas de problèmes avec les autres options.
+        authorized_fetch_modes:
+          actors: Pour les profils et le contenu privé
+          all: Pour chaque requête
+          none: Pour le contenu privé uniquement
         authorized_fetch_overridden_hint: Vous ne pouvez pas modifier ce paramètre actuellement, car il est surchargé par une variable d’environnement.
         federation_authentication: Contrôle de l’authentification de la fédération
       title: Paramètres du serveur
@@ -1514,8 +1539,11 @@ fr:
   deletes:
     challenge_not_passed: Les renseignements que vous avez entrés n'étaient pas exacts
     confirm_password: Entrez votre mot de passe actuel pour vérifier votre identité
+    confirm_username: Confirmez le nom d'utilisateur·rice
+    confirm_username_hint_html: Veuillez taper <code>%{username}</code> pour confirmer le compte que vous souhaitez supprimer
     proceed: Supprimer le compte
     success_msg: Votre compte a été supprimé avec succès
+    title: Supprimer le compte %{acct}
     warning:
       before: 'Veuillez lire attentivement ces notes avant de continuer :'
       caches: Le contenu mis en cache par d'autres serveurs peut persister

@@ -8,6 +8,14 @@ en:
     hosted_on: Mastodon hosted on %{domain}
     title: About
   accounts:
+    api_errors:
+      2fa_required: Your account cannot be used without a second authentification factor set up
+      account_deleted: Your account has been deleted
+      account_suspended: Your account has been suspended
+      login_disabled: Your account is currently disabled
+      memorial: Your account has been turned into a memorial
+      pending_approval: Your account is currently pending moderation approval
+      pending_confirmation: Your account is missing a confirmed e-mail address
     errors:
       cannot_be_added_to_collections: This account cannot be added to collections.
     followers:
@@ -69,6 +77,7 @@ en:
       demote: Demote
       destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
       disable: Freeze
+      disable_sign_in_token: Temporarily disable security code challenge
       disable_sign_in_token_auth: Disable email token authentication
       disable_two_factor_authentication: Disable 2FA
       disabled: Frozen
@@ -82,6 +91,7 @@ en:
       email: Email
       email_status: Email status
       enable: Unfreeze
+      enable_sign_in_token: Enable security code challenge
       enable_sign_in_token_auth: Enable email token authentication
       enabled: Enabled
       enabled_msg: Successfully unfroze %{username}'s account
@@ -987,10 +997,8 @@ en:
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone on Mastodon. Control how various discovery features work on your server.
-        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
-        publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
         wrapstodon: Wrapstodon
@@ -998,6 +1006,18 @@ en:
         all: To everyone
         disabled: To no one
         users: To logged-in local users
+      external:
+        directory: Server Directory
+        opt_in_server_directory:
+          description: Allow your server to be listed in server directories such as the one featured on https://joinmastodon.org/servers.
+          title: Opt your server in for the server directory
+        opt_in_server_recommendation:
+          description: Allow your server to be recommended at sign-up time in applications such as the official Mastodon clients.
+          title: Opt your server in for server recommendation
+        preamble: Control how much information about your server gets shared with other services and how discoverable your server should be.
+        privacy: Privacy
+        publish_statistics: Publish statistics
+        title: External Discovery
       feed_access:
         modes:
           authenticated: Authenticated users only
@@ -2341,6 +2361,14 @@ en:
       further_actions_html: If this wasn't you, we recommend that you %{action} immediately as it may be compromised.
       subject: Second factor authentication failure
       title: Failed second factor authentication
+    sign_in_token:
+      change_password: change your password
+      details: 'Here are details of the attempt:'
+      explanation: 'We detected an attempt to sign in to your account after a long time of inactivity. If this is you, please enter the security code below on the sign in challenge page:'
+      further_actions: 'If this wasn''t you, please change your password and enable two-factor authentication on your account. You can do so here:'
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Please confirm attempted sign in
+      title: Sign in attempt
     suspicious_sign_in:
       change_password: change your password
       details: 'Here are details of the sign-in:'
@@ -2430,8 +2458,12 @@ en:
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
+    generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
     go_to_sso_account_settings: Go to your identity provider's account settings
+    inactive_sign_in_confirmation: It's been a while since you logged in, so we're sending a security code to your e-mail address to confirm that it's you.
+    inactive_sign_in_title: Please confirm security code
     invalid_otp_token: Invalid two-factor code
+    invalid_sign_in_token: Invalid security code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     rate_limited: Too many authentication attempts, try again later.
     seamless_external_login: You are logged in via an external service, so password and email settings are not available.

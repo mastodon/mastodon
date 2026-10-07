@@ -8,6 +8,14 @@ es-AR:
     hosted_on: Mastodon alojado en %{domain}
     title: Información
   accounts:
+    api_errors:
+      2fa_required: No se puede usar tu cuenta sin un segundo factor de autenticación configurado
+      account_deleted: Tu cuenta fue eliminada
+      account_suspended: Tu cuenta fue suspendida
+      login_disabled: Tu cuenta está actualmente deshabilitada
+      memorial: Tu cuenta se convirtó en una cuenta conmemorativa
+      pending_approval: Tu cuenta está pendiente de aprobación de moderación
+      pending_confirmation: A tu cuenta le falta una dirección de correo electrónico confirmada
     errors:
       cannot_be_added_to_collections: Esta cuenta no puede ser agregada a colecciones.
     followers:
@@ -69,6 +77,7 @@ es-AR:
       demote: Bajar de nivel
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Congelar
+      disable_sign_in_token: Dshabilitar temporalmente el desafío de código de seguridad
       disable_sign_in_token_auth: Deshabilitar autenticación de token por correo electrónico
       disable_two_factor_authentication: Deshabilitar 2FA
       disabled: Congelada
@@ -82,6 +91,7 @@ es-AR:
       email: Correo electrónico
       email_status: Estado del correo
       enable: Descongelar
+      enable_sign_in_token: Habilitar el desafío de código de seguridad
       enable_sign_in_token_auth: Habilitar autenticación de token por correo electrónico
       enabled: Habilitada
       enabled_msg: Se descongeló exitosamente la cuenta de %{username}
@@ -987,10 +997,8 @@ es-AR:
       discovery:
         follow_recommendations: Recom. de cuentas a seguir
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controlá cómo funcionan varias opciones de descubrimiento en tu servidor.
-        privacy: Privacidad
         profile_directory: Directorio de perfiles
         public_timelines: Líneas temporales públicas
-        publish_statistics: Publicar estadísticas
         title: Descubrí
         trends: Tendencias
         wrapstodon: MastodonAnual
@@ -998,6 +1006,18 @@ es-AR:
         all: A todos
         disabled: A nadie
         users: A usuarios locales con sesiones abiertas
+      external:
+        directory: Directorio del servidor
+        opt_in_server_directory:
+          description: Permití que tu servidor aparezca en los directorios del servidor como el que aparece en https://joinmastodon.org/servers.
+          title: Optá para que tu servidor aparezca en el directorio del servidor
+        opt_in_server_recommendation:
+          description: Permití que tu servidor sea recomendado al momento de registrarse en aplicaciones como los clientes oficiales de Mastodon.
+          title: Optá para que tu servidor sea recomendado
+        preamble: Controlá cuánta información sobre tu servidor se comparte con otros servicios y cuán visible debería ser tu servidor.
+        privacy: Privacidad
+        publish_statistics: Publicar estadísticas
+        title: Descubrimiento externo
       feed_access:
         modes:
           authenticated: Solo usuarios autenticados
@@ -2340,6 +2360,14 @@ es-AR:
       further_actions_html: Si vos no fuiste, te recomendamos que %{action} inmediatamente, ya que la seguridad de tu cuenta podría estar comprometida.
       subject: Fallo de autenticación del segundo factor
       title: Fallo en la autenticación del segundo factor
+    sign_in_token:
+      change_password: cambiés tu contraseña
+      details: 'Acá están los detalles del intento:'
+      explanation: 'Detectamos un intento de inicio de sesión en tu cuenta luego de mucho tiempo de inactividad. Si fuiste vos, por favor, ingresá el código de seguridad de abajo en la página del desafío:'
+      further_actions: 'Si no eras vos, por favor, cambiá tu contraseña y habilitá la autenticación de dos factores en tu cuenta. Podés hacerlo acá:'
+      further_actions_html: Si no fuiste vos, te recomendamos que %{action} inmediatamente y habilités la autenticación de dos factores para mantener tu cuenta segura.
+      subject: Por favor, confirmá el intento de inicio de sesión
+      title: Intento de inicio de sesión
     suspicious_sign_in:
       change_password: cambiés tu contraseña
       details: 'Acá están los detalles del inicio de sesión:'
@@ -2429,8 +2457,12 @@ es-AR:
       title: "¡Bienvenido a bordo, %{name}!"
   users:
     follow_limit_reached: No podés seguir a más de %{limit} cuentas
+    generic_access_help_html: "¿Tenés problemas para acceder a tu cuenta? Podés ponerte en contacto con %{email} para obtener ayuda"
     go_to_sso_account_settings: Andá a la configuración de cuenta de tu proveedor de identidad
+    inactive_sign_in_confirmation: Ha pasado un tiempo desde que iniciaste sesión, así que estamos enviando un código de seguridad a tu dirección de correo electrónico para confirmar que querés iniciar sesión.
+    inactive_sign_in_title: Por favor, confirmá el código de seguridad
     invalid_otp_token: Código de dos factores no válido
+    invalid_sign_in_token: Código de seguridad no válido
     otp_lost_help_html: Si perdiste al acceso a ambos, podés ponerte en contacto con %{email}
     rate_limited: Demasiados intentos de autenticación; intentá de nuevo más tarde.
     seamless_external_login: Iniciaste sesión desde un servicio externo, así que la configuración de contraseña y correo electrónico no están disponibles.

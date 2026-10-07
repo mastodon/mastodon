@@ -54,7 +54,7 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
   let displayName = (
     <Link
       {...accountLinkProps}
-      className={classes.headerNameLink}
+      className={classes.nameLink}
       aria-describedby={handleId}
     >
       <DisplayName account={account} variant='noDomain' />
@@ -102,18 +102,18 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
   }
 
   return (
-    <header className={classNames(className, classes.header)}>
+    <header className={classNames(className, classes.root)}>
       <Link
         {...accountLinkProps}
         role='presentation'
         tabIndex={-1}
-        className={classes.headerAvatar}
+        className={classes.avatar}
       >
         <Avatar account={account} size={null} />
       </Link>
 
       <div>
-        <p className={classes.headerName}>
+        <p className={classes.name}>
           {displayName}
           &bull;
           <Link
@@ -121,12 +121,13 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
               pathname: statusLink(status),
               state: { reference: 'status' },
             }}
+            className={classes.date}
           >
             <RelativeTimestamp timestamp={status.created_at} />
           </Link>
         </p>
 
-        <p className={classes.headerHandle}>
+        <p className={classes.handle}>
           <Link
             {...accountLinkProps}
             role='presentation'

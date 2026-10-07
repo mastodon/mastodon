@@ -32,6 +32,8 @@ import { fetchServer, fetchServerTranslationLanguages } from '../../actions/serv
 import { expandHomeTimeline } from '../../actions/timelines';
 import { initialState, forceSingleColumn, me, owner, singleUserMode, trendsEnabled, landingPage, localLiveFeedAccess, disableHoverCards, domain } from '../../initial_state';
 
+import { openNewComposer } from '@/mastodon/reducers/slices/composer';
+
 import { BundleColumnError } from './components/bundle_column_error';
 import { NavigationBar } from './components/navigation_bar';
 import { UploadArea } from './components/upload_area';
@@ -86,7 +88,7 @@ import {
   Quotes,
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
-import { focusColumn, getFocusedItemIndex, focusItemSibling, focusFirstItem, getFocusedColumnIndex } from './util/focusUtils';
+import { focusColumn, getFocusedItemIndex, focusItemSibling, focusFirstItem, getFocusedColumnIndex, focusFirstVisibleItemInColumn } from './util/focusUtils';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import { CustomHomepage } from 'mastodon/features/custom_homepage';
 
@@ -478,12 +480,26 @@ class UI extends PureComponent {
   handleHotkeyNew = e => {
     e.preventDefault();
 
+    if (isRedesignEnabled()) {
+      this.props.dispatch(openNewComposer());
+      return;
+    }
+
     const element = this.node.querySelector('.autosuggest-textarea__textarea');
 
     if (element) {
       element.focus();
     }
   };
+
+  handleHotkeyNewMessage = (e) => {
+    if (!isRedesignEnabled()) {
+      return;
+    }
+
+    e.preventDefault();
+    this.props.dispatch(openNewComposer({ type: 'message' }));
+  }
 
   handleHotkeySearch = e => {
     e.preventDefault();
@@ -496,6 +512,10 @@ class UI extends PureComponent {
   };
 
   handleHotkeyForceNew = e => {
+    if (isRedesignEnabled()) {
+      this.props.dispatch(openNewComposer({ force: true }));
+      return;
+    }
     this.handleHotkeyNew(e);
     this.props.dispatch(resetCompose());
   };
@@ -520,7 +540,9 @@ class UI extends PureComponent {
   handleMoveUp = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      return focusColumn(getFocusedColumnIndex());
+      return isRedesignEnabled()
+        ? focusFirstVisibleItemInColumn(getFocusedColumnIndex())
+        : focusColumn(getFocusedColumnIndex);
     } else {
       return focusItemSibling(currentItemIndex, -1);
     }
@@ -529,7 +551,9 @@ class UI extends PureComponent {
   handleMoveDown = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      return focusColumn(getFocusedColumnIndex());
+      return isRedesignEnabled()
+        ? focusFirstVisibleItemInColumn(getFocusedColumnIndex())
+        : focusColumn(getFocusedColumnIndex);
     } else {
       return focusItemSibling(currentItemIndex, 1);
     }
@@ -620,6 +644,7 @@ class UI extends PureComponent {
       new: this.handleHotkeyNew,
       search: this.handleHotkeySearch,
       forceNew: this.handleHotkeyForceNew,
+      newMessage: this.handleHotkeyNewMessage,
       toggleComposeSpoilers: this.handleHotkeyToggleComposeSpoilers,
       focusColumn: this.handleHotkeyFocusColumn,
       focusLoadMore: this.handleHotkeyLoadMore,

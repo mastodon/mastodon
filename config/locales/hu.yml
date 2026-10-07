@@ -8,6 +8,14 @@ hu:
     hosted_on: "%{domain} Mastodon-kiszolgáló"
     title: Névjegy
   accounts:
+    api_errors:
+      2fa_required: A fiók nem használható második hitelesítési lépcső beállítása nélkül
+      account_deleted: A fiókodat törölték
+      account_suspended: A fiókodat felfüggesztették
+      login_disabled: A fiókod jelenleg le van tiltva
+      memorial: A fiókodat emlékfiókká alakították
+      pending_approval: A fiókod jelenleg moderátori jóváhagyásra vár
+      pending_confirmation: A fiókodból hiányzik egy megerősített e-mail-cím
     errors:
       cannot_be_added_to_collections: Ez a fiók nem adható hozzá gyűjteményekhez.
     followers:
@@ -69,6 +77,7 @@ hu:
       demote: Lefokozás
       destroyed_msg: A %{username} fiók adatai bekerültek a végleges törlése váró sorba
       disable: Befagyasztás
+      disable_sign_in_token: Biztonsági kódos kihívás ideiglenes letiltása
       disable_sign_in_token_auth: Tokenes e-mail-hitelesítés letiltása
       disable_two_factor_authentication: Kétlépcsős hitelesítés kikapcsolása
       disabled: Befagyasztva
@@ -82,6 +91,7 @@ hu:
       email: E-mail-cím
       email_status: E-mail állapot
       enable: Kiolvasztás
+      enable_sign_in_token: Biztonsági kódos kihívás engedélyezése
       enable_sign_in_token_auth: Tokenes e-mail-hitelesítés engedélyezése
       enabled: Bekapcsolva
       enabled_msg: "%{username} fiókja befagyasztása sikeresen visszavonva"
@@ -987,10 +997,8 @@ hu:
       discovery:
         follow_recommendations: Ajánlottak követése
         preamble: Az érdekes tartalmak felszínre hozása fontos szerepet játszik az új felhasználók bevonásában, akik esetleg nem ismerik a Mastodont. Szabályozd, hogy a különböző felfedezési funkciók hogyan működjenek a kiszolgálón.
-        privacy: Adatvédelem
         profile_directory: Profiladatbázis
         public_timelines: Nyilvános idővonalak
-        publish_statistics: Statisztikák közzététele
         title: Felfedezés
         trends: Trendek
         wrapstodon: Wrapstodon
@@ -998,6 +1006,18 @@ hu:
         all: Mindenkinek
         disabled: Senkinek
         users: Bejelentkezett helyi felhasználóknak
+      external:
+        directory: Kiszolgálócímtár
+        opt_in_server_directory:
+          description: Engedélyezés, hogy a kiszolgálódat felsorolják a kiszolgálócímtárakban, például a https://joinmastodon.org/servers címen találhatóban.
+          title: A kiszolgáló szerepelhet a kiszolgálócímtárban
+        opt_in_server_recommendation:
+          description: Engedélyezés, hogy a kiszolgálódat javasolják az alkalmazásokban történő regisztrációkor, mint például a hivatalos Mastodon-kliensekben.
+          title: A kiszolgáló szerepelhet a kiszolgálójavaslatokban
+        preamble: Állítsd be, hogy a kiszolgálódról mennyi információt osztasz meg más szolgáltatásokkal, és hogy a kiszolgálód mennyire legyen felfedezhező.
+        privacy: Adatvédelem
+        publish_statistics: Statisztikák közzététele
+        title: Külső felfedezés
       feed_access:
         modes:
           authenticated: Csak hitelesített felhasználók
@@ -1428,7 +1448,7 @@ hu:
     dont_have_your_security_key: Nincs biztonsági kulcsod?
     forgot_password: Elfelejtetted a jelszavad?
     invalid_reset_password_token: A jelszó-visszaállítási kulcs nem megfelelő vagy lejárt. Kérlek generálj egy újat.
-    link_to_otp: Írj be egy kétlépcsős azonosító kódot a telefonodról vagy egy visszaállító kódot
+    link_to_otp: Írj be egy kétlépcsős hitelesítőkódot a telefonodról vagy egy tartalék bejelentkezési kódot
     link_to_webauth: Használd a biztonsági kulcs eszközödet
     log_in_with: Bejelentkezés, mint
     login: Bejelentkezés
@@ -1853,7 +1873,7 @@ hu:
       limit: Elérted a listák maximális számát
   login_activities:
     authentication_methods:
-      otp: kétlépcsős azonosító alkalmazás
+      otp: kétlépcsős hitelesítő alkalmazás
       password: jelszó
       sign_in_token: e-mailben küldött biztonsági kód
       webauthn: biztonsági kulcsok
@@ -2276,16 +2296,16 @@ hu:
       too_many_requests: Az előzőekben túl sok kérés érkezett a fordítási szolgáltatáshoz.
   two_factor_authentication:
     add: Hozzáadás
-    disable: Kikapcsolás
+    disable: Kétlépcsős hitelesítés kikapcsolása
     disabled_success: A kétlépcsős hitelesítés sikeresen letiltva
     edit: Szerkesztés
     enabled: Kétlépcsős hitelesítés engedélyezve
     enabled_success: A kétlépcsős hitelesítés sikeresen engedélyezve
-    generate_recovery_codes: Visszaállítási kódok generálása
-    lost_recovery_codes: A visszaállítási kódok segítségével tudsz belépni, ha elveszítenéd a telefonod. Ha a visszaállítási kódjaidat hagytad el, itt generálhatsz újakat. A régi kódokat ebben az esetben érvénytelenítjük.
+    generate_recovery_codes: Tartalék bejelentkezési kódok előállítása
+    lost_recovery_codes: A tartalék bejelentkezési kódok segítségével tudsz belépni, ha elveszítenéd a telefonod. Ha a tartalék bejelentkezési kódjaidat elvesztetted, itt állíthatsz elő újakat. A régi kódokat ebben az esetben érvénytelenítjük.
     methods: Kétlépcsős eljárások
     otp: Hitelesítő alkalmazás
-    recovery_codes: Visszaállítási kódok biztonsági mentése
+    recovery_codes: Tartalék bejelentkezési kódok mentése
     recovery_codes_regenerated: A visszaállítási kódokat sikeresen újrageneráltuk
     recovery_instructions_html: A visszaállítási kódok egyikének segítségével tudsz majd belépni, ha elveszítenéd a telefonod. <strong>Tartsd biztos helyen a visszaállítási kódjaid</strong>! Például nyomtasd ki őket és tárold a többi fontos iratoddal együtt.
     resume_app_authorization: Alkalmazás jogosultság-ellenőrzésének folytatása
@@ -2340,6 +2360,14 @@ hu:
       further_actions_html: Ha ez nem te voltál, azt javasoljuk, hogy azonnal %{action}, mivel lehetséges, hogy az rossz kezekbe került.
       subject: Második körös hitelesítés sikertelen
       title: Sikertelen a második körös hitelesítés
+    sign_in_token:
+      change_password: változtasd meg a jelszavadat
+      details: 'Itt vannak a kísérlet részletei:'
+      explanation: 'Hosszú idejű inaktivitás után bejelentkezési kísérletet észleltünk a fiókodnál. Ha ez te vagy, írd be az alábbi biztonsági kódot a bejelentkezési oldal ezt kérő részén:'
+      further_actions: 'Ha nem te voltál, változtasd meg a jelszavadat, és engedélyezd a kétlépcsős hitelesítést a fiókodban. Itt megteheted:'
+      further_actions_html: Ha nem te voltál, akkor azt javasoljuk, hogy azonnal %{action} és engedélyezd a kétlépcsős hitelesítést, hogy biztonságban tudd a fiókodat.
+      subject: Erősítsd meg a megkísérelt bejelentkezést
+      title: Bejelentkezési kísérlet
     suspicious_sign_in:
       change_password: módosítsd a jelszavad
       details: 'Itt vannak a bejelentkezés részletei:'
@@ -2429,8 +2457,12 @@ hu:
       title: Üdv a fedélzeten, %{name}!
   users:
     follow_limit_reached: Nem követhetsz több, mint %{limit} embert
+    generic_access_help_html: 'Nem tudod elérni a fiókodat? Segítségért lépj kapcsolatba velünk ezen a címen: %{email}'
     go_to_sso_account_settings: Ugrás az azonosítási szolgáltatód fiókbeállításaihoz
-    invalid_otp_token: Érvénytelen ellenőrző kód
+    inactive_sign_in_confirmation: Már egy ideje nem léptél be, így küldünk egy biztonsági kódot az e-mail-címedre, hogy megerősítsük, hogy te vagy az.
+    inactive_sign_in_title: Erősítsd meg a biztonsági kódot
+    invalid_otp_token: Érvénytelen kétlépcsős kód
+    invalid_sign_in_token: Érvénytelen biztonsági kód
     otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}
     rate_limited: Túl sok hiteleítési kísérlet történt. Próbáld újra később.
     seamless_external_login: Külső szolgáltatáson keresztül jelentkeztél be, így a jelszó és e-mail-beállítások nem érhetők el.

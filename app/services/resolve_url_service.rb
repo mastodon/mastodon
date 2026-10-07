@@ -103,7 +103,7 @@ class ResolveURLService < BaseService
       return unless recognized_params[:action] == 'show'
 
       Account.find_local(recognized_params[:username])
-    when 'home'
+    when 'home', 'remote_accounts'
       return unless recognized_params[:action] == 'index' && recognized_params[:username_with_domain].present?
 
       if recognized_params[:any]&.match?(/\A[0-9]+\Z/)

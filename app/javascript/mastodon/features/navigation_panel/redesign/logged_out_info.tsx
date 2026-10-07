@@ -8,9 +8,15 @@ import { WarningIcon } from '@phosphor-icons/react';
 
 import { openModal } from '@/mastodon/actions/modal';
 import { fetchServer } from '@/mastodon/actions/server';
+import type { ApiInstanceJSON } from '@/mastodon/api_types/instance';
+import { Avatar } from '@/mastodon/components/avatar';
 import { Button } from '@/mastodon/components/button/redesign';
 import { Callout } from '@/mastodon/components/callout/redesign';
+import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
+import { LockupLink, LockupWrapper } from '@/mastodon/components/lockup';
+import { ShortNumber } from '@/mastodon/components/short_number';
 import { Skeleton } from '@/mastodon/components/skeleton';
+import { useAccount } from '@/mastodon/hooks/useAccount';
 import {
   disabledAccountId,
   domain,
@@ -55,7 +61,12 @@ export const LoggedOutInfo: React.FC = () => {
 
   return (
     <NavigationFooterLayout
-      description={<p>{serverItem?.description ?? ''}</p>}
+      description={
+        <>
+          <p>{serverItem?.description ?? ''}</p>
+          <ServerMeta serverItem={serverItem} />
+        </>
+      }
       isLoading={isLoading}
     >
       <Button
@@ -74,6 +85,61 @@ export const LoggedOutInfo: React.FC = () => {
         <FormattedMessage id='server_banner.log_in' defaultMessage='Log in' />
       </Button>
     </NavigationFooterLayout>
+  );
+};
+
+const ServerMeta: React.FC<{ serverItem: ApiInstanceJSON | undefined }> = ({
+  serverItem,
+}) => {
+  const adminId = serverItem?.contact.account?.id;
+  const adminAccount = useAccount(adminId);
+  const activeUserCount = serverItem?.usage.users.active_month;
+
+  if (!adminId && !activeUserCount) {
+    return null;
+  }
+
+  return (
+    <dl className={classes.meta}>
+      {adminId && adminAccount && (
+        <div>
+          <dt>
+            <FormattedMessage
+              id='server_banner.administered_by'
+              defaultMessage='Administered by:'
+            />
+          </dt>
+
+          <dd>
+            <LockupWrapper
+              icon={<Avatar account={adminAccount} size={20} />}
+              className={classes.adminLink}
+            >
+              <LockupLink
+                to={`/@${adminAccount.acct}`}
+                data-hover-card-account={adminId}
+                as='span' // changes lockup title element, not link
+              >
+                <DisplayNameSimple account={adminAccount} />
+              </LockupLink>
+            </LockupWrapper>
+          </dd>
+        </div>
+      )}
+      {activeUserCount && (
+        <div>
+          <dt>
+            <FormattedMessage
+              id='server_banner.active_users_title'
+              defaultMessage='Active users'
+            />
+          </dt>
+          <dd>
+            <ShortNumber value={activeUserCount} />
+          </dd>
+        </div>
+      )}
+    </dl>
   );
 };
 
@@ -144,7 +210,7 @@ export const DisabledAccountBanner: React.FC = () => {
       <Button onClick={handleLogOutClick}>
         <FormattedMessage
           id='confirmations.logout.confirm'
-          defaultMessage='Log out'
+          defaultMessage='Sign out'
         />
       </Button>
     </NavigationFooterLayout>

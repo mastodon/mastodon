@@ -129,7 +129,11 @@ export const LinkBanner: React.FC<LinkBannerProps> = ({
   if (isRedesignEnabled()) {
     return (
       <LockupWrapper icon={icon} className={classes.lockup}>
-        <LockupLink to={to} subtitle={subtitle}>
+        <LockupLink
+          to={to}
+          subtitle={subtitle}
+          isHotkeyNavigationTarget={false}
+        >
           {title}
         </LockupLink>
       </LockupWrapper>

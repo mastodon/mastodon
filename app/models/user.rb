@@ -57,6 +57,7 @@ class User < ApplicationRecord
   include User::LdapAuthenticable
   include User::Omniauthable
   include User::PamAuthenticable
+  include User::SignInToken
 
   devise :two_factor_authenticatable,
          otp_secret_length: 32
@@ -221,12 +222,30 @@ class User < ApplicationRecord
     !account.memorial?
   end
 
+  def nonfunctional_reason
+    if !confirmed?
+      :pending_confirmation
+    elsif !approved?
+      :pending_approval
+    elsif account.deleted?
+      :account_deleted
+    elsif account.suspended?
+      :account_suspended
+    elsif account.memorial?
+      :memorial
+    elsif disabled?
+      :login_disabled
+    elsif missing_2fa?
+      :'2fa_required'
+    end
+  end
+
   def functional?
     functional_or_moved? && account.moved_to_account_id.nil?
   end
 
   def functional_or_moved?
-    confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial? && !missing_2fa?
+    !nonfunctional_reason
   end
 
   def missing_2fa?

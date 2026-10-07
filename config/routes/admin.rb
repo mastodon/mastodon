@@ -83,6 +83,7 @@ namespace :admin do
     resource :about, only: [:show, :update], controller: 'about'
     resource :appearance, only: [:show, :update], controller: 'appearance'
     resource :discovery, only: [:show, :update], controller: 'discovery'
+    resource :external, only: [:show, :update], controller: 'external'
   end
 
   resources :site_uploads, only: [:destroy]
@@ -187,6 +188,7 @@ namespace :admin do
   resources :users, only: [] do
     scope module: :users do
       resource :two_factor_authentication, only: [:destroy]
+      resource :sign_in_token_authentication, only: [:create, :destroy]
       resource :role, only: [:show, :update]
     end
   end

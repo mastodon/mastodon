@@ -47,7 +47,7 @@ export interface StatusShape {
   language: string;
   muted: boolean;
   pinned: boolean;
-  filtered: FilterResult[];
+  filtered?: FilterResult[];
   sensitive: boolean;
   collapsed: boolean | null;
   uri: string;

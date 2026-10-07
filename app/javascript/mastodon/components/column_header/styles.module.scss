@@ -13,18 +13,23 @@
 
   background: linear-gradient(
     to bottom,
-    var(--color-bg-blend) var(--column-header-gradient-start),
+    var(--color-bg-desktop) var(--column-header-gradient-start),
     transparent var(--column-header-gradient-start)
   );
+
+  html[data-color-scheme='dark'] & {
+    // Cover up outer borders from Column component
+    margin-inline: -1px;
+  }
 
   // If there's additional sticky content, don't render overscroll
   // blend gradient
   &.withStickyContent {
-    background: var(--color-bg-blend);
+    background: var(--color-bg-desktop);
   }
 
   @media (width >= variables.$mobile-menu-breakpoint) {
-    border-top: 10px solid var(--color-bg-blend);
+    border-top: 10px solid var(--color-bg-desktop);
   }
 
   // Fix bg color for legacy column headers.
@@ -58,6 +63,11 @@
   );
   cursor: pointer;
 
+  html[data-color-scheme='dark'] & {
+    border: var(--border-default);
+    border-bottom: none;
+  }
+
   .withStickyContent & {
     background: var(--color-bg-primary);
   }
@@ -66,18 +76,12 @@
     border-top-left-radius: var(--radius-6);
     border-top-right-radius: var(--radius-6);
   }
+}
 
-  &[data-has-unread='true']::after {
-    content: '';
-    grid-row: 1;
-    grid-column: 2;
-    width: var(--space-2);
-    height: var(--space-2);
-    background-color: var(--color-text-brand);
-    border-radius: var(--radius-round);
-    justify-self: center;
-    align-self: end;
-  }
+.unreadButton {
+  position: absolute;
+  top: 100%;
+  justify-self: center;
 }
 
 .leftButton {
@@ -124,4 +128,8 @@
 
 .extraStickyContent {
   background: var(--color-bg-primary);
+
+  html[data-color-scheme='dark'] & {
+    border-inline: var(--border-default);
+  }
 }

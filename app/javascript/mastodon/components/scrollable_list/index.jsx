@@ -27,7 +27,7 @@ const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 /**
  *
  * @param {import('mastodon/store').RootState} state
- * @param {*} props
+ * @param {{ scrollKey: string }} props
  */
 const mapStateToProps = (state, { scrollKey }) => {
   return {

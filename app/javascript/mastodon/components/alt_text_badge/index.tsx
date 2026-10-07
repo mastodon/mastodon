@@ -4,12 +4,14 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { XIcon } from '@phosphor-icons/react';
+
 import { useSelectableClick } from '@/mastodon/hooks/useSelectableClick';
-import { isRedesignStatusEnabled } from '@/mastodon/utils/environment';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
-import { Button } from '../button/redesign';
-import { IconButton } from '../icon_button';
+import { Button, IconButton } from '../button/redesign';
+import { IconButton as LegacyIconButton } from '../icon_button';
 import { Popover } from '../popover';
 
 import classes from './styles.module.scss';
@@ -42,7 +44,7 @@ export const AltTextBadge: React.FC<{
 
   const [handleMouseDown, handleMouseUp] = useSelectableClick(handleClose);
 
-  const ButtonComp = isRedesignStatusEnabled() ? Button : 'button';
+  const ButtonComp = isRedesignEnabled() ? Button : 'button';
 
   return (
     <>
@@ -73,7 +75,7 @@ export const AltTextBadge: React.FC<{
               className={classNames(
                 'info-tooltip',
                 'dropdown-animation',
-                isRedesignStatusEnabled() && classes.redesignPopover,
+                isRedesignEnabled() && classes.redesignPopover,
               )}
               role='dialog'
               aria-labelledby={titleId}
@@ -91,16 +93,31 @@ export const AltTextBadge: React.FC<{
                 />
               </h4>
 
-              <IconButton
-                title={intl.formatMessage({
-                  id: 'lightbox.close',
-                  defaultMessage: 'Close',
-                })}
-                icon='close'
-                iconComponent={CloseIcon}
-                onClick={handleClose}
-                className={classes.closeButton}
-              />
+              {isRedesignEnabled() ? (
+                <IconButton
+                  icon={XIcon}
+                  onClick={handleClose}
+                  variant='ghost'
+                  className={classes.closeButton}
+                  tooltipPlacement='top'
+                >
+                  {intl.formatMessage({
+                    id: 'lightbox.close',
+                    defaultMessage: 'Close',
+                  })}
+                </IconButton>
+              ) : (
+                <LegacyIconButton
+                  title={intl.formatMessage({
+                    id: 'lightbox.close',
+                    defaultMessage: 'Close',
+                  })}
+                  icon='close'
+                  iconComponent={CloseIcon}
+                  onClick={handleClose}
+                  className={classes.legacyCloseButton}
+                />
+              )}
 
               <p>{description}</p>
             </div>

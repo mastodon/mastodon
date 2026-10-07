@@ -2,12 +2,9 @@ import { useMemo } from 'react';
 
 import classNames from 'classnames';
 
+import { replyComposeById } from '@/mastodon/actions/compose_typed';
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
-import {
-  isRedesignEnabled,
-  isRedesignStatusEnabled,
-} from '@/mastodon/utils/environment';
-import { replyComposeById } from 'mastodon/actions/compose';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { toggleReblog, toggleFavourite } from 'mastodon/actions/interactions';
 import {
   navigateToStatus,
@@ -72,7 +69,7 @@ export const NotificationWithStatus: React.FC<{
       },
 
       reply: () => {
-        dispatch(replyComposeById(statusId));
+        dispatch(replyComposeById({ statusId }));
       },
 
       boost: () => {
@@ -102,7 +99,7 @@ export const NotificationWithStatus: React.FC<{
             'notification-ungrouped--unread': unread,
             'notification-ungrouped--direct': isPrivateMention,
             'notification-ungrouped--redesign':
-              isRedesignEnabled() && isRedesignStatusEnabled(),
+              isRedesignEnabled() && isRedesignEnabled(),
           },
         )}
         tabIndex={0}
