@@ -1,30 +1,50 @@
 @use 'utils';
 
-@mixin tokens {
-  --color-root-fg: var(--color-indigo-50);
-  --color-root-bg: var(--color-indigo-950);
-  --color-root-bg-desktop: var(--color-root-bg);
-  --color-root-accent: var(--color-indigo-300);
-  --color-root-danger: var(--color-red-200);
+@mixin base-indigo {
+  --base-color-bg: var(--color-indigo-950);
+  --base-color-bg-desktop: #0e0a1f;
+  --base-color-fg: var(--color-indigo-50);
+  --base-color-fg-on-accent: var(--base-color-bg);
+  --base-color-accent: var(--color-indigo-300);
+  --base-color-danger: var(--color-red-200);
+  --base-highlight-strength: 8%;
+}
+@mixin base-indigo-contrast {
+  --base-color-accent: var(--color-indigo-200);
+}
 
+@mixin base-lime {
+  --base-color-bg: var(--color-lime-950);
+  --base-color-bg-desktop: var(--base-color-bg);
+  --base-color-fg: var(--color-lime-50);
+  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-accent: var(--color-lime-500);
+  --base-color-danger: var(--color-red-200);
+  --base-highlight-strength: 8%;
+}
+@mixin base-lime-contrast {
+  --base-color-accent: var(--color-lime-300);
+}
+
+@mixin tokens {
   /* TEXT TOKENS */
 
-  --color-text-primary: var(--color-root-fg);
-  --color-text-secondary: #{utils.css-alpha(var(--color-root-fg), 80%)};
-  --color-text-tertiary: #{utils.css-alpha(var(--color-root-fg), 70%)};
-  --color-text-inverted: var(--color-root-bg);
-  --color-text-brand: var(--color-root-accent);
+  --color-text-primary: var(--base-color-fg);
+  --color-text-secondary: #{utils.css-alpha(var(--base-color-fg), 80%)};
+  --color-text-tertiary: #{utils.css-alpha(var(--base-color-fg), 70%)};
+  --color-text-inverted: var(--base-color-bg);
+  --color-text-brand: var(--base-color-accent);
   --color-text-brand-soft: color-mix(
     in oklab,
     var(--color-text-primary),
     var(--color-text-brand)
   ); // legacy
 
-  --color-text-on-brand-base: var(--color-text-inverted);
+  --color-text-on-brand-base: var(--base-color-fg-on-accent);
   --color-text-brand-on-inverted: var(--color-indigo-600); // legacy
-  --color-text-error: var(--color-root-danger);
+  --color-text-error: var(--base-color-danger);
   --color-text-on-error-base: var(--color-text-inverted);
-  --color-text-warning: var(--color-yellow-400); // legacy
+  --color-text-warning: var(--color-orange-400); // legacy
   --color-text-on-warning-base: var(--color-white); // legacy
   --color-text-success: var(--color-green-400); // legacy
   --color-text-on-success-base: var(--color-white); // legacy
@@ -32,41 +52,44 @@
   --color-text-on-disabled: var(--color-grey-400); // legacy
   --color-text-bookmark-highlight: var(--color-text-error); // legacy
   --color-text-favourite-highlight: var(--color-text-warning); // legacy
-  --color-text-on-media: var(--color-root-fg); // legacy
-  --color-text-status-links: var(--color-root-accent); // legacy
+  --color-text-on-media: var(--base-color-fg); // legacy
+  --color-text-status-links: var(--base-color-accent); // legacy
 
   /* BACKGROUND TOKENS */
 
   // Neutrals
-  --color-bg-primary: var(--color-root-bg);
-  --color-bg-desktop: var(--color-root-bg);
-  --color-bg-highlight: #{utils.css-alpha(var(--color-root-accent), 8%)};
+  --color-bg-primary: var(--base-color-bg);
+  --color-bg-desktop: var(--base-color-bg-desktop);
+  --color-bg-highlight: #{utils.css-alpha(
+      var(--base-color-accent),
+      var(--base-highlight-strength)
+    )};
   --overlay-strength-secondary: 4%; // legacy
   --color-bg-secondary: var(--color-bg-highlight); // legacy
   --color-bg-tertiary: var(--color-bg-highlight); // legacy
 
   // Utility
-  --color-bg-inverted: var(--color-root-fg);
+  --color-bg-inverted: var(--base-color-fg);
   --color-bg-overlay: var(--color-black); // legacy
   --color-bg-media-base: var(--color-black); // legacy
   --color-bg-media: #{utils.css-alpha(var(--color-bg-media-base), 65%)}; // legacy
   --color-bg-disabled: var(--color-grey-700); // legacy
 
   // Brand
-  --color-bg-brand-base: var(--color-root-accent);
+  --color-bg-brand-base: var(--base-color-accent);
   --color-bg-brand-base-hover: color-mix(
     in srgb,
-    var(--color-root-accent),
+    var(--base-color-accent),
     var(--color-text-on-brand-base) 10%
   );
   --color-bg-brand-soft: var(--color-bg-highlight); // legacy
   --color-bg-brand-softest: var(--color-bg-highlight); // legacy
 
   // Error
-  --color-bg-error-base: var(--color-root-danger);
+  --color-bg-error-base: var(--base-color-danger);
   --color-bg-error-base-hover: color-mix(
     in srgb,
-    var(--color-root-danger),
+    var(--base-color-danger),
     var(--color-text-on-error-base) 10%
   ); // legacy
 
@@ -74,9 +97,9 @@
   --color-bg-error-softest: var(--color-red-50); // legacy
 
   // Warning
-  --color-bg-warning-base: var(--color-yellow-700); // legacy
-  --color-bg-warning-soft: var(--color-yellow-900); // legacy
-  --color-bg-warning-softest: var(--color-yellow-950); // legacy
+  --color-bg-warning-base: var(--color-orange-700); // legacy
+  --color-bg-warning-soft: var(--color-orange-900); // legacy
+  --color-bg-warning-softest: var(--color-orange-950); // legacy
 
   // Success
   --color-bg-success-base: var(--color-green-600); // legacy
@@ -85,9 +108,9 @@
 
   /* BORDER TOKENS */
 
-  --color-border-primary: #{utils.css-alpha(var(--color-root-accent), 30%)};
-  --color-border-strong: var(--color-root-fg);
-  --color-border-input: #{utils.css-alpha(var(--color-root-fg), 70%)};
+  --color-border-primary: #{utils.css-alpha(var(--base-color-accent), 30%)};
+  --color-border-strong: var(--base-color-fg);
+  --color-border-input: #{utils.css-alpha(var(--base-color-fg), 70%)};
   --color-border-brand: var(--color-text-brand); // legacy
   --color-border-brand-soft: var(--color-indigo-800); // legacy
   --color-border-error: var(--color-red-300); // legacy
@@ -126,8 +149,4 @@
   --rich-text-container-color: rgb(87 24 60 / 100%);
   --rich-text-text-color: rgb(255 175 212 / 100%);
   --rich-text-decorations-color: rgb(128 58 95 / 100%);
-}
-
-@mixin contrast-overrides {
-  --color-root-accent: var(--color-indigo-200);
 }
