@@ -2,6 +2,7 @@
 
 class Api::V1::Announcements::ReactionsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:favourites' }
+  before_action :require_feature_enabled!
   before_action :require_user!
 
   before_action :set_announcement
@@ -18,6 +19,10 @@ class Api::V1::Announcements::ReactionsController < Api::BaseController
   end
 
   private
+
+  def require_feature_enabled!
+    render json: { error: 'Emoji reactions are currently not supported on this server' }, status: 400 if Rails.configuration.x.mastodon.disable_announcement_reactions
+  end
 
   def set_reaction
     @reaction = @announcement.announcement_reactions.where(account: current_account).find_by!(name: params[:id])

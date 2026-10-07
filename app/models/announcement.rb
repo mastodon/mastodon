@@ -81,7 +81,13 @@ class Announcement < ApplicationRecord
     @emojis ||= CustomEmoji.from_text(text)
   end
 
+  def reactions_allowed
+    !Rails.configuration.x.mastodon.disable_announcement_reactions
+  end
+
   def reactions(account = nil)
+    return [] if Rails.configuration.x.mastodon.disable_announcement_reactions
+
     grouped_ordered_announcement_reactions.select(
       [:name, :custom_emoji_id, 'COUNT(*) as count'].tap do |values|
         values << value_for_reaction_me_column(account)
