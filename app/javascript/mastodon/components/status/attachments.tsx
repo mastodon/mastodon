@@ -59,7 +59,7 @@ export const StatusAttachments: React.FC<{
       <MediaAttachments
         statusId={statusId}
         accountId={status.account.id}
-        statusHidden={status.hidden}
+        statusHidden={status.hidden && !!status.spoiler_text}
         sensitive={status.sensitive}
         language={status.translation?.language ?? status.language}
         attachment={attachment}
