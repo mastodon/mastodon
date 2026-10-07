@@ -8,6 +8,14 @@ es-MX:
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
   accounts:
+    api_errors:
+      2fa_required: Tu cuenta no puede usarse sin un segundo factor de autenticación configurado
+      account_deleted: Tu cuenta ha sido eliminada
+      account_suspended: Tu cuenta ha sido suspendida
+      login_disabled: Tu cuenta está desactivada
+      memorial: Tu cuenta se ha convertido en un memorial
+      pending_approval: Tu cuenta está pendiente de aprobación por parte de la moderación
+      pending_confirmation: A tu cuenta le falta una dirección de correo confirmada
     errors:
       cannot_be_added_to_collections: Esta cuenta no se puede añadir a las colecciones.
     followers:
@@ -69,6 +77,7 @@ es-MX:
       demote: Degradar
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Deshabilitar
+      disable_sign_in_token: Desactivar temporalmente la comprobación con código de seguridad
       disable_sign_in_token_auth: Deshabilitar la autenticación por token de correo electrónico
       disable_two_factor_authentication: Desactivar autenticación de dos pasos
       disabled: Deshabilitada
@@ -82,6 +91,7 @@ es-MX:
       email: Correo electrónico
       email_status: Estado del correo electrónico
       enable: Habilitar
+      enable_sign_in_token: Activar la comprobación con código de seguridad
       enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
       enabled: Habilitada
       enabled_msg: Se ha descongelado correctamente la cuenta de %{username}
@@ -997,6 +1007,13 @@ es-MX:
         disabled: A nadie
         users: Para los usuarios locales que han iniciado sesión
       external:
+        directory: Directorio del Servidor
+        opt_in_server_directory:
+          description: Permite que tu servidor aparezca listado en los directorios de servidor, como el de https://joinmastodon.org/servers.
+          title: Incluir tu servidor en el directorio de servidores
+        opt_in_server_recommendation:
+          description: Permite que tu servidor sea recomendado al momento de registrarse en aplicaciones, como los clientes oficiales Mastodon.
+          title: Incluir tu servidor en las recomendaciones de servidor
         preamble: Controla cuánta información sobre tu servidor se comparte con otros servicios, y qué tan fácil de encontrar debería ser tu servidor.
         privacy: Privacidad
         publish_statistics: Publicar estadísticas
@@ -2343,6 +2360,14 @@ es-MX:
       further_actions_html: Si no fuiste tú, se recomienda %{action} inmediatamente ya que puede estar comprometido.
       subject: Fallo en la autenticación de dos pasos
       title: Falló la autenticación de dos pasos
+    sign_in_token:
+      change_password: cambies tu contraseña
+      details: 'Estos son los detalles del intento:'
+      explanation: 'Hemos detectado un intento de inicio de sesión en tu cuenta después de un largo tiempo de inactividad. Si has sido tú, por favor ingresa el siguiente código de seguridad en la página de comprobación de seguridad:'
+      further_actions: 'Si no has sido tú, cambia tu contraseña y habilita la autenticación en dos pasos en tu cuenta. Puedes hacerlo aquí:'
+      further_actions_html: Si no has sido tú, recomendamos que %{action} inmediatamente y habilites la autenticación en dos pasos para mantener tu cuenta segura.
+      subject: Por favor, confirma el intento de inicio de sesión
+      title: Intento de inicio de sesión
     suspicious_sign_in:
       change_password: cambies tu contraseña
       details: 'Aquí están los detalles del inicio de sesión:'
@@ -2432,8 +2457,12 @@ es-MX:
       title: Te damos la bienvenida a bordo, %{name}!
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
+    generic_access_help_html: "¿Tienes problemas para acceder a tu cuenta? Puedes ponerte en contacto con %{email} para conseguir ayuda"
     go_to_sso_account_settings: Diríjete a la configuración de la cuenta de su proveedor de identidad
+    inactive_sign_in_confirmation: Ha pasado un tiempo desde que iniciaste sesión, así que estamos enviando un código de seguridad a tu dirección de correo electrónico para confirmar que es tú.
+    inactive_sign_in_title: Confirma el código de seguridad
     invalid_otp_token: Código de dos pasos incorrecto
+    invalid_sign_in_token: Código de seguridad no válido
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
     rate_limited: Demasiados intentos de autenticación, inténtalo de nuevo más tarde.
     seamless_external_login: Has iniciado sesión desde un servicio externo, por lo que los ajustes de contraseña y correo electrónico no están disponibles.
