@@ -10,7 +10,7 @@ import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
 import { HashtagMenu } from '../hashtag_menu';
-import { MenuTrigger } from '../menu';
+import { MenuTriggerText } from '../menu';
 
 import classes from './handled_link.module.scss';
 
@@ -47,9 +47,12 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
     if (isRedesignEnabled()) {
       return (
         <HashtagMenu tagId={hashtag} accountId={hashtagAccountId}>
-          <MenuTrigger as='button' className={classes.hashtag}>
+          <MenuTriggerText
+            className={classes.hashtag}
+            href={`/tags/${encodeURIComponent(hashtag)}`}
+          >
             {children}
-          </MenuTrigger>
+          </MenuTriggerText>
         </HashtagMenu>
       );
     }
