@@ -63,6 +63,7 @@ services:
       cluster.name: es-mastodon
       discovery.type: single-node
       bootstrap.memory_lock: 'true'
+      xpack.security.autoconfiguration.enabled: 'false'
     volumes:
       - es-data:/usr/share/elasticsearch/data
     networks:
