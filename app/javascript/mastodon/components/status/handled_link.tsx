@@ -9,7 +9,8 @@ import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
-import { HashtagMenu, MenuTriggerLink } from '../hashtag_menu';
+import { HashtagMenu } from '../hashtag_menu';
+import { MenuTriggerText } from '../menu';
 
 import classes from './handled_link.module.scss';
 
@@ -46,12 +47,12 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
     if (isRedesignEnabled()) {
       return (
         <HashtagMenu tagId={hashtag} accountId={hashtagAccountId}>
-          <MenuTriggerLink
+          <MenuTriggerText
             className={classes.hashtag}
             href={`/tags/${encodeURIComponent(hashtag)}`}
           >
             {children}
-          </MenuTriggerLink>
+          </MenuTriggerText>
         </HashtagMenu>
       );
     }

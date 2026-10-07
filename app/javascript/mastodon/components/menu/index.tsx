@@ -12,6 +12,7 @@ import { mergeProps } from '@react-aria/utils';
 import type { PolymorphicProps } from '@/types/polymorphic';
 
 import { Button } from '../button/redesign';
+import { normalizeKey } from '../hotkeys/utils';
 
 import { PopoverMenuCard } from './card';
 import type { PopoverMenuCardProps } from './card';
@@ -275,28 +276,62 @@ export const Menu: React.FC<MenuProps> = ({
   return <MenuContext value={contextValue}>{children}</MenuContext>;
 };
 
-interface MenuTriggerProps {
-  forwardedAs?: 'a' | 'button' | 'link';
-}
-
 export const MenuTrigger = <As extends React.ElementType = typeof Button>({
   as: asComp,
   children,
-  forwardedAs,
   ...props
-}: PolymorphicProps<MenuTriggerProps, As>) => {
+}: PolymorphicProps<React.PropsWithChildren, As>) => {
   const Component = asComp ?? Button;
   const { menuTriggerProps } = useMenuContext();
+  const mergedProps = mergeProps(
+    props as React.ComponentPropsWithoutRef<As>,
+    menuTriggerProps,
+  ) as React.ComponentPropsWithoutRef<As> & typeof menuTriggerProps;
+
+  return <Component {...mergedProps}>{children}</Component>;
+};
+
+export const MenuTriggerText = ({
+  children,
+  ...props
+}: React.ComponentPropsWithRef<'a'>) => {
+  const {
+    menuTriggerProps: {
+      onClick: onMenuClick,
+      onKeyDown: onMenuKeyDown,
+      ...menuTriggerProps
+    },
+  } = useMenuContext();
+
+  const onClick: React.MouseEventHandler = useCallback(
+    (event) => {
+      if (event.button === 0 && !event.ctrlKey && !event.metaKey) {
+        event.preventDefault();
+        onMenuClick(event as React.MouseEvent<HTMLButtonElement>);
+      }
+    },
+    [onMenuClick],
+  );
+  const onKeyDown: React.KeyboardEventHandler = useCallback(
+    (event) => {
+      if (normalizeKey(event.key) === 'space') {
+        event.preventDefault();
+        onMenuKeyDown(event as React.KeyboardEvent<HTMLButtonElement>);
+      }
+    },
+    [onMenuKeyDown],
+  );
+
   return (
-    <Component
-      as={forwardedAs}
-      {...mergeProps(
-        props as Omit<React.ComponentPropsWithRef<'button'>, 'color'>,
-        menuTriggerProps,
-      )}
+    <a
+      role='button'
+      tabIndex={0}
+      {...mergeProps(props, menuTriggerProps)}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
     >
       {children}
-    </Component>
+    </a>
   );
 };
 
