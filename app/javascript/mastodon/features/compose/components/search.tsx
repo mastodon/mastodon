@@ -576,13 +576,14 @@ export const Search: React.FC<{
       className={classNames('search', { active: expanded })}
     >
       <input
+        type='text'
+        inputMode='search'
+        data-main-search
         ref={useMergedRefs(
           searchInputRef,
           isRedesignEnabled() ? focusAfterNavigation : null,
         )}
         className='search__input'
-        type='text'
-        inputMode='search'
         placeholder={intl.formatMessage(
           signedIn ? messages.placeholderSignedIn : messages.placeholder,
         )}
