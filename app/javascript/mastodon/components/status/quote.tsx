@@ -1,7 +1,7 @@
 import type React from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -28,6 +28,7 @@ import {
   getAccountHidden as selectAccountHidden,
   selectPlainAccount,
 } from '@/mastodon/selectors/accounts';
+import { selectStatusFilters } from '@/mastodon/selectors/filters';
 import {
   selectAccountStatus,
   selectStatusLoadingState,
@@ -45,7 +46,7 @@ import { PopoverMenuCard } from '../menu/card';
 import { RelativeTimestamp } from '../relative_timestamp';
 import { Skeleton } from '../skeleton';
 
-import { onStatusLinksDisabled } from './hooks';
+import { onStatusLinksDisabled, useStatusContext } from './hooks';
 import { StatusImage } from './image';
 import classes from './quote.module.scss';
 import { accountStatusLinkProps } from './utils';
@@ -362,9 +363,14 @@ function useQuoteError({
   state: quoteState,
   parentId,
 }: StatusQuoteProps) {
+  const { contextType } = useStatusContext();
   const { state: loadingState, status: quote } = useAppSelector((state) =>
-    selectStatusLoadingState(state, { statusId: quoteId }),
+    selectStatusLoadingState(state, { statusId: quoteId, contextType }),
   );
+  const { filters, filterAction } = useAppSelector((state) =>
+    selectStatusFilters(state, { statusId: quoteId, contextType }),
+  );
+
   const accountId = quote?.account.id;
   const account = useAppSelector((state) =>
     selectPlainAccount(state, accountId),
@@ -403,6 +409,9 @@ function useQuoteError({
       );
     }
   }, [shouldFetchQuote, dispatch, quoteId, parentId]);
+
+  const intl = useIntl();
+  const filterNames = intl.formatList(filters.map(({ title }) => title));
 
   if (quoteState === 'pending') {
     return (
@@ -447,8 +456,9 @@ function useQuoteError({
   if (loadingState === 'filtered') {
     message = (
       <FormattedMessage
-        id='status.quote_error.filtered'
-        defaultMessage='Hidden due to one of your filters'
+        id='status.quote_error.filtered_details'
+        defaultMessage='Hidden due to your filter “{filters}”'
+        values={{ filters: filterNames }}
       />
     );
   } else if (quoteState === 'revoked') {
@@ -456,6 +466,15 @@ function useQuoteError({
       <FormattedMessage
         id='status.quote_error.revoked'
         defaultMessage='Post removed by author'
+      />
+    );
+  } else if (filterAction === 'warn' && !revealed) {
+    action = onRevealQuote;
+    message = (
+      <FormattedMessage
+        id='status.quote_error.filtered_details'
+        defaultMessage='Hidden due to your filter “{filters}”'
+        values={{ filters: filterNames }}
       />
     );
   } else if (
