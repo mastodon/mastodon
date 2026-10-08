@@ -18,6 +18,7 @@ import { CollectionPreviewCard } from '@/mastodon/features/collections/component
 import MediaCard from '@/mastodon/features/status/components/card';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
+import { useToggle } from '@/mastodon/hooks/useToggle';
 import { displayMedia } from '@/mastodon/initial_state';
 import type {
   CardShape,
@@ -33,6 +34,7 @@ import { compareUrls } from '@/mastodon/utils/compare_urls';
 import { decodeIDNA } from '@/mastodon/utils/links';
 
 import { Avatar } from '../avatar';
+import { Blurhash } from '../blurhash';
 import { Button } from '../button/redesign';
 import { Card, CardActions, CardBody, CardTitle } from '../card';
 import { DisplayName } from '../display_name';
@@ -414,7 +416,7 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
     .filter((id): id is string => !!id);
 
   return (
-    <Card>
+    <Card image={card.image && <LinkCardImage card={card} />}>
       <CardTitle
         afterContent={
           card.published_at && (
@@ -457,6 +459,20 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
         </CardActions>
       )}
     </Card>
+  );
+};
+
+const LinkCardImage: React.FC<{ card: CardShape }> = ({ card }) => {
+  const [loaded, { onTrue: onLoad }] = useToggle();
+  if (!card.image) {
+    return null;
+  }
+
+  return (
+    <>
+      <img src={card.image} alt={card.image_description} onLoad={onLoad} />
+      {!loaded && card.blurhash && <Blurhash hash={card.blurhash} />}
+    </>
   );
 };
 
