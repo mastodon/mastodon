@@ -98,10 +98,9 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   if (href.startsWith('/')) {
     return (
       <Tooltip text={href}>
-        {({ getTooltipProps, tooltipId }) => (
+        {({ getTooltipProps }) => (
           <Link
             {...getTooltipProps()}
-            aria-describedby={tooltipId}
             className={classNames('unhandled-link', className)}
             to={href}
           >
@@ -114,7 +113,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
 
   return (
     <Tooltip text={href}>
-      {({ getTooltipProps, tooltipId }) => (
+      {({ getTooltipProps }) => (
         <a
           {...mergeProps(props, getTooltipProps())}
           href={href}
@@ -122,7 +121,6 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
           target='_blank'
           rel='noopener'
           translate='no'
-          aria-describedby={tooltipId}
         >
           {children}
         </a>
