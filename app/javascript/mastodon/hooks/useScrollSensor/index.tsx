@@ -3,13 +3,13 @@ import { useLayoutEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
+import { getScrollParent } from '@react-aria/utils';
+
 import classes from './styles.module.scss';
 
 interface ScrollSensorOptions extends ComponentProps<'div'> {
   placement?: 'top' | 'bottom';
   tolerance?: number;
-  // Use document scrolling as reference
-  global?: boolean;
 }
 
 /**
@@ -28,7 +28,6 @@ interface ScrollSensorOptions extends ComponentProps<'div'> {
 export const useScrollSensor = ({
   placement = 'top',
   tolerance,
-  global,
   className,
   style,
   ...props
@@ -45,10 +44,9 @@ export const useScrollSensor = ({
     // Assign the IntersectionObserver to a ref so we don't
     // need to re-create it when the effect reruns
     if (!observerRef.current) {
-      // This could be enhanced with a util to actually walk up
-      // the tree to find the nearest scrollable element. For now,
-      // it assumes the immediate parent as the scroll root.
-      const root = global ? null : sensor.parentElement;
+      const scrollParent = getScrollParent(sensor);
+      const root =
+        scrollParent === document.documentElement ? null : scrollParent;
 
       observerRef.current = new IntersectionObserver(
         ([entry]) => {
@@ -69,14 +67,15 @@ export const useScrollSensor = ({
         observerRef.current.unobserve(sensor);
       }
     };
-  }, [sensorRef, global]);
+  }, [sensorRef]);
 
-  const sensorStyle = tolerance
-    ? ({
-        ...style,
-        '--tolerance': `${tolerance}px`,
-      } as CSSProperties)
-    : style;
+  const sensorStyle =
+    tolerance !== undefined
+      ? ({
+          ...style,
+          '--tolerance': `${tolerance}px`,
+        } as CSSProperties)
+      : style;
 
   const sensor = (
     <div

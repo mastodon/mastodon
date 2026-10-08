@@ -45,13 +45,14 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   className,
   ...props
 }: ColumnHeaderProps) => {
-  const { scrollTop } = useColumn();
   const columnIndex = useColumnIndexContext();
   const location = useLocation<LocationState>();
   const hasBackButton =
     withBackButton === true ||
     (withBackButton === 'auto' && location.state?.fromMastodon);
   const hasExtraStickyContent = hasReactChildren(extraStickyContent);
+
+  const { isScrolledToTop, scrollTop } = useColumn();
 
   const handleHeaderClick = useCallback<React.MouseEventHandler>(
     (e) => {
@@ -70,6 +71,8 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
     },
     [scrollTop],
   );
+
+  const hasScrollToTopButton = !isScrolledToTop && withUnreadMarker;
 
   return (
     <header
@@ -97,24 +100,24 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         {hasReactChildren(extraButtons) && (
           <div className={classes.rightButtons}>{extraButtons}</div>
         )}
-        {withUnreadMarker && (
-          <Button
-            size='sm'
-            color='accent'
-            variant='solid'
-            onClick={scrollTop}
-            leadingIcon={ArrowUpIcon}
-            className={classes.unreadButton}
-          >
-            <FormattedMessage
-              id='column_header.newer_posts'
-              defaultMessage='Newer posts'
-            />
-          </Button>
-        )}
       </div>
       {hasExtraStickyContent && (
         <div className={classes.extraStickyContent}>{extraStickyContent}</div>
+      )}
+      {hasScrollToTopButton && (
+        <Button
+          size='sm'
+          color='accent'
+          variant='solid'
+          onClick={scrollTop}
+          leadingIcon={ArrowUpIcon}
+          className={classes.unreadButton}
+        >
+          <FormattedMessage
+            id='column_header.scroll_to_top'
+            defaultMessage='Scroll to top'
+          />
+        </Button>
       )}
     </header>
   );
