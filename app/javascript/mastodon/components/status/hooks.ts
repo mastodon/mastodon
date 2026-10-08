@@ -464,12 +464,38 @@ export function useHandlersForStatus(
       status?.tagged_collections.find((item) => item.url === href)?.id,
     [status?.tagged_collections],
   );
-  return useElementHandledLink({
+  const { onElement: onElementHandledLink } = useElementHandledLink({
     hashtagAccountId:
       typeof status?.account === 'string' ? status.account : status?.account.id,
     hrefToCollectionId,
     hrefToMention,
   });
+
+  const onElement: OnElementHandler = useCallback(
+    (element, { key, ...props }, children, extra) => {
+      if (element instanceof HTMLAnchorElement) {
+        return onElementHandledLink(
+          element,
+          { key, ...props },
+          children,
+          extra,
+        );
+      } else if (
+        element instanceof HTMLSpanElement &&
+        props.className === 'invisible'
+      ) {
+        return createElement(
+          'span',
+          { key: key as React.Key, 'aria-disabled': true, ...props },
+          children,
+        );
+      }
+      return undefined;
+    },
+    [onElementHandledLink],
+  );
+
+  return { onElement };
 }
 
 export const onStatusLinksDisabled: OnElementHandler<AccountStatusShape> = (
