@@ -1,0 +1,34 @@
+@use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
+
+.search {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  padding-inline-start: 38px;
+  color: var(--color-text-primary);
+  background-color: transparent;
+  border-radius: var(--radius-round);
+  border: var(--border-default);
+  font: inherit;
+  @include mixins.type-body-compact;
+
+  line-height: var(--lh-normal);
+
+  &:focus {
+    outline: var(--outline-focus-default);
+    outline-offset: calc(-1 * var(--bw-default));
+  }
+
+  @media screen and (width <= variables.$mobile-breakpoint) {
+    font-size: var(--fs-16);
+  }
+}
+
+.searchIcon {
+  top: 10px;
+
+  @media screen and (width <= variables.$mobile-breakpoint) {
+    top: 12px;
+  }
+}
