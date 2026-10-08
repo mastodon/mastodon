@@ -10,6 +10,7 @@
   gap: var(--space-2);
   position: relative;
   overflow-y: clip;
+  padding-inline: 2px;
 
   &.collapsed {
     max-height: var(--max-height); // Set via JS.

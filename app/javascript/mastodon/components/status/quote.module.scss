@@ -1,10 +1,14 @@
 @use '@/styles/mastodon/mixins';
 
 // If hovering over an account link, underline all account links.
-.title:has(.quoteAccountLink:hover) {
+.title:has(.accountLink:hover) {
   .accountLink {
     text-decoration: underline;
   }
+}
+
+.accountLink {
+  display: block;
 }
 
 .spoiler {
