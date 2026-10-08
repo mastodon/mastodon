@@ -42,3 +42,6 @@ jobs:
 
       - name: JavaScript testing
         run: yarn test:js
+
+      - name: Storybook testing
+        run: yarn test:storybook
