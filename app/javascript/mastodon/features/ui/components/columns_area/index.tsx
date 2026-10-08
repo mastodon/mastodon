@@ -46,7 +46,7 @@ export const ColumnsArea: React.FC<{
 
         {isLayoutWithSearchEnabled() && (
           <div className={classes.searchWrapper}>
-            <Search singleColumn />
+            <Search singleColumn context='sidebar' />
           </div>
         )}
       </div>

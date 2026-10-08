@@ -343,7 +343,7 @@ const ExploreLink: React.FC = () => {
 
 export function handleSearchLinkClick() {
   const mainSearchInput = document.querySelector<HTMLInputElement>(
-    'input[data-main-search]',
+    '[data-column-root] input[data-main-search]',
   );
 
   // Focus the main search input if we're already on the search page
