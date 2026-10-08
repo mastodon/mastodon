@@ -12,7 +12,7 @@
   overflow-y: clip;
 
   :global(.emojione) {
-    width: 20px;
+    width: 1.3em;
     height: auto;
     margin: -3px 0 0;
   }
@@ -21,7 +21,6 @@
     @include mixins.type-body-lg;
 
     :global(.emojione) {
-      width: 24px;
       margin: -1px 0 0;
     }
   }
