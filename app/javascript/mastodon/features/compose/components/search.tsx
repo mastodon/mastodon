@@ -42,6 +42,10 @@ import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
+  placeholderSidebar: {
+    id: 'search.placeholder_ellipsis',
+    defaultMessage: 'Search…',
+  },
   clearSearch: { id: 'search.clear', defaultMessage: 'Clear search' },
   placeholderSignedIn: {
     id: 'search.search_or_paste',
@@ -567,6 +571,12 @@ export const Search: React.FC<{
   }, [expanded]);
 
   const searchOptionsHeading = useId();
+  let placeholder = intl.formatMessage(
+    signedIn ? messages.placeholderSignedIn : messages.placeholder,
+  );
+  if (context === 'sidebar') {
+    placeholder = intl.formatMessage(messages.placeholderSidebar);
+  }
 
   return (
     <form
@@ -583,12 +593,8 @@ export const Search: React.FC<{
           context === 'column' ? focusAfterNavigation : null,
         )}
         className='search__input'
-        placeholder={intl.formatMessage(
-          signedIn ? messages.placeholderSignedIn : messages.placeholder,
-        )}
-        aria-label={intl.formatMessage(
-          signedIn ? messages.placeholderSignedIn : messages.placeholder,
-        )}
+        placeholder={placeholder}
+        aria-label={placeholder}
         value={value}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
