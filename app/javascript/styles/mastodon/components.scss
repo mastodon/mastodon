@@ -3315,13 +3315,6 @@ a.account__display-name {
     font-size: 16px;
   }
 
-  .search__input {
-    line-height: 18px;
-    font-size: 16px;
-    padding-block: 15px;
-    padding-inline-end: 30px;
-  }
-
   .scrollable {
     overflow: visible;
 
@@ -5935,17 +5928,11 @@ a.status-card {
   }
 }
 
-.search__input {
-  @include search-input;
+.search__popout {
+  @include elevation-1;
 
-  display: block;
-  padding: 12px 16px;
-  padding-inline-start: 16px + 15px + 8px;
-  line-height: normal;
-
-  &:focus {
-    outline-color: var(--color-border-brand);
-  }
+  margin-top: var(--space-half);
+  border-radius: var(--radius-5);
 }
 
 .search__icon-wrapper {
@@ -8891,15 +8878,6 @@ noscript {
     margin-bottom: 0;
   }
 
-  .search__input {
-    padding-block: 12px;
-    padding-inline-end: 30px;
-  }
-
-  .search__popout {
-    border: 1px solid var(--color-border-primary);
-  }
-
   .search__icon {
     top: 12px;
     inset-inline-end: 12px;
@@ -9264,7 +9242,6 @@ noscript {
       margin-top: 1px;
       padding-top: 5px;
       padding-bottom: 5px;
-      border: 1px solid var(--color-border-primary);
     }
 
     &.invalid &__input {

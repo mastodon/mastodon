@@ -19,26 +19,27 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
+import { MagnifyingGlassIcon, XCircleIcon, XIcon } from '@phosphor-icons/react';
+
 import {
   FOCUS_TARGET,
   useFocusAfterNavigation,
 } from '@/mastodon/components/navigation_focus_target';
 import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
-import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import {
   clickSearchResult,
   forgetSearchResult,
   openURL,
 } from 'mastodon/actions/search';
-import { Icon } from 'mastodon/components/icon';
+import { Icon, iconWeight } from 'mastodon/components/icon';
 import { useIdentity } from 'mastodon/identity_context';
 import { domain, searchEnabled } from 'mastodon/initial_state';
 import type { RecentSearch, SearchType } from 'mastodon/models/search';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
+
+import classes from './search.module.scss';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
@@ -72,9 +73,11 @@ const ClearButton: React.FC<{
 
   return (
     <div
-      className={classNames('search__icon-wrapper', { 'has-value': hasValue })}
+      className={classNames('search__icon-wrapper', classes.searchIcon, {
+        'has-value': hasValue,
+      })}
     >
-      <Icon id='search' icon={SearchIcon} className='search__icon' />
+      <Icon id='search' icon={MagnifyingGlassIcon} className='search__icon' />
       <button
         type='button'
         onClick={onClick}
@@ -84,7 +87,7 @@ const ClearButton: React.FC<{
       >
         <Icon
           id='times-circle'
-          icon={CancelIcon}
+          icon={iconWeight(XCircleIcon, 'fill')}
           aria-label={intl.formatMessage(messages.clearSearch)}
         />
       </button>
@@ -115,7 +118,9 @@ export const Search: React.FC<{
   const [expanded, setExpanded] = useState(false);
   const [selectedOption, setSelectedOption] = useState(-1);
   const [quickActions, setQuickActions] = useState<SearchOption[]>([]);
-  const [shouldOpenOnFocus, setShouldOpenOnFocus] = useState(false);
+  const [shouldOpenOnFocus, setShouldOpenOnFocus] = useState(
+    context === 'sidebar',
+  );
   const focusAfterNavigation = useFocusAfterNavigation(
     FOCUS_TARGET.SEARCH,
     () => {
@@ -592,7 +597,7 @@ export const Search: React.FC<{
           searchInputRef,
           context === 'column' ? focusAfterNavigation : null,
         )}
-        className='search__input'
+        className={classes.search}
         placeholder={placeholder}
         aria-label={placeholder}
         value={value}
@@ -641,7 +646,7 @@ export const Search: React.FC<{
                       onMouseDown={forget}
                       type='button'
                     >
-                      <Icon id='times' icon={CloseIcon} />
+                      <Icon id='times' icon={XIcon} />
                     </button>
                   </div>
                 ))
