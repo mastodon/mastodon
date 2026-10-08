@@ -1,6 +1,6 @@
 @use '@/styles/mastodon/mixins';
 
-.content {
+.root {
   @include mixins.type-body;
 
   --mask-height: 80px;
@@ -10,6 +10,20 @@
   gap: var(--space-2);
   position: relative;
   overflow-y: clip;
+
+  :global(.emojione) {
+    width: 1.3em;
+    height: auto;
+    margin: -3px 0 0;
+  }
+
+  [data-variant='page'] & {
+    @include mixins.type-body-lg;
+
+    :global(.emojione) {
+      margin: -1px 0 0;
+    }
+  }
 
   &.collapsed {
     max-height: var(--max-height); // Set via JS.
@@ -22,7 +36,7 @@
   }
 }
 
-.contentText {
+.text {
   p,
   pre,
   blockquote,
@@ -129,7 +143,21 @@
   }
 }
 
-.contentReadMore {
+.readMore {
   grid-column: var(--content-col);
   width: max-content;
+}
+
+.image {
+  border-radius: var(--radius-4);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.blurHash {
+  width: 100%;
+  height: 100%;
 }
