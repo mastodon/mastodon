@@ -86,7 +86,7 @@ class Announcement < ApplicationRecord
   end
 
   def reactions(account = nil)
-    return [] if Rails.configuration.x.mastodon.disable_announcement_reactions
+    return [] unless reactions_allowed
 
     grouped_ordered_announcement_reactions.select(
       [:name, :custom_emoji_id, 'COUNT(*) as count'].tap do |values|
