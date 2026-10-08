@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import { hasReactChildren } from '@/mastodon/utils/has_react_children';
 
+import { useColumn } from '../column/context';
 import { LoadingIndicator } from '../loading_indicator';
 
 export const Scrollable = forwardRef<
@@ -14,6 +15,7 @@ export const Scrollable = forwardRef<
     fullscreen?: boolean;
   }
 >(({ flex = true, fullscreen, className, children, ...otherProps }, ref) => {
+  const { scrollSensor } = useColumn();
   return (
     <div
       className={classNames(
@@ -24,6 +26,7 @@ export const Scrollable = forwardRef<
       ref={ref}
       {...otherProps}
     >
+      {scrollSensor}
       {children}
     </div>
   );
