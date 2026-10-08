@@ -45,7 +45,7 @@ export const Column: React.FC<ColumnProps> = ({
         if (bindToDocument) {
           scrollable = document.scrollingElement;
         } else {
-          scrollable = nodeRef.current;
+          scrollable = nodeRef.current?.querySelector('.scrollable');
         }
 
         if (!scrollable) {
