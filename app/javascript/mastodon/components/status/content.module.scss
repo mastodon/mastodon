@@ -133,4 +133,8 @@
 .contentReadMore {
   grid-column: var(--content-col);
   width: max-content;
+
+  &:focus-visible {
+    outline-offset: -2px;
+  }
 }
