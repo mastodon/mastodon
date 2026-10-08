@@ -45,13 +45,14 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   className,
   ...props
 }: ColumnHeaderProps) => {
-  const { scrollTop } = useColumn();
   const columnIndex = useColumnIndexContext();
   const location = useLocation<LocationState>();
   const hasBackButton =
     withBackButton === true ||
     (withBackButton === 'auto' && location.state?.fromMastodon);
   const hasExtraStickyContent = hasReactChildren(extraStickyContent);
+
+  const { isScrolledToTop, scrollTop } = useColumn();
 
   const handleHeaderClick = useCallback<React.MouseEventHandler>(
     (e) => {
@@ -70,6 +71,8 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
     },
     [scrollTop],
   );
+
+  const hasScrollToTopButton = !isScrolledToTop && withUnreadMarker;
 
   return (
     <header
@@ -97,7 +100,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         {hasReactChildren(extraButtons) && (
           <div className={classes.rightButtons}>{extraButtons}</div>
         )}
-        {withUnreadMarker && (
+        {hasScrollToTopButton && (
           <Button
             size='sm'
             color='accent'
