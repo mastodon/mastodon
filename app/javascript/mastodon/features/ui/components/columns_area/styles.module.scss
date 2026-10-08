@@ -3,6 +3,7 @@
 .root {
   --main-column-max-width: 600px;
   --navigation-width: 320px;
+  --search-column-width: 320px;
 
   display: flex;
   flex-direction: column;
@@ -86,5 +87,20 @@
     overflow: visible;
     border: none;
     border-radius: 0;
+  }
+}
+
+.searchWrapper {
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--search-column-width);
+  padding: var(--space-4);
+  padding-top: var(--space-5);
+
+  @media (max-width: ($mobile-menu-breakpoint - 1)) {
+    display: none;
   }
 }
