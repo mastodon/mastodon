@@ -100,7 +100,7 @@
   padding: var(--space-4);
   padding-top: var(--space-5);
 
-  @media (max-width: ($mobile-menu-breakpoint - 1)) {
+  @media (width <= 1200px) {
     display: none;
   }
 }
