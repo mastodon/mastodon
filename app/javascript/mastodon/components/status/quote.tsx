@@ -1,7 +1,7 @@
 import type React from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -410,6 +410,9 @@ function useQuoteError({
     }
   }, [shouldFetchQuote, dispatch, quoteId, parentId]);
 
+  const intl = useIntl();
+  const filterNames = intl.formatList(filters.map(({ title }) => title));
+
   if (quoteState === 'pending') {
     return (
       <>
@@ -449,8 +452,6 @@ function useQuoteError({
       </>
     );
   }
-
-  const filterNames = filters.map(({ title }) => title).join(', ');
 
   if (loadingState === 'filtered') {
     message = (
