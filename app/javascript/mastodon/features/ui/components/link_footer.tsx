@@ -2,7 +2,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import {
   domain,
   version,
@@ -20,11 +19,7 @@ export const LinkFooter: React.FC<{
   const multiColumn = context === 'multi-column';
 
   return (
-    <footer
-      className={classes.wrapper}
-      data-context={context}
-      data-redesign={isRedesignEnabled()}
-    >
+    <footer className={classes.wrapper} data-context={context}>
       <section>
         <h2 className={classes.heading}>{`${domain}:`}</h2>
         <ul className={classes.list}>

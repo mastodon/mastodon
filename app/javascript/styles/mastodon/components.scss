@@ -4616,17 +4616,13 @@ a.status-card {
 }
 
 .column-header__select-row {
-  border-width: 0 1px 1px;
+  border-bottom-width: 1px;
   border-style: solid;
   border-color: var(--color-border-primary);
   padding: 15px;
   display: flex;
   align-items: center;
   gap: 8px;
-
-  html[data-redesign='true'] & {
-    border-inline: none;
-  }
 
   &__checkbox .check-box {
     display: flex;
@@ -5119,19 +5115,15 @@ a.status-card {
   }
 
   section {
-    padding: 16px;
+    padding: 16px 0;
     border-bottom: 1px solid var(--color-border-primary);
-
-    &:last-child {
-      border-bottom: 0;
-    }
-  }
-
-  [data-redesign='true'] & section {
-    padding-inline: 0;
 
     &:first-child {
       padding-top: 0;
+    }
+
+    &:last-child {
+      border-bottom: 0;
     }
   }
 
@@ -8053,19 +8045,10 @@ a.status-card {
 
 .notification__filter-bar,
 .account__section-headline {
-  border: 1px solid var(--color-border-primary);
-  border-top: 0;
+  border-bottom: 1px solid var(--color-border-primary);
   cursor: default;
   display: flex;
   flex-shrink: 0;
-
-  [data-redesign='true'] & {
-    border-inline: none;
-  }
-
-  @media screen and (max-width: ($no-gap-breakpoint - 1px)) {
-    border-inline: none;
-  }
 
   button {
     background: transparent;
@@ -11036,13 +11019,8 @@ noscript {
   display: flex;
   gap: 12px;
   align-items: center;
-  border-inline: 1px solid var(--color-border-primary);
   padding: 16px;
   padding-bottom: 8px;
-
-  [data-redesign='true'] & {
-    border-inline: none;
-  }
 
   input {
     background: var(--color-bg-secondary);

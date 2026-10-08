@@ -29,7 +29,7 @@
   }
 
   @media (width >= variables.$mobile-menu-breakpoint) {
-    border-top: 10px solid var(--color-bg-desktop);
+    border-top: var(--space-2) solid var(--color-bg-desktop);
   }
 
   // Fix bg color for legacy column headers.
