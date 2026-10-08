@@ -100,24 +100,24 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         {hasReactChildren(extraButtons) && (
           <div className={classes.rightButtons}>{extraButtons}</div>
         )}
-        {hasScrollToTopButton && (
-          <Button
-            size='sm'
-            color='accent'
-            variant='solid'
-            onClick={scrollTop}
-            leadingIcon={ArrowUpIcon}
-            className={classes.unreadButton}
-          >
-            <FormattedMessage
-              id='column_header.newer_posts'
-              defaultMessage='Newer posts'
-            />
-          </Button>
-        )}
       </div>
       {hasExtraStickyContent && (
         <div className={classes.extraStickyContent}>{extraStickyContent}</div>
+      )}
+      {hasScrollToTopButton && (
+        <Button
+          size='sm'
+          color='accent'
+          variant='solid'
+          onClick={scrollTop}
+          leadingIcon={ArrowUpIcon}
+          className={classes.unreadButton}
+        >
+          <FormattedMessage
+            id='column_header.newer_posts'
+            defaultMessage='Newer posts'
+          />
+        </Button>
       )}
     </header>
   );
