@@ -25,7 +25,7 @@ RSS::Builder.build do |doc|
           media_content.medium(media_attachment.gifv? ? 'image' : media_attachment.type.to_s)
           media_content.rating(status.sensitive? ? 'adult' : 'nonadult')
           media_content.description(media_attachment.description) if media_attachment.description.present?
-          media_content.thumbnail(media_attachment.thumbnail.url(:original, false)) if media_attachment.thumbnail?
+          media_content.thumbnail(full_asset_url(media_attachment.thumbnail.present? ? media_attachment.thumbnail.url : media_attachment.file.url(:small)))
         end
       end
 

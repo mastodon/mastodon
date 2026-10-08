@@ -285,6 +285,12 @@ RSpec.describe 'Accounts show response' do
             expect(response.body).to_not include(status_tag_for(status_reblog.reblog))
             expect(response.body).to_not include(status_tag_for(status_reply))
           end
+
+          it 'contains media thumbnail' do
+            imageitems = css_select('item *[type="image/jpeg"]')
+            expect(imageitems).not_to be_empty
+            expect(imageitems[0].to_xml).to include('media:thumbnail')
+          end
         end
 
         context 'with replies' do
