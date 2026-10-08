@@ -37,7 +37,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { Avatar } from '../avatar';
 import { Button } from '../button/redesign';
 import { Card, CardBody, CardTitle } from '../card';
-import { LinkedDisplayName } from '../display_name';
+import { DisplayName } from '../display_name';
 import { DisplayNameSimple } from '../display_name/simple';
 import { EmojiHTML } from '../emoji/html';
 import { Icon } from '../icon';
@@ -48,6 +48,7 @@ import { Skeleton } from '../skeleton';
 import { onStatusLinksDisabled } from './hooks';
 import { StatusImage } from './image';
 import classes from './quote.module.scss';
+import { accountStatusLinkProps } from './utils';
 
 type StatusQuoteProps = TQuotedStatus & { parentId: string };
 
@@ -113,11 +114,14 @@ export const QuotedStatus: React.FC<{
       <CardTitle
         className={classes.title}
         image={
-          <Avatar
-            account={status.account}
+          <Link
+            {...accountStatusLinkProps(status.account)}
+            role='presentation'
+            tabIndex={-1}
             className={classes.accountLink}
-            withLink
-          />
+          >
+            <Avatar account={status.account} />
+          </Link>
         }
         afterContent={
           <Link to={statusTo}>
@@ -125,10 +129,12 @@ export const QuotedStatus: React.FC<{
           </Link>
         }
       >
-        <LinkedDisplayName
-          displayProps={{ account: status.account, variant: 'noDomain' }}
+        <Link
+          {...accountStatusLinkProps(status.account)}
           className={classes.accountLink}
-        />
+        >
+          <DisplayName account={status.account} variant='noDomain' />
+        </Link>
       </CardTitle>
 
       <CardBody

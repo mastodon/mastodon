@@ -120,6 +120,7 @@
   position: relative;
   overflow: clip;
   border-radius: var(--radius-2);
+  margin-inline: -2px;
 
   &.isFiltered {
     display: none;
@@ -174,10 +175,22 @@
 }
 
 .hashtagsWrapper {
-  padding: var(--space-1) 0;
+  // Account for the 2px from the padding/margin in children
+  padding: calc(var(--space-1) - 2px) 0;
+
+  button:focus-visible {
+    outline-offset: 0;
+  }
+
+  > button {
+    // Ensure the +1 button is the same size as the hashtags buttons
+    margin-block: 2px;
+  }
 }
 
 .hashtags {
+  // Add padding for outline
+  padding: 2px;
   overflow: hidden;
   position: relative;
 
