@@ -11,6 +11,21 @@
   position: relative;
   overflow-y: clip;
 
+  :global(.emojione) {
+    width: 20px;
+    height: auto;
+    margin: -3px 0 0;
+  }
+
+  [data-variant='page'] & {
+    @include mixins.type-body-lg;
+
+    :global(.emojione) {
+      width: 24px;
+      margin: -1px 0 0;
+    }
+  }
+
   &.collapsed {
     max-height: var(--max-height); // Set via JS.
     overflow-y: clip;
