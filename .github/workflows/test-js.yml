@@ -43,5 +43,20 @@ jobs:
       - name: JavaScript testing
         run: yarn test:js
 
+      - name: Cache Playwright Chromium browser
+        id: playwright-cache
+        uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - name: Install Playwright Chromium browser (with deps)
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: yarn run playwright install --with-deps chromium
+
+      - name: Install Playwright Chromium browser deps
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: yarn run playwright install-deps chromium
+
       - name: Storybook testing
         run: yarn test:storybook
