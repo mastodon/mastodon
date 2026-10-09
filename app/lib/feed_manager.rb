@@ -160,20 +160,18 @@ class FeedManager
     changes = changed_setting_to(true, account, old_post_setting, old_reblog_setting)
     return if changes.blank?
 
-    query = account.statuses.includes(reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
+    statuses = account.statuses.includes(reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
     case changes
     when [:post]
-      query = account.statuses.includes(reblog: :account).where(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
+      statuses = account.statuses.includes(reblog: :account).where(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
     when [:reblog]
-      query = account.statuses.includes(reblog: :account).where.not(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
+      statuses = account.statuses.includes(reblog: :account).where.not(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
     end
 
     if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS / 4
       oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
-      query = query.where('id > ?', oldest_home_score)
+      statuses = statuses.where('id > ?', oldest_home_score)
     end
-
-    statuses = query.to_a
 
     statuses.each do |status|
       add_to_feed(:home, account.id, status, aggregate_reblogs: aggregate)
@@ -234,15 +232,14 @@ class FeedManager
     changes = changed_setting_to(false, account, old_post_setting, old_reblog_setting)
     return if changes.blank?
 
-    query = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil)
+    statuses = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil)
     case changes
     when [:post]
-      query = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where(reblog_of_id: nil).reorder(nil)
+      statuses = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where(reblog_of_id: nil).reorder(nil)
     when [:reblog]
-      query = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where.not(reblog_of_id: nil).reorder(nil)
+      statuses = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where.not(reblog_of_id: nil).reorder(nil)
     end
 
-    statuses = query.to_a
     statuses.each do |status|
       remove_from_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
     end
