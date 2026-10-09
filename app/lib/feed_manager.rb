@@ -154,13 +154,10 @@ class FeedManager
   # @param [Boolean] post_setting
   # @param [Boolean] reblog_setting
   # @return [void]
-  def merge_into_own_home(account, post_setting, reblog_setting)
+  def merge_into_own_home(account, old_post_setting, old_reblog_setting)
     timeline_key = key(:home, account.id)
     aggregate    = account.user&.aggregates_reblogs?
-    changes = []
-
-    changes << :post if account.user.settings['display_own_posts'] == true && account.user.settings['display_own_posts'] != post_setting
-    changes << :reblog if account.user.settings['display_own_boosts'] == true && account.user.settings['display_own_boosts'] != reblog_setting
+    changes = changed_setting_to(true, account, old_post_setting, old_reblog_setting)
     return if changes.blank?
 
     query = account.statuses.includes(reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
@@ -231,13 +228,10 @@ class FeedManager
   # @param [Boolean] post_setting
   # @param [Boolean] reblog_setting
   # @return [void]
-  def unmerge_from_own_home(account, post_setting, reblog_setting)
+  def unmerge_from_own_home(account, old_post_setting, old_reblog_setting)
     timeline_key        = key(:home, account.id)
     timeline_status_ids = redis.zrange(timeline_key, 0, -1)
-    changes = []
-
-    changes << :post if account.user.settings['display_own_posts'] == false && account.user.settings['display_own_posts'] != post_setting
-    changes << :reblog if account.user.settings['display_own_boosts'] == false && account.user.settings['display_own_boosts'] != reblog_setting
+    changes = changed_setting_to(false, account, old_post_setting, old_reblog_setting)
     return if changes.blank?
 
     query = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil)
@@ -748,5 +742,12 @@ class FeedManager
     return false if status.reblog_of_id.blank?
 
     account.id == status.account_id
+  end
+
+  def changed_setting_to(display, account, old_post_setting, old_reblog_setting)
+    type = []
+    type << :post if account.user.settings['display_own_posts'] == display && account.user.settings['display_own_posts'] != old_post_setting
+    type << :reblog if account.user.settings['display_own_boosts'] == display && account.user.settings['display_own_boosts'] != old_reblog_setting
+    type
   end
 end

@@ -530,7 +530,7 @@ RSpec.describe FeedManager do
       subject.push_to_home(account, post)
       account.user.settings['display_own_posts'] = false
 
-      subject.unmerge_from_own_home(account, true, true)
+      subject.unmerge_from_own_home(account, true, false)
 
       expect(redis.zscore('feed:home:0', post.id)).to be_nil
       expect(redis.zrange('feed:home:0', 0, -1)).to_not include(post.id.to_s)
@@ -554,7 +554,8 @@ RSpec.describe FeedManager do
     it 'inserts own posts into home feed' do
       account = Fabricate(:account, id: 0)
       post = Fabricate(:status, account: account)
-      account.user.settings['display_own_boosts'] = true
+      account.user.settings['display_own_posts'] = true
+      subject.unpush_from_home(account, post)
 
       subject.merge_into_own_home(account, false, false)
 
