@@ -10058,39 +10058,46 @@ noscript {
 }
 
 .inline-follow-suggestions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px 0;
-  padding-bottom: 0;
-  border-bottom: 1px solid var(--color-border-primary);
-  background: var(--color-bg-brand-softest);
+  margin-top: -1px;
+  background: var(--color-bg-primary);
+  padding: var(--space-2);
 
-  &.focusable:focus-visible {
-    background: var(--color-bg-brand-softest);
+  @media (width <= $mobile-menu-breakpoint) {
+    padding-inline: 0;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-4) 0;
+    padding-bottom: 0;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-6);
+
+    @media (width <= $mobile-menu-breakpoint) {
+      border-radius: 0;
+    }
   }
 
   &__title {
-    font-size: 15px;
-    line-height: 22px;
-    font-weight: 500;
+    @include type-label;
+
+    flex-shrink: 0;
   }
 
   &__header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    padding-inline: var(--space-4) var(--space-3);
 
     &__actions {
       display: flex;
       align-items: center;
-      gap: 24px;
-    }
-
-    .link-button {
-      font-size: 13px;
-      font-weight: 500;
+      margin-inline-start: auto;
+      column-gap: var(--space-half);
     }
   }
 
@@ -10098,22 +10105,34 @@ noscript {
     position: relative;
 
     &__scroll-button {
-      --scroll-button-bg: var(--color-bg-brand-base);
-
       position: absolute;
-      height: 100%;
-      background: transparent;
-      border: none;
-      cursor: pointer;
       top: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
       color: var(--color-text-primary);
 
+      // Increase the button's click area to the entire slider's height
+      & button::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+      }
+
       &.left {
-        left: 0;
+        left: calc(-1 * var(--space-2));
+
+        @media (width <= $mobile-menu-breakpoint) {
+          left: 0;
+        }
       }
 
       &.right {
-        right: 0;
+        right: calc(-1 * var(--space-2));
+
+        @media (width <= $mobile-menu-breakpoint) {
+          right: 0;
+        }
       }
 
       &__icon {
@@ -10144,23 +10163,22 @@ noscript {
       display: flex;
       flex-wrap: nowrap;
       min-height: 228px;
-      gap: 16px;
-      padding: 16px;
+      gap: var(--space-3);
+      padding: var(--space-3);
       scroll-snap-type: x mandatory;
-      scroll-padding: 16px;
+      scroll-padding: var(--space-4);
       scroll-behavior: smooth;
       overflow-x: scroll;
       scrollbar-width: none;
 
       &__card {
         background: var(--color-bg-primary);
-        border: 1px solid var(--color-border-primary);
-        border-radius: 4px;
+        border-radius: var(--radius-4);
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: var(--space-3);
         align-items: center;
-        padding: 12px;
+        padding: var(--space-3);
         scroll-snap-align: start;
         flex: 0 0 auto;
         width: 200px;
@@ -10171,11 +10189,10 @@ noscript {
           text-decoration: none;
         }
 
-        & > .icon-button {
+        &__close-button {
           position: absolute;
-          inset-inline-end: 8px;
-          top: 8px;
-          opacity: 0.75;
+          inset-inline-end: var(--space-2);
+          top: var(--space-2);
         }
 
         &__avatar {
@@ -10198,7 +10215,7 @@ noscript {
         &__text-stack {
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: var(--space-1);
           align-items: center;
           max-width: 100%;
 
@@ -10214,7 +10231,7 @@ noscript {
         .display-name {
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: var(--space-1);
           align-items: center;
 
           & > * {
