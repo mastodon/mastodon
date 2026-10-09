@@ -121,6 +121,21 @@ RSpec.describe 'Reports' do
           expect(response.parsed_body.size).to eq(1)
         end
       end
+
+      it 'loads report statuses, rules, and status relationships in batches', :aggregate_failures do
+        rule = Fabricate(:rule)
+        3.times do
+          statuses = Fabricate.times(2, :status, account: spammer)
+          Fabricate(:report, category: :violation, target_account: spammer, status_ids: statuses.map(&:id), rule_ids: [rule.id])
+        end
+
+        notifications = capture_notifications('sql.active_record') { subject }
+
+        expect(response).to have_http_status(:success)
+        expect(notifications.count { |event| event.payload[:name] == 'Status Load' && event.payload[:sql].start_with?('SELECT "statuses".*') }).to eq(1)
+        expect(notifications.count { |event| event.payload[:name] == 'Rule Load' }).to eq(1)
+        expect(notifications.count { |event| event.payload[:name] == 'Favourite Load' }).to eq(1)
+      end
     end
   end
 
