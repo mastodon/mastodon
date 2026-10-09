@@ -5,7 +5,7 @@ class MultiMergeIntoOwnHomeWorker
   include DatabaseHelper
   include Redisable
 
-  sidekiq_options lock: :until_executed
+  sidekiq_options lock: :until_executing, lock_args_method: ->(args) { [args.first] }
 
   # merges and unmerges own posts and boosts into home feed
   def perform(account_id, old_post_settings, old_reblog_settings)
