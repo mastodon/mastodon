@@ -123,6 +123,16 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   );
 };
 
+/**
+ * This is used for pages that don't need a column title,
+ * but should have the rounded shape of the column header
+ */
+export const EmptyColumnHeader: React.FC = () => (
+  <div className={classes.root}>
+    <div className={classes.layout} />
+  </div>
+);
+
 type ColumnHeaderButtonProps = DistributedOmit<IconButtonProps, 'size'> & {
   showTextOnDesktop?: boolean;
 };

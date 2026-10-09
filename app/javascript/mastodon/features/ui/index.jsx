@@ -670,13 +670,7 @@ class UI extends PureComponent {
     return (
       <Hotkeys global handlers={handlers}>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef}>
-          {!minimalShell && (
-            <SkipLinks
-              // TODO: Remove these props & related methods when isRedesignEnabled() flag is removed
-              multiColumn={layout === 'multi-column'}
-              onFocusGettingStartedColumn={this.handleHotkeyGoToStart}
-            />
-          )}
+          {!minimalShell && <SkipLinks />}
 
           <SwitchingColumnsArea
             identity={this.props.identity}
