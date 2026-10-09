@@ -8,20 +8,11 @@ class MultiMergeIntoOwnHomeWorker
   sidekiq_options lock: :until_executed
 
   # merges and unmerges own posts and boosts into home feed
-  def perform(account_id, display_post, display_reblog)
+  def perform(account_id, old_post_settings, old_reblog_settings)
     @account = Account.find(account_id)
 
-    if display_post == true
-      FeedManager.instance.merge_into_own_home(@account, :post)
-    elsif display_post == false
-      FeedManager.instance.unmerge_from_own_home(@account, :post)
-    end
-
-    if display_reblog == true
-      FeedManager.instance.merge_into_own_home(@account, :reblog)
-    elsif display_reblog == false
-      FeedManager.instance.unmerge_from_own_home(@account, :reblog)
-    end
+    FeedManager.instance.unmerge_from_own_home(@account, old_post_settings, old_reblog_settings)
+    FeedManager.instance.merge_into_own_home(@account, old_post_settings, old_reblog_settings)
   rescue ActiveRecord::RecordNotFound
     true
   end

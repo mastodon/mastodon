@@ -13,17 +13,17 @@ RSpec.describe MultiMergeIntoOwnHomeWorker do
     let(:display_post) { true }
     let(:display_reblog) { true }
 
-    let(:manager_service) { instance_double(FeedManager, merge_into_own_home: nil) }
+    let(:manager_service) { instance_double(FeedManager, merge_into_own_home: nil, unmerge_from_own_home: nil) }
 
     before { allow(FeedManager).to receive(:instance).and_return manager_service }
 
-    it 'calls the merge_into_own_home method' do
+    it 'calls the unmerge_from_own_home method' do
       subject
 
       expect(manager_service)
-        .to have_received(:merge_into_own_home).with(account, :post)
+        .to have_received(:merge_into_own_home).with(account, true, true)
       expect(manager_service)
-        .to have_received(:merge_into_own_home).with(account, :reblog)
+        .to have_received(:unmerge_from_own_home).with(account, true, true)
     end
   end
 end

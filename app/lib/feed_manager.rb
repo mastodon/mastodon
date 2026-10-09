@@ -151,15 +151,24 @@ class FeedManager
 
   # Fill a home feed with an account's own statuses or boosts
   # @param [Account] account
-  # @param [Symbol] post_type - either [:post, :reblog]
+  # @param [Boolean] post_setting
+  # @param [Boolean] reblog_setting
   # @return [void]
-  def merge_into_own_home(account, post_type)
+  def merge_into_own_home(account, post_setting, reblog_setting)
     timeline_key = key(:home, account.id)
     aggregate    = account.user&.aggregates_reblogs?
+    changes = []
 
-    query = if post_type == :post
+    changes << :post if account.user.settings['display_own_posts'] == true && account.user.settings['display_own_posts'] != post_setting
+    changes << :reblog if account.user.settings['display_own_boosts'] == true && account.user.settings['display_own_boosts'] != reblog_setting
+    return if changes.blank?
+
+    query = case changes
+            when [:post, :reblog]
+              account.statuses.includes(reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
+            when [:post]
               account.statuses.includes(reblog: :account).where(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
-            elsif post_type == :reblog
+            when [:reblog]
               account.statuses.includes(reblog: :account).where.not(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
             end
 
@@ -220,20 +229,30 @@ class FeedManager
 
   # Remove an account's statuses or boosts from their home feed
   # @param [Account] account
-  # @param [Symbol] post_type - can be [:post, :reblog]
+  # @param [Boolean] post_setting
+  # @param [Boolean] reblog_setting
   # @return [void]
-  def unmerge_from_own_home(account, post_type)
+  def unmerge_from_own_home(account, post_setting, reblog_setting)
     timeline_key        = key(:home, account.id)
     timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+    changes = []
 
-    if post_type == :post
-      account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where(reblog_of_id: nil).reorder(nil).find_each do |status|
-        remove_from_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
-      end
-    elsif post_type == :reblog
-      account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where.not(reblog_of_id: nil).reorder(nil).find_each do |status|
-        remove_from_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
-      end
+    changes << :post if account.user.settings['display_own_posts'] == false && account.user.settings['display_own_posts'] != post_setting
+    changes << :reblog if account.user.settings['display_own_boosts'] == false && account.user.settings['display_own_boosts'] != reblog_setting
+    return if changes.blank?
+
+    query = case changes
+            when [:post, :reblog]
+              account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil)
+            when [:post]
+              account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where(reblog_of_id: nil).reorder(nil)
+            when [:reblog]
+              account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where.not(reblog_of_id: nil).reorder(nil)
+            end
+
+    statuses = query.to_a
+    statuses.each do |status|
+      remove_from_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
     end
   end
 

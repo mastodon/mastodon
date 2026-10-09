@@ -544,21 +544,18 @@ class User < ApplicationRecord
   end
 
   def reload_home_feed
-    display_reblog = display_own_boosts_changed_to
-    display_post = display_own_posts_changed_to
+    reblog_setting = initial_setting_display_own_boosts
+    post_setting = initial_setting_display_own_posts
 
-    MultiMergeIntoOwnHomeWorker.perform_async(account.id, display_post, display_reblog)
+    # hand the initial status of the settings, to check at execution, to which it changed
+    MultiMergeIntoOwnHomeWorker.perform_async(account.id, post_setting, reblog_setting)
   end
 
-  def display_own_boosts_changed_to
-    return nil unless saved_change_to_settings.first['display_own_boosts'] != saved_change_to_settings.last['display_own_boosts']
-
-    saved_change_to_settings.last['display_own_boosts']
+  def initial_setting_display_own_boosts
+    saved_change_to_settings.first['display_own_boosts']
   end
 
-  def display_own_posts_changed_to
-    return nil unless saved_change_to_settings.first['display_own_posts'] != saved_change_to_settings.last['display_own_posts']
-
-    saved_change_to_settings.last['display_own_posts']
+  def initial_setting_display_own_posts
+    saved_change_to_settings.first['display_own_posts']
   end
 end
