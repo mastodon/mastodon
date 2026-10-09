@@ -27,7 +27,7 @@ const MultiColumnPlaceholderColumn: React.FC = () => {
         }
       />
 
-      <div className='drawer__inner__mastodon with-zig-zag-decoration'>
+      <div className='drawer__inner__mastodon'>
         <img alt='' draggable='false' src={mascot ?? elephantUIPlane} />
       </div>
     </Column>
