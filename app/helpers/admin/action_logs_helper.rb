@@ -1,6 +1,26 @@
 # frozen_string_literal: true
 
 module Admin::ActionLogsHelper
+  def action_log_title(log)
+    log.account_id == -99 ? automated_action_log_title(log) : generic_action_log_title(log)
+  end
+
+  def automated_action_log_title(log)
+    t("admin.action_logs.automated_actions.#{log.action}_#{log.target_type.underscore}_html",
+      target: content_tag(:span, log_target(log), class: 'target'))
+  end
+
+  def generic_action_log_title(log)
+    t("admin.action_logs.actions.#{log.action}_#{log.target_type.underscore}_html",
+      name: content_tag(:span, log.account.username, class: 'username'),
+      target: content_tag(:span, log_target(log), class: 'target'))
+  end
+
+  def action_log_subscription(log)
+    subscription = log.moderation_subscription.present? ? link_to(log.moderation_subscription.name, admin_moderation_subscription_path(log.moderation_subscription)) : t('admin.action_logs.deleted_suggestion')
+    t('admin.action_logs.suggested_by_html', subscription: content_tag(:span, subscription, class: 'target'))
+  end
+
   def log_target(log)
     case log.target_type
     when 'Account'
@@ -39,6 +59,8 @@ module Admin::ActionLogsHelper
       link_to log.human_identifier, admin_relays_path
     when 'Tag'
       link_to log.human_identifier, admin_tag_path(log.target_id)
+    when 'ModerationSubscription'
+      link_to log.human_identifier, admin_moderation_subscription_path(log.target_id)
     end
   end
 
