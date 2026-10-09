@@ -8,6 +8,14 @@ fr-CA:
     hosted_on: Serveur Mastodon hébergé sur %{domain}
     title: À propos
   accounts:
+    api_errors:
+      2fa_required: Votre compte ne peut pas être utilisé sans avoir configuré l'authentification à deux facteurs
+      account_deleted: Votre compte a été supprimé
+      account_suspended: Votre compte a été suspendu
+      login_disabled: Votre compte est actuellement désactivé
+      memorial: Votre compte a été transformé en mémorial
+      pending_approval: Votre compte est en attente d'approbation de l'équipe de modération
+      pending_confirmation: Il manque une adresse de courriel vérifiée à votre compte
     errors:
       cannot_be_added_to_collections: Ce compte ne peut pas être ajouté aux collections.
     followers:
@@ -69,6 +77,7 @@ fr-CA:
       demote: Rétrograder
       destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
       disable: Geler
+      disable_sign_in_token: Désactiver temporairement le contrôle par code de sécurité
       disable_sign_in_token_auth: Désactiver le jeton d'authentification par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
       disabled: Gelé
@@ -82,6 +91,7 @@ fr-CA:
       email: Courriel
       email_status: État du courriel
       enable: Dégeler
+      enable_sign_in_token: Activer le contrôle par code de sécurité
       enable_sign_in_token_auth: Activer le jeton d'authentification par courriel
       enabled: Activé
       enabled_msg: Le compte de %{username} a été dégelé avec succès
@@ -1000,9 +1010,9 @@ fr-CA:
         directory: Annuaire des serveurs
         opt_in_server_directory:
           description: Permettre à votre serveur d'être répertorié dans des annuaires de serveurs, comme celui présent sur https://joinmastodon.org/servers.
-          title: Autoriser la présence dans des annuaires de serveurs
+          title: Autoriser votre serveur à apparaître dans des annuaires de serveurs
         opt_in_server_recommendation:
-          description: Permettre la recommandation de votre serveur lors de la création d'un compte depuis les applications telles que les clients Mastodon officiels.
+          description: Permettre à votre serveur d'être recommandé lors de la création d'un compte depuis les applications telles que les clients Mastodon officiels.
           title: Autoriser la recommandation de votre serveur
         preamble: Contrôlez les informations partagées par votre serveur avec d'autres services et la manière dont votre serveur peut être découvert.
         privacy: Vie privée
@@ -1010,7 +1020,7 @@ fr-CA:
         title: Découverte externe
       feed_access:
         modes:
-          authenticated: Utilisateurs authentifiés uniquement
+          authenticated: Utilisateur·rice·s authentifié·e·s uniquement
           disabled: Nécessite un rôle spécifique
           public: Tout le monde
       landing_page:
@@ -2350,6 +2360,14 @@ fr-CA:
       further_actions_html: Si ce n'était pas vous, nous vous recommandons %{action} immédiatement car il pourrait être compromis.
       subject: Échec de l'authentification à double facteur
       title: Échec de l'authentification à double facteur
+    sign_in_token:
+      change_password: changer votre mot de passe
+      details: 'Voici les détails de la tentative :'
+      explanation: 'Nous avons détecté une tentative de connexion à votre compte après une longue période d''inactivité. Si vous en êtes à l''origine, veuillez entrer le code ci-dessous sur la page de connexion :'
+      further_actions: 'S’il ne s’agit pas de vous, veuillez changer votre mot de passe et activer l’authentification à deux facteurs sur votre compte. Vous pouvez le faire ici :'
+      further_actions_html: Si ce n’était pas vous, nous vous recommandons de %{action} immédiatement et d’activer l’authentification à deux facteurs afin de garder votre compte sécurisé.
+      subject: Veuillez confirmer la tentative de connexion
+      title: Tentative de connexion
     suspicious_sign_in:
       change_password: changer votre mot de passe
       details: 'Voici les détails de la connexion :'
@@ -2439,8 +2457,12 @@ fr-CA:
       title: Bienvenue à bord, %{name} !
   users:
     follow_limit_reached: Vous ne pouvez pas suivre plus de %{limit} personnes
+    generic_access_help_html: Rencontrez-vous des difficultés d’accès à votre compte ? Vous pouvez contacter %{email} pour obtenir de l’aide
     go_to_sso_account_settings: Accédez aux paramètres du compte de votre fournisseur d'identité
+    inactive_sign_in_confirmation: Cela fait un certain temps depuis votre dernière connexion, c'est pourquoi nous vous avons envoyé un code de sécurité par courriel pour vérifier votre tentative de connexion.
+    inactive_sign_in_title: Veuillez confirmer le code de sécurité
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
+    invalid_sign_in_token: Code de sécurité non valide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     rate_limited: Trop de tentatives d'authentification, réessayez plus tard.
     seamless_external_login: Vous êtes connectés via un service externe, donc les paramètres de mot de passe et de courriel ne sont pas disponibles.
