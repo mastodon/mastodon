@@ -2,12 +2,17 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { EyeSlashIcon, GearIcon, WarningIcon } from '@phosphor-icons/react';
+import {
+  MarkdownLogoIcon,
+  EyeSlashIcon,
+  GearIcon,
+  WarningIcon,
+} from '@phosphor-icons/react';
 
 import {
   changeComposeSensitivity,
   changeComposeSpoilerness,
-} from '@/flavours/glitch/actions/compose';
+ changeComposeContentType } from '@/flavours/glitch/actions/compose';
 import { setComposeQuotePolicy } from '@/flavours/glitch/actions/compose_typed';
 import type { ApiQuotePolicy } from '@/flavours/glitch/api_types/quotes';
 import { IconButton } from '@/flavours/glitch/components/button/redesign';
@@ -77,6 +82,18 @@ const ComposeSettingsInnerMenu: React.FC = () => {
   const onMediaSensitiveChange = useCallback(() => {
     dispatch(changeComposeSensitivity());
   }, [dispatch]);
+
+  // glitch-soc additions
+  const contentType = useAppSelector((state) =>
+    state.compose.get('content_type'),
+  );
+  const onMarkdownChange = useCallback(() => {
+    dispatch(
+      changeComposeContentType(
+        contentType === 'text/plain' ? 'text/markdown' : 'text/plain',
+      ),
+    );
+  }, [contentType, dispatch]);
 
   return (
     <>
@@ -175,6 +192,31 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           <FormattedMessage
             id='compose.blur_media'
             defaultMessage='Blur media'
+          />
+        </MenuItemCheckbox>
+      </MenuItemGroup>
+
+      <MenuItemDivider />
+
+      <MenuItemGroup
+        label={
+          <FormattedMessage
+            id='compose.glitch_settings.label'
+            defaultMessage='glitch-soc settings'
+          />
+        }
+      >
+        <MenuItemCheckbox
+          name='markdown_formatting'
+          value='on'
+          checked={contentType === 'text/markdown'}
+          onChange={onMarkdownChange}
+          keepMenuOpenOnClick
+          icon={MarkdownLogoIcon}
+        >
+          <FormattedMessage
+            id='compose.glitch.use_markdown'
+            defaultMessage='Use Markdown formatting'
           />
         </MenuItemCheckbox>
       </MenuItemGroup>
