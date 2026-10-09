@@ -11,6 +11,7 @@ import type { DistributedOmit } from 'type-fest';
 import { openNavigation } from '@/mastodon/actions/navigation';
 import { getColumnSkipLinkId } from '@/mastodon/features/ui/components/skip_links';
 import { useBreakpoint } from '@/mastodon/features/ui/hooks/useBreakpoint';
+import { useResizeObserver } from '@/mastodon/hooks/useObserver';
 import { useAppDispatch } from '@/mastodon/store';
 import { hasReactChildren } from '@/mastodon/utils/has_react_children';
 
@@ -73,10 +74,12 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   );
 
   const hasScrollToTopButton = !isScrolledToTop && withUnreadMarker;
+  const headerRef = useTrackColumnHeaderHeight();
 
   return (
     <header
       {...props}
+      ref={headerRef}
       className={classNames(
         className,
         classes.root,
@@ -192,3 +195,54 @@ const MobileMenuButton: React.FC = () => {
     </div>
   );
 };
+
+function updateHeaderHeightCssVariable(element: HTMLElement) {
+  const newHeight = `${element.offsetHeight}px`;
+  const currentHeight = getComputedStyle(
+    document.documentElement,
+  ).getPropertyValue('--column-header-height');
+
+  if (newHeight !== currentHeight) {
+    document.documentElement.style.setProperty(
+      '--column-header-height',
+      `${element.offsetHeight}px`,
+    );
+  }
+}
+
+/**
+ * Writes changes in the column header's height to a CSS variable
+ * that is used to keep feed items in view when navigating them via hotkeys
+ */
+function useTrackColumnHeaderHeight() {
+  const onResize: ResizeObserverCallback = useCallback((entries) => {
+    for (const { target } of entries) {
+      if (target instanceof HTMLElement) {
+        updateHeaderHeightCssVariable(target);
+      }
+    }
+  }, []);
+
+  const observer = useResizeObserver(onResize);
+
+  const headerRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      const isMultiColumnLayout = !!document.querySelector(
+        'body.layout-multiple-columns',
+      );
+      if (!node || isMultiColumnLayout) {
+        return;
+      }
+
+      observer.observe(node);
+      updateHeaderHeightCssVariable(node);
+
+      return () => {
+        observer.unobserve(node);
+      };
+    },
+    [observer],
+  );
+
+  return headerRef;
+}

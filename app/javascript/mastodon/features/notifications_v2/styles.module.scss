@@ -8,4 +8,8 @@
     min-width: 250px;
     flex: 1 1 0;
   }
+
+  &:empty {
+    display: none;
+  }
 }
