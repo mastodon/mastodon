@@ -86,6 +86,9 @@ export interface StatusShape {
   reblogs_count: number;
   replies_count: number;
   visibility: StatusVisibility;
+
+  // glitch-soc
+  local_only?: boolean;
 }
 export type AccountStatusShape = Omit<StatusShape, 'account'> & {
   account: AccountShapeFull;
