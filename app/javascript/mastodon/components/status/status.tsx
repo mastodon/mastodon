@@ -174,6 +174,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       <StatusHotkeys
         {...hotkeysProps}
         onClick={onOpenClick}
+        onAuxClick={onOpenClick}
         className={classNames(
           classes.root,
           variant === 'feed' && classes.variantFeed,
