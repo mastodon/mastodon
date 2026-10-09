@@ -106,7 +106,6 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
   scrollbar-width: thin;
   overscroll-behavior-y: contain;
   position: relative;
@@ -135,6 +134,7 @@
 
 .sensitive {
   outline-offset: -2px;
+  margin-block-end: var(--space-4);
 }
 
 .textarea,
@@ -268,6 +268,7 @@ textarea.textarea {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
+  margin-block-end: var(--space-4);
 
   &::before {
     border-block-start: 2px solid var(--color-border-primary);
