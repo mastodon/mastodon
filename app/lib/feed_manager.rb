@@ -163,14 +163,13 @@ class FeedManager
     changes << :reblog if account.user.settings['display_own_boosts'] == true && account.user.settings['display_own_boosts'] != reblog_setting
     return if changes.blank?
 
-    query = case changes
-            when [:post, :reblog]
-              account.statuses.includes(reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
-            when [:post]
-              account.statuses.includes(reblog: :account).where(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
-            when [:reblog]
-              account.statuses.includes(reblog: :account).where.not(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
-            end
+    query = account.statuses.includes(reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
+    case changes
+    when [:post]
+      query = account.statuses.includes(reblog: :account).where(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
+    when [:reblog]
+      query = account.statuses.includes(reblog: :account).where.not(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
+    end
 
     if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS / 4
       oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
@@ -241,14 +240,13 @@ class FeedManager
     changes << :reblog if account.user.settings['display_own_boosts'] == false && account.user.settings['display_own_boosts'] != reblog_setting
     return if changes.blank?
 
-    query = case changes
-            when [:post, :reblog]
-              account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil)
-            when [:post]
-              account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where(reblog_of_id: nil).reorder(nil)
-            when [:reblog]
-              account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where.not(reblog_of_id: nil).reorder(nil)
-            end
+    query = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil)
+    case changes
+    when [:post]
+      query = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where(reblog_of_id: nil).reorder(nil)
+    when [:reblog]
+      query = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where.not(reblog_of_id: nil).reorder(nil)
+    end
 
     statuses = query.to_a
     statuses.each do |status|
