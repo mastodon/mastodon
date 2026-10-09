@@ -44,7 +44,6 @@ import ModalContainer from './containers/modal_container';
 import {
   Compose,
   Status,
-  GettingStarted,
   KeyboardShortcuts,
   Firehose,
   AccountTimeline,
@@ -213,7 +212,6 @@ class SwitchingColumnsArea extends PureComponent {
               : null
             }
 
-            <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
             <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
             <WrappedRoute path='/about' component={About} content={children} />
             <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
