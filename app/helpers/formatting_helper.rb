@@ -27,9 +27,7 @@ module FormattingHelper
   module_function :extract_status_plain_text
 
   def status_content_format(status)
-    quoted_status = status.quote&.quoted_status if status.local?
-
-    html_aware_format(status.text, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []), quoted_status: quoted_status)
+    html_aware_format(status.text, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []))
   end
 
   def rss_status_content_format(status)
@@ -61,7 +59,8 @@ module FormattingHelper
   def wrapped_status_content_format(status)
     safe_join [
       rss_content_preroll(status),
-      status_content_format(status),
+      rss_referenced_status_content(status),
+      rss_status_content(status),
       rss_content_postroll(status),
     ]
   end
@@ -80,6 +79,48 @@ module FormattingHelper
       tag.strong { I18n.t('rss.content_warning', locale: available_locale_or_nil(status.language) || I18n.default_locale) },
       status.spoiler_text,
     ]
+  end
+
+  def rss_referenced_status_content(status)
+    if status.reblog?
+      url = get_post_url(status.reblog)
+      tag.p('Boosted '.html_safe + get_reference_info(url, status.reblog))
+    elsif status.reply?
+      referenced = Status.find_by(account_id: status.in_reply_to_account_id, id: status.in_reply_to_id)
+      return tag.p('Replied to unavailable post') if referenced.nil? || !referenced.distributable?
+      url = get_post_url(referenced)
+      tag.p('Replied to '.html_safe + get_reference_info(url, referenced) + tag.blockquote(status_content_format(referenced), cite: url))
+    elsif status.with_quote?
+      case status.quote.state
+      when 'revoked'
+        return tag.p('Quoted post has been removed by author')
+      when 'rejected'
+        return tag.p('Quoted post is unavailable')
+      when 'pending'
+        return tag.p('Quoted post is pending')
+      end
+      url = get_post_url(status.quote.quoted_status)
+      tag.p('Quoted '.html_safe + get_reference_info(url, status.quote.quoted_status) + tag.blockquote(status_content_format(status.quote.quoted_status), cite: url))
+    else
+      ''
+    end
+  end
+
+  def rss_status_content(status)
+    if status.reblog
+      get_post_url(status.reblog)
+      return tag.blockquote(status_content_format(status.reblog))
+    end
+    status_content_format(status)
+  end
+
+  def get_post_url(status)
+    ActivityPub::TagManager.instance.url_for(status) || ActivityPub::TagManager.instance.uri_for(status)
+  end
+
+  def get_reference_info(url, status)
+    pretty_name = tag.span(status.account.display_name.empty? ? status.account.username : status.account.display_name) + ' ('.html_safe + tag.span("@#{status.account.local? ? status.account.local_username_and_domain : status.account.pretty_acct}") + ')'.html_safe
+    tag.a(url, href: url) + ' by '.html_safe + pretty_name
   end
 
   def rss_content_postroll(status)
