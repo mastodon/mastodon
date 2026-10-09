@@ -149,6 +149,37 @@ class FeedManager
     trim(:home, into_account.id)
   end
 
+  # Fill a home feed with an account's own statuses or boosts
+  # @param [Account] account
+  # @param [Boolean] post_setting
+  # @param [Boolean] reblog_setting
+  # @return [void]
+  def merge_into_own_home(account, old_post_setting, old_reblog_setting)
+    timeline_key = key(:home, account.id)
+    aggregate    = account.user&.aggregates_reblogs?
+    changes = changed_setting_to(true, account, old_post_setting, old_reblog_setting)
+    return if changes.blank?
+
+    statuses = account.statuses.includes(reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
+    case changes
+    when [:post]
+      statuses = account.statuses.includes(reblog: :account).where(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
+    when [:reblog]
+      statuses = account.statuses.includes(reblog: :account).where.not(reblog_of_id: nil).limit(FeedManager::MAX_ITEMS / 4)
+    end
+
+    if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS / 4
+      oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
+      statuses = statuses.where('id > ?', oldest_home_score)
+    end
+
+    statuses.each do |status|
+      add_to_feed(:home, account.id, status, aggregate_reblogs: aggregate)
+    end
+
+    trim(:home, account.id)
+  end
+
   # Fill a list feed with an account's statuses
   # @param [Account] from_account
   # @param [List] list
@@ -187,6 +218,30 @@ class FeedManager
 
     from_account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil).find_each do |status|
       remove_from_feed(:home, into_account.id, status, aggregate_reblogs: into_account.user&.aggregates_reblogs?)
+    end
+  end
+
+  # Remove an account's statuses or boosts from their home feed
+  # @param [Account] account
+  # @param [Boolean] post_setting
+  # @param [Boolean] reblog_setting
+  # @return [void]
+  def unmerge_from_own_home(account, old_post_setting, old_reblog_setting)
+    timeline_key        = key(:home, account.id)
+    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+    changes = changed_setting_to(false, account, old_post_setting, old_reblog_setting)
+    return if changes.blank?
+
+    statuses = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil)
+    case changes
+    when [:post]
+      statuses = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where(reblog_of_id: nil).reorder(nil)
+    when [:reblog]
+      statuses = account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).where.not(reblog_of_id: nil).reorder(nil)
+    end
+
+    statuses.each do |status|
+      remove_from_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
     end
   end
 
@@ -684,5 +739,12 @@ class FeedManager
     return false if status.reblog_of_id.blank?
 
     account.id == status.account_id
+  end
+
+  def changed_setting_to(display, account, old_post_setting, old_reblog_setting)
+    type = []
+    type << :post if account.user.settings['display_own_posts'] == display && account.user.settings['display_own_posts'] != old_post_setting
+    type << :reblog if account.user.settings['display_own_boosts'] == display && account.user.settings['display_own_boosts'] != old_reblog_setting
+    type
   end
 end
