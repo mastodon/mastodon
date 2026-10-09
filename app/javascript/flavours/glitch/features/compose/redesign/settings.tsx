@@ -12,7 +12,8 @@ import {
 import {
   changeComposeSensitivity,
   changeComposeSpoilerness,
- changeComposeContentType } from '@/flavours/glitch/actions/compose';
+  changeComposeContentType,
+} from '@/flavours/glitch/actions/compose';
 import { setComposeQuotePolicy } from '@/flavours/glitch/actions/compose_typed';
 import type { ApiQuotePolicy } from '@/flavours/glitch/api_types/quotes';
 import { IconButton } from '@/flavours/glitch/components/button/redesign';
