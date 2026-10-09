@@ -33,6 +33,12 @@ class AdminMailer < ApplicationMailer
     mail subject: default_i18n_subject(instance: @instance, username: @account.username)
   end
 
+  def new_pending_accounts(accounts)
+    @accounts = accounts
+
+    mail subject: default_i18n_subject(instance: @instance)
+  end
+
   def new_trends(links, tags, statuses)
     ActiveRecord::Associations::Preloader.new(records: [*links, *tags, *statuses], associations: [:trend]).call
 
