@@ -351,9 +351,7 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
       fetchTesseract()
         .then(async ({ createWorker }) => {
           const [tesseractWorkerPath, tesseractCorePath] = await Promise.all([
-            // eslint-disable-next-line import/extensions
             import('tesseract.js/dist/worker.min.js?url'),
-            // eslint-disable-next-line import/no-extraneous-dependencies
             import('tesseract.js-core/tesseract-core.wasm.js?url'),
           ]);
           const worker = await createWorker('eng', 1, {

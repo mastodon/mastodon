@@ -96,17 +96,11 @@
       extends: ['schedule:weekly'],
     },
     {
-      // Group all eslint-related packages with `eslint` in the same PR
+      // Group all oxlint-related packages with `oxlint` in the same PR
       matchManagers: ['npm'],
-      matchPackageNames: [
-        'eslint',
-        'eslint-*',
-        'typescript-eslint',
-        '@eslint/*',
-        'globals',
-      ],
+      matchPackageNames: ['eslint', 'eslint-*', 'oxlint', 'oxlint-*'],
       matchUpdateTypes: ['patch', 'minor'],
-      groupName: 'eslint (non-major)',
+      groupName: 'oxlint (non-major)',
     },
     {
       // Group all Storybook-related packages in the same PR

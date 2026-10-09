@@ -109,7 +109,7 @@ const selectDisablePublicVisibilities = createAppSelector(
 );
 
 export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // oxlint-disable-next-line @typescript-eslint/no-unused-vars
   ({ onClose, onChange, statusId }, _ref) => {
     const intl = useIntl();
     const currentVisibility = useAppSelector((state) =>
@@ -247,7 +247,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
                 disabled: disableVisibility,
               })}
             >
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              {/* oxlint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label
                 className='visibility-dropdown__label'
                 id={visibilityLabelId}
@@ -296,7 +296,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
                 disabled: disableQuotePolicy,
               })}
             >
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              {/* oxlint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label className='visibility-dropdown__label' id={quoteLabelId}>
                 <FormattedMessage
                   id='visibility_modal.quote_label'

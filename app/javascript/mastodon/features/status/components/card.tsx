@@ -304,5 +304,5 @@ const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
   );
 };
 
-// eslint-disable-next-line import/no-default-export
+// oxlint-disable-next-line import/no-default-export
 export default Card;

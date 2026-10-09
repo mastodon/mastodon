@@ -50,13 +50,13 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
   const editedAt = status.edited_at;
 
   return (
-    /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
+    /* oxlint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
     <div
       onClick={onHeaderClick}
       onAuxClick={onHeaderClick}
       {...wrapperProps}
       className={classNames('status__info', className)}
-      /* eslint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
+      /* oxlint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
     >
       <StatusDisplayName
         statusAccount={statusAccount}

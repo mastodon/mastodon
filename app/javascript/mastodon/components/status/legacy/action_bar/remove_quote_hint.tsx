@@ -44,7 +44,7 @@ export const RemoveQuoteHint: React.FC<{
 
     if (!firstHintId) {
       firstHintId = uniqueId;
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+      // oxlint-disable-next-line react-hooks/set-state-in-effect
       setIsOnlyHint(true);
     }
 

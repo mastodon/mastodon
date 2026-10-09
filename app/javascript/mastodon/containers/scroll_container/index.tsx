@@ -68,7 +68,7 @@ export const ScrollContainer: React.FC<ScrollContainerProps> = ({
     return () => {
       scrollBehaviorContext.unregisterElement(scrollKey);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return React.Children.only(

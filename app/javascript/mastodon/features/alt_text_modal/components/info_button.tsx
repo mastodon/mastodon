@@ -47,7 +47,7 @@ export const InfoButton: React.FC = () => {
         reference={trigger}
       >
         {({ props }) => (
-          <div // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
+          <div // oxlint-disable-line jsx-a11y/no-noninteractive-element-interactions
             {...props}
             className='dialog-modal__popout prose dropdown-animation'
             role='region'

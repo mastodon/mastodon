@@ -19,10 +19,10 @@ const Blurhash: React.FC<Props> = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // oxlint-disable-next-line @typescript-eslint/no-non-null-assertion
     const canvas = canvasRef.current!;
 
-    // eslint-disable-next-line no-self-assign
+    // oxlint-disable-next-line no-self-assign
     canvas.width = canvas.width; // resets canvas
 
     if (dummy || !hash) return;
