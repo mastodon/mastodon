@@ -1,4 +1,5 @@
 @use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables' as vars;
 
 .root {
   @include mixins.type-body;
@@ -38,6 +39,22 @@
 }
 
 .text {
+  &:lang(#{vars.$cjk-langs}, #{vars.$vertical-lr-langs}) {
+    max-height: 10lh;
+
+    [data-variant='page'] & {
+      max-height: 50vh;
+    }
+  }
+
+  &:lang(#{vars.$cjk-langs}) {
+    writing-mode: vertical-rl;
+  }
+
+  &:lang(#{vars.$vertical-lr-langs}) {
+    writing-mode: vertical-lr;
+  }
+
   p,
   pre,
   blockquote,

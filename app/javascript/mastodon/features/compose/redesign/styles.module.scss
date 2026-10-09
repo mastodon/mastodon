@@ -1,5 +1,5 @@
 @use '@/styles/mastodon/mixins';
-@use '@/styles/mastodon/variables';
+@use '@/styles/mastodon/variables' as vars;
 
 .root {
   container-type: inline-size;
@@ -10,7 +10,7 @@
   padding: var(--space-4);
   z-index: 1; // To cover the sidebar
 
-  @media (width >= #{variables.$mobile-menu-breakpoint}) {
+  @media (width >= #{vars.$mobile-menu-breakpoint}) {
     @include mixins.elevation-2;
 
     border-radius: var(--radius-6);
@@ -145,8 +145,20 @@
 
   // Prevent automatic page zoom in Safari when focusing
   // text fields with font-sizes below 16px
-  @media (width <= #{variables.$mobile-menu-breakpoint}) {
+  @media (width <= #{vars.$mobile-menu-breakpoint}) {
     font-size: var(--fs-16);
+  }
+
+  &:lang(#{vars.$cjk-langs}, #{vars.$vertical-lr-langs}) {
+    max-height: 20lh;
+  }
+
+  &:lang(#{vars.$cjk-langs}) {
+    writing-mode: vertical-rl;
+  }
+
+  &:lang(#{vars.$vertical-lr-langs}) {
+    writing-mode: vertical-lr;
   }
 }
 
@@ -184,6 +196,10 @@ textarea.textarea {
   left: 0;
   right: 0;
   white-space: pre-wrap; // This makes the formatting match the text area.
+
+  &:lang(#{vars.$cjk-langs}, #{vars.$vertical-lr-langs}) {
+    padding-inline-end: var(--space-4);
+  }
 }
 
 .attachments {
