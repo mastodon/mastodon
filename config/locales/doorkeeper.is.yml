@@ -63,6 +63,10 @@ is:
         prompt_html: "%{client_name} vill fá heimild til að skoða aðganginn þinn. <strong>Ekki samþykkja þessa beiðni nema þú þekkir og treystir viðkomandi.</strong>"
         review_permissions: Yfirfara heimildir
         title: Auðkenning er nauðsynleg
+      require_reauth:
+        log_out_and_continue: Skrá út og halda áfram
+        prompt_html: Þú ert núna skráð/ur inn sem <strong>%{handle}</strong>, en til að halda áfram þarftu að skrá þig út.
+        title: Krafist er endurauðkenningar
       show:
         title: Afritaðu þennan auðkenningarkóða og límdu hann inn hjá forritinu.
     authorized_applications:
