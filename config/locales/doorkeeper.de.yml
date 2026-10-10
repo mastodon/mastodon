@@ -63,6 +63,10 @@ de:
         prompt_html: "%{client_name} möchte auf dein Konto zugreifen. <strong>Du solltest diese Anfrage nur genehmigen, wenn du diese Quelle kennst und ihr vertraust.</strong>"
         review_permissions: Berechtigungen überprüfen
         title: Autorisierung erforderlich
+      require_reauth:
+        log_out_and_continue: Abmelden und fortfahren
+        prompt_html: Du bist derzeit mit <strong>%{handle}</strong> angemeldet und musst dich abmelden, um fortzufahren.
+        title: Erneute Authentisierung erforderlich
       show:
         title: Kopiere diesen Autorisierungs-Code und füge ihn in die Anwendung ein.
     authorized_applications:
