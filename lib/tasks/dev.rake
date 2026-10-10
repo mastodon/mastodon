@@ -17,7 +17,6 @@ namespace :dev do
       ).find_or_create_by!(id: 10_000_000)
       showcase_user.mark_email_as_confirmed!
       showcase_user.approve!
-      showcase_account.reload
 
       french_post = Status.create_with(
         text: 'Ceci est un sondage public écrit en Français',
@@ -201,6 +200,7 @@ namespace :dev do
         domain: 'example.org',
         uri: 'https://example.org/foo/bar',
         url: 'https://example.org/foo/bar',
+        inbox_url: 'https://example.org/users/fake.example/inbox'
         locked: true
       ).find_or_create_by!(id: 10_000_001)
 
