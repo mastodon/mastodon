@@ -243,10 +243,20 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
   channelName = params.shift();
 
   if (streamingAPIBaseURL.startsWith('ws')) {
+    // @gamestdio/websocket's backoff has no cap and never resets its attempt
+    // counter after a successful open, so delays grow with the tab's lifetime.
     // @ts-expect-error
-    const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`, accessToken);
+    const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`, accessToken, { initialDelay: 1000 });
 
-    ws.onopen = connected;
+    // @ts-expect-error
+    ws.backoff.func = (attempt, delay) => Math.min(Math.floor(Math.random() * Math.pow(2, Math.min(attempt, 5)) * delay), 30000);
+
+    ws.onopen = () => {
+      // @ts-expect-error
+      ws.backoff.attempts = 0;
+      connected();
+    };
+
     ws.onmessage = e => received(JSON.parse(e.data));
     ws.onclose = disconnected;
     ws.onreconnect = reconnected;
