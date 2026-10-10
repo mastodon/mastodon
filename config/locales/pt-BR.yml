@@ -8,6 +8,13 @@ pt-BR:
     hosted_on: Mastodon hospedado em %{domain}
     title: Sobre
   accounts:
+    api_errors:
+      account_deleted: Sua conta foi deletada
+      account_suspended: Sua conta foi suspensa
+      login_disabled: Sua conta está atualmente desativada
+      memorial: Sua conta foi transformada em um memorial
+      pending_approval: Sua conta está atualmente aguardando aprovação da moderação
+      pending_confirmation: Sua conta não tem um endereço de e-mail confirmado
     errors:
       cannot_be_added_to_collections: Esta conta não pode ser adicionada a coleções.
     followers:
@@ -83,6 +90,8 @@ pt-BR:
       enable_sign_in_token_auth: Ativar token de autenticação por e-mail
       enabled: Ativado
       enabled_msg: A conta de %{username} foi descongelada
+      follow_recommendations:
+        allowed: Permitido
       followers: Seguidores
       follows: Seguindo
       header: Capa

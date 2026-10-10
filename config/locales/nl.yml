@@ -8,6 +8,14 @@ nl:
     hosted_on: Mastodon op %{domain}
     title: Over
   accounts:
+    api_errors:
+      2fa_required: Jouw account kan niet worden gebruikt zonder tweestapsverificatie
+      account_deleted: Je account is verwijderd
+      account_suspended: Jouw account is opgeschort
+      login_disabled: Jouw account is momenteel uitgeschakeld
+      memorial: Jouw account is omgezet in een gedenkplaats
+      pending_approval: Jouw account is momenteel in afwachting van goedkeuring
+      pending_confirmation: Jouw account mist een bevestigd e-mailadres
     errors:
       cannot_be_added_to_collections: Dit account kan niet aan collecties worden toegevoegd.
     followers:
@@ -69,6 +77,7 @@ nl:
       demote: Degraderen
       destroyed_msg: De verwijdering van de gegevens van %{username} staat nu in de wachtrij
       disable: Bevriezen
+      disable_sign_in_token: Beveiligingscode via e-mail tijdelijk uitschakelen
       disable_sign_in_token_auth: Verificatie met een toegangscode via e-mail uitschakelen
       disable_two_factor_authentication: 2FA uitschakelen
       disabled: Bevroren
@@ -82,6 +91,7 @@ nl:
       email: E-mail
       email_status: E-mailstatus
       enable: Ontdooien
+      enable_sign_in_token: Beveiligingscode via e-mail inschakelen
       enable_sign_in_token_auth: Verificatie met een toegangscode via e-mail inschakelen
       enabled: Ingeschakeld
       enabled_msg: Het ontdooien van het account van %{username} is geslaagd
@@ -106,9 +116,9 @@ nl:
         title: Locatie
       login_status: Loginstatus
       media_attachments: Mediabijlagen
-      memorialize: Naar een In memoriam veranderen
-      memorialized: In memoriam
-      memorialized_msg: Het naar een In memoriam veranderen van het account van %{username} is geslaagd
+      memorialize: In een gedenkplaats veranderen
+      memorialized: In een gedenkplaats veranderd
+      memorialized_msg: Het naar een gedenkplaats veranderen van het account van %{username} is geslaagd
       moderation:
         active: Actief
         all: Alles
@@ -240,7 +250,7 @@ nl:
         enable_relay: Relay inschakelen
         enable_sign_in_token_auth_user: Verificatie met een toegangscode via e-mail voor de gebruiker inschakelen
         enable_user: Gebruiker inschakelen
-        memorialize_account: Het account in een In memoriam veranderen
+        memorialize_account: Het account in een gedenkplaats veranderen
         promote_user: Gebruiker promoveren
         publish_terms_of_service: Algemene gebruiksvoorwaarden publiceren
         reject_appeal: Bezwaar afwijzen
@@ -311,7 +321,7 @@ nl:
         enable_sign_in_token_auth_user_html: "%{name} heeft verificatie met een toegangscode via e-mail ingeschakeld voor %{target}"
         enable_user_html: Inloggen voor %{target} is door %{name} ingeschakeld
         listable_tag_html: kan worden aanbevolen
-        memorialize_account_html: Het account %{target} is door %{name} in een In memoriam veranderd
+        memorialize_account_html: Het account %{target} is door %{name} in een gedenkplaats veranderd
         not_listable_tag_html: wordt niet aanbevolen
         not_trendable_tag_html: verschijnt niet onder trends
         not_usable_tag_html: kan niet worden gebruikt
@@ -997,6 +1007,13 @@ nl:
         disabled: Aan niemand
         users: Aan ingelogde lokale gebruikers
       external:
+        directory: Servergids
+        opt_in_server_directory:
+          description: Toestaan dat jouw server wordt vermeld in servergidsen zoals die op https://joinmastodon.org/servers.
+          title: Stel jouw server beschikbaar voor de servergids
+        opt_in_server_recommendation:
+          description: Laat je server aanbevelen bij het inschrijven in apps zoals de officiële Mastodon-apps.
+          title: Stel jouw server beschikbaar voor serveraanbevelingen
         preamble: Bepaal hoeveel informatie over jouw server met andere diensten wordt gedeeld en hoe goed jouw server te ontdekken moet zijn.
         privacy: Privacy
         publish_statistics: Statistieken publiceren
@@ -1664,7 +1681,7 @@ nl:
   filters:
     contexts:
       account: Profielen
-      home: Starttijdlijn en lijsten
+      home: Hoofdtijdlijn en aangepaste tijdlijnen
       notifications: Meldingen
       public: Openbare tijdlijnen
       thread: Gesprekken
@@ -2339,10 +2356,18 @@ nl:
       title: Archief ophalen
     failed_2fa:
       details: 'Hier zijn de details van de inlogpoging:'
-      explanation: Iemand heeft geprobeerd om in te loggen op jouw account maar heeft een ongeldige tweede verificatiefactor opgegeven.
+      explanation: Iemand heeft geprobeerd om op jouw account in te loggen, maar de tweestapsverificatie was mislukt.
       further_actions_html: Als jij dit niet was, raden we je aan om onmiddellijk %{action} aangezien het in gevaar kan zijn.
       subject: Tweestapsverificatiefout
       title: Tweestapsverificatie mislukt
+    sign_in_token:
+      change_password: wijzig je wachtwoord
+      details: 'Hier zijn details van de poging:'
+      explanation: 'We hebben een inlogpoging op je account ontdekt na een lange tijd van inactiviteit. Als jij dit bent, vul dan de beveiligingscode hieronder in op de inlogpagina:'
+      further_actions: 'Als jij dit niet was, wijzig dan je wachtwoord en schakel tweestapsverificatie voor je account in. Dit kun je hier doen:'
+      further_actions_html: Wanneer jij dit niet was, adviseren wij om onmiddellijk %{action} en om tweestapsverificatie in te schakelen, om zo je account veilig te houden.
+      subject: Bevestig de inlogpoging
+      title: Inlogpoging
     suspicious_sign_in:
       change_password: je wachtwoord te wijzigen
       details: 'Hier zijn de details van het inloggen:'
@@ -2404,7 +2429,7 @@ nl:
       feature_action: Meer informatie
       feature_audience: Mastodon biedt je een unieke mogelijkheid om je publiek te beheren zonder tussenpersonen. Mastodon, geïmplementeerd in jouw eigen infrastructuur, stelt je in staat om elke andere Mastodon-server online te volgen en door hen gevolgd te worden, en staat onder controle van niemand, behalve die van jou.
       feature_audience_title: Bouw jouw publiek in vertrouwen op
-      feature_control: Je weet zelf het beste wat je op jouw starttijdlijn wilt zien. Geen algoritmen of advertenties om je tijd te verspillen. Volg iedereen op elke Mastodon-server vanaf één account en ontvang hun berichten in chronologische volgorde, en maak jouw hoekje op het internet een beetje meer zoals jezelf.
+      feature_control: Je weet zelf het beste wat je op jouw hoofdtijdlijn wilt zien. Geen algoritmes of advertenties om je tijd te verspillen. Volg iedereen op elke Mastodon-server vanaf één account en ontvang hun berichten in chronologische volgorde, en maak jouw hoekje op het internet een beetje meer zoals jezelf.
       feature_control_title: Houd controle over je eigen tijdlijn
       feature_creativity: Mastodon ondersteunt audio-, video- en fotoberichten, toegankelijkheidsbeschrijvingen, peilingen, inhoudswaarschuwingen, geanimeerde profielfoto's, aangepaste lokale emoji's, controle over het bijwerken van miniaturen en meer, om je te helpen jezelf online uit te drukken. Of je nu jouw kunst, jouw muziek of jouw podcast publiceert, Mastodon staat voor je klaar.
       feature_creativity_title: Ongeëvenaarde creativiteit
@@ -2412,7 +2437,7 @@ nl:
       feature_moderation_title: Moderatie zoals het hoort
       follow_action: Volgen
       follow_step: Op Mastodon draait het helemaal om het volgen van interessante mensen.
-      follow_title: Personaliseer je starttijdlijn
+      follow_title: Jouw hoofdtijdlijn personaliseren
       follows_subtitle: Volg bekende accounts
       follows_title: Wie te volgen
       follows_view_more: Meer mensen om te volgen bekijken
@@ -2432,8 +2457,12 @@ nl:
       title: Welkom aan boord %{name}!
   users:
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
+    generic_access_help_html: Problemen met toegang tot je account? Neem dan contact op met %{email} voor assistentie
     go_to_sso_account_settings: Ga naar de accountinstellingen van je identiteitsprovider
+    inactive_sign_in_confirmation: Het is een tijd geleden dat je voor het laatst bent ingelogd, daarom sturen we een beveiligingscode naar je e-mailadres om te verifiëren dat jij het bent.
+    inactive_sign_in_title: Bevestig de beveiligingscode
     invalid_otp_token: Ongeldige tweestaps-toegangscode
+    invalid_sign_in_token: Ongeldige beveiligingscode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     rate_limited: Te veel authenticatiepogingen, probeer het later opnieuw.
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.

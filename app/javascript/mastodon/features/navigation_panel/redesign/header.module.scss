@@ -25,6 +25,10 @@
   &[data-stuck='true']::after {
     opacity: 1;
   }
+
+  @media (height < 540px) {
+    position: relative;
+  }
 }
 
 .siteNameLink {

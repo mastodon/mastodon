@@ -18,12 +18,16 @@ RSpec.describe 'OCR', :attachment_processing, :inline_jobs, :js, :streaming do
   it 'can recognize text in a media attachment' do
     expect(page).to have_css('div.app-holder')
 
-    within('.compose-form') do
-      attach_file('file-upload-input', file_fixture('text.png'), make_visible: true)
+    within('nav') do
+      click_on frontend_translations('tabs_bar.publish')
+    end
 
-      within('.compose-form__upload') do
-        click_on('Edit')
+    within('form[role="dialog"]') do
+      attach_file(file_fixture('text.png')) do
+        click_on(frontend_translations('upload_button.label'))
       end
+
+      click_on('Add alt text')
     end
 
     click_on('Add text from image')

@@ -8,6 +8,14 @@ da:
     hosted_on: Mastodon hostet på %{domain}
     title: Om
   accounts:
+    api_errors:
+      2fa_required: Din konto kan ikke bruges uden at have oprettet en anden autentificeringsfaktor
+      account_deleted: Din konto er blevet slettet
+      account_suspended: Din konto er blevet suspenderet
+      login_disabled: Din konto er pt. deaktiveret
+      memorial: Din konto er blevet omdannet til et mindesmærke
+      pending_approval: Din konto afventer i øjeblikket moderationsgodkendelse
+      pending_confirmation: Din konto mangler en bekræftet e-mailadresse
     errors:
       cannot_be_added_to_collections: Denne konto kan ikke tilføjes til samlinger.
     followers:
@@ -69,6 +77,7 @@ da:
       demote: Degradér
       destroyed_msg: "%{username}s data er nu sat i kø mhp. snarlig sletning"
       disable: Frys
+      disable_sign_in_token: Deaktivér midlertidigt sikkerhedskode-udfordring
       disable_sign_in_token_auth: Deaktivér e-mailtoken godkendelse
       disable_two_factor_authentication: Deaktivér 2FA
       disabled: Frosset
@@ -82,6 +91,7 @@ da:
       email: E-mail
       email_status: E-mailstatus
       enable: Optø
+      enable_sign_in_token: Aktiver sikkerhedskode-udfordring
       enable_sign_in_token_auth: Aktivér e-mailtoken godkendelse
       enabled: Aktiveret
       enabled_msg: "%{username}s konto er optøet"
@@ -997,6 +1007,13 @@ da:
         disabled: Til ingen
         users: Til indloggede lokale brugere
       external:
+        directory: Serverkatalog
+        opt_in_server_directory:
+          description: Tillad din server at blive opført i serverkateloger som det, der vises på https://joinmastodon.org/servers.
+          title: Lad din server blive en del af serverkataloget
+        opt_in_server_recommendation:
+          description: Tillad, at din server anbefales ved tilmelding i apps såsom de officielle Mastodon-klienter.
+          title: Lad din server komme i betragtning til serveranbefalinger
         preamble: Bestem, hvor mange oplysninger om din server der deles med andre tjenester, og hvor synlig din server skal være.
         privacy: Privatliv
         publish_statistics: Offentliggør statistikker
@@ -2343,6 +2360,14 @@ da:
       further_actions_html: Var dette ikke dig, anbefales det straks at %{action}, da den kan være kompromitteret.
       subject: Anden faktor godkendelsesfejl
       title: Fejlede på anden faktor godkendelse
+    sign_in_token:
+      change_password: ændrer din adgangskode
+      details: 'Her er nogle detaljer om forsøget:'
+      explanation: 'Vi har registreret et forsøg på at logge ind på din konto efter lang tids inaktivitet. Hvis det er dig, bedes du indtaste sikkerhedskoden nedenfor på siden for login-udfordringen:'
+      further_actions: 'Hvis det ikke var dig, så ændr din adgangskode og aktiver tofaktor-godkendelse på din konto. Det kan du gøre her:'
+      further_actions_html: Hvis dette ikke var dig, anbefaler vi, at du straks %{action} og aktiverer to-faktor-godkendelse for at holde din konto sikker.
+      subject: Bekræft indlogningsforsøg
+      title: Indlogningsforsøg
     suspicious_sign_in:
       change_password: ændrer din adgangskode
       details: 'Her er nogle detaljer om login-forsøget:'
@@ -2432,8 +2457,12 @@ da:
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan maks. følge %{limit} personer
+    generic_access_help_html: Problemer med at tilgå din konto? Du kan kontakte %{email} for hjælp
     go_to_sso_account_settings: Gå til din identitetsudbyders kontoindstillinger
+    inactive_sign_in_confirmation: Det er længe siden, du loggede ind, så vi sender en sikkerhedskode til din e-mailadresse for at bekræfte, at det er dig.
+    inactive_sign_in_title: Bekræft venligst sikkerhedskode
     invalid_otp_token: Ugyldig tofaktorkode
+    invalid_sign_in_token: Ugyldig sikkerhedskode
     otp_lost_help_html: Har du mistet adgang til begge, kan du kontakte %{email}
     rate_limited: For mange godkendelsesforsøg. Prøv igen senere.
     seamless_external_login: Adgangskode- og e-mailindstillinger er utilgængelige, da der er logget ind via en ekstern tjeneste.

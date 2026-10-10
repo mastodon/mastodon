@@ -1,6 +1,8 @@
 @use '@/styles/mastodon/mixins';
 
 .galleryWrapper {
+  position: relative;
+
   :global(.media-gallery) {
     margin-top: 0;
     border-radius: 0;
@@ -33,7 +35,19 @@
 }
 
 .gallerySpoiler {
-  margin-bottom: var(--space-2);
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+
+  > p {
+    @include mixins.type-body-compact;
+
+    color: var(--color-text-primary);
+    margin-block-end: var(--space-2);
+  }
 }
 
 .galleryHideButtons {
@@ -47,6 +61,10 @@
   :global(.media-gallery__actions) {
     display: none;
   }
+}
+
+.galleryFilterBlur::after {
+  background-color: var(--color-bg-media);
 }
 
 .cardMedia {

@@ -36,6 +36,22 @@
   padding: var(--space-3);
 }
 
+.isHighlighted {
+  :global(.no-reduce-motion) & {
+    animation: highlight-fade 0.7s both 0.3s;
+  }
+}
+
+@keyframes highlight-fade {
+  from {
+    background: var(--color-bg-brand-softest);
+  }
+
+  to {
+    background: transparent;
+  }
+}
+
 .isMessage {
   position: relative;
 
@@ -67,7 +83,6 @@
 .spoiler,
 .translate,
 .contentWrapper,
-.contentReadMore,
 .footer {
   grid-column: var(--content-col);
 }
@@ -96,19 +111,16 @@
   margin-inline-start: auto;
 }
 
-.contentWrapper,
-.content {
+.contentWrapper {
+  --fade-time: 100ms;
+
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   position: relative;
-}
-
-.contentWrapper {
-  --fade-time: 100ms;
-
   overflow: clip;
   border-radius: var(--radius-2);
+  margin-inline: -2px;
 
   &.isFiltered {
     display: none;
@@ -136,7 +148,7 @@
       opacity var(--fade-time) ease-in-out;
 
     // Show only if backdrop-filter is unsupported.
-    background-color: var(--color-bg-blend);
+    background-color: var(--color-bg-desktop);
 
     @supports (backdrop-filter: blur(20px)) {
       background-color: transparent;
@@ -155,53 +167,6 @@
   }
 }
 
-.content {
-  @include mixins.type-body;
-
-  --mask-height: 80px;
-
-  overflow-y: clip;
-
-  &.collapsed {
-    max-height: var(--max-height); // Set via JS.
-    overflow-y: clip;
-    mask-image: linear-gradient(
-      to bottom,
-      black calc(100% - var(--mask-height)),
-      transparent
-    );
-  }
-}
-
-.contentText {
-  p:not(:last-child) {
-    margin-block-end: 1em;
-  }
-
-  a,
-  button {
-    color: var(--color-text-brand);
-  }
-}
-
-.contentImage {
-  border-radius: var(--radius-4);
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-.contentBlurHash {
-  width: 100%;
-  height: 100%;
-}
-
-.contentReadMore {
-  width: max-content;
-}
-
 .hashtagsWrapper,
 .hashtags {
   display: flex;
@@ -210,10 +175,22 @@
 }
 
 .hashtagsWrapper {
-  padding: var(--space-1) 0;
+  // Account for the 2px from the padding/margin in children
+  padding: calc(var(--space-1) - 2px) 0;
+
+  button:focus-visible {
+    outline-offset: 0;
+  }
+
+  > button {
+    // Ensure the +1 button is the same size as the hashtags buttons
+    margin-block: 2px;
+  }
 }
 
 .hashtags {
+  // Add padding for outline
+  padding: 2px;
   overflow: hidden;
   position: relative;
 
@@ -229,7 +206,7 @@
 }
 
 .meta {
-  @include mixins.type-micro;
+  @include mixins.type-meta;
 
   display: flex;
   gap: var(--space-4);
@@ -267,6 +244,10 @@
 
 .actions {
   display: flex;
+
+  > button {
+    font-variant-numeric: tabular-nums;
+  }
 
   > button:not(:hover, :active, [aria-pressed='true'], [aria-expanded='true']) {
     opacity: 0.7;

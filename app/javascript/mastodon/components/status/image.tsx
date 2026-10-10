@@ -8,7 +8,7 @@ import type {
 import { Blurhash } from '@/mastodon/components/blurhash';
 import type { MediaAttachmentShape } from '@/mastodon/models/status';
 
-import classes from './styles.module.scss';
+import classes from './content.module.scss';
 
 type StatusImageAttachmentJSON =
   | ApiImageAttachmentJSON
@@ -46,15 +46,12 @@ export const StatusImage: React.FC<
   return (
     <div
       {...props}
-      className={classNames(classes.contentImage, className)}
+      className={classNames(classes.image, className)}
       style={imgStyle}
       data-color-scheme='dark'
     >
       {sensitive && attachment.blurhash && (
-        <Blurhash
-          hash={attachment.blurhash}
-          className={classes.contentBlurHash}
-        />
+        <Blurhash hash={attachment.blurhash} className={classes.blurHash} />
       )}
 
       {children}

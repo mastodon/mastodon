@@ -3,7 +3,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect } from 'storybook/test';
 
-import type { HandlerMap } from '.';
+import type { HotkeyHandlerMap } from '.';
 import { Hotkeys } from '.';
 
 const meta = {
@@ -86,9 +86,9 @@ const hotkeyTest: Story['play'] = async ({ canvas, userEvent }) => {
 
 export const Default = {
   render: function Render() {
-    const [matchedHotkey, setMatchedHotkey] = useState<keyof HandlerMap | null>(
-      null,
-    );
+    const [matchedHotkey, setMatchedHotkey] = useState<
+      keyof HotkeyHandlerMap | null
+    >(null);
 
     const handlers = {
       back: () => {

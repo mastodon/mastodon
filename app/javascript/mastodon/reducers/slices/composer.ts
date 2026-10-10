@@ -12,13 +12,13 @@ import {
   COMPOSE_REPLY,
   COMPOSE_SET_STATUS,
   directCompose,
-  replyComposeById,
   resetCompose,
   submitCompose,
 } from '@/mastodon/actions/compose';
 import {
   changeComposeVisibility,
   PRIVATE_QUOTE_MODAL_ID,
+  replyComposeById,
 } from '@/mastodon/actions/compose_typed';
 import { openModal } from '@/mastodon/actions/modal';
 import { REDRAFT } from '@/mastodon/actions/statuses';
@@ -204,7 +204,7 @@ export const openNewComposer = createAppThunk(
         dispatch(requestComposerFocus());
       }
     } else if (payload.type === 'reply') {
-      dispatch(replyComposeById(payload.toStatusId));
+      dispatch(replyComposeById({ statusId: payload.toStatusId }));
     } else {
       dispatch(requestComposerFocus());
     }
@@ -268,6 +268,11 @@ export const submitComposer = createAppThunk(
 
     const { compose, meta, statuses, server, settings } = getState();
 
+    if (!selectComposerIsChanged(getState())) {
+      dispatch(composerSlice.actions.addError('empty'));
+      return;
+    }
+
     const maxChars =
       server.server.item?.configuration.statuses.max_characters ?? 500;
     let text = compose.get('text') as string;
@@ -276,10 +281,7 @@ export const submitComposer = createAppThunk(
       text += spoilerText;
     }
     const textLength = length(countableText(text));
-    if (textLength === 0) {
-      dispatch(composerSlice.actions.addError('empty'));
-      return;
-    } else if (textLength > maxChars) {
+    if (textLength > maxChars) {
       dispatch(composerSlice.actions.addError('too-long'));
       return;
     }

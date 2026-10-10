@@ -61,6 +61,7 @@ nl:
         setting_default_quote_policy_private: Berichten aan alleen volgers afkomstig van Mastodon kunnen niet door anderen worden geciteerd.
         setting_default_quote_policy_unlisted: Wanneer mensen jou citeren, verschijnt hun bericht ook niet onder trends.
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
+        setting_default_spoiler_field: Houdt het veld met de inhoudswaarschuwing open in het opstelvenster. Je kunt voor elk bericht de tekst aanpassen.
         setting_display_media_default: Geef een waarschuwing bij het tonen van als gevoelig gemarkeerde media
         setting_display_media_hide_all: Geef een waarschuwing bij het tonen van alle media
         setting_display_media_show_all: Geef geen waarschuwing bij het tonen van alle media, inclusief als gevoelig gemarkeerde media
@@ -155,7 +156,7 @@ nl:
         jurisdiction: Vermeld het land waar de persoon woont die de rekeningen betaalt. Is het een bedrijf of iets dergelijks, vermeld dan het land waar het ingeschreven staat en de stad, de regio, het grondgebied of de staat, voor zover van toepassing.
         min_age: Mag niet lager zijn dan de minimale vereiste leeftijd volgens de wetten van jouw jurisdictie.
       user:
-        chosen_languages: Indien aangevinkt, worden alleen berichten in geselecteerde talen weergegeven in openbare tijdlijnen. Deze instelling heeft geen invloed op je starttijdlijn en lijsten.
+        chosen_languages: Indien aangevinkt, worden alleen berichten op openbare tijdlijnen in de geselecteerde talen weergegeven. Deze instelling heeft geen invloed op je hoofdtijdlijn en aangepaste tijdlijnen.
         date_of_birth:
           one: We moeten er zeker van zijn dat je tenminste %{count} bent om %{domain} te mogen gebruiken. Deze informatie wordt niet door ons opgeslagen.
           other: We moeten er zeker van zijn dat je tenminste %{count} bent om %{domain} te mogen gebruiken. Deze informatie wordt niet door ons opgeslagen.
@@ -250,6 +251,7 @@ nl:
         setting_default_privacy: Zichtbaarheid van nieuwe berichten
         setting_default_quote_policy: Wie mag jou citeren
         setting_default_sensitive: Media altijd als gevoelig markeren
+        setting_default_spoiler_field: Gebruik standaard inhoudswaarschuwingen
         setting_delete_modal: Waarschuw mij wanneer ik een bericht probeer te verwijderen
         setting_disable_hover_cards: Hover-kaarten met profielvoorbeelden uitschakelen
         setting_disable_swiping: Swipebewegingen uitschakelen
@@ -257,6 +259,8 @@ nl:
         setting_display_media_default: Standaard
         setting_display_media_hide_all: Alles verbergen
         setting_display_media_show_all: Alles tonen
+        setting_display_own_boosts: Mijn eigen boosts op mijn hoofdtijdlijn weergeven
+        setting_display_own_posts: Mijn eigen berichten op mijn hoofdtijdlijn weergeven
         setting_emoji_style: Emoji-stijl
         setting_expand_spoilers: Berichten met inhoudswaarschuwingen altijd uitklappen
         setting_hide_network: Jouw volgers en wie je volgt verbergen
@@ -273,6 +277,7 @@ nl:
         setting_use_pending_items: Langzame modus
         severity: Zwaarte
         sign_in_token_attempt: Beveiligingscode
+        sign_in_token_resend: Beveiligingscode opnieuw verzenden
         title: Titel
         type: Importtype
         username: Gebruikersnaam

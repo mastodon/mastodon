@@ -132,6 +132,11 @@
   }
 }
 
+.sensitive {
+  outline-offset: -2px;
+  margin-block-end: var(--space-4);
+}
+
 .textarea,
 .textareaMirror {
   @include mixins.type-body;
@@ -263,6 +268,7 @@ textarea.textarea {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
+  margin-block-end: var(--space-4);
 
   &::before {
     border-block-start: 2px solid var(--color-border-primary);

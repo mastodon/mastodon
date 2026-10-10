@@ -54,6 +54,7 @@ import type { AppDispatch } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
+import type { HotkeyHandlerFunction, HotkeyName } from '../hotkeys';
 import { FOCUS_TARGET } from '../navigation_focus_target';
 
 import { boostItemState, quoteItemState } from './boost_button_utils';
@@ -73,6 +74,10 @@ import type { StatusContextType } from './types';
 export const StatusContext = createContext<{
   id?: string | null;
   contextType?: StatusContextType;
+  registerHotkeyCallback?: (
+    hotkey: HotkeyName,
+    handler: HotkeyHandlerFunction,
+  ) => void;
 }>({});
 
 export function useStatusContext() {
@@ -163,7 +168,7 @@ export function useStatusHandlers({
       const target = event.target;
       if (
         !(target instanceof HTMLElement) ||
-        target.closest('a, button, dialog') ||
+        target.closest('a, button, dialog, input, textarea, label') ||
         contextType === 'detailed' ||
         window.getSelection()?.type === 'Range'
       ) {
@@ -459,12 +464,38 @@ export function useHandlersForStatus(
       status?.tagged_collections.find((item) => item.url === href)?.id,
     [status?.tagged_collections],
   );
-  return useElementHandledLink({
+  const { onElement: onElementHandledLink } = useElementHandledLink({
     hashtagAccountId:
       typeof status?.account === 'string' ? status.account : status?.account.id,
     hrefToCollectionId,
     hrefToMention,
   });
+
+  const onElement: OnElementHandler = useCallback(
+    (element, { key, ...props }, children, extra) => {
+      if (element instanceof HTMLAnchorElement) {
+        return onElementHandledLink(
+          element,
+          { key, ...props },
+          children,
+          extra,
+        );
+      } else if (
+        element instanceof HTMLSpanElement &&
+        props.className === 'invisible'
+      ) {
+        return createElement(
+          'span',
+          { key: key as React.Key, 'aria-disabled': true, ...props },
+          children,
+        );
+      }
+      return undefined;
+    },
+    [onElementHandledLink],
+  );
+
+  return { onElement };
 }
 
 export const onStatusLinksDisabled: OnElementHandler<AccountStatusShape> = (
@@ -581,7 +612,10 @@ export function useStatusMenuActions({
   const interactions = useAppSelector((state) =>
     selectStatusInteractionsAllowed(state, status.id),
   );
-  const statusInteractionFactory = useStatusInteractionFactory(status.id);
+  const statusInteractionFactory = useStatusInteractionFactory(
+    status.id,
+    contextType,
+  );
 
   return useMemo(
     () =>

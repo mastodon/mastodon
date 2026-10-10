@@ -4,11 +4,15 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import {
+  CaretLeftIcon,
+  CaretRightIcon,
+  InfoIcon,
+  XIcon,
+} from '@phosphor-icons/react';
+
+import { Button, IconButton } from '@/mastodon/components/button/redesign';
 import { useOverflowScroll } from '@/mastodon/hooks/useOverflow';
-import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
-import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import InfoIcon from '@/material-icons/400-24px/info.svg?react';
 import { changeSetting } from 'mastodon/actions/settings';
 import {
   fetchSuggestions,
@@ -19,8 +23,6 @@ import { Avatar } from 'mastodon/components/avatar';
 import { Badge, VerifiedBadge } from 'mastodon/components/badge';
 import { DisplayName } from 'mastodon/components/display_name';
 import { FollowButton } from 'mastodon/components/follow_button';
-import { Icon } from 'mastodon/components/icon';
-import { IconButton } from 'mastodon/components/icon_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { domain } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
@@ -135,11 +137,14 @@ const Card: React.FC<{
   return (
     <div className='inline-follow-suggestions__body__scrollable__card'>
       <IconButton
-        icon=''
-        iconComponent={CloseIcon}
+        icon={XIcon}
         onClick={handleDismiss}
-        title={intl.formatMessage(messages.dismiss)}
-      />
+        className='inline-follow-suggestions__body__scrollable__card__close-button'
+        size='sm'
+        variant='ghost'
+      >
+        {intl.formatMessage(messages.dismiss)}
+      </IconButton>
 
       <div className='inline-follow-suggestions__body__scrollable__card__avatar'>
         <Link
@@ -150,7 +155,7 @@ const Card: React.FC<{
           data-hover-card-account={account?.id}
           data-hover-card-reference='inline_suggestions'
         >
-          <Avatar account={account} size={72} />
+          <Avatar account={account} size={70} />
         </Link>
       </div>
 
@@ -223,74 +228,87 @@ export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
       className='inline-follow-suggestions focusable'
       tabIndex={-1}
     >
-      <div className='inline-follow-suggestions__header'>
-        <h2 id={uniqueId} className='inline-follow-suggestions__title'>
-          <FormattedMessage
-            id='follow_suggestions.who_to_follow'
-            defaultMessage='Who to follow'
-          />
-        </h2>
-
-        <div className='inline-follow-suggestions__header__actions'>
-          <button className='link-button' onClick={handleDismiss} type='button'>
+      <div className='inline-follow-suggestions__inner'>
+        <div className='inline-follow-suggestions__header'>
+          <h2 id={uniqueId} className='inline-follow-suggestions__title'>
             <FormattedMessage
-              id='follow_suggestions.dismiss'
-              defaultMessage="Don't show again"
+              id='follow_suggestions.who_to_follow'
+              defaultMessage='Who to follow'
             />
-          </button>
-          <Link to='/explore/suggestions' className='link-button'>
-            <FormattedMessage
-              id='follow_suggestions.view_all'
-              defaultMessage='View all'
-            />
-          </Link>
-        </div>
-      </div>
+          </h2>
 
-      <div className='inline-follow-suggestions__body'>
-        <div
-          className='inline-follow-suggestions__body__scrollable'
-          ref={bodyRef}
-          onScroll={handleScroll}
-        >
-          {isLoading ? (
-            <LoadingIndicator />
-          ) : (
-            suggestions.map((suggestion) => (
-              <Card
-                key={suggestion.account_id}
-                id={suggestion.account_id}
-                sources={suggestion.sources}
+          <div className='inline-follow-suggestions__header__actions'>
+            <Button
+              size='xs'
+              color='accent'
+              variant='ghost'
+              onClick={handleDismiss}
+            >
+              <FormattedMessage
+                id='follow_suggestions.dismiss'
+                defaultMessage="Don't show again"
               />
-            ))
+            </Button>
+            <Button
+              size='xs'
+              color='accent'
+              variant='ghost'
+              as='link'
+              to='/explore/suggestions'
+            >
+              <FormattedMessage
+                id='follow_suggestions.view_all'
+                defaultMessage='View all'
+              />
+            </Button>
+          </div>
+        </div>
+
+        <div className='inline-follow-suggestions__body'>
+          <div
+            className='inline-follow-suggestions__body__scrollable'
+            ref={bodyRef}
+            onScroll={handleScroll}
+          >
+            {isLoading ? (
+              <LoadingIndicator />
+            ) : (
+              suggestions.map((suggestion) => (
+                <Card
+                  key={suggestion.account_id}
+                  id={suggestion.account_id}
+                  sources={suggestion.sources}
+                />
+              ))
+            )}
+          </div>
+
+          {canScrollLeft && (
+            <div className='inline-follow-suggestions__body__scroll-button left'>
+              <IconButton
+                onClick={handleLeftNav}
+                icon={CaretLeftIcon}
+                variant='solid'
+                color='accent'
+              >
+                {intl.formatMessage(messages.previous)}
+              </IconButton>
+            </div>
+          )}
+
+          {canScrollRight && (
+            <div className='inline-follow-suggestions__body__scroll-button right'>
+              <IconButton
+                onClick={handleRightNav}
+                icon={CaretRightIcon}
+                variant='solid'
+                color='accent'
+              >
+                {intl.formatMessage(messages.next)}
+              </IconButton>
+            </div>
           )}
         </div>
-
-        {canScrollLeft && (
-          <button
-            className='inline-follow-suggestions__body__scroll-button left'
-            onClick={handleLeftNav}
-            aria-label={intl.formatMessage(messages.previous)}
-            type='button'
-          >
-            <div className='inline-follow-suggestions__body__scroll-button__icon'>
-              <Icon id='' icon={ChevronLeftIcon} />
-            </div>
-          </button>
-        )}
-
-        {canScrollRight && (
-          <button
-            className='inline-follow-suggestions__body__scroll-button right'
-            onClick={handleRightNav}
-            aria-label={intl.formatMessage(messages.next)}
-            type='button'
-          >
-            <div className='inline-follow-suggestions__body__scroll-button__icon'>
-              <Icon id='' icon={ChevronRightIcon} />
-            </div>
-          </button>
-        )}
       </div>
     </div>
   );

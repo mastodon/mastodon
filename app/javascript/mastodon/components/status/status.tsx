@@ -1,13 +1,18 @@
-import { useId, useMemo } from 'react';
+import { useCallback, useId, useMemo, useState } from 'react';
 
 import classNames from 'classnames';
 
 import type { Merge } from 'type-fest';
 
 import type { ExpandedStatusShape } from '@/mastodon/models/status';
-import { selectExpandedStatus } from '@/mastodon/selectors/statuses';
+import { selectStatusLoadingState } from '@/mastodon/selectors/statuses';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
+import type {
+  HotkeyHandlerFunction,
+  HotkeyHandlerMap,
+  HotkeyName,
+} from '../hotkeys';
 import { Hotkeys } from '../hotkeys';
 import { Poll } from '../poll';
 
@@ -43,19 +48,28 @@ type StatusRedesignProps = Merge<
 export type StatusVariant = 'feed' | 'thread' | 'page';
 
 const selectStatusReblog = createAppSelector(
-  [(state, id?: string | null) => selectExpandedStatus(state, id ?? undefined)],
-  (status) => {
+  [
+    (
+      state,
+      {
+        statusId,
+        contextType,
+      }: { statusId?: string | null; contextType?: StatusContextType },
+    ) => selectStatusLoadingState(state, { statusId, contextType }),
+  ],
+  ({ status, state }) => {
     if (!status) {
-      return {};
+      return { state };
     }
     if (!status.reblog) {
-      return { status };
+      return { status, state };
     }
 
     const { reblog, ...statusRest } = status;
     return {
       status: reblog,
       parent: statusRest,
+      state,
     };
   },
 );
@@ -75,13 +89,14 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   withDismiss,
   onOpen,
   showThread,
+  shouldHighlightOnMount,
   headerContents,
   variant = contextToVariant(contextType),
   nextId,
 }) => {
   // Select data from store
   const { status, parent } = useAppSelector((state) =>
-    selectStatusReblog(state, id),
+    selectStatusReblog(state, { statusId: id, contextType }),
   );
   const statusId = status?.id;
 
@@ -116,6 +131,14 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     onOpen,
   });
 
+  const [hotkeyHandlers, setHotkeyHandlers] = useState<HotkeyHandlerMap>({});
+  const registerHotkey = useCallback(
+    (hotkey: HotkeyName, handler: HotkeyHandlerFunction) => {
+      setHotkeyHandlers((prev) => ({ ...prev, [hotkey]: handler }));
+    },
+    [],
+  );
+
   if (!status) {
     return null; // loading state
   }
@@ -126,6 +149,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     muted,
     unfocusable,
     'data-id': id,
+    'data-variant': variant,
+    handlers: hotkeyHandlers,
   };
 
   const isHidden =
@@ -143,7 +168,9 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   }
 
   return (
-    <StatusContext.Provider value={{ id, contextType }}>
+    <StatusContext.Provider
+      value={{ id, contextType, registerHotkeyCallback: registerHotkey }}
+    >
       <StatusHotkeys
         {...hotkeysProps}
         onClick={onOpenClick}
@@ -153,6 +180,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           variant === 'thread' && classes.variantThread,
           variant === 'page' && classes.variantPage,
           isQuotedPost && classes.isQuote,
+          shouldHighlightOnMount && classes.isHighlighted,
           status.visibility === 'direct' && classes.isMessage,
           variant === 'thread' &&
             isNextReplyingToMe &&
@@ -245,6 +273,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 interface StatusHotkeysProps {
   children: React.ReactNode;
   status: ExpandedStatusShape;
+  handlers: HotkeyHandlerMap;
   onOpen?: () => void;
   muted?: boolean;
   unfocusable?: boolean;
@@ -256,6 +285,7 @@ const StatusHotkeys = ({
   onOpen,
   muted,
   unfocusable,
+  handlers: registeredHandlers,
   ...props
 }: StatusHotkeysProps & React.ComponentPropsWithoutRef<'article'>) => {
   const { contextType } = useStatusContext();
@@ -282,10 +312,9 @@ const StatusHotkeys = ({
         open: handlers.onOpenCallback,
         openProfile: handlers.onOpenProfile,
         toggleHidden: handlers.onToggleHidden,
-        // TODO: This is handled in a child component, so needs to be fixed.
-        // toggleSensitive: onMediaShowToggle,
         openMedia: handlers.onOpenMedia,
         onTranslate: handlers.onTranslate,
+        ...registeredHandlers,
       }}
       focusable={!unfocusable}
     >

@@ -339,6 +339,8 @@ kab:
     export_domain_blocks:
       no_file: Ulac afaylu yettwafernen
     fasp:
+      capabilities:
+        enable: Rmed
       debug:
         callbacks:
           delete: Kkes
@@ -520,6 +522,8 @@ kab:
         all: I medden akk
         disabled: Ɣef ula yiwen
         users: Ɣef yimseqdacen idiganen i yeqqnen
+      external:
+        directory: Akaram n uqeddac
       feed_access:
         modes:
           public: Yal yiwen
@@ -775,6 +779,7 @@ kab:
     challenge_not_passed: Ur iṣeḥḥa ara yisalli-nni i teskecmeḍ
     confirm_password: Sekcem awal-ik·im uffir n tura akken ad tesfeqdeḍ tamagit-ik·im
     proceed: Kkes amiḍan
+    title: Kkes amiḍan %{acct}
     warning:
       username_available: Isem-ik·im n useqdac ad yuɣal yella i tikkelt-nniḍen
       username_unavailable: Isem-ik·im n useqdac ad yeqqim ulac-it
@@ -807,6 +812,7 @@ kab:
     confirmations:
       show:
         changed_your_mind: Tbeddleḍ ṛṛay-ik·im?
+    disabled: D arurmid
     inactive: D arurmid
     status: Addad
   emoji_styles:
@@ -1161,6 +1167,8 @@ kab:
   user_mailer:
     appeal_approved:
       action: Iɣewwaṛen n umiḍan
+    sign_in_token:
+      change_password: snifel awal-ik·im n uɛeddi
     suspicious_sign_in:
       change_password: snifel awal-ik·im n uɛeddi
     terms_of_service_changed:

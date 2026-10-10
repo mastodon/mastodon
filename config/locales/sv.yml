@@ -8,6 +8,14 @@ sv:
     hosted_on: Mastodon-värd på %{domain}
     title: Om
   accounts:
+    api_errors:
+      2fa_required: Ditt konto kan inte användas utan att en andra autentiseringsfaktor har konfigurerats.
+      account_deleted: Ditt konto har tagits bort
+      account_suspended: Ditt konto har blivit avstängt
+      login_disabled: Ditt konto  är för närvarande inaktiverat
+      memorial: Ditt konto har gjorts om till ett minneskonto.
+      pending_approval: Ditt konto väntar för närvarande på modereringsgodkännande
+      pending_confirmation: Ditt konto saknar en bekräftad e-postadress
     errors:
       cannot_be_added_to_collections: Detta konto kan inte läggas till i samlingar.
     followers:
@@ -69,6 +77,7 @@ sv:
       demote: Degradera
       destroyed_msg: "%{username}s data har nu lagts till kön för att raderas omedelbart"
       disable: Inaktivera
+      disable_sign_in_token: Inaktivera tillfälligt kontrollen med säkerhetskod
       disable_sign_in_token_auth: Inaktivera autentisering med pollett via e-post
       disable_two_factor_authentication: Inaktivera 2FA
       disabled: Inaktiverad
@@ -82,6 +91,7 @@ sv:
       email: E-post
       email_status: E-poststatus
       enable: Aktivera
+      enable_sign_in_token: Aktivera kontrollen med säkerhetskod
       enable_sign_in_token_auth: Aktivera autentisering med pollett via e-post
       enabled: Aktiverad
       enabled_msg: Uppfrysningen av %{username}s konto lyckades
@@ -997,6 +1007,13 @@ sv:
         disabled: För ingen
         users: För inloggade lokala användare
       external:
+        directory: Serverkatalog
+        opt_in_server_directory:
+          description: Låt din server listas i serverkataloger, till exempel den som finns på https://joinmastodon.org/servers.
+          title: Låt din server listas i serverkatalogen.
+        opt_in_server_recommendation:
+          description: Tillåt att din server rekommenderas vid registrering i applikationer som de officiella Mastodon-klienterna.
+          title: Tillåt serverrekommendationer för din server
         preamble: Kontrollera hur mycket information om din server som delas med andra tjänster och hur identifierbar din server ska vara.
         privacy: Integritet
         publish_statistics: Publicera statistik
@@ -2020,7 +2037,7 @@ sv:
       too_many_options: kan inte innehålla mer än %{max} objekt
     vote: Rösta
   posting_defaults:
-    explanation: Dessa inställningar kommer att användas som standard när du skapar nya inlägg, men du kan redigera dem per inlägg i kompositören.
+    explanation: Dessa inställningar kommer att användas som standard när du skapar nya inlägg, men du kan redigera dem per inlägg i skrivläget.
   preferences:
     other: Annat
     posting_defaults: Standardinställningar för inlägg
@@ -2343,6 +2360,14 @@ sv:
       further_actions_html: Om detta inte var du, rekommenderar vi att du %{action} omedelbart eftersom ditt konto kan ha äventyrats.
       subject: Andra faktorns autentiseringsfel
       title: Misslyckad tvåfaktorsautentisering
+    sign_in_token:
+      change_password: ändra ditt lösenord
+      details: 'Här är detaljer om försöket:'
+      explanation: 'Vi upptäckte ett försök att logga in på ditt konto efter en längre tids inaktivitet. Om det var du, vänligen ange säkerhetskoden nedan på sidan för inloggningsverifiering:'
+      further_actions: 'Om det inte var du, vänligen byt lösenord och aktivera tvåfaktorsautentisering på ditt konto. Du kan göra det här:'
+      further_actions_html: Om det inte var du, rekommenderar vi att du %{action} omedelbart och aktiverar tvåfaktorsautentisering för att hålla ditt konto säkert.
+      subject: Bekräfta inloggningsförsöket
+      title: Inloggningsförsök
     suspicious_sign_in:
       change_password: ändra ditt lösenord
       details: 'Här är inloggningsdetaljerna:'
@@ -2432,8 +2457,12 @@ sv:
       title: Välkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan inte följa fler än %{limit} personer
+    generic_access_help_html: Har du problem med att komma åt ditt konto? Du kan kontakta %{email} för assistans
     go_to_sso_account_settings: Gå till din identitetsleverantörs kontoinställningar
+    inactive_sign_in_confirmation: Det har varit ett tag sedan du loggade in, så vi skickar en säkerhetskod till din e-postadress för att bekräfta att det är du.
+    inactive_sign_in_title: Bekräfta säkerhetskoden
     invalid_otp_token: Ogiltig tvåfaktorskod
+    invalid_sign_in_token: Ogiltig säkerhetskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     rate_limited: För många autentiseringsförsök, försök igen senare.
     seamless_external_login: Du är inloggad via en extern tjänst. Därför finns inställningar för lösenord och e-post inte tillgängliga.

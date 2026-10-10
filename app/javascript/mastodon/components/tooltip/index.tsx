@@ -202,7 +202,7 @@ const TooltipElement: React.FC<React.ComponentPropsWithRef<'span'>> = ({
 
   useLayoutEffect(() => {
     const popover = popoverRef.current;
-    if (!popover) return;
+    if (!popover || !isPopoverAPISupported()) return;
 
     popover.showPopover();
 
@@ -217,3 +217,7 @@ const TooltipElement: React.FC<React.ComponentPropsWithRef<'span'>> = ({
     </span>
   );
 };
+
+function isPopoverAPISupported() {
+  return 'popover' in HTMLElement.prototype;
+}

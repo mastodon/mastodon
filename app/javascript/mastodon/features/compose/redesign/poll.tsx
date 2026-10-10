@@ -113,10 +113,7 @@ export const ComposePoll: React.FC = () => {
     useCallback(
       (event) => {
         dispatch(
-          changePollSettings(
-            Number.parseInt(event.target.value) / 1000,
-            multiple,
-          ),
+          changePollSettings(Number.parseInt(event.target.value), multiple),
         );
       },
       [dispatch, multiple],

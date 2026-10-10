@@ -8,6 +8,14 @@ cy:
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     title: Ynghylch
   accounts:
+    api_errors:
+      2fa_required: Does dim modd defnyddio eich cyfrif heb osod ail ffactor dilysu
+      account_deleted: Mae eich cyfrif wedi cael ei ddileu
+      account_suspended: Mae eich cyfrif wedi'i atal
+      login_disabled: Mae eich cyfrif wedi'i analluogi ar hyn o bryd
+      memorial: Mae eich cyfrif wedi'i droi'n gofeb
+      pending_approval: Mae eich cyfrif yn aros am gymeradwyaeth cymedroli ar hyn o bryd
+      pending_confirmation: Mae cyfeiriad e-bost wedi'i gadarnhau ar goll yn eich cyfrif
     errors:
       cannot_be_added_to_collections: Does dim modd ychwanegu'r cyfrif hwn at gasgliadau.
     followers:
@@ -81,6 +89,7 @@ cy:
       demote: Diraddio
       destroyed_msg: Mae data %{username} bellach mewn ciw i gael ei ddileu yn fuan
       disable: Rhewi
+      disable_sign_in_token: Analluogi her cod diogelwch dros dro
       disable_sign_in_token_auth: Analluogi dilysu tocyn e-bost
       disable_two_factor_authentication: Diffodd 2FA
       disabled: Wedi rhewi
@@ -94,6 +103,7 @@ cy:
       email: E-bost
       email_status: Statws e-bost
       enable: Dadrewi
+      enable_sign_in_token: Galluogi her cod diogelwch
       enable_sign_in_token_auth: Galluogi dilysu tocyn e-bost
       enabled: Wedi ei alluogi
       enabled_msg: Wedi dadrewi cyfrif %{username} yn llwyddiannus
@@ -1061,6 +1071,13 @@ cy:
         disabled: I neb
         users: I ddefnyddwyr lleol wedi'u mewngofnodi
       external:
+        directory: Cyfeiriadur y Gweinydd
+        opt_in_server_directory:
+          description: Caniatáu i'ch gweinydd gael ei restru mewn cyfeiriaduron gweinyddion fel yr un sydd i'w weld ar https://joinmastodon.org/servers.
+          title: Dewiswch eich gweinydd ar gyfer cyfeiriadur y gweinydd
+        opt_in_server_recommendation:
+          description: Caniatáu i'ch gweinydd gael ei argymell wrth gofrestru mewn cymwysiadau fel cleientiaid swyddogol Mastodon.
+          title: Dewiswch eich gweinydd i gael argymhelliad gweinydd
         preamble: Rheoli faint o wybodaeth am eich gweinydd sy'n cael ei rhannu gyda gwasanaethau eraill a pha mor hawdd ei darganfod y dylai eich gweinydd fod.
         privacy: Preifatrwydd
         publish_statistics: Cyhoeddi ystadegau
@@ -2563,6 +2580,14 @@ cy:
       further_actions_html: Os nad chi oedd hwn, rydym yn argymell eich bod yn %{action} ar unwaith oherwydd gall fod o dan fygythiad.
       subject: Methiant dilysu ail ffactor
       title: Wedi methu dilysu ail ffactor
+    sign_in_token:
+      change_password: newidiwch eich cyfrinair
+      details: 'Dyma fanylion yr ymgais:'
+      explanation: 'Rydym weddi canfod ymgais i fewngofnodi i''ch cyfrif ar ôl cyfnod hir o anweithgarwch. Os mai chi yw hwn, nodwch y cod diogelwch isod ar y dudalen her mewngofnodi:'
+      further_actions: 'Os nad chi oedd hyn, newidiwch eich cyfrinair a galluogwch ddilysu dau ffactor ar eich cyfrif. Gallwch wneud hynny yma:'
+      further_actions_html: Os nad chi oedd hyn, rydym yn argymell eich bod yn %{action} ar unwaith ac yn galluogi dilysu dau ffactor i gadw'ch cyfrif yn ddiogel.
+      subject: Cadarnhewch yr ymgais i fewngofnodi
+      title: Ymgais mewngofnodi
     suspicious_sign_in:
       change_password: newidiwch eich cyfrinair
       details: 'Dyma fanylion y mewngofnodi:'
@@ -2656,8 +2681,12 @@ cy:
       title: Croeso, %{name}!
   users:
     follow_limit_reached: Nid oes modd i chi ddilyn mwy na %{limit} o bobl
+    generic_access_help_html: Problemau wrth gael mynediad i'ch cyfrif? Gallwch gysylltu â %{email} am gymorth
     go_to_sso_account_settings: Ewch i osodiadau cyfrif eich darparwr hunaniaeth
+    inactive_sign_in_confirmation: Mae hi wedi bod yn amser ers i chi fewngofnodi, felly rydym yn anfon cod diogelwch i'ch cyfeiriad e-bost i gadarnhau mai chi ydyw.
+    inactive_sign_in_title: Cadarnhewch y cod diogelwch
     invalid_otp_token: Côd dau-ffactor annilys
+    invalid_sign_in_token: Cod diogelwch annilys
     otp_lost_help_html: Os colloch chi fynediad i'r ddau, mae modd i chi gysylltu a %{email}
     rate_limited: Gormod o geisiadau dilysu, ceisiwch eto yn nes ymlaen.
     seamless_external_login: Rydych chi wedi mewngofnodi trwy wasanaeth allanol, felly nid yw gosodiadau cyfrinair ac e-bost ar gael.

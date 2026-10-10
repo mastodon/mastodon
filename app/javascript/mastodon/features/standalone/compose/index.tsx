@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 
 import { AlertsController } from '@/mastodon/components/alerts_controller';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
@@ -31,13 +31,6 @@ export const Compose: React.FC = () => {
 };
 
 const RedesignCompose: React.FC = () => {
-  useEffect(() => {
-    document.documentElement.dataset.redesign = 'true';
-    return () => {
-      document.documentElement.dataset.redesign = 'false';
-    };
-  }, []);
-
   return (
     <Suspense fallback={<LoadingIndicator />}>
       <ComposeLazyForm autoFocus headless redirectOnSuccess />

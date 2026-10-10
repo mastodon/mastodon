@@ -24,7 +24,7 @@ const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
 /**
  *
- * @param {any} status
+ * @param {import('mastodon/models/status').Status} status
  * @returns {string}
  */
 export function getStatusContent(status) {

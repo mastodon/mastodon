@@ -36,10 +36,15 @@
   // Set from the visualViewport API.
   height: var(--viewport-height, 100vh);
   max-height: 100vh;
+  transition: bottom 200ms ease-in-out;
 
   @media (width >= #{variables.$mobile-menu-breakpoint}) {
     top: auto;
-    bottom: 0;
+
+    // To account for Safari shenanigans, we take the device viewport height,
+    // and subtract the height from the visualViewport API.
+    // This accounts for the float shortcut bar that appears.
+    bottom: calc(100dvh - var(--viewport-height, 100vh));
     min-height: 270px;
     height: auto;
     max-height: calc(100vh - (var(--space-4) * 2));

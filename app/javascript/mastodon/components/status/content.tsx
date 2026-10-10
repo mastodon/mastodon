@@ -15,8 +15,8 @@ import type {
 import { Button } from '../button/redesign';
 import { EmojiHTML } from '../emoji/html';
 
+import classes from './content.module.scss';
 import { useHandlersForStatus } from './hooks';
-import classes from './styles.module.scss';
 
 const MAX_LINES = 35;
 
@@ -77,7 +77,7 @@ export const StatusContent: React.FC<
         {...props}
         className={classNames(
           className,
-          classes.content,
+          classes.root,
           isCollapsed && classes.collapsed,
         )}
         style={style}
@@ -85,7 +85,7 @@ export const StatusContent: React.FC<
       >
         {text.trim().length > 0 && (
           <EmojiHTML
-            className={classes.contentText}
+            className={classes.text}
             ref={onRef}
             lang={language}
             htmlString={text}
@@ -102,7 +102,7 @@ export const StatusContent: React.FC<
           size='sm'
           onClick={onReadMore}
           trailingIcon={CaretRightIcon}
-          className={classes.contentReadMore}
+          className={classes.readMore}
         >
           <FormattedMessage
             id='status.view_post'

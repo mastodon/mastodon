@@ -330,7 +330,7 @@ const ExploreLink: React.FC = () => {
         state: { focusTarget: FOCUS_TARGET.SEARCH },
       }}
       iconComponent={MagnifyingGlassIcon}
-      onClick={invokeVirtualIosKeyboard}
+      onClick={handleSearchLinkClick}
     >
       {trendsEnabled ? (
         <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
@@ -340,6 +340,25 @@ const ExploreLink: React.FC = () => {
     </NavigationLink>
   );
 };
+
+export function handleSearchLinkClick() {
+  const mainSearchInput = document.querySelector<HTMLInputElement>(
+    '[data-column-root] input[data-main-search]',
+  );
+
+  // Focus the main search input if we're already on the search page
+  if (mainSearchInput) {
+    mainSearchInput.focus();
+    return;
+  }
+
+  // Otherwise, the search element is not on screen yet and
+  // the page needs to be rendered first. In this case, we use
+  // `invokeVirtualIosKeyboard` to work around an iOS quirk that
+  // prevents the virtual keyboard from opening when an element wasn't
+  // focused synchronously.
+  invokeVirtualIosKeyboard();
+}
 
 const PublicFeedsLink: React.FC = () => {
   const { signedIn, permissions } = useIdentity();
