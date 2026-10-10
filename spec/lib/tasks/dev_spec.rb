@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'rake'
 
-RSpec.describe 'dev:populate_sample_data' do
+RSpec.describe Rake::Task, 'dev:populate_sample_data' do
   subject { Rake::Task['dev:populate_sample_data'] }
 
   before do
