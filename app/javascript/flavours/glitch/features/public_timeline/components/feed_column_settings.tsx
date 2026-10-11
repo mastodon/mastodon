@@ -54,6 +54,7 @@ export const FeedColumnSettings: React.FC<{
 
   const onlyMedia = settings.getIn(['other', 'onlyMedia']) as boolean;
   const onlyRemote = settings.getIn(['other', 'onlyRemote']) as boolean;
+  const allowLocalOnly = settings.getIn(['other', 'allowLocalOnly']) as boolean;
 
   return (
     <>
@@ -78,6 +79,19 @@ export const FeedColumnSettings: React.FC<{
           <FormattedMessage
             id='community.column_settings.remote_only'
             defaultMessage='Remote only'
+          />
+        </MenuItemCheckbox>
+      )}
+      {!localOnly && !onlyRemote && (
+        <MenuItemCheckbox
+          value='allowLocalOnly'
+          checked={allowLocalOnly}
+          onChange={onChange}
+          keepMenuOpenOnClick
+        >
+          <FormattedMessage
+            id='community.column_settings.allow_local_only'
+            defaultMessage='Show local-only toots'
           />
         </MenuItemCheckbox>
       )}
