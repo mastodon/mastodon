@@ -6,7 +6,6 @@ import { useHistory } from 'react-router';
 
 import {
   followAccount,
-  muteAccount,
   unblockAccount,
   unmuteAccount,
 } from '@/mastodon/actions/accounts';
@@ -23,6 +22,7 @@ import {
 import type { StatusInteractionIntent } from '@/mastodon/actions/interactions_typed';
 import { statusInteraction } from '@/mastodon/actions/interactions_typed';
 import { openModal } from '@/mastodon/actions/modal';
+import { initMuteModal } from '@/mastodon/actions/mutes';
 import { toggleStatusSpoilers } from '@/mastodon/actions/statuses';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import { useExpandedStatus, useStatus } from '@/mastodon/hooks/useStatus';
@@ -863,7 +863,7 @@ function getMenuItems({
       if (isMuted) {
         dispatch(unmuteAccount(account.id));
       } else {
-        dispatch(muteAccount(account.id));
+        dispatch(initMuteModal(account));
       }
     },
     dangerous: !isMuted,

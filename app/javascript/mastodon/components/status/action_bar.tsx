@@ -2,8 +2,6 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
-
 import { DotsThreeIcon, ShareFatIcon } from '@phosphor-icons/react';
 
 import { statusInteraction } from '@/mastodon/actions/interactions';
@@ -40,15 +38,12 @@ interface StatusActionBarProps {
   statusId: string;
   withDismiss?: boolean;
   withCounters?: boolean;
-  /** Only show methods to respond (reply, boost, like) and not sharing, bookmarking, and the overflow menu. */
-  onlyResponses?: boolean;
 }
 
 export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   statusId,
   withDismiss,
   withCounters,
-  onlyResponses,
 }) => {
   const status = useAccountStatus(statusId);
   const quotedAccountId = useAppSelector(
@@ -91,8 +86,8 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   const shouldShowQuoteRemovalHint =
     isQuotingMe && contextType === 'notifications';
 
-  const responseButtons = (
-    <>
+  return (
+    <div className={classes.actions}>
       <Button
         size='sm'
         clipPadding
@@ -115,20 +110,10 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         tooltip={{ type: 'label', text: like.title }}
         leadingIcon={like.icon}
         onClick={like.action}
-        className={classNames(!onlyResponses && classes.actionsButtonGap)}
+        className={classes.actionsButtonGap}
       >
         {withCounters && like.counter}
       </ToggleButton>
-    </>
-  );
-
-  if (onlyResponses) {
-    return <div className={classes.actions}>{responseButtons}</div>;
-  }
-
-  return (
-    <div className={classes.actions}>
-      {responseButtons}
 
       {isPublic && (
         <IconButton

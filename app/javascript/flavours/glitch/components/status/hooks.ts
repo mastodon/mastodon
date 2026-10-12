@@ -6,7 +6,6 @@ import { useHistory } from 'react-router';
 
 import {
   followAccount,
-  muteAccount,
   unblockAccount,
   unmuteAccount,
 } from '@/flavours/glitch/actions/accounts';
@@ -23,6 +22,7 @@ import {
 import type { StatusInteractionIntent } from '@/flavours/glitch/actions/interactions_typed';
 import { statusInteraction } from '@/flavours/glitch/actions/interactions_typed';
 import { openModal } from '@/flavours/glitch/actions/modal';
+import { initMuteModal } from '@/flavours/glitch/actions/mutes';
 import { toggleStatusSpoilers } from '@/flavours/glitch/actions/statuses';
 import { useRelationship } from '@/flavours/glitch/hooks/useRelationship';
 import {
@@ -866,7 +866,7 @@ function getMenuItems({
       if (isMuted) {
         dispatch(unmuteAccount(account.id));
       } else {
-        dispatch(muteAccount(account.id));
+        dispatch(initMuteModal(account));
       }
     },
     dangerous: !isMuted,
