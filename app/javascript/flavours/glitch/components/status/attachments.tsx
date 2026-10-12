@@ -11,6 +11,8 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { fromJS } from 'immutable';
+
 import { openModal } from '@/flavours/glitch/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/flavours/glitch/actions/picture_in_picture';
 import { deployPictureInPicture } from '@/flavours/glitch/actions/picture_in_picture';
@@ -209,7 +211,7 @@ const MediaAttachments: React.FC<{
           modalProps: {
             statusId,
             options,
-            media: attachment,
+            media: fromJS(attachment),
             lang: language,
           },
         }),
