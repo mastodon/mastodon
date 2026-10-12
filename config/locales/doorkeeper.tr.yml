@@ -63,6 +63,10 @@ tr:
         prompt_html: "%{client_name} hesabınıze erişmek için izin istiyor. <strong>Bu isteği sadece bu kaynağı tanıyor ve güveniyorsanız onaylayın.</strong>"
         review_permissions: İzinleri incele
         title: İzin gerekli
+      require_reauth:
+        log_out_and_continue: Oturumu kapat ve devam et
+        prompt_html: Şu anda <strong>%{handle}</strong> olarak oturum açmış durumdasınız; ancak devam etmek için oturumunuzu kapatmanız gerekecektir.
+        title: Yeniden kimlik doğrulaması gerekiyor
       show:
         title: Bu yetkilendirme kodunu kopyalayın ve uygulamaya yapıştırın.
     authorized_applications:

@@ -63,6 +63,10 @@ vi:
         prompt_html: "%{client_name} cần được bạn cho phép truy cập vào tài khoản. <strong>Cho phép nếu bạn tin tưởng ứng dụng này.</strong>"
         review_permissions: Quyền truy cập
         title: Yêu cầu truy cập
+      require_reauth:
+        log_out_and_continue: Đăng xuất và tiếp tục
+        prompt_html: Bạn đang đăng nhập <strong>%{handle}</strong>, nhưng để tiếp tục, bạn cần đăng xuất.
+        title: Yêu cầu tái xác thực
       show:
         title: Sao chép mã này và dán nó vào ứng dụng.
     authorized_applications:

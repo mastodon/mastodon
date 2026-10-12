@@ -63,6 +63,10 @@ fi:
         prompt_html: "%{client_name} haluaisi käyttöoikeuden tiliisi. <strong>Hyväksy tämä pyyntö vain, jos tunnistat lähteen ja luotat siihen.</strong>"
         review_permissions: Tarkista käyttöoikeudet
         title: Valtuutus vaaditaan
+      require_reauth:
+        log_out_and_continue: Kirjaudu ulos ja jatka
+        prompt_html: Olet tällä hetkellä kirjautuneena sisään käyttäjänä <strong>%{handle}</strong>, mutta jotta voit jatkaa, sinun tulee kirjautua ulos.
+        title: Uudelleentodennus vaaditaan
       show:
         title: Kopioi tämä valtuutuskoodi ja liitä se sovellukseen.
     authorized_applications:
