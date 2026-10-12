@@ -4,7 +4,7 @@ class CustomFilterImportValidator
   FILTER_SCHEMA = {
     'type' => 'object',
     'required' => %w(title expires_at context action keywords_attributes statuses),
-    'additionalProperties' => false,
+    'additionalProperties' => true,
     'properties' => {
       'title' => { 'type' => 'string' },
       'expires_at' => { 'type' => ['string', 'null'] },
@@ -18,7 +18,7 @@ class CustomFilterImportValidator
         'items' => {
           'type' => 'object',
           'required' => ['keyword', 'whole_word'],
-          'additionalProperties' => false,
+          'additionalProperties' => true,
           'properties' => {
             'keyword' => { 'type' => 'string' },
             'whole_word' => { 'type' => 'boolean' },
