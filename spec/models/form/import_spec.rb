@@ -52,6 +52,26 @@ RSpec.describe Form::Import do
       it 'passes validation' do
         expect(subject).to be_valid
       end
+
+      context 'when the file is empty' do
+        let(:import_file) { File.open('spec/fixtures/files/empty.json') }
+
+        it 'has errors' do
+          subject.validate
+          expect(subject.errors[:data]).to include(
+            I18n.t('imports.errors.invalid_json_file', error: 'unexpected end of input at line 1 column 1')
+          )
+        end
+      end
+
+      context 'when the file does not contain required fields' do
+        let(:import_file) { File.open('spec/fixtures/files/empty_root.json') }
+
+        it 'has errors' do
+          subject.validate
+          expect(subject.errors[:data]).to include(I18n.t('imports.errors.no_data'))
+        end
+      end
     end
 
     context 'when the file too large' do
