@@ -53,6 +53,16 @@ RSpec.describe Form::Import do
         expect(subject).to be_valid
       end
 
+      it 'validates schema structure for imported filter items' do
+        allow(CustomFilterImportValidator).to receive(:validate_each)
+
+        subject.validate
+
+        expect(CustomFilterImportValidator)
+          .to have_received(:validate_each)
+          .with(subject, :data, all(a_kind_of(Hash)))
+      end
+
       context 'when the file is empty' do
         let(:import_file) { File.open('spec/fixtures/files/empty.json') }
 

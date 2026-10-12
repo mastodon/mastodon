@@ -204,6 +204,7 @@ class Form::Import
     return errors.add(:data, I18n.t('imports.errors.no_data')) if json_data.blank?
 
     errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if json_data.count > ROWS_PROCESSING_LIMIT
+    CustomFilterImportValidator.validate_each(self, :data, parse_json['custom_filters'])
   end
 
   def content_type_is_json?
