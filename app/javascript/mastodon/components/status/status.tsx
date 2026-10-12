@@ -258,7 +258,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
                 statusId={status.id}
                 withDismiss={withDismiss}
                 withCounters={withCounters}
-                onlyResponses={variant === 'page'}
               />
             )}
 
