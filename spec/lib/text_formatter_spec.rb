@@ -235,6 +235,14 @@ RSpec.describe TextFormatter do
       end
     end
 
+    context 'when given a URL with trailing = symbol' do
+      let(:text) { 'https://example.com/foo= Content' }
+
+      it 'matches the full URL' do
+        expect(subject).to include 'href="https://example.com/foo="'
+      end
+    end
+
     context 'when given a URL containing unsafe code (XSS attack, visible part)' do
       let(:text) { 'http://example.com/b<del>b</del>' }
 
