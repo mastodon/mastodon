@@ -65,6 +65,7 @@ export const LanguageButton: React.FC = () => {
       <PopoverMenuCard
         isOpen={isOpen}
         placement='bottom-end'
+        strategy='fixed'
         reference={triggerElement}
         container={null}
         className={classes.languageMenu}
