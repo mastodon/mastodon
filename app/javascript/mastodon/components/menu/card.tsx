@@ -126,10 +126,10 @@ export const PopoverMenuCard = <As extends React.ElementType>({
           {...(props as React.ComponentPropsWithoutRef<As>)}
           className={classNames(
             className,
-            props.maxWidth && classes.popoverCard,
+            props.maxWidth && classes.fullWidthCard,
           )}
         >
-          {children}
+          <div className={classes.scrollableInnerCard}>{children}</div>
         </MenuCard>
       )}
     </Popover>

@@ -11,6 +11,8 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { fromJS } from 'immutable';
+
 import { openModal } from '@/mastodon/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import { deployPictureInPicture } from '@/mastodon/actions/picture_in_picture';
@@ -208,7 +210,7 @@ const MediaAttachments: React.FC<{
           modalProps: {
             statusId,
             options,
-            media: attachment,
+            media: fromJS(attachment),
             lang: language,
           },
         }),

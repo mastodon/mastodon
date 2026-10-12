@@ -63,6 +63,10 @@ es-AR:
         prompt_html: A %{client_name} le gustaría obtener permiso para acceder a tu cuenta. <strong>Aprobá esta solicitud solo si reconocés y confiás en esta fuente.</strong>
         review_permissions: Revisar permisos
         title: Autorización requerida
+      require_reauth:
+        log_out_and_continue: Cerrar sesión y continuar
+        prompt_html: Actualmente iniciaste sesión como <strong>%{handle}</strong>, pero para continuar, tendrás que cerrar la sesión.
+        title: Reautenticación requerida
       show:
         title: Copiá este código de autorización y pegalo en la aplicación.
     authorized_applications:

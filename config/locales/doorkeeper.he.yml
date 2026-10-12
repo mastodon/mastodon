@@ -63,6 +63,10 @@ he:
         prompt_html: היישום %{client_name} מבקש גישה לחשבונך. <strong>אשרו רק אם אתם מזהים את הבקשה וסומכים על מקור הבקשה.</strong>
         review_permissions: עיון בהרשאות
         title: נדרשת הרשאה
+      require_reauth:
+        log_out_and_continue: להתנתק ולהמשיך
+        prompt_html: אתם מחוברים כרגע בתור <strong>%{handle}</strong>, אבל כדי להמשיך, יש להתנתק.
+        title: נדרש אימות מחדש
       show:
         title: יש להעתיק את קוד ההרשאה הזה ולהדביקו ביישום שביקש אותו.
     authorized_applications:

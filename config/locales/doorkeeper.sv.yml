@@ -63,6 +63,10 @@ sv:
         prompt_html: "%{client_name} vill ha behörighet att komma åt ditt konto. <strong>Godkänn endast den här begäran om du känner igen och litar på källan.</strong>"
         review_permissions: Granska behörigheter
         title: Godkännande krävs
+      require_reauth:
+        log_out_and_continue: Logga ut och fortsätt
+        prompt_html: Du är inloggad som <strong>%{handle}</strong>, men för att fortsätta måste du logga ut.
+        title: Återautentisering krävs
       show:
         title: Kopiera denna behörighetskod och klistra in den i applikationen.
     authorized_applications:
