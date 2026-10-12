@@ -1757,9 +1757,9 @@ en:
       status_not_found_warning: Some of your filters hide specific posts that are not known by this server. These posts will not be automatically filtered if they are discovered later by the server.
       too_large: File is too large
       custom_filters:
-        must_be_an_array: 'must be a list of filters'
-        must_be_a_hash: 'filter must be a hash'
-        schema_error: 'at index %{index}'
+        must_be_an_array: 'JSON must contain a list of filters'
+        must_be_a_hash: 'Filter item must be a valid object'
+        schema_error: 'Invalid filter in list at index %{index}'
     failures: Failures
     imported: Imported
     mismatched_types_warning: It appears you may have selected the wrong type for this import, please double-check.
