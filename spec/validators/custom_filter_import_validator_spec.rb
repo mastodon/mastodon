@@ -37,6 +37,16 @@ RSpec.describe CustomFilterImportValidator do
 
   let(:record) { record_class.new }
 
+  context 'when all items are valid' do
+    let(:items) { [filter] }
+
+    it 'does not add validation errors' do
+      subject
+
+      expect(record.errors[:data]).to be_empty
+    end
+  end
+
   context 'when the items are not an array' do
     let(:items) { 'not-an-array' }
 
@@ -58,16 +68,6 @@ RSpec.describe CustomFilterImportValidator do
       expect(record.errors[:data].count).to eq(1)
       expect(record.errors[:data])
         .to include(I18n.t('imports.errors.custom_filters.must_be_a_hash'))
-    end
-  end
-
-  context 'when all items are valid' do
-    let(:items) { [filter] }
-
-    it 'does not add validation errors' do
-      subject
-
-      expect(record.errors[:data]).to be_empty
     end
   end
 
