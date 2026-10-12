@@ -1756,6 +1756,10 @@ en:
         other: contains more than %{count} rows
       status_not_found_warning: Some of your filters hide specific posts that are not known by this server. These posts will not be automatically filtered if they are discovered later by the server.
       too_large: File is too large
+      custom_filter_import:
+        not_an_array: 'must be an array'
+        must_be_a_hash: 'at index %{index} must be a hash'
+        schema_error: 'at index %{index}: %{message}'
     failures: Failures
     imported: Imported
     mismatched_types_warning: It appears you may have selected the wrong type for this import, please double-check.
