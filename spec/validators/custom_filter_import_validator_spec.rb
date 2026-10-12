@@ -44,7 +44,8 @@ RSpec.describe CustomFilterImportValidator do
       subject
 
       expect(record.errors[:data].count).to eq(1)
-      expect(record.errors[:data]).to include('must be an array')
+      expect(record.errors[:data])
+        .to include(I18n.t('imports.errors.custom_filters.must_be_an_array'))
     end
   end
 
@@ -55,7 +56,8 @@ RSpec.describe CustomFilterImportValidator do
       subject
 
       expect(record.errors[:data].count).to eq(1)
-      expect(record.errors[:data]).to include('at index 0 must be a hash')
+      expect(record.errors[:data])
+        .to include(I18n.t('imports.errors.custom_filters.must_be_a_hash'))
     end
   end
 
@@ -79,7 +81,9 @@ RSpec.describe CustomFilterImportValidator do
     it 'adds a schema validation error with the item index' do
       subject
 
-      expect(record.errors[:data]).to include(a_string_matching(/at index 0:/))
+      expect(record.errors[:data]).to include(
+        a_string_starting_with(I18n.t('imports.errors.custom_filters.schema_error', index: 0, message: ''))
+      )
     end
   end
 end

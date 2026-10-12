@@ -34,7 +34,7 @@ class CustomFilterImportValidator
 
   def self.validate_each(record, attribute, items)
     unless items.is_a?(Array)
-      record.errors.add(attribute, I18n.t('imports.errors.custom_filter_import.not_an_array'))
+      record.errors.add(attribute, I18n.t('imports.errors.custom_filters.must_be_an_array'))
       return
     end
 
@@ -42,17 +42,17 @@ class CustomFilterImportValidator
       unless item.is_a?(Hash)
         record.errors.add(
           attribute,
-          I18n.t('imports.errors.custom_filter_import.must_be_a_hash', index: index)
+          I18n.t('imports.errors.custom_filters.must_be_a_hash')
         )
         next
       end
 
       schema_errors = JSON::Validator.fully_validate(FILTER_SCHEMA, item)
 
-      schema_errors.each do |error_message|
+      schema_errors.each do |_error_message|
         record.errors.add(
           attribute,
-          I18n.t('imports.errors.custom_filter_import.schema_error', index: index, message: error_message)
+          I18n.t('imports.errors.custom_filters.schema_error', index: index)
         )
       end
     end
