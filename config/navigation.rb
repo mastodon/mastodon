@@ -56,6 +56,7 @@ SimpleNavigation::Configuration.run do |navigation|
     n.item :moderation, safe_join([material_symbol('gavel'), t('moderation.title')]), nil, if: -> { current_user.can?(:manage_reports, :view_audit_log, :manage_users, :manage_invites, :manage_taxonomies, :manage_federation, :manage_blocks) && !self_destruct } do |s|
       s.item :reports, safe_join([material_symbol('flag'), t('admin.reports.title')]), admin_reports_path, highlights_on: %r{/admin/reports|admin/report_notes}, if: -> { current_user.can?(:manage_reports) }
       s.item :appeals, safe_join([material_symbol('feedback'), t('admin.disputes.appeals.title')]), admin_disputes_appeals_path, highlights_on: %r{/admin/disputes/}, if: -> { current_user.can?(:manage_appeals) }
+      s.item :warning_presets, safe_join([material_symbol('warning'), t('admin.warning_presets.navigation_title')]), admin_warning_presets_path, highlights_on: %r{/admin/warning_presets}, if: -> { current_user.can?(:manage_settings) }
       s.item :accounts, safe_join([material_symbol('groups'), t('admin.accounts.title')]), admin_accounts_path(origin: 'local'), highlights_on: %r{/admin/accounts|admin/account_moderation_notes|/admin/pending_accounts|/admin/users}, if: -> { current_user.can?(:manage_users) }
       s.item :tags, safe_join([material_symbol('tag'), t('admin.tags.title')]), admin_tags_path, highlights_on: %r{/admin/tags}, if: -> { current_user.can?(:manage_taxonomies) }
       s.item :invites, safe_join([material_symbol('person_add'), t('admin.invites.title')]), admin_invites_path, if: -> { current_user.can?(:manage_invites) }
@@ -73,7 +74,6 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :settings, safe_join([material_symbol('tune'), t('admin.settings.title')]), admin_settings_path, if: -> { current_user.can?(:manage_settings) }, highlights_on: %r{/admin/settings}
       s.item :terms_of_service, safe_join([material_symbol('description'), t('admin.terms_of_service.title')]), admin_terms_of_service_index_path, highlights_on: %r{/admin/terms_of_service}, if: -> { current_user.can?(:manage_rules) }
       s.item :rules, safe_join([material_symbol('gavel'), t('admin.rules.title')]), admin_rules_path, highlights_on: %r{/admin/rules}, if: -> { current_user.can?(:manage_rules) }
-      s.item :warning_presets, safe_join([material_symbol('warning'), t('admin.warning_presets.title')]), admin_warning_presets_path, highlights_on: %r{/admin/warning_presets}, if: -> { current_user.can?(:manage_settings) }
       s.item :roles, safe_join([material_symbol('contact_mail'), t('admin.roles.title')]), admin_roles_path, highlights_on: %r{/admin/roles}, if: -> { current_user.can?(:manage_roles) }
       s.item :announcements, safe_join([material_symbol('campaign'), t('admin.announcements.title')]), admin_announcements_path, highlights_on: %r{/admin/announcements}, if: -> { current_user.can?(:manage_announcements) }
       s.item :email_subscriptions, safe_join([material_symbol('mail'), t('admin.email_subscriptions.index.title')]), admin_email_subscriptions_path, highlights_on: %r{/admin/email_subscriptions}, if: -> { current_user.can?(:manage_settings) }
