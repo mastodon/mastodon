@@ -40,7 +40,6 @@ export const Error: Story = {
 export const WithAction: Story = {
   args: {
     ...Default.args,
-    // oxlint-disable-next-line react-js/jsx-no-bind
     children: <Button onClick={() => action('Refresh')}>Refresh</Button>,
   },
 };
