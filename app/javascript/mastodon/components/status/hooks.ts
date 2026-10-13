@@ -4,6 +4,8 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router';
 
+import { fromJS } from 'immutable';
+
 import {
   followAccount,
   unblockAccount,
@@ -51,7 +53,6 @@ import {
 } from '@/mastodon/selectors/statuses';
 import { useAppSelector, useAppDispatch } from '@/mastodon/store';
 import type { AppDispatch } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
 import type { HotkeyHandlerFunction, HotkeyName } from '../hotkeys';
@@ -304,7 +305,6 @@ export function useStatusIcons(statusId: string) {
     selectStatusInteractionsAllowed(state, statusId),
   );
   const interactionFactory = useStatusInteractionFactory(statusId);
-  const isRedesign = isRedesignEnabled();
 
   const isReplyAll = !!status?.in_reply_to_id;
   const reply: StatusIcon = {
@@ -319,7 +319,7 @@ export function useStatusIcons(statusId: string) {
 
   const boostState = boostItemState(conditions);
   const boost: StatusIcon = {
-    icon: boostState.iconComponent,
+    icon: status?.reblogged ? StatusBoostActiveIcon : StatusBoostIcon,
     title: intl.formatMessage(boostState.title),
     meta: boostState.meta ? intl.formatMessage(boostState.meta) : undefined,
     counter: status?.reblogs_count,
@@ -327,9 +327,6 @@ export function useStatusIcons(statusId: string) {
     action: interactionFactory('reblog'),
     disabled: boostState.disabled ?? false,
   };
-  if (isRedesign) {
-    boost.icon = status?.reblogged ? StatusBoostActiveIcon : StatusBoostIcon;
-  }
 
   const quoteState = quoteItemState(conditions);
   const quote: StatusIcon = {
@@ -345,18 +342,13 @@ export function useStatusIcons(statusId: string) {
   const like: StatusIcon = {
     icon: isLiked ? StatusLikeActiveIcon : StatusLikeIcon,
     title: intl.formatMessage(
-      isLiked ? iconMessages.removeFavourite : iconMessages.favourite,
+      isLiked ? iconMessages.removeLike : iconMessages.like,
     ),
     counter: status?.favourites_count ?? 0,
     active: isLiked,
     action: interactionFactory('favourite'),
     disabled: interactions.favourite,
   };
-  if (isRedesign) {
-    like.title = intl.formatMessage(
-      isLiked ? iconMessages.removeLike : iconMessages.like,
-    );
-  }
 
   const isBookmarked = !!status?.bookmarked;
   const bookmark: StatusIcon = {
@@ -527,7 +519,7 @@ const menuMessages = defineMessages({
   redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   edit: { id: 'status.edit', defaultMessage: 'Edit' },
   follow: { id: 'status.follow', defaultMessage: 'Follow @{name}' },
-  direct: { id: 'status.direct', defaultMessage: 'Privately mention @{name}' },
+  message: { id: 'status.message', defaultMessage: 'Message @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   muteBoosts: {
@@ -753,12 +745,6 @@ function getMenuItems({
       ),
       action: onStatusInteraction('mute'),
     });
-    if (interactions.editQuotePolicy && !isRedesignEnabled()) {
-      menu.push({
-        text: intl.formatMessage(menuMessages.quotePolicyChange),
-        action: onStatusInteraction('editQuotePolicy'),
-      });
-    }
     menu.push(null);
   }
 
@@ -809,15 +795,15 @@ function getMenuItems({
         name: account.username,
       }),
       action: () => {
-        dispatch(mentionCompose(account));
+        dispatch(mentionCompose(fromJS(account)));
       },
     });
     menu.push({
-      text: intl.formatMessage(menuMessages.direct, {
+      text: intl.formatMessage(menuMessages.message, {
         name: account.username,
       }),
       action: () => {
-        dispatch(directCompose(account));
+        dispatch(directCompose(fromJS(account)));
       },
     });
     menu.push(null);
