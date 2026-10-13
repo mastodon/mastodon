@@ -5,3 +5,11 @@
 .fields-group
   = form.input :text,
                wrapper: :with_block_label
+
+.fields-group
+  = form.input :action_category,
+               as: :select,
+               wrapper: :with_block_label,
+               collection: %w(suspend limit freeze sensitive warning appeal),
+               include_blank: true,
+               label_method: ->(type) { I18n.t(type, scope: 'admin.warning_presets.dropdown') }
