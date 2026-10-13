@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -9,7 +9,6 @@ import { PenNibIcon, ReadCvLogoIcon } from '@phosphor-icons/react';
 
 import type { IconButtonProps } from '@/mastodon/components/button/redesign';
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { MenuCard } from '@/mastodon/components/menu/card';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
   minimizeComposerToggle,
@@ -21,13 +20,9 @@ import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { useBreakpoint } from '../../ui/hooks/useBreakpoint';
 
 import { ComposeFormHeader } from './header';
+import { RedesignComposeForm } from './index';
+import composerClasses from './styles.module.scss';
 import classes from './trigger.module.scss';
-
-const ComposeLazyForm = lazy(() =>
-  import('./index').then(({ RedesignComposeForm }) => ({
-    default: RedesignComposeForm,
-  })),
-);
 
 export const ComposeRedesignButton: React.FC<{
   /**
@@ -77,6 +72,11 @@ export const ComposeRedesignButton: React.FC<{
     hidden: !hasMobileFloatingActionButton,
   } as const;
 
+  // Pass the viewport height as a CSS variable so it's only used for mobile.
+  const style = {
+    '--viewport-height': viewportHeight ? `${viewportHeight}px` : undefined,
+  } as React.CSSProperties;
+
   if (displayState === 'minimized') {
     return isMobile ? (
       <FloatingActionButton
@@ -89,31 +89,24 @@ export const ComposeRedesignButton: React.FC<{
         <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
       </FloatingActionButton>
     ) : (
-      <MenuCard className={classes.composerMinimized} elevation={2}>
-        <ComposeFormHeader />
-      </MenuCard>
+      <div className={classes.root} style={style}>
+        <div
+          className={classNames(
+            classes.composerMinimized,
+            composerClasses.root,
+          )}
+        >
+          <ComposeFormHeader />
+        </div>
+      </div>
     );
   }
 
   if (displayState === 'showing') {
-    // Pass the viewport height as a CSS variable so it's only used for mobile.
-    const style = {
-      '--viewport-height': viewportHeight ? `${viewportHeight}px` : undefined,
-    } as React.CSSProperties;
     return (
-      <Suspense
-        fallback={
-          <FloatingActionButton
-            loading
-            icon={PenNibIcon}
-            {...floatingButtonProps}
-          >
-            <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
-          </FloatingActionButton>
-        }
-      >
-        <ComposeLazyForm autoFocus className={classes.composer} style={style} />
-      </Suspense>
+      <div className={classes.root} style={style}>
+        <RedesignComposeForm autoFocus className={classes.composer} />
+      </div>
     );
   }
 
