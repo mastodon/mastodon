@@ -68,6 +68,7 @@ export const ComposeUpload: React.FC<{
       )}
 
       <Button
+        contrastOnMedia
         size='sm'
         variant='solid'
         onClick={handleAltEdit}
@@ -85,7 +86,7 @@ export const ComposeUpload: React.FC<{
         }}
       >
         <span aria-hidden='true'>
-          <FormattedMessage id='compose.upload.menu.alt' defaultMessage='ALT' />
+          <FormattedMessage id='alt_text_badge.label' defaultMessage='ALT' />
         </span>
       </Button>
 
@@ -94,6 +95,7 @@ export const ComposeUpload: React.FC<{
           <IconButton
             onClick={handleRearrange}
             icon={ArrowsLeftRightIcon}
+            contrastOnMedia
             size='sm'
             variant='solid'
             tooltipPlacement='top'
@@ -107,6 +109,7 @@ export const ComposeUpload: React.FC<{
         <IconButton
           onClick={handleDelete}
           icon={TrashIcon}
+          contrastOnMedia
           size='sm'
           variant='solid'
           tooltipPlacement='top'
