@@ -240,19 +240,20 @@ export const RedesignNavigationPanel: React.FC<{
           </ul>
 
           <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
-            <Button
-              leadingIcon={PenNibIcon}
-              onClick={openComposer}
-              variant='solid'
-              color='accent'
-              size='md'
-              className={classes.newPostButton}
-            >
-              <FormattedMessage
-                id='tabs_bar.publish'
-                defaultMessage='New Post'
-              />
-            </Button>
+            <div className={classes.newPostButton}>
+              <Button
+                leadingIcon={PenNibIcon}
+                onClick={openComposer}
+                variant='solid'
+                color='accent'
+                size='md'
+              >
+                <FormattedMessage
+                  id='tabs_bar.publish'
+                  defaultMessage='New Post'
+                />
+              </Button>
+            </div>
 
             {mode !== 'slide-out' && (
               <>

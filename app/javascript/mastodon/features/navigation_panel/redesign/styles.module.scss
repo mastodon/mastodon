@@ -34,6 +34,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: end;
   padding: var(--space-6);
   padding-top: var(--space-1);
   background-color: var(--navigation-background-color);
@@ -60,16 +61,15 @@
 }
 
 .newPostButton {
-  align-self: start;
-  margin-block: var(--space-4);
   margin-inline-start: calc(-1 * var(--space-1));
+  margin-bottom: auto;
+  padding-block: var(--space-4);
 }
 
 .footerNav {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-1);
-  margin-top: auto;
   margin-bottom: var(--space-2);
 }
 
