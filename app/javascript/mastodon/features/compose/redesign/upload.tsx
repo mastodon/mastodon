@@ -78,7 +78,7 @@ export const ComposeUpload: React.FC<{
           type: 'label',
           text: (
             <FormattedMessage
-              id='compose.upload.menu.edit_alt'
+              id='account_edit.image_alt_modal.edit_title'
               defaultMessage='Edit alt text'
             />
           ),
