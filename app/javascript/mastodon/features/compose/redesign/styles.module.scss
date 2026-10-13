@@ -250,17 +250,17 @@ textarea.textarea {
   }
 }
 
-.languageList {
-  max-height: 350px;
-  overflow-y: auto;
+.languageComboboxWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.languageItem {
-  display: block;
-
-  span {
-    color: var(--color-text-secondary);
-  }
+.languageListBox {
+  flex: 1;
+  min-height: 0;
+  max-height: initial !important;
+  margin-top: 1px;
 }
 
 // Reply
