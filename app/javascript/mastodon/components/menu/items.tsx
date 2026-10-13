@@ -40,6 +40,7 @@ export const MenuItemGroup: React.FC<MenuItemGroupProps> = ({
 export const MenuItemDivider: React.FC = () => {
   const { type } = useMenuContext();
   if (type === 'navigation') {
+    // oxlint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
     return <li role='separator' className={classes.itemDivider} />;
   }
   return <hr className={classes.itemDivider} />;
