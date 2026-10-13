@@ -203,6 +203,7 @@ class Form::Import
     return errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless allowed_type_for_json?
     return errors.add(:data, I18n.t('imports.errors.no_data')) if json_data.blank?
     return errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if json_data.count > ROWS_PROCESSING_LIMIT
+
     CustomFilterImportValidator.validate_each(self, :data, parse_json['custom_filters'])
   end
 
