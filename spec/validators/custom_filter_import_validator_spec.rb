@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe CustomFilterImportValidator do
-  subject { described_class.validate_each(record, :data, items) }
-
   let(:filter) do
     {
       'title' => title,
@@ -37,221 +35,241 @@ RSpec.describe CustomFilterImportValidator do
 
   let(:record) { record_class.new }
 
-  context 'when all items are valid' do
-    it 'does not add validation errors' do
+  describe '.validate_each' do
+    subject { instance.validate_each(record, :data, items) }
+
+    let(:instance) { described_class.new }
+
+    it 'delegates to an instance of the validator' do
+      allow(instance).to receive(:validate_each)
+
       subject
 
-      expect(record.errors[:data]).to be_empty
+      expect(instance)
+        .to have_received(:validate_each)
+        .with(record, :data, items)
     end
   end
 
-  context 'when an item contains a field not defined in the schema' do
-    let(:filter) { super().merge('unexpected_field' => 'value') }
+  describe '#validate_each' do
+    subject { described_class.new.validate_each(record, :data, items) }
 
-    it 'does not add validation errors' do
-      subject
+    context 'when all items are valid' do
+      it 'does not add validation errors' do
+        subject
 
-      expect(record.errors[:data]).to be_empty
+        expect(record.errors[:data]).to be_empty
+      end
     end
-  end
 
-  context 'when items are not an array' do
-    let(:items) { 'not-an-array' }
+    context 'when an item contains a field not defined in the schema' do
+      let(:filter) { super().merge('unexpected_field' => 'value') }
 
-    it 'adds an invalid type error' do
-      subject
+      it 'does not add validation errors' do
+        subject
 
-      expect(record.errors[:data].count).to eq(1)
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.must_be_an_array'))
+        expect(record.errors[:data]).to be_empty
+      end
     end
-  end
 
-  context 'when an item is not a hash' do
-    let(:items) { ['not-a-hash', filter] }
+    context 'when items are not an array' do
+      let(:items) { 'not-an-array' }
 
-    it 'adds an error for the invalid index' do
-      subject
+      it 'adds an invalid type error' do
+        subject
 
-      expect(record.errors[:data].count).to eq(1)
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data].count).to eq(1)
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.must_be_an_array'))
+      end
     end
-  end
 
-  context 'when title is missing' do
-    let(:filter) { super().except('title') }
+    context 'when an item is not a hash' do
+      let(:items) { ['not-a-hash', filter] }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds an error for the invalid index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data].count).to eq(1)
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when title contains the wrong type' do
-    let(:title) { 123 }
+    context 'when title is missing' do
+      let(:filter) { super().except('title') }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when expires_at is missing' do
-    let(:filter) { super().except('expires_at') }
+    context 'when title contains the wrong type' do
+      let(:title) { 123 }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when expires_at contains the wrong type' do
-    let(:expires_at) { [] }
+    context 'when expires_at is missing' do
+      let(:filter) { super().except('expires_at') }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when context is missing' do
-    let(:filter) { super().except('context') }
+    context 'when expires_at contains the wrong type' do
+      let(:expires_at) { [] }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when context contains the wrong type' do
-    let(:context) { 'home' }
+    context 'when context is missing' do
+      let(:filter) { super().except('context') }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when action is missing' do
-    let(:filter) { super().except('action') }
+    context 'when context contains the wrong type' do
+      let(:context) { 'home' }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when action contains the wrong type' do
-    let(:action) { false }
+    context 'when action is missing' do
+      let(:filter) { super().except('action') }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when keywords_attributes is missing' do
-    let(:filter) { super().except('keywords_attributes') }
+    context 'when action contains the wrong type' do
+      let(:action) { false }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when keywords_attributes contains the wrong type' do
-    let(:keywords_attributes) { {} }
+    context 'when keywords_attributes is missing' do
+      let(:filter) { super().except('keywords_attributes') }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when statuses is missing' do
-    let(:filter) { super().except('statuses') }
+    context 'when keywords_attributes contains the wrong type' do
+      let(:keywords_attributes) { {} }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when statuses contains the wrong type' do
-    let(:statuses) { 'status' }
+    context 'when statuses is missing' do
+      let(:filter) { super().except('statuses') }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when keyword is missing' do
-    let(:keywords_attributes) { [{ 'whole_word' => true }] }
+    context 'when statuses contains the wrong type' do
+      let(:statuses) { 'status' }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when keyword contains the wrong type' do
-    let(:keywords_attributes) { [{ 'keyword' => 123, 'whole_word' => true }] }
+    context 'when keyword is missing' do
+      let(:keywords_attributes) { [{ 'whole_word' => true }] }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when whole_word is missing' do
-    let(:keywords_attributes) { [{ 'keyword' => 'foo' }] }
+    context 'when keyword contains the wrong type' do
+      let(:keywords_attributes) { [{ 'keyword' => 123, 'whole_word' => true }] }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
-  end
 
-  context 'when whole_word contains the wrong type' do
-    let(:keywords_attributes) { [{ 'keyword' => 'foo', 'whole_word' => 'true' }] }
+    context 'when whole_word is missing' do
+      let(:keywords_attributes) { [{ 'keyword' => 'foo' }] }
 
-    it 'adds a schema validation error with the item index' do
-      subject
+      it 'adds a schema validation error with the item index' do
+        subject
 
-      expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
+    end
+
+    context 'when whole_word contains the wrong type' do
+      let(:keywords_attributes) { [{ 'keyword' => 'foo', 'whole_word' => 'true' }] }
+
+      it 'adds a schema validation error with the item index' do
+        subject
+
+        expect(record.errors[:data])
+          .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
+      end
     end
   end
 end
