@@ -182,11 +182,13 @@ export function useAutosuggestMenu({
 interface UseAutosuggestFloatingMenuOptions extends UseAutosuggestMenuOptions {
   text?: string;
   className?: string;
+  lang?: string;
 }
 
 export function useAutosuggestFloatingMenu({
   text,
   className,
+  lang,
   ...suggestOptions
 }: UseAutosuggestFloatingMenuOptions) {
   const [mirrorElement, setMirrorElement] = useState<HTMLElement | null>(null); // Reference to the mirror element.
@@ -259,6 +261,7 @@ export function useAutosuggestFloatingMenu({
         className,
       )}
       ref={setMirrorElement}
+      lang={lang}
     >
       {selectedText}
     </div>
@@ -274,6 +277,7 @@ export function useAutosuggestFloatingMenu({
       ...autosuggestProps.sourceProps,
       onScroll,
       onSelect,
+      lang,
     } satisfies SourceProps,
 
     suggestProps: {

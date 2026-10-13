@@ -128,6 +128,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   } = useAutosuggestFloatingMenu({
     suggestions,
     text,
+    lang,
     className: classes.textareaMirror,
     sourceRef: textAreaRef,
     onSelect: onSuggestion,
@@ -180,7 +181,6 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         autoSize
         ref={textAreaRef}
         value={text}
-        lang={lang}
         placeholder={intl.formatMessage(
           type === 'message'
             ? messages.messagePlaceholder
