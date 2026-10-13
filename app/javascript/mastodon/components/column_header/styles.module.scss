@@ -8,6 +8,30 @@
   border-top: 0;
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
+
+  // Scroll fade that overlays the scrollable content below
+  &::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    z-index: -1;
+    height: var(--space-10);
+    background: linear-gradient(
+      to bottom,
+      var(--color-bg-primary),
+      transparent
+    );
+    transition:
+      opacity,
+      transform 250ms ease-in;
+  }
+
+  &.rootScrolledToTop::after {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--space-6)));
+  }
 }
 
 .layout {
