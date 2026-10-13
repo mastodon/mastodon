@@ -75,7 +75,7 @@ RSpec.describe CustomFilterImportValidator do
 
       expect(record.errors[:data].count).to eq(1)
       expect(record.errors[:data])
-        .to include(I18n.t('imports.errors.custom_filters.must_be_a_hash'))
+        .to include(I18n.t('imports.errors.custom_filters.schema_error', index: 0))
     end
   end
 

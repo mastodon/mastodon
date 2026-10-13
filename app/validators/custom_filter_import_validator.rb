@@ -33,28 +33,30 @@ class CustomFilterImportValidator
   }.freeze
 
   def self.validate_each(record, attribute, items)
+    new.validate_each(record, attribute, items)
+  end
+
+  def validate_each(record, attribute, items)
     unless items.is_a?(Array)
       record.errors.add(attribute, I18n.t('imports.errors.custom_filters.must_be_an_array'))
       return
     end
 
     items.each_with_index do |item, index|
-      unless item.is_a?(Hash)
-        record.errors.add(
-          attribute,
-          I18n.t('imports.errors.custom_filters.must_be_a_hash')
-        )
-        next
-      end
+      next if valid_collection_item?(item)
 
-      schema_errors = JSON::Validator.fully_validate(FILTER_SCHEMA, item)
-
-      schema_errors.each do |_error_message|
-        record.errors.add(
-          attribute,
-          I18n.t('imports.errors.custom_filters.schema_error', index: index)
-        )
-      end
+      record.errors.add(
+        attribute,
+        I18n.t('imports.errors.custom_filters.schema_error', index: index)
+      )
     end
+  end
+
+  private
+
+  def valid_collection_item?(item)
+    JSON::Validator
+      .fully_validate(FILTER_SCHEMA, item)
+      .blank?
   end
 end
