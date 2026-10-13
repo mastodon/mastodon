@@ -102,6 +102,10 @@ a.base {
   --bg: var(--color-bg-inverted);
   --fg: var(--color-text-inverted);
 
+  &.contrastOnMedia:not(.accent, .destructive) {
+    border: 1px solid var(--color-border-primary);
+  }
+
   &.accent {
     --bg: var(--color-bg-brand-base);
     --fg: var(--color-text-on-brand-base);
