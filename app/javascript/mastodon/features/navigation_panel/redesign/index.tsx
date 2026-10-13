@@ -158,9 +158,7 @@ export const RedesignNavigationPanel: React.FC<{
 
   const { sensor: topSensor, isInViewport: isScrolledToTop } = useScrollSensor({
     placement: 'top',
-    // Only show overlay fade after a bit of scrolling, as the nav header has
-    // a bit of bottom spacing where the fade isn't needed yet
-    tolerance: 36,
+    tolerance: 2,
   });
   const { sensor: bottomSensor, isInViewport: isScrolledToBottom } =
     useScrollSensor({
@@ -179,21 +177,6 @@ export const RedesignNavigationPanel: React.FC<{
         <>
           {transientSingleColumn && <TransientSingleColumnCallout />}
           <ul className={classes.list}>
-            <li>
-              <Button
-                leadingIcon={PenNibIcon}
-                onClick={openComposer}
-                variant='solid'
-                color='accent'
-                size='md'
-                className={classes.newPostButton}
-              >
-                <FormattedMessage
-                  id='tabs_bar.publish'
-                  defaultMessage='New Post'
-                />
-              </Button>
-            </li>
             <NavigationLink to='/home' iconComponent={HouseIcon}>
               <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
             </NavigationLink>
@@ -255,7 +238,23 @@ export const RedesignNavigationPanel: React.FC<{
               </ListSection>
             )}
           </ul>
+
           <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
+            <div className={classes.newPostButton}>
+              <Button
+                leadingIcon={PenNibIcon}
+                onClick={openComposer}
+                variant='solid'
+                color='accent'
+                size='md'
+              >
+                <FormattedMessage
+                  id='tabs_bar.publish'
+                  defaultMessage='New Post'
+                />
+              </Button>
+            </div>
+
             {mode !== 'slide-out' && (
               <>
                 <ul className={classes.footerNav}>
