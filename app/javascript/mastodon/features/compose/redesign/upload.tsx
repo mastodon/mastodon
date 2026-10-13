@@ -8,7 +8,6 @@ import classNames from 'classnames';
 import {
   ArrowsLeftRightIcon,
   PencilSimpleIcon,
-  PlusIcon,
   TrashIcon,
 } from '@phosphor-icons/react';
 
@@ -35,14 +34,17 @@ export const ComposeUpload: React.FC<{
   const sensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
 
   const dispatch = useAppDispatch();
+
   const handleAltEdit = useCallback(() => {
     dispatch(
       openModal({ modalType: 'FOCAL_POINT', modalProps: { mediaId: id } }),
     );
   }, [dispatch, id]);
+
   const handleRearrange = useCallback(() => {
     dispatch(openModal({ modalType: 'COMPOSER_REARRANGE', modalProps: {} }));
   }, [dispatch]);
+
   const handleDelete = useCallback(() => {
     dispatch(undoUploadCompose(id));
   }, [dispatch, id]);
@@ -65,6 +67,28 @@ export const ComposeUpload: React.FC<{
         <Blurhash hash={attachment.blurhash} className={classes.blurHash} />
       )}
 
+      <Button
+        size='sm'
+        variant='solid'
+        onClick={handleAltEdit}
+        className={classes.mediaMenuAltButton}
+        leadingIcon={PencilSimpleIcon}
+        tooltip={{
+          type: 'label',
+          text: (
+            <FormattedMessage
+              id='compose.upload.menu.edit_alt'
+              defaultMessage='Edit alt text'
+            />
+          ),
+          placement: 'top',
+        }}
+      >
+        <span aria-hidden='true'>
+          <FormattedMessage id='compose.upload.menu.alt' defaultMessage='ALT' />
+        </span>
+      </Button>
+
       <div className={classes.mediaMenuButtons}>
         {!single && (
           <IconButton
@@ -72,6 +96,7 @@ export const ComposeUpload: React.FC<{
             icon={ArrowsLeftRightIcon}
             size='sm'
             variant='solid'
+            tooltipPlacement='top'
           >
             <FormattedMessage
               id='compose.upload.rearrange'
@@ -84,6 +109,7 @@ export const ComposeUpload: React.FC<{
           icon={TrashIcon}
           size='sm'
           variant='solid'
+          tooltipPlacement='top'
         >
           <FormattedMessage
             id='compose.upload.menu.delete'
@@ -91,26 +117,6 @@ export const ComposeUpload: React.FC<{
           />
         </IconButton>
       </div>
-
-      <Button
-        size='sm'
-        variant='solid'
-        onClick={handleAltEdit}
-        className={classes.mediaMenuAltButton}
-        leadingIcon={attachment.description ? PencilSimpleIcon : PlusIcon}
-      >
-        {attachment.description ? (
-          <FormattedMessage
-            id='compose.upload.menu.edit_alt'
-            defaultMessage='Edit alt text'
-          />
-        ) : (
-          <FormattedMessage
-            id='compose.upload.menu.add_alt'
-            defaultMessage='Add alt text'
-          />
-        )}
-      </Button>
     </StatusImage>
   );
 };

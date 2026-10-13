@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import type { LinkProps } from 'react-router-dom';
 
+import type { Placement } from '@floating-ui/react-dom';
 import { CaretDownIcon } from '@phosphor-icons/react';
 
 import { CircularProgress } from '../circular_progress';
@@ -114,6 +115,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
 interface ButtonTooltip {
   type: 'label' | 'description';
   text: React.ReactNode;
+  placement?: Placement;
 }
 
 export type ButtonProps = BaseButtonProps & {
@@ -146,7 +148,11 @@ export const Button: React.FC<ButtonProps> = ({
     return <BaseButton {...props}>{buttonContent}</BaseButton>;
   }
   return (
-    <Tooltip text={tooltip.text} renderTextWhenClosed>
+    <Tooltip
+      text={tooltip.text}
+      placement={tooltip.placement}
+      renderTextWhenClosed
+    >
       {({ getTooltipProps, tooltipId }) => (
         <BaseButton
           {...getTooltipProps(props)}
