@@ -4,6 +4,8 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router';
 
+import { fromJS } from 'immutable';
+
 import {
   followAccount,
   unblockAccount,
@@ -527,7 +529,7 @@ const menuMessages = defineMessages({
   redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   edit: { id: 'status.edit', defaultMessage: 'Edit' },
   follow: { id: 'status.follow', defaultMessage: 'Follow @{name}' },
-  direct: { id: 'status.direct', defaultMessage: 'Privately mention @{name}' },
+  message: { id: 'status.message', defaultMessage: 'Message @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   muteBoosts: {
@@ -809,15 +811,15 @@ function getMenuItems({
         name: account.username,
       }),
       action: () => {
-        dispatch(mentionCompose(account));
+        dispatch(mentionCompose(fromJS(account)));
       },
     });
     menu.push({
-      text: intl.formatMessage(menuMessages.direct, {
+      text: intl.formatMessage(menuMessages.message, {
         name: account.username,
       }),
       action: () => {
-        dispatch(directCompose(account));
+        dispatch(directCompose(fromJS(account)));
       },
     });
     menu.push(null);
