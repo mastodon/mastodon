@@ -36,7 +36,7 @@
   flex-direction: column;
   justify-content: end;
   padding: var(--space-6);
-  padding-top: var(--space-1);
+  padding-top: 0;
   background-color: var(--navigation-background-color);
 
   &::before {
@@ -52,7 +52,6 @@
 
   @media (height < 560px) {
     position: relative;
-    margin-top: var(--space-4);
 
     &::before {
       display: none;
