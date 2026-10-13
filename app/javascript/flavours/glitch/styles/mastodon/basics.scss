@@ -27,6 +27,7 @@ html {
     --text-x-direction: -1;
   }
 
+  scrollbar-gutter: stable;
   scroll-padding-top: var(--column-header-height);
 
   &:has(.layout-multi-column) {
@@ -40,7 +41,6 @@ html.has-modal {
     touch-action: none;
     overscroll-behavior: none;
     -webkit-overflow-scrolling: auto;
-    scrollbar-gutter: stable;
   }
 
   body {
