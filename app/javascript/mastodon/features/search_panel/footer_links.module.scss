@@ -4,12 +4,14 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-4);
   margin-top: var(--space-4);
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
 
   @include mixins.type-caption;
 
+  // Hide footer links from the navigation in single column layout
+  // when there's enough space to display them in the search column
   :global(body.layout-single-column) &[data-context='navigation'] {
     @media (width > variables.$no-gap-breakpoint) {
       display: none;
@@ -31,6 +33,11 @@
       text-decoration: none;
     }
   }
+}
+
+.heading {
+  font-weight: bold;
+  margin-bottom: var(--space-half);
 }
 
 .list {
