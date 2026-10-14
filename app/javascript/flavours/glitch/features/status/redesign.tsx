@@ -23,6 +23,7 @@ import {
   FOCUS_TARGET,
   NavigationFocusTarget,
 } from '@/flavours/glitch/components/navigation_focus_target';
+import { Scrollable } from '@/flavours/glitch/components/scrollable_list/components';
 import {
   useStatusMenuActions,
   useTextForScreenReader,
@@ -256,11 +257,7 @@ export const StatusPage: React.FC = () => {
         scrollKey='thread'
         shouldUpdateScroll={shouldUpdateScroll}
       >
-        <div
-          className={classNames('item-list scrollable', {
-            fullscreen,
-          })}
-        >
+        <Scrollable className={classNames('item-list', { fullscreen })}>
           {
             // Length needs to be greater than 1, as ancestorIds includes the current root ID.
             ancestorIds.length > 1 && (
@@ -310,7 +307,7 @@ export const StatusPage: React.FC = () => {
             statusId={status.id}
             statusCreatedAt={status.created_at}
           />
-        </div>
+        </Scrollable>
       </ScrollContainer>
 
       <Helmet>

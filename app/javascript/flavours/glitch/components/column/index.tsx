@@ -31,7 +31,7 @@ export const Column: React.FC<ColumnProps> = ({
   const { sensor: scrollSensor, isInViewport: isSensorInViewport } =
     useScrollSensor({
       placement: 'top',
-      tolerance: 0,
+      tolerance: 4,
     });
 
   const idleCallbackId = useRef<number>(null);
