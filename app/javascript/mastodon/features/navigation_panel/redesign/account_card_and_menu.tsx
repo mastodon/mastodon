@@ -14,8 +14,6 @@ import {
   GavelIcon,
   ShieldStarIcon,
   SignOutIcon,
-  MastodonLogoIcon,
-  GithubLogoIcon,
   BellSlashIcon,
   HandWavingIcon,
 } from '@phosphor-icons/react';
@@ -41,7 +39,6 @@ import {
 } from '@/mastodon/components/menu';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
-import { source_url, version } from '@/mastodon/initial_state';
 import {
   canManageReports,
   canViewAdminDashboard,
@@ -211,28 +208,6 @@ export const AccountMenuItems: React.FC<{
           )}
         </>
       )}
-
-      <MenuItemDivider />
-
-      <MenuItemGroup label={`Mastodon v${version}`}>
-        <MenuItemLink as='a' href={source_url} icon={GithubLogoIcon}>
-          <FormattedMessage
-            id='navigation_bar.source_code'
-            defaultMessage='Source Code'
-          />
-        </MenuItemLink>
-
-        <MenuItemLink
-          as='a'
-          href='https://joinmastodon.org'
-          icon={MastodonLogoIcon}
-        >
-          <FormattedMessage
-            id='navigation_bar.about_mastodon'
-            defaultMessage='About Mastodon'
-          />
-        </MenuItemLink>
-      </MenuItemGroup>
 
       <MenuItemDivider />
 
