@@ -77,6 +77,6 @@
       class: Scheduler::CollectionItemCleanupScheduler
       queue: scheduler
     moderation_list_synchronization_scheduler:
-      every: ['6h', first_in: '<%= Random.rand(5..60) =%> minutes']
+      every: ['6h', first_in: '<%= Random.rand(5..60) %> minutes']
       class: ModerationListSynchronizationScheduler
       queue: scheduler
