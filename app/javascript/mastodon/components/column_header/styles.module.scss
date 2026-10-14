@@ -25,11 +25,12 @@
     );
     transition:
       opacity,
-      transform 250ms ease-in;
+      transform 250ms ease-out;
   }
 
   &.rootScrolledToTop::after {
     opacity: 0;
+    transition-timing-function: ease-in;
     transform: translateY(calc(-1 * var(--space-6)));
   }
 }
