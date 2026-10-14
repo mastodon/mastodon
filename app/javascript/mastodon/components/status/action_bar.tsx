@@ -78,7 +78,14 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
     } else {
       dispatch(statusInteraction({ statusId, intent: 'copy', contextType }));
     }
-  }, [contextType, dispatch, statusId, statusUrl]);
+  }, [
+    contextType,
+    status?.contentHtml,
+    status?.translation?.contentHtml,
+    dispatch,
+    statusId,
+    statusUrl,
+  ]);
 
   const { reply, like, bookmark } = useStatusIcons(statusId);
 
