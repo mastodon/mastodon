@@ -836,16 +836,16 @@ function getMenuItems({
     menu.push({
       text: intl.formatMessage(
         isMutingBoosts ? menuMessages.unmuteBoosts : menuMessages.muteBoosts,
-        { name: account.username },
+        { name: reblogStatus.account.username },
       ),
       action: () => {
         dispatch(
-          followAccount(account.id, {
+          followAccount(reblogStatus.account.id, {
             reblogs: isMutingBoosts,
           }),
         );
       },
-      dangerous: true,
+      dangerous: !isMutingBoosts,
     });
   }
 
