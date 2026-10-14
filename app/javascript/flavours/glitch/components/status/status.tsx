@@ -257,6 +257,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
             {showActions && !isQuotedPost && (
               <StatusActionBar
                 statusId={status.id}
+                reblogId={parent?.id}
                 withDismiss={withDismiss}
                 withCounters={withCounters}
               />
