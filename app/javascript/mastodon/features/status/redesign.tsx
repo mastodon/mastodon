@@ -328,7 +328,11 @@ export const StatusPage: React.FC = () => {
 const StatusMenuItems: React.FC<{ status: ExpandedStatusShape }> = ({
   status,
 }) => {
-  const menu = useStatusMenuActions({ status, contextType: 'detailed' });
+  const menu = useStatusMenuActions({
+    status,
+    reblogStatus: null, // Boosts are only shown in feeds
+    contextType: 'detailed',
+  });
 
   return <LegacyDropdownMenuItems items={menu} />;
 };
