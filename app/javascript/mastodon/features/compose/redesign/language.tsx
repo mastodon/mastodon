@@ -65,6 +65,7 @@ export const LanguageButton: React.FC = () => {
       <PopoverMenuCard
         isOpen={isOpen}
         placement='bottom-end'
+        strategy='fixed'
         reference={triggerElement}
         container={null}
         className={classes.languageMenu}
@@ -133,6 +134,8 @@ export const LanguageDropdown: React.FC<{ onClose: () => void }> = ({
       items={languageObjects}
       renderItem={renderLanguageItem}
       onSelectItem={handleSelectLanguage}
+      wrapperClassName={classes.languageComboboxWrapper}
+      listBoxClassName={classes.languageListBox}
     />
   );
 };

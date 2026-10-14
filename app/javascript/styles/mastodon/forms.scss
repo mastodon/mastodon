@@ -384,12 +384,8 @@ code {
 
     input {
       box-sizing: content-box;
-      width: 32px;
+      width: unset;
       flex: 0;
-
-      &:last-child {
-        width: 64px;
-      }
     }
   }
 

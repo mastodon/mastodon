@@ -23,6 +23,7 @@ import {
   FOCUS_TARGET,
   NavigationFocusTarget,
 } from '@/mastodon/components/navigation_focus_target';
+import { Scrollable } from '@/mastodon/components/scrollable_list/components';
 import {
   useStatusMenuActions,
   useTextForScreenReader,
@@ -256,11 +257,7 @@ export const StatusPage: React.FC = () => {
         scrollKey='thread'
         shouldUpdateScroll={shouldUpdateScroll}
       >
-        <div
-          className={classNames('item-list scrollable', {
-            fullscreen,
-          })}
-        >
+        <Scrollable className={classNames('item-list', { fullscreen })}>
           {
             // Length needs to be greater than 1, as ancestorIds includes the current root ID.
             ancestorIds.length > 1 && (
@@ -310,7 +307,7 @@ export const StatusPage: React.FC = () => {
             statusId={status.id}
             statusCreatedAt={status.created_at}
           />
-        </div>
+        </Scrollable>
       </ScrollContainer>
 
       <Helmet>
@@ -328,7 +325,11 @@ export const StatusPage: React.FC = () => {
 const StatusMenuItems: React.FC<{ status: ExpandedStatusShape }> = ({
   status,
 }) => {
-  const menu = useStatusMenuActions({ status, contextType: 'detailed' });
+  const menu = useStatusMenuActions({
+    status,
+    reblogStatus: null, // Boosts are only shown in feeds
+    contextType: 'detailed',
+  });
 
   return <LegacyDropdownMenuItems items={menu} />;
 };
