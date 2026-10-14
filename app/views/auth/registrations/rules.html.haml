@@ -24,21 +24,7 @@
       = form.hidden_field :invite_code, value: @invite_code if @invite_code.present?
       = form.button t('auth.rules.accept'), name: :accept, type: :submit, class: :button, value: @accept_token
     - if within_authorization_flow? && (pre_auth = pre_auth_from_stored_location)
-      = form_with class: :full_width_form, url: oauth_authorization_path, method: :delete do |form|
-        = form.hidden_field :client_id,
-                            value: pre_auth.client.uid
-        = form.hidden_field :redirect_uri,
-                            value: pre_auth.redirect_uri
-        = form.hidden_field :code_challenge, value: pre_auth.code_challenge
-        = form.hidden_field :code_challenge_method, value: pre_auth.code_challenge_method
-        = form.hidden_field :state,
-                            value: pre_auth.state
-        = form.hidden_field :response_type,
-                            value: pre_auth.response_type
-        = form.hidden_field :scope,
-                            value: pre_auth.scope
-        = form.button t('generic.cancel'),
-                      type: :submit,
-                      class: 'btn negative'
+      - pre_auth.error = Doorkeeper::Errors::AccessDenied
+      = link_to t('generic.cancel'), pre_auth.error_response.redirect_uri, class: 'button button-secondary'
     - else
       = link_to t('auth.rules.back'), root_path, class: 'button button-secondary'

@@ -41,7 +41,7 @@ module RegistrationHelper
       nil
     )
 
-    return unless pre_auth.authorizable?
+    return unless pre_auth.client_valid? && pre_auth.authorizable?
 
     pre_auth
   end
