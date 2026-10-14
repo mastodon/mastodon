@@ -21,7 +21,7 @@ en:
       admin_account_action:
         include_statuses: The user will see which posts have caused the moderation action or warning
         send_email_notification: The user will receive an explanation of what happened with their account
-        text_html: Optional. You can use post syntax. You can <a href="%{path}">add warning presets</a> to save time
+        text_html: Optional. You can use post syntax. You can <a href="%{path}">add canned responses</a> to save time
         type_html: Choose what to do with <strong>%{acct}</strong>
         types:
           disable: Prevent the user from using their account, but do not delete or hide their contents.
@@ -197,7 +197,7 @@ en:
       admin_account_action:
         include_statuses: Include reported posts in the e-mail
         send_email_notification: Notify the user per e-mail
-        text: Custom warning
+        text: Custom response
         type: Action
         types:
           disable: Freeze
@@ -205,7 +205,7 @@ en:
           sensitive: Sensitive
           silence: Limit
           suspend: Suspend
-        warning_preset_id: Use a warning preset
+        warning_preset_id: Use a canned response
       announcement:
         all_day: All-day event
         ends_at: End of event
