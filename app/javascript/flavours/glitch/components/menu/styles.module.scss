@@ -14,6 +14,7 @@
   z-index: calc(infinity);
   max-height: var(--popover-height-available, 100vw); // Set by Popover component
   max-width: var(--_max-card-width, 100vw);
+  min-width: var(--_min-card-width, 0);
   text-align: start;
 
   &:not(&:has(.scrollableInnerCard)) {

@@ -1,0 +1,16 @@
+.applications-list__item
+  - target_type, target_key = moderation_suggestion_target
+  - suggestions = moderation_suggestions_by_target[[target_type, target_key]]
+
+  = link_to admin_instance_path(target_key), class: 'announcements-list__item__title' do
+    = target_key
+    = suggestion_status_badge(current_state_by_target[[target_type, target_key]])
+
+  .announcements-list__item__action-bar
+    .announcements-list__item__meta
+      = t('admin.moderation_suggestions.description')
+
+    .announcements-list__item__actions
+      = table_link_to 'close', t('admin.moderation_suggestions.dismiss'), admin_moderation_suggestion_path(suggestions.first), method: :delete
+
+  = render partial: 'moderation_suggestions', locals: { advisories: moderation_advisories_by_target.fetch([target_type, target_key], []), suggestions: suggestions }

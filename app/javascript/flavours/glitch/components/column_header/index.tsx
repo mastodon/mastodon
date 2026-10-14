@@ -83,6 +83,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
       className={classNames(
         className,
         classes.root,
+        isScrolledToTop && classes.rootScrolledToTop,
         hasExtraStickyContent && classes.withStickyContent,
       )}
     >
@@ -128,7 +129,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
 
 /**
  * This is used for pages that don't need a column title,
- * but should have the rounded shape of the column header
+ * but should have the same styles as the column header
  */
 export const EmptyColumnHeader: React.FC = () => (
   <div className={classes.root}>

@@ -36,16 +36,19 @@ import classes from './styles.module.scss';
 
 interface StatusActionBarProps {
   statusId: string;
+  reblogId: string | undefined;
   withDismiss?: boolean;
   withCounters?: boolean;
 }
 
 export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   statusId,
+  reblogId,
   withDismiss,
   withCounters,
 }) => {
   const status = useAccountStatus(statusId);
+  const reblogStatus = useAccountStatus(reblogId);
   const quotedAccountId = useAppSelector(
     (state) =>
       state.statuses.getIn([status?.quote?.quoted_status, 'account']) ?? null,
@@ -144,6 +147,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
           <StatusActionMenu
             dismissQuoteHint={dismissQuoteHint}
             status={status}
+            reblogStatus={reblogStatus}
             withDismiss={withDismiss}
           />
         )}
@@ -223,12 +227,18 @@ const StatusReblogButton: React.FC<{
 const StatusActionMenu: React.FC<{
   dismissQuoteHint: () => void;
   status: AccountStatusShape;
+  reblogStatus: AccountStatusShape | null;
   withDismiss?: boolean;
-}> = ({ status, dismissQuoteHint, withDismiss }) => {
+}> = ({ status, reblogStatus, dismissQuoteHint, withDismiss }) => {
   const { contextType } = useStatusContext();
   const dispatch = useAppDispatch();
 
-  const menu = useStatusMenuActions({ status, contextType, withDismiss });
+  const menu = useStatusMenuActions({
+    status,
+    reblogStatus,
+    contextType,
+    withDismiss,
+  });
 
   const onOpen = useCallback(() => {
     // Replicates needsStatusRefresh of the Dropdown component.

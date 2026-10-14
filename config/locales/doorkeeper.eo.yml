@@ -63,6 +63,10 @@ eo:
         prompt_html: "%{client_name} ŝatus permeson aliri vian konton. <strong>Nur aprobu ĉi tiun peton se vi rekonas kaj fidas ĉi tiun fonton.</strong>"
         review_permissions: Revizu permesojn
         title: Rajtigo bezonata
+      require_reauth:
+        log_out_and_continue: Elsaluti kaj daŭrigi
+        prompt_html: Vi estas nune ensalutita kiel <strong>%{handle}</strong>, sed por daŭrigi, vi devos elsaluti.
+        title: Resaluto necesas
       show:
         title: Kopiu ĉi tiun rajtigan kodon kaj gluu ĝin al la aplikaĵo.
     authorized_applications:
@@ -83,6 +87,10 @@ eo:
         access_denied: La posedanto de la rimedo aŭ de la rajtiga servilo rifuzis vian peton.
         credential_flow_not_configured: La sendado de la identigiloj de la posedanto de la rimedo malsukcesis ĉar Doorkeeper.configure.resource_owner_from_credentials ne estis agordita.
         invalid_client: Klienta aŭtentigo malsukcesa pro nekonata kliento, neniu klienta aŭtentigo inkluzivita, aŭ nesubtenata aŭtentiga metodo.
+        invalid_code_challenge_method:
+          one: La code_challenge_method devas esti %{challenge_methods}.
+          other: La code_challenge_method devas esti unu de %{challenge_methods}.
+          zero: La servilo de ensaluto ne subtenas etendaĵon PKCE, pro estas neniuj akceptataj valoroj de code_challenge_method.
         invalid_grant: La rajtiga konsento ne estas valida, ne plu estas valida, estis forigita, ne kongruas kun la plusenda URI uzita en la aŭtentiga peto, aŭ estis sendita al alia kliento.
         invalid_redirect_uri: La plusenda URI uzita ne estas valida.
         invalid_request:
