@@ -1,4 +1,5 @@
 @use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
 
 .root {
   display: flex;
@@ -8,6 +9,12 @@
   color: var(--color-text-secondary);
 
   @include mixins.type-caption;
+
+  :global(body.layout-single-column) &[data-context='navigation'] {
+    @media (width > variables.$no-gap-breakpoint) {
+      display: none;
+    }
+  }
 
   a {
     color: inherit;

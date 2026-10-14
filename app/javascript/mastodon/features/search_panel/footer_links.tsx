@@ -12,10 +12,11 @@ import {
 
 import classes from './footer_links.module.scss';
 
-export const NavigationFooterLinks: React.FC<{
+export const FooterLinks: React.FC<{
+  context: 'navigation' | 'search';
   multiColumn?: boolean;
   withVersionInfo?: boolean;
-}> = ({ multiColumn, withVersionInfo }) => {
+}> = ({ context, multiColumn, withVersionInfo }) => {
   const multiColumnLinkAttrs = multiColumn
     ? {
         target: '_blank',
@@ -23,7 +24,7 @@ export const NavigationFooterLinks: React.FC<{
     : undefined;
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-context={context}>
       <ul className={classes.list}>
         <li>
           <NavLink to='/about' {...multiColumnLinkAttrs}>
