@@ -112,7 +112,7 @@ export const LinkFooter: React.FC<{
             <a href={source_url} rel='noopener' target='_blank'>
               <FormattedMessage
                 id='footer.source_code'
-                defaultMessage='View source code'
+                defaultMessage='Source Code'
               />
             </a>
           </li>

@@ -99,12 +99,12 @@
 
 @mixin elevation-1 {
   border: var(--bw-default) solid var(--color-border-strong);
-  box-shadow: 0 1px 0 var(--color-border-strong);
+  box-shadow: none;
 }
 
 @mixin elevation-2 {
   border: var(--bw-default) solid var(--color-border-strong);
-  box-shadow: 1px 2px 0 var(--color-border-strong);
+  box-shadow: none;
 }
 
 /**
