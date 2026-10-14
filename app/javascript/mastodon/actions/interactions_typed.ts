@@ -236,7 +236,7 @@ export const statusInteraction = createAppThunk(
         }
         return;
       case 'quote':
-        dispatch(quoteComposeById(statusId));
+        dispatch(quoteComposeById({ statusId }));
         return;
       case 'reblog':
         if (status.reblogged) {
