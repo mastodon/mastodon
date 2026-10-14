@@ -34,10 +34,10 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
 
   def home_statuses
     account_home_feed.get(
-      limit_param(DEFAULT_STATUSES_LIMIT),
-      params[:max_id],
-      params[:since_id],
-      params[:min_id]
+      limit: limit_param(DEFAULT_STATUSES_LIMIT),
+      max_id: params[:max_id],
+      since_id: params[:since_id],
+      min_id: params[:min_id]
     )
   end
 
