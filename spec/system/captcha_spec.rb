@@ -40,7 +40,7 @@ RSpec.describe 'email confirmation flow when captcha is enabled' do
 
   def stubbed_controller
     Auth::ConfirmationsController.new.tap do |controller|
-      allow(controller).to receive_messages(captcha_enabled?: true, check_captcha!: true, render_captcha: nil)
+      allow(controller).to receive_messages(hcaptcha_available?: true, captcha_enabled?: true, check_captcha!: true, render_hcaptcha: nil)
     end
   end
 end

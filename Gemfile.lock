@@ -92,6 +92,8 @@ GEM
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     aes_key_wrap (1.1.0)
+    altcha (3.0.0)
+      base64
     android_key_attestation (0.3.0)
     annotaterb (4.25.0)
       activerecord (>= 6.0.0)
@@ -945,6 +947,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10)
   addressable (~> 2.8)
+  altcha (= 3.0.0)
   annotaterb (~> 4.13)
   aws-sdk-core
   aws-sdk-s3 (~> 1.123)

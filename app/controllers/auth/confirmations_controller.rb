@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Auth::ConfirmationsController < Devise::ConfirmationsController
-  include Auth::CaptchaConcern
+  include Auth::HcaptchaConcern
+  include Auth::AltchaConcern
 
   layout 'auth'
 
@@ -45,6 +46,44 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
   helper_method :redirect_to_app?
 
   private
+
+  def captcha_provider
+    if hcaptcha_available?
+      :hcaptcha
+    elsif altcha_available?
+      :altcha
+    else
+      true
+    end
+  end
+
+  def captcha_enabled?
+    captcha_provider.present?
+  end
+
+  def captcha_required?
+    captcha_enabled? && !captcha_user_bypass?
+  end
+
+  def check_captcha!(&block)
+    case captcha_provider
+    when :hcaptcha
+      check_hcaptcha!(&block)
+    when :altcha
+      check_altcaptcha!(&block)
+    end
+  end
+
+  def render_captcha
+    case captcha_provider
+    when :hcaptcha
+      render_hcaptcha
+    when :altcha
+      render_altcha
+    end
+  end
+
+  helper_method :render_captcha
 
   def require_captcha_if_needed!
     render :captcha if captcha_required?

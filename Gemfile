@@ -228,6 +228,7 @@ gem 'xorcist', '~> 1.1'
 gem 'net-http', '~> 0.9.0'
 gem 'rubyzip', '~> 3.0'
 
+gem 'altcha', '3.0.0'
 gem 'hcaptcha', '~> 7.1'
 
 gem 'mail', '~> 2.8'
