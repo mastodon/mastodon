@@ -13,6 +13,8 @@ import classes from './styles.module.scss';
 const ROUTES_WITHOUT_SEARCH_BAR = [
   '/explore',
   '/search',
+  '/start',
+  '/start/profile',
   '/profile/edit',
   '/lists/new',
   '/lists/:id/edit',
