@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
-Fabricator(:export_with_custom_filters, from: :account) do
-  after_create do |account|
+Fabricator(:export) do
+  transient :account
+  account { Fabricate(:account) }
+
+  initialize_with do |attributes|
+    Export.new(attributes[:account])
+  end
+end
+
+Fabricator(:export_with_custom_filters, from: :export) do
+  after_build do |export|
+    account = export.account
     filter = Fabricate(:custom_filter, account: account, phrase: 'foo')
     other_filter = Fabricate(:custom_filter, account: account, phrase: 'bar')
 
