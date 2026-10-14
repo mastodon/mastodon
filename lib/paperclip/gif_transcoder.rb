@@ -34,7 +34,7 @@ class GifReader
       # Skip background color and aspect ratio
       s.seek(2, IO::SEEK_CUR)
 
-      if packed_byte & 0x80 != 0
+      if packed_byte.anybits?(0x80)
         # GIF uses a global color table, skip it
         s.seek(3 * (1 << ((packed_byte & 0x07) + 1)), IO::SEEK_CUR)
       end
@@ -51,7 +51,7 @@ class GifReader
           s.seek(8, IO::SEEK_CUR)
           packed_byte, = s.read(1).unpack('C')
 
-          if packed_byte & 0x80 != 0
+          if packed_byte.anybits?(0x80)
             # Image uses a local color table, skip it
             s.seek(3 * (1 << ((packed_byte & 0x07) + 1)), IO::SEEK_CUR)
           end

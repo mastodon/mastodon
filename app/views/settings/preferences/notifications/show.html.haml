@@ -23,7 +23,7 @@
     .fields-group
       = ff.input :always_send_emails, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_always_send_emails'), hint: I18n.t('simple_form.hints.defaults.setting_always_send_emails')
 
-    - if current_user.can?(:manage_reports, :manage_appeals, :manage_users, :manage_taxonomies)
+    - if current_user.can?(:manage_reports, :manage_appeals, :manage_users, :manage_taxonomies) || (Mastodon::Feature.moderation_subscriptions_enabled? && current_user.can?(:manage_federation))
       %h2= t 'notifications.moderation_emails'
 
       .fields-group
@@ -33,6 +33,8 @@
         = ff.input :'notification_emails.trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_tag') if current_user.can?(:manage_taxonomies)
         = ff.input :'notification_emails.link_trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_link') if current_user.can?(:manage_taxonomies)
         = ff.input :'notification_emails.status_trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_status') if current_user.can?(:manage_taxonomies)
+        - if Mastodon::Feature.moderation_subscriptions_enabled? && current_user.can?(:manage_federation)
+          = ff.input :'notification_emails.moderation_suggestions', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.moderation_suggestions')
 
     - if SoftwareUpdate.check_enabled? && current_user.can?(:view_devops)
       %h2= t 'notifications.administration_emails'
