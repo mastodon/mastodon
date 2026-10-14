@@ -30,10 +30,10 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
 
   def list_statuses
     list_feed.get(
-      limit: limit_param(DEFAULT_STATUSES_LIMIT),
-      max_id: params[:max_id],
-      since_id: params[:since_id],
-      min_id: params[:min_id]
+      limit_param(DEFAULT_STATUSES_LIMIT),
+      params[:max_id],
+      params[:since_id],
+      params[:min_id]
     )
   end
 
