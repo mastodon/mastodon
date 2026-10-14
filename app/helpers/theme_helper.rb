@@ -70,8 +70,16 @@ module ThemeHelper
     current_user&.setting_density || 'default'
   end
 
+  def theme_color
+    'indigo'
+  end
+
   def page_color_scheme
     content_for(:force_color_scheme).presence || color_scheme
+  end
+
+  def page_theme_color
+    content_for(:force_theme_color).presence || theme_color
   end
 
   private
