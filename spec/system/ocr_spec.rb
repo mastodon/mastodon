@@ -27,7 +27,7 @@ RSpec.describe 'OCR', :attachment_processing, :inline_jobs, :js, :streaming do
         click_on(frontend_translations('upload_button.label'))
       end
 
-      click_on(frontend_translations('account_edit.image_alt_modal.edit_title'))
+      click_on(frontend_translations('alt_text_badge.label'))
     end
 
     click_on(frontend_translations('alt_text_modal.add_text_from_image'))
