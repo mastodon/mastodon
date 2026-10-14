@@ -21,6 +21,8 @@ import {
   disabledAccountId,
   domain,
   movedToAccountId,
+  registrationsOpen,
+  sso_redirect,
 } from '@/flavours/glitch/initial_state';
 import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
 
@@ -59,6 +61,62 @@ export const LoggedOutInfo: React.FC = () => {
     void dispatch(fetchServer());
   }, [dispatch]);
 
+  const openClosedRegistrationsModal = useCallback(
+    () =>
+      dispatch(
+        openModal({ modalType: 'CLOSED_REGISTRATIONS', modalProps: {} }),
+      ),
+    [dispatch],
+  );
+
+  const signupUrl = useAppSelector(
+    (state) => state.server.server.item?.registrations.url ?? '/auth/sign_up',
+  );
+
+  let actions = (
+    <>
+      {registrationsOpen ? (
+        <Button as='a' href={signupUrl} variant='solid' color='accent'>
+          <FormattedMessage
+            id='server_banner.create_account'
+            defaultMessage='Create an account'
+          />
+        </Button>
+      ) : (
+        <Button
+          onClick={openClosedRegistrationsModal}
+          variant='solid'
+          color='accent'
+        >
+          <FormattedMessage
+            id='server_banner.create_account'
+            defaultMessage='Create an account'
+          />
+        </Button>
+      )}
+      <Button as='a' href='/auth/sign_in'>
+        <FormattedMessage id='server_banner.log_in' defaultMessage='Log in' />
+      </Button>
+    </>
+  );
+
+  if (sso_redirect) {
+    actions = (
+      <Button
+        as='a'
+        href={sso_redirect}
+        data-method='post'
+        variant='solid'
+        color='accent'
+      >
+        <FormattedMessage
+          id='server_banner.sso_redirect'
+          defaultMessage='Log in or sign up'
+        />
+      </Button>
+    );
+  }
+
   return (
     <NavigationFooterLayout
       description={
@@ -69,15 +127,7 @@ export const LoggedOutInfo: React.FC = () => {
       }
       isLoading={isLoading}
     >
-      <Button as='a' href='/auth/sign_up' variant='solid' color='accent'>
-        <FormattedMessage
-          id='server_banner.create_account'
-          defaultMessage='Create an account'
-        />
-      </Button>
-      <Button as='a' href='/auth/sign_in'>
-        <FormattedMessage id='server_banner.log_in' defaultMessage='Log in' />
-      </Button>
+      {actions}
     </NavigationFooterLayout>
   );
 };

@@ -29,7 +29,11 @@ import { FOCUS_TARGET } from '@/flavours/glitch/components/navigation_focus_targ
 import { ComposeRedesignButton } from '@/flavours/glitch/features/compose/redesign/trigger';
 import { useAccount } from '@/flavours/glitch/hooks/useAccount';
 import { useIdentity } from '@/flavours/glitch/identity_context';
-import { trendsEnabled } from '@/flavours/glitch/initial_state';
+import {
+  registrationsOpen,
+  sso_redirect,
+  trendsEnabled,
+} from '@/flavours/glitch/initial_state';
 import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
 
 import {
@@ -52,6 +56,14 @@ export const RedesignMobileNavigation: React.FC = () => {
   const openMobileNav = useCallback(() => {
     dispatch(openNavigation());
   }, [dispatch]);
+
+  // Hide the mobile sign-up button if registrations are closed or
+  // SSO is used (as there's not much room for a detailed label)
+  const hasSignUpButton = !sso_redirect && !registrationsOpen;
+
+  const signupUrl = useAppSelector(
+    (state) => state.server.server.item?.registrations.url ?? '/auth/sign_up',
+  );
 
   return (
     <>
@@ -121,19 +133,21 @@ export const RedesignMobileNavigation: React.FC = () => {
             className={classNames(classes.floatingCard, classes.loggedOutInfo)}
           >
             <LogoLockup className={classes.logoLockup} />
-            <Button
-              as='a'
-              href='/auth/sign_up'
-              variant='solid'
-              color='accent'
-              size='sm'
-              className={classes.signUpButton}
-            >
-              <FormattedMessage
-                id='server_banner.sign_up'
-                defaultMessage='Sign up'
-              />
-            </Button>
+            {hasSignUpButton && (
+              <Button
+                as='a'
+                href={signupUrl}
+                variant='solid'
+                color='accent'
+                size='sm'
+                className={classes.signUpButton}
+              >
+                <FormattedMessage
+                  id='server_banner.sign_up'
+                  defaultMessage='Sign up'
+                />
+              </Button>
+            )}
             <IconButton size='sm' icon={InfoIcon} onClick={openMobileNav}>
               <FormattedMessage id='server_banner.info' defaultMessage='Info' />
             </IconButton>
