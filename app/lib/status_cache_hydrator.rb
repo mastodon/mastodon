@@ -66,7 +66,7 @@ class StatusCacheHydrator
       )
     end
 
-    flags = Status.where(id: status.id).select(*queries).take&.attributes || {}
+    flags = Status.where(id: status.id).select(*queries).take&.attributes
 
     payload[:favourited] = flags['favourited']
     payload[:reblogged]  = flags['reblogged']
