@@ -20,7 +20,6 @@ import {
 } from '@/flavours/glitch/store/typed_functions';
 
 import { selectComposerIsChanged } from '../reducers/slices/composer';
-import { isRedesignEnabled } from '../utils/environment';
 
 import { showAlert } from './alerts';
 import {
@@ -209,7 +208,10 @@ export const quoteCompose = createAppThunk(
 );
 
 export const quoteComposeByStatus = createAppThunk(
-  (status: Status, { dispatch, getState }) => {
+  (
+    { status, force = false }: { status: Status; force?: boolean },
+    { dispatch, getState },
+  ) => {
     const state = getState();
     const composeState = state.compose;
     const mediaAttachments = composeState.get('media_attachments');
@@ -253,11 +255,7 @@ export const quoteComposeByStatus = createAppThunk(
           modalProps: { status },
         }),
       );
-    } else if (
-      composeState.get('in_reply_to') &&
-      statusId &&
-      isRedesignEnabled()
-    ) {
+    } else if (composeState.get('in_reply_to') && statusId && !force) {
       dispatch(
         openModal({
           modalType: 'COMPOSER_ADD_QUOTE',
@@ -271,10 +269,13 @@ export const quoteComposeByStatus = createAppThunk(
 );
 
 export const quoteComposeById = createAppThunk(
-  (statusId: string, { dispatch, getState }) => {
+  (
+    { statusId, force = false }: { statusId: string; force?: boolean },
+    { dispatch, getState },
+  ) => {
     const status = getState().statuses.get(statusId);
     if (status) {
-      dispatch(quoteComposeByStatus(status));
+      dispatch(quoteComposeByStatus({ status, force }));
     }
   },
 );
@@ -318,7 +319,9 @@ export const pasteLinkCompose = createDataLoadingThunk(
         data.statuses[0].quote_approval?.current_user ?? 'denied',
       )
     ) {
-      dispatch(quoteComposeById(data.statuses[0].id));
+      dispatch(
+        quoteComposeById({ statusId: data.statuses[0].id, force: true }),
+      );
     }
   },
   {
