@@ -2,18 +2,19 @@
 @use '@/styles/mastodon/variables';
 
 .root {
+  box-sizing: border-box;
   container-type: inline-size;
   background: var(--color-bg-primary);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   padding: var(--space-4);
-  z-index: 1; // To cover the sidebar
+  padding-bottom: calc(max(env(safe-area-inset-bottom), var(--space-4)));
 
   @media (width >= #{variables.$mobile-menu-breakpoint}) {
-    @include mixins.elevation-2;
-
-    border-radius: var(--radius-6);
+    border: var(--border-default);
+    border-bottom: none;
+    border-radius: var(--radius-6) var(--radius-6) 0 0;
     overflow: hidden;
   }
 }
@@ -238,6 +239,7 @@ textarea.textarea {
 
 .languageMenu {
   padding: var(--space-2);
+  height: 400px;
 
   input {
     margin-bottom: var(--space-2);
@@ -248,17 +250,17 @@ textarea.textarea {
   }
 }
 
-.languageList {
-  max-height: 350px;
-  overflow-y: auto;
+.languageComboboxWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.languageItem {
-  display: block;
-
-  span {
-    color: var(--color-text-secondary);
-  }
+.languageListBox {
+  flex: 1;
+  min-height: 0;
+  max-height: initial !important;
+  margin-top: 1px;
 }
 
 // Reply

@@ -1,10 +1,9 @@
 import classNames from 'classnames';
 
-import { Search } from '@/mastodon/features/compose/components/search';
 import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
 import { RedesignNavigationPanel } from '@/mastodon/features/navigation_panel/redesign';
 import { RedesignMobileNavigation } from '@/mastodon/features/navigation_panel/redesign/mobile_nav';
-import { isLayoutWithSearchEnabled } from '@/mastodon/utils/environment';
+import { SearchPanel } from '@/mastodon/features/search_panel';
 import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';
@@ -44,11 +43,9 @@ export const ColumnsArea: React.FC<{
 
         <main className={classes.main}>{children}</main>
 
-        {isLayoutWithSearchEnabled() && (
-          <div className={classes.searchWrapper}>
-            <Search singleColumn context='sidebar' />
-          </div>
-        )}
+        <div className={classes.searchWrapper}>
+          <SearchPanel />
+        </div>
       </div>
     );
   }

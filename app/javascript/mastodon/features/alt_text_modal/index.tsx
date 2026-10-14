@@ -418,8 +418,8 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
             className='dialog-modal__header__title'
           >
             <FormattedMessage
-              id='alt_text_modal.add_alt_text'
-              defaultMessage='Add alt text'
+              id='account_edit.image_alt_modal.edit_title'
+              defaultMessage='Edit alt text'
             />
           </NavigationFocusTarget>
 
