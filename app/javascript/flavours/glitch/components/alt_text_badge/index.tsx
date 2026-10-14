@@ -44,11 +44,10 @@ export const AltTextBadge: React.FC<{
 
   const [handleMouseDown, handleMouseUp] = useSelectableClick(handleClose);
 
-  const ButtonComp = isRedesignEnabled() ? Button : 'button';
-
   return (
     <>
-      <ButtonComp
+      <Button
+        contrastOnMedia
         size='xs'
         type='button'
         variant='solid'
@@ -59,8 +58,8 @@ export const AltTextBadge: React.FC<{
         aria-controls={popoverId}
         aria-haspopup='dialog'
       >
-        ALT
-      </ButtonComp>
+        <FormattedMessage id='alt_text_badge.label' defaultMessage='ALT' />
+      </Button>
 
       <Popover
         isOpen={open}
