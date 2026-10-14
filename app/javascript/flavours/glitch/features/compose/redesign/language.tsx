@@ -134,6 +134,8 @@ export const LanguageDropdown: React.FC<{ onClose: () => void }> = ({
       items={languageObjects}
       renderItem={renderLanguageItem}
       onSelectItem={handleSelectLanguage}
+      wrapperClassName={classes.languageComboboxWrapper}
+      listBoxClassName={classes.languageListBox}
     />
   );
 };
