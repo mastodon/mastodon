@@ -18,7 +18,11 @@ html {
   --mobile-bottom-nav-height: calc(58px + var(--space-2));
 
   // Compensate for column header height when scrolling elements into view
-  --column-header-height: 48px;
+  --column-header-height: 52px;
+
+  &[data-density='compact'] {
+    --column-header-height: 48px;
+  }
 
   // Variable for easily inverting directional UI elements,
   --text-x-direction: 1;
