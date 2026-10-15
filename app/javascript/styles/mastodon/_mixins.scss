@@ -51,6 +51,10 @@
   font-weight: normal;
   line-height: var(--lh-normal);
   letter-spacing: var(--ls-normal);
+
+  html[data-density='compact'] & {
+    line-height: var(--lh-tighter);
+  }
 }
 
 @mixin type-body-compact {
