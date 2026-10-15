@@ -66,7 +66,7 @@ class StatusCacheHydrator
       )
     end
 
-    flags = Status.where(id: status.id).select(*queries).take&.attributes
+    flags = Status.connection.select_one(Arel::SelectManager.new.project(queries))
 
     payload[:favourited] = flags['favourited']
     payload[:reblogged]  = flags['reblogged']
