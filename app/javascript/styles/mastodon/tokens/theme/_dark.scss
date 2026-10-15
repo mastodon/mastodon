@@ -8,22 +8,68 @@
   --base-color-accent: var(--color-indigo-300);
   --base-color-danger: var(--color-red-200);
   --base-highlight-strength: 8%;
-}
-@mixin base-indigo-contrast {
-  --base-color-accent: var(--color-indigo-200);
+
+  @include utils.high-contrast {
+    --base-color-accent: var(--color-indigo-200);
+  }
 }
 
 @mixin base-lime {
   --base-color-bg: var(--color-lime-950);
-  --base-color-bg-desktop: var(--base-color-bg);
+  --base-color-bg-desktop: #13150e;
   --base-color-fg: var(--color-lime-50);
-  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-fg-on-accent: var(--base-color-bg);
   --base-color-accent: var(--color-lime-500);
   --base-color-danger: var(--color-red-200);
   --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-accent: var(--color-lime-300);
+  }
 }
-@mixin base-lime-contrast {
-  --base-color-accent: var(--color-lime-300);
+
+@mixin base-pink {
+  --base-color-bg: var(--color-pink-950);
+  --base-color-bg-desktop: #1a1419;
+  --base-color-fg: var(--color-pink-50);
+  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-accent: var(--color-pink-500);
+  --base-color-danger: var(--color-red-200);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--base-color-bg);
+    --base-color-accent: var(--color-pink-300);
+  }
+}
+
+@mixin base-orange {
+  --base-color-bg: var(--color-orange-950);
+  --base-color-bg-desktop: #1b130e;
+  --base-color-fg: var(--color-orange-50);
+  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-accent: var(--color-orange-500);
+  --base-color-danger: var(--color-red-200);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--color-orange-950);
+    --base-color-accent: var(--color-orange-300);
+  }
+}
+
+@mixin base-cyan {
+  --base-color-bg: var(--color-cyan-950);
+  --base-color-bg-desktop: #0f171a;
+  --base-color-fg: var(--color-cyan-50);
+  --base-color-fg-on-accent: var(--color-cyan-950);
+  --base-color-accent: var(--color-cyan-500);
+  --base-color-danger: var(--color-red-200);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-accent: var(--color-cyan-300);
+  }
 }
 
 @mixin tokens {

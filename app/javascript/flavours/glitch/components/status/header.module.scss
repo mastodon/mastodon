@@ -9,16 +9,16 @@
 
   a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: var(--link-underline-stealthy);
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: var(--link-underline-stealthy-hover);
     }
   }
 
   // When hovering over any link with the account ID, underline them all.
   &:has(a[data-id]:hover) a[data-id] {
-    text-decoration: underline;
+    text-decoration: var(--link-underline-stealthy-hover);
   }
 }
 
@@ -56,6 +56,15 @@ a.nameLink {
 
 .date {
   flex-shrink: 0;
+
+  &:any-link {
+    text-decoration: var(--link-underline-default);
+
+    &:hover,
+    &:focus {
+      text-decoration: var(--link-underline-default-hover);
+    }
+  }
 }
 
 .handle {

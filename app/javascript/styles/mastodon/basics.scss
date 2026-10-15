@@ -18,7 +18,11 @@ html {
   --mobile-bottom-nav-height: calc(58px + var(--space-2));
 
   // Compensate for column header height when scrolling elements into view
-  --column-header-height: 48px;
+  --column-header-height: 52px;
+
+  &[data-density='compact'] {
+    --column-header-height: 48px;
+  }
 
   // Variable for easily inverting directional UI elements,
   --text-x-direction: 1;
@@ -27,8 +31,12 @@ html {
     --text-x-direction: -1;
   }
 
+  --scroll-fade-height: var(--space-8);
+
+  scroll-padding-top: calc(
+    var(--column-header-height) + var(--scroll-fade-height)
+  );
   scrollbar-gutter: stable;
-  scroll-padding-top: var(--column-header-height);
 
   &:has(.layout-multi-column) {
     --column-header-height: 0;

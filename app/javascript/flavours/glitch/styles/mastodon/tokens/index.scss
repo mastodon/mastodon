@@ -15,6 +15,7 @@ html {
   @include type.font-size;
   @include type.line-height;
   @include type.letter-spacing;
+  @include type.link-underlines;
 }
 
 [data-color-scheme='dark'],
@@ -25,9 +26,20 @@ html:not([data-color-scheme]) {
   @include dark.tokens;
   @include utils.invert-on-dark;
 
-  &[data-contrast='high'],
-  [data-contrast='high'] & {
-    @include dark.base-indigo-contrast;
+  &[data-theme-color='lime'] {
+    @include dark.base-lime;
+  }
+
+  &[data-theme-color='pink'] {
+    @include dark.base-pink;
+  }
+
+  &[data-theme-color='orange'] {
+    @include dark.base-orange;
+  }
+
+  &[data-theme-color='cyan'] {
+    @include dark.base-cyan;
   }
 }
 
@@ -38,8 +50,19 @@ html:not([data-color-scheme]) {
   @include light.tokens;
   @include utils.invert-on-light;
 
-  &[data-contrast='high'],
-  [data-contrast='high'] & {
-    @include light.base-indigo-contrast;
+  &[data-theme-color='lime'] {
+    @include light.base-lime;
+  }
+
+  &[data-theme-color='pink'] {
+    @include light.base-pink;
+  }
+
+  &[data-theme-color='orange'] {
+    @include light.base-orange;
+  }
+
+  &[data-theme-color='cyan'] {
+    @include light.base-cyan;
   }
 }
