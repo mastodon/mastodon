@@ -58,6 +58,21 @@
   }
 }
 
+@mixin base-cyan {
+  --base-color-bg: var(--color-cyan-50);
+  --base-color-bg-desktop: #e5f6fa;
+  --base-color-fg: var(--color-cyan-950);
+  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-accent: var(--color-cyan-500);
+  --base-color-danger: var(--color-red-700);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--color-cyan-50);
+    --base-color-accent: var(--color-cyan-800);
+  }
+}
+
 @mixin tokens {
   /* TEXT TOKENS */
 
