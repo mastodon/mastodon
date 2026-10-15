@@ -30,7 +30,7 @@
 
 @mixin base-pink {
   --base-color-bg: var(--color-pink-950);
-  --base-color-bg-desktop: var(--base-color-bg);
+  --base-color-bg-desktop: #1a1419;
   --base-color-fg: var(--color-pink-50);
   --base-color-fg-on-accent: var(--base-color-fg);
   --base-color-accent: var(--color-pink-500);
@@ -39,6 +39,21 @@
 
   @include utils.high-contrast {
     --base-color-accent: var(--color-pink-300);
+  }
+}
+
+@mixin base-orange {
+  --base-color-bg: var(--color-orange-950);
+  --base-color-bg-desktop: #1b130e;
+  --base-color-fg: var(--color-orange-50);
+  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-accent: var(--color-orange-500);
+  --base-color-danger: var(--color-red-200);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--color-orange-950);
+    --base-color-accent: var(--color-orange-300);
   }
 }
 

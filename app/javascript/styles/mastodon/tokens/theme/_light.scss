@@ -43,6 +43,21 @@
   }
 }
 
+@mixin base-orange {
+  --base-color-bg: var(--color-orange-50);
+  --base-color-bg-desktop: #fff0e5;
+  --base-color-fg: var(--color-orange-950);
+  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-accent: var(--color-orange-500);
+  --base-color-danger: var(--color-red-700);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--color-orange-50);
+    --base-color-accent: var(--color-orange-800);
+  }
+}
+
 @mixin tokens {
   /* TEXT TOKENS */
 
