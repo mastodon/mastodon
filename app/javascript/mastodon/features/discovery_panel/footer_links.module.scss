@@ -20,7 +20,7 @@
 
   a {
     color: inherit;
-    text-decoration: underline;
+    text-decoration: var(--link-underline-contrast);
 
     &[aria-current='page'] {
       text-decoration: none;
@@ -29,7 +29,7 @@
     &:hover,
     &:focus,
     &:active {
-      text-decoration: none;
+      text-decoration: var(--link-underline-contrast-hover);
     }
   }
 }
