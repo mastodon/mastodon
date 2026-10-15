@@ -2,6 +2,13 @@
   @return #{rgb(from $base-color r g b / $amount)};
 }
 
+@mixin high-contrast {
+  &[data-contrast='high'],
+  [data-contrast='high'] & {
+    @content;
+  }
+}
+
 @mixin invert-on-light {
   .invert-on-light {
     filter: invert(1);
