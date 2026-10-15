@@ -291,6 +291,7 @@ tr:
         create_domain_block_html: "%{name}, %{target} alan adını engelledi"
         create_email_domain_block_html: "%{name}, %{target} e-posta alan adını engelledi"
         create_ip_block_html: "%{name}, %{target} IP adresi için kural oluşturdu"
+        create_moderation_subscription_html: "%{name}, %{target} için denetim aboneliği oluşturdu"
         create_relay_html: "%{name}, %{target} aktarıcısını oluşturdu"
         create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
@@ -306,6 +307,7 @@ tr:
         destroy_email_domain_block_html: "%{name}, %{target} e-posta alan adı engelini kaldırdı"
         destroy_instance_html: "%{name}, %{target} alan adını temizledi"
         destroy_ip_block_html: "%{name}, %{target} IP adresi kuralını sildi"
+        destroy_moderation_subscription_html: "%{name}, %{target} için denetim aboneliğini sildi"
         destroy_relay_html: "%{name}, %{target} aktarıcısını sildi"
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
         destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
@@ -354,10 +356,18 @@ tr:
         update_user_role_html: "%{name}, %{target} rolünü değiştirdi"
         update_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural güncellendi"
         usable_tag_html: kullanılabilir;
+      automated_actions:
+        create_domain_allow_html: "%{target} alan alanıyla birliğe otomatik olarak izin verildi"
+        create_domain_block_html: "%{target} alan adı otomatik olarak engellendi"
+        destroy_domain_allow_html: "%{target} alan alanıyla birliğe otomatik olarak izin verilmedi"
+        destroy_domain_block_html: "%{target} alan adının engeli otomatik olarak kaldırıldı"
+        update_domain_block_html: "%{target} alan adının engeli otomatik olarak güncellendi"
       deleted_account: hesap silindi
+      deleted_suggestion: silinmiş bir denetim aboneliği
       empty: Kayıt bulunamadı.
       filter_by_action: Eyleme göre filtre
       filter_by_user: Kullanıcıya göre filtre
+      suggested_by_html: "%{subscription} tarafından eylem önerildi"
       title: Denetim günlüğü
       unavailable_instance: "(alan adı mevcut değil)"
     announcements:
@@ -473,6 +483,11 @@ tr:
       undo: Beyaz listeden çıkar
     domain_blocks:
       add_new: Yeni ekle
+      confirm_downgrade:
+        cancel: İptal
+        confirm: Sürümü Düşür
+        preamble_html: "<strong>%{domain}</strong> adresindeki mevcut bloğu ve alt alan alanlarını bir alt sürüme geçirmek üzeresiniz."
+        title: "%{domain} alan adının engelleme seviyesinin düşürülmesini onaylayın"
       confirm_suspension:
         cancel: İptal et
         confirm: Askıya al

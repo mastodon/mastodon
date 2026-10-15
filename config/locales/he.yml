@@ -358,6 +358,12 @@ he:
         update_user_role_html: "%{name} שינה את התפקיד של %{target}"
         update_username_block_html: "%{name} עידכנו חוק לשמות משתמש המכילים %{target}"
         usable_tag_html: ניתנת לשימוש;
+      automated_actions:
+        create_domain_allow_html: פדרציה עם הדומיין %{target} אושרה אוטומטית
+        create_domain_block_html: "%{target} נחסם אוטומטית"
+        destroy_domain_allow_html: פדרציה עם הדומיין %{target} נחסמה אוטומטית
+        destroy_domain_block_html: לשחרר חסימת %{target} אוטומטית
+        update_domain_block_html: עודכנה אוטומטית חסימת דומיין עבור %{target}
       deleted_account: חשבון מחוק
       empty: לא נמצאו יומנים.
       filter_by_action: סינון לפי פעולה
@@ -482,6 +488,9 @@ he:
       undo: אסור מַאֲחָד (פדרציה) עם שם המתחם
     domain_blocks:
       add_new: הוספת חדש
+      confirm_downgrade:
+        cancel: ביטול
+        confirm: שנמוך
       confirm_suspension:
         cancel: ביטול
         confirm: השעייה
@@ -788,6 +797,52 @@ he:
       reset: איפוס
       search: חיפוש
       title: כללי IP
+    moderation_subscriptions:
+      add_new: הוספת מינוי
+      advisory_action: 'פעולה: %{action}'
+      advisory_actions:
+        accept: לאפשר
+        limit: השתקה
+        reject: השעייה
+      apply_conditions:
+        always: תמיד
+        never: לעולם לא
+      delete: מחק
+      last_synced_at: זמן סינכרון אחרון
+      list_action: סוג מינוי
+      list_actions:
+        accept: רשימת הרשאות
+        reject: רשימת חסימות
+      list_actions_short:
+        accept: רשימת הרשאות
+        default: מעורב
+        reject: רשימת חסימות
+      name: כינוי
+      new:
+        create: הרשמה
+      priority: עדיפות
+      tabs:
+        logs: לוגים
+        subscriptions: מנויים
+        suggestions: הצעות
+      type: סוג
+      types:
+        csv_list: רשימה מופרדת פסיקים (CSV)
+      url: כתובת URL
+    moderation_suggestions:
+      actions:
+        accept: לאשר
+        limit: לְהַגבִּיל
+        reject: להשעות
+        retract: חזור מהמדיניות הנוכחית
+      apply_accept: לאשר
+      apply_limit: לְהַגבִּיל
+      apply_reject: להשעות
+      apply_retract: למשוך
+      current_states:
+        accept: מותרים כרגע
+        limit: מוגבלים כרגע
+        reject: מושעים כרגע
     relationships:
       title: היחסים של %{acct}
     relays:
