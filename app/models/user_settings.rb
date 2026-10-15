@@ -43,6 +43,7 @@ class UserSettings
     setting :emoji_style, default: 'auto', in: %w(auto native twemoji)
     setting :color_scheme, default: 'auto', in: %w(auto light dark)
     setting :contrast, default: 'auto', in: %w(auto high)
+    setting :density, default: 'default', in: %w(default compact)
   end
 
   namespace :notification_emails do
@@ -58,6 +59,7 @@ class UserSettings
     setting :appeal, default: true
     setting :software_updates, default: 'critical', in: %w(none critical patch all)
     setting :end_of_support, default: true
+    setting :moderation_suggestions, default: true
   end
 
   namespace :interactions do

@@ -291,6 +291,7 @@ nl:
         create_domain_block_html: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block_html: "%{name} heeft het e-maildomein %{target} geblokkeerd"
         create_ip_block_html: "%{name} maakte regel aan voor IP %{target}"
+        create_moderation_subscription_html: "%{name} heeft moderatie-abonnement %{target} aangemaakt"
         create_relay_html: "%{name} heeft een relay aangemaakt %{target}"
         create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
         create_user_role_html: "%{name} maakte de rol %{target} aan"
@@ -306,6 +307,7 @@ nl:
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_instance_html: "%{name} verwijderde het domein %{target} volledig"
         destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
+        destroy_moderation_subscription_html: "%{name} heeft moderatie-abonnement %{target} verwijderd"
         destroy_relay_html: "%{name} heeft de relay %{target} verwijderd"
         destroy_status_html: Bericht van %{target} is door %{name} verwijderd
         destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
@@ -354,10 +356,18 @@ nl:
         update_user_role_html: "%{name} wijzigde de rol %{target}"
         update_username_block_html: "%{name} heeft regel bijgewerkt voor gebruikersnamen die %{target} bevatten"
         usable_tag_html: kan worden gebruikt;
+      automated_actions:
+        create_domain_allow_html: Automatisch toegestane federatie met domein %{target}
+        create_domain_block_html: Automatisch geblokkeerd domein %{target}
+        destroy_domain_allow_html: Automatisch niet toegestane federatie met domein %{target}
+        destroy_domain_block_html: Automatisch gedeblokkeerd domein %{target}
+        update_domain_block_html: Automatisch bijgewerkt domein %{target}
       deleted_account: verwijderd account
+      deleted_suggestion: een verwijderd moderatie-abonnement
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
       filter_by_user: Op gebruiker filteren
+      suggested_by_html: Aanbevolen actie door %{subscription}
       title: Auditlog
       unavailable_instance: "(domeinnaam niet beschikbaar)"
     announcements:
@@ -473,6 +483,11 @@ nl:
       undo: Federatie met domein afkeuren
     domain_blocks:
       add_new: Nieuwe domeinblokkade toevoegen
+      confirm_downgrade:
+        cancel: Annuleren
+        confirm: Downgraden
+        preamble_html: U staat op het punt om het bestaande blok te downgraden op <strong>%{domain}</strong> en zijn subdomeinen.
+        title: Downgrade domein blokkeren bevestigen voor %{domain}
       confirm_suspension:
         cancel: Annuleren
         confirm: Opschorten
@@ -695,6 +710,7 @@ nl:
         comment: Interne reden
         description_html: Je kunt het beleid bepalen dat op de accounts van dit domein en alle subdomeinen van toepassing is.
         limited_federation_mode_description_html: Je kunt kiezen of je federatie met dit domein wilt toestaan.
+        moderation_subscription: Moderatie-abonnement
         policies:
           reject_media: Mediabestanden weigeren
           reject_reports: Rapportages weigeren
@@ -775,6 +791,67 @@ nl:
       reset: Opnieuw
       search: Zoeken
       title: IP-regels
+    moderation_subscriptions:
+      add_new: Abonnement toevoegen
+      advisory_action: 'Actie: %{action}'
+      advisory_actions:
+        accept: toestaan
+        limit: negeren
+        reject: opschorten
+      apply_automatically: Automatisch adviezen toepassen
+      apply_conditions:
+        always: Altijd
+        never: Nooit
+        safely: Alleen als de relaties niet worden verbroken
+      delete: Verwijderen
+      last_synced_at: Laatst gesynchroniseerd op
+      list_action: Abonnementstype
+      list_actions:
+        accept: Toegestaan
+        default: Gemengd (toegestaan & geweigerd)
+        reject: Geblokkeerd
+      list_actions_short:
+        accept: Toegestaan
+        default: Gemengd
+        reject: Geblokkeerd
+      name: Naam
+      new:
+        create: Abonneren
+        title: Nieuw moderatie-abonnement
+      override_unattributed: Handmatige blokkades overschrijven
+      policies:
+        apply_advisories: Automatisch adviezen toepassen
+      priority: Prioriteit
+      show:
+        edit: Abonnement bewerken
+        empty: Dit abonnement heeft nog geen advies.
+        title: 'Moderatie-abonnement: %{name}'
+      tabs:
+        logs: Logs
+        subscriptions: Abonnementen
+        suggestions: Aanbevelingen
+      title: Moderatie-abonnementen
+      type: Type
+      types:
+        csv_list: CSV-lijst
+      url: URL
+    moderation_subscriptions_logs:
+      title: Logs voor moderatie-abonnementen
+    moderation_suggestions:
+      actions:
+        accept: Toestaan
+        limit: Beperken
+        reject: Opschorten
+      apply_accept: Toestaan
+      apply_limit: Beperken
+      apply_reject: Opschorten
+      current_states:
+        accept: momenteel toegestaan
+        limit: momenteel beperkt
+        reject: momenteel opgeschort
+      dismiss: Aanbevelingen verwerpen
+      suggested_from_html: Aanbevolen door %{link}
+      title: Moderatie-aanbevelingen
     relationships:
       title: Volgrelaties van %{acct}
     relays:
@@ -1370,6 +1447,8 @@ nl:
     new_critical_software_updates:
       body: Nieuwe kritische versies van Mastodon zijn vrijgegeven. Je zou zo snel mogelijk moeten bijwerken!
       subject: Kritieke Mastodon-updates zijn beschikbaar voor %{instance}!
+    new_moderation_suggestions:
+      subject: Nieuwe moderatie-aanbevelingen op %{instance} beschikbaar!
     new_pending_account:
       body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren of afwijzen.
       subject: Er dient een nieuw account op %{instance} te worden beoordeeld (%{username})

@@ -163,6 +163,7 @@ module ApplicationHelper
       class: html_classes,
       'data-contrast': contrast.parameterize,
       'data-color-scheme': page_color_scheme.parameterize,
+      'data-density': density.parameterize,
     }
 
     base[:'data-system-theme'] = 'true' if page_color_scheme == 'auto'

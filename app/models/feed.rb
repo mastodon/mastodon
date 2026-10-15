@@ -9,7 +9,7 @@ class Feed
     @options = options
   end
 
-  def get(limit:, max_id: nil, since_id: nil, min_id: nil)
+  def get(limit: 20, max_id: nil, since_id: nil, min_id: nil)
     limit    = limit.to_i
     max_id   = max_id.to_i if max_id.present?
     since_id = since_id.to_i if since_id.present?

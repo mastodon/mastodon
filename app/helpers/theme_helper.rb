@@ -66,6 +66,10 @@ module ThemeHelper
     current_user&.setting_contrast || 'auto'
   end
 
+  def density
+    current_user&.setting_density || 'default'
+  end
+
   def page_color_scheme
     content_for(:force_color_scheme).presence || color_scheme
   end
