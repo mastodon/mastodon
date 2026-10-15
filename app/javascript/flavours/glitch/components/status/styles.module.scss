@@ -237,11 +237,11 @@
 
   a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: var(--link-underline-default);
 
     &:hover,
     &:hover * {
-      text-decoration: underline;
+      text-decoration: var(--link-underline-default-hover);
     }
   }
 }
