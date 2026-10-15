@@ -21,7 +21,7 @@ en:
       admin_account_action:
         include_statuses: The user will see which posts have caused the moderation action or warning
         send_email_notification: The user will receive an explanation of what happened with their account
-        text_html: Optional. You can use post syntax. You can <a href="%{path}">add canned responses</a> to save time
+        text_html: Optional. You can use post syntax. It will appear below the canned response
         type_html: Choose what to do with <strong>%{acct}</strong>
         types:
           disable: Prevent the user from using their account, but do not delete or hide their contents.
@@ -29,7 +29,7 @@ en:
           sensitive: Force all this user's media attachments to be flagged as sensitive.
           silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
           suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
-        warning_preset_id: Optional. You can still add custom text to end of the preset
+        warning_preset_html: Optional. You can <a href="%{path}">manage them here</a>
       announcement:
         all_day: When checked, only the dates of the time range will be displayed
         ends_at: Optional. Announcement will be automatically unpublished at this time
@@ -192,7 +192,7 @@ en:
       account_migration:
         acct: Handle of the new account
       account_warning_preset:
-        text: Preset text
+        text: Response text
         title: Title
       admin_account_action:
         include_statuses: Include reported posts in the e-mail
@@ -205,7 +205,7 @@ en:
           sensitive: Sensitive
           silence: Limit
           suspend: Suspend
-        warning_preset_id: Use a canned response
+        warning_preset_id: Canned response
       announcement:
         all_day: All-day event
         ends_at: End of event
