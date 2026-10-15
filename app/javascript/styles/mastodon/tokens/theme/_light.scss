@@ -8,9 +8,10 @@
   --base-color-accent: var(--color-indigo-600);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
-}
-@mixin base-indigo-contrast {
-  --base-color-accent: var(--color-indigo-700);
+
+  @include utils.high-contrast {
+    --base-color-accent: var(--color-indigo-700);
+  }
 }
 
 @mixin base-lime {
@@ -21,10 +22,11 @@
   --base-color-accent: var(--color-lime-500);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
-}
-@mixin base-lime-contrast {
-  --base-color-fg-on-accent: var(--base-color-bg);
-  --base-color-accent: var(--color-lime-800);
+
+  @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--base-color-bg);
+    --base-color-accent: var(--color-lime-800);
+  }
 }
 
 @mixin tokens {
