@@ -1481,6 +1481,9 @@ en:
     new_pending_account:
       body: The details of the new account are below. You can approve or reject this application.
       subject: New account up for review on %{instance} (%{username})
+    new_pending_accounts:
+      body: New accounts have been created on %{instance}. As your server is configured to postpone confirmation emails after moderation approval, those accounts did not have a chance to verify their email address yet. The details of the new accounts are below. You can approve or reject these applications.
+      subject: New accounts up for review on %{instance}
     new_report:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
@@ -1635,6 +1638,12 @@ en:
     auto: Auto
     dark: Dark
     light: Light
+  color_theme:
+    cyan: Cyan
+    indigo: Indigo
+    lime: Lime
+    orange: Orange
+    pink: Pink
   contrast:
     auto: Auto
     high: High

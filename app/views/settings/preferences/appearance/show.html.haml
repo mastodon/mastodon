@@ -33,6 +33,16 @@
                    wrapper: :with_label,
                    required: false
       .input.horizontal-options
+        = ff.input :'web.theme_color',
+                   as: :radio_buttons,
+                   collection: available_theme_colors(current_theme),
+                   hint: false,
+                   include_blank: false,
+                   label_method: ->(color) { I18n.t("color_theme.#{color}", default: color) },
+                   label: I18n.t('simple_form.labels.defaults.setting_theme_color'),
+                   wrapper: :with_label,
+                   required: false
+      .input.horizontal-options
         = ff.input :'web.contrast',
                    as: :radio_buttons,
                    collection: user_settings_collection('web.contrast'),
