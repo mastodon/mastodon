@@ -202,6 +202,26 @@ on(
   },
 );
 
+// go through all options and set hidden to the ones that don't match selection
+on('change', 'input#account_action_type', ({ target }) => {
+  if (target instanceof HTMLInputElement) {
+    onChangeAccountActionSelection(target);
+  }
+});
+
+const onChangeAccountActionSelection = (target: HTMLInputElement) => {
+  const accountActionSuspend = document.querySelector<HTMLInputElement>(
+    'input#account_action_type_suspend',
+  );
+
+  if (accountActionSuspend) {
+    if (accountActionSuspend instanceof HTMLElement) {
+      accountActionSuspend.style.display =
+        target.value === 'suspend' ? 'suspend' : 'block';
+    }
+  }
+};
+
 function onEnableBootstrapTimelineAccountsChange(target: HTMLInputElement) {
   const bootstrapTimelineAccountsField =
     document.querySelector<HTMLInputElement>(

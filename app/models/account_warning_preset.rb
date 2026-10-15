@@ -16,7 +16,7 @@ class AccountWarningPreset < ApplicationRecord
   ACTION_CATEGORIES = %w(suspend limit freeze sensitive warning appeal).freeze
 
   validates :text, presence: true
-  validates :action_category, inclusion: { in: ACTION_CATEGORIES }
+  validates :action_category, inclusion: { in: ACTION_CATEGORIES, allow_nil: true }
 
   scope :alphabetic, -> { order(title: :asc, text: :asc) }
 end
