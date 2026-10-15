@@ -41,7 +41,7 @@ import { invokeVirtualIosKeyboard } from '@/flavours/glitch/utils/invoke_virtual
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 
 import { useHasAnnouncements } from '../../announcements/hooks';
-import { FooterLinks } from '../../search_panel/footer_links';
+import { FooterLinks } from '../../discovery_panel/footer_links';
 
 import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationHeader } from './header';

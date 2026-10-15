@@ -23,7 +23,7 @@ const ROUTES_WITHOUT_SEARCH_BAR = [
   '/collections/:id/edit/details',
 ];
 
-export const SearchPanel: React.FC = () => {
+export const DiscoveryPanel: React.FC = () => {
   const { signedIn } = useIdentity();
 
   const isRouteWithSearchBar = !useRouteMatch({

@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 
 import { ComposeRedesignButton } from '@/flavours/glitch/features/compose/redesign/trigger';
+import { DiscoveryPanel } from '@/flavours/glitch/features/discovery_panel';
 import { RedesignNavigationPanel } from '@/flavours/glitch/features/navigation_panel/redesign';
 import { RedesignMobileNavigation } from '@/flavours/glitch/features/navigation_panel/redesign/mobile_nav';
-import { SearchPanel } from '@/flavours/glitch/features/search_panel';
 import { Footer } from 'flavours/glitch/features/custom_homepage/components/footer';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';
@@ -43,8 +43,8 @@ export const ColumnsArea: React.FC<{
 
         <main className={classes.main}>{children}</main>
 
-        <div className={classes.searchWrapper}>
-          <SearchPanel />
+        <div className={classes.discoveryWrapper}>
+          <DiscoveryPanel />
         </div>
       </div>
     );
