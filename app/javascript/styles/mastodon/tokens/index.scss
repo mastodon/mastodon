@@ -28,6 +28,10 @@ html:not([data-color-scheme]) {
   &[data-theme-color='lime'] {
     @include dark.base-lime;
   }
+
+  &[data-theme-color='pink'] {
+    @include dark.base-pink;
+  }
 }
 
 [data-color-scheme='light'] {
@@ -39,5 +43,9 @@ html:not([data-color-scheme]) {
 
   &[data-theme-color='lime'] {
     @include light.base-lime;
+  }
+
+  &[data-theme-color='pink'] {
+    @include light.base-pink;
   }
 }
