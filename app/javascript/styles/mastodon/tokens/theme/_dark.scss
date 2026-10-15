@@ -18,7 +18,7 @@
   --base-color-bg: var(--color-lime-950);
   --base-color-bg-desktop: #13150e;
   --base-color-fg: var(--color-lime-50);
-  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-fg-on-accent: var(--base-color-bg);
   --base-color-accent: var(--color-lime-500);
   --base-color-danger: var(--color-red-200);
   --base-highlight-strength: 8%;
@@ -38,6 +38,7 @@
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--base-color-bg);
     --base-color-accent: var(--color-pink-300);
   }
 }

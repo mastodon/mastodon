@@ -39,6 +39,7 @@
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--base-color-bg);
     --base-color-accent: var(--color-pink-800);
   }
 }
