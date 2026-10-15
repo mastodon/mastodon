@@ -2,29 +2,76 @@
 
 @mixin base-indigo {
   --base-color-bg: var(--color-indigo-50);
-  --base-color-bg-desktop: var(--color-indigo-100);
+  --base-color-bg-desktop: #efecf8;
   --base-color-fg: var(--color-indigo-950);
   --base-color-fg-on-accent: var(--base-color-bg);
   --base-color-accent: var(--color-indigo-600);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
-}
-@mixin base-indigo-contrast {
-  --base-color-accent: var(--color-indigo-700);
+
+  @include utils.high-contrast {
+    --base-color-accent: var(--color-indigo-700);
+  }
 }
 
 @mixin base-lime {
   --base-color-bg: var(--color-lime-50);
-  --base-color-bg-desktop: var(--color-lime-100);
+  --base-color-bg-desktop: #f2f6e9;
   --base-color-fg: var(--color-lime-950);
   --base-color-fg-on-accent: var(--base-color-fg);
   --base-color-accent: var(--color-lime-500);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--base-color-bg);
+    --base-color-accent: var(--color-lime-800);
+  }
 }
-@mixin base-lime-contrast {
-  --base-color-fg-on-accent: var(--base-color-bg);
-  --base-color-accent: var(--color-lime-800);
+
+@mixin base-pink {
+  --base-color-bg: var(--color-pink-50);
+  --base-color-bg-desktop: #fceef9;
+  --base-color-fg: var(--color-pink-950);
+  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-accent: var(--color-pink-500);
+  --base-color-danger: var(--color-red-700);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--base-color-bg);
+    --base-color-accent: var(--color-pink-800);
+  }
+}
+
+@mixin base-orange {
+  --base-color-bg: var(--color-orange-50);
+  --base-color-bg-desktop: #fff0e5;
+  --base-color-fg: var(--color-orange-950);
+  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-accent: var(--color-orange-500);
+  --base-color-danger: var(--color-red-700);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--color-orange-50);
+    --base-color-accent: var(--color-orange-800);
+  }
+}
+
+@mixin base-cyan {
+  --base-color-bg: var(--color-cyan-50);
+  --base-color-bg-desktop: #e5f6fa;
+  --base-color-fg: var(--color-cyan-950);
+  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-accent: var(--color-cyan-500);
+  --base-color-danger: var(--color-red-700);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-fg-on-accent: var(--color-cyan-50);
+    --base-color-accent: var(--color-cyan-800);
+  }
 }
 
 @mixin tokens {

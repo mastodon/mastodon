@@ -1,3 +1,5 @@
+@use './theme/utils';
+
 @mixin font-size {
   --fs-11: 0.6875rem;
   --fs-12: 0.75rem;
@@ -23,4 +25,31 @@
   --ls-normal: 0;
   --ls-loose: 0.01em;
   --ls-looser: 0.02em;
+}
+
+@mixin link-underlines {
+  /*
+   * For links that don't need underlines unless hovered because their
+   * context & styling implies interactivity (e.g. usernames in post headers).
+   */
+  --link-underline-stealthy: none;
+  --link-underline-stealthy-hover: underline;
+
+  /*
+   * For links that should have an underline on hover and will benefit from
+   * highlighting in high-contrast mode (e.g. links in posts or longer text).
+   */
+  --link-underline-default: none;
+  --link-underline-default-hover: underline;
+
+  /*
+   * For links that should be underlined by default (e.g. footer links).
+   */
+  --link-underline-contrast: underline;
+  --link-underline-contrast-hover: none;
+
+  @include utils.high-contrast {
+    --link-underline-default: underline;
+    --link-underline-default-hover: none;
+  }
 }

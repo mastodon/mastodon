@@ -116,6 +116,14 @@ interface ComboboxProps<
    */
   listBoxType?: 'popover' | 'in-place';
   /**
+   * Customise styling of the list box container
+   */
+  listBoxClassName?: string;
+  /**
+   * Customise styling of the outermost combobox wrapper
+   */
+  wrapperClassName?: string;
+  /**
    * Set to true to open the suggestion popover as soon as the input is focused.
    * Doesn't apply when `listBoxType='in-place'` is used.
    */
@@ -267,6 +275,8 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     suppressMenu = false,
     icon = SearchIcon,
     className,
+    wrapperClassName,
+    listBoxClassName,
     ...otherProps
   }: ComboboxProps<Item, GroupKey>,
   ref: React.ForwardedRef<HTMLInputElement>,
@@ -544,7 +554,10 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
   const listId = `${id}-list`;
 
   return (
-    <div className={classes.wrapper} ref={wrapperRef}>
+    <div
+      className={classNames(classes.wrapper, wrapperClassName)}
+      ref={wrapperRef}
+    >
       <TextInput
         role='combobox'
         {...otherProps}
@@ -597,6 +610,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
         ref={setPopoverElement}
         popoverElement={popoverElement}
         popoverReference={inputElement}
+        className={listBoxClassName}
       >
         <StatusMessageWrapper
           showStatus={showStatusMessageInMenu && !hasGroupEmptyMessages}
@@ -677,6 +691,7 @@ const OptionalPopover: React.FC<{
   popoverReference: PopoverProps['reference'];
   onClose: PopoverProps['onClose'];
   ref: React.Ref<HTMLDivElement>;
+  className: string | undefined;
   children: React.ReactNode;
 }> = ({
   renderAsPopover,
@@ -685,6 +700,7 @@ const OptionalPopover: React.FC<{
   popoverReference,
   ref,
   onClose,
+  className,
   children,
 }) => {
   if (renderAsPopover) {
@@ -707,6 +723,7 @@ const OptionalPopover: React.FC<{
             className={classNames(
               classes.listBoxWrapper,
               classes.listBoxWrapperPopover,
+              className,
               placement,
             )}
           >
@@ -718,7 +735,7 @@ const OptionalPopover: React.FC<{
   }
 
   return (
-    <div ref={ref} className={classes.listBoxWrapper}>
+    <div ref={ref} className={classNames(classes.listBoxWrapper, className)}>
       {children}
     </div>
   );

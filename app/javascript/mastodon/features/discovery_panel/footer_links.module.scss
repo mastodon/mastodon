@@ -1,0 +1,47 @@
+@use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  color: var(--color-text-tertiary);
+
+  @include mixins.type-caption;
+
+  // Hide footer links from the navigation in single column layout
+  // when there's enough space to display them in the search column
+  :global(body.layout-single-column) &[data-context='navigation'] {
+    @media (width > variables.$no-gap-breakpoint) {
+      display: none;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: var(--link-underline-contrast);
+
+    &[aria-current='page'] {
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: var(--link-underline-contrast-hover);
+    }
+  }
+}
+
+.heading {
+  font-weight: bold;
+  margin-bottom: var(--space-half);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+}

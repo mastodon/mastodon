@@ -68,6 +68,19 @@ const ComposerModalCancelConfirm: React.FC<{ openNew?: boolean }> = ({
       )}
 
       <ModalActions>
+        <Button variant='tonal' onClick={handleContinue}>
+          {isEditing ? (
+            <FormattedMessage
+              id='compose.cancel_modal.edit.continue'
+              defaultMessage='Continue editing'
+            />
+          ) : (
+            <FormattedMessage
+              id='compose.cancel_modal.continue'
+              defaultMessage='Continue draft'
+            />
+          )}
+        </Button>
         <Button variant='solid' color='destructive' onClick={handleDelete}>
           {isEditing ? (
             <FormattedMessage
@@ -78,19 +91,6 @@ const ComposerModalCancelConfirm: React.FC<{ openNew?: boolean }> = ({
             <FormattedMessage
               id='compose.cancel_modal.delete'
               defaultMessage='Delete draft'
-            />
-          )}
-        </Button>
-        <Button variant='solid' onClick={handleContinue}>
-          {isEditing ? (
-            <FormattedMessage
-              id='compose.cancel_modal.edit.continue'
-              defaultMessage='Continue editing'
-            />
-          ) : (
-            <FormattedMessage
-              id='compose.cancel_modal.continue'
-              defaultMessage='Continue draft'
             />
           )}
         </Button>
