@@ -31,8 +31,12 @@ html {
     --text-x-direction: -1;
   }
 
+  --scroll-fade-height: var(--space-8);
+
+  scroll-padding-top: calc(
+    var(--column-header-height) + var(--scroll-fade-height)
+  );
   scrollbar-gutter: stable;
-  scroll-padding-top: var(--column-header-height);
 
   &:has(.layout-multi-column) {
     --column-header-height: 0;
