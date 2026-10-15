@@ -1,6 +1,20 @@
 # frozen_string_literal: true
 
 module SettingsHelper
+  def themes_select_collection
+    Themes.instance.names.map do |theme|
+      [
+        I18n.t("themes.#{theme}", default: theme),
+        theme,
+        {
+          data: {
+            colors: available_theme_colors(theme).index_with { |color| I18n.t("color_theme.#{color}", default: color) }.to_json,
+          },
+        },
+      ]
+    end
+  end
+
   def filterable_languages
     LanguagesHelper.sorted_locale_keys(LanguagesHelper::SUPPORTED_LOCALES.keys)
   end

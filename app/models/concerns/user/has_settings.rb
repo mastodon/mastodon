@@ -79,6 +79,10 @@ module User::HasSettings
     settings['skin']
   end
 
+  def setting_theme_color
+    settings['web.theme_color']
+  end
+
   def setting_color_scheme
     settings['web.color_scheme']
   end

@@ -116,6 +116,10 @@ code {
     }
 
     &.radio_buttons {
+      &:not(:has(.radio)) {
+        display: none;
+      }
+
       .radio {
         margin-bottom: 15px;
 
