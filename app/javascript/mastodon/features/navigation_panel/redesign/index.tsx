@@ -41,7 +41,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
 import { useHasAnnouncements } from '../../announcements/hooks';
-import { FooterLinks } from '../../search_panel/footer_links';
+import { FooterLinks } from '../../discovery_panel/footer_links';
 
 import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationHeader } from './header';

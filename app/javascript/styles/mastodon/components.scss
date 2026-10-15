@@ -9836,7 +9836,7 @@ noscript {
 .notification-list {
   position: fixed;
   bottom: 2rem;
-  inset-inline-start: 1rem;
+  inset-inline-end: 1rem;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -9869,7 +9869,7 @@ noscript {
 
   &.from-side {
     translate: calc(
-      -1 * (100% + var(--alert-edge-spacing)) * var(--text-x-direction)
+      (100% + var(--alert-edge-spacing)) * var(--text-x-direction)
     );
   }
 

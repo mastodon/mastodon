@@ -171,6 +171,20 @@ RSpec.describe 'Using OAuth from an external app' do
     let!(:rule) { Fabricate :rule, text: 'You must be seven meters tall' }
     let(:invite) { Fabricate :invite, autofollow: true }
 
+    it 'returns to app on cancel' do
+      subject
+
+      # Shows rules
+      expect(page)
+        .to have_title(I18n.t('auth.register'))
+        .and have_text(rule.text)
+
+      click_on I18n.t('generic.cancel')
+
+      # Redirects to the app's callback URL
+      expect(page).to redirect_to_callback_url
+    end
+
     it 'allows creating a new user' do
       subject
 

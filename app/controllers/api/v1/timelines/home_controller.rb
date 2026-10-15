@@ -35,14 +35,26 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
   def home_statuses
     account_home_feed.get(
       limit_param(DEFAULT_STATUSES_LIMIT),
-      params[:max_id],
-      params[:since_id],
-      params[:min_id]
+      home_feed_params[:max_id],
+      home_feed_params[:since_id],
+      home_feed_params[:min_id]
     )
   end
 
   def account_home_feed
-    HomeFeed.new(current_account, params.permit(:exclude_direct, :exclude_reblogs, :exclude_quotes, :exclude_replies))
+    HomeFeed.new(
+      current_account,
+      home_feed_params.slice(
+        :exclude_direct, :exclude_reblogs, :exclude_quotes, :exclude_replies
+      )
+    )
+  end
+
+  def home_feed_params
+    params.permit(
+      :max_id, :since_id, :min_id,
+      :exclude_direct, :exclude_reblogs, :exclude_quotes, :exclude_replies
+    )
   end
 
   def next_path

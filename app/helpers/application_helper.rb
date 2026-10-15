@@ -161,9 +161,10 @@ module ApplicationHelper
     base = {
       lang: I18n.locale,
       class: html_classes,
+      'data-user-flavour': current_flavour.parameterize,
       'data-contrast': contrast.parameterize,
       'data-color-scheme': page_color_scheme.parameterize,
-      'data-user-flavour': current_flavour.parameterize,
+      'data-density': density.parameterize,
     }
 
     base[:'data-system-theme'] = 'true' if page_color_scheme == 'auto'
