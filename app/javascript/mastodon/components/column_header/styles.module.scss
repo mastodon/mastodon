@@ -14,6 +14,11 @@
     background: var(--color-bg-primary);
   }
 
+  @media (width <= variables.$mobile-menu-breakpoint) {
+    padding-top: 0;
+    background: var(--color-bg-primary);
+  }
+
   // Scroll fade that overlays the scrollable content below
   &::after {
     content: '';
@@ -61,6 +66,11 @@
   background: var(--color-bg-primary);
 
   html[data-density='compact'] & {
+    border-radius: 0;
+    background: transparent;
+  }
+
+  @media (width <= variables.$mobile-menu-breakpoint) {
     border-radius: 0;
     background: transparent;
   }
