@@ -12,35 +12,35 @@ RSpec.describe TagFeed do
     let!(:both) { Fabricate(:status, tags: [tag_cats, tag_dogs]) }
 
     it 'can add tags in "any" mode' do
-      results = described_class.new(tag_cats, nil, any: [tag_dogs.name]).get(20)
+      results = described_class.new(tag_cats, nil, any: [tag_dogs.name]).get(limit: 20)
       expect(results).to include status_tagged_with_cats
       expect(results).to include status_tagged_with_dogs
       expect(results).to include both
     end
 
     it 'can remove tags in "all" mode' do
-      results = described_class.new(tag_cats, nil, all: [tag_dogs.name]).get(20)
+      results = described_class.new(tag_cats, nil, all: [tag_dogs.name]).get(limit: 20)
       expect(results).to_not include status_tagged_with_cats
       expect(results).to_not include status_tagged_with_dogs
       expect(results).to     include both
     end
 
     it 'can remove tags in "none" mode' do
-      results = described_class.new(tag_cats, nil, none: [tag_dogs.name]).get(20)
+      results = described_class.new(tag_cats, nil, none: [tag_dogs.name]).get(limit: 20)
       expect(results).to     include status_tagged_with_cats
       expect(results).to_not include status_tagged_with_dogs
       expect(results).to_not include both
     end
 
     it 'ignores an invalid mode' do
-      results = described_class.new(tag_cats, nil, wark: [tag_dogs.name]).get(20)
+      results = described_class.new(tag_cats, nil, wark: [tag_dogs.name]).get(limit: 20)
       expect(results).to     include status_tagged_with_cats
       expect(results).to_not include status_tagged_with_dogs
       expect(results).to     include both
     end
 
     it 'handles being passed non existent tag names' do
-      results = described_class.new(tag_cats, nil, any: ['wark']).get(20)
+      results = described_class.new(tag_cats, nil, any: ['wark']).get(limit: 20)
       expect(results).to     include status_tagged_with_cats
       expect(results).to_not include status_tagged_with_dogs
       expect(results).to     include both
@@ -48,14 +48,14 @@ RSpec.describe TagFeed do
 
     it 'can restrict to an account' do
       BlockService.new.call(account, status_tagged_with_cats.account)
-      results = described_class.new(tag_cats, account, none: [tag_dogs.name]).get(20)
+      results = described_class.new(tag_cats, account, none: [tag_dogs.name]).get(limit: 20)
       expect(results).to_not include status_tagged_with_cats
     end
 
     it 'can restrict to local' do
       status_tagged_with_cats.account.update(domain: 'example.com')
       status_tagged_with_cats.update(local: false, uri: 'example.com/toot')
-      results = described_class.new(tag_cats, nil, any: [tag_dogs.name], local: true).get(20)
+      results = described_class.new(tag_cats, nil, any: [tag_dogs.name], local: true).get(limit: 20)
       expect(results).to_not include status_tagged_with_cats
     end
 
@@ -63,7 +63,7 @@ RSpec.describe TagFeed do
       original = Fabricate(:status)
       status = Fabricate(:status, tags: [tag_cats], in_reply_to_id: original.id)
 
-      results = described_class.new(tag_cats, nil).get(20)
+      results = described_class.new(tag_cats, nil).get(limit: 20)
       expect(results).to include(status)
     end
 
@@ -74,7 +74,7 @@ RSpec.describe TagFeed do
       end
 
       context 'without local_only option' do
-        subject { described_class.new(tag_cats, viewer).get(20).map(&:id) }
+        subject { described_class.new(tag_cats, viewer).get(limit: 20).map(&:id) }
 
         let(:viewer) { nil }
 
@@ -109,7 +109,7 @@ RSpec.describe TagFeed do
       end
 
       context 'with a local_only option set' do
-        subject { described_class.new(tag_cats, viewer, local: true).get(20).map(&:id) }
+        subject { described_class.new(tag_cats, viewer, local: true).get(limit: 20).map(&:id) }
 
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
         let!(:local_status)   { status_tagged_with_cats }
@@ -142,7 +142,7 @@ RSpec.describe TagFeed do
       end
 
       context 'with a remote_only option set' do
-        subject { described_class.new(tag_cats, viewer, remote: true).get(20).map(&:id) }
+        subject { described_class.new(tag_cats, viewer, remote: true).get(limit: 20).map(&:id) }
 
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
         let!(:local_status)   { status_tagged_with_cats }
@@ -181,7 +181,7 @@ RSpec.describe TagFeed do
       end
 
       context 'without local_only option' do
-        subject { described_class.new(tag_cats, viewer).get(20).map(&:id) }
+        subject { described_class.new(tag_cats, viewer).get(limit: 20).map(&:id) }
 
         let(:viewer) { nil }
 
@@ -209,7 +209,7 @@ RSpec.describe TagFeed do
       end
 
       context 'with a local_only option set' do
-        subject { described_class.new(tag_cats, viewer, local: true).get(20).map(&:id) }
+        subject { described_class.new(tag_cats, viewer, local: true).get(limit: 20).map(&:id) }
 
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
         let!(:local_status)   { status_tagged_with_cats }
@@ -242,7 +242,7 @@ RSpec.describe TagFeed do
       end
 
       context 'with a remote_only option set' do
-        subject { described_class.new(tag_cats, viewer, remote: true).get(20).map(&:id) }
+        subject { described_class.new(tag_cats, viewer, remote: true).get(limit: 20).map(&:id) }
 
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
         let!(:local_status)   { status_tagged_with_cats }
@@ -274,7 +274,7 @@ RSpec.describe TagFeed do
       end
 
       context 'without local_only option' do
-        subject { described_class.new(tag_cats, viewer).get(20).map(&:id) }
+        subject { described_class.new(tag_cats, viewer).get(limit: 20).map(&:id) }
 
         let(:viewer) { nil }
 
@@ -308,7 +308,7 @@ RSpec.describe TagFeed do
       end
 
       context 'with a local_only option set' do
-        subject { described_class.new(tag_cats, viewer, local: true).get(20).map(&:id) }
+        subject { described_class.new(tag_cats, viewer, local: true).get(limit: 20).map(&:id) }
 
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
         let!(:local_status)   { status_tagged_with_cats }
@@ -340,7 +340,7 @@ RSpec.describe TagFeed do
       end
 
       context 'with a remote_only option set' do
-        subject { described_class.new(tag_cats, viewer, remote: true).get(20).map(&:id) }
+        subject { described_class.new(tag_cats, viewer, remote: true).get(limit: 20).map(&:id) }
 
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
         let!(:local_status)   { status_tagged_with_cats }
