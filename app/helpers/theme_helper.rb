@@ -78,7 +78,9 @@ module ThemeHelper
     available_colors = available_theme_colors(theme)
     return if available_colors.empty?
 
-    # TODO: user setting
+    user_color = current_user&.setting_theme_color
+    return user_color if user_color && available_colors.include?(user_color)
+
     # TODO: server setting
 
     available_colors.first
