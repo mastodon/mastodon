@@ -21,7 +21,7 @@ en:
       admin_account_action:
         include_statuses: The user will see which posts have caused the moderation action or warning
         send_email_notification: The user will receive an explanation of what happened with their account
-        text_html: Optional. You can use post syntax. It will appear below the canned response
+        text: Optional. You can use post syntax. It will appear below the canned response
         type_html: Choose what to do with <strong>%{acct}</strong>
         types:
           disable: Prevent the user from using their account, but do not delete or hide their contents.
