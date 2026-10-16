@@ -7,15 +7,18 @@ class Scheduler::PendingAccountsNotificationScheduler
   sidekiq_options retry: 0
 
   def perform
-    last_user_id = redis.get('pending_accounts_notification_scheduler:last_user_id').presence || 0
+    resume_at_user_id = redis.get('pending_accounts_notification_scheduler:resume_at_user_id')&.to_i
 
     # Only check accounts that have not generated a confirmation e-mail, as those will use the regular flow.
     scope = User.pending.where(confirmation_sent_at: nil).includes(:account, :invite_request)
-    users = scope.where(id: last_user_id...).order(id: :asc).to_a
+    users = scope.where(id: resume_at_user_id...).order(id: :asc).to_a
 
-    notify_staff_about_pending_accounts!(users.map(&:account)) unless users.empty?
+    unless users.empty?
+      notify_staff_about_pending_accounts!(users.map(&:account))
+      resume_at_user_id = users.last.id + 1
+    end
 
-    redis.set('pending_accounts_notification_scheduler:last_user_id', users.last&.id || last_user_id, ex: 1.week)
+    redis.set('pending_accounts_notification_scheduler:resume_at_user_id', resume_at_user_id, ex: 1.week)
   end
 
   private
