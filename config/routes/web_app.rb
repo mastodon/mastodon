@@ -4,6 +4,8 @@
 # - Require indexing
 # - Have alternative format representations
 
+get '/public/local.rss', to: 'api/v1/timelines/public#show'
+
 %w(
   /blocks
   /bookmarks
