@@ -135,20 +135,18 @@ class AccountSearchService < BaseService
         dis_max: {
           queries: [
             {
-              match: {
-                username: {
-                  query: @query,
-                  analyzer: 'word_join_analyzer',
-                },
+              multi_match: {
+                fields: %w(username username.edge_ngram),
+                query: @query,
+                analyzer: 'word_join_analyzer',
               },
             },
 
             {
-              match: {
-                display_name: {
-                  query: @query,
-                  analyzer: 'word_join_analyzer',
-                },
+              multi_match: {
+                fields: %w(display_name display_name.edge_ngram),
+                query: @query,
+                analyzer: 'word_join_analyzer',
               },
             },
 
