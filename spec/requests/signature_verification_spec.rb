@@ -71,7 +71,7 @@ RSpec.describe 'signature verification concern' do
 
   context 'with an HTTP Signature (draft version)' do
     context 'with a known account' do
-      let!(:actor) { Fabricate(:account, username: 'bob', domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, public_key: actor_keypair.public_key.to_pem, protocol: :activitypub) }
+      let!(:actor) { Fabricate(:account, username: 'bob', domain: 'remote.domain', uri: 'https://remote.domain/users/bob', public_key: actor_keypair.public_key.to_pem, protocol: :activitypub) }
 
       let(:actor_json) do
         {
@@ -136,7 +136,7 @@ RSpec.describe 'signature verification concern' do
 
         context 'when the key material has changed' do
           # Let the user be known with the default test keys
-          let!(:actor) { Fabricate(:account, username: 'bob', domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, protocol: :activitypub) }
+          let!(:actor) { Fabricate(:account, username: 'bob', domain: 'remote.domain', uri: 'https://remote.domain/users/bob', protocol: :activitypub) }
 
           # Needed to update the keypair
           before { stub_key_requests }
@@ -427,7 +427,7 @@ RSpec.describe 'signature verification concern' do
 
   context 'with an HTTP Message Signature (final RFC version)' do
     context 'with a known account' do
-      let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, public_key: actor_keypair.public_key.to_pem) }
+      let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob', public_key: actor_keypair.public_key.to_pem) }
 
       context 'with a valid signature on a GET request' do
         let(:signature_input) do
