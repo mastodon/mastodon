@@ -473,6 +473,9 @@ is:
       undo: Fjarlægja af lista yfir leyft
     domain_blocks:
       add_new: Bæta við nýrri útilokun á léni
+      confirm_downgrade:
+        cancel: Hætta við
+        confirm: Færa niður
       confirm_suspension:
         cancel: Hætta við
         confirm: Setja í bið
@@ -775,6 +778,40 @@ is:
       reset: Endurstilla
       search: Leita
       title: IP-reglur
+    moderation_subscriptions:
+      add_new: Bæta við áskrift
+      advisory_action: 'Aðgerð: %{action}'
+      advisory_actions:
+        accept: leyfa
+        limit: hylja
+        reject: setja í frysti
+      apply_conditions:
+        always: Alltaf
+        never: Aldrei
+      delete: Eyða
+      last_synced_at: Síðast samstillt
+      list_actions:
+        accept: Listi yfir leyfilegt
+        reject: Listi yfir bannað
+      list_actions_short:
+        accept: Listi yfir leyfilegt
+        default: Blandaður
+        reject: Listi yfir bannað
+      name: Nafn
+      new:
+        create: Gerast áskrifandi
+    moderation_suggestions:
+      actions:
+        reject: Setja í frysti
+      apply_accept: Leyfa
+      apply_limit: Takmarka
+      apply_reject: Setja í frysti
+      apply_retract: Taka aftur
+      current_states:
+        accept: núna leyft
+        limit: núna takmarkað
+        reject: núna í frysti
+      dismiss: Hafna tillögum
     relationships:
       title: Vensl %{acct}
     relays:
@@ -1486,6 +1523,7 @@ is:
       link_not_received: Fékkstu ekki neinn tengil?
       new_confirmation_instructions_sent: Þú munt fá nýjan tölvupóst með staðfestingartengli innan skamms!
       title: Athugaðu pósthólfið þitt
+      wrong_email: Rangt tölvupóstfang?
     sign_in:
       preamble_html: Skráðu þig inn með auðkennum þínum fyrir <strong>%{domain}</strong>. Ef aðgangurinn þinn er hýstur á öðrum netþjóni, muntu ekki geta skráð þig inn hér.
       title: Skrá inn á %{domain}
@@ -1565,6 +1603,9 @@ is:
       more_details_html: Til að skoða þetta nánar, er gott að líta á <a href="%{terms_path}">persónuverndarstefnuna</a>.
       username_available: Notandanafnið þitt mun verða tiltækt aftur
       username_unavailable: Notandanafnið þitt mun verða áfram ótiltækt
+  density:
+    compact: Þjappað
+    default: Sjálfgefið
   disputes:
     strikes:
       action_taken: Framkvæmd aðgerð

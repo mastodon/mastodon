@@ -5,42 +5,48 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  border-top: 0;
+  padding-top: var(--space-1);
+  color: var(--color-text-primary);
+  background: var(--color-bg-desktop);
 
-  // Make bottom half of column header transparent to make the
-  // overlay gradient on the `.layout` class work
-  --column-header-gradient-start: calc(100% - var(--space-3));
-
-  background: linear-gradient(
-    to bottom,
-    var(--color-bg-desktop) var(--column-header-gradient-start),
-    transparent var(--column-header-gradient-start)
-  );
-
-  html[data-color-scheme='dark'] & {
-    // Cover up outer borders from Column component
-    margin-inline: -1px;
-  }
-
-  // If there's additional sticky content, don't render overscroll
-  // blend gradient
-  &.withStickyContent {
-    background: var(--color-bg-desktop);
-  }
-
-  @media (width >= variables.$mobile-menu-breakpoint) {
-    border-top: var(--space-2) solid var(--color-bg-desktop);
-  }
-
-  // Fix bg color for legacy column headers.
-  // Remove when new column headers are in.
-  & :global(.column-header) {
+  html[data-density='compact'] & {
+    padding-top: 0;
     background: var(--color-bg-primary);
+  }
+
+  @media (width <= variables.$mobile-menu-breakpoint) {
+    padding-top: 0;
+    background: var(--color-bg-primary);
+  }
+
+  // Scroll fade that overlays the scrollable content below
+  &::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    z-index: -1;
+    height: var(--space-10);
+    background: linear-gradient(
+      to bottom,
+      var(--color-bg-primary),
+      transparent
+    );
+    transition:
+      opacity,
+      transform 250ms ease-out;
+  }
+
+  &.rootScrolledToTop::after {
+    opacity: 0;
+    transition-timing-function: ease-in;
+    transform: translateY(calc(-1 * var(--space-6)));
   }
 }
 
 .layout {
-  --column-header-padding: var(--space-3);
+  --column-header-padding: var(--space-2) var(--space-3);
 
   position: relative;
   display: grid;
@@ -53,29 +59,26 @@
   align-items: center;
 
   // Ensure that a header without buttons is as tall as one with buttons
-  min-height: 56px;
+  min-height: 48px;
   text-align: center;
-  color: var(--color-text-primary);
-  background: linear-gradient(
-    to bottom,
-    var(--color-bg-primary) var(--column-header-gradient-start, 55%),
-    transparent
-  );
   cursor: pointer;
+  border-radius: var(--radius-6) var(--radius-6) 0 0;
+  background: var(--color-bg-primary);
+
+  html[data-density='compact'] & {
+    border-radius: 0;
+    background: transparent;
+  }
+
+  @media (width <= variables.$mobile-menu-breakpoint) {
+    border-radius: 0;
+    background: transparent;
+  }
 
   // html[data-color-scheme='dark'] & {
   //   border: var(--border-default);
   //   border-bottom: none;
   // }
-
-  .withStickyContent & {
-    background: var(--color-bg-primary);
-  }
-
-  @media (width >= variables.$mobile-menu-breakpoint) {
-    border-top-left-radius: var(--radius-6);
-    border-top-right-radius: var(--radius-6);
-  }
 }
 
 .unreadButton {

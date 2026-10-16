@@ -93,6 +93,7 @@ es-MX:
       enable: Habilitar
       enable_sign_in_token: Activar la comprobación con código de seguridad
       enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
+      enable_unconfirmed: Permitir correo de confirmación
       enabled: Habilitada
       enabled_msg: Se ha descongelado correctamente la cuenta de %{username}
       follow_recommendations:
@@ -291,6 +292,7 @@ es-MX:
         create_domain_block_html: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
         create_ip_block_html: "%{name} creó una regla para la IP %{target}"
+        create_moderation_subscription_html: "%{name} creó la suscripción de moderación %{target}"
         create_relay_html: "%{name} creó un relé %{target}"
         create_unavailable_domain_html: "%{name} detuvo las entregas al dominio %{target}"
         create_user_role_html: "%{name} creó el rol %{target}"
@@ -306,6 +308,7 @@ es-MX:
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
         destroy_instance_html: "%{name} purgó el dominio %{target}"
         destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
+        destroy_moderation_subscription_html: "%{name} eliminó la suscripción de moderación %{target}"
         destroy_relay_html: "%{name} eliminó el relé %{target}"
         destroy_status_html: "%{name} eliminó la publicación por %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
@@ -354,10 +357,18 @@ es-MX:
         update_user_role_html: "%{name} cambió el rol %{target}"
         update_username_block_html: "%{name} actualizó una regla para los nombres de usuario que contienen %{target}"
         usable_tag_html: se puede usar;
+      automated_actions:
+        create_domain_allow_html: Se permitió automáticamente la federación con el dominio %{target}
+        create_domain_block_html: Se bloqueó automáticamente el dominio %{target}
+        destroy_domain_allow_html: Se rescindió automáticamente la federación con el dominio %{target}
+        destroy_domain_block_html: Se desbloqueó automáticamente el dominio %{target}
+        update_domain_block_html: Se modificó automáticamente el bloqueo para el dominio %{target}
       deleted_account: cuenta eliminada
+      deleted_suggestion: una suscripción de moderación eliminada
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
+      suggested_by_html: Acción sugerida por %{subscription}
       title: Registro de auditoría
       unavailable_instance: "(nombre de dominio no disponible)"
     announcements:
@@ -473,6 +484,11 @@ es-MX:
       undo: Quitar de la lista blanca
     domain_blocks:
       add_new: Añadir nuevo
+      confirm_downgrade:
+        cancel: Cancelar
+        confirm: Desescalar
+        preamble_html: Estás a punto de desescalar el bloqueo existente en <strong>%{domain}</strong> y sus subdominios.
+        title: Confirmar el desescalado del bloqueo del dominio para %{domain}
       confirm_suspension:
         cancel: Cancelar
         confirm: Suspender
@@ -672,6 +688,8 @@ es-MX:
       title: Recomendaciones de cuentas
       unsuppress: Restaurar recomendaciones de cuentas
     instances:
+      advisories:
+        title: Avisos de suscripciones de moderación
       audit_log:
         title: Registros de auditoría recientes
         view_all: Ver registros de auditoría completos
@@ -695,6 +713,7 @@ es-MX:
         comment: Nota interna
         description_html: Puedes definir políticas de contenido que se aplicarán a todas las cuentas de este dominio y a cualquiera de sus subdominios.
         limited_federation_mode_description_html: Puedes elegir si permites la federación con este dominio.
+        moderation_subscription: Suscripción de moderación
         policies:
           reject_media: Rechazar multimedia
           reject_reports: Rechazar informes
@@ -775,6 +794,92 @@ es-MX:
       reset: Restablecer
       search: Buscar
       title: Reglas IP
+    moderation_subscriptions:
+      add_new: Añadir suscripción
+      advisory_action: 'Acción: %{action}'
+      advisory_actions:
+        accept: permitir
+        limit: silenciar
+        reject: suspender
+      apply_automatically: Aplicar avisos automáticamente
+      apply_conditions:
+        always: Siempre
+        never: Nunca
+        safely: Solo si no rompe relaciones
+      apply_conditions_hint:
+        always: Siempre aplicar automáticamente las acciones recomendadas. Utiliza esta opción solamente para listas en las que confíes plenamente.
+        never: Nunca aplicar automáticamente las acciones recomendadas. Siempre generar una sugerencia en su lugar.
+        safely: Aplicar las acciones recomendadas, a menos que estas rompan las relaciones con las cuentas seguidas por los usuarios locales. En tal caso, se generará una sugerencia en su lugar.
+      delete: Eliminar
+      destroyed_msg: Se eliminó la suscripción de moderación correctamente
+      empty: Aún no se ha suscrito ninguna lista de moderación.
+      last_synced_at: Última sincronización el
+      list_action: Tipo de suscripción
+      list_actions:
+        accept: Lista de permitidos
+        default: Mixto (Permitir y Denegar)
+        reject: Lista de bloqueos
+      list_actions_hint:
+        accept: Los elementos sin ninguna acción especificada se tratarán como permitidos. Se ignorarán los bloqueos.
+        default: Los elementos sin ninguna acción especificada se tratarán como bloqueos. Los bloqueos y permitidos se tratarán cada uno como lo que son.
+        reject: Los elementos sin ninguna acción especificada se tratarán como bloqueos. Se ignorarán los permitidos.
+      list_actions_short:
+        accept: Lista de permitidos
+        default: Mixto
+        reject: Lista de bloqueos
+      name: Nombre
+      new:
+        create: Suscribirse
+        title: Nueva suscripción de moderación
+      override_unattributed: Reemplazar bloqueos manuales
+      override_unattributed_hint: Permitir a esta suscripción actualizar automáticamente o tomar el control de los bloqueos manuales existentes cuando se apliquen automáticamente los avisos.
+      policies:
+        apply_advisories: Aplica automáticamente los avisos
+        apply_advisories_safely: Aplica automáticamente los avisos que no rompan las relaciones
+        apply_retractions: Aplica automáticamente retracciones
+      priority: Prioridad
+      priority_hint: Las suscripciones de moderación se evalúan por orden de prioridad, las suscripciones con un número más bajo anulan las suscripciones con uno más alto.
+      retract_automatically: Retractar avisos automáticamente
+      retract_automatically_hint: Permitir retractarse o desescalar cambios en las políticas cuando una suscripción elimina un elemento correspondiente. Cuando se activa la retracción automática y existe un aviso equivalente en una lista de prioridad inferior, esta se adoptará. Cuando la retracción automática está desactivada, se generará una sugerencia en su lugar.
+      show:
+        delete_confirm: "¿Seguro que deseas eliminar esta suscripción de moderación?"
+        edit: Editar suscripción
+        empty: Esta suscripción no tiene ningún aviso todavía.
+        title: 'Suscripción de moderación: %{name}'
+      tabs:
+        logs: Registros
+        subscriptions: Suscripciones
+        suggestions: Sugerencias
+      title: Suscripción de moderación
+      type: Tipo
+      types:
+        csv_list: Lista CSV
+      url: URL
+    moderation_subscriptions_logs:
+      title: Registros de suscripciones de moderación
+    moderation_suggestions:
+      actions:
+        accept: Permitir
+        limit: Limitar
+        reject: Suspender
+        retract: Retractar la política actual
+      applied_msg: Se aplicó con éxito la sugerencia para %{target_key}
+      apply_accept: Permitir
+      apply_limit: Limitar
+      apply_reject: Suspender
+      apply_retract: Retractar
+      current_states:
+        accept: actualmente permitido
+        limit: actualmente limitado
+        reject: actualmente suspendido
+      description: Debajo hay sugerencias de tus suscripciones de moderación, ordenadas por prioridad.
+      destroyed_msg: Se descartó con éxito la sugerencia para %{target_key}
+      dismiss: Descartar sugerencias
+      empty: No hay ninguna sugerencia de moderación en este momento.
+      retracted_msg: Se retractó la política para %{target_key} correctamente
+      suggested_from_html: Sugerido por %{link}
+      title: Sugerencias de moderación
+      unable_to_apply_msg: No se pudo aplicar la sugerencia para %{target_key}
     relationships:
       title: Relaciones de %{acct}
     relays:
@@ -1370,6 +1475,9 @@ es-MX:
     new_critical_software_updates:
       body: Se han lanzado nuevas versiones críticas de Mastodon, ¡es posible que quiera actualizar lo antes posible!
       subject: "¡Las actualizaciones críticas de Mastodon están disponibles para %{instance}!"
+    new_moderation_suggestions:
+      body: Las listas de moderación a las que está suscrito tu servidor han publicado nuevas sugerencias.
+      subject: "¡Nuevas sugerencias de moderación disponibles para %{instance}!"
     new_pending_account:
       body: Los detalles de la nueva cuenta están abajos. Puedes aprobar o rechazar esta aplicación.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
@@ -1481,11 +1589,16 @@ es-MX:
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
     setup:
+      correct_email: Corregir dirección
       email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu dirección de correo electrónico si está mal.
       email_settings_hint_html: Haz clic en el enlace que te enviamos a %{email} para comenzar a usar Mastodon. Te esperamos aquí.
+      email_settings_hint_wait_html: Tu solicitud está siendo revisada. Pronto recibirás un correo en %{email}. Una vez que lo recibas, clica en el enlace para empezar a utilizar Mastodon. Estaremos esperándote.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
       title: Revisa tu bandeja de entrada
+      title_wait: Revisa tu bandeja de entrada
+      wrong_email: "¿Dirección de correo incorrecta?"
+      wrong_email_below_hint_html: "¡Que no cunda el pánico! Puedes corregir la dirección de correo justo debajo."
     sign_in:
       preamble_html: Registrate con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no podrás iniciar sesión aquí.
       title: Registrate en %{domain}
@@ -1522,6 +1635,12 @@ es-MX:
     auto: Automático
     dark: Oscuro
     light: Claro
+  color_theme:
+    cyan: Cian
+    indigo: Índigo
+    lime: Lima
+    orange: Naranja
+    pink: Rosa
   contrast:
     auto: Automático
     high: Alto
@@ -1565,6 +1684,9 @@ es-MX:
       more_details_html: Para más detalles, ver <a href="%{terms_path}"> la política de privacidad</a>.
       username_available: Tu nombre de usuario volverá a estar disponible
       username_unavailable: Tu nombre de usuario no estará disponible
+  density:
+    compact: Compacto
+    default: Por defecto
   disputes:
     strikes:
       action_taken: Acción realizada

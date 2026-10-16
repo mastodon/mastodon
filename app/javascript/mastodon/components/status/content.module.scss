@@ -48,6 +48,10 @@
 
     &:not(:last-child) {
       margin-block-end: var(--space-4);
+
+      [data-density='compact'] & {
+        margin-block-end: var(--space-2);
+      }
     }
   }
 
@@ -64,6 +68,12 @@
   a,
   button {
     color: var(--color-text-brand);
+    text-decoration: var(--link-underline-default);
+
+    &:hover,
+    &:focus {
+      text-decoration: var(--link-underline-default-hover);
+    }
   }
 
   blockquote {

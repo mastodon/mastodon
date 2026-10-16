@@ -93,6 +93,7 @@ nl:
       enable: Ontdooien
       enable_sign_in_token: Beveiligingscode via e-mail inschakelen
       enable_sign_in_token_auth: Verificatie met een toegangscode via e-mail inschakelen
+      enable_unconfirmed: Bevestigingsmail toestaan
       enabled: Ingeschakeld
       enabled_msg: Het ontdooien van het account van %{username} is geslaagd
       follow_recommendations:
@@ -291,6 +292,7 @@ nl:
         create_domain_block_html: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block_html: "%{name} heeft het e-maildomein %{target} geblokkeerd"
         create_ip_block_html: "%{name} maakte regel aan voor IP %{target}"
+        create_moderation_subscription_html: "%{name} heeft moderatie-abonnement %{target} aangemaakt"
         create_relay_html: "%{name} heeft een relay aangemaakt %{target}"
         create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
         create_user_role_html: "%{name} maakte de rol %{target} aan"
@@ -306,6 +308,7 @@ nl:
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_instance_html: "%{name} verwijderde het domein %{target} volledig"
         destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
+        destroy_moderation_subscription_html: "%{name} heeft moderatie-abonnement %{target} verwijderd"
         destroy_relay_html: "%{name} heeft de relay %{target} verwijderd"
         destroy_status_html: Bericht van %{target} is door %{name} verwijderd
         destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
@@ -354,10 +357,18 @@ nl:
         update_user_role_html: "%{name} wijzigde de rol %{target}"
         update_username_block_html: "%{name} heeft regel bijgewerkt voor gebruikersnamen die %{target} bevatten"
         usable_tag_html: kan worden gebruikt;
+      automated_actions:
+        create_domain_allow_html: Automatisch toegestane federatie met domein %{target}
+        create_domain_block_html: Automatisch geblokkeerd domein %{target}
+        destroy_domain_allow_html: Automatisch niet toegestane federatie met domein %{target}
+        destroy_domain_block_html: Automatisch gedeblokkeerd domein %{target}
+        update_domain_block_html: Automatisch bijgewerkt domein %{target}
       deleted_account: verwijderd account
+      deleted_suggestion: een verwijderd moderatie-abonnement
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
       filter_by_user: Op gebruiker filteren
+      suggested_by_html: Aanbevolen actie door %{subscription}
       title: Auditlog
       unavailable_instance: "(domeinnaam niet beschikbaar)"
     announcements:
@@ -473,6 +484,11 @@ nl:
       undo: Federatie met domein afkeuren
     domain_blocks:
       add_new: Nieuwe domeinblokkade toevoegen
+      confirm_downgrade:
+        cancel: Annuleren
+        confirm: Downgraden
+        preamble_html: U staat op het punt om het bestaande blok te downgraden op <strong>%{domain}</strong> en zijn subdomeinen.
+        title: Downgrade domein blokkeren bevestigen voor %{domain}
       confirm_suspension:
         cancel: Annuleren
         confirm: Opschorten
@@ -672,6 +688,8 @@ nl:
       title: Aanbevolen accounts
       unsuppress: Account weer aanbevelen
     instances:
+      advisories:
+        title: Adviezen van moderatie-abonnementen
       audit_log:
         title: Recente audit-logboeken
         view_all: Volledige audit-logboeken inzien
@@ -695,6 +713,7 @@ nl:
         comment: Interne reden
         description_html: Je kunt het beleid bepalen dat op de accounts van dit domein en alle subdomeinen van toepassing is.
         limited_federation_mode_description_html: Je kunt kiezen of je federatie met dit domein wilt toestaan.
+        moderation_subscription: Moderatie-abonnement
         policies:
           reject_media: Mediabestanden weigeren
           reject_reports: Rapportages weigeren
@@ -775,6 +794,75 @@ nl:
       reset: Opnieuw
       search: Zoeken
       title: IP-regels
+    moderation_subscriptions:
+      add_new: Abonnement toevoegen
+      advisory_action: 'Actie: %{action}'
+      advisory_actions:
+        accept: toestaan
+        limit: negeren
+        reject: opschorten
+      apply_automatically: Automatisch adviezen toepassen
+      apply_conditions:
+        always: Altijd
+        never: Nooit
+        safely: Alleen als de relaties niet worden verbroken
+      apply_conditions_hint:
+        always: Voorgestelde acties altijd automatisch toepassen. Gebruik deze optie alleen voor lijsten die u volledig vertrouwt.
+        never: Voorgestelde acties nooit automatisch toepassen. In plaats daarvan altijd een suggestie genereren.
+        safely: Aanbevolen acties toepassen, tenzij deze bestaande volgrelaties met lokale gebruikers verbreken. In dergelijke gevallen wordt een suggestie gegenereerd.
+      delete: Verwijderen
+      destroyed_msg: Moderatieabonnement succesvol verwijderd
+      empty: Er is nog geen moderatielijst geabonneerd.
+      last_synced_at: Laatst gesynchroniseerd op
+      list_action: Abonnementstype
+      list_actions:
+        accept: Toegestaan
+        default: Gemengd (toegestaan & geweigerd)
+        reject: Geblokkeerd
+      list_actions_hint:
+        accept: Items zonder opgegeven actie worden behandeld als toegestaan. Blokkeringen worden genegeerd.
+      list_actions_short:
+        accept: Toegestaan
+        default: Gemengd
+        reject: Geblokkeerd
+      name: Naam
+      new:
+        create: Abonneren
+        title: Nieuw moderatie-abonnement
+      override_unattributed: Handmatige blokkades overschrijven
+      policies:
+        apply_advisories: Automatisch adviezen toepassen
+      priority: Prioriteit
+      show:
+        edit: Abonnement bewerken
+        empty: Dit abonnement heeft nog geen advies.
+        title: 'Moderatie-abonnement: %{name}'
+      tabs:
+        logs: Logs
+        subscriptions: Abonnementen
+        suggestions: Aanbevelingen
+      title: Moderatie-abonnementen
+      type: Type
+      types:
+        csv_list: CSV-lijst
+      url: URL
+    moderation_subscriptions_logs:
+      title: Logs voor moderatie-abonnementen
+    moderation_suggestions:
+      actions:
+        accept: Toestaan
+        limit: Beperken
+        reject: Opschorten
+      apply_accept: Toestaan
+      apply_limit: Beperken
+      apply_reject: Opschorten
+      current_states:
+        accept: momenteel toegestaan
+        limit: momenteel beperkt
+        reject: momenteel opgeschort
+      dismiss: Aanbevelingen verwerpen
+      suggested_from_html: Aanbevolen door %{link}
+      title: Moderatie-aanbevelingen
     relationships:
       title: Volgrelaties van %{acct}
     relays:
@@ -1370,6 +1458,8 @@ nl:
     new_critical_software_updates:
       body: Nieuwe kritische versies van Mastodon zijn vrijgegeven. Je zou zo snel mogelijk moeten bijwerken!
       subject: Kritieke Mastodon-updates zijn beschikbaar voor %{instance}!
+    new_moderation_suggestions:
+      subject: Nieuwe moderatie-aanbevelingen op %{instance} beschikbaar!
     new_pending_account:
       body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren of afwijzen.
       subject: Er dient een nieuw account op %{instance} te worden beoordeeld (%{username})
@@ -1481,11 +1571,16 @@ nl:
     security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
     setup:
+      correct_email: Adres corrigeren
       email_below_hint_html: Controleer je map met spam, of vraag een nieuwe bevestigingslink aan. Je kan je e-mailadres corrigeren als het verkeerd is.
       email_settings_hint_html: Klik op de link die we naar %{email} hebben gestuurd om Mastodon te gebruiken. We wachten wel even.
+      email_settings_hint_wait_html: Je aanvraag wordt beoordeeld. Binnenkort kun je een e-mail verwachten op %{email}. Wanneer dit bericht arriveert, klik je op de link om Mastodon te gebruiken. We wachten hier op je.
       link_not_received: Geen link ontvangen?
       new_confirmation_instructions_sent: Je ontvangt binnen enkele minuten een nieuwe e-mail met de bevestigingslink!
       title: Kijk in je e-mail
+      title_wait: Houd je inbox in de gaten
+      wrong_email: Verkeerd e-mailadres?
+      wrong_email_below_hint_html: Geen paniek! Je kunt hieronder je e-mailadres corrigeren.
     sign_in:
       preamble_html: Log in met de inloggegevens van <strong>%{domain}</strong>. Als jouw account zich op een andere server bevindt, kun je hier niet inloggen.
       title: Inloggen op %{domain}
@@ -1522,6 +1617,12 @@ nl:
     auto: Auto
     dark: Donker
     light: Licht
+  color_theme:
+    cyan: Cyaan
+    indigo: Indigo
+    lime: Limoengroen
+    orange: Oranje
+    pink: Roze
   contrast:
     auto: Auto
     high: Hoog
@@ -1565,6 +1666,9 @@ nl:
       more_details_html: Zie het <a href="%{terms_path}">privacybeleid</a> voor meer informatie.
       username_available: Jouw gebruikersnaam komt weer beschikbaar
       username_unavailable: Jouw gebruikersnaam blijft onbeschikbaar
+  density:
+    compact: Compact
+    default: Standaard
   disputes:
     strikes:
       action_taken: Genomen maatregel

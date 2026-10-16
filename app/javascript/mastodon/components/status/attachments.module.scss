@@ -36,15 +36,16 @@
 
 .gallerySpoiler {
   position: absolute;
-  inset-block-start: 50%;
-  inset-inline-start: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
   z-index: 10;
-  text-align: center;
+  display: grid;
+  place-content: center;
+  cursor: auto;
 
   > p {
     @include mixins.type-body-compact;
 
+    text-align: center;
     color: var(--color-text-primary);
     margin-block-end: var(--space-2);
   }

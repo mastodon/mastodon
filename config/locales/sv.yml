@@ -93,6 +93,7 @@ sv:
       enable: Aktivera
       enable_sign_in_token: Aktivera kontrollen med säkerhetskod
       enable_sign_in_token_auth: Aktivera autentisering med pollett via e-post
+      enable_unconfirmed: Tillåt bekräftelsemejl
       enabled: Aktiverad
       enabled_msg: Uppfrysningen av %{username}s konto lyckades
       follow_recommendations:
@@ -291,6 +292,7 @@ sv:
         create_domain_block_html: "%{name} blockerade domänen %{target}"
         create_email_domain_block_html: "%{name} blockerade e-post domänet%{target}"
         create_ip_block_html: "%{name} skapade regel för IP %{target}"
+        create_moderation_subscription_html: "%{name} skapade modereringsprenumerationen %{target}"
         create_relay_html: "%{name} skapade ombudet %{target}"
         create_unavailable_domain_html: "%{name} stoppade leverans till domänen %{target}"
         create_user_role_html: "%{name} skapade rollen %{target}"
@@ -306,6 +308,7 @@ sv:
         destroy_email_domain_block_html: "%{name} avblockerade e-post domänet %{target}"
         destroy_instance_html: "%{name} rensade domän %{target}"
         destroy_ip_block_html: "%{name} tog bort regel för IP %{target}"
+        destroy_moderation_subscription_html: "%{name} raderade modereringsprenumerationen %{target}"
         destroy_relay_html: "%{name} tog bort ombudet %{target}"
         destroy_status_html: "%{name} tog bort inlägget av %{target}"
         destroy_unavailable_domain_html: "%{name} återupptog leverans till domänen %{target}"
@@ -354,10 +357,18 @@ sv:
         update_user_role_html: "%{name} ändrade rollen %{target}"
         update_username_block_html: "%{name} uppdaterade regel för användarnamn som innehåller %{target}"
         usable_tag_html: kan användas;
+      automated_actions:
+        create_domain_allow_html: Automatiskt tillåten federation med domän %{target}
+        create_domain_block_html: Automatiskt blockerad domän %{target}
+        destroy_domain_allow_html: Automatiskt otillåten federation med domän %{target}
+        destroy_domain_block_html: Automatiskt avblockerad domän %{target}
+        update_domain_block_html: Automatiskt uppdaterad domänblockering för %{target}
       deleted_account: raderat konto
+      deleted_suggestion: en raderad modereringsprenumeration
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
       filter_by_user: Filtrera efter användare
+      suggested_by_html: Åtgärd föreslagen av %{subscription}
       title: Revisionslogg
       unavailable_instance: "(domännamn inte tillgängligt)"
     announcements:
@@ -473,6 +484,11 @@ sv:
       undo: Tag bort från vitlistan
     domain_blocks:
       add_new: Lägg till ny
+      confirm_downgrade:
+        cancel: Avbryt
+        confirm: Nedgradera
+        preamble_html: Du håller på att nedgradera den befintliga blockeringen på <strong>%{domain}</strong> och dess underdomäner.
+        title: Bekräfta nedgradering av domänblockering för %{domain}
       confirm_suspension:
         cancel: Avbryt
         confirm: Pausa
@@ -672,6 +688,8 @@ sv:
       title: Följ rekommendationer
       unsuppress: Återställ följrekommendation
     instances:
+      advisories:
+        title: Bulletiner från modereringsprenumerationer
       audit_log:
         title: Senaste revisionsloggar
         view_all: Visa fullständiga revisionssloggar
@@ -695,6 +713,7 @@ sv:
         comment: Intern anteckning
         description_html: Du kan definiera innehållspolicyer som kommer tillämpas på alla konton från denna domän samt alla dess underdomäner.
         limited_federation_mode_description_html: Du kan välja om du vill tillåta federering med den här domänen.
+        moderation_subscription: Modereringsprenumeration
         policies:
           reject_media: Avvisa media
           reject_reports: Avvisa rapporter
@@ -775,6 +794,86 @@ sv:
       reset: Återställ
       search: Sök
       title: IP-regler
+    moderation_subscriptions:
+      add_new: Lägg till prenumeration
+      advisory_action: 'Åtgärd: %{action}'
+      advisory_actions:
+        accept: tillåt
+        limit: tysta
+        reject: pausa
+      apply_automatically: Tillämpa bulletiner automatiskt
+      apply_conditions:
+        always: Alltid
+        never: Aldrig
+        safely: Endast om det inte bryter relationer
+      apply_conditions_hint:
+        always: Använd alltid rekommenderade åtgärder automatiskt. Använd endast det här alternativet för listor du litar på.
+        never: Använd aldrig rekommenderade åtgärder automatiskt. Generera alltid ett förslag istället.
+        safely: Tillämpa rekommenderade åtgärder så länge de inte bryter befintliga följarrelationer med lokala användare. I sådana fall kommer ett förslag att genereras istället.
+      delete: Ta bort
+      destroyed_msg: Tog bort modereringsprenumeration
+      empty: Ingen modereringslista har prenumererats på ännu.
+      last_synced_at: Senast synkad den
+      list_action: Prenumerationstyp
+      list_actions:
+        accept: Tillåt-lista
+        default: Mixad (tillåt & neka)
+        reject: Blocklista
+      list_actions_hint:
+        accept: Objekt utan angiven åtgärd kommer att behandlas som tillåtna. Blockeringar kommer att ignoreras.
+        default: Objekt utan angiven åtgärd kommer att behandlas som blockeringar. Blockeringar och tillåtelser kommer båda att behandlas som sådana.
+        reject: Objekt utan angiven åtgärd kommer att behandlas som blockeringar. Tillåtelser kommer att ignoreras.
+      list_actions_short:
+        accept: Tillåt-lista
+        default: Mixad
+        reject: Block-lista
+      name: Namn
+      new:
+        create: Prenumerera
+        title: Ny modereringsprenumeration
+      override_unattributed: Åsidosätt manuella blockeringar
+      override_unattributed_hint: Tillåt denna prenumeration att automatiskt uppgradera eller ta över befintliga manuella block när du automatiskt tillämpar bulletiner.
+      policies:
+        apply_advisories: Tillämpar automatiskt bulletiner
+        apply_advisories_safely: Tillämpar automatiskt bulletiner som inte bryter relationer
+        apply_retractions: Tillämpar automatiskt tillbakadraganden
+      priority: Prioritet
+      priority_hint: Modereringsprenumerationer utvärderas i prioritetsordning, prenumerationer med ett lägre antal åsidosätter prenumerationer med ett högre.
+      retract_automatically: Dra tillbaka bulletiner automatiskt
+      show:
+        delete_confirm: Är du säker på att du vill ta bort denna modereringsprenumeration?
+        edit: Redigera prenumeration
+        empty: Denna prenumeration har inga bulletiner än.
+        title: 'Modereringsprenumeration: %{name}'
+      tabs:
+        logs: Loggar
+        subscriptions: Prenumerationer
+        suggestions: Förslag
+      title: Modereringsprenumerationer
+      type: Typ
+      types:
+        csv_list: CSV-lista
+      url: URL
+    moderation_subscriptions_logs:
+      title: Loggar för modereringsprenumerationer
+    moderation_suggestions:
+      actions:
+        accept: Tillåt
+        limit: Begränsa
+        reject: Pausa
+        retract: Dra tillbaka nuvarande policy
+      applied_msg: Tillämpade förslag för %{target_key}
+      apply_accept: Tillåt
+      apply_limit: Begränsa
+      apply_reject: Pausa
+      apply_retract: Dra tillbaka
+      current_states:
+        accept: tillåts för närvarande
+        limit: för närvarande begränsad
+        reject: för närvarande pausad
+      dismiss: Avfärda förslag
+      suggested_from_html: Föreslagen av %{link}
+      title: Modereringsförslag
     relationships:
       title: "%{acct}s relationer"
     relays:
@@ -1481,11 +1580,14 @@ sv:
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
+      correct_email: Rätt adress
       email_below_hint_html: Kolla din skräppost-mapp eller begär en ny. Du kan korrigera din e-postadress om den är fel.
       email_settings_hint_html: Klicka på länken vi skickade till %{email} för att börja använda Mastodon. Vi väntar här.
       link_not_received: Fick du ingen länk?
       new_confirmation_instructions_sent: Du kommer att få ett nytt e-postmeddelande med bekräftelselänken om några minuter!
       title: Kolla din inkorg
+      title_wait: Håll ett öga på din inkorg
+      wrong_email: Fel e-postadress?
     sign_in:
       preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
       title: Logga in på %{domain}
@@ -1522,6 +1624,12 @@ sv:
     auto: Auto
     dark: Mörkt
     light: Ljust
+  color_theme:
+    cyan: Cyan
+    indigo: Indigo
+    lime: Lime
+    orange: Orange
+    pink: Rosa
   contrast:
     auto: Auto
     high: Hög
@@ -1565,6 +1673,9 @@ sv:
       more_details_html: För mer information, se <a href="%{terms_path}">integritetspolicyn</a>.
       username_available: Ditt användarnamn kommer att bli tillgängligt igen
       username_unavailable: Ditt användarnamn kommer att fortsätta vara otillgängligt
+  density:
+    compact: Kompakt
+    default: Standard
   disputes:
     strikes:
       action_taken: Vidtagen åtgärd

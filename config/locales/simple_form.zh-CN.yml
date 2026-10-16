@@ -99,6 +99,7 @@ zh-CN:
         media_cache_retention_period: 来自外站用户嘟文的媒体文件将被缓存到你的实例上。当该值被设为正值时，缓存的媒体文件将在指定天数后被清除。如果媒体文件在被清除后重新被请求，且源站内容仍然可用，它将被重新下载。由于链接预览卡拉取第三方站点的频率受到限制，建议将此值设置为至少 14 天，如果小于该值，链接预览卡将不会按需更新。
         min_age: 用户注册时必须确认出生日期
         peers_api_enabled: 本站在联邦宇宙中遇到的站点列表。 此处不包含关于你是否与给定站点联合的数据，只是你的实例知道它。 这由收集一般意义上的联合统计信息的服务使用。
+        postpone_confirmation_emails: 启用此设置时，账号等待批准的确认邮件仅在这些账号已获批准时发送。这可能会让用户的注册体验变差，因为用户将会需要在收到邮件后及时确认电子邮件地址，但是发送电子邮件的时机并不固定。此外，这可能会增加管理员的工作量，因为Mastodon将无法在账号获批前过滤掉电子邮件地址无效的待审核账号。
         profile_directory: 个人资料目录会列出所有选择可被发现的用户。
         require_invite_text: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
         site_contact_email: 他人需要询恰法务或支持信息时的联络方式
@@ -244,7 +245,7 @@ zh-CN:
         setting_always_send_emails: 总是发送电子邮件通知
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 控制转嘟可见性
-        setting_color_scheme: 配色方案
+        setting_color_scheme: 模式
         setting_contrast: 对比度
         setting_default_language: 发布语言
         setting_default_privacy: 嘟文可见性
@@ -252,6 +253,7 @@ zh-CN:
         setting_default_sensitive: 始终标记媒体为敏感内容
         setting_default_spoiler_field: 默认使用内容警告
         setting_delete_modal: 删除嘟文前警告我
+        setting_density: 密度
         setting_disable_hover_cards: 禁用悬停资料预览
         setting_disable_swiping: 禁用滑动动作
         setting_display_media: 媒体显示
@@ -270,6 +272,7 @@ zh-CN:
         setting_system_font_ui: 使用系统默认字体
         setting_system_scrollbars_ui: 使用系统默认样式的滚动条
         setting_theme: 站点主题
+        setting_theme_color: 主题颜色
         setting_trends: 显示今日热门
         setting_unfollow_modal: 在取消关注前询问我
         setting_use_blurhash: 将隐藏媒体显示为彩色渐变
@@ -308,6 +311,7 @@ zh-CN:
         media_cache_retention_period: 媒体缓存保留期
         min_age: 最低年龄要求
         peers_api_enabled: 在API中公开的已知实例的服务器的列表
+        postpone_confirmation_emails: 推迟确认邮件至批准后
         profile_directory: 启用用户目录
         registrations_mode: 谁可以注册
         remote_live_feed_access: 展示外站嘟文的实时动态访问权限
@@ -355,6 +359,7 @@ zh-CN:
         follow: 有人关注了我
         follow_request: 有人向我发送了关注请求
         mention: 有人提到了我
+        moderation_suggestions: 自动管理建议可用
         pending_account: 有账号需要审核
         quote: 有人引用了我的嘟文
         reblog: 有人转嘟了我的嘟文

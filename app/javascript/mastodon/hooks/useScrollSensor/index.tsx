@@ -33,18 +33,18 @@ export const useScrollSensor = ({
   ...props
 }: ScrollSensorOptions = {}) => {
   const [isInViewport, setIsInViewport] = useState(true);
-  const sensorRef = useRef<HTMLDivElement>(null);
+  const [sensorElement, setSensorElement] = useState<HTMLDivElement | null>(
+    null,
+  );
   const observerRef = useRef<IntersectionObserver>(null);
 
   useLayoutEffect(() => {
-    const sensor = sensorRef.current;
-
-    if (!sensor) return;
+    if (!sensorElement) return;
 
     // Assign the IntersectionObserver to a ref so we don't
     // need to re-create it when the effect reruns
     if (!observerRef.current) {
-      const scrollParent = getScrollParent(sensor);
+      const scrollParent = getScrollParent(sensorElement);
       const root =
         scrollParent === document.documentElement ? null : scrollParent;
 
@@ -60,14 +60,14 @@ export const useScrollSensor = ({
       );
     }
 
-    observerRef.current.observe(sensor);
+    observerRef.current.observe(sensorElement);
 
     return () => {
       if (observerRef.current) {
-        observerRef.current.unobserve(sensor);
+        observerRef.current.unobserve(sensorElement);
       }
     };
-  }, [sensorRef]);
+  }, [sensorElement]);
 
   const sensorStyle =
     tolerance !== undefined
@@ -83,7 +83,7 @@ export const useScrollSensor = ({
       className={classNames(classes.sensor, className)}
       style={sensorStyle}
       data-placement={placement}
-      ref={sensorRef}
+      ref={setSensorElement}
     />
   );
 

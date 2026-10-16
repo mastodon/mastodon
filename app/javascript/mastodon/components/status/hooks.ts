@@ -107,7 +107,7 @@ export function useStatusHandlers({
   contextType,
   onOpen,
 }: {
-  status?: ExpandedStatusShape;
+  status?: ExpandedStatusShape | AccountStatusShape | null;
   contextType?: StatusContextType;
   onOpen?: () => void;
 }) {
@@ -167,9 +167,25 @@ export function useStatusHandlers({
   const onOpenClick: React.MouseEventHandler = useCallback(
     (event) => {
       const target = event.target;
+
+      const isQuotedStatus = event.currentTarget.matches(
+        '[data-interactive-post-content="true"]',
+      );
+      // When clicking a quoted post, we stop event propagation
+      // so it doesn't trigger this handler on the parent post.
+      if (isQuotedStatus) {
+        event.stopPropagation();
+      }
+
+      // Quoted posts are always inside of an element with `data-interactive-post-content`,
+      // so we exclude it from the selector.
+      const interactiveElementSelector = isQuotedStatus
+        ? 'a, button, dialog, input, textarea, label'
+        : 'a, button, dialog, input, textarea, label, [data-interactive-post-content="true"]';
+
       if (
         !(target instanceof HTMLElement) ||
-        target.closest('a, button, dialog, input, textarea, label') ||
+        target.closest(interactiveElementSelector) ||
         contextType === 'detailed' ||
         window.getSelection()?.type === 'Range'
       ) {
@@ -585,16 +601,19 @@ const menuMessages = defineMessages({
 
 export function useStatusMenuActions({
   status,
+  reblogStatus,
   contextType,
   withDismiss = false,
 }: {
   status: Omit<AccountStatusShape, 'reblog'>;
+  reblogStatus: AccountStatusShape | null;
   withDismiss?: boolean;
   contextType?: StatusContextType;
 }) {
   const account = status.account;
   const { permissions } = useIdentity();
   const relationship = useRelationship(account.id);
+  const reblogAccountRelationship = useRelationship(reblogStatus?.account.id);
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
@@ -613,6 +632,7 @@ export function useStatusMenuActions({
     () =>
       getMenuItems({
         status,
+        reblogStatus,
         conditions,
         interactions,
         onStatusInteraction: statusInteractionFactory,
@@ -620,11 +640,13 @@ export function useStatusMenuActions({
         permissions,
         intl,
         relationship,
+        reblogAccountRelationship,
         contextType,
         dispatch,
       }),
     [
       status,
+      reblogStatus,
       conditions,
       interactions,
       statusInteractionFactory,
@@ -632,6 +654,7 @@ export function useStatusMenuActions({
       permissions,
       intl,
       relationship,
+      reblogAccountRelationship,
       contextType,
       dispatch,
     ],
@@ -640,6 +663,7 @@ export function useStatusMenuActions({
 
 interface MenuItemsParams {
   status: AccountStatusShape;
+  reblogStatus: AccountStatusShape | null;
   conditions: StatusConditions;
   interactions: StatusInteractionsAllowed;
   onStatusInteraction: (intent: StatusInteractionIntent) => () => void;
@@ -647,12 +671,14 @@ interface MenuItemsParams {
   permissions: number;
   intl: ReturnType<typeof useIntl>;
   relationship?: Relationship | null;
+  reblogAccountRelationship?: Relationship | null;
   contextType?: StatusContextType;
   dispatch: AppDispatch;
 }
 
 function getMenuItems({
   status,
+  reblogStatus,
   conditions,
   interactions,
   onStatusInteraction,
@@ -660,6 +686,7 @@ function getMenuItems({
   permissions,
   intl,
   relationship,
+  reblogAccountRelationship,
   contextType,
   dispatch,
 }: MenuItemsParams) {
@@ -669,6 +696,7 @@ function getMenuItems({
   const account = status.account;
   const statusUrl = status.url ?? status.uri;
   const { isPublic, isLocal, isLoggedIn, isMine } = conditions;
+  const isBoost = !!reblogStatus;
 
   if (contextType !== 'detailed') {
     menu.push({
@@ -819,21 +847,21 @@ function getMenuItems({
     });
   }
 
-  if (relationship?.following && !relationship.muting) {
-    const isMutingBoosts = relationship.showing_reblogs;
+  if (isBoost && reblogAccountRelationship) {
+    const isMutingBoosts = !reblogAccountRelationship.showing_reblogs;
     menu.push({
       text: intl.formatMessage(
-        isMutingBoosts ? menuMessages.muteBoosts : menuMessages.unmuteBoosts,
-        { name: account.username },
+        isMutingBoosts ? menuMessages.unmuteBoosts : menuMessages.muteBoosts,
+        { name: reblogStatus.account.username },
       ),
       action: () => {
         dispatch(
-          followAccount(account.id, {
-            reblogs: !isMutingBoosts,
+          followAccount(reblogStatus.account.id, {
+            reblogs: isMutingBoosts,
           }),
         );
       },
-      dangerous: true,
+      dangerous: !isMutingBoosts,
     });
   }
 

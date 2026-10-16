@@ -285,6 +285,7 @@ fi:
         create_domain_block_html: "%{name} esti verkkotunnuksen %{target}"
         create_email_domain_block_html: "%{name} esti sähköpostiverkkotunnuksen %{target}"
         create_ip_block_html: "%{name} loi säännön IP-⁠osoitteelle %{target}"
+        create_moderation_subscription_html: "%{name} loi moderointitilauksen %{target}"
         create_relay_html: "%{name} loi välittäjän %{target}"
         create_unavailable_domain_html: "%{name} pysäytti toimituksen verkkotunnukseen %{target}"
         create_user_role_html: "%{name} loi roolin %{target}"
@@ -300,6 +301,7 @@ fi:
         destroy_email_domain_block_html: "%{name} kumosi sähköpostiverkkotunnuksen %{target} eston"
         destroy_instance_html: "%{name} tyhjensi verkkotunnuksen %{target}"
         destroy_ip_block_html: "%{name} poisti säännön IP-⁠osoitteelta %{target}"
+        destroy_moderation_subscription_html: "%{name} poisti moderointitilauksen %{target}"
         destroy_relay_html: "%{name} poisti välittäjän %{target}"
         destroy_status_html: "%{name} poisti käyttäjän %{target} julkaisun"
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
@@ -348,10 +350,18 @@ fi:
         update_user_role_html: "%{name} muutti roolia %{target}"
         update_username_block_html: "%{name} päivitti säännön käyttäjänimille, joihin sisältyy %{target}"
         usable_tag_html: voidaan käyttää;
+      automated_actions:
+        create_domain_allow_html: Salli automaattisesti federoinnin verkkotunnuksen %{target} kanssa
+        create_domain_block_html: Esti automaattisesti verkkotunnuksen %{target}
+        destroy_domain_allow_html: Kielsi automaattisesti federoinnin verkkotunnuksen %{target} kanssa
+        destroy_domain_block_html: Kumosi automaattisesti verkkotunnuksen %{target} eston
+        update_domain_block_html: Päivitti automaattisesti verkkotunnuksen %{target} eston
       deleted_account: poisti tilin
+      deleted_suggestion: poistettu moderointitilaus
       empty: Lokeja ei löytynyt.
       filter_by_action: Suodata toimen mukaan
       filter_by_user: Suodata käyttäjän mukaan
+      suggested_by_html: Tointa ehdottanut %{subscription}
       title: Tarkastusloki
       unavailable_instance: "(verkkotunnus ei saatavilla)"
     announcements:
@@ -467,6 +477,8 @@ fi:
       undo: Kiellä federointi tämän verkkotunnuksen kanssa
     domain_blocks:
       add_new: Lisää uusi verkkotunnuksen esto
+      confirm_downgrade:
+        cancel: Peruuta
       confirm_suspension:
         cancel: Peruuta
         confirm: Jäädytä
@@ -689,6 +701,7 @@ fi:
         comment: Sisäinen muistiinpano
         description_html: Voit määritellä sisältökäytännöt, joita sovelletaan kaikkiin tämän verkkotunnuksen ja sen aliverkkotunnusten tileihin.
         limited_federation_mode_description_html: Voit valita sallitaanko federointi tällä verkkotunnuksella.
+        moderation_subscription: Moderointitilaus
         policies:
           reject_media: Hylkää media
           reject_reports: Hylkää raportit
@@ -769,6 +782,62 @@ fi:
       reset: Palauta
       search: Hae
       title: IP-säännöt
+    moderation_subscriptions:
+      add_new: Lisää tilaus
+      advisory_action: 'Toimi: %{action}'
+      advisory_actions:
+        accept: salli
+        limit: rajoita
+        reject: jäädytä
+      apply_conditions:
+        always: Aina
+        never: Ei koskaan
+        safely: Vain jos se ei katkaise suhteita
+      delete: Poista
+      last_synced_at: Synkronoitu viimeksi
+      list_action: Tilauksen tyyppi
+      list_actions:
+        accept: Sallittujen luettelo
+        default: Sekalainen (salli ja estä)
+        reject: Estoluettelo
+      list_actions_short:
+        accept: Sallittujen luettelo
+        default: Sekalainen
+        reject: Estoluettelo
+      name: Nimi
+      new:
+        create: Tilaa
+        title: Uusi moderointitilaus
+      show:
+        delete_confirm: Haluatko varmasti poistaa tämän moderointitilauksen?
+        edit: Muokkaa tilausta
+        title: 'Moderointitilaus: %{name}'
+      tabs:
+        logs: Lokit
+        subscriptions: Tilaukset
+        suggestions: Ehdotukset
+      title: Moderointitilaukset
+      type: Tyyppi
+      types:
+        csv_list: CSV-luettelo
+      url: URL-osoite
+    moderation_subscriptions_logs:
+      title: Moderointitilausten lokit
+    moderation_suggestions:
+      actions:
+        accept: Salli
+        limit: Rajoita
+        reject: Jäädytä
+      apply_accept: Salli
+      apply_limit: Rajoita
+      apply_reject: Jäädytä
+      current_states:
+        accept: nyt sallittu
+        limit: nyt rajoitettu
+        reject: nyt jäädytetty
+      dismiss: Hylkää ehdotukset
+      suggested_from_html: Ehdottanut %{link}
+      title: Moderointiehdotukset
     relationships:
       title: Tilin %{acct} seurantasuhteet
     relays:
@@ -1354,6 +1423,8 @@ fi:
     new_critical_software_updates:
       body: Mastodonin uusia kriittisen tärkeitä versioita on julkaistu, joten saatat haluta päivittää niin pian kuin mahdollista!
       subject: Palvelimelle %{instance} on saatavilla kriittisiä Mastodon-päivityksiä!
+    new_moderation_suggestions:
+      subject: Uusia moderointiehdotuksia on saatavilla palvelimella %{instance}!
     new_pending_account:
       body: Uuden tilin tiedot ovat alla. Voit hyväksyä tai hylätä tämän hakemuksen.
       subject: Uusi tili tarkastettavana palvelimella %{instance} (%{username})
@@ -1465,11 +1536,14 @@ fi:
     security: Turvallisuus
     set_new_password: Aseta uusi salasana
     setup:
+      correct_email: Korjaa osoite
       email_below_hint_html: Tarkista roskapostikansiosi tai pyydä uusi viesti. Voit korjata sähköpostiosoitteesi tarvittaessa.
       email_settings_hint_html: Jotta voit aloittaa Mastodonin käytön, napsauta linkkiä, jonka lähetimme osoitteeseen %{email}. Odotamme täällä.
       link_not_received: Etkö saanut linkkiä?
       new_confirmation_instructions_sent: Saat pian uuden vahvistuslinkin sisältävän sähköpostiviestin!
       title: Tarkista sähköpostilaatikkosi
+      wrong_email: Väärä sähköpostiosoite?
+      wrong_email_below_hint_html: Älä panikoi! Voit korjata sähköpostiosoitteesi alla.
     sign_in:
       preamble_html: Kirjaudu <strong>%{domain}</strong>-tunnuksellasi. Jos tilisi on eri palvelimella, et voi kirjautua tässä.
       title: Kirjaudu palvelimelle %{domain}
@@ -1506,6 +1580,12 @@ fi:
     auto: Automaattinen
     dark: Tumma
     light: Vaalea
+  color_theme:
+    cyan: Turkoosi
+    indigo: Indigonsininen
+    lime: Limetinvihreä
+    orange: Oranssi
+    pink: Vaaleanpunainen
   contrast:
     auto: Automaattinen
     high: Suuri
@@ -1549,6 +1629,9 @@ fi:
       more_details_html: Tarkempia tietoja saat <a href="%{terms_path}">tietosuojakäytännöstämme</a>.
       username_available: Käyttäjänimesi tulee saataville uudelleen
       username_unavailable: Käyttäjänimesi ei tule saataville enää uudelleen
+  density:
+    compact: Tiivis
+    default: Oletus
   disputes:
     strikes:
       action_taken: Tehty toimi

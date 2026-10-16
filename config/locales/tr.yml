@@ -291,6 +291,7 @@ tr:
         create_domain_block_html: "%{name}, %{target} alan adını engelledi"
         create_email_domain_block_html: "%{name}, %{target} e-posta alan adını engelledi"
         create_ip_block_html: "%{name}, %{target} IP adresi için kural oluşturdu"
+        create_moderation_subscription_html: "%{name}, %{target} için denetim aboneliği oluşturdu"
         create_relay_html: "%{name}, %{target} aktarıcısını oluşturdu"
         create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
@@ -306,6 +307,7 @@ tr:
         destroy_email_domain_block_html: "%{name}, %{target} e-posta alan adı engelini kaldırdı"
         destroy_instance_html: "%{name}, %{target} alan adını temizledi"
         destroy_ip_block_html: "%{name}, %{target} IP adresi kuralını sildi"
+        destroy_moderation_subscription_html: "%{name}, %{target} için denetim aboneliğini sildi"
         destroy_relay_html: "%{name}, %{target} aktarıcısını sildi"
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
         destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
@@ -354,10 +356,18 @@ tr:
         update_user_role_html: "%{name}, %{target} rolünü değiştirdi"
         update_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural güncellendi"
         usable_tag_html: kullanılabilir;
+      automated_actions:
+        create_domain_allow_html: "%{target} alan alanıyla birliğe otomatik olarak izin verildi"
+        create_domain_block_html: "%{target} alan adı otomatik olarak engellendi"
+        destroy_domain_allow_html: "%{target} alan alanıyla birliğe otomatik olarak izin verilmedi"
+        destroy_domain_block_html: "%{target} alan adının engeli otomatik olarak kaldırıldı"
+        update_domain_block_html: "%{target} alan adının engeli otomatik olarak güncellendi"
       deleted_account: hesap silindi
+      deleted_suggestion: silinmiş bir denetim aboneliği
       empty: Kayıt bulunamadı.
       filter_by_action: Eyleme göre filtre
       filter_by_user: Kullanıcıya göre filtre
+      suggested_by_html: "%{subscription} tarafından eylem önerildi"
       title: Denetim günlüğü
       unavailable_instance: "(alan adı mevcut değil)"
     announcements:
@@ -473,6 +483,11 @@ tr:
       undo: Beyaz listeden çıkar
     domain_blocks:
       add_new: Yeni ekle
+      confirm_downgrade:
+        cancel: İptal
+        confirm: Sürümü Düşür
+        preamble_html: "<strong>%{domain}</strong> adresindeki mevcut bloğu ve alt alan alanlarını bir alt sürüme geçirmek üzeresiniz."
+        title: "%{domain} alan adının engelleme seviyesinin düşürülmesini onaylayın"
       confirm_suspension:
         cancel: İptal et
         confirm: Askıya al
@@ -672,6 +687,8 @@ tr:
       title: Takip önerileri
       unsuppress: Takip önerisini geri getir
     instances:
+      advisories:
+        title: Moderasyon aboneliklerinden gelen uyarılar
       audit_log:
         title: En Son Denetim Günlükleri
         view_all: Tüm denetim günlüklerini görüntüle
@@ -695,6 +712,7 @@ tr:
         comment: İç not
         description_html: Bu alan adındaki ve alt alan adlarındaki tüm hesaplara uygulanacak içerik ilkeleri belirleyebilirsiniz.
         limited_federation_mode_description_html: Bu alan adıyla birleştirmeye izin verip vermediğinizi seçebilirsiniz.
+        moderation_subscription: Moderasyon aboneliği
         policies:
           reject_media: Medyayı reddet
           reject_reports: Şikayetleri reddet
@@ -775,6 +793,92 @@ tr:
       reset: Sıfırla
       search: Ara
       title: IP kuralları
+    moderation_subscriptions:
+      add_new: Abonelik ekle
+      advisory_action: 'Eylem: %{action}'
+      advisory_actions:
+        accept: i̇zin ver
+        limit: sustur
+        reject: askıya al
+      apply_automatically: Uyarıları otomatik olarak uygula
+      apply_conditions:
+        always: Her zaman
+        never: Hiçbir zaman
+        safely: Yalnızca ilişkileri bozmayacağı durumda
+      apply_conditions_hint:
+        always: Önerilen işlemleri her zaman otomatik olarak uygulayın. Bu seçeneği yalnızca tamamen güvendiğiniz listeler için kullanın.
+        never: Önerilen eylemleri asla otomatik olarak uygulamayın. Bunun yerine her zaman bir öneri oluşturun.
+        safely: Yerel kullanıcılarla olan mevcut takip ilişkilerini bozmayacaksa, önerilen eylemleri uygulayın. Böyle durumlarda, bunun yerine bir öneri oluşturulacaktır.
+      delete: Sil
+      destroyed_msg: Moderasyon aboneliği başarıyla silindi
+      empty: Henüz hiçbir moderasyon listesine abone olunmamıştır.
+      last_synced_at: Son senkronizasyon zamanı
+      list_action: Abonelik türü
+      list_actions:
+        accept: İzin listesi
+        default: Karışık (İzin Ver ve Engelle)
+        reject: Engel listesi
+      list_actions_hint:
+        accept: Belirtilen bir eylem bulunmayan öğeler, izin verilmiş olarak değerlendirilecektir. Engellemeler göz ardı edilecektir.
+        default: Belirtilmiş bir eylem bulunmayan öğeler engelleme olarak değerlendirilecektir. Hem engeller hem de izinler bu şekilde değerlendirilecektir.
+        reject: Belirtilen bir eylem bulunmayan öğeler, engellenmiş olarak değerlendirilecektir. İzinler göz ardı edilecektir.
+      list_actions_short:
+        accept: İzin listesi
+        default: Karışık
+        reject: Engel listesi
+      name: Ad
+      new:
+        create: Abone ol
+        title: Yeni moderasyon aboneliği
+      override_unattributed: Manuel engellemeleri geçersiz kıl
+      override_unattributed_hint: Bu aboneliğin, güvenlik bildirimlerini otomatik olarak uygularken mevcut manuel engellemeleri otomatik olarak yükseltmesine veya devralmasına izin verin.
+      policies:
+        apply_advisories: Uyarıları otomatik olarak uygular
+        apply_advisories_safely: İlişkileri bozmayan önerileri otomatik olarak uygular
+        apply_retractions: Geri çekmeleri otomatik olarak uygular
+      priority: Öncelik
+      priority_hint: Moderasyon abonelikleri öncelik sırasına göre değerlendirilir; daha düşük numaralı abonelikler, daha yüksek numaralı aboneliklere göre önceliklidir.
+      retract_automatically: Uyarıları otomatik olarak geri çek
+      retract_automatically_hint: Abonelik kapsamında ilgili öğe kaldırıldığında, politika değişikliklerinin geri alınması veya alt sınıfa indirilmesine izin verilip verilmeyeceği. Otomatik geri alma özelliği etkinleştirildiğinde ve daha düşük öncelikli bir listede eşdeğer bir öneri varsa, bu öneri benimsenir. Otomatik geri alma özelliği devre dışı bırakıldığında ise bunun yerine bir öneri oluşturulur.
+      show:
+        delete_confirm: Bu moderasyon aboneliğini silmek istediğinizden emin misiniz?
+        edit: Aboneliği düzenle
+        empty: Bu abonelik için henüz herhangi bir öneri yoktur.
+        title: 'Moderasyon aboneliği: %{name}'
+      tabs:
+        logs: Günlükler
+        subscriptions: Abonelikler
+        suggestions: Öneriler
+      title: Moderasyon abonelikleri
+      type: Tür
+      types:
+        csv_list: CSV listesi
+      url: URL
+    moderation_subscriptions_logs:
+      title: Moderasyon abonelikleri günlükleri
+    moderation_suggestions:
+      actions:
+        accept: İzin ver
+        limit: Sınırla
+        reject: Askıya al
+        retract: Mevcut politikayı geri çek
+      applied_msg: "%{target_key} için öneri başarıyla uygulandı"
+      apply_accept: İzin ver
+      apply_limit: Sınırla
+      apply_reject: Askıya al
+      apply_retract: Geri çek
+      current_states:
+        accept: şu an izin verilmiş
+        limit: şu an sınırlanmış
+        reject: şu an askıya alınmış
+      description: Aşağıda, moderasyon aboneliklerinizden gelen öneriler, öncelik sırasına göre listelenmiştir.
+      destroyed_msg: "%{target_key} için öneri başarıyla reddedildi"
+      dismiss: Önerileri görmezden gel
+      empty: Şu anda herhangi bir moderasyon önerisi yoktur.
+      retracted_msg: "%{target_key} için politika başarıyla geri çekildi"
+      suggested_from_html: "%{link} tarafından önerilmiştir"
+      title: Moderasyon önerileri
+      unable_to_apply_msg: "%{target_key} için öneri uygulanamadı"
     relationships:
       title: "%{acct} kişisinin ilişkileri"
     relays:
@@ -1370,6 +1474,9 @@ tr:
     new_critical_software_updates:
       body: Mastodon'un yeni kritik sürümleri yayınlandı, en kısa sürede güncellemek isteyebilirsiniz!
       subject: "%{instance} için kritik Mastodon güncellemeleri mevcut!"
+    new_moderation_suggestions:
+      body: Sunucunuzun abone olduğu moderasyon listelerinde yeni öneriler yayınlandı.
+      subject: "%{instance}'da yeni moderasyon önerileri mevcut!"
     new_pending_account:
       body: Yeni hesabın detayları aşağıdadır. Bu başvuruyu onaylayabilir ya da reddedebilirsiniz.
       subject: "%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})"

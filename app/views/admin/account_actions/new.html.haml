@@ -44,12 +44,13 @@
         = f.input :warning_preset_id,
                   collection: label_and_categories_collection(@warning_presets),
                   wrapper: :with_block_label,
+                  hint: t('simple_form.hints.admin_account_action.warning_preset_html', path: admin_warning_presets_path),
                   input_html: { id: 'presets_dropdown' }
 
     .fields-group
       = f.input :text,
                 as: :text,
-                hint: t('simple_form.hints.admin_account_action.text_html', path: admin_warning_presets_path),
+                hint: t('simple_form.hints.admin_account_action.text'),
                 wrapper: :with_block_label
 
   .actions

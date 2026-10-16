@@ -93,6 +93,7 @@ it:
       enable: Scongela
       enable_sign_in_token: Abilita la verifica tramite il codice di sicurezza
       enable_sign_in_token_auth: Abilitare l'autenticazione del token e-mail
+      enable_unconfirmed: Consenti l'e-mail di conferma
       enabled: Abilitato
       enabled_msg: Il profilo di %{username} è stato scongelato correttamente
       follow_recommendations:
@@ -291,6 +292,7 @@ it:
         create_domain_block_html: "%{name} ha bloccato il dominio %{target}"
         create_email_domain_block_html: "%{name} ha bloccato il dominio e-mail %{target}"
         create_ip_block_html: "%{name} ha creato una regola per l'IP %{target}"
+        create_moderation_subscription_html: "%{name} ha creato la sottoscrizione di moderazione %{target}"
         create_relay_html: "%{name} ha creato un relay %{target}"
         create_unavailable_domain_html: "%{name} ha interrotto la consegna al dominio %{target}"
         create_user_role_html: "%{name} ha creato il ruolo %{target}"
@@ -306,6 +308,7 @@ it:
         destroy_email_domain_block_html: "%{name} ha sbloccato il dominio e-mail %{target}"
         destroy_instance_html: "%{name} ha eliminato il dominio %{target}"
         destroy_ip_block_html: "%{name} ha eliminato la regola per l'IP %{target}"
+        destroy_moderation_subscription_html: "%{name} ha eliminato la sottoscrizione di moderazione %{target}"
         destroy_relay_html: "%{name} ha eliminato il relay %{target}"
         destroy_status_html: "%{name} ha rimosso il toot di %{target}"
         destroy_unavailable_domain_html: "%{name} ha ripreso la consegna al dominio %{target}"
@@ -354,10 +357,18 @@ it:
         update_user_role_html: "%{name} ha modificato il ruolo %{target}"
         update_username_block_html: "%{name} ha aggiornato la regola per i nomi utente contenenti %{target}"
         usable_tag_html: può essere usato;
+      automated_actions:
+        create_domain_allow_html: La federazione con il dominio %{target} è stata autorizzata automaticamente
+        create_domain_block_html: Il dominio %{target} è stato bloccato automaticamente
+        destroy_domain_allow_html: La federazione con il dominio %{target} è stata respinta automaticamente
+        destroy_domain_block_html: Il dominio %{target} è stato sbloccato automaticamente
+        update_domain_block_html: Il blocco per il dominio %{target} è stato aggiornato automaticamente
       deleted_account: account eliminato
+      deleted_suggestion: una sottoscrizione di moderazione eliminata
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
       filter_by_user: Filtra per utente
+      suggested_by_html: Azione suggerita da %{subscription}
       title: Registro di controllo
       unavailable_instance: "(nome di dominio non disponibile)"
     announcements:
@@ -473,6 +484,8 @@ it:
       undo: Elimina dalla whitelist
     domain_blocks:
       add_new: Aggiungi nuovo
+      confirm_downgrade:
+        cancel: Annulla
       confirm_suspension:
         cancel: Annulla
         confirm: Sospendi
@@ -672,6 +685,8 @@ it:
       title: Consigli su chi seguire
       unsuppress: Ripristina consigli su chi seguire
     instances:
+      advisories:
+        title: Avvisi provenienti da iscrizioni di moderazione
       audit_log:
         title: Log di Controllo Recenti
         view_all: Visualizza tutti i log
@@ -695,6 +710,7 @@ it:
         comment: Nota interna
         description_html: Puoi definire le politiche del contenuto che saranno applicate a tutti i profili da questo dominio e ognuno dei suoi sottodomini.
         limited_federation_mode_description_html: Puoi scegliere se consentire la federazione con questo dominio.
+        moderation_subscription: Sottoscrizione di moderazione
         policies:
           reject_media: Rifiuta multimedia
           reject_reports: Rifiuta rapporti
@@ -775,6 +791,35 @@ it:
       reset: Reset
       search: Cerca
       title: Regole IP
+    moderation_subscriptions:
+      add_new: Aggiungi una sottoscrizione
+      advisory_action: 'Azione: %{action}'
+      advisory_actions:
+        accept: autorizza
+        limit: silenzia
+        reject: sospendi
+      apply_automatically: Applica automaticamente gli avvisi
+      apply_conditions:
+        always: Sempre
+        never: Mai
+        safely: Solo se non interrompe le relazioni
+      apply_conditions_hint:
+        always: Applica sempre automaticamente le azioni consigliate. Utilizza questa opzione solo per le liste di cui ti fidi completamente.
+        never: Non applicare mai automaticamente le azioni consigliate. Genera, invece, sempre un suggerimento.
+        safely: Applica le azioni consigliate, a meno che ciò non comporti l'interruzione dei rapporti con account seguiti dagli utenti locali. In tali casi, verrà invece generato un suggerimento.
+      delete: Elimina
+      destroyed_msg: La sottoscrizione di moderazione è stata rimossa correttamente
+      empty: Non è stata ancora sottoscritta alcuna lista di moderazione.
+      last_synced_at: Ultima sincronizzazione alle
+      list_action: Tipo di sottoscrizione
+      list_actions_hint:
+        accept: Gli elementi per i quali non è specificata alcuna azione saranno considerati consentiti. I blocchi verranno ignorati.
+        default: Gli elementi per i quali non è specificata alcuna azione saranno trattati come blocchi. Sia i blocchi che le autorizzazioni saranno trattati come tali.
+        reject: Gli elementi per i quali non è specificata alcuna azione saranno trattati come blocchi. Quelli consentiti verranno ignorati.
+      name: Nome
+      new:
+        create: Sottoscrivi
+        title: Nuova sottoscrizione di moderazione
     relationships:
       title: Relazioni di %{acct}
     relays:
