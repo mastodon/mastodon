@@ -4,6 +4,12 @@ import {
   EMOJI_TYPE_UNICODE,
   EMOJI_TYPE_CUSTOM,
 } from './constants';
+import {
+  loadLegacyShortcodesByShortcode,
+  loadEmojiByHexcode,
+  LocaleNotLoadedError,
+} from './database';
+import { importEmojiData } from './loader';
 import { emojiToInversionClassName, unicodeHexToUrl } from './normalize';
 import type {
   EmojiAppState,
@@ -179,12 +185,6 @@ export async function loadEmojiDataToState(
     return null;
   }
 
-  const {
-    loadLegacyShortcodesByShortcode,
-    loadEmojiByHexcode,
-    LocaleNotLoadedError,
-  } = await import('./database');
-
   const code = isUnicodeEmoji(state.code)
     ? emojiToUnicodeHex(state.code)
     : state.code;
@@ -216,7 +216,6 @@ export async function loadEmojiDataToState(
         code,
         locale,
       );
-      const { importEmojiData } = await import('./loader');
       await importEmojiData(locale); // Use this from the loader file as it can be awaited.
       return loadEmojiDataToState(state, locale, true);
     }
