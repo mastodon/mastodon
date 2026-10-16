@@ -69,6 +69,22 @@ RSpec.describe TextFormatter do
       end
     end
 
+    context 'when given a URL with a TLD missing from twitter-text' do
+      let(:text) { 'https://example.music/track/1 and http://example.kids' }
+
+      it 'matches the full URLs' do
+        expect(subject).to include('href="https://example.music/track/1"').and include('href="http://example.kids"')
+      end
+    end
+
+    context 'when given a URL with a non-Latin TLD missing from twitter-text' do
+      let(:text) { 'https://example.ישראל/' }
+
+      it 'matches the full URL' do
+        expect(subject).to include 'href="https://example.ישראל/"'
+      end
+    end
+
     context 'when given a stand-alone IDN URL' do
       let(:text) { 'https://nic.みんな/' }
 

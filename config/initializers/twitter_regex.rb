@@ -8,6 +8,29 @@ module Twitter::TwitterText
   end
 
   class Regex
+    # twitter-text 3.1.0 ships a TLD list from 2019, so links on TLDs delegated since then are not
+    # recognized (https://github.com/mastodon/mastodon/issues/36081). Add the TLDs from the current
+    # IANA root zone that it is missing, and rebuild the domain regexes that depend on the list.
+    # Punycode (xn--) forms are already accepted by `valid_punycode`.
+    MISSING_TLDS = %w[amazon kids merck music spa web ישראל アマゾン 亚马逊].freeze
+
+    REGEXEN[:valid_gTLD] = %r{
+      (?:
+        (?:#{(TLDS['generic'] + MISSING_TLDS).join('|')})
+        (?=[^0-9a-z@+-]|$)
+      )
+    }ix
+
+    REGEXEN[:valid_domain] = /(?:
+      #{REGEXEN[:valid_subdomain]}*#{REGEXEN[:valid_domain_name]}
+      (?:#{REGEXEN[:valid_gTLD]}|#{REGEXEN[:valid_ccTLD]}|#{REGEXEN[:valid_punycode]})
+    )/iox
+
+    REGEXEN[:valid_ascii_domain] = /
+      (?:(?:[a-z0-9\-_]|#{REGEXEN[:latin_accents]})+\.)+
+      (?:#{REGEXEN[:valid_gTLD]}|#{REGEXEN[:valid_ccTLD]}|#{REGEXEN[:valid_punycode]})
+    /iox
+
     REGEXEN[:valid_general_url_path_chars] = /[^\p{White_Space}<>()?]/iou
     REGEXEN[:valid_url_path_ending_chars] = /[^\p{White_Space}()?!*"'「」<>;:=,.$%\[\]~&|]|(?:#{REGEXEN[:valid_url_balanced_parens]})/iou
     REGEXEN[:valid_url_balanced_parens] = /
