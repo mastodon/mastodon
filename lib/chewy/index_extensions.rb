@@ -15,7 +15,8 @@ module Chewy
 
     def update_specification
       client.indices.close index: index_name
-      client.indices.put_settings index: index_name, body: { settings: { analysis: settings_hash[:settings][:analysis] } }
+      analysis_settings = settings_hash[:settings][:analysis]
+      client.indices.put_settings index: index_name, body: { settings: { analysis: analysis_settings } } if analysis_settings
       client.indices.put_mapping index: index_name, body: root.mappings_hash
       client.indices.open index: index_name
     end
