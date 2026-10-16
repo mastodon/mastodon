@@ -42,7 +42,7 @@
     - unless @warning_presets.empty?
       .fields-group
         = f.input :warning_preset_id,
-                  collection: @warning_presets.map { |p| [[p.title.presence, truncate(p.text)].compact.join(' - '), p.id, { data: { type: Admin::AccountActionsHelper::ACTION_TO_CATEGORY[p.action_category] } }] },
+                  collection: label_and_categories_collection(@warning_presets),
                   wrapper: :with_block_label,
                   input_html: { id: 'presets_dropdown' }
 

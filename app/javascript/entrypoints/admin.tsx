@@ -204,34 +204,13 @@ on(
 
 const onChangeAccountActionSelection = (target: HTMLInputElement) => {
   const accountAction = target.value;
+  if (!target.checked) return;
 
   const presetsDropdown = document.getElementById(
     'presets_dropdown',
   ) as HTMLSelectElement | null;
-  // const presetsDropdown = document.querySelector<HTMLInputElement>('presets_dropdown');
 
   if (presetsDropdown) {
-    //     document
-    //       .querySelectorAll<HTMLInputElement>(
-    //         'input.account_action_type',
-    //       )
-    //       .forEach((input) => {
-    //
-    //         if (accountAction) {
-    //           let element: HTMLElement | null = input;
-    //           do {
-    //             element.classList.remove('disabled');
-    //             element = element.parentElement;
-    //           } while (element && !element.classList.contains('data-type'));
-    //         } else {
-    //           let element: HTMLElement | null = input;
-    //           do {
-    //             element.classList.add('disabled');
-    //             element = element.parentElement;
-    //           } while (element && !element.classList.contains('data-type'));
-    //         }
-    //       });
-
     const allOptions = Array.from(presetsDropdown.options);
     presetsDropdown.value = '';
 
@@ -239,17 +218,17 @@ const onChangeAccountActionSelection = (target: HTMLInputElement) => {
       const optionType = element.dataset.type;
 
       if (!optionType || optionType === accountAction) {
-        element.style.display = '';
+        element.hidden = false;
         element.disabled = false;
       } else {
-        element.style.display = 'none';
+        element.hidden = true;
         element.disabled = true;
       }
     });
   }
 };
 
-on('change', 'input.admin_account_action_type', ({ target }) => {
+on('change', 'input[name="admin_account_action[type]"]', ({ target }) => {
   if (target instanceof HTMLInputElement) {
     onChangeAccountActionSelection(target);
   }
@@ -379,6 +358,12 @@ ready(() => {
     'select#form_admin_settings_registrations_mode',
   );
   if (registrationMode) onChangeRegistrationMode(registrationMode);
+
+  const accountActionSelection = document.querySelector<HTMLInputElement>(
+    'input[name="admin_account_action[type]"]:checked',
+  );
+  if (accountActionSelection)
+    onChangeAccountActionSelection(accountActionSelection);
 
   const inviteUsersPermissionChecbkox =
     document.querySelector<HTMLInputElement>(

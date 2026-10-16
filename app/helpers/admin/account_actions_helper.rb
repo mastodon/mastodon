@@ -4,9 +4,9 @@ module Admin::AccountActionsHelper
   ACTION_TO_CATEGORY = {
     'warning' => 'none',
     'freeze' => 'disable',
+    'sensitive' => 'sensitive',
     'limit' => 'silence',
     'suspend' => 'suspend',
-    'sensitive' => 'sensitive',
   }.freeze
 
   def account_action_type_label(type)
@@ -18,7 +18,7 @@ module Admin::AccountActionsHelper
     )
   end
 
-  def filtered_collection(presets, type)
-    presets.filter { |i| i.action_category == ACTION_TO_CATEGORY[type] || nil }
+  def label_and_categories_collection(warning_presets)
+    warning_presets.map { |p| [[p.title.presence, truncate(p.text)].compact.join(' - '), p.id, { data: { type: ACTION_TO_CATEGORY[p.action_category] } }] }
   end
 end
