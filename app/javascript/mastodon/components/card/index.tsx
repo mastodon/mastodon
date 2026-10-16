@@ -18,6 +18,11 @@ type CardProps<As extends React.ElementType> = PolymorphicProps<
     className?: string;
     image?: React.ReactNode;
     onDelete?: React.MouseEventHandler<HTMLButtonElement>;
+    /**
+     * Use if the card is not clickable in its entirety.
+     * Disables hover effect & pointer cursor
+     */
+    unclickable?: boolean;
   },
   As
 >;
@@ -34,6 +39,7 @@ export const Card = <As extends React.ElementType = 'div'>({
   className,
   image,
   onDelete,
+  unclickable,
   ...props
 }: CardProps<As>) => {
   const Comp = asComp ?? 'div';
@@ -54,7 +60,11 @@ export const Card = <As extends React.ElementType = 'div'>({
   return (
     <Comp
       {...props}
-      className={classNames(className, classes.root)}
+      className={classNames(
+        className,
+        classes.root,
+        unclickable && classes.rootUnclickable,
+      )}
       data-interactive-post-content='true'
     >
       <CardContext.Provider value={{ id }}>{children}</CardContext.Provider>
