@@ -99,7 +99,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// oxlint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const staticProps = Object.fromEntries(
   // As Storybook auto-names from args only,
   // we need to manually name these for proper action tracking.
@@ -132,7 +132,7 @@ const staticProps = Object.fromEntries(
         ImmutableMap<'inUse' | 'available', boolean>({
           inUse: false,
           available: true,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Casting to solves infinite recursion errors.
+          // oxlint-disable-next-line @typescript-eslint/no-explicit-any -- Casting to solves infinite recursion errors.
         }) as any,
       ],
     ]),

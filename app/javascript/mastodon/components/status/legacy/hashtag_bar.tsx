@@ -59,7 +59,7 @@ function uniqueHashtagsWithCaseHandling(hashtags: string[]) {
   );
 
   return Object.values(groups).map((tags) => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- we know that the array has at least one element
+    // oxlint-disable-next-line @typescript-eslint/no-non-null-assertion -- we know that the array has at least one element
     const firstTag = tags[0]!;
 
     if (tags.length === 1) return firstTag;
@@ -176,7 +176,6 @@ export function computeHashtagBarForStatus(
   const hasMedia = status.media_attachments.length > 0;
   const hasSpoiler = !!status.spoiler_text;
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- due to https://github.com/microsoft/TypeScript/issues/9998
   if (onlyHashtags && ((hasMedia && !hasSpoiler) || !isOnlyOneLine)) {
     // if the last line only contains hashtags, and we either:
     // - have other content in the status

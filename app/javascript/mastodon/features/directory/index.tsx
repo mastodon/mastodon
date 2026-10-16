@@ -242,5 +242,5 @@ export const Directory: React.FC<{
   );
 };
 
-// eslint-disable-next-line import/no-default-export -- Needed because this is called as an async components
+// oxlint-disable-next-line import/no-default-export -- Needed because this is called as an async components
 export default Directory;

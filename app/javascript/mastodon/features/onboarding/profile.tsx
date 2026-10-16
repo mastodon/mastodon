@@ -148,11 +148,11 @@ export const Profile: React.FC<{
         dispatch(closeOnboarding());
         return '';
       })
-      // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
+      // oxlint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
       .catch((err) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        // oxlint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (err.response) {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          // oxlint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           const { details }: { details: ApiAccountErrors } = err.response.data;
           setErrors(details);
         }
@@ -346,5 +346,5 @@ export const Profile: React.FC<{
   );
 };
 
-// eslint-disable-next-line import/no-default-export
+// oxlint-disable-next-line import/no-default-export
 export default Profile;

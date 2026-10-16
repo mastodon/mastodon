@@ -70,7 +70,7 @@ export const AltTextBadge: React.FC<{
       >
         {({ props }) => (
           <div {...props} className='hover-card-controller'>
-            <div // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
+            <div // oxlint-disable-line jsx-a11y/no-noninteractive-element-interactions
               className={classNames(
                 'info-tooltip',
                 'dropdown-animation',
@@ -82,7 +82,7 @@ export const AltTextBadge: React.FC<{
               id={popoverId}
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
-              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+              // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex
               tabIndex={0}
             >
               <h4 id={titleId}>

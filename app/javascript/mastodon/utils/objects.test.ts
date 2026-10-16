@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-confusing-void-expression */
+/* oxlint-disable @typescript-eslint/no-confusing-void-expression */
 import { getNestedProperty } from './objects';
 
 describe('getNestedProperty', () => {

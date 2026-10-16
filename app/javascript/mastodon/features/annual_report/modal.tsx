@@ -58,7 +58,7 @@ const AnnualReportModal: React.FC<{
     // [Esc] key listener that will close open modals.
     // This onClick handler is needed since the modalWrapper styles overlap the
     // default modal backdrop, preventing clicks to pass through.
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    // oxlint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
       className={classNames('modal-root__modal', styles.modalWrapper)}
       data-color-scheme='dark'

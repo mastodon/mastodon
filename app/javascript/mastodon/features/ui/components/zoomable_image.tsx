@@ -214,8 +214,8 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({
           memo = [style.x.get(), style.y.get(), tx, ty];
         }
 
-        const x = memo[0] - (ms - 1) * memo[2]; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
-        const y = memo[1] - (ms - 1) * memo[3]; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+        const x = memo[0] - (ms - 1) * memo[2]; // oxlint-disable-line @typescript-eslint/no-unsafe-member-access
+        const y = memo[1] - (ms - 1) * memo[3]; // oxlint-disable-line @typescript-eslint/no-unsafe-member-access
 
         void api.start({ scale: s, x, y });
 

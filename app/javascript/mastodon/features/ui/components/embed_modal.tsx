@@ -37,7 +37,7 @@ const EmbedModal: React.FC<{
         }
 
         iframeDocument.open();
-        // eslint-disable-next-line @typescript-eslint/no-deprecated
+        // oxlint-disable-next-line @typescript-eslint/no-deprecated
         iframeDocument.write(data.html);
         iframeDocument.close();
 
@@ -103,7 +103,7 @@ const EmbedModal: React.FC<{
           />
 
           <iframe
-            // eslint-disable-next-line @typescript-eslint/no-deprecated
+            // oxlint-disable-next-line @typescript-eslint/no-deprecated
             frameBorder='0'
             ref={iframeRef}
             sandbox='allow-scripts allow-same-origin'
