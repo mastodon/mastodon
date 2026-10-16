@@ -5,7 +5,7 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import {
   CirclesFourIcon,
   FileMagnifyingGlassIcon,
-  TagIcon,
+  HashIcon,
   UsersIcon,
 } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
@@ -188,7 +188,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   key='hashtags'
                   title={
                     <>
-                      <Icon id='hashtag' icon={TagIcon} />
+                      <Icon id='hashtag' icon={HashIcon} />
                       <FormattedMessage
                         id='search_results.hashtags'
                         defaultMessage='Hashtags'
