@@ -103,7 +103,7 @@ jobs:
       DB_HOST: localhost
       DB_USER: postgres
       DB_PASS: postgres
-      COVERAGE: ${{ matrix.ruby-version == '.ruby-version' }}
+      COVERAGE: true
       RAILS_ENV: test
       ALLOW_NOPAM: true
       PAM_ENABLED: true
@@ -114,15 +114,11 @@ jobs:
       SAML_ENABLED: true
       CAS_ENABLED: true
       BUNDLE_WITH: 'pam_authentication test'
-      GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
+      GITHUB_RSPEC: ${{ github.event.pull_request && 'true' }}
 
     strategy:
       fail-fast: false
-      matrix:
-        ruby-version:
-          - '3.3'
-          - '3.4'
-          - '.ruby-version'
+
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
@@ -139,7 +135,6 @@ jobs:
         timeout-minutes: 15
         uses: ./.github/actions/setup-ruby
         with:
-          ruby-version: ${{ matrix.ruby-version}}
           additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
@@ -154,7 +149,6 @@ jobs:
             tmp/rspec/examples.txt
           key: rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
           restore-keys: |
-            rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}-${{ matrix.ruby-version }}
             rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
             rspec-persistence-${{ github.head_ref || github.ref_name }}
             rspec-persistence-main
@@ -163,7 +157,6 @@ jobs:
       - run: bin/flatware rspec
 
       - name: Upload coverage reports to Codecov
-        if: matrix.ruby-version == '.ruby-version'
         uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v6
         with:
           files: coverage/lcov/*.lcov
@@ -213,11 +206,6 @@ jobs:
 
     strategy:
       fail-fast: false
-      matrix:
-        ruby-version:
-          - '3.3'
-          - '3.4'
-          - '.ruby-version'
 
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
@@ -235,7 +223,6 @@ jobs:
         uses: ./.github/actions/setup-ruby
         timeout-minutes: 15
         with:
-          ruby-version: ${{ matrix.ruby-version}}
           additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
@@ -265,14 +252,14 @@ jobs:
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
-          name: e2e-logs-${{ matrix.ruby-version }}
+          name: e2e-logs
           path: log/
 
       - name: Archive test screenshots
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
-          name: e2e-screenshots-${{ matrix.ruby-version }}
+          name: e2e-screenshots
           path: tmp/capybara/
 
   test-search:
@@ -347,10 +334,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby-version:
-          - '3.3'
-          - '3.4'
-          - '.ruby-version'
         search-image:
           - docker.elastic.co/elasticsearch/elasticsearch:7.17.29
         include:
@@ -371,7 +354,6 @@ jobs:
         uses: ./.github/actions/setup-ruby
         timeout-minutes: 15
         with:
-          ruby-version: ${{ matrix.ruby-version}}
           additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
@@ -386,5 +368,5 @@ jobs:
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
-          name: test-search-logs-${{ matrix.ruby-version }}
+          name: test-search-logs
           path: log/
