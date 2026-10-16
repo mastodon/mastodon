@@ -5,13 +5,14 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import classNames from 'classnames';
 
 import { StatusBoostIcon } from '@/mastodon/components/status/icons';
+import { reblog } from 'mastodon/actions/interactions_typed';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import PrivacyDropdown from 'mastodon/features/compose/components/privacy_dropdown';
 import { EmbeddedStatus } from 'mastodon/features/notifications_v2/components/embedded_status';
 import type { Status, StatusVisibility } from 'mastodon/models/status';
-import { useAppSelector } from 'mastodon/store';
+import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 const messages = defineMessages({
   cancel_reblog: {
@@ -24,9 +25,9 @@ const messages = defineMessages({
 export const BoostModal: React.FC<{
   status: Status;
   onClose: () => void;
-  onReblog: (status: Status, privacy: StatusVisibility) => void;
-}> = ({ status, onReblog, onClose }) => {
+}> = ({ status, onClose }) => {
   const intl = useIntl();
+  const dispatch = useAppDispatch();
 
   const defaultPrivacy = useAppSelector(
     (state) => state.compose.get('default_privacy') as StatusVisibility,
@@ -44,9 +45,9 @@ export const BoostModal: React.FC<{
   }, []);
 
   const handleReblog = useCallback(() => {
-    onReblog(status, privacy);
+    void dispatch(reblog({ statusId, visibility: privacy }));
     onClose();
-  }, [onClose, onReblog, status, privacy]);
+  }, [onClose, statusId, privacy, dispatch]);
 
   const handleCancel = useCallback(() => {
     onClose();
