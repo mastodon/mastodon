@@ -90,6 +90,7 @@ zh-CN:
       enable: 解冻
       enable_sign_in_token: 启用安全码挑战
       enable_sign_in_token_auth: 启用邮件令牌身份验证
+      enable_unconfirmed: 允许确认邮件
       enabled: 已启用
       enabled_msg: 成功解冻 %{username} 的账号
       follow_recommendations:
@@ -1457,6 +1458,9 @@ zh-CN:
     new_pending_account:
       body: 新账号的详细信息如下。你可以批准或拒绝此申请。
       subject: "%{instance} 上有新账号 (%{username}) 需要审核"
+    new_pending_accounts:
+      body: "%{instance} 上有新账号创建。由于你的服务器设置，确认邮件会推迟到审核批准后再发送，因此这些账号还没有激机会验证其电子邮件地址。新账号的详情见下。你可以批准或拒绝这些申请。"
+      subject: "%{instance} 上有新账号需要审核"
     new_report:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
@@ -1565,11 +1569,16 @@ zh-CN:
     security: 账号安全
     set_new_password: 设置新密码
     setup:
+      correct_email: 更正地址
       email_below_hint_html: 请检查你的垃圾邮件文件夹，或请求重新发送邮件。如果你填写的邮箱地址有误，请更正。
       email_settings_hint_html: 点击发送到 %{email} 的链接，即可开始使用 Mastodon。
+      email_settings_hint_wait_html: 你的申请正在等待审核，应当很快就会收到一封发送至 %{email} 的邮件。收到时点击链接，即可开始使用 Mastodon。
       link_not_received: 没有收到链接？
       new_confirmation_instructions_sent: 你将在几分钟内收到一封带有确认链接的新邮件！
       title: 请检查你的收件箱
+      title_wait: 请随时检查你的收件箱
+      wrong_email: 电子邮件地址有误？
+      wrong_email_below_hint_html: 先别慌！你可以在下方改正你的电子邮件地址。
     sign_in:
       preamble_html: 使用你在 <strong>%{domain}</strong> 的账号和密码登录。如果你的账号是在其他站点上注册的，你将无法在此登录。
       title: 登录到 %{domain}
@@ -1606,6 +1615,12 @@ zh-CN:
     auto: 自动
     dark: 深色
     light: 浅色
+  color_theme:
+    cyan: 青蓝色
+    indigo: 靛蓝色
+    lime: 黄绿色
+    orange: 橙色
+    pink: 粉色
   contrast:
     auto: 自动
     high: 高
@@ -1649,6 +1664,9 @@ zh-CN:
       more_details_html: 更多细节，请查看 <a href="%{terms_path}">隐私政策</a> 。
       username_available: 你的用户名现在又可以使用了
       username_unavailable: 你的用户名仍将无法使用
+  density:
+    compact: 紧凑
+    default: 默认
   disputes:
     strikes:
       action_taken: 采取的措施

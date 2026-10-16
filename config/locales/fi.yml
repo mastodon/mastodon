@@ -1536,11 +1536,14 @@ fi:
     security: Turvallisuus
     set_new_password: Aseta uusi salasana
     setup:
+      correct_email: Korjaa osoite
       email_below_hint_html: Tarkista roskapostikansiosi tai pyydä uusi viesti. Voit korjata sähköpostiosoitteesi tarvittaessa.
       email_settings_hint_html: Jotta voit aloittaa Mastodonin käytön, napsauta linkkiä, jonka lähetimme osoitteeseen %{email}. Odotamme täällä.
       link_not_received: Etkö saanut linkkiä?
       new_confirmation_instructions_sent: Saat pian uuden vahvistuslinkin sisältävän sähköpostiviestin!
       title: Tarkista sähköpostilaatikkosi
+      wrong_email: Väärä sähköpostiosoite?
+      wrong_email_below_hint_html: Älä panikoi! Voit korjata sähköpostiosoitteesi alla.
     sign_in:
       preamble_html: Kirjaudu <strong>%{domain}</strong>-tunnuksellasi. Jos tilisi on eri palvelimella, et voi kirjautua tässä.
       title: Kirjaudu palvelimelle %{domain}
@@ -1577,6 +1580,12 @@ fi:
     auto: Automaattinen
     dark: Tumma
     light: Vaalea
+  color_theme:
+    cyan: Turkoosi
+    indigo: Indigonsininen
+    lime: Limetinvihreä
+    orange: Oranssi
+    pink: Vaaleanpunainen
   contrast:
     auto: Automaattinen
     high: Suuri
@@ -1620,6 +1629,9 @@ fi:
       more_details_html: Tarkempia tietoja saat <a href="%{terms_path}">tietosuojakäytännöstämme</a>.
       username_available: Käyttäjänimesi tulee saataville uudelleen
       username_unavailable: Käyttäjänimesi ei tule saataville enää uudelleen
+  density:
+    compact: Tiivis
+    default: Oletus
   disputes:
     strikes:
       action_taken: Tehty toimi

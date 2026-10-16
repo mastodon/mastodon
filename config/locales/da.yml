@@ -93,6 +93,7 @@ da:
       enable: Optø
       enable_sign_in_token: Aktiver sikkerhedskode-udfordring
       enable_sign_in_token_auth: Aktivér e-mailtoken godkendelse
+      enable_unconfirmed: Tillad bekræftelses-e-mail
       enabled: Aktiveret
       enabled_msg: "%{username}s konto er optøet"
       follow_recommendations:
@@ -473,6 +474,9 @@ da:
       undo: Forbyd federering med domæne
     domain_blocks:
       add_new: Tilføj ny domæneblokering
+      confirm_downgrade:
+        cancel: Annuller
+        confirm: Nedgradér
       confirm_suspension:
         cancel: Annuller
         confirm: Suspendér
@@ -775,6 +779,45 @@ da:
       reset: Nulstil
       search: Søg
       title: IP-regler
+    moderation_subscriptions:
+      advisory_actions:
+        accept: tillad
+        reject: suspendér
+      apply_conditions:
+        always: Altid
+        never: Aldrig
+        safely: Kun hvis det ikke bryder relationer
+      delete: Slet
+      name: Navn
+      new:
+        create: Abonnér
+      show:
+        edit: Rediger abonnement
+      tabs:
+        subscriptions: Abonnementer
+        suggestions: Forslag
+      title: Moderation-abonnementer
+      type: Type
+      types:
+        csv_list: CSV-liste
+      url: URL
+    moderation_suggestions:
+      actions:
+        accept: Tillad
+        limit: Begræns
+        reject: Suspendér
+        retract: Tilbagekald den nuværende politik
+      applied_msg: Forslaget til %{target_key} anvendt
+      apply_accept: Tillad
+      apply_limit: Begræns
+      apply_reject: Suspendér
+      apply_retract: Tilbagetræk
+      current_states:
+        accept: i øjeblikket tilladt
+        limit: i øjeblikket begrænset
+        reject: i øjeblikket suspenderet
+      dismiss: Afvis forslag
+      suggested_from_html: Foreslået af %{link}
     relationships:
       title: "%{acct}-relationer"
     relays:
@@ -1481,11 +1524,16 @@ da:
     security: Sikkerhed
     set_new_password: Opsæt ny adgangskode
     setup:
+      correct_email: Ret adresse
       email_below_hint_html: Tjek Spam-mappen eller anmod om et nyt link. Om nødvendigt kan e-mailadressen rettes.
       email_settings_hint_html: Klik på det link, der er sendt til %{email} for at begynde at bruge Mastodon.
+      email_settings_hint_wait_html: Din ansøgning er under behandling. Du bør snart modtage en e-mail på %{email}. Når du har modtaget den, skal du klikke på linket for at komme i gang med Mastodon. Vi venter her.
       link_not_received: Intet link modtaget?
       new_confirmation_instructions_sent: Du bør om få minutter modtage en ny e-mail med bekræftelseslinket!
       title: Tjek din indbakke
+      title_wait: Hold øje med din indbakke
+      wrong_email: Forkert e-mailadresse?
+      wrong_email_below_hint_html: Gå ikke i panik! Du kan rette din e-mailadresse nedenfor.
     sign_in:
       preamble_html: Log ind med dine <strong>%{domain}</strong>-legitimationsoplysninger. Hostes kontoen på en anden server, vil der ikke kunne logges ind her.
       title: Log ind på %{domain}
@@ -1565,6 +1613,9 @@ da:
       more_details_html: For yderligere oplysninger, tjek <a href="%{terms_path}">privatlivspolitikken</a>.
       username_available: Dit brugernavn vil blive tilgængeligt igen
       username_unavailable: Dit brugernavn vil forblive utilgængeligt
+  density:
+    compact: Kompakt
+    default: Standard
   disputes:
     strikes:
       action_taken: Handling foretaget

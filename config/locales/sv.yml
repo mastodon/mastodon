@@ -93,6 +93,7 @@ sv:
       enable: Aktivera
       enable_sign_in_token: Aktivera kontrollen med säkerhetskod
       enable_sign_in_token_auth: Aktivera autentisering med pollett via e-post
+      enable_unconfirmed: Tillåt bekräftelsemejl
       enabled: Aktiverad
       enabled_msg: Uppfrysningen av %{username}s konto lyckades
       follow_recommendations:
@@ -831,9 +832,19 @@ sv:
         create: Prenumerera
         title: Ny modereringsprenumeration
       override_unattributed: Åsidosätt manuella blockeringar
+      override_unattributed_hint: Tillåt denna prenumeration att automatiskt uppgradera eller ta över befintliga manuella block när du automatiskt tillämpar bulletiner.
+      policies:
+        apply_advisories: Tillämpar automatiskt bulletiner
+        apply_advisories_safely: Tillämpar automatiskt bulletiner som inte bryter relationer
+        apply_retractions: Tillämpar automatiskt tillbakadraganden
       priority: Prioritet
+      priority_hint: Modereringsprenumerationer utvärderas i prioritetsordning, prenumerationer med ett lägre antal åsidosätter prenumerationer med ett högre.
+      retract_automatically: Dra tillbaka bulletiner automatiskt
       show:
+        delete_confirm: Är du säker på att du vill ta bort denna modereringsprenumeration?
         edit: Redigera prenumeration
+        empty: Denna prenumeration har inga bulletiner än.
+        title: 'Modereringsprenumeration: %{name}'
       tabs:
         logs: Loggar
         subscriptions: Prenumerationer
@@ -856,6 +867,10 @@ sv:
       apply_limit: Begränsa
       apply_reject: Pausa
       apply_retract: Dra tillbaka
+      current_states:
+        accept: tillåts för närvarande
+        limit: för närvarande begränsad
+        reject: för närvarande pausad
       dismiss: Avfärda förslag
       suggested_from_html: Föreslagen av %{link}
       title: Modereringsförslag
@@ -1565,11 +1580,14 @@ sv:
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
+      correct_email: Rätt adress
       email_below_hint_html: Kolla din skräppost-mapp eller begär en ny. Du kan korrigera din e-postadress om den är fel.
       email_settings_hint_html: Klicka på länken vi skickade till %{email} för att börja använda Mastodon. Vi väntar här.
       link_not_received: Fick du ingen länk?
       new_confirmation_instructions_sent: Du kommer att få ett nytt e-postmeddelande med bekräftelselänken om några minuter!
       title: Kolla din inkorg
+      title_wait: Håll ett öga på din inkorg
+      wrong_email: Fel e-postadress?
     sign_in:
       preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
       title: Logga in på %{domain}
@@ -1606,6 +1624,12 @@ sv:
     auto: Auto
     dark: Mörkt
     light: Ljust
+  color_theme:
+    cyan: Cyan
+    indigo: Indigo
+    lime: Lime
+    orange: Orange
+    pink: Rosa
   contrast:
     auto: Auto
     high: Hög
@@ -1649,6 +1673,9 @@ sv:
       more_details_html: För mer information, se <a href="%{terms_path}">integritetspolicyn</a>.
       username_available: Ditt användarnamn kommer att bli tillgängligt igen
       username_unavailable: Ditt användarnamn kommer att fortsätta vara otillgängligt
+  density:
+    compact: Kompakt
+    default: Standard
   disputes:
     strikes:
       action_taken: Vidtagen åtgärd
