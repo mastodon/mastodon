@@ -1,5 +1,6 @@
 import type { CompactEmoji } from 'emojibase';
-import { http, HttpResponse } from 'msw';
+import type { UnhandledFrameHandle } from 'msw';
+import { http, HttpResponse } from 'msw/http';
 import { action } from 'storybook/actions';
 
 import type { MediaAttachmentType } from '@/mastodon/api_types/media_attachments';
@@ -122,10 +123,17 @@ export const mockHandlers = {
   ),
 };
 
-export const unhandledRequestHandler = ({ url }: Request) => {
-  const { pathname } = new URL(url);
+export const unhandledFrameHandler: Exclude<UnhandledFrameHandle, string> = ({
+  frame,
+}) => {
+  if (frame.protocol !== 'http') {
+    return;
+  }
+
+  const { request } = frame.data as { request: Request };
+  const { pathname } = new URL(request.url);
   if (pathname.startsWith('/api/v1/')) {
-    action(`unhandled request to ${pathname}`)(url);
+    action(`unhandled request to ${pathname}`)(request.url);
     console.warn(
       `Unhandled request to ${pathname}. Please add a handler for this request in your storybook configuration.`,
     );
