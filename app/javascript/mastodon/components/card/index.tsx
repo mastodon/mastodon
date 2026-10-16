@@ -52,7 +52,11 @@ export const Card = <As extends React.ElementType = 'div'>({
     );
 
   return (
-    <Comp {...props} className={classNames(className, classes.root)}>
+    <Comp
+      {...props}
+      className={classNames(className, classes.root)}
+      data-interactive-post-content
+    >
       <CardContext.Provider value={{ id }}>{children}</CardContext.Provider>
 
       {imageComp}
@@ -102,27 +106,22 @@ export const CardTitle: React.FC<
   );
 };
 
-type CardBodyProps<As extends React.ElementType> = PolymorphicProps<
-  {
-    children: React.ReactNode;
-    className?: string;
-    isDescription?: boolean;
-    noClamp?: boolean;
-  },
-  As
->;
+interface CardBodyProps {
+  children: React.ReactNode;
+  className?: string;
+  isDescription?: boolean;
+  noClamp?: boolean;
+}
 
-export const CardBody = <As extends React.ElementType = 'div'>({
-  as: asComp,
+export const CardBody = ({
   children,
   className,
   isDescription,
   noClamp,
   ...props
-}: CardBodyProps<As>) => {
-  const Comp = asComp ?? 'div';
+}: CardBodyProps) => {
   return (
-    <Comp
+    <div
       {...props}
       className={classNames(
         className,
@@ -131,6 +130,28 @@ export const CardBody = <As extends React.ElementType = 'div'>({
         isDescription && classes.description,
       )}
     >
+      {children}
+    </div>
+  );
+};
+
+type PrimaryCardLinkProps<As extends React.ElementType> = PolymorphicProps<
+  {
+    children: React.ReactNode;
+    className?: string;
+  },
+  As
+>;
+
+export const PrimaryCardLink = <As extends React.ElementType = 'a'>({
+  as: asComp,
+  children,
+  className,
+  ...props
+}: PrimaryCardLinkProps<As>) => {
+  const Comp = asComp ?? 'a';
+  return (
+    <Comp {...props} className={classNames(className, classes.primaryCardLink)}>
       {children}
     </Comp>
   );
