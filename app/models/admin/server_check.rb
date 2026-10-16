@@ -53,9 +53,13 @@ class Admin::ServerCheck < ApplicationRecord
     self.status = :error
     self.data = { error: e.message }
 
-    raise e
+    yield e if block_given?
   ensure
     self.checked_at = DateTime.now
+  end
+
+  def run!
+    run { |e| raise e }
   end
 
   def runner

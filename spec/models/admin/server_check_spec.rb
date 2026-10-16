@@ -105,7 +105,30 @@ RSpec.describe Admin::ServerCheck do
       let(:severity) { :critical }
 
       it 'saves runner result' do
-        expect { check.run }.to raise_error(StandardError)
+        check.run
+
+        expect(check.status).to eq('error')
+        expect(check.data).to eq({ 'error' => 'spec error' })
+        expect(check.severity).to eq(severity.to_s)
+        expect(check.checked_at).to be_present
+      end
+    end
+  end
+
+  describe '#run!' do
+    subject(:check) { described_class.new(key: 'rules') }
+
+    let(:status) { :error }
+    let(:data) { {} }
+    let(:severity) { :critical }
+
+    before do
+      allow(Admin::ServerCheck::RulesRunner).to receive(:new).and_return(runner.new(status:, data:, severity:))
+    end
+
+    context 'when there is an error' do
+      it 'saves runner result' do
+        expect { check.run! }.to raise_error(StandardError)
 
         expect(check.status).to eq('error')
         expect(check.data).to eq({ 'error' => 'spec error' })
