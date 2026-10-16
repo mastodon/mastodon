@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 namespace :settings do
-  resource :profile, only: [:show, :update] do
-    resources :pictures, only: :destroy
-  end
+  resource :profile, only: [:show, :update]
 
   get :preferences, to: redirect('/settings/preferences/appearance')
 
