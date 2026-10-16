@@ -75,6 +75,7 @@ RSpec.configure do |config|
     metadata[:search] = true
   end
 
+  config.include Capybara::RSpecMatchers, type: :request
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :helper
   config.include Devise::Test::ControllerHelpers, type: :view
