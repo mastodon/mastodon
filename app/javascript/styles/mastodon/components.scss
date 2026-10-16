@@ -3368,7 +3368,6 @@ a.account__display-name {
     .column > .scrollable,
     .tabs-bar__wrapper .column-header,
     .tabs-bar__wrapper .column-back-button,
-    .explore__search-header,
     .column-search-header {
       border-left: 0;
       border-right: 0;
@@ -8846,11 +8845,9 @@ noscript {
 }
 
 .explore__search-header {
+  display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--color-border-primary);
-  border-top: 0;
-  border-bottom: 0;
   padding: 16px;
   padding-bottom: 8px;
 
@@ -8863,14 +8860,6 @@ noscript {
     top: 12px;
     inset-inline-end: 12px;
     color: var(--color-text-tertiary);
-  }
-}
-
-.layout-single-column .explore__search-header {
-  display: none;
-
-  @media screen and (max-width: ($no-gap-breakpoint - 1px)) {
-    display: flex;
   }
 }
 
