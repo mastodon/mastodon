@@ -328,11 +328,11 @@ function contextToVariant(contextType?: StatusContextType): StatusVariant {
   switch (contextType) {
     case 'composer':
     case 'detailed':
-    case undefined:
       return 'page';
     case 'thread':
       return 'thread';
     case 'notifications':
+    case undefined:
     default:
       return 'feed';
   }

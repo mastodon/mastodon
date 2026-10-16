@@ -23,6 +23,15 @@
 
   .fields-group
     = f.simple_fields_for :settings, current_user.settings do |ff|
+      - if Themes.instance.skins_for(current_flavour).size > 1
+        = ff.input :skin,
+                   collection: themes_select_collection,
+                   hint: Themes.instance.flavours.size > 1 ? t('settings.flavours_hint_html', path: settings_flavours_path) : false,
+                   include_blank: false,
+                   label: I18n.t('simple_form.labels.defaults.setting_theme'),
+                   wrapper: :with_label,
+                   required: false
+
       .input.horizontal-options
         = ff.input :'web.color_scheme',
                    as: :radio_buttons,

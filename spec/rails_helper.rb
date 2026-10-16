@@ -166,11 +166,11 @@ RSpec::Matchers.define_negated_matcher :not_eq, :eq
 RSpec::Matchers.define_negated_matcher :not_include, :include
 
 def request_fixture(name)
-  Rails.root.join('spec', 'fixtures', 'requests', name).read
+  file_fixture("../requests/#{name}").read
 end
 
 def attachment_fixture(name)
-  Rails.root.join('spec', 'fixtures', 'files', name).open
+  file_fixture(name).open
 end
 
 def stub_reset_connection_pools

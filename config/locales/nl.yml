@@ -93,6 +93,7 @@ nl:
       enable: Ontdooien
       enable_sign_in_token: Beveiligingscode via e-mail inschakelen
       enable_sign_in_token_auth: Verificatie met een toegangscode via e-mail inschakelen
+      enable_unconfirmed: Bevestigingsmail toestaan
       enabled: Ingeschakeld
       enabled_msg: Het ontdooien van het account van %{username} is geslaagd
       follow_recommendations:
@@ -687,6 +688,8 @@ nl:
       title: Aanbevolen accounts
       unsuppress: Account weer aanbevelen
     instances:
+      advisories:
+        title: Adviezen van moderatie-abonnementen
       audit_log:
         title: Recente audit-logboeken
         view_all: Volledige audit-logboeken inzien
@@ -803,13 +806,21 @@ nl:
         always: Altijd
         never: Nooit
         safely: Alleen als de relaties niet worden verbroken
+      apply_conditions_hint:
+        always: Voorgestelde acties altijd automatisch toepassen. Gebruik deze optie alleen voor lijsten die u volledig vertrouwt.
+        never: Voorgestelde acties nooit automatisch toepassen. In plaats daarvan altijd een suggestie genereren.
+        safely: Aanbevolen acties toepassen, tenzij deze bestaande volgrelaties met lokale gebruikers verbreken. In dergelijke gevallen wordt een suggestie gegenereerd.
       delete: Verwijderen
+      destroyed_msg: Moderatieabonnement succesvol verwijderd
+      empty: Er is nog geen moderatielijst geabonneerd.
       last_synced_at: Laatst gesynchroniseerd op
       list_action: Abonnementstype
       list_actions:
         accept: Toegestaan
         default: Gemengd (toegestaan & geweigerd)
         reject: Geblokkeerd
+      list_actions_hint:
+        accept: Items zonder opgegeven actie worden behandeld als toegestaan. Blokkeringen worden genegeerd.
       list_actions_short:
         accept: Toegestaan
         default: Gemengd
@@ -1560,11 +1571,16 @@ nl:
     security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
     setup:
+      correct_email: Adres corrigeren
       email_below_hint_html: Controleer je map met spam, of vraag een nieuwe bevestigingslink aan. Je kan je e-mailadres corrigeren als het verkeerd is.
       email_settings_hint_html: Klik op de link die we naar %{email} hebben gestuurd om Mastodon te gebruiken. We wachten wel even.
+      email_settings_hint_wait_html: Je aanvraag wordt beoordeeld. Binnenkort kun je een e-mail verwachten op %{email}. Wanneer dit bericht arriveert, klik je op de link om Mastodon te gebruiken. We wachten hier op je.
       link_not_received: Geen link ontvangen?
       new_confirmation_instructions_sent: Je ontvangt binnen enkele minuten een nieuwe e-mail met de bevestigingslink!
       title: Kijk in je e-mail
+      title_wait: Houd je inbox in de gaten
+      wrong_email: Verkeerd e-mailadres?
+      wrong_email_below_hint_html: Geen paniek! Je kunt hieronder je e-mailadres corrigeren.
     sign_in:
       preamble_html: Log in met de inloggegevens van <strong>%{domain}</strong>. Als jouw account zich op een andere server bevindt, kun je hier niet inloggen.
       title: Inloggen op %{domain}
@@ -1601,6 +1617,12 @@ nl:
     auto: Auto
     dark: Donker
     light: Licht
+  color_theme:
+    cyan: Cyaan
+    indigo: Indigo
+    lime: Limoengroen
+    orange: Oranje
+    pink: Roze
   contrast:
     auto: Auto
     high: Hoog
@@ -1644,6 +1666,9 @@ nl:
       more_details_html: Zie het <a href="%{terms_path}">privacybeleid</a> voor meer informatie.
       username_available: Jouw gebruikersnaam komt weer beschikbaar
       username_unavailable: Jouw gebruikersnaam blijft onbeschikbaar
+  density:
+    compact: Compact
+    default: Standaard
   disputes:
     strikes:
       action_taken: Genomen maatregel

@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
-import { isRedesignEnabled } from '@/flavours/glitch/utils/environment';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { updateNotificationsPolicy } from 'flavours/glitch/actions/notification_policies';
 import type { AppDispatch } from 'flavours/glitch/store';
@@ -187,17 +186,10 @@ export const PolicyControls: React.FC = () => {
           onChange={handleFilterPrivateMentions}
           options={options}
           label={
-            isRedesignEnabled() ? (
-              <FormattedMessage
-                id='notifications.policy.filter_private_mentions_title'
-                defaultMessage='Unsolicited private mentions'
-              />
-            ) : (
-              <FormattedMessage
-                id='notifications.policy.filter_messages'
-                defaultMessage='Unsolicited messages'
-              />
-            )
+            <FormattedMessage
+              id='notifications.policy.filter_messages'
+              defaultMessage='Unsolicited messages'
+            />
           }
           hint={
             <FormattedMessage

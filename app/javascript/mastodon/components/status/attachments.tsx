@@ -38,7 +38,13 @@ import { decodeIDNA } from '@/mastodon/utils/links';
 import { Avatar } from '../avatar';
 import { Blurhash } from '../blurhash';
 import { Button } from '../button/redesign';
-import { Card, CardActions, CardBody, CardTitle } from '../card';
+import {
+  Card,
+  CardActions,
+  CardBody,
+  CardTitle,
+  PrimaryCardLink,
+} from '../card';
 import { DisplayName } from '../display_name';
 import { RelativeTimestamp } from '../relative_timestamp';
 
@@ -347,7 +353,10 @@ const MediaAttachmentWrapper: React.FC<{
       className={classes.galleryWrapper}
     >
       {!visible && !statusHidden && (
-        <div className={classes.gallerySpoiler}>
+        <div
+          className={classes.gallerySpoiler}
+          data-interactive-post-content='true'
+        >
           {mediaFilters.length > 0 && (
             <FormattedMessage
               id='filter_warning.matches_filter'
@@ -406,13 +415,6 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
 
   const providerUrl = new URL(card.provider_url || card.url);
 
-  const cardLinkProps = {
-    as: 'a',
-    href: card.url,
-    target: '_blank',
-    rel: 'noopener',
-  } as const;
-
   const authors = card.authors
     .map(({ accountId }) => accountId)
     .filter((id): id is string => !!id);
@@ -437,11 +439,13 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
             decodeIDNA(providerUrl.host)}
         </a>
       </CardTitle>
-      <CardBody {...cardLinkProps}>{card.title}</CardBody>
+      <CardBody>
+        <PrimaryCardLink href={card.url} target='_blank' rel='noopener'>
+          {card.title}
+        </PrimaryCardLink>
+      </CardBody>
       {card.description && (
-        <CardBody {...cardLinkProps} isDescription>
-          {card.description}
-        </CardBody>
+        <CardBody isDescription>{card.description}</CardBody>
       )}
 
       {authors.length > 0 && (

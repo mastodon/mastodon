@@ -44,7 +44,7 @@ export const IgnoreNotificationsModal = ({ filterType }) => {
     title = <FormattedMessage id='ignore_notifications_modal.new_accounts_title' defaultMessage='Ignore notifications from new accounts?' />;
     break;
   case 'for_private_mentions':
-    title = <FormattedMessage id='ignore_notifications_modal.private_mentions_title' defaultMessage='Ignore notifications from unsolicited Private Mentions?' />;
+    title = <FormattedMessage id='ignore_notifications_modal.private_mentions_title' defaultMessage='Ignore notifications for unsolicited messages?' />;
     break;
   case 'for_limited_accounts':
     title = <FormattedMessage id='ignore_notifications_modal.limited_accounts_title' defaultMessage='Ignore notifications from moderated accounts?' />;
