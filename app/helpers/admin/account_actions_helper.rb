@@ -2,9 +2,9 @@
 
 module Admin::AccountActionsHelper
   ACTION_TO_CATEGORY = {
-    'none' => 'warning',
-    'disable' => 'freeze',
-    'silence' => 'limit',
+    'warning' => 'none',
+    'freeze' => 'disable',
+    'limit' => 'silence',
     'suspend' => 'suspend',
     'sensitive' => 'sensitive',
   }.freeze

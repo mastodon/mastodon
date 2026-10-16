@@ -202,25 +202,58 @@ on(
   },
 );
 
-// go through all options and set hidden to the ones that don't match selection
-on('change', 'input#account_action_type', ({ target }) => {
+const onChangeAccountActionSelection = (target: HTMLInputElement) => {
+  const accountAction = target.value;
+
+  const presetsDropdown = document.getElementById(
+    'presets_dropdown',
+  ) as HTMLSelectElement | null;
+  // const presetsDropdown = document.querySelector<HTMLInputElement>('presets_dropdown');
+
+  if (presetsDropdown) {
+    //     document
+    //       .querySelectorAll<HTMLInputElement>(
+    //         'input.account_action_type',
+    //       )
+    //       .forEach((input) => {
+    //
+    //         if (accountAction) {
+    //           let element: HTMLElement | null = input;
+    //           do {
+    //             element.classList.remove('disabled');
+    //             element = element.parentElement;
+    //           } while (element && !element.classList.contains('data-type'));
+    //         } else {
+    //           let element: HTMLElement | null = input;
+    //           do {
+    //             element.classList.add('disabled');
+    //             element = element.parentElement;
+    //           } while (element && !element.classList.contains('data-type'));
+    //         }
+    //       });
+
+    const allOptions = Array.from(presetsDropdown.options);
+    presetsDropdown.value = '';
+
+    allOptions.forEach((element) => {
+      const optionType = element.dataset.type;
+
+      if (!optionType || optionType === accountAction) {
+        element.style.display = '';
+        element.disabled = false;
+      } else {
+        element.style.display = 'none';
+        element.disabled = true;
+      }
+    });
+  }
+};
+
+on('change', 'input.admin_account_action_type', ({ target }) => {
   if (target instanceof HTMLInputElement) {
     onChangeAccountActionSelection(target);
   }
 });
-
-const onChangeAccountActionSelection = (target: HTMLInputElement) => {
-  const accountActionSuspend = document.querySelector<HTMLInputElement>(
-    'input#account_action_type_suspend',
-  );
-
-  if (accountActionSuspend) {
-    if (accountActionSuspend instanceof HTMLElement) {
-      accountActionSuspend.style.display =
-        target.value === 'suspend' ? 'suspend' : 'block';
-    }
-  }
-};
 
 function onEnableBootstrapTimelineAccountsChange(target: HTMLInputElement) {
   const bootstrapTimelineAccountsField =

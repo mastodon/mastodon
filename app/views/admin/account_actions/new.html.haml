@@ -42,11 +42,9 @@
     - unless @warning_presets.empty?
       .fields-group
         = f.input :warning_preset_id,
-                  collection: @warning_presets,
-                  label_method: ->(warning_preset) { [warning_preset.title.presence, truncate(warning_preset.text)].compact.join(' - ') },
+                  collection: @warning_presets.map { |p| [[p.title.presence, truncate(p.text)].compact.join(' - '), p.id, { data: { type: Admin::AccountActionsHelper::ACTION_TO_CATEGORY[p.action_category] } }] },
                   wrapper: :with_block_label,
-                  input_html: { id: 'presets_dropdown' },
-                  input_options: { options_html: ->(p) { { data: { type: ACTION_TO_CATEGORY[p] || nil } } } }
+                  input_html: { id: 'presets_dropdown' }
 
     .fields-group
       = f.input :text,
