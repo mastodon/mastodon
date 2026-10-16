@@ -466,7 +466,7 @@ export function toggleReblog(statusId, skipModal = false) {
     status = status.set('account', state.accounts.get(status.get('account')));
 
     if (boostModal && !skipModal) {
-      dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: (status, privacy) => dispatch(toggleReblogWithoutConfirmation(status, privacy)) } }));
+      dispatch(openModal({ modalType: 'BOOST', modalProps: { status } }));
     } else {
       dispatch(toggleReblogWithoutConfirmation(status));
     }
