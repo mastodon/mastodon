@@ -55,7 +55,7 @@ export const Card = <As extends React.ElementType = 'div'>({
     <Comp
       {...props}
       className={classNames(className, classes.root)}
-      data-interactive-post-content
+      data-interactive-post-content='true'
     >
       <CardContext.Provider value={{ id }}>{children}</CardContext.Provider>
 

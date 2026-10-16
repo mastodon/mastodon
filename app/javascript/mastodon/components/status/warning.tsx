@@ -99,7 +99,7 @@ const StatusWarningDisplay: React.FC<{
           />
         )
       }
-      data-interactive-post-content
+      data-interactive-post-content='true'
     >
       {children}
     </Callout>

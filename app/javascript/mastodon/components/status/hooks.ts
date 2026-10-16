@@ -169,7 +169,7 @@ export function useStatusHandlers({
       const target = event.target;
 
       const isQuotedStatus = event.currentTarget.matches(
-        '[data-interactive-post-content]',
+        '[data-interactive-post-content="true"]',
       );
       // When clicking a quoted post, we stop event propagation
       // so it doesn't trigger this handler on the parent post.
@@ -181,7 +181,7 @@ export function useStatusHandlers({
       // so we exclude it from the selector.
       const interactiveElementSelector = isQuotedStatus
         ? 'a, button, dialog, input, textarea, label'
-        : 'a, button, dialog, input, textarea, label, [data-interactive-post-content]';
+        : 'a, button, dialog, input, textarea, label, [data-interactive-post-content="true"]';
 
       if (
         !(target instanceof HTMLElement) ||

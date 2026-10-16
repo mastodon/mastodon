@@ -353,7 +353,10 @@ const MediaAttachmentWrapper: React.FC<{
       className={classes.galleryWrapper}
     >
       {!visible && !statusHidden && (
-        <div className={classes.gallerySpoiler}>
+        <div
+          className={classes.gallerySpoiler}
+          data-interactive-post-content='true'
+        >
           {mediaFilters.length > 0 && (
             <FormattedMessage
               id='filter_warning.matches_filter'
