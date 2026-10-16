@@ -15,11 +15,8 @@ const mentionLabelRenderer: LabelRenderer = () => (
   <FormattedMessage id='notification.label.mention' defaultMessage='Mention' />
 );
 
-const privateMentionLabelRenderer: LabelRenderer = () => (
-  <FormattedMessage
-    id='notification.label.private_mention'
-    defaultMessage='Private mention'
-  />
+const messageLabelRenderer: LabelRenderer = () => (
+  <FormattedMessage id='notification.label.message' defaultMessage='Message' />
 );
 
 const replyLabelRenderer: LabelRenderer = () => (
@@ -54,7 +51,7 @@ export const NotificationMention: React.FC<{
 
   if (isReply && isDirect) labelRenderer = privateReplyLabelRenderer;
   else if (isReply) labelRenderer = replyLabelRenderer;
-  else if (isDirect) labelRenderer = privateMentionLabelRenderer;
+  else if (isDirect) labelRenderer = messageLabelRenderer;
 
   return (
     <NotificationWithStatus
