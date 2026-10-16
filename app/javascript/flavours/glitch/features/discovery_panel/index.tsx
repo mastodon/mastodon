@@ -12,6 +12,9 @@ import classes from './styles.module.scss';
  */
 const ROUTES_WITHOUT_SEARCH_BAR = [
   '/explore',
+  '/explore/tags',
+  '/explore/suggestions',
+  '/explore/links',
   '/search',
   '/start',
   '/start/profile',
