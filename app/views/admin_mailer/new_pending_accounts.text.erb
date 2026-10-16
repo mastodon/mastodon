@@ -1,4 +1,4 @@
-<%= raw t('admin_mailer.new_pending_accounts.body') %>
+<%= raw t('admin_mailer.new_pending_accounts.body', instance: @instance) %>
 
 <% @accounts.each do |account| %>
 - <%= account.user_email %> (@<%= account.username %>)

@@ -107,7 +107,7 @@ export function useStatusHandlers({
   contextType,
   onOpen,
 }: {
-  status?: ExpandedStatusShape;
+  status?: ExpandedStatusShape | AccountStatusShape | null;
   contextType?: StatusContextType;
   onOpen?: () => void;
 }) {
@@ -167,9 +167,25 @@ export function useStatusHandlers({
   const onOpenClick: React.MouseEventHandler = useCallback(
     (event) => {
       const target = event.target;
+
+      const isQuotedStatus = event.currentTarget.matches(
+        '[data-interactive-post-content="true"]',
+      );
+      // When clicking a quoted post, we stop event propagation
+      // so it doesn't trigger this handler on the parent post.
+      if (isQuotedStatus) {
+        event.stopPropagation();
+      }
+
+      // Quoted posts are always inside of an element with `data-interactive-post-content`,
+      // so we exclude it from the selector.
+      const interactiveElementSelector = isQuotedStatus
+        ? 'a, button, dialog, input, textarea, label'
+        : 'a, button, dialog, input, textarea, label, [data-interactive-post-content="true"]';
+
       if (
         !(target instanceof HTMLElement) ||
-        target.closest('a, button, dialog, input, textarea, label') ||
+        target.closest(interactiveElementSelector) ||
         contextType === 'detailed' ||
         window.getSelection()?.type === 'Range'
       ) {

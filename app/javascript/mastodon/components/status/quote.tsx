@@ -46,7 +46,11 @@ import { PopoverMenuCard } from '../menu/card';
 import { RelativeTimestamp } from '../relative_timestamp';
 import { Skeleton } from '../skeleton';
 
-import { onStatusLinksDisabled, useStatusContext } from './hooks';
+import {
+  onStatusLinksDisabled,
+  useStatusContext,
+  useStatusHandlers,
+} from './hooks';
 import { StatusImage } from './image';
 import classes from './quote.module.scss';
 import { accountStatusLinkProps } from './utils';
@@ -58,7 +62,7 @@ export const StatusQuote: React.FC<StatusQuoteProps> = (props) => {
 
   if (quoteError) {
     return (
-      <Card>
+      <Card unclickable>
         <CardBody className={classNames(classes.body, classes.error)} noClamp>
           {quoteError}
         </CardBody>
@@ -103,6 +107,12 @@ export const QuotedStatus: React.FC<{
   onDelete?: () => void;
 }> = ({ id, clamp, onDelete }) => {
   const status = useAppSelector((state) => selectAccountStatus(state, id));
+  const { contextType } = useStatusContext();
+
+  const { onOpenClick } = useStatusHandlers({
+    status,
+    contextType,
+  });
 
   if (!status) {
     return null;
@@ -111,7 +121,7 @@ export const QuotedStatus: React.FC<{
   const statusTo = `/@${status.account.acct}/${status.id}`;
 
   return (
-    <Card onDelete={onDelete}>
+    <Card onDelete={onDelete} onClick={onOpenClick} onAuxClick={onOpenClick}>
       <CardTitle
         className={classes.title}
         image={
@@ -138,12 +148,7 @@ export const QuotedStatus: React.FC<{
         </Link>
       </CardTitle>
 
-      <CardBody
-        className={classes.body}
-        as={Link}
-        to={statusTo}
-        noClamp={!clamp}
-      >
+      <CardBody className={classes.body} noClamp={!clamp}>
         <QuotedStatusBody status={status} />
       </CardBody>
 

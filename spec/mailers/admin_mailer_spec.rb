@@ -69,6 +69,27 @@ RSpec.describe AdminMailer do
     end
   end
 
+  describe '.new_pending_accounts' do
+    let(:recipient) { Fabricate(:account, username: 'Barklums') }
+    let(:account) { Fabricate(:account) }
+    let(:mail) { described_class.with(recipient: recipient).new_pending_accounts([account]) }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.new_pending_accounts.subject', instance: Rails.configuration.x.local_domain)
+        )
+      expect(mail.body)
+        .to match("New accounts have been created on #{Rails.configuration.x.local_domain}")
+    end
+  end
+
   describe '.new_trends' do
     let(:recipient) { Fabricate(:account, username: 'Snurf') }
     let!(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }

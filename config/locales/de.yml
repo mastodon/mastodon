@@ -93,6 +93,7 @@ de:
       enable: Freischalten
       enable_sign_in_token: Sicherheitscode für die Anmeldung aktivieren
       enable_sign_in_token_auth: E-Mail-Token-Authentisierung aktivieren
+      enable_unconfirmed: E-Mail-Bestätigung erlauben
       enabled: Freigegeben
       enabled_msg: Konto von %{username} erfolgreich freigegeben
       follow_recommendations:
@@ -535,7 +536,7 @@ de:
       resolved_dns_records_hint_html: Die Domain wird zu den folgenden MX-Domains aufgelöst, die für die Annahme von E-Mails zuständig sind. Das Sperren einer MX-Domain sperrt Anmeldungen aller E-Mail-Adressen, die dieselbe MX-Domain verwenden, auch wenn die sichtbare Domain anders lautet. <strong>Achte daher darauf, keine großen E-Mail-Anbieter versehentlich zu sperren.</strong>
       resolved_through_html: Durch %{domain} aufgelöst
       search: Suchen
-      title: Gesperrte E-Mail-Domains
+      title: E-Mail-Domains
     email_subscriptions:
       accounts:
         account: Konto
@@ -695,6 +696,7 @@ de:
         comment: Nicht-öffentliche Notiz
         description_html: Du kannst Inhaltsrichtlinien definieren, die auf alle Konten dieser Domain und einer ihrer Subdomains angewendet werden.
         limited_federation_mode_description_html: Du kannst auswählen, ob du eine Föderation mit dieser Domain erlaubst.
+        moderation_subscription: Abonnierbare Listen
         policies:
           reject_media: Medien ablehnen
           reject_reports: Meldungen ablehnen
@@ -1363,6 +1365,9 @@ de:
     new_pending_account:
       body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.
       subject: Neues Konto zum Überprüfen auf %{instance} verfügbar (%{username})
+    new_pending_accounts:
+      body: Neue Konten wurden auf %{instance} registriert. Sie haben bisher keine E-Mail-Bestätigung erhalten, weil der Versand bis zur manuellen Überprüfung aufgeschoben wird. Die Informationen zu den neuen Konten sind unten aufgelistet. Du kannst die Bewerbungen genehmigen oder ablehnen.
+      subject: Neue Konten zum Überprüfen auf %{instance} verfügbar
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
@@ -1471,11 +1476,16 @@ de:
     security: Sicherheit
     set_new_password: Neues Passwort einrichten
     setup:
+      correct_email: Korrekte E-Mail-Adresse
       email_below_hint_html: Überprüfe deinen Spam-/Junk-Ordner oder lass dir den Bestätigungslink erneut zusenden. Falls du die vorherige E-Mail-Adresse falsch eingegeben hast, kannst du sie hier korrigieren.
       email_settings_hint_html: Klicke auf den Link, den wir dir an %{email} geschickt haben, um mit Mastodon zu starten. Wir warten hier solange auf dich.
+      email_settings_hint_wait_html: Deine Bewerbung wird geprüft. Sobald sie angenommen wurde, wird eine E-Mail mit einem Bestätigungslink an %{email} geschickt. Klicke anschließend auf den Link, um mit Mastodon loszulegen. Wir warten hier solange auf dich.
       link_not_received: Keinen Bestätigungslink erhalten?
       new_confirmation_instructions_sent: In wenigen Minuten wirst du eine neue E-Mail mit dem Bestätigungslink erhalten!
       title: Überprüfe dein E-Mail-Postfach
+      title_wait: Behalte dein Postfach im Auge
+      wrong_email: Falsche E-Mail-Adresse?
+      wrong_email_below_hint_html: Kein Grund zur Sorge! Du kannst deine E-Mail-Adresse im unteren Eingabefeld korrigieren.
     sign_in:
       preamble_html: Melde dich mit deinen Zugangsdaten für <strong>%{domain}</strong> an. Falls dein Konto auf einem anderen Mastodon-Server erstellt wurde, ist eine Anmeldung hier nicht möglich.
       title: Bei %{domain} anmelden
@@ -1512,6 +1522,12 @@ de:
     auto: Automatisch
     dark: Dunkel
     light: Hell
+  color_theme:
+    cyan: Cyan
+    indigo: Indigo
+    lime: Limettengrün
+    orange: Orange
+    pink: Rosa
   contrast:
     auto: Automatisch
     high: Hoch
@@ -1555,6 +1571,9 @@ de:
       more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzerklärung</a>.
       username_available: Dein Profilname wird wieder verfügbar sein
       username_unavailable: Dein Profilname kann nach der Kontolöschung nicht neu registriert werden – und steht nicht mehr zur Verfügung
+  density:
+    compact: Kompakt
+    default: Standard
   disputes:
     strikes:
       action_taken: Maßnahme

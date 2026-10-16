@@ -185,7 +185,7 @@ async function loaded() {
   );
 
   updateThemeColorsFromTheme(
-    document.querySelector('#user_settings_attributes_theme'),
+    document.querySelector('#user_settings_attributes_skin'),
   );
 
   truncateRuleHints();
@@ -541,7 +541,7 @@ const updateThemeColorsFromTheme = (themeSelect: EventTarget | null) => {
   }
 };
 
-on('change', '#user_settings_attributes_theme', ({ target }) => {
+on('change', '#user_settings_attributes_skin', ({ target }) => {
   updateThemeColorsFromTheme(target);
 });
 

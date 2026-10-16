@@ -42,13 +42,14 @@
       .fields-group
         = f.input :warning_preset_id,
                   collection: @warning_presets,
+                  hint: t('simple_form.hints.admin_account_action.warning_preset_html', path: admin_warning_presets_path),
                   label_method: ->(warning_preset) { [warning_preset.title.presence, truncate(warning_preset.text)].compact.join(' - ') },
                   wrapper: :with_block_label
 
     .fields-group
       = f.input :text,
                 as: :text,
-                hint: t('simple_form.hints.admin_account_action.text_html', path: admin_warning_presets_path),
+                hint: t('simple_form.hints.admin_account_action.text'),
                 wrapper: :with_block_label
 
   .actions

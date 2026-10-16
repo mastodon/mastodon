@@ -93,6 +93,7 @@ es-AR:
       enable: Descongelar
       enable_sign_in_token: Habilitar el desafío de código de seguridad
       enable_sign_in_token_auth: Habilitar autenticación de token por correo electrónico
+      enable_unconfirmed: Permitir confirmación por correo electrónico
       enabled: Habilitada
       enabled_msg: Se descongeló exitosamente la cuenta de %{username}
       follow_recommendations:
@@ -1480,6 +1481,9 @@ es-AR:
     new_pending_account:
       body: Abajo están los detalles de la nueva cuenta. Podés aprobar o rechazar esta solicitud.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
+    new_pending_accounts:
+      body: Se crearon nuevas cuentas en %{instance}. Como tu servidor está configurado para posponer correos electrónicos de confirmación luego de la aprobación de moderación, esas cuentas todavía no tuvieron la oportunidad de verificar sus direcciones de correo electrónico. Los detalles de las nuevas cuentas se muestran a continuación. Podés aprobar o rechazar estas solicitudes.
+      subject: Nuevas cuentas para revisar en %{instance}
     new_report:
       body: "%{reporter} denunció a %{target}"
       body_remote: Alguien de %{domain} denunció a %{target}
@@ -1588,11 +1592,16 @@ es-AR:
     security: Seguridad
     set_new_password: Establecer nueva contraseña
     setup:
+      correct_email: Corregir dirección
       email_below_hint_html: Revisá tu carpeta de correo no deseado / spam, o solicitá otro enlace de confirmación. Podés corregir tu dirección de correo electrónico si está mal.
       email_settings_hint_html: Hacé clic en el enlace que enviamos a %{email} para comenzar a usar Mastodon. Estaremos esperando aquí mismo.
+      email_settings_hint_wait_html: Tu pedido está siendo revisado. Pronto deberías recibir un correo electrónico en %{email}. Cuando te llegue, hacé clic en el enlace para comenzar a usar Mastodon. Te esperamos acá.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
       title: Revisá tu bandeja de entrada
+      title_wait: Revisá tu bandeja de entrada
+      wrong_email: "¿La dirección de correo electrónico es incorrecta?"
+      wrong_email_below_hint_html: "¡No hay problema! Podés corregir tu dirección de correo electrónico a continuación."
     sign_in:
       preamble_html: Iniciá sesión con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no vas a poder iniciar sesión acá.
       title: Iniciar sesión en %{domain}
@@ -1629,6 +1638,12 @@ es-AR:
     auto: Automático
     dark: Oscuro
     light: Claro
+  color_theme:
+    cyan: Cian
+    indigo: Índigo
+    lime: Lima
+    orange: Naranja
+    pink: Rosa
   contrast:
     auto: Automático
     high: Alto
@@ -1672,6 +1687,9 @@ es-AR:
       more_details_html: Para más detalles, leé la <a href="%{terms_path}">política de privacidad</a>.
       username_available: Tu nombre de usuario volverá a estar disponible
       username_unavailable: Tu nombre de usuario no estará disponible
+  density:
+    compact: Compacto
+    default: Predeterminado
   disputes:
     strikes:
       action_taken: Acción tomada
