@@ -24,11 +24,11 @@
   .fields-group
     = f.simple_fields_for :settings, current_user.settings do |ff|
       - if Themes.instance.names.size > 1
-        -# TODO: is there a more readable way to pass per-option data attributes?
         = ff.input :theme,
                    collection: themes_select_collection,
                    hint: false,
                    include_blank: false,
+                   label: I18n.t('simple_form.labels.defaults.setting_theme'),
                    wrapper: :with_label,
                    required: false
 
