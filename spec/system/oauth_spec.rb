@@ -57,8 +57,8 @@ RSpec.describe 'Using OAuth from an external app' do
       it 'does not include the PKCE values in the hidden inputs' do
         subject
 
-        code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: false)
-        code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: false)
+        code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: :hidden)
+        code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: :hidden)
 
         expect(code_challenge_inputs).to_not be_empty
         expect(code_challenge_method_inputs).to_not be_empty
@@ -80,8 +80,8 @@ RSpec.describe 'Using OAuth from an external app' do
         it 'includes the PKCE values in the hidden inputs' do
           subject
 
-          code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: false)
-          code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: false)
+          code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: :hidden)
+          code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: :hidden)
 
           expect(code_challenge_inputs).to_not be_empty
           expect(code_challenge_method_inputs).to_not be_empty
