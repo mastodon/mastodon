@@ -94,8 +94,10 @@ export function useStatusInteractionFactory(
   const dispatch = useAppDispatch();
   return useCallback(
     (intent: StatusInteractionIntent) => {
-      return () => {
-        dispatch(statusInteraction({ statusId, intent, contextType }));
+      return (event?: React.MouseEvent | Event) => {
+        const force =
+          typeof event === 'object' && 'shiftKey' in event && event.shiftKey;
+        dispatch(statusInteraction({ statusId, intent, contextType, force }));
       };
     },
     [contextType, dispatch, statusId],
@@ -287,7 +289,7 @@ interface StatusIcon {
   meta?: string;
   counter?: number;
   active?: boolean;
-  action: () => void;
+  action: (event?: React.MouseEvent | Event) => void;
   disabled: boolean;
 }
 
