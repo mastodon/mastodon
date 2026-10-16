@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Fabricator('Admin::ServerCheck') do
-  key('rules')
+  key { Faker::Lorem.word }
   status(:unprocessed)
   severity(:critical)
   ignored(false)
