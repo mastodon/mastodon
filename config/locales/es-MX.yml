@@ -93,6 +93,7 @@ es-MX:
       enable: Habilitar
       enable_sign_in_token: Activar la comprobación con código de seguridad
       enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
+      enable_unconfirmed: Permitir correo de confirmación
       enabled: Habilitada
       enabled_msg: Se ha descongelado correctamente la cuenta de %{username}
       follow_recommendations:
@@ -1588,11 +1589,16 @@ es-MX:
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
     setup:
+      correct_email: Corregir dirección
       email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu dirección de correo electrónico si está mal.
       email_settings_hint_html: Haz clic en el enlace que te enviamos a %{email} para comenzar a usar Mastodon. Te esperamos aquí.
+      email_settings_hint_wait_html: Tu solicitud está siendo revisada. Pronto recibirás un correo en %{email}. Una vez que lo recibas, clica en el enlace para empezar a utilizar Mastodon. Estaremos esperándote.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
       title: Revisa tu bandeja de entrada
+      title_wait: Revisa tu bandeja de entrada
+      wrong_email: "¿Dirección de correo incorrecta?"
+      wrong_email_below_hint_html: "¡Que no cunda el pánico! Puedes corregir la dirección de correo justo debajo."
     sign_in:
       preamble_html: Registrate con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no podrás iniciar sesión aquí.
       title: Registrate en %{domain}
@@ -1629,6 +1635,12 @@ es-MX:
     auto: Automático
     dark: Oscuro
     light: Claro
+  color_theme:
+    cyan: Cian
+    indigo: Índigo
+    lime: Lima
+    orange: Naranja
+    pink: Rosa
   contrast:
     auto: Automático
     high: Alto
@@ -1672,6 +1684,9 @@ es-MX:
       more_details_html: Para más detalles, ver <a href="%{terms_path}"> la política de privacidad</a>.
       username_available: Tu nombre de usuario volverá a estar disponible
       username_unavailable: Tu nombre de usuario no estará disponible
+  density:
+    compact: Compacto
+    default: Por defecto
   disputes:
     strikes:
       action_taken: Acción realizada
