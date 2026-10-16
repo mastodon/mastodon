@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   compute-suffix:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - id: version_vars
         env:
