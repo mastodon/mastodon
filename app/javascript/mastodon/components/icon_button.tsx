@@ -1,4 +1,4 @@
-import { useCallback, forwardRef } from 'react';
+import { useCallback, forwardRef, useRef } from 'react';
 
 import classNames from 'classnames';
 
@@ -16,6 +16,7 @@ interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
+  onLongPress?: () => void;
   active?: boolean;
   expanded?: boolean;
   style?: React.CSSProperties;
@@ -47,6 +48,7 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
       onClick,
       onKeyDown,
       onMouseDown,
+      onLongPress,
       active = false,
       disabled = false,
       animate = false,
@@ -57,9 +59,48 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
     },
     buttonRef,
   ) => {
+    const timerRef = useRef<number | null>(null);
+    const longPressTriggered = useRef(false);
+
+    const handleTouchStart = useCallback(() => {
+      if (disabled || !onLongPress) return;
+      longPressTriggered.current = false;
+      if (timerRef.current !== null) {
+        window.clearTimeout(timerRef.current);
+      }
+      timerRef.current = window.setTimeout(() => {
+        longPressTriggered.current = true;
+        onLongPress();
+        timerRef.current = null;
+        navigator.vibrate(50);
+      }, 500);
+    }, [disabled, onLongPress]);
+
+    const handleTouchEndOrCancel = useCallback(() => {
+      if (timerRef.current !== null) {
+        window.clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    }, []);
+
+    const handleContextMenu = useCallback(
+      (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (onLongPress) {
+          e.preventDefault();
+        }
+      },
+      [onLongPress],
+    );
+
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
       (e) => {
         e.preventDefault();
+
+        if (longPressTriggered.current) {
+          e.stopPropagation();
+          longPressTriggered.current = false;
+          return;
+        }
 
         if (!disabled) {
           onClick?.(e);
@@ -137,6 +178,11 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
         onClick={handleClick}
         onMouseDown={handleMouseDown}
         onKeyDown={handleKeyDown}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEndOrCancel}
+        onTouchMove={handleTouchEndOrCancel}
+        onTouchCancel={handleTouchEndOrCancel}
+        onContextMenu={handleContextMenu}
         style={buttonStyle}
         tabIndex={tabIndex}
         disabled={disabled}
