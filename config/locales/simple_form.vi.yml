@@ -21,7 +21,6 @@ vi:
       admin_account_action:
         include_statuses: Người dùng sẽ thấy các tút nào của họ bị kiểm duyệt
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
-        text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">mẫu có sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         types:
           disable: Tạm không cho đăng nhập tài khoản.
@@ -29,7 +28,6 @@ vi:
           sensitive: Gán nhãn nhạy cảm cho tất cả media của tài khoản này.
           silence: Cấm đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
           suspend: Vô hiệu hóa và xóa mọi nội dung. Có thể đảo ngược quyết định trước 30 ngày.
-        warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm chú thích riêng
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
         ends_at: Tùy chọn. Thông báo sẽ tự động hủy vào lúc này
@@ -191,12 +189,10 @@ vi:
       account_migration:
         acct: Tài khoản mới
       account_warning_preset:
-        text: Văn bản cài sẵn
         title: Tựa đề
       admin_account_action:
         include_statuses: Đính kèm những tút bị báo cáo trong e-mail
         send_email_notification: Thông báo cho người này qua email
-        text: Chú thích riêng
         type: Hành động
         types:
           disable: Khóa
@@ -204,7 +200,6 @@ vi:
           sensitive: Nhạy cảm
           silence: Hạn chế
           suspend: Vô hiệu hóa
-        warning_preset_id: Dùng mẫu có sẵn
       announcement:
         all_day: Sự kiện diễn ra hằng ngày
         ends_at: Kết thúc sự kiện

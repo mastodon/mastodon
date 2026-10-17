@@ -21,7 +21,6 @@ fi:
       admin_account_action:
         include_statuses: Käyttäjä näkee, mitkä julkaisut johtivat moderointitoimeen tai -⁠varoitukseen
         send_email_notification: Käyttäjä saa selvityksen siitä, mitä hänen tililleen tapahtui
-        text_html: Valinnainen. Voit käyttää julkaisun syntaksia. Voit <a href="%{path}">lisätä varoitusasetuksia</a> säästääksesi aikaa
         type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
         types:
           disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
@@ -29,7 +28,6 @@ fi:
           sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluonteisiksi.
           silence: Estä käyttäjää lähettämästä julkaisuja, joiden näkyvyys on julkinen, sekä piilota hänen julkaisunsa ja häneen liittyvät ilmoitukset niiltä, jotka eivät seuraa häntä. Sulkee kaikki tiliin kohdistuvat raportit.
           suspend: Estä kaikki vuorovaikutus tältä tililtä ja tälle tilille sekä poista kaikki sen sisältö. Peruttavissa 30 päivän ajan. Sulkee kaikki tiliin kohdistuvat raportit.
-        warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
         all_day: Kun valittuna, vain aikavälin päivät näytetään
         ends_at: Valinnainen. Tiedote poistetaan automaattisesti tällä hetkellä
@@ -191,12 +189,10 @@ fi:
       account_migration:
         acct: Uuden tilin käyttäjätunnus
       account_warning_preset:
-        text: Esimääritetty teksti
         title: Nimi
       admin_account_action:
         include_statuses: Sisällytä raportoidut viestit sähköposti-ilmoitukseen
         send_email_notification: Ilmoita käyttäjälle sähköpostitse
-        text: Mukautettu varoitus
         type: Toimi
         types:
           disable: Jäädytä
@@ -204,7 +200,6 @@ fi:
           sensitive: Arkaluonteinen
           silence: Rajoita
           suspend: Jäädytä
-        warning_preset_id: Käytä varoituspohjaa
       announcement:
         all_day: Koko päivän tapahtuma
         ends_at: Tapahtuman loppu

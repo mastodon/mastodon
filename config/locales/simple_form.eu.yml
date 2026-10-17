@@ -20,7 +20,6 @@ eu:
       admin_account_action:
         include_statuses: Erabiltzaileak moderazio ekintza edo abisu bat eragin duten bidalketak ikusi ahal izango ditu
         send_email_notification: Erabiltzaileak bere kontuarekin gertatutakoaren azalpen bat jasoko du
-        text_html: Aukerakoa. Toot sintaxia erabili dezakezu. <a href="%{path}">Abisu aurre-ezarpenak</a> gehitu ditzakezu denbora aurrezteko
         type_html: Erabaki zer egin <strong>%{acct}</strong> kontuarekin
         types:
           disable: Erabiltzaileari bere kontua erabiltzea eragotzi, baina ez ezabatu edo ezkutatu bere edukiak.
@@ -28,7 +27,6 @@ eu:
           sensitive: Behartu erabiltzaile honen multimedia eranskin guztiak hunkigarri gisa markatzea.
           silence: Eragotzi erabiltzaileak ikusgaitasun publikoarekin argitaratzea, ezkutatu bere bidalketa eta jakinarazpenak jarraitzen ez duten pertsonei. Kontu honen aurkako txosten guztiak ixten ditu.
           suspend: Eragotzi kontu honek inolako interakziorik izatea eta ezabatu bere edukiak. Atzera bota daiteke 30 egun igaro aurretik. Kontu honen aurkako txosten guztiak ixten ditu.
-        warning_preset_id: Aukerakoa. Zure testua gehitu dezakezu aurre-ezarpenaren ostean
       announcement:
         all_day: Markatutakoan soilik denbora barrutiko datak erakutsiko dira
         ends_at: Aukerakoa. Iragapena une honetan automatikoki desargitaratuko da
@@ -173,12 +171,10 @@ eu:
       account_migration:
         acct: Kontu berriaren helbidea
       account_warning_preset:
-        text: Aurrez ezarritako testua
         title: Izenburua
       admin_account_action:
         include_statuses: Txertatu salatutako tootak e-mailean
         send_email_notification: Jakinarazi erabiltzaileari e-mail bidez
-        text: Abisu pertsonalizatua
         type: Ekintza
         types:
           disable: Desaktibatu
@@ -186,7 +182,6 @@ eu:
           sensitive: Hunkigarria
           silence: Isiltarazi
           suspend: Kanporatu eta behin betiko ezabatu kontuko datuak
-        warning_preset_id: Erabili aurre-ezarritako abisu bat
       announcement:
         all_day: Egun osoko ekitaldia
         ends_at: Ekitaldiaren amaiera

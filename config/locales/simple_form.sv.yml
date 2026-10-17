@@ -21,7 +21,7 @@ sv:
       admin_account_action:
         include_statuses: Användaren ser vilka inlägg som orsakat modereringsåtgärd eller varning
         send_email_notification: Användaren kommer få en förklaring på vad som hände med deras konto
-        text_html: Valfri. Du kan använda inläggssyntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
+        text: Valfritt. Du kan använda inläggssyntax. Det visas under det förinställda svaret
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
         types:
           disable: Förhindra användaren från att använda sitt konto, men radera eller dölj inte innehållet.
@@ -29,7 +29,7 @@ sv:
           sensitive: Tvinga alla denna användares mediebilagor till att flaggas som känsliga.
           silence: Hindra användaren från att göra offentliga inlägg, dölj hens inlägg och aviseringar för personer som inte följer hen. Stänger alla anmälningar mot detta konto.
           suspend: Förhindrar all interaktion från eller till detta konto och ta bort dess innehåll. Går att ångra inom 30 dagar. Stänger alla anmälningar mot detta konto.
-        warning_preset_id: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
+        warning_preset_html: Valfritt. Du kan <a href="%{path}">hantera dem här</a>
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
         ends_at: Valfri. Kungörelsen kommer automatiskt avpubliceras vid denna tidpunkt
@@ -192,12 +192,12 @@ sv:
       account_migration:
         acct: Namnet på det nya kontot
       account_warning_preset:
-        text: Förinställd text
+        text: Svarstext
         title: Rubrik
       admin_account_action:
         include_statuses: Inkludera rapporterade inlägg i e-postmeddelandet
         send_email_notification: Avisera användaren via e-post
-        text: Anpassad varning
+        text: Anpassat svar
         type: Åtgärd
         types:
           disable: Frys
@@ -205,7 +205,7 @@ sv:
           sensitive: Känslig
           silence: Tysta
           suspend: Pausa
-        warning_preset_id: Använd en förinställd varning
+        warning_preset_id: Förinställt svar
       announcement:
         all_day: Heldagsevenemang
         ends_at: Evenemangets slut
