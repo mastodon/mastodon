@@ -33,22 +33,7 @@
 .variantThread {
   --avatar-size: 32px;
 
-  padding-inline: var(--space-4);
-  padding-block-start: var(--space-2);
-
-  &:first-child,
-  &[data-connect-next='false'] + article {
-    padding-block-start: var(--space-4);
-  }
-
-  &[data-connect-next='false'],
-  &:last-child {
-    padding-block-end: var(--space-4);
-  }
-
-  &[data-connect-next='false'] {
-    border-block-end: var(--border-default);
-  }
+  padding: 0;
 }
 
 .isQuote {

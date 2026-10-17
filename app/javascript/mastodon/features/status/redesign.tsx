@@ -261,7 +261,9 @@ export const StatusPage: React.FC = () => {
           {
             // Length needs to be greater than 1, as ancestorIds includes the current root ID.
             ancestorIds.length > 1 && (
-              <StatusRelativeList statusIds={ancestorIds} rootId={statusId} />
+              <div className={classes.thread}>
+                <StatusRelativeList statusIds={ancestorIds} rootId={statusId} />
+              </div>
             )
           }
 
@@ -277,11 +279,13 @@ export const StatusPage: React.FC = () => {
           </NavigationFocusTarget>
 
           {descendantIds.length > 0 && (
-            <StatusRelativeList
-              statusIds={descendantIds}
-              rootId={statusId}
-              highlightIds={newReplyIds}
-            />
+            <div className={classes.thread}>
+              <StatusRelativeList
+                statusIds={descendantIds}
+                rootId={statusId}
+                highlightIds={newReplyIds}
+              />
+            </div>
           )}
 
           <div className={classes.threadEnd}>
