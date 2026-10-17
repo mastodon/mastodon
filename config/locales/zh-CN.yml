@@ -1402,9 +1402,10 @@ zh-CN:
     warning_presets:
       add_new: 添加新条目
       delete: 删除
-      edit_preset: 编辑预设警告
-      empty: 你尚未定义任何警告预设。
-      title: 预设警告
+      edit_preset: 编辑预置回复
+      empty: 你尚未定义任何预置回复。
+      navigation_title: 预置回复
+      title: 管理预置回复
     webhooks:
       add_new: 新增端点
       delete: 删除
@@ -1459,7 +1460,7 @@ zh-CN:
       body: 新账号的详细信息如下。你可以批准或拒绝此申请。
       subject: "%{instance} 上有新账号 (%{username}) 需要审核"
     new_pending_accounts:
-      body: "%{instance} 上有新账号创建。由于你的服务器设置，确认邮件会推迟到审核批准后再发送，因此这些账号还没有激机会验证其电子邮件地址。新账号的详情见下。你可以批准或拒绝这些申请。"
+      body: "%{instance} 上有新账号创建。由于你的服务器设置，确认邮件会推迟到审核批准后再发送，因此这些账号还没有机会验证其电子邮件地址。新账号的详情见下。你可以批准或拒绝这些申请。"
       subject: "%{instance} 上有新账号需要审核"
     new_report:
       body: "%{reporter} 举报了用户 %{target}"

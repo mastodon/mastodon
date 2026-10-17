@@ -21,7 +21,6 @@ cy:
       admin_account_action:
         include_statuses: Bydd y defnyddiwr yn gweld pa bostiadau sydd wedi achosi'r weithred gymedroli neu'r rhybudd
         send_email_notification: Bydd y defnyddiwr yn derbyn esboniad o'r hyn a ddigwyddodd â'i gyfrif
-        text_html: Yn ddewisol. Gallwch defnyddio cystrawen post. Gallwch <a href="%{path}">ychwanegu rhagosodiadau rhybydd</a> i arbed amser
         type_html: Dewis beth i wneud gyda <strong>%{acct}</strong>
         types:
           disable: Yn atal y defnyddiwr rhag defnyddio ei gyfrif, ond peidio â dileu neu guddio ei gynnwys.
@@ -29,7 +28,6 @@ cy:
           sensitive: Gorfodi holl atodiadau cyfryngau'r defnyddiwr hwn i gael eu nodi fel rhai sensitif.
           silence: Atal y defnyddiwr rhag gallu postio gyda gwelededd cyhoeddus, cuddio ei bostiadau a'i hysbysiadau rhag pobl nad ydyn nhw'n eu dilyn. Yn cau pob adroddiad yn erbyn y cyfrif hwn.
           suspend: Atal unrhyw ryngweithio o neu i'r cyfrif hwn a dileu ei gynnwys. Dychwelyd o fewn 30 diwrnod. Yn cau pob adroddiad yn erbyn y cyfrif hwn.
-        warning_preset_id: Yn ddewisol. Gallwch dal ychwanegu testun cyfaddas i ddiwedd y rhagosodiad
       announcement:
         all_day: Pan gaiff ei wirio, dim ond dyddiadau'r ystod amser fydd yn cael eu harddangos
         ends_at: Dewisol. N fydd y cyhoeddiad yn cael ei gyhoeddi'n awtomatig ar yr adeg hon
@@ -195,12 +193,10 @@ cy:
       account_migration:
         acct: Enw'r cyfrif newydd
       account_warning_preset:
-        text: Testun rhagosodedig
         title: Teitl
       admin_account_action:
         include_statuses: Cynhwyswch postiadau yr adroddwyd amdanynt yn yr e-bost
         send_email_notification: Hysbysu'r defnyddiwr trwy e-bost
-        text: Rhybudd cyfaddas
         type: Gweithredu
         types:
           disable: Analluogi
@@ -208,7 +204,6 @@ cy:
           sensitive: Sensitif
           silence: Cyfyngu
           suspend: Dileu data cyfrif
-        warning_preset_id: Defnyddiwch ragnod rhag rhybudd
       announcement:
         all_day: Digwyddiad trwy'r dydd
         ends_at: Diwedd y digwyddiad
