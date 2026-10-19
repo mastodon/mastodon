@@ -168,36 +168,29 @@ const StatusTimestampMeta: React.FC<
     return null;
   }
 
-  const timestamp = (
-    <FormattedDateWrapper
-      value={createdAt}
-      year='numeric'
-      month='short'
-      day='2-digit'
-      hour='2-digit'
-      minute='2-digit'
-    />
-  );
-
-  if (!edited_at) {
-    return timestamp;
-  }
-
   return (
     <Menu onOpen={handleOpen}>
+      {!!edited_at && (
+        <Badge
+          label={
+            <FormattedMessage
+              id='status.edited_badge'
+              defaultMessage='Edited'
+            />
+          }
+          className={classes.editedBadge}
+        />
+      )}
+
       <MenuTrigger as='button' className={classes.editedButton}>
-        {!!edited_at && (
-          <Badge
-            label={
-              <FormattedMessage
-                id='status.edited_badge'
-                defaultMessage='Edited'
-              />
-            }
-            className={classes.editedBadge}
-          />
-        )}
-        {timestamp}
+        <FormattedDateWrapper
+          value={createdAt}
+          year='numeric'
+          month='short'
+          day='2-digit'
+          hour='2-digit'
+          minute='2-digit'
+        />
       </MenuTrigger>
 
       <MenuList placement='bottom-start' maxWidth={250}>
@@ -206,13 +199,20 @@ const StatusTimestampMeta: React.FC<
             <LoadingIndicator />
           </div>
         )}
-        {!loading && items?.length && (
+        {!loading && (
           <div className={classes.editedHeader}>
-            <FormattedMessage
-              id='status.edited_x_times'
-              defaultMessage='Edited {count, plural, one {# time} other {# times}}'
-              values={{ count: items.length - 1 }}
-            />
+            {!!items && items.length > 1 ? (
+              <FormattedMessage
+                id='status.edited_x_times'
+                defaultMessage='Edited {count, plural, one {# time} other {# times}}'
+                values={{ count: items.length - 1 }}
+              />
+            ) : (
+              <FormattedMessage
+                id='status.edited_no_times'
+                defaultMessage='Not edited'
+              />
+            )}
           </div>
         )}
         {items?.map((item, index) => {
