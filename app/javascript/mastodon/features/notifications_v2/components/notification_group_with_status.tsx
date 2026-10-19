@@ -5,6 +5,8 @@ import classNames from 'classnames';
 
 import { replyComposeById } from '@/mastodon/actions/compose_typed';
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
+import { StatusContext } from '@/mastodon/components/status/hooks';
+import { QuotedStatus } from '@/mastodon/components/status/quote';
 import { navigateToStatus } from 'mastodon/actions/statuses';
 import { Avatar } from 'mastodon/components/avatar';
 import { AvatarGroup } from 'mastodon/components/avatar_group';
@@ -14,8 +16,6 @@ import { Icon } from 'mastodon/components/icon';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { NOTIFICATIONS_GROUP_MAX_AVATARS } from 'mastodon/models/notification_group';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
-
-import { EmbeddedStatus } from './embedded_status';
 
 const AVATAR_SIZE = 28;
 
@@ -139,9 +139,11 @@ export const NotificationGroupWithStatus: React.FC<{
           </div>
 
           {statusId && (
-            <div className='notification-group__main__status'>
-              <EmbeddedStatus statusId={statusId} />
-            </div>
+            <StatusContext.Provider
+              value={{ id: statusId, contextType: 'notifications' }}
+            >
+              <QuotedStatus id={statusId} clamp />
+            </StatusContext.Provider>
           )}
 
           {additionalContent && (

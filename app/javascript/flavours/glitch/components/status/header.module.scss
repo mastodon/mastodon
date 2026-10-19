@@ -52,6 +52,10 @@ a.nameLink {
   > span {
     display: inline;
   }
+
+  :global(.display-name__html) {
+    font-weight: inherit;
+  }
 }
 
 .date {
