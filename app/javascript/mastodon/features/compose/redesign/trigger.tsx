@@ -61,6 +61,19 @@ export const ComposeRedesignButton: React.FC<{
     dispatch(minimizeComposerToggle());
   }, [dispatch]);
 
+  const handleMinimizedTextClick: React.MouseEventHandler<HTMLDivElement> =
+    useCallback(
+      (event) => {
+        if (
+          event.target instanceof HTMLElement &&
+          !event.target.closest('button')
+        ) {
+          dispatch(minimizeComposerToggle());
+        }
+      },
+      [dispatch],
+    );
+
   const { signedIn } = useIdentity();
 
   if (!isRedesignEnabled() || !signedIn) {
@@ -90,7 +103,9 @@ export const ComposeRedesignButton: React.FC<{
       </FloatingActionButton>
     ) : (
       <div className={classes.root} style={style}>
+        {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
+          onClick={handleMinimizedTextClick}
           className={classNames(
             classes.composerMinimized,
             composerClasses.root,
@@ -98,6 +113,7 @@ export const ComposeRedesignButton: React.FC<{
         >
           <ComposeFormHeader />
         </div>
+        {/* eslint-enable */}
       </div>
     );
   }
