@@ -165,7 +165,7 @@ class ModalRoot extends PureComponent {
     }
 
     return (
-      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+      // oxlint-disable-next-line jsx-a11y/no-static-element-interactions
       <div className='modal-root' ref={this.setRef} onClick={this.handleBackgroundClick}>
         <div>
           <div className='modal-root__overlay' style={{ backgroundColor }} />
