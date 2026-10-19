@@ -1,14 +1,6 @@
 # frozen_string_literal: true
 
 module Admin::AccountActionsHelper
-  ACTION_TO_CATEGORY = {
-    'warning' => 'none',
-    'freeze' => 'disable',
-    'sensitive' => 'sensitive',
-    'limit' => 'silence',
-    'suspend' => 'suspend',
-  }.freeze
-
   def account_action_type_label(type)
     safe_join(
       [
@@ -19,6 +11,6 @@ module Admin::AccountActionsHelper
   end
 
   def label_and_categories_collection(warning_presets)
-    warning_presets.map { |p| [[p.title.presence, truncate(p.text)].compact.join(' - '), p.id, { data: { type: ACTION_TO_CATEGORY[p.action_category] } }] }
+    warning_presets.map { |p| [[p.title.presence, truncate(p.text)].compact.join(' - '), p.id, { data: { type: p.action_category } }] }
   end
 end

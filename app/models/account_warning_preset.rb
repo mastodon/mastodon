@@ -13,10 +13,18 @@
 #
 
 class AccountWarningPreset < ApplicationRecord
-  ACTION_CATEGORIES = %w(suspend limit freeze sensitive warning).freeze
+  ACTIONS = %w(none disable sensitive silence suspend all_actions).freeze
+  MAP_TO_CATEGORY = {
+    'none' => 'warning',
+    'disable' => 'freeze',
+    'sensitive' => 'sensitive',
+    'silence' => 'limit',
+    'suspend' => 'suspend',
+    'all_actions' => 'all_actions',
+  }.freeze
 
   validates :text, presence: true
-  validates :action_category, inclusion: { in: ACTION_CATEGORIES, allow_nil: true }
+  validates :action_category, inclusion: { in: ACTIONS }
 
   scope :alphabetic, -> { order(title: :asc, text: :asc) }
 end

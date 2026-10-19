@@ -13,19 +13,18 @@ RSpec.describe 'Admin Warning Presets' do
         expect(response)
           .to have_http_status(400)
       end
-    end
 
-    context 'with valid params' do
-      it 'renders index with missing action_category' do
+      it 'stays on the edit page with missing action_category' do
         post admin_warning_presets_path(account_warning_preset: { title: 'test title', text: 'lorem ipsum toot' })
 
         expect(response)
-          .to have_http_status(302)
-          .and redirect_to(admin_warning_presets_path)
+          .to have_http_status(200)
       end
+    end
 
+    context 'with valid params' do
       it 'redirects after a successful request' do
-        post admin_warning_presets_path(account_warning_preset: { title: 'test title', text: 'lorem ipsum toot', action_category: 'warning' })
+        post admin_warning_presets_path(account_warning_preset: { title: 'test title', text: 'lorem ipsum toot', action_category: 'none' })
 
         expect(response)
           .to have_http_status(302)

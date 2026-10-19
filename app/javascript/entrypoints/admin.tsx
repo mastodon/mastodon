@@ -217,7 +217,7 @@ const onChangeAccountActionSelection = (target: HTMLInputElement) => {
     allOptions.forEach((element) => {
       const optionType = element.dataset.type;
 
-      if (!optionType || optionType === accountAction) {
+      if (optionType === 'all_actions' || optionType === accountAction) {
         element.hidden = false;
         element.disabled = false;
       } else {
