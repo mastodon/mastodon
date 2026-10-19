@@ -21,7 +21,7 @@ ga:
       admin_account_action:
         include_statuses: Feicfidh an t-úsáideoir cé na poist ba chúis leis an ngníomh modhnóireachta nó leis an rabhadh
         send_email_notification: Gheobhaidh an t-úsáideoir míniú ar an méid a tharla lena chuntas
-        text_html: Roghnach. Is féidir leat comhréir phoist a úsáid. Is féidir leat <a href="%{path}">réamhshocruithe rabhaidh a chur leis</a> chun am a shábháil
+        text: Roghnach. Is féidir leat comhréir postála a úsáid. Beidh sé le feiceáil faoin bhfreagra réamhullmhaithe
         type_html: Roghnaigh cad atá le déanamh le <strong>%{acct}</strong>
         types:
           disable: Cuir cosc ar an úsáideoir a chuntas a úsáid, ach ná scrios ná folaigh a bhfuil ann.
@@ -29,7 +29,7 @@ ga:
           sensitive: Iallach a chur ar cheangaltáin meán an úsáideora seo go léir a bheith íogair.
           silence: Cosc a chur ar an úsáideoir ó bheith in ann postáil le hinfheictheacht phoiblí, a gcuid postálacha agus fógraí a cheilt ar dhaoine nach leanann iad. Dúnann sé gach tuairisc i gcoinne an chuntais seo.
           suspend: Cosc ar aon idirghníomhaíocht ón gcuntas seo nó chuig an gcuntas seo agus scrios a bhfuil ann. Inchúlaithe laistigh de 30 lá. Dúnann sé gach tuairisc i gcoinne an chuntais seo.
-        warning_preset_id: Roghnach. Is féidir leat téacs saincheaptha a chur le deireadh an réamhshocraithe fós
+        warning_preset_html: Roghnach. Is féidir leat <a href="%{path}">iad a bhainistiú anseo</a>
       announcement:
         all_day: Nuair a dhéantar iad a sheiceáil, ní thaispeánfar ach dátaí an raon ama
         ends_at: Roghnach. Beidh an fógra neamhfhoilsithe go huathoibríoch ag an am seo
@@ -196,12 +196,12 @@ ga:
       account_migration:
         acct: Láimhseáil an chuntais nua
       account_warning_preset:
-        text: Téacs réamhshocraithe
+        text: Téacs freagartha
         title: Teideal
       admin_account_action:
         include_statuses: Cuir postálacha tuairiscithe san áireamh sa ríomhphost
         send_email_notification: Cuir an t-úsáideoir ar an eolas trí ríomhphost
-        text: Rabhadh saincheaptha
+        text: Freagra saincheaptha
         type: Gníomh
         types:
           disable: Reoigh
@@ -209,7 +209,7 @@ ga:
           sensitive: Íogair
           silence: Teorannaigh
           suspend: Cuir ar fionraí
-        warning_preset_id: Bain úsáid as réamhshocrú rabhaidh
+        warning_preset_id: Freagra réamhullmhaithe
       announcement:
         all_day: Imeacht uile-lae
         ends_at: Deireadh an imeachta
@@ -249,6 +249,7 @@ ga:
         setting_always_send_emails: Seol fógraí ríomhphoist i gcónaí
         setting_auto_play_gif: Gifs beoite go huathoibríoch a imirt
         setting_boost_modal: Rialú a fheabhsaíonn infheictheacht
+        setting_color_scheme: Mód
         setting_contrast: Codarsnacht
         setting_default_language: Teanga postála
         setting_default_privacy: Infheictheacht postála
@@ -275,6 +276,7 @@ ga:
         setting_system_font_ui: Úsáid cló réamhshocraithe an chórais
         setting_system_scrollbars_ui: Bain úsáid as scrollbharra réamhshocraithe an chórais
         setting_theme: Téama suímh
+        setting_theme_color: Dath téama
         setting_trends: Taispeáin treochtaí an lae inniu
         setting_unfollow_modal: Taispeáin dialóg deimhnithe sula ndíleanfaidh tú duine éigin
         setting_use_blurhash: Taispeáin grádáin ildaite do mheáin fholaithe
