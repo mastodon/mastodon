@@ -24,16 +24,10 @@ import { Badge } from '../badge';
 import { FormattedDateWrapper } from '../formatted_date';
 import InlineAccount from '../inline_account';
 import { LoadingIndicator } from '../loading_indicator';
-import {
-  Menu,
-  MenuItem,
-  MenuItemDivider,
-  MenuList,
-  MenuTriggerText,
-} from '../menu';
+import { Menu, MenuItem, MenuList, MenuTrigger } from '../menu';
 import { RelativeTimestamp } from '../relative_timestamp';
 
-import classes from './styles.module.scss';
+import classes from './meta.module.scss';
 import { statusLink } from './utils';
 
 export const StatusMeta: React.FC<{
@@ -61,7 +55,7 @@ export const StatusMeta: React.FC<{
 
   return (
     <div className={classes.meta}>
-      <ul>
+      <ul className={classes.list}>
         <li>
           <StatusTimestampMeta
             id={id}
@@ -73,7 +67,7 @@ export const StatusMeta: React.FC<{
         <li>{visibility}</li>
       </ul>
 
-      <ul>
+      <ul className={classes.list}>
         <FormattedMessage
           id='status.replies_count'
           defaultMessage='{count, plural, one {{counter} reply} other {{counter} replies}}'
@@ -191,7 +185,7 @@ const StatusTimestampMeta: React.FC<
 
   return (
     <Menu onOpen={handleOpen}>
-      <MenuTriggerText>
+      <MenuTrigger as='button' className={classes.editedButton}>
         {!!edited_at && (
           <Badge
             label={
@@ -200,29 +194,26 @@ const StatusTimestampMeta: React.FC<
                 defaultMessage='Edited'
               />
             }
-            className={classes.metaEditedBadge}
+            className={classes.editedBadge}
           />
         )}
         {timestamp}
-      </MenuTriggerText>
+      </MenuTrigger>
 
       <MenuList placement='bottom-start' maxWidth={250}>
         {loading && (
-          <div className={classes.metaLoadingWrapper}>
+          <div className={classes.editedLoading}>
             <LoadingIndicator />
           </div>
         )}
         {!loading && items?.length && (
-          <>
-            <div className={classes.metaEditedHeader}>
-              <FormattedMessage
-                id='status.edited_x_times'
-                defaultMessage='Edited {count, plural, one {# time} other {# times}}'
-                values={{ count: items.length - 1 }}
-              />
-            </div>
-            <MenuItemDivider />
-          </>
+          <div className={classes.editedHeader}>
+            <FormattedMessage
+              id='status.edited_x_times'
+              defaultMessage='Edited {count, plural, one {# time} other {# times}}'
+              values={{ count: items.length - 1 }}
+            />
+          </div>
         )}
         {items?.map((item, index) => {
           const formattedDate = (
