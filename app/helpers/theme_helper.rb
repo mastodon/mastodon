@@ -81,7 +81,8 @@ module ThemeHelper
     user_color = current_user&.setting_theme_color
     return user_color if user_color && available_colors.include?(user_color)
 
-    # TODO: server setting
+    color = Setting.theme_color
+    return color if color && available_colors.include?(color)
 
     available_colors.first
   end
