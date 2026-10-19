@@ -203,7 +203,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                 </SearchSection>
               )}
 
-              {results.statuses.length === 0 && (
+              {results.statuses.length > 0 && (
                 <SearchSection
                   key='statuses'
                   title={
