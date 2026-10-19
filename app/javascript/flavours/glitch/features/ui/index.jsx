@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { lazy, PureComponent, Suspense } from 'react';
+import { PureComponent } from 'react';
 
 import { defineMessages, FormattedMessage } from 'react-intl';
 
@@ -584,9 +584,7 @@ class UI extends PureComponent {
   handleMoveUp = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      return isRedesignEnabled()
-        ? focusFirstVisibleItemInColumn(getFocusedColumnIndex())
-        : focusColumn(getFocusedColumnIndex);
+      return focusFirstVisibleItemInColumn(getFocusedColumnIndex());
     } else {
       return focusItemSibling(currentItemIndex, -1);
     }
@@ -595,9 +593,7 @@ class UI extends PureComponent {
   handleMoveDown = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      return isRedesignEnabled()
-        ? focusFirstVisibleItemInColumn(getFocusedColumnIndex())
-        : focusColumn(getFocusedColumnIndex);
+      return focusFirstVisibleItemInColumn(getFocusedColumnIndex());
     } else {
       return focusItemSibling(currentItemIndex, 1);
     }
