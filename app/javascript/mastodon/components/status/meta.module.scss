@@ -45,9 +45,10 @@
   border: 0;
   color: inherit;
   padding: 0;
+  text-decoration: var(--link-underline-default);
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: var(--link-underline-default-hover);
   }
 }
 
