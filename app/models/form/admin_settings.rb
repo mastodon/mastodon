@@ -50,6 +50,7 @@ class Form::AdminSettings
     opt_in_server_directory
     opt_in_server_recommendation
     postpone_confirmation_emails
+    theme_color
   ).freeze
 
   INTEGER_KEYS = %i(
