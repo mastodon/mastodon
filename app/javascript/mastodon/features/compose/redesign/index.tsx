@@ -1,30 +1,30 @@
-import type React from 'react';
-import { useCallback, useEffect, useId } from 'react';
+import type React from "react";
+import { useCallback, useEffect, useId } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { insertEmojiCompose } from '@/mastodon/actions/compose';
-import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
+import { insertEmojiCompose } from "@/mastodon/actions/compose";
+import { normalizeKey } from "@/mastodon/components/hotkeys/utils";
 import {
   closeComposer,
   getComposerTextarea,
   submitComposer,
-} from '@/mastodon/reducers/slices/composer';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+} from "@/mastodon/reducers/slices/composer";
+import { useAppDispatch, useAppSelector } from "@/mastodon/store";
 
-import { ComposeAttachments } from './attachments';
-import type { OnEmojiPick } from './emoji';
-import { ComposeFooter } from './footer';
-import { ComposeFormHeader } from './header';
-import { ComposeHints } from './hints';
-import { LanguageButton } from './language';
-import { ComposeReply } from './reply';
-import { selectComposeType } from './selectors';
-import { ComposeSensitiveField } from './sensitive';
-import { ComposeSettingsMenu } from './settings';
-import classes from './styles.module.scss';
-import { ComposeTextarea } from './textarea';
-import { ComposeVisibility } from './visibility';
+import { ComposeAttachments } from "./attachments";
+import type { OnEmojiPick } from "./emoji";
+import { ComposeFooter } from "./footer";
+import { ComposeFormHeader } from "./header";
+import { ComposeHints } from "./hints";
+import { LanguageButton } from "./language";
+import { ComposeReply } from "./reply";
+import { selectComposeType } from "./selectors";
+import { ComposeSensitiveField } from "./sensitive";
+import { ComposeSettingsMenu } from "./settings";
+import classes from "./styles.module.scss";
+import { ComposeTextarea } from "./textarea";
+import { ComposeVisibility } from "./visibility";
 
 interface RedesignComposeFormProps {
   autoFocus?: boolean;
@@ -35,7 +35,7 @@ interface RedesignComposeFormProps {
 }
 
 export const RedesignComposeForm: React.FC<
-  RedesignComposeFormProps & React.ComponentPropsWithRef<'form'>
+  RedesignComposeFormProps & React.ComponentPropsWithRef<"form">
 > = ({
   autoFocus,
   headless,
@@ -53,7 +53,7 @@ export const RedesignComposeForm: React.FC<
   return (
     <form
       {...props}
-      role='dialog'
+      role="dialog"
       onSubmit={onSubmit}
       aria-labelledby={titleId}
       className={classNames(
@@ -62,7 +62,7 @@ export const RedesignComposeForm: React.FC<
         headless && classes.headless,
       )}
     >
-      {(type === 'message' || type === 'replyPrivate') && (
+      {(type === "message" || type === "replyPrivate") && (
         <div className={classes.background} />
       )}
 
@@ -97,18 +97,31 @@ export const RedesignComposeForm: React.FC<
 };
 
 const allowedAroundShortCode =
-  '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
+  "><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d";
 
 function useComposeHandlers(redirectOnSuccess?: boolean) {
-  const text = useAppSelector((state) => state.compose.get('text') as string);
+  const text = useAppSelector((state) => state.compose.get("text") as string);
 
   const dispatch = useAppDispatch();
 
   const isModalOpen = useAppSelector((state) => state.modal.stack.size > 0);
+
+  useEffect(() => {
+    const handleUnload = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+    };
+
+    window.addEventListener("beforeunload", handleUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleUnload);
+    };
+  }, [text]);
+
   useEffect(() => {
     function escapeComposer(event: KeyboardEvent) {
       const key = normalizeKey(event.key);
-      if (key !== 'escape' || isModalOpen) {
+      if (key !== "escape" || isModalOpen) {
         return;
       }
 
@@ -117,9 +130,9 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
       }
     }
 
-    document.addEventListener('keydown', escapeComposer);
+    document.addEventListener("keydown", escapeComposer);
     return () => {
-      document.removeEventListener('keydown', escapeComposer);
+      document.removeEventListener("keydown", escapeComposer);
     };
   }, [dispatch, isModalOpen]);
 
@@ -128,7 +141,7 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
       const position = getComposerTextarea()?.selectionStart ?? 0;
       const beforePosition = text[position - 1];
       const needsSpace =
-        'custom' in emoji &&
+        "custom" in emoji &&
         !!emoji.custom &&
         !!beforePosition &&
         !allowedAroundShortCode.includes(beforePosition);
