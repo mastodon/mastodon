@@ -21,7 +21,6 @@ pt-PT:
       admin_account_action:
         include_statuses: O utilizador verá quais as publicações que foram a razão da moderação ou advertência
         send_email_notification: O utilizador receberá uma explicação sobre o que aconteceu com a sua conta
-        text_html: Opcional. Pode utilizar sintaxe de escrita. Pode <a href="%{path}">adicionar avisos predefinidos</a> para poupar tempo
         type_html: Escolhe o que fazer com <strong>%{acct}</strong>
         types:
           disable: Impede o utilizador de usar a sua conta, mas não elimina ou oculta o seu conteúdo.
@@ -29,7 +28,6 @@ pt-PT:
           sensitive: Força todos os anexos de media deste utilizador a serem sinalizados como sensíveis.
           silence: Impede que o utilizador possa publicar com visibilidade pública, ocultando as suas publicações e notificações de pessoas que não o seguem. Encerra todas as denúncias contra esta conta.
           suspend: Evita qualquer interação de ou para esta conta e elimina o seu conteúdo. Reversível num período de 30 dias. Encerra todas as denúncias contra esta conta.
-        warning_preset_id: Opcional. Tu ainda podes adicionar texto personalizado no fim do predefinido
       announcement:
         all_day: Quando marcado, apenas as datas do intervalo de tempo serão apresentadas
         ends_at: Opcional. A mensagem de manutenção deixará de estar publicada neste momento
@@ -192,12 +190,10 @@ pt-PT:
       account_migration:
         acct: Nome de utilizador da nova conta
       account_warning_preset:
-        text: Texto pré-definido
         title: Título
       admin_account_action:
         include_statuses: Incluir no e-mail as publicações denunciadas
         send_email_notification: Notificar o utilizador por e-mail
-        text: Aviso personalizado
         type: Ação
         types:
           disable: Congelar
@@ -205,7 +201,6 @@ pt-PT:
           sensitive: Sensível
           silence: Limitar
           suspend: Suspender
-        warning_preset_id: Usar um aviso pré-definido
       announcement:
         all_day: Evento de dia inteiro
         ends_at: Fim do evento

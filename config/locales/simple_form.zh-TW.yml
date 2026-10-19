@@ -21,7 +21,7 @@ zh-TW:
       admin_account_action:
         include_statuses: 使用者可看到導致檢舉或警告的嘟文
         send_email_notification: 使用者將收到帳號發生之事情的解釋
-        text_html: 可選的。您能使用嘟文語法。您可 <a href="%{path}">新增警告預設</a> 來節省時間
+        text: 可選。您可以使用嘟文語法。它將顯示於罐頭回應之下
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
         types:
           disable: 禁止該使用者使用他們的帳號，但是不刪除或隱藏他們的內容。
@@ -29,7 +29,7 @@ zh-TW:
           sensitive: 強制標記此使用者所有多媒體附加檔案為敏感內容。
           silence: 禁止該使用者發公開嘟文，從無跟隨他們的帳號中隱藏嘟文與通知。關閉所有對此帳號之檢舉報告。
           suspend: 禁止所有對該帳號任何互動，並且刪除其內容。三十天內可以撤銷此動作。關閉所有對此帳號之檢舉報告。
-        warning_preset_id: 可選的。您仍可於預設的結尾新增自訂文字
+        warning_preset_html: 可選。您可以<a href="%{path}">於此管理</a>
       announcement:
         all_day: 當選取時，僅顯示出時間範圍中的日期部分
         ends_at: 可選的。公告會於該時間點自動取消發布
@@ -192,12 +192,12 @@ zh-TW:
       account_migration:
         acct: 新帳號名稱
       account_warning_preset:
-        text: 預設文字
+        text: 回應文字
         title: 標題
       admin_account_action:
         include_statuses: 於電子郵件中加入檢舉之嘟文內容
         send_email_notification: 透過電子郵件通知使用者
-        text: 自訂警告
+        text: 客製化回應
         type: 動作
         types:
           disable: 停用
@@ -205,7 +205,7 @@ zh-TW:
           sensitive: 敏感内容
           silence: 安靜
           suspend: 停權並不可逆地刪除帳號資料
-        warning_preset_id: 使用警告預設
+        warning_preset_id: 罐頭回應
       announcement:
         all_day: 全天活動
         ends_at: 活動結束時間

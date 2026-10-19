@@ -21,7 +21,7 @@ import { IdentityContext } from '@/mastodon/identity_context';
 import type { LocaleData } from '@/mastodon/locales';
 import { reducerWithInitialState } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
-import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
+import { mockHandlers, unhandledFrameHandler } from '@/testing/api';
 
 import { modes } from './modes';
 
@@ -32,7 +32,7 @@ const startMsw = mswLoader(async () => {
   const worker = setupWorker();
 
   await worker.start({
-    onUnhandledRequest: unhandledRequestHandler,
+    onUnhandledFrame: unhandledFrameHandler,
   });
 
   return worker;

@@ -257,11 +257,11 @@ export const StatusPage: React.FC = () => {
         scrollKey='thread'
         shouldUpdateScroll={shouldUpdateScroll}
       >
-        <Scrollable className={classNames('item-list', { fullscreen })}>
+        <Scrollable className={classNames({ fullscreen })}>
           {
             // Length needs to be greater than 1, as ancestorIds includes the current root ID.
             ancestorIds.length > 1 && (
-              <div className={classes.thread}>
+              <div className={classNames(classes.thread, 'item-list')}>
                 <StatusRelativeList statusIds={ancestorIds} rootId={statusId} />
               </div>
             )
@@ -270,7 +270,7 @@ export const StatusPage: React.FC = () => {
           <NavigationFocusTarget
             as='div'
             focusTargetName={FOCUS_TARGET.POST}
-            className={classes.mainStatus}
+            className={classNames('item-list', classes.mainStatus)}
             tabIndex={0}
             ref={statusFocusRef}
             aria-label={screenReaderText}
@@ -279,7 +279,7 @@ export const StatusPage: React.FC = () => {
           </NavigationFocusTarget>
 
           {descendantIds.length > 0 && (
-            <div className={classes.thread}>
+            <div className={classNames(classes.thread, 'item-list')}>
               <StatusRelativeList
                 statusIds={descendantIds}
                 rootId={statusId}

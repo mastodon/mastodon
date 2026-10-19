@@ -1,6 +1,7 @@
 import { resolve } from 'node:path';
 
 import type { StorybookConfig } from '@storybook/react-vite';
+import { msw } from 'msw/vite';
 
 const config: StorybookConfig = {
   stories: [
@@ -58,6 +59,8 @@ const config: StorybookConfig = {
       ],
     };
 
+    // Serve mockServiceWorker.js from the msw package.
+    config.plugins = [...(config.plugins ?? []), msw({ mode: 'worker-only' })];
     return config;
   },
 };

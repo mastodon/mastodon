@@ -93,6 +93,7 @@ tr:
       enable: Etkinleştir
       enable_sign_in_token: Güvenlik kodu doğrulamasını etkinleştir
       enable_sign_in_token_auth: E-posta token doğrulamayı etkinleştir
+      enable_unconfirmed: Doğrulama e-postasına izin ver
       enabled: Etkin
       enabled_msg: "%{username} hesabı başarıyla çözüldü"
       follow_recommendations:
@@ -1423,9 +1424,10 @@ tr:
     warning_presets:
       add_new: Yeni ekle
       delete: Sil
-      edit_preset: Uyarı ön-ayarını düzenle
-      empty: Henüz önceden ayarlanmış bir uyarı tanımlanmadı.
-      title: Uyarı Önayarları
+      edit_preset: Hazır yanıtı düzenle
+      empty: Henüz hazır bir yanıt tanımlanmadı.
+      navigation_title: Hazır Yanıtlar
+      title: Hazır Moderasyon Yanıtları
     webhooks:
       add_new: Uç nokta ekle
       delete: Sil
@@ -1480,6 +1482,9 @@ tr:
     new_pending_account:
       body: Yeni hesabın detayları aşağıdadır. Bu başvuruyu onaylayabilir ya da reddedebilirsiniz.
       subject: "%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})"
+    new_pending_accounts:
+      body: "%{instance} üzerinde yeni hesaplar oluşturuldu. Sunucunuz, moderasyon onayı sonrasında onay e-postalarının gönderilmesini ertelemek üzere yapılandırıldığından, bu hesaplar henüz e-posta adreslerini doğrulama fırsatı bulamadılar. Yeni hesapların ayrıntıları aşağıda yer almaktadır. Bu başvuruları onaylayabilir veya reddedebilirsiniz."
+      subject: "%{instance} üzerinde incelenecek yeni hesaplar"
     new_report:
       body: "%{reporter}, %{target} kişisini bildirdi"
       body_remote: "%{domain} alan adından birisi %{target} kişisini bildirdi"
@@ -1588,11 +1593,16 @@ tr:
     security: Güvenlik
     set_new_password: Yeni parola belirle
     setup:
+      correct_email: Doğru adres
       email_below_hint_html: İstenmeyenler dizininize bakın veya başka bir onay bağlantısı isteyin. Eğer yanlışsa e-posta adresinizi de düzeltebilirsiniz.
       email_settings_hint_html: Mastodon kullanmaya başlamak %{email} adresine gönderdiğimiz bağlantıya tıklayın. Sizi burada bekliyoruz.
+      email_settings_hint_wait_html: Başvurunuz inceleniyor. Yakında %{email} adresine bir e-posta alacaksınız. E-postayı aldığınızda, bağlantıya tıklayarak Mastodon'u kullanmaya başlayabilirsiniz. Biz buradayız, bekliyoruz.
       link_not_received: Bağlantı gelmedi mi?
       new_confirmation_instructions_sent: Birkaç dakika içerisinde onaylama bağlantısını içeren yeni bir e-posta alacaksınız!
       title: Gelen kutunuzu kontrol edin
+      title_wait: Gelen kutunuzu takip edin
+      wrong_email: Yanlış e-posta adresi mi?
+      wrong_email_below_hint_html: Paniğe Kapılma! E-posta adresini aşağıda düzeltebilirsin.
     sign_in:
       preamble_html: "<strong>%{domain}</strong> kimlik bilgilerinizi kullanarak giriş yapın. Eğer hesabınız başka bir sunucuda barındırılıyorsa, burada giriş yapamazsınız."
       title: "%{domain} giriş yapın"
@@ -1629,6 +1639,12 @@ tr:
     auto: Otomatik
     dark: Koyu
     light: Açık
+  color_theme:
+    cyan: Camgöbeği
+    indigo: Çivit mavisi
+    lime: Limon yeşili
+    orange: Turuncu
+    pink: Pembe
   contrast:
     auto: Otomatik
     high: Yüksek
@@ -1672,6 +1688,9 @@ tr:
       more_details_html: Daha fazla ayrıntı için, <a href="%{terms_path}">gizlilik politikası</a>na göz atın.
       username_available: Kullanıcı adınız tekrar kullanılabilir olacaktır
       username_unavailable: Kullanıcı adınız kullanılamaz kalacaktır
+  density:
+    compact: Derli toplu
+    default: Varsayılan
   disputes:
     strikes:
       action_taken: Yapılan işlem

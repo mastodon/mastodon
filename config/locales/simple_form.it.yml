@@ -21,7 +21,7 @@ it:
       admin_account_action:
         include_statuses: L'utente vedrà quali post hanno causato l'azione di moderazione o l'avviso
         send_email_notification: L'utente riceverà una spiegazione di ciò che è successo con suo account
-        text_html: Opzionale. Puoi usare la sintassi dei post. Puoi <a href="%{path}">aggiungere avvisi preimpostati</a> per risparmiare tempo
+        text: Opzionale. Puoi usare la sintassi per i post. Apparirà sotto la risposta predefinita
         type_html: Decidi cosa fare con <strong>%{acct}</strong>
         types:
           disable: Impedisce all'utente di utilizzare il suo account, ma non elimina o nasconde i suoi contenuti.
@@ -29,7 +29,7 @@ it:
           sensitive: Forza tutti gli allegati multimediali di questo utente ad essere contrassegnati come sensibili.
           silence: Impedisce all'utente di poter pubblicare con visibilità pubblica, nasconde i suoi post e notifiche a persone che non lo seguono. Chiude tutte le segnalazioni relative a questo account.
           suspend: Impedisce qualsiasi interazione da o verso questo account e cancellarne il contenuto. Annullabile entro 30 giorni. Chiude tutte le segnalazioni contro questo account.
-        warning_preset_id: Opzionale. Puoi aggiungere un testo personalizzato alla fine di quello preimpostato
+        warning_preset_html: Opzionale. Puoi <a href="%{path}">gestirli qui</a>
       announcement:
         all_day: Se selezionato, verranno visualizzate solo le date dell'intervallo di tempo
         ends_at: Opzionale. L'annuncio verrà automaticamente ritirato in questo momento
@@ -99,6 +99,10 @@ it:
         media_cache_retention_period: I file multimediali da post fatti da utenti remoti sono memorizzati nella cache sul tuo server. Quando impostato a un valore positivo, i media verranno eliminati dopo il numero specificato di giorni. Se i dati multimediali sono richiesti dopo che sono stati eliminati, saranno nuovamente scaricati, se il contenuto sorgente è ancora disponibile. A causa di restrizioni su quanto spesso link anteprima carte sondaggio siti di terze parti, si consiglia di impostare questo valore ad almeno 14 giorni, o le schede di anteprima link non saranno aggiornate su richiesta prima di quel tempo.
         min_age: Agli utenti verrà chiesto di confermare la propria data di nascita durante l'iscrizione
         peers_api_enabled: Un elenco di nomi di dominio che questo server ha incontrato nel fediverse. Qui non sono inclusi dati sul fatto se si federano con un dato server, solo che il server ne è a conoscenza. Questo viene utilizzato dai servizi che raccolgono statistiche sulla federazione in senso generale.
+        postpone_confirmation_emails: |-
+          Quando questa impostazione è abilitata, le email di conferma per gli account in attesa di approvazione vengono inviate solo una volta che tali account vengono approvati.
+          Questo potrebbe peggiorare l'esperienza di iscrizione per gli utenti, perché dovranno comunque confermare il proprio indirizzo email tempestivamente dopo la ricezione del messaggio, ma non avranno più alcun controllo nel momento in cui tale email viene inviata.
+          Inoltre, ciò potrebbe comportare un maggiore carico di lavoro per i moderatori, dato che Mastodon non sarà in grado di filtrare gli account in attesa con un indirizzo email non valido prima che vengano approvati.
         profile_directory: La directory del profilo elenca tutti gli utenti che hanno acconsentito ad essere individuabili.
         require_invite_text: 'Quando le iscrizioni richiedono l''approvazione manuale, rendi la domanda: "Perché vuoi unirti?" obbligatoria anziché facoltativa'
         site_contact_email: In che modo le persone possono contattarti per richieste legali o di supporto.
@@ -192,12 +196,12 @@ it:
       account_migration:
         acct: Handle del nuovo account
       account_warning_preset:
-        text: Testo preimpostato
+        text: Testo della risposta
         title: Titolo
       admin_account_action:
         include_statuses: Includi i toots segnalati nell'email
         send_email_notification: Informa l'utente via email
-        text: Avviso personalizzato
+        text: Risposta personalizzata
         type: Azione
         types:
           disable: Disabilita
@@ -205,7 +209,7 @@ it:
           sensitive: Sensibile
           silence: Silenzia
           suspend: Sospendi e cancella i dati dell'account in modo irreversibile
-        warning_preset_id: Usa un avviso preimpostato
+        warning_preset_id: Risposta predefinita
       announcement:
         all_day: Tutto il giorno
         ends_at: Fine dell'evento
@@ -245,6 +249,7 @@ it:
         setting_always_send_emails: Manda sempre notifiche via email
         setting_auto_play_gif: Riproduci automaticamente le GIF animate
         setting_boost_modal: Controllo della visibilità della condivisione
+        setting_color_scheme: Modalità
         setting_contrast: Contrasto
         setting_default_language: Lingua dei post
         setting_default_privacy: Visibilità dei post
@@ -252,6 +257,7 @@ it:
         setting_default_sensitive: Segna sempre i media come sensibili
         setting_default_spoiler_field: Usa l'avviso sui contenuti come impostazione predefinita
         setting_delete_modal: Avvisami prima di eliminare un post
+        setting_density: Densità
         setting_disable_hover_cards: Disabilita l'anteprima del profilo al passaggio del mouse
         setting_disable_swiping: Disabilita i movimenti di scorrimento
         setting_display_media: Visualizzazione dei media
@@ -270,6 +276,7 @@ it:
         setting_system_font_ui: Usa il carattere predefinito del sistema
         setting_system_scrollbars_ui: Utilizza la barra di scorrimento predefinita del sistema
         setting_theme: Tema del sito
+        setting_theme_color: Colore del tema
         setting_trends: Mostra tendenze di oggi
         setting_unfollow_modal: Chiedi conferma prima di smettere di seguire qualcuno
         setting_use_blurhash: Mostra i gradienti colorati per i media nascosti
@@ -308,6 +315,7 @@ it:
         media_cache_retention_period: Periodo di conservazione della cache multimediale
         min_age: Età minima richiesta
         peers_api_enabled: Pubblica l'elenco dei server scoperti nell'API
+        postpone_confirmation_emails: Posticipare l'invio dell'email di conferma dopo l'approvazione
         profile_directory: Abilita directory del profilo
         registrations_mode: Chi può iscriversi
         remote_live_feed_access: Accesso ai feed live con post remoti

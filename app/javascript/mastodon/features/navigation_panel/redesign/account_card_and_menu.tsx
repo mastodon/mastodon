@@ -62,7 +62,12 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
       icon={<Avatar account={account} size={32} />}
       sideContent={
         <Menu type='navigation'>
-          <MenuTrigger as={IconButton} icon={DotsThreeIcon} size='sm'>
+          <MenuTrigger
+            as={IconButton}
+            icon={DotsThreeIcon}
+            size='sm'
+            variant='ghost'
+          >
             <FormattedMessage
               id='tabs_bar.account_settings'
               defaultMessage='Account settings'
