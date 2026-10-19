@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
 
@@ -11,6 +11,7 @@ import ScrollableList from '@/mastodon/components/scrollable_list';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 const AccountBlocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
+  const intl = useIntl();
   const dispatch = useAppDispatch();
 
   const accountIds = useAppSelector(
@@ -56,10 +57,10 @@ const AccountBlocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       </ScrollableList>
       <Helmet>
         <title>
-          <FormattedMessage
-            id='column.blocked_accounts'
-            defaultMessage='Blocked Accounts'
-          />
+          {intl.formatMessage({
+            id: 'column.blocked_accounts',
+            defaultMessage: 'Blocked Accounts',
+          })}
         </title>
         <meta name='robots' content='noindex' />
       </Helmet>

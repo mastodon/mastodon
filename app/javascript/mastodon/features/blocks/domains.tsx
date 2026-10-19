@@ -1,6 +1,6 @@
 import { useEffect, useCallback, useState } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
 
@@ -9,6 +9,7 @@ import { Domain } from 'mastodon/components/domain';
 import ScrollableList from 'mastodon/components/scrollable_list';
 
 const DomainBlocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
+  const intl = useIntl();
   const [domains, setDomains] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [next, setNext] = useState<string | undefined>();
@@ -76,10 +77,10 @@ const DomainBlocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
       <Helmet>
         <title>
-          <FormattedMessage
-            id='column.domain_blocks'
-            defaultMessage='Blocked Domains'
-          />
+          {intl.formatMessage({
+            id: 'column.domain_blocks',
+            defaultMessage: 'Blocked Domains',
+          })}
         </title>
         <meta name='robots' content='noindex' />
       </Helmet>
