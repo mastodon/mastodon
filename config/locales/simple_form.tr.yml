@@ -21,7 +21,7 @@ tr:
       admin_account_action:
         include_statuses: Kullanıcı hangi gönderilerin denetleme eylemi veya uyarısına neden olduğunu görecektir
         send_email_notification: Kullanıcı, hesabına ne olduğuna dair bir açıklama alacak
-        text_html: İsteğe bağlı. Gönderi sözdizimini kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
+        text: İsteğe bağlı. Gönderi sözdizimi kullanabilirsiniz. Hazır yanıtın altında görünecektir
         type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
         types:
           disable: Kullanıcının hesabını kullanmasını engelle ama içeriklerini silme veya gizleme.
@@ -29,7 +29,7 @@ tr:
           sensitive: Bu kullanıcının tüm medya eklerini hassas olarak işaretlemeye zorla.
           silence: Kullanıcının herkese açık şekilde gönderimde bulunmasını engelle, gönderilerini ve bildirimlerini onları takip etmeyen kişilerden gizle. Bu hesaba yönelik tüm bildirimleri kapatır.
           suspend: Bu hesaptan herhangi bir etkileşimi engelle ve içeriğini sil. 30 gün içerisinde geri alınabilir. Bu hesaba yönelik tüm bildirimleri kapatır.
-        warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
+        warning_preset_html: İsteğe bağlı. <a href="%{path}">Buradan yönetebilirsiniz</a>
       announcement:
         all_day: İşaretlendiğinde, yalnızca zaman aralığındaki tarihler görüntülenir
         ends_at: İsteğe bağlı. Duyuru, bu tarihte otomatik olarak yayından kaldırılacak
@@ -99,6 +99,7 @@ tr:
         media_cache_retention_period: Uzak kullanıcıların gönderilerindeki ortam dosyaları sunucunuzda önbelleklenir. Pozitif bir değer verildiğinde, ortam dosyaları belirlenen gün sonunda silinecektir. Eğer ortam dosyaları silindikten sonra istenirse, kaynak içerik hala mevcutsa, tekrar indirilecektir. Bağlantı önizleme kartlarının üçüncü parti siteleri yoklamasına ilişkin kısıtlamalar nedeniyle, bu değeri en azından 14 gün olarak ayarlamanız önerilir, yoksa bağlantı önizleme kartları bu süreden önce isteğe bağlı olarak güncellenmeyecektir.
         min_age: Kullanıcılardan kayıt olurken doğum tarihlerini doğrulamaları istenecektir
         peers_api_enabled: Bu sunucunun fediverse'te karşılaştığı alan adlarının bir listesi. İlgili sunucuyla birleştirme mi yapıyorsunuz yoksa sunucunuz sadece onu biliyor mu hakkında bir bilgi burada yok. Bu blgi genel olarak federasyın hakkında istatistik toplamak isteyen hizmetler tarafından kullanılıyor.
+        postpone_confirmation_emails: Bu ayar etkinleştirildiğinde, onay bekleyen hesaplar için onay e-postaları ancak söz konusu hesaplar onaylandıktan sonra gönderilir. Bu durum, kullanıcılar için daha olumsuz bir kayıt deneyimi yaratabilir, çünkü kullanıcılar e-postayı aldıktan sonra yine de e-posta adreslerini zamanında onaylamaları gerekecek, ancak e-postanın ne zaman gönderileceği konusunda artık kontrol sahibi olmayacaklardır. Ayrıca, Mastodon onaylanmadan önce geçersiz e-posta adresine sahip bekleyen hesapları filtreleyemeyeceği için bu durum moderatörlerin iş yükünü artırabilir.
         profile_directory: Profil dizini keşfedilebilir olmayı kabul eden tüm kullanıcıları listeler.
         require_invite_text: Kayıt olmak elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
         site_contact_email: İnsanlar yasal konular veya destek hakkında bilgi edinmek için size nasıl ulaşabilir.
@@ -192,12 +193,12 @@ tr:
       account_migration:
         acct: Yeni hesabın kullanıcı kimliği
       account_warning_preset:
-        text: Ön ayarlı metin
+        text: Yanıt metni
         title: Başlık
       admin_account_action:
         include_statuses: Bildirilen gönderileri e-postaya dahil et
         send_email_notification: Kullanıcıyı e-posta ile bilgilendir
-        text: Özel uyarı
+        text: Özel yanıt
         type: Eylem
         types:
           disable: Dondur
@@ -205,7 +206,7 @@ tr:
           sensitive: Hassas
           silence: Sınırla
           suspend: Hesap verilerini askıya alın ve geri alınamaz şekilde silin
-        warning_preset_id: Bir uyarı ön ayarı kullan
+        warning_preset_id: Hazır Yanıt
       announcement:
         all_day: Tüm gün etkinliği
         ends_at: Etkinliğin sonu
@@ -245,6 +246,7 @@ tr:
         setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
         setting_boost_modal: Öne çıkarma görünürlüğünü denetleyin
+        setting_color_scheme: Mod
         setting_contrast: Kontrast
         setting_default_language: Gönderi dili
         setting_default_privacy: Gönderi görünürlüğü
@@ -252,6 +254,7 @@ tr:
         setting_default_sensitive: Medyayı her zaman hassas olarak işaretle
         setting_default_spoiler_field: İçerik uyarılarını varsayılan olarak kullan
         setting_delete_modal: Bir gönderiyi silmeden beni uyar
+        setting_density: Yoğunluk
         setting_disable_hover_cards: Üstüne geldiğinde profil önizlemesini devre dışı bırak
         setting_disable_swiping: Kaydırma hareketlerini devre dışı bırak
         setting_display_media: Medya görüntüleme
@@ -270,6 +273,7 @@ tr:
         setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
         setting_system_scrollbars_ui: Sistemin varsayılan kaydırma çubuğunu kullan
         setting_theme: Site teması
+        setting_theme_color: Tema rengi
         setting_trends: Bugünün gündemini göster
         setting_unfollow_modal: Birini takip etmeden önce onay iletişim kutusu göster
         setting_use_blurhash: Gizli medya için renkli gradyanlar göster
@@ -308,6 +312,7 @@ tr:
         media_cache_retention_period: Medya önbelleği saklama süresi
         min_age: Azami yaş gereksinimi
         peers_api_enabled: API'de keşfedilen sunucuların listesini yayınla
+        postpone_confirmation_emails: Onaylandıktan sonra onay e-postalarını ertele
         profile_directory: Profil dizinini etkinleştir
         registrations_mode: Kim kaydolabilir
         remote_live_feed_access: Uzaktan gönderileri ön plana çıkaran canlı akışlara erişim

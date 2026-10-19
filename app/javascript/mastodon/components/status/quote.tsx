@@ -62,7 +62,7 @@ export const StatusQuote: React.FC<StatusQuoteProps> = (props) => {
 
   if (quoteError) {
     return (
-      <Card>
+      <Card unclickable>
         <CardBody className={classNames(classes.body, classes.error)} noClamp>
           {quoteError}
         </CardBody>

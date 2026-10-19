@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { lazy, PureComponent, Suspense } from 'react';
+import { PureComponent } from 'react';
 
 import { defineMessages } from 'react-intl';
 
@@ -71,7 +71,6 @@ import {
   CollectionDetail,
   CollectionsEditor,
   Blocks,
-  DomainBlocks,
   Mutes,
   Directory,
   OnboardingProfile,
@@ -271,7 +270,7 @@ class SwitchingColumnsArea extends PureComponent {
 
             <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
             <WrappedRoute path='/blocks' component={Blocks} content={children} />
-            <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
+            <Redirect from='/domain_blocks' to='/blocks/domains' />
             <WrappedRoute path='/followed_tags' component={FollowedTags} content={children} />
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
             <WrappedRoute path='/lists' component={Lists} content={children} />
@@ -538,9 +537,7 @@ class UI extends PureComponent {
   handleMoveUp = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      return isRedesignEnabled()
-        ? focusFirstVisibleItemInColumn(getFocusedColumnIndex())
-        : focusColumn(getFocusedColumnIndex);
+      return focusFirstVisibleItemInColumn(getFocusedColumnIndex());
     } else {
       return focusItemSibling(currentItemIndex, -1);
     }
@@ -549,9 +546,7 @@ class UI extends PureComponent {
   handleMoveDown = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      return isRedesignEnabled()
-        ? focusFirstVisibleItemInColumn(getFocusedColumnIndex())
-        : focusColumn(getFocusedColumnIndex);
+      return focusFirstVisibleItemInColumn(getFocusedColumnIndex());
     } else {
       return focusItemSibling(currentItemIndex, 1);
     }

@@ -27,9 +27,13 @@
   &:has(a.primaryCardLink:hover),
   /* 2. it is being hovered itself when it does not contain an embedded*/
   /*    `.primaryCardLink`, and no other nested link is being hovered*/
-  &:not(:has(a.primaryCardLink), :has(a:hover)):hover {
+  &:not(.rootUnclickable, :has(a.primaryCardLink), :has(a:hover)):hover {
     background-color: var(--color-bg-highlight);
   }
+}
+
+.rootUnclickable {
+  cursor: auto;
 }
 
 // Handle cases where the root is a link

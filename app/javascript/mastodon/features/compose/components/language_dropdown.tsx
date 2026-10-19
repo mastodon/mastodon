@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { createSelector } from '@reduxjs/toolkit';
 import { Map as ImmutableMap } from 'immutable';
 
-import fuzzysort from 'fuzzysort';
+import { go as fuzzysortGo } from 'fuzzysort';
 
 import { Popover } from '@/mastodon/components/popover';
 import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
@@ -239,13 +239,11 @@ export const LanguageDropdownMenu: React.FC<{
       });
     }
 
-    return fuzzysort
-      .go(searchValue, languages, {
-        keys: ['0', '1', '2'],
-        limit: 5,
-        threshold: -10000,
-      })
-      .map((result) => result.obj);
+    return fuzzysortGo(searchValue, languages, {
+      keys: ['0', '1', '2'],
+      limit: 5,
+      threshold: -10000,
+    }).map((result) => result.obj);
   }, [searchValue, languages, guess, frequentlyUsedLanguages, value]);
 
   return (
