@@ -1,17 +1,37 @@
 import type React from 'react';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import type Immutable from 'immutable';
+
+import { fetchHistory } from '@/mastodon/actions/history';
+import { openModal } from '@/mastodon/actions/modal';
 import type {
   AnyStatusShape,
+  StatusHistory,
   StatusVisibility,
 } from '@/mastodon/models/status';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '@/mastodon/store/typed_functions';
 
 import { AnimatedNumber } from '../animated_number';
+import { Badge } from '../badge';
 import { FormattedDateWrapper } from '../formatted_date';
+import InlineAccount from '../inline_account';
+import { LoadingIndicator } from '../loading_indicator';
+import {
+  Menu,
+  MenuItem,
+  MenuItemDivider,
+  MenuList,
+  MenuTriggerText,
+} from '../menu';
+import { RelativeTimestamp } from '../relative_timestamp';
 
 import classes from './styles.module.scss';
 import { statusLink } from './utils';
@@ -19,23 +39,12 @@ import { statusLink } from './utils';
 export const StatusMeta: React.FC<{
   status: AnyStatusShape;
 }> = ({ status }) => {
-  const { created_at, application } = status;
+  const { id, created_at, edited_at, application } = status;
 
-  const createdAt = useMemo(() => {
-    try {
-      return new Date(created_at);
-    } catch {
-      return null;
-    }
-  }, [created_at]);
   const visibility = useMemo(
     () => statusVisibilityText(status.visibility),
     [status.visibility],
   );
-
-  if (!createdAt) {
-    return null;
-  }
 
   let applicationDisplay: React.ReactNode = null;
   if (application?.website) {
@@ -52,6 +61,18 @@ export const StatusMeta: React.FC<{
 
   return (
     <div className={classes.meta}>
+      <ul>
+        <li>
+          <StatusTimestampMeta
+            id={id}
+            created_at={created_at}
+            edited_at={edited_at}
+          />
+        </li>
+        {applicationDisplay && <li>{applicationDisplay}</li>}
+        <li>{visibility}</li>
+      </ul>
+
       <ul>
         <FormattedMessage
           id='status.replies_count'
@@ -99,22 +120,141 @@ export const StatusMeta: React.FC<{
           </Link>
         </li>
       </ul>
-
-      <ul>
-        <li>
-          <FormattedDateWrapper
-            value={createdAt}
-            year='numeric'
-            month='short'
-            day='2-digit'
-            hour='2-digit'
-            minute='2-digit'
-          />
-        </li>
-        {applicationDisplay && <li>{applicationDisplay}</li>}
-        <li>{visibility}</li>
-      </ul>
     </div>
+  );
+};
+
+const StatusTimestampMeta: React.FC<
+  Pick<AnyStatusShape, 'id' | 'created_at' | 'edited_at'>
+> = ({ id, created_at, edited_at }) => {
+  const createdAt = useMemo(() => {
+    try {
+      return new Date(created_at);
+    } catch {
+      return null;
+    }
+  }, [created_at]);
+
+  const items = useAppSelector((state) =>
+    (
+      state.history.getIn([id, 'items']) as
+        | Immutable.List<StatusHistory>
+        | undefined
+    )?.toJS(),
+  );
+  const loading = useAppSelector(
+    (state) => !!state.history.getIn([id, 'loading']),
+  );
+
+  const dispatch = useAppDispatch();
+  const handleOpen = useCallback(() => {
+    dispatch(fetchHistory(id));
+  }, [dispatch, id]);
+
+  const handleItemClick: React.MouseEventHandler<HTMLButtonElement> =
+    useCallback(
+      (event) => {
+        const target = event.currentTarget;
+        const index = target.dataset.index;
+        if (!index) {
+          return;
+        }
+
+        dispatch(
+          openModal({
+            modalType: 'COMPARE_HISTORY',
+            modalProps: { index, statusId: id },
+          }),
+        );
+      },
+      [dispatch, id],
+    );
+
+  if (!createdAt) {
+    return null;
+  }
+
+  const timestamp = (
+    <FormattedDateWrapper
+      value={createdAt}
+      year='numeric'
+      month='short'
+      day='2-digit'
+      hour='2-digit'
+      minute='2-digit'
+    />
+  );
+
+  if (!edited_at) {
+    return timestamp;
+  }
+
+  return (
+    <Menu onOpen={handleOpen}>
+      <MenuTriggerText>
+        {!!edited_at && (
+          <Badge
+            label={
+              <FormattedMessage
+                id='status.edited_badge'
+                defaultMessage='Edited'
+              />
+            }
+            className={classes.metaEditedBadge}
+          />
+        )}
+        {timestamp}
+      </MenuTriggerText>
+
+      <MenuList placement='bottom-start' maxWidth={250}>
+        {loading && (
+          <div className={classes.metaLoadingWrapper}>
+            <LoadingIndicator />
+          </div>
+        )}
+        {!loading && items?.length && (
+          <>
+            <div className={classes.metaEditedHeader}>
+              <FormattedMessage
+                id='status.edited_x_times'
+                defaultMessage='Edited {count, plural, one {# time} other {# times}}'
+                values={{ count: items.length - 1 }}
+              />
+            </div>
+            <MenuItemDivider />
+          </>
+        )}
+        {items?.map((item, index) => {
+          const formattedDate = (
+            <RelativeTimestamp timestamp={item.created_at} long />
+          );
+          const formattedName = <InlineAccount accountId={item.account} />;
+          return (
+            <MenuItem
+              key={item.created_at}
+              data-index={index}
+              onClick={handleItemClick}
+            >
+              {item.original ? (
+                <FormattedMessage
+                  id='status.history.created'
+                  defaultMessage='{name} created {date}'
+                  values={{ name: formattedName, date: formattedDate }}
+                  tagName='span'
+                />
+              ) : (
+                <FormattedMessage
+                  id='status.history.edited'
+                  defaultMessage='{name} edited {date}'
+                  values={{ name: formattedName, date: formattedDate }}
+                  tagName='span'
+                />
+              )}
+            </MenuItem>
+          );
+        })}
+      </MenuList>
+    </Menu>
   );
 };
 

@@ -248,6 +248,25 @@
       text-decoration: var(--link-underline-default-hover);
     }
   }
+
+  a[role='button'] {
+    cursor: pointer;
+  }
+}
+
+.metaEditedBadge {
+  margin-inline-end: var(--space-1);
+}
+
+.metaLoadingWrapper {
+  min-height: 110px;
+}
+
+.metaEditedHeader {
+  @include mixins.type-caption;
+
+  color: var(--color-text-tertiary);
+  padding: var(--space-2) var(--space-3) 0;
 }
 
 .actions {
