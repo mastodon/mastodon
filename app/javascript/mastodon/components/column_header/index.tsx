@@ -87,7 +87,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         hasExtraStickyContent && classes.withStickyContent,
       )}
     >
-      {/* eslint-disable-next-line
+      {/* oxlint-disable-next-line
           jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         */}
       <div className={classes.layout} onClick={handleHeaderClick}>
