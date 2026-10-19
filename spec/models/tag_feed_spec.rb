@@ -72,6 +72,21 @@ RSpec.describe TagFeed do
       expect(results).to include(status)
     end
 
+    it 'paginates with max_id' do
+      results = described_class.new(tag_cats, nil, any: [tag_dogs.name]).get(20, both.id)
+      expect(results).to contain_exactly(status_tagged_with_cats, status_tagged_with_dogs)
+    end
+
+    it 'paginates with since_id' do
+      results = described_class.new(tag_cats, nil, any: [tag_dogs.name]).get(20, nil, status_tagged_with_cats.id)
+      expect(results).to contain_exactly(status_tagged_with_dogs, both)
+    end
+
+    it 'paginates with min_id' do
+      results = described_class.new(tag_cats, nil, any: [tag_dogs.name]).get(20, nil, nil, status_tagged_with_cats.id)
+      expect(results).to contain_exactly(status_tagged_with_dogs, both)
+    end
+
     context 'when the feed contains a local-only status' do
       let!(:status) { Fabricate(:status, tags: [tag_cats], local_only: true) }
 

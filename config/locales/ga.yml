@@ -1490,9 +1490,10 @@ ga:
     warning_presets:
       add_new: Cuir nua leis
       delete: Scrios
-      edit_preset: Cuir réamhshocrú rabhaidh in eagar
-      empty: Níl aon réamhshocruithe rabhaidh sainithe agat fós.
-      title: Réamhshocruithe rabhaidh
+      edit_preset: Cuir freagra réamhullmhaithe in eagar
+      empty: Níl aon fhreagraí réamhullmhaithe sainithe agat go fóill.
+      navigation_title: Freagraí Réamhullmhaithe
+      title: Freagraí Réamhullmhaithe don Mhodhnóireacht
     webhooks:
       add_new: Cuir críochphointe leis
       delete: Scrios
@@ -1550,6 +1551,9 @@ ga:
     new_pending_account:
       body: Tá sonraí an chuntais nua thíos. Is féidir leat an t-iarratas seo a cheadú nó a dhiúltú.
       subject: Cuntas nua le léirmheas ar %{instance} (%{username})
+    new_pending_accounts:
+      body: Cruthaíodh cuntais nua ar %{instance}. Ós rud é go bhfuil do fhreastalaí cumraithe chun ríomhphoist dheimhniúcháin a chur siar go dtí go mbeidh ceadú faighte ón modhnóir, ní raibh deis ag na cuntais sin a seoltaí ríomhphoist a fhíorú go fóill. Tá sonraí na gcuntas nua thíos. Is féidir leat na hiarratais seo a cheadú nó a dhiúltú.
+      subject: Cuntais nua le hathbhreithniú ar %{instance}
     new_report:
       body: Thuairiscigh %{reporter} %{target}
       body_remote: Thuairiscigh duine éigin ó %{domain} %{target}
@@ -1706,6 +1710,12 @@ ga:
     auto: Uath
     dark: Dorcha
     light: Solas
+  color_theme:
+    cyan: Cian
+    indigo: Indigeo
+    lime: Aoil
+    orange: Oráiste
+    pink: Bándearg
   contrast:
     auto: Uath
     high: Ard

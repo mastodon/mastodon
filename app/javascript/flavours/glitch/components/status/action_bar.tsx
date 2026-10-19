@@ -162,6 +162,16 @@ const StatusReblogButton: React.FC<{
 }> = ({ statusId, children }) => {
   const { boost, quote } = useStatusIcons(statusId);
 
+  const handleShiftClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (e.shiftKey) {
+        e.preventDefault();
+        boost.action();
+      }
+    },
+    [boost],
+  );
+
   if (quickBoosting) {
     return (
       <ToggleButton
@@ -198,6 +208,7 @@ const StatusReblogButton: React.FC<{
           ),
         }}
         leadingIcon={boost.icon}
+        onClick={handleShiftClick}
       >
         {children}
       </MenuTrigger>

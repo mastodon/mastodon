@@ -4,7 +4,7 @@ import type { ApiAccountJSON } from './accounts';
 import type { ApiCollectionJSON } from './collections';
 import type { ApiCustomEmojiJSON } from './custom_emoji';
 import type { ApiMediaAttachmentJSON } from './media_attachments';
-import type { ApiPollJSON } from './polls';
+import type { ApiPollJSON, ApiPollOptionJSON } from './polls';
 import type { ApiQuoteJSON, ApiQuotePolicyJSON } from './quotes';
 
 // See app/modals/status.rb
@@ -146,6 +146,20 @@ export interface ApiStatusTranslationJSON {
   poll?: {
     id: string;
     options: { title: string }[];
+  };
+}
+
+export interface ApiStatusHistoryJSON {
+  content: string;
+  spoiler_text: string;
+  sensitive: boolean;
+  created_at: string;
+  account: ApiAccountJSON;
+  media_attachments: ApiMediaAttachmentJSON[];
+  emojis: ApiCustomEmojiJSON[];
+  quote?: ApiQuoteJSON;
+  poll?: {
+    options: ApiPollOptionJSON[];
   };
 }
 

@@ -5,12 +5,13 @@
   --base-color-bg-desktop: #efecf8;
   --base-color-fg: var(--color-indigo-950);
   --base-color-fg-on-accent: var(--base-color-bg);
-  --base-color-accent: var(--color-indigo-600);
+  --base-color-fg-accent: var(--color-indigo-700);
+  --base-color-bg-accent: var(--color-indigo-600);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
-    --base-color-accent: var(--color-indigo-700);
+    --base-color-bg-accent: var(--color-indigo-700);
   }
 }
 
@@ -19,13 +20,14 @@
   --base-color-bg-desktop: #f2f6e9;
   --base-color-fg: var(--color-lime-950);
   --base-color-fg-on-accent: var(--base-color-fg);
-  --base-color-accent: var(--color-lime-500);
+  --base-color-fg-accent: var(--color-lime-700);
+  --base-color-bg-accent: var(--color-lime-500);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
     --base-color-fg-on-accent: var(--base-color-bg);
-    --base-color-accent: var(--color-lime-800);
+    --base-color-bg-accent: var(--color-lime-800);
   }
 }
 
@@ -34,13 +36,14 @@
   --base-color-bg-desktop: #fceef9;
   --base-color-fg: var(--color-pink-950);
   --base-color-fg-on-accent: var(--base-color-fg);
-  --base-color-accent: var(--color-pink-500);
+  --base-color-fg-accent: var(--color-pink-700);
+  --base-color-bg-accent: var(--color-pink-500);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
     --base-color-fg-on-accent: var(--base-color-bg);
-    --base-color-accent: var(--color-pink-800);
+    --base-color-bg-accent: var(--color-pink-800);
   }
 }
 
@@ -49,13 +52,14 @@
   --base-color-bg-desktop: #fff0e5;
   --base-color-fg: var(--color-orange-950);
   --base-color-fg-on-accent: var(--base-color-fg);
-  --base-color-accent: var(--color-orange-500);
+  --base-color-fg-accent: var(--color-orange-700);
+  --base-color-bg-accent: var(--color-orange-500);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
     --base-color-fg-on-accent: var(--color-orange-50);
-    --base-color-accent: var(--color-orange-800);
+    --base-color-bg-accent: var(--color-orange-800);
   }
 }
 
@@ -64,13 +68,14 @@
   --base-color-bg-desktop: #e5f6fa;
   --base-color-fg: var(--color-cyan-950);
   --base-color-fg-on-accent: var(--base-color-fg);
-  --base-color-accent: var(--color-cyan-500);
+  --base-color-fg-accent: var(--color-cyan-700);
+  --base-color-bg-accent: var(--color-cyan-500);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
     --base-color-fg-on-accent: var(--color-cyan-50);
-    --base-color-accent: var(--color-cyan-800);
+    --base-color-bg-accent: var(--color-cyan-800);
   }
 }
 
@@ -81,7 +86,7 @@
   --color-text-secondary: #{utils.css-alpha(var(--base-color-fg), 80%)};
   --color-text-tertiary: #{utils.css-alpha(var(--base-color-fg), 70%)};
   --color-text-inverted: var(--base-color-bg);
-  --color-text-brand: var(--base-color-accent);
+  --color-text-brand: var(--base-color-fg-accent);
   --color-text-brand-soft: color-mix(
     in oklab,
     var(--color-text-primary),
@@ -101,7 +106,7 @@
   --color-text-bookmark-highlight: var(--color-text-error); // legacy
   --color-text-favourite-highlight: var(--color-text-warning); // legacy
   --color-text-on-media: var(--color-text-inverted); // legacy
-  --color-text-status-links: var(--base-color-accent); // legacy
+  --color-text-status-links: var(--color-text-brand); // legacy
 
   /* BACKGROUND TOKENS */
 
@@ -109,7 +114,7 @@
   --color-bg-primary: var(--base-color-bg);
   --color-bg-desktop: var(--base-color-bg-desktop);
   --color-bg-highlight: #{utils.css-alpha(
-      var(--base-color-accent),
+      var(--base-color-bg-accent),
       var(--base-highlight-strength)
     )};
   --overlay-strength-secondary: 4%; // legacy
@@ -124,10 +129,10 @@
   --color-bg-disabled: var(--color-grey-400); // legacy
 
   // Brand
-  --color-bg-brand-base: var(--base-color-accent);
+  --color-bg-brand-base: var(--base-color-bg-accent);
   --color-bg-brand-base-hover: color-mix(
     in srgb,
-    var(--base-color-accent),
+    var(--base-color-bg-accent),
     var(--color-text-on-brand-base) 10%
   );
   --color-bg-brand-soft: var(--color-bg-highlight); // legacy
@@ -156,10 +161,10 @@
 
   /* BORDER TOKENS */
 
-  --color-border-primary: #{utils.css-alpha(var(--base-color-accent), 30%)};
+  --color-border-primary: #{utils.css-alpha(var(--base-color-bg-accent), 30%)};
   --color-border-strong: var(--base-color-fg);
   --color-border-input: #{utils.css-alpha(var(--base-color-fg), 70%)};
-  --color-border-brand: var(--base-color-accent); // legacy
+  --color-border-brand: var(--base-color-bg-accent); // legacy
   --color-border-brand-soft: var(--color-border-primary); // legacy
   --color-border-error: var(--base-color-danger); // legacy
   --color-border-media: rgb(252 248 255 / 15%); // legacy

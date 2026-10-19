@@ -161,6 +161,15 @@ export const Menu: React.FC<MenuProps> = ({
 
   const toggleMenu = isMenuOpen ? closeMenu : openMenu;
 
+  const handleTriggerClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (!e.defaultPrevented) {
+        toggleMenu();
+      }
+    },
+    [toggleMenu],
+  );
+
   const handleMenuNavigation = useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
       if (!listElement) {
@@ -240,7 +249,7 @@ export const Menu: React.FC<MenuProps> = ({
       'aria-haspopup': role,
       'aria-expanded': isMenuOpen,
       'aria-controls': listElement ? listId : undefined,
-      onClick: toggleMenu,
+      onClick: handleTriggerClick,
       onKeyDown: handleMenuNavigation,
     };
 
@@ -260,17 +269,18 @@ export const Menu: React.FC<MenuProps> = ({
       menuListProps,
     };
   }, [
-    type,
     isMenuOpen,
     openMenu,
     closeMenu,
     toggleMenu,
     triggerElement,
     listElement,
-    mountListElement,
+    type,
     triggerId,
     listId,
+    handleTriggerClick,
     handleMenuNavigation,
+    mountListElement,
   ]);
 
   return <MenuContext value={contextValue}>{children}</MenuContext>;
