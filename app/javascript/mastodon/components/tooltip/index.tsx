@@ -137,7 +137,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   return (
     <>
       {
-        // eslint-disable-next-line react-hooks/refs
+        // oxlint-disable-next-line react-hooks/refs
         children({
           getTooltipProps: getTooltipProps as GetTooltipProps,
           tooltipId,
