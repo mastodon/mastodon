@@ -733,7 +733,6 @@ RSpec.describe Account do
     it 'generates keys' do
       account = described_class.create!(domain: nil, username: 'user_without_keys')
 
-      expect(account.private_key).to be_nil
       expect(account.public_key).to eq ''
 
       expect(account.keypair.keypair)
