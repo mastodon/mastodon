@@ -2,9 +2,9 @@
   = link_to edit_admin_warning_preset_path(warning_preset), class: 'announcements-list__item__title' do
     = warning_preset.title.presence || truncate(warning_preset.text)
     - if warning_preset.action_category?
-      %span.information-badge= t("admin.warning_presets.type.#{AccountWarningPreset::MAP_TO_CATEGORY[warning_preset.action_category]}")
+      %span.information-badge= t("admin.warning_presets.dropdown.#{AccountWarningPreset::MAP_TO_CATEGORY[warning_preset.action_category]}")
     - else
-      %span.information-badge= t('admin.warning_presets.type.all_types')
+      %span.information-badge= t('admin.warning_presets.dropdown.all_actions')
 
   .announcements-list__item__action-bar
     .announcements-list__item__meta
