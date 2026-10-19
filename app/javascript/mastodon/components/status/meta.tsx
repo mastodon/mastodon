@@ -26,6 +26,7 @@ import InlineAccount from '../inline_account';
 import { LoadingIndicator } from '../loading_indicator';
 import { Menu, MenuItem, MenuList, MenuTrigger } from '../menu';
 import { RelativeTimestamp } from '../relative_timestamp';
+import { Tooltip } from '../tooltip';
 
 import classes from './meta.module.scss';
 import { statusLink } from './utils';
@@ -182,16 +183,31 @@ const StatusTimestampMeta: React.FC<
         />
       )}
 
-      <MenuTrigger as='button' className={classes.editedButton}>
-        <FormattedDateWrapper
-          value={createdAt}
-          year='numeric'
-          month='short'
-          day='2-digit'
-          hour='2-digit'
-          minute='2-digit'
-        />
-      </MenuTrigger>
+      <Tooltip
+        text={
+          <FormattedMessage
+            id='status.edited_hint'
+            defaultMessage='Show version history'
+          />
+        }
+      >
+        {({ getTooltipProps }) => (
+          <MenuTrigger
+            {...getTooltipProps()}
+            as='button'
+            className={classes.editedButton}
+          >
+            <FormattedDateWrapper
+              value={createdAt}
+              year='numeric'
+              month='short'
+              day='2-digit'
+              hour='2-digit'
+              minute='2-digit'
+            />
+          </MenuTrigger>
+        )}
+      </Tooltip>
 
       <MenuList placement='bottom-start' maxWidth={250}>
         {loading && (
