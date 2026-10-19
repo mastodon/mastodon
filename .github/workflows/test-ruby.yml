@@ -69,6 +69,7 @@ jobs:
           retention-days: 0
 
   test:
+    name: test (.ruby-version)
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
@@ -164,7 +165,7 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   test-e2e:
-    name: End to End testing
+    name: End to End testing (.ruby-version)
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
