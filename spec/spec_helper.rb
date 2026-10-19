@@ -28,10 +28,6 @@ RSpec.configure do |config|
     Setting.registrations_mode = 'open'
   end
 
-  config.after :suite do
-    FileUtils.rm_rf(Rails.root.glob('spec/test_files'))
-  end
-
   # Use the GitHub Annotations formatter for CI
   if ENV['GITHUB_ACTIONS'] == 'true' && ENV['GITHUB_RSPEC'] == 'true'
     require 'rspec/github'
