@@ -191,9 +191,10 @@ const StatusTimestampMeta: React.FC<
           />
         }
       >
-        {({ getTooltipProps }) => (
+        {({ getTooltipProps, tooltipId }) => (
           <MenuTrigger
             {...getTooltipProps()}
+            aria-describedby={tooltipId}
             as='button'
             className={classes.editedButton}
           >
