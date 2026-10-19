@@ -119,7 +119,7 @@ export const ComposeButton: React.FC<{
       </FloatingActionButton>
     ) : (
       <div className={classes.root} style={style} data-fullscreen={false}>
-        {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+        {/* oxlint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           onClick={handleMinimizedTextClick}
           className={classNames(
@@ -130,7 +130,7 @@ export const ComposeButton: React.FC<{
         >
           <ComposeFormHeader />
         </div>
-        {/* eslint-enable */}
+        {/* oxlint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       </div>
     );
   }
