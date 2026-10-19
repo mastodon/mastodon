@@ -90,6 +90,7 @@ vi:
       enable: Mở lại
       enable_sign_in_token: Bật yêu cầu nhập mã bảo mật
       enable_sign_in_token_auth: Bật xác minh bằng email
+      enable_unconfirmed: Cho phép xác minh email
       enabled: Đã duyệt
       enabled_msg: Đã kích hoạt lại tài khoản %{username} thành công
       follow_recommendations:
@@ -287,6 +288,7 @@ vi:
         create_domain_block_html: "%{name} đã chặn máy chủ %{target}"
         create_email_domain_block_html: "%{name} đã chặn tên miền email %{target}"
         create_ip_block_html: "%{name} đã chặn IP %{target}"
+        create_moderation_subscription_html: "%{name} đã tạo kiểm duyệt đăng ký %{target}"
         create_relay_html: "%{name} đã tạo relay %{target}"
         create_unavailable_domain_html: "%{name} đã bỏ liên hợp với máy chủ %{target}"
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
@@ -302,6 +304,7 @@ vi:
         destroy_email_domain_block_html: "%{name} đã bỏ chặn email %{target}"
         destroy_instance_html: "%{name} đã thanh trừng máy chủ %{target}"
         destroy_ip_block_html: "%{name} đã bỏ chặn IP %{target}"
+        destroy_moderation_subscription_html: "%{name} đã xóa kiểm duyệt đăng ký %{target}"
         destroy_relay_html: "%{name} đã xóa relay %{target}"
         destroy_status_html: "%{name} đã xóa tút của %{target}"
         destroy_unavailable_domain_html: "%{name} tiếp tục liên hợp với máy chủ %{target}"
@@ -1297,9 +1300,10 @@ vi:
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ
-      edit_preset: Sửa mẫu có sẵn
-      empty: Bạn chưa thêm mẫu cảnh cáo nào cả.
-      title: Cảnh báo cài sẵn
+      edit_preset: Sửa mẫu phản hồi
+      empty: Bạn chưa thêm mẫu phản hồi nào cả.
+      navigation_title: Mẫu phản hồi
+      title: Mẫu phản hồi kiểm duyệt
     webhooks:
       add_new: Thêm endpoint
       delete: Xóa bỏ
@@ -1350,6 +1354,9 @@ vi:
     new_pending_account:
       body: Thông tin chi tiết của tài khoản mới ở phía dưới. Bạn có thể phê duyệt hoặc từ chối người này.
       subject: Tài khoản chờ xét duyệt trên %{instance} (%{username})
+    new_pending_accounts:
+      body: Các tài khoản mới đã được tạo trên %{instance}. Do máy chủ của bạn được cấu hình để trì hoãn việc gửi email xác nhận cho đến khi có sự phê duyệt từ người kiểm duyệt, nên các tài khoản này vẫn chưa có cơ hội xác thực địa chỉ email của mình. Thông tin chi tiết về các tài khoản mới này được liệt kê dưới đây. Bạn có thể phê duyệt hoặc từ chối các yêu cầu đăng ký này.
+      subject: Những tài khoản mới cần phê duyệt trên %{instance}
     new_report:
       body: "%{reporter} vừa báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
@@ -1458,11 +1465,16 @@ vi:
     security: Bảo mật
     set_new_password: Đặt mật khẩu mới
     setup:
+      correct_email: Địa chỉ chính xác
       email_below_hint_html: Kiểm tra hộp thư rác hoặc yêu cầu gửi lại. Bạn có thể sửa địa chỉ email của mình nếu sai.
       email_settings_hint_html: Nhấn vào link được gửi đến %{email} để bắt đầu dùng Mastodon. Chúng tôi đợi bạn.
+      email_settings_hint_wait_html: Ứng dụng của bạn đang chờ duyệt. Bạn sẽ nhận được email đến %{email}. Khi đó, nhấn vào liên kết để sử dụng Mastodon. Chúng tôi đợi bạn.
       link_not_received: Không nhận được mã?
       new_confirmation_instructions_sent: Bạn sẽ nhận được một email mới với liên kết xác minh sau vài phút!
       title: Kiểm tra email của bạn
+      title_wait: Xem hộp thư đến của bạn
+      wrong_email: Sai địa chỉ email?
+      wrong_email_below_hint_html: Đừng lo! Bạn có thể sửa lại địa chỉ email bên dưới.
     sign_in:
       preamble_html: Đăng nhập bằng tài khoản <strong>%{domain}</strong>. Nếu đăng ký trên một máy chủ khác, bạn sẽ không thể đăng nhập tại đây.
       title: Đăng nhập %{domain}
@@ -1499,6 +1511,12 @@ vi:
     auto: Tự động
     dark: Tối
     light: Sáng
+  color_theme:
+    cyan: Xanh lơ
+    indigo: Chàm
+    lime: Vàng chanh
+    orange: Cam
+    pink: Hồng
   contrast:
     auto: Tự động
     high: Cao
@@ -1542,6 +1560,9 @@ vi:
       more_details_html: Đọc <a href="%{terms_path}">chính sách bảo mật</a> để biết thêm chi tiết.
       username_available: Tên người dùng của bạn sẽ có thể đăng ký lại
       username_unavailable: Tên người dùng của bạn sẽ không thể đăng ký mới
+  density:
+    compact: Gọn gàng
+    default: Mặc định
   disputes:
     strikes:
       action_taken: Hành động áp dụng

@@ -21,7 +21,7 @@ vi:
       admin_account_action:
         include_statuses: Người dùng sẽ thấy các tút nào của họ bị kiểm duyệt
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
-        text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">mẫu có sẵn</a> để tiết kiệm thời gian
+        text: Tùy chọn. Bạn có thể dùng biểu thức tút. Nó sẽ xuất hiện dưới mẫu phản hồi
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         types:
           disable: Tạm không cho đăng nhập tài khoản.
@@ -29,7 +29,7 @@ vi:
           sensitive: Gán nhãn nhạy cảm cho tất cả media của tài khoản này.
           silence: Cấm đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
           suspend: Vô hiệu hóa và xóa mọi nội dung. Có thể đảo ngược quyết định trước 30 ngày.
-        warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm chú thích riêng
+        warning_preset_html: Tùy chọn. Bạn có thể <a href="%{path}">quản lý ở đây</a>
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
         ends_at: Tùy chọn. Thông báo sẽ tự động hủy vào lúc này
@@ -99,6 +99,7 @@ vi:
         media_cache_retention_period: Các tệp phương tiện từ các tút do người dùng máy chủ khác thực hiện sẽ được lưu vào bộ đệm trên máy chủ của bạn. Khi được đặt thành giá trị dương, phương tiện sẽ bị xóa sau số ngày được chỉ định. Nếu dữ liệu phương tiện được yêu cầu sau khi bị xóa, dữ liệu đó sẽ được tải xuống lại nếu nội dung nguồn vẫn còn. Do những hạn chế về tần suất thẻ xem trước liên kết thăm dò ý kiến ​​các trang web của bên thứ ba, bạn nên đặt giá trị này thành ít nhất 14 ngày, nếu không thẻ xem trước liên kết sẽ không được cập nhật theo yêu cầu trước thời gian đó.
         min_age: Thành viên sẽ được yêu cầu xác nhận ngày sinh của họ trong quá trình đăng ký
         peers_api_enabled: Danh sách các máy chủ khác mà máy chủ này đã liên hợp. Không có dữ liệu nào được đưa vào đây về việc bạn có liên kết với một máy chủ nhất định hay không, chỉ là máy chủ của bạn biết về nó. Điều này được sử dụng bởi các dịch vụ thu thập số liệu thống kê về liên kết theo nghĩa chung.
+        postpone_confirmation_emails: Khi cài đặt này được bật, các email xác minh dành cho những tài khoản đang chờ phê duyệt sẽ chỉ được gửi đi sau khi các tài khoản đó đã được phê duyệt. Điều này có thể gây bất tiện cho người dùng trong quá trình đăng ký, vì họ vẫn cần xác nhận địa chỉ email của mình kịp thời sau khi nhận được email, nhưng lại không còn quyền kiểm soát thời điểm email đó được gửi đi. Hơn nữa, điều này có thể làm tăng khối lượng công việc cho người kiểm duyệt, do Mastodon sẽ không thể lọc bỏ các tài khoản đang chờ phê duyệt có địa chỉ email không hợp lệ trước khi chúng được phê duyệt.
         profile_directory: Liệt kê tất cả người đã chọn tham gia để có thể khám phá.
         require_invite_text: Khi đăng ký yêu cầu phê duyệt thủ công, hãy đặt câu hỏi "Tại sao bạn muốn tham gia?" nhập văn bản bắt buộc thay vì tùy chọn
         site_contact_email: Cách mọi người có thể liên hệ với bạn khi có thắc mắc về pháp lý hoặc hỗ trợ.
@@ -191,12 +192,12 @@ vi:
       account_migration:
         acct: Tài khoản mới
       account_warning_preset:
-        text: Văn bản cài sẵn
+        text: Nội dung phản hồi
         title: Tựa đề
       admin_account_action:
         include_statuses: Đính kèm những tút bị báo cáo trong e-mail
         send_email_notification: Thông báo cho người này qua email
-        text: Chú thích riêng
+        text: Tùy chỉnh phản hồi
         type: Hành động
         types:
           disable: Khóa
@@ -204,7 +205,7 @@ vi:
           sensitive: Nhạy cảm
           silence: Hạn chế
           suspend: Vô hiệu hóa
-        warning_preset_id: Dùng mẫu có sẵn
+        warning_preset_id: Mẫu phản hồi
       announcement:
         all_day: Sự kiện diễn ra hằng ngày
         ends_at: Kết thúc sự kiện
@@ -244,6 +245,7 @@ vi:
         setting_always_send_emails: Luôn gửi email thông báo
         setting_auto_play_gif: Phát ảnh GIF tự động
         setting_boost_modal: Kiểm soát khả năng đăng lại
+        setting_color_scheme: Chế độ
         setting_contrast: Độ tương phản
         setting_default_language: Ngôn ngữ tút
         setting_default_privacy: Kiểu tút
@@ -251,6 +253,7 @@ vi:
         setting_default_sensitive: Đánh dấu media nhạy cảm
         setting_default_spoiler_field: Dùng cảnh báo nội dung mặc định
         setting_delete_modal: Hỏi trước khi xóa tút
+        setting_density: Mật độ
         setting_disable_hover_cards: Không hiện popup xem trước hồ sơ
         setting_disable_swiping: Không dùng thao tác vuốt
         setting_display_media: Hiển thị phương tiện
@@ -269,6 +272,7 @@ vi:
         setting_system_font_ui: Phông chữ mặc định hệ thống
         setting_system_scrollbars_ui: Thanh cuộn mặc định hệ thống
         setting_theme: Giao diện
+        setting_theme_color: Màu chủ đề
         setting_trends: Hiện xu hướng trong ngày
         setting_unfollow_modal: Hỏi trước khi bỏ theo dõi ai đó
         setting_use_blurhash: Làm mờ phương tiện bị ẩn
@@ -307,6 +311,7 @@ vi:
         media_cache_retention_period: Thời hạn lưu trữ cache media
         min_age: Độ tuổi tối thiểu
         peers_api_enabled: Công khai danh sách các máy chủ được phát hiện trong API
+        postpone_confirmation_emails: Hoãn gửi email xác minh sau khi phê duyệt
         profile_directory: Cho phép hiện danh bạ thành viên
         registrations_mode: Ai có thể đăng ký
         remote_live_feed_access: Truy cập bảng tin gồm những tút từ máy chủ khác

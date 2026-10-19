@@ -292,6 +292,7 @@ da:
         create_domain_block_html: "%{name} blokerede domænet %{target}"
         create_email_domain_block_html: "%{name} blokerede e-maildomænet %{target}"
         create_ip_block_html: "%{name} oprettede en regel for IP %{target}"
+        create_moderation_subscription_html: "%{name} oprettede moderationsabonnement %{target}"
         create_relay_html: "%{name} oprettede videresendelsen %{target}"
         create_unavailable_domain_html: "%{name} stoppede levering til domænet %{target}"
         create_user_role_html: "%{name} oprettede %{target}-rolle"
@@ -307,6 +308,7 @@ da:
         destroy_email_domain_block_html: "%{name} afblokerede e-maildomænet %{target}"
         destroy_instance_html: "%{name} udrensede domænet %{target}"
         destroy_ip_block_html: "%{name} slettede en regel for IP %{target}"
+        destroy_moderation_subscription_html: "%{name} slettede moderationsabonnement %{target}"
         destroy_relay_html: "%{name} oprettede videresendelsen %{target}"
         destroy_status_html: "%{name} fjernede indlægget fra %{target}"
         destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
@@ -355,10 +357,18 @@ da:
         update_user_role_html: "%{name} ændrede %{target}-rolle"
         update_username_block_html: "%{name} opdaterede regel for brugernavne indeholdende %{target}"
         usable_tag_html: kan anvendes;
+      automated_actions:
+        create_domain_allow_html: Tillod automatisk federering med domænet %{target}
+        create_domain_block_html: Blokerede automatisk domænet %{target}
+        destroy_domain_allow_html: Federering med domænet %{target} blev automatisk afvist
+        destroy_domain_block_html: Blokering af domænet %{target} blev automatisk ophævet
+        update_domain_block_html: Opdaterede automatisk domæneblokering for %{target}
       deleted_account: slettet konto
+      deleted_suggestion: et slettet moderationsabonnement
       empty: Ingen logger fundet.
       filter_by_action: Filtrér efter handling
       filter_by_user: Filtrér efter bruger
+      suggested_by_html: Handling foreslået af %{subscription}
       title: Revisionslog
       unavailable_instance: "(domænenavn utilgængeligt)"
     announcements:
@@ -477,6 +487,8 @@ da:
       confirm_downgrade:
         cancel: Annuller
         confirm: Nedgradér
+        preamble_html: Du er ved at nedgradere den eksisterende blokering på <strong>%{domain}</strong> og dens underdomæner.
+        title: Bekræft nedgradering af blokering af domænet %{domain}
       confirm_suspension:
         cancel: Annuller
         confirm: Suspendér
@@ -485,7 +497,7 @@ da:
         remove_all_data: Dette vil fjerne alt indhold, medier og profildata for dette domænes konti fra din server.
         stop_communication: Din server vil stoppe kommunikationen med disse servere.
         title: Bekræft blokering af domænet %{domain}
-        undo_relationships: Dette vil ophæve ethvert følgeforhold mellem konti på disse servere og dine.
+        undo_relationships: Dette vil ophæve ethver følgerelation mellem konti på disse servere og dine.
       created_msg: Domæneblokering under behandling
       destroyed_msg: Domæneblokering er blevet fjernet
       domain: Domæne
@@ -676,6 +688,8 @@ da:
       title: Følg-anbefalinger
       unsuppress: Genopret følg-anbefaling
     instances:
+      advisories:
+        title: Anbefalinger fra moderationsabonnementer
       audit_log:
         title: Seneste Revisionslogger
         view_all: Vis alle revisionslogger
@@ -699,6 +713,7 @@ da:
         comment: Internt notat
         description_html: Der kan defineres indholdspolitikker, som anvendes på alle konti fra dette domæne samt alle dets underdomæner.
         limited_federation_mode_description_html: Man kan vælge, om føderation med dette domæne skal tillades.
+        moderation_subscription: Moderationsabonnement
         policies:
           reject_media: Afvis medier
           reject_reports: Afvis anmeldelser
@@ -780,20 +795,58 @@ da:
       search: Søg
       title: IP-regler
     moderation_subscriptions:
+      add_new: Tilføj abonnement
+      advisory_action: 'Handling: %{action}'
       advisory_actions:
         accept: tillad
         reject: suspendér
+      apply_automatically: Anvend anbefalinger automatisk
       apply_conditions:
         always: Altid
         never: Aldrig
         safely: Kun hvis det ikke bryder relationer
+      apply_conditions_hint:
+        always: Anvend altid de anbefalede handlinger automatisk. Brug kun denne indstilling til lister, som du har fuld tillid til.
+        never: Anvend aldrig de anbefalede handlinger automatisk. Udarbejd altid et forslag i stedet.
+        safely: Anvend de anbefalede handlinger, medmindre de vil afbryde eksisterende følgerelationer med lokale brugere. I sådanne tilfælde vil der i stedet blive genereret et forslag.
       delete: Slet
+      destroyed_msg: Slettede moderationsabonnement
+      empty: Der er endnu ikke abonneret på nogen moderationsliste.
+      last_synced_at: Sidst synkroniseret
+      list_action: Abonnementstype
+      list_actions:
+        accept: Tillad-liste
+        default: Blandet (tillad og afvis)
+        reject: Blokér-liste
+      list_actions_hint:
+        accept: Elementer med ingen angivet handling vil blive behandlet som tilladt. Blokeringer vil blive ignoreret.
+        default: Elementer med ingen angivet handling vil blive behandlet som blokeringer. Blokeringer og tilladelser vil begge blive behandlet som sådanne.
+        reject: Elementer med ingen angivet handling vil blive behandlet som blokeringer. Tilladelser vil blive ignoreret.
+      list_actions_short:
+        accept: Tillad-liste
+        default: Blandet
+        reject: Blokér-liste
       name: Navn
       new:
         create: Abonnér
+        title: Nyt moderationsabonnement
+      override_unattributed: Tilsidesæt manuelle blokeringer
+      override_unattributed_hint: Tillad, at dette abonnement automatisk opgraderer eller overtager eksisterende manuelle blokeringer, når der automatisk anvendes anbefalinger.
+      policies:
+        apply_advisories: Anvender automatisk anbefalinger
+        apply_advisories_safely: Anvender automatisk anbefalinger, der ikke bryder relationer
+        apply_retractions: Anvender automatisk tilbagekaldelser
+      priority: Prioritet
+      priority_hint: Moderationsabonnementer vurderes efter prioritet, og abonnementer med et lavere nummer har forrang for abonnementer med et højere nummer.
+      retract_automatically: Tilbagekald anbefalinger automatisk
+      retract_automatically_hint: Om tilbagekaldelse eller nedgradering af politikændringer skal tillades, når abonnementet fjerner et tilsvarende element. Når automatisk tilbagekaldelse er aktiveret, og der findes en tilsvarende anbefaling på en liste med lavere prioritet, vil denne blive anvendt. Når automatisk tilbagekaldelse er deaktiveret, genereres der i stedet et forslag.
       show:
+        delete_confirm: Er du sikker på, at du vil slette dette moderationsabonnement?
         edit: Rediger abonnement
+        empty: Dette abonnement har endnu ingen anbefaling.
+        title: 'Moderationsabonnement: %{name}'
       tabs:
+        logs: Logs
         subscriptions: Abonnementer
         suggestions: Forslag
       title: Moderation-abonnementer
@@ -801,6 +854,8 @@ da:
       types:
         csv_list: CSV-liste
       url: URL
+    moderation_subscriptions_logs:
+      title: Logs for moderationsabonnementer
     moderation_suggestions:
       actions:
         accept: Tillad
@@ -811,13 +866,19 @@ da:
       apply_accept: Tillad
       apply_limit: Begræns
       apply_reject: Suspendér
-      apply_retract: Tilbagetræk
+      apply_retract: Tilbagekald
       current_states:
         accept: i øjeblikket tilladt
         limit: i øjeblikket begrænset
         reject: i øjeblikket suspenderet
+      description: Nedenfor er forslag fra dine moderationsabonnementer, sorteret efter prioritet.
+      destroyed_msg: Afviste forslaget for %{target_key}
       dismiss: Afvis forslag
+      empty: Der er ikke noget moderationsforslag på nuværende tidspunkt.
+      retracted_msg: Tilbagekaldte politik for %{target_key}
       suggested_from_html: Foreslået af %{link}
+      title: Moderationsforslag
+      unable_to_apply_msg: Kan ikke anvende forslag for %{target_key}
     relationships:
       title: "%{acct}-relationer"
     relays:
@@ -1362,9 +1423,10 @@ da:
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
-      edit_preset: Redigér advarselsforvalg
-      empty: Ingen advarselsforvalg defineret endnu.
-      title: Præindstillinger for advarsel
+      edit_preset: Rediger forudindstillet svar
+      empty: Du har endnu ikke oprettet nogen forudindstillede svar.
+      navigation_title: Forudindstillede svar
+      title: Forudindstillede svar til moderation
     webhooks:
       add_new: Tilføj endepunkt
       delete: Slet
@@ -1413,9 +1475,15 @@ da:
     new_critical_software_updates:
       body: Nye, kritiske Mastodon--versioner er udgivet. Opdatering bør ske hurtigst muligt!
       subject: Kritiske Mastodon-opdateringer er tilgængelige til %{instance}!
+    new_moderation_suggestions:
+      body: De moderationslister, som din server er abonneret på, har offentliggjort nye forslag.
+      subject: Nye moderationsforslag tilgængelige på %{instance}!
     new_pending_account:
       body: Detaljerne for den nye konto fremgår nedenfor. Du kan godkende eller afvise denne ansøgning.
       subject: Ny konto til gennemgang på %{instance} (%{username})
+    new_pending_accounts:
+      body: Der er oprettet nye konti på %{instance}. Da din server er konfigureret til at udsætte bekræftelses-e-mails indtil efter moderationsgodkendelse, har disse konti endnu ikke haft mulighed for at bekræfte deres e-mail-adresse. Oplysningerne om de nye konti fremgår nedenfor. Du kan godkende eller afvise disse ansøgninger.
+      subject: Ny konti til gennemgang på %{instance}
     new_report:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
@@ -1570,6 +1638,12 @@ da:
     auto: Auto
     dark: Mørkt
     light: Lyst
+  color_theme:
+    cyan: Cyan
+    indigo: Indigo
+    lime: Lime
+    orange: Orange
+    pink: Pink
   contrast:
     auto: Auto
     high: Høj
@@ -1999,7 +2073,7 @@ da:
       summary_html: Du bruger en app, der ikke understøtter den seneste version af Mastodon. %{link}.
       title: Du har modtaget en moderationsadvarsel.
     severed_relationships:
-      summary_html: En administrator fra %{from} har suspenderet %{target}, hvilket betyder, at du ikke længere kan modtage opdateringer fra dem eller interagere med dem. %{link} for at hente en liste over de tabte forhold.
+      summary_html: En administrator fra %{from} har suspenderet %{target}, hvilket betyder, at du ikke længere kan modtage opdateringer fra dem eller interagere med dem. %{link} for at hente en liste over de mistede relationer.
       title: Mistede forbindelser med %{name}
   notification_mailer:
     admin:
@@ -2219,7 +2293,7 @@ da:
     preferences: Præferencer
     profile: Offentlig profil
     relationships: Følger og følgere
-    severed_relationships: Afbrudte forhold
+    severed_relationships: Afbrudte relationer
     statuses_cleanup: Automatiseret sletning af indlæg
     strikes: Moderationsadvarsler
     two_factor_authentication: Tofaktorgodkendelse
@@ -2232,7 +2306,7 @@ da:
       user_domain_block: "%{target_name} blev blokeret"
     lost_followers: Mistet følgere
     lost_follows: Mistet fulgte
-    preamble: Du kan miste fulgte og følgere, når du blokerer et domæne, eller når dine moderatorer beslutter at suspendere en fjernserver. Når det sker, kan du downloade lister over afbrudte forhold til inspektion og eventuelt import til en anden server.
+    preamble: Du kan miste fulgte og følgere, når du blokerer et domæne, eller når dine moderatorer beslutter at suspendere en fjernserver. Når det sker, kan du downloade lister over afbrudte relationer til inspektion og eventuelt import til en anden server.
     purged: Oplysninger om denne server er blevet renset af serveradministratoreren.
     type: Begivenhed
   statuses:

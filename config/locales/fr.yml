@@ -93,6 +93,7 @@ fr:
       enable: Activer
       enable_sign_in_token: Activer le contrôle par code de sécurité
       enable_sign_in_token_auth: Activer le jeton d'authentification par courriel
+      enable_unconfirmed: Autoriser le courriel de confirmation
       enabled: Activé
       enabled_msg: Le compte de %{username} a été activé avec succès
       follow_recommendations:
@@ -356,10 +357,18 @@ fr:
         update_user_role_html: "%{name} a changé le rôle %{target}"
         update_username_block_html: "%{name} a mis à jour une règle pour les noms d'utilisateurs contenant %{target}"
         usable_tag_html: peut être utilisé ;
+      automated_actions:
+        create_domain_allow_html: Fédération autorisée automatiquement avec le domaine %{target}
+        create_domain_block_html: Blocage automatique du domaine %{target}
+        destroy_domain_allow_html: Fédération refusée automatiquement avec le domaine %{target}
+        destroy_domain_block_html: Déblocage automatique du domaine %{target}
+        update_domain_block_html: Mise à jour automatique du blocage de domaine pour %{target}
       deleted_account: compte supprimé
+      deleted_suggestion: un abonnement de modération supprimé
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
       filter_by_user: Filtrer par utilisateur·ice
+      suggested_by_html: Action suggérée par %{subscription}
       title: Journal d’audit
       unavailable_instance: "(nom de domaine indisponible)"
     announcements:
@@ -475,6 +484,11 @@ fr:
       undo: Supprimer de la liste blanche
     domain_blocks:
       add_new: Bloquer un nouveau domaine
+      confirm_downgrade:
+        cancel: Annuler
+        confirm: Rétrograder
+        preamble_html: Vous êtes sur le point de rétrograder le blocage existant sur <strong>%{domain}</strong> et ses sous-domaines.
+        title: Confirmer la rétrogradation du blocage de domaine pour %{domain}
       confirm_suspension:
         cancel: Annuler
         confirm: Suspendre
@@ -674,6 +688,8 @@ fr:
       title: Recommandations d'abonnement
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
+      advisories:
+        title: Alertes des abonnements de modération
       audit_log:
         title: Journaux d'audit récents
         view_all: Voir les journaux d'audit complets
@@ -697,6 +713,7 @@ fr:
         comment: Note interne
         description_html: Vous pouvez définir des politiques de contenu qui seront appliquées à tous les comptes de ce domaine et à tous ses sous-domaines.
         limited_federation_mode_description_html: Vous pouvez choisir d'autoriser la fédération avec ce domaine.
+        moderation_subscription: Abonnement de modération
         policies:
           reject_media: Rejeter les médias
           reject_reports: Rejeter les signalements
@@ -777,6 +794,66 @@ fr:
       reset: Réinitialiser
       search: Rechercher
       title: Règles IP
+    moderation_subscriptions:
+      add_new: Ajouter un abonnement
+      advisory_action: 'Action : %{action}'
+      advisory_actions:
+        accept: autoriser
+        limit: masquer
+        reject: suspendre
+      apply_automatically: Appliquer automatiquement les alertes
+      apply_conditions:
+        always: Toujours
+        never: Jamais
+        safely: Uniquement si cela ne brise aucune relation
+      apply_conditions_hint:
+        always: Toujours appliquer automatiquement les actions recommandées. Utilisez cette option uniquement pour les listes de confiance.
+        never: Ne jamais appliquer automatiquement les actions recommandées. Toujours générer une suggestion à la place.
+        safely: Appliquer les actions recommandées à moins qu'elles ne rompent les relations de suivi existantes avec des comptes locaux. Dans de tels cas, une suggestion sera générée.
+      delete: Supprimer
+      destroyed_msg: Abonnement de modération supprimé avec succès
+      empty: Aucun abonnement de modération pour le moment.
+      last_synced_at: Dernière synchronisation le
+      list_action: Type d'abonnement
+      list_actions:
+        accept: Liste d’autorisation
+        default: Mixte (autorisation et blocage)
+        reject: Liste de blocage
+      list_actions_hint:
+        accept: Les éléments sans action spécifiée seront traités comme autorisés. Les blocages seront ignorés.
+        default: Les éléments sans action spécifiée seront traités comme des blocages. Les blocages et les autorisations seront tous les deux traités comme tels.
+        reject: Les éléments sans action spécifiée seront traités comme des blocages. Les autorisations seront ignorées.
+      list_actions_short:
+        accept: Liste d’autorisation
+        default: Mixte
+        reject: Liste de blocage
+      name: Nom
+      new:
+        create: S’abonner
+        title: Nouvel abonnement de modération
+      priority: Priorité
+      tabs:
+        logs: Journaux
+        subscriptions: Abonnements
+        suggestions: Suggestions 
+      title: Abonnements de modération
+      type: Type
+      types:
+        csv_list: Liste CSV
+      url: URL
+    moderation_subscriptions_logs:
+      title: Journaux des abonnements de modération
+    moderation_suggestions:
+      actions:
+        accept: Autoriser
+        limit: Masquer
+        reject: Suspendre
+        retract: Retirer la politique actuelle
+      applied_msg: Suggestion appliquée avec succès pour %{target_key}
+      apply_accept: Autoriser
+      apply_limit: Masquer
+      apply_reject: Suspendre
+      apply_retract: Retirer
     relationships:
       title: Relations de %{acct}
     relays:
@@ -1321,9 +1398,10 @@ fr:
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
-      edit_preset: Éditer les avertissements prédéfinis
-      empty: Vous n'avez pas encore créé de paramètres prédéfinis pour les avertissements.
-      title: Préréglages d'avertissement
+      edit_preset: Modifier la réponse standard
+      empty: Vous n'avez pas encore défini de réponses standards.
+      navigation_title: Réponses standards
+      title: Réponses standards de modération
     webhooks:
       add_new: Ajouter un point de terminaison
       delete: Supprimer
@@ -1372,9 +1450,15 @@ fr:
     new_critical_software_updates:
       body: Des nouvelles mises à jour critiques de Mastodon ont été publiées, vous avez sans doute envie de les appliquer dès que possible !
       subject: Des mises à jour critiques de Mastodon sont disponibles pour %{instance} !
+    new_moderation_suggestions:
+      body: Les listes de modération auxquelles votre serveur est abonné ont publié de nouvelles suggestions.
+      subject: Nouvelles suggestions de modération disponible sur %{instance} !
     new_pending_account:
       body: Les détails du nouveau compte se trouvent ci-dessous. Vous pouvez approuver ou rejeter cette demande.
       subject: Nouveau compte à examiner sur %{instance} (%{username})
+    new_pending_accounts:
+      body: De nouveaux comptes ont été créés sur %{instance}. Comme votre serveur est configuré pour envoyer les courriels de confirmation après approbation par l'équipe de modération, ces comptes n'ont pas pu vérifier leur adresse de courriel. Vous trouverez ci-dessous le détail de ces comptes. Vous pouvez accepter ou refuser ces demandes.
+      subject: Nouveaux comptes à examiner sur %{instance}
     new_report:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
@@ -1483,17 +1567,22 @@ fr:
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
     setup:
+      correct_email: Corriger l'adresse
       email_below_hint_html: Consultez votre dossier de courriels indésirables ou demandez-en un autre. Vous pouvez corriger votre adresse de courriel si elle est incorrecte.
       email_settings_hint_html: Cliquer sur le lien envoyé à %{email} pour commencer à utiliser Mastodon. Nous vous attendons ici.
+      email_settings_hint_wait_html: Votre inscription est en cours de validation. Vous devriez recevoir un courriel à l'adresse %{email}. Cliquez alors sur le lien pour commencer à utiliser Mastodon. Nous vous attendons.
       link_not_received: Vous n'avez pas reçu de lien ?
       new_confirmation_instructions_sent: Vous allez recevoir un nouveau courriel avec le lien de confirmation dans quelques minutes !
       title: Vérifiez votre boîte de réception
+      title_wait: Surveillez votre boîte de réception
+      wrong_email: Mauvaise adresse courriel ?
+      wrong_email_below_hint_html: Pas de panique ! Vous pouvez corriger votre adresse courriel ci-dessous.
     sign_in:
       preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
       title: Se connecter à %{domain}
     sign_up:
       manual_review: Les inscriptions sur %{domain} passent par une revue manuelle de nos modérateurs. Pour les aider, écrivez un peu plus sur vous et pourquoi vous souhaitez créer un compte sur %{domain}.
-      preamble: Avec un compte sur ce serveur Mastodon, vous pourrez suivre n'importe quelle autre personne du fediverse, quel que soit l'endroit où son compte est hébergé.
+      preamble: Avec un compte sur ce serveur Mastodon, vous pourrez suivre n'importe quelle autre personne du Fédivers, quel que soit l'endroit où son compte est hébergé.
       title: Mettons les choses en place pour %{domain}.
     status:
       account_status: État du compte
@@ -1524,6 +1613,12 @@ fr:
     auto: Automatique
     dark: Sombre
     light: Clair
+  color_theme:
+    cyan: Cyan
+    indigo: Indigo
+    lime: Citron vert
+    orange: Orange
+    pink: Rose
   contrast:
     auto: Automatique
     high: Élevé
@@ -1567,6 +1662,9 @@ fr:
       more_details_html: Pour plus de détails, voir la <a href="%{terms_path}">politique de confidentialité</a>.
       username_available: Votre nom d’utilisateur·rice sera à nouveau disponible
       username_unavailable: Votre nom d’utilisateur·rice restera indisponible
+  density:
+    compact: Compacte
+    default: Par défaut
   disputes:
     strikes:
       action_taken: Mesure prise
@@ -1638,7 +1736,7 @@ fr:
     status: État
     subscribers: Abonné·e·s
   emoji_styles:
-    auto: Auto
+    auto: Automatique
     native: Natif
     twemoji: Twemoji
   errors:

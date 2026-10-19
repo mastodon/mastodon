@@ -486,9 +486,9 @@ nl:
       add_new: Nieuwe domeinblokkade toevoegen
       confirm_downgrade:
         cancel: Annuleren
-        confirm: Downgraden
-        preamble_html: U staat op het punt om het bestaande blok te downgraden op <strong>%{domain}</strong> en zijn subdomeinen.
-        title: Downgrade domein blokkeren bevestigen voor %{domain}
+        confirm: Afzwakken
+        preamble_html: Je staat op het punt om de bestaande blokkade voor <strong>%{domain}</strong> en zijn subdomeinen af te zwakken.
+        title: Afzwakken domeinblokkade voor %{domain} bevestigen
       confirm_suspension:
         cancel: Annuleren
         confirm: Opschorten
@@ -807,12 +807,12 @@ nl:
         never: Nooit
         safely: Alleen als de relaties niet worden verbroken
       apply_conditions_hint:
-        always: Voorgestelde acties altijd automatisch toepassen. Gebruik deze optie alleen voor lijsten die u volledig vertrouwt.
-        never: Voorgestelde acties nooit automatisch toepassen. In plaats daarvan altijd een suggestie genereren.
-        safely: Aanbevolen acties toepassen, tenzij deze bestaande volgrelaties met lokale gebruikers verbreken. In dergelijke gevallen wordt een suggestie gegenereerd.
+        always: Voorgestelde acties altijd automatisch toepassen. Gebruik deze optie alleen voor lijsten die je volledig vertrouwt.
+        never: Voorgestelde acties nooit automatisch toepassen. In plaats daarvan altijd een aanbeveling genereren.
+        safely: Aanbevolen acties toepassen, tenzij deze bestaande volgrelaties met lokale gebruikers verbreken. In dergelijke gevallen wordt een aanbeveling gegenereerd.
       delete: Verwijderen
-      destroyed_msg: Moderatieabonnement succesvol verwijderd
-      empty: Er is nog geen moderatielijst geabonneerd.
+      destroyed_msg: Moderatie-abonnement succesvol verwijderd
+      empty: Er is nog niet op een moderatielijst geabonneerd.
       last_synced_at: Laatst gesynchroniseerd op
       list_action: Abonnementstype
       list_actions:
@@ -821,6 +821,8 @@ nl:
         reject: Geblokkeerd
       list_actions_hint:
         accept: Items zonder opgegeven actie worden behandeld als toegestaan. Blokkeringen worden genegeerd.
+        default: Items zonder specifieke actie zullen worden behandeld als een blokkade. Blokkades en toestemmingen worden allebei als zodanig behandeld.
+        reject: Items zonder opgegeven actie worden behandeld als een blokkade. Toestemmngen worden genegeerd.
       list_actions_short:
         accept: Toegestaan
         default: Gemengd
@@ -830,10 +832,17 @@ nl:
         create: Abonneren
         title: Nieuw moderatie-abonnement
       override_unattributed: Handmatige blokkades overschrijven
+      override_unattributed_hint: Toestaan dat dit abonnement bestaande handmatige blokkades automatisch opwaardeert of overneemt bij het automatisch toepassen van adviezen.
       policies:
         apply_advisories: Automatisch adviezen toepassen
+        apply_advisories_safely: Past automatisch adviezen toe die geen relaties verbreken
+        apply_retractions: Automatisch intrekkingen toepassen
       priority: Prioriteit
+      priority_hint: Moderatie-abonnementen worden beoordeeld op volgorde van prioriteit; abonnementen met een lager nummer hebben voorrang boven abonnementen met een hoger nummer.
+      retract_automatically: Adviezen automatisch intrekken
+      retract_automatically_hint: Of beleidswijzigingen mogen worden ingetrokken of afgezwakt, wanneer het abonnement een overeenkomstig item verwijdert. Wanneer automatisch intrekken is ingeschakeld en er een overeenkomstig advies bestaat in een lijst met lagere prioriteit, zal dit worden overgenomen. Wanneer automatisch intrekken is uitgeschakeld, wordt er in plaats daarvan een aanbeveling gegenereerd.
       show:
+        delete_confirm: Weet je zeker dat je dit moderatie-abonnement wilt verwijderen?
         edit: Abonnement bewerken
         empty: Dit abonnement heeft nog geen advies.
         title: 'Moderatie-abonnement: %{name}'
@@ -853,16 +862,24 @@ nl:
         accept: Toestaan
         limit: Beperken
         reject: Opschorten
+        retract: Huidig beleid intrekken
+      applied_msg: Aanbeveling succesvol toegepast voor %{target_key}
       apply_accept: Toestaan
       apply_limit: Beperken
       apply_reject: Opschorten
+      apply_retract: Intrekken
       current_states:
         accept: momenteel toegestaan
         limit: momenteel beperkt
         reject: momenteel opgeschort
+      description: Hieronder staan aanbevelingen afkomstig van je moderatie-abonnementen, gerangschikt op prioriteit.
+      destroyed_msg: Aanbeveling voor %{target_key} succesvol afgewezen
       dismiss: Aanbevelingen verwerpen
+      empty: Er is op dit moment geen moderatie-aanbeveling.
+      retracted_msg: Beleid voor %{target_key} met succes ingetrokken
       suggested_from_html: Aanbevolen door %{link}
       title: Moderatie-aanbevelingen
+      unable_to_apply_msg: Kan aanbeveling voor %{target_key} niet toepassen
     relationships:
       title: Volgrelaties van %{acct}
     relays:
@@ -1407,9 +1424,10 @@ nl:
     warning_presets:
       add_new: Nieuwe toevoegen
       delete: Verwijderen
-      edit_preset: Preset voor waarschuwing bewerken
-      empty: Je hebt nog geen presets voor waarschuwingen toegevoegd.
-      title: Presets voor waarschuwingen
+      edit_preset: Standaardantwoord bewerken
+      empty: Je hebt nog geen standaardantwoorden aangemaakt.
+      navigation_title: Standaardantwoorden
+      title: Standaardantwoorden moderatie
     webhooks:
       add_new: Eindpunt toevoegen
       delete: Verwijderen
@@ -1459,10 +1477,14 @@ nl:
       body: Nieuwe kritische versies van Mastodon zijn vrijgegeven. Je zou zo snel mogelijk moeten bijwerken!
       subject: Kritieke Mastodon-updates zijn beschikbaar voor %{instance}!
     new_moderation_suggestions:
+      body: De moderatielijsten waarop jouw server is geabonneerd, hebben nieuwe aanbevelingen gepubliceerd.
       subject: Nieuwe moderatie-aanbevelingen op %{instance} beschikbaar!
     new_pending_account:
       body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren of afwijzen.
       subject: Er dient een nieuw account op %{instance} te worden beoordeeld (%{username})
+    new_pending_accounts:
+      body: Er zijn nieuwe accounts op %{instance} aangemaakt. Aangezien jouw server is geconfigureerd om de bevestiging van e-mails uit te stellen tot na goedkeuring van nieuwe accounts, hebben deze accounts nog geen kans gehad om hun e-mailadres te verifiëren. De details van de nieuwe accounts staan hieronder. Je kunt deze aanvragen goedkeuren of afkeuren.
+      subject: Nieuwe accounts te beoordelen op %{instance}
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
@@ -1574,7 +1596,7 @@ nl:
       correct_email: Adres corrigeren
       email_below_hint_html: Controleer je map met spam, of vraag een nieuwe bevestigingslink aan. Je kan je e-mailadres corrigeren als het verkeerd is.
       email_settings_hint_html: Klik op de link die we naar %{email} hebben gestuurd om Mastodon te gebruiken. We wachten wel even.
-      email_settings_hint_wait_html: Je aanvraag wordt beoordeeld. Binnenkort kun je een e-mail verwachten op %{email}. Wanneer dit bericht arriveert, klik je op de link om Mastodon te gebruiken. We wachten hier op je.
+      email_settings_hint_wait_html: Jouw accountaanvraag wordt beoordeeld. Binnenkort kun je een e-mail verwachten op %{email}. Wanneer dit bericht arriveert, klik je op de link om Mastodon te gebruiken. We wachten hier op je.
       link_not_received: Geen link ontvangen?
       new_confirmation_instructions_sent: Je ontvangt binnen enkele minuten een nieuwe e-mail met de bevestigingslink!
       title: Kijk in je e-mail

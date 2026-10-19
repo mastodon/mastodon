@@ -840,6 +840,7 @@ sv:
       priority: Prioritet
       priority_hint: Modereringsprenumerationer utvärderas i prioritetsordning, prenumerationer med ett lägre antal åsidosätter prenumerationer med ett högre.
       retract_automatically: Dra tillbaka bulletiner automatiskt
+      retract_automatically_hint: Om indragning eller nedgradering av policy-ändringar ska tillåtas när prenumerationen tar bort ett motsvarande objekt. När automatisk indragning är möjlig, och en motsvarande rådgivning finns i en lista med lägre prioriteringar kommer den att antas. När automatisk indragning är inaktiverad, kommer ett förslag att genereras istället.
       show:
         delete_confirm: Är du säker på att du vill ta bort denna modereringsprenumeration?
         edit: Redigera prenumeration
@@ -871,7 +872,10 @@ sv:
         accept: tillåts för närvarande
         limit: för närvarande begränsad
         reject: för närvarande pausad
+      description: Följande är förslag från dina modereringsabonnemang i prioritetsordning.
+      destroyed_msg: Avvisade förslag för %{target_key}
       dismiss: Avfärda förslag
+      empty: Det finns inget modereringsförslag just nu.
       suggested_from_html: Föreslagen av %{link}
       title: Modereringsförslag
     relationships:
@@ -1418,9 +1422,10 @@ sv:
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
-      edit_preset: Redigera varningsförval
-      empty: Du har inte definierat några varningsförval ännu.
-      title: Varning förinställningar
+      edit_preset: Redigera förinställt svar
+      empty: Du har inte definierat några förinställda svar än.
+      navigation_title: Förinställda svar
+      title: Förinställda svar för moderering
     webhooks:
       add_new: Lägg till slutpunkt
       delete: Ta bort

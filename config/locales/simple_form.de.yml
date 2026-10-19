@@ -21,7 +21,7 @@ de:
       admin_account_action:
         include_statuses: Die Person wird sehen, welche Inhalte dich zu dieser Maßnahme veranlasst haben
         send_email_notification: Benutzer*in wird eine Erklärung erhalten, was mit dem Konto geschehen ist
-        text_html: (Optional) Du kannst die Syntax wie für Beiträge verwenden. Du kannst <a href="%{path}">Warnvorlagen hinzufügen</a>, um Zeit zu sparen
+        text: "(Optional) Du kannst die reguläre Syntax wie für Beiträge verwenden, also auch Profile erwähnen und Hashtags nutzen. Sie wird unter der vorgefertigten Antwort erscheinen."
         type_html: Wähle aus, wie mit <strong>%{acct}</strong> vorgegangen werden soll
         types:
           disable: Benutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden.
@@ -29,7 +29,7 @@ de:
           sensitive: Erzwingen, dass alle Medienanhänge dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindert, dass dieses Profil öffentlich sichtbare Beiträge verfassen kann, und verbirgt alle Beiträge und Benachrichtigungen vor Personen, die diesem Profil nicht folgen. Alle Meldungen zu diesem Konto werden geschlossen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
-        warning_preset_id: "(Optional) Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen"
+        warning_preset_html: (Optional) Vorgefertigte Antworten <a href="%{path}">können hier verwaltet werden</a>
       announcement:
         all_day: Falls aktiviert, werden nur der Tag bzw. die Tage innerhalb des Zeitraums angezeigt
         ends_at: "(Optional) Die Ankündigung wird zu diesem Zeitpunkt automatisch zurückgezogen"
@@ -193,12 +193,12 @@ de:
       account_migration:
         acct: Adresse des neuen Kontos
       account_warning_preset:
-        text: Vorlagentext
+        text: Antworttext
         title: Titel
       admin_account_action:
         include_statuses: Gemeldete Beiträge der E-Mail beifügen
         send_email_notification: Benachrichtigung per E-Mail
-        text: Individuelle Verwarnung
+        text: Angepasste Antwort
         type: Aktion
         types:
           disable: Einfrieren
@@ -206,7 +206,7 @@ de:
           sensitive: Inhaltswarnung
           silence: Stummschalten
           suspend: Sperre
-        warning_preset_id: Warnvorlage verwenden
+        warning_preset_id: Vorgefertigte Antwort
       announcement:
         all_day: Ganztägiges Ereignis
         ends_at: Ende der Ankündigung
