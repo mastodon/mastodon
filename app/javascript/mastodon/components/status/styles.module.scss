@@ -219,6 +219,7 @@
   display: flex;
   gap: var(--space-4);
   flex-wrap: wrap;
+  align-items: baseline;
   justify-content: space-between;
   color: var(--color-text-secondary);
   padding-block-start: var(--space-2);
@@ -230,6 +231,7 @@
   > ul {
     display: flex;
     flex-wrap: wrap;
+    align-items: baseline;
     gap: var(--space-1);
   }
 
