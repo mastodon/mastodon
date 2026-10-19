@@ -177,7 +177,7 @@ const QuotedStatusBody: React.FC<{
     > => attachment.type === 'gifv' || attachment.type === 'image',
   );
   const duration = useMemo(() => {
-    const duration = mainAttachment?.meta.original.duration;
+    const duration = mainAttachment?.meta?.original.duration;
     if (!duration) {
       return '';
     }
@@ -193,7 +193,7 @@ const QuotedStatusBody: React.FC<{
     const seconds = totalSeconds % 60;
 
     return formatter.format({ hours, minutes, seconds });
-  }, [mainAttachment?.meta.original.duration]);
+  }, [mainAttachment?.meta?.original.duration]);
   const sensitive = status.sensitive;
 
   const poll = useAppSelector((state) => state.polls[status.poll ?? '']);
