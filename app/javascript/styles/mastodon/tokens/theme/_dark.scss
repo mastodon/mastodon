@@ -32,13 +32,12 @@
   --base-color-bg: var(--color-pink-950);
   --base-color-bg-desktop: #1a1419;
   --base-color-fg: var(--color-pink-50);
-  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-fg-on-accent: var(--base-color-bg);
   --base-color-accent: var(--color-pink-500);
   --base-color-danger: var(--color-red-200);
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
-    --base-color-fg-on-accent: var(--base-color-bg);
     --base-color-accent: var(--color-pink-300);
   }
 }
