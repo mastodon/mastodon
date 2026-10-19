@@ -105,7 +105,8 @@ export function useAutosuggestMenu({
     useCallback(
       (event) => {
         // Check if this composing: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/isComposing
-        if (event.nativeEvent.isComposing) {
+        // and https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event#keydown_events_with_ime
+        if (event.nativeEvent.isComposing || event.nativeEvent.keyCode == 229) {
           return;
         }
 
