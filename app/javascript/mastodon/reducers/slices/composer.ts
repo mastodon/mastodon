@@ -6,11 +6,17 @@ import { length } from 'stringz';
 import {
   changeCompose,
   clearComposeSuggestions,
+  COMPOSE_CHANGE,
   COMPOSE_DIRECT,
   COMPOSE_FOCUS,
   COMPOSE_MENTION,
+  COMPOSE_POLL_ADD,
   COMPOSE_REPLY,
+  COMPOSE_RESET,
+  COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SET_STATUS,
+  COMPOSE_SPOILER_TEXT_CHANGE,
+  COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_UPLOAD_REQUEST,
   directCompose,
   resetCompose,
@@ -19,6 +25,7 @@ import {
 import {
   changeComposeVisibility,
   PRIVATE_QUOTE_MODAL_ID,
+  quoteCompose,
   replyComposeById,
 } from '@/mastodon/actions/compose_typed';
 import { openModal } from '@/mastodon/actions/modal';
@@ -28,6 +35,7 @@ import type {
   StatusVisibility,
 } from '@/mastodon/api_types/statuses';
 import { countableText } from '@/mastodon/features/compose/util/counter';
+import type { RootState } from '@/mastodon/store';
 import {
   createAppSelector,
   createAppThunk,
@@ -60,12 +68,14 @@ interface ComposerState {
   displayState: DisplayState;
   pendingFocus: PendingFocus | null;
   publishErrors: ComposerPublishError[];
+  isChanged: boolean;
 }
 
 const initialState: ComposerState = {
   displayState: 'hidden',
   pendingFocus: null,
   publishErrors: [],
+  isChanged: false,
 };
 
 const composerSlice = createSlice({
@@ -101,6 +111,26 @@ const composerSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder.addCase(COMPOSE_RESET, (state) => {
+      state.isChanged = false;
+    });
+    builder.addMatcher(
+      (action) =>
+        isAction(action) &&
+        [
+          COMPOSE_CHANGE,
+          COMPOSE_UPLOAD_REQUEST,
+          COMPOSE_SENSITIVITY_CHANGE,
+          COMPOSE_SPOILERNESS_CHANGE,
+          COMPOSE_SPOILER_TEXT_CHANGE,
+          COMPOSE_POLL_ADD,
+          quoteCompose,
+        ].includes(action.type),
+      (state) => {
+        state.isChanged = true;
+      },
+    );
+
     builder.addMatcher(
       (action) =>
         isAction(action) &&
@@ -139,26 +169,8 @@ export const minimizeComposerToggle = createAppThunk(
   },
 );
 
-export const selectComposerIsChanged = createAppSelector(
-  [
-    (state) => state.compose.get('text') as string,
-    (state) => state.compose.get('spoiler_text') as string,
-    (state) => !!state.compose.get('poll'),
-    (state) => !!state.compose.get('quoted_status_id'),
-    (state) =>
-      state.compose.get(
-        'media_attachments',
-      ) as unknown as Immutable.List<unknown>,
-    (state) => Number(state.compose.get('pending_media_attachments')),
-  ],
-  (text, spoilerText, hasPoll, hasQuote, attachments, pendingAttachmentsNum) =>
-    text.trim().length > 0 ||
-    spoilerText.trim().length > 0 ||
-    hasPoll ||
-    hasQuote ||
-    attachments.size > 0 ||
-    pendingAttachmentsNum > 0,
-);
+export const selectComposerIsChanged = (state: RootState) =>
+  state.composer.isChanged;
 
 interface ComposeNewPost {
   type?: 'post';
