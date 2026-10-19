@@ -8,6 +8,7 @@ import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import {
   closeComposer,
   getComposerTextarea,
+  selectComposerIsChanged,
   submitComposer,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -105,6 +106,7 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
   const dispatch = useAppDispatch();
 
   const isModalOpen = useAppSelector((state) => state.modal.stack.size > 0);
+  const isComposerChanged = useAppSelector(selectComposerIsChanged);
   useEffect(() => {
     function escapeComposer(event: KeyboardEvent) {
       const key = normalizeKey(event.key);
@@ -117,11 +119,21 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
       }
     }
 
+    function closePage(event: BeforeUnloadEvent) {
+      if (isComposerChanged) {
+        event.preventDefault();
+        return true;
+      }
+      return;
+    }
+
     document.addEventListener('keydown', escapeComposer);
+    window.addEventListener('beforeunload', closePage);
     return () => {
       document.removeEventListener('keydown', escapeComposer);
+      window.removeEventListener('beforeunload', closePage);
     };
-  }, [dispatch, isModalOpen]);
+  }, [dispatch, isComposerChanged, isModalOpen]);
 
   const onEmojiPick: OnEmojiPick = useCallback(
     (emoji) => {
