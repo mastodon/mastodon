@@ -305,7 +305,7 @@ FROM ruby-build AS bundler
 ARG TARGETPLATFORM
 
 # Copy Gemfile config into working directory
-COPY Gemfile* /opt/mastodon/
+COPY .ruby-version Gemfile* /opt/mastodon/
 
 # Copy libvips for gems that need it during install
 COPY --from=libvips /usr/local/libvips/lib /usr/local/lib

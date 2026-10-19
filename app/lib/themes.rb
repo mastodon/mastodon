@@ -75,12 +75,6 @@ class Themes
     skins.include?('default') && skins.include?('mastodon-light') ? ['system'] + skins : skins
   end
 
-  def flavours_and_skins
-    flavours.map do |flavour|
-      [flavour, skins_for(flavour).map { |skin| [flavour, skin] }]
-    end
-  end
-
   def available_theme_colors(theme)
     flavour, skin = theme
 
