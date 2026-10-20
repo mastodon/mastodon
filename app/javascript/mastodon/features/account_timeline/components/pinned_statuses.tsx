@@ -8,33 +8,27 @@ import IconPinned from '@/images/icons/icon_pinned.svg?react';
 import { Badge } from '@/mastodon/components/badge';
 import { Button } from '@/mastodon/components/button';
 import { Icon } from '@/mastodon/components/icon';
-import { StatusHeader } from '@/mastodon/components/status/legacy/header';
-import type { StatusHeaderRenderFn } from '@/mastodon/components/status/legacy/header';
+import { useStatusContext } from '@/mastodon/components/status/hooks';
+import { useStatus } from '@/mastodon/hooks/useStatus';
 
 import { useAccountContext } from '../hooks/useAccountContext';
 import classes from '../styles.module.scss';
 
-export const renderPinnedStatusHeader: StatusHeaderRenderFn = ({
-  featured,
-  ...args
-}) => {
-  if (!featured) {
-    return <StatusHeader {...args} />;
+export const PinnedBadge: FC = () => {
+  const { id } = useStatusContext();
+  const status = useStatus(id);
+  if (!status?.pinned) {
+    return null;
   }
+
   return (
-    <StatusHeader
-      {...args}
-      className={classes.pinnedStatusHeader}
-      contentBeforeDate={
-        <Badge
-          className={classes.pinnedBadge}
-          icon={<Icon id='pinned' icon={IconPinned} />}
-          label={
-            <FormattedMessage
-              id='account.timeline.pinned'
-              defaultMessage='Pinned'
-            />
-          }
+    <Badge
+      className={classes.pinnedBadge}
+      icon={<Icon id='pinned' icon={IconPinned} />}
+      label={
+        <FormattedMessage
+          id='account.timeline.pinned'
+          defaultMessage='Pinned'
         />
       }
     />
