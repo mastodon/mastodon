@@ -166,7 +166,7 @@ const StatusReblogButton: React.FC<{
     (e: React.MouseEvent) => {
       if (e.shiftKey) {
         e.preventDefault();
-        boost.action();
+        boost.action(e);
       }
     },
     [boost],

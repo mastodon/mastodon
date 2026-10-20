@@ -88,6 +88,10 @@ export function useStatusContext() {
   return use(StatusContext);
 }
 
+interface EventShiftKey {
+  shiftKey?: boolean;
+}
+
 export function useStatusInteractionFactory(
   statusId?: string,
   contextTypeArg?: StatusContextType,
@@ -97,8 +101,15 @@ export function useStatusInteractionFactory(
   const dispatch = useAppDispatch();
   return useCallback(
     (intent: StatusInteractionIntent) => {
-      return () => {
-        dispatch(statusInteraction({ statusId, intent, contextType }));
+      return (event?: EventShiftKey) => {
+        dispatch(
+          statusInteraction({
+            statusId,
+            intent,
+            contextType,
+            force: event?.shiftKey,
+          }),
+        );
       };
     },
     [contextType, dispatch, statusId],
@@ -290,7 +301,7 @@ interface StatusIcon {
   meta?: string;
   counter?: number;
   active?: boolean;
-  action: () => void;
+  action: (event?: EventShiftKey) => void;
   disabled: boolean;
 }
 
@@ -669,7 +680,9 @@ interface MenuItemsParams {
   reblogStatus: AccountStatusShape | null;
   conditions: StatusConditions;
   interactions: StatusInteractionsAllowed;
-  onStatusInteraction: (intent: StatusInteractionIntent) => () => void;
+  onStatusInteraction: (
+    intent: StatusInteractionIntent,
+  ) => (event: EventShiftKey) => void;
   withDismiss?: boolean;
   permissions: number;
   intl: ReturnType<typeof useIntl>;
