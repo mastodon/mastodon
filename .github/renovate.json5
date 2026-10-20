@@ -63,7 +63,7 @@
     },
     {
       // Update GitHub Actions and Docker images weekly
-      matchManagers: ['github-actions', 'dockerfile', 'docker-compose'],
+      matchManagers: ['dockerfile', 'docker-compose'],
       extends: ['schedule:weekly'],
     },
     {
@@ -130,7 +130,6 @@
       ],
       matchUpdateTypes: ['major'],
       groupName: 'artifact actions (major)',
-      extends: ['helpers:pinGitHubActionDigests'],
     },
     {
       // Update @types/* packages every week, with one grouped PR
