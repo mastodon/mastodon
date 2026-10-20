@@ -20,24 +20,40 @@ class Admin::ServerCheck::ElasticSearchRunner
   def run
     return ok unless Chewy.enabled?
 
+    severity = :warning
+
     if running_version.blank?
-      return pending(data: { reason: :running_check, running_version: :missing })
+      return pending(data: { reason: :running_check, running_version: :missing }, severity:)
     elsif !compatible_version?
-      return pending(data: { reason: :version_check, running_version:, required_version: })
+      return pending(data: { reason: :version_check, running_version:, required_version: }, severity:)
     elsif cluster_health['status'] == 'red'
-      return pending(data: { reason: :cluster_health_red })
+      return pending(data: { reason: :cluster_health_red }, severity:)
     elsif !indexes_match?
-      return pending(data: { reason: :index_mismatch, mismatched_indexes: })
+      return pending(
+        data: {
+          reason: :index_mismatch,
+          mismatched_indexes:,
+          mismatched_indexes_str: mismatched_indexes.join(' '),
+        },
+        severity:
+      )
     elsif !specifications_match?
-      return pending(data: { reason: :analysis_index_mismatch, mismatched_specifications_indexes: })
+      return pending(
+        data: {
+          reason: :analysis_index_mismatch,
+          mismatched_specifications_indexes:,
+          mismatched_specifications_indexes_str: mismatched_specifications_indexes.join(' '),
+        },
+        severity:
+      )
     elsif low_number_of_nodes?
-      return pending(data: { reason: :preset_single_node })
+      return pending(data: { reason: :preset_single_node }, severity:)
     elsif reset_chewy?
-      return pending(data: { reason: :reset_chewy })
+      return pending(data: { reason: :reset_chewy }, severity:)
     elsif cluster_health['status'] == 'yellow'
-      return pending(data: { reason: :cluster_health_yellow })
+      return pending(data: { reason: :cluster_health_yellow }, severity:)
     elsif !preset_matches?
-      return pending(data: { reason: :preset })
+      return pending(data: { reason: :preset }, severity:)
     end
 
     ok
@@ -135,6 +151,8 @@ class Admin::ServerCheck::ElasticSearchRunner
   end
 
   def reset_chewy?
-    Chewy.client.indices.get_settings[Chewy::Stash::Specification.index_name]&.dig('settings', 'index', 'number_of_replicas')&.to_i&.positive? && es_preset == 'single_node_cluster'
+    Chewy.client.indices
+      .get_settings[Chewy::Stash::Specification.index_name]
+      &.dig('settings', 'index', 'number_of_replicas')&.to_i&.positive? && es_preset == 'single_node_cluster'
   end
 end

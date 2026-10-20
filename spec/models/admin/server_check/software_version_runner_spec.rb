@@ -36,7 +36,7 @@ RSpec.describe Admin::ServerCheck::SoftwareVersionRunner do
       it { is_expected.to be_pending }
 
       it 'sets the type to regular' do
-        expect(result.data).to include(type: :regular)
+        expect(result.data).to include(reason: :regular)
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe Admin::ServerCheck::SoftwareVersionRunner do
       it { is_expected.to be_pending }
 
       it 'sets the type to urgent' do
-        expect(result.data).to include(type: :urgent)
+        expect(result.data).to include(reason: :urgent)
       end
     end
 
@@ -60,7 +60,7 @@ RSpec.describe Admin::ServerCheck::SoftwareVersionRunner do
       it { is_expected.to be_pending }
 
       it 'sets the type to urgent' do
-        expect(result.data).to include(type: :urgent)
+        expect(result.data).to include(reason: :urgent)
       end
     end
 
@@ -72,7 +72,7 @@ RSpec.describe Admin::ServerCheck::SoftwareVersionRunner do
       it { is_expected.to be_pending }
 
       it 'sets the type to patch' do
-        expect(result.data).to include(type: :patch)
+        expect(result.data).to include(reason: :patch)
       end
     end
   end
