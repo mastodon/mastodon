@@ -168,6 +168,8 @@ a.base {
 // Ghost
 
 .ghost {
+  --bg-hover: var(--color-bg-highlight);
+
   @include active {
     --bg: var(--color-bg-inverted);
     --fg: var(--color-text-inverted);
