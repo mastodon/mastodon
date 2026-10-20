@@ -16,6 +16,7 @@ import {
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { includeMultiColumnPaths } from '@/mastodon/utils/react_router';
 
 import { useBreakpoint } from '../../ui/hooks/useBreakpoint';
 
@@ -158,10 +159,6 @@ const FloatingActionButton: React.FC<
     </div>
   );
 };
-
-function includeMultiColumnPaths(paths: string[]) {
-  return [...paths, ...paths.map((path) => `/deck${path}`)];
-}
 
 const MOBILE_COMPOSE_BUTTON_ALLOW_ROUTES = includeMultiColumnPaths([
   '/home',
