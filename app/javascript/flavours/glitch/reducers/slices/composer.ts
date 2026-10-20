@@ -95,6 +95,7 @@ const composerSlice = createSlice({
       if (!state.publishErrors.includes(action.payload)) {
         state.publishErrors.push(action.payload);
       }
+      state.pendingFocus = { selection: null };
     },
     clearErrors(state) {
       state.publishErrors = [];
