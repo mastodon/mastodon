@@ -47,11 +47,7 @@
     unicode-bidi: plaintext;
 
     &:not(:last-child) {
-      margin-block-end: var(--space-4);
-
-      [data-density='compact'] & {
-        margin-block-end: var(--space-2);
-      }
+      margin-block-end: 0.6lh;
     }
   }
 
