@@ -56,14 +56,26 @@
   margin-inline-end: var(--space-1);
 }
 
-.editedLoading {
-  min-height: 110px;
-}
-
 .editedHeader {
   @include mixins.type-caption;
 
   color: var(--color-text-tertiary);
   padding: var(--space-2) var(--space-3);
   border-block-end: var(--border-default);
+}
+
+.editedItem {
+  gap: var(--space-1);
+
+  > :global(.inline-account) {
+    flex-shrink: 1;
+
+    img {
+      display: block;
+    }
+  }
+
+  > * {
+    flex-shrink: 0;
+  }
 }
