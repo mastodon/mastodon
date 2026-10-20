@@ -39,9 +39,12 @@
 }
 
 .text {
+  overflow-wrap: break-word;
+
   &:lang(#{vars.$vertical-lr-langs}) {
     writing-mode: vertical-lr;
     max-height: 10lh;
+    overflow-wrap: normal;
 
     [data-variant='page'] & {
       max-height: 50vh;
