@@ -59,8 +59,8 @@
         .report-header__details__item__header
           %strong= t('disputes.strikes.appeal_handled_by')
         .report-header__details__item__content
-          = link_to @appeal.approved_by_account.username,
-                    can?(:show, @appeal.approved_by_account) ? admin_account_path(@appeal.approved_by_account_id) : ActivityPub::TagManager.instance.url_for(@appeal.approved_by_account),
+          = link_to (@appeal.approved_by_account&.username || @appeal.rejected_by_account&.username),
+                    can?(:show, @appeal.approved_by_account) ? admin_account_path(@appeal.approved_by_account_id) : admin_account_path(@appeal.rejected_by_account_id),
                     class: 'table-action-link'
 %hr.spacer/
 
