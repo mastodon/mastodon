@@ -15,12 +15,12 @@
 
     &:first-child,
     &[data-connect-next='false'] + article {
-      padding-block-start: var(--space-4);
+      padding-block-start: var(--space-3);
     }
 
     &[data-connect-next='false'],
     &:last-child {
-      padding-block-end: var(--space-4);
+      padding-block-end: var(--space-2);
     }
 
     &[data-connect-next='false'] {
