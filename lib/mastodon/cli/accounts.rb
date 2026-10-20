@@ -504,7 +504,7 @@ module Mastodon::CLI
     LONG_DESC
     def prune
       _, deleted = parallelize_with_progress(prunable_accounts) do |account|
-        next if account.bot? || account.group?
+        next if account.group?
         next if account.suspended?
         next if account.silenced?
 
