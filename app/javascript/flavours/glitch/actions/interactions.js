@@ -443,36 +443,32 @@ export function unpinFail(status, error) {
   };
 }
 
-function toggleReblogWithoutConfirmation(status, visibility) {
-  return (dispatch) => {
+function toggleReblogWithoutConfirmation(statusId, visibility) {
+  return (dispatch, getState) => {
+    const status = getState().statuses.get(statusId);
+
     if (status.get('reblogged')) {
-      dispatch(unreblog({ statusId: status.get('id') }));
+      dispatch(unreblog({ statusId }));
     } else {
-      dispatch(reblog({ statusId: status.get('id'), visibility }));
+      dispatch(reblog({ statusId, visibility }));
     }
   };
 }
 
 export function toggleReblog(statusId, skipModal = false) {
   return (dispatch, getState) => {
-    const state = getState();
-    let status = state.statuses.get(statusId);
-
-    if (!status)
-      return;
-
-    // The reblog modal expects a pre-filled account in status
-    // TODO: fix this by having the reblog modal get a statusId and do the work itself
-    status = status.set('account', state.accounts.get(status.get('account')));
-
-    const missing_description_setting = state.getIn(['local_settings', 'confirm_boost_missing_media_description']);
-    const missing_description = status.get('media_attachments').some(item => !item.get('description'));
-    if (missing_description_setting && missing_description && !status.get('reblogged')) {
-      dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: (status, privacy) => dispatch(toggleReblogWithoutConfirmation(status, privacy)), missingMediaDescription: true } }));
-    } else if (boostModal && !skipModal) {
-      dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: (status, privacy) => dispatch(toggleReblogWithoutConfirmation(status, privacy)) } }));
-    } else {
-      dispatch(toggleReblogWithoutConfirmation(status));
+    const missingMediaDescription = status.get('media_attachments').some(item => !item.get('description'));
+    if ((boostModal || missingMediaDescription) && !skipModal) {
+      dispatch(openModal({
+        modalType: 'BOOST',
+        modalProps: {
+          statusId,
+          missingMediaDescription,
+          onReblog: (privacy) => dispatch(toggleReblogWithoutConfirmation(statusId, privacy)),
+        },
+      }));
+   } else {
+      dispatch(toggleReblogWithoutConfirmation(statusId));
     }
   };
 }

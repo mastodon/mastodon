@@ -13,12 +13,8 @@
     );
   grid-auto-rows: auto;
   row-gap: var(--space-2);
-  padding: var(--space-4);
+  padding: var(--space-3) var(--space-4) var(--space-2);
   cursor: pointer;
-
-  html[data-density='compact'] & {
-    padding-block: var(--space-2);
-  }
 }
 
 .variantFeed {
@@ -220,7 +216,14 @@
     font-variant-numeric: tabular-nums;
   }
 
-  > button:not(:hover, :active, [aria-pressed='true'], [aria-expanded='true']) {
+  > button:not(
+      :hover,
+      :active,
+      [aria-pressed='true'],
+      [aria-expanded='true'],
+      :disabled,
+      [aria-disabled='true']
+    ) {
     opacity: 0.7;
   }
 }

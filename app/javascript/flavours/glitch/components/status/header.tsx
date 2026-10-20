@@ -93,7 +93,13 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
   }
 
   return (
-    <header className={classNames(className, classes.root)}>
+    <header
+      className={classNames(
+        className,
+        classes.root,
+        !!children && classes.hasExtra,
+      )}
+    >
       <Link
         {...accountLinkProps}
         role='presentation'
@@ -103,7 +109,7 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
         <Avatar account={account} size={null} />
       </Link>
 
-      <div>
+      <div className={classes.contents}>
         <p className={classes.name}>
           {displayName}
           &bull;

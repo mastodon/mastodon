@@ -105,7 +105,11 @@
   }
 }
 
-.cardAuthor > span {
-  display: flex;
-  gap: var(--space-1);
+.cardAuthor {
+  z-index: 1;
+
+  > span {
+    display: flex;
+    gap: var(--space-1);
+  }
 }

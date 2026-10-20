@@ -81,7 +81,6 @@ export const StatusContent: React.FC<
           isCollapsed && classes.collapsed,
         )}
         style={style}
-        ref={onRef}
       >
         {text.trim().length > 0 && (
           <EmojiHTML

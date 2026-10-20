@@ -22,6 +22,16 @@
   }
 }
 
+.hasExtra {
+  grid-template-columns: var(--first-col-width) 1fr max-content;
+
+  // We check if .contents has a sibling even if hasExtra is set
+  // because React children may be truthy even if they don't render anything.
+  .contents:has(+ *) {
+    margin-inline-end: var(--col-gap);
+  }
+}
+
 .avatar {
   padding-inline-end: var(--col-gap);
 

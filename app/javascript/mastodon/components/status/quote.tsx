@@ -105,7 +105,8 @@ export const QuotedStatus: React.FC<{
   id: string;
   clamp?: boolean;
   onDelete?: () => void;
-}> = ({ id, clamp, onDelete }) => {
+  disableOpen?: boolean;
+}> = ({ id, clamp, onDelete, disableOpen = false }) => {
   const status = useAppSelector((state) => selectAccountStatus(state, id));
   const { contextType } = useStatusContext();
 
@@ -121,31 +122,48 @@ export const QuotedStatus: React.FC<{
   const statusTo = `/@${status.account.acct}/${status.id}`;
 
   return (
-    <Card onDelete={onDelete} onClick={onOpenClick} onAuxClick={onOpenClick}>
+    <Card
+      onDelete={onDelete}
+      onClick={!disableOpen ? onOpenClick : undefined}
+      onAuxClick={!disableOpen ? onOpenClick : undefined}
+      unclickable={disableOpen}
+    >
       <CardTitle
         className={classes.title}
         image={
-          <Link
-            {...accountStatusLinkProps(status.account)}
-            role='presentation'
-            tabIndex={-1}
-            className={classes.accountLink}
-          >
+          !disableOpen ? (
+            <Link
+              {...accountStatusLinkProps(status.account)}
+              role='presentation'
+              tabIndex={-1}
+              className={classes.accountLink}
+            >
+              <Avatar account={status.account} />
+            </Link>
+          ) : (
             <Avatar account={status.account} />
-          </Link>
+          )
         }
         afterContent={
-          <Link to={statusTo}>
+          !disableOpen ? (
+            <Link to={statusTo}>
+              <RelativeTimestamp timestamp={status.created_at} />
+            </Link>
+          ) : (
             <RelativeTimestamp timestamp={status.created_at} />
-          </Link>
+          )
         }
       >
-        <Link
-          {...accountStatusLinkProps(status.account)}
-          className={classes.accountLink}
-        >
+        {!disableOpen ? (
+          <Link
+            {...accountStatusLinkProps(status.account)}
+            className={classes.accountLink}
+          >
+            <DisplayName account={status.account} variant='noDomain' />
+          </Link>
+        ) : (
           <DisplayName account={status.account} variant='noDomain' />
-        </Link>
+        )}
       </CardTitle>
 
       <CardBody className={classes.body} noClamp={!clamp}>

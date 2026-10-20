@@ -41,24 +41,16 @@
   font-family: var(--font-body);
   font-size: var(--fs-15);
   font-weight: bold;
-  line-height: var(--lh-normal);
+  line-height: var(--lh-tight);
   letter-spacing: var(--ls-normal);
-
-  html[data-density='compact'] & {
-    line-height: var(--lh-tighter);
-  }
 }
 
 @mixin type-body {
   font-family: var(--font-body);
   font-size: var(--fs-15);
   font-weight: normal;
-  line-height: var(--lh-normal);
+  line-height: var(--lh-tight);
   letter-spacing: var(--ls-normal);
-
-  html[data-density='compact'] & {
-    line-height: var(--lh-tighter);
-  }
 }
 
 @mixin type-body-compact {

@@ -166,11 +166,15 @@ const StatusReblogButton: React.FC<{
     (e: React.MouseEvent) => {
       if (e.shiftKey) {
         e.preventDefault();
-        boost.action();
+        boost.action(e);
       }
     },
     [boost],
   );
+
+  const preventMenuOpenOnShiftClick = useCallback((e?: React.MouseEvent) => {
+    return !e?.shiftKey;
+  }, []);
 
   if (quickBoosting) {
     return (
@@ -192,7 +196,7 @@ const StatusReblogButton: React.FC<{
   }
 
   return (
-    <Menu>
+    <Menu onOpen={preventMenuOpenOnShiftClick}>
       <MenuTrigger
         as={ToggleButton}
         size='sm'
@@ -207,8 +211,8 @@ const StatusReblogButton: React.FC<{
             />
           ),
         }}
-        leadingIcon={boost.icon}
         onClick={handleShiftClick}
+        leadingIcon={boost.icon}
       >
         {children}
       </MenuTrigger>
