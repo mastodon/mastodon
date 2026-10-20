@@ -30,7 +30,11 @@ import {
   useAppSelector,
 } from '@/mastodon/store';
 
-import { selectComposeType, selectSuggestions } from './selectors';
+import {
+  selectComposeHasAttachments,
+  selectComposeType,
+  selectSuggestions,
+} from './selectors';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
@@ -78,6 +82,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   // Selectors
   const type = useAppSelector(selectComposeType);
   const { text, lang, isSubmitting } = useAppSelector(selectComposeTextState);
+  const { hasAttachments } = useAppSelector(selectComposeHasAttachments);
   const dispatch = useAppDispatch();
 
   // Suggestion logic
@@ -190,6 +195,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         onDrop={onPasteOrDrop}
         onPaste={onPasteOrDrop}
         onChange={onChange}
+        aria-required={!hasAttachments}
         {...sourceProps}
       />
 
