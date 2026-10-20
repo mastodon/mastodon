@@ -12,7 +12,8 @@
   padding-bottom: calc(max(env(safe-area-inset-bottom), var(--space-4)));
 
   @media (width >= #{variables.$mobile-menu-breakpoint}) {
-    border: var(--border-default);
+    @include mixins.elevation-2;
+
     border-bottom: none;
     border-radius: var(--radius-6) var(--radius-6) 0 0;
     overflow: hidden;
