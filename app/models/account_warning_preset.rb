@@ -13,7 +13,7 @@
 #
 
 class AccountWarningPreset < ApplicationRecord
-  ACTIONS = %w(none disable sensitive silence suspend all_actions).freeze
+  ACTIONS = (Admin::AccountAction::TYPES + ['all_actions']).freeze
 
   validates :text, presence: true
   validates :action_category, inclusion: { in: ACTIONS }
