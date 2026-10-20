@@ -83,6 +83,9 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const type = useAppSelector(selectComposeType);
   const { text, lang, isSubmitting } = useAppSelector(selectComposeTextState);
   const { hasAttachments } = useAppSelector(selectComposeHasAttachments);
+  const hasErrors = useAppSelector(
+    (state) => state.composer.publishErrors.length > 0,
+  );
   const dispatch = useAppDispatch();
 
   // Suggestion logic
@@ -196,6 +199,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         onPaste={onPasteOrDrop}
         onChange={onChange}
         aria-required={!hasAttachments}
+        aria-invalid={hasErrors}
         {...sourceProps}
       />
 
