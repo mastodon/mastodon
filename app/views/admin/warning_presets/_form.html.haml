@@ -12,4 +12,4 @@
                wrapper: :with_block_label,
                collection: %w(none disable sensitive silence suspend all_actions),
                include_blank: true,
-               label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{AccountWarningPreset::MAP_TO_CATEGORY[type]}") }
+               label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type}") }
