@@ -15,7 +15,7 @@ import {
   createDataLoadingThunk,
 } from '@/mastodon/store/typed_functions';
 
-import { deleteModal } from '../initial_state';
+import { boostModal, deleteModal } from '../initial_state';
 import { selectComposerIsChanged } from '../reducers/slices/composer';
 import { selectStatusInteractions } from '../selectors/statuses';
 
@@ -90,10 +90,12 @@ export const statusInteraction = createAppThunk(
       statusId,
       contextType,
       intent,
+      force = false,
     }: {
       statusId?: string;
       contextType?: StatusContextType;
       intent: StatusInteractionIntent;
+      force?: boolean;
     },
     { getState, dispatch },
   ) => {
@@ -242,7 +244,21 @@ export const statusInteraction = createAppThunk(
         if (status.reblogged) {
           void dispatch(unreblog({ statusId }));
         } else {
-          void dispatch(reblog({ statusId, visibility: status.visibility }));
+          if (boostModal && !force) {
+            dispatch(
+              openModal({
+                modalType: 'BOOST',
+                modalProps: {
+                  statusId,
+                  onReblog: (visibility: StatusVisibility) => {
+                    void dispatch(reblog({ statusId, visibility }));
+                  },
+                },
+              }),
+            );
+          } else {
+            void dispatch(reblog({ statusId, visibility: status.visibility }));
+          }
         }
         return;
       case 'redraft':
