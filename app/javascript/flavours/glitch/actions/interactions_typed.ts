@@ -18,7 +18,7 @@ import {
   createDataLoadingThunk,
 } from '@/flavours/glitch/store/typed_functions';
 
-import { boostModal, deleteModal } from '../initial_state';
+import { boostModal, deleteModal, favouriteModal } from '../initial_state';
 import { selectComposerIsChanged } from '../reducers/slices/composer';
 import { selectStatusInteractions } from '../selectors/statuses';
 
@@ -222,6 +222,18 @@ export const statusInteraction = createAppThunk(
       case 'favourite':
         if (status.favourited) {
           dispatch(unfavourite(statusImmutable));
+        } else if (favouriteModal && !force) {
+          dispatch(
+            openModal({
+              modalType: 'FAVOURITE',
+              modalProps: {
+                statusId,
+                onFavourite: () => {
+                  dispatch(favourite(statusImmutable));
+                },
+              },
+            }),
+          );
         } else {
           dispatch(favourite(statusImmutable));
         }
