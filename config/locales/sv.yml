@@ -876,8 +876,10 @@ sv:
       destroyed_msg: Avvisade förslag för %{target_key}
       dismiss: Avfärda förslag
       empty: Det finns inget modereringsförslag just nu.
+      retracted_msg: Policyn för %{target_key} har dragits in
       suggested_from_html: Föreslagen av %{link}
       title: Modereringsförslag
+      unable_to_apply_msg: Det går inte att tillämpa förslag för %{target_key}
     relationships:
       title: "%{acct}s relationer"
     relays:
@@ -1474,9 +1476,15 @@ sv:
     new_critical_software_updates:
       body: En kritisk uppdatering för Mastodon har släppts. Du bör uppdatera så snart som möjligt!
       subject: Kritiska uppdateringar för Mastodon är tillgängliga för %{instance}!
+    new_moderation_suggestions:
+      body: Den modereringslista som din server prenumererar på har publicerat nya förslag.
+      subject: Nya modereringsförslag är tillgängliga på %{instance}!
     new_pending_account:
       body: Detaljerna för det nya kontot finns nedan. Du kan godkänna eller avvisa denna ansökan.
       subject: Nytt konto flaggat för granskning på %{instance} (%{username})
+    new_pending_accounts:
+      body: Nya konton har skapats på %{instance}. Eftersom din server är konfigurerad att skjuta upp bekräftelsemeddelanden efter modereringsgodkännande, har dessa konton inte haft en chans att verifiera sin e-postadress ännu. Detaljerna för de nya kontona är nedan. Du kan godkänna eller avvisa dessa ansökningar.
+      subject: Nya konton tillgängliga för granskning på %{instance}
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
@@ -1588,11 +1596,13 @@ sv:
       correct_email: Rätt adress
       email_below_hint_html: Kolla din skräppost-mapp eller begär en ny. Du kan korrigera din e-postadress om den är fel.
       email_settings_hint_html: Klicka på länken vi skickade till %{email} för att börja använda Mastodon. Vi väntar här.
+      email_settings_hint_wait_html: Din ansökan granskas. Du bör snart få ett meddelande via e-post på %{email}. När du får det, klicka på länken för att börja använda Mastodon. Vi väntar här.
       link_not_received: Fick du ingen länk?
       new_confirmation_instructions_sent: Du kommer att få ett nytt e-postmeddelande med bekräftelselänken om några minuter!
       title: Kolla din inkorg
       title_wait: Håll ett öga på din inkorg
       wrong_email: Fel e-postadress?
+      wrong_email_below_hint_html: Få inte panik! Du kan korrigera din e-postadress nedan.
     sign_in:
       preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
       title: Logga in på %{domain}

@@ -1429,7 +1429,7 @@ es:
       edit_preset: Editar plantilla de respuesta
       empty: No has configurado ninguna plantilla de respuesta aún.
       navigation_title: Plantillas de respuesta
-      title: Plantillas de respuesta Moderación
+      title: Plantillas de respuesta de Moderación
     webhooks:
       add_new: Añadir endpoint
       delete: Eliminar
@@ -1484,6 +1484,9 @@ es:
     new_pending_account:
       body: Los detalles de la nueva cuenta están abajo. Puedes aprobar o rechazar esta aplicación.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
+    new_pending_accounts:
+      body: Se han creado nuevas cuentas en %{instance}. Como tu servidor está configurado para posponer correos de confirmación después de la aprobación de moderación, esas cuentas no han podido verificar su dirección de correo electrónico aún. Tienes los detalles de las nuevas cuentas a continuación. Puedes aprobar o rechazar estas solicitudes.
+      subject: Nuevas cuentas para revisar en %{instance}
     new_report:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} ha reportado a %{target}
