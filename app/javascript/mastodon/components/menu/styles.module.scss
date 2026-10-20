@@ -19,6 +19,9 @@
 
   &:not(&:has(.scrollableInnerCard)) {
     padding: var(--space-1);
+
+    // Compensate for bottom margin of .item
+    padding-bottom: var(--space-half);
   }
 
   &[data-elevation='2'] {
@@ -31,6 +34,9 @@
   scrollbar-width: thin;
   overscroll-behavior: contain;
   padding: var(--space-1);
+
+  // Compensate for bottom margin of .item
+  padding-bottom: var(--space-half);
 }
 
 .fullWidthCard {
@@ -61,6 +67,7 @@
   align-items: center;
   border-radius: var(--radius-3);
   gap: var(--space-2);
+  margin-bottom: var(--space-half);
   padding: var(--space-2) var(--space-3);
   color: var(--color-text-primary);
   text-decoration: none;
