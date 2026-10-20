@@ -2,7 +2,7 @@
 
 class AddActionCategoryToWarningPresets < ActiveRecord::Migration[8.1]
   def up
-    add_column :account_warning_presets, :action_category, :string
+    add_column :account_warning_presets, :action_category, :string, default: 'all_actions', null: false
 
     safety_assured do
       execute(<<~SQL.squish)
