@@ -82,10 +82,12 @@ RSpec.describe Extractor do
   end
 
   describe '#extract_entities_with_indices' do
-    it 'returns empty array when cashtag present' do
-      text = '$cashtag'
-      extracted = described_class.extract_entities_with_indices(text)
-      expect(extracted).to eq []
+    subject { described_class.extract_entities_with_indices(text) }
+
+    context 'when cashtag is present' do
+      let(:text) { '$cashtag' }
+
+      it { is_expected.to be_empty }
     end
   end
 end
