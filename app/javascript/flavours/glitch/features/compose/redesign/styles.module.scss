@@ -80,10 +80,6 @@
   gap: var(--space-2);
   flex-grow: 1;
 
-  @container (width < 310px) {
-    flex-basis: 100%;
-  }
-
   .footer & {
     justify-content: space-between;
   }
