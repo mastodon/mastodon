@@ -170,11 +170,24 @@
       groupName: 'Playwright',
     },
     {
-      // Update devDependencies every week, with one grouped PR
-      // Needs to stay at the bottom of the rule list, before match managers
+      // Update devDependencies with one grouped PR
       matchManagers: ['npm'],
       matchDepTypes: ['devDependencies'],
       matchUpdateTypes: ['patch', 'minor'],
+      matchPackageNames: [
+        '!@eslint/*',
+        '!@storybook/*',
+        '!chromatic',
+        '!eslint-*',
+        '!eslint',
+        '!globals',
+        '!msw-storybook-addon',
+        '!msw',
+        '!playwright',
+        '!storybook',
+        '!typescript-eslint',
+        '!typescript',
+      ],
       groupName: 'devDependencies (non-major)',
     },
 
