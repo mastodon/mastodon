@@ -12,7 +12,6 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
-import { Scrollable } from '@/mastodon/components/scrollable_list/components';
 import { submitSearch, expandSearch } from 'mastodon/actions/search';
 import type { ApiSearchType } from 'mastodon/api_types/search';
 import { Account } from 'mastodon/components/account';
@@ -298,31 +297,30 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
         extraStickyContent={extraStickyHeaderContent}
       />
 
-      <Scrollable data-nosnippet>
-        <ScrollableList
-          scrollKey='search-results'
-          isLoading={isLoading}
-          showLoading={isLoading && !results}
-          onLoadMore={handleLoadMore}
-          hasMore={hasMore}
-          emptyMessage={
-            trimmedValue.length > 0 ? (
-              <FormattedMessage
-                id='search_results.no_results'
-                defaultMessage='No results.'
-              />
-            ) : (
-              <FormattedMessage
-                id='search_results.no_search_yet'
-                defaultMessage='Try searching for posts, profiles or hashtags.'
-              />
-            )
-          }
-          bindToDocument
-        >
-          {filteredResults}
-        </ScrollableList>
-      </Scrollable>
+      <ScrollableList
+        noSnippet
+        scrollKey='search-results'
+        isLoading={isLoading}
+        showLoading={isLoading && !results}
+        onLoadMore={handleLoadMore}
+        hasMore={hasMore}
+        emptyMessage={
+          trimmedValue.length > 0 ? (
+            <FormattedMessage
+              id='search_results.no_results'
+              defaultMessage='No results.'
+            />
+          ) : (
+            <FormattedMessage
+              id='search_results.no_search_yet'
+              defaultMessage='Try searching for posts, profiles or hashtags.'
+            />
+          )
+        }
+        bindToDocument
+      >
+        {filteredResults}
+      </ScrollableList>
 
       <Helmet>
         <title>{pageTitle}</title>
