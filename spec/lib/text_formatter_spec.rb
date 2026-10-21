@@ -69,6 +69,24 @@ RSpec.describe TextFormatter do
       end
     end
 
+    context 'when given a IDN domain' do
+      context 'with Cyrillic' do
+        let(:text) { 'https://универсальное-принятие-тест.москва' }
+
+        it 'matches the full URLs' do
+          expect(subject).to include('href="https://универсальное-принятие-тест.москва"')
+        end
+      end
+
+      context 'with Japanese' do
+        let(:text) { 'https://どこでもつかえる.みんな' }
+
+        it 'matches the full URLs' do
+          expect(subject).to include('href="https://どこでもつかえる.みんな"')
+        end
+      end
+    end
+
     context 'when given a stand-alone IDN URL' do
       let(:text) { 'https://nic.みんな/' }
 

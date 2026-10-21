@@ -56,14 +56,14 @@ const ISO_639_MAP = {
   vie: 'vi', // Vietnamese
 };
 
-const guessLanguage = (text) => {
+export const guessLanguage = (text) => {
   text = text
     .replace(urlRegex, '')
     .replace(/(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig, '');
 
   if (text.length > 20) {
     const [lang, confidence] = lande(text)[0];
-  
+
     if (confidence > 0.8)
       return ISO_639_MAP[lang];
   }

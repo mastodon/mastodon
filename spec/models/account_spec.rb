@@ -434,6 +434,42 @@ RSpec.describe Account do
     it 'matches usernames containing uppercase characters' do
       expect(subject.match('Hello to @aLice@Example.com from me')[1]).to eq 'aLice@Example.com'
     end
+
+    it 'matches usernames ascii mention' do
+      expect(subject.match('hi @bob@example.com here').to_a).to eq(['@bob@example.com', 'bob@example.com', 'bob', nil, '.com'])
+    end
+
+    it 'matches with trailing punctuation' do
+      expect(subject.match('greet @arnt@grå.org, then go').to_a).to eq(['@arnt@grå.org', 'arnt@grå.org', 'arnt', nil, '.org'])
+    end
+
+    it 'matches implausible host' do
+      expect(subject.match('hi @arnt@nope not').to_a).to eq(['@arnt@nope', 'arnt@nope', 'arnt', nil, nil])
+    end
+
+    it 'does not match after a slash (inside a URL path)' do
+      expect(subject.match('hi https://example.com/@arnt@grå.org').to_a).to eq([])
+    end
+
+    it 'matches username with IDN domain name' do
+      expect(subject.match('hi @arnt@grå.org').to_a).to eq(['@arnt@grå.org', 'arnt@grå.org', 'arnt', nil, '.org'])
+    end
+
+    it 'does not match after a word character' do
+      expect(subject.match('hi foo@arnt@grå.org').to_a).to eq([])
+    end
+
+    it 'matches a local @user (no host)' do
+      expect(subject.match('@bob says hi').to_a).to eq(['@bob', 'bob', 'bob', nil, nil])
+    end
+
+    it 'findsfirst mention, with two mentions in one string' do
+      expect(subject.match('@arnt@grå.org and @bob@example.com').to_a).to eq(['@arnt@grå.org', 'arnt@grå.org', 'arnt', nil, '.org'])
+    end
+
+    it 'matches a CJK-IDN mention' do
+      expect(subject.match('hi @user@慕田峪长城.网址 today').to_a).to eq(['@user@慕田峪长城.网址', 'user@慕田峪长城.网址', 'user', nil, '.网址'])
+    end
   end
 
   describe 'Callbacks' do
