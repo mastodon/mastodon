@@ -6056,6 +6056,7 @@ a.status-card {
   z-index: 9999;
   overscroll-behavior: none;
   overflow-y: auto;
+  overflow-x: hidden;
 
   @media screen and (width <= $mobile-breakpoint) {
     padding-bottom: 0;
