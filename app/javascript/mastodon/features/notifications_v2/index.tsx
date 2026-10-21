@@ -30,7 +30,6 @@ import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multic
 import { LoadGap } from '@/mastodon/components/load_gap';
 import { MenuItem, MenuItemDivider } from '@/mastodon/components/menu';
 import ScrollableList from '@/mastodon/components/scrollable_list';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import {
   fetchNotificationsGap,
   updateScrollPosition,
@@ -243,8 +242,8 @@ export const Notifications: React.FC<{
     <>
       {needsNotificationPermission && <NotificationsPermissionBanner />}
       {shouldShowAnnouncements && <Announcements />}
-      <div className={isRedesignEnabled() ? classes.topLinks : undefined}>
-        {isRedesignEnabled() && <FollowRequestsBanner />}
+      <div className={classes.topLinks}>
+        <FollowRequestsBanner />
         <FilteredNotificationsBanner />
       </div>
     </>
