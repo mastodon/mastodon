@@ -35,48 +35,53 @@ RSpec.describe Extractor do
   end
 
   describe '#extract_hashtags_with_indices' do
-    it 'returns an empty array if it does not have # or ＃' do
-      text = 'a string without hash sign'
-      extracted = described_class.extract_hashtags_with_indices(text)
-      expect(extracted).to eq []
+    subject { described_class.extract_hashtags_with_indices(text) }
+
+    context 'when text does not have # or ＃' do
+      let(:text) { 'a string without hash sign' }
+
+      it { is_expected.to be_empty }
     end
 
-    it 'returns hashtags preceded by an ASCII hash' do
-      text = 'hello #world'
-      extracted = described_class.extract_hashtags_with_indices(text)
-      expect(extracted).to eq [{ hashtag: 'world', indices: [6, 12] }]
+    context 'when text is preceded by an ASCII hash' do
+      let(:text) { 'hello #world' }
+
+      it { is_expected.to eq [{ hashtag: 'world', indices: [6, 12] }] }
     end
 
-    it 'returns hashtags preceded by a full-width hash' do
-      text = 'hello ＃world'
-      extracted = described_class.extract_hashtags_with_indices(text)
-      expect(extracted).to eq [{ hashtag: 'world', indices: [6, 12] }]
+    context 'when text is preceded by a full-width hash' do
+      let(:text) { 'hello ＃world' }
+
+      it { is_expected.to eq [{ hashtag: 'world', indices: [6, 12] }] }
     end
 
-    it 'does not exclude normal hash text before ://' do
-      text = '#hashtag://'
-      extracted = described_class.extract_hashtags_with_indices(text)
-      expect(extracted).to eq [{ hashtag: 'hashtag', indices: [0, 8] }]
+    context 'when text has normal hash text before ://' do
+      let(:text) { '#hashtag://' }
+
+      it { is_expected.to eq [{ hashtag: 'hashtag', indices: [0, 8] }] }
     end
 
-    it 'excludes http://' do
-      text = '#hashtaghttp://'
-      extracted = described_class.extract_hashtags_with_indices(text)
-      expect(extracted).to eq [{ hashtag: 'hashtag', indices: [0, 8] }]
+    context 'when text is before http://' do
+      let(:text) { '#hashtaghttp://' }
+
+      it { is_expected.to eq [{ hashtag: 'hashtag', indices: [0, 8] }] }
     end
 
-    it 'excludes https://' do
-      text = '#hashtaghttps://'
-      extracted = described_class.extract_hashtags_with_indices(text)
-      expect(extracted).to eq [{ hashtag: 'hashtag', indices: [0, 8] }]
+    context 'when text is before https://' do
+      let(:text) { '#hashtaghttps://' }
+
+      it { is_expected.to eq [{ hashtag: 'hashtag', indices: [0, 8] }] }
     end
 
-    it 'yields hashtags if a block is given' do
-      text = '#hashtag'
-      described_class.extract_hashtags_with_indices(text) do |hashtag, start_position, end_position|
-        expect(hashtag).to eq 'hashtag'
-        expect(start_position).to eq 0
-        expect(end_position).to eq 8
+    context 'when a block is given' do
+      let(:text) { '#hashtag' }
+
+      it 'extracts multiple portions' do
+        subject do |hashtag, start_position, end_position|
+          expect(hashtag).to eq 'hashtag'
+          expect(start_position).to eq 0
+          expect(end_position).to eq 8
+        end
       end
     end
   end
