@@ -245,5 +245,9 @@ a.base {
 }
 
 .clipPadding {
-  margin-inline-start: calc(-1 * var(--inline-padding));
+  margin-inline-start: calc(-1 * (var(--inline-padding) + var(--space-1)));
+
+  &:has(:global(.icon-leading)) {
+    margin-inline-start: calc(-1 * var(--inline-padding));
+  }
 }
