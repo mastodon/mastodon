@@ -180,6 +180,9 @@
       matchDepTypes: ['devDependencies'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'devDependencies (non-major)',
+      matchPackagePatterns: [
+        '^(?!.*(eslint|globals|storybook|typescript|playwright|chromatic|msw))',
+      ],
     },
 
     // Add labels depending on package manager
