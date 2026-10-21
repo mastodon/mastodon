@@ -28,11 +28,8 @@ RSpec.describe Extractor do
       let(:text) { '@screen_name' }
 
       it 'extracts multiple portions' do
-        subject do |screen_name, start_position, end_position|
-          expect(screen_name).to eq 'screen_name'
-          expect(start_position).to eq 0
-          expect(end_position).to eq 12
-        end
+        expect { |probe| described_class.extract_mentions_or_lists_with_indices(text, &probe) }
+          .to yield_with_args('screen_name', 0, 12)
       end
     end
   end
@@ -80,11 +77,8 @@ RSpec.describe Extractor do
       let(:text) { '#hashtag' }
 
       it 'extracts multiple portions' do
-        subject do |hashtag, start_position, end_position|
-          expect(hashtag).to eq 'hashtag'
-          expect(start_position).to eq 0
-          expect(end_position).to eq 8
-        end
+        expect { |probe| described_class.extract_hashtags_with_indices(text, &probe) }
+          .to yield_with_args('hashtag', 0, 8)
       end
     end
   end
