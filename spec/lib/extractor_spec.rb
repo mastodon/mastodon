@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Extractor do
-  describe 'extract_mentions_or_lists_with_indices' do
+  describe '#extract_mentions_or_lists_with_indices' do
     it 'returns an empty array if the given string does not have at signs' do
       text = 'a string without at signs'
       extracted = described_class.extract_mentions_or_lists_with_indices(text)
@@ -34,7 +34,7 @@ RSpec.describe Extractor do
     end
   end
 
-  describe 'extract_hashtags_with_indices' do
+  describe '#extract_hashtags_with_indices' do
     it 'returns an empty array if it does not have # or ＃' do
       text = 'a string without hash sign'
       extracted = described_class.extract_hashtags_with_indices(text)
@@ -81,7 +81,7 @@ RSpec.describe Extractor do
     end
   end
 
-  describe 'extract_entities_with_indices' do
+  describe '#extract_entities_with_indices' do
     it 'returns empty array when cashtag present' do
       text = '$cashtag'
       extracted = described_class.extract_entities_with_indices(text)
