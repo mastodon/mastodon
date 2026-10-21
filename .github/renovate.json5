@@ -90,7 +90,13 @@
     {
       // Group all oxlint-related packages with `oxlint` in the same PR
       matchManagers: ['npm'],
-      matchPackageNames: ['eslint', 'eslint-*', 'oxlint', 'oxlint-*'],
+      matchPackageNames: [
+        '@eslint/**',
+        '@oxlint/**',
+        'eslint-*',
+        'oxlint-*',
+        'oxlint',
+      ],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'oxlint (non-major)',
     },
