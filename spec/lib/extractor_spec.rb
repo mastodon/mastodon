@@ -4,32 +4,35 @@ require 'rails_helper'
 
 RSpec.describe Extractor do
   describe '#extract_mentions_or_lists_with_indices' do
-    it 'returns an empty array if the given string does not have at signs' do
-      text = 'a string without at signs'
-      extracted = described_class.extract_mentions_or_lists_with_indices(text)
-      expect(extracted).to eq []
+    subject { described_class.extract_mentions_or_lists_with_indices(text) }
+
+    context 'when text does not have at signs' do
+      let(:text) { 'a string without at signs' }
+
+      it { is_expected.to be_empty }
     end
 
-    it 'does not extract mentions which ends with particular characters' do
-      text = '@screen_name@'
-      extracted = described_class.extract_mentions_or_lists_with_indices(text)
-      expect(extracted).to eq []
+    context 'when text ends with matching character' do
+      let(:text) { '@screen_name@' }
+
+      it { is_expected.to be_empty }
     end
 
-    it 'returns mentions as an array' do
-      text = '@screen_name'
-      extracted = described_class.extract_mentions_or_lists_with_indices(text)
-      expect(extracted).to eq [
-        { screen_name: 'screen_name', indices: [0, 12] },
-      ]
+    context 'when text includes a mentioned username' do
+      let(:text) { '@screen_name' }
+
+      it { is_expected.to contain_exactly({ screen_name: 'screen_name', indices: [0, 12] }) }
     end
 
-    it 'yields mentions if a block is given' do
-      text = '@screen_name'
-      described_class.extract_mentions_or_lists_with_indices(text) do |screen_name, start_position, end_position|
-        expect(screen_name).to eq 'screen_name'
-        expect(start_position).to eq 0
-        expect(end_position).to eq 12
+    context 'when a block is given' do
+      let(:text) { '@screen_name' }
+
+      it 'extracts multiple portions' do
+        subject do |screen_name, start_position, end_position|
+          expect(screen_name).to eq 'screen_name'
+          expect(start_position).to eq 0
+          expect(end_position).to eq 12
+        end
       end
     end
   end
