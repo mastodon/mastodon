@@ -88,14 +88,6 @@
       dependencyDashboardApproval: true,
     },
     {
-      // Update devDependencies every week, with one grouped PR
-      matchManagers: ['npm'],
-      matchDepTypes: 'devDependencies',
-      matchUpdateTypes: ['patch', 'minor'],
-      groupName: 'devDependencies (non-major)',
-      extends: ['schedule:weekly'],
-    },
-    {
       // Group all eslint-related packages with `eslint` in the same PR
       matchManagers: ['npm'],
       matchPackageNames: [
@@ -181,6 +173,15 @@
       matchPackageNames: ['playwright'],
       groupName: 'Playwright',
     },
+    {
+      // Update devDependencies every week, with one grouped PR
+      // Needs to stay at the bottom of the rule list, before match managers
+      matchManagers: ['npm'],
+      matchDepTypes: ['devDependencies'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'devDependencies (non-major)',
+    },
+
     // Add labels depending on package manager
     { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },
     { matchManagers: ['bundler', 'ruby-version'], addLabels: ['ruby'] },
