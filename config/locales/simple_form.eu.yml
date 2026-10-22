@@ -4,6 +4,7 @@ eu:
     hints:
       account:
         attribution_domains: Lerroko bat. Atribuzio faltsuetatik babesten ditu.
+        discoverable: Beste erabiltzaile batzuek sortutako bildumetan ager zaitezke. Zu eta zure bidalketa publikoak beste erabiltzaileei ere iradoki diezazkieke Mastodonen aurkikuntza-esperientzietan.
         display_name: Zure izena edo ezizena.
         fields: Zure webgunea, izenordainak, adina, nahi duzun guztia.
         indexable: Zure argitalpen publikoak bilaketa-emaitzetan ager daitezke Mastodonen. Zure argitalpenekin elkarregin duten jendeak ikusi ahal izango dituzte, hala ere.
@@ -61,6 +62,9 @@ eu:
         setting_default_quote_policy_unlisted: Jendeak aipatzen zaituenean, bere bidalketa ere joeren denbora-lerro publikoetatik ezkutatuko da.
         setting_default_sensitive: Multimedia hunkigarria lehenetsita ezkutatzen da, eta sakatuz ikusi daiteke
         setting_default_spoiler_field: Edukiaren abisuaren eremua irekita mantentzen du idazketa-eremuan. Bidalketa bakoitzean testua pertsonaliza dezakezu.
+        setting_display_media_default: Abisatu hunkigarri gisa markatutako multimedia erakutsi aurretik
+        setting_display_media_hide_all: Abisatu multimedia oro erakutsi aurretik
+        setting_display_media_show_all: Erakutsi multimedia oro abisurik gabe, hunkigarri gisa markatutakoa barne
         setting_emoji_style: Nola bistaratu emojiak. "Automatikoki" aukeran emoji natiboak erabiltzen saiatuko dira, baina Twemojira itzuliko dira arakatzaile zaharretarako.
         setting_quick_boosting_html: Gaituta dagoenean, %{boost_icon} Bultzada ikonoan klik egiteak berehala emango dio bultzada, bultzada/aipu goitibeherako menua ireki beharrean. Aipatzeko ekintza %{options_icon} (Aukerak) menura eramaten du.
         setting_use_blurhash: Gradienteak ezkutatutakoaren koloreetan oinarritzen dira, baina xehetasunak ezkutatzen dituzte
@@ -153,6 +157,7 @@ eu:
         jurisdiction: Zerrendatu fakturak ordaintzen dituen pertsona bizi den herrialdea. Enpresa edo bestelako erakunde bat bada, adierazi egoitza duen herrialdea eta, kasuan kasu, hiria, eskualdea, lurraldea edo estatua.
         min_age: Ez luke izan behar zure jurisdikzioko legeek eskatzen duten gutxieneko adinetik beherakoa.
       user:
+        chosen_languages: Markatuta dagoenean, hautatutako hizkuntzetako bidalketak soilik erakutsiko dira denbora-lerro publikoetan. Ezarpen honek ez du eraginik zure Hasierako denbora-lerroan eta zerrendetan.
         date_of_birth:
           one: Ziurtatu behar dugu gutxienez %{count} urte dituzula %{domain} erabiltzeko. Ez dugu hau gordeko.
           other: Ziurtatu behar dugu gutxienez %{count} urte dituzula %{domain} erabiltzeko. Ez dugu hau gordeko.
@@ -176,6 +181,7 @@ eu:
     labels:
       account:
         attribution_domains: Akreditatzeko baimendutako webguneak
+        discoverable: Nabarmendu nazazue aurkikuntza-esperientzietan
         fields:
           name: Etiketa
           value: Edukia
@@ -187,10 +193,12 @@ eu:
       account_migration:
         acct: Kontu berriaren helbidea
       account_warning_preset:
+        text: Erantzunaren testua
         title: Izenburua
       admin_account_action:
         include_statuses: Txertatu salatutako tootak e-mailean
         send_email_notification: Jakinarazi erabiltzaileari e-mail bidez
+        text: Erantzun pertsonalizatua
         type: Ekintza
         types:
           disable: Desaktibatu
@@ -198,6 +206,7 @@ eu:
           sensitive: Hunkigarria
           silence: Isiltarazi
           suspend: Kanporatu eta behin betiko ezabatu kontuko datuak
+        warning_preset_id: Aurrez idatzitako erantzuna
       announcement:
         all_day: Egun osoko ekitaldia
         ends_at: Ekitaldiaren amaiera
