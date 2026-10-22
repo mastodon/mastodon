@@ -5,7 +5,7 @@
 # Table name: account_warning_presets
 #
 #  id              :bigint(8)        not null, primary key
-#  action_category :string
+#  action_category :string           default("all_actions"), not null
 #  text            :text             default(""), not null
 #  title           :string           default(""), not null
 #  created_at      :datetime         not null
