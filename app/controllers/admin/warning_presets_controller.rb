@@ -53,7 +53,7 @@ module Admin
 
     def warning_preset_params
       params
-        .expect(account_warning_preset: [:title, :text, :action_category])
+        .expect(account_warning_preset: [:title, :text])
     end
   end
 end
