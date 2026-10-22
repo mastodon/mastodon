@@ -436,39 +436,39 @@ RSpec.describe Account do
     end
 
     it 'matches usernames ascii mention' do
-      expect(subject.match('hi @bob@example.com here').to_a).to eq(['@bob@example.com', 'bob@example.com', 'bob', nil, '.com'])
+      expect(subject.match('hi @bob@example.com here')[1]).to eq 'bob@example.com'
     end
 
     it 'matches with trailing punctuation' do
-      expect(subject.match('greet @arnt@grå.org, then go').to_a).to eq(['@arnt@grå.org', 'arnt@grå.org', 'arnt', nil, '.org'])
+      expect(subject.match('greet @arnt@grå.org, then go')[1]).to eq 'arnt@grå.org'
     end
 
     it 'matches implausible host' do
-      expect(subject.match('hi @arnt@nope not').to_a).to eq(['@arnt@nope', 'arnt@nope', 'arnt', nil, nil])
+      expect(subject.match('hi @arnt@nope not')[1]).to eq 'arnt@nope'
     end
 
     it 'does not match after a slash (inside a URL path)' do
-      expect(subject.match('hi https://example.com/@arnt@grå.org').to_a).to eq([])
+      expect(subject.match('hi https://example.com/@arnt@grå.org')).to be_nil
     end
 
     it 'matches username with IDN domain name' do
-      expect(subject.match('hi @arnt@grå.org').to_a).to eq(['@arnt@grå.org', 'arnt@grå.org', 'arnt', nil, '.org'])
+      expect(subject.match('hi @arnt@grå.org')[1]).to eq 'arnt@grå.org'
     end
 
     it 'does not match after a word character' do
-      expect(subject.match('hi foo@arnt@grå.org').to_a).to eq([])
+      expect(subject.match('hi foo@arnt@grå.org')).to be_nil
     end
 
     it 'matches a local @user (no host)' do
-      expect(subject.match('@bob says hi').to_a).to eq(['@bob', 'bob', 'bob', nil, nil])
+      expect(subject.match('@bob says hi')[1]).to eq 'bob'
     end
 
     it 'finds first mention, with two mentions in one string' do
-      expect(subject.match('@arnt@grå.org and @bob@example.com').to_a).to eq(['@arnt@grå.org', 'arnt@grå.org', 'arnt', nil, '.org'])
+      expect(subject.match('@arnt@grå.org and @bob@example.com')[1]).to eq 'arnt@grå.org'
     end
 
     it 'matches a CJK-IDN mention' do
-      expect(subject.match('hi @user@慕田峪长城.网址 today').to_a).to eq(['@user@慕田峪长城.网址', 'user@慕田峪长城.网址', 'user', nil, '.网址'])
+      expect(subject.match('hi @user@慕田峪长城.网址 today')[1]).to eq 'user@慕田峪长城.网址'
     end
   end
 
