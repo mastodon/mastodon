@@ -463,7 +463,7 @@ RSpec.describe Account do
       expect(subject.match('@bob says hi').to_a).to eq(['@bob', 'bob', 'bob', nil, nil])
     end
 
-    it 'findsfirst mention, with two mentions in one string' do
+    it 'finds first mention, with two mentions in one string' do
       expect(subject.match('@arnt@grå.org and @bob@example.com').to_a).to eq(['@arnt@grå.org', 'arnt@grå.org', 'arnt', nil, '.org'])
     end
 
