@@ -8,10 +8,13 @@ import { Link } from 'react-router-dom';
 import { useAccount } from '@/flavours/glitch/hooks/useAccount';
 import { useCurrentAccountId } from '@/flavours/glitch/hooks/useAccountId';
 import type { AccountStatusShape } from '@/flavours/glitch/models/status';
+import IconPinned from '@/images/icons/icon_pinned.svg?react';
 
 import { Avatar } from '../avatar';
+import { Badge } from '../badge';
 import { DisplayName } from '../display_name';
 import { useAccountHandle } from '../display_name/default';
+import { Icon } from '../icon';
 import { RelativeTimestamp } from '../relative_timestamp';
 import { Skeleton } from '../skeleton';
 
@@ -23,14 +26,14 @@ interface StatusRedesignHeaderProps {
     AccountStatusShape,
     'id' | 'account' | 'created_at' | 'visibility' | 'mentions'
   >;
-  children?: React.ReactNode;
   className?: string;
+  featured?: boolean;
 }
 
 export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
   status,
-  children,
   className,
+  featured,
 }) => {
   const account = status.account;
   const handle = useAccountHandle(account);
@@ -97,7 +100,7 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
       className={classNames(
         className,
         classes.root,
-        !!children && classes.hasExtra,
+        featured && classes.isFeatured,
       )}
     >
       <Link
@@ -136,7 +139,18 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
         </p>
       </div>
 
-      {children}
+      {featured && (
+        <Badge
+          className={classes.pinnedBadge}
+          icon={<Icon id='pinned' icon={IconPinned} />}
+          label={
+            <FormattedMessage
+              id='account.timeline.pinned'
+              defaultMessage='Pinned'
+            />
+          }
+        />
+      )}
     </header>
   );
 };
