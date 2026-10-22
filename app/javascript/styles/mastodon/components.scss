@@ -5297,6 +5297,10 @@ a.status-card {
     pointer-events: none;
     transform: translate(100%, -100%) rotate(12deg);
     transform-origin: center;
+
+    .layout-multiple-columns & {
+      transform: translate(40%, -115%) rotate(-12deg);
+    }
   }
 }
 
