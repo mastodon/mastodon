@@ -911,6 +911,7 @@ eu:
       action_log: Auditoria-egunkaria
       action_taken_by: Neurrien hartzailea
       actions:
+        delete_description_html: Salatutako bidalketak eta/edo bildumak ezabatuko dira, eta neurri bat erregistratuko da, kontu beraren etorkizuneko arau-hausteen aurrean gogortasuna areagotzen laguntzeko.
         mark_as_sensitive_description_html: Salatutako bidalketetako multimedia edukia hunkigarri bezala eta neurria gordeko da, etorkizunean kontu honek arau-hausterik egiten badu kontuan izan dezazun.
         other_description_html: Ikusi kontuaren portaera kontrolatzeko eta salatutako kontuarekin komunikazioa pertsonalizatzeko aukera gehiago.
         resolve_description_html: Ez da ekintzarik hartuko salatutako kontuaren aurka, ez da neurria gordeko eta salaketa itxiko da.
@@ -937,6 +938,7 @@ eu:
       confirm: Berretsi
       confirm_action: Berretsi @%{acct} kontuaren aurkako moderazio-ekintza
       created_at: Salatua
+      delete_and_resolve: Ezabatu edukia
       forwarded: Birbidalia
       forwarded_replies_explanation: Salaketa hau beste instantzia bateko erabiltzaile baten edukiari buruzkoa da, eta zure instantziako erabiltzaile bati egidako erantzuna delako bidali dizugu mezu hau.
       forwarded_to: 'Hona birbidalia: %{domain}'
@@ -965,6 +967,7 @@ eu:
       resolved_msg: Salaketa ongi konpondu da!
       skip_to_actions: Salto ekintzetara
       status: Mezua
+      statuses: Bidalketak (%{count})
       statuses_description_html: Salatutako edukia salatutako kontuarekiko komunikazioan aipatuko da
       summary:
         action_preambles:
@@ -1134,7 +1137,10 @@ eu:
           overview_html: Zure zerbitzariaren deskribapena erakusten duen orria, zerbitzari honetako erabiltzaileen bidalketa lokal berrienekin batera.
           trends_html: Zerbitzari honetan une honetan ezaguna dena erakusten duen orria.
         values:
+          about: Honi buruz orria
+          local_feed: Zuzeneko jario lokala
           overview: Ikuspegi orokorra
+          trends: Joerak
       registrations:
         moderation_recommandation: Mesedez, ziurtatu moderazio-talde egokia eta erreaktiboa duzula erregistroak guztiei ireki aurretik!
         preamble: Kontrolatu nork sortu dezakeen kontua zerbitzarian.
@@ -1147,6 +1153,7 @@ eu:
         warning_hint: "“Izena emateko onarpena behar da” erabiltzea gomendatzen dugu, baldin eta ez badakizu ziur zure moderazio-taldeak spama eta erregistro maltzurrak arrazoizko denboran erantzun ditzakeela."
       security:
         authorized_fetch: Eskatu autentifikazioa federatutako zerbitzarietatik
+        authorized_fetch_hint: Erabaki noiz behar duten urruneko zerbitzariek autentifikatu zerbitzari honetako edukia eskuratzean.
         authorized_fetch_hints:
           actors: Profiletarako autentifikazioa eskatzeak aukera ematen du jarraitzeko zein zerbitzarik aurkitu duen inoiz zure kontu lokal bakoitza, eta horrek asko murriztu dezake zerbitzariei kontu baten ezabaketa jakinaraztean egiten diren eskaera alferrikakoen kopurua. Aukera honek errendimenduan kostu txiki bat du profilak zerbitzatzean, jarraipen horregatik eta alderantzizko proxyak eskaera horien erantzunak cachean gorde ezin dituelako. Bateragarritasun-arazoak ere sor ditzake federatutako zerbitzu batzuekin.
           all: Profiletarako autentifikazioa eskatzearen abantaila eta desabantailez gain, federatutako zerbitzarien autentifikazioa baldintzarik gabe eskatzeak erabiltzaile- eta zerbitzari-mailako blokeoak zorrotzago aplikatzeko aukera ematen du, baina eskaera gehienak cachean gordetzea ere eragozten du. Zure erantzunen hedapena ere murriztuko du, erantzunak birbidaltzea desgaituko baita.
@@ -1419,6 +1426,8 @@ eu:
     warning_presets:
       add_new: Gehitu berria
       delete: Ezabatu
+      edit_preset: Editatu aurrez idatzitako erantzuna
+      empty: Ez duzu aurrez idatzitako erantzunik definitu oraindik.
       navigation_title: Aurrez idatzitako erantzunak
       title: Moderazioko aurrez idatzitako erantzunak
     webhooks:
@@ -1665,6 +1674,7 @@ eu:
   deletes:
     challenge_not_passed: Sartu duzun informazioa ez da zuzena
     confirm_password: Sartu zure oraingo pasahitza zure identitatea egiaztatzeko
+    confirm_username: Berretsi erabiltzaile-izena
     confirm_username_hint_html: Idatzi <code>%{username}</code> ezabatu nahi duzun kontua berresteko
     proceed: Ezabatu kontua
     success_msg: Zure kontua ongi ezabatu da
@@ -1786,6 +1796,7 @@ eu:
     csv: CSV
     custom_filters: Iragazkiak
     domain_blocks: Domeinuen blokeoak
+    json: JSON
     lists: Zerrendak
     mutes: Zuk mututukoak
     storage: Multimedia biltegiratzea
@@ -2136,6 +2147,7 @@ eu:
     next: Hurrengoa
     older: Zaharragoa
     prev: Aurrekoa
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Inkesta honetan dagoeneko bozkatu duzu
@@ -2395,6 +2407,8 @@ eu:
     past_preamble_html: Zerbitzu-baldintzak aldatu ditugu zure azken bisitatik. Baldintza eguneratuak berrikustera animatzen zaitugu.
     review_link: Berrikusi zerbitzu-baldintzak
     title: "%{domain} zerbitzariaren zerbitzu-baldintzak aldatzen ari dira"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%Y(e)ko %b %d, %H:%M"
