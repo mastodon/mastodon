@@ -65,6 +65,7 @@ describe('countableText', () => {
   test('strips a Latin-IDN remote mention', () => {
     expect(countableText('hi @arnt@grå.org')).toBe('hi @arntå.org');
   });
+
   test('strips anotother Latin-IDN remote mention', () => {
     expect(countableText('hi @arnt@aŭtomato.swf.pub')).toBe(
       'hi @arnt@aŭtomato.swf.pub',
