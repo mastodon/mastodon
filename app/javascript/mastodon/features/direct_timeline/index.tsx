@@ -179,5 +179,5 @@ const DirectTimeline: React.FC<ColumnBase> = ({ columnId, multiColumn }) => {
   );
 };
 
-// eslint-disable-next-line import/no-default-export
+// oxlint-disable-next-line import/no-default-export
 export default DirectTimeline;

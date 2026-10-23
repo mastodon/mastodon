@@ -7,7 +7,7 @@ import {
   createSelector,
   createAction,
 } from '@reduxjs/toolkit';
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+// oxlint-disable-next-line @typescript-eslint/no-restricted-imports
 import { useDispatch, useSelector } from 'react-redux';
 
 import type { AppDispatch, RootState } from './store';
@@ -203,6 +203,7 @@ export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
     | AppThunkOptions<Args>
     | OnData<Args, LoadDataResult, DiscardLoadData>,
   thunkOptions?: AppThunkOptions<Args>,
+  // oxlint-disable-next-line typescript/no-invalid-void-type
 ): ReturnType<typeof createAsyncThunk<Args, void>>;
 
 // Overload when the `onData` method returns nothing, then the payload is the `onData` result

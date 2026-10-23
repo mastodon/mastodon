@@ -17,7 +17,7 @@ import {
 } from './toggle_field';
 
 type RedesignComponent<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // oxlint-disable-next-line @typescript-eslint/no-explicit-any
   T extends React.JSXElementConstructor<any>,
   P = object,
 > = React.FC<Merge<React.ComponentProps<T>, P>>;
