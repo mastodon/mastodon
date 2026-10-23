@@ -1876,8 +1876,11 @@ en:
       other: Something isn't quite right yet! Please review %{count} errors below
   imports:
     errors:
+      custom_filters:
+        must_be_an_array: 'The file is missing required fields or uses an incorrect schema: JSON must contain a list of filters'
+        schema_error: 'The file is missing required fields or uses an incorrect schema: Invalid filter in list at index %{index}'
       empty: Empty CSV file
-      incompatible_type: Incompatible with the selected import type
+      incompatible_type: The file is missing required fields or uses an incorrect schema. Check your file's internal data mapping or switch your import type selection to match the structure of your uploaded file.
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
       invalid_json_file: 'Invalid JSON file. Error: %{error}'
       no_data: This file does not contain any data matching the given import type

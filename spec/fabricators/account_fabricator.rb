@@ -38,3 +38,16 @@ end
 Fabricator(:remote_account, from: :account) do
   domain 'example.com'
 end
+
+Fabricator(:account_with_custom_filters, from: :account) do
+  after_create do |account|
+    filter = Fabricate(:custom_filter, account: account, phrase: Faker::Lorem.word)
+    other_filter = Fabricate(:custom_filter, account: account, phrase: Faker::Lorem.word)
+
+    Fabricate(:custom_filter_keyword, custom_filter: filter, keyword: Faker::Lorem.word)
+    Fabricate(:custom_filter_keyword, keyword: Faker::Lorem.word, custom_filter: filter, whole_word: false)
+    Fabricate(:custom_filter_keyword, custom_filter: other_filter, keyword: Faker::Lorem.word)
+    Fabricate(:custom_filter_keyword, keyword: Faker::Lorem.word, custom_filter: other_filter, whole_word: false)
+    Fabricate(:custom_filter_status, custom_filter: filter)
+  end
+end
