@@ -95,6 +95,14 @@ development environment configured with the software needed for this project.
 - Check out the [Mastodon docs] for tips on working with emails in development (you'll need this when creating new user accounts) as well as a list of useful commands for testing and updating your dev instance.
 - You can optionally populate your database with sample data by running `bin/rails dev:populate_sample_data`. This will create a `@showcase_account` account with various types of contents.
 
+## Automated tests
+
+The unit tests can be run as follows:
+
+```
+RAILS_ENV=test bin/rspec
+```
+
 [codespace]: https://codespaces.new/mastodon/mastodon?quickstart=1&devcontainer_path=.devcontainer%2Fcodespaces%2Fdevcontainer.json
 [CONTRIBUTING]: ../CONTRIBUTING.md
 [Dev Container extension]: https://containers.dev/supporting#dev-containers
