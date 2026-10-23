@@ -29,6 +29,9 @@
 - if @report.comment.present?
   = render 'admin/reports/comment', report: @report
 
+- if @report.account.local? && !@statuses.empty? && (@report.account.user.settings['web.expand_content_warnings'] || @report.account.user.settings['web.display_media'] == 'show_all')
+  .flash-message.warning= t('admin.reports.sensitive_media_explanation')
+
 %hr.spacer/
 
 %h3
