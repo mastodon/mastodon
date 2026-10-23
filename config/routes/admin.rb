@@ -4,6 +4,7 @@ namespace :admin do
   get '/dashboard', to: 'dashboard#index'
 
   resources :server_checks, only: [:index]
+  get '/server_health', to: redirect('/admin/server_checks')
   post '/ignored_server_checks/:key', to: 'ignored_server_checks#create', as: 'ignored_server_check'
   delete '/ignored_server_checks/:key', to: 'ignored_server_checks#destroy'
 
