@@ -39,6 +39,14 @@ class Admin::ServerCheck < ApplicationRecord
     checks.sort_by(&:key)
   end
 
+  def self.checks_for(user)
+    checks.filter_map do |check|
+      next unless check.authorized?(user)
+
+      check.tap(&:prepare)
+    end
+  end
+
   def prepare
     run if sync?
   end
@@ -76,5 +84,18 @@ class Admin::ServerCheck < ApplicationRecord
     super.tap do
       @runner = nil
     end
+  end
+
+  def data
+    super || {}
+  end
+
+  def category
+    return 'ignored' if ignored?
+    return 'completed' if ok?
+    return 'unprocessed' if unprocessed? || running?
+    return 'error' if error?
+
+    severity
   end
 end

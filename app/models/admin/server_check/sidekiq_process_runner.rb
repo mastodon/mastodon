@@ -23,6 +23,6 @@ class Admin::ServerCheck::SidekiqProcessRunner
 
   def run
     missing_queues = Sidekiq::ProcessSet.new.reduce(SIDEKIQ_QUEUES) { |queues, process| queues - process['queues'] }
-    missing_queues.empty? ? ok : pending(data: { missing_queues: })
+    missing_queues.empty? ? ok : pending(data: { missing_queues:, missing_queues_str: missing_queues.join(', ') })
   end
 end

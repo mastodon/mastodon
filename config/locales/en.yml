@@ -1074,6 +1074,119 @@ en:
       translation: Translation
       translations: Translations
       translations_explanation: You can optionally add translations for the rules. The default value will be shown if no translated version is available. Please always ensure any provided translation is in sync with the default value.
+    server_checks:
+      categories:
+        completed:
+          title: Completed
+        critical:
+          title: Critical
+        error:
+          title: Errors
+        ignored:
+          title: Ignored
+        suggestion:
+          title: Suggestions
+        unprocessed:
+          title: Unprocessed
+        warning:
+          title: Warnings
+      checks:
+        database_schema:
+          error:
+            title: There was an error checking the database schema
+          ok:
+            title: There are no database migrations pending
+          pending:
+            lead_html: Please run them to ensure the application behaves as expected
+            title: There are pending database migrations
+          running:
+            title: Your server is checking the database schema
+          unprocessed:
+            title: Your server hasn't checked the database schema yet
+        elastic_search:
+          error:
+            title: There was an error checking Elasticsearch configuration
+          ok:
+            title: Elasticsearch is configured without issues
+          pending:
+            lead:
+              analysis_index_mismatch_html: Elasticsearch index analyzer settings are outdated. Please run <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Elasticsearch cluster is unhealthy (red status), search features are unavailable
+              cluster_health_yellow_html: Elasticsearch cluster is unhealthy (yellow status), you may want to investigate the reason
+              index_mismatch_html: Elasticsearch index mappings are outdated. Please run <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Your Elasticsearch cluster has more than one node, but Mastodon is not configured to use them
+              preset_single_node_html: Your Elasticsearch cluster has only one node, <code>ES_PRESET</code> should be set to <code>single_node_cluster</code>
+              reset_chewy_html: Your Elasticsearch system index is outdated due to a setting change. Please run <code>tootctl search deploy --reset-chewy</code> to update it
+              running_check_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
+              version_check_html: Elasticsearch %{running_version} is running while %{required_version} is required
+            title: There are issues with Elasticsearch
+          running:
+            title: The server is checking Elasticsearch configuration
+          unprocessed:
+            title: The server hasn't checked Elasticsearch configuration yet
+        media_privacy:
+          error:
+            title: There was an error checking your server's media privacy
+          ok:
+            title: Your server media privacy is secure
+          pending:
+            lead:
+              upload_check_privacy_error_html: Your web server is misconfigured
+              upload_check_privacy_error_object_storage_html: Your object storage is misconfigured
+            title: The privacy of your users is at risk
+          running:
+            title: The server is checking its privacy status
+          unprocessed:
+            title: The server hasn't checked its privacy status yet
+        rules:
+          error:
+            title: There was an error checking your server rules
+          ok:
+            title: Your server rules are set
+          pending:
+            lead_html: Your server has no published rules. Clear rules help moderation and set expectations
+            title: Set up server rules
+          running:
+            title: The server is checking your rules
+          unprocessed:
+            title: The server hasn't checked if there are any rules yet
+        sidekiq_process:
+          error:
+            title: There was an error checking Sidekiq configuration
+          ok:
+            title: Sidekiq is configured without issues
+          pending:
+            lead_html: No Sidekiq process running for the %{missing_queues_str} queue(s)
+            title: Please review your Sidekiq configuration
+          running:
+            title: The server is checking Sidekiq configuration
+          unprocessed:
+            title: The server hasn't checked the Sidekiq configuration yet
+        software_version:
+          error:
+            title: There was an error checking for software updates
+          ok:
+            title: Your Mastodon instance is up to date
+          pending:
+            lead:
+              patch_html: There is a bugfix Mastodon update available
+              regular_html: There is a new version of Mastodon available
+              urgent_html: A critical Mastodon update is available, please update as quickly as possible
+            title: Update your Mastodon instance
+          running:
+            title: The server is checking if there is any software update pending
+          unprocessed:
+            title: The server hasn't checked software updates yet
+      ignore:
+        label: Ignore
+      lead: Recommendations to keep your server safe, welcoming and efficient.
+      recommendations:
+        title: Recommendations
+      restore:
+        label: Restore
+      setup:
+        label: Set up
+      title: Server Health
     settings:
       about:
         manage_rules: Manage server rules
