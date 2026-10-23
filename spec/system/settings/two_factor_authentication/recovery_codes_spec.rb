@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Settings TwoFactorAuthentication RecoveryCodes' do
   describe 'Generating recovery codes' do
-    let(:user) { Fabricate :user, otp_required_for_login: true }
+    let(:user) { Fabricate :user, otp_required_for_login: true, otp_backup_codes: [+'4478ec983821abf2c3dbfa12db7c857f'] }
     let(:backup_code) { +'147e7284c95bd260b91ed17820860019' }
 
     before do
