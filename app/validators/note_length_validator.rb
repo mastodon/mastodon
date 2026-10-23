@@ -8,21 +8,6 @@ class NoteLengthValidator < ActiveModel::EachValidator
   private
 
   def too_long?(value)
-    countable_text(value).each_grapheme_cluster.size > options[:maximum]
-  end
-
-  def countable_text(value)
-    return '' if value.nil?
-
-    entities = Extractor.extract_urls_with_indices(value).sort_by { |e| e[:indices].first }
-    result = +''
-    last = entities.reduce(0) do |i, entity|
-      result << value[i...entity[:indices].first]
-      result << StatusLengthValidator::URL_PLACEHOLDER
-      entity[:indices].last
-    end
-    result << value[last..]
-    result.gsub!(Account::MENTION_RE, '@\2')
-    result
+    CharacterCounter.new.countable_note_text(value).each_grapheme_cluster.size > options[:maximum]
   end
 end
