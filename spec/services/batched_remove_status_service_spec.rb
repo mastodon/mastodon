@@ -55,7 +55,7 @@ RSpec.describe BatchedRemoveStatusService, :inline_jobs do
   def feed_ids_for(account)
     HomeFeed
       .new(account)
-      .get(10)
+      .get(limit: 10)
       .pluck(:id)
   end
 end
