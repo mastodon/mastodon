@@ -11,6 +11,7 @@ import { isRedesignEnabled } from '../utils/environment';
 import {
   expandTimeline,
   insertIntoTimeline,
+  scrollTopTimeline,
   TIMELINE_NON_STATUS_MARKERS,
   updateTimeline,
 } from './timelines';
@@ -213,6 +214,20 @@ export const timelineDeleteStatus = createAction<{
   statusId: string;
   timelineKey: string;
 }>('timelines/deleteStatus');
+
+export const timelineScroll = createAppThunk(
+  (
+    { timelineId, top }: { timelineId: string; top: boolean },
+    { getState, dispatch },
+  ) => {
+    const isTop = getState().timelines.getIn([timelineId, 'top']);
+    if (isTop === undefined || top === isTop) {
+      return;
+    }
+
+    dispatch(scrollTopTimeline(timelineId, top));
+  },
+);
 
 export const insertStatusIntoAccountTimelines = createAppThunk(
   (status: ApiStatusJSON, { dispatch, getState }) => {

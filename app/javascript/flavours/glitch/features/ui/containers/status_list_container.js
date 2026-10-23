@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { scrollTopTimeline, loadPending } from '@/flavours/glitch/actions/timelines';
-import { isNonStatusId } from '@/flavours/glitch/actions/timelines_typed';
+import { loadPending } from '@/flavours/glitch/actions/timelines';
+import { isNonStatusId, timelineScroll } from '@/flavours/glitch/actions/timelines_typed';
 import StatusList from '@/flavours/glitch/components/status_list';
 import { me } from '@/flavours/glitch/initial_state';
 
@@ -95,11 +95,11 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = (dispatch, { timelineId }) => ({
 
   onScrollToTop: debounce(() => {
-    dispatch(scrollTopTimeline(timelineId, true));
+    dispatch(timelineScroll({ timelineId, top: true }));
   }, 100),
 
   onScroll: debounce(() => {
-    dispatch(scrollTopTimeline(timelineId, false));
+    dispatch(timelineScroll({ timelineId, top: false }));
   }, 100),
 
   onLoadPending: () => dispatch(loadPending(timelineId)),
