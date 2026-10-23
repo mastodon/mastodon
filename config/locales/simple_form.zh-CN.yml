@@ -16,6 +16,7 @@ zh-CN:
       account_migration:
         acct: 指定你想迁移过去的目标账号：用户名@站点域名
       account_warning_preset:
+        action_category: 选择此回复适用的管理操作。如果此回复可用于多个操作，选择“所有操作”。
         text: 你可以使用嘟文格式，例如加入 URL、话题和“@”
         title: 可选。对接收者不可见
       admin_account_action:
@@ -192,6 +193,7 @@ zh-CN:
       account_migration:
         acct: 处理新账号
       account_warning_preset:
+        action_category: 分配管理操作
         text: 回复文本
         title: 标题
       admin_account_action:
@@ -200,6 +202,7 @@ zh-CN:
         text: 自定义回复
         type: 动作
         types:
+          all_actions: 所有操作
           disable: 冻结
           none: 忽略
           sensitive: 敏感内容
@@ -272,7 +275,6 @@ zh-CN:
         setting_system_scrollbars_ui: 使用系统默认样式的滚动条
         setting_theme: 站点主题
         setting_theme_color: 主题颜色
-        setting_trends: 显示今日热门
         setting_unfollow_modal: 在取消关注前询问我
         setting_use_blurhash: 将隐藏媒体显示为彩色渐变
         setting_use_pending_items: 慢速模式

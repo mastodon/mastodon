@@ -16,6 +16,7 @@ it:
       account_migration:
         acct: Indica il nomeutente@dominio dell'account al quale vuoi trasferirti
       account_warning_preset:
+        action_category: Seleziona l'azione di moderazione per cui deve essere utilizzata questa risposta. Seleziona “Tutte le azioni” se la risposta si applica a più di un'azione.
         text: Puoi usare la sintassi dei post, come URL, hashtag e menzioni
         title: Opzionale. Non visibile al destinatario
       admin_account_action:
@@ -196,6 +197,7 @@ it:
       account_migration:
         acct: Handle del nuovo account
       account_warning_preset:
+        action_category: Assegna un'azione di moderazione
         text: Testo della risposta
         title: Titolo
       admin_account_action:
@@ -204,6 +206,7 @@ it:
         text: Risposta personalizzata
         type: Azione
         types:
+          all_actions: Tutte le azioni
           disable: Disabilita
           none: Non fare nulla
           sensitive: Sensibile
@@ -276,7 +279,6 @@ it:
         setting_system_scrollbars_ui: Utilizza la barra di scorrimento predefinita del sistema
         setting_theme: Tema del sito
         setting_theme_color: Colore del tema
-        setting_trends: Mostra tendenze di oggi
         setting_unfollow_modal: Chiedi conferma prima di smettere di seguire qualcuno
         setting_use_blurhash: Mostra i gradienti colorati per i media nascosti
         setting_use_pending_items: Modalità lenta

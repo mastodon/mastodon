@@ -16,6 +16,7 @@ sv:
       account_migration:
         acct: Ange användarnamn@domän för kontot du vill flytta till
       account_warning_preset:
+        action_category: Välj den modereringsåtgärd som detta svar ska användas till. Välj "Alla åtgärder" om svaret gäller mer än en åtgärd.
         text: Du kan använda inläggssyntax som webbadresser, hashtaggar och omnämnanden
         title: Valfri. Inte synlig för mottagaren
       admin_account_action:
@@ -193,6 +194,7 @@ sv:
       account_migration:
         acct: Namnet på det nya kontot
       account_warning_preset:
+        action_category: Tilldela modereringsåtgärd
         text: Svarstext
         title: Rubrik
       admin_account_action:
@@ -201,6 +203,7 @@ sv:
         text: Anpassat svar
         type: Åtgärd
         types:
+          all_actions: Alla åtgärder
           disable: Frys
           none: Skicka en varning
           sensitive: Känslig
@@ -273,7 +276,6 @@ sv:
         setting_system_scrollbars_ui: Använd systemets standardrullningsfält
         setting_theme: Sidans tema
         setting_theme_color: Temafärg
-        setting_trends: Visa dagens trender
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
         setting_use_blurhash: Visa färgglada gradienter för dold media
         setting_use_pending_items: Långsamt läge

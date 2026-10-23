@@ -16,6 +16,7 @@ es-AR:
       account_migration:
         acct: Especificá el nombredeusuario@dominio de la cuenta a la que querés mudarte
       account_warning_preset:
+        action_category: Seleccioná la acción de moderación para la cual esta respuesta debería ser usada. Seleccioná «Todas las acciones» si la respuesta aplica a más de una acción.
         text: Podés usar sintaxis de mensajes, como direcciones web, etiquetas y menciones
         title: Opcional. No visible para el destinatario
       admin_account_action:
@@ -193,6 +194,7 @@ es-AR:
       account_migration:
         acct: Alias de la cuenta nueva
       account_warning_preset:
+        action_category: Asignar acción de moderación
         text: Texto de la respuesta
         title: Título
       admin_account_action:
@@ -201,6 +203,7 @@ es-AR:
         text: Respuesta personalizada
         type: Acción
         types:
+          all_actions: Todas las acciones
           disable: Congelar
           none: Enviar una advertencia
           sensitive: Marcar como sensible
@@ -273,7 +276,6 @@ es-AR:
         setting_system_scrollbars_ui: Usar la barra de desplazamiento predeterminada del sistema operativo
         setting_theme: Tema del sitio
         setting_theme_color: Color temático
-        setting_trends: Mostrar las tendencias de hoy
         setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de seguir a una cuenta
         setting_use_blurhash: Mostrar gradientes coloridos para medios ocultos
         setting_use_pending_items: Modo lento
