@@ -75,8 +75,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 end
 
-Paperclip::Attachment.default_options[:path] = Rails.root.join('spec', 'test_files', ':class', ':id_partition', ':style.:extension')
-
 # Enable fake_data for PAM
 if ENV['PAM_ENABLED'] == 'true'
   Rpam2.fake_data =
