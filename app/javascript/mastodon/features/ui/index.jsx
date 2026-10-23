@@ -501,7 +501,7 @@ class UI extends PureComponent {
   handleHotkeySearch = e => {
     e.preventDefault();
 
-    const element = this.node.querySelector('.search__input');
+    const element = this.node.querySelector('[data-main-search="true"]');
 
     if (element) {
       element.focus();
