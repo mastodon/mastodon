@@ -162,15 +162,10 @@
       groupName: 'opentelemetry-ruby (non-major)',
     },
     {
-      // The ruby portion of the Playwright group
-      matchManagers: ['bundler'],
-      matchPackageNames: ['playwright-ruby-client'],
-      groupName: 'Playwright',
-    },
-    {
-      // The node portion of the Playwright group
-      matchManagers: ['npm'],
-      matchPackageNames: ['playwright'],
+      // Unified Playwright group across Node and Ruby ecosystems
+      matchManagers: ['npm', 'bundler'],
+      matchPackageNames: ['playwright', 'playwright-ruby-client'],
+      matchUpdateTypes: ['patch', 'minor'],
       groupName: 'Playwright',
     },
     {
