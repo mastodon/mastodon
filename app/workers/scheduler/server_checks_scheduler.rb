@@ -11,7 +11,6 @@ class Scheduler::ServerChecksScheduler
       next if check.running? && check.updated_at&.>(1.hour.ago)
 
       check.running!
-      check.save
 
       check.run do |err|
         Sidekiq.logger.error("Error running ServerCheck '#{check.key}': #{err.message}")
