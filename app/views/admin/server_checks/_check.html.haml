@@ -1,5 +1,5 @@
-%div{ class: ['server-check__container', category] }
-  %div{ class: ['server-check__icon', category] }= admin_server_check_icon(category)
+.server-check__container{ class: category }
+  .server-check__icon{ class: category }= admin_server_check_icon(category)
 
   .server-check__info
     .server-check__info__title= admin_server_check_title(check)
