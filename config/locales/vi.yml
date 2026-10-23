@@ -353,10 +353,17 @@ vi:
         update_user_role_html: "%{name} đã cập nhật vai trò %{target}"
         update_username_block_html: "%{name} đã cập nhật quy tắc cho tên người dùng chứa %{target}"
         usable_tag_html: có thể dùng;
+      automated_actions:
+        create_domain_allow_html: Tự động cho phép các liên kết với tên miền %{target}
+        create_domain_block_html: Tự động chặn tên miền %{target}
+        destroy_domain_allow_html: Tự động từ chối các liên kết với tên miền %{target}
+        destroy_domain_block_html: Tự động bỏ chặn tên miền %{target}
+        update_domain_block_html: Tự động cập nhật chặn tên miền với %{target}
       deleted_account: tài khoản đã xóa
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động
       filter_by_user: Theo người
+      suggested_by_html: Hành động gợi ý bởi %{subscription}
       title: Nhật ký kiểm duyệt
       unavailable_instance: "(tên máy chủ không khả dụng)"
     announcements:
@@ -467,6 +474,10 @@ vi:
       undo: Xóa khỏi danh sách trắng
     domain_blocks:
       add_new: Chặn máy chủ
+      confirm_downgrade:
+        cancel: Hủy bỏ
+        confirm: Giáng cấp
+        title: Xác nhận giáng cấp tên miền %{domain}
       confirm_suspension:
         cancel: Hủy bỏ
         confirm: Vô hiệu hóa
@@ -765,6 +776,28 @@ vi:
       reset: Đặt lại
       search: Tìm kiếm
       title: Những IP bị chặn
+    moderation_subscriptions:
+      add_new: Tạo gói đăng ký mới
+      advisory_action: 'Hành động: %{action}'
+      advisory_actions:
+        accept: cho phép
+      apply_conditions:
+        always: Luôn luôn
+        never: Không bao giờ
+      delete: Xóa bỏ
+      last_synced_at: Đồng bộ lần cuối lúc
+      list_actions:
+        accept: Danh sách cho phép
+        default: Hỗn hợp (Cho phép & Từ chối)
+        reject: Danh sách chặn
+      list_actions_short:
+        accept: Danh sách cho phép
+        default: Hỗn hợp
+        reject: Danh sách chặn
+      name: Gói đăng ký
+      new:
+        create: Đăng ký
+      priority: Ưu tiên
     relationships:
       title: Mối quan hệ của %{acct}
     relays:
@@ -1300,6 +1333,13 @@ vi:
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ
+      dropdown:
+        all_actions: Mọi hành động
+        disable: Khóa
+        none: Cảnh báo
+        sensitive: Nhạy cảm
+        silence: Hạn chế
+        suspend: Vô hiệu hóa
       edit_preset: Sửa mẫu phản hồi
       empty: Bạn chưa thêm mẫu phản hồi nào cả.
       navigation_title: Mẫu phản hồi
@@ -1385,7 +1425,6 @@ vi:
     animations_and_accessibility: Hiệu ứng
     boosting_preferences: Đăng lại
     boosting_preferences_info_html: "<strong>Mẹo:</strong> Bất kể cài đặt, <kbd>Shift</kbd> + <kbd>Click</kbd> trên biểu tượng %{icon} Đăng lại sẽ lập tức đăng lại."
-    discovery: Khám phá
     localization:
       body: Mastodon được dịch bởi tình nguyện viên.
       guide_link: https://crowdin.com/project/mastodon
@@ -1565,6 +1604,7 @@ vi:
       action_taken: Hành động áp dụng
       appeal: Khiếu nại
       appeal_approved: Khiếu nại đã được chấp nhận và cảnh cáo không còn giá trị
+      appeal_handled_by: Kháng cáo được xử lý bởi
       appeal_rejected: Khiếu nại bị từ chối
       appeal_submitted_at: Đã gửi khiếu nại
       appealed_msg: Khiếu nại của bạn đã được gửi đi. Nếu nó được chấp nhận, bạn sẽ nhận được thông báo.

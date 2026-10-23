@@ -278,7 +278,7 @@ de:
         update_user_role: Rolle bearbeiten
         update_username_block: Regel für Profilnamen aktualisieren
       actions:
-        approve_appeal_html: "%{name} genehmigte den Einspruch gegen eine Moderationsentscheidung von %{target}"
+        approve_appeal_html: "%{name} genehmigte den Einspruch gegen eine Moderationsmaßnahme von %{target}"
         approve_user_html: "%{name} genehmigte die Registrierung von %{target}"
         assigned_to_self_report_html: "%{name} wies sich die Meldung %{target} selbst zu"
         change_email_user_html: "%{name} änderte die E-Mail-Adresse von %{target}"
@@ -328,7 +328,7 @@ de:
         not_usable_tag_html: darf nicht verwendet werden
         promote_user_html: "%{name} beförderte %{target}"
         publish_terms_of_service_html: "%{name} aktualisierte die Nutzungsbedingungen"
-        reject_appeal_html: "%{name} lehnte den Einspruch gegen eine Moderationsentscheidung von %{target} ab"
+        reject_appeal_html: "%{name} lehnte den Einspruch gegen eine Moderationsmaßnahme von %{target} ab"
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} entfernte das Profilbild von %{target}"
         reopen_report_html: "%{name} öffnete die Meldung %{target} wieder"
@@ -474,6 +474,8 @@ de:
       undo: Von der Föderation ausschließen
     domain_blocks:
       add_new: Neue Domain einschränken
+      confirm_downgrade:
+        cancel: Abbrechen
       confirm_suspension:
         cancel: Abbrechen
         confirm: Sperren
@@ -673,6 +675,8 @@ de:
       title: Follower-Empfehlungen
       unsuppress: Follower-Empfehlungen wiederherstellen
     instances:
+      advisories:
+        title: Bemerkungen zu abonnierbaren Listen
       audit_log:
         title: Neueste Protokolle
         view_all: Protokolle
@@ -777,6 +781,61 @@ de:
       reset: Zurücksetzen
       search: Suchen
       title: IP-Regeln
+    moderation_subscriptions:
+      add_new: Abonnement hinzufügen
+      advisory_action: 'Aktion: %{action}'
+      advisory_actions:
+        accept: zulassen
+        limit: stummschalten
+        reject: sperren
+      apply_conditions:
+        always: Immer
+        never: Nie
+      delete: Entfernen
+      last_synced_at: Zuletzt synchronisiert am
+      list_actions:
+        accept: Ausnahmeliste
+        reject: Sperrliste
+      list_actions_short:
+        accept: Ausnahmeliste
+        reject: Sperrliste
+      name: Titel
+      new:
+        create: Abonnieren
+      priority: Priorität
+      show:
+        edit: Abonnement bearbeiten
+        empty: Dieses Abonnement hat noch keine Bemerkungen.
+        title: 'Abonnierbare Liste: %{name}'
+      tabs:
+        logs: Protokolle
+        subscriptions: Abonnements
+        suggestions: Vorschläge
+      title: Abonnierbare Listen
+      type: Art
+      types:
+        csv_list: CSV-Liste
+      url: URL
+    moderation_subscriptions_logs:
+      title: Protokolle zu abonnierbaren Listen
+    moderation_suggestions:
+      actions:
+        accept: Zulassen
+        limit: Einschränken
+        reject: Sperren
+        retract: Derzeitige Richtlinie zurückziehen
+      apply_accept: Zulassen
+      apply_limit: Einschränken
+      apply_reject: Sperren
+      apply_retract: Zurückziehen
+      current_states:
+        accept: derzeit zugelassen
+        limit: derzeit eingeschränkt
+        reject: derzeit gesperrt
+      dismiss: Vorschläge verwerfen
+      empty: Zurzeit gibt es keinen Moderationsvorschlag.
+      suggested_from_html: Vorgeschlagen von %{link}
+      title: Moderationsvorschläge
     relationships:
       title: Beziehungen von %{acct}
     relays:
@@ -1311,6 +1370,13 @@ de:
     warning_presets:
       add_new: Neu hinzufügen
       delete: Löschen
+      dropdown:
+        all_actions: Alle Maßnahmen
+        disable: Einfrieren
+        none: Verwarnung
+        sensitive: Inhaltswarnung
+        silence: Stummschalten
+        suspend: Sperren
       edit_preset: Vorgefertigte Antwort bearbeiten
       empty: Du hast noch keine vorgefertigten Antworten erstellt.
       navigation_title: Vorgefertigte Antworten
@@ -1363,6 +1429,8 @@ de:
     new_critical_software_updates:
       body: ein neues Sicherheitsupdate wurde veröffentlicht. Du solltest Mastodon so schnell wie möglich aktualisieren!
       subject: Kritische Mastodon-Updates sind für %{instance} verfügbar!
+    new_moderation_suggestions:
+      subject: Neue Moderationsvorschläge auf %{instance} verfügbar!
     new_pending_account:
       body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.
       subject: Neues Konto zum Überprüfen auf %{instance} verfügbar (%{username})
@@ -1397,7 +1465,6 @@ de:
     animations_and_accessibility: Animationen und Barrierefreiheit
     boosting_preferences: Teilen
     boosting_preferences_info_html: "<strong>Tipp:</strong> <kbd>Umschalttaste</kbd> + <kbd>Klick</kbd> beim Teilen-Symbol %{icon} wird den Beitrag immer sofort teilen."
-    discovery: Entdecken
     localization:
       body: Mastodon wird von Freiwilligen übersetzt.
       guide_link: https://de.crowdin.com/project/mastodon/de
@@ -1577,6 +1644,7 @@ de:
       action_taken: Maßnahme
       appeal: Einspruch
       appeal_approved: Dieser Verstoß wurde erfolgreich angefochten und ist nicht mehr gültig
+      appeal_handled_by: Einspruch bearbeitet von
       appeal_rejected: Der Einspruch wurde abgelehnt
       appeal_submitted_at: Einspruch eingereicht
       appealed_msg: Dein Einspruch wurde übermittelt. Wenn er angenommen wird, wirst du benachrichtigt.

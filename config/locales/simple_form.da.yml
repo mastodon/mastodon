@@ -16,6 +16,7 @@ da:
       account_migration:
         acct: Angiv brugernavn@domain for den konto, hvortil du vil flytte
       account_warning_preset:
+        action_category: Vælg den moderationshandling, som dette svar skal bruges til. Vælg "Alle handlinger", hvis svaret gælder for mere end én handling.
         text: Du kan bruge indlægssyntaks, såsom URL'er, hashtags og omtaler
         title: Valgfri. Ikke synlig for modtageren
       admin_account_action:
@@ -193,6 +194,7 @@ da:
       account_migration:
         acct: Brugernavn på den nye konto
       account_warning_preset:
+        action_category: Tildel moderationshandling
         text: Svartekst
         title: Titel
       admin_account_action:
@@ -201,6 +203,7 @@ da:
         text: Tilpasset svar
         type: Handling
         types:
+          all_actions: Alle handlinger
           disable: Frys
           none: Send en advarsel
           sensitive: Sensitiv
@@ -273,7 +276,6 @@ da:
         setting_system_scrollbars_ui: Brug standard systemrullebjælke
         setting_theme: Webstedstema
         setting_theme_color: Temafarve
-        setting_trends: Vis dagens trends
         setting_unfollow_modal: Vis bekræftelsesdialog, før du stopper med at følge nogen
         setting_use_blurhash: Vis farverige gradienter for skjulte medier
         setting_use_pending_items: Langsom tilstand

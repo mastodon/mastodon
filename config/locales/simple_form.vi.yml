@@ -3,19 +3,20 @@ vi:
   simple_form:
     hints:
       account:
-        attribution_domains: Bảo vệ khỏi những sự gán ghép sai.
+        attribution_domains: Nhập mỗi cái một dòng, để tránh bị kết nối lẫn lộn với nhau.
         discoverable: Bạn có thể được nêu bật trong một gói khởi đầu của người khác. Bạn và tút công khai của bạn sẽ được đề xuất trên Mastodon.
         display_name: Tên đầy đủ hoặc biệt danh đều được.
-        fields: Blog của bạn, nghề nghiệp, tuổi hoặc bất kỳ.
-        indexable: Mọi người có thể tìm kiếm và tương tác với những tút công khai của bạn trên Mastodon.
+        fields: Website, nghề nghiệp, tuổi hoặc bất kỳ thứ gì bạn thích.
+        indexable: Mọi người có thể tìm kiếm và tương tác với những bài đăng công khai của bạn trên Mastodon.
         note: 'Bạn có thể @aiđó hoặc #hashtags.'
         show_collections: Mọi người sẽ biết bạn theo dõi ai và ai theo dõi bạn.
         unlocked: Mọi người sẽ theo dõi bạn mà không cần bạn cho phép.
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
       account_migration:
-        acct: tên_người_dùng@máy chủ của tài khoản bạn muốn chuyển sang
+        acct: Nhập tên_người_dùng@máy chủ của tài khoản bạn muốn chuyển sang
       account_warning_preset:
+        action_category: Chọn hành động kiểm duyệt mà phản hồi này nên dùng. Chọn "Tất cả hành động" nếu phản hồi áp dụng nhiều hơn một hành động.
         text: Bạn có thể dùng URL, hashtag và nhắc đến
         title: Tùy chọn. Không cho người nhận xem
       admin_account_action:
@@ -45,18 +46,18 @@ vi:
         context: Chọn những nơi áp dụng bộ lọc
         current_password: Để bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
-        digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
-        email: Bạn sẽ được gửi một email xác minh
+        digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn trong lúc vắng mặt
+        email: Bạn vừa được nhận một email xác minh
         header: WEBP, PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         inbox_url: Sao chép URL của máy chủ mà bạn muốn dùng
-        irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả sau khi xóa bộ lọc
+        irreversible: Bài đăng đã bị lọc qua sẽ không bao giờ hiển thị nữa, kể cả sau khi tắt bộ lọc
         locale: Ngôn ngữ của giao diện, email và thông báo đẩy
         password: Tối thiểu 8 ký tự
-        phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
+        phrase: Khớp hiển thị với văn bản hoặc nội dung cảnh báo của bài đăng
         scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
-        setting_advanced_layout: Cho phép bạn xem bảng tin, thông báo và một cột thứ ba mà bạn chọn. Không nên dùng nếu màn hình nhỏ.
-        setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì sẽ không hiện những lượt đăng lại khác trên bảng tin
-        setting_always_send_emails: Bình thường thì sẽ không gửi khi bạn đang dùng Mastodon
+        setting_advanced_layout: Bố cục hiển thị nhiều cột. Cho phép bạn xem bảng tin, thông báo và một cột thứ ba tùy ý. Không khuyên dùng trên màn hình nhỏ.
+        setting_aggregate_reblogs: Không hiển thị lại những bài boost mới đã được boost trước đó (áp dụng cho bài boost mới)
+        setting_always_send_emails: Không gởi thông báo qua email khi bạn đang hoạt động trên Mastodon
         setting_boost_modal: Nếu bật, trước khi đăng lại sẽ mở hộp thoại xác nhận - trong đó bạn có thể thay đổi mức độ hiển thị tút của mình.
         setting_default_quote_policy_private: Không thể trích dẫn tút chỉ dành cho người theo dõi trên Mastodon.
         setting_default_quote_policy_unlisted: Khi ai đó trích dẫn bạn, tút của họ cũng sẽ bị ẩn khỏi bảng tin công khai.
@@ -192,6 +193,7 @@ vi:
       account_migration:
         acct: Tài khoản mới
       account_warning_preset:
+        action_category: Gán hành động kiểm duyệt
         text: Nội dung phản hồi
         title: Tựa đề
       admin_account_action:
@@ -200,6 +202,7 @@ vi:
         text: Tùy chỉnh phản hồi
         type: Hành động
         types:
+          all_actions: Mọi hành động
           disable: Khóa
           none: Cảnh cáo
           sensitive: Nhạy cảm
@@ -272,7 +275,6 @@ vi:
         setting_system_scrollbars_ui: Thanh cuộn mặc định hệ thống
         setting_theme: Giao diện
         setting_theme_color: Màu chủ đề
-        setting_trends: Hiện xu hướng trong ngày
         setting_unfollow_modal: Hỏi trước khi bỏ theo dõi ai đó
         setting_use_blurhash: Làm mờ phương tiện bị ẩn
         setting_use_pending_items: Chế độ chậm
@@ -358,6 +360,7 @@ vi:
         follow: Ai đó theo dõi bạn
         follow_request: Ai đó yêu cầu theo dõi bạn
         mention: Ai đó nhắc đến bạn
+        moderation_suggestions: Đã có những đề xuất kiểm duyệt tự động
         pending_account: Phê duyệt tài khoản mới
         quote: Ai đó trích dẫn bạn
         reblog: Ai đó đăng lại tút của bạn
