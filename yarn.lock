@@ -12,6 +12,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@agulbra/uts58@npm:0.2.4":
+  version: 0.2.4
+  resolution: "@agulbra/uts58@npm:0.2.4"
+  dependencies:
+    punycode: "npm:^2.3.1"
+  checksum: 10c0/4450093942ad0f69d0d219da2e489626c97dee2749f9716f832aaff6b4dfb089336eb19abf41403a3953ffc53176ee81bc0e67a764af8e56663906179b176d3b
+  languageName: node
+  linkType: hard
+
 "@asamuzakjp/css-color@npm:^7.1.3":
   version: 7.1.3
   resolution: "@asamuzakjp/css-color@npm:7.1.3"
@@ -1112,7 +1121,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.12.0, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.12.0, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
   version: 7.29.7
   resolution: "@babel/runtime@npm:7.29.7"
   checksum: 10c0/ca11572f7146b21e0bde6a9ed4bb6a89eafbee5f0944c7eb54d0d8a2dac962c33638a1d611e14faa71dfbb92b4b5f9236232208568a6b7d5c6f3f39ddb91771e
@@ -2967,6 +2976,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mastodon/mastodon@workspace:."
   dependencies:
+    "@agulbra/uts58": "npm:0.2.4"
     "@csstools/stylelint-formatter-github": "npm:2.0.0"
     "@dnd-kit/core": "npm:6.3.1"
     "@dnd-kit/modifiers": "npm:9.0.0"
@@ -3101,7 +3111,6 @@ __metadata:
     terser: "npm:5.51.2"
     tesseract.js: "npm:7.0.0"
     tiny-queue: "npm:0.2.1"
-    twitter-text: "npm:3.1.0"
     type-fest: "npm:5.7.0"
     typescript: "npm:@typescript/typescript6@6.0.2"
     typescript-eslint: "npm:8.71.0"
@@ -6886,13 +6895,6 @@ __metadata:
   version: 3.50.0
   resolution: "core-js@npm:3.50.0"
   checksum: 10c0/1bfcfb1dbdf45b0b1428a9fdcb03697d1fc52c7e9bc336f804a86ff2c2705a301dca7d9d6636d09d49d60298183273b9321681baeaf330c78db5393bc73f3f6a
-  languageName: node
-  linkType: hard
-
-"core-js@npm:^2.5.0":
-  version: 2.6.12
-  resolution: "core-js@npm:2.6.12"
-  checksum: 10c0/00128efe427789120a06b819adc94cc72b96955acb331cb71d09287baf9bd37bebd191d91f1ee4939c893a050307ead4faea08876f09115112612b6a05684b63
   languageName: node
   linkType: hard
 
@@ -11740,13 +11742,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"punycode@npm:1.4.1":
-  version: 1.4.1
-  resolution: "punycode@npm:1.4.1"
-  checksum: 10c0/354b743320518aef36f77013be6e15da4db24c2b4f62c5f1eb0529a6ed02fbaf1cb52925785f6ab85a962f2b590d9cd5ad730b70da72b5f180e2556b8bd3ca08
-  languageName: node
-  linkType: hard
-
 "punycode@npm:2.3.1, punycode@npm:^2.1.0, punycode@npm:^2.3.1":
   version: 2.3.1
   resolution: "punycode@npm:2.3.1"
@@ -13673,25 +13668,6 @@ __metadata:
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: 10c0/9c4759110a19c53f992d9aae23aac5ced636e99887b51b9e61def52611732872ff7668757d4e4c61f19691e36f4da981cd9485e869b4a7408d689f6bf1f14e62
-  languageName: node
-  linkType: hard
-
-"twemoji-parser@npm:^11.0.2":
-  version: 11.0.2
-  resolution: "twemoji-parser@npm:11.0.2"
-  checksum: 10c0/b06116434ef19dcf34fcc44129482dcf561a4f78fd6525aba55329b5a50b525c68125f95d040e9274cd9a1f3e8315b8e6842bb735c68069530a9cb28422130d6
-  languageName: node
-  linkType: hard
-
-"twitter-text@npm:3.1.0":
-  version: 3.1.0
-  resolution: "twitter-text@npm:3.1.0"
-  dependencies:
-    "@babel/runtime": "npm:^7.3.1"
-    core-js: "npm:^2.5.0"
-    punycode: "npm:1.4.1"
-    twemoji-parser: "npm:^11.0.2"
-  checksum: 10c0/34f2b42df7a0cde707ae3d9138b0232eabced946ab9f825b2500fbcc0c8be8a494fdf98ab5f4c44d7c652843c0c3846ab0aba952c7e3ca90aad69edb06dccdf5
   languageName: node
   linkType: hard
 

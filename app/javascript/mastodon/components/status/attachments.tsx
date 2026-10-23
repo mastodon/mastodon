@@ -244,13 +244,16 @@ const MediaAttachments: React.FC<{
 
   let aspectRatio = '3 / 2';
   if (
-    ((isMediaAttachmentOfType(attachment, 'image') &&
+    (isMediaAttachmentOfType(attachment, 'image') &&
       restAttachments.length === 0) ||
-      isMediaAttachmentOfType(attachment, 'video') ||
-      isMediaAttachmentOfType(attachment, 'gifv')) &&
-    attachment.meta
+    isMediaAttachmentOfType(attachment, 'video') ||
+    isMediaAttachmentOfType(attachment, 'gifv')
   ) {
-    aspectRatio = `${attachment.meta.original.width} / ${attachment.meta.original.height}`;
+    const width = attachment.meta?.original?.width;
+    const height = attachment.meta?.original?.height;
+    if (width && height) {
+      aspectRatio = `${width} / ${height}`;
+    }
   } else if (isMediaAttachmentOfType(attachment, 'audio')) {
     aspectRatio = '16 / 9';
   }

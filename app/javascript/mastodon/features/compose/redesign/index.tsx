@@ -50,6 +50,7 @@ export const RedesignComposeForm: React.FC<
   const { onEmojiPick, onSubmit } = useComposeHandlers(redirectOnSuccess);
 
   const titleId = useId();
+  const hintsId = useId();
 
   return (
     <form
@@ -79,6 +80,7 @@ export const RedesignComposeForm: React.FC<
 
       <ComposeTextarea
         autoFocus={autoFocus}
+        aria-describedby={hintsId}
         beforeTextArea={
           <>
             <ComposeReply />
@@ -90,7 +92,7 @@ export const RedesignComposeForm: React.FC<
         <ComposeAttachments className={classes.attachments} />
       </ComposeTextarea>
 
-      <ComposeHints />
+      <ComposeHints id={hintsId} />
 
       <ComposeFooter onEmojiPick={onEmojiPick} />
     </form>

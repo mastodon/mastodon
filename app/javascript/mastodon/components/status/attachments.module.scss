@@ -17,9 +17,11 @@
   }
 
   :global(.media-gallery__alt__label--non-interactive) {
-    @include mixins.type-meta;
+    @include mixins.type-label;
 
     color: var(--color-text-inverted);
+    display: flex;
+    align-items: center;
     background-color: var(--color-bg-inverted);
     border-radius: var(--radius-round);
     padding-inline: var(--space-2);
@@ -105,7 +107,11 @@
   }
 }
 
-.cardAuthor > span {
-  display: flex;
-  gap: var(--space-1);
+.cardAuthor {
+  z-index: 1;
+
+  > span {
+    display: flex;
+    gap: var(--space-1);
+  }
 }

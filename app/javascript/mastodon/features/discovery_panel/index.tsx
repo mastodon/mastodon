@@ -2,6 +2,7 @@ import { useRouteMatch } from 'react-router';
 
 import { Search } from '@/mastodon/features/compose/components/search';
 import { useIdentity } from '@/mastodon/identity_context';
+import { includeMultiColumnPaths } from '@/mastodon/utils/react_router';
 
 import { FooterLinks } from './footer_links';
 import classes from './styles.module.scss';
@@ -10,7 +11,7 @@ import classes from './styles.module.scss';
  * Don't display the search on editing flows and the search/explore
  * pages that have their own search field.
  */
-const ROUTES_WITHOUT_SEARCH_BAR = [
+const ROUTES_WITHOUT_SEARCH_BAR = includeMultiColumnPaths([
   '/explore',
   '/explore/tags',
   '/explore/suggestions',
@@ -24,7 +25,7 @@ const ROUTES_WITHOUT_SEARCH_BAR = [
   '/collections/new',
   '/collections/:id/edit',
   '/collections/:id/edit/details',
-];
+]);
 
 export const DiscoveryPanel: React.FC = () => {
   const { signedIn } = useIdentity();
