@@ -157,7 +157,10 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
   if (hidden) {
     return (
-      <StatusHotkeys {...hotkeysProps}>
+      <StatusHotkeys
+        {...hotkeysProps}
+        className={classNames(!muted && 'focusable')}
+      >
         <span>{status.account.display_name || status.account.username}</span>
         {status.spoiler_text && <span>{status.spoiler_text}</span>}
         {!isHidden && <span>{status.content}</span>}
@@ -185,7 +188,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
             isNextReplyingToMe &&
             !showThread &&
             classes.connectNextReply,
-          !unfocusable && 'focusable',
+          !muted && 'focusable',
         )}
         tabIndex={unfocusable ? undefined : -1}
         data-featured={featured ? 'true' : null}
