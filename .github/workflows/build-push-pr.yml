@@ -27,13 +27,46 @@ jobs:
       metadata: ${{ steps.version_vars.outputs.mastodon_version_metadata }}
       short_sha: ${{ steps.version_vars.outputs.mastodon_short_sha }}
 
+  compute-prefix:
+    runs-on: ubuntu-latest
+    steps:
+      - id: repository_vars
+        env:
+          config_mastodon_image_name: ${{ vars.MASTODON_IMAGE_NAME }}
+          config_mastodon_streaming_image_name: ${{ vars.MASTODON_STREAMING_IMAGE_NAME }}
+        run: |
+          # Compute image names, supporting multi-line values for custom configurations
+          if [ -n "$config_mastodon_image_name" ]; then
+            {
+              echo 'image_name<<EOF'
+              echo "$config_mastodon_image_name"
+              echo 'EOF'
+            } >> "$GITHUB_OUTPUT"
+          else
+            echo "image_name=ghcr.io/mastodon/mastodon" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [ -n "$config_mastodon_streaming_image_name" ]; then
+            {
+              echo 'streaming_image_name<<EOF'
+              echo "$config_mastodon_streaming_image_name"
+              echo 'EOF'
+            } >> "$GITHUB_OUTPUT"
+          else
+            echo "streaming_image_name=ghcr.io/mastodon/mastodon-streaming" >> "$GITHUB_OUTPUT"
+          fi
+
+    outputs:
+      image_name: ${{ steps.repository_vars.outputs.image_name }}
+      streaming_image_name: ${{ steps.repository_vars.outputs.streaming_image_name }}
+
   build-image:
-    needs: compute-suffix
+    needs: [compute-suffix, compute-prefix]
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: Dockerfile
       push_to_images: |
-        ghcr.io/mastodon/mastodon
+        ${{ needs.compute-prefix.outputs.image_name }}
       version_metadata: ${{ needs.compute-suffix.outputs.metadata }}
       flavor: |
         latest=auto
@@ -43,12 +76,12 @@ jobs:
     secrets: inherit
 
   build-image-streaming:
-    needs: compute-suffix
+    needs: [compute-suffix, compute-prefix]
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: streaming/Dockerfile
       push_to_images: |
-        ghcr.io/mastodon/mastodon-streaming
+        ${{ needs.compute-prefix.outputs.streaming_image_name }}
       version_metadata: ${{ needs.compute-suffix.outputs.metadata }}
       flavor: |
         latest=auto
