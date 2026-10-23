@@ -69,6 +69,7 @@ RSpec.describe Extractor do
       'universal-acceptance-test.קום',
       'épreuve-acceptation-universelle.org',
       'ཡོངས་ཁྱབ་ངོས་ལེན་བརྟག་དཔྱད.com',
+      'ꩰ.com',
     ]
 
     funky_domains.each do |domain|
