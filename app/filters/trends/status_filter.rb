@@ -1,18 +1,12 @@
 # frozen_string_literal: true
 
-class Trends::StatusFilter
+class Trends::StatusFilter < BaseFilter
   KEYS = %i(
     trending
     locale
   ).freeze
 
   IGNORED_PARAMS = %w(page).freeze
-
-  attr_reader :params
-
-  def initialize(params)
-    @params = params
-  end
 
   def results
     scope = initial_scope
