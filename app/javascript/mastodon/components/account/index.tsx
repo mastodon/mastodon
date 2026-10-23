@@ -290,7 +290,14 @@ export const Account: React.FC<AccountProps> = ({
   const firstVerifiedField = account?.fields.find((item) => !!item.verified_at);
 
   if (firstVerifiedField) {
-    verification = <VerifiedBadge link={firstVerifiedField.value} />;
+    verification = (
+      <VerifiedBadge
+        link={
+          firstVerifiedField.value_plain?.replace('https://', '') ??
+          firstVerifiedField.value
+        }
+      />
+    );
   }
 
   return (
