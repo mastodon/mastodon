@@ -78,7 +78,7 @@ class Account < ApplicationRecord
   # would otherwise fall outside [[:word:]] but are explicitly allowed
   # in IDNA labels. U+0F0B (Tibetan tsheg) is the one that bites in
   # practice; the rest are included for symmetry.
-  HOST_LABEL_CHAR = '[[:word:]ßς۽۾་〇]'
+  HOST_LABEL_CHAR = '[[:word:]ßς۽۾་〇\p{Emoji_presentation}]'
   MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@#{HOST_LABEL_CHAR}+([.-]+#{HOST_LABEL_CHAR}+)*)?)}
   URL_PREFIX_RE = %r{\Ahttp(s?)://[^/]+}
   USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
