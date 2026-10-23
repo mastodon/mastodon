@@ -71,8 +71,15 @@ class Account < ApplicationRecord
   DEFAULT_FIELDS_SIZE = 4
   INSTANCE_ACTOR_ID = -99
 
-  USERNAME_RE   = /[a-z0-9_]+([.-]+[a-z0-9_]+)*/i
-  MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]]+([.-]+[[:word:]]+)*)?)}
+  USERNAME_RE = /[a-z0-9_]+([.-]+[a-z0-9_]+)*/i
+
+  # Host label char class: every Ruby word character plus the six
+  # PVALID exceptions from RFC 5892 section 2.6 — code points that
+  # would otherwise fall outside [[:word:]] but are explicitly allowed
+  # in IDNA labels. U+0F0B (Tibetan tsheg) is the one that bites in
+  # practice; the rest are included for symmetry.
+  HOST_LABEL_CHAR = '[[:word:]ßς۽۾་〇]'
+  MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@#{HOST_LABEL_CHAR}+([.-]+#{HOST_LABEL_CHAR}+)*)?)}
   URL_PREFIX_RE = %r{\Ahttp(s?)://[^/]+}
   USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
   USERNAME_LENGTH_LIMIT = 30
