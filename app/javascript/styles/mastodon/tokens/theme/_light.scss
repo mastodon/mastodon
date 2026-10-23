@@ -94,7 +94,12 @@
   ); // legacy
 
   --color-text-on-brand-base: var(--base-color-fg-on-accent);
-  --color-text-brand-on-inverted: var(--color-indigo-400); // legacy
+  --color-text-brand-on-inverted: : color-mix(
+    in oklab,
+    var(--color-text-inverted),
+    var(--color-text-brand)
+  ); // legacy
+
   --color-text-error: var(--base-color-danger);
   --color-text-on-error-base: var(--color-text-inverted);
   --color-text-warning: var(--color-orange-700); // legacy
