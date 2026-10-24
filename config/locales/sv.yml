@@ -1074,6 +1074,30 @@ sv:
       translation: Översättning
       translations: Översättningar
       translations_explanation: Du kan eventuellt lägga till översättningar av reglerna. Standardvärdet kommer att visas om ingen översatt version är tillgänglig. Se alltid till att alla angivna översättningar är i synk med standardvärdet.
+    server_checks:
+      categories:
+        completed:
+          title: Slutförda
+        critical:
+          title: Kritiska
+        error:
+          title: Fel
+        ignored:
+          title: Ignorerade
+        suggestion:
+          title: Förslag
+        unprocessed:
+          title: Obehandlade
+        warning:
+          title: Varningar
+      checks:
+        database_schema:
+          error:
+            title: Det gick inte att kontrollera databasschemat
+          ok:
+            title: Det finns inga pågående databasmigreringar
+          pending:
+            lead_html: Kör dem för att se till att programmet beter sig som förväntat
     settings:
       about:
         manage_rules: Hantera serverregler

@@ -14,7 +14,7 @@ tr:
       account_suspended: Hesabınız askıya alındı
       login_disabled: Hesabınız şu an devre dışı
       memorial: Hesabınız anma hesabına dönüştürüldü
-      pending_approval: Hesabınız şu anda moderasyon onayı bekliyor
+      pending_approval: Hesabınız şu anda denetim onayı bekliyor
       pending_confirmation: Hesabınızda onaylanmış bir e-posta adresi bulunmuyor
     errors:
       cannot_be_added_to_collections: Bu hesap koleksiyonlara eklenemez.
@@ -128,7 +128,7 @@ tr:
         silenced: Sınırlı
         suspended: Askıya Alınan
         title: Denetim
-      moderation_notes: Denetleme notları
+      moderation_notes: Denetim notları
       most_recent_activity: Son aktivite
       most_recent_ip: Son IP
       no_account_selected: Hiçbiri seçilmediğinden hiçbir hesap değiştirilmedi
@@ -278,7 +278,7 @@ tr:
         update_user_role: Rolü Güncelle
         update_username_block: Kullanıcı Adı Kuralını Güncelle
       actions:
-        approve_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını kabul etti"
+        approve_appeal_html: "%{name}, %{target} kullanıcısının denetim kararına itirazını kabul etti"
         approve_user_html: "%{name}, %{target} konumundan kaydı onayladı"
         assigned_to_self_report_html: "%{name} kendilerine %{target} adlı raporu verdi"
         change_email_user_html: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
@@ -330,7 +330,7 @@ tr:
         not_usable_tag_html: kullanılamaz
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
         publish_terms_of_service_html: "%{name} hizmet şartları güncellemelerini yayınladı"
-        reject_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını reddetti"
+        reject_appeal_html: "%{name}, %{target} kullanıcısının denetim kararına itirazını reddetti"
         reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
         reopen_report_html: "%{name}, %{target} şikayetini yeniden açtı"
@@ -508,7 +508,7 @@ tr:
       import: İçe aktar
       new:
         create: Yeni blok oluştur
-        hint: Domain bloğu, veri tabanında hesap kayıtlarının oluşturulmasını engellemez, fakat o hesapların üzerine otomatik olarak belirli yönetim metodlarını olarak uygular.
+        hint: Domain bloğu, veri tabanında hesap kayıtlarının oluşturulmasını engellemez, fakat o hesapların üzerine otomatik olarak belirli denetim yöntemlerini uygular.
         severity:
           desc_html: "<strong>Sınırlama</strong>, bu sunucudaki hesabın gönderilerini, o hesabı takip etmeyen diğer herkese gizler. <strong>Uzaklaştırma</strong> bu alan adındaki hesapların tüm içeriğini, medya dosyalarını ve profil verisini sunucunuzdan siler. Sadece medya dosyalarını reddetmek için <strong>Hiçbiri</strong> kullanın."
           noop: Yok
@@ -520,7 +520,7 @@ tr:
       obfuscate: Alan adını gizle
       obfuscate_hint: Alan adı kısıtlamaları listelerinin duyurulması etkinleştirilmişse alan adını listede kısmen gizle
       private_comment: Özel yorum
-      private_comment_hint: Moderatörler tarafından dahili kullanım için bu alan adı sınırlaması hakkında yorum.
+      private_comment_hint: Denetçiler tarafından dahili kullanım için bu alan adı sınırlaması hakkında yorum.
       public_comment: Genel yorum
       public_comment_hint: Eğer alan adı sınırlamaları listesinin tanıtılması etkinleştirilmişse, genel kullanım için bu alan adı sınırlaması hakkında yorum.
       reject_media: Medya dosyalarını reddet
@@ -689,7 +689,7 @@ tr:
       unsuppress: Takip önerisini geri getir
     instances:
       advisories:
-        title: Moderasyon aboneliklerinden gelen uyarılar
+        title: Denetim aboneliklerinden gelen uyarılar
       audit_log:
         title: En Son Denetim Günlükleri
         view_all: Tüm denetim günlüklerini görüntüle
@@ -713,7 +713,7 @@ tr:
         comment: İç not
         description_html: Bu alan adındaki ve alt alan adlarındaki tüm hesaplara uygulanacak içerik ilkeleri belirleyebilirsiniz.
         limited_federation_mode_description_html: Bu alan adıyla birleştirmeye izin verip vermediğinizi seçebilirsiniz.
-        moderation_subscription: Moderasyon aboneliği
+        moderation_subscription: Denetim aboneliği
         policies:
           reject_media: Medyayı reddet
           reject_reports: Şikayetleri reddet
@@ -751,12 +751,12 @@ tr:
         limited: Sınırlı
         title: Denetim
       moderation_notes:
-        create: Denetleme Notu Ekle
-        created_msg: Sunucu denetleme notu başarıyla oluşturuldu!
-        description_html: Kendiniz ve diğer moderatörler için not bırakın veya notları görüntüleyin
-        destroyed_msg: Sunucu denetleme notu başarıyla silindi!
+        create: Denetim Notu Ekle
+        created_msg: Sunucu denetim notu başarıyla oluşturuldu!
+        description_html: Kendiniz ve diğer denetçiler için not bırakın veya notları görüntüleyin
+        destroyed_msg: Sunucu denetim notu başarıyla silindi!
         placeholder: Bu sunucu hakkında bilgi, gerçekleştirilen eylemler veya ileride bu sunucunun denetimi için işinize yarayabilecek herhangi bir şey.
-        title: Denetleme Notları
+        title: Denetim Notları
       private_comment: Özel yorum
       public_comment: Genel yorum
       purge: Temizle
@@ -811,8 +811,8 @@ tr:
         never: Önerilen eylemleri asla otomatik olarak uygulamayın. Bunun yerine her zaman bir öneri oluşturun.
         safely: Yerel kullanıcılarla olan mevcut takip ilişkilerini bozmayacaksa, önerilen eylemleri uygulayın. Böyle durumlarda, bunun yerine bir öneri oluşturulacaktır.
       delete: Sil
-      destroyed_msg: Moderasyon aboneliği başarıyla silindi
-      empty: Henüz hiçbir moderasyon listesine abone olunmamıştır.
+      destroyed_msg: Denetim aboneliği başarıyla silindi
+      empty: Henüz hiçbir denetim listesine abone olunmamıştır.
       last_synced_at: Son senkronizasyon zamanı
       list_action: Abonelik türü
       list_actions:
@@ -830,7 +830,7 @@ tr:
       name: Ad
       new:
         create: Abone ol
-        title: Yeni moderasyon aboneliği
+        title: Yeni denetim aboneliği
       override_unattributed: Manuel engellemeleri geçersiz kıl
       override_unattributed_hint: Bu aboneliğin, güvenlik bildirimlerini otomatik olarak uygularken mevcut manuel engellemeleri otomatik olarak yükseltmesine veya devralmasına izin verin.
       policies:
@@ -838,25 +838,25 @@ tr:
         apply_advisories_safely: İlişkileri bozmayan önerileri otomatik olarak uygular
         apply_retractions: Geri çekmeleri otomatik olarak uygular
       priority: Öncelik
-      priority_hint: Moderasyon abonelikleri öncelik sırasına göre değerlendirilir; daha düşük numaralı abonelikler, daha yüksek numaralı aboneliklere göre önceliklidir.
+      priority_hint: Denetim abonelikleri öncelik sırasına göre değerlendirilir; daha düşük numaralı abonelikler, daha yüksek numaralı aboneliklere göre önceliklidir.
       retract_automatically: Uyarıları otomatik olarak geri çek
       retract_automatically_hint: Abonelik kapsamında ilgili öğe kaldırıldığında, politika değişikliklerinin geri alınması veya alt sınıfa indirilmesine izin verilip verilmeyeceği. Otomatik geri alma özelliği etkinleştirildiğinde ve daha düşük öncelikli bir listede eşdeğer bir öneri varsa, bu öneri benimsenir. Otomatik geri alma özelliği devre dışı bırakıldığında ise bunun yerine bir öneri oluşturulur.
       show:
-        delete_confirm: Bu moderasyon aboneliğini silmek istediğinizden emin misiniz?
+        delete_confirm: Bu denetim aboneliğini silmek istediğinizden emin misiniz?
         edit: Aboneliği düzenle
         empty: Bu abonelik için henüz herhangi bir öneri yoktur.
-        title: 'Moderasyon aboneliği: %{name}'
+        title: 'Denetim aboneliği: %{name}'
       tabs:
         logs: Günlükler
         subscriptions: Abonelikler
         suggestions: Öneriler
-      title: Moderasyon abonelikleri
+      title: Denetim abonelikleri
       type: Tür
       types:
         csv_list: CSV listesi
       url: URL
     moderation_subscriptions_logs:
-      title: Moderasyon abonelikleri günlükleri
+      title: Denetim abonelikleri günlükleri
     moderation_suggestions:
       actions:
         accept: İzin ver
@@ -872,13 +872,13 @@ tr:
         accept: şu an izin verilmiş
         limit: şu an sınırlanmış
         reject: şu an askıya alınmış
-      description: Aşağıda, moderasyon aboneliklerinizden gelen öneriler, öncelik sırasına göre listelenmiştir.
+      description: Aşağıda, denetim aboneliklerinizden gelen öneriler, öncelik sırasına göre listelenmiştir.
       destroyed_msg: "%{target_key} için öneri başarıyla reddedildi"
       dismiss: Önerileri görmezden gel
-      empty: Şu anda herhangi bir moderasyon önerisi yoktur.
+      empty: Şu anda herhangi bir denetim önerisi yoktur.
       retracted_msg: "%{target_key} için politika başarıyla geri çekildi"
       suggested_from_html: "%{link} tarafından önerilmiştir"
-      title: Moderasyon önerileri
+      title: Denetim önerileri
       unable_to_apply_msg: "%{target_key} için öneri uygulanamadı"
     relationships:
       title: "%{acct} kişisinin ilişkileri"
@@ -924,7 +924,7 @@ tr:
         remote: Sunucularında zaten askıya alınmış
       are_you_sure: Emin misiniz?
       assign_to_self: Bana ata
-      assigned: Atanan moderatör
+      assigned: Atanan denetçi
       by_target_domain: Şikayet edilen hesabın alan adı
       cancel: İptal et
       category: Kategori
@@ -951,7 +951,7 @@ tr:
         delete: Sil
         placeholder: Hangi işlemlerin yapıldığını, ya da diğer ilgili güncellemeleri açıklayın...
         title: Notlar
-      notes_description_html: Kendiniz ve diğer moderatörler için not bırakın veya notları görüntüleyin
+      notes_description_html: Kendiniz ve diğer denetçiler için not bırakın veya notları görüntüleyin
       processed_msg: "#%{id} Bildirimi başarıyla işlendi"
       quick_actions_description_html: 'Hemen bir şey yapın veya bildirilen içeriği görmek için aşağı kaydırın:'
       remote_user_placeholder: "%{instance}'dan uzak kullanıcı"
@@ -1018,7 +1018,7 @@ tr:
         delete_user_data: Kullanıcı Verilerini Silme
         delete_user_data_description: Kullanıcıların, diğer kullanıcıların verisini gecikme olmaksızın silmesine izin verir
         invite_bypass_approval: Kullanıcıları incelemeden davet et
-        invite_bypass_approval_description: Bu kullanıcılar tarafından sunucuya davet edilen kişilerin moderasyon onayını atlamasına izin verir
+        invite_bypass_approval_description: Bu kullanıcılar tarafından sunucuya davet edilen kişilerin denetim onayını atlamasına izin verir
         invite_users: Kullanıcıları Davet Etme
         invite_users_description: Kullanıcıların yeni kişileri sunucuya davet etmesine izin verir
         manage_announcements: Duyuruları Yönetme
@@ -1424,10 +1424,17 @@ tr:
     warning_presets:
       add_new: Yeni ekle
       delete: Sil
+      dropdown:
+        all_actions: Tüm eylemler
+        disable: Dondur
+        none: Uyarı
+        sensitive: Hassas
+        silence: Sınırla
+        suspend: Askıya al
       edit_preset: Hazır yanıtı düzenle
       empty: Henüz hazır bir yanıt tanımlanmadı.
       navigation_title: Hazır Yanıtlar
-      title: Hazır Moderasyon Yanıtları
+      title: Hazır Denetim Yanıtları
     webhooks:
       add_new: Uç nokta ekle
       delete: Sil
@@ -1450,7 +1457,7 @@ tr:
       webhook: Web kancası
   admin_mailer:
     auto_close_registrations:
-      body: Son zamanlardaki moderatör faaliyeti eksikliğinden dolayı, %{instance} üzerindeki kayıtlar, %{instance} sunucusunun olası kötü aktörler tarafından bir platform olarak kullanımını engellemek için otomatik olarak elle onay gerektirecek şekilde değiştirilmiştir. İstediğiniz zaman açık kayıtlara çevirebilirsiniz.
+      body: Son zamanlardaki denetçi faaliyeti eksikliğinden dolayı, %{instance} üzerindeki kayıtlar, %{instance} sunucusunun olası kötü aktörler tarafından bir platform olarak kullanımını engellemek için otomatik olarak elle onay gerektirecek şekilde değiştirilmiştir. İstediğiniz zaman açık kayıtlara çevirebilirsiniz.
       subject: "%{instance} üzerindeki kayıtlar otomatik olarak onay gerektirecek şekilde değiştirilmiştir"
     end_of_support_out_of_support_warning:
       body: Sunucunuzda şu anda kullanılan Mastodon sürümü artık desteklenmiyor. En kısa zamanda güncelleme yapmanızı öneririz!
@@ -1477,13 +1484,13 @@ tr:
       body: Mastodon'un yeni kritik sürümleri yayınlandı, en kısa sürede güncellemek isteyebilirsiniz!
       subject: "%{instance} için kritik Mastodon güncellemeleri mevcut!"
     new_moderation_suggestions:
-      body: Sunucunuzun abone olduğu moderasyon listelerinde yeni öneriler yayınlandı.
-      subject: "%{instance}'da yeni moderasyon önerileri mevcut!"
+      body: Sunucunuzun abone olduğu denetim listelerinde yeni öneriler yayınlandı.
+      subject: "%{instance}'da yeni denetim önerileri mevcut!"
     new_pending_account:
       body: Yeni hesabın detayları aşağıdadır. Bu başvuruyu onaylayabilir ya da reddedebilirsiniz.
       subject: "%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})"
     new_pending_accounts:
-      body: "%{instance} üzerinde yeni hesaplar oluşturuldu. Sunucunuz, moderasyon onayı sonrasında onay e-postalarının gönderilmesini ertelemek üzere yapılandırıldığından, bu hesaplar henüz e-posta adreslerini doğrulama fırsatı bulamadılar. Yeni hesapların ayrıntıları aşağıda yer almaktadır. Bu başvuruları onaylayabilir veya reddedebilirsiniz."
+      body: "%{instance} üzerinde yeni hesaplar oluşturuldu. Sunucunuz, denetim onayı sonrasında onay e-postalarının gönderilmesini ertelemek üzere yapılandırıldığından, bu hesaplar henüz e-posta adreslerini doğrulama fırsatı bulamadılar. Yeni hesapların ayrıntıları aşağıda yer almaktadır. Bu başvuruları onaylayabilir veya reddedebilirsiniz."
       subject: "%{instance} üzerinde incelenecek yeni hesaplar"
     new_report:
       body: "%{reporter}, %{target} kişisini bildirdi"
@@ -1584,8 +1591,8 @@ tr:
       accept: Onayla
       back: Geri
       invited_by: 'Aşağıdakinden aldığınız davet sayesinde %{domain} sunucusuna katılabilirsiniz:'
-      preamble: Bunlar, %{domain} moderatörleri tarafından ayarlanmış ve uygulanmıştır.
-      preamble_invited: Devam etmeden önce, %{domain} moderatörleri tarafından belirlenmiş temel kuralları gözden geçirin.
+      preamble: Bunlar, %{domain} denetçileri tarafından ayarlanmış ve uygulanmıştır.
+      preamble_invited: Devam etmeden önce, %{domain} denetçileri tarafından belirlenmiş temel kuralları gözden geçirin.
       read_more: Devamını okuyun
       title: Bazı temel kurallar.
       title_invited: Davet edildiniz.
@@ -1606,7 +1613,7 @@ tr:
       preamble_html: "<strong>%{domain}</strong> kimlik bilgilerinizi kullanarak giriş yapın. Eğer hesabınız başka bir sunucuda barındırılıyorsa, burada giriş yapamazsınız."
       title: "%{domain} giriş yapın"
     sign_up:
-      manual_review: "%{domain} kayıtları moderatörler tarafından manuel olarak inceleniyor. Kaydınızı işlememizi kolaylaştırmak için kendiniz ve %{domain} sunucusundan neden hesap istediğiniz hakkında biraz bilgi verin."
+      manual_review: "%{domain} kayıtları denetçiler tarafından manuel olarak inceleniyor. Kaydınızı işlememizi kolaylaştırmak için kendiniz ve %{domain} sunucusundan neden hesap istediğiniz hakkında biraz bilgi verin."
       preamble: Bu Mastodon sunucusu üzerinden bir hesap ile fediverseteki herhangi bir kişiyi, hangi sunucuda olursa olsun, takip edebilirsiniz.
       title: "%{domain} için kurulumunuzu yapalım."
     status:
@@ -1692,6 +1699,7 @@ tr:
       action_taken: Yapılan işlem
       appeal: İtiraz
       appeal_approved: Eyleme başarılı bir şekilde itiraz edildi ve artık geçerli değil
+      appeal_handled_by: İtirazı ele alan
       appeal_rejected: İtiraz reddedildi
       appeal_submitted_at: İtiraz gönderildi
       appealed_msg: İtiraz gönderildi. Kabul edilirse bilgilendirileceksiniz.
@@ -2120,7 +2128,7 @@ tr:
     administration_emails: Yönetici e-posta bildirimleri
     email_events: E-posta bildirimi etkinlikleri
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
-    moderation_emails: Moderasyon e-posta bildirimleri
+    moderation_emails: Denetim e-posta bildirimleri
   number:
     human:
       decimal_units:
@@ -2292,7 +2300,7 @@ tr:
     relationships: Takip edilenler ve takipçiler
     severed_relationships: Kopmuş ilişkiler
     statuses_cleanup: Otomatik gönderi silme
-    strikes: Moderasyon eylemleri
+    strikes: Denetim eylemleri
     two_factor_authentication: İki adımlı doğrulama
     webauthn_authentication: Güvenlik anahtarları
   severed_relationships:
@@ -2303,7 +2311,7 @@ tr:
       user_domain_block: 'Engellediniz: %{target_name}'
     lost_followers: Kaybedilen takipçiler
     lost_follows: Kaybedilen takipler
-    preamble: Bir alan adını engellediğinizde veya moderatörleriniz uzak bir sunucuyu askıya almaya karar verdiğinde takipçilerinizi ve takiplerinizi kaybedebilirsiniz. Bu olduğunda, kopan ilişkilerin bir listesini, incelemek ve başka bir sunucuya aktarmak için indirebileceksiniz.
+    preamble: Bir alan adını engellediğinizde veya denetçileriniz uzak bir sunucuyu askıya almaya karar verdiğinde takipçilerinizi ve takiplerinizi kaybedebilirsiniz. Bu olduğunda, kopan ilişkilerin bir listesini, incelemek ve başka bir sunucuya aktarmak için indirebileceksiniz.
     purged: Bu sunucu hakkındaki bilgiler, sunucunun yöneticileri tarafından temizlenmiş.
     type: Olay
   statuses:
@@ -2513,9 +2521,9 @@ tr:
         spam: İstenmeyen
         violation: İçerik aşağıdaki topluluk ilkelerini ihlal ediyor
       explanation:
-        delete_statuses: Bazı gönderilerinizin, topluluk ilkelerimizden bir veya daha fazlasını ihlal ettiği görüldü ve daha sonra %{instance} moderatörleri tarafından kaldırıldılar.
+        delete_statuses: Bazı gönderilerinizin, topluluk ilkelerimizden bir veya daha fazlasını ihlal ettiği görüldü ve daha sonra %{instance} denetçileri tarafından kaldırıldılar.
         disable: Artık hesabınızı kullanamazsınız, ancak profil ve diğer veri sağlam. Verinizin bir yedeğini isteyebilir, hesap ayarlarınızı değiştirebilir veya hesabınızı silebilirsiniz.
-        mark_statuses_as_sensitive: Gönderilerinizin bazıları %{instance} moderatörleri tarafından hassas olarak işaretlendi. Bu nedenle bir önizleme görüntülenmeden önce insanların gönderilerinizdeki medya dosyalarına dokunması gerekiyor. Gelecekte gönderimde bulunurken medya dosyalarını hassas olarak işaretleyebilirsiniz.
+        mark_statuses_as_sensitive: Gönderilerinizin bazıları %{instance} denetçileri tarafından hassas olarak işaretlendi. Bu nedenle bir önizleme görüntülenmeden önce insanların gönderilerinizdeki medya dosyalarına dokunması gerekiyor. Gelecekte gönderimde bulunurken medya dosyalarını hassas olarak işaretleyebilirsiniz.
         sensitive: Artık tüm yüklenmiş medya dosyalarınız hassas olarak işaretlenecek ve üzerine tıklanarak açılacak şekilde bir uyarının ardına gizlenecektir.
         silence: Hesabınız sınırlı iken, yalnızca sizi takip eden kişiler bu sunucudaki gönderilenizi görecek ve çeşitli keşif özelliklerinin dışında bırakılabilirsiniz. Ancak, başkaları sizi manuel olarak hala takip edebilir.
         suspend: Hesabınızı artık kullanamazsınız ve profiliniz ve diğer veri artık erişilebilir değil. Yaklaşık 30 gün içinde silinene kadar verinizin bir yedeğini istemek için giriş yapabilirsiniz, ancak askıdan kaçınmanızı önlemek için bazı temel veriyi saklayabiliriz.
@@ -2556,7 +2564,7 @@ tr:
       feature_creativity: Mastodon kendinizi çevrimiçi ifade edebilmenize yardımcı olmak için ses, video ve görsel, erişilebilirlik açıklamaları, anketler, içerik uyarıları, hareketli avatarlar, özel emojiler, önizleme resmini kesme denetimi ve daha fazlasını destekliyor. Kendi sanatınızı, müziğinizi veya podcastinizi yayınlıyorsanız Mastodon kullanımınıza açık.
       feature_creativity_title: Benzersiz yaratıcılık
       feature_moderation: Mastodon karar vermeyi yeniden size bırakıyor. Her sunucu kendi kurallarını ve düzenlemelerini oluşturur. Bu kurallar da kurumsal sosyal medyalar gibi tepeden değil, yerel olarak uygulanıyor; bu da Mastodon'u farklı insan gruplarının ihtiyaçlarına yanıt vermede esnek kılıyor. Kurallarına katıldığınız bir sunucuya katılın veya kendi sunucunuzu barındırın.
-      feature_moderation_title: Olması gerektiği gibi moderasyon
+      feature_moderation_title: Olması gerektiği gibi denetim
       follow_action: Takip et
       follow_step: Kendi akışınızı düzenliyorsunuz. Hadi onu ilginç kullanıcılarla dolduralım.
       follow_title: Ana sayfa akışınızı kişiselleştirin
