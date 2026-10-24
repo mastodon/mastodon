@@ -9,7 +9,11 @@
 
       .fields-row__column.fields-group
         = f.hidden_field :id if f.object&.persisted? # Required so Rails doesn't put the field outside of the <tr/>
-        = link_to_remove_association(f, class: 'table-action-link') do
+
+        - if f.object&.persisted?
+          = f.hidden_field :_destroy, value: '0', class: 'destroy-flag'
+
+        %button.table-action-link{ type: 'button', data: { action: 'remove-association' } }
           = safe_join([material_symbol('close'), t('filters.index.delete')])
 
     .fields-group
