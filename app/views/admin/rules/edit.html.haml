@@ -24,8 +24,12 @@
       %tfoot
         %tr
           %td{ colspan: 3 }
-            = link_to_add_association form, :translations, class: 'table-action-link', partial: 'translation_fields', 'data-association-insertion-node': '.keywords-table tbody', 'data-association-insertion-method': 'append' do
+            %button.table-action-link{ type: :button, data: { action: 'add-association', template_id: 'translation-fields-template', placeholder: 'new_translations', container: '.keywords-table tbody' } }
               = safe_join([material_symbol('add'), t('admin.rules.add_translation')])
+
+  %template#translation-fields-template
+    = form.simple_fields_for :translations, form.object.translations.build, child_index: 'new_translations' do |translation|
+      = render 'translation_fields', f: translation
 
   .actions
     = form.button :button, t('generic.save_changes'), type: :submit
