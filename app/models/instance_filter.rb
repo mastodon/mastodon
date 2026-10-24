@@ -46,6 +46,8 @@ class InstanceFilter
       Instance.where(domain: DeliveryFailureTracker.warning_domains)
     when 'unavailable'
       Instance.joins(:unavailable_domain)
+    when 'healthy'
+      Instance.where.not(domain: DeliveryFailureTracker.warning_domains).where.not(domain: UnavailableDomain.select(:domain))
     else
       raise Mastodon::InvalidParameterError, "Unknown availability: #{value}"
     end
