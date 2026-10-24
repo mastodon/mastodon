@@ -52,6 +52,7 @@ class InstanceFilter
       raise Mastodon::InvalidParameterError, "Unknown availability: #{value}"
     end
   end
+
   def limited_scope(value)
     case value
     when 'suspended'
