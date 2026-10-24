@@ -20,6 +20,7 @@
       - unless limited_federation_mode?
         %li= filter_link_to t('admin.instances.moderation.limited'), limited: 'limited'
         %li= filter_link_to t('admin.instances.moderation.suspended'), limited: 'suspended'
+        %li= filter_link_to t('admin.instances.moderation.reject_media'), limited: 'reject_media'
   .filter-subset
     %strong= t('admin.instances.availability.title')
     %ul
