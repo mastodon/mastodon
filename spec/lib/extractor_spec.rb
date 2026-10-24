@@ -3,6 +3,40 @@
 require 'rails_helper'
 
 RSpec.describe Extractor do
+  describe '#extract_hashtags' do
+    subject { described_class.extract_hashtags(text) }
+
+    context 'when text does not have # or ＃' do
+      let(:text) { 'a string without hash sign' }
+
+      it { is_expected.to be_empty }
+    end
+
+    context 'when text contains an ASCII hashtag' do
+      let(:text) { 'hello #world' }
+
+      it { is_expected.to eq %w(world) }
+    end
+
+    context 'when text contains a full-width hashtag' do
+      let(:text) { 'hello ＃world' }
+
+      it { is_expected.to eq %w(world) }
+    end
+
+    context 'when text contains multiple unique hashtags' do
+      let(:text) { '#ruby #rails development' }
+
+      it { is_expected.to eq %w(ruby rails) }
+    end
+
+    context 'when text has normal hash text before a protocol' do
+      let(:text) { '#hashtaghttps://' }
+
+      it { is_expected.to eq %w(hashtag) }
+    end
+  end
+
   describe '#extract_mentions_or_lists_with_indices' do
     subject { described_class.extract_mentions_or_lists_with_indices(text) }
 
