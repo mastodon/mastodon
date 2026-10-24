@@ -16,6 +16,7 @@ tr:
       account_migration:
         acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
       account_warning_preset:
+        action_category: Bu yanıtın hangi denetim eylemi için kullanılacağını seçin. Yanıt birden fazla eylem için geçerliyse "Tüm eylemler" seçeneğini seçin.
         text: Bğlantılar, etiketler ve bahsedenler gibi gönderi sözdizimini kullanabilirsiniz
         title: İsteğe bağlı. Alıcıya görünmez
       admin_account_action:
@@ -99,7 +100,7 @@ tr:
         media_cache_retention_period: Uzak kullanıcıların gönderilerindeki ortam dosyaları sunucunuzda önbelleklenir. Pozitif bir değer verildiğinde, ortam dosyaları belirlenen gün sonunda silinecektir. Eğer ortam dosyaları silindikten sonra istenirse, kaynak içerik hala mevcutsa, tekrar indirilecektir. Bağlantı önizleme kartlarının üçüncü parti siteleri yoklamasına ilişkin kısıtlamalar nedeniyle, bu değeri en azından 14 gün olarak ayarlamanız önerilir, yoksa bağlantı önizleme kartları bu süreden önce isteğe bağlı olarak güncellenmeyecektir.
         min_age: Kullanıcılardan kayıt olurken doğum tarihlerini doğrulamaları istenecektir
         peers_api_enabled: Bu sunucunun fediverse'te karşılaştığı alan adlarının bir listesi. İlgili sunucuyla birleştirme mi yapıyorsunuz yoksa sunucunuz sadece onu biliyor mu hakkında bir bilgi burada yok. Bu blgi genel olarak federasyın hakkında istatistik toplamak isteyen hizmetler tarafından kullanılıyor.
-        postpone_confirmation_emails: Bu ayar etkinleştirildiğinde, onay bekleyen hesaplar için onay e-postaları ancak söz konusu hesaplar onaylandıktan sonra gönderilir. Bu durum, kullanıcılar için daha olumsuz bir kayıt deneyimi yaratabilir, çünkü kullanıcılar e-postayı aldıktan sonra yine de e-posta adreslerini zamanında onaylamaları gerekecek, ancak e-postanın ne zaman gönderileceği konusunda artık kontrol sahibi olmayacaklardır. Ayrıca, Mastodon onaylanmadan önce geçersiz e-posta adresine sahip bekleyen hesapları filtreleyemeyeceği için bu durum moderatörlerin iş yükünü artırabilir.
+        postpone_confirmation_emails: Bu ayar etkinleştirildiğinde, onay bekleyen hesaplar için onay e-postaları ancak söz konusu hesaplar onaylandıktan sonra gönderilir. Bu durum, kullanıcılar için daha olumsuz bir kayıt deneyimi yaratabilir, çünkü kullanıcılar e-postayı aldıktan sonra yine de e-posta adreslerini zamanında onaylamaları gerekecek, ancak e-postanın ne zaman gönderileceği konusunda artık kontrol sahibi olmayacaklardır. Ayrıca, Mastodon onaylanmadan önce geçersiz e-posta adresine sahip bekleyen hesapları filtreleyemeyeceği için bu durum denetçilerin iş yükünü artırabilir.
         profile_directory: Profil dizini keşfedilebilir olmayı kabul eden tüm kullanıcıları listeler.
         require_invite_text: Kayıt olmak elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
         site_contact_email: İnsanlar yasal konular veya destek hakkında bilgi edinmek için size nasıl ulaşabilir.
@@ -151,7 +152,7 @@ tr:
         arbitration_address: Yukarıdaki fiziksel adresle aynı olabilir, veya e-posta kullanıyorsanız "N/A".
         arbitration_website: Web formu olabilir, veya e-posta kullanıyorsanız "N/A".
         choice_of_law: Her türlü iddiayı yönetecek olan iç maddi yasalara ilişkin şehir, bölge, eyalet veya ülke.
-        dmca_address: ABD operatörleri için DMCA Atanmış Temsilci Dizininde kayıtlı adresi kullanın. Doğrudan taleple Posta Kutusu kullanımı mümkündür, Telif Hakkı Ofisine e-posta göndermek için DMCA Atanmış Temsilci Posta Kutusu Feragat Talebini kullanın ve eylemleriniz nedeniyle intikam veya cezalandırılmaktan çekinen ve herkese açık ev adresini kullanmamak için Posta Kutusu kullanması gereken ev tabanlı bir içerik moderatörü olduğunuzu açıklayın.
+        dmca_address: ABD operatörleri için DMCA Atanmış Temsilci Dizininde kayıtlı adresi kullanın. Doğrudan taleple Posta Kutusu kullanımı mümkündür, Telif Hakkı Ofisine e-posta göndermek için DMCA Atanmış Temsilci Posta Kutusu Feragat Talebini kullanın ve eylemleriniz nedeniyle intikam veya cezalandırılmaktan çekinen ve herkese açık ev adresini kullanmamak için Posta Kutusu kullanması gereken ev tabanlı bir içerik denetçisi olduğunuzu açıklayın.
         dmca_email: Yukarıdaki "Yasal bildirimler için e-posta adresi" için kullanılan e-posta ile aynı olabilir.
         domain: Sağladığınız çevrimiçi hizmetin benzersiz tanımlaması.
         jurisdiction: Faturaları ödeyen kişinin yaşadığı ülkeyi listeleyin. Bir şirket veya başka bir kuruluş ise, kurulduğu ülkeyi ve uygun şekilde şehri, bölgeyi, yöreyi veya eyaleti listeleyin.
@@ -193,6 +194,7 @@ tr:
       account_migration:
         acct: Yeni hesabın kullanıcı kimliği
       account_warning_preset:
+        action_category: Denetim eylemi ata
         text: Yanıt metni
         title: Başlık
       admin_account_action:
@@ -201,6 +203,7 @@ tr:
         text: Özel yanıt
         type: Eylem
         types:
+          all_actions: Tüm eylemler
           disable: Dondur
           none: Hiç birşey
           sensitive: Hassas
@@ -351,14 +354,14 @@ tr:
           sign_up_requires_approval: Kayıtları sınırla
         severity: Kural
       notification_emails:
-        appeal: Birisi, bir moderatör kararına itiraz ediyor
+        appeal: Birisi, bir denetçi kararına itiraz ediyor
         digest: Özet e-postaları gönder
         end_of_support: Mastodon’un mevcut sürümünün destek süresi sona ermek üzere
         favourite: Birisi gönderinizi beğendi
         follow: Biri seni takip etti
         follow_request: Biri seni takip etmek istedi
         mention: Birisi senden bahsetti
-        moderation_suggestions: Otomatik moderasyon önerileri mevcuttur
+        moderation_suggestions: Otomatik denetim önerileri mevcut
         pending_account: Yeni hesabın incelenmesi gerekiyor
         quote: Birisi senden alıntı yaptı
         reblog: Birisi gönderini boostladı
