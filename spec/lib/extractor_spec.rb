@@ -6,6 +6,25 @@ RSpec.describe Extractor do
   describe '#extract_mentions_or_lists_with_indices' do
     subject { described_class.extract_mentions_or_lists_with_indices(text) }
 
+    context 'with a domain exceeding the max length' do
+      let(:long_domain) { "#{'a' * described_class::MAX_DOMAIN_LENGTH * 2}.com" }
+      let(:text) { "@alice@#{long_domain}" }
+
+      it { is_expected.to be_empty }
+    end
+
+    context 'with a non-match email address' do
+      let(:text) { 'Please contact support@example.com for help' }
+
+      it { is_expected.to be_empty }
+    end
+
+    context 'with multiple consecutive at signs' do
+      let(:text) { '@@@@@alice' }
+
+      it { is_expected.to contain_exactly({ screen_name: 'alice', indices: [4, 10] }) }
+    end
+
     context 'when text does not have at signs' do
       let(:text) { 'a string without at signs' }
 
@@ -122,6 +141,24 @@ RSpec.describe Extractor do
       it { is_expected.to eq [{ hashtag: 'hashtag', indices: [0, 8] }] }
     end
 
+    context 'with a trailing punctuation mark immediately after a hashtag' do
+      let(:text) { 'Check out #development!!!' }
+
+      it { is_expected.to eq([{ hashtag: 'development', indices: [10, 22] }]) }
+    end
+
+    context 'with a hashtag containing mixed scripts' do
+      let(:text) { '#rubyのコード' }
+
+      it { is_expected.to eq([{ hashtag: 'rubyのコード', indices: [0, 9] }]) }
+    end
+
+    context 'with numeric-only hashtags if they resemble numbers' do
+      let(:text) { 'This is issue #12345' }
+
+      it { is_expected.to be_empty }
+    end
+
     context 'when a block is given' do
       let(:text) { '#hashtag' }
 
@@ -155,6 +192,18 @@ RSpec.describe Extractor do
       let(:text) { '$cashtag' }
 
       it { is_expected.to be_empty }
+    end
+
+    context 'with possible XSS html snippet' do
+      let(:text) { 'https://example.com<a>malicious</a>' }
+
+      it { is_expected.to contain_exactly(include(url: 'https://example.com')) }
+    end
+
+    context 'with hashtag and xmpp entity nearby' do
+      let(:text) { '#chat_now xmpp:alice@example.com' }
+
+      it { is_expected.to contain_exactly(include(hashtag: 'chat_now'), include(url: 'xmpp:alice@example.com')) }
     end
   end
 
