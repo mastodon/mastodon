@@ -61,6 +61,21 @@ RSpec.describe TextFormatter do
       end
     end
 
+    context 'when given multiline japanese text with long link' do
+      let(:text) do
+        <<~TEXT
+          こんにちは世界。
+
+          https://www.example.com/this-is-a-url-longer-than-the-text
+        TEXT
+      end
+
+      it 'includes both the original multi-byte text and the source link' do
+        expect(subject.to_s).to include('こんにちは世界。')
+          .and include('https://www.example.com/this-is-a-url-longer-than-the-text')
+      end
+    end
+
     context 'when given a stand-alone URL with a newer TLD' do
       let(:text) { 'http://example.gay' }
 

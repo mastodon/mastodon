@@ -31,7 +31,16 @@ module Extractor
   # xmpp: and magnet: URIs are handled by separate small extractors
   # below.
   def extract_urls_with_indices(text, options = {})
-    UTS58.extract_urls_with_indices(text, options)
+    UTS58.extract_urls_with_indices(text, options).tap do |urls|
+      # Re-align indices to character positions based on where URLs actually live
+      urls.each do |entity|
+        real_start = text.index(entity[:url])
+        next unless real_start
+
+        length = entity[:indices].last - entity[:indices].first
+        entity[:indices] = [real_start, real_start + length]
+      end
+    end
   end
 
   def remove_overlapping_entities(entities)
