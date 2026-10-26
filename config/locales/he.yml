@@ -1090,6 +1090,119 @@ he:
       translation: תרגום
       translations: תרגומים
       translations_explanation: באפשרותך להוסיף גרסאות מתורגמות לשפות נוספות של תנאי השימוש. ברירת המחדף תופיע אם גרסאות מתורגמות אינן בנמצא. עליך לוודא כי הגרסאות המתורגמות מעודכנות יחד עם שפת ברירת המחדל.
+    server_checks:
+      categories:
+        completed:
+          title: נשלמה
+        critical:
+          title: קריטית
+        error:
+          title: שגיאות
+        ignored:
+          title: נתעלמה
+        suggestion:
+          title: הצעות
+        unprocessed:
+          title: לא עובדו
+        warning:
+          title: אזהרות
+      checks:
+        database_schema:
+          error:
+            title: היתה תקלה בבדיקת הסכֿמה של מסד הנתונים
+          ok:
+            title: אין הגירות (מיגרציות) ממתינות עבור מסד הנתונים
+          pending:
+            lead_html: יש להריץ בכדי להבטיח שהיישום מתפקד כצפוי
+            title: יש הגירות (מיגרציות) ממתינות עבור מסד הנתונים
+          running:
+            title: השרת בבדיקת הסכֿמה של מסד הנתונים
+          unprocessed:
+            title: השרת טרם בדק הסכֿמה של מסד הנתונים
+        elastic_search:
+          error:
+            title: קרתה שגיאה בבדיקת תצורת אלסטיקסרץ'
+          ok:
+            title: תצורת אלסטיקסרץ' נקבעה ללא תקלות
+          pending:
+            lead:
+              analysis_index_mismatch_html: הגדרות מנתח אינדקס אלסטיקסרץ' נמצאו מיושנות. אנא הפעל <code>totctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: אשכול שירותי חיפוש Elasticsearch אינו זמין כעת (מצב אדום), אפשרויות חיפוש אינן זמינות כרגע
+              cluster_health_yellow_html: אשכול שירותי חיפוש Elasticsearch אינו כשיר כעת (מצב צהוב), מומלץ לבדוק מה סיבת הבעיה
+              index_mismatch_html: מיפוי האינדקסים של Elasticsearch אינו עדכני. יש להריץ <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: אשכול שירותי חיפוש Elasticsearch שלך מכיל יותר משרת אחד, אך מסטודון אינו מכוון לשימוש בכולם
+              preset_single_node_html: אשכול שירותי חיפוש Elasticsearch שלך מכיל רק שרת אחד, <code>ES_PRESET</code> צריך להכיל את הערך <code>single_node_cluster</code>
+              reset_chewy_html: מיפוי האינדקסים של Elasticsearch אינו עדכני עקב שינוי תצורה. יש להריץ <code>tootctl search deploy --reset-chewy</code> כדי לעדכנו
+              running_check_html: לא ניתן להתחבר לחיפוש אלסטיק. בדקו בבקשה הוא רץ, או בטלו את חיפוש הטקסט המלא
+              version_check_html: גרסת חיפוש אלסטיק %{running_version} רצה, בעוד גרסא %{required_version} נדרשת
+            title: ישנן בעיות עם Elasticsearch
+          running:
+            title: השרת בודק תצורת אלסטיקסרץ'
+          unprocessed:
+            title: השרת עוד לא בדק תצורת אלסטיקסרץ'
+        media_privacy:
+          error:
+            title: קרתה תקלה בעת בדיקת פרטיות המדיה בשרת שלך
+          ok:
+            title: פרטיות המדיה בשרת שלך מאובטחת
+          pending:
+            lead:
+              upload_check_privacy_error_html: הגדרות שרת ה-web שלך לא נכונות
+              upload_check_privacy_error_object_storage_html: שירות אחסון אוביקטים לא הוגדר נכון
+            title: הפרטיות של משתמשיך בסיכון
+          running:
+            title: השרת בודק את מצב הפרטיות שלו
+          unprocessed:
+            title: השרת לא בדק את מצב הפרטיות שלו
+        rules:
+          error:
+            title: קרתה תקלה בעת בדיקת חוקי השרת שלך
+          ok:
+            title: חוקי השרת שלך נקבעו
+          pending:
+            lead_html: לשרת שלך אין חוקים שפורסמו. חוקים ברורים עוזרים לפיקוח התוכן ומגדירים ציפיות
+            title: הקימו את חוקי השרת
+          running:
+            title: השרת בודק את החוקים
+          unprocessed:
+            title: השרת לא בדק אם הוגדרו חוקים
+        sidekiq_process:
+          error:
+            title: קרתה שגיאה בבדיקת הגדרות סיידקיק
+          ok:
+            title: הגדרות סיידקיק נקבעו ללא תקלות
+          pending:
+            lead_html: אין תהליך סיידקיק פעיל עבור תור(ים) %{missing_queues_str}
+            title: יש לעבור על הגדרות סיידקיק שלך
+          running:
+            title: השרת בודק הגדרות סיידקיק
+          unprocessed:
+            title: השרת עוד לא בדק הגדרות סיידקיק
+        software_version:
+          error:
+            title: קרתה תקלה בעת בדיקת שדרוגי תוכנה
+          ok:
+            title: שרת המסטודון שלך עדכני
+          pending:
+            lead:
+              patch_html: יש עדכון גרסה עם תיקון באג זמין למסטודון
+              regular_html: זמינה גרסה חדשה של מסטודון
+              urgent_html: יצא עדכון קריטי למסטודון, נא לעדכן את תוכנת מסטודון בהקדם האפשרי
+            title: לעדכן את שרת המסטודון שלך
+          running:
+            title: השרת בודק אם יש עדכוני תוכנה ממתינים
+          unprocessed:
+            title: השרת לא בדק אם קיימים עדכוני תוכנה
+      ignore:
+        label: להתעלם
+      lead: המלצות לשמירת השרת שלך בטוח, מזמין ופועל ביעילות.
+      recommendations:
+        title: המלצות
+      restore:
+        label: שחזר
+      setup:
+        label: הקמה
+      title: בריאות שרת
     settings:
       about:
         manage_rules: ניהול כללי שרת
@@ -1446,6 +1559,13 @@ he:
     warning_presets:
       add_new: הוספת חדש
       delete: למחוק
+      dropdown:
+        all_actions: כל הפעולות
+        disable: הקפאה
+        none: אזהרה
+        sensitive: סימון כרגיש
+        silence: הגבלה
+        suspend: השעייה
       edit_preset: עריכת תגובה מוכנה מראש
       empty: לא הגדרת תגובות מוכנות מראש.
       navigation_title: תגובות מוכנות מראש
@@ -1715,6 +1835,7 @@ he:
       action_taken: הפעולה שבוצעה
       appeal: ערער
       appeal_approved: הערעור על פסילה זו התקבל
+      appeal_handled_by: הערעור בטיפול
       appeal_rejected: ערעור זה נדחה
       appeal_submitted_at: ערעור הוגש
       appealed_msg: הערעור שלך הוגש. במידה ויאושר, תיודע.

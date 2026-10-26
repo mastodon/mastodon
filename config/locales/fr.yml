@@ -1048,6 +1048,119 @@ fr:
       translation: Traduction
       translations: Traductions
       translations_explanation: Vous pouvez éventuellement ajouter des traductions pour les règles. La valeur par défaut sera affichée si aucune version traduite n'est disponible. Veuillez toujours vous assurer que toute traduction fournie est synchronisée avec la valeur par défaut.
+    server_checks:
+      categories:
+        completed:
+          title: Complétées
+        critical:
+          title: Critiques
+        error:
+          title: Erreurs
+        ignored:
+          title: Ignorées
+        suggestion:
+          title: Suggestions 
+        unprocessed:
+          title: Non traitée
+        warning:
+          title: Avertissements
+      checks:
+        database_schema:
+          error:
+            title: Une erreur s'est produite lors de la vérification du schéma de la base de données
+          ok:
+            title: Aucune migration de la base de données en attente
+          pending:
+            lead_html: Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
+            title: Des migrations de la base de données sont en attente
+          running:
+            title: Votre serveur vérifie le schéma de la base de données
+          unprocessed:
+            title: Votre serveur n'a pas encore vérifié le schéma de la base de données
+        elastic_search:
+          error:
+            title: Une erreur s'est produite lors de la vérification de la configuration d'Elasticsearch
+          ok:
+            title: Elasticsearch est configuré sans problèmes
+          pending:
+            lead:
+              analysis_index_mismatch_html: Les paramètres de l'analyseur d'index d'Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Le cluster Elasticsearch n'est pas en bon état (statut rouge), les fonctionnalités de recherche ne sont pas disponibles
+              cluster_health_yellow_html: Le cluster Elasticsearch n'est pas en bon état (statut jaune), vous pouvez en chercher la cause
+              index_mismatch_html: Les mappings des index Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Votre cluster Elasticsearch a plus d’un nœud, mais Mastodon n’a pas été configuré pour les utiliser
+              preset_single_node_html: Votre cluster Elasticsearch n’a qu’un seul nœud, <code>ES_PRESET</code> devrait avoir la valeur <code>single_node_cluster</code>
+              reset_chewy_html: L’index système d'Elasticsearch n’est plus à jour à cause d’un changement de paramètre. Veuillez lancer <code>tootctl search deploy --reset-chewy</code> pour le mettre à jour
+              running_check_html: Impossible de se connecter à Elasticsearch. Veuillez vérifier qu’il est en cours d’exécution ou désactiver la recherche en plein texte
+              version_check_html: Elasticsearch %{running_version} est en cours d’exécution alors que la version %{required_version} est requise
+            title: Il y a des problèmes avec Elasticsearch
+          running:
+            title: Le serveur vérifie la configuration d'Elasticsearch
+          unprocessed:
+            title: Le serveur n'a pas encore vérifié la configuration d'Elasticsearch
+        media_privacy:
+          error:
+            title: Une erreur s'est produite lors de la vérification de la confidentialité des médias de votre serveur
+          ok:
+            title: La confidentialité des médias de votre serveur est sécurisée
+          pending:
+            lead:
+              upload_check_privacy_error_html: Votre serveur web est mal configuré
+              upload_check_privacy_error_object_storage_html: Votre stockage d'objets est mal configuré
+            title: La confidentialité de vos utilisateur·rice·s est en danger
+          running:
+            title: Le serveur vérifie son statut de confidentialité
+          unprocessed:
+            title: Le serveur n'a pas encore vérifié son statut de confidentialité
+        rules:
+          error:
+            title: Une erreur s'est produite lors de la vérification des règles de votre serveur
+          ok:
+            title: Les règles de votre serveur sont définies
+          pending:
+            lead_html: Votre serveur n'a pas de règles publiées. Des règles claires aident à la modération et définissent les attentes
+            title: Configurer les règles du serveur
+          running:
+            title: Le serveur vérifie vos règles
+          unprocessed:
+            title: Le serveur n'a pas encore vérifié s'il y a des règles
+        sidekiq_process:
+          error:
+            title: Une erreur s'est produite lors de la vérification de la configuration de Sidekiq
+          ok:
+            title: Sidekiq est configuré sans problèmes
+          pending:
+            lead_html: Aucun processus Sidekiq en cours d'exécution pour les files d'attente %{missing_queues_str}
+            title: Veuillez vérifier votre configuration de Sidekiq
+          running:
+            title: Le serveur vérifie la configuration de Sidekiq
+          unprocessed:
+            title: Le serveur n'a pas encore vérifié la configuration de Sidekiq
+        software_version:
+          error:
+            title: Une erreur s'est produite lors de la vérification des mises à jour du logiciel
+          ok:
+            title: Votre serveur Mastodon est à jour
+          pending:
+            lead:
+              patch_html: Une mise à jour de Mastodon est disponible
+              regular_html: Une nouvelle version de Mastodon est disponible
+              urgent_html: Une mise à jour critique de Mastodon est disponible, veuillez mettre à jour le plus rapidement possible
+            title: Mettre à jour votre serveur Mastodon
+          running:
+            title: Le serveur vérifie s'il y a une mise à jour du logiciel en attente
+          unprocessed:
+            title: Le serveur n'a pas encore vérifié les mises à jour logicielles
+      ignore:
+        label: Ignorer
+      lead: Recommandations pour assurer la sécurité de votre serveur, et le garder accueillant et efficace.
+      recommendations:
+        title: Recommandations
+      restore:
+        label: Restaurer
+      setup:
+        label: Configurer
+      title: État du serveur
     settings:
       about:
         manage_rules: Gérer les règles du serveur
@@ -1398,6 +1511,13 @@ fr:
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
+      dropdown:
+        all_actions: Toutes les actions
+        disable: Désactiver
+        none: Avertissement
+        sensitive: Sensible
+        silence: Masquer
+        suspend: Suspendre
       edit_preset: Modifier la réponse standard
       empty: Vous n'avez pas encore défini de réponses standards.
       navigation_title: Réponses standards

@@ -1030,6 +1030,72 @@ de:
       translation: Übersetzung
       translations: Übersetzungen
       translations_explanation: Du kannst Serverregeln übersetzen. Der Standardwert wird angezeigt, wenn keine übersetzte Version verfügbar ist. Bitte vergewissere dich, dass jede Übersetzung mit dem Standardwert übereinstimmt.
+    server_checks:
+      categories:
+        completed:
+          title: Fertig
+        critical:
+          title: Kritisch
+        error:
+          title: Fehler
+        ignored:
+          title: Ignoriert
+        suggestion:
+          title: Vorschläge
+        unprocessed:
+          title: Unbearbeitet
+        warning:
+          title: Warnungen
+      checks:
+        database_schema:
+          error:
+            title: Fehler beim Überprüfen des Datenbankschemas
+          ok:
+            title: Keine Datenbankmigration ausstehend
+          pending:
+            lead_html: Dadurch wird sichergestellt, dass die Anwendung ordnungsgemäß weiter arbeitet
+            title: Datenbankmigration ausstehend
+          running:
+            title: Datenbankschema wird überprüft
+          unprocessed:
+            title: Der Server das Datenbankschema noch nicht geprüft
+        elastic_search:
+          error:
+            title: Fehler beim Überprüfen der Elasticsearch-Konfiguration
+          ok:
+            title: Elasticsearch ist fehlerfrei konfiguriert
+          pending:
+            lead:
+              version_check_html: Elasticsearch %{running_version} wird verwendet, obwohl %{required_version} benötigt wird
+            title: Probleme mit Elasticsearch erkannt
+        rules:
+          ok:
+            title: Serverregeln festgelegt
+          pending:
+            lead_html: Dein Server hat keine Regeln festgelegt. Durch klare Regeln werden Rahmenbedingungen für die Moderation geschaffen und Erwartungen kommuniziert
+            title: Serverregeln festlegen
+        software_version:
+          ok:
+            title: Mastodon ist auf dem neuesten Stand
+          pending:
+            lead:
+              regular_html: Eine neue Mastodon-Version ist verfügbar
+              urgent_html: Ein wichtiges Sicherheitsupdate ist verfügbar – bitte aktualisiere Mastodon so schnell wie möglich
+            title: Mastodon aktualisieren
+          running:
+            title: Der Server überprüft gerade, ob ein Update verfügbar ist
+          unprocessed:
+            title: Der Server hat noch nicht auf Updates geprüft
+      ignore:
+        label: Ignorieren
+      lead: Empfehlungen, damit dein Server effizient, sicher und zugänglich bleibt.
+      recommendations:
+        title: Empfehlungen
+      restore:
+        label: Wiederherstellen
+      setup:
+        label: Einrichten
+      title: Serverstatus
     settings:
       about:
         manage_rules: Serverregeln verwalten

@@ -1058,6 +1058,45 @@ zh-CN:
       translation: 翻译
       translations: 翻译
       translations_explanation: 你可以选择性地为规则添加翻译。没有翻译版本则将显示默认值。 请确保任何提供的翻译都与默认值内容同步。
+    server_checks:
+      checks:
+        sidekiq_process:
+          error:
+            title: 检查 Sidekiq 配置时发生错误
+          ok:
+            title: Sidekiq 配置没有问题
+          pending:
+            lead_html: "%{missing_queues_str} 队列未运行任何 Sidekiq 进程"
+            title: 请检查你的 Sidekiq 配置
+          running:
+            title: 服务器正在检查 Sidekiq 配置
+          unprocessed:
+            title: 服务器尚未检查 Sidekiq 配置
+        software_version:
+          error:
+            title: 检查软件更新时发生错误
+          ok:
+            title: 你的 Mastodon 实例已经是最新状态
+          pending:
+            lead:
+              patch_html: 有 Mastodon 错误修复更新可用
+              regular_html: 有新版本的 Mastodon 可用
+              urgent_html: 有一个紧急Mastodon紧急更新可用，请尽快更新
+            title: 更新你的 Mastodon 实例
+          running:
+            title: 服务器正在检查是否有等待中的软件更新
+          unprocessed:
+            title: 服务器尚未检查软件更新
+      ignore:
+        label: 忽略
+      lead: 确保你的服务器安全、友好和高效的建议。
+      recommendations:
+        title: 建议
+      restore:
+        label: 恢复
+      setup:
+        label: 设置
+      title: 服务器状态
     settings:
       about:
         manage_rules: 管理服务器规则
