@@ -42,7 +42,7 @@ const selectIsFollowersReply = createAppSelector(
       : null,
 );
 
-export const ComposeHints = () => {
+export const ComposeHints = (props: React.ComponentPropsWithRef<'div'>) => {
   const { count, missingAlt } = useAppSelector(
     selectComposeAttachmentsWithoutAlt,
   );
@@ -124,7 +124,11 @@ export const ComposeHints = () => {
     return null;
   }
 
-  return <div className={classes.calloutWrapper}>{messages}</div>;
+  return (
+    <div {...props} className={classes.calloutWrapper}>
+      {messages}
+    </div>
+  );
 };
 
 const defaultWrapper = (children: React.ReactNode, key: string) => (

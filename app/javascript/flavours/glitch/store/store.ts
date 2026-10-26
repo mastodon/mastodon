@@ -1,6 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import {
+  SHOW as LOADING_BAR_SHOW,
+  HIDE as LOADING_BAR_HIDE,
+} from 'react-redux-loading-bar';
+
+import { HEIGHT_CACHE_SET } from '../actions/height_cache';
+import { changeSetting } from '../actions/settings';
 import { rootReducer } from '../reducers';
+import { isDevelopment } from '../utils/environment';
 
 import { errorsMiddleware } from './middlewares/errors';
 import { loadingBarMiddleware } from './middlewares/loading_bar';
@@ -23,6 +31,15 @@ export const defaultMiddleware = {
 } as const;
 
 export const store = configureStore({
+  devTools: isDevelopment()
+    ? {
+        maxAge: 1000,
+        actionCreators: {
+          changeSetting,
+        },
+        actionsDenylist: [HEIGHT_CACHE_SET, LOADING_BAR_SHOW, LOADING_BAR_HIDE],
+      }
+    : undefined,
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware(defaultMiddleware)

@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 
+import { Column } from '@/flavours/glitch/components/column';
 import { ComposeRedesignButton } from '@/flavours/glitch/features/compose/redesign/trigger';
 import { DiscoveryPanel } from '@/flavours/glitch/features/discovery_panel';
 import { RedesignNavigationPanel } from '@/flavours/glitch/features/navigation_panel/redesign';
@@ -57,6 +58,10 @@ export const ColumnsArea: React.FC<{
       </div>
       <ComposeRedesignButton />
       <MultiColumnContent>{children}</MultiColumnContent>
+
+      <Column className={multiColClasses.discoveryColumn}>
+        <DiscoveryPanel />
+      </Column>
     </main>
   );
 };

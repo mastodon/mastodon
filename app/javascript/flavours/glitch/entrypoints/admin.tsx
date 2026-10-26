@@ -202,6 +202,38 @@ on(
   },
 );
 
+const onChangeAccountActionSelection = (target: HTMLInputElement) => {
+  const accountAction = target.value;
+  if (!target.checked) return;
+
+  const presetsDropdown = document.getElementById(
+    'presets_dropdown',
+  ) as HTMLSelectElement | null;
+
+  if (presetsDropdown) {
+    const allOptions = Array.from(presetsDropdown.options);
+    presetsDropdown.value = '';
+
+    allOptions.forEach((element) => {
+      const optionType = element.dataset.type;
+
+      if (optionType === 'all_actions' || optionType === accountAction) {
+        element.hidden = false;
+        element.disabled = false;
+      } else {
+        element.hidden = true;
+        element.disabled = true;
+      }
+    });
+  }
+};
+
+on('change', 'input[name="admin_account_action[type]"]', ({ target }) => {
+  if (target instanceof HTMLInputElement) {
+    onChangeAccountActionSelection(target);
+  }
+});
+
 function onEnableBootstrapTimelineAccountsChange(target: HTMLInputElement) {
   const bootstrapTimelineAccountsField =
     document.querySelector<HTMLInputElement>(
@@ -326,6 +358,12 @@ ready(() => {
     'select#form_admin_settings_registrations_mode',
   );
   if (registrationMode) onChangeRegistrationMode(registrationMode);
+
+  const accountActionSelection = document.querySelector<HTMLInputElement>(
+    'input[name="admin_account_action[type]"]:checked',
+  );
+  if (accountActionSelection)
+    onChangeAccountActionSelection(accountActionSelection);
 
   const inviteUsersPermissionChecbkox =
     document.querySelector<HTMLInputElement>(

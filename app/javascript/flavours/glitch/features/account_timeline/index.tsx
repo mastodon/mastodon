@@ -36,7 +36,6 @@ import { ProfileColumnHeader } from '../account/components/profile_column_header
 
 import { FeaturedTags } from './components/featured_tags';
 import { AccountFilters } from './components/filters';
-import { PinnedBadge } from './components/pinned_statuses';
 import { TagSuggestions } from './components/tags_suggestions';
 import {
   AccountTimelineContext,
@@ -146,7 +145,6 @@ const InnerTimeline: FC<{ account: Account; multiColumn: boolean }> = ({
         timelineId='account'
         withCounters
         className={classNames(classes.statusWrapper)}
-        statusProps={{ headerContents: <PinnedBadge /> }}
       />
     </Column>
   );

@@ -10,10 +10,17 @@
 
   @include mixins.type-caption;
 
-  // Hide footer links from the navigation in single column layout
-  // when there's enough space to display them in the search column
+  // Hide footer links from the nav when they fit into the Discovery panel…
+  // …in single column layout:
   :global(body.layout-single-column) &[data-context='navigation'] {
     @media (width > variables.$no-gap-breakpoint) {
+      display: none;
+    }
+  }
+
+  // …in multi-column layout:
+  :global(body.layout-multiple-columns) &[data-context='navigation'] {
+    @media (width > variables.$mobile-breakpoint) {
       display: none;
     }
   }

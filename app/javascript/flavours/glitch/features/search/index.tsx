@@ -12,7 +12,6 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/flavours/glitch/components/column';
 import { ColumnHeader } from '@/flavours/glitch/components/column_header';
-import { Scrollable } from '@/flavours/glitch/components/scrollable_list/components';
 import { submitSearch, expandSearch } from 'flavours/glitch/actions/search';
 import type { ApiSearchType } from 'flavours/glitch/api_types/search';
 import { Account } from 'flavours/glitch/components/account';
@@ -298,31 +297,30 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
         extraStickyContent={extraStickyHeaderContent}
       />
 
-      <Scrollable data-nosnippet>
-        <ScrollableList
-          scrollKey='search-results'
-          isLoading={isLoading}
-          showLoading={isLoading && !results}
-          onLoadMore={handleLoadMore}
-          hasMore={hasMore}
-          emptyMessage={
-            trimmedValue.length > 0 ? (
-              <FormattedMessage
-                id='search_results.no_results'
-                defaultMessage='No results.'
-              />
-            ) : (
-              <FormattedMessage
-                id='search_results.no_search_yet'
-                defaultMessage='Try searching for posts, profiles or hashtags.'
-              />
-            )
-          }
-          bindToDocument
-        >
-          {filteredResults}
-        </ScrollableList>
-      </Scrollable>
+      <ScrollableList
+        noSnippet
+        scrollKey='search-results'
+        isLoading={isLoading}
+        showLoading={isLoading && !results}
+        onLoadMore={handleLoadMore}
+        hasMore={hasMore}
+        emptyMessage={
+          trimmedValue.length > 0 ? (
+            <FormattedMessage
+              id='search_results.no_results'
+              defaultMessage='No results.'
+            />
+          ) : (
+            <FormattedMessage
+              id='search_results.no_search_yet'
+              defaultMessage='Try searching for posts, profiles or hashtags.'
+            />
+          )
+        }
+        bindToDocument
+      >
+        {filteredResults}
+      </ScrollableList>
 
       <Helmet>
         <title>{pageTitle}</title>

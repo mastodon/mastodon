@@ -6056,6 +6056,7 @@ a.status-card {
   z-index: 9999;
   overscroll-behavior: none;
   overflow-y: auto;
+  overflow-x: hidden;
 
   @media screen and (width <= $mobile-breakpoint) {
     padding-bottom: 0;
@@ -6333,7 +6334,6 @@ a.status-card {
     padding: 24px;
     flex-direction: column;
     background: var(--color-bg-primary);
-    backdrop-filter: $backdrop-blur-filter;
     border: 1px solid var(--color-border-primary);
   }
 
@@ -6527,8 +6527,9 @@ a.status-card {
     }
 
     &.active {
-      background: var(--color-bg-secondary);
+      background: var(--color-bg-primary);
       padding-top: 24px;
+      border-top: var(--border-default);
 
       .safety-action-modal__bottom__collapsible {
         display: flex;

@@ -14,6 +14,8 @@ import {
   BookmarkSimpleIcon,
   PlusIcon,
   InfoIcon,
+  GavelIcon,
+  ShieldStarIcon,
 } from '@phosphor-icons/react';
 
 import { fetchFollowRequests } from '@/flavours/glitch/actions/accounts';
@@ -32,7 +34,11 @@ import {
   trendsEnabled,
 } from '@/flavours/glitch/initial_state';
 import { transientSingleColumn } from '@/flavours/glitch/is_mobile';
-import { canViewFeed } from '@/flavours/glitch/permissions';
+import {
+  canManageReports,
+  canViewAdminDashboard,
+  canViewFeed,
+} from '@/flavours/glitch/permissions';
 import { openNewComposer } from '@/flavours/glitch/reducers/slices/composer';
 import { getOrderedLists } from '@/flavours/glitch/selectors/lists';
 import { selectUnreadNotificationGroupsCount } from '@/flavours/glitch/selectors/notifications';
@@ -145,8 +151,11 @@ export const RedesignNavigationPanel: React.FC<{
 }> = ({ siteName, mode = 'static', multiColumn }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const { signedIn } = useIdentity();
+  const { signedIn, permissions } = useIdentity();
   const notificationsCount = useNotificationsCount();
+
+  const isManager = canManageReports(permissions);
+  const isAdmin = canViewAdminDashboard(permissions);
 
   const openComposer = useCallback(() => {
     dispatch(closeNavigation());
@@ -169,6 +178,7 @@ export const RedesignNavigationPanel: React.FC<{
     <nav
       className={classes.root}
       data-mode={mode}
+      data-scrollable={!isScrolledToTop || !isScrolledToBottom}
       aria-label={intl.formatMessage(messages.main)}
     >
       {topSensor}
@@ -182,6 +192,33 @@ export const RedesignNavigationPanel: React.FC<{
             </NavigationLink>
             <ExploreLink />
             <PublicFeedsLink />
+
+            {isAdmin && (
+              <NavigationLink
+                as='a'
+                href='/admin/dashboard'
+                iconComponent={GavelIcon}
+              >
+                <FormattedMessage
+                  id='navigation_bar.administration'
+                  defaultMessage='Administration'
+                />
+              </NavigationLink>
+            )}
+
+            {isManager && (
+              <NavigationLink
+                as='a'
+                href='/admin/reports'
+                iconComponent={ShieldStarIcon}
+              >
+                <FormattedMessage
+                  id='navigation_bar.moderation'
+                  defaultMessage='Moderation'
+                />
+              </NavigationLink>
+            )}
+
             <ListSection
               id='custom-feeds'
               title={

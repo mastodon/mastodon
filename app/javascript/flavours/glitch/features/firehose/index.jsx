@@ -25,6 +25,7 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import { isRedesignEnabled } from '@/flavours/glitch/utils/environment';
 import { ColumnHeader, ColumnSettingsMenu } from '@/flavours/glitch/components/column_header';
 import { MultiColumnMenuItems } from '@/flavours/glitch/components/column_header/multicolumn_settings';
+import { MenuItemCheckbox } from '@/flavours/glitch/components/menu';
 
 const messages = defineMessages({
   title: { id: 'column.firehose', defaultMessage: 'Live feeds' },
@@ -41,48 +42,40 @@ const messages = defineMessages({
   filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
 });
 
-const ColumnSettings = () => {
+const FirehoseSettingsMenuItems = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const settings = useAppSelector((state) => state.getIn(['settings', 'firehose']));
   const onChange = useCallback(
-    (key, checked) => dispatch(changeSetting(['firehose', ...key], checked)),
+    ({value, checked}) => dispatch(changeSetting(['firehose', value], checked)),
     [dispatch],
   );
 
   return (
-    <div className='column-settings'>
-      <section>
-        <div className='column-settings__row'>
-          <SettingToggle
-            settings={settings}
-            settingPath={['onlyMedia']}
-            onChange={onChange}
-            label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
-          />
-
-          <SettingToggle
-            settings={settings}
-            settingPath={['allowLocalOnly']}
-            onChange={onChange}
-            label={<FormattedMessage id='firehose.column_settings.allow_local_only' defaultMessage='Show local-only posts in "All"' />}
-          />
-        </div>
-      </section>
-
-      <section>
-        <h3><FormattedMessage id='home.column_settings.advanced' defaultMessage='Advanced' /></h3>
-
-        <div className='column-settings__row'>
-          <SettingText
-            settings={settings}
-            settingPath={['regex', 'body']}
-            onChange={onChange}
-            label={intl.formatMessage(messages.filter_regex)}
-          />
-        </div>
-      </section>
-    </div>
+    <>
+      <MenuItemCheckbox
+        value='onlyMedia'
+        checked={settings.get('onlyMedia', false)}
+        onChange={onChange}
+        keepMenuOpenOnClick
+      >
+        <FormattedMessage
+          id='community.column_settings.media_only'
+          defaultMessage='Media only'
+        />
+      </MenuItemCheckbox>
+      <MenuItemCheckbox
+        value='allowLocalOnly'
+        checked={settings.get('allowLocalOnly', false)}
+        onChange={onChange}
+        keepMenuOpenOnClick
+      >
+        <FormattedMessage
+          id='firehose.column_settings.allow_local_only'
+          defaultMessage='Show local-only posts in "All"'
+        />
+      </MenuItemCheckbox>
+    </>
   );
 };
 
@@ -219,30 +212,20 @@ const Firehose = ({ feedType, multiColumn }) => {
 
   return (
     <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
-      {isRedesignEnabled() ? (
-        <ColumnHeader
-          title={title}
-          withBackButton={multiColumn && 'auto'}
-          withUnreadMarker={hasUnread}
-          extraButtons={multiColumn &&
-            <ColumnSettingsMenu labelPrefix={intl.formatMessage(messages.title_redesign)}>
+      <ColumnHeader
+        title={title}
+        withBackButton={multiColumn && 'auto'}
+        withUnreadMarker={hasUnread}
+        extraButtons={
+          <ColumnSettingsMenu labelPrefix={intl.formatMessage(messages.title_redesign)}>
+            <FirehoseSettingsMenuItems />
+            {multiColumn && (
               <MultiColumnMenuItems onPin={handlePin} />
-            </ColumnSettingsMenu>
-          }
-        />
-      ) : (
-        <LegacyColumnHeader
-          icon='globe'
-          iconComponent={PublicIcon}
-          active={hasUnread}
-          title={intl.formatMessage(title)}
-          onPin={handlePin}
-          multiColumn={multiColumn}
-          scrollTopOnClick
-        >
-          <ColumnSettings />
-        </LegacyColumnHeader>
-      )}
+            )}
+          </ColumnSettingsMenu>
+        }
+      />
+
 
       {(canViewFeed(signedIn, permissions, localLiveFeedAccess) && canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) && (
         <div className='account__section-headline'>

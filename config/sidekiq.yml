@@ -84,3 +84,7 @@
       every: '1h'
       class: Scheduler::PendingAccountsNotificationScheduler
       queue: scheduler
+    server_checks_scheduler:
+      every: '15 minutes'
+      class: Scheduler::ServerChecksScheduler
+      queue: scheduler

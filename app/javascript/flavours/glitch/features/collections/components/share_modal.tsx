@@ -7,7 +7,7 @@ import { useLocation } from 'react-router';
 import { NavigationFocusTarget } from '@/flavours/glitch/components/navigation_focus_target';
 import { me } from '@/flavours/glitch/initial_state';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import { changeCompose, focusCompose } from 'flavours/glitch/actions/compose';
+import { focusCompose } from 'flavours/glitch/actions/compose';
 import type { ApiCollectionJSON } from 'flavours/glitch/api_types/collections';
 import { Button } from 'flavours/glitch/components/button';
 import { CopyLinkField } from 'flavours/glitch/components/form_fields';
@@ -60,8 +60,7 @@ export const CollectionShareModal: React.FC<{
     shareMessage += `\n\n${collectionLink}`;
 
     onClose();
-    dispatch(changeCompose(shareMessage));
-    dispatch(focusCompose());
+    dispatch(focusCompose(shareMessage));
   }, [onClose, collectionLink, dispatch, intl, isOwnCollection]);
 
   return (
