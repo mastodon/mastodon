@@ -26,18 +26,20 @@ on:
 jobs:
   # Build each (amd64 and arm64) image separately
   build-image:
-    runs-on: >-
-      ${{ startsWith(matrix.platform, 'linux/arm') &&
-      # renovate: datasource=github-runners depName=ubuntu versioning=docker
-      'ubuntu-24.04-arm' ||
-      # renovate: datasource=github-runners depName=ubuntu versioning=docker
-      'ubuntu-24.04' }}
+    runs-on: ${{ matrix.platform }}
     strategy:
       fail-fast: false
       matrix:
         platform:
           - linux/amd64
           - linux/arm64
+        include:
+          - platform: linux/amd64
+            # renovate: datasource=github-runners depName=ubuntu versioning=docker
+            runner: ubuntu-24.04
+          - platform: linux/arm64
+            # renovate: datasource=github-runners depName=ubuntu versioning=docker
+            runner: ubuntu-24.04-arm
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
