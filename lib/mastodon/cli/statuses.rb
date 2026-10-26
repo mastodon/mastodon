@@ -52,7 +52,7 @@ module Mastodon::CLI
         # Skip accounts followed by local accounts
         clean_followed_sql = 'AND NOT EXISTS (SELECT 1 FROM follows WHERE statuses.account_id = follows.target_account_id)' unless options[:clean_followed]
 
-        Status.unscoped.where('id < ?', max_id).in_batches(of: 10_000) do |relation|
+        Status.unscoped.where(id: ...max_id).in_batches(of: 1_000_000) do |relation|
           min_id = relation.minimum(:id)
           max_batch_id = relation.maximum(:id)
           next if min_id.nil? || max_batch_id.nil?
@@ -154,7 +154,7 @@ module Mastodon::CLI
 
           ActiveRecord::Base.connection.create_table('conversations_to_be_deleted', force: true)
 
-          Conversation.unscoped.in_batches(of: 10_000) do |relation|
+          Conversation.unscoped.in_batches(of: 1_000_000) do |relation|
             min_id = relation.minimum(:id)
             max_batch_id = relation.maximum(:id)
             next if min_id.nil? || max_batch_id.nil?
