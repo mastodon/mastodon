@@ -150,8 +150,8 @@ RSpec.describe Vite::Tagger do
 
     describe '#vite_stylesheet_tag' do
       it 'returns stylesheet link tag to the bundled asset' do
-        tag = subject.vite_stylesheet_tag(helper, 'styles/entrypoints/inert.scss')
-        expect(tag.to_s).to eq('<link rel="stylesheet" href="/packs-dev/assets/inert-xyz.css" />')
+        tag = subject.vite_stylesheet_tag(helper, 'entrypoints/admin.ts')
+        expect(tag.to_s).to eq('<link rel="stylesheet" href="/packs-dev/admin.js" />')
       end
     end
 
