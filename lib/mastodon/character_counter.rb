@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CharacterCounter
+class Mastodon::CharacterCounter
   URL_PLACEHOLDER = 'x' * 23
 
   def countable_note_text(value)
@@ -16,7 +16,7 @@ class CharacterCounter
     result
   end
 
-  def countable_text(str)
+  def countable_status_text(str)
     return '' if str.blank?
 
     # To ensure that we only give length concessions to entities that
@@ -31,10 +31,6 @@ class CharacterCounter
         "@#{entity[:screen_name].split('@').first}"
       end
     end
-  end
-
-  def combined_text(status)
-    [status.spoiler_text, countable_text(status.text)].join
   end
 
   private

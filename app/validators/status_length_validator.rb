@@ -13,6 +13,10 @@ class StatusLengthValidator < ActiveModel::Validator
   private
 
   def too_long?(status)
-    CharacterCounter.new.combined_text(status).each_grapheme_cluster.size > MAX_CHARS
+    combined_text(status).each_grapheme_cluster.size > MAX_CHARS
+  end
+
+  def combined_text(status)
+    [status.spoiler_text, CharacterCounter.new.countable_status_text(status.text)].join
   end
 end
