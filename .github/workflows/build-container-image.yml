@@ -112,7 +112,7 @@ jobs:
   # Then merge the docker images into a single one
   merge-images:
     if: ${{ inputs.push_to_images != '' }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs:
       - build-image
 
