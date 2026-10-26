@@ -148,10 +148,24 @@ module Mastodon::CLI
 
           ActiveRecord::Base.connection.create_table('conversations_to_be_deleted', force: true)
 
-          ActiveRecord::Base.connection.exec_insert(<<~SQL.squish, 'SQL')
-            INSERT INTO conversations_to_be_deleted (id)
-            SELECT id FROM conversations WHERE NOT EXISTS (SELECT 1 FROM statuses WHERE statuses.conversation_id = conversations.id)
-          SQL
+          min_conv_id = Conversation.unscoped.minimum(:id) || 0
+          max_conv_id = Conversation.unscoped.maximum(:id) || 0
+
+          if min_conv_id > 0 && max_conv_id >= min_conv_id
+            slice_step = 1_000_000
+            current_min = min_conv_id
+
+            while current_min <= max_conv_id
+              current_max = current_min + slice_step
+
+              ActiveRecord::Base.connection.exec_insert(ActiveRecord::Base.sanitize_sql_array([<<~SQL.squish, current_min, current_max]), 'SQL')
+                INSERT INTO conversations_to_be_deleted (id)
+                SELECT id FROM conversations WHERE (id >= ? AND id < ?) AND NOT EXISTS (SELECT 1 FROM statuses WHERE statuses.conversation_id = conversations.id)
+              SQL
+
+              current_min = current_max
+            end
+          end
 
           say('Removing temporary database indices to restore write performance...')
           ActiveRecord::Base.connection.remove_index(:statuses, name: :index_statuses_conversation_id, if_exists: true)
