@@ -19,7 +19,7 @@ concurrency:
 jobs:
   build:
     name: build (production)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
 
     env:
@@ -70,7 +70,7 @@ jobs:
 
   test:
     name: test (.ruby-version)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
 
     needs:
@@ -166,7 +166,7 @@ jobs:
 
   test-e2e:
     name: End to End testing (.ruby-version)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
 
     needs:
@@ -265,7 +265,7 @@ jobs:
 
   test-search:
     name: Elastic Search integration testing
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
 
     needs:
