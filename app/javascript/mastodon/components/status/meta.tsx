@@ -10,6 +10,7 @@ import type Immutable from 'immutable';
 import { fetchHistory } from '@/mastodon/actions/history';
 import { openModal } from '@/mastodon/actions/modal';
 import type {
+  AccountStatusShape,
   AnyStatusShape,
   StatusHistory,
   StatusVisibility,
@@ -32,7 +33,7 @@ import classes from './meta.module.scss';
 import { statusLink } from './utils';
 
 export const StatusMeta: React.FC<{
-  status: AnyStatusShape;
+  status: Omit<AccountStatusShape, 'reblog'>;
 }> = ({ status }) => {
   const { id, created_at, edited_at, application } = status;
 
