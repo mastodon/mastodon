@@ -144,6 +144,206 @@ RSpec.describe Mastodon::CharacterCounter do
     end
   end
 
+  context 'with the tests from the javascript counter class to validate same behaviour' do
+    describe 'passes plain text through unchanged' do
+      it do
+        expect(subject.countable_status_text('hello world')).to eq('hello world')
+      end
+
+      it do
+        expect(subject.countable_note_text('hello world')).to eq('hello world')
+      end
+    end
+
+    describe 'collapses an https URL to a 23-character placeholder' do
+      it do
+        expect(subject.countable_status_text('see https://example.com here')).to eq("see #{url_placeholder} here")
+      end
+
+      it do
+        expect(subject.countable_note_text('see https://example.com here')).to eq("see #{url_placeholder} here")
+      end
+    end
+
+    describe 'collapses a schemaless URL the same way' do
+      it do
+        expect(subject.countable_status_text('see example.com here')).to eq("see #{url_placeholder} here")
+      end
+
+      it do
+        expect(subject.countable_note_text('see example.com here')).to eq("see #{url_placeholder} here")
+      end
+    end
+
+    describe 'collapses a non-BMP URL the same way' do
+      it do
+        expect(subject.countable_status_text('look https://example.com/🐪/#camel here')).to eq("look #{url_placeholder} here")
+      end
+
+      it do
+        expect(subject.countable_note_text('look https://example.com/🐪/#camel here')).to eq("look #{url_placeholder} here")
+      end
+    end
+
+    describe 'collapses a schemaless non-BMP URL the same way' do
+      it do
+        expect(subject.countable_status_text('look example.com/🐪/#camel here')).to eq("look #{url_placeholder} here")
+      end
+
+      it do
+        expect(subject.countable_note_text('look example.com/🐪/#camel here')).to eq("look #{url_placeholder} here")
+      end
+    end
+
+    describe 'collapses an IDN URL the same way' do
+      it do
+        expect(subject.countable_status_text('besøk https://grå.org/ idag')).to eq("besøk #{url_placeholder} idag")
+      end
+
+      it do
+        expect(subject.countable_note_text('besøk https://grå.org/ idag')).to eq("besøk #{url_placeholder} idag")
+      end
+    end
+
+    describe 'collapses an IDN URL with non-Latin script' do
+      it do
+        expect(subject.countable_status_text('参观 https://慕田峪长城.网址/ 今天')).to eq("参观 #{url_placeholder} 今天")
+      end
+
+      it do
+        expect(subject.countable_note_text('参观 https://慕田峪长城.网址/ 今天')).to eq("参观 #{url_placeholder} 今天")
+      end
+    end
+
+    describe 'strips the host part of an ASCII remote mention' do
+      it do
+        expect(subject.countable_status_text('hi @bob@example.com')).to eq('hi @bob')
+      end
+
+      it do
+        expect(subject.countable_note_text('hi @bob@example.com')).to eq('hi @bob')
+      end
+    end
+
+    describe 'does not touch a local mention' do
+      it do
+        expect(subject.countable_status_text('hi @bob')).to eq('hi @bob')
+      end
+
+      it do
+        expect(subject.countable_note_text('hi @bob')).to eq('hi @bob')
+      end
+    end
+
+    describe 'handles a URL and a mention together' do
+      it do
+        expect(subject.countable_status_text('@bob@example.com look https://example.com')).to eq("@bob look #{url_placeholder}")
+      end
+
+      it do
+        expect(subject.countable_note_text('@bob@example.com look https://example.com')).to eq("@bob look #{url_placeholder}")
+      end
+    end
+
+    describe 'email-shaped text is left alone (no leading @, so not a mention)' do
+      it do
+        expect(subject.countable_status_text('mail arnt@grå.org for details')).to eq('mail arnt@grå.org for details')
+      end
+
+      it do
+        expect(subject.countable_note_text('mail arnt@grå.org for details')).to eq('mail arnt@grå.org for details')
+      end
+    end
+
+    describe 'strips a Latin-IDN remote mention' do
+      it do
+        expect(subject.countable_status_text('hi @arnt@grå.org')).to eq('hi @arnt')
+      end
+
+      it do
+        expect(subject.countable_note_text('hi @arnt@grå.org')).to eq('hi @arnt')
+      end
+    end
+
+    describe 'strips a CJK-IDN remote mention' do
+      it do
+        expect(subject.countable_status_text('hi @user@慕田峪长城.网址')).to eq('hi @user')
+      end
+
+      it do
+        expect(subject.countable_note_text('hi @user@慕田峪长城.网址')).to eq('hi @user')
+      end
+    end
+
+    describe 'leaves a mention with an implausible host alone' do
+      it do
+        expect(subject.countable_status_text('@arnt@invalid')).to eq('@arnt@invalid')
+      end
+
+      it do
+        expect(subject.countable_note_text('@arnt@invalid')).to eq('@arnt@invalid')
+      end
+    end
+
+    describe 'iterate through funky domains' do
+      # UASG-004 universal-acceptance domains (one per script), plus a
+      # Tibetan example. Each  domain should be recognized both as a bare
+      # URL and as the host half of a remote mention.
+      let(:funky_domains) do
+        [
+          'universal-acceptance-test.international', # long ASCII
+          'universal-acceptance-test.icu', # short ASCII
+          'تجربة-القبول-الشامل.موريتانيا', # Arabic, RTL
+          'համընդհանուր-ընկալում-թեստ.հայ', # Armenian
+          'সর্বজনীন-স্বীকৃতির-পরীক্ষা.ভারত', # Bengali
+          'универсальное-принятие-тест.москва', # Cyrillic
+          'सार्वभौमिक-स्वीकृति-परीक्षण.संगठन', # Devanagari
+          'უნივერსალური-თავსობადობის-ტესტი.გე', # Georgian
+          'καθολική-αποδοχή-δοκιμή.ευ', # Greek
+          'સાર્વત્રિક-સ્વીકૃતિ-પરીક્ષણ.ભારત', # Gujarati
+          'ਸਰਵਵਿਆਪਕ-ਪ੍ਰਵਾਨਗੀ-ਪਰਖ.ਭਾਰਤ', # Gurmukhi
+          '다국어도메인이용환경테스트.한국', # Hangul
+          'מבחן-קבלה-אוניברסלי.קום', # Hebrew, RTL
+          'どこでもつかえる.みんな', # Hiragana
+          'ಸಾರ್ವತ್ರಿಕ-ಸ್ವೀಕಾರಾರ್ಹತೆ-ಪರೀಕ್ಷೆ.ಭಾರತ', # Kannada
+          'ユニバーサルアクセプタンス.クラウド', # Katakana
+          'ສາກົນ-ການຍອມຮັບ-ທົດລອງ.ລາວ', # Lao
+          'സാർവത്രിക-സ്വീകാര്യതാ-പരിശോധന.ഭാരതം', # Malayalam
+          'ଯୁନିଭରସାଲ-ଏକସେପ୍ଟନ୍ସ-ଟେଷ୍ଟ.ଭାରତ', # Oriya
+          'විශ්ව-සම්මුති-පිරික්සුම.ලංකා', # Sinhala
+          'பொது-ஏற்பு-சோதனை.சிங்கப்பூர்', # Tamil
+          'యూనివర్సల్-ఆమోదం-పరీక్ష.భారత్', # Telugu
+          'ยูเอทดสอบ.ไทย', # Thai
+          '普遍适用测试.我爱你', # Simplified Chinese
+          '普遍適用測試.台灣', # Traditional Chinese
+          'ሁለንአቀፍ-ተቀባይነት-ሙከራ.com', # Ethiopic
+          'ការសាកល្បងទទួលយកជាអន្តរជាតិ.com', # Khmer
+          'အလုံးစုံလက်ခံမှုစမ်းသပ်ချက်.com', # Myanmar
+          'ދުނިޔެ-ގަބޫލުކުރާ-ޓެސްޓު.com', # Thaana, RTL
+          'universal-acceptance-test.קום', # ASCII.IDN Hebrew
+          'épreuve-acceptation-universelle.org', # Latin with accent
+          'ཡོངས་ཁྱབ་ངོས་ལེན་བརྟག་དཔྱད.com', # Tibetan
+        ]
+      end
+
+      it 'collapses a bare %s to a 23-character placeholder' do
+        funky_domains.each do |domain|
+          # tibetan domain fails on note text and produces
+          # "look xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx here"
+          expect(subject.countable_note_text("look #{domain} here")).to eq("look #{url_placeholder} here")
+          expect(subject.countable_status_text("look #{domain} here")).to eq("look #{url_placeholder} here")
+        end
+      end
+
+      it 'strips the host of a remote mention @info@%s' do
+        funky_domains.each do |domain|
+          expect(subject.countable_status_text("@info@#{domain}")).to eq('@info')
+          expect(subject.countable_note_text("@info@#{domain}")).to eq('@info')
+        end
+      end
+    end
+  end
+
   private
 
   def too_long_message
