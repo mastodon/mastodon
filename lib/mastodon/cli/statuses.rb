@@ -52,20 +52,26 @@ module Mastodon::CLI
         # Skip accounts followed by local accounts
         clean_followed_sql = 'AND NOT EXISTS (SELECT 1 FROM follows WHERE statuses.account_id = follows.target_account_id)' unless options[:clean_followed]
 
-        ActiveRecord::Base.connection.exec_insert(<<~SQL.squish, 'SQL', [max_id])
-          INSERT INTO statuses_to_be_deleted (id)
-          SELECT statuses.id FROM statuses WHERE deleted_at IS NULL AND NOT local AND uri IS NOT NULL AND (id < $1)
-          AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.in_reply_to_id)
-          AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses1.id = statuses.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local))
-          AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local OR statuses1.id >= $1))
-          AND NOT EXISTS (SELECT 1 FROM status_pins WHERE statuses.id = status_id)
-          AND NOT EXISTS (SELECT 1 FROM mentions WHERE statuses.id = mentions.status_id AND mentions.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
-          AND NOT EXISTS (SELECT 1 FROM favourites WHERE statuses.id = favourites.status_id AND favourites.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
-          AND NOT EXISTS (SELECT 1 FROM bookmarks WHERE statuses.id = bookmarks.status_id AND bookmarks.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
-          AND NOT EXISTS (SELECT 1 FROM quotes JOIN statuses statuses1 ON quotes.status_id = statuses1.id WHERE quotes.quoted_status_id = statuses.id AND (statuses1.uri IS NULL OR statuses1.local))
-          AND NOT EXISTS (SELECT 1 FROM quotes JOIN statuses statuses1 ON quotes.quoted_status_id = statuses1.id WHERE quotes.status_id = statuses.id AND (statuses1.uri IS NULL OR statuses1.local))
-          #{clean_followed_sql}
-        SQL
+        Status.unscoped.where('id < ?', max_id).in_batches(of: 10_000) do |relation|
+          min_id = relation.minimum(:id)
+          max_batch_id = relation.maximum(:id)
+          next if min_id.nil? || max_batch_id.nil?
+
+          ActiveRecord::Base.connection.exec_insert(ActiveRecord::Base.sanitize_sql_array([<<~SQL.squish, min_id, max_batch_id + 1, max_id]), 'SQL')
+            INSERT INTO statuses_to_be_deleted (id)
+            SELECT statuses.id FROM statuses WHERE deleted_at IS NULL AND NOT local AND uri IS NOT NULL AND (id >= ? AND id < ?)
+            AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.in_reply_to_id)
+            AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses1.id = statuses.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local))
+            AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local OR statuses1.id >= ?))
+            AND NOT EXISTS (SELECT 1 FROM status_pins WHERE statuses.id = status_id)
+            AND NOT EXISTS (SELECT 1 FROM mentions WHERE statuses.id = mentions.status_id AND mentions.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
+            AND NOT EXISTS (SELECT 1 FROM favourites WHERE statuses.id = favourites.status_id AND favourites.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
+            AND NOT EXISTS (SELECT 1 FROM bookmarks WHERE statuses.id = bookmarks.status_id AND bookmarks.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
+            AND NOT EXISTS (SELECT 1 FROM quotes JOIN statuses statuses1 ON quotes.status_id = statuses1.id WHERE quotes.quoted_status_id = statuses.id AND (statuses1.uri IS NULL OR statuses1.local))
+            AND NOT EXISTS (SELECT 1 FROM quotes JOIN statuses statuses1 ON quotes.quoted_status_id = statuses1.id WHERE quotes.status_id = statuses.id AND (statuses1.uri IS NULL OR statuses1.local))
+            #{clean_followed_sql}
+          SQL
+        end
 
         say('Removing temporary database indices to restore write performance...')
       end
@@ -148,23 +154,15 @@ module Mastodon::CLI
 
           ActiveRecord::Base.connection.create_table('conversations_to_be_deleted', force: true)
 
-          min_conv_id = Conversation.unscoped.minimum(:id) || 0
-          max_conv_id = Conversation.unscoped.maximum(:id) || 0
+          Conversation.unscoped.in_batches(of: 10_000) do |relation|
+            min_id = relation.minimum(:id)
+            max_batch_id = relation.maximum(:id)
+            next if min_id.nil? || max_batch_id.nil?
 
-          if min_conv_id > 0 && max_conv_id >= min_conv_id
-            slice_step = 1_000_000
-            current_min = min_conv_id
-
-            while current_min <= max_conv_id
-              current_max = current_min + slice_step
-
-              ActiveRecord::Base.connection.exec_insert(ActiveRecord::Base.sanitize_sql_array([<<~SQL.squish, current_min, current_max]), 'SQL')
-                INSERT INTO conversations_to_be_deleted (id)
-                SELECT id FROM conversations WHERE (id >= ? AND id < ?) AND NOT EXISTS (SELECT 1 FROM statuses WHERE statuses.conversation_id = conversations.id)
-              SQL
-
-              current_min = current_max
-            end
+            ActiveRecord::Base.connection.exec_insert(ActiveRecord::Base.sanitize_sql_array([<<~SQL.squish, min_id, max_batch_id + 1]), 'SQL')
+              INSERT INTO conversations_to_be_deleted (id)
+              SELECT id FROM conversations WHERE (id >= ? AND id < ?) AND NOT EXISTS (SELECT 1 FROM statuses WHERE statuses.conversation_id = conversations.id)
+            SQL
           end
 
           say('Removing temporary database indices to restore write performance...')
