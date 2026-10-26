@@ -1074,6 +1074,119 @@ da:
       translation: Oversættelse
       translations: Oversættelser
       translations_explanation: Man kan valgfrit tilføje oversættelser af reglerne. Standardindholdet vil fremgå, såfremt ingen oversat version findes. Tilsikr venligst, at enhver given oversættelse er synket med standardindholdet.
+    server_checks:
+      categories:
+        completed:
+          title: Fuldført
+        critical:
+          title: Kritisk
+        error:
+          title: Fejl
+        ignored:
+          title: Ignoreret
+        suggestion:
+          title: Forslag
+        unprocessed:
+          title: Ubehandlet
+        warning:
+          title: Advarsler
+      checks:
+        database_schema:
+          error:
+            title: Der opstod en fejl under kontrollen af databaseskemaet
+          ok:
+            title: Der er ingen ventende databasemigreringer
+          pending:
+            lead_html: Kør dem for at sikre, at applikationen fungerer som forventet
+            title: Der er ventende databasemigrationer
+          running:
+            title: Din server kontrollerer databaseskemaet
+          unprocessed:
+            title: Din server har endnu ikke kontrolleret databaseskemaet
+        elastic_search:
+          error:
+            title: Der opstod en fejl under kontrollen af Elasticsearch-konfigurationen
+          ok:
+            title: Elasticsearch er konfigureret uden problemer
+          pending:
+            lead:
+              analysis_index_mismatch_html: Indstillingerne for Elasticsearch-indeksanalysatoren er forældede. Kør venligst <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Elasticsearch-klyngen er i dårlig tilstand (rød status), søgefunktionerne er utilgængelige
+              cluster_health_yellow_html: Elasticsearch-klyngen er i dårlig tilstand (gul status). Det kan være en god idé at undersøge årsagen
+              index_mismatch_html: Indekskortlægningerne i Elasticsearch er forældede. Kør venligst <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Din Elasticsearch-klynge har mere end én node, men Mastodon er ikke konfigureret til at bruge dem
+              preset_single_node_html: Din Elasticsearch-klynge har kun én node, <code>ES_PRESET</code> bør indstilles til <code>single_node_cluster</code>
+              reset_chewy_html: Elasticsearch-systemindekset er forældet grundet en indstillingsændring. Kør <code>tootctl search deploy --reset-chewy</code> for at opdatere det
+              running_check_html: Det var ikke muligt at oprette forbindelse til Elasticsearch. Kontroller venligst, at tjenesten kører, eller deaktiver fuldtekstsøgning
+              version_check_html: Elasticsearch %{running_version} kører, men %{required_version} kræves
+            title: Der er problemer med Elasticsearch
+          running:
+            title: Serveren kontrollerer Elasticsearch-konfigurationen
+          unprocessed:
+            title: Serveren har endnu ikke kontrolleret Elasticsearch-konfigurationen
+        media_privacy:
+          error:
+            title: Der opstod en fejl under kontrollen af din servers medieindstillinger for privatlivsbeskyttelse
+          ok:
+            title: Din servers medier er privatlivssikrede
+          pending:
+            lead:
+              upload_check_privacy_error_html: Din webserver er forkert konfigureret
+              upload_check_privacy_error_object_storage_html: Din objektlagring er forkert konfigureret
+            title: Dine brugeres privatlivsbeskyttelse er truet
+          running:
+            title: Serveren tjekker sin privatlivsstatus
+          unprocessed:
+            title: Serveren har ikke kontrolleret sin privatlivsstatus endnu
+        rules:
+          error:
+            title: Der opstod en fejl under kontrollen af dine serverregler
+          ok:
+            title: Dine serverregler er angivet
+          pending:
+            lead_html: Din server har ingen offentliggjorte regler. Tydelige regler letter modereringen og skaber klare forventninger
+            title: Opret serverregler
+          running:
+            title: Serveren kontrollerer dine regler
+          unprocessed:
+            title: Serveren har endnu ikke kontrolleret, om der er nogen regler
+        sidekiq_process:
+          error:
+            title: Der opstod en fejl under kontrollen af Sidekiq-konfigurationen
+          ok:
+            title: Sidekiq er konfigureret uden problemer
+          pending:
+            lead_html: Der kører ingen Sidekiq-processer for %{missing_queues_str} kø(er)
+            title: Gennemse venligst din Sidekiq-konfiguration
+          running:
+            title: Serveren kontrollerer Sidekiq-konfigurationen
+          unprocessed:
+            title: Serveren har endnu ikke kontrolleret Sidekiq-konfigurationen
+        software_version:
+          error:
+            title: Der opstod en fejl under kontrollen af softwareopdateringer
+          ok:
+            title: Din Mastodon-instans er opdateret
+          pending:
+            lead:
+              patch_html: Der er en opdatering til Mastodon med fejlrettelser tilgængelig
+              regular_html: En ny version af Mastodon er tilgængelig
+              urgent_html: Der er en kritisk opdatering til Mastodon tilgængelig. Opdater så hurtigt som muligt
+            title: Opdater din Mastodon-instans
+          running:
+            title: Serveren tjekker, om der er nogen softwareopdateringer, der venter på at blive installeret
+          unprocessed:
+            title: Serveren har endnu ikke tjekket for softwareopdateringer
+      ignore:
+        label: Ignorér
+      lead: Anbefalinger til at holde din server sikker, imødekommende og effektiv.
+      recommendations:
+        title: Anbefalinger
+      restore:
+        label: Gendan
+      setup:
+        label: Konfigurer
+      title: Serverens sundhedstilstand
     settings:
       about:
         manage_rules: Håndtér serverregler
