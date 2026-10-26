@@ -15,6 +15,10 @@
   }
 }
 
+.buttonWrapperInline {
+  margin-inline-end: var(--space-2);
+}
+
 .buttonWrapperHidden {
   transform: translateX(calc(100% + var(--space-4)));
   opacity: 0;
