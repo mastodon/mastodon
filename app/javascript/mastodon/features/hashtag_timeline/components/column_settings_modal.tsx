@@ -13,10 +13,7 @@ import { useAppDispatch } from '@/mastodon/store';
 
 import ColumnSettingsContainer from '../containers/column_settings_container';
 
-const HashtagSettingsModal: React.FC<{ columnId: string; tagId: string }> = ({
-  columnId,
-  tagId,
-}) => {
+const HashtagSettingsModal: React.FC<{ columnId: string }> = ({ columnId }) => {
   const dispatch = useAppDispatch();
 
   const handleCloseModal = useCallback(() => {
@@ -30,8 +27,7 @@ const HashtagSettingsModal: React.FC<{ columnId: string; tagId: string }> = ({
       <ModalTitle onClose={handleCloseModal}>
         <FormattedMessage
           id='hashtags.add_more_tags_to_column'
-          defaultMessage='Add more tags to #{tag}'
-          values={{ tag: tagId }}
+          defaultMessage='Add more tags to column'
         />
       </ModalTitle>
       <ColumnSettingsContainer columnId={columnId} />
