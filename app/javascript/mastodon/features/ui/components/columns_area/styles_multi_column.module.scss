@@ -29,10 +29,6 @@
 }
 
 .navigationWrapper {
-  position: sticky;
-  inset-inline-start: 0;
-  top: 0;
-  z-index: 100;
   min-width: var(--multi-column-navigation-width);
   padding-bottom: env(safe-area-inset-bottom);
   background: var(--color-bg-desktop);
@@ -40,4 +36,8 @@
   @media (max-width: ($mobile-menu-breakpoint - 1)) {
     display: none;
   }
+}
+
+.discoveryColumn {
+  padding: var(--space-5) var(--space-4) var(--space-6);
 }

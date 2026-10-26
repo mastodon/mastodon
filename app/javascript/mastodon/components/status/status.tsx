@@ -40,7 +40,6 @@ type StatusRedesignProps = Merge<
   {
     accountId?: string;
     contextType?: StatusContextType;
-    headerContents?: React.ReactNode;
     variant?: StatusVariant;
   }
 >;
@@ -90,7 +89,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   onOpen,
   showThread,
   shouldHighlightOnMount,
-  headerContents,
   variant = contextToVariant(contextType),
   nextId,
 }) => {
@@ -203,9 +201,11 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           />
         )}
 
-        <StatusRedesignHeader status={status} className={classes.header}>
-          {headerContents}
-        </StatusRedesignHeader>
+        <StatusRedesignHeader
+          status={status}
+          className={classes.header}
+          featured={featured}
+        />
 
         <TranslateButton status={status} onTranslate={onTranslate} />
 

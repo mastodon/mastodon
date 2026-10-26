@@ -22,14 +22,8 @@
   }
 }
 
-.hasExtra {
+.isFeatured {
   grid-template-columns: var(--first-col-width) 1fr max-content;
-
-  // We check if .contents has a sibling even if hasExtra is set
-  // because React children may be truthy even if they don't render anything.
-  .contents:has(+ *) {
-    margin-inline-end: var(--col-gap);
-  }
 }
 
 .avatar {
@@ -86,4 +80,9 @@ a.nameLink {
 
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.pinnedBadge {
+  margin-inline-start: var(--col-gap);
+  align-self: flex-start;
 }

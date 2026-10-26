@@ -63,7 +63,7 @@
     },
     {
       // Update GitHub Actions and Docker images weekly
-      matchManagers: ['github-actions', 'dockerfile', 'docker-compose'],
+      matchManagers: ['dockerfile', 'docker-compose'],
       extends: ['schedule:weekly'],
     },
     {
@@ -86,14 +86,6 @@
       matchPackageNames: ['postgres'],
       matchUpdateTypes: ['major'],
       dependencyDashboardApproval: true,
-    },
-    {
-      // Update devDependencies every week, with one grouped PR
-      matchManagers: ['npm'],
-      matchDepTypes: 'devDependencies',
-      matchUpdateTypes: ['patch', 'minor'],
-      groupName: 'devDependencies (non-major)',
-      extends: ['schedule:weekly'],
     },
     {
       // Group all eslint-related packages with `eslint` in the same PR
@@ -129,8 +121,7 @@
         'actions/upload-artifact',
       ],
       matchUpdateTypes: ['major'],
-      groupName: 'artifact actions (major)',
-      extends: ['helpers:pinGitHubActionDigests'],
+      groupName: 'artifact actions',
     },
     {
       // Update @types/* packages every week, with one grouped PR
@@ -182,6 +173,15 @@
       matchPackageNames: ['playwright'],
       groupName: 'Playwright',
     },
+    {
+      // Update devDependencies every week, with one grouped PR
+      // Needs to stay at the bottom of the rule list, before match managers
+      matchManagers: ['npm'],
+      matchDepTypes: ['devDependencies'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'devDependencies (non-major)',
+    },
+
     // Add labels depending on package manager
     { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },
     { matchManagers: ['bundler', 'ruby-version'], addLabels: ['ruby'] },

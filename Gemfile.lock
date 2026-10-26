@@ -98,10 +98,10 @@ GEM
       activesupport (>= 6.0.0)
     ast (2.4.3)
     attr_required (1.0.2)
-    aws-eventstream (1.4.0)
-    aws-partitions (1.1292.0)
-    aws-sdk-core (3.257.0)
-      aws-eventstream (~> 1, >= 1.3.0)
+    aws-eventstream (1.4.1)
+    aws-partitions (1.1298.0)
+    aws-sdk-core (3.260.0)
+      aws-eventstream (~> 1, >= 1.4.1)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
       base64
@@ -109,11 +109,11 @@ GEM
       jmespath (~> 1, >= 1.6.1)
       logger
       rexml (~> 3.4, >= 3.4.2)
-    aws-sdk-kms (1.132.0)
-      aws-sdk-core (~> 3, >= 3.256.0)
+    aws-sdk-kms (1.135.0)
+      aws-sdk-core (~> 3, >= 3.260.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.233.2)
-      aws-sdk-core (~> 3, >= 3.256.0)
+    aws-sdk-s3 (1.235.0)
+      aws-sdk-core (~> 3, >= 3.258.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
@@ -181,7 +181,7 @@ GEM
     crack (1.0.1)
       bigdecimal
       rexml
-    crass (1.0.7)
+    crass (1.0.8)
     css_parser (3.3.0)
       addressable
       base64
@@ -232,7 +232,7 @@ GEM
     erubi (1.13.1)
     et-orbi (1.4.2)
       tzinfo
-    excon (1.7.2)
+    excon (1.8.0)
       logger
     fabrication (3.0.0)
     faker (3.8.0)
@@ -383,18 +383,18 @@ GEM
     jsonapi-renderer (0.2.2)
     jwt (2.10.3)
       base64
-    kaminari (1.2.2)
+    kaminari (1.3.0)
       activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.2)
-      kaminari-activerecord (= 1.2.2)
-      kaminari-core (= 1.2.2)
-    kaminari-actionview (1.2.2)
+      kaminari-actionview (= 1.3.0)
+      kaminari-activerecord (= 1.3.0)
+      kaminari-core (= 1.3.0)
+    kaminari-actionview (1.3.0)
       actionview
-      kaminari-core (= 1.2.2)
-    kaminari-activerecord (1.2.2)
+      kaminari-core (= 1.3.0)
+    kaminari-activerecord (1.3.0)
       activerecord
-      kaminari-core (= 1.2.2)
-    kaminari-core (1.2.2)
+      kaminari-core (= 1.3.0)
+    kaminari-core (1.3.0)
     kt-paperclip (8.0.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -851,6 +851,7 @@ GEM
       activemodel (>= 7.0)
     simplecov (1.3.2)
     simplecov-lcov (0.9.0)
+    simpleidn (0.2.3)
     ssrf_filter (1.6.0)
     stackprof (0.2.28)
     starry (0.2.0)
@@ -892,21 +893,18 @@ GEM
       tty-screen (~> 0.8)
       wisper (~> 2.0)
     tty-screen (0.8.2)
-    twitter-text (3.1.0)
-      idn-ruby
-      unf (~> 0.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2026.5)
       tzinfo (>= 1.0.0)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.9.1)
     unicode-display_width (3.3.0)
       unicode-emoji (~> 4.3)
     unicode-emoji (4.3.0)
     uri (1.1.2)
     useragent (0.16.11)
+    uts58 (0.2.3)
+      public_suffix (>= 6.0, < 8)
+      simpleidn (~> 0.2)
     validate_url (1.0.15)
       activemodel (>= 3.0.0)
       public_suffix
@@ -1091,8 +1089,8 @@ DEPENDENCIES
   test-prof
   thor (~> 1.2)
   tty-prompt (~> 0.23)
-  twitter-text (~> 3.1.0)
   tzinfo-data (~> 1.2023)
+  uts58 (~> 0.2.3)
   webauthn (~> 3.0)
   webmock (~> 3.18)
   webpush!
@@ -1100,7 +1098,7 @@ DEPENDENCIES
   xorcist (~> 1.1)
 
 RUBY VERSION
-  ruby 4.0.7
+  ruby 4.0.8
 
 BUNDLED WITH
   4.0.22

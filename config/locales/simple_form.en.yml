@@ -16,6 +16,7 @@ en:
       account_migration:
         acct: Specify the username@domain of the account you want to move to
       account_warning_preset:
+        action_category: Select the moderation action this response should be used for. Select "All actions" if the response applies to more than one action.
         text: You can use post syntax, such as URLs, hashtags and mentions
         title: Optional. Not visible to the recipient
       admin_account_action:
@@ -193,6 +194,7 @@ en:
       account_migration:
         acct: Handle of the new account
       account_warning_preset:
+        action_category: Assign moderation action
         text: Response text
         title: Title
       admin_account_action:
@@ -201,6 +203,7 @@ en:
         text: Custom response
         type: Action
         types:
+          all_actions: All actions
           disable: Freeze
           none: Send a warning
           sensitive: Sensitive
@@ -273,7 +276,6 @@ en:
         setting_system_scrollbars_ui: Use system's default scrollbar
         setting_theme: Site theme
         setting_theme_color: Theme color
-        setting_trends: Show today's trends
         setting_unfollow_modal: Show confirmation dialog before unfollowing someone
         setting_use_blurhash: Show colorful gradients for hidden media
         setting_use_pending_items: Slow mode
