@@ -989,6 +989,29 @@ vi:
       translation: Dịch
       translations: Bản dịch
       translations_explanation: Bạn có thể thêm bản dịch cho các nội quy. Nội dung mặc định sẽ được hiển thị nếu không có bản dịch nào. Luôn đảm bảo bất kỳ bản dịch nào được cung cấp đều đồng bộ với nội dung mặc định.
+    server_checks:
+      categories:
+        completed:
+          title: Đã xong
+        critical:
+          title: Nghiêm trọng
+        error:
+          title: Lỗi
+        ignored:
+          title: Đã bỏ qua
+        suggestion:
+          title: Đề xuất
+        unprocessed:
+          title: Chưa xử lí
+        warning:
+          title: Cảnh báo
+      checks:
+        database_schema:
+          error:
+            title: Đã xảy ra lỗi khi kiểm tra lược đồ cơ sở dữ liệu.
+          ok:
+            title: Hiện không có yêu cầu di chuyển cơ sở dữ liệu nào đang chờ xử lý.
+      title: Sức khỏe máy chủ
     settings:
       about:
         manage_rules: Sửa nội quy máy chủ
@@ -1552,7 +1575,7 @@ vi:
     light: Sáng
   color_theme:
     cyan: Xanh lơ
-    indigo: Chàm
+    indigo: Tím
     lime: Vàng chanh
     orange: Cam
     pink: Hồng

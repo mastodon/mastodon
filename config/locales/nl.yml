@@ -1074,6 +1074,119 @@ nl:
       translation: Vertaling
       translations: Vertalingen
       translations_explanation: Je kunt eventueel vertalingen toevoegen voor de regels. De standaardwaarde wordt getoond als er geen vertaalde versie beschikbaar is. Zorg er altijd voor dat aanvullende vertalingen bijgewerkt blijven.
+    server_checks:
+      categories:
+        completed:
+          title: Voltooid
+        critical:
+          title: Kritisch
+        error:
+          title: Foutmeldingen
+        ignored:
+          title: Genegeerd
+        suggestion:
+          title: Aanbevelingen
+        unprocessed:
+          title: Niet verwerkt
+        warning:
+          title: Waarschuwingen
+      checks:
+        database_schema:
+          error:
+            title: Er is een fout opgetreden bij het controleren van het databaseschema
+          ok:
+            title: Er zijn geen databasemigraties in behandeling
+          pending:
+            lead_html: Voer ze uit om ervoor te zorgen dat de applicatie zich gedraagt zoals verwacht
+            title: Er zijn database migraties in behandeling
+          running:
+            title: De server is het databaseschema aan het controleren
+          unprocessed:
+            title: Je server heeft het databaseschema nog niet gecontroleerd
+        elastic_search:
+          error:
+            title: Er is een fout opgetreden bij het controleren van de Elasticsearch configuratie
+          ok:
+            title: Elasticsearch is zonder problemen geconfigureerd
+          pending:
+            lead:
+              analysis_index_mismatch_html: Elasticsearch index analyser-instellingen zijn verouderd. Voer <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code> uit
+              cluster_health_red_html: Elasticsearch-cluster is ongezond (rode status), zoekfuncties zijn niet beschikbaar
+              cluster_health_yellow_html: Elasticsearch-cluster is ongezond (gele status), misschien wil je de reden onderzoeken
+              index_mismatch_html: Elasticsearch-indextoewijzingen zijn verouderd. Voer <code>tootctl search deploy --only=%{mismatched_indexes_str}</code> uit
+              preset_html: Jouw Elasticsearch-cluster heeft meer dan één node, maar Mastodon is niet geconfigureerd om ze te gebruiken
+              preset_single_node_html: Jouw Elasticsearch-cluster heeft slechts één node, <code>ES_PRESET</code> moet worden ingesteld op <code>single_node_cluster</code>
+              reset_chewy_html: Jouw Elasticsearch-systeemindex is verouderd vanwege een instellingswijziging. Voer <code>tootctl search deploy --reset-chewy</code> uit om het bij te werken
+              running_check_html: Kon geen verbinding maken met Elasticsearch. Controleer dat Elasticsearch wordt uitgevoerd of schakel full-text-zoeken uit
+              version_check_html: Je gebruikt Elasticsearch %{running_version}, maar %{required_version} is vereist
+            title: Er zijn problemen met Elasticsearch
+          running:
+            title: De server controleert de Elasticsearch-configuratie
+          unprocessed:
+            title: De server heeft de Elasticsearch-configuratie nog niet gecontroleerd
+        media_privacy:
+          error:
+            title: Er is een fout opgetreden bij het controleren van de media-privacy van jouw server
+          ok:
+            title: Jouw media-privacy is veilig
+          pending:
+            lead:
+              upload_check_privacy_error_html: Jouw webserver is verkeerd geconfigureerd
+              upload_check_privacy_error_object_storage_html: De objectopslag is verkeerd geconfigureerd
+            title: De privacy van jouw gebruikers is in gevaar
+          running:
+            title: De server is de privacystatus aan het controleren
+          unprocessed:
+            title: De server heeft de privacystatus nog niet gecontroleerd
+        rules:
+          error:
+            title: Er is een fout opgetreden bij het controleren van je serverregels
+          ok:
+            title: Jouw serverregels zijn ingesteld
+          pending:
+            lead_html: Jouw server heeft geen gepubliceerde regels. Heldere regels helpen bij het modereren en het stellen van verwachtingen
+            title: Serverregels instellen
+          running:
+            title: De server controleert jouw regels
+          unprocessed:
+            title: De server heeft niet gecontroleerd of er al regels zijn
+        sidekiq_process:
+          error:
+            title: Er is een fout opgetreden bij het controleren van de Sidekiq-configuratie
+          ok:
+            title: Sidekiq is zonder problemen geconfigureerd
+          pending:
+            lead_html: Geen Sidekiq-process actief voor de %{missing_queues_str} wachtrij(en)
+            title: Controleer je Sidekiq-configuratie
+          running:
+            title: De server controleert de Sidekiq-configuratie
+          unprocessed:
+            title: De server heeft de Sidekiq-configuratie nog niet gecontroleerd
+        software_version:
+          error:
+            title: Er is een fout opgetreden bij het controleren op software-updates
+          ok:
+            title: Jouw Mastodon is up to date
+          pending:
+            lead:
+              patch_html: Er is een bugfix-update beschikbaar voor Mastodon
+              regular_html: Er is een nieuwe versie van Mastodon beschikbaar
+              urgent_html: Er is een kritieke update voor Mastodon beschikbaar. Update zo snel mogelijk
+            title: Update uw Mastodon-instantie
+          running:
+            title: De server controleert of er een software-update in behandeling is
+          unprocessed:
+            title: De server heeft nog geen software-updates gecontroleerd
+      ignore:
+        label: Negeren
+      lead: Aanbevelingen om je server veilig, gastvrij en efficiënt te houden.
+      recommendations:
+        title: Aanbevelingen
+      restore:
+        label: Herstellen
+      setup:
+        label: Instellen
+      title: Server-gezondheid
     settings:
       about:
         manage_rules: Serverregels beheren

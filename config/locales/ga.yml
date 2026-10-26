@@ -1122,6 +1122,119 @@ ga:
       translation: Aistriúchán
       translations: Aistriúcháin
       translations_explanation: Is féidir leat aistriúcháin a chur leis do na rialacha más mian leat. Taispeánfar an luach réamhshocraithe mura bhfuil leagan aistrithe ar fáil. Cinntigh i gcónaí go bhfuil aon aistriúchán a sholáthraítear sioncrónaithe leis an luach réamhshocraithe.
+    server_checks:
+      categories:
+        completed:
+          title: Críochnaithe
+        critical:
+          title: Criticiúil
+        error:
+          title: Earráidí
+        ignored:
+          title: Neamhaird déanta de
+        suggestion:
+          title: Moltaí
+        unprocessed:
+          title: Neamhphróiseáilte
+        warning:
+          title: Rabhaidh
+      checks:
+        database_schema:
+          error:
+            title: Tharla earráid agus scéim na bunachair sonraí á seiceáil
+          ok:
+            title: Níl aon imirceanna bunachar sonraí ar feitheamh
+          pending:
+            lead_html: Rith iad, le do thoil, chun a chinntiú go n-iompraíonn an feidhmchlár mar a bhítear ag súil leis
+            title: Tá aistrithe bunachar sonraí ar feitheamh
+          running:
+            title: Tá do fhreastalaí ag seiceáil scéema an bhunachair sonraí
+          unprocessed:
+            title: Níl scéim an bhunachair sonraí seiceáilte ag do fhreastalaí go fóill
+        elastic_search:
+          error:
+            title: Tharla earráid agus cumraíocht Elasticsearch á seiceáil
+          ok:
+            title: Tá Elasticsearch cumraithe gan fadhbanna
+          pending:
+            lead:
+              analysis_index_mismatch_html: 'Tá socruithe an anailíseora innéacs in Elasticsearch as dáta. Rith an t-ordú seo, le do thoil: <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>'
+              cluster_health_red_html: Tá braisle Elasticsearch i riocht neamhshláintiúil (stádas dearg), agus níl gnéithe cuardaigh ar fáil
+              cluster_health_yellow_html: Níl braisle Elasticsearch i riocht sláintiúil (stádas buí); b’fhéidir gur mhaith leat an chúis a fhiosrú
+              index_mismatch_html: 'Tá mapálacha innéacs Elasticsearch as dáta. Rith an t-ordú seo le do thoil: <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>'
+              preset_html: Tá níos mó ná nód amháin i do chluasán Elasticsearch, ach níl Mastodon cumraithe chun iad a úsáid
+              preset_single_node_html: Níl ach nód amháin i do chluasán Elasticsearch; ba cheart <code>ES_PRESET</code> a shocrú mar <code>single_node_cluster</code>
+              reset_chewy_html: Tá innéacs córais Elasticsearch as dáta de bharr athrú ar shocrú. Rith <code>tootctl search deploy --reset-chewy</code> chun é a nuashonrú, le do thoil
+              running_check_html: Níorbh fhéidir ceangal a dhéanamh le Elasticsearch. Seiceáil, le do thoil, go bhfuil sé ag rith, nó díchumasaigh cuardach téacs iomláin
+              version_check_html: Tá Elasticsearch %{running_version} ag rith, cé go bhfuil %{required_version} ag teastáil
+            title: Tá fadhbanna ann le Elasticsearch
+          running:
+            title: Tá an freastalaí ag seiceáil cumraíocht Elasticsearch
+          unprocessed:
+            title: Níl cumraíocht Elasticsearch seiceáilte ag an bhfreastalaí go fóill
+        media_privacy:
+          error:
+            title: Tharla earráid agus príobháideachas meán do fhreastalaí á sheiceáil
+          ok:
+            title: Tá príobháideachas na meán ar do fhreastalaí slán
+          pending:
+            lead:
+              upload_check_privacy_error_html: Tá do fhreastalaí gréasáin mí-chumraithe
+              upload_check_privacy_error_object_storage_html: Tá do stóráil réad cumraithe go mícheart
+            title: Tá príobháideachas d’úsáideoirí i mbaol
+          running:
+            title: Tá an freastalaí ag seiceáil a stádas príobháideachais
+          unprocessed:
+            title: Níl a stádas príobháideachais seiceáilte ag an bhfreastalaí go fóill
+        rules:
+          error:
+            title: Tharla earráid agus rialacha do fhreastalaí á seiceáil
+          ok:
+            title: Tá rialacha do fhreastalaí socraithe
+          pending:
+            lead_html: Níl aon rialacha foilsithe ag do fhreastalaí. Cuidíonn rialacha soiléire leis an modhnóireacht agus leagann siad amach ionchais
+            title: Socraigh rialacha an fhreastalaí
+          running:
+            title: Tá an freastalaí ag seiceáil do rialacha
+          unprocessed:
+            title: Níl seiceáil déanta ag an bhfreastalaí go fóill féachaint an bhfuil aon rialacha ann
+        sidekiq_process:
+          error:
+            title: Tharla earráid agus cumraíocht Sidekiq á seiceáil
+          ok:
+            title: Tá Sidekiq cumraithe gan fadhbanna
+          pending:
+            lead_html: Níl aon phróiseas Sidekiq ag rith don scuaine(scuainí) %{missing_queues_str}
+            title: Déan athbhreithniú ar do chumraíocht Sidekiq, le do thoil
+          running:
+            title: Tá an freastalaí ag seiceáil cumraíocht Sidekiq
+          unprocessed:
+            title: Níl an chumraíocht Sidekiq seiceáilte ag an bhfreastalaí go fóill
+        software_version:
+          error:
+            title: Tharla earráid agus nuashonruithe bogearraí á lorg
+          ok:
+            title: Tá do shampla Mastodon cothrom le dáta
+          pending:
+            lead:
+              patch_html: Tá nuashonrú Mastodon ar fáil a réitíonn fabhtanna
+              regular_html: Tá leagan nua de Mastodon ar fáil
+              urgent_html: Tá nuashonrú ríthábhachtach ar Mastodon ar fáil; déan an nuashonrú chomh luath agus is féidir, le do thoil
+            title: Déan do shampla Mastodon a nuashonrú
+          running:
+            title: Tá an freastalaí ag seiceáil an bhfuil aon nuashonrú bogearraí ar feitheamh
+          unprocessed:
+            title: Níl nuashonruithe bogearraí seiceáilte ag an bhfreastalaí go fóill
+      ignore:
+        label: Déan neamhaird de
+      lead: Moltaí chun do fhreastalaí a choinneáil sábháilte, fáilteach agus éifeachtúil.
+      recommendations:
+        title: Moltaí
+      restore:
+        label: Athchóirigh
+      setup:
+        label: Socrú
+      title: Sláinte an fhreastalaí
     settings:
       about:
         manage_rules: Bainistigh rialacha freastalaí
@@ -1490,6 +1603,13 @@ ga:
     warning_presets:
       add_new: Cuir nua leis
       delete: Scrios
+      dropdown:
+        all_actions: Gach gníomh
+        disable: Reo
+        none: Rabhadh
+        sensitive: Íogair
+        silence: Teorainn
+        suspend: Cuir ar fionraí
       edit_preset: Cuir freagra réamhullmhaithe in eagar
       empty: Níl aon fhreagraí réamhullmhaithe sainithe agat go fóill.
       navigation_title: Freagraí Réamhullmhaithe
@@ -1763,6 +1883,7 @@ ga:
       action_taken: Gníomh déanta
       appeal: Achomharc
       appeal_approved: D’éirigh le hachomharc a dhéanamh ar an stailc seo agus níl sé bailí a thuilleadh
+      appeal_handled_by: Achomharc láimhseáilte ag
       appeal_rejected: Diúltaíodh don achomharc
       appeal_submitted_at: Achomharc curtha isteach
       appealed_msg: Cuireadh isteach d'achomharc. Má ceadófar é, cuirfear ar an eolas tú.
