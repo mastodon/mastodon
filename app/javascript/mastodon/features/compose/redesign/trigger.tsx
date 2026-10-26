@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -9,13 +9,13 @@ import { PenNibIcon, ReadCvLogoIcon } from '@phosphor-icons/react';
 
 import type { IconButtonProps } from '@/mastodon/components/button/redesign';
 import { IconButton } from '@/mastodon/components/button/redesign';
+import { useResizeObserver } from '@/mastodon/hooks/useObserver';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
   minimizeComposerToggle,
   openNewComposer,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { includeMultiColumnPaths } from '@/mastodon/utils/react_router';
 
 import { useBreakpoint } from '../../ui/hooks/useBreakpoint';
@@ -77,7 +77,9 @@ export const ComposeRedesignButton: React.FC<{
 
   const { signedIn } = useIdentity();
 
-  if (!isRedesignEnabled() || !signedIn) {
+  const trackComposerHeight = useTrackComposerHeight();
+
+  if (!signedIn) {
     return null;
   }
 
@@ -111,6 +113,7 @@ export const ComposeRedesignButton: React.FC<{
             classes.composerMinimized,
             composerClasses.root,
           )}
+          ref={trackComposerHeight}
         >
           <ComposeFormHeader />
         </div>
@@ -121,7 +124,7 @@ export const ComposeRedesignButton: React.FC<{
 
   if (displayState === 'showing') {
     return (
-      <div className={classes.root} style={style}>
+      <div className={classes.root} style={style} ref={trackComposerHeight}>
         <RedesignComposeForm autoFocus className={classes.composer} />
       </div>
     );
@@ -187,4 +190,43 @@ function useHasMobileFloatingActionButton({ isMobile }: { isMobile: boolean }) {
     isRouteWithoutMobileComposeButton;
 
   return !shouldHideMobileComposeButton;
+}
+
+function useTrackComposerHeight() {
+  const [height, setHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    document.documentElement.style.setProperty(
+      '--current-composer-height',
+      height ? `${height}px` : null,
+    );
+  }, [height]);
+
+  const onResize: ResizeObserverCallback = useCallback((entries) => {
+    for (const { target } of entries) {
+      if (target instanceof HTMLElement) {
+        setHeight(target.offsetHeight);
+      }
+    }
+  }, []);
+
+  const observer = useResizeObserver(onResize);
+
+  const ref = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (node instanceof HTMLElement) {
+        observer.observe(node);
+        setHeight(node.offsetHeight);
+
+        return () => {
+          observer.unobserve(node);
+          setHeight(0);
+        };
+      }
+      return () => undefined;
+    },
+    [observer],
+  );
+
+  return ref;
 }

@@ -439,9 +439,7 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
           target='_blank'
           rel='noopener'
         >
-          {card.author_name ||
-            card.provider_name ||
-            decodeIDNA(providerUrl.host)}
+          {card.provider_name || decodeIDNA(providerUrl.host)}
         </a>
       </CardTitle>
       <CardBody>

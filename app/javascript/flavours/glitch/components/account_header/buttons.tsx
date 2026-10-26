@@ -113,6 +113,7 @@ const AccountButtonsOther: FC<
             variant='solid'
             color='accent'
             onClick={sendDirectMessage}
+            className={classes.followButton}
           >
             <FormattedMessage
               id='account.menu.message'
