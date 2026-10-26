@@ -1,11 +1,11 @@
 import type { AccountShape } from '@/flavours/glitch/models/account';
-import type { AnyStatusShape } from '@/flavours/glitch/models/status';
+import type { AccountStatusShape } from '@/flavours/glitch/models/status';
 
 export function statusLink({
   account,
   id,
-}: Pick<AnyStatusShape, 'account' | 'id'>) {
-  return `/@${typeof account === 'string' ? account : account.acct}/${id}`;
+}: Pick<AccountStatusShape, 'account' | 'id'>) {
+  return `/@${account.acct}/${id}`;
 }
 
 export function accountStatusLinkProps(
