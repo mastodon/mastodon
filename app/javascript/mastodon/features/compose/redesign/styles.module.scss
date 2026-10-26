@@ -168,6 +168,10 @@
       color: transparent;
     }
   }
+
+  &:lang(#{variables.$vertical-lr-langs}) {
+    writing-mode: vertical-lr;
+  }
 }
 
 textarea.textarea {
