@@ -3,8 +3,6 @@ import axios, { AxiosError } from 'axios';
 
 import ready from 'flavours/glitch/ready';
 
-import 'regenerator-runtime/runtime';
-
 type PublicKeyCredentialCreationOptionsJSON =
   WebAuthnJSON.CredentialCreationOptionsJSON['publicKey'];
 

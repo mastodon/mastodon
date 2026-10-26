@@ -4,11 +4,14 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding-bottom: var(--current-composer-height, 0);
 
   // html[data-color-scheme='dark'] & {
   //   border-inline: var(--border-default);
   // }
+
+  :global(.layout-single-column) & {
+    padding-bottom: var(--current-composer-height, 0);
+  }
 
   :global(.layout-multiple-columns) & {
     flex: 0 0 auto;

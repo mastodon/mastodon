@@ -35,7 +35,7 @@ jobs:
           - linux/arm64
 
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Prepare
         env:
@@ -48,19 +48,19 @@ jobs:
           image_names_split=${image_names%,}
           echo "IMAGE_NAMES=${image_names_split,,}" >> $GITHUB_ENV
 
-      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
         id: buildx
 
       - name: Log in to Docker Hub
         if: contains(inputs.push_to_images, 'tootsuite')
-        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Log in to the GitHub Container registry
         if: contains(inputs.push_to_images, 'ghcr.io')
-        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -68,7 +68,7 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6
         if: ${{ inputs.push_to_images != '' }}
         with:
           images: ${{ inputs.push_to_images }}
@@ -77,7 +77,7 @@ jobs:
 
       - name: Build and push by digest
         id: build
-        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
         with:
           context: .
           file: ${{ inputs.file_to_build }}
@@ -101,7 +101,7 @@ jobs:
 
       - name: Upload digest
         if: ${{ inputs.push_to_images != '' }}
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           # `hashFiles` is used to disambiguate between streaming and non-streaming images
           name: digests-${{ hashFiles(inputs.file_to_build) }}-${{ env.PLATFORM_PAIR }}
@@ -112,7 +112,7 @@ jobs:
   # Then merge the docker images into a single one
   merge-images:
     if: ${{ inputs.push_to_images != '' }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs:
       - build-image
 
@@ -120,10 +120,10 @@ jobs:
       PUSH_TO_IMAGES: ${{ inputs.push_to_images }}
 
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Download digests
-        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           path: ${{ runner.temp }}/digests
           # `hashFiles` is used to disambiguate between streaming and non-streaming images
@@ -132,25 +132,25 @@ jobs:
 
       - name: Log in to Docker Hub
         if: contains(inputs.push_to_images, 'tootsuite')
-        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Log in to the GitHub Container registry
         if: contains(inputs.push_to_images, 'ghcr.io')
-        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6
         if: ${{ inputs.push_to_images != '' }}
         with:
           images: ${{ inputs.push_to_images }}
