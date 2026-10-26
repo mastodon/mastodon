@@ -22,28 +22,51 @@
                       title: (report.collections + statuses).empty? ? t('admin.reports.actions_no_posts') : ''
       .report-actions__item__description
         = t('admin.reports.actions.delete_description_html')
+    - if report.target_account.local? && report.target_account.user_approved?
+      .report-actions__item
+        .report-actions__item__button
+          - if can?(:warn, report.target_account)
+            = link_to t('admin.accounts.warn'),
+                      new_admin_account_action_path(report.target_account_id, report_id: report.id, type: 'warn'),
+                      class: 'button'
+      .report-actions__item
+        .report-actions__item__button
+          - if !report.target_account.user_disabled?
+            - if can?(:disable, report.target_account.user)
+              = link_to t('admin.accounts.disable'),
+                        new_admin_account_action_path(report.target_account_id, report_id: report.id, type: 'disable'),
+                        class: 'button button--destructive'
+          - elsif report.target_account.user_disabled?
+            = form.button t('admin.accounts.disable'),
+                          name: :disable,
+                          class: 'button button--destructive',
+                          disabled: report.target_account.user_disabled?
     .report-actions__item
       .report-actions__item__button
-        = form.button t('admin.accounts.silence'),
-                      name: :silence,
-                      class: 'button button--destructive',
-                      disabled: report.target_account.silenced? || report.target_account.suspended_locally?,
-                      title: report.target_account.silenced? ? t('admin.account_actions.already_silenced') : ''
+        - if report.target_account.silenced? || report.target_account.suspended_locally?
+          - if can?(:silence, report.target_account)
+            = link_to t('admin.accounts.silence'),
+                      new_admin_account_action_path(report.target_account_id, report_id: report.id, type: 'silence'),
+                      class: 'button button--destructive'
+        - elsif !(report.target_account.silenced? || report.target_account.suspended_locally?)
+          = form.button t('admin.accounts.silence'),
+                        name: :silence,
+                        class: 'button button--destructive',
+                        disabled: !(report.target_account.silenced? || report.target_account.suspended_locally?)
       .report-actions__item__description
         = t('admin.reports.actions.silence_description_html')
     .report-actions__item
       .report-actions__item__button
-        = form.button t('admin.accounts.suspend'),
-                      name: :suspend,
-                      class: 'button button--destructive',
-                      disabled: report.target_account.suspended_locally?,
-                      title: report.target_account.suspended_locally? ? t('admin.account_actions.already_suspended') : ''
+        - if report.target_account.suspended_locally?
+          - if can?(:suspend, report.target_account)
+            = link_to t('admin.accounts.suspend'),
+                      new_admin_account_action_path(report.target_account_id, report_id: report.id, type: 'suspend'),
+                      class: 'button button--destructive'
+        - elsif !report.target_account.suspended_locally?
+          = form.button t('admin.accounts.suspend'),
+                        name: :suspend,
+                        class: 'button button--destructive',
+                        disabled: !report.target_account.suspended_locally?
+
       .report-actions__item__description
         = t('admin.reports.actions.suspend_description_html')
-    .report-actions__item
-      .report-actions__item__button
-        = link_to t('admin.accounts.custom'),
-                  new_admin_account_action_path(report.target_account_id, report_id: report.id),
-                  class: 'button'
-      .report-actions__item__description
-        = t('admin.reports.actions.other_description_html')
