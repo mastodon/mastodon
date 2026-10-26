@@ -802,6 +802,9 @@ fi:
         accept: Sallittujen luettelo
         default: Sekalainen (salli ja estä)
         reject: Estoluettelo
+      list_actions_hint:
+        accept: Kohteita, joille ei ole määritetty tointa, käsitellään sallittuina. Estot ohitetaan.
+        reject: Kohteita, joille ei ole määritetty tointa, käsitellään estoina. Sallimiset ohitetaan.
       list_actions_short:
         accept: Sallittujen luettelo
         default: Sekalainen
@@ -1034,6 +1037,77 @@ fi:
       translation: Käännös
       translations: Käännökset
       translations_explanation: Voit halutessasi lisätä säännöille käännöksiä. Jos käännettyä versiota ei ole saatavilla, näytetään oletusarvo. Varmista aina, että tarjoamasi käännös on linjassa oletusarvon kanssa.
+    server_checks:
+      categories:
+        completed:
+          title: Valmiit
+        critical:
+          title: Kriittiset
+        error:
+          title: Virheet
+        ignored:
+          title: Ohitetut
+        suggestion:
+          title: Ehdotukset
+        unprocessed:
+          title: Käsittelemättömät
+        warning:
+          title: Varoitukset
+      checks:
+        database_schema:
+          running:
+            title: Palvelimesi tarkistaa tietokantakaaviota
+          unprocessed:
+            title: Palvelin ei ole vielä tarkistanut tietokakaaviota
+        elastic_search:
+          ok:
+            title: Elasticsearch on määritetty ongelmitta
+          pending:
+            lead:
+              cluster_health_red_html: Elasticsearch-klusteri on vikatilassa (punainen tila), joten hakuominaisuudet eivät ole käytettävissä
+              cluster_health_yellow_html: Elasticsearch-klusteri on vikatilassa (keltainen tila), joten suosittelemme tutkimaan syyn
+          running:
+            title: Palvelin tarkistaa Elasticsearch-määritystä
+          unprocessed:
+            title: Palvelin ei ole vielä tarkistanut Elasticsearch-määritystä
+        media_privacy:
+          pending:
+            lead:
+              upload_check_privacy_error_html: Verkkopalvelimesi on määritetty väärin
+              upload_check_privacy_error_object_storage_html: Oliotallennustila on määritetty väärin
+        rules:
+          ok:
+            title: Palvelimen säännöt on asetettu
+          pending:
+            title: Määritä palvelimen säännöt
+          running:
+            title: Palvelin tarkistaa sääntöjäsi
+        sidekiq_process:
+          ok:
+            title: Sidekiq on määritetty ongelmitta
+          pending:
+            title: Tarkista Sidekiq-määrityksesi
+          running:
+            title: Palvelin tarkistaa Sidekiq-määritystä
+          unprocessed:
+            title: Palvelin ei ole vielä tarkistanut Sidekiq-määritystä
+        software_version:
+          ok:
+            title: Mastodon-palvelimesi on ajan tasalla
+          pending:
+            title: Päivitä Mastodon-palvelimesi
+          unprocessed:
+            title: Palvelin ei ole vielä tarkistanut ohjelmistopäivityksiä
+      ignore:
+        label: Ohita
+      lead: Suosituksia, joilla pidät palvelimesi turvallisena, vastaanottavaisena ja tehokkaana.
+      recommendations:
+        title: Suositukset
+      restore:
+        label: Palauta
+      setup:
+        label: Määritä
+      title: Palvelimen kunto
     settings:
       about:
         manage_rules: Hallitse palvelimen sääntöjä

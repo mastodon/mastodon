@@ -74,7 +74,9 @@ export function focusFirstVisibleItemInColumn(columnIndex: number) {
 
   const columnHeaderHeight =
     parseInt(
-      getComputedStyle(scrollParent).getPropertyValue('--column-header-height'),
+      getComputedStyle(scrollParent).getPropertyValue(
+        '--current-column-header-height',
+      ),
     ) || 0;
 
   if (
