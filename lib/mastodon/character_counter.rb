@@ -6,7 +6,7 @@ class Mastodon::CharacterCounter
   def countable_note_text(value)
     return '' if value.nil?
 
-    entities = Extractor.extract_urls_with_indices(value).sort_by { |e| e[:indices].first }
+    entities = Extractor.remove_overlapping_entities(Extractor.extract_urls_with_indices(value).sort_by { |e| e[:indices].first })
 
     result = rewrite_entities(value, entities) do |entity|
       URL_PLACEHOLDER if entity[:url]
