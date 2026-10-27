@@ -7,8 +7,9 @@ const extractor = new Extractor();
 export function replaceUrls(text, replacement) {
   const entities = extractUrlsWithIndices(text);
   let out = text;
-  for (let i = entities.length - 1; i >= 0; i--) {
-    const [start, end] = entities[i].indices;
+  const onlyUrlsWithSchema = entities.filter(item => text.includes(item.url));
+  for (let i = onlyUrlsWithSchema.length - 1; i >= 0; i--) {
+    const [start, end] = onlyUrlsWithSchema[i].indices;
     out = out.slice(0, start) + replacement + out.slice(end);
   }
   return out;
