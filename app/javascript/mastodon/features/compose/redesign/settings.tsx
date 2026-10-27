@@ -158,6 +158,14 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           keepMenuOpenOnClick
           icon={WarningIcon}
           disabled={sensitive}
+          description={
+            sensitive && (
+              <FormattedMessage
+                id='compose.sensitive.added'
+                defaultMessage='You already added this'
+              />
+            )
+          }
           trailingContent={
             <>
               <kbd>{isMac ? 'Option' : 'Alt'}</kbd> + <kbd>x</kbd>
@@ -174,6 +182,14 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           value='on'
           checked={mediaSensitive}
           disabled={sensitive}
+          description={
+            sensitive && (
+              <FormattedMessage
+                id='compose.sensitive.media_added'
+                defaultMessage='Media is always blurred if a content warning is added'
+              />
+            )
+          }
           onChange={onMediaSensitiveChange}
           keepMenuOpenOnClick
           icon={EyeSlashIcon}
