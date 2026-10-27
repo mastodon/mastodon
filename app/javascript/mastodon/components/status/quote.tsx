@@ -37,7 +37,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { Avatar } from '../avatar';
 import { Button } from '../button/redesign';
-import { Card, CardBody, CardTitle } from '../card';
+import { Card, CardBody, CardTitle, PrimaryCardLink } from '../card';
 import { DisplayName } from '../display_name';
 import { DisplayNameSimple } from '../display_name/simple';
 import { EmojiHTML } from '../emoji/html';
@@ -53,7 +53,7 @@ import {
 } from './hooks';
 import { StatusImage } from './image';
 import classes from './quote.module.scss';
-import { accountStatusLinkProps } from './utils';
+import { accountStatusLinkProps, statusLink } from './utils';
 
 type StatusQuoteProps = TQuotedStatus & { parentId: string };
 
@@ -167,7 +167,12 @@ export const QuotedStatus: React.FC<{
       </CardTitle>
 
       <CardBody className={classes.body} noClamp={!clamp}>
-        <QuotedStatusBody status={status} />
+        <PrimaryCardLink
+          as={Link}
+          to={{ pathname: statusLink(status), state: { reference: 'status' } }}
+        >
+          <QuotedStatusBody status={status} />
+        </PrimaryCardLink>
       </CardBody>
 
       {!status.spoilerHtml && <QuotedStatusLink status={status} />}
@@ -351,8 +356,21 @@ const QuotedStatusLink: React.FC<{ status: AccountStatusShape }> = ({
 
   if (quotedPost) {
     link = (
-      <Link to={`/@${quotedPost.account.acct}/${quotedPost.id}`}>
-        {quotedPost.uri}
+      <Link
+        to={`/@${quotedPost.account.acct}/${quotedPost.id}`}
+        className={classes.nestedQuote}
+      >
+        <Avatar account={quotedPost.account} />
+        <FormattedMessage
+          id='status.quote.nested.title'
+          defaultMessage='Post from {author}'
+          values={{
+            author: <DisplayNameSimple account={quotedPost.account} />,
+          }}
+          tagName='strong'
+        />
+        &bull;
+        <RelativeTimestamp timestamp={quotedPost.created_at} />
       </Link>
     );
   }
@@ -378,7 +396,7 @@ const QuotedStatusLink: React.FC<{ status: AccountStatusShape }> = ({
     return null;
   }
 
-  return <CardBody>{link}</CardBody>;
+  return <CardBody noClamp>{link}</CardBody>;
 };
 
 function useQuoteError({
