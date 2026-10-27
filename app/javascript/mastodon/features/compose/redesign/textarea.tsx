@@ -151,7 +151,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       dispatch(changeCompose(event.target.value));
-      dispatch(clearComposerErrors());
+      dispatch(clearComposerErrors(['empty', 'too-long']));
       onTextChange(event);
     },
     [dispatch, onTextChange],

@@ -13,6 +13,7 @@ import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import {
   Menu,
+  MenuItem,
   MenuItemCheckbox,
   MenuItemDivider,
   MenuItemGroup,
@@ -38,7 +39,7 @@ export const ComposeSettingsMenu: React.FC = () => {
         <FormattedMessage id='compose.settings' defaultMessage='Settings' />
       </MenuTrigger>
 
-      <MenuList maxWidth={280} placement='top-end' strategy='fixed'>
+      <MenuList maxWidth={310} placement='top-end' strategy='fixed'>
         <ComposeSettingsInnerMenu />
       </MenuList>
     </Menu>
@@ -77,6 +78,8 @@ const ComposeSettingsInnerMenu: React.FC = () => {
   const onMediaSensitiveChange = useCallback(() => {
     dispatch(changeComposeSensitivity());
   }, [dispatch]);
+
+  const isMac = navigator.userAgent.includes('Mac');
 
   return (
     <>
@@ -150,19 +153,22 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           />
         }
       >
-        <MenuItemCheckbox
-          name='content_warning'
-          value='on'
-          checked={sensitive}
-          onChange={onSensitiveChange}
+        <MenuItem
+          onClick={onSensitiveChange}
           keepMenuOpenOnClick
           icon={WarningIcon}
+          disabled={sensitive}
+          trailingContent={
+            <>
+              <kbd>{isMac ? 'Option' : 'Alt'}</kbd> + <kbd>x</kbd>
+            </>
+          }
         >
           <FormattedMessage
             id='compose_form.spoiler.unmarked'
             defaultMessage='Add content warning'
           />
-        </MenuItemCheckbox>
+        </MenuItem>
         <MenuItemCheckbox
           name='media_spoiler'
           value='on'
