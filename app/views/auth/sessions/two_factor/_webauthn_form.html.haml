@@ -14,4 +14,4 @@
 
   .form-footer
     %p= t('auth.dont_have_your_security_key')
-    = link_to(t('auth.link_to_otp'), '#', id: 'link-to-otp')
+    = link_to(otp_enabled? ? t('auth.link_to_otp') : t('auth.link_to_recovery_code'), '#', id: 'link-to-otp')
