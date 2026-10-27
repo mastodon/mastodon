@@ -76,6 +76,14 @@ RSpec.describe TextFormatter do
       end
     end
 
+    context 'when given a URL with trailing = symbol' do
+      let(:text) { 'https://example.com/foo= Content' }
+
+      it 'matches the full URL' do
+        expect(subject).to include 'href="https://example.com/foo="'
+      end
+    end
+
     context 'when given a stand-alone URL with a newer TLD' do
       let(:text) { 'http://example.gay' }
 
