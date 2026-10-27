@@ -4,6 +4,7 @@ import { isList } from 'immutable';
 
 import { length } from 'stringz';
 
+import { browserHistory } from '@/mastodon/components/router';
 import {
   changeCompose,
   changeComposeSpoilerness,
@@ -399,7 +400,11 @@ export const submitComposer = createAppThunk(
       dispatch(
         submitCompose((status: ApiStatusJSON) => {
           if (redirectOnSuccess) {
-            window.location.assign(status.url);
+            if (status.url) {
+              window.location.assign(status.url);
+            } else {
+              browserHistory.push('/scheduled');
+            }
           }
 
           dispatch(resetComposer());

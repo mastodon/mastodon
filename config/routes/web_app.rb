@@ -29,6 +29,7 @@
   /public/local
   /public/remote
   /publish
+  /scheduled
   /search
   /start/(*any)
   /statuses/(*any)

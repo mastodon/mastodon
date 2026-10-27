@@ -8,6 +8,10 @@ import { browserHistory } from '@/mastodon/components/router';
 import { countableText } from '@/mastodon/features/compose/util/counter';
 import { tagHistory } from '@/mastodon/settings';
 import { emojiMartSearch } from '@/mastodon/features/emoji/picker';
+import {
+  datetimeLocalToIso,
+  getDefaultScheduledAt,
+} from '@/mastodon/features/scheduled_statuses/utils';
 
 import { showAlert, showAlertForError } from './alerts';
 import { isStandaloneComposePath } from './compose_path';
@@ -64,6 +68,7 @@ export const COMPOSE_SPOILERNESS_CHANGE  = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_COMPOSING_CHANGE    = 'COMPOSE_COMPOSING_CHANGE';
 export const COMPOSE_LANGUAGE_CHANGE     = 'COMPOSE_LANGUAGE_CHANGE';
+export const COMPOSE_SCHEDULE_CHANGE     = 'COMPOSE_SCHEDULE_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 
@@ -82,6 +87,8 @@ export const COMPOSE_CHANGE_MEDIA_ORDER       = 'COMPOSE_CHANGE_MEDIA_ORDER';
 
 export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
 export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
+export const COMPOSE_REDRAFT_SCHEDULED_STATUS =
+  'COMPOSE_REDRAFT_SCHEDULED_STATUS';
 
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
@@ -89,6 +96,8 @@ const messages = defineMessages({
   uploadQuote: { id: 'upload_error.quote', defaultMessage: 'File upload not allowed with quotes.' },
   open: { id: 'compose.published.open', defaultMessage: 'Open' },
   published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
+  viewScheduled: { id: 'compose.scheduled.view', defaultMessage: 'View' },
+  scheduled: { id: 'compose.scheduled.body', defaultMessage: 'Post scheduled.' },
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
   blankPostError: { id: 'compose.error.blank_post', defaultMessage: 'Post can\'t be blank.' },
   messagePublished: { id: 'compose.message.published.body', defaultMessage: 'Message sent' },
@@ -198,6 +207,9 @@ export function submitCompose(successCallback) {
     const statusId     = getState().getIn(['compose', 'id'], null);
     const hasQuote     = !!getState().getIn(['compose', 'quoted_status_id']);
     const spoiler_text = getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '';
+    const scheduledAt = datetimeLocalToIso(
+      getState().getIn(['compose', 'scheduled_at']),
+    );
 
     const fulltext = `${spoiler_text ?? ''}${countableText(statusText ?? '')}`;
     const hasText = fulltext.trim().length > 0;
@@ -247,6 +259,7 @@ export function submitCompose(successCallback) {
         visibility: visibility,
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        scheduled_at: scheduledAt,
         quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
         quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
       },
@@ -254,16 +267,31 @@ export function submitCompose(successCallback) {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      const scheduledStatus = !!response.data.scheduled_at && !response.data.url;
+
       if (isStandaloneComposePath(browserHistory.location.pathname) && window.history.state) {
         browserHistory.goBack();
       }
 
-      dispatch(insertIntoTagHistory(response.data.tags, statusText));
+      if (Array.isArray(response.data.tags) && response.data.tags.length > 0) {
+        dispatch(insertIntoTagHistory(response.data.tags, statusText));
+      }
+
       dispatch(submitComposeSuccess({ ...response.data }));
       if (typeof successCallback === 'function') {
         successCallback(response.data);
       }
 
+      if (scheduledStatus) {
+        dispatch(showAlert({
+          message: messages.scheduled,
+          action: messages.viewScheduled,
+          dismissAfter: 10000,
+          onClick: () => browserHistory.push('/scheduled'),
+        }));
+
+        return;
+      }
       // To make the app more responsive, immediately push the status
       // into the columns
       const insertIfOnline = timelineId => {
@@ -850,3 +878,28 @@ export const changeMediaOrder = (a, b) => ({
   a,
   b,
 });
+
+export const changeComposeSchedule = (scheduledAt) => ({
+  type: COMPOSE_SCHEDULE_CHANGE,
+  scheduledAt,
+});
+
+export const initComposeSchedule = () =>
+  changeComposeSchedule(getDefaultScheduledAt());
+
+export function redraftScheduledStatus(scheduledStatus) {
+  return (dispatch, getState) => {
+    const maxOptions = getState().server.getIn([
+      'server',
+      'configuration',
+      'polls',
+      'max_options',
+    ]);
+
+    dispatch({
+      type: COMPOSE_REDRAFT_SCHEDULED_STATUS,
+      scheduledStatus,
+      maxOptions,
+    });
+  };
+}

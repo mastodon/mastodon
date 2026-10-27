@@ -16,3 +16,4 @@ export { ConfirmFollowToListModal } from './follow_to_list';
 export { ConfirmMissingAltTextModal } from './missing_alt_text';
 export { ConfirmRevokeQuoteModal } from './revoke_quote';
 export { QuietPostQuoteInfoModal } from './quiet_post_quote_info';
+export { ConfirmScheduledStatusModal } from './scheduled_status';
