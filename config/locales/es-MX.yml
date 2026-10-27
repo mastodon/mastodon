@@ -1090,6 +1090,42 @@ es-MX:
           title: Sin procesar
         warning:
           title: Advertencias
+      checks:
+        database_schema:
+          error:
+            title: Se produjo un error al comprobar el esquema de la base de datos
+          ok:
+            title: No hay ninguna migración de base de datos pendiente
+          pending:
+            lead_html: Por favor, ejecútalas para asegurarte de que la aplicación se comporta como se espera
+            title: Hay migraciones de base de datos pendientes
+          running:
+            title: Tu servidor está comprobando el esquema de base de datos
+          unprocessed:
+            title: Tu servidor aún no ha comprobado el esquema de base de datos
+        elastic_search:
+          error:
+            title: Se produjo un error al comprobar la configuración de Elasticsearch
+          ok:
+            title: Elasticsearch está configurado sin problemas
+          pending:
+            lead:
+              analysis_index_mismatch_html: La configuración del analizador de índices Elasticsearch está desactualizada. Por favor ejecute <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: El estado del clúster de Elasticsearch no es saludable (estado rojo), las funciones de búsqueda no están disponibles
+              cluster_health_yellow_html: El estado del clúster de Elasticsearch no es saludable (estado amarillo), puede que quieras investigar la razón
+              index_mismatch_html: Los mapeos de índices de Elasticsearch están desactualizados. Ejecuta <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Tu clúster de Elasticsearch tiene más de un nodo, pero Mastodon no está configurado para usarlos
+              preset_single_node_html: Tu clúster de Elasticsearch solo tiene un nodo, <code>ES_PRESET</code> debe establecerse a <code>single_node_cluster</code>
+              reset_chewy_html: Tu índice de sistema de Elasticsearch está desactualizado debido a un cambio de configuración. Ejecuta <code>tootctl search deploy --reset-chewy</code> para actualizarlo
+              running_check_html: No se pudo conectar a Elasticsearch. Por favor, comprueba que está ejecutándose, o desactiva la búsqueda de texto completo
+              version_check_html: Se está ejecutando Elasticsearch %{running_version}, pero se necesita Elasticsearch %{required_version}
+            title: Hay problemas con Elasticsearch
+          running:
+            title: El servidor está comprobando la configuración de Elasticsearch
+          unprocessed:
+            title: El servidor aún no ha comprobado la configuración de Elasticsearch
+      restore:
+        label: Restablecer
     settings:
       about:
         manage_rules: Administrar reglas del servidor
