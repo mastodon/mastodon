@@ -1073,6 +1073,119 @@ is:
       translation: Þýðing
       translations: Þýðingar
       translations_explanation: Þú getur valið að bæta við þýðingum fyrir reglurnar. Sjálfgefna gildið verður birt ef engin þýðing er fyrir hendi. Gakktu úr skugga um að uppgefnar þýðingar sé alltaf í samræmi við sjálfgefna gildið.
+    server_checks:
+      categories:
+        completed:
+          title: Lokið
+        critical:
+          title: Áríðandi
+        error:
+          title: Villur
+        ignored:
+          title: Hunsað
+        suggestion:
+          title: Tillögur
+        unprocessed:
+          title: Óunnið
+        warning:
+          title: Aðvaranir
+      checks:
+        database_schema:
+          error:
+            title: Upp kom villa við að athuga skema gagnagrunns
+          ok:
+            title: Það eru engar yfirfærslur gagnagrunna í bið
+          pending:
+            lead_html: Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
+            title: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum
+          running:
+            title: Netþjónninn þinn er að athuga skema gagnagrunnsins
+          unprocessed:
+            title: Netþjónninn þinn hefur ekki enn athugað skema gagnagrunnsins
+        elastic_search:
+          error:
+            title: Villa kom upp við að athuga grunnstillingar Elasticsearch
+          ok:
+            title: Tókst að grunnstilla Elasticsearch án vandkvæða
+          pending:
+            lead:
+              analysis_index_mismatch_html: Stillingar á Elasticsearch efnisskráningargreingu eru úreltar. Þú skalt endilega keyra <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Elasticsearch-klasinn er ekki í góðu standi (rauð staða), leitareiginleikar eru ekki tiltækir
+              cluster_health_yellow_html: Elasticsearch-klasinn er ekki í góðu standi (gul staða), þú gætir viljað rannsaka málið
+              index_mismatch_html: Elasticsearch atriðaskráningin er úrelt. Þú ættir að keyra <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Elasticsearch-klasinn þinn er með meira en einn hnút, en Mastodon er ekki sett upp til að nota þá
+              preset_single_node_html: Elasticsearch-klasinn þinn er með aðeins einn hnút, <code>ES_PRESET</code> ætti að vera stillt á <code>single_node_cluster</code>
+              reset_chewy_html: Elasticsearch-kerfisatriðaskráin þín er úrelt vegna breytinga á stillingum. Þú ættir að keyra <code>tootctl search deploy --reset-chewy</code> til að uppfæra hana
+              running_check_html: Gat ekki tengst við Elasticsearch. Gakktu úr skugga um að það sé í gangi, eða gerðu full-texta leit óvirka
+              version_check_html: Elasticsearch %{running_version} er keyrandi, en útgáfa %{required_version} er nauðsynleg
+            title: Það eru vandamál með Elasticsearch
+          running:
+            title: Netþjónninn er að kanna grunnstillingar Elasticsearch
+          unprocessed:
+            title: Netþjónninn hefur enn ekki kannað grunnstillingar Elasticsearch
+        media_privacy:
+          error:
+            title: Upp kom villa við að athuga gagnaleynd myndefnis á þjóninum þínum
+          ok:
+            title: Gagnaleynd myndefnis á þjóninum þínum er tryggð
+          pending:
+            lead:
+              upload_check_privacy_error_html: Vefþjónninn þinn er rangt stilltur
+              upload_check_privacy_error_object_storage_html: Geymsla gagnahluta er rangt stillt
+            title: Gagnaleynd notendanna þinna er í hættu
+          running:
+            title: Netþjónninn þinn er að athuga stöðu persónugagnaverndar
+          unprocessed:
+            title: Netþjónninn þinn hefur ekki enn athugað með stöðu persónugagnaverndar
+        rules:
+          error:
+            title: Upp kom villa við að athuga reglur netþjónsins
+          ok:
+            title: Reglur netþjónsins þíns eru stilltar
+          pending:
+            lead_html: Netþjónninn þinn er ekki með neinar útgefnar reglur. Skýrar reglur hjálpa til við umsjónarvinnu og afmarka væntingar notenda
+            title: Settu upp reglur netþjóns
+          running:
+            title: Netþjónninn þinn er að athuga reglurnar þínar
+          unprocessed:
+            title: Netþjónninn þinn hefur ekki enn athugað hvort einhverjar reglur séu til staðar
+        sidekiq_process:
+          error:
+            title: Villa kom upp við að athuga grunnstillingar Sidekiq
+          ok:
+            title: Tókst að grunnstilla Sidekiq án vandkvæða
+          pending:
+            lead_html: Ekkert Sidekiq-ferli er í gangi fyrir %{missing_queues_str} biðröð/biðraðir
+            title: Endilega athugaðu Sidekiq-uppsetninguna þína
+          running:
+            title: Netþjónninn þinn er að athuga grunnstillingar Sidekiq
+          unprocessed:
+            title: Netþjónninn þinn hefur ekki enn athugað grunnstillingar Sidekiq
+        software_version:
+          error:
+            title: Villa kom upp við að athuga með hugbúnaðaruppfærslur
+          ok:
+            title: Mastodon-tilvikið þitt er af nýjustu gerð
+          pending:
+            lead:
+              patch_html: Uppfærsla með lagfæringum á Mastodon er tiltæk
+              regular_html: Það er til nýrri útgáfa Mastodon
+              urgent_html: Áríðandi uppfærsla Mastodon er tiltæk, uppfærðu eins fljótt og auðið er
+            title: Uppfærðu Mastodon-tilvikið þitt
+          running:
+            title: Netþjónninn þinn er að athuga hvort einhverjar hugbúnaðaruppfærslur bíði
+          unprocessed:
+            title: Netþjónninn þinn hefur ekki enn athugað með hugbúnaðaruppfærslur
+      ignore:
+        label: Hunsa
+      lead: Ráðleggingar til að halda netþjóninum þínum öruggum, vingjarnlegum og afkastamiklum.
+      recommendations:
+        title: Ráðleggingar
+      restore:
+        label: Endurheimta
+      setup:
+        label: Setja upp
+      title: Heilsa netþjóns
     settings:
       about:
         manage_rules: Sýsla með reglur netþjónsins

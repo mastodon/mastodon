@@ -1098,22 +1098,22 @@ nl:
             title: Er zijn geen databasemigraties in behandeling
           pending:
             lead_html: Voer ze uit om ervoor te zorgen dat de applicatie zich gedraagt zoals verwacht
-            title: Er zijn database migraties in behandeling
+            title: Er zijn databasemigraties in behandeling
           running:
             title: De server is het databaseschema aan het controleren
           unprocessed:
             title: Je server heeft het databaseschema nog niet gecontroleerd
         elastic_search:
           error:
-            title: Er is een fout opgetreden bij het controleren van de Elasticsearch configuratie
+            title: Er is een fout opgetreden bij het controleren van de Elasticsearch-configuratie
           ok:
             title: Elasticsearch is zonder problemen geconfigureerd
           pending:
             lead:
-              analysis_index_mismatch_html: Elasticsearch index analyser-instellingen zijn verouderd. Voer <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code> uit
+              analysis_index_mismatch_html: De analyser-instellingen van de Elasticsearch-index zijn verouderd. Voer <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code> uit
               cluster_health_red_html: Elasticsearch-cluster is ongezond (rode status), zoekfuncties zijn niet beschikbaar
               cluster_health_yellow_html: Elasticsearch-cluster is ongezond (gele status), misschien wil je de reden onderzoeken
-              index_mismatch_html: Elasticsearch-indextoewijzingen zijn verouderd. Voer <code>tootctl search deploy --only=%{mismatched_indexes_str}</code> uit
+              index_mismatch_html: Elasticsearch-index-mappings zijn verouderd. Voer <code>tootctl search deploy --only=%{mismatched_indexes_str}</code> uit
               preset_html: Jouw Elasticsearch-cluster heeft meer dan één node, maar Mastodon is niet geconfigureerd om ze te gebruiken
               preset_single_node_html: Jouw Elasticsearch-cluster heeft slechts één node, <code>ES_PRESET</code> moet worden ingesteld op <code>single_node_cluster</code>
               reset_chewy_html: Jouw Elasticsearch-systeemindex is verouderd vanwege een instellingswijziging. Voer <code>tootctl search deploy --reset-chewy</code> uit om het bij te werken
@@ -1166,17 +1166,17 @@ nl:
           error:
             title: Er is een fout opgetreden bij het controleren op software-updates
           ok:
-            title: Jouw Mastodon is up to date
+            title: Jouw Mastodon-server is up to date
           pending:
             lead:
               patch_html: Er is een bugfix-update beschikbaar voor Mastodon
               regular_html: Er is een nieuwe versie van Mastodon beschikbaar
               urgent_html: Er is een kritieke update voor Mastodon beschikbaar. Update zo snel mogelijk
-            title: Update uw Mastodon-instantie
+            title: Update je Mastodon-server
           running:
             title: De server controleert of er een software-update in behandeling is
           unprocessed:
-            title: De server heeft nog geen software-updates gecontroleerd
+            title: De server heeft nog niet op software-updates gecontroleerd
       ignore:
         label: Negeren
       lead: Aanbevelingen om je server veilig, gastvrij en efficiënt te houden.
