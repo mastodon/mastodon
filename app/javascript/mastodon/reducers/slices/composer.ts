@@ -409,7 +409,7 @@ export const submitComposer = createAppThunk(
   },
 );
 
-export const removeContentWarning = createAppThunk((_arg, { dispatch }) => {
+export const toggleContentWarning = createAppThunk((_arg, { dispatch }) => {
   dispatch(changeComposeSpoilerText(''));
   dispatch(changeComposeSpoilerness());
   dispatch(clearComposerErrors(['missing-content-warning']));

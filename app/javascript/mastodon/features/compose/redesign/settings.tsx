@@ -4,10 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { EyeSlashIcon, GearIcon, WarningIcon } from '@phosphor-icons/react';
 
-import {
-  changeComposeSensitivity,
-  changeComposeSpoilerness,
-} from '@/mastodon/actions/compose';
+import { changeComposeSensitivity } from '@/mastodon/actions/compose';
 import { setComposeQuotePolicy } from '@/mastodon/actions/compose_typed';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import { IconButton } from '@/mastodon/components/button/redesign';
@@ -21,6 +18,7 @@ import {
   MenuList,
   MenuTrigger,
 } from '@/mastodon/components/menu';
+import { toggleContentWarning } from '@/mastodon/reducers/slices/composer';
 import {
   useAppDispatch,
   useAppSelector,
@@ -73,7 +71,7 @@ const ComposeSettingsInnerMenu: React.FC = () => {
   const { sensitive, mediaSensitive } = useAppSelector(selectComposeSensitive);
 
   const onSensitiveChange = useCallback(() => {
-    dispatch(changeComposeSpoilerness());
+    dispatch(toggleContentWarning());
   }, [dispatch]);
   const onMediaSensitiveChange = useCallback(() => {
     dispatch(changeComposeSensitivity());

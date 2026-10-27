@@ -11,7 +11,7 @@ import { TextInput } from '@/mastodon/components/form_fields/redesign';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import {
   clearComposerErrors,
-  removeContentWarning,
+  toggleContentWarning,
   requestComposerFocus,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -66,7 +66,7 @@ export const ComposeSensitiveField: React.FC<
     [dispatch],
   );
   const onRemove = useCallback(() => {
-    dispatch(removeContentWarning());
+    dispatch(toggleContentWarning());
   }, [dispatch]);
 
   if (!sensitive) {
