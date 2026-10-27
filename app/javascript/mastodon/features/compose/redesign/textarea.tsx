@@ -19,6 +19,7 @@ import { useAutosuggestFloatingMenu } from '@/mastodon/components/autosuggest/ho
 import { AutosuggestMenu } from '@/mastodon/components/autosuggest/list';
 import { TextArea } from '@/mastodon/components/form_fields';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
+import { VERTICAL_LANG_CODES } from '@/mastodon/locales';
 import {
   clearComposerErrors,
   clearComposerFocusRequest,
@@ -136,6 +137,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   } = useAutosuggestFloatingMenu({
     suggestions,
     text,
+    lang,
     className: classes.textareaMirror,
     sourceRef: textAreaRef,
     onSelect: onSuggestion,
@@ -185,10 +187,9 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         dir='auto'
         id={COMPOSER_TEXTAREA_ID}
         className={classNames(className, classes.textarea)}
-        autoSize
+        autoSize={!VERTICAL_LANG_CODES.includes(lang)}
         ref={textAreaRef}
         value={text}
-        lang={lang}
         placeholder={intl.formatMessage(
           type === 'message'
             ? messages.messagePlaceholder
