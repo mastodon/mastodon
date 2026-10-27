@@ -13,7 +13,7 @@ import { Icon }  from '@/mastodon/components/icon';
 import { PictureInPicturePlaceholder } from './picture_in_picture_placeholder';
 import { withOptionalRouter, WithOptionalRouterPropTypes } from '@/mastodon/utils/react_router';
 
-import Card from '@/mastodon/features/status/components/card';
+import { Card } from '@/mastodon/features/status/components/card';
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
 import Bundle from '@/mastodon/features/ui/components/bundle';
