@@ -77,7 +77,7 @@ const CardVideo: React.FC<{ card: CardShape }> = ({ card }) => {
   );
 };
 
-const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
+export const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
   const card: CardShape | null = useMemo(
     () => (isMap(rawCard) ? (rawCard.toJS() as CardShape) : rawCard),
     [rawCard],
