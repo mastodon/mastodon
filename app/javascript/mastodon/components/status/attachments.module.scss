@@ -71,10 +71,13 @@
 }
 
 .cardMedia {
+  border: var(--border-thin);
+  border-radius: var(--radius-4);
+  overflow: hidden;
+
   > :global(.status-card) {
     margin-top: 0;
-    border: var(--border-thin);
-    border-radius: var(--radius-4);
+    border: none;
 
     > a {
       transition: background 200ms ease-in-out;
@@ -104,6 +107,18 @@
         color: var(--color-text-primary);
       }
     }
+  }
+}
+
+.cardMediaSpoiler {
+  // Taken from the media card thumbnail dimensions.
+  aspect-ratio: 16 / 9;
+  position: relative;
+  width: 100%;
+
+  > canvas {
+    height: 100%;
+    width: 100%;
   }
 }
 

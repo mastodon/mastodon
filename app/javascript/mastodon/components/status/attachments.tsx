@@ -17,14 +17,9 @@ import { openModal } from '@/mastodon/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import { deployPictureInPicture } from '@/mastodon/actions/picture_in_picture';
 import { CollectionPreviewCard } from '@/mastodon/features/collections/components/collection_preview_card';
-import MediaCard from '@/mastodon/features/status/components/card';
-import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
-import { useToggle } from '@/mastodon/hooks/useToggle';
 import { displayMedia } from '@/mastodon/initial_state';
 import type {
-  CardShape,
-  ExpandedStatusShape,
   MediaAttachment,
   MediaAttachmentShape,
 } from '@/mastodon/models/status';
@@ -33,24 +28,13 @@ import { selectMediaFilters } from '@/mastodon/selectors/filters';
 import { selectPictureInPicture } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { compareUrls } from '@/mastodon/utils/compare_urls';
-import { decodeIDNA } from '@/mastodon/utils/links';
 
-import { Avatar } from '../avatar';
-import { Blurhash } from '../blurhash';
 import { Button } from '../button/redesign';
-import {
-  Card,
-  CardActions,
-  CardBody,
-  CardTitle,
-  PrimaryCardLink,
-} from '../card';
-import { DisplayName } from '../display_name';
-import { RelativeTimestamp } from '../relative_timestamp';
 
 import classes from './attachments.module.scss';
 import { useStatusContext } from './hooks';
 import { PictureInPicturePlaceholder } from './legacy/picture_in_picture_placeholder';
+import { LinkCard } from './link';
 import { StatusQuote } from './quote';
 import mainClasses from './styles.module.scss';
 
@@ -397,111 +381,5 @@ const MediaAttachmentWrapper: React.FC<{
         </Suspense>
       </div>
     </div>
-  );
-};
-
-const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
-  card,
-  status,
-}) => {
-  // Use the old card if we have authors as the new design doesn't have attribution yet.
-  if (card.type === 'video') {
-    return (
-      <div className={classes.cardMedia}>
-        <MediaCard
-          key={`${status.id}-${status.edited_at}`}
-          card={card}
-          sensitive={status.sensitive}
-        />
-      </div>
-    );
-  }
-
-  const providerUrl = new URL(card.provider_url || card.url);
-
-  const authors = card.authors
-    .map(({ accountId }) => accountId)
-    .filter((id): id is string => !!id);
-
-  return (
-    <Card image={card.image && <LinkCardImage card={card} />}>
-      <CardTitle
-        afterContent={
-          card.published_at && (
-            <RelativeTimestamp timestamp={card.published_at} />
-          )
-        }
-        lang={card.language ?? undefined}
-      >
-        <a
-          href={`${providerUrl.protocol}//${providerUrl.host}`}
-          target='_blank'
-          rel='noopener'
-        >
-          {card.provider_name || decodeIDNA(providerUrl.host)}
-        </a>
-      </CardTitle>
-      <CardBody>
-        <PrimaryCardLink href={card.url} target='_blank' rel='noopener'>
-          {card.title}
-        </PrimaryCardLink>
-      </CardBody>
-      {card.description && (
-        <CardBody isDescription>{card.description}</CardBody>
-      )}
-
-      {authors.length > 0 && (
-        <CardActions>
-          <FormattedMessage
-            id='status.link_preview.authors'
-            defaultMessage='{count, plural, one {Find the author in the Fediverse:} other {Find the authors in the Fediverse:}}'
-            values={{
-              count: authors.length,
-            }}
-            tagName='span'
-          />
-
-          {authors.map((accountId) => (
-            <LinkCardAuthor authorId={accountId} key={accountId} />
-          ))}
-        </CardActions>
-      )}
-    </Card>
-  );
-};
-
-const LinkCardImage: React.FC<{ card: CardShape }> = ({ card }) => {
-  const [loaded, { onTrue: onLoad }] = useToggle();
-  if (!card.image) {
-    return null;
-  }
-
-  return (
-    <>
-      <img src={card.image} alt={card.image_description} onLoad={onLoad} />
-      {!loaded && card.blurhash && <Blurhash hash={card.blurhash} />}
-    </>
-  );
-};
-
-const LinkCardAuthor: React.FC<{ authorId?: string }> = ({ authorId }) => {
-  const author = useAccount(authorId);
-
-  if (!author) {
-    return null;
-  }
-
-  return (
-    <Button
-      as='link'
-      size='sm'
-      color='accent'
-      variant='ghost'
-      to={`/@${author.get('acct')}`}
-      className={classes.cardAuthor}
-    >
-      <Avatar account={author} />
-      <DisplayName variant='simple' account={author} />
-    </Button>
   );
 };
