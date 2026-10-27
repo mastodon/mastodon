@@ -79,6 +79,11 @@ body {
   color: var(--color-text-primary);
   text-rendering: optimizelegibility;
 
+  html[data-contrast='default'] & {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   // Disable kerning for Japanese text to preserve monospaced alignment for readability
   &:not(:lang(ja)) {
     font-feature-settings: 'kern';
