@@ -47,7 +47,10 @@ export const RedesignComposeForm: React.FC<
 }) => {
   const type = useAppSelector(selectComposeType);
 
-  const { onEmojiPick, onSubmit } = useComposeHandlers(redirectOnSuccess);
+  const { onEmojiPick, onSubmit } = useComposeHandlers({
+    redirectOnSuccess,
+    headless,
+  });
 
   const titleId = useId();
   const hintsId = useId();
@@ -102,7 +105,13 @@ export const RedesignComposeForm: React.FC<
 const allowedAroundShortCode =
   '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
-function useComposeHandlers(redirectOnSuccess?: boolean) {
+function useComposeHandlers({
+  redirectOnSuccess,
+  headless,
+}: {
+  redirectOnSuccess?: boolean;
+  headless?: boolean;
+}) {
   const text = useAppSelector((state) => state.compose.get('text') as string);
 
   const dispatch = useAppDispatch();
@@ -122,7 +131,7 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
     }
 
     function closePage(event: BeforeUnloadEvent) {
-      if (isComposerChanged) {
+      if (isComposerChanged && !headless) {
         event.preventDefault();
         return true;
       }
@@ -135,7 +144,7 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
       document.removeEventListener('keydown', escapeComposer);
       window.removeEventListener('beforeunload', closePage);
     };
-  }, [dispatch, isComposerChanged, isModalOpen]);
+  }, [dispatch, headless, isComposerChanged, isModalOpen]);
 
   const onEmojiPick: OnEmojiPick = useCallback(
     (emoji) => {
