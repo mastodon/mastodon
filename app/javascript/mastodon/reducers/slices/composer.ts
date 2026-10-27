@@ -6,6 +6,8 @@ import { length } from 'stringz';
 
 import {
   changeCompose,
+  changeComposeSpoilerness,
+  changeComposeSpoilerText,
   clearComposeSuggestions,
   COMPOSE_DIRECT,
   COMPOSE_FOCUS,
@@ -406,3 +408,9 @@ export const submitComposer = createAppThunk(
     }
   },
 );
+
+export const removeContentWarning = createAppThunk((_arg, { dispatch }) => {
+  dispatch(changeComposeSpoilerText(''));
+  dispatch(changeComposeSpoilerness());
+  dispatch(clearComposerErrors(['missing-content-warning']));
+});

@@ -4,16 +4,14 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { TrashIcon } from '@phosphor-icons/react';
 
-import {
-  changeComposeSpoilerness,
-  changeComposeSpoilerText,
-} from '@/mastodon/actions/compose';
+import { changeComposeSpoilerText } from '@/mastodon/actions/compose';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import { FormFieldWrapper } from '@/mastodon/components/form_fields';
 import { TextInput } from '@/mastodon/components/form_fields/redesign';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import {
   clearComposerErrors,
+  removeContentWarning,
   requestComposerFocus,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -68,7 +66,7 @@ export const ComposeSensitiveField: React.FC<
     [dispatch],
   );
   const onRemove = useCallback(() => {
-    dispatch(changeComposeSpoilerness());
+    dispatch(removeContentWarning());
   }, [dispatch]);
 
   if (!sensitive) {
