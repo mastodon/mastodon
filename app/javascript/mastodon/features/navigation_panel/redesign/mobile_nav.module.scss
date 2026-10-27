@@ -32,14 +32,12 @@
   align-items: center;
   align-self: stretch;
   padding: var(--space-2);
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: calc(var(--space-2) + env(safe-area-inset-bottom));
   border-top: var(--border-default);
   background-color: var(--color-bg-primary);
 }
 
 .list {
-  padding: var(--space-1);
-
   > li {
     flex-grow: 1;
   }
@@ -47,7 +45,7 @@
 
 .loggedOutInfo {
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
+  padding-inline: var(--space-4);
 }
 
 .logoLockup {
