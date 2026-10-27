@@ -1,10 +1,13 @@
 import { createSlice, isAction } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { isList } from 'immutable';
 
 import { length } from 'stringz';
 
 import {
   changeCompose,
+  changeComposeSpoilerness,
+  changeComposeSpoilerText,
   clearComposeSuggestions,
   COMPOSE_DIRECT,
   COMPOSE_FOCUS,
@@ -54,7 +57,10 @@ type DisplayState = 'hidden' | 'showing' | 'minimized';
 
 export type ComposeType = 'post' | 'message' | 'reply' | 'replyPrivate';
 
-export type ComposerPublishError = 'empty' | 'too-long';
+export type ComposerPublishError =
+  | 'empty'
+  | 'too-long'
+  | 'missing-content-warning';
 
 interface ComposerState {
   displayState: DisplayState;
@@ -99,8 +105,18 @@ const composerSlice = createSlice({
       }
       state.pendingFocus = { selection: null };
     },
-    clearErrors(state) {
-      state.publishErrors = [];
+    clearErrors(
+      state,
+      action: PayloadAction<ComposerPublishError[] | undefined>,
+    ) {
+      const errorsToClear = action.payload;
+      if (errorsToClear) {
+        state.publishErrors = state.publishErrors.filter(
+          (existingError) => !errorsToClear.includes(existingError),
+        );
+      } else {
+        state.publishErrors = [];
+      }
     },
     setInitialText(
       state,
@@ -307,23 +323,39 @@ export const submitComposer = createAppThunk(
       dispatch(changeCompose(textareaValue));
     }
 
-    const { compose, meta, statuses, server, settings } = getState();
+    const { compose, composer, meta, statuses, server, settings } = getState();
 
-    if (!selectComposerIsChanged(getState())) {
+    let text = compose.get('text') as string;
+
+    const attachments = compose.get('media_attachments');
+    const spoilerText = compose.get('spoiler_text') as string;
+    if (
+      (!text.trim() || text === composer.initialText) &&
+      isList(attachments) &&
+      attachments.isEmpty()
+    ) {
       dispatch(composerSlice.actions.addError('empty'));
-      return;
+    }
+
+    if (!!compose.get('spoiler') && !spoilerText.trim()) {
+      dispatch(composerSlice.actions.addError('missing-content-warning'));
     }
 
     const maxChars =
       server.server.item?.configuration.statuses.max_characters ?? 500;
-    let text = compose.get('text') as string;
-    const spoilerText = compose.get('spoiler_text');
     if (compose.get('spoiler') && typeof spoilerText === 'string') {
       text += spoilerText;
     }
     const textLength = length(countableText(text));
     if (textLength > maxChars) {
       dispatch(composerSlice.actions.addError('too-long'));
+    }
+
+    // We need to get a fresh state to detect the dispatched errors.
+    const {
+      composer: { publishErrors },
+    } = getState();
+    if (publishErrors.length > 0) {
       return;
     }
 
@@ -363,15 +395,6 @@ export const submitComposer = createAppThunk(
           modalProps: {},
         }),
       );
-    } else if (!!compose.get('spoiler') && !compose.get('spoiler_text')) {
-      dispatch(
-        openModal({
-          modalType: 'COMPOSER_ADD_CONTENT_WARNING',
-          modalProps: {
-            redirectOnSuccess,
-          },
-        }),
-      );
     } else {
       dispatch(
         submitCompose((status: ApiStatusJSON) => {
@@ -385,3 +408,9 @@ export const submitComposer = createAppThunk(
     }
   },
 );
+
+export const toggleContentWarning = createAppThunk((_arg, { dispatch }) => {
+  dispatch(changeComposeSpoilerText(''));
+  dispatch(changeComposeSpoilerness());
+  dispatch(clearComposerErrors(['missing-content-warning']));
+});

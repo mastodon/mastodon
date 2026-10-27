@@ -130,9 +130,19 @@
   }
 }
 
+.sensitiveWrapper {
+  margin-block-end: var(--space-4);
+
+  [data-input] {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+}
+
 .sensitive {
   outline-offset: -2px;
-  margin-block-end: var(--space-4);
+  flex-grow: 1;
 }
 
 .textarea,
