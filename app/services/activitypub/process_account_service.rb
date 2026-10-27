@@ -432,7 +432,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
       key_id = value
 
-      value = fetch_resource(key_id, true)
+      value = fetch_resource(key_id)
 
       next unless value['type'] == 'Multikey' && value['controller'] == @account.uri
 

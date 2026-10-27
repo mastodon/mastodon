@@ -7,7 +7,7 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
     return if url.blank? || account.suspended? || account.local?
 
     @account = account
-    @json    = fetch_resource(url, true, local_follower)
+    @json    = fetch_resource(url, on_behalf_of: local_follower)
 
     return unless supported_context?(@json)
 
