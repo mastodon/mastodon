@@ -132,6 +132,11 @@ RSpec.describe Extractor do
     end
   end
 
+  it 'doesnt extract a URI without a schema' do
+    text = 'reach me at example.com today'
+    expect(described_class.extract_urls_with_indices(text)).to eq []
+  end
+
   describe '#extract_entities_with_indices' do
     subject { described_class.extract_entities_with_indices(text) }
 
