@@ -9,6 +9,7 @@ module Settings
 
       before_action :verify_otp_not_enabled, only: [:show]
       before_action :verify_otp_enabled, only: [:destroy]
+      before_action :verify_otp_removable, only: [:destroy]
       before_action :require_challenge!, only: [:create, :destroy]
 
       def show
@@ -40,6 +41,10 @@ module Settings
 
       def verify_otp_enabled
         redirect_to settings_two_factor_authentication_methods_path unless current_user.otp_enabled?
+      end
+
+      def verify_otp_removable
+        redirect_to settings_two_factor_authentication_methods_path unless current_user.can_remove_otp?
       end
     end
   end

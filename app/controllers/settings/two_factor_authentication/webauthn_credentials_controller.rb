@@ -10,6 +10,7 @@ module Settings
 
       before_action :require_challenge!, only: [:new]
       before_action :redirect_invalid_webauthn, only: [:index, :destroy], unless: -> { current_user.webauthn_enabled? }
+      before_action :verify_webauthn_credential_removable, only: [:destroy]
 
       def index; end
       def new; end
@@ -100,6 +101,10 @@ module Settings
 
       def redirect_invalid_webauthn
         redirect_to settings_two_factor_authentication_methods_path, flash: { error: t('webauthn_credentials.not_enabled') }
+      end
+
+      def verify_webauthn_credential_removable
+        redirect_to settings_two_factor_authentication_methods_path, flash: { error: t('webauthn_credentials.destroy.error') } unless current_user.can_remove_webauthn_credential?
       end
     end
   end

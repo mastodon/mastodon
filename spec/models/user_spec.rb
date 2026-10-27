@@ -349,6 +349,72 @@ RSpec.describe User do
     end
   end
 
+  describe '#can_remove_otp?' do
+    let(:user) { Fabricate(:user, otp_required_for_login: true, otp_secret: described_class.generate_otp_secret) }
+
+    context 'when the user role does not require 2FA' do
+      it 'returns true' do
+        expect(user.can_remove_otp?).to be true
+      end
+    end
+
+    context 'when the user role requires 2FA' do
+      before { user.role.update!(require_2fa: true) }
+
+      context 'when user has a security key' do
+        before { Fabricate(:webauthn_credential, user_id: user.id) }
+
+        it 'returns true' do
+          expect(user.can_remove_otp?).to be true
+        end
+      end
+
+      context 'when user has no security key' do
+        it 'returns false' do
+          expect(user.can_remove_otp?).to be false
+        end
+      end
+    end
+  end
+
+  describe '#can_remove_webauthn_credential?' do
+    let(:user) { Fabricate(:user) }
+
+    before { Fabricate(:webauthn_credential, user_id: user.id) }
+
+    context 'when the user role does not require 2FA' do
+      it 'returns true' do
+        expect(user.can_remove_webauthn_credential?).to be true
+      end
+    end
+
+    context 'when the user role requires 2FA' do
+      before { user.role.update!(require_2fa: true) }
+
+      context 'when user has OTP enabled' do
+        before { user.update!(otp_required_for_login: true, otp_secret: described_class.generate_otp_secret) }
+
+        it 'returns true' do
+          expect(user.can_remove_webauthn_credential?).to be true
+        end
+      end
+
+      context 'when user has another security key' do
+        before { Fabricate(:webauthn_credential, user_id: user.id) }
+
+        it 'returns true' do
+          expect(user.can_remove_webauthn_credential?).to be true
+        end
+      end
+
+      context 'when user has no other two-factor authentication method' do
+        it 'returns false' do
+          expect(user.can_remove_webauthn_credential?).to be false
+        end
+      end
+    end
+  end
+
   describe '#disable_otp_login!' do
     describe 'when user has OTP enabled' do
       let(:user) do

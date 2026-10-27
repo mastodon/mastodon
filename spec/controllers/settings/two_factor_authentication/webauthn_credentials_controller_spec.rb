@@ -407,6 +407,18 @@ RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController 
 
               delete :destroy, params: { id: user.webauthn_credentials.take.id }
             end
+
+            context 'when the user role requires 2FA' do
+              before { user.role.update!(require_2fa: true) }
+
+              it 'keeps the credential and redirects to 2FA methods list with flash error' do
+                expect { delete :destroy, params: { id: user.webauthn_credentials.take.id } }
+                  .to_not(change { user.webauthn_credentials.count })
+
+                expect(response).to redirect_to settings_two_factor_authentication_methods_path
+                expect(flash[:error]).to be_present
+              end
+            end
           end
         end
       end

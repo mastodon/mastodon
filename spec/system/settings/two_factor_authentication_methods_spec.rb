@@ -65,5 +65,28 @@ RSpec.describe 'Settings TwoFactorAuthenticationMethods' do
           .to have_no_text(I18n.t('two_factor_authentication.recovery_codes'))
       end
     end
+
+    describe 'Removing the last method when the role requires 2FA' do
+      before { user.role.update!(require_2fa: true) }
+
+      it 'does not offer to remove the authenticator app when it is the only method' do
+        user.update(otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+
+        visit settings_two_factor_authentication_methods_path
+        expect(page)
+          .to have_link(I18n.t('two_factor_authentication.edit'))
+          .and have_no_link(I18n.t('otp_authentication.delete'))
+      end
+
+      it 'does not offer to remove the security key when it is the only method' do
+        user.update(webauthn_id: WebAuthn.generate_user_id)
+        Fabricate(:webauthn_credential, user_id: user.id, nickname: 'USB key')
+
+        visit settings_webauthn_credentials_path
+        expect(page)
+          .to have_text('USB key')
+          .and have_no_link(I18n.t('webauthn_credentials.delete'))
+      end
+    end
   end
 end

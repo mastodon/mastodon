@@ -178,6 +178,18 @@ RSpec.describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
             expect { delete :destroy, session: { challenge_passed_at: Time.now.utc } }
               .to send_email(to: user.email, subject: I18n.t('devise.mailer.two_factor_disabled.subject'))
           end
+
+          describe 'when the user role requires 2FA' do
+            before { user.role.update!(require_2fa: true) }
+
+            it 'keeps OTP enabled and redirects to two factor authentication methods list page' do
+              expect { delete :destroy, session: { challenge_passed_at: Time.now.utc } }
+                .to(not_change { user.reload.otp_required_for_login }
+                .and(not_change { user.reload.otp_backup_codes }))
+
+              expect(response).to redirect_to settings_two_factor_authentication_methods_path
+            end
+          end
         end
       end
 
