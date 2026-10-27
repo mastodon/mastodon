@@ -215,17 +215,19 @@
 
   > button {
     font-variant-numeric: tabular-nums;
-  }
 
-  > button:not(
-      :hover,
-      :active,
-      [aria-pressed='true'],
-      [aria-expanded='true'],
-      :disabled,
-      [aria-disabled='true']
-    ) {
-    opacity: 0.7;
+    &:not(:hover, :active, [aria-pressed='true'], [aria-expanded='true']) {
+      opacity: 0.7;
+    }
+
+    &:disabled,
+    &[aria-disabled='true'] {
+      color: color-mix(
+        in srgb,
+        var(--color-text-brand),
+        var(--color-bg-primary)
+      );
+    }
   }
 }
 
