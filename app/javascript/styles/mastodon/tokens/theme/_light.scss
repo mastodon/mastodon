@@ -6,7 +6,7 @@
   --base-color-fg: var(--color-grey-900);
   --base-color-fg-on-accent: var(--base-color-bg);
   --base-color-fg-accent: var(--color-indigo-700);
-  --base-color-bg-accent: var(--color-indigo-600);
+  --base-color-bg-accent: var(--color-indigo-500);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
 
@@ -19,14 +19,13 @@
   --base-color-bg: var(--color-white);
   --base-color-bg-desktop: var(--color-lime-50);
   --base-color-fg: var(--color-grey-900);
-  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-fg-on-accent: var(--base-color-bg);
   --base-color-fg-accent: var(--color-lime-700);
-  --base-color-bg-accent: var(--color-lime-500);
+  --base-color-bg-accent: var(--color-lime-600);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
-    --base-color-fg-on-accent: var(--base-color-bg);
     --base-color-bg-accent: var(--color-lime-700);
   }
 }
@@ -35,14 +34,13 @@
   --base-color-bg: var(--color-white);
   --base-color-bg-desktop: var(--color-pink-50);
   --base-color-fg: var(--color-grey-900);
-  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-fg-on-accent: var(--base-color-bg);
   --base-color-fg-accent: var(--color-pink-700);
-  --base-color-bg-accent: var(--color-pink-500);
+  --base-color-bg-accent: var(--color-pink-600);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
-    --base-color-fg-on-accent: var(--base-color-bg);
     --base-color-bg-accent: var(--color-pink-700);
   }
 }
@@ -51,14 +49,13 @@
   --base-color-bg: var(--color-white);
   --base-color-bg-desktop: var(--color-orange-50);
   --base-color-fg: var(--color-grey-900);
-  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-fg-on-accent: var(--base-color-bg);
   --base-color-fg-accent: var(--color-orange-700);
-  --base-color-bg-accent: var(--color-orange-500);
+  --base-color-bg-accent: var(--color-orange-600);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
-    --base-color-fg-on-accent: var(--color-orange-50);
     --base-color-bg-accent: var(--color-orange-700);
   }
 }
@@ -67,14 +64,13 @@
   --base-color-bg: var(--color-white);
   --base-color-bg-desktop: var(--color-cyan-50);
   --base-color-fg: var(--color-grey-900);
-  --base-color-fg-on-accent: var(--base-color-fg);
+  --base-color-fg-on-accent: var(--base-color-bg);
   --base-color-fg-accent: var(--color-cyan-700);
-  --base-color-bg-accent: var(--color-cyan-500);
+  --base-color-bg-accent: var(--color-cyan-600);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
 
   @include utils.high-contrast {
-    --base-color-fg-on-accent: var(--color-cyan-50);
     --base-color-bg-accent: var(--color-cyan-700);
   }
 }
@@ -166,7 +162,15 @@
 
   /* BORDER TOKENS */
 
-  --color-border-primary: #{utils.css-alpha(var(--base-color-fg), 20%)};
+  --base-border-strength: 20%;
+  @include utils.high-contrast {
+    --base-border-strength: 30%;
+  }
+
+  --color-border-primary: #{utils.css-alpha(
+      var(--base-color-bg-accent),
+      var(--base-border-strength)
+    )};
   --color-border-strong: var(--base-color-fg);
   --color-border-input: #{utils.css-alpha(var(--base-color-fg), 70%)};
   --color-border-brand: var(--base-color-bg-accent); // legacy
