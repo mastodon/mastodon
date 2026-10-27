@@ -25,7 +25,7 @@
     - if report.target_account.local? && report.target_account.user_approved?
       .report-actions__item
         .report-actions__item__button
-          = link_to t('admin.accounts.warn'), new_admin_account_action_path(report.target_account_id, report_id: report.id, type: 'warn'), class: 'button' if can?(:warn, report.target_account)
+          = link_to t('admin.accounts.warn'), new_admin_account_action_path(report.target_account_id, report_id: report.id, type: 'none'), class: 'button' if can?(:warn, report.target_account)
         .report-actions__item__description
           = t('admin.reports.actions.warn_description_html')
       - if report.target_account.user_disabled?
