@@ -108,13 +108,15 @@
 }
 
 .cardMediaSpoiler {
-  position: relative;
-  width: 100%;
-
-  // Roughly matches the 16 / 9 ratio of the loaded thumbnail plus footer text.
-  aspect-ratio: 1.34 / 1;
+  border: var(--border-thin);
   border-radius: var(--radius-4);
   overflow: hidden;
+
+  > canvas {
+    // Taken from the media card thumbnail dimensions.
+    aspect-ratio: 16 / 9;
+    width: 100%;
+  }
 }
 
 .cardAuthor {

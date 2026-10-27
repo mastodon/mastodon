@@ -18,7 +18,9 @@ import { openModal } from '@/mastodon/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import { deployPictureInPicture } from '@/mastodon/actions/picture_in_picture';
 import { CollectionPreviewCard } from '@/mastodon/features/collections/components/collection_preview_card';
-import MediaCard from '@/mastodon/features/status/components/card';
+import MediaCard, {
+  CardDescription,
+} from '@/mastodon/features/status/components/card';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
@@ -417,14 +419,16 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
     .filter((id): id is string => !!id);
 
   return (
-    <Card image={card.image && <LinkCardImage card={card} />}>
+    <Card
+      image={card.image && <LinkCardImage card={card} />}
+      lang={card.language ?? undefined}
+    >
       <CardTitle
         afterContent={
           card.published_at && (
             <RelativeTimestamp timestamp={card.published_at} />
           )
         }
-        lang={card.language ?? undefined}
       >
         <a
           href={`${providerUrl.protocol}//${providerUrl.host}`}
@@ -508,11 +512,10 @@ const LinkEmbedCard: React.FC<{
   if (hidden) {
     return (
       <div className={classes.cardMediaSpoiler}>
-        <Blurhash
-          className='status-card__image-preview'
-          hash={card.blurhash}
-          dummy={!useBlurhash}
-        />
+        <Blurhash hash={card.blurhash} dummy={!useBlurhash} />
+
+        <CardDescription card={card} />
+
         {!status.hidden && (
           <div
             className={classes.gallerySpoiler}
