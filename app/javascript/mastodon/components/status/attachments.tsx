@@ -1,3 +1,4 @@
+import type React from 'react';
 import {
   lazy,
   Suspense,
@@ -21,7 +22,7 @@ import MediaCard from '@/mastodon/features/status/components/card';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
-import { displayMedia } from '@/mastodon/initial_state';
+import { displayMedia, useBlurhash } from '@/mastodon/initial_state';
 import type {
   CardShape,
   ExpandedStatusShape,
@@ -406,15 +407,7 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
 }) => {
   // Use the old card if we have authors as the new design doesn't have attribution yet.
   if (card.type === 'video') {
-    return (
-      <div className={classes.cardMedia}>
-        <MediaCard
-          key={`${status.id}-${status.edited_at}`}
-          card={card}
-          sensitive={status.sensitive}
-        />
-      </div>
-    );
+    return <LinkEmbedCard card={card} status={status} />;
   }
 
   const providerUrl = new URL(card.provider_url || card.url);
@@ -503,5 +496,43 @@ const LinkCardAuthor: React.FC<{ authorId?: string }> = ({ authorId }) => {
       <Avatar account={author} />
       <DisplayName variant='simple' account={author} />
     </Button>
+  );
+};
+
+const LinkEmbedCard: React.FC<{
+  card: CardShape;
+  status: ExpandedStatusShape;
+}> = ({ card, status }) => {
+  const [hidden, { onFalse: onShow }] = useToggle(status.sensitive);
+
+  if (hidden) {
+    return (
+      <div className={classes.cardMediaSpoiler}>
+        <Blurhash
+          className='status-card__image-preview'
+          hash={card.blurhash}
+          dummy={!useBlurhash}
+        />
+        {!status.hidden && (
+          <div
+            className={classes.gallerySpoiler}
+            data-interactive-post-content='true'
+          >
+            <Button size='sm' variant='solid' onClick={onShow}>
+              <FormattedMessage
+                id='content_warning.media.show_short'
+                defaultMessage='Show media'
+              />
+            </Button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className={classes.cardMedia}>
+      <MediaCard key={`${status.id}-${status.edited_at}`} card={card} />
+    </div>
   );
 };
