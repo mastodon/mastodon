@@ -5,10 +5,14 @@
   --base-color-bg-desktop: var(--color-indigo-950);
   --base-color-fg: var(--color-grey-100);
   --base-color-fg-on-accent: var(--base-color-bg);
-  --base-color-fg-accent: var(--color-indigo-300);
-  --base-color-bg-accent: var(--color-indigo-400);
+  --base-color-fg-accent: var(--color-indigo-200);
+  --base-color-bg-accent: var(--color-indigo-200);
   --base-color-danger: var(--color-red-200);
   --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-bg-accent: var(--color-indigo-100);
+  }
 }
 
 @mixin base-lime {
@@ -20,6 +24,10 @@
   --base-color-bg-accent: var(--color-lime-400);
   --base-color-danger: var(--color-red-200);
   --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-bg-accent: var(--color-lime-300);
+  }
 }
 
 @mixin base-pink {
@@ -28,9 +36,13 @@
   --base-color-fg: var(--color-grey-100);
   --base-color-fg-on-accent: var(--base-color-bg);
   --base-color-fg-accent: var(--color-pink-500);
-  --base-color-bg-accent: var(--color-pink-400);
+  --base-color-bg-accent: var(--color-pink-300);
   --base-color-danger: var(--color-red-200);
   --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-bg-accent: var(--color-pink-200);
+  }
 }
 
 @mixin base-orange {
@@ -39,9 +51,13 @@
   --base-color-fg: var(--color-grey-100);
   --base-color-fg-on-accent: var(--color-orange-950);
   --base-color-fg-accent: var(--color-orange-500);
-  --base-color-bg-accent: var(--color-orange-400);
+  --base-color-bg-accent: var(--color-orange-300);
   --base-color-danger: var(--color-red-200);
   --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-bg-accent: var(--color-orange-200);
+  }
 }
 
 @mixin base-cyan {
@@ -50,9 +66,13 @@
   --base-color-fg: var(--color-grey-100);
   --base-color-fg-on-accent: var(--color-cyan-950);
   --base-color-fg-accent: var(--color-cyan-500);
-  --base-color-bg-accent: var(--color-cyan-400);
+  --base-color-bg-accent: var(--color-cyan-300);
   --base-color-danger: var(--color-red-200);
   --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-bg-accent: var(--color-cyan-200);
+  }
 }
 
 @mixin tokens {
@@ -142,7 +162,15 @@
 
   /* BORDER TOKENS */
 
-  --color-border-primary: #{utils.css-alpha(var(--base-color-fg), 20%)};
+  --base-border-strength: 20%;
+  @include utils.high-contrast {
+    --base-border-strength: 30%;
+  }
+
+  --color-border-primary: #{utils.css-alpha(
+      var(--base-color-bg-accent),
+      var(--base-border-strength)
+    )};
   --color-border-strong: var(--base-color-fg);
   --color-border-input: #{utils.css-alpha(var(--base-color-fg), 70%)};
   --color-border-brand: var(--color-text-brand); // legacy
