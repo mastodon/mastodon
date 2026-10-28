@@ -45,6 +45,8 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   def keypair_from_actor_json(actor_uri, actor_json)
+    return if non_matching_uri_hosts?(actor_uri, @uri)
+
     actor = find_actor(actor_uri, actor_json)
     return if actor.nil?
 
