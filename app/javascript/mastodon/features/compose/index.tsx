@@ -34,7 +34,7 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { messages as navbarMessages } from '../ui/components/navigation_bar';
 
-import { RedesignComposeForm } from './redesign/index';
+import { ComposeForm } from './form';
 
 const messages = defineMessages({
   live_feed_public: {
@@ -175,7 +175,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           aria-label={intl.formatMessage(navbarMessages.publish)}
         >
           <div className='drawer__inner' onFocus={handleFocus}>
-            <RedesignComposeForm headless />
+            <ComposeForm headless />
 
             <div className='drawer__inner__mastodon with-zig-zag-decoration'>
               <img alt='' draggable='false' src={mascot ?? elephantUIPlane} />
@@ -207,7 +207,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       )}
 
       <div className='scrollable scrollable--flex'>
-        <RedesignComposeForm autoFocus headless />
+        <ComposeForm autoFocus headless />
       </div>
 
       <Helmet>

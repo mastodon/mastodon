@@ -18,14 +18,14 @@ import {
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { includeMultiColumnPaths } from '@/mastodon/utils/react_router';
 
-import { useBreakpoint } from '../../ui/hooks/useBreakpoint';
+import { useBreakpoint } from '../ui/hooks/useBreakpoint';
 
-import { ComposeFormHeader } from './header';
-import { RedesignComposeForm } from './index';
+import { ComposeFormHeader } from './components/header';
+import { ComposeForm } from './form';
 import composerClasses from './styles.module.scss';
 import classes from './trigger.module.scss';
 
-export const ComposeRedesignButton: React.FC<{
+export const ComposeButton: React.FC<{
   /**
    * Render the button in regular document flow instead of fixed positioning for mobile layout
    */
@@ -125,7 +125,7 @@ export const ComposeRedesignButton: React.FC<{
   if (displayState === 'showing') {
     return (
       <div className={classes.root} style={style} ref={trackComposerHeight}>
-        <RedesignComposeForm autoFocus className={classes.composer} />
+        <ComposeForm autoFocus className={classes.composer} />
       </div>
     );
   }

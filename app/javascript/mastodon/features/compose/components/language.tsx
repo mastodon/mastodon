@@ -14,8 +14,9 @@ import { useToggle } from '@/mastodon/hooks/useToggle';
 import { languages as initialStateLanguages } from '@/mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import classes from '../styles.module.scss';
+
 import { useLanguageList } from './hooks';
-import classes from './styles.module.scss';
 
 const messages = defineMessages({
   searchPlaceholder: {

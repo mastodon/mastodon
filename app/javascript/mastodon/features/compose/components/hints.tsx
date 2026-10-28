@@ -15,9 +15,10 @@ import {
   useAppSelector,
 } from '@/mastodon/store';
 
+import classes from '../styles.module.scss';
+
 import { languageName, useLanguageGuess } from './hooks';
 import { selectComposeAttachments } from './selectors';
-import classes from './styles.module.scss';
 
 const selectComposeAttachmentsWithoutAlt = createAppSelector(
   [selectComposeAttachments],

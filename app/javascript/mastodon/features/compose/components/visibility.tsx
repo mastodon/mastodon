@@ -23,8 +23,9 @@ import {
 import { Tooltip } from '@/mastodon/components/tooltip';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import classes from '../styles.module.scss';
+
 import { selectComposePrivacy } from './selectors';
-import classes from './styles.module.scss';
 
 export const ComposeVisibility: React.FC<{ className?: string }> = ({
   className,

@@ -16,8 +16,9 @@ import {
   useAppSelector,
 } from '@/mastodon/store';
 
+import classes from '../styles.module.scss';
+
 import { selectComposeType } from './selectors';
-import classes from './styles.module.scss';
 
 const messages = defineMessages({
   postNew: {

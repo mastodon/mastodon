@@ -34,12 +34,13 @@ import {
   useAppSelector,
 } from '@/mastodon/store';
 
+import classes from '../styles.module.scss';
+
 import {
   selectComposeHasAttachments,
   selectComposeType,
   selectSuggestions,
 } from './selectors';
-import classes from './styles.module.scss';
 
 const messages = defineMessages({
   placeholder: {

@@ -19,8 +19,9 @@ import {
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import classes from '../styles.module.scss';
+
 import { selectComposeSensitive } from './selectors';
-import classes from './styles.module.scss';
 
 const messages = defineMessages({
   sensitiveText: {
