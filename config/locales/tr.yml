@@ -1074,6 +1074,119 @@ tr:
       translation: Çeviri
       translations: Çeviriler
       translations_explanation: İsteğe bağlı olarak kurallar için çeviriler ekleyebilirsiniz. Çevrilmiş bir sürüm mevcut değilse varsayılan değer gösterilecektir. Lütfen her zaman sağlanan çevirinin varsayılan değerle senkronize olduğundan emin olun.
+    server_checks:
+      categories:
+        completed:
+          title: Tamamlandı
+        critical:
+          title: Kritik
+        error:
+          title: Hatalar
+        ignored:
+          title: Yok sayıldı
+        suggestion:
+          title: Öneriler
+        unprocessed:
+          title: Işlenmemiş
+        warning:
+          title: Uyarılar
+      checks:
+        database_schema:
+          error:
+            title: Veritabanı şemasını denetlerken bir hata oluştu
+          ok:
+            title: Bekleyen veritabanı göçü bulunmamaktadır
+          pending:
+            lead_html: Uygulamanın beklendiği gibi çalıştığından emin olmak için lütfen bunları çalıştırın
+            title: Bekleyen veritabanı göçleri var
+          running:
+            title: Sunucunuz veritabanı şemasını denetliyor
+          unprocessed:
+            title: Sunucunuz henüz veritabanı şemasını denetlemedi
+        elastic_search:
+          error:
+            title: Elasticsearch yapılandırması denetlenirken bir hata oluştu
+          ok:
+            title: Elasticsearch sorunsuz bir şekilde yapılandırıldı
+          pending:
+            lead:
+              analysis_index_mismatch_html: Elasticsearch dizin çözümleyici ayarları artık güncel değil. Lütfen <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code> komutunu çalıştırın
+              cluster_health_red_html: Elasticsearch kümesi sağlıklı değil (kırmızı durum), arama özellikleri mevcut değil
+              cluster_health_yellow_html: Elasticsearch kümesi sağlıklı değil (sarı durum); bunun nedenini araştırmak isteyebilirsiniz
+              index_mismatch_html: Elasticsearch dizin eşlemeleri güncel değil. Lütfen <code>tootctl search deploy --only=%{mismatched_indexes_str}</code> komutunu çalıştırın
+              preset_html: Elasticsearch kümenizde birden fazla düğüm var, ancak Mastodon onları kullanacak şekilde yapılandırılmamış
+              preset_single_node_html: Elasticsearch kümenizde yalnızca bir düğüm var; <code>ES_PRESET</code> değeri <code>single_node_cluster</code> olarak ayarlanmalıdır
+              reset_chewy_html: Elasticsearch sistem indeksi, bir ayar değişikliği nedeniyle güncelliğini yitirmiş. Lütfen <code>tootctl search deploy --reset-chewy</code> komutunu çalıştırın
+              running_check_html: Elasticsearch'e bağlanılamıyor. Çalıştığından emin olun veya tam metin aramayı devre dışı bırakın
+              version_check_html: Elasticsearch %{running_version} sürümü çalışıyor, ancak %{required_version} sürümü gerekiyor
+            title: Elasticsearch ile ilgili bazı sorunlar var
+          running:
+            title: Sunucu Elasticsearch yapılandırmasını denetliyor
+          unprocessed:
+            title: Sunucu Elasticsearch yapılandırmasını henüz denetlemedi
+        media_privacy:
+          error:
+            title: Sunucunuzun medya gizlilik ayarları denetlenirken bir hata oluştu
+          ok:
+            title: Sunucunuzdaki medya verilerinizin gizliliği güvence altındadır
+          pending:
+            lead:
+              upload_check_privacy_error_html: Web sunucunuz hatalı yapılandırılmış
+              upload_check_privacy_error_object_storage_html: Nesne depolama sisteminiz hatalı yapılandırılmış
+            title: Kullanıcılarınızın gizliliği tehlike altında
+          running:
+            title: Sunucu gizlilik durumunu denetliyor
+          unprocessed:
+            title: Sunucu gizlilik durumunu henüz denetlemedi
+        rules:
+          error:
+            title: Sunucu kurallarınız denetlenirken bir hata oluştu
+          ok:
+            title: Sunucu kurallarınız ayarlandı
+          pending:
+            lead_html: Sunucunuzda yayınlanmış kural yok. Net kurallar, denetleme sürecine yardımcı olur ve beklentileri belirler
+            title: Sunucu kurallarını ayarla
+          running:
+            title: Sunucu kurallarınızı denetliyor
+          unprocessed:
+            title: Sunucu henüz herhangi bir kural olup olmadığını denetlemedi
+        sidekiq_process:
+          error:
+            title: Sidekiq yapılandırması denetlenirken bir hata oluştu
+          ok:
+            title: Sidekiq sorunsuz bir şekilde yapılandırıldı
+          pending:
+            lead_html: "%{missing_queues_str} kuyruğu/kuyrukları için çalışan Sidekiq işlemi yok"
+            title: Sidekiq yapılandırmanızı lütfen gözden geçirin
+          running:
+            title: Sunucu Sidekiq yapılandırmasını denetliyor
+          unprocessed:
+            title: Sunucu Sidekiq yapılandırmasını henüz denetlemedi
+        software_version:
+          error:
+            title: Yazılım güncellemeleri denetlenirken bir hata oluştu
+          ok:
+            title: Mastodon sunucunuz güncel
+          pending:
+            lead:
+              patch_html: Mastodon için bir hata düzeltme güncellemesi var
+              regular_html: Yeni bir Mastodon sürümü var
+              urgent_html: Kritik bir Mastodon güncellemesi var, lütfen en kısa sürede güncelleyin
+            title: Mastodon sunucunuzu güncelleyin
+          running:
+            title: Sunucu herhangi bir bekleyen yazılım güncellemesi olup olmadığını denetliyor
+          unprocessed:
+            title: Sunucu yazılım güncellemelerini henüz denetlemedi
+      ignore:
+        label: Yoksay
+      lead: Sunucunuzu güvenli, samimi ve verimli tutmak için öneriler.
+      recommendations:
+        title: Öneriler
+      restore:
+        label: Geri Yükle
+      setup:
+        label: Kur
+      title: Sunucu Sağlığı
     settings:
       about:
         manage_rules: Sunucu kurallarını yönet
