@@ -22,11 +22,14 @@ class FetchResourceService < BaseService
   def process(url, terminal: false)
     @url = url
 
-    perform_request { |response| process_response(response, terminal:) }
+    perform_request(allow_redirects: !terminal) { |response| process_response(response, terminal:) }
   end
 
-  def perform_request(&block)
-    Request.new(:get, @url).tap do |request|
+  def perform_request(allow_redirects: true, &block)
+    options = {}
+    options[:follow] = false unless allow_redirects
+
+    Request.new(:get, @url, **options).tap do |request|
       request.add_headers('Accept' => ACCEPT_HEADER)
 
       # In a real setting we want to sign all outgoing requests,
@@ -50,7 +53,7 @@ class FetchResourceService < BaseService
 
       return unless supported_context?(json) && (equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteActorService::SUPPORTED_TYPES) || expected_type?(json))
 
-      if json['id'] != @url
+      if json['id'] != @url || json['id'] != response.uri.to_s
         return if terminal
 
         return process(json['id'], terminal: true)

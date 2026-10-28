@@ -63,7 +63,7 @@ class ActivityPub::FetchAllRepliesWorker
   # @param parent_status [String, Hash]
   #   status URI, or the prefetched body of the Note object
   def get_replies_uri(parent_status)
-    resource = parent_status.is_a?(Hash) ? parent_status : fetch_resource(parent_status, true)
+    resource = parent_status.is_a?(Hash) ? parent_status : fetch_resource(parent_status)
     resource&.fetch('replies', nil)
   rescue => e
     Rails.logger.info { "FetchAllRepliesWorker - #{@root_status.uri}: Caught exception while resolving replies URI #{parent_status}: #{e} - #{e.message}" }
@@ -77,7 +77,7 @@ class ActivityPub::FetchAllRepliesWorker
   #
   # @param root_status_uri [String]
   def get_root_replies(root_status_uri, options = {})
-    root_status_body = fetch_resource(root_status_uri, true)
+    root_status_body = fetch_resource(root_status_uri)
     return if root_status_body.nil?
 
     FetchReplyWorker.perform_async(root_status_uri, { **options.deep_stringify_keys, 'prefetched_body' => root_status_body })

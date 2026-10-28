@@ -14,7 +14,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
     @depth = depth || 0
     @request_id = request_id || "#{Time.now.utc.to_i}-status-#{uri}"
     @json = if prefetched_body.nil?
-              fetch_status(uri, true, on_behalf_of)
+              fetch_status(uri, on_behalf_of)
             else
               body_to_json(prefetched_body, compare_id: uri)
             end
@@ -82,9 +82,9 @@ class ActivityPub::FetchRemoteStatusService < BaseService
     equals_or_includes_any?(@json['type'], ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
   end
 
-  def fetch_status(uri, id_is_known, on_behalf_of = nil)
+  def fetch_status(uri, on_behalf_of = nil)
     begin
-      fetch_resource(uri, id_is_known, on_behalf_of, raise_on_error: :all)
+      fetch_resource(uri, on_behalf_of: on_behalf_of, raise_on_error: :all)
     rescue Mastodon::UnexpectedResponseError => e
       return unless e.response.code == 404
 

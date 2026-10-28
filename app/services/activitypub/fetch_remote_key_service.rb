@@ -9,14 +9,14 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   def call(uri, suppress_errors: true)
     raise Error, 'No key URI given' if uri.blank?
 
-    @json = fetch_resource(uri, false)
+    @json = fetch_resource(uri, allow_redirects: true)
 
     raise Error, "Unable to fetch key JSON at #{uri}" if @json.nil?
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?(@json)
     raise Error, "Unexpected object type for key #{uri}" unless expected_type?
     return find_actor(@json['id'], @json, suppress_errors) if actor_type?
 
-    @owner = fetch_resource(owner_uri, true)
+    @owner = fetch_resource(owner_uri)
 
     raise Error, "Unable to fetch actor JSON #{owner_uri}" if @owner.nil?
     raise Error, "Unsupported JSON-LD context for document #{owner_uri}" unless supported_context?(@owner)
