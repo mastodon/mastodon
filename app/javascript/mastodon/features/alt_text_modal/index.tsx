@@ -16,6 +16,7 @@ import { useSpring, animated } from '@react-spring/web';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
 
+import { CharacterCounter } from '@/mastodon/components/character_counter';
 import { Tesseract as fetchTesseract } from '@/mastodon/features/ui/util/async-components';
 import { showAlertForError } from 'mastodon/actions/alerts';
 import { uploadThumbnail } from 'mastodon/actions/compose';
@@ -26,7 +27,6 @@ import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { Skeleton } from 'mastodon/components/skeleton';
 import { Audio } from 'mastodon/features/audio';
-import { CharacterCounter } from 'mastodon/features/compose/components/character_counter';
 import { Video, getPointerPosition } from 'mastodon/features/video';
 import { me } from 'mastodon/initial_state';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
@@ -485,8 +485,8 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
 
               <div className='input__toolbar'>
                 <CharacterCounter
-                  max={MAX_LENGTH}
-                  text={isDetecting ? '' : description}
+                  maxLength={MAX_LENGTH}
+                  currentString={isDetecting ? '' : description}
                 />
 
                 <div className='spacer' />
