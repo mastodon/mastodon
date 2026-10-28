@@ -163,13 +163,19 @@
   /* BORDER TOKENS */
 
   --base-border-strength: 20%;
+  --base-border-column-strength: 15%;
   @include utils.high-contrast {
     --base-border-strength: 30%;
+    --base-border-column-strength: 30%;
   }
 
   --color-border-primary: #{utils.css-alpha(
       var(--base-color-bg-accent),
       var(--base-border-strength)
+    )};
+  --color-border-column: #{utils.css-alpha(
+      var(--base-color-bg-accent),
+      var(--base-border-column-strength)
     )};
   --color-border-strong: var(--base-color-fg);
   --color-border-input: #{utils.css-alpha(var(--base-color-fg), 70%)};

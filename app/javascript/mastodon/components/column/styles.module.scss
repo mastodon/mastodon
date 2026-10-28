@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/variables';
+
 .root {
   box-sizing: border-box;
   position: relative;
@@ -5,9 +7,9 @@
   flex-direction: column;
   flex-grow: 1;
 
-  // html[data-color-scheme='dark'] & {
-  //   border-inline: var(--border-default);
-  // }
+  @media (width > variables.$mobile-menu-breakpoint) {
+    border-inline: var(--border-column);
+  }
 
   :global(.layout-single-column) & {
     padding-bottom: var(--current-composer-height, 0);
