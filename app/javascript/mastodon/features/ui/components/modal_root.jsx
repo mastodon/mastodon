@@ -20,7 +20,7 @@ import {
   ClosedRegistrationsModal,
   IgnoreNotificationsModal,
   AnnualReportModal,
-} from 'mastodon/features/ui/util/async-components';
+} from '@/mastodon/features/ui/util/async-components';
 
 import { ActionsModal } from './actions_modal';
 import AudioModal from './audio_modal';

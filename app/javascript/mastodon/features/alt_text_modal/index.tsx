@@ -16,6 +16,7 @@ import { useSpring, animated } from '@react-spring/web';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
 
+import { Tesseract as fetchTesseract } from '@/mastodon/features/ui/util/async-components';
 import { showAlertForError } from 'mastodon/actions/alerts';
 import { uploadThumbnail } from 'mastodon/actions/compose';
 import { changeUploadCompose } from 'mastodon/actions/compose_typed';
@@ -26,7 +27,6 @@ import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_targ
 import { Skeleton } from 'mastodon/components/skeleton';
 import { Audio } from 'mastodon/features/audio';
 import { CharacterCounter } from 'mastodon/features/compose/components/character_counter';
-import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 import { Video, getPointerPosition } from 'mastodon/features/video';
 import { me } from 'mastodon/initial_state';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
