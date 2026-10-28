@@ -12,6 +12,7 @@ import elephantUIPlane from '@/images/elephant_ui_plane.svg';
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnHeader } from '@/mastodon/components/column_header';
+import { Search } from '@/mastodon/components/search';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import EditIcon from '@/material-icons/400-24px/edit_square.svg?react';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
@@ -33,7 +34,6 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { messages as navbarMessages } from '../ui/components/navigation_bar';
 
-import { Search } from './components/search';
 import { RedesignComposeForm } from './redesign/index';
 
 const messages = defineMessages({
