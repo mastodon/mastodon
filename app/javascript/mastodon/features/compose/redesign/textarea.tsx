@@ -5,6 +5,7 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { mergeProps } from '@react-aria/utils';
 import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
 import {
@@ -18,12 +19,14 @@ import type { OnSuggestionSelect } from '@/mastodon/components/autosuggest/hooks
 import { useAutosuggestFloatingMenu } from '@/mastodon/components/autosuggest/hooks';
 import { AutosuggestMenu } from '@/mastodon/components/autosuggest/list';
 import { TextArea } from '@/mastodon/components/form_fields';
+import { matchesKeyCode } from '@/mastodon/components/hotkeys/utils';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import { VERTICAL_LANG_CODES } from '@/mastodon/locales';
 import {
   clearComposerErrors,
   clearComposerFocusRequest,
   COMPOSER_TEXTAREA_ID,
+  toggleContentWarning,
 } from '@/mastodon/reducers/slices/composer';
 import {
   createAppSelector,
@@ -169,10 +172,25 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     [dispatch],
   );
 
+  const onKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> =
+    useCallback(
+      (event) => {
+        if (matchesKeyCode('x', event.code) && event.altKey) {
+          event.preventDefault();
+          dispatch(toggleContentWarning());
+          return false;
+        }
+        return;
+      },
+      [dispatch],
+    );
+
   const { sensor, isInViewport } = useScrollSensor({
     placement: 'bottom',
     tolerance: 10,
   });
+
+  const textAreaProps = mergeProps(props, sourceProps, { onKeyDown });
 
   return (
     <div
@@ -183,7 +201,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
       {beforeTextArea}
 
       <TextArea
-        {...props}
+        {...textAreaProps}
         dir='auto'
         id={COMPOSER_TEXTAREA_ID}
         className={classNames(className, classes.textarea)}
@@ -201,7 +219,6 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         onChange={onChange}
         aria-required={!hasAttachments}
         aria-invalid={hasErrors}
-        {...sourceProps}
       />
 
       {mirror}

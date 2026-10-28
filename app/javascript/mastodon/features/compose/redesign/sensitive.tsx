@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -8,7 +8,10 @@ import { changeComposeSpoilerText } from '@/mastodon/actions/compose';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import { FormFieldWrapper } from '@/mastodon/components/form_fields';
 import { TextInput } from '@/mastodon/components/form_fields/redesign';
-import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
+import {
+  matchesKeyCode,
+  normalizeKey,
+} from '@/mastodon/components/hotkeys/utils';
 import {
   clearComposerErrors,
   toggleContentWarning,
@@ -31,11 +34,12 @@ const messages = defineMessages({
 });
 
 export const ComposeSensitiveField: React.FC<
-  React.ComponentPropsWithRef<'input'>
+  React.ComponentPropsWithoutRef<'input'>
 > = (props) => {
   const { sensitive, sensitiveText } = useAppSelector(selectComposeSensitive);
 
   const intl = useIntl();
+  const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
   const isSensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
   useEffect(() => {
@@ -59,6 +63,14 @@ export const ComposeSensitiveField: React.FC<
       if (key === 'enter') {
         event.preventDefault();
         dispatch(requestComposerFocus());
+        return false;
+      } else if (key === 'escape') {
+        event.preventDefault();
+        inputRef.current?.blur();
+        return false;
+      } else if (matchesKeyCode('x', event.code) && event.altKey) {
+        event.preventDefault();
+        dispatch(toggleContentWarning());
         return false;
       }
       return;
@@ -92,6 +104,7 @@ export const ComposeSensitiveField: React.FC<
             {...props}
             {...inputProps}
             autoFocus
+            ref={inputRef}
             aria-required='true'
             value={sensitiveText}
             onChange={onChange}
