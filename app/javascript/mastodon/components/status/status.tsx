@@ -184,10 +184,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           isQuotedPost && classes.isQuote,
           shouldHighlightOnMount && classes.isHighlighted,
           status.visibility === 'direct' && classes.isMessage,
-          variant === 'thread' &&
-            isNextReplyingToMe &&
-            !showThread &&
-            classes.connectNextReply,
           !muted && 'focusable',
         )}
         tabIndex={unfocusable ? undefined : -1}
@@ -204,72 +200,78 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           />
         )}
 
-        <StatusRedesignHeader
-          status={status}
-          className={classes.header}
-          featured={featured}
-        />
-
-        <TranslateButton status={status} onTranslate={onTranslate} />
-
-        <StatusWarning
-          statusId={status.id}
-          dismissedFilter={showDespiteFilter}
-          onFilterToggle={onFilterToggle}
-          wrapperId={contentWrapperId}
-        />
+        <StatusRedesignHeader status={status} featured={featured} />
 
         <div
           className={classNames(
-            classes.contentWrapper,
-            classes.contentWarningBlur,
-            isHidden && classes.contentWarningBlurActive,
-            !showDespiteFilter && isFiltered && classes.isFiltered,
+            classes.mainWrapper,
+            variant === 'thread' &&
+              isNextReplyingToMe &&
+              !showThread &&
+              classes.connectNextReply,
           )}
-          id={contentWrapperId}
-          inert={isHidden}
         >
-          <StatusContent
-            status={status}
-            statusContent={statusContent}
-            onReadMore={onOpenCallback}
-            onTranslate={onTranslate}
-            collapsible={variant !== 'page'}
-          >
-            {!!status.poll && (
-              <Poll
-                pollId={status.poll}
-                statusUrl={status.uri}
-                accountId={status.account.id}
-                lang={status.translation?.language ?? status.language}
-              />
-            )}
+          <TranslateButton status={status} onTranslate={onTranslate} />
 
-            <StatusAttachments statusId={status.id} />
-
-            {children}
-          </StatusContent>
-
-          <StatusHashtagBar
-            hashtags={hashtagsInBar}
-            accountId={status.account.id}
+          <StatusWarning
+            statusId={status.id}
+            dismissedFilter={showDespiteFilter}
+            onFilterToggle={onFilterToggle}
+            wrapperId={contentWrapperId}
           />
-        </div>
 
-        {(variant === 'page' || (showActions && !isQuotedPost)) && (
-          <footer className={classes.footer}>
-            {showActions && !isQuotedPost && (
-              <StatusActionBar
-                statusId={status.id}
-                reblogId={parent?.id}
-                withDismiss={withDismiss}
-                withCounters={withCounters}
-              />
+          <div
+            className={classNames(
+              classes.contentWrapper,
+              classes.contentWarningBlur,
+              isHidden && classes.contentWarningBlurActive,
+              !showDespiteFilter && isFiltered && classes.isFiltered,
             )}
+            id={contentWrapperId}
+            inert={isHidden}
+          >
+            <StatusContent
+              status={status}
+              statusContent={statusContent}
+              onReadMore={onOpenCallback}
+              onTranslate={onTranslate}
+              collapsible={variant !== 'page'}
+            >
+              {!!status.poll && (
+                <Poll
+                  pollId={status.poll}
+                  statusUrl={status.uri}
+                  accountId={status.account.id}
+                  lang={status.translation?.language ?? status.language}
+                />
+              )}
 
-            {variant === 'page' && <StatusMeta status={status} />}
-          </footer>
-        )}
+              <StatusAttachments statusId={status.id} />
+
+              {children}
+            </StatusContent>
+
+            <StatusHashtagBar
+              hashtags={hashtagsInBar}
+              accountId={status.account.id}
+            />
+          </div>
+
+          {(variant === 'page' || (showActions && !isQuotedPost)) && (
+            <footer className={classes.footer}>
+              {showActions && !isQuotedPost && (
+                <StatusActionBar
+                  statusId={status.id}
+                  reblogId={parent?.id}
+                  withDismiss={withDismiss}
+                  withCounters={withCounters}
+                />
+              )}
+
+              {variant === 'page' && <StatusMeta status={status} />}
+            </footer>
+          )}
+        </div>
       </StatusHotkeys>
     </StatusContext.Provider>
   );
