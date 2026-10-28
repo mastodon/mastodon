@@ -33,7 +33,11 @@ module Settings
 
           current_user.save!
 
-          UserMailer.two_factor_enabled(current_user).deliver_later!
+          if current_user.webauthn_enabled?
+            UserMailer.otp_enabled(current_user).deliver_later!
+          else
+            UserMailer.two_factor_enabled(current_user).deliver_later!
+          end
 
           session.delete(:new_otp_secret)
 

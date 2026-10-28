@@ -92,6 +92,16 @@ class UserMailer < Devise::Mailer
     end
   end
 
+  def otp_enabled(user, *, **)
+    @resource = user
+
+    return unless @resource.active_for_authentication?
+
+    I18n.with_locale(locale(use_current_locale: true)) do
+      mail subject: default_devise_subject
+    end
+  end
+
   def otp_disabled(user, *, **)
     @resource = user
 

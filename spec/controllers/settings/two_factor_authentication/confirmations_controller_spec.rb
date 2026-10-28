@@ -110,6 +110,42 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
                 .to have_title(I18n.t('settings.two_factor_authentication'))
             end
           end
+
+          context 'when user does not have a security key' do
+            before do
+              prepare_user_otp_consumption_response(true)
+              allow(controller).to receive(:current_user).and_return(user)
+            end
+
+            it 'notifies the user that two-factor authentication is enabled', :inline_jobs do
+              expect { post_create_with_options }
+                .to send_email(to: user.email, subject: I18n.t('devise.mailer.two_factor_enabled.subject'))
+            end
+
+            it 'does not notify the user that the authenticator app is enabled', :inline_jobs do
+              expect { post_create_with_options }
+                .to_not send_email(subject: I18n.t('devise.mailer.otp_enabled.subject'))
+            end
+          end
+
+          context 'when user has a security key' do
+            before do
+              user.update(webauthn_id: WebAuthn.generate_user_id)
+              Fabricate(:webauthn_credential, user_id: user.id, nickname: 'USB Key')
+              prepare_user_otp_consumption_response(true)
+              allow(controller).to receive(:current_user).and_return(user)
+            end
+
+            it 'notifies the user that the authenticator app is enabled', :inline_jobs do
+              expect { post_create_with_options }
+                .to send_email(to: user.email, subject: I18n.t('devise.mailer.otp_enabled.subject'))
+            end
+
+            it 'does not notify the user that two-factor authentication is enabled', :inline_jobs do
+              expect { post_create_with_options }
+                .to_not send_email(subject: I18n.t('devise.mailer.two_factor_enabled.subject'))
+            end
+          end
         end
 
         describe 'when creation fails' do
