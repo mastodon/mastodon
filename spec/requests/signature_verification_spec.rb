@@ -704,7 +704,7 @@ RSpec.describe 'signature verification concern' do
       end
 
       context 'with a known account' do
-        let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob') }
+        let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob', keypairs: []) }
 
         before do
           Fabricate(:keypair, account: actor, type: :ed25519, public_key: actor_keypair.public_to_pem, uri: 'https://remote.domain/users/bob#main-key')
