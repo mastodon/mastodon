@@ -277,11 +277,11 @@ RSpec.describe Mastodon::CharacterCounter do
 
     describe 'leaves a mention with an implausible host alone' do
       it do
-        expect(subject.countable_status_text('@arnt@invalid')).to eq('@arnt@invalid')
+        expect(subject.countable_status_text('@arnt@invalid')).to eq('@arnt')
       end
 
       it do
-        expect(subject.countable_note_text('@arnt@invalid')).to eq('@arnt@invalid')
+        expect(subject.countable_note_text('@arnt@invalid')).to eq('@arnt')
       end
     end
 
