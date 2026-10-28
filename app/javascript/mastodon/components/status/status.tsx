@@ -200,11 +200,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           />
         )}
 
-        <StatusRedesignHeader
-          status={status}
-          className={classes.header}
-          featured={featured}
-        />
+        <StatusRedesignHeader status={status} featured={featured} />
 
         <div
           className={classNames(
