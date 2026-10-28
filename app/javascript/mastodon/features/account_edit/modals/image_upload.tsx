@@ -399,7 +399,7 @@ const StepAlt: FC<{
         imageSrc={imageSrc}
         altText={altText}
         onChange={setAltText}
-        hideTip={location === 'header'}
+        imageLocation={location}
       />
 
       <div className={classes.cropActions}>
