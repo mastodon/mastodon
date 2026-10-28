@@ -5,14 +5,13 @@
 
   :global(.media-gallery) {
     margin-top: 0;
-    border-radius: 0;
+    border-radius: var(--radius-4);
   }
 
   // Overrides .media-gallery--layout-2 > .media-gallery__item:nth-child(1)
   :global(.media-gallery__item):global(.media-gallery__item),
   :global(.video-player),
   :global(.audio-player) {
-    border-radius: var(--radius-4);
     outline: none;
   }
 
