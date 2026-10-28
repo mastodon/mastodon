@@ -1,6 +1,8 @@
 @use '@/styles/mastodon/mixins';
 
 .galleryWrapper {
+  position: relative;
+
   :global(.media-gallery) {
     margin-top: 0;
     border-radius: 0;
@@ -15,9 +17,11 @@
   }
 
   :global(.media-gallery__alt__label--non-interactive) {
-    @include mixins.type-meta;
+    @include mixins.type-label;
 
     color: var(--color-text-inverted);
+    display: flex;
+    align-items: center;
     background-color: var(--color-bg-inverted);
     border-radius: var(--radius-round);
     padding-inline: var(--space-2);
@@ -33,7 +37,20 @@
 }
 
 .gallerySpoiler {
-  margin-bottom: var(--space-2);
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-content: center;
+  cursor: auto;
+
+  > p {
+    @include mixins.type-body-compact;
+
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-block-end: var(--space-2);
+  }
 }
 
 .galleryHideButtons {
@@ -49,11 +66,18 @@
   }
 }
 
+.galleryFilterBlur::after {
+  background-color: var(--color-bg-media);
+}
+
 .cardMedia {
+  border: var(--border-thin);
+  border-radius: var(--radius-4);
+  overflow: hidden;
+
   > :global(.status-card) {
     margin-top: 0;
-    border: var(--border-thin);
-    border-radius: var(--radius-4);
+    border: none;
 
     > a {
       transition: background 200ms ease-in-out;
@@ -86,7 +110,23 @@
   }
 }
 
+.cardMediaSpoiler {
+  // Taken from the media card thumbnail dimensions.
+  aspect-ratio: 16 / 9;
+  position: relative;
+  width: 100%;
+
+  > canvas {
+    height: 100%;
+    width: 100%;
+  }
+}
+
 .cardAuthor {
-  padding-inline-start: var(--space-2);
-  gap: var(--space-1);
+  z-index: 1;
+
+  > span {
+    display: flex;
+    gap: var(--space-1);
+  }
 }

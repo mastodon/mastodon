@@ -1,6 +1,7 @@
 @use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables' as vars;
 
-.content {
+.root {
   @include mixins.type-body;
 
   --mask-height: 80px;
@@ -10,6 +11,21 @@
   gap: var(--space-2);
   position: relative;
   overflow-y: clip;
+  padding-inline: 2px;
+
+  :global(.emojione) {
+    width: 1.3em;
+    height: auto;
+    margin: -3px 0 0;
+  }
+
+  [data-variant='page'] & {
+    @include mixins.type-body-lg;
+
+    :global(.emojione) {
+      margin: -1px 0 0;
+    }
+  }
 
   &.collapsed {
     max-height: var(--max-height); // Set via JS.
@@ -22,7 +38,19 @@
   }
 }
 
-.contentText {
+.text {
+  overflow-wrap: break-word;
+
+  &:lang(#{vars.$vertical-lr-langs}) {
+    writing-mode: vertical-lr;
+    max-height: 10lh;
+    overflow-wrap: normal;
+
+    [data-variant='page'] & {
+      max-height: 50vh;
+    }
+  }
+
   p,
   pre,
   blockquote,
@@ -32,7 +60,7 @@
     unicode-bidi: plaintext;
 
     &:not(:last-child) {
-      margin-block-end: var(--space-4);
+      margin-block-end: 0.6lh;
     }
   }
 
@@ -49,6 +77,12 @@
   a,
   button {
     color: var(--color-text-brand);
+    text-decoration: var(--link-underline-default);
+
+    &:hover,
+    &:focus {
+      text-decoration: var(--link-underline-default-hover);
+    }
   }
 
   blockquote {
@@ -129,7 +163,25 @@
   }
 }
 
-.contentReadMore {
+.readMore {
   grid-column: var(--content-col);
   width: max-content;
+
+  &:focus-visible {
+    outline-offset: -2px;
+  }
+}
+
+.image {
+  border-radius: var(--radius-4);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.blurHash {
+  width: 100%;
+  height: 100%;
 }

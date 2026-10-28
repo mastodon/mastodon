@@ -8,6 +8,8 @@ nan-TW:
     hosted_on: 佇 %{domain} 運作 ê Mastodon站
     title: 關係本站
   accounts:
+    api_errors:
+      2fa_required: Lí ê口座若無雙因素驗證，就bē當用
     errors:
       cannot_be_added_to_collections: Tsit ê口座袂當加入kàu集合。
     followers:
@@ -727,6 +729,11 @@ nan-TW:
       reset: 重頭設
       search: Tshiau-tshuē
       title: IP規則
+    moderation_subscriptions:
+      apply_automatically: 自動應用警告
+      apply_conditions:
+        always: 一直
+        never: 永永無愛
     relationships:
       title: "%{acct} ê關係"
     relays:
@@ -1239,9 +1246,6 @@ nan-TW:
     warning_presets:
       add_new: 加新ê
       delete: Thâi掉
-      edit_preset: 編輯預設ê警告
-      empty: Lí iáu bē定義任何預設ê警告。
-      title: 預設ê警告
     webhooks:
       add_new: 加添端點
       delete: Thâi掉
@@ -1320,7 +1324,6 @@ nan-TW:
     animations_and_accessibility: 動畫kap無障礙設定
     boosting_preferences: 轉送ê偏好設定
     boosting_preferences_info_html: "<strong>撇步：</strong>無論án-nuá設定，<kbd>Shift</kbd> + <kbd>Click</kbd> 佇%{icon} 轉送標á ē liâm-mī轉送。"
-    discovery: 發現
     localization:
       body: Mastodon是由志工翻譯。
       guide_link: https://crowdin.com/project/mastodon
@@ -1738,7 +1741,7 @@ nan-TW:
       '43200': 12 點鐘以後
       '604800': 1 禮拜以後
       '86400': 1 kang以後
-    expires_in_prompt: 永永
+    expires_in_prompt: 永永bē過期
     generate: 生邀請ê連結
     invalid: Tsit ê邀請無效
     invited_by: Lí予伊邀請：

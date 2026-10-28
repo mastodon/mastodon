@@ -16,12 +16,13 @@ zh-CN:
       account_migration:
         acct: 指定你想迁移过去的目标账号：用户名@站点域名
       account_warning_preset:
+        action_category: 选择此回复适用的管理操作。如果此回复可用于多个操作，选择“所有操作”。
         text: 你可以使用嘟文格式，例如加入 URL、话题和“@”
         title: 可选。对接收者不可见
       admin_account_action:
         include_statuses: 用户将会看到哪些嘟文导致了管理操作或警告
         send_email_notification: 用户将收到关于其账号异动的解释
-        text_html: 可选。你可以使用嘟文格式。你可以<a href="%{path}">预置警告</a>以节省时间
+        text: 可选。你可以使用嘟文格式。会在预置回复下方出现
         type_html: 用<strong>%{acct}</strong>选择做什么
         types:
           disable: 禁止用户使用账号，但不会删除或隐藏账号内容。
@@ -29,7 +30,7 @@ zh-CN:
           sensitive: 强制将此用户的全部媒体文件标记为敏感内容。
           silence: 阻止用户发送公开嘟文，除了关注者以外，其他人都无法看到他的嘟文和通知。关闭针对此账号的全部举报。
           suspend: 阻止此账号的任何交互并删除其内容。30天内可以撤销操作。关闭针对此账号的全部举报。
-        warning_preset_id: 可选。你可以在预置文本末尾添加自定义文本
+        warning_preset_html: 可选。你可以在<a href="%{path}">此处管理</a>
       announcement:
         all_day: 如果选中，只有该时间段内的日期会显示。
         ends_at: 可选。公告会在该时间点自动取消发布
@@ -61,6 +62,7 @@ zh-CN:
         setting_default_quote_policy_private: Mastodon上发布的仅限关注者可见的嘟文无法被他人引用。
         setting_default_quote_policy_unlisted: 当其他人引用你时，他们的嘟文也会从热门时间线上隐藏。
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
+        setting_default_spoiler_field: 在编辑器内将内容警告栏位保持为打开状态。你可以根据每条嘟文自定义内容警告文本。
         setting_display_media_default: 显示被标记为敏感内容的媒体前显示警告
         setting_display_media_hide_all: 显示所有媒体前都显示警告
         setting_display_media_show_all: 显示所有媒体而不显示警告，包括被标记为敏感内容的媒体
@@ -98,6 +100,7 @@ zh-CN:
         media_cache_retention_period: 来自外站用户嘟文的媒体文件将被缓存到你的实例上。当该值被设为正值时，缓存的媒体文件将在指定天数后被清除。如果媒体文件在被清除后重新被请求，且源站内容仍然可用，它将被重新下载。由于链接预览卡拉取第三方站点的频率受到限制，建议将此值设置为至少 14 天，如果小于该值，链接预览卡将不会按需更新。
         min_age: 用户注册时必须确认出生日期
         peers_api_enabled: 本站在联邦宇宙中遇到的站点列表。 此处不包含关于你是否与给定站点联合的数据，只是你的实例知道它。 这由收集一般意义上的联合统计信息的服务使用。
+        postpone_confirmation_emails: 启用此设置时，账号等待批准的确认邮件仅在这些账号已获批准时发送。这可能会让用户的注册体验变差，因为用户将会需要在收到邮件后及时确认电子邮件地址，但是发送电子邮件的时机并不固定。此外，这可能会增加管理员的工作量，因为Mastodon将无法在账号获批前过滤掉电子邮件地址无效的待审核账号。
         profile_directory: 个人资料目录会列出所有选择可被发现的用户。
         require_invite_text: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
         site_contact_email: 他人需要询恰法务或支持信息时的联络方式
@@ -190,20 +193,22 @@ zh-CN:
       account_migration:
         acct: 处理新账号
       account_warning_preset:
-        text: 预置文本
+        action_category: 分配管理操作
+        text: 回复文本
         title: 标题
       admin_account_action:
         include_statuses: 在电子邮件中包括已举报的嘟文
         send_email_notification: 通过邮件提醒此用户
-        text: 内容警告
+        text: 自定义回复
         type: 动作
         types:
+          all_actions: 所有操作
           disable: 冻结
           none: 忽略
           sensitive: 敏感内容
           silence: 隐藏
           suspend: 停用并永久删除账号数据
-        warning_preset_id: 使用预置警告
+        warning_preset_id: 预置回复
       announcement:
         all_day: 全天事件
         ends_at: 事件结束
@@ -243,12 +248,13 @@ zh-CN:
         setting_always_send_emails: 总是发送电子邮件通知
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 控制转嘟可见性
-        setting_color_scheme: 配色方案
+        setting_color_scheme: 模式
         setting_contrast: 对比度
         setting_default_language: 发布语言
         setting_default_privacy: 嘟文可见性
         setting_default_quote_policy: 谁可以引用
         setting_default_sensitive: 始终标记媒体为敏感内容
+        setting_default_spoiler_field: 默认使用内容警告
         setting_delete_modal: 删除嘟文前警告我
         setting_disable_hover_cards: 禁用悬停资料预览
         setting_disable_swiping: 禁用滑动动作
@@ -256,6 +262,8 @@ zh-CN:
         setting_display_media_default: 默认
         setting_display_media_hide_all: 隐藏全部
         setting_display_media_show_all: 显示全部
+        setting_display_own_boosts: 在我的主动态内显示自己的转嘟
+        setting_display_own_posts: 在我的主动态内显示自己的嘟文
         setting_emoji_style: 表情符号样式
         setting_expand_spoilers: 一律展开具有内容警告的嘟文
         setting_hide_network: 隐藏你的社交网络
@@ -266,7 +274,7 @@ zh-CN:
         setting_system_font_ui: 使用系统默认字体
         setting_system_scrollbars_ui: 使用系统默认样式的滚动条
         setting_theme: 站点主题
-        setting_trends: 显示今日热门
+        setting_theme_color: 主题颜色
         setting_unfollow_modal: 在取消关注前询问我
         setting_use_blurhash: 将隐藏媒体显示为彩色渐变
         setting_use_pending_items: 慢速模式
@@ -304,6 +312,7 @@ zh-CN:
         media_cache_retention_period: 媒体缓存保留期
         min_age: 最低年龄要求
         peers_api_enabled: 在API中公开的已知实例的服务器的列表
+        postpone_confirmation_emails: 推迟确认邮件至批准后
         profile_directory: 启用用户目录
         registrations_mode: 谁可以注册
         remote_live_feed_access: 展示外站嘟文的实时动态访问权限
@@ -351,6 +360,7 @@ zh-CN:
         follow: 有人关注了我
         follow_request: 有人向我发送了关注请求
         mention: 有人提到了我
+        moderation_suggestions: 自动管理建议可用
         pending_account: 有账号需要审核
         quote: 有人引用了我的嘟文
         reblog: 有人转嘟了我的嘟文

@@ -18,7 +18,6 @@
       admin_account_action:
         include_statuses: Brukeren vil se hvilke innlegg som forårsaket moderator-handlingen eller -advarselen
         send_email_notification: Brukeren vil motta en forklaring på hva som har skjedd med deres bruker
-        text_html: Valgfritt. Du kan bruke innlegg-syntaks. Du kan <a href="%{path}">legge til advarsels-forhåndsinnstillinger</a> for å spare tid
         type_html: Velg hva du vil gjøre med <strong>%{acct}</strong>
         types:
           disable: Forhindre brukeren fra å bruke kontoen sin, men ikke slett eller skjul innholdet deres.
@@ -26,7 +25,6 @@
           sensitive: Tving alle denne brukerens medievedlegg til å bli merket som følsomme.
           silence: Forhindre at brukeren kan legge ut innlegg med offentlig synlighet, skjul innleggene deres og varslene fra folk som ikke følger dem. Lukker alle rapporter mot denne kontoen.
           suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet. Tilbakestiller innholdet innen 30 dager. Lukk alle rapporter mot denne kontoen.
-        warning_preset_id: Valgfritt. Du kan fortsatt legge til tilpasset tekst til slutten av forhåndsinnstillingen
       announcement:
         all_day: Hvis noen av dem er valgt, vil kun datoene av tidsrammen bli vist
         ends_at: Valgfritt. Kunngjøring vil bli automatisk avpublisert på dette tidspunktet
@@ -136,12 +134,10 @@
       account_migration:
         acct: Brukernavnet til den nye brukeren
       account_warning_preset:
-        text: Forhåndsvalgt tekst
         title: Tittel
       admin_account_action:
         include_statuses: Inkluder rapporterte innlegg i e-posten
         send_email_notification: Si ifra til brukeren over E-post
-        text: Tilpasset advarsel
         type: Handling
         types:
           disable: Deaktiver pålogging
@@ -149,7 +145,6 @@
           sensitive: Følsom
           silence: Begrens
           suspend: Suspender og ugjenkallelig slett brukerdata
-        warning_preset_id: Bruk en advarsels-forhåndsinnstilling
       announcement:
         all_day: Heldagshendelse
         ends_at: Slutten av hendelsen
@@ -199,7 +194,6 @@
         setting_reduce_motion: Reduser bevegelser i animasjoner
         setting_system_font_ui: Bruk systemets standardfont
         setting_theme: Sidens tema
-        setting_trends: Vis dagens trender
         setting_unfollow_modal: Vis bekreftelse før du slutter å følge noen
         setting_use_blurhash: Vis fargerike gradienter for skjulte media
         setting_use_pending_items: Saktemodus

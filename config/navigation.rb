@@ -62,18 +62,20 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :instances, safe_join([material_symbol('cloud'), t('admin.instances.title')]), admin_instances_path(limited: limited_federation_mode? ? nil : '1'), highlights_on: %r{/admin/instances|/admin/domain_blocks|/admin/domain_allows|/admin/export_domain_blocks}, if: lambda {
         current_user.can?(:manage_federation)
       }
+      s.item :moderation_subscriptions, safe_join([material_symbol('cloud_download'), t('admin.moderation_subscriptions.title')]), admin_moderation_suggestions_path, highlights_on: %r{/admin/moderation_subscriptions|/admin/moderation_suggestions}, if: -> { Mastodon::Feature.moderation_subscriptions_enabled? && current_user.can?(:manage_federation) }
       s.item :email_domain_blocks, safe_join([material_symbol('mail'), t('admin.email_domain_blocks.title')]), admin_email_domain_blocks_path, highlights_on: %r{/admin/email_domain_blocks}, if: -> { current_user.can?(:manage_blocks) }
       s.item :username_blocks, safe_join([material_symbol('supervised_user_circle_off'), t('admin.username_blocks.title')]), admin_username_blocks_path, highlights_on: %r{/admin/username_blocks}, if: -> { current_user.can?(:manage_blocks) }
       s.item :ip_blocks, safe_join([material_symbol('hide_source'), t('admin.ip_blocks.title')]), admin_ip_blocks_path, highlights_on: %r{/admin/ip_blocks}, if: -> { current_user.can?(:manage_blocks) }
+      s.item :warning_presets, safe_join([material_symbol('quick_phrases'), t('admin.warning_presets.navigation_title')]), admin_warning_presets_path, highlights_on: %r{/admin/warning_presets}, if: -> { current_user.can?(:manage_settings) }
       s.item :action_logs, safe_join([material_symbol('list'), t('admin.action_logs.title')]), admin_action_logs_path, if: -> { current_user.can?(:view_audit_log) }
     end
 
     n.item :admin, safe_join([material_symbol('manufacturing'), t('admin.title')]), nil, if: -> { current_user.can?(:view_dashboard, :manage_settings, :manage_rules, :manage_announcements, :manage_custom_emojis, :manage_webhooks, :manage_federation) && !self_destruct } do |s|
       s.item :dashboard, safe_join([material_symbol('speed'), t('admin.dashboard.title')]), admin_dashboard_path, if: -> { current_user.can?(:view_dashboard) }
+      s.item :server_checks, safe_join([material_symbol('ecg_heart'), t('admin.server_checks.title')]), admin_server_checks_path, if: -> { current_user.can?(:view_dashboard) }
       s.item :settings, safe_join([material_symbol('tune'), t('admin.settings.title')]), admin_settings_path, if: -> { current_user.can?(:manage_settings) }, highlights_on: %r{/admin/settings}
       s.item :terms_of_service, safe_join([material_symbol('description'), t('admin.terms_of_service.title')]), admin_terms_of_service_index_path, highlights_on: %r{/admin/terms_of_service}, if: -> { current_user.can?(:manage_rules) }
       s.item :rules, safe_join([material_symbol('gavel'), t('admin.rules.title')]), admin_rules_path, highlights_on: %r{/admin/rules}, if: -> { current_user.can?(:manage_rules) }
-      s.item :warning_presets, safe_join([material_symbol('warning'), t('admin.warning_presets.title')]), admin_warning_presets_path, highlights_on: %r{/admin/warning_presets}, if: -> { current_user.can?(:manage_settings) }
       s.item :roles, safe_join([material_symbol('contact_mail'), t('admin.roles.title')]), admin_roles_path, highlights_on: %r{/admin/roles}, if: -> { current_user.can?(:manage_roles) }
       s.item :announcements, safe_join([material_symbol('campaign'), t('admin.announcements.title')]), admin_announcements_path, highlights_on: %r{/admin/announcements}, if: -> { current_user.can?(:manage_announcements) }
       s.item :email_subscriptions, safe_join([material_symbol('mail'), t('admin.email_subscriptions.index.title')]), admin_email_subscriptions_path, highlights_on: %r{/admin/email_subscriptions}, if: -> { current_user.can?(:manage_settings) }

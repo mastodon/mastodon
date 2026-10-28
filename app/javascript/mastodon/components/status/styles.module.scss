@@ -13,7 +13,7 @@
     );
   grid-auto-rows: auto;
   row-gap: var(--space-2);
-  padding: var(--space-4);
+  padding: var(--space-3) var(--space-4) var(--space-2);
   cursor: pointer;
 }
 
@@ -72,6 +72,7 @@
 }
 
 .variantPage,
+:global(.layout-multiple-columns) .variantFeed,
 .isQuote {
   --content-col: span 2;
 }
@@ -85,6 +86,10 @@
 .contentWrapper,
 .footer {
   grid-column: var(--content-col);
+}
+
+.spoiler {
+  cursor: auto;
 }
 
 .connectNextReply {
@@ -120,11 +125,14 @@
   position: relative;
   overflow: clip;
   border-radius: var(--radius-2);
+  margin-inline: -2px;
 
   &.isFiltered {
     display: none;
   }
+}
 
+.contentWarningBlur {
   &::after {
     content: '';
     position: absolute;
@@ -155,33 +163,13 @@
     }
   }
 
-  &.hasContentWarning {
-    &::after {
-      visibility: visible;
-      opacity: 1;
-      transition:
-        visibility 0s linear 0s,
-        opacity var(--fade-time) ease-in-out;
-    }
+  &.contentWarningBlurActive::after {
+    visibility: visible;
+    opacity: 1;
+    transition:
+      visibility 0s linear 0s,
+      opacity var(--fade-time) ease-in-out;
   }
-}
-
-.variantPage .content {
-  @include mixins.type-body-lg;
-}
-
-.contentImage {
-  border-radius: var(--radius-4);
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-.contentBlurHash {
-  width: 100%;
-  height: 100%;
 }
 
 .hashtagsWrapper,
@@ -192,10 +180,22 @@
 }
 
 .hashtagsWrapper {
-  padding: var(--space-1) 0;
+  // Account for the 2px from the padding/margin in children
+  padding: calc(var(--space-1) - 2px) 0;
+
+  button:focus-visible {
+    outline-offset: 0;
+  }
+
+  > button {
+    // Ensure the +1 button is the same size as the hashtags buttons
+    margin-block: 2px;
+  }
 }
 
 .hashtags {
+  // Add padding for outline
+  padding: 2px;
   overflow: hidden;
   position: relative;
 
@@ -210,48 +210,24 @@
   max-width: none !important;
 }
 
-.meta {
-  @include mixins.type-meta;
-
-  display: flex;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-  justify-content: space-between;
-  color: var(--color-text-secondary);
-  padding-block-start: var(--space-2);
-  margin-block-start: var(--space-2);
-  border-block-start: var(--border-default);
-  margin-inline: calc(-1 * var(--space-4));
-  padding-inline: var(--space-4);
-
-  > ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-1);
-  }
-
-  li:not(:first-child) {
-    &::before {
-      content: '• ';
-    }
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-
-    &:hover,
-    &:hover * {
-      text-decoration: underline;
-    }
-  }
-}
-
 .actions {
   display: flex;
 
-  > button:not(:hover, :active, [aria-pressed='true'], [aria-expanded='true']) {
-    opacity: 0.7;
+  > button {
+    font-variant-numeric: tabular-nums;
+
+    &:not(:hover, :active, [aria-pressed='true'], [aria-expanded='true']) {
+      opacity: 0.7;
+    }
+
+    &:disabled,
+    &[aria-disabled='true'] {
+      color: color-mix(
+        in srgb,
+        var(--color-text-brand),
+        var(--color-bg-primary)
+      );
+    }
   }
 }
 

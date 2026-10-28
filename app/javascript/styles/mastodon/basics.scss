@@ -2,34 +2,23 @@
 
 html {
   color: var(--color-text-primary);
-  background: var(--color-bg-primary);
+  background: var(--color-bg-desktop);
 
   &.custom-scrollbars {
     scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
   }
 
-  --font-body: mastodon-font-sans-serif, sans-serif;
+  --font-body: Inter, sans-serif;
   --font-heading: Cal Sans UI, sans-serif;
   --font-monospace: mastodon-font-monospace, monospace;
   --outline-focus-default: 2px solid var(--color-border-brand);
-  --avatar-border-radius: 8px;
+  --avatar-border-radius: var(--radius-round);
   --max-media-height-small: 460px;
   --max-media-height-large: 566px;
-  --mobile-bottom-nav-height: 55px;
+  --mobile-bottom-nav-height: calc(58px + var(--space-2));
 
   // Compensate for column header height when scrolling elements into view
-  --column-header-height: 62px;
-
-  &[data-redesign='true'] {
-    --font-body: Inter, sans-serif;
-    --avatar-border-radius: var(--radius-round);
-    --mobile-bottom-nav-height: calc(58px + var(--space-4));
-
-    // Compensate for column header height when scrolling elements into view
-    --column-header-height: 74px;
-
-    background: var(--color-bg-desktop);
-  }
+  --current-column-header-height: 52px;
 
   // Variable for easily inverting directional UI elements,
   --text-x-direction: 1;
@@ -38,10 +27,34 @@ html {
     --text-x-direction: -1;
   }
 
-  scroll-padding-top: var(--column-header-height);
+  --scroll-fade-height: var(--space-8);
+
+  scroll-padding-top: calc(
+    var(--current-column-header-height) + var(--scroll-fade-height)
+  );
+  scrollbar-gutter: stable;
 
   &:has(.layout-multi-column) {
-    --column-header-height: 0;
+    --current-column-header-height: 0;
+  }
+
+  &.system-font {
+    // system-ui => standard property (Chrome/Android WebView 56+, Opera 43+, Safari 11+)
+    // -apple-system => Safari <11 specific
+    // BlinkMacSystemFont => Chrome <56 on macOS specific
+    // Segoe UI => Windows 7/8/10
+    // Oxygen => KDE
+    // Ubuntu => Unity/Ubuntu
+    // Cantarell => GNOME
+    // Fira Sans => Firefox OS
+    // Droid Sans => Older Androids (<4.0)
+    // Helvetica Neue => Older macOS <10.11
+    --system-font-stack:
+      system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
+      Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    --font-body: var(--system-font-stack);
+    --font-heading: var(--system-font-stack);
+    --font-monospace: monospace;
   }
 }
 
@@ -51,7 +64,6 @@ html.has-modal {
     touch-action: none;
     overscroll-behavior: none;
     -webkit-overflow-scrolling: auto;
-    scrollbar-gutter: stable;
   }
 
   body {
@@ -67,6 +79,11 @@ body {
   color: var(--color-text-primary);
   text-rendering: optimizelegibility;
 
+  html[data-contrast='default'] & {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   // Disable kerning for Japanese text to preserve monospaced alignment for readability
   &:not(:lang(ja)) {
     font-feature-settings: 'kern';
@@ -75,31 +92,6 @@ body {
   text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
   -webkit-tap-highlight-color: transparent;
-
-  .system-font & {
-    // system-ui => standard property (Chrome/Android WebView 56+, Opera 43+, Safari 11+)
-    // -apple-system => Safari <11 specific
-    // BlinkMacSystemFont => Chrome <56 on macOS specific
-    // Segoe UI => Windows 7/8/10
-    // Oxygen => KDE
-    // Ubuntu => Unity/Ubuntu
-    // Cantarell => GNOME
-    // Fira Sans => Firefox OS
-    // Droid Sans => Older Androids (<4.0)
-    // Helvetica Neue => Older macOS <10.11
-    font-family:
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      'Fira Sans',
-      'Droid Sans',
-      'Helvetica Neue',
-      sans-serif;
-  }
 
   &.app-body {
     padding: 0;
@@ -111,7 +103,6 @@ body {
       height: auto;
       min-height: 100vh;
       min-height: 100dvh;
-      overflow-y: scroll;
     }
 
     &.layout-multiple-columns {

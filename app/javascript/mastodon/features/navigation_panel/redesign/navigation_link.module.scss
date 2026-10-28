@@ -2,7 +2,7 @@
 @use '@/styles/mastodon/variables';
 
 .wrapper {
-  padding-bottom: var(--space-half);
+  padding-bottom: var(--space-1);
 }
 
 @mixin link-base {
@@ -15,7 +15,7 @@
   align-items: center;
   width: 100%;
   padding: var(--space-2);
-  column-gap: var(--space-3);
+  column-gap: var(--space-2);
   border-radius: var(--border-radius);
   border: none;
   color: var(--color-text-primary);
@@ -23,6 +23,7 @@
   transition: background-color 200ms;
   text-decoration: none;
   text-align: start;
+  text-wrap: balance;
 
   &:where(button, a):hover,
   &:focus-visible,
@@ -44,7 +45,7 @@
 .link {
   @include link-base;
 
-  min-height: 40px;
+  min-height: 36px;
   @include mixins.type-body-compact;
 
   @media (width < variables.$mobile-menu-breakpoint) {
@@ -57,7 +58,7 @@
 }
 
 .linkStacked {
-  --icon-size: 24px;
+  --icon-size: 20px;
 
   flex-direction: column;
   row-gap: var(--space-1);

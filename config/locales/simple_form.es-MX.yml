@@ -16,12 +16,13 @@ es-MX:
       account_migration:
         acct: Especifica el nombre de usuario@dominio de la cuenta a la cual desea migrar
       account_warning_preset:
+        action_category: Selecciona la acción de moderación que va asociada a esta respuesta. Selecciona "Todas las acciones" si esta respuesta aplica a más de una acción.
         text: Puedes usar sintaxis de publicaciones, como URLs, etiquetas y menciones
         title: Opcional. No visible para el destinatario
       admin_account_action:
         include_statuses: El usuario verá qué publicaciones han causado la acción de moderación o advertencia
         send_email_notification: El usuario recibirá una explicación de lo que sucedió con respecto a su cuenta
-        text_html: Opcional. Puede usar sintaxis de publicaciones. Puede añadir <a href="%{path}">configuraciones predefinidas de advertencia</a> para ahorrar tiempo
+        text: Opcional. Puedes usar sintaxis de publicaciones. Aparecerá debajo de la plantilla de respuesta
         type_html: Elige qué hacer con <strong>%{acct}</strong>
         types:
           disable: Evitar que el usuario utilice su cuenta, pero no eliminar ni ocultar sus contenidos.
@@ -29,7 +30,7 @@ es-MX:
           sensitive: Forzar que todos los archivos multimedia de este usuario sean marcados como sensibles.
           silence: Evita que el usuario pueda publicar con visibilidad pública, y oculta sus publicaciones y notificaciones a personas que no lo siguen. Cierra todas las denuncias contra esta cuenta.
           suspend: Evita cualquier interacción desde o hacia esta cuenta y elimina su contenido. Reversible en 30 días. Cierra todas las denuncias contra esta cuenta.
-        warning_preset_id: Opcional. Aún puede añadir texto personalizado al final de la configuración predefinida
+        warning_preset_html: Opcional. Puedes <a href="%{path}">gestionarlas aquí</a>
       announcement:
         all_day: Cuando está seleccionado solo se mostrarán las fechas del rango de tiempo
         ends_at: Opcional. El anuncio desaparecerá automáticamente en este momento
@@ -61,6 +62,7 @@ es-MX:
         setting_default_quote_policy_private: Las publicaciones solo para seguidores hechas en Mastodon no pueden ser citadas por otros usuarios.
         setting_default_quote_policy_unlisted: Cuando las personas te citen, su publicación también se ocultará en las cronologías públicas.
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un clic
+        setting_default_spoiler_field: Mantiene el campo de advertencia de contenido abierto dentro del editor. Puedes personalizar el texto en cada publicación.
         setting_display_media_default: Advertir antes de mostrar contenidos marcados como sensibles
         setting_display_media_hide_all: Advertir antes de mostrar todos los archivos multimedia
         setting_display_media_show_all: Mostrar todos los archivos multimedia sin advertir, incluidos los marcados como sensibles
@@ -98,6 +100,7 @@ es-MX:
         media_cache_retention_period: Los archivos multimedia de las publicaciones realizadas por usuarios remotos se almacenan en caché en su servidor. Si se establece en un valor positivo, los archivos multimedia se eliminarán tras el número de días especificado. Si los datos multimedia se solicitan después de haber sido eliminados, se volverán a descargar, si el contenido de origen sigue estando disponible. Debido a las restricciones sobre la frecuencia con la que las tarjetas de previsualización de enlaces sondean sitios de terceros, se recomienda establecer este valor en al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese tiempo.
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento al registrarse
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el fediverso. Aquí no se incluye ningún dato sobre si usted federa con un servidor determinado, solamente que su servidor lo sabe. Esto es usado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
+        postpone_confirmation_emails: Cuando esta opción está activada, los correos electrónicos de confirmación de cuentas pendientes de aprobación sólo se envían una vez que esas cuentas son aprobadas. Esto podría derivar en una experiencia de registro más incómoda para los usuarios, ya que aún tendrán que confirmar su dirección de correo electrónico después de recibir la confirmación, pero no tendrán control sobre cuándo se envía. Además, esto puede proporcionar una mayor carga de trabajo para los moderadores, ya que Mastodon no podrá filtrar cuentas pendientes con una dirección de correo electrónico no válida antes de que sean aprobadas.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
         require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?" en lugar de opcional
         site_contact_email: Cómo la gente puede ponerse en contacto contigo para consultas legales o de ayuda.
@@ -191,20 +194,22 @@ es-MX:
       account_migration:
         acct: Maneja la cuenta nueva
       account_warning_preset:
-        text: Texto predefinido
+        action_category: Asignar acción de moderación
+        text: Texto de respuesta
         title: Título
       admin_account_action:
         include_statuses: Incluir en el correo electrónico a las publicaciones denunciadas
         send_email_notification: Notificar al usuario por correo electrónico
-        text: Aviso personalizado
+        text: Respuesta personalizada
         type: Acción
         types:
+          all_actions: Todas las acciones
           disable: Deshabilitar
           none: No hacer nada
           sensitive: Sensible
           silence: Silenciar
           suspend: Suspender y eliminar de forma irreversible la información de la cuenta
-        warning_preset_id: Usar un aviso predeterminado
+        warning_preset_id: Plantilla de respuesta
       announcement:
         all_day: Evento de todo el día
         ends_at: Fin del evento
@@ -244,12 +249,13 @@ es-MX:
         setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Control de visibilidad de impulsos
-        setting_color_scheme: Esquema de colores
+        setting_color_scheme: Modo
         setting_contrast: Contraste
         setting_default_language: Idioma de publicación
         setting_default_privacy: Visibilidad de publicación
         setting_default_quote_policy: Quién puede citar
         setting_default_sensitive: Marcar siempre imágenes como sensibles
+        setting_default_spoiler_field: Usar advertencias de contenido por defecto
         setting_delete_modal: Avisarme antes de eliminar una publicación
         setting_disable_hover_cards: Desactivar la vista previa del perfil al pasar el cursor por encima
         setting_disable_swiping: Desactivar los gestos de deslizamiento
@@ -257,6 +263,8 @@ es-MX:
         setting_display_media_default: Por defecto
         setting_display_media_hide_all: Ocultar todo
         setting_display_media_show_all: Mostrar todo
+        setting_display_own_boosts: Mostrar mis propios impulsos en mi cronología principal
+        setting_display_own_posts: Mostrar mis propias publicaciones en mi cronología principal
         setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Siempre expandir las publicaciones marcadas con advertencias de contenido
         setting_hide_network: Ocultar tu red
@@ -267,12 +275,13 @@ es-MX:
         setting_system_font_ui: Usar la fuente por defecto del sistema
         setting_system_scrollbars_ui: Usar la barra de desplazamiento por defecto del sistema
         setting_theme: Tema del sitio
-        setting_trends: Mostrar las tendencias de hoy
+        setting_theme_color: Color del tema
         setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de seguir a alguien
         setting_use_blurhash: Mostrar degradados de colores para contenidos multimedia ocultos
         setting_use_pending_items: Modo lento
         severity: Severidad
         sign_in_token_attempt: Código de seguridad
+        sign_in_token_resend: Volver a enviar el código de seguridad
         title: Título
         type: Importar tipo
         username: Nombre de usuario
@@ -304,6 +313,7 @@ es-MX:
         media_cache_retention_period: Período de retención de caché multimedia
         min_age: Edad mínima requerida
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
+        postpone_confirmation_emails: Posponer correos de confirmación tras aprobación
         profile_directory: Habilitar directorio de perfiles
         registrations_mode: Quién puede registrarse
         remote_live_feed_access: Acceso a las cronologías que destacan publicaciones remotas
@@ -351,6 +361,7 @@ es-MX:
         follow: Enviar correo electrónico cuando alguien te siga
         follow_request: Enviar correo electrónico cuando alguien solicita seguirte
         mention: Enviar correo electrónico cuando alguien te mencione
+        moderation_suggestions: Hay sugerencias de moderación automáticas disponibles
         pending_account: Enviar correo electrónico cuando una nueva cuenta necesita revisión
         quote: Alguien te citó
         reblog: Enviar correo electrónico cuando alguien comparta su publicación

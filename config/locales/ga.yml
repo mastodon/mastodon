@@ -8,6 +8,14 @@ ga:
     hosted_on: Mastodon arna óstáil ar %{domain}
     title: Maidir le
   accounts:
+    api_errors:
+      2fa_required: Ní féidir do chuntas a úsáid gan dara fachtóir fíordheimhnithe a bheith socraithe
+      account_deleted: Tá do chuntas scriosta
+      account_suspended: Tá do chuntas curtha ar fionraí
+      login_disabled: Tá do chuntas díchumasaithe faoi láthair
+      memorial: Tá do chuntas iompaithe ina chuntas cuimhneacháin
+      pending_approval: Tá do chuntas ag fanacht le ceadú maidir le measúnú faoi láthair
+      pending_confirmation: Tá seoladh ríomhphoist deimhnithe in easnamh ar do chuntas
     errors:
       cannot_be_added_to_collections: Ní féidir an cuntas seo a chur le bailiúcháin.
     followers:
@@ -78,6 +86,7 @@ ga:
       demote: Ísligh
       destroyed_msg: Tá sonraí %{username} ciúáilte anois le scriosadh gan mhoill
       disable: Reoigh
+      disable_sign_in_token: Díchumasaigh go sealadach an dúshlán cóid slándála
       disable_sign_in_token_auth: Díchumasaigh fíordheimhniú comhartha ríomhphoist
       disable_two_factor_authentication: Díchumasaigh 2FA
       disabled: Reoite
@@ -91,7 +100,9 @@ ga:
       email: Ríomhphost
       email_status: Stádas ríomhphoist
       enable: Dí-reoigh
+      enable_sign_in_token: Cumasaigh dúshlán an chóid slándála
       enable_sign_in_token_auth: Cumasaigh fíordheimhniú comhartha ríomhphoist
+      enable_unconfirmed: Ceadaigh ríomhphost dearbhaithe
       enabled: Ar chumas
       enabled_msg: D'éirigh le dí-reoite cuntas %{username}
       follow_recommendations:
@@ -293,6 +304,7 @@ ga:
         create_domain_block_html: "%{name} fearann ​​bactha %{target}"
         create_email_domain_block_html: Chuir %{name} fearann ​​ríomhphoist bactha %{target}
         create_ip_block_html: Chruthaigh %{name} riail don IP %{target}
+        create_moderation_subscription_html: Chruthaigh %{name} síntiús measarthachta %{target}
         create_relay_html: Chruthaigh %{name} athsheoladh %{target}
         create_unavailable_domain_html: Chuir %{name} deireadh leis an seachadadh chuig fearann ​​%{target}
         create_user_role_html: Chruthaigh %{name} %{target} ról
@@ -308,6 +320,7 @@ ga:
         destroy_email_domain_block_html: "%{name} fearann ​​ríomhphoist díchoiscthe %{target}"
         destroy_instance_html: Glanadh %{name} fearann ​​%{target}
         destroy_ip_block_html: "%{name} scriosta riail le haghaidh IP %{target}"
+        destroy_moderation_subscription_html: Scrios %{name} síntiús modhnóireachta %{target}
         destroy_relay_html: Scrios %{name} an athsheoladh %{target}
         destroy_status_html: Bhain %{name} postáil le %{target}
         destroy_unavailable_domain_html: D'athchrom %{name} ar an seachadadh chuig fearann ​​%{target}
@@ -356,10 +369,18 @@ ga:
         update_user_role_html: D'athraigh %{name} ról %{target}
         update_username_block_html: Nuashonraíodh riail %{name} le haghaidh ainmneacha úsáideora ina bhfuil %{target}
         usable_tag_html: is féidir a úsáid;
+      automated_actions:
+        create_domain_allow_html: Ceadaíodh cónaidhm go huathoibríoch leis an bhfearann ​​%{target}
+        create_domain_block_html: Fearann ​​%{target} blocáilte go huathoibríoch
+        destroy_domain_allow_html: Diúltaíodh go huathoibríoch don chónaidhmeacht leis an bhfearann ​​%{target}
+        destroy_domain_block_html: Fearann ​​%{target} díbhloicithe go huathoibríoch
+        update_domain_block_html: Blocáil fearainn nuashonraithe go huathoibríoch le haghaidh %{target}
       deleted_account: cuntas scriosta
+      deleted_suggestion: síntiús measarthachta scriosta
       empty: Níor aimsíodh aon logaí.
       filter_by_action: Scag de réir gnímh
       filter_by_user: Scag de réir úsáideora
+      suggested_by_html: Gníomh molta ag %{subscription}
       title: Loga iniúchta
       unavailable_instance: "(ainm fearainn ar fáil)"
     announcements:
@@ -490,6 +511,11 @@ ga:
       undo: Dícheadaigh cónaidhm leis an bhfearann
     domain_blocks:
       add_new: Cuir bloc fearainn nua leis
+      confirm_downgrade:
+        cancel: Cealaigh
+        confirm: Íosghrádú
+        preamble_html: Tá tú ar tí an srian atá ann faoi láthair ar <strong>%{domain}</strong> agus ar a fho-fhearainn a laghdú.
+        title: Deimhnigh laghdú ar an mblocáil fearainn do %{domain}
       confirm_suspension:
         cancel: Cealaigh
         confirm: Fionraí
@@ -692,6 +718,8 @@ ga:
       title: Moltaí leanúna
       unsuppress: Aischuir moladh leanúna
     instances:
+      advisories:
+        title: Fógraí ó shíntiúis mhodhnóireachta
       audit_log:
         title: Logchomhaid Iniúchta le Déanaí
         view_all: Féach ar logaí iniúchta iomlána
@@ -721,6 +749,7 @@ ga:
         comment: Nóta inmheánach
         description_html: Is féidir leat beartais inneachair a shainiú a chuirfear i bhfeidhm ar gach cuntas ón bhfearann ​​seo agus aon cheann dá fhofhearainn.
         limited_federation_mode_description_html: Is féidir leat an rogha a dhéanamh maidir le cónaidhm a cheadú leis an bhfearann ​​seo.
+        moderation_subscription: Síntiús modhnóireachta
         policies:
           reject_media: Na meáin a dhiúltú
           reject_reports: Diúltaigh tuarascálacha
@@ -804,6 +833,92 @@ ga:
       reset: Athshocraigh
       search: Cuardaigh
       title: Rialacha IP
+    moderation_subscriptions:
+      add_new: Cuir síntiús leis
+      advisory_action: 'Gníomh: %{action}'
+      advisory_actions:
+        accept: ceadaigh
+        limit: ciúnas
+        reject: cuir ar fionraí
+      apply_automatically: Cuir comhairle i bhfeidhm go huathoibríoch
+      apply_conditions:
+        always: I gcónaí
+        never: Choíche
+        safely: Ach amháin mura ndéanann sé dochar do chaidrimh
+      apply_conditions_hint:
+        always: Cuir na gníomhartha molta i bhfeidhm go huathoibríoch i gcónaí. Ná húsáid an rogha seo ach amháin i gcás liostaí a bhfuil lán-mhuinín agat astu.
+        never: Ná cuir gníomhartha molta i bhfeidhm go huathoibríoch riamh. Gineadh moladh ina n-áit i gcónaí.
+        safely: Cuir na gníomhartha molta i bhfeidhm, mura gcuirfeadh siad isteach ar na caidrimh leantacha atá ann cheana le húsáideoirí áitiúla. I gcásanna den sórt sin, ginfear moladh ina ionad sin.
+      delete: Scrios
+      destroyed_msg: Scriosadh an síntiús measarthachta go rathúil
+      empty: Níl liosta measarthachta ar bith síntiúsaithe leis go fóill.
+      last_synced_at: Sioncronaithe go deireanach ag
+      list_action: Cineál síntiúis
+      list_actions:
+        accept: Liosta ceadaithe
+        default: Measctha (Ceadaigh & Diúltaigh)
+        reject: Liosta blocála
+      list_actions_hint:
+        accept: Déanfar earraí nach bhfuil gníomh sonraithe dóibh a láimhseáil amhail is go bhfuil cead ina leith. Déanfar neamhaird de bhloic.
+        default: Déanfar míreanna nach bhfuil gníomh sonraithe dóibh a láimhseáil mar bhloic. Déanfar bloic agus ceaduithe a láimhseáil mar bhloic.
+        reject: Déanfar míreanna nach bhfuil gníomh sonraithe dóibh a láimhseáil mar bhloic. Déanfar neamhaird de threoracha ceadaithe.
+      list_actions_short:
+        accept: Liosta ceadaithe
+        default: Measctha
+        reject: Liosta blocála
+      name: Ainm
+      new:
+        create: Liostáil
+        title: Síntiús nua maidir le modhnóireacht
+      override_unattributed: Sáraigh bacanna láimhe
+      override_unattributed_hint: Ceadaigh don síntiús seo uasghrádú uathoibríoch a dhéanamh ar bhloic láimhe atá ann cheana, nó iad a ghlacadh chucu féin, agus comhairle á cur i bhfeidhm go huathoibríoch.
+      policies:
+        apply_advisories: Cuireann sé comhairle i bhfeidhm go huathoibríoch
+        apply_advisories_safely: Cuireann sé comhairlí i bhfeidhm go huathoibríoch nach mbriseann caidrimh
+        apply_retractions: Cuireann sé tarraingt siar i bhfeidhm go huathoibríoch
+      priority: Tosaíocht
+      priority_hint: Déantar measúnú ar shíntiúis mhodhnóireachta de réir ord tosaíochta; bíonn tosaíocht ag síntiúis a bhfuil uimhir níos ísle acu thar shíntiúis a bhfuil uimhir níos airde acu.
+      retract_automatically: Tarraing siar comhairliúcháin go huathoibríoch
+      retract_automatically_hint: Cibé acu cead a thabhairt athruithe ar bheartais a chúlghairm nó a ísliú nuair a bhaineann an síntiús mír chomhfhreagrach amach. Nuair a bhíonn cúlghairm uathoibríoch cumasaithe agus comhairle choibhéiseach ar fáil i liosta a bhfuil tosaíocht níos ísle aige, glacfar leis an gcomhairle sin. Nuair a bhíonn cúlghairm uathoibríoch díchumasaithe, ginfear moladh ina ionad sin.
+      show:
+        delete_confirm: An bhfuil tú cinnte gur mian leat an síntiús modhnóireachta seo a scriosadh?
+        edit: Cuir an síntiús in eagar
+        empty: Níl aon chomhairle ag an síntiús seo go fóill.
+        title: 'Síntiús modhnóireachta: %{name}'
+      tabs:
+        logs: Logaí
+        subscriptions: Síntiúis
+        suggestions: Moltaí
+      title: Síntiúis mhodhnóireachta
+      type: Cineál
+      types:
+        csv_list: Liosta CSV
+      url: URL
+    moderation_subscriptions_logs:
+      title: Logaí síntiús maidir le modhnóireacht
+    moderation_suggestions:
+      actions:
+        accept: Ceadaigh
+        limit: Teorainn
+        reject: Cuir ar fionraí
+        retract: Tarraing siar an polasaí reatha
+      applied_msg: Cuireadh an moladh i bhfeidhm go rathúil le haghaidh %{target_key}
+      apply_accept: Ceadaigh
+      apply_limit: Teorainn
+      apply_reject: Cuir ar fionraí
+      apply_retract: Tarraing siar
+      current_states:
+        accept: ceadaithe faoi láthair
+        limit: teoranta faoi láthair
+        reject: ar fionraí faoi láthair
+      description: Seo thíos moltaí ó do shíntiúis mhodhnóireachta, curtha in ord de réir tosaíochta.
+      destroyed_msg: Moladh do %{target_key} curtha ar leataobh go rathúil
+      dismiss: Diúltaigh do mholtaí
+      empty: Níl aon mholadh maidir le measarthacht ann faoi láthair.
+      retracted_msg: Tarraingíodh siar an polasaí le haghaidh %{target_key} go rathúil
+      suggested_from_html: Molta ag %{link}
+      title: Moltaí maidir le measarthacht
+      unable_to_apply_msg: Ní féidir an moladh do %{target_key} a chur i bhfeidhm
     relationships:
       title: Caidrimh %{acct}
     relays:
@@ -1007,6 +1122,119 @@ ga:
       translation: Aistriúchán
       translations: Aistriúcháin
       translations_explanation: Is féidir leat aistriúcháin a chur leis do na rialacha más mian leat. Taispeánfar an luach réamhshocraithe mura bhfuil leagan aistrithe ar fáil. Cinntigh i gcónaí go bhfuil aon aistriúchán a sholáthraítear sioncrónaithe leis an luach réamhshocraithe.
+    server_checks:
+      categories:
+        completed:
+          title: Críochnaithe
+        critical:
+          title: Criticiúil
+        error:
+          title: Earráidí
+        ignored:
+          title: Neamhaird déanta de
+        suggestion:
+          title: Moltaí
+        unprocessed:
+          title: Neamhphróiseáilte
+        warning:
+          title: Rabhaidh
+      checks:
+        database_schema:
+          error:
+            title: Tharla earráid agus scéim na bunachair sonraí á seiceáil
+          ok:
+            title: Níl aon imirceanna bunachar sonraí ar feitheamh
+          pending:
+            lead_html: Rith iad, le do thoil, chun a chinntiú go n-iompraíonn an feidhmchlár mar a bhítear ag súil leis
+            title: Tá aistrithe bunachar sonraí ar feitheamh
+          running:
+            title: Tá do fhreastalaí ag seiceáil scéema an bhunachair sonraí
+          unprocessed:
+            title: Níl scéim an bhunachair sonraí seiceáilte ag do fhreastalaí go fóill
+        elastic_search:
+          error:
+            title: Tharla earráid agus cumraíocht Elasticsearch á seiceáil
+          ok:
+            title: Tá Elasticsearch cumraithe gan fadhbanna
+          pending:
+            lead:
+              analysis_index_mismatch_html: 'Tá socruithe an anailíseora innéacs in Elasticsearch as dáta. Rith an t-ordú seo, le do thoil: <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>'
+              cluster_health_red_html: Tá braisle Elasticsearch i riocht neamhshláintiúil (stádas dearg), agus níl gnéithe cuardaigh ar fáil
+              cluster_health_yellow_html: Níl braisle Elasticsearch i riocht sláintiúil (stádas buí); b’fhéidir gur mhaith leat an chúis a fhiosrú
+              index_mismatch_html: 'Tá mapálacha innéacs Elasticsearch as dáta. Rith an t-ordú seo le do thoil: <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>'
+              preset_html: Tá níos mó ná nód amháin i do chluasán Elasticsearch, ach níl Mastodon cumraithe chun iad a úsáid
+              preset_single_node_html: Níl ach nód amháin i do chluasán Elasticsearch; ba cheart <code>ES_PRESET</code> a shocrú mar <code>single_node_cluster</code>
+              reset_chewy_html: Tá innéacs córais Elasticsearch as dáta de bharr athrú ar shocrú. Rith <code>tootctl search deploy --reset-chewy</code> chun é a nuashonrú, le do thoil
+              running_check_html: Níorbh fhéidir ceangal a dhéanamh le Elasticsearch. Seiceáil, le do thoil, go bhfuil sé ag rith, nó díchumasaigh cuardach téacs iomláin
+              version_check_html: Tá Elasticsearch %{running_version} ag rith, cé go bhfuil %{required_version} ag teastáil
+            title: Tá fadhbanna ann le Elasticsearch
+          running:
+            title: Tá an freastalaí ag seiceáil cumraíocht Elasticsearch
+          unprocessed:
+            title: Níl cumraíocht Elasticsearch seiceáilte ag an bhfreastalaí go fóill
+        media_privacy:
+          error:
+            title: Tharla earráid agus príobháideachas meán do fhreastalaí á sheiceáil
+          ok:
+            title: Tá príobháideachas na meán ar do fhreastalaí slán
+          pending:
+            lead:
+              upload_check_privacy_error_html: Tá do fhreastalaí gréasáin mí-chumraithe
+              upload_check_privacy_error_object_storage_html: Tá do stóráil réad cumraithe go mícheart
+            title: Tá príobháideachas d’úsáideoirí i mbaol
+          running:
+            title: Tá an freastalaí ag seiceáil a stádas príobháideachais
+          unprocessed:
+            title: Níl a stádas príobháideachais seiceáilte ag an bhfreastalaí go fóill
+        rules:
+          error:
+            title: Tharla earráid agus rialacha do fhreastalaí á seiceáil
+          ok:
+            title: Tá rialacha do fhreastalaí socraithe
+          pending:
+            lead_html: Níl aon rialacha foilsithe ag do fhreastalaí. Cuidíonn rialacha soiléire leis an modhnóireacht agus leagann siad amach ionchais
+            title: Socraigh rialacha an fhreastalaí
+          running:
+            title: Tá an freastalaí ag seiceáil do rialacha
+          unprocessed:
+            title: Níl seiceáil déanta ag an bhfreastalaí go fóill féachaint an bhfuil aon rialacha ann
+        sidekiq_process:
+          error:
+            title: Tharla earráid agus cumraíocht Sidekiq á seiceáil
+          ok:
+            title: Tá Sidekiq cumraithe gan fadhbanna
+          pending:
+            lead_html: Níl aon phróiseas Sidekiq ag rith don scuaine(scuainí) %{missing_queues_str}
+            title: Déan athbhreithniú ar do chumraíocht Sidekiq, le do thoil
+          running:
+            title: Tá an freastalaí ag seiceáil cumraíocht Sidekiq
+          unprocessed:
+            title: Níl an chumraíocht Sidekiq seiceáilte ag an bhfreastalaí go fóill
+        software_version:
+          error:
+            title: Tharla earráid agus nuashonruithe bogearraí á lorg
+          ok:
+            title: Tá do shampla Mastodon cothrom le dáta
+          pending:
+            lead:
+              patch_html: Tá nuashonrú Mastodon ar fáil a réitíonn fabhtanna
+              regular_html: Tá leagan nua de Mastodon ar fáil
+              urgent_html: Tá nuashonrú ríthábhachtach ar Mastodon ar fáil; déan an nuashonrú chomh luath agus is féidir, le do thoil
+            title: Déan do shampla Mastodon a nuashonrú
+          running:
+            title: Tá an freastalaí ag seiceáil an bhfuil aon nuashonrú bogearraí ar feitheamh
+          unprocessed:
+            title: Níl nuashonruithe bogearraí seiceáilte ag an bhfreastalaí go fóill
+      ignore:
+        label: Déan neamhaird de
+      lead: Moltaí chun do fhreastalaí a choinneáil sábháilte, fáilteach agus éifeachtúil.
+      recommendations:
+        title: Moltaí
+      restore:
+        label: Athchóirigh
+      setup:
+        label: Socrú
+      title: Sláinte an fhreastalaí
     settings:
       about:
         manage_rules: Bainistigh rialacha freastalaí
@@ -1045,6 +1273,13 @@ ga:
         disabled: Do dhuine ar bith
         users: Chun úsáideoirí áitiúla logáilte isteach
       external:
+        directory: Eolaire Freastalaí
+        opt_in_server_directory:
+          description: Ceadaigh do fhreastalaí a bheith liostaithe i bheolairí freastalaithe, ar nós an chinn atá le feiceáil ag https://joinmastodon.org/servers.
+          title: Cuir do fhreastalaí san áireamh i geolaire na bhfreastalaithe
+        opt_in_server_recommendation:
+          description: Ceadaigh do fhreastalaí a mholadh tráth an chláraithe in feidhmchláir ar nós chliaint oifigiúla Mastodon.
+          title: Roghnaigh do fhreastalaí le haghaidh moltaí freastalaí
         preamble: Rialaigh an méid eolais faoi do fhreastalaí a roinntear le seirbhísí eile agus cé chomh furasta is atá sé do fhreastalaí a aimsiú.
         privacy: Príobháideachas
         publish_statistics: Foilsigh staitisticí
@@ -1368,9 +1603,17 @@ ga:
     warning_presets:
       add_new: Cuir nua leis
       delete: Scrios
-      edit_preset: Cuir réamhshocrú rabhaidh in eagar
-      empty: Níl aon réamhshocruithe rabhaidh sainithe agat fós.
-      title: Réamhshocruithe rabhaidh
+      dropdown:
+        all_actions: Gach gníomh
+        disable: Reo
+        none: Rabhadh
+        sensitive: Íogair
+        silence: Teorainn
+        suspend: Cuir ar fionraí
+      edit_preset: Cuir freagra réamhullmhaithe in eagar
+      empty: Níl aon fhreagraí réamhullmhaithe sainithe agat go fóill.
+      navigation_title: Freagraí Réamhullmhaithe
+      title: Freagraí Réamhullmhaithe don Mhodhnóireacht
     webhooks:
       add_new: Cuir críochphointe leis
       delete: Scrios
@@ -1422,9 +1665,15 @@ ga:
     new_critical_software_updates:
       body: Tá leaganacha criticiúla nua de Mastodon eisithe, b'fhéidir gur mhaith leat a nuashonrú chomh luath agus is féidir!
       subject: Tá nuashonruithe Critical Mastodon ar fáil do %{instance}!
+    new_moderation_suggestions:
+      body: Tá moltaí nua foilsithe ag na liostaí modhnóireachta a bhfuil do fhreastalaí liostáilte iontu.
+      subject: Moltaí nua maidir le modhnóireacht ar fáil ar %{instance}!
     new_pending_account:
       body: Tá sonraí an chuntais nua thíos. Is féidir leat an t-iarratas seo a cheadú nó a dhiúltú.
       subject: Cuntas nua le léirmheas ar %{instance} (%{username})
+    new_pending_accounts:
+      body: Cruthaíodh cuntais nua ar %{instance}. Ós rud é go bhfuil do fhreastalaí cumraithe chun ríomhphoist dheimhniúcháin a chur siar go dtí go mbeidh ceadú faighte ón modhnóir, ní raibh deis ag na cuntais sin a seoltaí ríomhphoist a fhíorú go fóill. Tá sonraí na gcuntas nua thíos. Is féidir leat na hiarratais seo a cheadú nó a dhiúltú.
+      subject: Cuntais nua le hathbhreithniú ar %{instance}
     new_report:
       body: Thuairiscigh %{reporter} %{target}
       body_remote: Thuairiscigh duine éigin ó %{domain} %{target}
@@ -1455,7 +1704,6 @@ ga:
     boosting_preferences_info_html: |-
       <strong>Leid:</strong> Beag beann ar shocruithe, <kbd>Shift</kbd> +
       <kbd>Cliceáil</kbd> ar an deilbhín %{icon} Tabharfaidh an deilbhín borradh láithreach.
-    discovery: Fionnachtain
     localization:
       body: Oibrithe deonacha a dhéanann aistriúchán Mastodon.
       guide_link: https://crowdin.com/project/mastodon
@@ -1535,11 +1783,16 @@ ga:
     security: Slándáil
     set_new_password: Socraigh pasfhocal nua
     setup:
+      correct_email: Seoladh ceart
       email_below_hint_html: Seiceáil d'fhillteán turscair, nó iarr ceann eile. Is féidir leat do sheoladh ríomhphoist a cheartú má tá sé mícheart.
       email_settings_hint_html: Cliceáil ar an nasc a sheolamar chuig %{email} chun tús a chur le Mastodon a úsáid. Beidh muid ag fanacht ar dheis anseo.
+      email_settings_hint_wait_html: Tá d’iarratas á mheas. Ba cheart go bhfaighfeá ríomhphost go luath ag %{email}. Nuair a gheobhaidh tú é, cliceáil an nasc chun tús a chur le húsáid Mastodon. Fanfaimid anseo.
       link_not_received: Nach bhfuair tú nasc?
       new_confirmation_instructions_sent: Gheobhaidh tú ríomhphost nua leis an nasc deimhnithe i gceann cúpla bomaite!
       title: Seiceáil do bhosca isteach
+      title_wait: Coinnigh súil ar do bhosca isteach
+      wrong_email: Seoladh ríomhphoist mícheart?
+      wrong_email_below_hint_html: Ná bíodh scaoll ort! Is féidir leat do sheoladh ríomhphoist a cheartú thíos.
     sign_in:
       preamble_html: Logáil isteach le do dhintiúir <strong>%{domain}</strong>. Má tá do chuntas á óstáil ar fhreastalaí eile, ní bheidh tú in ann logáil isteach anseo.
       title: Logáil isteach go %{domain}
@@ -1576,6 +1829,12 @@ ga:
     auto: Uath
     dark: Dorcha
     light: Solas
+  color_theme:
+    cyan: Cian
+    indigo: Indigeo
+    lime: Aoil
+    orange: Oráiste
+    pink: Bándearg
   contrast:
     auto: Uath
     high: Ard
@@ -1624,6 +1883,7 @@ ga:
       action_taken: Gníomh déanta
       appeal: Achomharc
       appeal_approved: D’éirigh le hachomharc a dhéanamh ar an stailc seo agus níl sé bailí a thuilleadh
+      appeal_handled_by: Achomharc láimhseáilte ag
       appeal_rejected: Diúltaíodh don achomharc
       appeal_submitted_at: Achomharc curtha isteach
       appealed_msg: Cuireadh isteach d'achomharc. Má ceadófar é, cuirfear ar an eolas tú.
@@ -2510,6 +2770,14 @@ ga:
       further_actions_html: Mura tusa a bhí ann, molaimid duit %{action} a dhéanamh láithreach toisc go bhféadfadh sé a bheith i gcontúirt.
       subject: Teip fíordheimhnithe dara fachtóir
       title: Theip ar fhíordheimhniú an dara fachtóir
+    sign_in_token:
+      change_password: athraigh do phasfhocal
+      details: 'Seo sonraí na hiarrachta:'
+      explanation: 'Braitheadh ​​iarracht logáil isteach i do chuntas tar éis tréimhse fhada neamhghníomhaíochta. Más tusa atá i gceist, cuir isteach an cód slándála thíos ar an leathanach fíoraithe logála isteach:'
+      further_actions: 'Mura tusa a rinne é seo, athraigh do phasfhocal le do thoil agus cuir fíordheimhniú dhá fhachtóir i ngníomh ar do chuntas. Is féidir leat é sin a dhéanamh anseo:'
+      further_actions_html: Mura tusa a rinne é seo, molaimid duit %{action} láithreach agus fíordheimhniú dhá fhachtóir a chumasú chun do chuntas a choinneáil slán.
+      subject: Deimhnigh an iarracht logáil isteach, le do thoil
+      title: Iarracht logáil isteach
     suspicious_sign_in:
       change_password: do phasfhocal a athrú
       details: 'Seo sonraí faoin síniú isteach:'
@@ -2602,8 +2870,12 @@ ga:
       title: Fáilte ar bord, %{name}!
   users:
     follow_limit_reached: Ní féidir leat níos mó ná %{limit} duine a leanúint
+    generic_access_help_html: An bhfuil deacracht agat rochtain a fháil ar do chuntas? Is féidir leat teagmháil a dhéanamh le %{email} chun cúnamh a fháil
     go_to_sso_account_settings: Téigh chuig socruithe cuntais do sholáthraí aitheantais
+    inactive_sign_in_confirmation: Tá tamall ann ó logáil tú isteach, mar sin táimid ag seoladh cód slándála chuig do sheoladh ríomhphoist chun a dhearbhú gurb tusa atá i gceist.
+    inactive_sign_in_title: Deimhnigh an cód slándála, le do thoil
     invalid_otp_token: Cód dhá-fhachtóir neamhbhailí
+    invalid_sign_in_token: Cód slándála neamhbhailí
     otp_lost_help_html: Má chaill tú rochtain ar an dá cheann, is féidir leat dul i dteagmháil le %{email}
     rate_limited: An iomarca iarrachtaí fíordheimhnithe, bain triail eile as ar ball.
     seamless_external_login: Tá tú logáilte isteach trí sheirbhís sheachtrach, mar sin níl socruithe pasfhocail agus ríomhphoist ar fáil.

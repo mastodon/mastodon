@@ -67,7 +67,11 @@ export const Announcement: FC<AnnouncementProps> = ({
         extraEmojis={announcement.emojis}
       />
 
-      <ReactionsBar reactions={announcement.reactions} id={announcement.id} />
+      {announcement.reactions_allowed ? (
+        <ReactionsBar reactions={announcement.reactions} id={announcement.id} />
+      ) : (
+        <div className='reactions-bar reactions-bar--empty' />
+      )}
     </AnimateEmojiProvider>
   );
 };

@@ -93,13 +93,22 @@ export function tagHistoryToUses(history: unknown) {
     return 0;
   }
 
-  return history.reduce<number>(
-    (total, current) =>
-      isRecordObject(current) && typeof current.uses === 'number'
-        ? total + current.uses
-        : total,
-    0,
-  );
+  return history.reduce<number>((total, current) => {
+    if (
+      !isRecordObject(current) ||
+      (typeof current.uses !== 'string' && typeof current.uses !== 'number')
+    ) {
+      return total;
+    }
+    const uses =
+      typeof current.uses === 'string'
+        ? Number.parseInt(current.uses)
+        : current.uses;
+    if (!isNaN(uses) && uses > 0) {
+      return total + uses;
+    }
+    return total;
+  }, 0);
 }
 
 export function sourceToElement(source: Source) {

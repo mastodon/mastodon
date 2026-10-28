@@ -100,7 +100,7 @@ kab:
       remove_avatar: Kkes tugna n umaɣnu
       remove_header: Kkes tacacit
       resend_confirmation:
-        already_confirmed: Amseqdac-agi yettwasentem yakan
+        already_confirmed: Aseqdac-a yettwasentem yakan
         send: Ɛawed-iyi-d aseɣwen n usentem
       reset: Wennez
       reset_password: Beddel awal uffir
@@ -339,6 +339,8 @@ kab:
     export_domain_blocks:
       no_file: Ulac afaylu yettwafernen
     fasp:
+      capabilities:
+        enable: Rmed
       debug:
         callbacks:
           delete: Kkes
@@ -520,6 +522,9 @@ kab:
         all: I medden akk
         disabled: Ɣef ula yiwen
         users: Ɣef yimseqdacen idiganen i yeqqnen
+      external:
+        directory: Akaram n uqeddac
+        privacy: Tabaḍnit
       feed_access:
         modes:
           public: Yal yiwen
@@ -653,7 +658,6 @@ kab:
         title: Ihacṭagen inezzaɣ
   appearance:
     advanced_settings: Iɣewwaren leqqayen
-    discovery: Asnirem
     localization:
       body: Mastodon suqqlen-t-id yiwiziwen.
       guide_link: https://crowdin.com/project/mastodon
@@ -773,8 +777,9 @@ kab:
       x_seconds: "%{count}tas"
   deletes:
     challenge_not_passed: Ur iṣeḥḥa ara yisalli-nni i teskecmeḍ
-    confirm_password: Sekcem awal-ik·im uffir n tura akken ad tesfeqdeḍ tamagit-ik·im
+    confirm_password: Sekcem awal-ik·im n uɛeddi amiran akken ad tesfeqdeḍ tamagit-ik·im
     proceed: Kkes amiḍan
+    title: Kkes amiḍan %{acct}
     warning:
       username_available: Isem-ik·im n useqdac ad yuɣal yella i tikkelt-nniḍen
       username_unavailable: Isem-ik·im n useqdac ad yeqqim ulac-it
@@ -807,6 +812,7 @@ kab:
     confirmations:
       show:
         changed_your_mind: Tbeddleḍ ṛṛay-ik·im?
+    disabled: D arurmid
     inactive: D arurmid
     status: Addad
   emoji_styles:
@@ -817,7 +823,7 @@ kab:
     '404': Asebter i tettnadiḍ ulac-it da.
     '429': Aṭas n tuttriwin
     '500':
-      title: Asebter-ayi d arameɣtu
+      title: Asebter-a d arameɣtu
     go_home: Ddu ɣer ugejdan
     noscript_html: Akken ad tesqedceḍ asnas web n Mastodon, sermed JavaScript, ma ulac aɣilif. Neɣ ma ulac, ɛreḍ yiwet seg <a href="%{apps_path}">yisnasen inasliyin</a> n Mastodon i unagraw-ik.
   existing_username_validator:
@@ -1161,6 +1167,8 @@ kab:
   user_mailer:
     appeal_approved:
       action: Iɣewwaṛen n umiḍan
+    sign_in_token:
+      change_password: snifel awal-ik·im n uɛeddi
     suspicious_sign_in:
       change_password: snifel awal-ik·im n uɛeddi
     terms_of_service_changed:
@@ -1201,6 +1209,7 @@ kab:
       subject: Ansuf ɣer Maṣṭudun
       title: Ansuf yessek·em, %{name}!
   users:
+    inactive_sign_in_title: Sentem tangalt n tɣellist
     signed_in_as: 'Teqqneḍ amzun d:'
   verification:
     here_is_how: Ha-t-a amek

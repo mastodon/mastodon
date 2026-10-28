@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 3.3.0', '< 4.1.0'
+ruby file: '.ruby-version'
 
 gem 'propshaft'
 gem 'puma'
@@ -91,8 +91,8 @@ gem 'simple-navigation', '~> 4.4'
 gem 'stoplight'
 gem 'strong_migrations'
 gem 'tty-prompt', '~> 0.23', require: false
-gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2023'
+gem 'uts58', '~> 0.2.3'
 gem 'webauthn', '~> 3.0'
 gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
 

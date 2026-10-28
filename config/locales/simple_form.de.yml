@@ -16,12 +16,13 @@ de:
       account_migration:
         acct: Gib profilname@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
+        action_category: Wähle eine Maßnahme, die zu dieser Antwort passt. Wenn die Maßnahme zu mehr als einer Kategorie passt, wähle „Alle Maßnahmen“.
         text: Du kannst die Syntax wie für Beiträge verwenden – z. B. URLs, Hashtags und Erwähnungen
         title: "(Optional) Für Empfänger*in nicht sichtbar"
       admin_account_action:
         include_statuses: Die Person wird sehen, welche Inhalte dich zu dieser Maßnahme veranlasst haben
         send_email_notification: Benutzer*in wird eine Erklärung erhalten, was mit dem Konto geschehen ist
-        text_html: (Optional) Du kannst die Syntax wie für Beiträge verwenden. Du kannst <a href="%{path}">Warnvorlagen hinzufügen</a>, um Zeit zu sparen
+        text: "(Optional) Du kannst die reguläre Syntax wie für Beiträge verwenden, also auch Profile erwähnen und Hashtags nutzen. Sie wird unter der vorgefertigten Antwort erscheinen."
         type_html: Wähle aus, wie mit <strong>%{acct}</strong> vorgegangen werden soll
         types:
           disable: Benutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden.
@@ -29,7 +30,7 @@ de:
           sensitive: Erzwingen, dass alle Medienanhänge dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindert, dass dieses Profil öffentlich sichtbare Beiträge verfassen kann, und verbirgt alle Beiträge und Benachrichtigungen vor Personen, die diesem Profil nicht folgen. Alle Meldungen zu diesem Konto werden geschlossen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
-        warning_preset_id: "(Optional) Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen"
+        warning_preset_html: (Optional) Vorgefertigte Antworten <a href="%{path}">können hier verwaltet werden</a>
       announcement:
         all_day: Falls aktiviert, werden nur der Tag bzw. die Tage innerhalb des Zeitraums angezeigt
         ends_at: "(Optional) Die Ankündigung wird zu diesem Zeitpunkt automatisch zurückgezogen"
@@ -61,6 +62,7 @@ de:
         setting_default_quote_policy_private: Beiträge, die nur für deine Follower bestimmt sind und auf Mastodon verfasst wurden, können nicht von anderen zitiert werden.
         setting_default_quote_policy_unlisted: Sollten dich andere zitieren, werden ihre zitierten Beiträge ebenfalls nicht in den Trends und öffentlichen Timelines angezeigt.
         setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
+        setting_default_spoiler_field: Dadurch wird die Inhaltswarnung beim Verfassen von Beiträgen immer aktiviert. Der Warnhinweis kann bei jedem Beitrag individuell angepasst werden.
         setting_display_media_default: Vor der Anzeige von Medien, die eine Inhaltswarnung enthalten, hinweisen
         setting_display_media_hide_all: Vor der Anzeige von allen Medien hinweisen
         setting_display_media_show_all: Alle Medien anzeigen – auch Medien, die eine Inhaltswarnung enthalten
@@ -98,6 +100,7 @@ de:
         media_cache_retention_period: Mediendateien aus Beiträgen von externen Nutzer*innen werden auf deinem Server zwischengespeichert. Wenn ein positiver Wert gesetzt ist, werden die Medien nach der festgelegten Anzahl von Tagen gelöscht. Sollten die Medien nach dem Löschvorgang wieder angefragt werden, werden sie erneut heruntergeladen, sofern der ursprüngliche Inhalt noch vorhanden ist. Es wird empfohlen, diesen Wert auf mindestens 14 Tage festzulegen, da die Häufigkeit der Abfrage von Linkvorschaukarten für Websites von Dritten begrenzt ist und die Linkvorschaukarten sonst nicht vor Ablauf dieser Zeit aktualisiert werden.
         min_age: Nutzer*innen werden bei der Registrierung aufgefordert, ihr Geburtsdatum zu bestätigen
         peers_api_enabled: Eine Liste von Domains, die diesem Server im Fediverse begegnet sind. Hierbei werden keine Angaben darüber gemacht, ob du mit einem bestimmten Server föderierst, sondern nur, dass dein Server davon weiß. Dies wird von Diensten verwendet, die allgemein Statistiken übers Ferdiverse sammeln.
+        postpone_confirmation_emails: Dadurch werden E-Mail-Bestätigungen erst an Konten verschickt, nachdem sie manuell genehmigt wurden. Nutzer*innen müssen weiterhin ihre E-Mail bestätigen, können jedoch nicht den Versand dieser E-Mail beeinflussen. Dies kann sich negativ auf den Registrierungsprozess auswirken. Ebenso könnte sich der Moderationsaufwand erhöhen, weil Mastodon keine ausstehenden Konten mit ungültiger E-Mail-Adresse vor der Genehmigung herausfiltern kann.
         profile_directory: Dieses Verzeichnis zeigt alle Profile an, die sich dafür entschieden haben, entdeckt zu werden.
         require_invite_text: Wenn Registrierungen eine manuelle Genehmigung erfordern, müssen Benutzer*innen ihren Beitrittswunsch begründen
         site_contact_email: Wie man dich bei rechtlichen oder Support-Anfragen erreichen kann.
@@ -191,20 +194,22 @@ de:
       account_migration:
         acct: Adresse des neuen Kontos
       account_warning_preset:
-        text: Vorlagentext
+        action_category: Maßnahme zuweisen
+        text: Antworttext
         title: Titel
       admin_account_action:
         include_statuses: Gemeldete Beiträge der E-Mail beifügen
         send_email_notification: Benachrichtigung per E-Mail
-        text: Individuelle Verwarnung
+        text: Angepasste Antwort
         type: Aktion
         types:
+          all_actions: Alle Maßnahmen
           disable: Einfrieren
           none: Nur Verwarnung
           sensitive: Inhaltswarnung
           silence: Stummschalten
           suspend: Sperre
-        warning_preset_id: Warnvorlage verwenden
+        warning_preset_id: Vorgefertigte Antwort
       announcement:
         all_day: Ganztägiges Ereignis
         ends_at: Ende der Ankündigung
@@ -244,12 +249,13 @@ de:
         setting_always_send_emails: Benachrichtigungen immer senden
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Sichtbarkeit für geteilte Beiträge anpassen
-        setting_color_scheme: Farbschema
+        setting_color_scheme: Farbmodus
         setting_contrast: Kontrast
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
         setting_default_quote_policy: Wer darf mich zitieren?
         setting_default_sensitive: Medien immer mit einer Inhaltswarnung versehen
+        setting_default_spoiler_field: Inhaltswarnung standardmäßig aktivieren
         setting_delete_modal: Löschen von Beiträgen gesondert bestätigen
         setting_disable_hover_cards: Profilvorschau deaktivieren, wenn die Maus über das Profil bewegt wird
         setting_disable_swiping: Wischgesten deaktivieren
@@ -257,6 +263,8 @@ de:
         setting_display_media_default: Standard
         setting_display_media_hide_all: Alle Medien ausblenden
         setting_display_media_show_all: Alle Medien anzeigen
+        setting_display_own_boosts: Von mir geteilte Beiträge auf meiner Startseite zeigen
+        setting_display_own_posts: Eigene Beiträge auf meiner Startseite anzeigen
         setting_emoji_style: Emoji-Stil
         setting_expand_spoilers: Beiträge mit Inhaltswarnung immer ausklappen
         setting_hide_network: Follower und „Folge ich“ nicht anzeigen
@@ -267,7 +275,7 @@ de:
         setting_system_font_ui: Standardschriftart des Browsers verwenden
         setting_system_scrollbars_ui: Bildlaufleiste des Betriebssystems verwenden
         setting_theme: Design
-        setting_trends: Heutige Trends anzeigen
+        setting_theme_color: Designfarbe
         setting_unfollow_modal: Bestätigungsdialog beim Entfolgen eines Profils anzeigen
         setting_use_blurhash: Farbverlauf bei ausgeblendeten Medien anzeigen
         setting_use_pending_items: Langsamer Modus
@@ -305,6 +313,7 @@ de:
         media_cache_retention_period: Aufbewahrungsfrist für Medien im Cache
         min_age: Mindestalter
         peers_api_enabled: Die entdeckten Server im Fediverse über die API veröffentlichen
+        postpone_confirmation_emails: E-Mail-Bestätigung bis zur Genehmigung aufschieben
         profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer darf ein neues Konto registrieren?
         remote_live_feed_access: Zugriff auf Live-Feeds, die Beiträge externer Server beinhalten

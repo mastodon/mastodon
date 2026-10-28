@@ -23,11 +23,18 @@ import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
-import { trendsEnabled } from '@/mastodon/initial_state';
+import {
+  registrationsOpen,
+  sso_redirect,
+  trendsEnabled,
+} from '@/mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
-import { RedesignNavigationPanel, useNotificationsCount } from '.';
+import {
+  RedesignNavigationPanel,
+  useNotificationsCount,
+  handleSearchLinkClick,
+} from '.';
 import { AccountMenuItems } from './account_card_and_menu';
 import { LogoLockup } from './header';
 import classes from './mobile_nav.module.scss';
@@ -44,6 +51,14 @@ export const RedesignMobileNavigation: React.FC = () => {
     dispatch(openNavigation());
   }, [dispatch]);
 
+  // Hide the mobile sign-up button if registrations are closed or
+  // SSO is used (as there's not much room for a detailed label)
+  const hasSignUpButton = !sso_redirect && !registrationsOpen;
+
+  const signupUrl = useAppSelector(
+    (state) => state.server.server.item?.registrations.url ?? '/auth/sign_up',
+  );
+
   return (
     <>
       {signedIn ? (
@@ -58,7 +73,7 @@ export const RedesignMobileNavigation: React.FC = () => {
                 state: { focusTarget: FOCUS_TARGET.SEARCH },
               }}
               iconComponent={MagnifyingGlassIcon}
-              onClick={invokeVirtualIosKeyboard}
+              onClick={handleSearchLinkClick}
             >
               <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
             </MobileNavLink>
@@ -112,19 +127,21 @@ export const RedesignMobileNavigation: React.FC = () => {
             className={classNames(classes.floatingCard, classes.loggedOutInfo)}
           >
             <LogoLockup className={classes.logoLockup} />
-            <Button
-              as='a'
-              href='/auth/sign_up'
-              variant='solid'
-              color='accent'
-              size='sm'
-              className={classes.signUpButton}
-            >
-              <FormattedMessage
-                id='server_banner.sign_up'
-                defaultMessage='Sign up'
-              />
-            </Button>
+            {hasSignUpButton && (
+              <Button
+                as='a'
+                href={signupUrl}
+                variant='solid'
+                color='accent'
+                size='sm'
+                className={classes.signUpButton}
+              >
+                <FormattedMessage
+                  id='server_banner.sign_up'
+                  defaultMessage='Sign up'
+                />
+              </Button>
+            )}
             <IconButton size='sm' icon={InfoIcon} onClick={openMobileNav}>
               <FormattedMessage id='server_banner.info' defaultMessage='Info' />
             </IconButton>

@@ -77,7 +77,7 @@ const CardVideo: React.FC<{ card: CardShape }> = ({ card }) => {
   );
 };
 
-const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
+export const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
   const card: CardShape | null = useMemo(
     () => (isMap(rawCard) ? (rawCard.toJS() as CardShape) : rawCard),
     [rawCard],
@@ -111,48 +111,11 @@ const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
     return null;
   }
 
-  const provider =
-    card.provider_name.length === 0
-      ? decodeIDNA(getHostname(card.url))
-      : card.provider_name;
   const interactive = card.type === 'video';
   const language = card.language ?? '';
   const hasImage = (card.image?.length ?? 0) > 0;
   const largeImage = (hasImage && card.width > card.height) || interactive;
   const author = card.authors.at(0)?.accountId;
-
-  const description = (
-    <div className='status-card__content' dir='auto'>
-      <span className='status-card__host'>
-        <span lang={language}>{provider}</span>
-        {card.published_at && (
-          <>
-            {' '}
-            · <RelativeTimestamp timestamp={card.published_at} />
-          </>
-        )}
-      </span>
-
-      <strong className='status-card__title' title={card.title} lang={language}>
-        {card.title}
-      </strong>
-
-      {!author &&
-        (card.author_name.length > 0 ? (
-          <span className='status-card__author'>
-            <FormattedMessage
-              id='link_preview.author'
-              defaultMessage='By {name}'
-              values={{ name: <strong>{card.author_name}</strong> }}
-            />
-          </span>
-        ) : (
-          <span className='status-card__description' lang={language}>
-            {card.description}
-          </span>
-        ))}
-    </div>
-  );
 
   const thumbnailStyle: React.CSSProperties = {
     visibility: revealed ? undefined : 'hidden',
@@ -264,7 +227,7 @@ const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
           onClick={revealed ? undefined : handleReveal}
           aria-describedby={revealed ? undefined : spoilerButtonId}
         >
-          {description}
+          <CardDescription card={card} />
         </a>
       </div>
     );
@@ -296,11 +259,53 @@ const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
         rel='noopener'
       >
         {embed}
-        {description}
+        <CardDescription card={card} />
       </a>
 
       {author && <MoreFromAuthor accountId={author} />}
     </>
+  );
+};
+
+export const CardDescription: React.FC<{ card: CardShape }> = ({ card }) => {
+  const provider =
+    card.provider_name.length === 0
+      ? decodeIDNA(getHostname(card.url))
+      : card.provider_name;
+  const language = card.language ?? '';
+  const author = card.authors.at(0)?.accountId;
+
+  return (
+    <div className='status-card__content' dir='auto'>
+      <span className='status-card__host'>
+        <span lang={language}>{provider}</span>
+        {card.published_at && (
+          <>
+            {' '}
+            · <RelativeTimestamp timestamp={card.published_at} />
+          </>
+        )}
+      </span>
+
+      <strong className='status-card__title' title={card.title} lang={language}>
+        {card.title}
+      </strong>
+
+      {!author &&
+        (card.author_name.length > 0 ? (
+          <span className='status-card__author'>
+            <FormattedMessage
+              id='link_preview.author'
+              defaultMessage='By {name}'
+              values={{ name: <strong>{card.author_name}</strong> }}
+            />
+          </span>
+        ) : (
+          <span className='status-card__description' lang={language}>
+            {card.description}
+          </span>
+        ))}
+    </div>
   );
 };
 

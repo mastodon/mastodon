@@ -16,12 +16,13 @@ tr:
       account_migration:
         acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
       account_warning_preset:
+        action_category: Bu yanıtın hangi denetim eylemi için kullanılacağını seçin. Yanıt birden fazla eylem için geçerliyse "Tüm eylemler" seçeneğini seçin.
         text: Bğlantılar, etiketler ve bahsedenler gibi gönderi sözdizimini kullanabilirsiniz
         title: İsteğe bağlı. Alıcıya görünmez
       admin_account_action:
         include_statuses: Kullanıcı hangi gönderilerin denetleme eylemi veya uyarısına neden olduğunu görecektir
         send_email_notification: Kullanıcı, hesabına ne olduğuna dair bir açıklama alacak
-        text_html: İsteğe bağlı. Gönderi sözdizimini kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
+        text: İsteğe bağlı. Gönderi sözdizimi kullanabilirsiniz. Hazır yanıtın altında görünecektir
         type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
         types:
           disable: Kullanıcının hesabını kullanmasını engelle ama içeriklerini silme veya gizleme.
@@ -29,7 +30,7 @@ tr:
           sensitive: Bu kullanıcının tüm medya eklerini hassas olarak işaretlemeye zorla.
           silence: Kullanıcının herkese açık şekilde gönderimde bulunmasını engelle, gönderilerini ve bildirimlerini onları takip etmeyen kişilerden gizle. Bu hesaba yönelik tüm bildirimleri kapatır.
           suspend: Bu hesaptan herhangi bir etkileşimi engelle ve içeriğini sil. 30 gün içerisinde geri alınabilir. Bu hesaba yönelik tüm bildirimleri kapatır.
-        warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
+        warning_preset_html: İsteğe bağlı. <a href="%{path}">Buradan yönetebilirsiniz</a>
       announcement:
         all_day: İşaretlendiğinde, yalnızca zaman aralığındaki tarihler görüntülenir
         ends_at: İsteğe bağlı. Duyuru, bu tarihte otomatik olarak yayından kaldırılacak
@@ -61,6 +62,7 @@ tr:
         setting_default_quote_policy_private: Mastodon'da sadece takipçilere yönelik gönderiler başkaları tarafından alıntılanamaz.
         setting_default_quote_policy_unlisted: İnsanlar sizden alıntı yaptığında, onların gönderileri de trend zaman tünellerinden gizlenecektir.
         setting_default_sensitive: Hassas medya varsayılan olarak gizlidir ve bir tıklama ile gösterilebilir
+        setting_default_spoiler_field: Yazı düzenleyici içinde içerik uyarısı alanını açık tutar. Her gönderideki metni özelleştirebilirsiniz.
         setting_display_media_default: Hassas olarak işaretlenmiş medya öğelerini göstermeden önce uyarı ver
         setting_display_media_hide_all: Tüm medya öğelerini göstermeden önce uyarı ver
         setting_display_media_show_all: Hassas olarak işaretlenmiş medya dahil olmak üzere tüm medyayı uyarı vermeden göster
@@ -98,6 +100,7 @@ tr:
         media_cache_retention_period: Uzak kullanıcıların gönderilerindeki ortam dosyaları sunucunuzda önbelleklenir. Pozitif bir değer verildiğinde, ortam dosyaları belirlenen gün sonunda silinecektir. Eğer ortam dosyaları silindikten sonra istenirse, kaynak içerik hala mevcutsa, tekrar indirilecektir. Bağlantı önizleme kartlarının üçüncü parti siteleri yoklamasına ilişkin kısıtlamalar nedeniyle, bu değeri en azından 14 gün olarak ayarlamanız önerilir, yoksa bağlantı önizleme kartları bu süreden önce isteğe bağlı olarak güncellenmeyecektir.
         min_age: Kullanıcılardan kayıt olurken doğum tarihlerini doğrulamaları istenecektir
         peers_api_enabled: Bu sunucunun fediverse'te karşılaştığı alan adlarının bir listesi. İlgili sunucuyla birleştirme mi yapıyorsunuz yoksa sunucunuz sadece onu biliyor mu hakkında bir bilgi burada yok. Bu blgi genel olarak federasyın hakkında istatistik toplamak isteyen hizmetler tarafından kullanılıyor.
+        postpone_confirmation_emails: Bu ayar etkinleştirildiğinde, onay bekleyen hesaplar için onay e-postaları ancak söz konusu hesaplar onaylandıktan sonra gönderilir. Bu durum, kullanıcılar için daha olumsuz bir kayıt deneyimi yaratabilir, çünkü kullanıcılar e-postayı aldıktan sonra yine de e-posta adreslerini zamanında onaylamaları gerekecek, ancak e-postanın ne zaman gönderileceği konusunda artık kontrol sahibi olmayacaklardır. Ayrıca, Mastodon onaylanmadan önce geçersiz e-posta adresine sahip bekleyen hesapları filtreleyemeyeceği için bu durum denetçilerin iş yükünü artırabilir.
         profile_directory: Profil dizini keşfedilebilir olmayı kabul eden tüm kullanıcıları listeler.
         require_invite_text: Kayıt olmak elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
         site_contact_email: İnsanlar yasal konular veya destek hakkında bilgi edinmek için size nasıl ulaşabilir.
@@ -149,7 +152,7 @@ tr:
         arbitration_address: Yukarıdaki fiziksel adresle aynı olabilir, veya e-posta kullanıyorsanız "N/A".
         arbitration_website: Web formu olabilir, veya e-posta kullanıyorsanız "N/A".
         choice_of_law: Her türlü iddiayı yönetecek olan iç maddi yasalara ilişkin şehir, bölge, eyalet veya ülke.
-        dmca_address: ABD operatörleri için DMCA Atanmış Temsilci Dizininde kayıtlı adresi kullanın. Doğrudan taleple Posta Kutusu kullanımı mümkündür, Telif Hakkı Ofisine e-posta göndermek için DMCA Atanmış Temsilci Posta Kutusu Feragat Talebini kullanın ve eylemleriniz nedeniyle intikam veya cezalandırılmaktan çekinen ve herkese açık ev adresini kullanmamak için Posta Kutusu kullanması gereken ev tabanlı bir içerik moderatörü olduğunuzu açıklayın.
+        dmca_address: ABD operatörleri için DMCA Atanmış Temsilci Dizininde kayıtlı adresi kullanın. Doğrudan taleple Posta Kutusu kullanımı mümkündür, Telif Hakkı Ofisine e-posta göndermek için DMCA Atanmış Temsilci Posta Kutusu Feragat Talebini kullanın ve eylemleriniz nedeniyle intikam veya cezalandırılmaktan çekinen ve herkese açık ev adresini kullanmamak için Posta Kutusu kullanması gereken ev tabanlı bir içerik denetçisi olduğunuzu açıklayın.
         dmca_email: Yukarıdaki "Yasal bildirimler için e-posta adresi" için kullanılan e-posta ile aynı olabilir.
         domain: Sağladığınız çevrimiçi hizmetin benzersiz tanımlaması.
         jurisdiction: Faturaları ödeyen kişinin yaşadığı ülkeyi listeleyin. Bir şirket veya başka bir kuruluş ise, kurulduğu ülkeyi ve uygun şekilde şehri, bölgeyi, yöreyi veya eyaleti listeleyin.
@@ -191,20 +194,22 @@ tr:
       account_migration:
         acct: Yeni hesabın kullanıcı kimliği
       account_warning_preset:
-        text: Ön ayarlı metin
+        action_category: Denetim eylemi ata
+        text: Yanıt metni
         title: Başlık
       admin_account_action:
         include_statuses: Bildirilen gönderileri e-postaya dahil et
         send_email_notification: Kullanıcıyı e-posta ile bilgilendir
-        text: Özel uyarı
+        text: Özel yanıt
         type: Eylem
         types:
+          all_actions: Tüm eylemler
           disable: Dondur
           none: Hiç birşey
           sensitive: Hassas
           silence: Sınırla
           suspend: Hesap verilerini askıya alın ve geri alınamaz şekilde silin
-        warning_preset_id: Bir uyarı ön ayarı kullan
+        warning_preset_id: Hazır Yanıt
       announcement:
         all_day: Tüm gün etkinliği
         ends_at: Etkinliğin sonu
@@ -244,12 +249,13 @@ tr:
         setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
         setting_boost_modal: Öne çıkarma görünürlüğünü denetleyin
-        setting_color_scheme: Renk düzeni
+        setting_color_scheme: Mod
         setting_contrast: Kontrast
         setting_default_language: Gönderi dili
         setting_default_privacy: Gönderi görünürlüğü
         setting_default_quote_policy: Kimler alıntılayabilir
         setting_default_sensitive: Medyayı her zaman hassas olarak işaretle
+        setting_default_spoiler_field: İçerik uyarılarını varsayılan olarak kullan
         setting_delete_modal: Bir gönderiyi silmeden beni uyar
         setting_disable_hover_cards: Üstüne geldiğinde profil önizlemesini devre dışı bırak
         setting_disable_swiping: Kaydırma hareketlerini devre dışı bırak
@@ -257,6 +263,8 @@ tr:
         setting_display_media_default: Varsayılan
         setting_display_media_hide_all: Tümünü gizle
         setting_display_media_show_all: Tümünü göster
+        setting_display_own_boosts: Ana akışımda kendi paylaşımlarımı göster
+        setting_display_own_posts: Ana akışımda kendi gönderilerimi göster
         setting_emoji_style: Emoji stili
         setting_expand_spoilers: İçerik uyarılarıyla işaretli gönderileri her zaman genişlet
         setting_hide_network: Sosyal grafiğini gizle
@@ -267,12 +275,13 @@ tr:
         setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
         setting_system_scrollbars_ui: Sistemin varsayılan kaydırma çubuğunu kullan
         setting_theme: Site teması
-        setting_trends: Bugünün gündemini göster
+        setting_theme_color: Tema rengi
         setting_unfollow_modal: Birini takip etmeden önce onay iletişim kutusu göster
         setting_use_blurhash: Gizli medya için renkli gradyanlar göster
         setting_use_pending_items: Yavaş mod
         severity: Önem derecesi
         sign_in_token_attempt: Güvenlik kodu
+        sign_in_token_resend: Güvenlik kodunu tekrar gönder
         title: Başlık
         type: İçeri aktarma türü
         username: Kullanıcı adı
@@ -304,6 +313,7 @@ tr:
         media_cache_retention_period: Medya önbelleği saklama süresi
         min_age: Azami yaş gereksinimi
         peers_api_enabled: API'de keşfedilen sunucuların listesini yayınla
+        postpone_confirmation_emails: Onaylandıktan sonra onay e-postalarını ertele
         profile_directory: Profil dizinini etkinleştir
         registrations_mode: Kim kaydolabilir
         remote_live_feed_access: Uzaktan gönderileri ön plana çıkaran canlı akışlara erişim
@@ -344,13 +354,14 @@ tr:
           sign_up_requires_approval: Kayıtları sınırla
         severity: Kural
       notification_emails:
-        appeal: Birisi, bir moderatör kararına itiraz ediyor
+        appeal: Birisi, bir denetçi kararına itiraz ediyor
         digest: Özet e-postaları gönder
         end_of_support: Mastodon’un mevcut sürümünün destek süresi sona ermek üzere
         favourite: Birisi gönderinizi beğendi
         follow: Biri seni takip etti
         follow_request: Biri seni takip etmek istedi
         mention: Birisi senden bahsetti
+        moderation_suggestions: Otomatik denetim önerileri mevcut
         pending_account: Yeni hesabın incelenmesi gerekiyor
         quote: Birisi senden alıntı yaptı
         reblog: Birisi gönderini boostladı

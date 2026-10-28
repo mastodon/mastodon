@@ -16,12 +16,13 @@ es-AR:
       account_migration:
         acct: Especificá el nombredeusuario@dominio de la cuenta a la que querés mudarte
       account_warning_preset:
+        action_category: Seleccioná la acción de moderación para la cual esta respuesta debería ser usada. Seleccioná «Todas las acciones» si la respuesta aplica a más de una acción.
         text: Podés usar sintaxis de mensajes, como direcciones web, etiquetas y menciones
         title: Opcional. No visible para el destinatario
       admin_account_action:
         include_statuses: El usuario verá qué mensajes causaron la acción de moderación o advertencia
         send_email_notification: El usuario recibirá una explicación de lo que sucedió con su cuenta
-        text_html: Opcional. Podés usar sintaxis de mensajes. Podés <a href="%{path}">agregar preajustes de advertencia</a> para ahorrar tiempo
+        text: Opcional. Podés usar sintaxis de mensajes. Aparecerá debajo de la respuesta predefinida
         type_html: Elegí qué hacer con <strong>%{acct}</strong>
         types:
           disable: Evitar que el usuario use su cuenta, pero no elimina ni oculta sus contenidos.
@@ -29,7 +30,7 @@ es-AR:
           sensitive: Forzar a que todos los adjuntos de medios de este usuario sean marcados como sensibles.
           silence: Evitá que la cuenta pueda enviar mensajes con visibilidad pública, ocultá sus mensajes y notificaciones a personas que no la siguen. Esto cierra todas las denuncias contra esta cuenta.
           suspend: Evitá cualquier interacción desde o hacia esta cuenta y eliminá su contenido. Revertible en 30 días. Esto cierra todas las denuncias contra esta cuenta.
-        warning_preset_id: Opcional. Todavía podés agregar texto personalizado al final del preajuste
+        warning_preset_html: Opcional. Podés <a href="%{path}">administrarlas acá</a>
       announcement:
         all_day: Cuando esté seleccionado, solo se mostrarán las fechas del rango de tiempo
         ends_at: Opcional. El anuncio desaparecerá automáticamente en este momento
@@ -61,6 +62,7 @@ es-AR:
         setting_default_quote_policy_private: Los mensajes solo para seguidores redactados en Mastodon no pueden ser citados por otras cuentas.
         setting_default_quote_policy_unlisted: Cuando otras cuentas te citen, sus publicaciones también se ocultarán de las líneas temporales de tendencias.
         setting_default_sensitive: El contenido de medios sensibles está oculto predeterminadamente y puede ser mostrado con un clic
+        setting_default_spoiler_field: Mantiene el campo de advertencia de contenido abierto dentro del compositor. Podé personalizar el texto en cada mensaje.
         setting_display_media_default: Advertir antes de mostrar medios marcados como sensibles
         setting_display_media_hide_all: Advertir antes de mostrar todos los medios
         setting_display_media_show_all: Mostrar todos los medios sin advertir, incluyendo los medios marcados como sensibles
@@ -98,6 +100,7 @@ es-AR:
         media_cache_retention_period: Los archivos de medios de mensajes publicados por usuarios remotos se almacenan en la memoria caché en tu servidor. Cuando se establece un valor positivo, los medios se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si es que el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlace consultan a sitios web de terceros, se recomienda establecer este valor a, al menos, 14 días, o las tarjetas de previsualización de enlaces no se actualizarán a pedido antes de ese momento.
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Acá no se incluye ningún dato sobre si federás con un servidor determinado, solo que tu servidor lo conoce. Esto es usado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
+        postpone_confirmation_emails: Cuando esta configuración está habilitada, los correos electrónicos de confirmación de cuentas pendientes de aprobación solo se envían una vez que esas cuentas son aprobadas. Esto puede ofrecer en una experiencia de registro más pobre para los usuarios, ya que todavía necesitarán confirmar su dirección de correo electrónico a tiempo después de recibir el correo electrónico, pero ya no tendrán control sobre cuándo se envía. Además, esto puede generar una mayor carga de trabajo para los moderadores, ya que Mastodon no será capaz de filtrar cuentas pendientes con una dirección de correo electrónico no válida antes de que sean aprobadas.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado a que su cuenta pueda ser descubierta.
         require_invite_text: Cuando registros aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
         site_contact_email: Cómo la gente puede estar en contacto con vos para consultas legales o de ayuda.
@@ -191,20 +194,22 @@ es-AR:
       account_migration:
         acct: Alias de la cuenta nueva
       account_warning_preset:
-        text: Texto predefinido
+        action_category: Asignar acción de moderación
+        text: Texto de la respuesta
         title: Título
       admin_account_action:
         include_statuses: Incluir en el correo electrónico los mensajes denunciados
         send_email_notification: Notificar al usuario por correo electrónico
-        text: Advertencia personalizada
+        text: Respuesta personalizada
         type: Acción
         types:
+          all_actions: Todas las acciones
           disable: Congelar
           none: Enviar una advertencia
           sensitive: Marcar como sensible
           silence: Limitar
           suspend: Suspender
-        warning_preset_id: Usar una advertencia preestablecida
+        warning_preset_id: Respuesta predefinida
       announcement:
         all_day: Evento de todo el día
         ends_at: Fin del evento
@@ -244,12 +249,13 @@ es-AR:
         setting_always_send_emails: Siempre enviar notificaciones por correo electrónico
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Control de visibilidad de adhesiones
-        setting_color_scheme: Esquema de colores
+        setting_color_scheme: Modo
         setting_contrast: Contraste
         setting_default_language: Idioma de tus mensajes
         setting_default_privacy: Visibilidad del mensaje
         setting_default_quote_policy: Quién puede citar
         setting_default_sensitive: Siempre marcar medios como sensibles
+        setting_default_spoiler_field: Usar advertencias de contenido predeterminadamente
         setting_delete_modal: Advertirme antes de eliminar un mensaje
         setting_disable_hover_cards: Deshabilitar previsualización del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
@@ -257,6 +263,8 @@ es-AR:
         setting_display_media_default: Predeterminada
         setting_display_media_hide_all: Ocultar todo
         setting_display_media_show_all: Mostrar todo
+        setting_display_own_boosts: Mostrar mis propias adhesiones en mi línea temporal principal
+        setting_display_own_posts: Mostrar mis propios mensajes en mi línea temporal principal
         setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Siempre expandir los mensajes marcados con advertencias de contenido
         setting_hide_network: Ocultá tu gráfica social
@@ -267,7 +275,7 @@ es-AR:
         setting_system_font_ui: Utilizar la tipografía predeterminada del sistema
         setting_system_scrollbars_ui: Usar la barra de desplazamiento predeterminada del sistema operativo
         setting_theme: Tema del sitio
-        setting_trends: Mostrar las tendencias de hoy
+        setting_theme_color: Color temático
         setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de seguir a una cuenta
         setting_use_blurhash: Mostrar gradientes coloridos para medios ocultos
         setting_use_pending_items: Modo lento
@@ -305,6 +313,7 @@ es-AR:
         media_cache_retention_period: Período de retención de la caché de medios
         min_age: Edad mínima requerida
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
+        postpone_confirmation_emails: Posponer correos electrónicos de confirmación después de la aprobación
         profile_directory: Habilitar directorio de perfiles
         registrations_mode: Quién puede registrarse
         remote_live_feed_access: Acceso a líneas temporales en vivo, destacando mensajes remotos
@@ -352,6 +361,7 @@ es-AR:
         follow: Una cuenta te sigue
         follow_request: Una cuenta solicita seguirte
         mention: Una cuenta te menciona
+        moderation_suggestions: Hay disponibles sugerencias de moderación automáticas
         pending_account: Una nueva cuenta necesita revisión
         quote: Alguien te citó
         reblog: Una cuenta adhiere a tu mensaje

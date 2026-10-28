@@ -35,6 +35,11 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
     dialog.showModal();
 
     return () => {
+      if (!('requestClose' in dialog)) {
+        // Some older browsers only support `close` on HTMLDialogElement
+        (dialog as HTMLDialogElement).close();
+        return;
+      }
       dialog.requestClose();
     };
   }, []);

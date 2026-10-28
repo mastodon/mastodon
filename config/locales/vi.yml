@@ -90,6 +90,7 @@ vi:
       enable: Mở lại
       enable_sign_in_token: Bật yêu cầu nhập mã bảo mật
       enable_sign_in_token_auth: Bật xác minh bằng email
+      enable_unconfirmed: Cho phép xác minh email
       enabled: Đã duyệt
       enabled_msg: Đã kích hoạt lại tài khoản %{username} thành công
       follow_recommendations:
@@ -287,6 +288,7 @@ vi:
         create_domain_block_html: "%{name} đã chặn máy chủ %{target}"
         create_email_domain_block_html: "%{name} đã chặn tên miền email %{target}"
         create_ip_block_html: "%{name} đã chặn IP %{target}"
+        create_moderation_subscription_html: "%{name} đã tạo kiểm duyệt đăng ký %{target}"
         create_relay_html: "%{name} đã tạo relay %{target}"
         create_unavailable_domain_html: "%{name} đã bỏ liên hợp với máy chủ %{target}"
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
@@ -302,6 +304,7 @@ vi:
         destroy_email_domain_block_html: "%{name} đã bỏ chặn email %{target}"
         destroy_instance_html: "%{name} đã thanh trừng máy chủ %{target}"
         destroy_ip_block_html: "%{name} đã bỏ chặn IP %{target}"
+        destroy_moderation_subscription_html: "%{name} đã xóa kiểm duyệt đăng ký %{target}"
         destroy_relay_html: "%{name} đã xóa relay %{target}"
         destroy_status_html: "%{name} đã xóa tút của %{target}"
         destroy_unavailable_domain_html: "%{name} tiếp tục liên hợp với máy chủ %{target}"
@@ -350,10 +353,17 @@ vi:
         update_user_role_html: "%{name} đã cập nhật vai trò %{target}"
         update_username_block_html: "%{name} đã cập nhật quy tắc cho tên người dùng chứa %{target}"
         usable_tag_html: có thể dùng;
+      automated_actions:
+        create_domain_allow_html: Tự động cho phép các liên kết với tên miền %{target}
+        create_domain_block_html: Tự động chặn tên miền %{target}
+        destroy_domain_allow_html: Tự động từ chối các liên kết với tên miền %{target}
+        destroy_domain_block_html: Tự động bỏ chặn tên miền %{target}
+        update_domain_block_html: Tự động cập nhật chặn tên miền với %{target}
       deleted_account: tài khoản đã xóa
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động
       filter_by_user: Theo người
+      suggested_by_html: Hành động gợi ý bởi %{subscription}
       title: Nhật ký kiểm duyệt
       unavailable_instance: "(tên máy chủ không khả dụng)"
     announcements:
@@ -464,6 +474,10 @@ vi:
       undo: Xóa khỏi danh sách trắng
     domain_blocks:
       add_new: Chặn máy chủ
+      confirm_downgrade:
+        cancel: Hủy bỏ
+        confirm: Giáng cấp
+        title: Xác nhận giáng cấp tên miền %{domain}
       confirm_suspension:
         cancel: Hủy bỏ
         confirm: Vô hiệu hóa
@@ -762,6 +776,28 @@ vi:
       reset: Đặt lại
       search: Tìm kiếm
       title: Những IP bị chặn
+    moderation_subscriptions:
+      add_new: Tạo gói đăng ký mới
+      advisory_action: 'Hành động: %{action}'
+      advisory_actions:
+        accept: cho phép
+      apply_conditions:
+        always: Luôn luôn
+        never: Không bao giờ
+      delete: Xóa bỏ
+      last_synced_at: Đồng bộ lần cuối lúc
+      list_actions:
+        accept: Danh sách cho phép
+        default: Hỗn hợp (Cho phép & Từ chối)
+        reject: Danh sách chặn
+      list_actions_short:
+        accept: Danh sách cho phép
+        default: Hỗn hợp
+        reject: Danh sách chặn
+      name: Gói đăng ký
+      new:
+        create: Đăng ký
+      priority: Ưu tiên
     relationships:
       title: Mối quan hệ của %{acct}
     relays:
@@ -953,6 +989,29 @@ vi:
       translation: Dịch
       translations: Bản dịch
       translations_explanation: Bạn có thể thêm bản dịch cho các nội quy. Nội dung mặc định sẽ được hiển thị nếu không có bản dịch nào. Luôn đảm bảo bất kỳ bản dịch nào được cung cấp đều đồng bộ với nội dung mặc định.
+    server_checks:
+      categories:
+        completed:
+          title: Đã xong
+        critical:
+          title: Nghiêm trọng
+        error:
+          title: Lỗi
+        ignored:
+          title: Đã bỏ qua
+        suggestion:
+          title: Đề xuất
+        unprocessed:
+          title: Chưa xử lí
+        warning:
+          title: Cảnh báo
+      checks:
+        database_schema:
+          error:
+            title: Đã xảy ra lỗi khi kiểm tra lược đồ cơ sở dữ liệu.
+          ok:
+            title: Hiện không có yêu cầu di chuyển cơ sở dữ liệu nào đang chờ xử lý.
+      title: Sức khỏe máy chủ
     settings:
       about:
         manage_rules: Sửa nội quy máy chủ
@@ -1297,9 +1356,17 @@ vi:
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ
-      edit_preset: Sửa mẫu có sẵn
-      empty: Bạn chưa thêm mẫu cảnh cáo nào cả.
-      title: Cảnh báo cài sẵn
+      dropdown:
+        all_actions: Mọi hành động
+        disable: Khóa
+        none: Cảnh báo
+        sensitive: Nhạy cảm
+        silence: Hạn chế
+        suspend: Vô hiệu hóa
+      edit_preset: Sửa mẫu phản hồi
+      empty: Bạn chưa thêm mẫu phản hồi nào cả.
+      navigation_title: Mẫu phản hồi
+      title: Mẫu phản hồi kiểm duyệt
     webhooks:
       add_new: Thêm endpoint
       delete: Xóa bỏ
@@ -1350,6 +1417,9 @@ vi:
     new_pending_account:
       body: Thông tin chi tiết của tài khoản mới ở phía dưới. Bạn có thể phê duyệt hoặc từ chối người này.
       subject: Tài khoản chờ xét duyệt trên %{instance} (%{username})
+    new_pending_accounts:
+      body: Các tài khoản mới đã được tạo trên %{instance}. Do máy chủ của bạn được cấu hình để trì hoãn việc gửi email xác nhận cho đến khi có sự phê duyệt từ người kiểm duyệt, nên các tài khoản này vẫn chưa có cơ hội xác thực địa chỉ email của mình. Thông tin chi tiết về các tài khoản mới này được liệt kê dưới đây. Bạn có thể phê duyệt hoặc từ chối các yêu cầu đăng ký này.
+      subject: Những tài khoản mới cần phê duyệt trên %{instance}
     new_report:
       body: "%{reporter} vừa báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
@@ -1378,7 +1448,6 @@ vi:
     animations_and_accessibility: Hiệu ứng
     boosting_preferences: Đăng lại
     boosting_preferences_info_html: "<strong>Mẹo:</strong> Bất kể cài đặt, <kbd>Shift</kbd> + <kbd>Click</kbd> trên biểu tượng %{icon} Đăng lại sẽ lập tức đăng lại."
-    discovery: Khám phá
     localization:
       body: Mastodon được dịch bởi tình nguyện viên.
       guide_link: https://crowdin.com/project/mastodon
@@ -1458,11 +1527,16 @@ vi:
     security: Bảo mật
     set_new_password: Đặt mật khẩu mới
     setup:
+      correct_email: Địa chỉ chính xác
       email_below_hint_html: Kiểm tra hộp thư rác hoặc yêu cầu gửi lại. Bạn có thể sửa địa chỉ email của mình nếu sai.
       email_settings_hint_html: Nhấn vào link được gửi đến %{email} để bắt đầu dùng Mastodon. Chúng tôi đợi bạn.
+      email_settings_hint_wait_html: Ứng dụng của bạn đang chờ duyệt. Bạn sẽ nhận được email đến %{email}. Khi đó, nhấn vào liên kết để sử dụng Mastodon. Chúng tôi đợi bạn.
       link_not_received: Không nhận được mã?
       new_confirmation_instructions_sent: Bạn sẽ nhận được một email mới với liên kết xác minh sau vài phút!
       title: Kiểm tra email của bạn
+      title_wait: Xem hộp thư đến của bạn
+      wrong_email: Sai địa chỉ email?
+      wrong_email_below_hint_html: Đừng lo! Bạn có thể sửa lại địa chỉ email bên dưới.
     sign_in:
       preamble_html: Đăng nhập bằng tài khoản <strong>%{domain}</strong>. Nếu đăng ký trên một máy chủ khác, bạn sẽ không thể đăng nhập tại đây.
       title: Đăng nhập %{domain}
@@ -1499,6 +1573,12 @@ vi:
     auto: Tự động
     dark: Tối
     light: Sáng
+  color_theme:
+    cyan: Xanh lơ
+    indigo: Tím
+    lime: Vàng chanh
+    orange: Cam
+    pink: Hồng
   contrast:
     auto: Tự động
     high: Cao
@@ -1547,6 +1627,7 @@ vi:
       action_taken: Hành động áp dụng
       appeal: Khiếu nại
       appeal_approved: Khiếu nại đã được chấp nhận và cảnh cáo không còn giá trị
+      appeal_handled_by: Kháng cáo được xử lý bởi
       appeal_rejected: Khiếu nại bị từ chối
       appeal_submitted_at: Đã gửi khiếu nại
       appealed_msg: Khiếu nại của bạn đã được gửi đi. Nếu nó được chấp nhận, bạn sẽ nhận được thông báo.

@@ -569,11 +569,10 @@ body,
 }
 
 kbd {
-  font-family: Courier, monospace;
-  background-color: var(--color-bg-brand-softest);
-  padding: 4px;
-  padding-bottom: 2px;
-  border-radius: 5px;
+  font-family: var(--font-monospace), Courier, monospace;
+  background-color: var(--color-bg-highlight);
+  padding: var(--space-1);
+  border-radius: var(--radius-2);
 }
 
 .filters {
@@ -2508,6 +2507,141 @@ a.sparkline {
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+}
+
+// TODO: Temporary hacks for moderation subscriptions interface, rework after design pass
+
+.information-badge {
+  &.accept {
+    color: var(--color-text-success);
+    background-color: var(--color-bg-success-softest);
+    border-color: var(--color-border-success-soft);
+  }
+
+  &.reject {
+    color: var(--color-text-error);
+    background-color: var(--color-bg-error-softest);
+    border-color: var(--color-border-error-soft);
+  }
+
+  &.limit {
+    color: var(--color-text-warning);
+    background-color: var(--color-bg-warning-softest);
+    border-color: var(--color-border-warning-soft);
+  }
+}
+
+.permissions-list__item__text__type a {
+  color: inherit;
+}
+
+.moderation_suggestion-retract {
+  color: inherit;
+}
+
+.moderation_suggestion-limit {
+  color: var(--color-text-warning);
+}
+
+.moderation_suggestion-reject {
+  color: var(--color-text-error);
+}
+
+.permissions-list__item .table-action-link {
+  padding: 0;
+}
+
+h3.server-checks-category {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  padding-top: 24px;
+  margin-bottom: 12px;
+}
+
+.server-check__container {
+  display: flex;
+  color: var(--color-text-primary);
+  flex-flow: row wrap;
+  gap: 8px;
+  padding-top: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-primary);
+  margin-bottom: 7px;
+
+  &.ignored {
+    color: var(--color-text-tertiary);
+
+    .button-secondary {
+      border-color: var(--color-text-disabled);
+      color: var(--color-text-disabled);
+    }
+
+    .button {
+      &:not(.button-secondary) {
+        background-color: var(--color-bg-disabled);
+      }
+    }
+  }
+
+  .server-check {
+    &__info {
+      flex: 3 50%;
+
+      &__lead,
+      &__date,
+      &__title {
+        font-size: 15px;
+        line-height: 20px;
+      }
+
+      &__title {
+        font-weight: 700;
+      }
+
+      &__date {
+        font-size: 13px;
+      }
+    }
+
+    &__icon {
+      flex: 0 6%;
+      align-self: center;
+      display: inline-flex;
+      place-items: center center;
+
+      & > .icon {
+        flex: 1 100%;
+        width: 24px;
+        height: 24px;
+      }
+
+      &.critical,
+      &.error {
+        color: var(--color-text-error);
+      }
+
+      &.warning,
+      &.unprocessed {
+        color: var(--color-text-warning);
+      }
+
+      &.completed {
+        color: var(--color-text-success);
+      }
+
+      &.ignored {
+        color: var(--color-text-disabled);
+      }
+    }
+
+    &__ignore,
+    &__setup {
+      flex: 0 12.5%;
+      align-self: center;
     }
   }
 }

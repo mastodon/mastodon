@@ -8,6 +8,14 @@ fr-CA:
     hosted_on: Serveur Mastodon hébergé sur %{domain}
     title: À propos
   accounts:
+    api_errors:
+      2fa_required: Votre compte ne peut pas être utilisé sans avoir configuré l'authentification à deux facteurs
+      account_deleted: Votre compte a été supprimé
+      account_suspended: Votre compte a été suspendu
+      login_disabled: Votre compte est actuellement désactivé
+      memorial: Votre compte a été transformé en mémorial
+      pending_approval: Votre compte est en attente d'approbation de l'équipe de modération
+      pending_confirmation: Il manque une adresse de courriel vérifiée à votre compte
     errors:
       cannot_be_added_to_collections: Ce compte ne peut pas être ajouté aux collections.
     followers:
@@ -69,6 +77,7 @@ fr-CA:
       demote: Rétrograder
       destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
       disable: Geler
+      disable_sign_in_token: Désactiver temporairement le contrôle par code de sécurité
       disable_sign_in_token_auth: Désactiver le jeton d'authentification par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
       disabled: Gelé
@@ -82,7 +91,9 @@ fr-CA:
       email: Courriel
       email_status: État du courriel
       enable: Dégeler
+      enable_sign_in_token: Activer le contrôle par code de sécurité
       enable_sign_in_token_auth: Activer le jeton d'authentification par courriel
+      enable_unconfirmed: Autoriser le courriel de confirmation
       enabled: Activé
       enabled_msg: Le compte de %{username} a été dégelé avec succès
       follow_recommendations:
@@ -281,6 +292,7 @@ fr-CA:
         create_domain_block_html: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block_html: "%{name} a bloqué le domaine de courriel %{target}"
         create_ip_block_html: "%{name} a créé une règle pour l'IP %{target}"
+        create_moderation_subscription_html: "%{name} a créé l'abonnement de modération %{target}"
         create_relay_html: "%{name} a créé un relais %{target}"
         create_unavailable_domain_html: "%{name} a arrêté la livraison vers le domaine %{target}"
         create_user_role_html: "%{name} a créé le rôle %{target}"
@@ -296,6 +308,7 @@ fr-CA:
         destroy_email_domain_block_html: "%{name} a débloqué le domaine de courriel %{target}"
         destroy_instance_html: "%{name} a purgé le domaine %{target}"
         destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
+        destroy_moderation_subscription_html: "%{name} a supprimé l'abonnement de modération %{target}"
         destroy_relay_html: "%{name} a supprimé le relais %{target}"
         destroy_status_html: "%{name} a supprimé le message de %{target}"
         destroy_unavailable_domain_html: "%{name} a repris la livraison au domaine %{target}"
@@ -344,10 +357,18 @@ fr-CA:
         update_user_role_html: "%{name} a changé le rôle %{target}"
         update_username_block_html: "%{name} a mis à jour une règle pour les noms d'utilisateurs contenant %{target}"
         usable_tag_html: peut être utilisé ;
+      automated_actions:
+        create_domain_allow_html: Fédération autorisée automatiquement avec le domaine %{target}
+        create_domain_block_html: Blocage automatique du domaine %{target}
+        destroy_domain_allow_html: Fédération refusée automatiquement avec le domaine %{target}
+        destroy_domain_block_html: Déblocage automatique du domaine %{target}
+        update_domain_block_html: Mise à jour automatique du blocage de domaine pour %{target}
       deleted_account: compte supprimé
+      deleted_suggestion: un abonnement de modération supprimé
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
       filter_by_user: Filtrer par utilisateur·ice
+      suggested_by_html: Action suggérée par %{subscription}
       title: Journal d’audit
       unavailable_instance: "(nom de domaine indisponible)"
     announcements:
@@ -463,6 +484,11 @@ fr-CA:
       undo: Supprimer de la liste blanche
     domain_blocks:
       add_new: Bloquer un nouveau domaine
+      confirm_downgrade:
+        cancel: Annuler
+        confirm: Rétrograder
+        preamble_html: Vous êtes sur le point de rétrograder le blocage existant sur <strong>%{domain}</strong> et ses sous-domaines.
+        title: Confirmer la rétrogradation du blocage de domaine pour %{domain}
       confirm_suspension:
         cancel: Annuler
         confirm: Suspendre
@@ -662,6 +688,8 @@ fr-CA:
       title: Recommandations d'abonnement
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
+      advisories:
+        title: Alertes des abonnements de modération
       audit_log:
         title: Journaux d'audit récents
         view_all: Voir les journaux d'audit complets
@@ -685,6 +713,7 @@ fr-CA:
         comment: Note interne
         description_html: Vous pouvez définir des politiques de contenu qui seront appliquées à tous les comptes de ce domaine et à tous ses sous-domaines.
         limited_federation_mode_description_html: Vous pouvez choisir d'autoriser la fédération avec ce domaine.
+        moderation_subscription: Abonnement de modération
         policies:
           reject_media: Rejeter les médias
           reject_reports: Rejeter les signalements
@@ -765,6 +794,66 @@ fr-CA:
       reset: Réinitialiser
       search: Rechercher
       title: Règles IP
+    moderation_subscriptions:
+      add_new: Ajouter un abonnement
+      advisory_action: 'Action : %{action}'
+      advisory_actions:
+        accept: autoriser
+        limit: masquer
+        reject: suspendre
+      apply_automatically: Appliquer automatiquement les alertes
+      apply_conditions:
+        always: Toujours
+        never: Jamais
+        safely: Uniquement si cela ne brise aucune relation
+      apply_conditions_hint:
+        always: Toujours appliquer automatiquement les actions recommandées. Utilisez cette option uniquement pour les listes de confiance.
+        never: Ne jamais appliquer automatiquement les actions recommandées. Toujours générer une suggestion à la place.
+        safely: Appliquer les actions recommandées à moins qu'elles ne rompent les relations de suivi existantes avec des comptes locaux. Dans de tels cas, une suggestion sera générée.
+      delete: Supprimer
+      destroyed_msg: Abonnement de modération supprimé avec succès
+      empty: Aucun abonnement de modération pour le moment.
+      last_synced_at: Dernière synchronisation le
+      list_action: Type d'abonnement
+      list_actions:
+        accept: Liste d’autorisation
+        default: Mixte (autorisation et blocage)
+        reject: Liste de blocage
+      list_actions_hint:
+        accept: Les éléments sans action spécifiée seront traités comme autorisés. Les blocages seront ignorés.
+        default: Les éléments sans action spécifiée seront traités comme des blocages. Les blocages et les autorisations seront tous les deux traités comme tels.
+        reject: Les éléments sans action spécifiée seront traités comme des blocages. Les autorisations seront ignorées.
+      list_actions_short:
+        accept: Liste d’autorisation
+        default: Mixte
+        reject: Liste de blocage
+      name: Nom
+      new:
+        create: S’abonner
+        title: Nouvel abonnement de modération
+      priority: Priorité
+      tabs:
+        logs: Journaux
+        subscriptions: Abonnements
+        suggestions: Suggestions 
+      title: Abonnements de modération
+      type: Type
+      types:
+        csv_list: Liste CSV
+      url: URL
+    moderation_subscriptions_logs:
+      title: Journaux des abonnements de modération
+    moderation_suggestions:
+      actions:
+        accept: Autoriser
+        limit: Masquer
+        reject: Suspendre
+        retract: Retirer la politique actuelle
+      applied_msg: Suggestion appliquée avec succès pour %{target_key}
+      apply_accept: Autoriser
+      apply_limit: Masquer
+      apply_reject: Suspendre
+      apply_retract: Retirer
     relationships:
       title: Relations de %{acct}
     relays:
@@ -959,6 +1048,119 @@ fr-CA:
       translation: Traduction
       translations: Traductions
       translations_explanation: Vous pouvez éventuellement ajouter des traductions pour les règles. La valeur par défaut sera affichée si aucune version traduite n'est disponible. Veuillez toujours vous assurer que toute traduction fournie est synchronisée avec la valeur par défaut.
+    server_checks:
+      categories:
+        completed:
+          title: Complétées
+        critical:
+          title: Critiques
+        error:
+          title: Erreurs
+        ignored:
+          title: Ignorées
+        suggestion:
+          title: Suggestions 
+        unprocessed:
+          title: Non traitée
+        warning:
+          title: Avertissements
+      checks:
+        database_schema:
+          error:
+            title: Une erreur s'est produite lors de la vérification du schéma de la base de données
+          ok:
+            title: Aucune migration de la base de données en attente
+          pending:
+            lead_html: Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
+            title: Des migrations de la base de données sont en attente
+          running:
+            title: Votre serveur vérifie le schéma de la base de données
+          unprocessed:
+            title: Votre serveur n'a pas encore vérifié le schéma de la base de données
+        elastic_search:
+          error:
+            title: Une erreur s'est produite lors de la vérification de la configuration d'Elasticsearch
+          ok:
+            title: Elasticsearch est configuré sans problèmes
+          pending:
+            lead:
+              analysis_index_mismatch_html: Les paramètres de l'analyseur d'index d'Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Le cluster Elasticsearch n'est pas en bon état (statut rouge), les fonctionnalités de recherche ne sont pas disponibles
+              cluster_health_yellow_html: Le cluster Elasticsearch n'est pas en bon état (statut jaune), vous pouvez en chercher la cause
+              index_mismatch_html: Les mappings des index Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Votre cluster Elasticsearch a plus d’un nœud, mais Mastodon n’a pas été configuré pour les utiliser
+              preset_single_node_html: Votre cluster Elasticsearch n’a qu’un seul nœud, <code>ES_PRESET</code> devrait avoir la valeur <code>single_node_cluster</code>
+              reset_chewy_html: L’index système d'Elasticsearch n’est plus à jour à cause d’un changement de paramètre. Veuillez lancer <code>tootctl search deploy --reset-chewy</code> pour le mettre à jour
+              running_check_html: Impossible de se connecter à Elasticsearch. Veuillez vérifier qu’il est en cours d’exécution ou désactiver la recherche en plein texte
+              version_check_html: Elasticsearch %{running_version} est en cours d’exécution alors que la version %{required_version} est requise
+            title: Il y a des problèmes avec Elasticsearch
+          running:
+            title: Le serveur vérifie la configuration d'Elasticsearch
+          unprocessed:
+            title: Le serveur n'a pas encore vérifié la configuration d'Elasticsearch
+        media_privacy:
+          error:
+            title: Une erreur s'est produite lors de la vérification de la confidentialité des médias de votre serveur
+          ok:
+            title: La confidentialité des médias de votre serveur est sécurisée
+          pending:
+            lead:
+              upload_check_privacy_error_html: Votre serveur web est mal configuré
+              upload_check_privacy_error_object_storage_html: Votre stockage d'objets est mal configuré
+            title: La confidentialité de vos utilisateur·rice·s est en danger
+          running:
+            title: Le serveur vérifie son statut de confidentialité
+          unprocessed:
+            title: Le serveur n'a pas encore vérifié son statut de confidentialité
+        rules:
+          error:
+            title: Une erreur s'est produite lors de la vérification des règles de votre serveur
+          ok:
+            title: Les règles de votre serveur sont définies
+          pending:
+            lead_html: Votre serveur n'a pas de règles publiées. Des règles claires aident à la modération et définissent les attentes
+            title: Configurer les règles du serveur
+          running:
+            title: Le serveur vérifie vos règles
+          unprocessed:
+            title: Le serveur n'a pas encore vérifié s'il y a des règles
+        sidekiq_process:
+          error:
+            title: Une erreur s'est produite lors de la vérification de la configuration de Sidekiq
+          ok:
+            title: Sidekiq est configuré sans problèmes
+          pending:
+            lead_html: Aucun processus Sidekiq en cours d'exécution pour les files d'attente %{missing_queues_str}
+            title: Veuillez vérifier votre configuration de Sidekiq
+          running:
+            title: Le serveur vérifie la configuration de Sidekiq
+          unprocessed:
+            title: Le serveur n'a pas encore vérifié la configuration de Sidekiq
+        software_version:
+          error:
+            title: Une erreur s'est produite lors de la vérification des mises à jour du logiciel
+          ok:
+            title: Votre serveur Mastodon est à jour
+          pending:
+            lead:
+              patch_html: Une mise à jour de Mastodon est disponible
+              regular_html: Une nouvelle version de Mastodon est disponible
+              urgent_html: Une mise à jour critique de Mastodon est disponible, veuillez mettre à jour le plus rapidement possible
+            title: Mettre à jour votre serveur Mastodon
+          running:
+            title: Le serveur vérifie s'il y a une mise à jour du logiciel en attente
+          unprocessed:
+            title: Le serveur n'a pas encore vérifié les mises à jour logicielles
+      ignore:
+        label: Ignorer
+      lead: Recommandations pour assurer la sécurité de votre serveur, et le garder accueillant et efficace.
+      recommendations:
+        title: Recommandations
+      restore:
+        label: Restaurer
+      setup:
+        label: Configurer
+      title: État du serveur
     settings:
       about:
         manage_rules: Gérer les règles du serveur
@@ -997,13 +1199,20 @@ fr-CA:
         disabled: À personne
         users: Aux utilisateur·rice·s connecté·e·s localement
       external:
+        directory: Annuaire des serveurs
+        opt_in_server_directory:
+          description: Permettre à votre serveur d'être répertorié dans des annuaires de serveurs, comme celui présent sur https://joinmastodon.org/servers.
+          title: Autoriser votre serveur à apparaître dans des annuaires de serveurs
+        opt_in_server_recommendation:
+          description: Permettre à votre serveur d'être recommandé lors de la création d'un compte depuis les applications telles que les clients Mastodon officiels.
+          title: Autoriser la recommandation de votre serveur
         preamble: Contrôlez les informations partagées par votre serveur avec d'autres services et la manière dont votre serveur peut être découvert.
         privacy: Vie privée
         publish_statistics: Publier les statistiques
         title: Découverte externe
       feed_access:
         modes:
-          authenticated: Utilisateurs authentifiés uniquement
+          authenticated: Utilisateur·rice·s authentifié·e·s uniquement
           disabled: Nécessite un rôle spécifique
           public: Tout le monde
       landing_page:
@@ -1302,9 +1511,17 @@ fr-CA:
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
-      edit_preset: Éditer les avertissements prédéfinis
-      empty: Vous n'avez pas encore créé de paramètres prédéfinis pour les avertissements.
-      title: Préréglages d'avertissement
+      dropdown:
+        all_actions: Toutes les actions
+        disable: Désactiver
+        none: Avertissement
+        sensitive: Sensible
+        silence: Masquer
+        suspend: Suspendre
+      edit_preset: Modifier la réponse standard
+      empty: Vous n'avez pas encore défini de réponses standards.
+      navigation_title: Réponses standards
+      title: Réponses standards de modération
     webhooks:
       add_new: Ajouter un point de terminaison
       delete: Supprimer
@@ -1353,9 +1570,15 @@ fr-CA:
     new_critical_software_updates:
       body: Des nouvelles mises à jour critiques de Mastodon ont été publiées, vous avez sans doute envie de les appliquer dès que possible !
       subject: Des mises à jour critiques de Mastodon sont disponibles pour %{instance} !
+    new_moderation_suggestions:
+      body: Les listes de modération auxquelles votre serveur est abonné ont publié de nouvelles suggestions.
+      subject: Nouvelles suggestions de modération disponible sur %{instance} !
     new_pending_account:
       body: Les détails du nouveau compte se trouvent ci-dessous. Vous pouvez approuver ou rejeter cette demande.
       subject: Nouveau compte à examiner sur %{instance} (%{username})
+    new_pending_accounts:
+      body: De nouveaux comptes ont été créés sur %{instance}. Comme votre serveur est configuré pour envoyer les courriels de confirmation après approbation par l'équipe de modération, ces comptes n'ont pas pu vérifier leur adresse de courriel. Vous trouverez ci-dessous le détail de ces comptes. Vous pouvez accepter ou refuser ces demandes.
+      subject: Nouveaux comptes à examiner sur %{instance}
     new_report:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
@@ -1384,7 +1607,6 @@ fr-CA:
     animations_and_accessibility: Animations et accessibilité
     boosting_preferences: Préférences de partage
     boosting_preferences_info_html: "<strong>Astuce :</strong> indépendamment des paramètres, <kbd>Maj</kbd> + <kbd>Clic</kbd> sur l'icône %{icon} Boost va immédiatement partager."
-    discovery: Découverte
     localization:
       body: Mastodon est traduit par des volontaires.
       guide_link: https://fr.crowdin.com/project/mastodon
@@ -1464,17 +1686,22 @@ fr-CA:
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
     setup:
+      correct_email: Corriger l'adresse
       email_below_hint_html: Consultez votre dossier de courriels indésirables ou demandez-en un autre. Vous pouvez corriger votre adresse de courriel si elle est incorrecte.
       email_settings_hint_html: Cliquer sur le lien envoyé à %{email} pour commencer à utiliser Mastodon. Nous vous attendons ici.
+      email_settings_hint_wait_html: Votre inscription est en cours de validation. Vous devriez recevoir un courriel à l'adresse %{email}. Cliquez alors sur le lien pour commencer à utiliser Mastodon. Nous vous attendons.
       link_not_received: Vous n'avez pas reçu de lien?
       new_confirmation_instructions_sent: Vous allez recevoir un nouveau courriel avec le lien de confirmation dans quelques minutes !
       title: Vérifiez votre boîte de réception
+      title_wait: Surveillez votre boîte de réception
+      wrong_email: Mauvaise adresse courriel ?
+      wrong_email_below_hint_html: Pas de panique ! Vous pouvez corriger votre adresse courriel ci-dessous.
     sign_in:
       preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
       title: Se connecter à %{domain}
     sign_up:
       manual_review: Les inscriptions sur %{domain} passent par une revue manuelle de nos modérateurs. Pour les aider, écrivez un peu plus sur vous et pourquoi vous souhaitez créer un compte sur %{domain}.
-      preamble: Avec un compte sur ce serveur Mastodon, vous pourrez suivre n'importe quelle autre personne du fediverse, quel que soit l'endroit où son compte est hébergé.
+      preamble: Avec un compte sur ce serveur Mastodon, vous pourrez suivre n'importe quelle autre personne du Fédivers, quel que soit l'endroit où son compte est hébergé.
       title: Mettons les choses en place pour %{domain}.
     status:
       account_status: État du compte
@@ -1505,6 +1732,12 @@ fr-CA:
     auto: Automatique
     dark: Sombre
     light: Clair
+  color_theme:
+    cyan: Cyan
+    indigo: Indigo
+    lime: Citron vert
+    orange: Orange
+    pink: Rose
   contrast:
     auto: Automatique
     high: Élevé
@@ -1553,6 +1786,7 @@ fr-CA:
       action_taken: Mesure prise
       appeal: Faire appel
       appeal_approved: Cette sanction a été annulée en appel et n'est plus valide
+      appeal_handled_by: Appel traité par
       appeal_rejected: L'appel a été rejeté
       appeal_submitted_at: Appel soumis le
       appealed_msg: Votre demande d'appel a été soumise. Si elle est approuvée, vous en serez informé·e.
@@ -1619,7 +1853,7 @@ fr-CA:
     status: État
     subscribers: Abonné·e·s
   emoji_styles:
-    auto: Auto
+    auto: Automatique
     native: Natif
     twemoji: Twemoji
   errors:
@@ -2343,6 +2577,14 @@ fr-CA:
       further_actions_html: Si ce n'était pas vous, nous vous recommandons %{action} immédiatement car il pourrait être compromis.
       subject: Échec de l'authentification à double facteur
       title: Échec de l'authentification à double facteur
+    sign_in_token:
+      change_password: changer votre mot de passe
+      details: 'Voici les détails de la tentative :'
+      explanation: 'Nous avons détecté une tentative de connexion à votre compte après une longue période d''inactivité. Si vous en êtes à l''origine, veuillez entrer le code ci-dessous sur la page de connexion :'
+      further_actions: 'S’il ne s’agit pas de vous, veuillez changer votre mot de passe et activer l’authentification à deux facteurs sur votre compte. Vous pouvez le faire ici :'
+      further_actions_html: Si ce n’était pas vous, nous vous recommandons de %{action} immédiatement et d’activer l’authentification à deux facteurs afin de garder votre compte sécurisé.
+      subject: Veuillez confirmer la tentative de connexion
+      title: Tentative de connexion
     suspicious_sign_in:
       change_password: changer votre mot de passe
       details: 'Voici les détails de la connexion :'
@@ -2432,8 +2674,12 @@ fr-CA:
       title: Bienvenue à bord, %{name} !
   users:
     follow_limit_reached: Vous ne pouvez pas suivre plus de %{limit} personnes
+    generic_access_help_html: Rencontrez-vous des difficultés d’accès à votre compte ? Vous pouvez contacter %{email} pour obtenir de l’aide
     go_to_sso_account_settings: Accédez aux paramètres du compte de votre fournisseur d'identité
+    inactive_sign_in_confirmation: Cela fait un certain temps depuis votre dernière connexion, c'est pourquoi nous vous avons envoyé un code de sécurité par courriel pour vérifier votre tentative de connexion.
+    inactive_sign_in_title: Veuillez confirmer le code de sécurité
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
+    invalid_sign_in_token: Code de sécurité non valide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     rate_limited: Trop de tentatives d'authentification, réessayez plus tard.
     seamless_external_login: Vous êtes connectés via un service externe, donc les paramètres de mot de passe et de courriel ne sont pas disponibles.

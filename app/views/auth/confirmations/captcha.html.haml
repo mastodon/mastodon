@@ -6,6 +6,7 @@
 
   = form.hidden_field :confirmation_token,
                       value: params[:confirmation_token]
+  -# TODO: after 5.0, remove `redirect_to_app?` code
   = form.hidden_field :redirect_to_app,
                       value: params[:redirect_to_app]
 

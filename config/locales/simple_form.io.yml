@@ -20,7 +20,6 @@ io:
       admin_account_action:
         include_statuses: Uzanto vidos quala posti quo kauzigas jero o averto
         send_email_notification: Uzanto ganos expliko pri quo eventas a olia konto
-        text_html: Nemustiga. Vu povas <a href="%{path}">adjuntar avertselektaji</a> por sparar tempo
         type_html: Selektez ago per <strong>%{acct}</strong>
         types:
           disable: Preventez uzanto de uzar olia konto ma ne efacez o celez olia kontenaji.
@@ -28,7 +27,6 @@ io:
           sensitive: Igar omna audvidajaddonaji da ca uzanto markesar quale trublema.
           silence: Preventez la uzanto de povar postar per publika videbleso, celez lua posti e avizi de personi qui ne sequas lu. Co klozas omna raporto kontra ca konto.
           suspend: Preventez irga interago de o a ca konto e efacez lua kontenaji. Inversebla til 30 dii. Co klozas omna raporti kontra ca konto.
-        warning_preset_id: Nemustiga
       announcement:
         all_day: Kande kontrolesas, nur tempoporteodato montresos
         ends_at: Neobligata. Anunco automatika depublikigesos dum ta tempo
@@ -156,12 +154,10 @@ io:
       account_migration:
         acct: Nomo di nova konto
       account_warning_preset:
-        text: Fixita texto
         title: Titulo
       admin_account_action:
         include_statuses: Inkluzez raportizita posti en retposto
         send_email_notification: Notifikez la uzanto di retposto
-        text: Kustumizita averto
         type: Ago
         types:
           disable: Cesez
@@ -169,7 +165,6 @@ io:
           sensitive: Privata
           silence: Limitigez
           suspend: Desaprobez
-        warning_preset_id: Uzez avertfixito
       announcement:
         all_day: Evento di tota dio
         ends_at: Fino di evento
@@ -221,7 +216,6 @@ io:
         setting_system_font_ui: Uzez originala literfonto di sistemo
         setting_system_scrollbars_ui: Uzar originala rullangeto di sistemo
         setting_theme: Reteytemo
-        setting_trends: Montrar hodia populari
         setting_unfollow_modal: Montrez konfirmdialogo ante desequar ulu
         setting_use_blurhash: Montrez koloroza inklini por celata audvidaji
         setting_use_pending_items: Modo lenta

@@ -18,7 +18,7 @@ export function isServerFeatureEnabled(feature: ServerFeatures) {
   return initialState?.features.includes(feature) ?? false;
 }
 
-type ClientFeatures = never;
+type ClientFeatures = 'layout-with-search';
 
 export function isClientFeatureEnabled(feature: ClientFeatures) {
   try {

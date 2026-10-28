@@ -14,6 +14,8 @@ import {
   BookmarkSimpleIcon,
   PlusIcon,
   InfoIcon,
+  GavelIcon,
+  ShieldStarIcon,
 } from '@phosphor-icons/react';
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
@@ -33,7 +35,11 @@ import {
   trendsEnabled,
 } from '@/mastodon/initial_state';
 import { transientSingleColumn } from '@/mastodon/is_mobile';
-import { canViewFeed } from '@/mastodon/permissions';
+import {
+  canManageReports,
+  canViewAdminDashboard,
+  canViewFeed,
+} from '@/mastodon/permissions';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { getOrderedLists } from '@/mastodon/selectors/lists';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
@@ -41,9 +47,9 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
 import { useHasAnnouncements } from '../../announcements/hooks';
+import { FooterLinks } from '../../discovery_panel/footer_links';
 
 import { NavigationAccountCardAndMenu } from './account_card_and_menu';
-import { NavigationFooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
 import { ListSection } from './list_section';
 import { DisabledAccountBanner, LoggedOutInfo } from './logged_out_info';
@@ -145,8 +151,11 @@ export const RedesignNavigationPanel: React.FC<{
 }> = ({ siteName, mode = 'static', multiColumn }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const { signedIn } = useIdentity();
+  const { signedIn, permissions } = useIdentity();
   const notificationsCount = useNotificationsCount();
+
+  const isManager = canManageReports(permissions);
+  const isAdmin = canViewAdminDashboard(permissions);
 
   const openComposer = useCallback(() => {
     dispatch(closeNavigation());
@@ -158,9 +167,7 @@ export const RedesignNavigationPanel: React.FC<{
 
   const { sensor: topSensor, isInViewport: isScrolledToTop } = useScrollSensor({
     placement: 'top',
-    // Only show overlay fade after a bit of scrolling, as the nav header has
-    // a bit of bottom spacing where the fade isn't needed yet
-    tolerance: 36,
+    tolerance: 2,
   });
   const { sensor: bottomSensor, isInViewport: isScrolledToBottom } =
     useScrollSensor({
@@ -171,6 +178,7 @@ export const RedesignNavigationPanel: React.FC<{
     <nav
       className={classes.root}
       data-mode={mode}
+      data-scrollable={!isScrolledToTop || !isScrolledToBottom}
       aria-label={intl.formatMessage(messages.main)}
     >
       {topSensor}
@@ -179,26 +187,38 @@ export const RedesignNavigationPanel: React.FC<{
         <>
           {transientSingleColumn && <TransientSingleColumnCallout />}
           <ul className={classes.list}>
-            <li>
-              <Button
-                leadingIcon={PenNibIcon}
-                onClick={openComposer}
-                variant='solid'
-                color='accent'
-                size='md'
-                className={classes.newPostButton}
-              >
-                <FormattedMessage
-                  id='tabs_bar.publish'
-                  defaultMessage='New Post'
-                />
-              </Button>
-            </li>
             <NavigationLink to='/home' iconComponent={HouseIcon}>
               <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
             </NavigationLink>
             <ExploreLink />
             <PublicFeedsLink />
+
+            {isAdmin && (
+              <NavigationLink
+                as='a'
+                href='/admin/dashboard'
+                iconComponent={GavelIcon}
+              >
+                <FormattedMessage
+                  id='navigation_bar.administration'
+                  defaultMessage='Administration'
+                />
+              </NavigationLink>
+            )}
+
+            {isManager && (
+              <NavigationLink
+                as='a'
+                href='/admin/reports'
+                iconComponent={ShieldStarIcon}
+              >
+                <FormattedMessage
+                  id='navigation_bar.moderation'
+                  defaultMessage='Moderation'
+                />
+              </NavigationLink>
+            )}
+
             <ListSection
               id='custom-feeds'
               title={
@@ -255,7 +275,23 @@ export const RedesignNavigationPanel: React.FC<{
               </ListSection>
             )}
           </ul>
+
           <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
+            <div className={classes.newPostButton}>
+              <Button
+                leadingIcon={PenNibIcon}
+                onClick={openComposer}
+                variant='solid'
+                color='accent'
+                size='md'
+              >
+                <FormattedMessage
+                  id='tabs_bar.publish'
+                  defaultMessage='New Post'
+                />
+              </Button>
+            </div>
+
             {mode !== 'slide-out' && (
               <>
                 <ul className={classes.footerNav}>
@@ -295,7 +331,7 @@ export const RedesignNavigationPanel: React.FC<{
                 <NavigationAccountCardAndMenu />
               </>
             )}
-            <NavigationFooterLinks multiColumn={multiColumn} />
+            <FooterLinks context='navigation' multiColumn={multiColumn} />
           </footer>
         </>
       )}
@@ -313,7 +349,7 @@ export const RedesignNavigationPanel: React.FC<{
           </ul>
           <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
             {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
-            <NavigationFooterLinks withVersionInfo multiColumn={multiColumn} />
+            <FooterLinks context='navigation' multiColumn={multiColumn} />
           </footer>
         </>
       )}
@@ -330,7 +366,7 @@ const ExploreLink: React.FC = () => {
         state: { focusTarget: FOCUS_TARGET.SEARCH },
       }}
       iconComponent={MagnifyingGlassIcon}
-      onClick={invokeVirtualIosKeyboard}
+      onClick={handleSearchLinkClick}
     >
       {trendsEnabled ? (
         <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
@@ -340,6 +376,25 @@ const ExploreLink: React.FC = () => {
     </NavigationLink>
   );
 };
+
+export function handleSearchLinkClick() {
+  const mainSearchInput = document.querySelector<HTMLInputElement>(
+    '[data-column-root] input[data-main-search]',
+  );
+
+  // Focus the main search input if we're already on the search page
+  if (mainSearchInput) {
+    mainSearchInput.focus();
+    return;
+  }
+
+  // Otherwise, the search element is not on screen yet and
+  // the page needs to be rendered first. In this case, we use
+  // `invokeVirtualIosKeyboard` to work around an iOS quirk that
+  // prevents the virtual keyboard from opening when an element wasn't
+  // focused synchronously.
+  invokeVirtualIosKeyboard();
+}
 
 const PublicFeedsLink: React.FC = () => {
   const { signedIn, permissions } = useIdentity();

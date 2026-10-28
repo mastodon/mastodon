@@ -7,6 +7,7 @@ eo:
       send_paranoid_instructions: Se via retadreso ekzistas en nia datumbazo, vi ricevos retmesaĝon kun instrukcioj por konfirmi vian retadreson ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
     failure:
       already_authenticated: Vi jam ensalutis.
+      closed_registrations: Via provo registriĝi estis barita pro reta politiko. Se vi kredas, ke ĉi tio estas eraro, kontakti kun %{email}.
       inactive: Via konto ankoraŭ ne estas konfirmita.
       invalid: Nevalida %{authentication_keys} aŭ pasvorto.
       last_attempt: Vi ankoraŭ povas provi unufoje antaŭ ol via konto estos ŝlosita.
@@ -20,7 +21,6 @@ eo:
     mailer:
       confirmation_instructions:
         action: Konfirmi retadreson
-        action_with_app: Konfirmi kaj reveni al %{app}
         explanation: Vi kreis konton en %{host} per ĉi tiu retadreso. Nur klako restas por aktivigi ĝin. Se tio ne estis vi, bonvolu ignori ĉi tiun retmesaĝon.
         explanation_when_pending: Vi petis inviton al %{host} per ĉi tiu retpoŝta adreso. Kiam vi konfirmas vian retpoŝtan adreson, ni revizios vian kandidatiĝon. Vi ne povas ensaluti ĝis tiam. Se via kandidatiĝo estas rifuzita, viaj datumoj estos forigitaj, do neniu alia ago estos postulita de vi. Se tio ne estis vi, bonvolu ignori ĉi tiun retpoŝton.
         extra_html: Bonvolu rigardi <a href="%{terms_path}">la regulojn de la servilo</a> kaj <a href="%{policy_path}">niajn uzkondiĉojn</a>.

@@ -116,6 +116,10 @@ code {
     }
 
     &.radio_buttons {
+      &:not(:has(.radio)) {
+        display: none;
+      }
+
       .radio {
         margin-bottom: 15px;
 
@@ -384,12 +388,8 @@ code {
 
     input {
       box-sizing: content-box;
-      width: 32px;
+      width: unset;
       flex: 0;
-
-      &:last-child {
-        width: 64px;
-      }
     }
   }
 
@@ -1560,5 +1560,11 @@ code {
         height: 20px;
       }
     }
+  }
+}
+
+.full_width_form {
+  .button {
+    width: 100%;
   }
 }

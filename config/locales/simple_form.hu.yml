@@ -21,7 +21,6 @@ hu:
       admin_account_action:
         include_statuses: A felhasználó látni fogja, melyik bejegyzés okozta a moderációs műveletet vagy figyelmeztetést
         send_email_notification: A felhasználó magyarázatot kap arra, mi történt a fiókjával
-        text_html: Opcionális. A bejegyzések szintaxisa használható. Időmegtakarítás végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
         type_html: Megmondhatod, mi legyen vele <strong>%{acct}</strong>
         types:
           disable: A felhasználó nem fogja tudni használni a fiókját, de ettől még nem töröljük azt vagy rejtjük el a tartalmait.
@@ -29,7 +28,6 @@ hu:
           sensitive: Ennek a felhasználónak minden médiatartalmát jelöljük meg kényesként.
           silence: A felhasználó megakadályozása abban, hogy nyilvános bejegyzéseket tehessen közzé, bejegyzései és tőle származó értesítések elrejtése az őt követők számára. A fiók ellen indított minden bejelentés lezárása.
           suspend: A fiókkal való minden kapcsolat megakadályozása és a tartalmak törlése. 30 napig visszaállítható. A fiók ellen indított minden bejelentés lezárása.
-        warning_preset_id: Nem kötelező. A figyelmeztetés végére saját szöveget is írhatsz.
       announcement:
         all_day: Bejelölve csak a dátumok számítanak majd a megadott intervallumból
         ends_at: Opcionális. A közleményt ekkor automatikusan levesszük
@@ -61,6 +59,7 @@ hu:
         setting_default_quote_policy_private: A Mastodonon írt, csak követőknek szóló bejegyzéseket mások nem idézhetik.
         setting_default_quote_policy_unlisted: Amikor idéznek tőled, a bejegyzésük rejtve lesz a felkapott bejegyzések hírfolyamain is.
         setting_default_sensitive: A kényes médiatartalmat alapesetben elrejtjük, de egyetlen kattintással előhozható
+        setting_default_spoiler_field: Nyitva hagyja a tartalmi figyelmeztetés mezőjét a szerkesztőben. A szöveget az összes bejegyzésnél testreszabhatod.
         setting_display_media_default: Figyelmeztetés megjelenítése a kényesnek jelölt média megjelenítése előtt
         setting_display_media_hide_all: Figyelmeztetés az összes média megjelenítése előtt
         setting_display_media_show_all: Figyelmeztetés minden média megjelenítése esetén, köztük a kényesnek jelöltek esetén is
@@ -191,12 +190,12 @@ hu:
       account_migration:
         acct: Az új fiók fiókneve
       account_warning_preset:
-        text: Figyelmeztető szöveg
+        text: Válasz szövege
         title: Cím
       admin_account_action:
         include_statuses: Tedd az e-mailbe a bejelentett bejegyzéseket
         send_email_notification: Figyelmeztessük a felhasználót e-mailben
-        text: Egyéni figyelmeztetés
+        text: Egyéni válasz
         type: Művelet
         types:
           disable: Letiltás
@@ -204,7 +203,7 @@ hu:
           sensitive: Kényes
           silence: Elnémítás
           suspend: Fiók felfüggesztése, adatok törlése visszaállíthatatlanul
-        warning_preset_id: Figyelmeztetés használata
+        warning_preset_id: Konzervválasz
       announcement:
         all_day: Egész napos esemény
         ends_at: Esemény vége
@@ -244,12 +243,13 @@ hu:
         setting_always_send_emails: E-mail-értesítések küldése mindig
         setting_auto_play_gif: GIF-ek automatikus lejátszása
         setting_boost_modal: Megtolás láthatóságának beállítása
-        setting_color_scheme: Színséma
+        setting_color_scheme: Mód
         setting_contrast: Kontraszt
         setting_default_language: Bejegyzések nyelve
         setting_default_privacy: Közzététel láthatósága
         setting_default_quote_policy: Ki idézhet
         setting_default_sensitive: Minden médiafájl megjelölése kényesként
+        setting_default_spoiler_field: Tartalmi figyelmeztetések használata alapértelmezetten
         setting_delete_modal: Figyelmeztetés egy bejegyzés törlése előtt
         setting_disable_hover_cards: Profilelőnézet letiltása föléhúzás esetén
         setting_disable_swiping: Elhúzás művelet kikapcsolása
@@ -257,6 +257,8 @@ hu:
         setting_display_media_default: Alapértelmezés
         setting_display_media_hide_all: Mindent elrejt
         setting_display_media_show_all: Mindent mutat
+        setting_display_own_boosts: Saját megtolások megjelenítése a saját fő hírfolyamban
+        setting_display_own_posts: Saját bejegyzések megjelenítése a saját fő hírfolyamban
         setting_emoji_style: Emodzsistílus
         setting_expand_spoilers: Tartalmi figyelmeztetéssel ellátott bejegyzések automatikus kinyitása
         setting_hide_network: Hálózatod elrejtése
@@ -267,7 +269,7 @@ hu:
         setting_system_font_ui: Rendszer betűtípusának használata
         setting_system_scrollbars_ui: Rendszer alapértelmezett görgetősávjának használata
         setting_theme: Megjelenítési sablon
-        setting_trends: Mai trend mutatása
+        setting_theme_color: Téma színe
         setting_unfollow_modal: Megerősítés kérése mielőtt abbahagyod valaki követését
         setting_use_blurhash: Színátmenetek megjelenítése a rejtett médiáknál
         setting_use_pending_items: Lassú mód
@@ -352,6 +354,7 @@ hu:
         follow: E-mail küldése, amikor valaki követni kezd téged
         follow_request: E-mail küldése, amikor valaki követni szeretne téged
         mention: E-mail küldése, amikor valaki megemlít téged
+        moderation_suggestions: Automatikus moderációs javaslatok érhetők el
         pending_account: E-mail küldése, ha új fiókot kell engedélyezni
         quote: E-mail küldése, amikor valaki idéz téged
         reblog: Valaki megtolta a bejegyzésedet

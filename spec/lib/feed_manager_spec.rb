@@ -248,6 +248,8 @@ RSpec.describe FeedManager do
   end
 
   describe '#push_to_home' do
+    let(:alice) { Fabricate(:account, username: 'alice') }
+
     it 'trims timelines if they will have more than FeedManager::MAX_ITEMS' do
       account = Fabricate(:account)
       status = Fabricate(:status)
@@ -257,6 +259,55 @@ RSpec.describe FeedManager do
       subject.push_to_home(account, status)
 
       expect(redis.zcard("feed:home:#{account.id}")).to eq described_class::MAX_ITEMS
+    end
+
+    it 'does not save a status to home when user has display_own_posts disabled' do
+      user = Fabricate(:user)
+      post = Fabricate(:status, account: user.account)
+      user.settings['display_own_posts'] = false
+
+      # post will be ignored
+      expect(subject.push_to_home(user.account, post)).to be false
+    end
+
+    it 'does not save replies to home when user has display_own_posts disabled' do
+      user = Fabricate(:user)
+      user.settings['display_own_posts'] = false
+      status = Fabricate(:status, text: 'Hello world', account: alice)
+      reply  = Fabricate(:status, text: 'Nay', thread: status, account: user.account)
+
+      # post will be ignored
+      expect(subject.push_to_home(user.account, reply)).to be false
+    end
+
+    it 'does not save a status to home when user has display_own_boosts on standard setting (disabled)' do
+      user = Fabricate(:user)
+      status = Fabricate(:status, text: 'Hello world', account: alice)
+      reblog = Fabricate(:status, reblog: status, account: user.account)
+
+      # post will be ignored
+      expect(subject.push_to_home(user.account, reblog)).to be false
+    end
+
+    it 'saves a status to home when user has display_own_boosts enabled' do
+      user = Fabricate(:user)
+      user.settings['display_own_boosts'] = true
+      status = Fabricate(:status, text: 'Hello world', account: alice)
+      reblog = Fabricate(:status, reblog: status, account: user.account)
+
+      # post will be added
+      expect(subject.push_to_home(user.account, reblog)).to be true
+    end
+
+    it 'saves replies on a boosted post to home when user has display_own_boosts disabled' do
+      user = Fabricate(:user)
+      user.settings['display_own_boosts'] = false
+      status = Fabricate(:status, text: 'Hello world', account: alice)
+      reblog = Fabricate(:status, reblog: status, account: user.account)
+      reply  = Fabricate(:status, text: 'Nay', thread: reblog, account: user.account)
+
+      # post will be added
+      expect(subject.push_to_home(user.account, reply)).to be true
     end
 
     context 'with reblogs' do
@@ -469,6 +520,57 @@ RSpec.describe FeedManager do
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: bob)
         expect(subject.push_to_list(list, reply)).to be true
       end
+    end
+  end
+
+  describe '#unmerge_from_own_home' do
+    it 'removes statuses from own home feed' do
+      account = Fabricate(:account, id: 0)
+      post = Fabricate(:status, account: account)
+      subject.push_to_home(account, post)
+      account.user.settings['display_own_posts'] = false
+
+      subject.unmerge_from_own_home(account, true, false)
+
+      expect(redis.zscore('feed:home:0', post.id)).to be_nil
+      expect(redis.zrange('feed:home:0', 0, -1)).to_not include(post.id.to_s)
+    end
+
+    it 'removes reblogs from own home feed' do
+      account = Fabricate(:account, id: 0)
+      reblog = Fabricate(:status)
+      status = Fabricate(:status, reblog: reblog, account: account)
+      subject.push_to_home(account, status)
+      account.user.settings['display_own_posts'] = false
+
+      subject.unmerge_from_own_home(account, true, true)
+
+      expect(redis.zscore('feed:home:0', status.id)).to be_nil
+      expect(redis.zrange('feed:home:0', 0, -1)).to_not include(status.id.to_s)
+    end
+  end
+
+  describe '#merge_into_own_home' do
+    it 'inserts own posts into home feed' do
+      account = Fabricate(:account, id: 0)
+      post = Fabricate(:status, account: account)
+      account.user.settings['display_own_posts'] = true
+      subject.unpush_from_home(account, post)
+
+      subject.merge_into_own_home(account, false, false)
+
+      expect(redis.zrange('feed:home:0', 0, -1)).to include(post.id.to_s)
+    end
+
+    it 'inserts own reblogs into home feed' do
+      account = Fabricate(:account, id: 0)
+      reblog = Fabricate(:status)
+      status = Fabricate(:status, reblog: reblog, account: account)
+      account.user.settings['display_own_boosts'] = true
+
+      subject.merge_into_own_home(account, true, false)
+
+      expect(redis.zrange('feed:home:0', 0, -1)).to include(status.id.to_s)
     end
   end
 

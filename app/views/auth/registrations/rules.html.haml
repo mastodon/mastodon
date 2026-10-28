@@ -4,7 +4,7 @@
 - content_for :header_tags do
   = render partial: 'shared/og', locals: { description: description_for_sign_up(@invite) }
 
-= form_with class: :simple_form, url: auth_acceptance_path do |form|
+.simple_form
   = render 'auth/shared/progress', stage: 'rules'
 
   - if @invite.present? && @invite.autofollow?
@@ -20,6 +20,11 @@
     = render collection: @rule_translations, partial: 'auth/rule_translations/rule_translation'
 
   .stacked-actions
-    = form.hidden_field :invite_code, value: @invite_code if @invite_code.present?
-    = form.button t('auth.rules.accept'), name: :accept, type: :submit, class: :button, value: @accept_token
-    = link_to t('auth.rules.back'), root_path, class: 'button button-secondary'
+    = form_with class: :full_width_form, url: auth_acceptance_path do |form|
+      = form.hidden_field :invite_code, value: @invite_code if @invite_code.present?
+      = form.button t('auth.rules.accept'), name: :accept, type: :submit, class: :button, value: @accept_token
+    - if within_authorization_flow? && (pre_auth = pre_auth_from_stored_location)
+      - pre_auth.error = Doorkeeper::Errors::AccessDenied
+      = link_to t('generic.cancel'), pre_auth.error_response.redirect_uri, class: 'button button-secondary'
+    - else
+      = link_to t('auth.rules.back'), root_path, class: 'button button-secondary'

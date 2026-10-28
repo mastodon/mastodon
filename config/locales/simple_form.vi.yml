@@ -3,25 +3,26 @@ vi:
   simple_form:
     hints:
       account:
-        attribution_domains: Bảo vệ khỏi những sự gán ghép sai.
+        attribution_domains: Nhập mỗi cái một dòng, để tránh bị kết nối lẫn lộn với nhau.
         discoverable: Bạn có thể được nêu bật trong một gói khởi đầu của người khác. Bạn và tút công khai của bạn sẽ được đề xuất trên Mastodon.
         display_name: Tên đầy đủ hoặc biệt danh đều được.
-        fields: Blog của bạn, nghề nghiệp, tuổi hoặc bất kỳ.
-        indexable: Mọi người có thể tìm kiếm và tương tác với những tút công khai của bạn trên Mastodon.
+        fields: Website, nghề nghiệp, tuổi hoặc bất kỳ thứ gì bạn thích.
+        indexable: Mọi người có thể tìm kiếm và tương tác với những bài đăng công khai của bạn trên Mastodon.
         note: 'Bạn có thể @aiđó hoặc #hashtags.'
         show_collections: Mọi người sẽ biết bạn theo dõi ai và ai theo dõi bạn.
         unlocked: Mọi người sẽ theo dõi bạn mà không cần bạn cho phép.
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
       account_migration:
-        acct: tên_người_dùng@máy chủ của tài khoản bạn muốn chuyển sang
+        acct: Nhập tên_người_dùng@máy chủ của tài khoản bạn muốn chuyển sang
       account_warning_preset:
+        action_category: Chọn hành động kiểm duyệt mà phản hồi này nên dùng. Chọn "Tất cả hành động" nếu phản hồi áp dụng nhiều hơn một hành động.
         text: Bạn có thể dùng URL, hashtag và nhắc đến
         title: Tùy chọn. Không cho người nhận xem
       admin_account_action:
         include_statuses: Người dùng sẽ thấy các tút nào của họ bị kiểm duyệt
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
-        text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">mẫu có sẵn</a> để tiết kiệm thời gian
+        text: Tùy chọn. Bạn có thể dùng biểu thức tút. Nó sẽ xuất hiện dưới mẫu phản hồi
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         types:
           disable: Tạm không cho đăng nhập tài khoản.
@@ -29,7 +30,7 @@ vi:
           sensitive: Gán nhãn nhạy cảm cho tất cả media của tài khoản này.
           silence: Cấm đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
           suspend: Vô hiệu hóa và xóa mọi nội dung. Có thể đảo ngược quyết định trước 30 ngày.
-        warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm chú thích riêng
+        warning_preset_html: Tùy chọn. Bạn có thể <a href="%{path}">quản lý ở đây</a>
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
         ends_at: Tùy chọn. Thông báo sẽ tự động hủy vào lúc này
@@ -45,26 +46,27 @@ vi:
         context: Chọn những nơi áp dụng bộ lọc
         current_password: Để bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
-        digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
-        email: Bạn sẽ được gửi một email xác minh
+        digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn trong lúc vắng mặt
+        email: Bạn vừa được nhận một email xác minh
         header: WEBP, PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         inbox_url: Sao chép URL của máy chủ mà bạn muốn dùng
-        irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả sau khi xóa bộ lọc
+        irreversible: Bài đăng đã bị lọc qua sẽ không bao giờ hiển thị nữa, kể cả sau khi tắt bộ lọc
         locale: Ngôn ngữ của giao diện, email và thông báo đẩy
         password: Tối thiểu 8 ký tự
-        phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
+        phrase: Khớp hiển thị với văn bản hoặc nội dung cảnh báo của bài đăng
         scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
-        setting_advanced_layout: Cho phép bạn xem bảng tin, thông báo và một cột thứ ba mà bạn chọn. Không nên dùng nếu màn hình nhỏ.
-        setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì sẽ không hiện những lượt đăng lại khác trên bảng tin
-        setting_always_send_emails: Bình thường thì sẽ không gửi khi bạn đang dùng Mastodon
+        setting_advanced_layout: Bố cục hiển thị nhiều cột. Cho phép bạn xem bảng tin, thông báo và một cột thứ ba tùy ý. Không khuyên dùng trên màn hình nhỏ.
+        setting_aggregate_reblogs: Không hiển thị lại những bài boost mới đã được boost trước đó (áp dụng cho bài boost mới)
+        setting_always_send_emails: Không gởi thông báo qua email khi bạn đang hoạt động trên Mastodon
         setting_boost_modal: Nếu bật, trước khi đăng lại sẽ mở hộp thoại xác nhận - trong đó bạn có thể thay đổi mức độ hiển thị tút của mình.
         setting_default_quote_policy_private: Không thể trích dẫn tút chỉ dành cho người theo dõi trên Mastodon.
         setting_default_quote_policy_unlisted: Khi ai đó trích dẫn bạn, tút của họ cũng sẽ bị ẩn khỏi bảng tin công khai.
         setting_default_sensitive: Bắt buộc nhấn vào mới có thể xem
+        setting_default_spoiler_field: Giữ cho trường cảnh báo nội dung luôn mở trong khung soạn thảo. Bạn có thể tùy chỉnh nội dung cho từng tút.
         setting_display_media_default: Cảnh báo trước khi hiện phương tiện nhạy cảm
         setting_display_media_hide_all: Cảnh báo trước khi hiện tất cả phương tiện
         setting_display_media_show_all: Hiện tất cả phương tiện mà không cảnh báo, kể cả phương tiện đánh dấu nhạy cảm
-        setting_emoji_style: '"Tự động" sẽ dùng biểu tượng cảm xúc nguyên bản, nhưng đối với các trình duyệt cũ sẽ chuyển thành Twemoji.'
+        setting_emoji_style: '"Tự động" sẽ dùng biểu tượng cảm xúc thiết bị, còn trình duyệt cũ sẽ chuyển thành Twemoji.'
         setting_quick_boosting_html: Nếu bật, nhấn biểu tượng %{boost_icon} Đăng lại sẽ đăng lại lập tức, thay vì mở menu xổ xuống đăng lại/trích dẫn. Chuyển vị trí hành động trích dẫn sang menu %{options_icon} (Tùy chọn).
         setting_use_blurhash: Phủ lớp màu làm nhòe đi hình ảnh nhạy cảm
         setting_use_pending_items: Dồn lại toàn bộ tút mới và chỉ hiển thị khi nhấn vào
@@ -98,6 +100,7 @@ vi:
         media_cache_retention_period: Các tệp phương tiện từ các tút do người dùng máy chủ khác thực hiện sẽ được lưu vào bộ đệm trên máy chủ của bạn. Khi được đặt thành giá trị dương, phương tiện sẽ bị xóa sau số ngày được chỉ định. Nếu dữ liệu phương tiện được yêu cầu sau khi bị xóa, dữ liệu đó sẽ được tải xuống lại nếu nội dung nguồn vẫn còn. Do những hạn chế về tần suất thẻ xem trước liên kết thăm dò ý kiến ​​các trang web của bên thứ ba, bạn nên đặt giá trị này thành ít nhất 14 ngày, nếu không thẻ xem trước liên kết sẽ không được cập nhật theo yêu cầu trước thời gian đó.
         min_age: Thành viên sẽ được yêu cầu xác nhận ngày sinh của họ trong quá trình đăng ký
         peers_api_enabled: Danh sách các máy chủ khác mà máy chủ này đã liên hợp. Không có dữ liệu nào được đưa vào đây về việc bạn có liên kết với một máy chủ nhất định hay không, chỉ là máy chủ của bạn biết về nó. Điều này được sử dụng bởi các dịch vụ thu thập số liệu thống kê về liên kết theo nghĩa chung.
+        postpone_confirmation_emails: Khi cài đặt này được bật, các email xác minh dành cho những tài khoản đang chờ phê duyệt sẽ chỉ được gửi đi sau khi các tài khoản đó đã được phê duyệt. Điều này có thể gây bất tiện cho người dùng trong quá trình đăng ký, vì họ vẫn cần xác nhận địa chỉ email của mình kịp thời sau khi nhận được email, nhưng lại không còn quyền kiểm soát thời điểm email đó được gửi đi. Hơn nữa, điều này có thể làm tăng khối lượng công việc cho người kiểm duyệt, do Mastodon sẽ không thể lọc bỏ các tài khoản đang chờ phê duyệt có địa chỉ email không hợp lệ trước khi chúng được phê duyệt.
         profile_directory: Liệt kê tất cả người đã chọn tham gia để có thể khám phá.
         require_invite_text: Khi đăng ký yêu cầu phê duyệt thủ công, hãy đặt câu hỏi "Tại sao bạn muốn tham gia?" nhập văn bản bắt buộc thay vì tùy chọn
         site_contact_email: Cách mọi người có thể liên hệ với bạn khi có thắc mắc về pháp lý hoặc hỗ trợ.
@@ -190,20 +193,22 @@ vi:
       account_migration:
         acct: Tài khoản mới
       account_warning_preset:
-        text: Văn bản cài sẵn
+        action_category: Gán hành động kiểm duyệt
+        text: Nội dung phản hồi
         title: Tựa đề
       admin_account_action:
         include_statuses: Đính kèm những tút bị báo cáo trong e-mail
         send_email_notification: Thông báo cho người này qua email
-        text: Chú thích riêng
+        text: Tùy chỉnh phản hồi
         type: Hành động
         types:
+          all_actions: Mọi hành động
           disable: Khóa
           none: Cảnh cáo
           sensitive: Nhạy cảm
           silence: Hạn chế
           suspend: Vô hiệu hóa
-        warning_preset_id: Dùng mẫu có sẵn
+        warning_preset_id: Mẫu phản hồi
       announcement:
         all_day: Sự kiện diễn ra hằng ngày
         ends_at: Kết thúc sự kiện
@@ -243,12 +248,13 @@ vi:
         setting_always_send_emails: Luôn gửi email thông báo
         setting_auto_play_gif: Phát ảnh GIF tự động
         setting_boost_modal: Kiểm soát khả năng đăng lại
-        setting_color_scheme: Bảng màu
+        setting_color_scheme: Chế độ
         setting_contrast: Độ tương phản
         setting_default_language: Ngôn ngữ tút
         setting_default_privacy: Kiểu tút
         setting_default_quote_policy: Ai có thể trích dẫn
         setting_default_sensitive: Đánh dấu media nhạy cảm
+        setting_default_spoiler_field: Dùng cảnh báo nội dung mặc định
         setting_delete_modal: Hỏi trước khi xóa tút
         setting_disable_hover_cards: Không hiện popup xem trước hồ sơ
         setting_disable_swiping: Không dùng thao tác vuốt
@@ -256,6 +262,8 @@ vi:
         setting_display_media_default: Mặc định
         setting_display_media_hide_all: Ẩn toàn bộ
         setting_display_media_show_all: Hiện toàn bộ
+        setting_display_own_boosts: Hiện tút tôi đăng lại trong bảng tin chính của tôi
+        setting_display_own_posts: Hiện tút của tôi trong bảng tin chính của tôi
         setting_emoji_style: Phong cách Emoji
         setting_expand_spoilers: Luôn mở rộng nội dung ẩn
         setting_hide_network: Ẩn quan hệ của bạn
@@ -266,7 +274,7 @@ vi:
         setting_system_font_ui: Phông chữ mặc định hệ thống
         setting_system_scrollbars_ui: Thanh cuộn mặc định hệ thống
         setting_theme: Giao diện
-        setting_trends: Hiện xu hướng trong ngày
+        setting_theme_color: Màu chủ đề
         setting_unfollow_modal: Hỏi trước khi bỏ theo dõi ai đó
         setting_use_blurhash: Làm mờ phương tiện bị ẩn
         setting_use_pending_items: Chế độ chậm
@@ -304,6 +312,7 @@ vi:
         media_cache_retention_period: Thời hạn lưu trữ cache media
         min_age: Độ tuổi tối thiểu
         peers_api_enabled: Công khai danh sách các máy chủ được phát hiện trong API
+        postpone_confirmation_emails: Hoãn gửi email xác minh sau khi phê duyệt
         profile_directory: Cho phép hiện danh bạ thành viên
         registrations_mode: Ai có thể đăng ký
         remote_live_feed_access: Truy cập bảng tin gồm những tút từ máy chủ khác
@@ -351,6 +360,7 @@ vi:
         follow: Ai đó theo dõi bạn
         follow_request: Ai đó yêu cầu theo dõi bạn
         mention: Ai đó nhắc đến bạn
+        moderation_suggestions: Đã có những đề xuất kiểm duyệt tự động
         pending_account: Phê duyệt tài khoản mới
         quote: Ai đó trích dẫn bạn
         reblog: Ai đó đăng lại tút của bạn

@@ -93,6 +93,7 @@ nl:
       enable: Ontdooien
       enable_sign_in_token: Beveiligingscode via e-mail inschakelen
       enable_sign_in_token_auth: Verificatie met een toegangscode via e-mail inschakelen
+      enable_unconfirmed: Bevestigingsmail toestaan
       enabled: Ingeschakeld
       enabled_msg: Het ontdooien van het account van %{username} is geslaagd
       follow_recommendations:
@@ -291,6 +292,7 @@ nl:
         create_domain_block_html: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block_html: "%{name} heeft het e-maildomein %{target} geblokkeerd"
         create_ip_block_html: "%{name} maakte regel aan voor IP %{target}"
+        create_moderation_subscription_html: "%{name} heeft moderatie-abonnement %{target} aangemaakt"
         create_relay_html: "%{name} heeft een relay aangemaakt %{target}"
         create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
         create_user_role_html: "%{name} maakte de rol %{target} aan"
@@ -306,6 +308,7 @@ nl:
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_instance_html: "%{name} verwijderde het domein %{target} volledig"
         destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
+        destroy_moderation_subscription_html: "%{name} heeft moderatie-abonnement %{target} verwijderd"
         destroy_relay_html: "%{name} heeft de relay %{target} verwijderd"
         destroy_status_html: Bericht van %{target} is door %{name} verwijderd
         destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
@@ -354,10 +357,18 @@ nl:
         update_user_role_html: "%{name} wijzigde de rol %{target}"
         update_username_block_html: "%{name} heeft regel bijgewerkt voor gebruikersnamen die %{target} bevatten"
         usable_tag_html: kan worden gebruikt;
+      automated_actions:
+        create_domain_allow_html: Automatisch toegestane federatie met domein %{target}
+        create_domain_block_html: Automatisch geblokkeerd domein %{target}
+        destroy_domain_allow_html: Automatisch niet toegestane federatie met domein %{target}
+        destroy_domain_block_html: Automatisch gedeblokkeerd domein %{target}
+        update_domain_block_html: Automatisch bijgewerkt domein %{target}
       deleted_account: verwijderd account
+      deleted_suggestion: een verwijderd moderatie-abonnement
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
       filter_by_user: Op gebruiker filteren
+      suggested_by_html: Aanbevolen actie door %{subscription}
       title: Auditlog
       unavailable_instance: "(domeinnaam niet beschikbaar)"
     announcements:
@@ -473,6 +484,11 @@ nl:
       undo: Federatie met domein afkeuren
     domain_blocks:
       add_new: Nieuwe domeinblokkade toevoegen
+      confirm_downgrade:
+        cancel: Annuleren
+        confirm: Afzwakken
+        preamble_html: Je staat op het punt om de bestaande blokkade voor <strong>%{domain}</strong> en zijn subdomeinen af te zwakken.
+        title: Afzwakken domeinblokkade voor %{domain} bevestigen
       confirm_suspension:
         cancel: Annuleren
         confirm: Opschorten
@@ -672,6 +688,8 @@ nl:
       title: Aanbevolen accounts
       unsuppress: Account weer aanbevelen
     instances:
+      advisories:
+        title: Adviezen van moderatie-abonnementen
       audit_log:
         title: Recente audit-logboeken
         view_all: Volledige audit-logboeken inzien
@@ -695,6 +713,7 @@ nl:
         comment: Interne reden
         description_html: Je kunt het beleid bepalen dat op de accounts van dit domein en alle subdomeinen van toepassing is.
         limited_federation_mode_description_html: Je kunt kiezen of je federatie met dit domein wilt toestaan.
+        moderation_subscription: Moderatie-abonnement
         policies:
           reject_media: Mediabestanden weigeren
           reject_reports: Rapportages weigeren
@@ -775,6 +794,92 @@ nl:
       reset: Opnieuw
       search: Zoeken
       title: IP-regels
+    moderation_subscriptions:
+      add_new: Abonnement toevoegen
+      advisory_action: 'Actie: %{action}'
+      advisory_actions:
+        accept: toestaan
+        limit: negeren
+        reject: opschorten
+      apply_automatically: Automatisch adviezen toepassen
+      apply_conditions:
+        always: Altijd
+        never: Nooit
+        safely: Alleen als de relaties niet worden verbroken
+      apply_conditions_hint:
+        always: Voorgestelde acties altijd automatisch toepassen. Gebruik deze optie alleen voor lijsten die je volledig vertrouwt.
+        never: Voorgestelde acties nooit automatisch toepassen. In plaats daarvan altijd een aanbeveling genereren.
+        safely: Aanbevolen acties toepassen, tenzij deze bestaande volgrelaties met lokale gebruikers verbreken. In dergelijke gevallen wordt een aanbeveling gegenereerd.
+      delete: Verwijderen
+      destroyed_msg: Moderatie-abonnement succesvol verwijderd
+      empty: Er is nog niet op een moderatielijst geabonneerd.
+      last_synced_at: Laatst gesynchroniseerd op
+      list_action: Abonnementstype
+      list_actions:
+        accept: Toegestaan
+        default: Gemengd (toegestaan & geweigerd)
+        reject: Geblokkeerd
+      list_actions_hint:
+        accept: Items zonder opgegeven actie worden behandeld als toegestaan. Blokkeringen worden genegeerd.
+        default: Items zonder specifieke actie zullen worden behandeld als een blokkade. Blokkades en toestemmingen worden allebei als zodanig behandeld.
+        reject: Items zonder opgegeven actie worden behandeld als een blokkade. Toestemmngen worden genegeerd.
+      list_actions_short:
+        accept: Toegestaan
+        default: Gemengd
+        reject: Geblokkeerd
+      name: Naam
+      new:
+        create: Abonneren
+        title: Nieuw moderatie-abonnement
+      override_unattributed: Handmatige blokkades overschrijven
+      override_unattributed_hint: Toestaan dat dit abonnement bestaande handmatige blokkades automatisch opwaardeert of overneemt bij het automatisch toepassen van adviezen.
+      policies:
+        apply_advisories: Automatisch adviezen toepassen
+        apply_advisories_safely: Past automatisch adviezen toe die geen relaties verbreken
+        apply_retractions: Automatisch intrekkingen toepassen
+      priority: Prioriteit
+      priority_hint: Moderatie-abonnementen worden beoordeeld op volgorde van prioriteit; abonnementen met een lager nummer hebben voorrang boven abonnementen met een hoger nummer.
+      retract_automatically: Adviezen automatisch intrekken
+      retract_automatically_hint: Of beleidswijzigingen mogen worden ingetrokken of afgezwakt, wanneer het abonnement een overeenkomstig item verwijdert. Wanneer automatisch intrekken is ingeschakeld en er een overeenkomstig advies bestaat in een lijst met lagere prioriteit, zal dit worden overgenomen. Wanneer automatisch intrekken is uitgeschakeld, wordt er in plaats daarvan een aanbeveling gegenereerd.
+      show:
+        delete_confirm: Weet je zeker dat je dit moderatie-abonnement wilt verwijderen?
+        edit: Abonnement bewerken
+        empty: Dit abonnement heeft nog geen advies.
+        title: 'Moderatie-abonnement: %{name}'
+      tabs:
+        logs: Logs
+        subscriptions: Abonnementen
+        suggestions: Aanbevelingen
+      title: Moderatie-abonnementen
+      type: Type
+      types:
+        csv_list: CSV-lijst
+      url: URL
+    moderation_subscriptions_logs:
+      title: Logs voor moderatie-abonnementen
+    moderation_suggestions:
+      actions:
+        accept: Toestaan
+        limit: Beperken
+        reject: Opschorten
+        retract: Huidig beleid intrekken
+      applied_msg: Aanbeveling succesvol toegepast voor %{target_key}
+      apply_accept: Toestaan
+      apply_limit: Beperken
+      apply_reject: Opschorten
+      apply_retract: Intrekken
+      current_states:
+        accept: momenteel toegestaan
+        limit: momenteel beperkt
+        reject: momenteel opgeschort
+      description: Hieronder staan aanbevelingen afkomstig van je moderatie-abonnementen, gerangschikt op prioriteit.
+      destroyed_msg: Aanbeveling voor %{target_key} succesvol afgewezen
+      dismiss: Aanbevelingen verwerpen
+      empty: Er is op dit moment geen moderatie-aanbeveling.
+      retracted_msg: Beleid voor %{target_key} met succes ingetrokken
+      suggested_from_html: Aanbevolen door %{link}
+      title: Moderatie-aanbevelingen
+      unable_to_apply_msg: Kan aanbeveling voor %{target_key} niet toepassen
     relationships:
       title: Volgrelaties van %{acct}
     relays:
@@ -969,6 +1074,119 @@ nl:
       translation: Vertaling
       translations: Vertalingen
       translations_explanation: Je kunt eventueel vertalingen toevoegen voor de regels. De standaardwaarde wordt getoond als er geen vertaalde versie beschikbaar is. Zorg er altijd voor dat aanvullende vertalingen bijgewerkt blijven.
+    server_checks:
+      categories:
+        completed:
+          title: Voltooid
+        critical:
+          title: Kritisch
+        error:
+          title: Foutmeldingen
+        ignored:
+          title: Genegeerd
+        suggestion:
+          title: Aanbevelingen
+        unprocessed:
+          title: Niet verwerkt
+        warning:
+          title: Waarschuwingen
+      checks:
+        database_schema:
+          error:
+            title: Er is een fout opgetreden bij het controleren van het databaseschema
+          ok:
+            title: Er zijn geen databasemigraties in behandeling
+          pending:
+            lead_html: Voer ze uit om ervoor te zorgen dat de applicatie zich gedraagt zoals verwacht
+            title: Er zijn databasemigraties in behandeling
+          running:
+            title: De server is het databaseschema aan het controleren
+          unprocessed:
+            title: Je server heeft het databaseschema nog niet gecontroleerd
+        elastic_search:
+          error:
+            title: Er is een fout opgetreden bij het controleren van de Elasticsearch-configuratie
+          ok:
+            title: Elasticsearch is zonder problemen geconfigureerd
+          pending:
+            lead:
+              analysis_index_mismatch_html: De analyser-instellingen van de Elasticsearch-index zijn verouderd. Voer <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code> uit
+              cluster_health_red_html: Elasticsearch-cluster is ongezond (rode status), zoekfuncties zijn niet beschikbaar
+              cluster_health_yellow_html: Elasticsearch-cluster is ongezond (gele status), misschien wil je de reden onderzoeken
+              index_mismatch_html: Elasticsearch-index-mappings zijn verouderd. Voer <code>tootctl search deploy --only=%{mismatched_indexes_str}</code> uit
+              preset_html: Jouw Elasticsearch-cluster heeft meer dan één node, maar Mastodon is niet geconfigureerd om ze te gebruiken
+              preset_single_node_html: Jouw Elasticsearch-cluster heeft slechts één node, <code>ES_PRESET</code> moet worden ingesteld op <code>single_node_cluster</code>
+              reset_chewy_html: Jouw Elasticsearch-systeemindex is verouderd vanwege een instellingswijziging. Voer <code>tootctl search deploy --reset-chewy</code> uit om het bij te werken
+              running_check_html: Kon geen verbinding maken met Elasticsearch. Controleer dat Elasticsearch wordt uitgevoerd of schakel full-text-zoeken uit
+              version_check_html: Je gebruikt Elasticsearch %{running_version}, maar %{required_version} is vereist
+            title: Er zijn problemen met Elasticsearch
+          running:
+            title: De server controleert de Elasticsearch-configuratie
+          unprocessed:
+            title: De server heeft de Elasticsearch-configuratie nog niet gecontroleerd
+        media_privacy:
+          error:
+            title: Er is een fout opgetreden bij het controleren van de media-privacy van jouw server
+          ok:
+            title: Jouw media-privacy is veilig
+          pending:
+            lead:
+              upload_check_privacy_error_html: Jouw webserver is verkeerd geconfigureerd
+              upload_check_privacy_error_object_storage_html: De objectopslag is verkeerd geconfigureerd
+            title: De privacy van jouw gebruikers is in gevaar
+          running:
+            title: De server is de privacystatus aan het controleren
+          unprocessed:
+            title: De server heeft de privacystatus nog niet gecontroleerd
+        rules:
+          error:
+            title: Er is een fout opgetreden bij het controleren van je serverregels
+          ok:
+            title: Jouw serverregels zijn ingesteld
+          pending:
+            lead_html: Jouw server heeft geen gepubliceerde regels. Heldere regels helpen bij het modereren en het stellen van verwachtingen
+            title: Serverregels instellen
+          running:
+            title: De server controleert jouw regels
+          unprocessed:
+            title: De server heeft niet gecontroleerd of er al regels zijn
+        sidekiq_process:
+          error:
+            title: Er is een fout opgetreden bij het controleren van de Sidekiq-configuratie
+          ok:
+            title: Sidekiq is zonder problemen geconfigureerd
+          pending:
+            lead_html: Geen Sidekiq-process actief voor de %{missing_queues_str} wachtrij(en)
+            title: Controleer je Sidekiq-configuratie
+          running:
+            title: De server controleert de Sidekiq-configuratie
+          unprocessed:
+            title: De server heeft de Sidekiq-configuratie nog niet gecontroleerd
+        software_version:
+          error:
+            title: Er is een fout opgetreden bij het controleren op software-updates
+          ok:
+            title: Jouw Mastodon-server is up to date
+          pending:
+            lead:
+              patch_html: Er is een bugfix-update beschikbaar voor Mastodon
+              regular_html: Er is een nieuwe versie van Mastodon beschikbaar
+              urgent_html: Er is een kritieke update voor Mastodon beschikbaar. Update zo snel mogelijk
+            title: Update je Mastodon-server
+          running:
+            title: De server controleert of er een software-update in behandeling is
+          unprocessed:
+            title: De server heeft nog niet op software-updates gecontroleerd
+      ignore:
+        label: Negeren
+      lead: Aanbevelingen om je server veilig, gastvrij en efficiënt te houden.
+      recommendations:
+        title: Aanbevelingen
+      restore:
+        label: Herstellen
+      setup:
+        label: Instellen
+      title: Server-gezondheid
     settings:
       about:
         manage_rules: Serverregels beheren
@@ -1319,9 +1537,17 @@ nl:
     warning_presets:
       add_new: Nieuwe toevoegen
       delete: Verwijderen
-      edit_preset: Preset voor waarschuwing bewerken
-      empty: Je hebt nog geen presets voor waarschuwingen toegevoegd.
-      title: Presets voor waarschuwingen
+      dropdown:
+        all_actions: Alle acties
+        disable: Bevriezen
+        none: Waarschuwing
+        sensitive: Gevoelig
+        silence: Beperken
+        suspend: Opschorten
+      edit_preset: Standaardantwoord bewerken
+      empty: Je hebt nog geen standaardantwoorden aangemaakt.
+      navigation_title: Standaardantwoorden
+      title: Standaardantwoorden moderatie
     webhooks:
       add_new: Eindpunt toevoegen
       delete: Verwijderen
@@ -1370,9 +1596,15 @@ nl:
     new_critical_software_updates:
       body: Nieuwe kritische versies van Mastodon zijn vrijgegeven. Je zou zo snel mogelijk moeten bijwerken!
       subject: Kritieke Mastodon-updates zijn beschikbaar voor %{instance}!
+    new_moderation_suggestions:
+      body: De moderatielijsten waarop jouw server is geabonneerd, hebben nieuwe aanbevelingen gepubliceerd.
+      subject: Nieuwe moderatie-aanbevelingen op %{instance} beschikbaar!
     new_pending_account:
       body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren of afwijzen.
-      subject: Er dient een nieuw account op %{instance} te worden beoordeeld (%{username})
+      subject: Nieuw account te beoordelen op %{instance} (%{username})
+    new_pending_accounts:
+      body: Er zijn nieuwe accounts op %{instance} aangemaakt. Aangezien jouw server is geconfigureerd om de bevestiging van e-mails uit te stellen tot na goedkeuring van nieuwe accounts, hebben deze accounts nog geen kans gehad om hun e-mailadres te verifiëren. De details van de nieuwe accounts staan hieronder. Je kunt deze aanvragen goedkeuren of afkeuren.
+      subject: Nieuwe accounts te beoordelen op %{instance}
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
@@ -1401,7 +1633,6 @@ nl:
     animations_and_accessibility: Animaties en toegankelijkheid
     boosting_preferences: Boosten
     boosting_preferences_info_html: "<strong>Tip:</strong> Ongeacht je instellingen, kun je met <kbd>Shift</kbd> + <kbd>Klik</kbd> op het %{icon} boostpictogram onmiddelijk boosten."
-    discovery: Ontdekken
     localization:
       body: Mastodon wordt door vrijwilligers vertaald.
       guide_link: https://crowdin.com/project/mastodon/nl
@@ -1481,11 +1712,16 @@ nl:
     security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
     setup:
+      correct_email: Adres corrigeren
       email_below_hint_html: Controleer je map met spam, of vraag een nieuwe bevestigingslink aan. Je kan je e-mailadres corrigeren als het verkeerd is.
       email_settings_hint_html: Klik op de link die we naar %{email} hebben gestuurd om Mastodon te gebruiken. We wachten wel even.
+      email_settings_hint_wait_html: Jouw accountaanvraag wordt beoordeeld. Binnenkort kun je een e-mail verwachten op %{email}. Wanneer dit bericht arriveert, klik je op de link om Mastodon te gebruiken. We wachten hier op je.
       link_not_received: Geen link ontvangen?
       new_confirmation_instructions_sent: Je ontvangt binnen enkele minuten een nieuwe e-mail met de bevestigingslink!
       title: Kijk in je e-mail
+      title_wait: Houd je inbox in de gaten
+      wrong_email: Verkeerd e-mailadres?
+      wrong_email_below_hint_html: Geen paniek! Je kunt hieronder je e-mailadres corrigeren.
     sign_in:
       preamble_html: Log in met de inloggegevens van <strong>%{domain}</strong>. Als jouw account zich op een andere server bevindt, kun je hier niet inloggen.
       title: Inloggen op %{domain}
@@ -1522,6 +1758,12 @@ nl:
     auto: Auto
     dark: Donker
     light: Licht
+  color_theme:
+    cyan: Cyaan
+    indigo: Indigo
+    lime: Limoengroen
+    orange: Oranje
+    pink: Roze
   contrast:
     auto: Auto
     high: Hoog
@@ -1570,6 +1812,7 @@ nl:
       action_taken: Genomen maatregel
       appeal: Bezwaar
       appeal_approved: Het ingediende bezwaar is goedgekeurd en de eerder vastgestelde overtreding is niet langer geldig
+      appeal_handled_by: Bezwaar behandeld door
       appeal_rejected: Het ingediende bezwaar is afgewezen
       appeal_submitted_at: Bezwaar ingediend
       appealed_msg: Jouw bezwaar is ingediend. Wanneer deze wordt goedgekeurd, krijg je hiervan bericht.
@@ -1681,7 +1924,7 @@ nl:
   filters:
     contexts:
       account: Profielen
-      home: Starttijdlijn en lijsten
+      home: Hoofdtijdlijn en aangepaste tijdlijnen
       notifications: Meldingen
       public: Openbare tijdlijnen
       thread: Gesprekken
@@ -2429,7 +2672,7 @@ nl:
       feature_action: Meer informatie
       feature_audience: Mastodon biedt je een unieke mogelijkheid om je publiek te beheren zonder tussenpersonen. Mastodon, geïmplementeerd in jouw eigen infrastructuur, stelt je in staat om elke andere Mastodon-server online te volgen en door hen gevolgd te worden, en staat onder controle van niemand, behalve die van jou.
       feature_audience_title: Bouw jouw publiek in vertrouwen op
-      feature_control: Je weet zelf het beste wat je op jouw starttijdlijn wilt zien. Geen algoritmen of advertenties om je tijd te verspillen. Volg iedereen op elke Mastodon-server vanaf één account en ontvang hun berichten in chronologische volgorde, en maak jouw hoekje op het internet een beetje meer zoals jezelf.
+      feature_control: Je weet zelf het beste wat je op jouw hoofdtijdlijn wilt zien. Geen algoritmes of advertenties om je tijd te verspillen. Volg iedereen op elke Mastodon-server vanaf één account en ontvang hun berichten in chronologische volgorde, en maak jouw hoekje op het internet een beetje meer zoals jezelf.
       feature_control_title: Houd controle over je eigen tijdlijn
       feature_creativity: Mastodon ondersteunt audio-, video- en fotoberichten, toegankelijkheidsbeschrijvingen, peilingen, inhoudswaarschuwingen, geanimeerde profielfoto's, aangepaste lokale emoji's, controle over het bijwerken van miniaturen en meer, om je te helpen jezelf online uit te drukken. Of je nu jouw kunst, jouw muziek of jouw podcast publiceert, Mastodon staat voor je klaar.
       feature_creativity_title: Ongeëvenaarde creativiteit
@@ -2437,7 +2680,7 @@ nl:
       feature_moderation_title: Moderatie zoals het hoort
       follow_action: Volgen
       follow_step: Op Mastodon draait het helemaal om het volgen van interessante mensen.
-      follow_title: Personaliseer je starttijdlijn
+      follow_title: Jouw hoofdtijdlijn personaliseren
       follows_subtitle: Volg bekende accounts
       follows_title: Wie te volgen
       follows_view_more: Meer mensen om te volgen bekijken

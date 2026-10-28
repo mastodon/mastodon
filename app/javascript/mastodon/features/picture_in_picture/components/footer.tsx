@@ -4,10 +4,10 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router-dom';
 
+import { replyComposeById } from '@/mastodon/actions/compose_typed';
 import { useStatusIcons } from '@/mastodon/components/status/hooks';
 import { BoostButton } from '@/mastodon/components/status/legacy/boost_button';
 import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
-import { replyCompose } from 'mastodon/actions/compose';
 import { openModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
 import { useIdentity } from 'mastodon/identity_context';
@@ -40,9 +40,6 @@ export const Footer: React.FC<{
   const getStatus = useMemo(() => makeGetStatus(), []) as GetStatusSelector;
   const status = useAppSelector((state) => getStatus(state, { id: statusId }));
   const account = status?.get('account') as Account | undefined;
-  const askReplyConfirmation = useAppSelector(
-    (state) => (state.compose.get('text') as string).trim().length !== 0,
-  );
 
   const handleReplyClick = useCallback(() => {
     if (!status) {
@@ -52,13 +49,7 @@ export const Footer: React.FC<{
     if (signedIn) {
       onClose(true);
 
-      if (askReplyConfirmation) {
-        dispatch(
-          openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }),
-        );
-      } else {
-        dispatch(replyCompose(status));
-      }
+      dispatch(replyComposeById({ statusId: status.get('id') as string }));
     } else {
       dispatch(
         openModal({
@@ -71,7 +62,7 @@ export const Footer: React.FC<{
         }),
       );
     }
-  }, [dispatch, status, signedIn, askReplyConfirmation, onClose]);
+  }, [status, signedIn, onClose, dispatch]);
 
   const handleOpenClick = useCallback(
     (e: React.MouseEvent) => {

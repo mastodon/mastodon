@@ -40,7 +40,6 @@
 #  memorial                      :boolean          default(FALSE), not null
 #  note                          :text             default(""), not null
 #  outbox_url                    :string           default(""), not null
-#  private_key                   :text
 #  protocol                      :integer          default("ostatus"), not null
 #  public_key                    :text             default(""), not null
 #  requested_deletion_at         :datetime
@@ -64,14 +63,23 @@
 #
 
 class Account < ApplicationRecord
+  self.ignored_columns += %w(private_key)
+
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
   REFRESH_DEADLINE = 6.hours
   STALE_THRESHOLD = 1.day
   DEFAULT_FIELDS_SIZE = 4
   INSTANCE_ACTOR_ID = -99
 
-  USERNAME_RE   = /[a-z0-9_]+([.-]+[a-z0-9_]+)*/i
-  MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]]+([.-]+[[:word:]]+)*)?)}
+  USERNAME_RE = /[a-z0-9_]+([.-]+[a-z0-9_]+)*/i
+
+  # Host label char class: every Ruby word character plus the six
+  # PVALID exceptions from RFC 5892 section 2.6 — code points that
+  # would otherwise fall outside [[:word:]] but are explicitly allowed
+  # in IDNA labels. U+0F0B (Tibetan tsheg) is the one that bites in
+  # practice; the rest are included for symmetry.
+  HOST_LABEL_CHAR = '[[:word:]ßς۽۾་〇]'
+  MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@#{HOST_LABEL_CHAR}+([.-]+#{HOST_LABEL_CHAR}+)*)?)}
   URL_PREFIX_RE = %r{\Ahttp(s?)://[^/]+}
   USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
   USERNAME_LENGTH_LIMIT = 30
@@ -538,7 +546,7 @@ class Account < ApplicationRecord
   before_destroy :clean_feed_manager
 
   def ensure_keys!
-    return unless local? && private_key.blank? && public_key.blank? && keypairs.empty?
+    return unless local? && public_key.blank? && keypairs.empty?
 
     generate_keys
     save!
@@ -564,7 +572,7 @@ class Account < ApplicationRecord
   end
 
   def generate_keys
-    return unless local? && private_key.blank? && public_key.blank? && keypairs.empty?
+    return unless local? && public_key.blank? && keypairs.empty?
 
     keypair = OpenSSL::PKey::RSA.new(2048)
     keypairs << keypairs.build(local_fragment: "#rsa-#{SecureRandom.hex(8)}", type: :rsa, public_key: keypair.public_key.to_pem, private_key: keypair.to_pem)

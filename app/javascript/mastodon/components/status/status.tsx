@@ -40,7 +40,6 @@ type StatusRedesignProps = Merge<
   {
     accountId?: string;
     contextType?: StatusContextType;
-    headerContents?: React.ReactNode;
     variant?: StatusVariant;
   }
 >;
@@ -90,7 +89,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   onOpen,
   showThread,
   shouldHighlightOnMount,
-  headerContents,
   variant = contextToVariant(contextType),
   nextId,
 }) => {
@@ -149,6 +147,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     muted,
     unfocusable,
     'data-id': id,
+    'data-variant': variant,
     handlers: hotkeyHandlers,
   };
 
@@ -158,7 +157,10 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
   if (hidden) {
     return (
-      <StatusHotkeys {...hotkeysProps}>
+      <StatusHotkeys
+        {...hotkeysProps}
+        className={classNames(!muted && 'focusable')}
+      >
         <span>{status.account.display_name || status.account.username}</span>
         {status.spoiler_text && <span>{status.spoiler_text}</span>}
         {!isHidden && <span>{status.content}</span>}
@@ -173,6 +175,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       <StatusHotkeys
         {...hotkeysProps}
         onClick={onOpenClick}
+        onAuxClick={onOpenClick}
         className={classNames(
           classes.root,
           variant === 'feed' && classes.variantFeed,
@@ -185,7 +188,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
             isNextReplyingToMe &&
             !showThread &&
             classes.connectNextReply,
-          !unfocusable && 'focusable',
+          !muted && 'focusable',
         )}
         tabIndex={unfocusable ? undefined : -1}
         data-featured={featured ? 'true' : null}
@@ -201,9 +204,11 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           />
         )}
 
-        <StatusRedesignHeader status={status} className={classes.header}>
-          {headerContents}
-        </StatusRedesignHeader>
+        <StatusRedesignHeader
+          status={status}
+          className={classes.header}
+          featured={featured}
+        />
 
         <TranslateButton status={status} onTranslate={onTranslate} />
 
@@ -217,7 +222,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         <div
           className={classNames(
             classes.contentWrapper,
-            isHidden && classes.hasContentWarning,
+            classes.contentWarningBlur,
+            isHidden && classes.contentWarningBlurActive,
             !showDespiteFilter && isFiltered && classes.isFiltered,
           )}
           id={contentWrapperId}
@@ -229,7 +235,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
             onReadMore={onOpenCallback}
             onTranslate={onTranslate}
             collapsible={variant !== 'page'}
-            className={classNames(variant === 'page' && classes.content)}
           >
             {!!status.poll && (
               <Poll
@@ -256,9 +261,9 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
             {showActions && !isQuotedPost && (
               <StatusActionBar
                 statusId={status.id}
+                reblogId={parent?.id}
                 withDismiss={withDismiss}
                 withCounters={withCounters}
-                onlyResponses={variant === 'page'}
               />
             )}
 
@@ -327,11 +332,11 @@ function contextToVariant(contextType?: StatusContextType): StatusVariant {
   switch (contextType) {
     case 'composer':
     case 'detailed':
-    case undefined:
       return 'page';
     case 'thread':
       return 'thread';
     case 'notifications':
+    case undefined:
     default:
       return 'feed';
   }

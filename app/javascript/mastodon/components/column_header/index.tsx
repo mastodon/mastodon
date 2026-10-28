@@ -11,6 +11,7 @@ import type { DistributedOmit } from 'type-fest';
 import { openNavigation } from '@/mastodon/actions/navigation';
 import { getColumnSkipLinkId } from '@/mastodon/features/ui/components/skip_links';
 import { useBreakpoint } from '@/mastodon/features/ui/hooks/useBreakpoint';
+import { useResizeObserver } from '@/mastodon/hooks/useObserver';
 import { useAppDispatch } from '@/mastodon/store';
 import { hasReactChildren } from '@/mastodon/utils/has_react_children';
 
@@ -45,13 +46,14 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   className,
   ...props
 }: ColumnHeaderProps) => {
-  const { scrollTop } = useColumn();
   const columnIndex = useColumnIndexContext();
   const location = useLocation<LocationState>();
   const hasBackButton =
     withBackButton === true ||
     (withBackButton === 'auto' && location.state?.fromMastodon);
   const hasExtraStickyContent = hasReactChildren(extraStickyContent);
+
+  const { isScrolledToTop, scrollTop } = useColumn();
 
   const handleHeaderClick = useCallback<React.MouseEventHandler>(
     (e) => {
@@ -71,12 +73,17 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
     [scrollTop],
   );
 
+  const hasScrollToTopButton = !isScrolledToTop && withUnreadMarker;
+  const headerRef = useTrackColumnHeaderHeight();
+
   return (
     <header
       {...props}
+      ref={headerRef}
       className={classNames(
         className,
         classes.root,
+        isScrolledToTop && classes.rootScrolledToTop,
         hasExtraStickyContent && classes.withStickyContent,
       )}
     >
@@ -97,28 +104,38 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         {hasReactChildren(extraButtons) && (
           <div className={classes.rightButtons}>{extraButtons}</div>
         )}
-        {withUnreadMarker && (
-          <Button
-            size='sm'
-            color='accent'
-            variant='solid'
-            onClick={scrollTop}
-            leadingIcon={ArrowUpIcon}
-            className={classes.unreadButton}
-          >
-            <FormattedMessage
-              id='column_header.new_posts'
-              defaultMessage='New posts'
-            />
-          </Button>
-        )}
       </div>
       {hasExtraStickyContent && (
         <div className={classes.extraStickyContent}>{extraStickyContent}</div>
       )}
+      {hasScrollToTopButton && (
+        <Button
+          size='sm'
+          color='accent'
+          variant='solid'
+          onClick={scrollTop}
+          leadingIcon={ArrowUpIcon}
+          className={classes.unreadButton}
+        >
+          <FormattedMessage
+            id='column_header.scroll_to_top'
+            defaultMessage='Scroll to top'
+          />
+        </Button>
+      )}
     </header>
   );
 };
+
+/**
+ * This is used for pages that don't need a column title,
+ * but should have the same styles as the column header
+ */
+export const EmptyColumnHeader: React.FC = () => (
+  <div className={classes.root}>
+    <div className={classes.layout} />
+  </div>
+);
 
 type ColumnHeaderButtonProps = DistributedOmit<IconButtonProps, 'size'> & {
   showTextOnDesktop?: boolean;
@@ -189,3 +206,54 @@ const MobileMenuButton: React.FC = () => {
     </div>
   );
 };
+
+function updateHeaderHeightCssVariable(element: HTMLElement) {
+  const newHeight = `${element.offsetHeight}px`;
+  const currentHeight = getComputedStyle(
+    document.documentElement,
+  ).getPropertyValue('--current-column-header-height');
+
+  if (newHeight !== currentHeight) {
+    document.documentElement.style.setProperty(
+      '--current-column-header-height',
+      `${element.offsetHeight}px`,
+    );
+  }
+}
+
+/**
+ * Writes changes in the column header's height to a CSS variable
+ * that is used to keep feed items in view when navigating them via hotkeys
+ */
+function useTrackColumnHeaderHeight() {
+  const onResize: ResizeObserverCallback = useCallback((entries) => {
+    for (const { target } of entries) {
+      if (target instanceof HTMLElement) {
+        updateHeaderHeightCssVariable(target);
+      }
+    }
+  }, []);
+
+  const observer = useResizeObserver(onResize);
+
+  const headerRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      const isMultiColumnLayout = !!document.querySelector(
+        'body.layout-multiple-columns',
+      );
+      if (!node || isMultiColumnLayout) {
+        return;
+      }
+
+      observer.observe(node);
+      updateHeaderHeightCssVariable(node);
+
+      return () => {
+        observer.unobserve(node);
+      };
+    },
+    [observer],
+  );
+
+  return headerRef;
+}

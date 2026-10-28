@@ -136,6 +136,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       message: registrations_enabled? ? nil : registrations_message,
       min_age: Setting.min_age.presence,
       url: ENV.fetch('SSO_ACCOUNT_SIGN_UP', nil),
+      oauth: true,
     }
   end
 
