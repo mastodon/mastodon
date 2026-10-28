@@ -4,6 +4,7 @@ import { useCallback, useEffect, useId } from 'react';
 import classNames from 'classnames';
 
 import { insertEmojiCompose } from '@/mastodon/actions/compose';
+import type { OnEmojiPick } from '@/mastodon/components/emoji/picker';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import {
   closeComposer,
@@ -14,7 +15,6 @@ import {
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { ComposeAttachments } from './components/attachments';
-import type { OnEmojiPick } from './components/emoji';
 import { ComposeFooter } from './components/footer';
 import { ComposeFormHeader } from './components/header';
 import { ComposeHints } from './components/hints';
