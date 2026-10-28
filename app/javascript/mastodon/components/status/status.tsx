@@ -223,7 +223,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           className={classNames(
             classes.contentWrapper,
             classes.contentWarningBlur,
-            isHidden && classes.active,
+            isHidden && classes.contentWarningBlurActive,
             !showDespiteFilter && isFiltered && classes.isFiltered,
           )}
           id={contentWrapperId}
