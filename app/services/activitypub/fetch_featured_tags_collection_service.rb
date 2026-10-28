@@ -7,7 +7,7 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
     return if url.blank? || account.suspended? || account.local?
 
     @account = account
-    @json    = fetch_resource(url, true, local_follower)
+    @json    = fetch_resource(url, on_behalf_of: local_follower)
 
     return unless supported_context?(@json)
 
@@ -45,7 +45,7 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
     return collection_or_uri if collection_or_uri.is_a?(Hash)
     return if non_matching_uri_hosts?(@account.uri, collection_or_uri)
 
-    fetch_resource_without_id_validation(collection_or_uri, local_follower, raise_on_error: :temporary)
+    fetch_resource_without_id_validation(collection_or_uri, on_behalf_of: local_follower, raise_on_error: :temporary)
   end
 
   def process_items(items)

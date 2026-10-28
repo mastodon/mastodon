@@ -62,7 +62,7 @@ class ActivityPub::FetchRepliesService < BaseService
     return unless @allow_synchronous_requests
     return if non_matching_uri_hosts?(@reference_uri, collection_or_uri)
 
-    fetch_resource_without_id_validation(collection_or_uri, nil, raise_on_error: :temporary)
+    fetch_resource_without_id_validation(collection_or_uri, raise_on_error: :temporary)
   end
 
   def filter_replies(items)
