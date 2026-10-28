@@ -415,7 +415,7 @@ RSpec.describe Mastodon::CLI::Accounts do
       end
 
       context 'with --enable-sign-in-token option' do
-        let(:user) { Fabricate(:user, current_sign_in_at: 8.months.ago) }
+        let(:user) { Fabricate(:user, current_sign_in_at: 8.months.ago, created_at: 8.months.ago) }
         let(:options) { { enable_sign_in_token: true } }
 
         before { user.disable_sign_in_token! }

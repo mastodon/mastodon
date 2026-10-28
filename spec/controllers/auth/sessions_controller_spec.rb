@@ -443,7 +443,7 @@ RSpec.describe Auth::SessionsController do
     end
 
     context 'when 2FA is disabled and inactive for long' do
-      let!(:user) { Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', current_sign_in_at: 7.months.ago) }
+      let!(:user) { Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', current_sign_in_at: 7.months.ago, created_at: 7.months.ago) }
 
       before do
         allow(UserMailer).to receive(:sign_in_token).and_return(instance_double(ActionMailer::MessageDelivery, deliver_later!: nil))
