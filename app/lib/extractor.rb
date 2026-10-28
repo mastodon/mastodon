@@ -34,7 +34,9 @@ module Extractor
     urls = UTS58.extract_urls_with_indices(text, options)
     # TODO: when the UTS58 gem supports not extracting
     # schema less URLs the following line can be removed again
-    urls.filter { |i| text.index(i[:url]) }
+    urls.filter do |i|
+      text.index(i[:url]) == i[:indices].first
+    end
   end
 
   def remove_overlapping_entities(entities)
