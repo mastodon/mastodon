@@ -130,7 +130,9 @@
   &.isFiltered {
     display: none;
   }
+}
 
+.contentWarningBlur {
   &::after {
     content: '';
     position: absolute;
@@ -161,14 +163,12 @@
     }
   }
 
-  &.hasContentWarning {
-    &::after {
-      visibility: visible;
-      opacity: 1;
-      transition:
-        visibility 0s linear 0s,
-        opacity var(--fade-time) ease-in-out;
-    }
+  &.contentWarningBlurActive::after {
+    visibility: visible;
+    opacity: 1;
+    transition:
+      visibility 0s linear 0s,
+      opacity var(--fade-time) ease-in-out;
   }
 }
 

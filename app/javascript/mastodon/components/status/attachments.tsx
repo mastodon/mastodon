@@ -366,9 +366,9 @@ const MediaAttachmentWrapper: React.FC<{
       )}
       <div
         className={classNames(
-          mainClasses.contentWrapper,
+          mainClasses.contentWarningBlur,
           classes.galleryContent,
-          !visible && mainClasses.hasContentWarning,
+          !visible && mainClasses.contentWarningBlurActive,
           !visible && classes.galleryHideButtons,
           !visible && classes.galleryHideActions,
           mediaFilters.length > 0 && classes.galleryFilterBlur,
