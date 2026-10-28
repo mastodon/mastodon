@@ -25,6 +25,7 @@ module Settings
       def destroy
         if current_user.webauthn_enabled?
           current_user.disable_otp_login!
+          UserMailer.otp_disabled(current_user).deliver_later!
         else
           current_user.disable_two_factor!
           UserMailer.two_factor_disabled(current_user).deliver_later!

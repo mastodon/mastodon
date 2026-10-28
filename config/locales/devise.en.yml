@@ -32,6 +32,11 @@ en:
         extra: If you did not change your email, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.
         subject: 'Mastodon: Email changed'
         title: New email address
+      otp_disabled:
+        explanation: Authentication with an authenticator app has been disabled for your account.
+        extra: Login is now possible using only your security keys.
+        subject: 'Mastodon: Authentication with an authenticator app disabled'
+        title: Authenticator app disabled
       password_change:
         explanation: The password for your account has been changed.
         extra: If you did not change your password, it is likely that someone has gained access to your account. Please change your password immediately or contact the server admin if you're locked out of your account.

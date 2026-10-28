@@ -158,6 +158,11 @@ RSpec.describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
             expect(response).to redirect_to settings_two_factor_authentication_methods_path
           end
 
+          it 'notifies the user that the authenticator app is disabled', :inline_jobs do
+            expect { delete :destroy, session: { challenge_passed_at: Time.now.utc } }
+              .to send_email(to: user.email, subject: I18n.t('devise.mailer.otp_disabled.subject'))
+          end
+
           it 'does not notify the user that two-factor authentication is disabled', :inline_jobs do
             expect { delete :destroy, session: { challenge_passed_at: Time.now.utc } }
               .to_not send_email(subject: I18n.t('devise.mailer.two_factor_disabled.subject'))
