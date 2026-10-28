@@ -12,6 +12,10 @@ import { emojiUse } from '@/mastodon/actions/emojis';
 import { changeSetting } from '@/mastodon/actions/settings';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import { CircularProgress } from '@/mastodon/components/circular_progress';
+import {
+  PER_LINE,
+  selectFrequentlyUsedEmoji,
+} from '@/mastodon/components/emoji/selectors';
 import { MenuCard } from '@/mastodon/components/menu/card';
 import type { PopoverChildProps } from '@/mastodon/components/popover';
 import { Popover } from '@/mastodon/components/popover';
@@ -19,8 +23,6 @@ import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import classes from '../styles.module.scss';
-
-import { PER_LINE, selectFrequentlyUsedEmoji } from './selectors';
 
 export type OnEmojiPick = (emoji: EmojiData) => void;
 
