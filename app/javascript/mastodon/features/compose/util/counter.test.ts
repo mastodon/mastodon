@@ -18,6 +18,12 @@ describe('countableText', () => {
     expect(countableText('see example.com here')).toBe(`see example.com here`);
   });
 
+  test('with a schemaless URL and a valid url of the same domain', () => {
+    expect(
+      countableText('see example.com here I link to https://example.com'),
+    ).toBe(`see example.com here I link to ${URL_PLACEHOLDER}`);
+  });
+
   test('collapses a non-BMP URL the same way', () => {
     expect(countableText('look https://example.com/🐪/#camel here')).toBe(
       `look ${URL_PLACEHOLDER} here`,
