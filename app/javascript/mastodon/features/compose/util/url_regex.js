@@ -7,6 +7,9 @@ const extractor = new Extractor();
 export function replaceUrls(text, replacement) {
   const entities = extractUrlsWithIndices(text);
   let out = text;
+
+  // TODO: when the UTS58 gem supports not extracting schemaless URLs
+  // const onlyUrlsWithSchema can be removed again
   const onlyUrlsWithSchema = entities.filter(item => text.includes(item.url));
   for (let i = onlyUrlsWithSchema.length - 1; i >= 0; i--) {
     const [start, end] = onlyUrlsWithSchema[i].indices;

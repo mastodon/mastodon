@@ -32,6 +32,8 @@ module Extractor
   # below.
   def extract_urls_with_indices(text, options = {})
     urls = UTS58.extract_urls_with_indices(text, options)
+    # TODO: when the UTS58 gem supports not extracting
+    # schema less URLs the following line can be removed again
     urls.filter { |i| text.index(i[:url]) }
   end
 
