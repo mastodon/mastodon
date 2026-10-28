@@ -4,10 +4,9 @@
   @include mixins.type-meta;
 
   display: grid;
-  grid-template-columns: subgrid;
+  grid-template-columns: var(--first-col-width) auto;
   align-items: center;
   color: var(--color-text-secondary);
-  grid-column: span 2;
 
   a {
     color: inherit;
