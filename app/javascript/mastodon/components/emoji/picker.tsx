@@ -270,7 +270,7 @@ const ModifierButton: React.FC<{ skin: EmojiSkin; onClose: () => void }> = ({
     [dispatch, onClose, skin],
   );
   return (
-    <button type='button' onClick={handleClick} data-index={1}>
+    <button type='button' onClick={handleClick}>
       <Emoji emoji='fist' size={22} skin={skin} />
     </button>
   );
