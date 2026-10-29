@@ -1,0 +1,17 @@
+div.emojiRoot {
+  position: relative;
+  z-index: 2;
+  padding: 0;
+  min-width: 300px;
+  min-height: 300px;
+
+  &:has(.emojiLoading) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @container (width > 400px) {
+    min-height: 370px;
+  }
+}

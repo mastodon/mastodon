@@ -13,6 +13,8 @@ import {
 
 import { addPoll, uploadCompose } from '@/mastodon/actions/compose';
 import { Button, IconButton } from '@/mastodon/components/button/redesign';
+import type { OnEmojiPick } from '@/mastodon/components/emoji/picker';
+import { EmojiPickerButton } from '@/mastodon/components/emoji/picker';
 import {
   createAppSelector,
   useAppDispatch,
@@ -21,8 +23,6 @@ import {
 
 import classes from '../styles.module.scss';
 
-import type { OnEmojiPick } from './emoji';
-import { ComposeEmojiButton } from './emoji';
 import {
   selectComposeAttachments,
   selectComposeCharsCount,
@@ -64,7 +64,7 @@ export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
     <footer className={classes.footer}>
       <ComposeUploadButton disabled={hasQuote} />
 
-      <ComposeEmojiButton onPick={onEmojiPick} />
+      <EmojiPickerButton onPick={onEmojiPick} />
 
       <IconButton
         size='sm'
