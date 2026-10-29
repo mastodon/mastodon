@@ -172,12 +172,17 @@
 }
 
 .image {
-  border-radius: var(--radius-4);
   position: relative;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
+}
+
+.imageAltBadge {
+  position: absolute;
+  inset-block-end: var(--space-1);
+  inset-inline-end: var(--space-1);
 }
 
 .blurHash {

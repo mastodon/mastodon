@@ -332,6 +332,7 @@ const QuotedStatusBody: React.FC<{
         >
           {imageAttachments.map((attachment) => (
             <StatusImage
+              showAlt
               className={classes.image}
               attachment={attachment}
               sensitive={sensitive}

@@ -8,6 +8,8 @@ import type {
 import { Blurhash } from '@/mastodon/components/blurhash';
 import type { MediaAttachmentShape } from '@/mastodon/models/status';
 
+import { AltTextBadge } from '../alt_text_badge';
+
 import classes from './content.module.scss';
 
 type StatusImageAttachmentJSON =
@@ -22,8 +24,17 @@ export const StatusImage: React.FC<
       | MediaAttachmentShape<StatusImageAttachmentJSON>;
     children?: React.ReactNode;
     sensitive?: boolean;
+    showAlt?: boolean;
   } & React.ComponentPropsWithRef<'div'>
-> = ({ attachment, children, sensitive, className, style, ...props }) => {
+> = ({
+  attachment,
+  children,
+  sensitive,
+  className,
+  style,
+  showAlt = false,
+  ...props
+}) => {
   let x = 50;
   let y = 50;
   const focusX = attachment.meta?.focus?.x;
@@ -58,6 +69,13 @@ export const StatusImage: React.FC<
       )}
 
       {children}
+
+      {attachment.description && showAlt && (
+        <AltTextBadge
+          description={attachment.description}
+          className={classes.imageAltBadge}
+        />
+      )}
     </div>
   );
 };
