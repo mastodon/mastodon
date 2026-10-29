@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.27] - 2026-10-29
+
+### Security
+
+- Fix insufficient ActivityPub identifier verification ([GHSA-288h-6j8h-6x5j](https://github.com/mastodon/mastodon/security/advisories/GHSA-288h-6j8h-6x5j))
+- Updated dependencies, in particular to address security advisories in Ruby, NodeJS, and `sanitize`
+
 ## [4.4.26] - 2026-10-01
 
 ### Security
