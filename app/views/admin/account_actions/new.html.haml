@@ -1,6 +1,22 @@
 - content_for :page_title do
   = t('admin.account_actions.title', acct: @account.pretty_acct)
 
+- content_for :heading_actions do
+  = simple_form_for @account_action, url: admin_account_action_path(@account.id) do |f|
+    = f.input :report_id,
+              as: :hidden
+    = f.input :type, as: :hidden
+
+    .fields-group
+      = f.input :type,
+                as: :select,
+                collection: Admin::AccountAction::TYPES,
+                include_blank: false,
+                label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type}") },
+                wrapper: :with_label,
+                required: false,
+                input_html: { class: 'account_action_type' }
+
 - if @account.suspended_locally?
   .flash-message.alert
     = t('admin.account_actions.already_suspended')
@@ -11,31 +27,32 @@
 = simple_form_for @account_action, url: admin_account_action_path(@account.id) do |f|
   = f.input :report_id,
             as: :hidden
+  = f.input :type, as: :hidden
+  - @report_id = params[:report_id]
+  - @type = params[:type]
 
-  .fields-group
-    = f.input :type,
-              as: :radio_buttons,
-              collection: Admin::AccountAction.types_for_account(@account),
-              disabled: Admin::AccountAction.disabled_types_for_account(@account),
-              hint: t('simple_form.hints.admin_account_action.type_html', acct: @account.pretty_acct),
-              include_blank: false,
-              label_method: ->(type) { account_action_type_label(type) },
-              wrapper: :with_block_label,
-              input_html: { class: 'account_action_type' }
+  .flash-message.warning
+    %p.hint= t("admin.reports.summary.action_preambles.#{@type}_html", acct: @account.pretty_acct)
+    %ul.hint
+      %li.warning-hint= t("admin.reports.summary.actions.#{@type}_html", acct: @account.pretty_acct)
+      - if :type == 'suspend'
+        %li.warning-hint= t('admin.reports.summary.delete_data_html', acct: @account.pretty_acct)
+      - if %w(silence suspend).include?(@type)
+        %li.warning-hint= t('admin.reports.summary.close_reports_html', acct: @account.pretty_acct)
+      - else
+        %li= t('admin.reports.summary.close_report', id: @report_id)
+      %li= t('admin.reports.summary.record_strike_html', acct: @account.pretty_acct)
+      - if @account.local?
+        %li= t('admin.reports.summary.send_email_html', acct: @account.pretty_acct)
+
+  %hr.spacer/
+  %h3= t('admin.account_actions.notification_title')
 
   - if @account.local?
-    %hr.spacer/
-
     .fields-group
       = f.input :send_email_notification,
                 as: :boolean,
                 wrapper: :with_label
-
-    - if params[:report_id].present?
-      .fields-group
-        = f.input :include_statuses,
-                  as: :boolean,
-                  wrapper: :with_label
 
     %hr.spacer/
 
@@ -52,6 +69,16 @@
                 as: :text,
                 hint: t('simple_form.hints.admin_account_action.text'),
                 wrapper: :with_block_label
+
+    - if @account.local? && params[:report_id].present?
+      %hr.spacer/
+
+      .fields-group
+        = f.input :include_statuses,
+                  as: :boolean,
+                  wrapper: :with_label
+
+      %hr.spacer/
 
   .actions
     = f.button :button,
