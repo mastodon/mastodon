@@ -93,6 +93,7 @@ hu:
       enable: Kiolvasztás
       enable_sign_in_token: Biztonsági kódos kihívás engedélyezése
       enable_sign_in_token_auth: Tokenes e-mail-hitelesítés engedélyezése
+      enable_unconfirmed: Megerősítő e-mail engedélyezése
       enabled: Bekapcsolva
       enabled_msg: "%{username} fiókja befagyasztása sikeresen visszavonva"
       follow_recommendations:
@@ -473,6 +474,8 @@ hu:
       undo: Eltávolítás az engedélyező-listáról
     domain_blocks:
       add_new: Új tiltott domain hozzáadása
+      confirm_downgrade:
+        cancel: Mégse
       confirm_suspension:
         cancel: Mégsem
         confirm: Felfüggesztés
@@ -775,6 +778,49 @@ hu:
       reset: Visszaállítás
       search: Keresés
       title: IP szabály
+    moderation_subscriptions:
+      advisory_action: 'Művelet: %{action}'
+      advisory_actions:
+        accept: engedélyezés
+        limit: némítás
+        reject: felfüggesztés
+      apply_conditions:
+        always: Mindig
+        never: Soha
+      delete: Törlés
+      last_synced_at: 'Utolsó szinkronizálás:'
+      list_actions:
+        default: Vegyes (engedélyezése és elutasítás)
+      list_actions_short:
+        accept: Engedélyezési lista
+        default: Vegyes
+        reject: Tiltólista
+      name: Név
+      priority: Prioritás
+      tabs:
+        logs: Naplók
+        suggestions: Javaslatok
+      type: Típus
+      types:
+        csv_list: CSV-lista
+      url: Webcím
+    moderation_suggestions:
+      actions:
+        accept: Engedélyezés
+        limit: Korlátozás
+        reject: Felfüggesztés
+      apply_accept: Engedélyezés
+      apply_limit: Korlátozás
+      apply_reject: Felfüggesztés
+      apply_retract: Visszavonás
+      current_states:
+        accept: jelenleg engedélyezve
+        limit: jelenleg korlátozva
+        reject: jelenleg felfüggesztve
+      dismiss: Javaslatok eltüntetése
+      empty: Most nincsenek moderációs javaslatok.
+      suggested_from_html: 'Javasolta: %{link}'
+      title: Moderációs javaslatok
     relationships:
       title: "%{acct} kapcsolatai"
     relays:
@@ -1319,9 +1365,8 @@ hu:
     warning_presets:
       add_new: Új hozzáadása
       delete: Törlés
-      edit_preset: Figyelmeztetés szerkesztése
-      empty: Nem definiáltál még egyetlen figyelmeztetést sem.
-      title: Figyelmeztető szövegek
+      navigation_title: Konzervválaszok
+      title: Moderátori konzervválaszok
     webhooks:
       add_new: Végpont hozzáadása
       delete: Törlés
@@ -1401,7 +1446,6 @@ hu:
     animations_and_accessibility: Animáció és akadálymentesítés
     boosting_preferences: Megtolási beállítások
     boosting_preferences_info_html: "<strong>Tipp:</strong> A beállításoktól függetlenül, ha <kbd>Shift</kbd> + <kbd>katinttást</kbd> használsz a %{icon} Megtolás ikonon, akkor azonnal megteszi."
-    discovery: Felfedezés
     localization:
       body: A Mastodont önkéntesek fordítják.
       guide_link: https://crowdin.com/project/mastodon
@@ -1486,6 +1530,7 @@ hu:
       link_not_received: Nem kaptad meg a hivatkozást?
       new_confirmation_instructions_sent: Néhány perc múlva új e-mailt fogsz kapni a megerősítési hivatkozással.
       title: Bejövő postaláda ellenőrzése
+      wrong_email: Hibás e-mail-cím?
     sign_in:
       preamble_html: Jelentkezz be a <strong>%{domain}</strong> hitelesítéső adataiddal. Ha másik kiszolgálón található a fiókod, akkor itt nem fogsz tudni belépni.
       title: 'Bejelentkezés ide: %{domain}'
@@ -1522,6 +1567,12 @@ hu:
     auto: Automatikus
     dark: Sötét
     light: Világos
+  color_theme:
+    cyan: Cián
+    indigo: Indigókék
+    lime: Lime
+    orange: Narancs
+    pink: Rózsaszín
   contrast:
     auto: Automatikus
     high: Magas

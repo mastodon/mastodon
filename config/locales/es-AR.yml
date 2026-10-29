@@ -93,6 +93,7 @@ es-AR:
       enable: Descongelar
       enable_sign_in_token: Habilitar el desafío de código de seguridad
       enable_sign_in_token_auth: Habilitar autenticación de token por correo electrónico
+      enable_unconfirmed: Permitir confirmación por correo electrónico
       enabled: Habilitada
       enabled_msg: Se descongeló exitosamente la cuenta de %{username}
       follow_recommendations:
@@ -1073,6 +1074,119 @@ es-AR:
       translation: Traducción
       translations: Traducciones
       translations_explanation: Opcionalmente, podés agregar traducciones para las reglas. El valor predeterminado se mostrará si no hay una versión traducida disponible. Por favor, asegurate siempre de que cualquier traducción proporcionada esté sincronizada con el valor predeterminado.
+    server_checks:
+      categories:
+        completed:
+          title: Completada
+        critical:
+          title: Crítica
+        error:
+          title: Errores
+        ignored:
+          title: Ignorada
+        suggestion:
+          title: Sugerencias
+        unprocessed:
+          title: Sin procesar
+        warning:
+          title: Advertencias
+      checks:
+        database_schema:
+          error:
+            title: Hubo un error al revisar el esquema de la base de datos
+          ok:
+            title: No hay migraciones de base de datos pendiente
+          pending:
+            lead_html: Por favor, ejecutalas para asegurarte que la aplicación se comporta como se espera
+            title: Hay migraciones de base de datos pendientes
+          running:
+            title: Tu servidor está revisando el esquema de la base de datos
+          unprocessed:
+            title: Todavía tu servidor no ha revisado el esquema de la base de datos
+        elastic_search:
+          error:
+            title: Hubo un error al revisar la configuración de Elasticsearch
+          ok:
+            title: Elasticsearch está configurada sin problemas
+          pending:
+            lead:
+              analysis_index_mismatch_html: La configuración del analizador de indización de Elasticsearch está desactualizada. Por favor, ejecutá <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: El clúster de Elasticsearch está dañado (estado rojo), las funciones de búsqueda no están disponibles
+              cluster_health_yellow_html: El clúster de Elasticsearch está dañado (estado amarillo), quizás quieras investigar el motivo
+              index_mismatch_html: Los mapeados de indización de Elasticsearch están desactualizados. Por favor, ejecutá <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Tu clúster de Elasticsearch tiene más de un nodo, pero Mastodon no está configurado para usarlos
+              preset_single_node_html: Tu clúster de Elasticsearch solo tiene un nodo, <code>ES_PRESET</code> debería establecerse a <code>single_node_cluster</code>
+              reset_chewy_html: La indización de tu sistema de Elasticsearch está desactualizada debido a un cambio de configuración. Por favor, ejecutá <code>tootctl search deploy --reset-chewy</code>para actualizarla
+              running_check_html: No se pudo conectar a Elasticsearch. Por favor, revisá que se esté ejecutando, o deshabilitá la búsqueda de solo texto
+              version_check_html: Se está ejecutando Elasticsearch versión %{running_version}, mientras que se requiere la versión %{required_version}
+            title: Hay problemas con Elasticsearch
+          running:
+            title: El servidor está revisando la configuración de Elasticsearch
+          unprocessed:
+            title: Todavía el servidor no ha revisado la configuración de Elasticsearch
+        media_privacy:
+          error:
+            title: Hubo un error al revisar la privacidad de medios de tu servidor
+          ok:
+            title: La privacidad de medios de tu servidor es segura
+          pending:
+            lead:
+              upload_check_privacy_error_html: Tu servidor web está mal configurado
+              upload_check_privacy_error_object_storage_html: Tu almacenamiento de objetos está mal configurado
+            title: La privacidad de tus usuarios está en riesgo
+          running:
+            title: El servidor está revisando su estado de privacidad
+          unprocessed:
+            title: Todavía el servidor no ha revisado su estado de privacidad
+        rules:
+          error:
+            title: Hubo un error al revisar las reglas de tu servidor
+          ok:
+            title: Se establecieron las reglas de tu servidor
+          pending:
+            lead_html: Tu servidor no tiene reglas publicadas. Las reglas claras ayudan a la moderación y establecen expectativas
+            title: Establecer reglas del servidor
+          running:
+            title: El servidor está revisando tus reglas
+          unprocessed:
+            title: Todavía el servidor no ha revisado si hay reglas
+        sidekiq_process:
+          error:
+            title: Hubo un error al revisar la configuración de Sidekiq
+          ok:
+            title: Sidekiq está configurado sin problemas
+          pending:
+            lead_html: No hay procesos de Sidekiq ejecutándose para la/s %{missing_queues_str} cola/s
+            title: Por favor, revisá tu configuración de Sidekiq
+          running:
+            title: El servidor está revisando la configuración de Sidekiq
+          unprocessed:
+            title: Todavía el servidor no ha revisado la configuración de Sidekiq
+        software_version:
+          error:
+            title: Hubo un error al buscar actualizaciones de software
+          ok:
+            title: Tu servidor de Mastodon está actualizado
+          pending:
+            lead:
+              patch_html: Hay disponible una actualización de corrección de errores para Mastodon
+              regular_html: Hay disponible una nueva versión de Mastodon
+              urgent_html: Hay disponible una actualización crítica de Mastodon; por favor, actualizá tan rápido como sea posible
+            title: Actualizá tu servidor de Mastodon
+          running:
+            title: El servidor está buscando si hay alguna actualización pendiente de software
+          unprocessed:
+            title: Todavía el servidor no ha buscado actualizaciones de software
+      ignore:
+        label: Ignorar
+      lead: Recomendaciones para mantener seguro, cordial y eficiente a tu servidor.
+      recommendations:
+        title: Recomendaciones
+      restore:
+        label: Restablecer
+      setup:
+        label: Configurar
+      title: Salud del servidor
     settings:
       about:
         manage_rules: Administrar reglas del servidor
@@ -1423,9 +1537,17 @@ es-AR:
     warning_presets:
       add_new: Agregar nuevo
       delete: Eliminar
-      edit_preset: Editar preajuste de advertencia
-      empty: Aún no ha definido ningún preajuste de advertencia.
-      title: Preajustes de advertencia
+      dropdown:
+        all_actions: Todas las acciones
+        disable: Congelar
+        none: Advertir
+        sensitive: Marcar como sensible
+        silence: Limitar
+        suspend: Suspender
+      edit_preset: Editar respuesta predefinida
+      empty: Todavía no definiste ninguna respuesta predefinida.
+      navigation_title: Respuestas predefinidas
+      title: Respuestas predefinidas de moderación
     webhooks:
       add_new: Agregar punto final
       delete: Eliminar
@@ -1480,6 +1602,9 @@ es-AR:
     new_pending_account:
       body: Abajo están los detalles de la nueva cuenta. Podés aprobar o rechazar esta solicitud.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
+    new_pending_accounts:
+      body: Se crearon nuevas cuentas en %{instance}. Como tu servidor está configurado para posponer correos electrónicos de confirmación luego de la aprobación de moderación, esas cuentas todavía no tuvieron la oportunidad de verificar sus direcciones de correo electrónico. Los detalles de las nuevas cuentas se muestran a continuación. Podés aprobar o rechazar estas solicitudes.
+      subject: Nuevas cuentas para revisar en %{instance}
     new_report:
       body: "%{reporter} denunció a %{target}"
       body_remote: Alguien de %{domain} denunció a %{target}
@@ -1508,7 +1633,6 @@ es-AR:
     animations_and_accessibility: Animaciones y accesibilidad
     boosting_preferences: Configuración de adhesiones
     boosting_preferences_info_html: "<strong>Truco:</strong> Más allá de la configuración, si mantenés pulsada la tecla <kbd>Mayúscula</kbd> y hacés <kbd>clic</kbd> en el ícono para adherir %{icon}, vas a adherir inmediatamente."
-    discovery: Descubrí
     localization:
       body: Mastodon es localizado por voluntarios.
       guide_link: https://es.crowdin.com/project/mastodon
@@ -1588,11 +1712,16 @@ es-AR:
     security: Seguridad
     set_new_password: Establecer nueva contraseña
     setup:
+      correct_email: Corregir dirección
       email_below_hint_html: Revisá tu carpeta de correo no deseado / spam, o solicitá otro enlace de confirmación. Podés corregir tu dirección de correo electrónico si está mal.
       email_settings_hint_html: Hacé clic en el enlace que enviamos a %{email} para comenzar a usar Mastodon. Estaremos esperando aquí mismo.
+      email_settings_hint_wait_html: Tu pedido está siendo revisado. Pronto deberías recibir un correo electrónico en %{email}. Cuando te llegue, hacé clic en el enlace para comenzar a usar Mastodon. Te esperamos acá.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
       title: Revisá tu bandeja de entrada
+      title_wait: Revisá tu bandeja de entrada
+      wrong_email: "¿La dirección de correo electrónico es incorrecta?"
+      wrong_email_below_hint_html: "¡No hay problema! Podés corregir tu dirección de correo electrónico a continuación."
     sign_in:
       preamble_html: Iniciá sesión con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no vas a poder iniciar sesión acá.
       title: Iniciar sesión en %{domain}
@@ -1629,6 +1758,12 @@ es-AR:
     auto: Automático
     dark: Oscuro
     light: Claro
+  color_theme:
+    cyan: Cian
+    indigo: Índigo
+    lime: Lima
+    orange: Naranja
+    pink: Rosa
   contrast:
     auto: Automático
     high: Alto
@@ -1677,6 +1812,7 @@ es-AR:
       action_taken: Acción tomada
       appeal: Apelar
       appeal_approved: Este incumplimiento fue apelado exitosamente y ya no es válido
+      appeal_handled_by: Apelación administrada por
       appeal_rejected: Se rechazó la apelación
       appeal_submitted_at: Apelación enviada
       appealed_msg: Tu apelación fue enviada. Si se aprueba, se te notificará.
@@ -2116,6 +2252,7 @@ es-AR:
           quadrillion: C
           thousand: m
           trillion: T
+          unit: ''
   otp_authentication:
     code_hint: Ingresá el código generado por tu aplicación de autenticación para confirmar
     description_html: Si habilitás la <strong>autenticación de dos factores</strong> usando una aplicación de autenticación, entonces en el inicio de sesión se te pedirá que estés con tu dispositivo, el cual generará un código numérico ("token") para que lo ingresés.

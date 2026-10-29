@@ -1,9 +1,7 @@
 @use '@/styles/mastodon/mixins';
 
 .root {
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-template-rows: 1fr;
+  display: flex;
   align-items: center;
   color: var(--color-text-secondary);
 
@@ -52,6 +50,10 @@ a.nameLink {
   > span {
     display: inline;
   }
+
+  :global(.display-name__html) {
+    font-weight: inherit;
+  }
 }
 
 .date {
@@ -72,4 +74,9 @@ a.nameLink {
 
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.pinnedBadge {
+  margin-inline-start: var(--col-gap);
+  align-self: flex-start;
 }

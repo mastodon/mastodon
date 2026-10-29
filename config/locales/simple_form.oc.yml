@@ -12,11 +12,9 @@ oc:
       admin_account_action:
         include_statuses: L’utilizaire veiràs quals tuts a provocat l’accion de moderacion o avertiment
         send_email_notification: L’utilizaire recebrà una explicacion de çò qu’arribèt a son compte
-        text_html: Opcional. Podètz utilizar la sintaxi dels tuts. Podètz <a href="%{path}">ajustar un avertiment personalizat</a> per estalviar de temps
         type_html: Causir de qué far amb <strong>%{acct}</strong>
         types:
           disable: Empachar l’utilizaire d’utilizar son compte mas suprimir o amagar pas son contengut.
-        warning_preset_id: Opcional. Podètz ajustar un tèxt personalizat a a fin de çò predefinit
       announcement:
         all_day: Se son marcadas, solament las datas de l’interval de temps seràn mostrada
         ends_at: Opcional. L’anóncia serà automaticament tirada a aqueste moment
@@ -76,12 +74,10 @@ oc:
       account_migration:
         acct: Identificant del nòu compte
       account_warning_preset:
-        text: Tèxt predefinit
         title: Títol
       admin_account_action:
         include_statuses: Inclure los tuts senhalats dins lo corrièl
         send_email_notification: Avisar l’utilizaire per corrièl
-        text: Avertiment personalizat
         type: Accions
         types:
           disable: Desactivar
@@ -89,7 +85,6 @@ oc:
           sensitive: Sensible
           silence: Metre en silence
           suspend: Suspendre e escafar per de bon las donadas del compte
-        warning_preset_id: Utilizar un avertiment predefinit
       announcement:
         all_day: Eveniment tota la jornada
         ends_at: Fin de l’eveniment
@@ -137,7 +132,6 @@ oc:
         setting_reduce_motion: Reduire la velocitat de las animacions
         setting_system_font_ui: Utilizar la polissa del sistèma
         setting_theme: Tèma del site
-        setting_trends: Veire las tendéncias d’uèi
         setting_unfollow_modal: Mostrar una confirmacion abans de quitar de sègre qualqu’un
         setting_use_blurhash: Mostrar los degradats colorats pels mèdias resconduts
         setting_use_pending_items: Mòde lent

@@ -211,11 +211,11 @@ function updateHeaderHeightCssVariable(element: HTMLElement) {
   const newHeight = `${element.offsetHeight}px`;
   const currentHeight = getComputedStyle(
     document.documentElement,
-  ).getPropertyValue('--column-header-height');
+  ).getPropertyValue('--current-column-header-height');
 
   if (newHeight !== currentHeight) {
     document.documentElement.style.setProperty(
-      '--column-header-height',
+      '--current-column-header-height',
       `${element.offsetHeight}px`,
     );
   }

@@ -93,6 +93,7 @@ sv:
       enable: Aktivera
       enable_sign_in_token: Aktivera kontrollen med säkerhetskod
       enable_sign_in_token_auth: Aktivera autentisering med pollett via e-post
+      enable_unconfirmed: Tillåt bekräftelsemejl
       enabled: Aktiverad
       enabled_msg: Uppfrysningen av %{username}s konto lyckades
       follow_recommendations:
@@ -831,9 +832,20 @@ sv:
         create: Prenumerera
         title: Ny modereringsprenumeration
       override_unattributed: Åsidosätt manuella blockeringar
+      override_unattributed_hint: Tillåt denna prenumeration att automatiskt uppgradera eller ta över befintliga manuella block när du automatiskt tillämpar bulletiner.
+      policies:
+        apply_advisories: Tillämpar automatiskt bulletiner
+        apply_advisories_safely: Tillämpar automatiskt bulletiner som inte bryter relationer
+        apply_retractions: Tillämpar automatiskt tillbakadraganden
       priority: Prioritet
+      priority_hint: Modereringsprenumerationer utvärderas i prioritetsordning, prenumerationer med ett lägre antal åsidosätter prenumerationer med ett högre.
+      retract_automatically: Dra tillbaka bulletiner automatiskt
+      retract_automatically_hint: Om indragning eller nedgradering av policy-ändringar ska tillåtas när prenumerationen tar bort ett motsvarande objekt. När automatisk indragning är möjlig, och en motsvarande rådgivning finns i en lista med lägre prioriteringar kommer den att antas. När automatisk indragning är inaktiverad, kommer ett förslag att genereras istället.
       show:
+        delete_confirm: Är du säker på att du vill ta bort denna modereringsprenumeration?
         edit: Redigera prenumeration
+        empty: Denna prenumeration har inga bulletiner än.
+        title: 'Modereringsprenumeration: %{name}'
       tabs:
         logs: Loggar
         subscriptions: Prenumerationer
@@ -856,9 +868,18 @@ sv:
       apply_limit: Begränsa
       apply_reject: Pausa
       apply_retract: Dra tillbaka
+      current_states:
+        accept: tillåts för närvarande
+        limit: för närvarande begränsad
+        reject: för närvarande pausad
+      description: Följande är förslag från dina modereringsabonnemang i prioritetsordning.
+      destroyed_msg: Avvisade förslag för %{target_key}
       dismiss: Avfärda förslag
+      empty: Det finns inget modereringsförslag just nu.
+      retracted_msg: Policyn för %{target_key} har dragits in
       suggested_from_html: Föreslagen av %{link}
       title: Modereringsförslag
+      unable_to_apply_msg: Det går inte att tillämpa förslag för %{target_key}
     relationships:
       title: "%{acct}s relationer"
     relays:
@@ -1053,6 +1074,42 @@ sv:
       translation: Översättning
       translations: Översättningar
       translations_explanation: Du kan eventuellt lägga till översättningar av reglerna. Standardvärdet kommer att visas om ingen översatt version är tillgänglig. Se alltid till att alla angivna översättningar är i synk med standardvärdet.
+    server_checks:
+      categories:
+        completed:
+          title: Slutförda
+        critical:
+          title: Kritiska
+        error:
+          title: Fel
+        ignored:
+          title: Ignorerade
+        suggestion:
+          title: Förslag
+        unprocessed:
+          title: Obehandlade
+        warning:
+          title: Varningar
+      checks:
+        database_schema:
+          error:
+            title: Det gick inte att kontrollera databasschemat
+          ok:
+            title: Det finns inga pågående databasmigreringar
+          pending:
+            lead_html: Kör dem för att se till att programmet beter sig som förväntat
+            title: Det finns väntande databasmigreringar
+          running:
+            title: Din server kontrollerar databasens schema
+      ignore:
+        label: Ignorera
+      recommendations:
+        title: Rekommendationer
+      restore:
+        label: Återställ
+      setup:
+        label: Ställ in
+      title: Serverhälsa
     settings:
       about:
         manage_rules: Hantera serverregler
@@ -1403,9 +1460,17 @@ sv:
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
-      edit_preset: Redigera varningsförval
-      empty: Du har inte definierat några varningsförval ännu.
-      title: Varning förinställningar
+      dropdown:
+        all_actions: Alla åtgärder
+        disable: Frys
+        none: Varning
+        sensitive: Känsligt
+        silence: Begränsa
+        suspend: Pausa
+      edit_preset: Redigera förinställt svar
+      empty: Du har inte definierat några förinställda svar än.
+      navigation_title: Förinställda svar
+      title: Förinställda svar för moderering
     webhooks:
       add_new: Lägg till slutpunkt
       delete: Ta bort
@@ -1454,9 +1519,15 @@ sv:
     new_critical_software_updates:
       body: En kritisk uppdatering för Mastodon har släppts. Du bör uppdatera så snart som möjligt!
       subject: Kritiska uppdateringar för Mastodon är tillgängliga för %{instance}!
+    new_moderation_suggestions:
+      body: Den modereringslista som din server prenumererar på har publicerat nya förslag.
+      subject: Nya modereringsförslag är tillgängliga på %{instance}!
     new_pending_account:
       body: Detaljerna för det nya kontot finns nedan. Du kan godkänna eller avvisa denna ansökan.
       subject: Nytt konto flaggat för granskning på %{instance} (%{username})
+    new_pending_accounts:
+      body: Nya konton har skapats på %{instance}. Eftersom din server är konfigurerad att skjuta upp bekräftelsemeddelanden efter modereringsgodkännande, har dessa konton inte haft en chans att verifiera sin e-postadress ännu. Detaljerna för de nya kontona är nedan. Du kan godkänna eller avvisa dessa ansökningar.
+      subject: Nya konton tillgängliga för granskning på %{instance}
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
@@ -1485,7 +1556,6 @@ sv:
     animations_and_accessibility: Animationer och tillgänglighet
     boosting_preferences: Boostinställningar
     boosting_preferences_info_html: "<strong>Tips:</strong> Oavsett inställningar kommer <kbd>Skift</kbd> + <kbd>Klick</kbd> på %{icon} Boosta-ikonen att boosta direkt."
-    discovery: Upptäck
     localization:
       body: Mastodon översätts av volontärer.
       guide_link: https://crowdin.com/project/mastodon
@@ -1565,11 +1635,16 @@ sv:
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
+      correct_email: Rätt adress
       email_below_hint_html: Kolla din skräppost-mapp eller begär en ny. Du kan korrigera din e-postadress om den är fel.
       email_settings_hint_html: Klicka på länken vi skickade till %{email} för att börja använda Mastodon. Vi väntar här.
+      email_settings_hint_wait_html: Din ansökan granskas. Du bör snart få ett meddelande via e-post på %{email}. När du får det, klicka på länken för att börja använda Mastodon. Vi väntar här.
       link_not_received: Fick du ingen länk?
       new_confirmation_instructions_sent: Du kommer att få ett nytt e-postmeddelande med bekräftelselänken om några minuter!
       title: Kolla din inkorg
+      title_wait: Håll ett öga på din inkorg
+      wrong_email: Fel e-postadress?
+      wrong_email_below_hint_html: Få inte panik! Du kan korrigera din e-postadress nedan.
     sign_in:
       preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
       title: Logga in på %{domain}
@@ -1606,6 +1681,12 @@ sv:
     auto: Auto
     dark: Mörkt
     light: Ljust
+  color_theme:
+    cyan: Cyan
+    indigo: Indigo
+    lime: Lime
+    orange: Orange
+    pink: Rosa
   contrast:
     auto: Auto
     high: Hög
@@ -1654,6 +1735,7 @@ sv:
       action_taken: Vidtagen åtgärd
       appeal: Överklaga
       appeal_approved: Pricken är inte längre giltig då överklagan godkändes
+      appeal_handled_by: Överklagande hanterat av
       appeal_rejected: Överklagan har avvisats
       appeal_submitted_at: Överklagan inskickad
       appealed_msg: Din överklagan har skickats in. Du blir notifierad om den godkänns.

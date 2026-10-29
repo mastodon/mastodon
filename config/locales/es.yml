@@ -93,6 +93,7 @@ es:
       enable: Habilitar
       enable_sign_in_token: Activar la comprobación con código de seguridad
       enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
+      enable_unconfirmed: Permitir correo de confirmación
       enabled: Habilitada
       enabled_msg: Se ha descongelado correctamente la cuenta de %{username}
       follow_recommendations:
@@ -1075,6 +1076,58 @@ es:
       translation: Traducción
       translations: Traducciones
       translations_explanation: Opcionalmente, puedes añadir traducciones para las reglas. Se mostrará el valor por defecto si no hay ninguna versión traducida disponible. Por favor, asegúrate siempre de que cualquier traducción proporcionada esté sincronizada con el valor por defecto.
+    server_checks:
+      categories:
+        completed:
+          title: Completado
+        critical:
+          title: Crítico
+        error:
+          title: Errores
+        ignored:
+          title: Ignorado
+        suggestion:
+          title: Sugerencias
+        unprocessed:
+          title: Sin procesar
+        warning:
+          title: Advertencias
+      checks:
+        database_schema:
+          error:
+            title: Se produjo un error al comprobar el esquema de la base de datos
+          ok:
+            title: No hay ninguna migración de base de datos pendiente
+          pending:
+            lead_html: Por favor, ejecútalas para asegurarte de que la aplicación se comporta como se espera
+            title: Hay migraciones de base de datos pendientes
+          running:
+            title: Tu servidor está comprobando el esquema de base de datos
+          unprocessed:
+            title: Tu servidor aún no ha comprobado el esquema de base de datos
+        elastic_search:
+          error:
+            title: Se produjo un error al comprobar la configuración de Elasticsearch
+          ok:
+            title: Elasticsearch está configurado sin problemas
+          pending:
+            lead:
+              analysis_index_mismatch_html: La configuración del analizador de índices Elasticsearch está desactualizada. Por favor ejecute <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: El estado del clúster de Elasticsearch no es saludable (estado rojo), las funciones de búsqueda no están disponibles
+              cluster_health_yellow_html: El estado del clúster de Elasticsearch no es saludable (estado amarillo), puede que quieras investigar la razón
+              index_mismatch_html: Los mapeos de índices de Elasticsearch están desactualizados. Ejecuta <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Tu clúster de Elasticsearch tiene más de un nodo, pero Mastodon no está configurado para usarlos
+              preset_single_node_html: Tu clúster de Elasticsearch solo tiene un nodo, <code>ES_PRESET</code> debe establecerse a <code>single_node_cluster</code>
+              reset_chewy_html: Tu índice de sistema de Elasticsearch está desactualizado debido a un cambio de configuración. Ejecuta <code>tootctl search deploy --reset-chewy</code> para actualizarlo
+              running_check_html: No se pudo conectar a Elasticsearch. Por favor, comprueba que está ejecutándose, o desactiva la búsqueda de texto completo
+              version_check_html: Se está ejecutando Elasticsearch %{running_version}, pero se necesita Elasticsearch %{required_version}
+            title: Hay problemas con Elasticsearch
+          running:
+            title: El servidor está comprobando la configuración de Elasticsearch
+          unprocessed:
+            title: El servidor aún no ha comprobado la configuración de Elasticsearch
+      restore:
+        label: Restablecer
     settings:
       about:
         manage_rules: Administrar reglas del servidor
@@ -1425,9 +1478,17 @@ es:
     warning_presets:
       add_new: Añadir nuevo
       delete: Borrar
-      edit_preset: Editar aviso predeterminado
-      empty: Aún no has definido ningún preajuste de advertencia.
-      title: Preajustes de advertencia
+      dropdown:
+        all_actions: Todas las acciones
+        disable: Congelar
+        none: Advertencia
+        sensitive: Sensible
+        silence: Limitar
+        suspend: Suspender
+      edit_preset: Editar plantilla de respuesta
+      empty: No has configurado ninguna plantilla de respuesta aún.
+      navigation_title: Plantillas de respuesta
+      title: Plantillas de respuesta de Moderación
     webhooks:
       add_new: Añadir endpoint
       delete: Eliminar
@@ -1482,6 +1543,9 @@ es:
     new_pending_account:
       body: Los detalles de la nueva cuenta están abajo. Puedes aprobar o rechazar esta aplicación.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
+    new_pending_accounts:
+      body: Se han creado nuevas cuentas en %{instance}. Como tu servidor está configurado para posponer correos de confirmación después de la aprobación de moderación, esas cuentas no han podido verificar su dirección de correo electrónico aún. Tienes los detalles de las nuevas cuentas a continuación. Puedes aprobar o rechazar estas solicitudes.
+      subject: Nuevas cuentas para revisar en %{instance}
     new_report:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} ha reportado a %{target}
@@ -1510,7 +1574,6 @@ es:
     animations_and_accessibility: Animaciones y accesibilidad
     boosting_preferences: Preferencias de impulso
     boosting_preferences_info_html: "<strong>Consejo:</strong> Sin importar los ajustes, pulsar <kbd>Mayus</kbd> al hacer <kbd>clic</kbd> en el icono de %{icon} Impulsar, dará impulso inmediatamente."
-    discovery: Descubrimiento
     localization:
       body: Mastodon es traducido con la ayuda de voluntarios.
       guide_link: https://es.crowdin.com/project/mastodon
@@ -1590,11 +1653,16 @@ es:
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
     setup:
+      correct_email: Corregir dirección
       email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu dirección de correo electrónico si está mal.
       email_settings_hint_html: Haz clic en el enlace que enviamos a %{email} para comenzar a usar Mastodon. Estaremos esperando aquí mismo.
+      email_settings_hint_wait_html: Tu solicitud está siendo revisada. Pronto recibirás un correo en %{email}. Una vez que lo recibas, clica en el enlace para empezar a utilizar Mastodon. Estaremos esperándote.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
       title: Revisa tu bandeja de entrada
+      title_wait: Revisa tu bandeja de entrada
+      wrong_email: "¿Dirección de correo incorrecta?"
+      wrong_email_below_hint_html: "¡Que no cunda el pánico! Puedes corregir la dirección de correo justo debajo."
     sign_in:
       preamble_html: Inicia sesión con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no podrás iniciar sesión aquí.
       title: Iniciar sesión en %{domain}
@@ -1631,6 +1699,12 @@ es:
     auto: Automático
     dark: Oscuro
     light: Claro
+  color_theme:
+    cyan: Cian
+    indigo: Índigo
+    lime: Lima
+    orange: Naranja
+    pink: Rosa
   contrast:
     auto: Automático
     high: Alto
@@ -1679,6 +1753,7 @@ es:
       action_taken: Acción realizada
       appeal: Apelar
       appeal_approved: Esta amonestación fue apelada exitosamente y ya no es válida
+      appeal_handled_by: Apelación gestionada por
       appeal_rejected: Se rechazó la apelación
       appeal_submitted_at: Apelación enviada
       appealed_msg: Tu apelación fue enviada. Si se aprueba, se te notificará.

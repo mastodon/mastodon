@@ -10,9 +10,11 @@
   gap: var(--space-2);
   padding: var(--space-4);
   padding-bottom: calc(max(env(safe-area-inset-bottom), var(--space-4)));
+  position: relative;
 
   @media (width >= #{variables.$mobile-menu-breakpoint}) {
-    border: var(--border-default);
+    @include mixins.elevation-2;
+
     border-bottom: none;
     border-radius: var(--radius-6) var(--radius-6) 0 0;
     overflow: hidden;
@@ -62,7 +64,6 @@
 }
 
 .toolbar {
-  margin-top: var(--space-2);
   display: flex;
   gap: var(--space-2);
   align-items: center;
@@ -78,10 +79,6 @@
   align-items: center;
   gap: var(--space-2);
   flex-grow: 1;
-
-  @container (width < 310px) {
-    flex-basis: 100%;
-  }
 
   .footer & {
     justify-content: space-between;
@@ -133,9 +130,19 @@
   }
 }
 
+.sensitiveWrapper {
+  margin-block-end: var(--space-4);
+
+  [data-input] {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+}
+
 .sensitive {
   outline-offset: -2px;
-  margin-block-end: var(--space-4);
+  flex-grow: 1;
 }
 
 .textarea,
@@ -170,6 +177,10 @@
     &::placeholder {
       color: transparent;
     }
+  }
+
+  &:lang(#{variables.$vertical-lr-langs}) {
+    writing-mode: vertical-lr;
   }
 }
 

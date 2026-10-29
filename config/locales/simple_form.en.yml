@@ -16,12 +16,13 @@ en:
       account_migration:
         acct: Specify the username@domain of the account you want to move to
       account_warning_preset:
+        action_category: Select the moderation action this response should be used for. Select "All actions" if the response applies to more than one action.
         text: You can use post syntax, such as URLs, hashtags and mentions
         title: Optional. Not visible to the recipient
       admin_account_action:
         include_statuses: The user will see which posts have caused the moderation action or warning
         send_email_notification: The user will receive an explanation of what happened with their account
-        text_html: Optional. You can use post syntax. You can <a href="%{path}">add warning presets</a> to save time
+        text: Optional. You can use post syntax. It will appear below the canned response
         type_html: Choose what to do with <strong>%{acct}</strong>
         types:
           disable: Prevent the user from using their account, but do not delete or hide their contents.
@@ -29,7 +30,7 @@ en:
           sensitive: Force all this user's media attachments to be flagged as sensitive.
           silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
           suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
-        warning_preset_id: Optional. You can still add custom text to end of the preset
+        warning_preset_html: Optional. You can <a href="%{path}">manage them here</a>
       announcement:
         all_day: When checked, only the dates of the time range will be displayed
         ends_at: Optional. Announcement will be automatically unpublished at this time
@@ -193,20 +194,22 @@ en:
       account_migration:
         acct: Handle of the new account
       account_warning_preset:
-        text: Preset text
+        action_category: Assign moderation action
+        text: Response text
         title: Title
       admin_account_action:
         include_statuses: Include reported posts in the e-mail
         send_email_notification: Notify the user per e-mail
-        text: Custom warning
+        text: Custom response
         type: Action
         types:
+          all_actions: All actions
           disable: Freeze
           none: Send a warning
           sensitive: Sensitive
           silence: Limit
           suspend: Suspend
-        warning_preset_id: Use a warning preset
+        warning_preset_id: Canned response
       announcement:
         all_day: All-day event
         ends_at: End of event
@@ -254,7 +257,6 @@ en:
         setting_default_sensitive: Always mark media as sensitive
         setting_default_spoiler_field: Use content warnings by default
         setting_delete_modal: Warn me before deleting a post
-        setting_density: Density
         setting_disable_hover_cards: Disable profile preview on hover
         setting_disable_swiping: Disable swiping motions
         setting_display_media: Media display
@@ -274,7 +276,6 @@ en:
         setting_system_scrollbars_ui: Use system's default scrollbar
         setting_theme: Site theme
         setting_theme_color: Theme color
-        setting_trends: Show today's trends
         setting_unfollow_modal: Show confirmation dialog before unfollowing someone
         setting_use_blurhash: Show colorful gradients for hidden media
         setting_use_pending_items: Slow mode

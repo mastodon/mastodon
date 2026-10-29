@@ -162,6 +162,20 @@ const StatusReblogButton: React.FC<{
 }> = ({ statusId, children }) => {
   const { boost, quote } = useStatusIcons(statusId);
 
+  const handleShiftClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (e.shiftKey) {
+        e.preventDefault();
+        boost.action(e);
+      }
+    },
+    [boost],
+  );
+
+  const preventMenuOpenOnShiftClick = useCallback((e?: React.MouseEvent) => {
+    return !e?.shiftKey;
+  }, []);
+
   if (quickBoosting) {
     return (
       <ToggleButton
@@ -182,12 +196,13 @@ const StatusReblogButton: React.FC<{
   }
 
   return (
-    <Menu>
+    <Menu onOpen={preventMenuOpenOnShiftClick}>
       <MenuTrigger
         as={ToggleButton}
         size='sm'
         variant='ghost'
         active={boost.active}
+        disabled={boost.disabled && quote.disabled}
         tooltip={{
           type: 'label',
           text: (
@@ -197,6 +212,7 @@ const StatusReblogButton: React.FC<{
             />
           ),
         }}
+        onClick={handleShiftClick}
         leadingIcon={boost.icon}
       >
         {children}

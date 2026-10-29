@@ -12,7 +12,6 @@ an:
       admin_account_action:
         include_statuses: L'usuario veyerá qué publicacions han causau l'acción de moderación u alvertencia
         send_email_notification: L'usuario recibirá una explicación d'o que ha succediu con a suya cuenta
-        text_html: Opcional. Puede usar sintaxi de publicacions. Puede anyadir <a href="%{path}">configuracions predefinidas d'alvertencia</a> pa cabidar tiempo
         type_html: Tría lo qué vas a fer con <strong>%{acct}</strong>
         types:
           disable: Priva que l'usuario utilice la suya cuenta, pero no elimina ni amagada los suyos contenius.
@@ -20,7 +19,6 @@ an:
           sensitive: Forzar que totz los fichers multimedia d'este usuario sían marcaus como sensibles.
           silence: Privar que l'usuario pueda publicar con visibilidat publica, amagada los suyos mensaches y notificacions a personas que no lo siguen. Zarra totz los informes contra esta cuenta.
           suspend: Priva qualsequier interacción dende u enta esta cuenta y borra lo suyo conteniu. Reversible en 30 días. Zarra totz los informes contra esta cuenta.
-        warning_preset_id: Opcional. Encara puede anyadir texto personalizau a la fin d'a configuración predefinida
       announcement:
         all_day: Quan ye triau nomás s'amostrarán las calendatas d'o rango de tiempo
         ends_at: Opcional. L'anuncio desapareixerá automaticament en este momento
@@ -119,12 +117,10 @@ an:
       account_migration:
         acct: Alias d'a nueva cuenta
       account_warning_preset:
-        text: Texto predefinido
         title: Titol
       admin_account_action:
         include_statuses: Incluyir en o correu electronico a las publicacions denunciadas
         send_email_notification: Notificar a l'usuario per correu electronico
-        text: Aviso personalizau
         type: Acción
         types:
           disable: Deshabilitar
@@ -132,7 +128,6 @@ an:
           sensitive: Sensible
           silence: Silenciar
           suspend: Suspender y eliminar de forma irreversible la información d'a cuenta
-        warning_preset_id: Usar un aviso predeterminau
       announcement:
         all_day: Evento de tot lo día
         ends_at: Fin de l'evento
@@ -182,7 +177,6 @@ an:
         setting_reduce_motion: Reducir lo movimiento d'as animacions
         setting_system_font_ui: Utilizar la tipografía per defecto d'o sistema
         setting_theme: Tema d'o puesto
-        setting_trends: Amostrar las tendencias de hue
         setting_unfollow_modal: Amostrar dialogo de confirmación antes de deixar de seguir a belún
         setting_use_blurhash: Amostrar gradientes colorius pa conteniu multimedia amagau
         setting_use_pending_items: Modo lento

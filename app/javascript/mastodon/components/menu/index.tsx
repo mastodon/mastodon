@@ -98,13 +98,17 @@ interface MenuProps {
    * Callback that is run before the menu is opened. Can be used for side effects
    * or to prevent opening the menu by returning `false`.
    */
-  onOpen?: (() => void) | (() => boolean);
+  onOpen?:
+    | ((event?: React.MouseEvent) => void)
+    | ((event?: React.MouseEvent) => boolean);
   /**
    * Callback that is run before the menu is closed. Can be used for side effects
    * or to prevent closing the menu by returning `false`.
    * Prefer the `keepMenuOpenOnClick` prop on `MenuItem`.
    */
-  onClose?: (() => void) | (() => boolean);
+  onClose?:
+    | ((event?: React.MouseEvent) => void)
+    | ((event?: React.MouseEvent) => boolean);
   children: React.ReactNode;
   /**
    * Don't set initial focus on the first menu item when opening the menu.
@@ -142,22 +146,28 @@ export const Menu: React.FC<MenuProps> = ({
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const openMenu = useCallback(() => {
-    const shouldOpen = onOpen?.();
-    if (shouldOpen === false) return;
+  const openMenu = useCallback(
+    (e?: React.MouseEvent) => {
+      const shouldOpen = onOpen?.(e);
+      if (shouldOpen === false) return;
 
-    setIsMenuOpen(true);
-  }, [onOpen]);
+      setIsMenuOpen(true);
+    },
+    [onOpen],
+  );
 
-  const closeMenu = useCallback(() => {
-    const shouldClose = onClose?.();
-    if (shouldClose === false) return;
+  const closeMenu = useCallback(
+    (e?: React.MouseEvent) => {
+      const shouldClose = onClose?.(e);
+      if (shouldClose === false) return;
 
-    setIsMenuOpen(false);
-    if (listElement?.contains(document.activeElement)) {
-      triggerElement?.focus();
-    }
-  }, [listElement, triggerElement, onClose]);
+      setIsMenuOpen(false);
+      if (listElement?.contains(document.activeElement)) {
+        triggerElement?.focus();
+      }
+    },
+    [listElement, triggerElement, onClose],
+  );
 
   const toggleMenu = isMenuOpen ? closeMenu : openMenu;
 
@@ -260,17 +270,17 @@ export const Menu: React.FC<MenuProps> = ({
       menuListProps,
     };
   }, [
-    type,
     isMenuOpen,
     openMenu,
     closeMenu,
     toggleMenu,
     triggerElement,
     listElement,
-    mountListElement,
+    type,
     triggerId,
     listId,
     handleMenuNavigation,
+    mountListElement,
   ]);
 
   return <MenuContext value={contextValue}>{children}</MenuContext>;

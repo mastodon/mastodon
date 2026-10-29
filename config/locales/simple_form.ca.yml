@@ -20,7 +20,6 @@ ca:
       admin_account_action:
         include_statuses: L'usuari veurà quins tuts han causat l'acció de moderació o avís
         send_email_notification: L'usuari rebrà una explicació del que ha passat amb el seu compte
-        text_html: Opcional. En els tuts, pots usar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
         type_html: Tria què fer amb <strong>%{acct}</strong>
         types:
           disable: Evita que l'usuari faci servir el seu compte, però no n'esborris ni amaguis el contingut.
@@ -28,7 +27,6 @@ ca:
           sensitive: Obliga a marcar tots els fitxers multimèdia adjunts com a sensibles.
           silence: Evita que l'usuari sigui capaç de publicar amb visibilitat pública, amagar els seus tuts i les notificacions d'usuaris que no el segueixin. Tanca tots els informes contra aquest compte.
           suspend: Evita qualsevol interacció de o cap a aquest compte i esborra'n el contingut. Reversible en un termini de trenta dies. Tanca tots els informes contra aquest compte.
-        warning_preset_id: Opcional. Encara pots afegir text personalitzat al final de la configuració predefinida
       announcement:
         all_day: Si es marca, només es mostraran les dates de l'interval de temps
         ends_at: Opcional. En aquest moment, l’anunci deixarà automàticament d'estar publicat
@@ -170,12 +168,10 @@ ca:
       account_migration:
         acct: Nom del nou compte
       account_warning_preset:
-        text: Text predefinit
         title: Títol
       admin_account_action:
         include_statuses: Inclou tuts reportats en el correu electrònic
         send_email_notification: Notifica l'usuari per correu electrònic
-        text: Avís personalitzat
         type: Acció
         types:
           disable: Inhabilita
@@ -183,7 +179,6 @@ ca:
           sensitive: Sensible
           silence: Silenci
           suspend: Suspèn i elimina irreversiblement les dades del compte
-        warning_preset_id: Utilitza una configuració predefinida d'avís
       announcement:
         all_day: Esdeveniment de tot el dia
         ends_at: Fi de l'esdeveniment
@@ -222,7 +217,6 @@ ca:
         setting_aggregate_reblogs: Agrupar impulsos en les línies de temps
         setting_always_send_emails: Envia'm sempre notificacions per correu electrònic
         setting_auto_play_gif: Reprodueix automàticament els GIF animats
-        setting_color_scheme: Esquema de colors
         setting_contrast: Contrast
         setting_default_language: Llengua dels tuts
         setting_default_privacy: Visibilitat de la publicació
@@ -241,7 +235,6 @@ ca:
         setting_system_font_ui: Usa la lletra predeterminada del sistema
         setting_system_scrollbars_ui: Usa la barra de desplaçament predeterminada del sistema
         setting_theme: Tema del lloc
-        setting_trends: Mostra les tendències d'avui
         setting_unfollow_modal: Mostra el diàleg de confirmació abans de deixar de seguir algú
         setting_use_blurhash: Mostra degradats de colors per al contingut gràfic ocult
         setting_use_pending_items: Mode lent

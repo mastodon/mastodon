@@ -21,7 +21,6 @@ cs:
       admin_account_action:
         include_statuses: Uživatel uvidí, které příspěvky způsobily moderátorskou akci nebo varování
         send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
-        text_html: Volitelné. Můžete používat syntax příspěvků. Pro ušetření času můžete <a href="%{path}">přidat předlohy varování</a>
         type_html: Vyberte, co chcete s účtem <strong>%{acct}</strong> udělat
         types:
           disable: Zabránit uživateli používat svůj účet, ale nemazat ani neskrývat jejich obsah.
@@ -29,7 +28,6 @@ cs:
           sensitive: Vynutit označení všech mediálních příloh tohoto uživatele jako citlivých.
           silence: Zamezit uživateli odesílat veřejné příspěvky, schovat jejich příspěvky a notifikace před lidmi, kteří jej nesledují. Uzavře všechna hlášení proti tomuto účtu.
           suspend: Zamezit jakékoliv interakci z nebo s tímto účtem a smazat jeho obsah. Lze vrátit zpět do 30 dnů. Uzavře všechna hlášení proti tomuto účtu.
-        warning_preset_id: Volitelné. Na konec předlohy můžete stále vložit vlastní text
       announcement:
         all_day: Po vybrání budou zobrazeny jen dny z daného časového období
         ends_at: Volitelné. Zveřejněné oznámení bude v uvedený čas skryto
@@ -193,12 +191,10 @@ cs:
       account_migration:
         acct: Adresa nového účtu
       account_warning_preset:
-        text: Text předlohy
         title: Nadpis
       admin_account_action:
         include_statuses: Zahrnout v e-mailu nahlášené příspěvky
         send_email_notification: Informovat uživatele e-mailem
-        text: Vlastní varování
         type: Akce
         types:
           disable: Zmrazit
@@ -206,7 +202,6 @@ cs:
           sensitive: Citlivý
           silence: Omezit
           suspend: Pozastavit
-        warning_preset_id: Použít předlohu pro varování
       announcement:
         all_day: Celodenní událost
         ends_at: Konec události
@@ -246,7 +241,6 @@ cs:
         setting_always_send_emails: Vždy posílat e-mailová oznámení
         setting_auto_play_gif: Automaticky přehrávat animace GIF
         setting_boost_modal: Ovládání viditelnosti boostování
-        setting_color_scheme: Barevné schéma
         setting_contrast: Kontrast
         setting_default_language: Jazyk příspěvků
         setting_default_privacy: Viditelnost příspěvků
@@ -268,7 +262,6 @@ cs:
         setting_system_font_ui: Použít výchozí písmo systému
         setting_system_scrollbars_ui: Použít výchozí posuvník systému
         setting_theme: Vzhled stránky
-        setting_trends: Zobrazit dnešní trendy
         setting_unfollow_modal: Před zrušením sledování zobrazovat potvrzovací okno
         setting_use_blurhash: Zobrazit pro skrytá média barevné gradienty
         setting_use_pending_items: Pomalý režim

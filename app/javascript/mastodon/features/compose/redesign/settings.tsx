@@ -4,15 +4,13 @@ import { FormattedMessage } from 'react-intl';
 
 import { EyeSlashIcon, GearIcon, WarningIcon } from '@phosphor-icons/react';
 
-import {
-  changeComposeSensitivity,
-  changeComposeSpoilerness,
-} from '@/mastodon/actions/compose';
+import { changeComposeSensitivity } from '@/mastodon/actions/compose';
 import { setComposeQuotePolicy } from '@/mastodon/actions/compose_typed';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import {
   Menu,
+  MenuItem,
   MenuItemCheckbox,
   MenuItemDivider,
   MenuItemGroup,
@@ -20,6 +18,7 @@ import {
   MenuList,
   MenuTrigger,
 } from '@/mastodon/components/menu';
+import { toggleContentWarning } from '@/mastodon/reducers/slices/composer';
 import {
   useAppDispatch,
   useAppSelector,
@@ -38,7 +37,7 @@ export const ComposeSettingsMenu: React.FC = () => {
         <FormattedMessage id='compose.settings' defaultMessage='Settings' />
       </MenuTrigger>
 
-      <MenuList maxWidth={280} placement='top-end' strategy='fixed'>
+      <MenuList maxWidth={310} placement='top-end' strategy='fixed'>
         <ComposeSettingsInnerMenu />
       </MenuList>
     </Menu>
@@ -72,11 +71,13 @@ const ComposeSettingsInnerMenu: React.FC = () => {
   const { sensitive, mediaSensitive } = useAppSelector(selectComposeSensitive);
 
   const onSensitiveChange = useCallback(() => {
-    dispatch(changeComposeSpoilerness());
+    dispatch(toggleContentWarning());
   }, [dispatch]);
   const onMediaSensitiveChange = useCallback(() => {
     dispatch(changeComposeSensitivity());
   }, [dispatch]);
+
+  const isMac = navigator.userAgent.includes('Mac');
 
   return (
     <>
@@ -150,24 +151,43 @@ const ComposeSettingsInnerMenu: React.FC = () => {
           />
         }
       >
-        <MenuItemCheckbox
-          name='content_warning'
-          value='on'
-          checked={sensitive}
-          onChange={onSensitiveChange}
+        <MenuItem
+          onClick={onSensitiveChange}
           keepMenuOpenOnClick
           icon={WarningIcon}
+          disabled={sensitive}
+          description={
+            sensitive && (
+              <FormattedMessage
+                id='compose.sensitive.added'
+                defaultMessage='You already added this'
+              />
+            )
+          }
+          trailingContent={
+            <>
+              <kbd>{isMac ? 'Option' : 'Alt'}</kbd> + <kbd>x</kbd>
+            </>
+          }
         >
           <FormattedMessage
             id='compose_form.spoiler.unmarked'
             defaultMessage='Add content warning'
           />
-        </MenuItemCheckbox>
+        </MenuItem>
         <MenuItemCheckbox
           name='media_spoiler'
           value='on'
           checked={mediaSensitive}
           disabled={sensitive}
+          description={
+            sensitive && (
+              <FormattedMessage
+                id='compose.sensitive.media_added'
+                defaultMessage='Media is always blurred if a content warning is added'
+              />
+            )
+          }
           onChange={onMediaSensitiveChange}
           keepMenuOpenOnClick
           icon={EyeSlashIcon}

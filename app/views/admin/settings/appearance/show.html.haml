@@ -12,10 +12,20 @@
 
   .fields-group
     = f.input :theme,
-              collection: Themes.instance.names,
+              collection: themes_select_collection,
               include_blank: false,
-              label_method: ->(theme) { I18n.t("themes.#{theme}", default: theme) },
               wrapper: :with_label
+
+    .input.horizontal-options
+      = f.input :theme_color,
+                as: :radio_buttons,
+                collection: available_theme_colors(f.object.theme),
+                hint: false,
+                include_blank: false,
+                label_method: ->(color) { I18n.t("color_theme.#{color}", default: color) },
+                label: I18n.t('simple_form.labels.defaults.setting_theme_color'),
+                wrapper: :with_label,
+                required: false
 
   .fields-group
     = f.input :custom_css,

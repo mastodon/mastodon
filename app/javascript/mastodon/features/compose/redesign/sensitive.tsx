@@ -1,11 +1,22 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+
+import { TrashIcon } from '@phosphor-icons/react';
 
 import { changeComposeSpoilerText } from '@/mastodon/actions/compose';
-import { TextInputField } from '@/mastodon/components/form_fields';
-import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
-import { requestComposerFocus } from '@/mastodon/reducers/slices/composer';
+import { IconButton } from '@/mastodon/components/button/redesign';
+import { FormFieldWrapper } from '@/mastodon/components/form_fields';
+import { TextInput } from '@/mastodon/components/form_fields/redesign';
+import {
+  matchesKeyCode,
+  normalizeKey,
+} from '@/mastodon/components/hotkeys/utils';
+import {
+  clearComposerErrors,
+  toggleContentWarning,
+  requestComposerFocus,
+} from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { selectComposeSensitive } from './selectors';
@@ -16,14 +27,19 @@ const messages = defineMessages({
     id: 'compose.sensitive.text',
     defaultMessage: 'Content warning',
   },
+  sensitiveMissing: {
+    id: 'form_error.blank',
+    defaultMessage: 'Field cannot be blank.',
+  },
 });
 
 export const ComposeSensitiveField: React.FC<
-  React.ComponentPropsWithRef<'input'>
+  React.ComponentPropsWithoutRef<'input'>
 > = (props) => {
   const { sensitive, sensitiveText } = useAppSelector(selectComposeSensitive);
 
   const intl = useIntl();
+  const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
   const isSensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
   useEffect(() => {
@@ -32,9 +48,12 @@ export const ComposeSensitiveField: React.FC<
     }
   }, [isSensitive, dispatch]);
 
+  const errors = useAppSelector((state) => state.composer.publishErrors);
+
   const onChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       dispatch(changeComposeSpoilerText(event.target.value));
+      dispatch(clearComposerErrors(['missing-content-warning']));
     },
     [dispatch],
   );
@@ -45,23 +64,67 @@ export const ComposeSensitiveField: React.FC<
         event.preventDefault();
         dispatch(requestComposerFocus());
         return false;
+      } else if (key === 'escape') {
+        event.preventDefault();
+        inputRef.current?.blur();
+        return false;
+      } else if (matchesKeyCode('x', event.code) && event.altKey) {
+        event.preventDefault();
+        dispatch(toggleContentWarning());
+        return false;
       }
       return;
     },
     [dispatch],
   );
+  const onRemove = useCallback(() => {
+    dispatch(toggleContentWarning());
+  }, [dispatch]);
+
   if (!sensitive) {
     return null;
   }
+
   return (
-    <TextInputField
-      {...props}
-      className={classes.sensitive}
+    <FormFieldWrapper
+      className={classes.sensitiveWrapper}
+      status={
+        errors.includes('missing-content-warning')
+          ? {
+              variant: 'error',
+              message: intl.formatMessage(messages.sensitiveMissing),
+            }
+          : undefined
+      }
       label={intl.formatMessage(messages.sensitiveText)}
-      value={sensitiveText}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-      autoFocus
-    />
+    >
+      {(inputProps) => (
+        <>
+          <TextInput
+            {...props}
+            {...inputProps}
+            autoFocus
+            ref={inputRef}
+            aria-required='true'
+            value={sensitiveText}
+            onChange={onChange}
+            onKeyDown={onKeyDown}
+            className={classes.sensitive}
+          />
+
+          <IconButton
+            size='sm'
+            icon={TrashIcon}
+            onClick={onRemove}
+            color='destructive'
+          >
+            <FormattedMessage
+              id='compose.sensitive.delete'
+              defaultMessage='Remove content warning'
+            />
+          </IconButton>
+        </>
+      )}
+    </FormFieldWrapper>
   );
 };

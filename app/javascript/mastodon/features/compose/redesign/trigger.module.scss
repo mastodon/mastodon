@@ -15,6 +15,10 @@
   }
 }
 
+.buttonWrapperInline {
+  margin-inline-end: var(--space-2);
+}
+
 .buttonWrapperHidden {
   transform: translateX(calc(100% + var(--space-4)));
   opacity: 0;
@@ -24,7 +28,7 @@
 .root {
   box-sizing: border-box;
   position: fixed;
-  z-index: 2;
+  z-index: 200;
   inset: 0;
   top: env(safe-area-inset-top);
   transition: bottom 200ms ease-in-out;
@@ -70,4 +74,8 @@
     min-height: 270px;
     max-height: calc(100vh - (var(--space-4) * 2));
   }
+}
+
+.composerMinimized {
+  cursor: pointer;
 }

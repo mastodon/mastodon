@@ -18,11 +18,7 @@ html {
   --mobile-bottom-nav-height: calc(58px + var(--space-2));
 
   // Compensate for column header height when scrolling elements into view
-  --column-header-height: 52px;
-
-  &[data-density='compact'] {
-    --column-header-height: 48px;
-  }
+  --current-column-header-height: 52px;
 
   // Variable for easily inverting directional UI elements,
   --text-x-direction: 1;
@@ -34,12 +30,12 @@ html {
   --scroll-fade-height: var(--space-8);
 
   scroll-padding-top: calc(
-    var(--column-header-height) + var(--scroll-fade-height)
+    var(--current-column-header-height) + var(--scroll-fade-height)
   );
   scrollbar-gutter: stable;
 
   &:has(.layout-multi-column) {
-    --column-header-height: 0;
+    --current-column-header-height: 0;
   }
 
   &.system-font {
@@ -82,6 +78,11 @@ body {
   font-weight: 400;
   color: var(--color-text-primary);
   text-rendering: optimizelegibility;
+
+  html[data-contrast='default'] & {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
   // Disable kerning for Japanese text to preserve monospaced alignment for readability
   &:not(:lang(ja)) {
