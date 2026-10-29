@@ -202,9 +202,9 @@ on(
   },
 );
 
-const onChangeAccountActionSelection = (target: HTMLInputElement) => {
+const onChangeAccountActionSelection = (target: HTMLSelectElement) => {
   const accountAction = target.value;
-  if (!target.checked) return;
+  if (!target.value) return;
 
   const presetsDropdown = document.getElementById(
     'presets_dropdown',
@@ -228,8 +228,8 @@ const onChangeAccountActionSelection = (target: HTMLInputElement) => {
   }
 };
 
-on('change', 'input[name="admin_account_action[type]"]', ({ target }) => {
-  if (target instanceof HTMLInputElement) {
+on('input', 'select[name="admin_account_action[type]"]', ({ target }) => {
+  if (target instanceof HTMLSelectElement) {
     onChangeAccountActionSelection(target);
   }
 });
@@ -359,8 +359,8 @@ ready(() => {
   );
   if (registrationMode) onChangeRegistrationMode(registrationMode);
 
-  const accountActionSelection = document.querySelector<HTMLInputElement>(
-    'input[name="admin_account_action[type]"]:checked',
+  const accountActionSelection = document.querySelector<HTMLSelectElement>(
+    'select[name="admin_account_action[type]"]:checked',
   );
   if (accountActionSelection)
     onChangeAccountActionSelection(accountActionSelection);
