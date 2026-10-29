@@ -18,6 +18,14 @@ describe('countableText', () => {
     expect(countableText('see example.com here')).toBe(`see example.com here`);
   });
 
+  test('wit two valid urls in one string', () => {
+    expect(
+      countableText(
+        'see https://example.com here is another link https://example.com',
+      ),
+    ).toBe(`see ${URL_PLACEHOLDER} here is another link ${URL_PLACEHOLDER}`);
+  });
+
   test('with a schemaless URL and a valid url of the same domain', () => {
     expect(
       countableText('see example.com here I link to https://example.com'),
