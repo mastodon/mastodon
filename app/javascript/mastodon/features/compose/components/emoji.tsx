@@ -18,8 +18,9 @@ import { Popover } from '@/mastodon/components/popover';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import classes from '../styles.module.scss';
+
 import { PER_LINE, selectFrequentlyUsedEmoji } from './selectors';
-import classes from './styles.module.scss';
 
 export type OnEmojiPick = (emoji: EmojiData) => void;
 

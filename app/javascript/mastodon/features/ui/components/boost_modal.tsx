@@ -19,7 +19,7 @@ import {
 } from '@/mastodon/components/modal_shell/redesign';
 import { StatusBoostIcon } from '@/mastodon/components/status/icons';
 import { QuotedStatus } from '@/mastodon/components/status/quote';
-import { ComposeVisibilityButtonText } from '@/mastodon/features/compose/redesign/visibility';
+import { ComposeVisibilityButtonText } from '@/mastodon/features/compose/components/visibility';
 import { useStatus } from '@/mastodon/hooks/useStatus';
 import type { StatusVisibility } from '@/mastodon/models/status';
 import { useAppSelector } from '@/mastodon/store';
