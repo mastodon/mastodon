@@ -484,7 +484,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 .bannerTextAndActions {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--space-1);
   font-size: 13px;
   font-weight: 400;
   color: var(--color-text-primary);
@@ -497,15 +497,12 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
 .bannerActions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: var(--space-3);
   width: 100%;
-  margin-top: 16px;
-
-  button {
-    width: 100%;
-  }
+  margin-top: var(--space-4);
 }
 
 .bannerDisclaimer {
