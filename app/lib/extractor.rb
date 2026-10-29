@@ -35,7 +35,7 @@ module Extractor
     # TODO: when the UTS58 gem supports not extracting
     # schema less URLs the following line can be removed again
     urls.filter do |i|
-      text.index(i[:url]) == i[:indices].first
+      text[i[:indices].first...i[:indices].last] == i[:url]
     end
   end
 

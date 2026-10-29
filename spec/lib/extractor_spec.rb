@@ -142,6 +142,12 @@ RSpec.describe Extractor do
     expect(described_class.extract_urls_with_indices(text)).to eq [{ indices: [30, 49], url: 'https://example.com' }]
   end
 
+  it 'recognizes two urls' do
+    text = 'hello look at this https://joinmastodon.org let me add another one https://joinmastodon.org'
+    expect(described_class.extract_urls_with_indices(text))
+      .to eq [{ indices: [19, 43], url: 'https://joinmastodon.org' }, { indices: [67, 91], url: 'https://joinmastodon.org' }]
+  end
+
   describe '#extract_entities_with_indices' do
     subject { described_class.extract_entities_with_indices(text) }
 
