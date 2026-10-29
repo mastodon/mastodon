@@ -7,7 +7,7 @@
   }
 }
 
-a.mainLink {
+.mainLink {
   position: absolute;
   inset: 0;
 }
@@ -109,8 +109,13 @@ a.nestedQuote {
   aspect-ratio: var(--aspect);
 }
 
-.image {
+a.image {
   max-height: 260px;
+
+  &:focus {
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+  }
 }
 
 .videoDuration {

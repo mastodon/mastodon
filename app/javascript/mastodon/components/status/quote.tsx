@@ -119,7 +119,10 @@ export const QuotedStatus: React.FC<{
     return null;
   }
 
-  const statusTo = `/@${status.account.acct}/${status.id}`;
+  const statusTo = {
+    pathname: statusLink(status),
+    state: { reference: 'status' },
+  };
 
   return (
     <Card
@@ -170,11 +173,15 @@ export const QuotedStatus: React.FC<{
         <QuotedStatusBody status={status} />
       </CardBody>
 
-      <PrimaryCardLink
-        as={Link}
-        to={{ pathname: statusLink(status), state: { reference: 'status' } }}
-        className={classes.mainLink}
-      />
+      {!disableOpen && (
+        <PrimaryCardLink
+          as={Link}
+          to={statusTo}
+          className={classes.mainLink}
+          tabIndex={-1}
+          aria-hidden
+        />
+      )}
 
       {!status.spoilerHtml && <QuotedStatusLink status={status} />}
     </Card>
