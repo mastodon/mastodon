@@ -212,9 +212,7 @@ module Mastodon::CLI
         ERROR
       end
 
-      processed, = parallelize_with_progress(Keypair.where.not(private_key: nil)) do |keypair|
-        keypair.encrypt
-      end
+      processed, = parallelize_with_progress(Keypair.where.not(private_key: nil), &:encrypt)
 
       say("Processed #{processed} keypairs#{dry_run_mode_suffix}", :green)
     end
