@@ -1,24 +1,22 @@
 @use '@/styles/mastodon/mixins';
 
 .root {
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-template-rows: 1fr;
+  display: flex;
   align-items: center;
   color: var(--color-text-secondary);
 
   a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: var(--link-underline-stealthy);
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: var(--link-underline-stealthy-hover);
     }
   }
 
   // When hovering over any link with the account ID, underline them all.
   &:has(a[data-id]:hover) a[data-id] {
-    text-decoration: underline;
+    text-decoration: var(--link-underline-stealthy-hover);
   }
 }
 
@@ -52,10 +50,23 @@ a.nameLink {
   > span {
     display: inline;
   }
+
+  :global(.display-name__html) {
+    font-weight: inherit;
+  }
 }
 
 .date {
   flex-shrink: 0;
+
+  &:any-link {
+    text-decoration: var(--link-underline-default);
+
+    &:hover,
+    &:focus {
+      text-decoration: var(--link-underline-default-hover);
+    }
+  }
 }
 
 .handle {
@@ -63,4 +74,9 @@ a.nameLink {
 
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.pinnedBadge {
+  margin-inline-start: var(--col-gap);
+  align-self: flex-start;
 }

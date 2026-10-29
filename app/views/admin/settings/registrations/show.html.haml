@@ -29,6 +29,10 @@
                 as: :boolean,
                 disabled: !approved_registrations?,
                 wrapper: :with_label
+  .fields-group
+    = f.input :postpone_confirmation_emails,
+              as: :boolean,
+              wrapper: :with_label
 
   - if captcha_available?
     .fields-group

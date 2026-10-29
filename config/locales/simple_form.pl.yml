@@ -21,7 +21,6 @@ pl:
       admin_account_action:
         include_statuses: Użytkownik zobaczy, których wpisów dotyczyło działanie moderacji lub ostrzeżenie
         send_email_notification: Użytkownik otrzyma informację, co stało się z jego kontem
-        text_html: Opcjonalnie. Możesz używać składni której używasz we wpisach. Możesz <a href="%{path}">dodać szablon ostrzeżenia</a> aby zaoszczędzić czas
         type_html: Wybierz co chcesz zrobić z <strong>%{acct}</strong>
         types:
           disable: Nie pozwalaj użytkownikowi na korzystanie ze swojego konta, ale nie usuwaj ani nie ukrywaj jego zawartości.
@@ -29,7 +28,6 @@ pl:
           sensitive: Wymuś oznaczanie wszystkich załączników multimedialnych tego użytkownika jako wrażliwe.
           silence: Uniemożliwia użytkownikowi publikowanie postów z publiczną widocznością, ukrywanie swoich postów i powiadomień od osób nieśledzących ich. Zamyka wszystkie zgłoszenia dotyczące tego konta.
           suspend: Uniemożliwienie wszelkich interakcji z lub na tym koncie oraz usunięcie jego zawartości. Możliwość odwrócenia w ciągu 30 dni. Zamyka wszelkie zgłoszenia dotyczące tego konta.
-        warning_preset_id: Opcjonalnie. Możesz dodać niestandardowy tekst do końcówki szablonu
       announcement:
         all_day: Jeżeli zaznaczone, tylko daty z przedziału czasu będą wyświetlane
         ends_at: Opcjonalnie. Ogłoszenie zostanie automatycznie wycofane w tym czasie
@@ -188,12 +186,10 @@ pl:
       account_migration:
         acct: Nazwa nowego konta
       account_warning_preset:
-        text: Tekst szablonu
         title: Tytuł
       admin_account_action:
         include_statuses: Uwzględniaj zgłoszone wpisy w wiadomości e-mail
         send_email_notification: Powiadom użytkownika mailem
-        text: Niestandardowe ostrzeżenie
         type: Działanie
         types:
           disable: Wyłącz
@@ -201,7 +197,6 @@ pl:
           sensitive: Wrażliwe
           silence: Wycisz
           suspend: Zawieś i nieodwracalnie usuń dane konta
-        warning_preset_id: Użyj szablonu ostrzeżenia
       announcement:
         all_day: Wydarzenie całodniowe
         ends_at: Koniec wydarzenia
@@ -240,7 +235,6 @@ pl:
         setting_always_send_emails: Zawsze wysyłaj powiadomienia e-mail
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Kontroluj widoczność podbić
-        setting_color_scheme: Kolorystyka
         setting_contrast: Kontrast
         setting_default_language: Język wpisów
         setting_default_privacy: Widoczność wpisów
@@ -262,7 +256,6 @@ pl:
         setting_system_font_ui: Używaj domyślnej czcionki systemu
         setting_system_scrollbars_ui: Używaj domyślnego paska przewijania systemu
         setting_theme: Motyw strony
-        setting_trends: Pokazuj dzisiejsze „Na czasie”
         setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem obserwacji
         setting_use_blurhash: Pokazuj kolorowe gradienty dla ukrytej zawartości multimedialnej
         setting_use_pending_items: Tryb spowolniony

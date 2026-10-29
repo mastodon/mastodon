@@ -30,12 +30,12 @@
           = t('admin.accounts.memorialized')
         - elsif account.silenced?
           = t('admin.accounts.silenced')
+        - elsif account.local? && !account.user_approved?
+          = t('admin.accounts.pending')
         - elsif account.local? && account.user_disabled?
           = t('admin.accounts.disabled')
         - elsif account.local? && !account.user_confirmed?
           = t('admin.accounts.confirming')
-        - elsif account.local? && !account.user_approved?
-          = t('admin.accounts.pending')
         - elsif account.sensitized?
           = t('admin.accounts.sensitive')
         - else

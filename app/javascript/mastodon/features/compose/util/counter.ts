@@ -1,9 +1,12 @@
-import { urlRegex } from './url_regex';
+import { replaceMentions, replaceUrls } from './url_regex';
 
-const urlPlaceholder = '$2xxxxxxxxxxxxxxxxxxxxxxx';
-
+// Mentions first, URLs second. uts58 will pull a partial URL out of
+// some IDN hosts when the leading '@' tells it the start isn't a URL;
+// matching mentions first means the legitimate '@user@host' span gets
+// claimed before the URL extractor sees what's left.
 export function countableText(inputText: string) {
-  return inputText
-    .replace(urlRegex as RegExp, urlPlaceholder)
-    .replace(/(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/gi, '$1@$3');
+  return replaceUrls(
+    replaceMentions(inputText, (m: { username: string }) => `@${m.username}`),
+    'xxxxxxxxxxxxxxxxxxxxxxx',
+  ) as string;
 }

@@ -1,6 +1,23 @@
 # frozen_string_literal: true
 
 module SettingsHelper
+  def themes_select_collection
+    # Rails form helpers get HTML options for inputs from the collections whose items are
+    # themselves arrays including a hash: https://github.com/rails/rails/blob/41b352dcf23e28b38c67dcd4fe341bac0d52334c/actionview/lib/action_view/helpers/form_options_helper.rb#L807-L813
+    # Since we have to do this to pass options, also pass the label in the collection itself.
+    Themes.instance.names.map do |theme|
+      [
+        I18n.t("themes.#{theme}", default: theme),
+        theme,
+        {
+          data: {
+            colors: available_theme_colors(theme).index_with { |color| I18n.t("color_theme.#{color}", default: color) }.to_json,
+          },
+        },
+      ]
+    end
+  end
+
   def filterable_languages
     LanguagesHelper.sorted_locale_keys(LanguagesHelper::SUPPORTED_LOCALES.keys)
   end

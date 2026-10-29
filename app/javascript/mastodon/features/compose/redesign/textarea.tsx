@@ -5,6 +5,7 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { mergeProps } from '@react-aria/utils';
 import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
 import {
@@ -18,11 +19,14 @@ import type { OnSuggestionSelect } from '@/mastodon/components/autosuggest/hooks
 import { useAutosuggestFloatingMenu } from '@/mastodon/components/autosuggest/hooks';
 import { AutosuggestMenu } from '@/mastodon/components/autosuggest/list';
 import { TextArea } from '@/mastodon/components/form_fields';
+import { matchesKeyCode } from '@/mastodon/components/hotkeys/utils';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
+import { VERTICAL_LANG_CODES } from '@/mastodon/locales';
 import {
   clearComposerErrors,
   clearComposerFocusRequest,
   COMPOSER_TEXTAREA_ID,
+  toggleContentWarning,
 } from '@/mastodon/reducers/slices/composer';
 import {
   createAppSelector,
@@ -30,7 +34,11 @@ import {
   useAppSelector,
 } from '@/mastodon/store';
 
-import { selectComposeType, selectSuggestions } from './selectors';
+import {
+  selectComposeHasAttachments,
+  selectComposeType,
+  selectSuggestions,
+} from './selectors';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
@@ -78,6 +86,10 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   // Selectors
   const type = useAppSelector(selectComposeType);
   const { text, lang, isSubmitting } = useAppSelector(selectComposeTextState);
+  const { hasAttachments } = useAppSelector(selectComposeHasAttachments);
+  const hasErrors = useAppSelector(
+    (state) => state.composer.publishErrors.length > 0,
+  );
   const dispatch = useAppDispatch();
 
   // Suggestion logic
@@ -128,6 +140,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   } = useAutosuggestFloatingMenu({
     suggestions,
     text,
+    lang,
     className: classes.textareaMirror,
     sourceRef: textAreaRef,
     onSelect: onSuggestion,
@@ -141,7 +154,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       dispatch(changeCompose(event.target.value));
-      dispatch(clearComposerErrors());
+      dispatch(clearComposerErrors(['empty', 'too-long']));
       onTextChange(event);
     },
     [dispatch, onTextChange],
@@ -159,10 +172,25 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     [dispatch],
   );
 
+  const onKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> =
+    useCallback(
+      (event) => {
+        if (matchesKeyCode('x', event.code) && event.altKey) {
+          event.preventDefault();
+          dispatch(toggleContentWarning());
+          return false;
+        }
+        return;
+      },
+      [dispatch],
+    );
+
   const { sensor, isInViewport } = useScrollSensor({
     placement: 'bottom',
     tolerance: 10,
   });
+
+  const textAreaProps = mergeProps(props, sourceProps, { onKeyDown });
 
   return (
     <div
@@ -173,14 +201,13 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
       {beforeTextArea}
 
       <TextArea
-        {...props}
+        {...textAreaProps}
         dir='auto'
         id={COMPOSER_TEXTAREA_ID}
         className={classNames(className, classes.textarea)}
-        autoSize
+        autoSize={!VERTICAL_LANG_CODES.includes(lang)}
         ref={textAreaRef}
         value={text}
-        lang={lang}
         placeholder={intl.formatMessage(
           type === 'message'
             ? messages.messagePlaceholder
@@ -190,7 +217,8 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         onDrop={onPasteOrDrop}
         onPaste={onPasteOrDrop}
         onChange={onChange}
-        {...sourceProps}
+        aria-required={!hasAttachments}
+        aria-invalid={hasErrors}
       />
 
       {mirror}

@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import type { LinkProps } from 'react-router-dom';
 
+import type { Placement } from '@floating-ui/react-dom';
 import { CaretDownIcon } from '@phosphor-icons/react';
 
 import { CircularProgress } from '../circular_progress';
@@ -36,6 +37,12 @@ interface ButtonPropsBase<As extends 'a' | 'button'> {
    * with the starting edge of its parent.
    */
   clipPadding?: boolean;
+  /**
+   * Adds a border around the button when a variant/color is used
+   * that may result in the button shape to be hard to see when the
+   * button is placed on top of an image
+   */
+  contrastOnMedia?: boolean;
   children: ReactNode;
 }
 
@@ -61,6 +68,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   loading,
   clipPadding,
   noActiveHighlight,
+  contrastOnMedia,
   'aria-disabled': ariaDisabled,
   'aria-live': ariaLive,
   ...props
@@ -97,6 +105,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
         classes[variant],
         clipPadding && classes.clipPadding,
         noActiveHighlight && classes.noActiveHighlight,
+        contrastOnMedia && classes.contrastOnMedia,
       )}
       onClick={handleClick}
       // Disabled buttons can't have focus, so we don't really
@@ -114,6 +123,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
 interface ButtonTooltip {
   type: 'label' | 'description';
   text: React.ReactNode;
+  placement?: Placement;
 }
 
 export type ButtonProps = BaseButtonProps & {
@@ -135,7 +145,7 @@ export const Button: React.FC<ButtonProps> = ({
         <Icon id='leading' icon={leadingIcon} className={classes.icon} />
       )}
       {props.loading && <LoadingIcon />}
-      {children}
+      <span className={classes.label}>{children}</span>
       {trailingIcon && (
         <Icon id='trailing' icon={trailingIcon} className={classes.icon} />
       )}
@@ -146,7 +156,11 @@ export const Button: React.FC<ButtonProps> = ({
     return <BaseButton {...props}>{buttonContent}</BaseButton>;
   }
   return (
-    <Tooltip text={tooltip.text} renderTextWhenClosed>
+    <Tooltip
+      text={tooltip.text}
+      placement={tooltip.placement}
+      renderTextWhenClosed
+    >
       {({ getTooltipProps, tooltipId }) => (
         <BaseButton
           {...getTooltipProps(props)}

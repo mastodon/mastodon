@@ -1,0 +1,54 @@
+@use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  color: var(--color-text-tertiary);
+
+  @include mixins.type-caption;
+
+  // Hide footer links from the nav when they fit into the Discovery panel…
+  // …in single column layout:
+  :global(body.layout-single-column) &[data-context='navigation'] {
+    @media (width > variables.$no-gap-breakpoint) {
+      display: none;
+    }
+  }
+
+  // …in multi-column layout:
+  :global(body.layout-multiple-columns) &[data-context='navigation'] {
+    @media (width > variables.$mobile-breakpoint) {
+      display: none;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: var(--link-underline-contrast);
+
+    &[aria-current='page'] {
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: var(--link-underline-contrast-hover);
+    }
+  }
+}
+
+.heading {
+  font-weight: bold;
+  margin-bottom: var(--space-half);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+}

@@ -20,7 +20,6 @@ ia:
       admin_account_action:
         include_statuses: Le usator videra qual messages ha causate le action o advertimento de moderation
         send_email_notification: Le usator recipera un explication de lo que ha evenite con su conto
-        text_html: Optional. Tu pote usar le syntaxe de messages. Tu pote <a href="%{path}">adder advertimentos preconfigurate</a> pro sparniar tempore
         type_html: Selige lo que facer con <strong>%{acct}</strong>
         types:
           disable: Impedir al usator de usar su conto, sin deler o celar su contento.
@@ -28,7 +27,6 @@ ia:
           sensitive: Fortiar tote le annexos multimedial de iste usator a esser marcate como sensibile.
           silence: Impedir al usator de publicar messages con visibilitate public, celante su messages e notificationes a qui non le seque. Claude tote le reportos contra iste conto.
           suspend: Impedir tote interaction desde o verso iste conto e deler su contento. Reversibile intra 30 dies. Claude tote le reportos contra iste conto.
-        warning_preset_id: Optional. Tu pote ancora adder texto personalisate al fin del preconfigurate
       announcement:
         all_day: Si marcate, solmente le datas del intervallo de tempore essera monstrate
         ends_at: Optional. Le annuncio essera automaticamente retirate del publication a iste tempore
@@ -177,12 +175,10 @@ ia:
       account_migration:
         acct: Pseudonymo del nove conto
       account_warning_preset:
-        text: Texto predefinite
         title: Titulo
       admin_account_action:
         include_statuses: Includer le messages reportate in le e-mail
         send_email_notification: Notificar le usator per e-mail
-        text: Advertimento personalisate
         type: Action
         types:
           disable: Gelar
@@ -190,7 +186,6 @@ ia:
           sensitive: Sensibile
           silence: Limitar
           suspend: Suspender
-        warning_preset_id: Usar un aviso predefinite
       announcement:
         all_day: Evento quotidian
         ends_at: Fin del evento
@@ -249,7 +244,6 @@ ia:
         setting_system_font_ui: Usar typo de litteras predefinite del systema
         setting_system_scrollbars_ui: Usar le barra de rolamento predefinite del systema
         setting_theme: Thema de sito
-        setting_trends: Monstrar le tendentias de hodie
         setting_unfollow_modal: Monstrar dialogo de confirmation ante cessar de sequer alcuno
         setting_use_blurhash: Monstrar imagines degradate multicolor pro medios celate
         setting_use_pending_items: Modo lente

@@ -20,7 +20,6 @@ fo:
       admin_account_action:
         include_statuses: Brúkarin sær, hvørjir postar hava ført við sær umsjónaratgerðina ella ávaringina
         send_email_notification: Brúkarin fer at móttaka eina frágreiðing um, hvat hendi við teirra kontu
-        text_html: Valfrítt. Tú kanst brúka sama syntaks sum í postum. Tú kann <a href="%{path}">leggja fastar ávaringarstillingar</a> fyri at spara tíð
         type_html: Vel, hvat tú vil gera við <strong>%{acct}</strong>
         types:
           disable: Forða brúkaranum at brúka teirra kontu, men lat vera við at strika ella fjala teirra innihald.
@@ -28,7 +27,6 @@ fo:
           sensitive: Flagga øll framtíðar miðlaviðfesti hjá brúkaranum sum viðkvom.
           silence: Forða brúkaranum at posta alment, fjal teirra postar og fráboðanir frá fólki, sum ikki fylgja teimum. Lukkar allar rapporteringar um hesa kontuna.
           suspend: Forða alt samskifti frá og til hesa kontuna og strika innihaldið hjá henni. Kann angrast innan 30 dagar. Lukkar allar rapporteringar um hesa kontuna.
-        warning_preset_id: Valfrítt. Tú kanst enn leggja serskildan tekst afturat undanstillingini
       announcement:
         all_day: Tá hetta er valt, verða einans dagfestingarnar í tíðarbilinum vístar
         ends_at: Valfrítt. Kunngerðin verður sjálvvirkandi fjald, tá hendan tíðin er komin
@@ -181,12 +179,10 @@ fo:
       account_migration:
         acct: Brúkaranavn á nýggju kontuni
       account_warning_preset:
-        text: Undansettur tekstur
         title: Heiti
       admin_account_action:
         include_statuses: Tak meldaða postin við í teldupostin
         send_email_notification: Boða brúkaranum frá í telduposti
-        text: Tillagað ávaring
         type: Atgerð
         types:
           disable: Fryst
@@ -194,7 +190,6 @@ fo:
           sensitive: Viðkvæmt
           silence: Mark
           suspend: Fyribils ikki í gildi
-        warning_preset_id: Brúka eina ávaringar-undanstilling
       announcement:
         all_day: Tiltak allan dagin
         ends_at: Hending liðug
@@ -234,7 +229,6 @@ fo:
         setting_always_send_emails: Send altíð fráboðanir við telduposti
         setting_auto_play_gif: Spæl teknimyndagjørdar GIFar sjálvvirkandi
         setting_boost_modal: Stýr hvussu stimbranir síggjast
-        setting_color_scheme: Litskipan
         setting_contrast: Kontrastur
         setting_default_language: Mál, sum verður brúkt til postar
         setting_default_privacy: Postar sýni
@@ -256,7 +250,6 @@ fo:
         setting_system_font_ui: Brúka vanliga skriftaslagið hjá skipanini
         setting_system_scrollbars_ui: Brúka vanliga skrullibjálkan hjá skipanini
         setting_theme: Uppsetingareyðkenni
-        setting_trends: Vís dagsins rák
         setting_unfollow_modal: Vís váttanarmynd, áðrenn tú gevst at fylgja onkrum
         setting_use_blurhash: Vís litríkar gradientar fyri fjaldar miðlar
         setting_use_pending_items: Spakulig støða

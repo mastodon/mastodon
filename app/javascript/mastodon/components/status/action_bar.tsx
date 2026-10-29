@@ -37,16 +37,19 @@ import { getStatusContent } from './utils';
 
 interface StatusActionBarProps {
   statusId: string;
+  reblogId: string | undefined;
   withDismiss?: boolean;
   withCounters?: boolean;
 }
 
 export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   statusId,
+  reblogId,
   withDismiss,
   withCounters,
 }) => {
   const status = useAccountStatus(statusId);
+  const reblogStatus = useAccountStatus(reblogId);
   const quotedAccountId = useAppSelector(
     (state) =>
       state.statuses.getIn([status?.quote?.quoted_status, 'account']) ?? null,
@@ -158,6 +161,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
           <StatusActionMenu
             dismissQuoteHint={dismissQuoteHint}
             status={status}
+            reblogStatus={reblogStatus}
             withDismiss={withDismiss}
           />
         )}
@@ -171,6 +175,20 @@ const StatusReblogButton: React.FC<{
   children: React.ReactNode;
 }> = ({ statusId, children }) => {
   const { boost, quote } = useStatusIcons(statusId);
+
+  const handleShiftClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (e.shiftKey) {
+        e.preventDefault();
+        boost.action(e);
+      }
+    },
+    [boost],
+  );
+
+  const preventMenuOpenOnShiftClick = useCallback((e?: React.MouseEvent) => {
+    return !e?.shiftKey;
+  }, []);
 
   if (quickBoosting) {
     return (
@@ -192,12 +210,13 @@ const StatusReblogButton: React.FC<{
   }
 
   return (
-    <Menu>
+    <Menu onOpen={preventMenuOpenOnShiftClick}>
       <MenuTrigger
         as={ToggleButton}
         size='sm'
         variant='ghost'
         active={boost.active}
+        disabled={boost.disabled && quote.disabled}
         tooltip={{
           type: 'label',
           text: (
@@ -207,6 +226,7 @@ const StatusReblogButton: React.FC<{
             />
           ),
         }}
+        onClick={handleShiftClick}
         leadingIcon={boost.icon}
       >
         {children}
@@ -237,12 +257,18 @@ const StatusReblogButton: React.FC<{
 const StatusActionMenu: React.FC<{
   dismissQuoteHint: () => void;
   status: AccountStatusShape;
+  reblogStatus: AccountStatusShape | null;
   withDismiss?: boolean;
-}> = ({ status, dismissQuoteHint, withDismiss }) => {
+}> = ({ status, reblogStatus, dismissQuoteHint, withDismiss }) => {
   const { contextType } = useStatusContext();
   const dispatch = useAppDispatch();
 
-  const menu = useStatusMenuActions({ status, contextType, withDismiss });
+  const menu = useStatusMenuActions({
+    status,
+    reblogStatus,
+    contextType,
+    withDismiss,
+  });
 
   const onOpen = useCallback(() => {
     // Replicates needsStatusRefresh of the Dropdown component.

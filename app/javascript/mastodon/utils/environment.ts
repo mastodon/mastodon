@@ -35,7 +35,3 @@ export function isClientFeatureEnabled(feature: ClientFeatures) {
 export function isRedesignEnabled() {
   return true;
 }
-
-export function isLayoutWithSearchEnabled() {
-  return isClientFeatureEnabled('layout-with-search');
-}

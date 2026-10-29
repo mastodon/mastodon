@@ -57,7 +57,7 @@ RSpec.describe Mastodon::CLI::Emoji do
 
   describe '#import' do
     context 'with existing custom emoji' do
-      let(:import_path) { Rails.root.join('spec', 'fixtures', 'files', 'elite-assets.tar.gz') }
+      let(:import_path) { file_fixture('elite-assets.tar.gz') }
       let(:action) { :import }
       let(:arguments) { [import_path] }
 

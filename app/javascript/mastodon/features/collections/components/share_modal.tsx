@@ -7,7 +7,7 @@ import { useLocation } from 'react-router';
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { me } from '@/mastodon/initial_state';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import { changeCompose, focusCompose } from 'mastodon/actions/compose';
+import { focusCompose } from 'mastodon/actions/compose';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { Button } from 'mastodon/components/button';
 import { CopyLinkField } from 'mastodon/components/form_fields';
@@ -60,8 +60,7 @@ export const CollectionShareModal: React.FC<{
     shareMessage += `\n\n${collectionLink}`;
 
     onClose();
-    dispatch(changeCompose(shareMessage));
-    dispatch(focusCompose());
+    dispatch(focusCompose(shareMessage));
   }, [onClose, collectionLink, dispatch, intl, isOwnCollection]);
 
   return (

@@ -21,7 +21,6 @@ pt-BR:
       admin_account_action:
         include_statuses: O usuário verá quais toots causaram a advertência ou ação da moderação
         send_email_notification: O usuário receberá uma explicação do que aconteceu com a própria conta
-        text_html: Opcional. Você pode usar a sintaxe do toot ou pode poupar tempo <a href="%{path}">adicionando advertências pré-definidas</a>
         type_html: Decida o que fazer com <strong>%{acct}</strong>
         types:
           disable: Impede o usuário de usar a conta, porém sem excluí-la ou suspendê-la.
@@ -29,7 +28,6 @@ pt-BR:
           sensitive: Marca todas as mídias do usuário como sensível.
           silence: Impede o usuário de postar publicamente, restringe suas publicações e notificações a somente quem o segue. Encerra todas as denúncias contra esta conta.
           suspend: Impede qualquer interação de ou para esta conta e exclui seu conteúdo. Reversível dentro de 30 dias. Encerra todas as denúncias contra esta conta.
-        warning_preset_id: Opcional. Você pode adicionar texto personalizado no final da advertência pré-definida
       announcement:
         all_day: Quando marcada, apenas as datas do período serão mostradas
         ends_at: Opcional. O comunicado sairá do ar automaticamente
@@ -191,12 +189,10 @@ pt-BR:
       account_migration:
         acct: Nome de usuário da nova conta
       account_warning_preset:
-        text: Advertência pré-definida
         title: Título
       admin_account_action:
         include_statuses: Incluir toots denunciados no e-mail
         send_email_notification: Notificar o usuário por e-mail
-        text: Advertência personalizada
         type: Ação
         types:
           disable: Congelar
@@ -204,7 +200,6 @@ pt-BR:
           sensitive: Sensível
           silence: Suspender
           suspend: Banir e excluir conta
-        warning_preset_id: Usar advertência pré-definida
       announcement:
         all_day: Evento o dia inteiro
         ends_at: Fim do evento
@@ -244,7 +239,6 @@ pt-BR:
         setting_always_send_emails: Sempre enviar notificações por e-mail
         setting_auto_play_gif: Reproduzir GIFs automaticamente
         setting_boost_modal: Controlar a visibilidade dos impulsos
-        setting_color_scheme: Esquema de cores
         setting_contrast: Contraste
         setting_default_language: Idioma dos toots
         setting_default_privacy: Visibilidade da publicação
@@ -267,7 +261,6 @@ pt-BR:
         setting_system_font_ui: Usar fonte padrão do sistema
         setting_system_scrollbars_ui: Usar barra de rolagem padrão do sistema
         setting_theme: Tema do site
-        setting_trends: Mostrar em alta hoje
         setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
         setting_use_blurhash: Mostrar blur em mídias sensíveis
         setting_use_pending_items: Modo lento

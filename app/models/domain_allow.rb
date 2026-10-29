@@ -4,10 +4,11 @@
 #
 # Table name: domain_allows
 #
-#  id         :bigint(8)        not null, primary key
-#  domain     :string           default(""), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                         :bigint(8)        not null, primary key
+#  domain                     :string           default(""), not null
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  moderation_subscription_id :bigint(8)
 #
 
 class DomainAllow < ApplicationRecord
@@ -15,6 +16,7 @@ class DomainAllow < ApplicationRecord
   include DomainNormalizable
   include DomainMaterializable
 
+  belongs_to :moderation_subscription, optional: true
   validates :domain, presence: true, uniqueness: true, domain: true
 
   def to_log_human_identifier

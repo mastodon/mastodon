@@ -83,6 +83,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
       className={classNames(
         className,
         classes.root,
+        isScrolledToTop && classes.rootScrolledToTop,
         hasExtraStickyContent && classes.withStickyContent,
       )}
     >
@@ -128,7 +129,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
 
 /**
  * This is used for pages that don't need a column title,
- * but should have the rounded shape of the column header
+ * but should have the same styles as the column header
  */
 export const EmptyColumnHeader: React.FC = () => (
   <div className={classes.root}>
@@ -210,11 +211,11 @@ function updateHeaderHeightCssVariable(element: HTMLElement) {
   const newHeight = `${element.offsetHeight}px`;
   const currentHeight = getComputedStyle(
     document.documentElement,
-  ).getPropertyValue('--column-header-height');
+  ).getPropertyValue('--current-column-header-height');
 
   if (newHeight !== currentHeight) {
     document.documentElement.style.setProperty(
-      '--column-header-height',
+      '--current-column-header-height',
       `${element.offsetHeight}px`,
     );
   }

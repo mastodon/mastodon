@@ -2,7 +2,12 @@
 
 .root {
   --multi-column-navigation-width: 320px;
-  --multi-column-gap: var(--space-2);
+  --multi-column-gap: var(--space-1);
+
+  // This grid definition is shared with the composer
+  --columns-area-grid-columns: minmax(0, var(--multi-column-navigation-width))
+    minmax(0, 600px) minmax(0, 1fr);
+  --columns-area-grid-gap: var(--multi-column-gap);
 
   position: relative;
   display: flex;
@@ -24,10 +29,6 @@
 }
 
 .navigationWrapper {
-  position: sticky;
-  inset-inline-start: 0;
-  top: 0;
-  z-index: 100;
   min-width: var(--multi-column-navigation-width);
   padding-bottom: env(safe-area-inset-bottom);
   background: var(--color-bg-desktop);
@@ -35,4 +36,10 @@
   @media (max-width: ($mobile-menu-breakpoint - 1)) {
     display: none;
   }
+}
+
+.discoveryColumn {
+  padding: var(--space-5) var(--space-4) var(--space-6);
+  background: var(--color-bg-desktop) !important;
+  border: none !important;
 }

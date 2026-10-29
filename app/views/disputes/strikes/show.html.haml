@@ -54,6 +54,16 @@
           %strong= t('disputes.strikes.appeal_submitted_at')
         .report-header__details__item__content
           %time.formatted{ datetime: @appeal.created_at.iso8601, title: l(@appeal.created_at) }= l(@appeal.created_at)
+    - if @appeal.approved? || @appeal.rejected?
+      .report-header__details__item
+        .report-header__details__item__header
+          %strong= t('disputes.strikes.appeal_handled_by')
+        .report-header__details__item__content
+          - if @appeal.approved?
+            = link_to @appeal.approved_by_account&.username, admin_account_path(@appeal.approved_by_account_id)
+          - elsif @appeal.rejected?
+            = link_to @appeal.rejected_by_account&.username, admin_account_path(@appeal.rejected_by_account_id)
+
 %hr.spacer/
 
 - if @appeal.persisted?

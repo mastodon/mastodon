@@ -22,15 +22,15 @@ import type {
 type SuggestTypes = Suggestion['type'];
 
 const suggestionsMap = {
-  account: [{ type: 'account', id: '1' }] satisfies AccountSuggestion[],
+  account: [{ type: 'account', id: 'account-1' }] satisfies AccountSuggestion[],
   emoji: [
     { type: 'emoji', id: '+1', native: '👍' },
     { type: 'emoji', id: '-1', native: '👎' },
     { type: 'emoji', id: 'smile', native: '🙂' },
   ] satisfies EmojiSuggestion[],
   hashtag: [
-    { type: 'hashtag', name: 'Testing', id: '1', totalUses: 0 },
-    { type: 'hashtag', name: 'Test', id: '2', totalUses: 10 },
+    { type: 'hashtag', name: 'Testing', id: 'tag-1', totalUses: 0 },
+    { type: 'hashtag', name: 'Test', id: 'tag-2', totalUses: 10 },
   ] satisfies HashtagSuggestion[],
 } satisfies Record<SuggestTypes, Suggestion[]>;
 

@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 import { CheckIcon } from '@phosphor-icons/react';
 
-import { Toggle } from '../form_fields/redesign';
+import { Toggle } from '../form_fields';
 import { Icon } from '../icon';
 import type { IconProp } from '../icon';
 
@@ -38,6 +38,10 @@ export const MenuItemGroup: React.FC<MenuItemGroupProps> = ({
 };
 
 export const MenuItemDivider: React.FC = () => {
+  const { type } = useMenuContext();
+  if (type === 'navigation') {
+    return <li role='separator' className={classes.itemDivider} />;
+  }
   return <hr className={classes.itemDivider} />;
 };
 

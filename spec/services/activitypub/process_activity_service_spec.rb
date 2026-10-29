@@ -208,7 +208,6 @@ RSpec.describe ActivityPub::ProcessActivityService do
                     username: 'bob',
                     domain: 'example.com',
                     uri: 'https://example.com/users/bob',
-                    private_key: nil,
                     public_key: <<~TEXT)
                       -----BEGIN PUBLIC KEY-----
                       MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuuYyoyfsRkYnXRotMsId

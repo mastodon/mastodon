@@ -48,8 +48,11 @@ class AccountStatusesFilter
   def filtered_scope
     scope = account.statuses
 
-    if exclude_direct?
-      scope = visibility_scope(scope)
+    if exclude_direct? && follower?
+      scope = scope.list_eligible_visibility
+    elsif exclude_direct?
+      scope = account.statuses.left_outer_joins(:mentions)
+      scope.merge!(scope.distributable_visibility.or(scope.where(visibility: :private).where(mentions: { account_id: current_account.id })).group(Status.arel_table[:id]))
     else
       scope = account.statuses.left_outer_joins(:mentions)
       scope.merge!(visibility_scope(scope).or(scope.where(mentions: { account_id: current_account.id })).group(Status.arel_table[:id]))

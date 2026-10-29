@@ -8,6 +8,7 @@ import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import {
   closeComposer,
   getComposerTextarea,
+  selectComposerIsChanged,
   submitComposer,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -46,9 +47,13 @@ export const RedesignComposeForm: React.FC<
 }) => {
   const type = useAppSelector(selectComposeType);
 
-  const { onEmojiPick, onSubmit } = useComposeHandlers(redirectOnSuccess);
+  const { onEmojiPick, onSubmit } = useComposeHandlers({
+    redirectOnSuccess,
+    headless,
+  });
 
   const titleId = useId();
+  const hintsId = useId();
 
   return (
     <form
@@ -78,6 +83,7 @@ export const RedesignComposeForm: React.FC<
 
       <ComposeTextarea
         autoFocus={autoFocus}
+        aria-describedby={hintsId}
         beforeTextArea={
           <>
             <ComposeReply />
@@ -89,7 +95,7 @@ export const RedesignComposeForm: React.FC<
         <ComposeAttachments className={classes.attachments} />
       </ComposeTextarea>
 
-      <ComposeHints />
+      <ComposeHints id={hintsId} />
 
       <ComposeFooter onEmojiPick={onEmojiPick} />
     </form>
@@ -99,12 +105,19 @@ export const RedesignComposeForm: React.FC<
 const allowedAroundShortCode =
   '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
-function useComposeHandlers(redirectOnSuccess?: boolean) {
+function useComposeHandlers({
+  redirectOnSuccess,
+  headless,
+}: {
+  redirectOnSuccess?: boolean;
+  headless?: boolean;
+}) {
   const text = useAppSelector((state) => state.compose.get('text') as string);
 
   const dispatch = useAppDispatch();
 
   const isModalOpen = useAppSelector((state) => state.modal.stack.size > 0);
+  const isComposerChanged = useAppSelector(selectComposerIsChanged);
   useEffect(() => {
     function escapeComposer(event: KeyboardEvent) {
       const key = normalizeKey(event.key);
@@ -117,11 +130,21 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
       }
     }
 
+    function closePage(event: BeforeUnloadEvent) {
+      if (isComposerChanged && !headless) {
+        event.preventDefault();
+        return true;
+      }
+      return;
+    }
+
     document.addEventListener('keydown', escapeComposer);
+    window.addEventListener('beforeunload', closePage);
     return () => {
       document.removeEventListener('keydown', escapeComposer);
+      window.removeEventListener('beforeunload', closePage);
     };
-  }, [dispatch, isModalOpen]);
+  }, [dispatch, headless, isComposerChanged, isModalOpen]);
 
   const onEmojiPick: OnEmojiPick = useCallback(
     (emoji) => {

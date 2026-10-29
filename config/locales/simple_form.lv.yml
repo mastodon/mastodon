@@ -20,7 +20,6 @@ lv:
       admin_account_action:
         include_statuses: Lietotājs redzēs, kuras ziņas izraisījušas satura pārraudzības darbību vai brīdinājumu
         send_email_notification: Lietotājs saņems paskaidrojumu par to, kas notika ar viņa kontu
-        text_html: Neobligāts. Tu vari lietot ziņu sintaksi. Lai ietaupītu laiku, tu vari <a href="%{path}">pievienot brīdinājuma sākotnējos iestatījumus</a>
         type_html: Izvēlies, ko darīt ar <strong>%{acct}</strong>
         types:
           disable: Neļauj lietotājam izmantot savu kontu, bet neizdzēs vai neslēp tā saturu.
@@ -28,7 +27,6 @@ lv:
           sensitive: Visus šī lietotāja informācijas nesēju pielikumus uzspiesti atzīmēt kā jūtīgus.
           silence: Neļaut lietotājam veikt ierakstus ar publisku redzamību, paslēpt viņa ierakstus un paziņojumus no cilvēkiem, kas tam neseko. Tiek aizvērti visi ziņojumi par šo kontu.
           suspend: Novērst jebkādu mijiedarbību ar kontu vai no tā un izdzēst tā saturu. Atsaucams 30 dienu laikā. Tiks aizvērti visi šī konta pārskati.
-        warning_preset_id: Neobligāts. Tu joprojām vari pievienot pielāgotu tekstu sākotnējās iestatīšanas beigās
       announcement:
         all_day: Atzīmējot šo opciju, tiks parādīti tikai laika diapazona datumi
         ends_at: Neobligāts. Paziņojums šoreiz tiks automātiski atcelts
@@ -157,12 +155,10 @@ lv:
       account_migration:
         acct: Jaunā konta rokturis
       account_warning_preset:
-        text: Iestatītais teksts
         title: Virsraksts
       admin_account_action:
         include_statuses: Iekļaut ziņotās ziņas e-pastā
         send_email_notification: Paziņot lietotājam pa e-pastu
-        text: Pielāgots brīdinājums
         type: Darbība
         types:
           disable: Iesaldēt
@@ -170,7 +166,6 @@ lv:
           sensitive: Jūtīgs
           silence: Ierobežot
           suspend: Apturēt
-        warning_preset_id: Lietot iepriekš iestatītus brīdinājumus
       announcement:
         all_day: Visas dienas pasākums
         ends_at: Pasākuma noslēgums
@@ -224,7 +219,6 @@ lv:
         setting_system_font_ui: Lietot sistēmas noklusējuma fontu
         setting_system_scrollbars_ui: Lietot sistēmas noklusējuma ritjoslu
         setting_theme: Vietnes motīvs
-        setting_trends: Parādīt šodienas tendences
         setting_unfollow_modal: Rādīt apstiprinājuma dialogu pirms pārtraukt kādam sekot
         setting_use_blurhash: Rādīt krāsainas pārejas paslēptajiem informācijas nesējiem
         setting_use_pending_items: Lēnais režīms

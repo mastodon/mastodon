@@ -38,6 +38,7 @@ export const ModalShell = <As extends React.ElementType>({
       className={classNames(
         className,
         classes.modal,
+        maxWidth && classes.modalMaxWidth,
         elevation === 2 && classes.modalElevated,
       )}
       style={{

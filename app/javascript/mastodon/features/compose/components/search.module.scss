@@ -9,7 +9,7 @@
   color: var(--color-text-primary);
   background-color: transparent;
   border-radius: var(--radius-round);
-  border: var(--border-default);
+  border: var(--border-input);
   font: inherit;
   @include mixins.type-body-compact;
 
@@ -18,6 +18,10 @@
   &:focus {
     outline: var(--outline-focus-default);
     outline-offset: calc(-1 * var(--bw-default));
+  }
+
+  &::placeholder {
+    color: var(--color-text-tertiary);
   }
 
   @media screen and (width <= variables.$mobile-breakpoint) {

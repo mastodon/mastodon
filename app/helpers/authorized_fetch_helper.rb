@@ -17,7 +17,7 @@ module AuthorizedFetchHelper
   end
 
   def actors_require_signature?
-    Mastodon::Feature.bloom_filters_enabled? || %w(actors all).include?(authorized_fetch_mode) || Rails.configuration.x.mastodon.limited_federation_mode
+    %w(actors all).include?(authorized_fetch_mode) || Rails.configuration.x.mastodon.limited_federation_mode
   end
 
   def authorized_fetch_overridden?

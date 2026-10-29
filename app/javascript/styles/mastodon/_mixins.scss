@@ -22,7 +22,7 @@
 
 @mixin type-heading-sm {
   font-family: var(--font-heading);
-  font-size: var(--fs-20);
+  font-size: var(--fs-18);
   font-weight: 500;
   font-variation-settings: 'GEOM' 50;
   line-height: var(--lh-tight);
@@ -33,7 +33,7 @@
   font-family: var(--font-body);
   font-size: var(--fs-18);
   font-weight: normal;
-  line-height: var(--lh-normal);
+  line-height: var(--lh-tight);
   letter-spacing: var(--ls-normal);
 }
 
@@ -41,7 +41,7 @@
   font-family: var(--font-body);
   font-size: var(--fs-15);
   font-weight: bold;
-  line-height: var(--lh-normal);
+  line-height: var(--lh-tight);
   letter-spacing: var(--ls-normal);
 }
 
@@ -49,7 +49,7 @@
   font-family: var(--font-body);
   font-size: var(--fs-15);
   font-weight: normal;
-  line-height: var(--lh-normal);
+  line-height: var(--lh-tight);
   letter-spacing: var(--ls-normal);
 }
 
@@ -98,13 +98,17 @@
  */
 
 @mixin elevation-1 {
-  border: var(--bw-default) solid var(--color-border-strong);
-  box-shadow: 0 1px 0 var(--color-border-strong);
+  border: var(--border-default);
+  box-shadow:
+    0 0 var(--space-half) 0 var(--color-border-primary),
+    0 var(--space-1) var(--space-2) 0 var(--color-bg-highlight);
 }
 
 @mixin elevation-2 {
-  border: var(--bw-default) solid var(--color-border-strong);
-  box-shadow: 1px 2px 0 var(--color-border-strong);
+  border: var(--border-default);
+  box-shadow:
+    0 0 var(--space-half) 0 var(--color-border-primary),
+    0 var(--space-1) var(--space-2) 0 var(--color-bg-highlight);
 }
 
 /**
@@ -173,7 +177,7 @@
     text-transform: uppercase;
     color: var(--color-text-secondary);
     font-size: 13px;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 10px;
   }
 
@@ -186,7 +190,7 @@
   }
 
   em {
-    font-weight: 500;
+    font-weight: bold;
     color: var(--color-text-primary);
   }
 }

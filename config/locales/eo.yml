@@ -4,12 +4,26 @@ eo:
     about_mastodon_html: 'La socia retejo de la estonteco: sen reklamo, sen observado por firmao, etika desegno, kaj malcentrigo! Regu viajn informojn per Mastodon!'
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
+    default_thumbnail_description: Du ridetantaj kartunaj mastodonoj (kiuj aspektas kiel elefantoj) ĵetas paperan aviadilon inter ili. Ili estas ĉirkauitaj de hela blua ĉielo kaj flosantaj planedoj, sur kiuj loĝas arboj kaj pli da mastodonoj.
     hosted_on: "%{domain} estas nodo de Mastodon"
     title: Prio
   accounts:
+    api_errors:
+      2fa_required: Via konto ne povas esti uzita sen agordado de dua faktoro por aŭtentigo
+      account_deleted: Via konto estis forigita
+      account_suspended: Via konto estis limigita
+      login_disabled: Via konto estas nune malŝaltita
+      memorial: Via konto estis memorigaĵigita
+      pending_approval: Via konto nune necesas aprobon de moderigantoj
+      pending_confirmation: En via konto mankas konfirmita retpoŝtadreso
+    errors:
+      cannot_be_added_to_collections: Ĉi tiu konto ne povas esti aldonita al kolektoj.
     followers:
       one: Sekvanto
       other: Sekvantoj
+    following:
+      one: Sekvato
+      other: Sekvatoj
     instance_actor_flash: Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniun individuan uzanton. Ĝi estas uzata por federaciaj celoj kaj ĝi devas ne esti suspendita.
     last_active: laste aktiva
     link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
@@ -51,27 +65,43 @@ eo:
         label: Ŝanĝi rolon
         no_role: Neniu rolo
         title: Ŝanĝi rolon por %{username}
+      collections: Kolektoj
       confirm: Konfirmi
       confirmed: Konfirmita
       confirming: Konfirmante
       custom: Aliaj agordoj
       delete: Forigi datumojn
       deleted: Forigita
+      deletion_irreversible: La datumoj de ĉi tiu konto estis neinversigeble forigitaj.
+      deletion_reversible_hint_html: Ĉi tiu konto atendas forigadon, kaj la datumoj estos tute forigitaj je %{date}.
       demote: Degradi
       destroyed_msg: Datumoj de %{username} nun enviciĝis por esti forigita baldaǔ
       disable: Frostigi
+      disable_sign_in_token: Portempe malŝalti defion de sekureca kodo
       disable_sign_in_token_auth: Malebligu retpoŝtan ĵeton-aŭtentikigon
       disable_two_factor_authentication: Malŝalti 2FA-n
       disabled: Frostigita
+      discoverable:
+        disabled: Autoro ne permesis esti malkovrebla
+        enabled: Autoro permesis esti malkovrebla
+        title: Malkovreblaj
       display_name: Montrata nomo
       domain: Domajno
       edit: Redakti
       email: Retpoŝto
       email_status: Stato de retpoŝto
       enable: Malfrostigi
+      enable_sign_in_token: Ŝalti defion de sekureca kodo
       enable_sign_in_token_auth: Ebligu retpoŝtan ĵeton-aŭtentikigon
+      enable_unconfirmed: Permesi konfirman retpoŝton
       enabled: Ebligita
       enabled_msg: Sukcese malfrostigis konton de %{username}
+      follow_recommendations:
+        allowed: Permesita
+        suppress: Subremi rekomendaĵojn de sekvado
+        suppressed: Subpremita
+        title: Rekomendoj de sekvado
+        unsuppress: Restarigi ĉiujn sekvorekomendojn
       followers: Sekvoj
       follows: Sekvatoj
       header: Kapa bildo
@@ -117,6 +147,7 @@ eo:
       push_subscription_expires: Eksvalidiĝo de la abono al PuSH
       redownload: Aktualigi profilon
       redownloaded_msg: Sukcese aktualigis profilon de %{username} el origino
+      registration_app: Aplikaĵo de registrado
       reject: Malakcepti
       rejected_msg: Sukcese malaprobis aliĝ-peton de %{username}
       remote_suspension_irreversible: La informoj de ĉi tiu konto estis neinversigeble forigitaj.
@@ -156,6 +187,12 @@ eo:
       suspension_irreversible: La datumoj de ĉi tiu konto estas porĉiame forigitaj. Vi povas malsuspendi tiun konton por igi ĝin uzebla, sed ĝi ne rehavos ajnan datumon kiun ĝi antaŭe havis.
       suspension_reversible_hint_html: La konto estas suspendita, kaj la datumoj estos komplete forigitaj je %{date}. Ĝis tiam, la konto povas esti malsuspendita sen flankefiko. Se vi deziras tuj forigi ĉiujn datumojn de la konto, vi povas fari tion sube.
       title: Kontoj
+      trends:
+        allow: Permesi
+        allowed: Permesita
+        disallow: Malpermesi
+        disallowed: Malpermesita
+        title: Aktualaĵoj
       unblock_email: Malbloki retpoŝtadresojn
       unblocked_email_msg: Sukcese malblokis la retpoŝtadreson de %{username}
       unconfirmed_email: Nekonfirmita retpoŝto
@@ -191,6 +228,7 @@ eo:
         create_user_role: Krei Rolon
         create_username_block: Krei uzantnoman regulon
         demote_user: Malpromocii Uzanton
+        destroy_account: Foridi datumojn de konto
         destroy_announcement: Forigi Anoncon
         destroy_canonical_email_block: Forigi retpoŝtan blokon
         destroy_custom_emoji: Forigi Propran Emoĝion
@@ -1094,9 +1132,6 @@ eo:
     warning_presets:
       add_new: Aldoni novan
       delete: Forigi
-      edit_preset: Redakti avertan antaŭagordon
-      empty: Vi ankoraŭ ne difinis iun ajn antaŭagordon de averto.
-      title: Antaŭdifinoj de averto
     webhooks:
       add_new: Aldoni finpunkton
       delete: Forigi
@@ -1164,7 +1199,6 @@ eo:
     remove: Malligili alinomon
   appearance:
     animations_and_accessibility: Animacioj kaj alirebleco
-    discovery: Eltrovo
     localization:
       body: Mastodon estas tradukita de volontuloj.
       guide_link: https://crowdin.com/project/mastodon

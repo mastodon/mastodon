@@ -1,0 +1,4 @@
+%h3.server-checks-category= t("admin.server_checks.categories.#{category}.title")
+= render collection: checks, partial: 'check', locals: { category: category }
+
+%hr.spacer

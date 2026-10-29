@@ -21,7 +21,6 @@ fi:
     mailer:
       confirmation_instructions:
         action: Vahvista sähköpostiosoite
-        action_with_app: Vahvista ja palaa %{app}
         explanation: Olet luonut käyttäjätilin palvelimelle %{host} tätä sähköpostiosoitetta käyttäen. Olet painalluksen päässä tilin aktivoinnista. Jos et luonut tiliä itse, voit jättää tämän viestin huomiotta.
         explanation_when_pending: Teit hakemuksen kutsusta palvelimelle %{host} tällä sähköpostiosoitteella. Kun olet vahvistanut sähköpostiosoitteesi, tarkistamme hakemuksesi. Voit kirjautua sisään muuttaaksesi hakemuksen sisältöä tai poistaaksesi tilin, mutta et voi käyttää suurinta osaa toiminnallisuudesta ennen kuin hakemuksesi on hyväksytty. Jos hakemuksesi hylätään, tietosi poistetaan eikä sinulta tarvita enempää toimia. Jos sinä et tehnyt hakemusta, voit jättää tämän viestin huomiotta.
         extra_html: Tutustu myös <a href="%{terms_path}">palvelimen sääntöihin</a> ja <a href="%{policy_path}">palveluehtoihimme</a>.

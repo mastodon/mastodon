@@ -509,6 +509,8 @@ cy:
       undo: Gwrthod ffedereiddio gyda pharth
     domain_blocks:
       add_new: Ychwanegu bloc parth newydd
+      confirm_downgrade:
+        cancel: Canslo
       confirm_suspension:
         cancel: Canslo
         confirm: Atal
@@ -827,6 +829,19 @@ cy:
       reset: Ailosod
       search: Chwilio
       title: Rheolau IP
+    moderation_subscriptions:
+      advisory_actions:
+        accept: caniatáu
+        reject: atal
+      apply_conditions:
+        always: Bob tro
+        never: Byth
+      delete: Dileu
+      list_actions_short:
+        default: Cymysg
+      name: Enw
+      new:
+        create: Tanysgrifio
     relationships:
       title: Perthnasau %{acct}
     relays:
@@ -1407,9 +1422,6 @@ cy:
     warning_presets:
       add_new: Ychwanegu newydd
       delete: Dileu
-      edit_preset: Golygu rhagosodiad rhybudd
-      empty: Nid ydych wedi diffinio unrhyw ragosodiadau rhybudd eto.
-      title: Rhagosodiadau rhybuddion
     webhooks:
       add_new: Ychwanegu diweddbwynt
       delete: Dileu
@@ -1493,7 +1505,6 @@ cy:
     animations_and_accessibility: Animeiddiadau a hygyrchedd
     boosting_preferences: Dewisiadau hybu
     boosting_preferences_info_html: "<strong>Awgrym:</strong> Beth bynnag yw'r gosodiadau, bydd <kbd>Shift</kbd> + <kbd>Clici</kbd> ar yr eicon Hybu %{icon} yn hybu'n syth."
-    discovery: Darganfod
     localization:
       body: Mae Mastodon yn cael ei gyfieithu gan wirfoddolwyr.
       guide_link: https://crowdin.com/project/mastodon

@@ -57,6 +57,7 @@ module Admin
       if existing_domain_block.present? && existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain)
         @domain_block = existing_domain_block
         @domain_block.assign_attributes(resource_params)
+        @domain_block.moderation_subscription_id = nil if @domain_block.severity_changed?
       end
 
       # Require explicit confirmation when suspending
@@ -75,6 +76,7 @@ module Admin
       authorize :domain_block, :update?
 
       @domain_block.assign_attributes(update_params)
+      @domain_block.moderation_subscription_id = nil if @domain_block.severity_changed?
 
       # Require explicit confirmation when suspending
       return render :confirm_suspension if requires_confirmation?

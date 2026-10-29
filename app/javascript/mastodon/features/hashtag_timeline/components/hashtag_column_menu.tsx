@@ -45,10 +45,10 @@ export const HashtagColumnMenu: React.FC<{
     dispatch(
       openModal({
         modalType: 'HASHTAG_SETTINGS',
-        modalProps: { columnId, tagId },
+        modalProps: { columnId },
       }),
     );
-  }, [columnId, dispatch, tagId]);
+  }, [columnId, dispatch]);
 
   if (!tag || !signedIn) {
     return null;

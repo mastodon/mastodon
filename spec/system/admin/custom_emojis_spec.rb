@@ -33,7 +33,7 @@ RSpec.describe 'Admin::CustomEmojis' do
       fill_in I18n.t('admin.custom_emojis.shortcode'),
               with: 'test'
       attach_file 'custom_emoji_image',
-                  Rails.root.join('spec', 'fixtures', 'files', 'emojo.png')
+                  file_fixture('emojo.png')
 
       expect { submit_form }
         .to change(CustomEmoji, :count).by(1)

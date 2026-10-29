@@ -4,14 +4,26 @@ eu:
     about_mastodon_html: 'Etorkizuneko sare soziala: ez iragarkirik eta ez zelatatze korporatiborik, diseinu etikoa eta deszentralizazioa! Izan zure datuen jabea Mastodonekin!'
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
+    default_thumbnail_description: Irribarrez dauden bi marrazki bizidunetako mastodonte (elefanteen antza dute) paperezko hegazkin bat elkarri botatzen ari dira. Inguruan zeru urdin argia dute eta zuhaitzak eta mastodonte gehiago dituzten planeta flotatzaileak.
     hosted_on: Mastodon %{domain} domeinuan ostatatua
     title: Honi buruz
   accounts:
+    api_errors:
+      2fa_required: Zure kontua ezin da erabili bigarren autentifikazio-faktorea konfiguratu gabe
+      account_deleted: Zure kontua ezabatu da
+      account_suspended: Zure kontua kanporatu da
+      login_disabled: Zure kontua desgaituta dago une honetan
+      memorial: Zure kontua memorial bihurtu da
+      pending_approval: Zure kontua moderazioaren onarpenaren zain dago
+      pending_confirmation: Zure kontuak ez du helbide elektroniko berretsirik
     errors:
       cannot_be_added_to_collections: Ezin da kontu hau bildumetara gehitu.
     followers:
       one: Jarraitzaile
       other: jarraitzaile
+    following:
+      one: Jarraitzen
+      other: Jarraitzen
     instance_actor_flash: Kontu hau zerbitzaria adierazten duen aktore birtual bat da eta ez banako erabiltzaile bat. Federatzeko helburuarekin erabiltzen da eta ez da kanporatu behar.
     last_active: azkenekoz aktiboa
     link_verified_on: 'Esteka honen jabetzaren egiaztaketa data: %{date}'
@@ -53,27 +65,43 @@ eu:
         label: Aldatu rola
         no_role: Rolik ez
         title: Aldatu %{username} erabiltzailearen rola
+      collections: Bildumak
       confirm: Berretsi
       confirmed: Berretsita
       confirming: Berresten
       custom: Pertsonalizatua
       delete: Ezabatu datuak
       deleted: Ezabatua
+      deletion_irreversible: Kontu honen datuak behin betiko ezabatu dira.
+      deletion_reversible_hint_html: Kontu hau ezabatzeko zain dago, eta datuak erabat ezabatuko dira %{date} egunean.
       demote: Jaitsi mailaz
       destroyed_msg: "%{username} erabiltzailearen datuak behin betiko ezabatzeko ilaran daude"
       disable: Desgaitu
+      disable_sign_in_token: Desgaitu aldi baterako segurtasun-kodearen egiaztapena
       disable_sign_in_token_auth: Desgaitu e-posta token autentifikazioa
       disable_two_factor_authentication: Desgaitu 2FA
       disabled: Desgaituta
+      discoverable:
+        disabled: Egileak ez du aurkigarri izatea onartu
+        enabled: Egileak aurkigarri izatea onartu du
+        title: Aurkigarria
       display_name: Pantaila-izena
       domain: Domeinua
       edit: Editatu
       email: Eposta
       email_status: Epostaren egoera
       enable: Gaitu
+      enable_sign_in_token: Gaitu segurtasun-kodearen egiaztapena
       enable_sign_in_token_auth: Gaitu e-posta token autentifikazioa
+      enable_unconfirmed: Baimendu berrespen-mezua
       enabled: Gaituta
       enabled_msg: "%{username} kontua behar bezala desblokeatu da"
+      follow_recommendations:
+        allowed: Baimendua
+        suppress: Kendu jarraitzeko gomendio guztiak
+        suppressed: Kendua
+        title: Jarraitzeko gomendioak
+        unsuppress: Berreskuratu jarraitzeko gomendio guztiak
       followers: Jarraitzaileak
       follows: Jarraitzen du
       header: Goiburua
@@ -119,6 +147,7 @@ eu:
       push_subscription_expires: Push harpidetzaren iraugitzea
       redownload: Freskatu profila
       redownloaded_msg: "%{username} erabiltzailearen profila behar bezala freskatu da jatorritik"
+      registration_app: Izena emateko aplikazioa
       reject: Ukatu
       rejected_msg: "%{username} erabiltzailearen izen emate eskaera behar bezala ukatu da"
       remote_suspension_irreversible: Kontu honetako datuak betiko ezabatuak izan dira.
@@ -158,6 +187,12 @@ eu:
       suspension_irreversible: Kontu honen datuak behin betiko ezabatu dira. Kontua kanporatzea atzera bota dezakezu, berriz erabilgarri izan dadin, baina datuak ezingo dira berreskuratu.
       suspension_reversible_hint_html: Kontu hau kanporatua izan da eta bere datuak %{date}(e)an behin betiko ezabatuko dira. Ordura arte kontua kalterik gabe leheneratu daiteke. Kontuaren datu guztiak oraintxe bertan ezabatu nahi badituzu, jarraian egin dezakezu.
       title: Kontuak
+      trends:
+        allow: Baimendu
+        allowed: Baimendua
+        disallow: Ez baimendu
+        disallowed: Baimendu gabea
+        title: Joerako bidalketak
       unblock_email: Desblokeatu eposta helbidea
       unblocked_email_msg: Behar bezala desblokeatu da %{username} eposta helbidea
       unconfirmed_email: Baieztatu gabeko eposta helbidea
@@ -193,6 +228,7 @@ eu:
         create_user_role: Sortu rola
         create_username_block: Sortu erabiltzaile-izenaren araua
         demote_user: Jaitsi erabiltzailearen maila
+        destroy_account: Ezabatu kontuaren datuak
         destroy_announcement: Ezabatu iragarpena
         destroy_canonical_email_block: Ezabatu email blokeoa
         destroy_custom_emoji: Ezabatu emoji pertsonalizatua
@@ -256,53 +292,83 @@ eu:
         create_domain_block_html: "%{name} erabiltzaileak %{target} domeinua blokeatu du"
         create_email_domain_block_html: "%{name}(e)k %{target} e-posta helbideen domeinua blokeatu du"
         create_ip_block_html: "%{name} kontuak %{target} IParen araua sortu du"
+        create_moderation_subscription_html: "%{name} erabiltzaileak %{target} moderazio-harpidetza sortu du"
+        create_relay_html: "%{name} erabiltzaileak %{target} errelea sortu du"
         create_unavailable_domain_html: "%{name}(e)k %{target} domeinurako banaketa gelditu du"
         create_user_role_html: "%{name} erabiltzaileak %{target} rola sortu du"
+        create_username_block_html: "%{name} erabiltzaileak %{target} duten erabiltzaile-izenetarako araua gehitu du"
         demote_user_html: "%{name} erabiltzaileak %{target} erabiltzailea mailaz jaitsi du"
+        destroy_account_html: "%{name} erabiltzaileak %{target} erabiltzailearen kontuaren datuak ezabatu ditu"
         destroy_announcement_html: "%{name} erabiltzaileak %{target} iragarpena ezabatu du"
         destroy_canonical_email_block_html: "%{name}(e)k %{target} hash-a duen helbide elektronikoa desblokeatu du"
+        destroy_collection_html: "%{name} erabiltzaileak %{target} erabiltzailearen bilduma kendu du"
         destroy_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a ezabatu du"
         destroy_domain_allow_html: "%{name} erabiltzaileak %{target} domeinuarekin federatzea debekatu du"
         destroy_domain_block_html: "%{name} erabiltzaileak %{target} domeinua desblokeatu du"
         destroy_email_domain_block_html: "%{name}-k %{target} posta elektroniko domeinua desblokeatu du"
         destroy_instance_html: "%{name} erabiltzaileak %{target} domeinua betiko ezabatu du"
         destroy_ip_block_html: "%{name} erabiltzaileak %{target} IParen araua ezabatu du"
+        destroy_moderation_subscription_html: "%{name} erabiltzaileak %{target} moderazio-harpidetza ezabatu du"
+        destroy_relay_html: "%{name} erabiltzaileak %{target} errelea ezabatu du"
         destroy_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketa kendu du"
         destroy_unavailable_domain_html: "%{name}(e)k %{target} domeinurako banaketari berrekin dio"
         destroy_user_role_html: "%{name} erabiltzaileak %{target} rola ezabatu du"
+        destroy_username_block_html: "%{name} erabiltzaileak %{target} duten erabiltzaile-izenetarako araua kendu du"
         disable_2fa_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen bi faktoreko autentifikazioa desgaitu du"
         disable_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a desgaitu du"
+        disable_relay_html: "%{name} erabiltzaileak %{target} errelea desgaitu du"
+        disable_sign_in_token_auth_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen posta elektroniko bidezko token-autentifikazioa desgaitu du"
         disable_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen saioa desgaitu du"
         enable_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a gaitu du"
+        enable_relay_html: "%{name} erabiltzaileak %{target} errelea gaitu du"
+        enable_sign_in_token_auth_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen posta elektroniko bidezko token-autentifikazioa gaitu du"
         enable_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen saioa gaitu du"
+        listable_tag_html: iradoki daiteke
         memorialize_account_html: "%{name} erabiltzaileak %{target} kontua memoriala bihurtu du"
+        not_listable_tag_html: ez da iradokiko
+        not_trendable_tag_html: ez da joeretan agertuko
+        not_usable_tag_html: ezin da erabili
         promote_user_html: "%{name} erabiltzaileak %{target} erabiltzailea mailaz igo du"
+        publish_terms_of_service_html: "%{name} erabiltzaileak zerbitzuaren baldintzen eguneraketak argitaratu ditu"
         reject_appeal_html: "%{name} erabiltzaileak %{target} erabiltzailearen moderazio erabakiaren apelazioa baztertu du"
         reject_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen izen-ematea baztertu du"
         remove_avatar_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen abatarra kendu du"
         reopen_report_html: "%{name} erabiltzaileak %{target} txostena berrireki du"
+        resend_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen berrespen-mezua berriz bidali du"
         reset_password_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen pasahitza berrezarri du"
         resolve_report_html: "%{name} erabiltzaileak %{target} txostena konpondu du"
         sensitive_account_html: "%{name} erabiltzaileak %{target} erabiltzailearen multimedia hunkigarri bezala markatu du"
         silence_account_html: "%{name} erabiltzaileak %{target} kontua isilarazi du"
         suspend_account_html: "%{name} erabiltzaileak %{target} kontua kanporatu du"
+        trendable_tag_html: joeretan ager daiteke
         unassigned_report_html: "%{name} erabiltzaileak %{target} txostenaren esleipena atzera bota du"
         unblock_email_account_html: "%{name} erabiltzaileak %{target} eposta helbidea desblokeatu du"
         unsensitive_account_html: "%{name} erabiltzaileak %{target} erabiltzailearen multimedia hunkigarri bezala markatzeari utzi dio"
         unsilence_account_html: "%{name} erabiltzaileak %{target} kontua isilarazteari utzi dio"
         unsuspend_account_html: "%{name} erabiltzaileak %{target} kontuaren kanporaketa atzera bota du"
         update_announcement_html: "%{name} erabiltzaileak %{target} iragarpena eguneratu du"
+        update_collection_html: "%{name} erabiltzaileak %{target} erabiltzailearen bilduma eguneratu du"
         update_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a eguneratu du"
         update_domain_block_html: "%{name} erabiltzaileak %{target} domeinu-blokeoa eguneratu du"
         update_ip_block_html: "%{name} erabiltzaileak %{target} IParen araua aldatu du"
         update_report_html: "%{name}-k %{target} txostena eguneratu du"
         update_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketa eguneratu du"
+        update_tag_html: "%{name} erabiltzaileak %{target} traolaren ezarpenak aldatu ditu: "
         update_user_role_html: "%{name} erabiltzaileak %{target} rola aldatu du"
+        update_username_block_html: "%{name} erabiltzaileak %{target} duten erabiltzaile-izenetarako araua eguneratu du"
         usable_tag_html: erabili daiteke;
+      automated_actions:
+        create_domain_allow_html: "%{target} domeinuarekiko federazioa automatikoki baimendu da"
+        create_domain_block_html: "%{target} domeinua automatikoki blokeatu da"
+        destroy_domain_allow_html: "%{target} domeinuarekiko federazioa automatikoki debekatu da"
+        destroy_domain_block_html: "%{target} domeinua automatikoki desblokeatu da"
+        update_domain_block_html: "%{target} domeinuaren blokeoa automatikoki eguneratu da"
       deleted_account: ezabatu kontua
+      deleted_suggestion: ezabatutako moderazio-harpidetza bat
       empty: Ez da egunkaririk aurkitu.
       filter_by_action: Iragazi ekintzen arabera
       filter_by_user: Iragazi erabiltzaileen arabera
+      suggested_by_html: "%{subscription}(e)k iradokitako ekintza"
       title: Auditoria-egunkaria
       unavailable_instance: "(domeinu izena ez dago erabilgarri)"
     announcements:
@@ -332,12 +398,17 @@ eu:
       back_to_account: Atzera kontuaren orrira
       back_to_report: Atzera txostenaren orrira
       batch:
+        add_to_report: 'Gehitu #%{id} salaketari'
         remove_from_report: Kendu txostenetik
         report: Salatu
       collection_title: "%{name}-(r)en bildumak"
       contents: Edukiak
       no_collection_selected: Ez da bildumarik aldatu ez delako bat ere hautatu
+      number_of_accounts:
+        one: Kontu 1
+        other: "%{count} kontu"
       open: Ireki
+      title: Kontuaren bildumak - @%{name}
       view_publicly: Publikoki ikusi
     critical_update_pending: Eguneraketa kritikoa egiteke
     custom_emojis:
@@ -413,6 +484,11 @@ eu:
       undo: Kendu zerrenda zuritik
     domain_blocks:
       add_new: Gehitu domeinuaren blokeo berria
+      confirm_downgrade:
+        cancel: Utzi
+        confirm: Arindu
+        preamble_html: "<strong>%{domain}</strong> domeinuaren eta haren azpidomeinuen blokeoa arintzear zaude."
+        title: Berretsi %{domain} domeinuaren blokeoa arintzea
       confirm_suspension:
         cancel: Utzi
         confirm: Eten
@@ -481,6 +557,81 @@ eu:
     email_subscriptions:
       accounts:
         account: Kontua
+        empty:
+          hint: Oraindik ez dago harpidedunak dituen konturik.
+          no_lists_yet: Oraindik ez dago zerrendarik
+        last_email: Azken mezua
+        lead: Eginbidea gaitu duten eta harpidedunak dituzten kontuak behean agertuko dira.
+        show:
+          confirm_disable_feature: Desgaitu %{name}(r)en buletin elektronikoak? Kontu honetarako ez da eguneraketarik bidaliko posta elektronikoz. Erabiltzaileak eginbidea berriz gaitu ahal izango du bere kontuaren ezarpenetan. Eginbide honetarako sarbidea behin betiko kentzeko, editatu kontuaren baimena Roletan.
+          confirm_remove_subscriber: "%{email} helbideak ez du %{name}(r)en mezurik jasoko aurrerantzean. Ekintza hau ezin da desegin."
+          consent: Harpidedunek bidalketak posta elektronikoz jasotzeko soilik eman dute baimena. Ez erabili zerrenda hau beste helburu batzuetarako.
+          date: Izen-ematearen data
+          disable_feature: Desgaitu eginbidea
+          disabled: Eginbidea desgaitu da eta ez da mezurik bidaltzen zerrenda honetara.
+          email: Helbide elektronikoa
+          empty:
+            hint: Oraindik inor ez da kontu honetara harpidetu.
+            no_subscribers_yet: Oraindik ez dago harpidedunik
+          enable_feature: Gaitu eginbidea
+          no_access_html: Kontu honek ez ditu jada eginbidea gaitzeko behar diren baimenak. Aldatu hau <a href="%{roles_path}">Roletan</a>.
+          title: "%{name}(r)en buletin elektronikoak"
+          view_account: Ikusi kontua
+        status: Egoera
+        subscribers: Harpidedunak
+        title: Posta-zerrendak
+      additional_footer_texts:
+        show:
+          title: Oineko testu gehigarria
+      compliance_settings:
+        additional_footer_text:
+          action: Kudeatu
+          hint: Buletinen mezu elektronikoen oinean soilik agertzen den testu aukerakoa
+          title: Oineko testu gehigarria
+        lead: Buletin elektronikoak marketin-mezutzat har daitezke, jarduten duzun jurisdikzioen arabera.
+        privacy_policy:
+          action: Kudeatu
+          hint: Politika hau mezu elektroniko guztien oinean estekatzen da
+          title: Pribatutasun-politika
+        title: Betetze-ezarpenak
+      danger_zone:
+        disable_feature:
+          action: Desgaitu
+          hint: Desaktibatu eginbidea kontu guztietarako
+          title: Desgaitu eginbidea
+        erase_all_data:
+          action: Ezabatu datuak
+          hint: Posta-zerrenda guztietako helbide elektroniko guztiak behin betiko ezabatzen ditu
+          title: Ezabatu datu guztiak
+        title: Arrisku-eremua
+      disabled_msg: Posta elektroniko bidezko harpidetzak ondo desgaitu dira.
+      index:
+        disabled:
+          cannot_be_enabled: Zure hornitzaile teknikoak ez du eginbide hau gaitu zure zerbitzarirako.
+          description: Eginbide honi esker, zehaztutako kontuek trepeta bat gehi dezakete beren profiletan, Mastodon konturik ez duten bisitariek haien bidalketak posta elektronikoz jaso ditzaten.
+          get_started: Hasi
+        lead: Baimendu bisitariei zerbitzari honetako kontu jakin batzuen bidalketak posta elektronikoz jasotzea.
+        title: Buletin elektronikoak
+      purged_msg: Posta elektroniko bidezko harpidetzen datu guztiak ezabatzen ari dira.
+      roles:
+        accounts: Kontuak
+        edit_role: Editatu rola
+        empty:
+          hint: Inork ez du eginbide hau erabiltzeko baimenik.
+          no_roles_added: Ez da rolik gehitu
+        lead: Rol hauek dituzten kontuek eginbide hau gai dezakete beren profiletan.
+        manage_roles: Kudeatu rolak
+        role_name: Rolaren izena
+        title: Rolak
+      setups:
+        show:
+          enable_feature: Gaitu eginbidea
+          important_information: Informazio garrantzitsua
+          list:
+            1_permission_explanation: Eginbide hau gaituta dagoenean, baimen jakin batzuk dituzten kontuek helbide elektronikoak biltzeko inprimaki bat gehi dezakete beren profiletan.
+            2_feature_explanation: Bisitariek kontu baten profil-orrian izena eman eta harpidetza berresten dutenean, eguneraketak jasoko dituzte posta elektronikoz kontuak bidalketa publiko berriak sortzen dituenean.
+            3_privacy_policy_warning: Zerbitzariko administratzaileek bildutako datu pertsonaletarako (helbide elektronikoak) sarbidea izango dute. Horregatik, zerbitzariaren pribatutasun-politika eta Zerbitzuaren baldintzak eguneratu behar dira eginbide hau erabili aurretik.
+            4_cost_warning: Mezu elektronikoek kostu bat izan dezakete ostatatze-konfigurazioaren arabera. Hitz egin zure ostatatze-hornitzailearekin gaitu aurretik, eginbide honek zure zerbitzaritik bidalitako mezu kopurua izugarri handitu baitezake.
     export_domain_allows:
       new:
         title: Baimendutako domeinuak inportatu
@@ -497,6 +648,11 @@ eu:
         title: Domeinu-blokeoak inportatu
       no_file: Ez da fitxategirik hautatu
     fasp:
+      capabilities:
+        activation_msg: Gaitasuna ondo gaitu da.
+        deactivation_msg: Gaitasuna ondo desgaitu da.
+        disable: Desgaitu
+        enable: Gaitu
       debug:
         callbacks:
           created_at: Sortua hemen
@@ -508,6 +664,7 @@ eu:
         active: Aktibo
         base_url: Oinarrizko URL-a
         callback: Dei-erantzuna
+        capabilities: Gaitasunak
         delete: Ezabatu
         edit: Editatu hornitzailea
         finish_registration: Izen-ematea bukatu
@@ -533,6 +690,8 @@ eu:
       title: Jarraitzeko gomendioak
       unsuppress: Berrezarri jarraitzeko gomendioa
     instances:
+      advisories:
+        title: Moderazio-harpidetzen gomendioak
       audit_log:
         title: Oraintsuko ikuskapen-erregistroak
         view_all: Ikusi ikuskapen-erregistro osoak
@@ -556,6 +715,7 @@ eu:
         comment: Barne-oharra
         description_html: Domeinu honetako eta bere azpi-domeinuetako kontu guztiei aplikatuko zaizkien eduki-politikak definitu ditzakezu.
         limited_federation_mode_description_html: Domeinu honekin federatu ahal izatea baimendu dezakezu.
+        moderation_subscription: Moderazio-harpidetza
         policies:
           reject_media: Errefusatu multimediak
           reject_reports: Errefusatu salaketak
@@ -633,7 +793,95 @@ eu:
       new:
         title: Sortu IP arau berria
       no_ip_block_selected: Ez da IP araurik aldatu, ez delako bat ere hautatu
+      reset: Berrezarri
+      search: Bilatu
       title: IP arauak
+    moderation_subscriptions:
+      add_new: Gehitu harpidetza
+      advisory_action: 'Ekintza: %{action}'
+      advisory_actions:
+        accept: baimendu
+        limit: isilarazi
+        reject: kanporatu
+      apply_automatically: Aplikatu gomendioak automatikoki
+      apply_conditions:
+        always: Beti
+        never: Inoiz ez
+        safely: Harremanak hausten ez baditu bakarrik
+      apply_conditions_hint:
+        always: Aplikatu beti gomendatutako ekintzak automatikoki. Erabili aukera hau guztiz fidagarriak diren zerrendekin bakarrik.
+        never: Ez aplikatu inoiz gomendatutako ekintzak automatikoki. Sortu beti iradokizun bat horren ordez.
+        safely: Aplikatu gomendatutako ekintzak, erabiltzaile lokalekin dauden jarraipen-harremanak hautsiko ez badituzte. Kasu horietan, iradokizun bat sortuko da horren ordez.
+      delete: Ezabatu
+      destroyed_msg: Moderazio-harpidetza ondo ezabatu da
+      empty: Oraindik ez zara moderazio-zerrendarik harpidetu.
+      last_synced_at: Azken sinkronizazioa
+      list_action: Harpidetza mota
+      list_actions:
+        accept: Baimen-zerrenda
+        default: Mistoa (baimendu eta ukatu)
+        reject: Blokeo-zerrenda
+      list_actions_hint:
+        accept: Ekintza zehaztu gabeko elementuak baimendutzat hartuko dira. Blokeoak ez dira kontuan hartuko.
+        default: Ekintza zehaztu gabeko elementuak blokeotzat hartuko dira. Blokeoak eta baimenak horrela hartuko dira biak.
+        reject: Ekintza zehaztu gabeko elementuak blokeotzat hartuko dira. Baimenak ez dira kontuan hartuko.
+      list_actions_short:
+        accept: Baimen-zerrenda
+        default: Mistoa
+        reject: Blokeo-zerrenda
+      name: Izena
+      new:
+        create: Harpidetu
+        title: Moderazio-harpidetza berria
+      override_unattributed: Gainidatzi eskuzko blokeoak
+      override_unattributed_hint: Baimendu harpidetza honi lehendik dauden eskuzko blokeoak automatikoki gogortzea edo bere gain hartzea, gomendioak automatikoki aplikatzean.
+      policies:
+        apply_advisories: Gomendioak automatikoki aplikatzen ditu
+        apply_advisories_safely: Harremanak hausten ez dituzten gomendioak automatikoki aplikatzen ditu
+        apply_retractions: Atzera-egiteak automatikoki aplikatzen ditu
+      priority: Lehentasuna
+      priority_hint: Moderazio-harpidetzak lehentasun-ordenan ebaluatzen dira; zenbaki txikiagoa duten harpidetzek zenbaki handiagoa dutenak gainidazten dituzte.
+      retract_automatically: Atzera egin gomendioetan automatikoki
+      retract_automatically_hint: Harpidetzak dagokion elementua kentzen duenean, politika-aldaketak atzera bota edo arintzea baimendu ala ez. Atzera-egite automatikoa gaituta dagoenean eta lehentasun txikiagoko zerrenda batean gomendio baliokide bat badago, hura hartuko da. Atzera-egite automatikoa desgaituta dagoenean, iradokizun bat sortuko da horren ordez.
+      show:
+        delete_confirm: Ziur moderazio-harpidetza hau ezabatu nahi duzula?
+        edit: Editatu harpidetza
+        empty: Harpidetza honek ez du gomendiorik oraindik.
+        title: 'Moderazio-harpidetza: %{name}'
+      tabs:
+        logs: Erregistroak
+        subscriptions: Harpidetzak
+        suggestions: Iradokizunak
+      title: Moderazio-harpidetzak
+      type: Mota
+      types:
+        csv_list: CSV zerrenda
+      url: URLa
+    moderation_subscriptions_logs:
+      title: Moderazio-harpidetzen erregistroak
+    moderation_suggestions:
+      actions:
+        accept: Baimendu
+        limit: Isilarazi
+        reject: Kanporatu
+        retract: Bertan behera utzi uneko politika
+      applied_msg: "%{target_key}(r)entzako iradokizuna ondo aplikatu da"
+      apply_accept: Baimendu
+      apply_limit: Isilarazi
+      apply_reject: Kanporatu
+      apply_retract: Atzera egin
+      current_states:
+        accept: une honetan baimendua
+        limit: une honetan isilarazia
+        reject: une honetan kanporatua
+      description: Behean zure moderazio-harpidetzen iradokizunak dituzu, lehentasunaren arabera ordenatuta.
+      destroyed_msg: "%{target_key}(r)entzako iradokizuna ondo baztertu da"
+      dismiss: Baztertu iradokizunak
+      empty: Une honetan ez dago moderazio-iradokizunik.
+      retracted_msg: "%{target_key}(r)entzako politika ondo bertan behera utzi da"
+      suggested_from_html: "%{link}(e)k iradokia"
+      title: Moderazio-iradokizunak
+      unable_to_apply_msg: Ezin izan da %{target_key}(r)entzako iradokizuna aplikatu
     relationships:
       title: "%{acct}(e)ren erlazioak"
     relays:
@@ -663,6 +911,7 @@ eu:
       action_log: Auditoria-egunkaria
       action_taken_by: Neurrien hartzailea
       actions:
+        delete_description_html: Salatutako bidalketak eta/edo bildumak ezabatuko dira, eta neurri bat erregistratuko da, kontu beraren etorkizuneko arau-hausteen aurrean gogortasuna areagotzen laguntzeko.
         mark_as_sensitive_description_html: Salatutako bidalketetako multimedia edukia hunkigarri bezala eta neurria gordeko da, etorkizunean kontu honek arau-hausterik egiten badu kontuan izan dezazun.
         other_description_html: Ikusi kontuaren portaera kontrolatzeko eta salatutako kontuarekin komunikazioa pertsonalizatzeko aukera gehiago.
         resolve_description_html: Ez da ekintzarik hartuko salatutako kontuaren aurka, ez da neurria gordeko eta salaketa itxiko da.
@@ -682,12 +931,14 @@ eu:
       cancel: Utzi
       category: Kategoria
       category_description_html: Kontu edo/eta eduki hau salatu izanaren arrazoia salatutako kontuarekiko komunikazioan aipatuko da
+      collections: Bildumak (%{count})
       comment:
         none: Bat ere ez
       comment_description_html: 'Informazio gehiago emateko, %{name} idatzi:'
       confirm: Berretsi
       confirm_action: Berretsi @%{acct} kontuaren aurkako moderazio-ekintza
       created_at: Salatua
+      delete_and_resolve: Ezabatu edukia
       forwarded: Birbidalia
       forwarded_replies_explanation: Salaketa hau beste instantzia bateko erabiltzaile baten edukiari buruzkoa da, eta zure instantziako erabiltzaile bati egidako erantzuna delako bidali dizugu mezu hau.
       forwarded_to: 'Hona birbidalia: %{domain}'
@@ -710,11 +961,13 @@ eu:
       report: 'Salaketa #%{id}'
       reported_account: Salatutako kontua
       reported_by: Salatzailea
+      reported_content: Salatutako edukia
       reported_with_application: Aplikazioaren bidez salatua
       resolved: Konponduta
       resolved_msg: Salaketa ongi konpondu da!
       skip_to_actions: Salto ekintzetara
       status: Mezua
+      statuses: Bidalketak (%{count})
       statuses_description_html: Salatutako edukia salatutako kontuarekiko komunikazioan aipatuko da
       summary:
         action_preambles:
@@ -749,6 +1002,7 @@ eu:
       categories:
         administration: Administrazioa
         devops: DevOps
+        email: Posta elektronikoa
         invites: Gonbidapenak
         moderation: Moderazioa
         special: Berezia
@@ -765,6 +1019,8 @@ eu:
         administrator_description: Baimen hau duten erabiltzaileak baimen guztien gainetik pasako dira
         delete_user_data: Ezabatu erabiltzaileen datuak
         delete_user_data_description: Baimendu erabiltzaileek beste erabiltzaileen datuak atzerapenik gabe ezabatzea
+        invite_bypass_approval: Gonbidatu erabiltzaileak berrikuspenik gabe
+        invite_bypass_approval_description: Erabiltzaile hauek zerbitzarira gonbidatutako pertsonei moderazio-onarpena saihesteko aukera ematen die
         invite_users: Gonbidatu erabiltzaileak
         invite_users_description: Baimendu erabiltzaileek zerbitzarira jende berria gonbidatzea
         manage_announcements: Kudeatu iragarpenak
@@ -775,6 +1031,8 @@ eu:
         manage_blocks_description: Baimendu erabiltzaileek eposta hornitzaile eta IP helbideak blokeatzea
         manage_custom_emojis: Kudeatu emoji pertsonalizatuak
         manage_custom_emojis_description: Baimendu erabiltzaileek zerbitzariko emoji pertsonalizatuak kudeatzea
+        manage_email_subscriptions: Kudeatu posta elektroniko bidezko harpidetzak
+        manage_email_subscriptions_description: Baimen hau duten erabiltzaileei beren kontuan buletin elektronikoen eginbidea gaitzeko aukera ematen die
         manage_federation: Kudeatu federazioa
         manage_federation_description: Baimendu erabiltzaileek beste domeinuak blokeatu edo federazioa onartzea, eta banagarritasuna kontrolatzea
         manage_invites: Kudeatu gonbidapenak
@@ -801,6 +1059,9 @@ eu:
         view_dashboard_description: Baimendu erabiltzaileek aginte-panela eta hainbat estatistika ikustea
         view_devops: DevOps
         view_devops_description: Baimendu erabiltzaileek Sidekiq eta pgHero aginte-paneletara sarbidea izatea
+        view_feeds: Ikusi zuzeneko eta gaikako jarioak
+        view_feeds_description: Erabiltzaileei zuzeneko eta gaikako jarioetara sartzeko aukera ematen die, zerbitzariaren ezarpenak edozein direla ere
+      requires_2fa: Bi urratseko autentifikazioa eskatzen du
       title: Rolak
     rules:
       add_new: Gehitu araua
@@ -814,12 +1075,16 @@ eu:
       title: Zerbitzariaren arauak
       translation: Itzulpena
       translations: Itzulpenak
+      translations_explanation: Aukeran, arauen itzulpenak gehi ditzakezu. Itzulitako bertsiorik ez badago, balio lehenetsia erakutsiko da. Ziurtatu beti emandako itzulpenak balio lehenetsiarekin bat datozela.
     settings:
       about:
         manage_rules: Kudeatu zerbitzariaren arauak
         preamble: Zerbitzaria nola gobernatzen, moderatzen eta finantzatzen den azaltzen duen informazio xehea eman.
         rules_hint: Erabiltzaileek jarraitu behar dituzten arauei eskainitako atal bat dago.
         title: Honi buruz
+      allow_referrer_origin:
+        desc: Zure erabiltzaileek kanpoko guneetarako esteketan klik egiten dutenean, haien nabigatzaileak zure Mastodon zerbitzariaren helbidea bidal dezake jatorri gisa. Desgaitu hau zure erabiltzaileak modu bakarrean identifikatuko balitu, adibidez Mastodon zerbitzari pertsonala bada.
+        title: Baimendu kanpoko guneei zure Mastodon zerbitzaria trafiko-iturri gisa ikustea
       appearance:
         preamble: Mastodonen web interfazea pertsonalizatu.
         title: Itxura
@@ -848,11 +1113,34 @@ eu:
         all: Guztiei
         disabled: Inori ez
         users: Saioa hasita duten erabiltzaile lokalei
+      external:
+        directory: Zerbitzarien direktorioa
+        opt_in_server_directory:
+          description: Baimendu zure zerbitzaria zerbitzarien direktorioetan agertzea, hala nola https://joinmastodon.org/servers helbidean dagoenean.
+          title: Sartu zure zerbitzaria zerbitzarien direktorioan
+        opt_in_server_recommendation:
+          description: Baimendu zure zerbitzaria izena ematean gomendatzea, Mastodonen bezero ofizialak bezalako aplikazioetan.
+          title: Sartu zure zerbitzaria zerbitzari-gomendioetan
+        preamble: Kontrolatu zure zerbitzariari buruzko zenbat informazio partekatzen den beste zerbitzuekin eta zenbateraino izan behar duen aurkigarri.
+        privacy: Pribatutasuna
+        publish_statistics: Argitaratu estatistikak
+        title: Kanpoko aurkikuntza
       feed_access:
         modes:
           authenticated: Saioa hasi duten erabiltzaileentzat soilik
           disabled: Erabiltzaile-rol jakin bat behar da
           public: Edonork
+      landing_page:
+        hints:
+          about_html: Zerbitzari honen deskribapena, harremanetarako informazioa, arauak eta bestelako informazioa dituen orria.
+          local_feed_html: Zerbitzari honetako erabiltzaileen bidalketa berrienak dituen zuzeneko jarioa.
+          overview_html: Zure zerbitzariaren deskribapena erakusten duen orria, zerbitzari honetako erabiltzaileen bidalketa lokal berrienekin batera.
+          trends_html: Zerbitzari honetan une honetan ezaguna dena erakusten duen orria.
+        values:
+          about: Honi buruz orria
+          local_feed: Zuzeneko jario lokala
+          overview: Ikuspegi orokorra
+          trends: Joerak
       registrations:
         moderation_recommandation: Mesedez, ziurtatu moderazio-talde egokia eta erreaktiboa duzula erregistroak guztiei ireki aurretik!
         preamble: Kontrolatu nork sortu dezakeen kontua zerbitzarian.
@@ -865,23 +1153,37 @@ eu:
         warning_hint: "“Izena emateko onarpena behar da” erabiltzea gomendatzen dugu, baldin eta ez badakizu ziur zure moderazio-taldeak spama eta erregistro maltzurrak arrazoizko denboran erantzun ditzakeela."
       security:
         authorized_fetch: Eskatu autentifikazioa federatutako zerbitzarietatik
+        authorized_fetch_hint: Erabaki noiz behar duten urruneko zerbitzariek autentifikatu zerbitzari honetako edukia eskuratzean.
+        authorized_fetch_hints:
+          actors: Profiletarako autentifikazioa eskatzeak aukera ematen du jarraitzeko zein zerbitzarik aurkitu duen inoiz zure kontu lokal bakoitza, eta horrek asko murriztu dezake zerbitzariei kontu baten ezabaketa jakinaraztean egiten diren eskaera alferrikakoen kopurua. Aukera honek errendimenduan kostu txiki bat du profilak zerbitzatzean, jarraipen horregatik eta alderantzizko proxyak eskaera horien erantzunak cachean gorde ezin dituelako. Bateragarritasun-arazoak ere sor ditzake federatutako zerbitzu batzuekin.
+          all: Profiletarako autentifikazioa eskatzearen abantaila eta desabantailez gain, federatutako zerbitzarien autentifikazioa baldintzarik gabe eskatzeak erabiltzaile- eta zerbitzari-mailako blokeoak zorrotzago aplikatzeko aukera ematen du, baina eskaera gehienak cachean gordetzea ere eragozten du. Zure erantzunen hedapena ere murriztuko du, erantzunak birbidaltzea desgaituko baita.
+          none: Autentifikazioa guztiz beharrezkoa denean bakarrik eskatzeak alderantzizko proxyari eskaera gehiago cachean gordetzeko aukera ematen dio. Aukera hau etorkizunean ken daiteke. Erabili beste aukerek arazoak sortzen badituzte bakarrik.
+        authorized_fetch_modes:
+          actors: Profiletarako eta eduki pribaturako
+          all: Eskaera guztietarako
+          none: Eduki pribaturako soilik
         authorized_fetch_overridden_hint: Une honetan ezin duzu ezarpen hau aldatu ingurune-aldagai batek gainidazten duelako.
         federation_authentication: Federazio autentifikazioaren betearaztea
       title: Zerbitzariko ezarpenak
     site_uploads:
       delete: Ezabatu igotako fitxategia
       destroyed_msg: Guneko igoera ongi ezabatu da!
+    skip_to_content: Joan edukira
     software_updates:
       critical_update: Kritikoa — mesedez, eguneratu azkar
       description: Gomendagarria da Mastodon instalazioa eguneratuta mantentzea azken konponketa eta funtzioez baliatzeko. Gainera, batzuetan ezinbestekoa da Mastodon garaiz eguneratzea segurtasun arazoak saihesteko. Arrazoi hauengatik, Mastodonek 30 minuturo eguneratzeak egiaztatzen ditu, eta zure posta elektroniko bidezko jakinarazpenen lehentasunen arabera jakinaraziko dizu.
       documentation_link: Informazio gehiago
+      nearing_eol: Une honetan erabiltzen ari zaren adarraren laguntza %{date} egunean amaituko da; eguneratzea gomendatzen dizugu.
       release_notes: Bertsio oharrak
+      supported_until: Laguntza %{date} egunean amaitzen da
       title: Eguneraketak eskuragarri
       type: Mota
       types:
         major: Argitalpen handia
         minor: Argitalpen txikia
         patch: Partxe eguneraketa — akatsen konponketa eta aplikatzeko aldaketa errazak
+      unsupported_branch: Une honetan erabiltzen ari zaren adarrak ez du laguntzarik; eguneratu lehenbailehen.
+      unsupported_since: Laguntzarik gabe %{date} egunetik
       version: Bertsioa
     statuses:
       account: Egilea
@@ -889,6 +1191,7 @@ eu:
       back_to_account: Atzera kontuaren orrira
       back_to_report: Atzera txostenaren orrira
       batch:
+        add_to_report: 'Gehitu #%{id} salaketari'
         remove_from_report: Kendu txostenetik
         report: Salatu
       contents: Edukiak
@@ -909,6 +1212,7 @@ eu:
       replied_to_html: "%{acct_link}(r)i erantzuten"
       status_changed: Bidalketa aldatuta
       status_title: "%{name} erabiltzailearen bidalketa"
+      title: Kontuaren bidalketak - @%{name}
       trending: Joera
       view_publicly: Publikoki ikusi
       view_quoted_post: Aipatutako bidalketa ikusi
@@ -1001,12 +1305,21 @@ eu:
         action: Sortu
         chance_to_review_html: "<strong>Sortutako zerbitzu-baldintzak ez dira automatikoki argitaratuko.</strong> Emaitzak berrikusteko aukera izango duzu. Mesedez, bete beharrezko xehetasunak aurrera egiteko."
         explanation_html: Zerbitzu-baldintzen txantiloia informazio-helburuetarako soilik da, eta ez da gai bati buruzko aholku juridikotzat hartu behar. Mesedez, kontsultatu zure aholkulari juridikoa zure egoerari eta galdera juridiko zehatzei buruz.
+        title: Zerbitzuaren baldintzen konfigurazioa
       going_live_on_html: Argitaratua, indarrean %{date}
       history: Historia
       live: Zuzenean
+      no_history: Oraindik ez dago zerbitzuaren baldintzen aldaketarik erregistratuta.
+      no_terms_of_service_html: Une honetan ez duzu zerbitzuaren baldintzarik konfiguratuta. Zerbitzuaren baldintzen helburua argitasuna ematea eta zure erabiltzaileekiko gatazketan erantzukizun posibleetatik babestea da.
+      notified_on_html: Erabiltzaileei %{date} egunean jakinarazi zitzaien
       notify_users: Jakinarazi erabiltzaileak
       preview:
+        explanation_html: 'Mezua %{date} baino lehen izena eman zuten <strong>%{display_count} erabiltzaileri</strong> bidaliko zaie. Testu hau sartuko da mezuan:'
         send_preview: 'Bidali aurrebista hona: %{email}'
+        send_to_all:
+          one: Bidali mezu %{display_count}
+          other: Bidali %{display_count} mezu
+        title: Zerbitzuaren baldintzen jakinarazpenaren aurrebista
       publish: Argitaratu
       published_on_html: "%{date}(e)an argitaratua"
       save_draft: Gorde zirriborroa
@@ -1022,7 +1335,9 @@ eu:
         allow: Onartu esteka
         allow_provider: Onartu argitaratzailea
         confirm_allow: Ziur zaude hautatutako estekak gaitu nahi dituzula?
+        confirm_allow_provider: Ziur hautatutako hornitzaileak baimendu nahi dituzula?
         confirm_disallow: Ziur zaude hautatutako estekak desgaitu nahi dituzula?
+        confirm_disallow_provider: Ziur hautatutako hornitzaileei baimena kendu nahi diezula?
         description_html: Esteka hauek zure zerbitzariak ikusten dituen kontuek asko zabaltzen ari diren estekak dira. Zure erabiltzaileei munduan ze berri den jakiteko lagungarriak izan daitezke. Ez da estekarik bistaratzen argitaratzaileak onartu arte. Esteka bakoitza onartu edo baztertu dezakezu.
         disallow: Ukatu esteka
         disallow_provider: Ukatu argitaratzailea
@@ -1033,6 +1348,9 @@ eu:
           one: Pertsona batek partekatua azken astean
           other: "%{count} pertsonak partekatua azken astean"
         title: Esteken joerak
+        usage_comparison:
+          one: Gaur %{count} aldiz partekatua, atzo %{yesterday} aldiz
+          other: Gaur %{count} aldiz partekatua, atzo %{yesterday} aldiz
       not_allowed_to_trend: Joeretan agertzeko baimenik gabe
       only_allowed: Soilik onartutakoak
       pending_review: Berrikusketaren zain
@@ -1045,6 +1363,10 @@ eu:
       statuses:
         allow: Onartu bidalketa
         allow_account: Onartu egilea
+        confirm_allow: Ziur hautatutako bidalketak baimendu nahi dituzula?
+        confirm_allow_account: Ziur hautatutako kontuak baimendu nahi dituzula?
+        confirm_disallow: Ziur hautatutako bidalketei baimena kendu nahi diezula?
+        confirm_disallow_account: Ziur hautatutako kontuei baimena kendu nahi diezula?
         description_html: Hauek dira une honetan asko partekatu eta gogokoak diren bidalketak (zure zerbitzariak ezagutzen dituenak). Erabiltzaile berrientzat eta bueltan itzuli direnentzat lagungarriak izan daitezke nor jarraitu aurkitzeko. Bidalketak ez dira publikoki erakusten zuk egilea onartu arte eta egileak gomendatua izatea onartu arte. Bidalketak banan bana ere onartu edo baztertu ditzakezu.
         disallow: Ez onartu bidalketa
         disallow_account: Ez onartu egilea
@@ -1073,16 +1395,23 @@ eu:
         trendable: Joeretan agertuko da
         trending_rank: "%{rank}. joera"
         usable: Erabili daiteke
+        usage_comparison:
+          one: Gaur %{count} aldiz erabilia, atzo %{yesterday} aldiz
+          other: Gaur %{count} aldiz erabilia, atzo %{yesterday} aldiz
         used_by_over_week:
           one: Pertsona batek erabilia azken astean
           other: "%{count} pertsonak erabilia azken astean"
       title: Gomendioak eta joerak
       trending: Joerak
+    update_available: Eguneraketa eskuragarri
     username_blocks:
       add_new: Gehitu berria
       block_registrations: Blokeatu izen-emateak
       comparison:
+        contains: Badu
         equals: Berdin
+      contains_html: "%{string} du"
+      created_msg: Erabiltzaile-izenaren araua ondo sortu da
       delete: Ezabatu
       edit:
         title: Editatu erabiltzaile-izena araua
@@ -1093,11 +1422,14 @@ eu:
       no_username_block_selected: Ez da erabiltzaile-izen araurik aldatu, ez delako bat ere hautatu
       not_permitted: Baimendu gabea
       title: Erabiltzaile-izen arauak
+      updated_msg: Erabiltzaile-izenaren araua ondo eguneratu da
     warning_presets:
       add_new: Gehitu berria
       delete: Ezabatu
-      edit_preset: Editatu abisu aurre-ezarpena
-      empty: Ez duzu abisu aurrezarpenik definitu oraindik.
+      edit_preset: Editatu aurrez idatzitako erantzuna
+      empty: Ez duzu aurrez idatzitako erantzunik definitu oraindik.
+      navigation_title: Aurrez idatzitako erantzunak
+      title: Moderazioko aurrez idatzitako erantzunak
     webhooks:
       add_new: Gehitu amaiera-puntua
       delete: Ezabatu
@@ -1122,6 +1454,15 @@ eu:
     auto_close_registrations:
       body: Duela gutxi moderatzaile gutxi aritu direla eta, %{instance} instantziako izen-emateek eskuzko berrikuspena beharko dute automatikoki, %{instance} instantzia eragile okerren plataforma gisa erabili dadin ekiditeko. Izen-emate irekiak berriro gai ditzakezu nahi duzunean.
       subject: "%{instance} instantziako izen-emateek onarpena beharko dute orain"
+    end_of_support_out_of_support_warning:
+      body: Zure zerbitzarian erabiltzen ari den Mastodonen bertsioak ez du laguntzarik jada. Lehenbailehen eguneratzea gomendatzen dizugu!
+      subject: "%{instance} zerbitzarian erabilitako Mastodon %{branch} bertsioak ez du laguntzarik jada!"
+    end_of_support_three_months_warning:
+      body: Zure zerbitzarian erabiltzen ari den Mastodonen bertsioak laguntza galduko du 3 hilabete barru. Agian adar berriago batera eguneratu nahiko duzu aldez aurretik.
+      subject: "%{instance} zerbitzarian erabilitako Mastodon %{branch} bertsioaren laguntza 3 hilabete barru amaituko da."
+    end_of_support_two_weeks_warning:
+      body: Zure zerbitzarian erabiltzen ari den Mastodonen bertsioak laguntza galduko du 2 aste barru. Aldez aurretik adar berriago batera eguneratzea gomendatzen dizugu.
+      subject: "%{instance} zerbitzarian erabilitako Mastodon %{branch} bertsioaren laguntza 2 aste barru amaituko da."
     new_appeal:
       actions:
         delete_statuses: bidalketak ezabatzea
@@ -1137,9 +1478,15 @@ eu:
     new_critical_software_updates:
       body: Mastodon-en bertsio kritiko berriak kaleratu dira, agian lehenbailehen eguneratu nahi duzu!
       subject: "%{instance} ek eguneraketa kritikoak eskuragarri ditu!"
+    new_moderation_suggestions:
+      body: Zure zerbitzaria harpidetuta dagoen moderazio-zerrendek iradokizun berriak argitaratu dituzte.
+      subject: Moderazio-iradokizun berriak eskuragarri %{instance} zerbitzarian!
     new_pending_account:
       body: Kontu berriaren xehetasunak azpian daude. Eskaera hau onartu edo ukatu dezakezu.
       subject: Kontu berria berrikusteko %{instance} instantzian (%{username})
+    new_pending_accounts:
+      body: Kontu berriak sortu dira %{instance} zerbitzarian. Zure zerbitzaria berrespen-mezuak moderazio-onarpenaren ondora arte atzeratzeko konfiguratuta dagoenez, kontu horiek ez dute oraindik beren helbide elektronikoa egiaztatzeko aukerarik izan. Kontu berrien xehetasunak behean daude. Eskaera hauek onartu edo baztertu ditzakezu.
+      subject: Kontu berriak berrikusteko %{instance} zerbitzarian
     new_report:
       body: "%{reporter}(e)k %{target} salatu du"
       body_remote: "%{domain} domeinuko norbaitek %{target} salatu du"
@@ -1166,7 +1513,8 @@ eu:
   appearance:
     advanced_settings: Ezarpen aurreratuak
     animations_and_accessibility: Animazioak eta irisgarritasuna
-    discovery: Aurkitzea
+    boosting_preferences: Bultzaden hobespenak
+    boosting_preferences_info_html: "<strong>Aholkua:</strong> Ezarpenak edozein direla ere, <kbd>Shift</kbd> + <kbd>Klik</kbd> %{icon} Bultzada ikonoan sakatzeak berehala emango dio bultzada."
     localization:
       body: Mastodon boluntarioek itzultzen dute.
       guide_link: https://crowdin.com/project/mastodon
@@ -1224,6 +1572,7 @@ eu:
     progress:
       confirm: Berretsi e-mail helbidea
       details: Zure xehetasunak
+      list: Izen-ematearen aurrerapena
       review: Gure berrikuspena
       rules: Onartu arauak
     providers:
@@ -1239,15 +1588,22 @@ eu:
       invited_by: "%{domain} webgunean kontua ireki dezakezu lagun honek gonbidapena bidali dizulako:"
       preamble: Hauek %{domain} instantziako moderatzaileek ezarriak eta betearaziak dira.
       preamble_invited: Jarraitu baino lehen, kontuan hartu %{domain}-(e)ko moderatzaileek ezarritako oinarrizko arauak.
+      read_more: Irakurri gehiago
       title: Oinarrizko arau batzuk.
       title_invited: Gonbidatu zaituzte.
     security: Segurtasuna
     set_new_password: Ezarri pasahitza berria
     setup:
+      correct_email: Helbide zuzena
       email_below_hint_html: Begiratu zure spameko karpetan, edo eskatu beste bat. Zure helbide elektronikoa zuzen dezakezu oker badago.
+      email_settings_hint_html: Egin klik %{email} helbidera bidali dizugun estekan Mastodon erabiltzen hasteko. Hemen itxarongo dugu.
+      email_settings_hint_wait_html: Zure eskaera berrikusten ari dira. Laster mezu bat jaso beharko zenuke %{email} helbidean. Jasotzean, egin klik estekan Mastodon erabiltzen hasteko. Hemen itxarongo dugu.
       link_not_received: Ez duzu estekarik jaso?
       new_confirmation_instructions_sent: Minutu gutxiren buruan baieztapen-esteka duen mezu elektroniko bat jasoko duzu!
       title: Begiratu zure sarrera-ontzia
+      title_wait: Begiratu zure sarrera-ontzia
+      wrong_email: Helbide elektroniko okerra?
+      wrong_email_below_hint_html: Lasai! Zure helbide elektronikoa behean zuzen dezakezu.
     sign_in:
       preamble_html: Zure <strong>%{domain}-(e)ko</strong> egiaztagiriekin saioa hasi. Zure kontua beste zerbitzari batean badago, ezin izango duzu hemen saioa hasi.
       title: "%{domain}-(e)an saioa hasi"
@@ -1265,14 +1621,34 @@ eu:
       view_strikes: Ikusi zure kontuaren aurkako neurriak
     too_fast: Formularioa azkarregi bidali duzu, saiatu berriro.
     use_security_key: Erabili segurtasun gakoa
+    user_agreement_html: <a href="%{terms_of_service_path}" target="_blank">zerbitzuaren baldintzak</a> eta <a href="%{privacy_policy_path}" target="_blank">pribatutasun-politika</a> irakurri ditut eta onartzen ditut
+    user_privacy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">pribatutasun-politika</a> irakurri dut eta onartzen dut
   author_attribution:
     example_title: Testu-lagina
+    hint_html: Berriak edo blog-artikuluak idazten dituzu Mastodonetik kanpo? Kontrolatu nola aitortzen zaizun egiletza Mastodonen partekatzen direnean.
+    instructions: 'Ziurtatu kode hau zure artikuluaren HTMLan dagoela:'
     more_from_html: "%{name} erabiltzaileaz gehiago jakin"
+    s_blog: "%{name}(r)en bloga"
+    then_instructions: Ondoren, gehitu argitalpenaren domeinu-izena beheko eremuan.
+    title: Egiletzaren aitortza
   challenge:
     confirm: Jarraitu
     hint_html: "<strong>Oharra:</strong> Ez dizugu pasahitza berriro eskatuko ordu batez."
     invalid_password: Pasahitz baliogabea
     prompt: Berretsi pasahitza jarraitzeko
+  color_scheme:
+    auto: Automatikoa
+    dark: Iluna
+    light: Argia
+  color_theme:
+    cyan: Ziana
+    indigo: Indigoa
+    lime: Lima
+    orange: Laranja
+    pink: Arrosa
+  contrast:
+    auto: Automatikoa
+    high: Handia
   crypto:
     errors:
       invalid_key: ez da baliozko Ed25519 edo Curve25519 gakoa
@@ -1297,12 +1673,17 @@ eu:
   deletes:
     challenge_not_passed: Sartu duzun informazioa ez da zuzena
     confirm_password: Sartu zure oraingo pasahitza zure identitatea egiaztatzeko
+    confirm_username: Berretsi erabiltzaile-izena
+    confirm_username_hint_html: Idatzi <code>%{username}</code> ezabatu nahi duzun kontua berresteko
     proceed: Ezabatu kontua
     success_msg: Zure kontua ongi ezabatu da
+    title: Ezabatu %{acct} kontua
     warning:
       before: 'Jarraitu aurretik, irakurri adi ohar hauek:'
       caches: Beste zerbitzariek cachean duten edukia mantentzea gerta daiteke
       data_removal: Zure bidalketak eta beste datuak behin betiko ezabatuko dira
+      email_change_html: <a href="%{path}">Zure helbide elektronikoa alda dezakezu</a> kontua ezabatu gabe
+      email_contact_html: Oraindik iristen ez bada, <a href="mailto:%{email}">%{email}</a> helbidera idatz dezakezu laguntza eskatzeko
       email_reconfirmation_html: Ez baduzu baieztamen e-maila jasotzen, <a href="%{path}">berriro eskatu</a> dezakezu
       irreversible: Ezin izango duzu kontua berreskuratu edo berraktibatu
       more_details_html: Xehetasun gehiagorako, ikusi <a href="%{terms_path}">pribatutasun politika</a>.
@@ -1340,6 +1721,44 @@ eu:
       your_appeal_rejected: Zure apelazioa baztertu da
   edit_profile:
     other: Bestelakoak
+    privacy_redesign_body: Jarraitzen dituzunak eta jarraitzaileak erakusteko aukera zure profiletik bertatik egiten da orain.
+    redesign_body: Profila editatzeko aukera profil-orritik bertatik dago orain eskuragarri.
+    redesign_button: Joan hara
+    redesign_title: Profila editatzeko esperientzia berria dago
+  email_subscription_mailer:
+    confirmation:
+      action: Berretsi helbide elektronikoa
+      instructions_to_confirm: Berretsi %{name}(r)en (@%{acct}) mezuak jaso nahi dituzula bidalketa berriak argitaratzen dituenean.
+      instructions_to_ignore: Ez badakizu ziur zergatik jaso duzun mezu hau, ezaba dezakezu. Ez zara harpidetuko goiko estekan klik egiten ez baduzu.
+      subject: Berretsi zure helbide elektronikoa
+      title: "%{name}(r)en eguneraketak posta elektronikoz jaso?"
+    notification:
+      create_account: Sortu Mastodon kontu bat
+      footer:
+        privacy_html: Mezuak %{domain} zerbitzaritik bidaltzen dira, Mastodonekin dabilen zerbitzari batetik. Zerbitzari honek zure datu pertsonalak nola tratatzen dituen jakiteko, ikusi <a href="%{privacy_policy_path}">Pribatutasun-politika</a>.
+        reason_for_email_html: Mezu hau jasotzen ari zara %{name}(r)en eguneraketak posta elektronikoz jasotzea aukeratu duzulako. Ez duzu mezu hauek jaso nahi? <a href="%{unsubscribe_path}">Kendu harpidetza</a>
+      interact_with_this_post:
+        one: Elkarreragin bidalketa honekin eta aurkitu antzeko gehiago.
+        other: Elkarreragin bidalketa hauekin eta aurkitu gehiago.
+      subject:
+        plural: "%{name}(r)en bidalketa berriak"
+        singular: 'Bidalketa berria: "%{excerpt}"'
+      title:
+        plural: "%{name}(r)en bidalketa berriak"
+        singular: 'Bidalketa berria: "%{excerpt}"'
+  email_subscriptions:
+    active: Aktiboa
+    confirmations:
+      show:
+        changed_your_mind: Iritziz aldatu zara?
+        success_html: Hemendik aurrera mezuak jasoko dituzu %{name}(e)k bidalketa berriak argitaratzen dituenean. Gehitu %{sender} zure kontaktuetara, bidalketa hauek zure Spam karpetan amai ez dezaten.
+        title: Izena eman duzu
+        unsubscribe: Kendu harpidetza
+    disabled: Desgaitua
+    inactive: Inaktiboa
+    no_access: Sarbiderik ez
+    status: Egoera
+    subscribers: Harpidedunak
   emoji_styles:
     auto: Automatikoa
     native: Bertakoa
@@ -1358,6 +1777,7 @@ eu:
       content: Sentitzen dugu, zerbait okerra gertatu da gure aldean.
       title: Orri hau ez da zuzena
     '503': Orria ezin izan da zerbitzatu zerbitzariaren behin behineko arazo bat dela eta.
+    go_home: Joan hasierara
     noscript_html: Mastodon web aplikazioa erabiltzeko, gaitu JavaScript. Bestela, probatu Mastodon plataformarako <a href="%{apps_path}">aplikazio natibo</a>ren bat.
   existing_username_validator:
     not_found: ezin izan da izen hori duen kide lokalik aurkitu
@@ -1373,7 +1793,9 @@ eu:
     blocks: Zuk blokeatutakoak
     bookmarks: Laster-markak
     csv: CSV
+    custom_filters: Iragazkiak
     domain_blocks: Domeinuen blokeoak
+    json: JSON
     lists: Zerrendak
     mutes: Zuk mututukoak
     storage: Multimedia biltegiratzea
@@ -1451,6 +1873,12 @@ eu:
       empty: CSV fitxategi hutsa
       incompatible_type: Ez da bateragarria aukeratutako inportatze-motarekin
       invalid_csv_file: 'CSV fitxategi baliogabea. Errorea: %{error}'
+      invalid_json_file: 'JSON fitxategi baliogabea. Errorea: %{error}'
+      no_data: Fitxategi honek ez du adierazitako inportazio motarekin bat datorren daturik
+      over_rows_processing_limit:
+        one: lerro %{count} baino gehiago ditu
+        other: "%{count} lerro baino gehiago ditu"
+      status_not_found_warning: Zure iragazki batzuek zerbitzari honek ezagutzen ez dituen bidalketa jakin batzuk ezkutatzen dituzte. Bidalketa horiek ez dira automatikoki iragaziko zerbitzariak geroago aurkitzen baditu.
       too_large: Fitxategia handiegia da
     failures: Akatsak
     imported: Inportatuta
@@ -1460,6 +1888,50 @@ eu:
       merge_long: Mantendu dauden erregistroak eta gehitu berriak
       overwrite: Gainidatzi
       overwrite_long: Ordeztu oraingo erregistroak berriekin
+    overwrite_preambles:
+      blocking_html:
+        one: "<strong>Zure blokeo-zerrenda ordeztera</strong> zoaz, <strong>%{filename}</strong> fitxategiko <strong>kontu %{count}</strong>ekin gehienez."
+        other: "<strong>Zure blokeo-zerrenda ordeztera</strong> zoaz, <strong>%{filename}</strong> fitxategiko <strong>%{count} kontu</strong>ekin gehienez."
+      bookmarks_html:
+        one: "<strong>Zure laster-markak ordeztera</strong> zoaz, <strong>%{filename}</strong> fitxategiko <strong>bidalketa %{count}</strong>ekin gehienez."
+        other: "<strong>Zure laster-markak ordeztera</strong> zoaz, <strong>%{filename}</strong> fitxategiko <strong>%{count} bidalketa</strong>rekin gehienez."
+      custom_filters_html:
+        one: "<strong>Zure iragazkiak ordeztera</strong> zoaz <strong>%{filename}</strong> fitxategiaren edukiarekin. Gehienez <strong>iragazki %{count}</strong> gehituko da iragazki berrietara."
+        other: "<strong>Zure iragazkiak ordeztera</strong> zoaz <strong>%{filename}</strong> fitxategiaren edukiarekin. Gehienez <strong>%{count} iragazki</strong> gehituko dira iragazki berrietara."
+      domain_blocking_html:
+        one: "<strong>Zure domeinu-blokeoen zerrenda ordeztera</strong> zoaz, <strong>%{filename}</strong> fitxategiko <strong>domeinu %{count}</strong>ekin gehienez."
+        other: "<strong>Zure domeinu-blokeoen zerrenda ordeztera</strong> zoaz, <strong>%{filename}</strong> fitxategiko <strong>%{count} domeinu</strong>rekin gehienez."
+      following_html:
+        one: "<strong>%{filename}</strong> fitxategiko gehienez <strong>kontu %{count}</strong> <strong>jarraitzera</strong> zoaz, eta <strong>beste inor ez jarraitzera</strong>."
+        other: "<strong>%{filename}</strong> fitxategiko gehienez <strong>%{count} kontu</strong> <strong>jarraitzera</strong> zoaz, eta <strong>beste inor ez jarraitzera</strong>."
+      lists_html:
+        one: "<strong>Zure zerrendak ordeztera</strong> zoaz <strong>%{filename}</strong> fitxategiaren edukiarekin. Gehienez <strong>kontu %{count}</strong> gehituko da zerrenda berrietara."
+        other: "<strong>Zure zerrendak ordeztera</strong> zoaz <strong>%{filename}</strong> fitxategiaren edukiarekin. Gehienez <strong>%{count} kontu</strong> gehituko dira zerrenda berrietara."
+      muting_html:
+        one: "<strong>Mutututako kontuen zerrenda ordeztera</strong> zoaz, <strong>%{filename}</strong> fitxategiko <strong>kontu %{count}</strong>ekin gehienez."
+        other: "<strong>Mutututako kontuen zerrenda ordeztera</strong> zoaz, <strong>%{filename}</strong> fitxategiko <strong>%{count} kontu</strong>ekin gehienez."
+    preambles:
+      blocking_html:
+        one: "<strong>%{filename}</strong> fitxategiko gehienez <strong>kontu %{count}</strong> <strong>blokeatzera</strong> zoaz."
+        other: "<strong>%{filename}</strong> fitxategiko gehienez <strong>%{count} kontu</strong> <strong>blokeatzera</strong> zoaz."
+      bookmarks_html:
+        one: "<strong>%{filename}</strong> fitxategiko gehienez <strong>bidalketa %{count}</strong> gehitzera zoaz zure <strong>laster-marketara</strong>."
+        other: "<strong>%{filename}</strong> fitxategiko gehienez <strong>%{count} bidalketa</strong> gehitzera zoaz zure <strong>laster-marketara</strong>."
+      custom_filters_html:
+        one: "<strong>%{filename}</strong> fitxategiko gehienez <strong>iragazki %{count}</strong> gehitzera zoaz zure <strong>iragazkietara</strong>."
+        other: "<strong>%{filename}</strong> fitxategiko gehienez <strong>%{count} iragazki</strong> gehitzera zoaz zure <strong>iragazkietara</strong>."
+      domain_blocking_html:
+        one: "<strong>%{filename}</strong> fitxategiko gehienez <strong>domeinu %{count}</strong> <strong>blokeatzera</strong> zoaz."
+        other: "<strong>%{filename}</strong> fitxategiko gehienez <strong>%{count} domeinu</strong> <strong>blokeatzera</strong> zoaz."
+      following_html:
+        one: "<strong>%{filename}</strong> fitxategiko gehienez <strong>kontu %{count}</strong> <strong>jarraitzera</strong> zoaz."
+        other: "<strong>%{filename}</strong> fitxategiko gehienez <strong>%{count} kontu</strong> <strong>jarraitzera</strong> zoaz."
+      lists_html:
+        one: "<strong>%{filename}</strong> fitxategiko gehienez <strong>kontu %{count}</strong> gehitzera zoaz zure <strong>zerrendetara</strong>. Zerrenda berriak sortuko dira gehitzeko zerrendarik ez badago."
+        other: "<strong>%{filename}</strong> fitxategiko gehienez <strong>%{count} kontu</strong> gehitzera zoaz zure <strong>zerrendetara</strong>. Zerrenda berriak sortuko dira gehitzeko zerrendarik ez badago."
+      muting_html:
+        one: "<strong>%{filename}</strong> fitxategiko gehienez <strong>kontu %{count}</strong> <strong>mututzera</strong> zoaz."
+        other: "<strong>%{filename}</strong> fitxategiko gehienez <strong>%{count} kontu</strong> <strong>mututzera</strong> zoaz."
     preface: Beste zerbitzari bateko datuak inportatu ditzakezu, esaterako jarraitzen duzun edo blokeatu duzun jendearen zerrenda.
     recent_imports: Azken inportazioak
     states:
@@ -1484,6 +1956,7 @@ eu:
     types:
       blocking: Blokeatutakoen zerrenda
       bookmarks: Laster-markak
+      custom_filters: Iragazkiak
       domain_blocking: Domeinuen blokeo zerrenda
       following: Jarraitutakoen zerrenda
       lists: Zerrendak
@@ -1536,6 +2009,7 @@ eu:
   media_attachments:
     validations:
       images_and_video: Ezin da irudiak dituen bidalketa batean bideo bat erantsi
+      not_found: "%{ids} multimedia ez da aurkitu edo beste bidalketa bati erantsita dago dagoeneko"
       not_ready: Ezin dira prozesatzen amaitu gabeko fitxategiak erantsi. Saiatu geroago!
       too_many: Ezin dira 4 fitxategi baino gehiago erantsi
   migrations:
@@ -1554,6 +2028,9 @@ eu:
     incoming_migrations_html: Beste kontu batetik hona migratzeko, aurretik <a href="%{path}">kontuaren ezizen bat sortu</a> behar duzu.
     moved_msg: Zure kontuak orain %{acct} kontura birbideratzen du, eta zure jarraitzaileak hara migratuak izaten ari dira.
     not_redirecting: Zure kontuak ez du orain beste konturen batera birbideratzen.
+    on_cooldown:
+      one: Duela gutxi migratu duzu zure kontua. Funtzio hau berriz erabilgarri egongo da egun %{count} barru.
+      other: Duela gutxi migratu duzu zure kontua. Funtzio hau berriz erabilgarri egongo da %{count} egun barru.
     past_migrations: Aurreko migrazioak
     proceed_with_move: Mugitu jarraitzaileak
     redirected_msg: 'Zure kontuak hona birbideratzen du orain: %{acct}.'
@@ -1576,6 +2053,27 @@ eu:
     copy_account_note_text: 'Erabiltzaile hau %{acct} kontutik dator, hemen berari buruzko zure aurreko oharrak:'
   navigation:
     toggle_menu: Txandakatu menua
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name}(e)k bilduma batera gehitu zaitu"
+    admin_report:
+      title_html: "%{name}(e)k %{target} salatu du"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name}(e)k eta beste batek izena eman dute"
+        other: "%{name}(e)k eta beste %{count}(e)k izena eman dute"
+      title_html: "%{name}(e)k izena eman du"
+    collection_update:
+      title_html: "%{name}(e)k zu zauden bilduma bat eguneratu du"
+    generic:
+      sign_in: Hasi saioa Mastodonen web-aplikazioan
+      summary_html: Mastodonen bertsio berriena onartzen ez duen aplikazio batean zaude. %{link} funtzionalitate guztiak izateko.
+    moderation_warning:
+      summary_html: Mastodonen bertsio berriena onartzen ez duen aplikazio batean zaude. %{link}.
+      title: Moderazio-abisu bat jaso duzu.
+    severed_relationships:
+      summary_html: "%{from} zerbitzariko administratzaile batek %{target} kanporatu du; horrek esan nahi du ezin duzula haren eguneraketarik jaso edo harekin elkarreragin. %{link} galdutako harremanen zerrenda eskuratzeko."
+      title: "%{name}(r)ekin konexioak galdu dira"
   notification_mailer:
     admin:
       report:
@@ -1624,6 +2122,7 @@ eu:
     administration_emails: Administratzailearen posta elektroniko bidezko jakinarazpenak
     email_events: E-mail jakinarazpenentzako gertaerak
     email_events_hint: 'Hautatu jaso nahi dituzun gertaeren jakinarazpenak:'
+    moderation_emails: Moderazioko jakinarazpen-mezuak
   number:
     human:
       decimal_units:
@@ -1647,6 +2146,7 @@ eu:
     next: Hurrengoa
     older: Zaharragoa
     prev: Aurrekoa
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Inkesta honetan dagoeneko bozkatu duzu
@@ -1667,6 +2167,8 @@ eu:
     posting_defaults: Bidalketarako lehenetsitakoak
     public_timelines: Denbora-lerro publikoak
   privacy:
+    email_subscriptions: Bidali bidalketak posta elektronikoz
+    email_subscriptions_hint_html: Gehitu zure profilean saioa hasi gabeko erabiltzaileentzat agertzen den posta elektroniko bidezko izen-emate inprimaki bat. Bisitariek beren helbide elektronikoa idatzi eta onartzen dutenean, Mastodonek zure bidalketa publikoen eguneraketak bidaliko ditu posta elektronikoz.
     hint_html: "<strong>Pertsonalizatu nola nahi duzun zure profila eta argitalpenak aurkitzea.</strong> Mastodonen hainbat ezaugarri gaituta daudenean lagungarri izan dakizkizuke publiko zabalago batera iristeko. Hartu une bat ezarpen horiek berrikusteko, zure erabilerara egokitzen direla ziurtatzeko."
     privacy: Pribatutasuna
     privacy_hint_html: Kontrolatu besteen onurarako zenbat partekatu nahi duzun. Jendeak profil interesgarriak eta aplikazio apartak aurki ditzazke zuk nor jarraitzen duzun eta argitaratzeko darabilzun aplikazioak ikustean, baina baliteke ezkutuan mantentzea nahiago izatea.
@@ -1716,6 +2218,12 @@ eu:
       account: "@%{acct} kontuaren bidalketa publikoak"
       tag: "#%{hashtag} traola duten bidalketa publikoak"
   scheduled_statuses:
+    over_daily_limit:
+      one: Gaurko programatutako bidalketa %{count}eko muga gainditu duzu
+      other: Gaurko programatutako %{count} bidalketako muga gainditu duzu
+    over_total_limit:
+      one: Programatutako bidalketa %{count}eko muga gainditu duzu
+      other: Programatutako %{count} bidalketako muga gainditu duzu
     too_soon: datak etorkizunekoa izan behar du
   self_destruct:
     lead_html: Zoritxarrez, <strong>%{domain}</strong> betirako itxiko da. Kontu bat baduzu bertan, ezin izango duzu erabiltzen jarraitu, baina, oraindik zure datuen babeskopia bat eska dezakezu.
@@ -1853,9 +2361,11 @@ eu:
     enabled: Ezabatu bidalketa zaharrak automatikoki
     enabled_hint: Zure bidalketa zaharrak automatikoki ezabatzen ditu zehazturiko denbora mugara iristean, beheko baldintza bat betetzen ez bada
     exceptions: Salbuespenak
+    explanation: Ezabatze automatikoa lehentasun txikiarekin egiten da. Atzerapena egon daiteke adin-atalasera iritsi eta ezabatu arte.
     ignore_favs: Ez ezabatu gogokoak
     ignore_reblogs: Ez ezabatu bultzadak
     interaction_exceptions: Elkarrekintzetan oinarritutako salbuespenak
+    interaction_exceptions_explanation: Aldi baterako gogokoen edo bultzaden atalasea gainditzen duten bidalketak gorde egin daitezke, nahiz eta geroago jaitsi.
     keep_direct: Mantendu mezu zuzenak
     keep_direct_hint: Zure mezu zuzenak ez dira ezabatuko
     keep_media: Mantendu multimediak dituzten bidalketak
@@ -1895,6 +2405,9 @@ eu:
     future_preamble_html: Gure zerbitzu-baldintzetan aldaketa batzuk egiten ari gara, eta <strong>%{date}</strong>-tik aurrera jarriko dira indarrean. Eguneratutako baldintzak berrikustea gomendatzen dizugu.
     past_preamble_html: Zerbitzu-baldintzak aldatu ditugu zure azken bisitatik. Baldintza eguneratuak berrikustera animatzen zaitugu.
     review_link: Berrikusi zerbitzu-baldintzak
+    title: "%{domain} zerbitzariaren zerbitzu-baldintzak aldatzen ari dira"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%Y(e)ko %b %d, %H:%M"
@@ -1919,9 +2432,34 @@ eu:
     recovery_codes: Berreskuratze kodeen babes-kopia
     recovery_codes_regenerated: Berreskuratze kodeak ongi sortu dira
     recovery_instructions_html: Zure telefonora sarbidea galtzen baduzu, beheko berreskuratze kode bat erabili dezakezu kontura berriro sartu ahal izateko. <strong>Gore barreskuratze kodeak toki seguruan</strong>. Adibidez inprimatu eta dokumentu garrantzitsuekin batera gorde.
+    resume_app_authorization: Jarraitu aplikazioaren baimentzearekin
+    role_requirement: "%{domain} zerbitzariak bi urratseko autentifikazioa konfiguratzea eskatzen dizu Mastodon erabili aurretik."
     webauthn: Segurtasun gakoak
+  unsubscriptions:
+    create:
+      action: Joan zerbitzariaren hasiera-orrira
+      email_subscription:
+        confirmation_html: Ez duzu %{name}(r)en mezurik jasoko aurrerantzean.
+      title: Harpidetza kendu da
+      user:
+        confirmation_html: Ez duzu %{domain} zerbitzariko Mastodonen %{type} jasoko aurrerantzean.
+    notification_emails:
+      favourite: gogokoen jakinarazpen-mezuak
+      follow: jarraitzaileen jakinarazpen-mezuak
+      follow_request: jarraitzeko eskaeren mezuak
+      mention: aipamenen jakinarazpen-mezuak
+      reblog: bultzaden jakinarazpen-mezuak
+    show:
+      action: Kendu harpidetza
+      email_subscription:
+        confirmation_html: Ez duzu mezurik jasoko kontu honek bidalketa berriak argitaratzen dituenean.
+        title: Kendu %{name}(r)en harpidetza?
+      user:
+        confirmation_html: Ez duzu %{domain} zerbitzariko Mastodonen %{type} jasoko.
+        title: Kendu %{type} harpidetza?
   user_mailer:
     announcement_published:
+      description: "%{domain} zerbitzariko administratzaileek iragarpen bat egin dute:"
       subject: Zerbitzuaren iragarpena
       title: "%{domain} zerbitzuaren iragarpena"
     appeal_approved:
@@ -1946,6 +2484,14 @@ eu:
       further_actions_html: Ez bazara zu izan, "%{action}" ekintza berehala egitea gomendatzen dugu, kontua arriskarazi daiteke eta.
       subject: Autentifikazioaren bigarren faktoreak huts egin du
       title: Huts egin duen autentifikazioaren bigarren faktorea
+    sign_in_token:
+      change_password: aldatu zure pasahitza
+      details: 'Hona hemen saiakeraren xehetasunak:'
+      explanation: 'Denbora luzez jarduerarik gabe egon ondoren zure kontuan saioa hasteko saiakera bat hauteman dugu. Zu bazara, idatzi beheko segurtasun-kodea saioa hasteko egiaztapen-orrian:'
+      further_actions: 'Zu ez bazara, aldatu zure pasahitza eta gaitu bi urratseko autentifikazioa zure kontuan. Hemen egin dezakezu:'
+      further_actions_html: Zu ez bazara, berehala %{action} eta gaitu bi urratseko autentifikazioa zure kontua seguru mantentzeko.
+      subject: Berretsi saioa hasteko saiakera
+      title: Saioa hasteko saiakera
     suspicious_sign_in:
       change_password: aldatu pasahitza
       details: 'Hemen daude saio hasieraren xehetasunak:'
@@ -1954,7 +2500,10 @@ eu:
       subject: Zure kontura sarbidea egon da IP helbide berri batetik
       title: Saio hasiera berria
     terms_of_service_changed:
+      agreement: "%{domain} erabiltzen jarraituz, baldintza hauek onartzen dituzu. Eguneratutako baldintzekin ados ez bazaude, %{domain} zerbitzariarekiko hitzarmena edozein unetan amai dezakezu zure kontua ezabatuz."
       changelog: 'Laburbilduz, hau da eguneratze honek zuretzat esan nahi duena:'
+      description: 'Mezu hau jasotzen ari zara %{domain} zerbitzariko zerbitzuaren baldintzetan aldaketa batzuk egiten ari garelako. Eguneraketa hauek %{date} egunean sartuko dira indarrean. Eguneratutako baldintzak osorik hemen berrikustera gonbidatzen zaitugu:'
+      description_html: Mezu hau jasotzen ari zara %{domain} zerbitzariko zerbitzuaren baldintzetan aldaketa batzuk egiten ari garelako. Eguneraketa hauek <strong>%{date}</strong> egunean sartuko dira indarrean. <a href="%{path}" target="_blank">Eguneratutako baldintzak osorik hemen</a> berrikustera gonbidatzen zaitugu.
       sign_off: "%{domain} taldea"
       subject: Zerbitzu-baldintzen eguneratzeak
       subtitle: "%{domain}(e)ko zerbitzu-baldintzak aldatu egingo dira"
@@ -2032,8 +2581,12 @@ eu:
       title: Ongi etorri, %{name}!
   users:
     follow_limit_reached: Ezin dituzu %{limit} pertsona baino gehiago jarraitu
+    generic_access_help_html: Arazoak dituzu zure kontura sartzeko? %{email} helbidearekin jar zaitezke harremanetan laguntza eskatzeko
     go_to_sso_account_settings: Jo zure identitate-hornitzaileko kontuaren ezarpenetara
+    inactive_sign_in_confirmation: Aspaldi ez duzu saioa hasi; beraz, segurtasun-kode bat bidaltzen ari gara zure helbide elektronikora zu zarela berresteko.
+    inactive_sign_in_title: Berretsi segurtasun-kodea
     invalid_otp_token: Bi faktoreetako kode baliogabea
+    invalid_sign_in_token: Segurtasun-kode baliogabea
     otp_lost_help_html: 'Bietara sarbidea galdu baduzu, jarri kontaktuan hemen: %{email}'
     rate_limited: Autentifikazio saiakera gehiegi, saiatu berriro geroago.
     seamless_external_login: Kanpo zerbitzu baten bidez hasi duzu saioa, beraz pasahitza eta e-mail ezarpenak ez daude eskuragarri.
@@ -2058,6 +2611,7 @@ eu:
       error: Arazo bat egon da zure segurtasun gakoa ezabatzean. Saiatu berriro mesedez.
       success: Zure segurtasun gakoa behar bezala ezabatu da.
     invalid_credential: Segurtasun gako baliogabea
+    nickname: Ezizena
     nickname_hint: Sartu zure segurtasun gako berriaren ezizena
     not_enabled: Ez duzu WebAuthn gaitu oraindik
     not_supported: Nabigatzaile honek ez ditu segurtasun gakoak onartzen

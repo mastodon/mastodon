@@ -18,7 +18,6 @@ ms:
       admin_account_action:
         include_statuses: Pengguna akan melihat kiriman mana yang menyebabkan tindakan atau amaran penyederhanaan
         send_email_notification: Pengguna akan menerima penjelasan tentang apa yang berlaku dengan akaun mereka
-        text_html: Pilihan. Anda boleh menggunakan sintaks hantaran. Anda juga boleh <a href="%{path}">menambahkan praset amaran</a> untuk menjimatkan masa
         type_html: Pilih apa yang ingin dilakukan dengan <strong>%{acct}</strong>
         types:
           disable: Halang pengguna daripada menggunakan akaun mereka, tetapi jangan hapus atau sorokkan kandungan mereka.
@@ -26,7 +25,6 @@ ms:
           sensitive: Memaksa semua lampiran media pengguna ini ditandakan sebagai sensitif.
           silence: Halang pengguna daripada dapat membuat siaran dengan keterlihatan awam, menyembunyikan siaran dan pemberitahuan mereka daripada orang yang tidak mengikutinya. Menutup semua laporan terhadap akaun ini.
           suspend: Halang sebarang interaksi daripada atau ke akaun ini dan padamkan kandungannya. Boleh diterbalikkan dalam masa 30 hari. Menutup semua laporan terhadap akaun ini.
-        warning_preset_id: Pilihan. Anda masih boleh menambah teks tersuai pada akhir praset
       announcement:
         all_day: Apabila diperiksa, hanya tarikh dalam julat masa yang akan dipaparkan
         ends_at: Pilihan. Pengumuman akan dinyahterbitkan secara automatik pada masa ini
@@ -137,12 +135,10 @@ ms:
       account_migration:
         acct: Pengendali akaun baharu
       account_warning_preset:
-        text: Teks pratetap
         title: Tajuk
       admin_account_action:
         include_statuses: Sertakan siaran yang dilaporkan dalam e-mel
         send_email_notification: Beritahu pengguna setiap e-mel
-        text: Amaran tersuai
         type: Tindakan
         types:
           disable: Bekukan
@@ -150,7 +146,6 @@ ms:
           sensitive: Sensitif
           silence: Hadkan
           suspend: Gantung
-        warning_preset_id: Gunakan amaran yang ditetapkan
       announcement:
         all_day: Acara sepanjang hari
         ends_at: Tamat acara
@@ -200,7 +195,6 @@ ms:
         setting_reduce_motion: Kurangkan gerakan dalam animasi
         setting_system_font_ui: Gunakan fon lalai sistem
         setting_theme: Tema halaman
-        setting_trends: Paparkan trend hari ini
         setting_unfollow_modal: Tunjukkan dialog pengesahan sebelum berhenti mengikuti seseorang
         setting_use_blurhash: Tunjukkan kecerunan berwarna-warni untuk media tersembunyi
         setting_use_pending_items: Mod perlahan

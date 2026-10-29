@@ -20,7 +20,6 @@ sl:
       admin_account_action:
         include_statuses: Uporabnik vidi, katere objave so povzročile dejanje moderiranja ali opozorilo
         send_email_notification: Uporabnik bo prejel razlago, kaj se je zgodilo z njihovim računom
-        text_html: Neobvezno. Lahko uporabite skladnjo objave. <a href="%{path}">Prednastavite opozorila</a>, da prihranite čas
         type_html: Izberite, kaj boste storili z <strong>%{acct}</strong>
         types:
           disable: Preprečite uporabniku, da uporablja svoj račun, vendar ne izbrišite ali skrijte njegove vsebine.
@@ -28,7 +27,6 @@ sl:
           sensitive: Vsilite, da so vse medijske priponke tega uporabnika označene kot občutljive.
           silence: Prepreči uporabniku, da lahko objavlja javno, skrije njihove objave in obvestila pred osebami, ki mu ne sledijo. Zaključi vse prijave zoper ta račun.
           suspend: Prepreči vsakršno interakcijo od ali do tega računa in izbriše njegovo vsebino. Povratno v roku 30 dni. Zaključi vse prijave zoper ta račun.
-        warning_preset_id: Neobvezno. Še vedno lahko dodate besedilo po meri na konec prednastavitve
       announcement:
         all_day: Če je potrjeno, bodo prikazani le datumi časovnega obsega
         ends_at: Neobvezno. Obvestilo bo samodejno neobjavljeno v navedenem času
@@ -163,12 +161,10 @@ sl:
       account_migration:
         acct: Ročica novega računa
       account_warning_preset:
-        text: Prednastavljeno besedilo
         title: Naslov
       admin_account_action:
         include_statuses: Vključi omenjene objave v e-sporočilo
         send_email_notification: Obvesti uporabnika po e-pošti
-        text: Opozorilo po meri
         type: Dejanje
         types:
           disable: Onemogoči
@@ -176,7 +172,6 @@ sl:
           sensitive: Občutljivo
           silence: Utišaj
           suspend: Suspendiraj in nepovratno izbriši podatke računa
-        warning_preset_id: Uporabi prednastavljeno opozorilo
       announcement:
         all_day: Celodnevni dogodek
         ends_at: Konec dogodka
@@ -234,7 +229,6 @@ sl:
         setting_system_font_ui: Uporabi privzeto pisavo sistema
         setting_system_scrollbars_ui: Uporabi privzeti drsni trak sistema
         setting_theme: Tema strani
-        setting_trends: Pokaži današnje trende
         setting_unfollow_modal: Pokaži potrditveno okno, preden nekoga prenehamo slediti
         setting_use_blurhash: Pokaži barvite prelive za skrite medije
         setting_use_pending_items: Počasen način

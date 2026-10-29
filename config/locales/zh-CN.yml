@@ -90,6 +90,7 @@ zh-CN:
       enable: 解冻
       enable_sign_in_token: 启用安全码挑战
       enable_sign_in_token_auth: 启用邮件令牌身份验证
+      enable_unconfirmed: 允许确认邮件
       enabled: 已启用
       enabled_msg: 成功解冻 %{username} 的账号
       follow_recommendations:
@@ -287,6 +288,7 @@ zh-CN:
         create_domain_block_html: "%{name} 屏蔽了站点 %{target}"
         create_email_domain_block_html: "%{name} 封禁了邮箱域名 %{target}"
         create_ip_block_html: "%{name} 为 IP %{target} 创建了规则"
+        create_moderation_subscription_html: "%{name} 创建了管理订阅 %{target}"
         create_relay_html: "%{name} 添加了中继站 %{target}"
         create_unavailable_domain_html: "%{name} 停止了向域名 %{target} 的投递"
         create_user_role_html: "%{name} 创建了角色 %{target}"
@@ -302,6 +304,7 @@ zh-CN:
         destroy_email_domain_block_html: "%{name} 解封了邮箱域名 %{target}"
         destroy_instance_html: "%{name} 清除了实例 %{target}"
         destroy_ip_block_html: "%{name} 删除了 IP %{target} 的规则"
+        destroy_moderation_subscription_html: "%{name} 删除了管理订阅 %{target}"
         destroy_relay_html: "%{name} 删除了中继站 %{target}"
         destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
@@ -350,10 +353,18 @@ zh-CN:
         update_user_role_html: "%{name} 更改了角色 %{target}"
         update_username_block_html: "%{name} 更新了有关包含 %{target} 的用户名的规则"
         usable_tag_html: 可以使用；
+      automated_actions:
+        create_domain_allow_html: 自动允许了与站点 %{target} 的联合
+        create_domain_block_html: 自动屏蔽了站点 %{target}
+        destroy_domain_allow_html: 自动拒绝了与站点 %{target} 的联合
+        destroy_domain_block_html: 自动解除了对站点 %{target} 的屏蔽
+        update_domain_block_html: 自动更新了对 %{target} 的域名屏蔽
       deleted_account: 账号已注销
+      deleted_suggestion: 已删除的管理订阅
       empty: 没有找到日志
       filter_by_action: 根据操作筛选
       filter_by_user: 根据用户筛选
+      suggested_by_html: "%{subscription} 建议的操作"
       title: 审核日志
       unavailable_instance: "(域名不可用)"
     announcements:
@@ -464,6 +475,11 @@ zh-CN:
       undo: 禁止与此站点联合
     domain_blocks:
       add_new: 添加新站点屏蔽
+      confirm_downgrade:
+        cancel: 取消
+        confirm: 降级
+        preamble_html: 你即将降级对 <strong>%{domain}</strong> 及其子域名上的站点的封禁。
+        title: 确认 %{domain} 的域名屏蔽降级
       confirm_suspension:
         cancel: 取消
         confirm: 封禁
@@ -662,6 +678,8 @@ zh-CN:
       title: 关注推荐
       unsuppress: 恢复推荐关注
     instances:
+      advisories:
+        title: 来自管理订阅的警报
       audit_log:
         title: 近期审核记录
         view_all: 查看完整审核记录
@@ -683,6 +701,7 @@ zh-CN:
         comment: 内部备注
         description_html: 你可以设置应用于此域名全部账号和其全部子域名的内容策略。
         limited_federation_mode_description_html: 你可以选择是否允许与此实例联合。
+        moderation_subscription: 管理订阅
         policies:
           reject_media: 拒收媒体
           reject_reports: 拒收举报
@@ -762,6 +781,92 @@ zh-CN:
       reset: 重置
       search: 搜索
       title: IP 规则
+    moderation_subscriptions:
+      add_new: 添加订阅
+      advisory_action: 操作：%{action}
+      advisory_actions:
+        accept: 允许
+        limit: 隐藏
+        reject: 封禁
+      apply_automatically: 自动应用警报
+      apply_conditions:
+        always: 总是
+        never: 从不
+        safely: 仅当不会破坏关系时
+      apply_conditions_hint:
+        always: 总是自动应用推荐操作。只有你完全信任的列表才应使用此选项。
+        never: 不要自动应用推荐操作。总是生成建议。
+        safely: 应用推荐的操作，除非相应操作会破坏现有的和本地用户的关系。此时会改为生成建议。
+      delete: 删除
+      destroyed_msg: 已成功删除管理订阅
+      empty: 尚未订阅任何管理列表。
+      last_synced_at: 上次同步时间
+      list_action: 订阅类型
+      list_actions:
+        accept: 允许列表
+        default: 混合（允许及拒绝）
+        reject: 封禁列表
+      list_actions_hint:
+        accept: 没有指定操作的项目会被视为允许。封禁类项目将被忽略。
+        default: 没有指定操作的项目会被视为封禁。封禁类项目和允许类项目都按照封禁处理。
+        reject: 没有指定操作的项目会被视为封禁。允许类项目将被忽略。
+      list_actions_short:
+        accept: 允许列表
+        default: 混合
+        reject: 封禁列表
+      name: 名称
+      new:
+        create: 订阅
+        title: 新建管理订阅
+      override_unattributed: 覆盖手动封禁
+      override_unattributed_hint: 允许此订阅自动应用警报时，自动升级或接管现有的手动封禁。
+      policies:
+        apply_advisories: 自动应用警报
+        apply_advisories_safely: 自动应用不会破坏关系的警报
+        apply_retractions: 自动应用撤回
+      priority: 优先级
+      priority_hint: 管理订阅按优先级顺序逐个处理，编号较小的订阅会覆盖编号较大的订阅。
+      retract_automatically: 自动撤回警报
+      retract_automatically_hint: 当订阅移除对应项目时，是否允许撤回或降级策略更改。当自动撤回启用，且对等的警报在低优先级列表中存在时，则该警报内容将被采纳。当自动撤回被禁用时，则将生成对应建议。
+      show:
+        delete_confirm: 你确定要删除此管理订阅吗？
+        edit: 编辑订阅
+        empty: 此订阅尚未发布警报。
+        title: 管理订阅：%{name}
+      tabs:
+        logs: 日志
+        subscriptions: 订阅
+        suggestions: 建议
+      title: 管理订阅
+      type: 类型
+      types:
+        csv_list: CSV 列表
+      url: 网址
+    moderation_subscriptions_logs:
+      title: 管理订阅日志
+    moderation_suggestions:
+      actions:
+        accept: 允许
+        limit: 限制
+        reject: 封禁
+        retract: 撤回当前策略
+      applied_msg: 已成功应用对 %{target_key} 的建议
+      apply_accept: 允许
+      apply_limit: 限制
+      apply_reject: 封禁
+      apply_retract: 撤回
+      current_states:
+        accept: 目前已允许
+        limit: 目前已受限制
+        reject: 目前已被封禁
+      description: 以下是来自你管理订阅的建议，按优先顺序排序。
+      destroyed_msg: 已成功忽略对 %{target_key} 的建议
+      dismiss: 忽略建议
+      empty: 目前没有管理建议。
+      retracted_msg: 已成功撤回对 %{target_key} 的策略
+      suggested_from_html: 由 %{link} 建议
+      title: 管理建议
+      unable_to_apply_msg: 无法应用对 %{target_key} 的建议
     relationships:
       title: "%{acct} 的关系"
     relays:
@@ -953,6 +1058,119 @@ zh-CN:
       translation: 翻译
       translations: 翻译
       translations_explanation: 你可以选择性地为规则添加翻译。没有翻译版本则将显示默认值。 请确保任何提供的翻译都与默认值内容同步。
+    server_checks:
+      categories:
+        completed:
+          title: 已完成
+        critical:
+          title: 关键
+        error:
+          title: 错误
+        ignored:
+          title: 已忽略
+        suggestion:
+          title: 建议
+        unprocessed:
+          title: 未处理
+        warning:
+          title: 警告
+      checks:
+        database_schema:
+          error:
+            title: 检查数据库架构时发生错误
+          ok:
+            title: 没有待处理的数据库迁移
+          pending:
+            lead_html: 请运行它们以确保应用程序正常运行
+            title: 有待处理的数据库迁移
+          running:
+            title: 你的服务器正在检查数据库架构
+          unprocessed:
+            title: 你的服务器尚未检查数据库架构
+        elastic_search:
+          error:
+            title: 检查 Elasticsearch 配置时发生错误
+          ok:
+            title: Elasticsearch 配置没有问题
+          pending:
+            lead:
+              analysis_index_mismatch_html: Elasticsearch 索引分析器设置已过期。请运行<code>tootctl search deploy --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Elasticsearch 集群状态不健康（红色），搜索功能不可用
+              cluster_health_yellow_html: Elasticsearch 集群状态不健康（黄色），建议调查原因
+              index_mismatch_html: Elasticsearch 索引映射已过时。请运行<code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: 你的 Elasticsearch 集群有多个节点，但 Mastodon 尚未配置使用它们
+              preset_single_node_html: 你的 Elasticsearch 集群只有一个节点，<code>ES_PRESET</code> 应该设置为 <code>single_node_cluster</code>
+              reset_chewy_html: 你的 Elasticsearch 系统索引已过时，可能是由于设置更改导致的。请运行<code>tootctl search deploy --reset-chewy</code>命令来更新它
+              running_check_html: 无法连接到 Elasticsearch。请检查它是否正在运行，或禁用全文搜索
+              version_check_html: Elasticsearch 最低版本要求 %{required_version}，正在运行的版本是 %{running_version}
+            title: Elasticsearch 有问题
+          running:
+            title: 服务器正在检查 Elasticsearch 配置
+          unprocessed:
+            title: 服务器尚未检查 Elasticsearch 配置
+        media_privacy:
+          error:
+            title: 检查你服务器的媒体隐私时发生错误
+          ok:
+            title: 你服务器的媒体隐私目前是安全的
+          pending:
+            lead:
+              upload_check_privacy_error_html: 你的网站服务器配置错误
+              upload_check_privacy_error_object_storage_html: 你的对象存储配置错误
+            title: 你的用户的隐私处于危险中
+          running:
+            title: 服务器正在检查其隐私状态
+          unprocessed:
+            title: 服务器尚未检查其隐私状态
+        rules:
+          error:
+            title: 检查你的服务器规则时发生错误
+          ok:
+            title: 你的服务器规则已设置
+          pending:
+            lead_html: 你的服务器没有已发布的规则。清楚明白的规则有助于管理并为用户设立行为预期
+            title: 设置服务器规则
+          running:
+            title: 服务器正在检查你的规则
+          unprocessed:
+            title: 服务器尚未检查是否有任何规则
+        sidekiq_process:
+          error:
+            title: 检查 Sidekiq 配置时发生错误
+          ok:
+            title: Sidekiq 配置没有问题
+          pending:
+            lead_html: "%{missing_queues_str} 队列未运行任何 Sidekiq 进程"
+            title: 请检查你的 Sidekiq 配置
+          running:
+            title: 服务器正在检查 Sidekiq 配置
+          unprocessed:
+            title: 服务器尚未检查 Sidekiq 配置
+        software_version:
+          error:
+            title: 检查软件更新时发生错误
+          ok:
+            title: 你的 Mastodon 实例已经是最新状态
+          pending:
+            lead:
+              patch_html: 有 Mastodon 错误修复更新可用
+              regular_html: 有新版本的 Mastodon 可用
+              urgent_html: 有一个紧急Mastodon紧急更新可用，请尽快更新
+            title: 更新你的 Mastodon 实例
+          running:
+            title: 服务器正在检查是否有等待中的软件更新
+          unprocessed:
+            title: 服务器尚未检查软件更新
+      ignore:
+        label: 忽略
+      lead: 确保你的服务器安全、友好和高效的建议。
+      recommendations:
+        title: 建议
+      restore:
+        label: 恢复
+      setup:
+        label: 设置
+      title: 服务器状态
     settings:
       about:
         manage_rules: 管理服务器规则
@@ -1297,9 +1515,17 @@ zh-CN:
     warning_presets:
       add_new: 添加新条目
       delete: 删除
-      edit_preset: 编辑预设警告
-      empty: 你尚未定义任何警告预设。
-      title: 预设警告
+      dropdown:
+        all_actions: 所有操作
+        disable: 停用
+        none: 警告
+        sensitive: 标记敏感内容
+        silence: 限制
+        suspend: 封禁
+      edit_preset: 编辑预置回复
+      empty: 你尚未定义任何预置回复。
+      navigation_title: 预置回复
+      title: 管理预置回复
     webhooks:
       add_new: 新增端点
       delete: 删除
@@ -1347,9 +1573,15 @@ zh-CN:
     new_critical_software_updates:
       body: 新的紧急更新版本Mastodon已经发布，你可能希望尽快更新！
       subject: "%{instance} 有 Mastodon 的紧急更新！"
+    new_moderation_suggestions:
+      body: 你服务器订阅的管理列表已发布新的建议。
+      subject: "%{instance} 上现可使用新的管理建议！"
     new_pending_account:
       body: 新账号的详细信息如下。你可以批准或拒绝此申请。
       subject: "%{instance} 上有新账号 (%{username}) 需要审核"
+    new_pending_accounts:
+      body: "%{instance} 上有新账号创建。由于你的服务器设置，确认邮件会推迟到审核批准后再发送，因此这些账号还没有机会验证其电子邮件地址。新账号的详情见下。你可以批准或拒绝这些申请。"
+      subject: "%{instance} 上有新账号需要审核"
     new_report:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
@@ -1378,7 +1610,6 @@ zh-CN:
     animations_and_accessibility: 动画与可访问性
     boosting_preferences: 转嘟首选项
     boosting_preferences_info_html: "<strong>提示：</strong>无论当前设置如何，对 %{icon} 转嘟图标按<kbd>Shift</kbd> + <kbd>鼠标单击</kbd>将会立即转嘟。"
-    discovery: 发现
     localization:
       body: Mastodon 由志愿者翻译。
       guide_link: https://crowdin.com/project/mastodon
@@ -1458,11 +1689,16 @@ zh-CN:
     security: 账号安全
     set_new_password: 设置新密码
     setup:
+      correct_email: 更正地址
       email_below_hint_html: 请检查你的垃圾邮件文件夹，或请求重新发送邮件。如果你填写的邮箱地址有误，请更正。
       email_settings_hint_html: 点击发送到 %{email} 的链接，即可开始使用 Mastodon。
+      email_settings_hint_wait_html: 你的申请正在等待审核，应当很快就会收到一封发送至 %{email} 的邮件。收到时点击链接，即可开始使用 Mastodon。
       link_not_received: 没有收到链接？
       new_confirmation_instructions_sent: 你将在几分钟内收到一封带有确认链接的新邮件！
       title: 请检查你的收件箱
+      title_wait: 请随时检查你的收件箱
+      wrong_email: 电子邮件地址有误？
+      wrong_email_below_hint_html: 先别慌！你可以在下方改正你的电子邮件地址。
     sign_in:
       preamble_html: 使用你在 <strong>%{domain}</strong> 的账号和密码登录。如果你的账号是在其他站点上注册的，你将无法在此登录。
       title: 登录到 %{domain}
@@ -1499,6 +1735,12 @@ zh-CN:
     auto: 自动
     dark: 深色
     light: 浅色
+  color_theme:
+    cyan: 青蓝色
+    indigo: 靛蓝色
+    lime: 黄绿色
+    orange: 橙色
+    pink: 粉色
   contrast:
     auto: 自动
     high: 高
@@ -1547,6 +1789,7 @@ zh-CN:
       action_taken: 采取的措施
       appeal: 申诉
       appeal_approved: 此次处罚已申诉成功并不再生效
+      appeal_handled_by: 申诉处理者
       appeal_rejected: 此次申诉已被驳回
       appeal_submitted_at: 已提交申诉
       appealed_msg: 你的申诉已经提交。如果申诉通过，你将收到通知。

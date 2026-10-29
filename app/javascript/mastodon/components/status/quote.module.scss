@@ -7,8 +7,10 @@
   }
 }
 
-.accountLink {
+a.accountLink {
   display: block;
+  color: var(--color-text-primary);
+  font-weight: bold;
 }
 
 .spoiler {
@@ -22,7 +24,10 @@
   @include mixins.type-body;
 
   color: inherit;
-  text-decoration: none;
+
+  > a:hover {
+    text-decoration: none;
+  }
 
   p:not(:last-child) {
     margin-block-end: 1em;
@@ -41,6 +46,33 @@
 .reply {
   color: var(--color-text-tertiary);
   margin-bottom: var(--space-2);
+}
+
+a.nestedQuote {
+  @include mixins.type-meta;
+
+  align-items: center;
+  background-color: var(--color-bg-primary);
+  border: var(--border-thin);
+  border-radius: var(--radius-2);
+  color: var(--color-text-tertiary);
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-2);
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: background-color 200ms ease-in-out;
+  }
+
+  strong {
+    color: var(--color-text-primary);
+    font-weight: bold;
+  }
+
+  &:hover {
+    text-decoration: none;
+    background-color: var(--color-bg-highlight);
+  }
 }
 
 .media {

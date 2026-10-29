@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 
 import { Fieldset } from './fieldset';
-import { RadioButtonField, TextInputField, ToggleField } from './redesign';
+import { RadioButtonField, TextInputField } from './redesign';
 
 interface FieldProps {
   label: string;
@@ -45,17 +45,5 @@ export const RadioButton: Story = {
 export const TextInput: Story = {
   render(args) {
     return <TextInputField {...args} />;
-  },
-};
-
-export const Toggle: Story = {
-  render(args) {
-    return <ToggleField {...args} />;
-  },
-};
-
-export const ToggleSmall: Story = {
-  render(args) {
-    return <ToggleField {...args} size='sm' />;
   },
 };

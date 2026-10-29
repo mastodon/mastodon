@@ -4,6 +4,7 @@ eu:
     hints:
       account:
         attribution_domains: Lerroko bat. Atribuzio faltsuetatik babesten ditu.
+        discoverable: Beste erabiltzaile batzuek sortutako bildumetan ager zaitezke. Zu eta zure bidalketa publikoak beste erabiltzaileei ere iradoki diezazkieke Mastodonen aurkikuntza-esperientzietan.
         display_name: Zure izena edo ezizena.
         fields: Zure webgunea, izenordainak, adina, nahi duzun guztia.
         indexable: Zure argitalpen publikoak bilaketa-emaitzetan ager daitezke Mastodonen. Zure argitalpenekin elkarregin duten jendeak ikusi ahal izango dituzte, hala ere.
@@ -20,7 +21,7 @@ eu:
       admin_account_action:
         include_statuses: Erabiltzaileak moderazio ekintza edo abisu bat eragin duten bidalketak ikusi ahal izango ditu
         send_email_notification: Erabiltzaileak bere kontuarekin gertatutakoaren azalpen bat jasoko du
-        text_html: Aukerakoa. Toot sintaxia erabili dezakezu. <a href="%{path}">Abisu aurre-ezarpenak</a> gehitu ditzakezu denbora aurrezteko
+        text: Aukerakoa. Bidalketen sintaxia erabil dezakezu. Aurrez idatzitako erantzunaren azpian agertuko da
         type_html: Erabaki zer egin <strong>%{acct}</strong> kontuarekin
         types:
           disable: Erabiltzaileari bere kontua erabiltzea eragotzi, baina ez ezabatu edo ezkutatu bere edukiak.
@@ -28,7 +29,7 @@ eu:
           sensitive: Behartu erabiltzaile honen multimedia eranskin guztiak hunkigarri gisa markatzea.
           silence: Eragotzi erabiltzaileak ikusgaitasun publikoarekin argitaratzea, ezkutatu bere bidalketa eta jakinarazpenak jarraitzen ez duten pertsonei. Kontu honen aurkako txosten guztiak ixten ditu.
           suspend: Eragotzi kontu honek inolako interakziorik izatea eta ezabatu bere edukiak. Atzera bota daiteke 30 egun igaro aurretik. Kontu honen aurkako txosten guztiak ixten ditu.
-        warning_preset_id: Aukerakoa. Zure testua gehitu dezakezu aurre-ezarpenaren ostean
+        warning_preset_html: Aukerakoa. <a href="%{path}">Hemen kudea ditzakezu</a>
       announcement:
         all_day: Markatutakoan soilik denbora barrutiko datak erakutsiko dira
         ends_at: Aukerakoa. Iragapena une honetan automatikoki desargitaratuko da
@@ -60,7 +61,12 @@ eu:
         setting_default_quote_policy_private: Jarraitzaileentzat soilik sortutako bidalketak Mastodonen ezin dituzte beste batzuek aipatu.
         setting_default_quote_policy_unlisted: Jendeak aipatzen zaituenean, bere bidalketa ere joeren denbora-lerro publikoetatik ezkutatuko da.
         setting_default_sensitive: Multimedia hunkigarria lehenetsita ezkutatzen da, eta sakatuz ikusi daiteke
+        setting_default_spoiler_field: Edukiaren abisuaren eremua irekita mantentzen du idazketa-eremuan. Bidalketa bakoitzean testua pertsonaliza dezakezu.
+        setting_display_media_default: Abisatu hunkigarri gisa markatutako multimedia erakutsi aurretik
+        setting_display_media_hide_all: Abisatu multimedia oro erakutsi aurretik
+        setting_display_media_show_all: Erakutsi multimedia oro abisurik gabe, hunkigarri gisa markatutakoa barne
         setting_emoji_style: Nola bistaratu emojiak. "Automatikoki" aukeran emoji natiboak erabiltzen saiatuko dira, baina Twemojira itzuliko dira arakatzaile zaharretarako.
+        setting_quick_boosting_html: Gaituta dagoenean, %{boost_icon} Bultzada ikonoan klik egiteak berehala emango dio bultzada, bultzada/aipu goitibeherako menua ireki beharrean. Aipatzeko ekintza %{options_icon} (Aukerak) menura eramaten du.
         setting_use_blurhash: Gradienteak ezkutatutakoaren koloreetan oinarritzen dira, baina xehetasunak ezkutatzen dituzte
         setting_use_pending_items: Ezkutatu denbora-lerroko eguneraketak klik baten atzean jarioa automatikoki korritu ordez
         username: Hizkiak, zenbakiak eta azpimarrak erabil ditzakezu
@@ -86,11 +92,14 @@ eu:
         closed_registrations_message: Izen-ematea itxia dagoenean bistaratua
         content_cache_retention_period: Beste zerbitzarietako argitalpen guztiak (bultzadak eta erantzunak barne) ezabatuko dira zehazturiko egunen buruan, argitalpen horiek izan ditzaketen erabiltzaile lokalaren interakzioa kontuan izanik gabe. Instantzia desberdinetako erabiltzaileen arteko aipamen pribatuak ere galdu egingo dira eta ezin izango dira berreskuratu. Ezarpen honen erabilera xede berezia duten instantziei zuzendua dago eta erabiltzaileen itxaropena hausten da orotariko erabilerarako inplementatzean.
         custom_css: Estilo pertsonalizatuak aplikatu ditzakezu Mastodonen web bertsioan.
+        email_footer_text: Buletinen mezu elektronikoen oinean soilik agertzen den testu aukerakoa.
         favicon: WEBP, PNG, GIF or JPG. Mastodon-en favicon-a gainidazten du ikono pertsonalizatu batekin.
+        landing_page: Bisitari berriek zure zerbitzarira lehen aldiz iristean ikusiko duten orria hautatzen du. "Joerak" hautatzen baduzu, joerek gaituta egon behar dute Aurkikuntza-ezarpenetan. "Jario lokala" hautatzen baduzu, "Bidalketa lokalak dituzten zuzeneko jarioetarako sarbidea" "Edonork" gisa ezarri behar da Aurkikuntza-ezarpenetan.
         mascot: Web interfaze aurreratuko ilustrazioa gainidazten du.
         media_cache_retention_period: Multimedia-fitxategiak dituzten urruneko erabiltzaileen argitalpenak zure zerbitzarian gordetzen dira cachean. Balio positiboa ezartzean, multimedia zehazturiko egunen buruan ezabatuko da. Multimedia-datuak eskatzen badira ezabatu ostean, berriro deskargatuko dira, iturburuko edukia oraindik erabilgarri badago. Estekaren aurrebistako txartelek hirugarrenen guneei zenbatetan dei diezaieketen mugatzen dieten murrizketak direla eta, balio honi, gutxienez, 14 egunen balioa ezartzea gomendatzen da, bestela, esteken aurrebistako txartelak ez dira eguneratuko eskatu ahala denbora horren aurretik.
         min_age: Erabiltzaileei jaiotze-data berresteko eskatuko zaie izen-ematean
         peers_api_enabled: Zerbitzari honek fedibertsoan ikusi dituen zerbitzarien domeinu-izenen zerrenda. Ez da daturik ematen zerbitzari jakin batekin federatzearen ala ez federatzearen inguruan, zerbitzariak haien berri duela soilik. Federazioari buruzko estatistika orokorrak biltzen dituzten zerbitzuek erabiltzen dute hau.
+        postpone_confirmation_emails: Ezarpen hau gaituta dagoenean, onarpenaren zain dauden kontuen berrespen-mezuak kontu horiek onartzen direnean bakarrik bidaltzen dira. Horrek izena emateko esperientzia okerragoa eman diezaieke erabiltzaileei, mezua jaso ondoren helbide elektronikoa garaiz berretsi beharko baitute, baina ez baitute jada kontrolatuko noiz bidaltzen den. Gainera, moderatzaileen lan-karga handitu dezake, Mastodonek ezin izango baititu iragazi helbide elektroniko baliogabea duten zain dauden kontuak onartu aurretik.
         profile_directory: Profilen direktorioan ikusgai egotea aukeratu duten erabiltzaile guztiak zerrendatzen dira.
         require_invite_text: Izen emateak eskuz onartu behar direnean, "Zergatik elkartu nahi duzu?" testu sarrera derrigorrezko bezala ezarri, ez hautazko
         site_contact_email: Jendeak kontsulta legalak egin edo laguntza eskatzeko bidea.
@@ -102,6 +111,7 @@ eu:
         status_page_url: Kanporatua dagoen jendeak zerbitzari honen egoera ikus dezaten gune baten URL
         theme: Saioa hasi gabeko erabiltzaileek eta berriek ikusiko duten gaia.
         thumbnail: Zerbitzariaren informazioaren ondoan erakusten den 2:1 inguruko irudia.
+        thumbnail_description: Irudiaren deskribapena, ikusmen-urritasuna duten pertsonei haren edukia ulertzen laguntzeko.
         trendable_by_default: Saltatu joeretako edukiaren eskuzko berrikuspena. Ondoren elementuak banan-bana kendu daitezke joeretatik.
         trends: Joeretan zure zerbitzarian bogan dauden bidalketa, traola eta albisteak erakusten dira.
         wrapstodon: Bertako erabiltzaileei Mastodonen urteko erabileraren laburpen ludiko bat sortzea eskaini. Ezaugarri hori urte bakoitzeko abenduaren 10etik 31ra bitartean dago eskuragarri, eta urtean gutxienez hashtag bat erabili duten erabiltzaileei eskaintzen zaie.
@@ -127,6 +137,7 @@ eu:
         otp: 'Sartu zure telefonoko aplikazioak sortutako bi faktoreetako kodea, edo erabili zure berreskuratze kodeetako bat:'
         webauthn: USB gako bat bada, ziurtatu sartu duzula, eta behar izanez gero ukitu ezazu.
       settings:
+        email_subscriptions: Desgaitzeak lehendik dauden harpidedunak mantentzen ditu, baina mezu elektronikoak bidaltzeari uzten dio.
         indexable: Zure profila bilaketa-emaitzetan ager daiteke Google, Bing eta beste batzuetan.
         show_application: Dena dela, beti ikusi ahal izango duzu zein aplikaziok argitaratu zuen zure bidalketa.
       tag:
@@ -140,21 +151,29 @@ eu:
         arbitration_address: Goiko helbide fisikoa edo "N/A" bera izan daiteke posta elektronikoa erabiliz gero.
         arbitration_website: Web formularioa izan daiteke, edo "N/A" posta elektronikoa erabiliz gero.
         choice_of_law: Edozein gatazka juridiko gobernatuko duten epaitegien hiria, eskualdea, lurraldea edo estatua.
+        dmca_address: 'AEBetako operadoreentzat, erabili DMCA Designated Agent Directory-n erregistratutako helbidea. Posta-kutxa (P.O. Box) baten zerrendatzea eskuragarri dago zuzeneko eskaeraz: erabili DMCA Designated Agent Post Office Box Waiver Request inprimakia Copyright Officeri mezu bat bidaltzeko, eta azaldu etxetik lan egiten duzun eduki-moderatzailea zarela, zure ekintzengatiko mendekuaren beldur zarela eta posta-kutxa bat behar duzula zure etxeko helbidea ikusgai ez egoteko.'
         dmca_email: Goiko "Lege-oharretarako helbide elektronikoa" atalean erabilitako helbide elektroniko bera izan daiteke.
         domain: Ematen ari zaren lineako zerbitzuaren identifikazio bakarra.
         jurisdiction: Zerrendatu fakturak ordaintzen dituen pertsona bizi den herrialdea. Enpresa edo bestelako erakunde bat bada, adierazi egoitza duen herrialdea eta, kasuan kasu, hiria, eskualdea, lurraldea edo estatua.
         min_age: Ez luke izan behar zure jurisdikzioko legeek eskatzen duten gutxieneko adinetik beherakoa.
       user:
+        chosen_languages: Markatuta dagoenean, hautatutako hizkuntzetako bidalketak soilik erakutsiko dira denbora-lerro publikoetan. Ezarpen honek ez du eraginik zure Hasierako denbora-lerroan eta zerrendetan.
+        date_of_birth:
+          one: Ziurtatu behar dugu gutxienez %{count} urte dituzula %{domain} erabiltzeko. Ez dugu hau gordeko.
+          other: Ziurtatu behar dugu gutxienez %{count} urte dituzula %{domain} erabiltzeko. Ez dugu hau gordeko.
         role: Rolak erabiltzaileak dituen baimenak zeintzuk diren kontrolatzen du.
       user_role:
+        collection_limit: Rol hau duen erabiltzaile batek sor ditzakeen Bilduma kopurua mugatzen du. Kontuan izan zenbaki hau txikitzen duzunean, muga horretan dauden erabiltzaileek ez dutela Bildumarik galduko, baina ezin izango dutela gehiago sortu.
         color: Rolarentzat erabiltzaile interfazean erabiliko den kolorea, formatu hamaseitarreko RGB bezala
         highlighted: Honek rola publikoki ikusgai jartzen du
         name: Rolaren izen publikoa, rola bereizgarri bezala bistaratzeko ezarrita badago
         permissions_as_keys: Rol hau duten erabiltzaileek sarbidea izango dute...
         position: Maila goreneko rolak erabakitzen du gatazkaren konponbidea kasu batzuetan. Ekintza batzuk maila baxuagoko rolen gain bakarrik gauzatu daitezke
+        require_2fa: Rol hau duten erabiltzaileek bi urratseko autentifikazioa konfiguratu beharko dute Mastodon erabiltzeko
       username_block:
         allow_with_approval: Izena ematea zuzenean eragotzi beharrean, bat datozen erregistroek zure onarpena beharko dute
         comparison: Kontuan izan 'Scunthorpe arazoa' hitz-zatiak blokeatzean
+        username: Bat etorriko da maiuskulak eta minuskulak eta ohiko homoglifoak kontuan hartu gabe, hala nola "4" "a"-ren ordez edo "3" "e"-ren ordez
       webhook:
         events: Hautatu gertaerak bidaltzeko
         template: Osatu zure JSON karga interpolazio aldakorra erabiliz. Utzi hutsik JSON lehenetsiarentzat.
@@ -162,6 +181,7 @@ eu:
     labels:
       account:
         attribution_domains: Akreditatzeko baimendutako webguneak
+        discoverable: Nabarmendu nazazue aurkikuntza-esperientzietan
         fields:
           name: Etiketa
           value: Edukia
@@ -173,12 +193,12 @@ eu:
       account_migration:
         acct: Kontu berriaren helbidea
       account_warning_preset:
-        text: Aurrez ezarritako testua
+        text: Erantzunaren testua
         title: Izenburua
       admin_account_action:
         include_statuses: Txertatu salatutako tootak e-mailean
         send_email_notification: Jakinarazi erabiltzaileari e-mail bidez
-        text: Abisu pertsonalizatua
+        text: Erantzun pertsonalizatua
         type: Ekintza
         types:
           disable: Desaktibatu
@@ -186,7 +206,7 @@ eu:
           sensitive: Hunkigarria
           silence: Isiltarazi
           suspend: Kanporatu eta behin betiko ezabatu kontuko datuak
-        warning_preset_id: Erabili aurre-ezarritako abisu bat
+        warning_preset_id: Aurrez idatzitako erantzuna
       announcement:
         all_day: Egun osoko ekitaldia
         ends_at: Ekitaldiaren amaiera
@@ -209,6 +229,7 @@ eu:
         email: E-mail helbidea
         expires_in: Iraungitzea
         fields: Profilaren metadatuak
+        filter_action: Iragazkiaren ekintza
         header: Goiburua
         honeypot: "%{label} (ez bete)"
         inbox_url: Errelearen sarrera ontziaren URLa
@@ -225,10 +246,13 @@ eu:
         setting_always_send_emails: Bidali beti eposta jakinarazpenak
         setting_auto_play_gif: Erreproduzitu GIF animatuak automatikoki
         setting_boost_modal: Bultzaden ikusgaitasun-kontrola
+        setting_color_scheme: Modua
+        setting_contrast: Kontrastea
         setting_default_language: Argitalpenen hizkuntza
         setting_default_privacy: Bidalketarako ikusgarritasuna
         setting_default_quote_policy: Nork aipa dezake
         setting_default_sensitive: Beti markatu edukiak hunkigarri gisa
+        setting_default_spoiler_field: Erabili edukiaren abisuak lehenespenez
         setting_delete_modal: Eman abisua argitalpen bat ezabatu aurretik
         setting_disable_hover_cards: Desgaitu profilaren aurrebista gainetik igarotzean
         setting_disable_swiping: Desgaitu hatza pasatzeko mugimenduak
@@ -236,21 +260,25 @@ eu:
         setting_display_media_default: Lehenetsia
         setting_display_media_hide_all: Ezkutatu guztia
         setting_display_media_show_all: Erakutsi guztia
+        setting_display_own_boosts: Erakutsi nire bultzadak nire jario nagusian
+        setting_display_own_posts: Erakutsi nire bidalketak nire jario nagusian
         setting_emoji_style: Emojien estiloa
         setting_expand_spoilers: Zabaldu beti edukiaren abisuak dituzten argitalpenak
         setting_hide_network: Ezkutatu zure sarea
         setting_missing_alt_text_modal: Eman abisua testu alternatiborik gabeko multimedia-edukia argitaratu aurretik
         setting_quick_boosting: Gaitu bultzada azkarra
         setting_reduce_motion: Murriztu animazioen mugimenduak
+        setting_split_default_privacy_discoverable: Egin nire bidalketak aurkigarri jario publikoan eta bilaketa-emaitzetan
         setting_system_font_ui: Erabili sistemako tipografia lehenetsia
         setting_system_scrollbars_ui: Erabili sistemako desplazamendu-barra lehenetsia
         setting_theme: Gunearen azala
-        setting_trends: Erakutsi gaurko joerak
+        setting_theme_color: Gaiaren kolorea
         setting_unfollow_modal: Erakutsi baieztapen elkarrizketa-koadroa inor jarraitzeari utzi aurretik
         setting_use_blurhash: Erakutsi gradiente koloretsuak ezkutatutako multimediaren ordez
         setting_use_pending_items: Modu geldoa
         severity: Larritasuna
         sign_in_token_attempt: Segurtasun kodea
+        sign_in_token_resend: Bidali berriz segurtasun-kodea
         title: Izenburua
         type: Inportazio mota
         username: Erabiltzaile-izena
@@ -273,6 +301,7 @@ eu:
         closed_registrations_message: Izen-emateak itxita daudenerako mezu pertsonalizatua
         content_cache_retention_period: Urruneko edukiaren atxikipen-aldia
         custom_css: CSS pertsonalizatua
+        email_footer_text: Oineko testu gehigarria
         favicon: Gune-ikurra
         landing_page: Bisitari berrientzako harrera-orria
         local_live_feed_access: Tokiko argitalpenak nabarmentzen dituzten zuzeneko jarioetara sarbidea
@@ -281,6 +310,7 @@ eu:
         media_cache_retention_period: Multimediaren cachea atxikitzeko epea
         min_age: Gutxieneko adin-eskakizuna
         peers_api_enabled: Argitaratu aurkitutako zerbitzarien zerrenda APIan
+        postpone_confirmation_emails: Atzeratu berrespen-mezuak onarpenaren ondora arte
         profile_directory: Gaitu profil-direktorioa
         registrations_mode: Nork eman dezake izena
         remote_live_feed_access: Urruneko argitalpenak nabarmentzen dituzten zuzeneko jarioetara sarbidea
@@ -297,9 +327,13 @@ eu:
         status_page_url: Egoera-orriaren URLa
         theme: Lehenetsitako gaia
         thumbnail: Zerbitzariaren koadro txikia
+        thumbnail_description: Iruditxoaren testu alternatiboa
         trendable_by_default: Onartu joerak aurrez berrikusi gabe
         trends: Gaitu joerak
         wrapstodon: Gaitu Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Ulertzen dut eginbide hau gaitzeak zerbitzaritik bidalitako mezu elektronikoen kopurua nabarmen handitu dezakeela, eta ni naizela sortzen diren kostuen erantzule bakarra.
+        agreement_privacy_and_terms: Pribatutasun-politika eta Zerbitzuaren baldintzak eguneratu ditut.
       interactions:
         must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
         must_be_following: Blokeatu zuk jarraitzen ez dituzu horien jakinarazpenak
@@ -319,10 +353,12 @@ eu:
       notification_emails:
         appeal: Norbaitek moderatzailearen erabakia eskatu du
         digest: Bidali laburpenak e-mail bidez
+        end_of_support: Mastodonen uneko bertsioa laguntza-aldiaren amaierara hurbiltzen ari da
         favourite: Bidali e-mail bat norbaitek zure mezua gogoko duenean
         follow: Bidali e-mail bat norbaitek jarraitzen zaituenean
         follow_request: Bidali e-mail bat norbaitek zu jarraitzea eskatzen duenean
         mention: Bidali e-mail bat norbaitek zu aipatzean
+        moderation_suggestions: Moderazio-iradokizun automatikoak eskuragarri daude
         pending_account: Bidali e-mail bat kontu bat berrikusi behar denean
         quote: Norbaitek aipatu zaitu
         reblog: Bidali e-mail bat norbaitek zure mezuari bultzada ematen badio
@@ -338,6 +374,7 @@ eu:
         hint: Informazio gehigarria
         text: Araua
       settings:
+        email_subscriptions: Gaitu posta elektroniko bidezko izen-emateak
         indexable: Gehitu profila bilaketa-motorretan
         show_application: Utzi agerian tootak bidaltzeko erabilitako aplikazioa
       tag:
@@ -366,11 +403,13 @@ eu:
         role: Rola
         time_zone: Ordu zona
       user_role:
+        collection_limit: Erabiltzaile bakoitzeko gehieneko Bilduma kopurua
         color: Bereizgarriaren kolorea
         highlighted: Bistaratu rola bereizgarri bezala erabiltzaileen profiletan
         name: Izena
         permissions_as_keys: Baimenak
         position: Lehentasuna
+        require_2fa: Eskatu bi urratseko autentifikazioa
       username_block:
         allow_with_approval: Baimendu izen-emateak onarpen bidez
         comparison: Konparazio-metodoa

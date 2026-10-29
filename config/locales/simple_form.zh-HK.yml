@@ -18,7 +18,6 @@ zh-HK:
       admin_account_action:
         include_statuses: 使用者將會看到哪些文章導致檢舉或警告
         send_email_notification: 使用者將收到帳戶發生之事情的解釋
-        text_html: 選用。你能使用 toot 語法。你可 <a href="%{path}">新增警告預設</a> 來節省時間
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
         types:
           disable: 禁止該使用者使用他們的帳號，但是不刪除或隱藏他們的內容。
@@ -26,7 +25,6 @@ zh-HK:
           sensitive: 強制標記此用戶的所有媒體附件為敏感內容。
           silence: 禁止該使用者發佈公開帖文，沒有追蹤他們的人不會看到其帖文和通知。關閉所有對該帳號的檢舉報告。
           suspend: 禁止與該帳號的所有互動，並移除其內容。可於 30 天內撤銷此動作。關閉所有對此帳號的檢舉報告。
-        warning_preset_id: 選用。你仍可在預設訊息的結尾加入自訂文字
       announcement:
         all_day: 勾選後，只會顯示出時間範圍中的日期部分
         ends_at: 可選，公告會在該時間點自動取消發布
@@ -140,12 +138,10 @@ zh-HK:
       account_migration:
         acct: 新帳號名稱
       account_warning_preset:
-        text: 預設文字
         title: 標題
       admin_account_action:
         include_statuses: 在電郵中加入被檢舉的文章
         send_email_notification: 透過電子信件通知使用者
-        text: 自訂警告
         type: 操作
         types:
           disable: 停用
@@ -153,7 +149,6 @@ zh-HK:
           sensitive: 敏感内容
           silence: 限制
           suspend: 停權
-        warning_preset_id: 使用預設警告
       announcement:
         all_day: 全天活動
         ends_at: 活動結束時間
@@ -203,7 +198,6 @@ zh-HK:
         setting_reduce_motion: 減少動畫效果
         setting_system_font_ui: 使用系統預設字型
         setting_theme: 網站主題
-        setting_trends: 顯示今天的趨勢
         setting_unfollow_modal: 取消關注前請讓我確定
         setting_use_blurhash: 將隱藏媒體以彩色漸變圖樣表示
         setting_use_pending_items: 限速模式

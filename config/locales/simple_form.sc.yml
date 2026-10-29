@@ -12,13 +12,11 @@ sc:
       admin_account_action:
         include_statuses: S'utente at a bìdere is tuts chi ant causadu s'atzione o s'avisu de moderatzione
         send_email_notification: S'utente at a retzire un'ispiegatzione de su chi siat sutzèdidu in su contu suo
-        text_html: Optzionale. Podes impreare sintassi in is tuts. Podes <a href="%{path}">agiùnghere avisos predefinidos</a> pro istraviare tempus
         type_html: Sèbera ite si depet fàghere cun <strong>%{acct}</strong>
         types:
           disable: Impedi a s'utente de impreare su contu suo, ma non de cantzellare o cuare is cuntenutos.
           none: Imprea custu pro imbiare un'avisu a s'utente, sena pedire peruna àtera atzione.
           sensitive: Custringhe totu is alligongiados multimediales de custu utente a èssere marcados comente sensìbiles.
-        warning_preset_id: Optzionale. Podes ancora agiùnghere testu personalizadu a s'acabu de cussu predefinidu
       announcement:
         all_day: Si est marcadu, ant a èssere ammustradas isceti is datas de s'intervallu de tempus
         ends_at: Optzionale. S'annùntziu at a acabbare de abarrare publicadu in custu momentu
@@ -81,12 +79,10 @@ sc:
       account_migration:
         acct: Nòmine utente de su contu nou
       account_warning_preset:
-        text: Testu predefinidu
         title: Tìtulu
       admin_account_action:
         include_statuses: Include is tuts sinnalados in sa lìtera eletrònica
         send_email_notification: Notìfica s'utente pro mèdiu de posta eletrònica
-        text: Avisu personalizadu
         type: Atzione
         types:
           disable: Cungela
@@ -94,7 +90,6 @@ sc:
           sensitive: Sensìbile
           silence: A sa muda
           suspend: Suspende
-        warning_preset_id: Imprea un'avisu predefinidu
       announcement:
         all_day: Eventu de totu sa die
         ends_at: Fine de s'eventu
@@ -141,7 +136,6 @@ sc:
         setting_reduce_motion: Mìnima su movimentu in is animatziones
         setting_system_font_ui: Imprea sa tipografia predefinida de su sistema
         setting_theme: Tema de su situ
-        setting_trends: Ammustra is tendèntzias de oe
         setting_unfollow_modal: Ammustra unu diàlogu de cunfirma in antis de acabbare de sighire una persone
         setting_use_blurhash: Ammustra gradientes colorados pro is elementos multimediales cuados
         setting_use_pending_items: Modalidade lenta

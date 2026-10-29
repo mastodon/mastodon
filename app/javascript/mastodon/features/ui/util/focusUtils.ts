@@ -1,5 +1,3 @@
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
-
 import {
   getColumnSkipLinkId,
   getNavigationSkipLinkId,
@@ -27,39 +25,6 @@ function findFirstVisibleWithRect(
   return null;
 }
 
-function focusColumnTitle(index: number, multiColumn: boolean) {
-  if (multiColumn) {
-    const column = document.querySelector(`.column:nth-child(${index})`);
-    if (column) {
-      column
-        .querySelector<HTMLAnchorElement>(
-          `#${getColumnSkipLinkId(index - 1)}, #${getNavigationSkipLinkId()}`,
-        )
-        ?.focus();
-    }
-  } else {
-    const idSelector =
-      index === 2
-        ? `#${getNavigationSkipLinkId()}`
-        : `#${getColumnSkipLinkId(1)}`;
-
-    document.querySelector<HTMLAnchorElement>(idSelector)?.focus();
-  }
-}
-
-function focusRedesignColumnTitle(index: number) {
-  const idToFocus =
-    index === 1 ? getNavigationSkipLinkId() : getColumnSkipLinkId(index - 1);
-  const title = document.querySelector<HTMLElement>(`#${idToFocus}`);
-
-  if (!title) {
-    return false;
-  }
-
-  title.focus();
-  return true;
-}
-
 /**
  * Move focus to the column of the passed index (1-based).
  * Focus is placed on the topmost visible item, or the column title.
@@ -75,7 +40,7 @@ export function focusFirstVisibleItemInColumn(columnIndex: number) {
   }
 
   function fallback() {
-    focusRedesignColumnTitle(columnIndex);
+    focusColumn(columnIndex);
     return false;
   }
 
@@ -109,7 +74,9 @@ export function focusFirstVisibleItemInColumn(columnIndex: number) {
 
   const columnHeaderHeight =
     parseInt(
-      getComputedStyle(scrollParent).getPropertyValue('--column-header-height'),
+      getComputedStyle(scrollParent).getPropertyValue(
+        '--current-column-header-height',
+      ),
     ) || 0;
 
   if (
@@ -128,70 +95,15 @@ export function focusFirstVisibleItemInColumn(columnIndex: number) {
  * Focus is placed on the topmost visible item, or the column title.
  */
 export function focusColumn(index = 1) {
-  if (isRedesignEnabled()) {
-    // In the redesign, always focus the column title
-    focusRedesignColumnTitle(index);
-    return;
-  }
+  const idToFocus =
+    index === 1 ? getNavigationSkipLinkId() : getColumnSkipLinkId(index - 1);
+  const title = document.querySelector<HTMLElement>(`#${idToFocus}`);
 
-  // Skip the leftmost drawer in multi-column mode
-  const isMultiColumnLayout = !!document.querySelector(
-    'body.layout-multiple-columns',
-  );
-  const indexOffset = isMultiColumnLayout ? 1 : 0;
-
-  const column = document.querySelector(
-    `.column:nth-child(${index + indexOffset})`,
-  );
-
-  function fallback() {
-    focusColumnTitle(index + indexOffset, isMultiColumnLayout);
+  if (!title) {
     return false;
   }
 
-  if (!column) {
-    return fallback();
-  }
-
-  const container = column.querySelector('.scrollable');
-
-  if (!container) {
-    return fallback();
-  }
-
-  const focusableItems = Array.from(
-    container.querySelectorAll<HTMLElement>(
-      '.focusable:not(.status__quote .focusable)',
-    ),
-  );
-
-  // Find first item visible in the viewport
-  const itemToFocus = findFirstVisibleWithRect(focusableItems);
-
-  if (!itemToFocus) {
-    return fallback();
-  }
-
-  const viewportWidth =
-    window.innerWidth || document.documentElement.clientWidth;
-  const { item, rect } = itemToFocus;
-
-  const scrollParent = isMultiColumnLayout
-    ? container
-    : document.documentElement;
-  const columnHeaderHeight =
-    parseInt(
-      getComputedStyle(scrollParent).getPropertyValue('--column-header-height'),
-    ) || 0;
-
-  if (
-    scrollParent.scrollTop > item.offsetTop - columnHeaderHeight ||
-    rect.right > viewportWidth ||
-    rect.left < 0
-  ) {
-    itemToFocus.item.scrollIntoView(true);
-  }
-  itemToFocus.item.focus();
+  title.focus();
   return true;
 }
 

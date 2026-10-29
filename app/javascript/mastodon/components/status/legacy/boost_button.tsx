@@ -162,7 +162,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
         icon: quote.icon,
         disabled: quoteItem.disabled,
         action: () => {
-          dispatch(quoteComposeById(statusId));
+          dispatch(quoteComposeById({ statusId }));
         },
       },
     ] satisfies [ActionMenuItemWithIcon, ActionMenuItemWithIcon];
