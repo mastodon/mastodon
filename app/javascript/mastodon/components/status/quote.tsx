@@ -174,13 +174,7 @@ export const QuotedStatus: React.FC<{
       </CardBody>
 
       {!disableOpen && (
-        <PrimaryCardLink
-          as={Link}
-          to={statusTo}
-          className={classes.mainLink}
-          tabIndex={-1}
-          aria-hidden
-        />
+        <PrimaryCardLink as={Link} to={statusTo} tabIndex={-1} aria-hidden />
       )}
 
       {!status.spoilerHtml && <QuotedStatusLink status={status} />}
