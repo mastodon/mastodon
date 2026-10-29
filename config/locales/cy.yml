@@ -81,6 +81,7 @@ cy:
       demote: Diraddio
       destroyed_msg: Mae data %{username} bellach mewn ciw i gael ei ddileu yn fuan
       disable: Rhewi
+      disable_sign_in_token: Analluogi her cod diogelwch dros dro
       disable_sign_in_token_auth: Analluogi dilysu tocyn e-bost
       disable_two_factor_authentication: Diffodd 2FA
       disabled: Wedi rhewi
@@ -90,6 +91,7 @@ cy:
       email: E-bost
       email_status: Statws e-bost
       enable: Dadrewi
+      enable_sign_in_token: Galluogi her cod diogelwch
       enable_sign_in_token_auth: Galluogi dilysu tocyn e-bost
       enabled: Wedi ei alluogi
       enabled_msg: Wedi dadrewi cyfrif %{username} yn llwyddiannus
@@ -216,6 +218,7 @@ cy:
         create_user_role: Creu Rôl
         create_username_block: Creu Rheol Enw Defnyddiwr
         demote_user: Diraddio Defnyddiwr
+        destroy_account: Dileu Data Cyfrif
         destroy_announcement: Dileu Cyhoeddiad
         destroy_canonical_email_block: Dileu Rhwystr E-bost
         destroy_custom_emoji: Dileu Emoji Addasedig
@@ -284,6 +287,7 @@ cy:
         create_user_role_html: Mae %{name} wedi creu rôl %{target}
         create_username_block_html: Mae %{name} wedi ychwanegu rheol ar gyfer enwau defnyddwyr sy'n cynnwys %{target}
         demote_user_html: Mae %{name} wedi israddio defnyddiwr %{target}
+        destroy_account_html: Mae %{name} wedi dileu data cyfrif ar gyfer %{target}
         destroy_announcement_html: Mae %{name} wedi dileu cyhoeddiad %{target}
         destroy_canonical_email_block_html: Mae %{name} wedi dad-rwystro parth e-bost %{target}
         destroy_collection_html: Mae %{name} wedi tynnu casgliad gan %{target}
@@ -1578,8 +1582,11 @@ cy:
   deletes:
     challenge_not_passed: Nid oedd y wybodaeth a roesoch yn gywir
     confirm_password: Mewnbynnwch eich cyfrinair presennol i gadarnhau mai chi sydd yno
+    confirm_username: Cadarnhau enw defnyddiwr
+    confirm_username_hint_html: Teipiwch <code>%{username}</code> i gadarnhau'r cyfrif rydych chi am ei ddileu
     proceed: Dileu cyfrif
     success_msg: Llwyddwyd i ddileu eich cyfrif
+    title: Dileu cyfrif %{acct}
     warning:
       before: 'Cyn bwrw ymlaen, darllenwch y nodiadau hyn yn ofalus:'
       caches: Efallai bydd cynnwys sydd wedi'i storio dros dro gan weinyddion eraill yn parhau
@@ -1808,6 +1815,7 @@ cy:
       incompatible_type: Nid yw'n gydnaws â'r math mewnforio a ddewiswyd
       invalid_csv_file: 'Ffeil CSV annilys. Gwall: %{error}'
       invalid_json_file: 'Ffeil JSON annilys. Gwall: %{error}'
+      no_data: Dyw'r ffeil hon ddim yn cynnwys unrhyw ddata sy'n cyfateb i'r math mewnforio sy'n cael ei roi
       over_rows_processing_limit: yn cynnwys mwy na %{count} o resi
       status_not_found_warning: Mae rhai o'ch hidlau yn cuddio postiadau penodol nad yw'r gweinydd hwn yn eu hadnabod. Fydd y cofnodion hyn ddim yn cael eu hidlo'n awtomatig os fyddan nhw'n cael eu darganfod yn ddiweddarach gan y gweinydd.
       too_large: Mae'r ffeil yn rhy fawr
@@ -2489,6 +2497,14 @@ cy:
       further_actions_html: Os nad chi oedd hwn, rydym yn argymell eich bod yn %{action} ar unwaith oherwydd gall fod o dan fygythiad.
       subject: Methiant dilysu ail ffactor
       title: Wedi methu dilysu ail ffactor
+    sign_in_token:
+      change_password: newidiwch eich cyfrinair
+      details: 'Dyma fanylion yr ymgais:'
+      explanation: 'Rydym weddi canfod ymgais i fewngofnodi i''ch cyfrif ar ôl cyfnod hir o anweithgarwch. Os mai chi yw hwn, nodwch y cod diogelwch isod ar y dudalen her mewngofnodi:'
+      further_actions: 'Os nad chi oedd hyn, newidiwch eich cyfrinair a galluogwch ddilysu dau ffactor ar eich cyfrif. Gallwch wneud hynny yma:'
+      further_actions_html: Os nad chi oedd hyn, rydym yn argymell eich bod yn %{action} ar unwaith ac yn galluogi dilysu dau ffactor i gadw'ch cyfrif yn ddiogel.
+      subject: Cadarnhewch yr ymgais i fewngofnodi
+      title: Ymgais mewngofnodi
     suspicious_sign_in:
       change_password: newidiwch eich cyfrinair
       details: 'Dyma fanylion y mewngofnodi:'
@@ -2582,8 +2598,12 @@ cy:
       title: Croeso, %{name}!
   users:
     follow_limit_reached: Nid oes modd i chi ddilyn mwy na %{limit} o bobl
+    generic_access_help_html: Problemau wrth gael mynediad i'ch cyfrif? Gallwch gysylltu â %{email} am gymorth
     go_to_sso_account_settings: Ewch i osodiadau cyfrif eich darparwr hunaniaeth
+    inactive_sign_in_confirmation: Mae hi wedi bod yn amser ers i chi fewngofnodi, felly rydym yn anfon cod diogelwch i'ch cyfeiriad e-bost i gadarnhau mai chi ydyw.
+    inactive_sign_in_title: Cadarnhewch y cod diogelwch
     invalid_otp_token: Côd dau-ffactor annilys
+    invalid_sign_in_token: Cod diogelwch annilys
     otp_lost_help_html: Os colloch chi fynediad i'r ddau, mae modd i chi gysylltu a %{email}
     rate_limited: Gormod o geisiadau dilysu, ceisiwch eto yn nes ymlaen.
     seamless_external_login: Rydych chi wedi mewngofnodi trwy wasanaeth allanol, felly nid yw gosodiadau cyfrinair ac e-bost ar gael.

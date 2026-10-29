@@ -78,6 +78,7 @@ ga:
       demote: Ísligh
       destroyed_msg: Tá sonraí %{username} ciúáilte anois le scriosadh gan mhoill
       disable: Reoigh
+      disable_sign_in_token: Díchumasaigh go sealadach an dúshlán cóid slándála
       disable_sign_in_token_auth: Díchumasaigh fíordheimhniú comhartha ríomhphoist
       disable_two_factor_authentication: Díchumasaigh 2FA
       disabled: Reoite
@@ -87,6 +88,7 @@ ga:
       email: Ríomhphost
       email_status: Stádas ríomhphoist
       enable: Dí-reoigh
+      enable_sign_in_token: Cumasaigh dúshlán an chóid slándála
       enable_sign_in_token_auth: Cumasaigh fíordheimhniú comhartha ríomhphoist
       enabled: Ar chumas
       enabled_msg: D'éirigh le dí-reoite cuntas %{username}
@@ -1561,8 +1563,11 @@ ga:
   deletes:
     challenge_not_passed: Ní raibh an fhaisnéis a d'iontráil tú ceart
     confirm_password: Cuir isteach do phasfhocal reatha chun d'aitheantas a fhíorú
+    confirm_username: Deimhnigh ainm úsáideora
+    confirm_username_hint_html: Clóscríobh <code>%{username}</code> le do thoil chun an cuntas is mian leat a scriosadh a dhearbhú
     proceed: Scrios cuntas
     success_msg: Scriosadh do chuntas go rathúil
+    title: Scrios an cuntas %{acct}
     warning:
       before: 'Sula dtéann tú ar aghaidh, léigh na nótaí seo go cúramach le do thoil:'
       caches: Seans go seasfaidh inneachar atá i dtaisce ag freastalaithe eile
@@ -2445,6 +2450,14 @@ ga:
       further_actions_html: Mura tusa a bhí ann, molaimid duit %{action} a dhéanamh láithreach toisc go bhféadfadh sé a bheith i gcontúirt.
       subject: Teip fíordheimhnithe dara fachtóir
       title: Theip ar fhíordheimhniú an dara fachtóir
+    sign_in_token:
+      change_password: athraigh do phasfhocal
+      details: 'Seo sonraí na hiarrachta:'
+      explanation: 'Braitheadh ​​iarracht logáil isteach i do chuntas tar éis tréimhse fhada neamhghníomhaíochta. Más tusa atá i gceist, cuir isteach an cód slándála thíos ar an leathanach fíoraithe logála isteach:'
+      further_actions: 'Mura tusa a rinne é seo, athraigh do phasfhocal le do thoil agus cuir fíordheimhniú dhá fhachtóir i ngníomh ar do chuntas. Is féidir leat é sin a dhéanamh anseo:'
+      further_actions_html: Mura tusa a rinne é seo, molaimid duit %{action} láithreach agus fíordheimhniú dhá fhachtóir a chumasú chun do chuntas a choinneáil slán.
+      subject: Deimhnigh an iarracht logáil isteach, le do thoil
+      title: Iarracht logáil isteach
     suspicious_sign_in:
       change_password: do phasfhocal a athrú
       details: 'Seo sonraí faoin síniú isteach:'
@@ -2537,8 +2550,12 @@ ga:
       title: Fáilte ar bord, %{name}!
   users:
     follow_limit_reached: Ní féidir leat níos mó ná %{limit} duine a leanúint
+    generic_access_help_html: An bhfuil deacracht agat rochtain a fháil ar do chuntas? Is féidir leat teagmháil a dhéanamh le %{email} chun cúnamh a fháil
     go_to_sso_account_settings: Téigh chuig socruithe cuntais do sholáthraí aitheantais
+    inactive_sign_in_confirmation: Tá tamall ann ó logáil tú isteach, mar sin táimid ag seoladh cód slándála chuig do sheoladh ríomhphoist chun a dhearbhú gurb tusa atá i gceist.
+    inactive_sign_in_title: Deimhnigh an cód slándála, le do thoil
     invalid_otp_token: Cód dhá-fhachtóir neamhbhailí
+    invalid_sign_in_token: Cód slándála neamhbhailí
     otp_lost_help_html: Má chaill tú rochtain ar an dá cheann, is féidir leat dul i dteagmháil le %{email}
     rate_limited: An iomarca iarrachtaí fíordheimhnithe, bain triail eile as ar ball.
     seamless_external_login: Tá tú logáilte isteach trí sheirbhís sheachtrach, mar sin níl socruithe pasfhocail agus ríomhphoist ar fáil.

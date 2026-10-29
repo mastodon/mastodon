@@ -69,6 +69,7 @@ fi:
       demote: Alenna
       destroyed_msg: Käyttäjän %{username} tiedot ovat nyt jonossa poistettavaksi välittömästi
       disable: Jäädytä
+      disable_sign_in_token: Poista turvakoodihaaste käytöstä väliaikaisesti
       disable_sign_in_token_auth: Poista sähköpostitunnuksella todennus käytöstä
       disable_two_factor_authentication: Poista kaksivaiheinen todennus käytöstä
       disabled: Jäädytetty
@@ -78,6 +79,7 @@ fi:
       email: Sähköpostiosoite
       email_status: Sähköpostiosoitteen tila
       enable: Kumoa jäädytys
+      enable_sign_in_token: Ota turvakoodihaaste käyttöön
       enable_sign_in_token_auth: Ota sähköpostitunnuksella todennus käyttöön
       enabled: Käytössä
       enabled_msg: Käyttäjän %{username} tilin jäädytys kumottiin onnistuneesti
@@ -969,7 +971,7 @@ fi:
         privacy: Yksityisyys
         profile_directory: Profiilihakemisto
         public_timelines: Julkiset aikajanat
-        publish_statistics: Julkaise tilastot
+        publish_statistics: Julkaise tilastoja
         title: Löydettävyys
         trends: Trendit
         wrapstodon: Wrapstodon
@@ -1820,7 +1822,7 @@ fi:
     authentication_methods:
       otp: kaksivaiheisen todennuksen sovelluksella
       password: salasanalla
-      sign_in_token: sähköpostin suojauskoodilla
+      sign_in_token: sähköpostin turvakoodilla
       webauthn: suojausavaimella
     description_html: Jos näet toimintaa, jota et tunnista, harkitse salasanan vaihtamista ja kaksivaiheisen todennuksen käyttöön ottamista.
     empty: Todennushistoriaa ei ole saatavilla
@@ -2296,14 +2298,20 @@ fi:
     failed_2fa:
       details: 'Sisäänkirjautumispyrkimyksen yksityiskohtaiset tiedot:'
       explanation: Joku on yrittänyt kirjautua tilillesi mutta antoi väärän toisen todennustunnisteen.
-      further_actions_html: Jos se et ollut sinä, suosittelemme, että %{action} välittömästi, sillä se on saattanut vaarantua.
+      further_actions_html: Jos se et ollut sinä, suosittelemme, että %{action} heti, sillä se on saattanut vaarantua.
       subject: Kaksivaiheisen todennuksen virhe
       title: Kaksivaiheisen todennuksen toinen vaihe epäonnistui
+    sign_in_token:
+      change_password: vaihdat salasanasi
+      further_actions: 'Jos se et ollut sinä, vaihda salasanasi ja ota kaksivaiheinen todennus käyttöön tililläsi. Voit tehdä sen täällä:'
+      further_actions_html: Jos se et ollut sinä, suosittelemme, että %{action} heti ja otat kaksivaiheisen todennuksen käyttöön pitääksesi tilisi turvassa.
+      subject: Vahvista kirjautumisyritys
+      title: Kirjautumisyritys
     suspicious_sign_in:
       change_password: vaihdat salasanasi
       details: 'Tässä on tiedot kirjautumisesta:'
       explanation: Olemme havainneet kirjautumisen tilillesi uudesta IP-osoitteesta.
-      further_actions_html: Jos tämä et ollut sinä, suosittelemme, että %{action} heti ja otat käyttöön kaksivaiheisen todennuksen pitääksesi tilisi turvassa.
+      further_actions_html: Jos se et ollut sinä, suosittelemme, että %{action} heti ja otat kaksivaiheisen todennuksen käyttöön pitääksesi tilisi turvassa.
       subject: Tiliäsi on käytetty uudesta IP-osoitteesta
       title: Uusi kirjautuminen
     terms_of_service_changed:
@@ -2389,7 +2397,10 @@ fi:
   users:
     follow_limit_reached: Et voi seurata yli %{limit} käyttäjää
     go_to_sso_account_settings: Avaa identiteettitarjoajasi tiliasetukset
+    inactive_sign_in_confirmation: Siitä on aikaa, kun olet viimeksi kirjaudunut sisään, joten lähetämme turvakoodin sähköpostiosoitteeseesi, jotta voimme vahvistaa henkilöllisyytesi.
+    inactive_sign_in_title: Vahvista turvakoodi
     invalid_otp_token: Väärä kaksivaiheisen todennuksen koodi
+    invalid_sign_in_token: Virheellinen turvakoodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyden osoitteeseen %{email}
     rate_limited: Liian monta todennusyritystä – yritä uudelleen myöhemmin.
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.

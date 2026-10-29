@@ -3,18 +3,18 @@ vi:
   simple_form:
     hints:
       account:
-        attribution_domains: Bảo vệ khỏi những sự gán ghép sai.
+        attribution_domains: Nhập mỗi cái một dòng, để tránh bị kết nối lẫn lộn với nhau.
         discoverable: Bạn có thể được nêu bật trong một gói khởi đầu của người khác. Bạn và tút công khai của bạn sẽ được đề xuất trên Mastodon.
         display_name: Tên đầy đủ hoặc biệt danh đều được.
-        fields: Blog của bạn, nghề nghiệp, tuổi hoặc bất kỳ.
-        indexable: Mọi người có thể tìm kiếm và tương tác với những tút công khai của bạn trên Mastodon.
+        fields: Website, nghề nghiệp, tuổi hoặc bất kỳ thứ gì bạn thích.
+        indexable: Mọi người có thể tìm kiếm và tương tác với những bài đăng công khai của bạn trên Mastodon.
         note: 'Bạn có thể @aiđó hoặc #hashtags.'
         show_collections: Mọi người sẽ biết bạn theo dõi ai và ai theo dõi bạn.
         unlocked: Mọi người sẽ theo dõi bạn mà không cần bạn cho phép.
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
       account_migration:
-        acct: tên_người_dùng@máy chủ của tài khoản bạn muốn chuyển sang
+        acct: Nhập tên_người_dùng@máy chủ của tài khoản bạn muốn chuyển sang
       account_warning_preset:
         text: Bạn có thể dùng URL, hashtag và nhắc đến
         title: Tùy chọn. Không cho người nhận xem
@@ -45,18 +45,18 @@ vi:
         context: Chọn những nơi áp dụng bộ lọc
         current_password: Để bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
-        digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
-        email: Bạn sẽ được gửi một email xác minh
+        digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn trong lúc vắng mặt
+        email: Bạn vừa được nhận một email xác minh
         header: WEBP, PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         inbox_url: Sao chép URL của máy chủ mà bạn muốn dùng
-        irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả sau khi xóa bộ lọc
+        irreversible: Bài đăng đã bị lọc qua sẽ không bao giờ hiển thị nữa, kể cả sau khi tắt bộ lọc
         locale: Ngôn ngữ của giao diện, email và thông báo đẩy
         password: Tối thiểu 8 ký tự
-        phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
+        phrase: Khớp hiển thị với văn bản hoặc nội dung cảnh báo của bài đăng
         scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
-        setting_advanced_layout: Cho phép bạn xem bảng tin, thông báo và một cột thứ ba mà bạn chọn. Không nên dùng nếu màn hình nhỏ.
-        setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì sẽ không hiện những lượt đăng lại khác trên bảng tin
-        setting_always_send_emails: Bình thường thì sẽ không gửi khi bạn đang dùng Mastodon
+        setting_advanced_layout: Bố cục hiển thị nhiều cột. Cho phép bạn xem bảng tin, thông báo và một cột thứ ba tùy ý. Không khuyên dùng trên màn hình nhỏ.
+        setting_aggregate_reblogs: Không hiển thị lại những bài boost mới đã được boost trước đó (áp dụng cho bài boost mới)
+        setting_always_send_emails: Không gởi thông báo qua email khi bạn đang hoạt động trên Mastodon
         setting_boost_modal: Nếu bật, trước khi đăng lại sẽ mở hộp thoại xác nhận - trong đó bạn có thể thay đổi mức độ hiển thị tút của mình.
         setting_default_quote_policy_private: Không thể trích dẫn tút chỉ dành cho người theo dõi trên Mastodon.
         setting_default_quote_policy_unlisted: Khi ai đó trích dẫn bạn, tút của họ cũng sẽ bị ẩn khỏi bảng tin công khai.
@@ -64,7 +64,7 @@ vi:
         setting_display_media_default: Cảnh báo trước khi hiện phương tiện nhạy cảm
         setting_display_media_hide_all: Cảnh báo trước khi hiện tất cả phương tiện
         setting_display_media_show_all: Hiện tất cả phương tiện mà không cảnh báo, kể cả phương tiện đánh dấu nhạy cảm
-        setting_emoji_style: '"Tự động" sẽ dùng biểu tượng cảm xúc nguyên bản, nhưng đối với các trình duyệt cũ sẽ chuyển thành Twemoji.'
+        setting_emoji_style: '"Tự động" sẽ dùng biểu tượng cảm xúc thiết bị, còn trình duyệt cũ sẽ chuyển thành Twemoji.'
         setting_quick_boosting_html: Nếu bật, nhấn biểu tượng %{boost_icon} Đăng lại sẽ đăng lại lập tức, thay vì mở menu xổ xuống đăng lại/trích dẫn. Chuyển vị trí hành động trích dẫn sang menu %{options_icon} (Tùy chọn).
         setting_use_blurhash: Phủ lớp màu làm nhòe đi hình ảnh nhạy cảm
         setting_use_pending_items: Dồn lại toàn bộ tút mới và chỉ hiển thị khi nhấn vào
@@ -271,6 +271,7 @@ vi:
         setting_use_pending_items: Chế độ chậm
         severity: Mức độ nghiêm trọng
         sign_in_token_attempt: Mã an toàn
+        sign_in_token_resend: Gửi lại mã bảo mật
         title: Tựa đề
         type: Kiểu nhập
         username: Tên người dùng

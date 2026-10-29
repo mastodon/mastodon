@@ -75,6 +75,7 @@ gd:
       demote: Ìslich
       destroyed_msg: Chaidh an dàta aig %{username} a chur air a’ chiutha ach an dèid a sguabadh às an ceann greis bheag
       disable: Reòth
+      disable_sign_in_token: Cuir dùbhlan còd tèarainteachd à comas gu sealadach
       disable_sign_in_token_auth: Cuir à comas dearbhadh le tòcan puist-d
       disable_two_factor_authentication: Cuir an dearbhadh dà-cheumnach à comas
       disabled: Reòthte
@@ -84,6 +85,7 @@ gd:
       email: Post-d
       email_status: Staid a’ phuist-d
       enable: Dì-reòth
+      enable_sign_in_token: Cuir an comas dùbhlan còd tèarainteachd
       enable_sign_in_token_auth: Cuir an comas dearbhadh le tòcan puist-d
       enabled: An comas
       enabled_msg: Chaidh an cunntas aig %{username} a dhì-reòthadh
@@ -208,6 +210,7 @@ gd:
         create_user_role: Cruthaich dreuchd
         create_username_block: Cruthaich riaghailt ainm-cleachdaiche
         demote_user: Ìslich an cleachdaiche
+        destroy_account: Sguab às dàta a’ chunntais
         destroy_announcement: Sguab às am brath-fios
         destroy_canonical_email_block: Sguab às bacadh a’ phuist-d
         destroy_custom_emoji: Sguab às an t-Emoji gnàthaichte
@@ -276,6 +279,7 @@ gd:
         create_user_role_html: Chruthaich %{name} an dreuchd %{target}
         create_username_block_html: Chuir %{name} riaghailt ris airson ainmean-cleachdaidh sa bheil %{target}
         demote_user_html: Dh’ìslich %{name} an cleachdaiche %{target}
+        destroy_account_html: Sguab %{name} às dàta a’ chunntais aig %{target}
         destroy_announcement_html: Sguab %{name} às am brath-fios %{target}
         destroy_canonical_email_block_html: Dhì-bhac %{name} am post-d air a bheil an hais %{target}
         destroy_collection_html: Thug %{name} cruinneachadh aig %{target} air falbh
@@ -1536,8 +1540,11 @@ gd:
   deletes:
     challenge_not_passed: Chan eil am fiosrachadh a chuir thu a-steach mar bu chòir
     confirm_password: Cuir a-steach am facal-faire làithreach a dhearbhadh cò thusa
+    confirm_username: Dearbh an t-ainm-cleachdaiche
+    confirm_username_hint_html: Cuir ann <code>%{username}</code> a dhearbhadh a’ chunntais a tha thu airson sguabadh às
     proceed: Sguab às an cunntas
     success_msg: Chaidh an cunntas agad a sguabadh às
+    title: Sguab às an cunntas %{acct}
     warning:
       before: 'Mus lean thu air adhart, leugh na nòtaichean seo gu cùramach:'
       caches: Dh’fhaoidte gum mair susbaint ann an tasgadain fhrithealaichean eile
@@ -1639,6 +1646,7 @@ gd:
       content: Tha sinn duilich ach chaidh rudeigin ceàrr a-bhos an-seo.
       title: Chan eil an duilleag seo mar bu chòir
     '503': Cha b’ urrainn an duilleag fhrithealadh ri linn mearachd sealach an fhrithealaiche.
+    go_home: Dhachaigh
     noscript_html: Airson aplacaid-lìn Mastodon a chleachdadh, cuir JavaScript an comas. Mar roghainn eile, ’s urrainn dhut fear dhe na <a href="%{apps_path}">cliantan tùsail</a> airson Mastodon dhan ùrlar agad fheuchainn.
   existing_username_validator:
     not_found: cha b’ urrainn dhuinn cleachdaiche ionadail a lorg air a bheil an t-ainm-cleachdaiche seo
@@ -1749,6 +1757,7 @@ gd:
       incompatible_type: Chan eil e co-chòrdail le seòrsa an ion-phortaidh a thagh thu
       invalid_csv_file: 'Faidhle CSV mì-dhligheach. Mearachd: %{error}'
       invalid_json_file: 'Faidhle JSON mì-dhligheach. Mearachd: %{error}'
+      no_data: Chan eil dàta san fhaidhle seo a mhaidsicheas seòrsa an ion-phortaidh
       over_rows_processing_limit: tha còrr is %{count} ràgh(an) ann
       status_not_found_warning: Falaichidh cuid dhe na criathragan agad postaichean sònraichte air nach eil am frithealaiche seo eòlach. Cha dèid na postaichean seo a chriathradh gu fèin-obrachail ma gheibh am frithealaiche lorg orra uaireigin sam àm ri teachd.
       too_large: Tha am faidhle ro mhòr
@@ -2390,6 +2399,14 @@ gd:
       further_actions_html: Mur e thu fhèin a bh’ ann, mholamaid gun %{action} sa bhad on a chaidh briseadh a-steach dha ma dh’fhaoidte.
       subject: Dh’fhàillig dàrna ceum an dearbhaidh
       title: Dh’fhàillig dàrna ceum an dearbhaidh
+    sign_in_token:
+      change_password: atharraich thu am facal-faire agad
+      details: 'Seo mion-fhiosrachadh mun oidhirp:'
+      explanation: 'Mhothaich sinn do dh’oidhirp clàraidh a-steach dhan chunntas agad às dèidh ùine mhòr. Mas e tusa a bh’ ann, cuir a-steach an còd tèarainteachd gu h-ìosal air duilleag dùbhlan a’ chlàraidh a-steach:'
+      further_actions: 'Mur e tusa a bh’ ann, atharraich am facal-faire agad agus cuir an comas an dearbhadh dà-cheumnach air a’ chunntas agad. ’S urrainn dhut sin a dhèanamh an-seo:'
+      further_actions_html: Mur e thu fhèin a bh’ ann, mholamaid gun %{action} sa bhad agus gun cuir thu an dearbhadh dà-cheumnach an comas airson an cunntas agad a chumail tèarainte.
+      subject: Dearbh an oidhirp air clàradh a-steach
+      title: Oidhirp clàraidh a-steach
     suspicious_sign_in:
       change_password: atharraich thu am facal-faire agad
       details: 'Seo mion-fhiosrachadh mun chlàradh a-steach:'
@@ -2481,8 +2498,12 @@ gd:
       title: Fàilte air bòrd, %{name}!
   users:
     follow_limit_reached: Chan urrainn dhut còrr is %{limit} daoine a leantainn
+    generic_access_help_html: A bheil trioblaid agad le inntrigeadh a’ chunntais agad? ’S urrainn dhut fios a chur gu %{email} airson taic
     go_to_sso_account_settings: Tadhail air roghainnean cunntas solaraiche na dearbh-aithne agad
+    inactive_sign_in_confirmation: Is fhada on uairsin ’s mar sin dheth cuiridh sinn còd tèarainteachd dhan t-seòladh puist-d agad ach an dearbhamaid gur e tusa a th’ ann.
+    inactive_sign_in_title: Dearbh an còd tèarainteachd
     invalid_otp_token: Còd dà-cheumnach mì-dhligheach
+    invalid_sign_in_token: Còd tèarainteachd mì-dhligheach
     otp_lost_help_html: Ma chaill thu an t-inntrigeadh dhan dà chuid diubh, ’s urrainn dhut fios a chur gu %{email}
     rate_limited: Cus oidhirpean dearbhaidh, feuch ris a-rithist an ceann greis.
     seamless_external_login: Rinn thu clàradh a-steach le seirbheis on taobh a-muigh, mar sin chan eil roghainnean an fhacail-fhaire ’s a’ phuist-d ri làimh dhut.
