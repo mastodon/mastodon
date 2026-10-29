@@ -175,6 +175,8 @@ module Mastodon::CLI
 
     class User < ApplicationRecord
       belongs_to :account, inverse_of: :user
+      devise :two_factor_authenticatable,
+             otp_secret_length: 32
     end
 
     desc 'fix-duplicates', 'Fix duplicates in database and rebuild indexes'
@@ -216,8 +218,12 @@ module Mastodon::CLI
       processed, = parallelize_with_progress(Keypair.where.not(private_key: nil)) do |keypair|
         keypair.encrypt unless dry_run?
       end
-
       say("Processed #{processed} keypairs#{dry_run_mode_suffix}", :green)
+
+      processed, = parallelize_with_progress(User.where.not(otp_secret: nil)) do |user|
+        user.encrypt unless dry_run?
+      end
+      say("Processed #{processed} OTP secrets#{dry_run_mode_suffix}", :green)
     end
 
     private
