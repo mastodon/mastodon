@@ -10,6 +10,7 @@ import type Immutable from 'immutable';
 import { fetchHistory } from '@/mastodon/actions/history';
 import { openModal } from '@/mastodon/actions/modal';
 import type {
+  AccountStatusShape,
   AnyStatusShape,
   StatusHistory,
   StatusVisibility,
@@ -23,16 +24,16 @@ import { AnimatedNumber } from '../animated_number';
 import { Badge } from '../badge';
 import { FormattedDateWrapper } from '../formatted_date';
 import InlineAccount from '../inline_account';
-import { LoadingIndicator } from '../loading_indicator';
 import { Menu, MenuItem, MenuList, MenuTrigger } from '../menu';
 import { RelativeTimestamp } from '../relative_timestamp';
+import { Skeleton } from '../skeleton';
 import { Tooltip } from '../tooltip';
 
 import classes from './meta.module.scss';
 import { statusLink } from './utils';
 
 export const StatusMeta: React.FC<{
-  status: AnyStatusShape;
+  status: Omit<AccountStatusShape, 'reblog'>;
 }> = ({ status }) => {
   const { id, created_at, edited_at, application } = status;
 
@@ -211,27 +212,19 @@ const StatusTimestampMeta: React.FC<
       </Tooltip>
 
       <MenuList placement='bottom-start' maxWidth={250}>
-        {loading && (
-          <div className={classes.editedLoading}>
-            <LoadingIndicator />
-          </div>
+        <div className={classes.editedHeader}>
+          <FormattedMessage
+            id='status.version_history'
+            defaultMessage='Version history'
+          />
+        </div>
+
+        {loading && !items && (
+          <MenuItem disabled>
+            <Skeleton />
+          </MenuItem>
         )}
-        {!loading && (
-          <div className={classes.editedHeader}>
-            {!!items && items.length > 1 ? (
-              <FormattedMessage
-                id='status.edited_x_times'
-                defaultMessage='Edited {count, plural, one {# time} other {# times}}'
-                values={{ count: items.length - 1 }}
-              />
-            ) : (
-              <FormattedMessage
-                id='status.edited_no_times'
-                defaultMessage='Not edited'
-              />
-            )}
-          </div>
-        )}
+
         {items?.map((item, index) => {
           const formattedDate = (
             <RelativeTimestamp timestamp={item.created_at} long />
@@ -242,20 +235,19 @@ const StatusTimestampMeta: React.FC<
               key={item.created_at}
               data-index={index}
               onClick={handleItemClick}
+              className={classes.editedItem}
             >
               {item.original ? (
                 <FormattedMessage
                   id='status.history.created'
                   defaultMessage='{name} created {date}'
                   values={{ name: formattedName, date: formattedDate }}
-                  tagName='span'
                 />
               ) : (
                 <FormattedMessage
                   id='status.history.edited'
                   defaultMessage='{name} edited {date}'
                   values={{ name: formattedName, date: formattedDate }}
-                  tagName='span'
                 />
               )}
             </MenuItem>

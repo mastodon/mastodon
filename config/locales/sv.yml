@@ -876,8 +876,10 @@ sv:
       destroyed_msg: Avvisade förslag för %{target_key}
       dismiss: Avfärda förslag
       empty: Det finns inget modereringsförslag just nu.
+      retracted_msg: Policyn för %{target_key} har dragits in
       suggested_from_html: Föreslagen av %{link}
       title: Modereringsförslag
+      unable_to_apply_msg: Det går inte att tillämpa förslag för %{target_key}
     relationships:
       title: "%{acct}s relationer"
     relays:
@@ -1072,6 +1074,42 @@ sv:
       translation: Översättning
       translations: Översättningar
       translations_explanation: Du kan eventuellt lägga till översättningar av reglerna. Standardvärdet kommer att visas om ingen översatt version är tillgänglig. Se alltid till att alla angivna översättningar är i synk med standardvärdet.
+    server_checks:
+      categories:
+        completed:
+          title: Slutförda
+        critical:
+          title: Kritiska
+        error:
+          title: Fel
+        ignored:
+          title: Ignorerade
+        suggestion:
+          title: Förslag
+        unprocessed:
+          title: Obehandlade
+        warning:
+          title: Varningar
+      checks:
+        database_schema:
+          error:
+            title: Det gick inte att kontrollera databasschemat
+          ok:
+            title: Det finns inga pågående databasmigreringar
+          pending:
+            lead_html: Kör dem för att se till att programmet beter sig som förväntat
+            title: Det finns väntande databasmigreringar
+          running:
+            title: Din server kontrollerar databasens schema
+      ignore:
+        label: Ignorera
+      recommendations:
+        title: Rekommendationer
+      restore:
+        label: Återställ
+      setup:
+        label: Ställ in
+      title: Serverhälsa
     settings:
       about:
         manage_rules: Hantera serverregler
@@ -1422,6 +1460,13 @@ sv:
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
+      dropdown:
+        all_actions: Alla åtgärder
+        disable: Frys
+        none: Varning
+        sensitive: Känsligt
+        silence: Begränsa
+        suspend: Pausa
       edit_preset: Redigera förinställt svar
       empty: Du har inte definierat några förinställda svar än.
       navigation_title: Förinställda svar
@@ -1474,9 +1519,15 @@ sv:
     new_critical_software_updates:
       body: En kritisk uppdatering för Mastodon har släppts. Du bör uppdatera så snart som möjligt!
       subject: Kritiska uppdateringar för Mastodon är tillgängliga för %{instance}!
+    new_moderation_suggestions:
+      body: Den modereringslista som din server prenumererar på har publicerat nya förslag.
+      subject: Nya modereringsförslag är tillgängliga på %{instance}!
     new_pending_account:
       body: Detaljerna för det nya kontot finns nedan. Du kan godkänna eller avvisa denna ansökan.
       subject: Nytt konto flaggat för granskning på %{instance} (%{username})
+    new_pending_accounts:
+      body: Nya konton har skapats på %{instance}. Eftersom din server är konfigurerad att skjuta upp bekräftelsemeddelanden efter modereringsgodkännande, har dessa konton inte haft en chans att verifiera sin e-postadress ännu. Detaljerna för de nya kontona är nedan. Du kan godkänna eller avvisa dessa ansökningar.
+      subject: Nya konton tillgängliga för granskning på %{instance}
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
@@ -1505,7 +1556,6 @@ sv:
     animations_and_accessibility: Animationer och tillgänglighet
     boosting_preferences: Boostinställningar
     boosting_preferences_info_html: "<strong>Tips:</strong> Oavsett inställningar kommer <kbd>Skift</kbd> + <kbd>Klick</kbd> på %{icon} Boosta-ikonen att boosta direkt."
-    discovery: Upptäck
     localization:
       body: Mastodon översätts av volontärer.
       guide_link: https://crowdin.com/project/mastodon
@@ -1588,11 +1638,13 @@ sv:
       correct_email: Rätt adress
       email_below_hint_html: Kolla din skräppost-mapp eller begär en ny. Du kan korrigera din e-postadress om den är fel.
       email_settings_hint_html: Klicka på länken vi skickade till %{email} för att börja använda Mastodon. Vi väntar här.
+      email_settings_hint_wait_html: Din ansökan granskas. Du bör snart få ett meddelande via e-post på %{email}. När du får det, klicka på länken för att börja använda Mastodon. Vi väntar här.
       link_not_received: Fick du ingen länk?
       new_confirmation_instructions_sent: Du kommer att få ett nytt e-postmeddelande med bekräftelselänken om några minuter!
       title: Kolla din inkorg
       title_wait: Håll ett öga på din inkorg
       wrong_email: Fel e-postadress?
+      wrong_email_below_hint_html: Få inte panik! Du kan korrigera din e-postadress nedan.
     sign_in:
       preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
       title: Logga in på %{domain}
@@ -1678,14 +1730,12 @@ sv:
       more_details_html: För mer information, se <a href="%{terms_path}">integritetspolicyn</a>.
       username_available: Ditt användarnamn kommer att bli tillgängligt igen
       username_unavailable: Ditt användarnamn kommer att fortsätta vara otillgängligt
-  density:
-    compact: Kompakt
-    default: Standard
   disputes:
     strikes:
       action_taken: Vidtagen åtgärd
       appeal: Överklaga
       appeal_approved: Pricken är inte längre giltig då överklagan godkändes
+      appeal_handled_by: Överklagande hanterat av
       appeal_rejected: Överklagan har avvisats
       appeal_submitted_at: Överklagan inskickad
       appealed_msg: Din överklagan har skickats in. Du blir notifierad om den godkänns.

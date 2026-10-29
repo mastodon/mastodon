@@ -151,6 +151,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
     t.text "text", default: "", null: false
     t.string "title", default: "", null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.string "action_category", default: "all_actions", null: false
   end
 
   create_table "account_warnings", force: :cascade do |t|
@@ -253,6 +254,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
     t.index ["account_id"], name: "index_admin_action_logs_on_account_id"
     t.index ["moderation_subscription_id"], name: "index_admin_action_logs_on_moderation_subscription_id", where: "(moderation_subscription_id IS NOT NULL)"
     t.index ["target_type", "target_id"], name: "index_admin_action_logs_on_target_type_and_target_id"
+  end
+
+  create_table "admin_server_checks", force: :cascade do |t|
+    t.string "key", null: false
+    t.integer "status", limit: 2, default: 0, null: false
+    t.integer "severity", limit: 2, default: 0, null: false
+    t.boolean "ignored", default: false, null: false
+    t.jsonb "data"
+    t.datetime "checked_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_admin_server_checks_on_key", unique: true
   end
 
   create_table "announcement_mutes", force: :cascade do |t|
@@ -1731,9 +1744,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
   add_index "instances", ["domain"], name: "index_instances_on_domain", unique: true
 
   create_view "user_ips", sql_definition: <<-SQL
-      SELECT user_id,
-      ip,
-      max(used_at) AS used_at
+      SELECT t0.user_id,
+      t0.ip,
+      max(t0.used_at) AS used_at
      FROM ( SELECT users.id AS user_id,
               users.sign_up_ip AS ip,
               users.created_at AS used_at
@@ -1750,6 +1763,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
               login_activities.created_at
              FROM login_activities
             WHERE (login_activities.success = true)) t0
-    GROUP BY user_id, ip;
+    GROUP BY t0.user_id, t0.ip;
   SQL
 end

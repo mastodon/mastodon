@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.18
+# syntax=docker/dockerfile:1.28
 
 # This file is designed for production server deployment, not local development work
 # For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/docs/DEVELOPMENT.md#docker
@@ -13,7 +13,7 @@ ARG BASE_REGISTRY="docker.io"
 
 # Ruby image to use for base image, change with [--build-arg RUBY_VERSION="4.0.x"]
 # renovate: datasource=docker depName=docker.io/ruby
-ARG RUBY_VERSION="4.0.7"
+ARG RUBY_VERSION="4.0.9"
 # # Node.js version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="26"]
 # renovate: datasource=node-version depName=node
 ARG NODE_MAJOR_VERSION="26"

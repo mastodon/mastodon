@@ -168,6 +168,8 @@ a.base {
 // Ghost
 
 .ghost {
+  --bg-hover: var(--color-bg-highlight);
+
   @include active {
     --bg: var(--color-bg-inverted);
     --fg: var(--color-text-inverted);
@@ -243,5 +245,9 @@ a.base {
 }
 
 .clipPadding {
-  margin-inline-start: calc(-1 * var(--inline-padding));
+  margin-inline-start: calc(-1 * (var(--inline-padding) + var(--space-1)));
+
+  &:has(:global(.icon-leading)) {
+    margin-inline-start: calc(-1 * var(--inline-padding));
+  }
 }

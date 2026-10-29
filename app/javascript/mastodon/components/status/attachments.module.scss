@@ -5,21 +5,22 @@
 
   :global(.media-gallery) {
     margin-top: 0;
-    border-radius: 0;
+    border-radius: var(--radius-4);
   }
 
   // Overrides .media-gallery--layout-2 > .media-gallery__item:nth-child(1)
   :global(.media-gallery__item):global(.media-gallery__item),
   :global(.video-player),
   :global(.audio-player) {
-    border-radius: var(--radius-4);
     outline: none;
   }
 
   :global(.media-gallery__alt__label--non-interactive) {
-    @include mixins.type-meta;
+    @include mixins.type-label;
 
     color: var(--color-text-inverted);
+    display: flex;
+    align-items: center;
     background-color: var(--color-bg-inverted);
     border-radius: var(--radius-round);
     padding-inline: var(--space-2);
@@ -69,10 +70,13 @@
 }
 
 .cardMedia {
+  border: var(--border-thin);
+  border-radius: var(--radius-4);
+  overflow: hidden;
+
   > :global(.status-card) {
     margin-top: 0;
-    border: var(--border-thin);
-    border-radius: var(--radius-4);
+    border: none;
 
     > a {
       transition: background 200ms ease-in-out;
@@ -105,7 +109,23 @@
   }
 }
 
-.cardAuthor > span {
-  display: flex;
-  gap: var(--space-1);
+.cardMediaSpoiler {
+  // Taken from the media card thumbnail dimensions.
+  aspect-ratio: 16 / 9;
+  position: relative;
+  width: 100%;
+
+  > canvas {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.cardAuthor {
+  z-index: 1;
+
+  > span {
+    display: flex;
+    gap: var(--space-1);
+  }
 }

@@ -36,6 +36,7 @@ import type { Relationship } from '@/mastodon/models/relationship';
 import type {
   AccountStatusShape,
   ExpandedStatusShape,
+  MediaAttachment,
   StatusShape,
 } from '@/mastodon/models/status';
 import {
@@ -85,6 +86,10 @@ export function useStatusContext() {
   return use(StatusContext);
 }
 
+interface EventShiftKey {
+  shiftKey?: boolean;
+}
+
 export function useStatusInteractionFactory(
   statusId?: string,
   contextTypeArg?: StatusContextType,
@@ -94,8 +99,15 @@ export function useStatusInteractionFactory(
   const dispatch = useAppDispatch();
   return useCallback(
     (intent: StatusInteractionIntent) => {
-      return () => {
-        dispatch(statusInteraction({ statusId, intent, contextType }));
+      return (event?: EventShiftKey) => {
+        dispatch(
+          statusInteraction({
+            statusId,
+            intent,
+            contextType,
+            force: event?.shiftKey,
+          }),
+        );
       };
     },
     [contextType, dispatch, statusId],
@@ -212,19 +224,25 @@ export function useStatusHandlers({
     }
   }, [history, acct]);
 
+  const immutableMedia = useAppSelector(
+    (state) =>
+      state.statuses.getIn([statusId, 'media_attachments']) as
+        | Immutable.List<MediaAttachment>
+        | undefined,
+  );
+  const lang = status?.translation?.language ?? status?.language;
   const onOpenMedia = useCallback(() => {
-    const attachment = status?.media_attachments[0];
-    if (!attachment) {
+    const attachment = immutableMedia?.first();
+    if (!attachment || !statusId) {
       return;
     }
 
-    const lang = status.translation?.language ?? status.language;
-    if (attachment.type === 'video') {
+    if (attachment.get('type') === 'video') {
       dispatch(
         openModal({
           modalType: 'VIDEO',
           modalProps: {
-            statusId: status.id,
+            statusId,
             media: attachment,
             lang,
             options: { startTime: 0 },
@@ -236,15 +254,15 @@ export function useStatusHandlers({
         openModal({
           modalType: 'MEDIA',
           modalProps: {
-            statusId: status.id,
-            media: status.media_attachments,
+            statusId,
+            media: immutableMedia,
             lang,
             index: 0,
           },
         }),
       );
     }
-  }, [dispatch, status]);
+  }, [dispatch, immutableMedia, lang, statusId]);
 
   return useMemo(
     () => ({
@@ -287,7 +305,7 @@ interface StatusIcon {
   meta?: string;
   counter?: number;
   active?: boolean;
-  action: () => void;
+  action: (event?: EventShiftKey) => void;
   disabled: boolean;
 }
 
@@ -666,7 +684,9 @@ interface MenuItemsParams {
   reblogStatus: AccountStatusShape | null;
   conditions: StatusConditions;
   interactions: StatusInteractionsAllowed;
-  onStatusInteraction: (intent: StatusInteractionIntent) => () => void;
+  onStatusInteraction: (
+    intent: StatusInteractionIntent,
+  ) => (event: EventShiftKey) => void;
   withDismiss?: boolean;
   permissions: number;
   intl: ReturnType<typeof useIntl>;
