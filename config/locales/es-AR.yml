@@ -69,6 +69,7 @@ es-AR:
       demote: Bajar de nivel
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Congelar
+      disable_sign_in_token: Dshabilitar temporalmente el desafío de código de seguridad
       disable_sign_in_token_auth: Deshabilitar autenticación de token por correo electrónico
       disable_two_factor_authentication: Deshabilitar 2FA
       disabled: Congelada
@@ -78,6 +79,7 @@ es-AR:
       email: Correo electrónico
       email_status: Estado del correo
       enable: Descongelar
+      enable_sign_in_token: Habilitar el desafío de código de seguridad
       enable_sign_in_token_auth: Habilitar autenticación de token por correo electrónico
       enabled: Habilitada
       enabled_msg: Se descongeló exitosamente la cuenta de %{username}
@@ -1952,6 +1954,7 @@ es-AR:
           quadrillion: C
           thousand: m
           trillion: T
+          unit: ''
   otp_authentication:
     code_hint: Ingresá el código generado por tu aplicación de autenticación para confirmar
     description_html: Si habilitás la <strong>autenticación de dos factores</strong> usando una aplicación de autenticación, entonces en el inicio de sesión se te pedirá que estés con tu dispositivo, el cual generará un código numérico ("token") para que lo ingresés.
@@ -2299,6 +2302,14 @@ es-AR:
       further_actions_html: Si vos no fuiste, te recomendamos que %{action} inmediatamente, ya que la seguridad de tu cuenta podría estar comprometida.
       subject: Fallo de autenticación del segundo factor
       title: Fallo en la autenticación del segundo factor
+    sign_in_token:
+      change_password: cambiés tu contraseña
+      details: 'Acá están los detalles del intento:'
+      explanation: 'Detectamos un intento de inicio de sesión en tu cuenta luego de mucho tiempo de inactividad. Si fuiste vos, por favor, ingresá el código de seguridad de abajo en la página del desafío:'
+      further_actions: 'Si no eras vos, por favor, cambiá tu contraseña y habilitá la autenticación de dos factores en tu cuenta. Podés hacerlo acá:'
+      further_actions_html: Si no fuiste vos, te recomendamos que %{action} inmediatamente y habilités la autenticación de dos factores para mantener tu cuenta segura.
+      subject: Por favor, confirmá el intento de inicio de sesión
+      title: Intento de inicio de sesión
     suspicious_sign_in:
       change_password: cambiés tu contraseña
       details: 'Acá están los detalles del inicio de sesión:'
@@ -2388,8 +2399,12 @@ es-AR:
       title: "¡Bienvenido a bordo, %{name}!"
   users:
     follow_limit_reached: No podés seguir a más de %{limit} cuentas
+    generic_access_help_html: "¿Tenés problemas para acceder a tu cuenta? Podés ponerte en contacto con %{email} para obtener ayuda"
     go_to_sso_account_settings: Andá a la configuración de cuenta de tu proveedor de identidad
+    inactive_sign_in_confirmation: Ha pasado un tiempo desde que iniciaste sesión, así que estamos enviando un código de seguridad a tu dirección de correo electrónico para confirmar que querés iniciar sesión.
+    inactive_sign_in_title: Por favor, confirmá el código de seguridad
     invalid_otp_token: Código de dos factores no válido
+    invalid_sign_in_token: Código de seguridad no válido
     otp_lost_help_html: Si perdiste al acceso a ambos, podés ponerte en contacto con %{email}
     rate_limited: Demasiados intentos de autenticación; intentá de nuevo más tarde.
     seamless_external_login: Iniciaste sesión desde un servicio externo, así que la configuración de contraseña y correo electrónico no están disponibles.

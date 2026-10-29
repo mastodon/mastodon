@@ -69,6 +69,7 @@ fr:
       demote: Rétrograder
       destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
       disable: Désactiver
+      disable_sign_in_token: Désactiver temporairement le contrôle par code de sécurité
       disable_sign_in_token_auth: Désactiver le jeton d'authentification par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
       disabled: Désactivé
@@ -78,6 +79,7 @@ fr:
       email: Adresse de courriel
       email_status: État de l'adresse de courriel
       enable: Activer
+      enable_sign_in_token: Activer le contrôle par code de sécurité
       enable_sign_in_token_auth: Activer le jeton d'authentification par courriel
       enabled: Activé
       enabled_msg: Le compte de %{username} a été activé avec succès
@@ -609,9 +611,9 @@ fr:
           delete: Supprimer
           ip: Adresse IP
           request_body: Corps de la demande
-          title: Déboguer les rappels
+          title: Rappels de débogage
       providers:
-        active: Activé
+        active: Actif
         base_url: URL de base
         callback: Rappel
         delete: Supprimer
@@ -979,7 +981,7 @@ fr:
         users: Aux utilisateur·rice·s connecté·e·s localement
       feed_access:
         modes:
-          authenticated: Utilisateurs authentifiés uniquement
+          authenticated: Utilisateur·rice·s authentifié·e·s uniquement
           disabled: Nécessite un rôle spécifique
           public: Tout le monde
       landing_page:
@@ -1266,9 +1268,9 @@ fr:
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
-      edit_preset: Éditer les avertissements prédéfinis
-      empty: Vous n'avez pas encore créé de paramètres prédéfinis pour les avertissements.
-      title: Préréglages d'avertissement
+      edit_preset: Modifier les modèles d'avertissement
+      empty: Vous n'avez pas encore créé de modèles d'avertissement.
+      title: Modèles d'avertissement
     webhooks:
       add_new: Ajouter un point de terminaison
       delete: Supprimer
@@ -1438,7 +1440,7 @@ fr:
       title: Se connecter à %{domain}
     sign_up:
       manual_review: Les inscriptions sur %{domain} passent par une revue manuelle de nos modérateurs. Pour les aider, écrivez un peu plus sur vous et pourquoi vous souhaitez créer un compte sur %{domain}.
-      preamble: Avec un compte sur ce serveur Mastodon, vous pourrez suivre n'importe quelle autre personne du fediverse, quel que soit l'endroit où son compte est hébergé.
+      preamble: Avec un compte sur ce serveur Mastodon, vous pourrez suivre n'importe quelle autre personne du Fédivers, quel que soit l'endroit où son compte est hébergé.
       title: Mettons les choses en place pour %{domain}.
     status:
       account_status: État du compte
@@ -1496,8 +1498,11 @@ fr:
   deletes:
     challenge_not_passed: Les renseignements que vous avez entrés n'étaient pas exacts
     confirm_password: Entrez votre mot de passe actuel pour vérifier votre identité
+    confirm_username: Confirmez le nom d'utilisateur·rice
+    confirm_username_hint_html: Veuillez taper <code>%{username}</code> pour confirmer le compte que vous souhaitez supprimer
     proceed: Supprimer le compte
     success_msg: Votre compte a été supprimé avec succès
+    title: Supprimer le compte %{acct}
     warning:
       before: 'Veuillez lire attentivement ces notes avant de continuer :'
       caches: Le contenu mis en cache par d'autres serveurs peut persister
@@ -1580,7 +1585,7 @@ fr:
     status: État
     subscribers: Abonné·e·s
   emoji_styles:
-    auto: Auto
+    auto: Automatique
     native: Natif
     twemoji: Twemoji
   errors:
@@ -2296,6 +2301,14 @@ fr:
       further_actions_html: Si ce n'était pas vous, nous vous recommandons %{action} immédiatement car il pourrait être compromis.
       subject: Échec de l'authentification à double facteur
       title: Échec de l'authentification à double facteur
+    sign_in_token:
+      change_password: changer votre mot de passe
+      details: 'Voici les détails de la tentative :'
+      explanation: 'Nous avons détecté une tentative de connexion à votre compte après une longue période d''inactivité. Si vous en êtes à l''origine, veuillez entrer le code ci-dessous sur la page de connexion :'
+      further_actions: 'S’il ne s’agit pas de vous, veuillez changer votre mot de passe et activer l’authentification à deux facteurs sur votre compte. Vous pouvez le faire ici :'
+      further_actions_html: Si ce n’était pas vous, nous vous recommandons de %{action} immédiatement et d’activer l’authentification à deux facteurs afin de garder votre compte sécurisé.
+      subject: Veuillez confirmer la tentative de connexion
+      title: Tentative de connexion
     suspicious_sign_in:
       change_password: changer votre mot de passe
       details: 'Voici les détails de la connexion :'
@@ -2385,8 +2398,12 @@ fr:
       title: Bienvenue à bord, %{name} !
   users:
     follow_limit_reached: Vous ne pouvez pas suivre plus de %{limit} personnes
+    generic_access_help_html: Rencontrez-vous des difficultés d’accès à votre compte ? Vous pouvez contacter %{email} pour obtenir de l’aide
     go_to_sso_account_settings: Accédez aux paramètres du compte de votre fournisseur d'identité
+    inactive_sign_in_confirmation: Cela fait un certain temps depuis votre dernière connexion, c'est pourquoi nous vous avons envoyé un code de sécurité par courriel pour vérifier votre tentative de connexion.
+    inactive_sign_in_title: Veuillez confirmer le code de sécurité
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
+    invalid_sign_in_token: Code de sécurité non valide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     rate_limited: Trop de tentatives d'authentification, réessayez plus tard.
     seamless_external_login: Vous êtes connectés via un service externe, donc les paramètres de mot de passe et de courriel ne sont pas disponibles.

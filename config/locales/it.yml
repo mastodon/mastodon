@@ -69,6 +69,7 @@ it:
       demote: Retrocedi
       destroyed_msg: I dati di %{username} sono ora accodati per l'imminente eliminazione
       disable: Congela
+      disable_sign_in_token: Disattiva temporaneamente la verifica del codice di sicurezza
       disable_sign_in_token_auth: Disabilitare l'autenticazione del token e-mail
       disable_two_factor_authentication: Disabilita A2F
       disabled: Congelato
@@ -78,6 +79,7 @@ it:
       email: Email
       email_status: Stato dell'email
       enable: Scongela
+      enable_sign_in_token: Abilita la verifica tramite il codice di sicurezza
       enable_sign_in_token_auth: Abilitare l'autenticazione del token e-mail
       enabled: Abilitato
       enabled_msg: Il profilo di %{username} è stato scongelato correttamente
@@ -103,7 +105,7 @@ it:
         active: Attivo
         all: Tutto
         disabled: Disattivato
-        pending: In sospeso
+        pending: In attesa
         silenced: Limitato
         suspended: Sospeso
         title: Moderazione
@@ -2299,6 +2301,14 @@ it:
       further_actions_html: Se non eri tu, ti consigliamo di %{action} immediatamente poiché potrebbe essere compromesso.
       subject: Errore di autenticazione del secondo fattore
       title: Autenticazione del secondo fattore non riuscita
+    sign_in_token:
+      change_password: cambia la tua password
+      details: 'Questi sono i dettagli del tentativo:'
+      explanation: 'Abbiamo rilevato un tentativo di accesso al tuo account dopo un lungo periodo di inattività. Se sei stato/a tu, per favore inserisci il codice di sicurezza riportato di seguito nella pagina di verifica dell''accesso:'
+      further_actions: 'Se non sei stato/a tu, ti preghiamo di cambiare la password e di attivare l''autenticazione a due fattori sul tuo account. Puoi farlo qui:'
+      further_actions_html: Se non sei stato/a tu, ti consigliamo di %{action} immediatamente e di attivare l'autenticazione a due fattori per mantenere il tuo account al sicuro.
+      subject: Si prega di confermare il tentativo di accesso
+      title: Tentativo di accesso
     suspicious_sign_in:
       change_password: cambiare la tua password
       details: 'Questi sono i dettagli del tentativo di accesso:'
@@ -2388,8 +2398,12 @@ it:
       title: Benvenuto a bordo, %{name}!
   users:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
+    generic_access_help_html: Hai problemi ad accedere al tuo account? Puoi contattare %{email} per ricevere assistenza
     go_to_sso_account_settings: Vai alle impostazioni dell'account del tuo provider di identità
+    inactive_sign_in_confirmation: È passato un po' di tempo dall'ultimo accesso, quindi ti stiamo inviando un codice di sicurezza al tuo indirizzo e-mail per confermare che sei tu.
+    inactive_sign_in_title: Si prega di confermare il codice di sicurezza
     invalid_otp_token: Codice d'accesso non valido
+    invalid_sign_in_token: Codice di sicurezza non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
     rate_limited: Troppi tentativi di autenticazione, per favore riprova più tardi.
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, pertanto le impostazioni relative alla password e all'e-mail non sono disponibili.

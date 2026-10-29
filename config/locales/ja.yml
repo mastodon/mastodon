@@ -11,6 +11,8 @@ ja:
       cannot_be_added_to_collections: このアカウントはコレクションに追加できません。
     followers:
       other: フォロワー
+    following:
+      other: フォロー中
     instance_actor_flash: このアカウントは、個々のユーザーではなく、サーバー自体を表すために使用される仮想のユーザーです。 連合のために使用されるため、停止しないで下さい。
     last_active: 最後の活動
     link_verified_on: このリンクの所有権は%{date}に確認されました
@@ -58,9 +60,11 @@ ja:
       custom: カスタム
       delete: データを削除する
       deleted: 削除済み
+      deletion_irreversible: このアカウントのデータは取り消せない形で削除されました。
       demote: 降格
       destroyed_msg: "%{username}さんのデータは完全に削除されるよう登録されました"
       disable: 無効化
+      disable_sign_in_token: セキュリティコードチャレンジを一時的に無効化
       disable_sign_in_token_auth: メールトークン認証を無効化
       disable_two_factor_authentication: 二要素認証を無効にする
       disabled: 無効
@@ -467,6 +471,9 @@ ja:
       resolved_dns_records_hint_html: 入力されたドメイン名のMXレコードから以下のドメインが解決されました。MXレコードが指すドメインはメールの送受信において重要な役割をもっています。MXレコードのドメインをブロックすると、見た目のドメインが異なるメールアドレスからの登録であっても、そのドメイン名から解決されるMXレコードのドメインが同じ場合はブロックの対象になります。<strong>大手のメールプロバイダをブロックしないように注意してください。</strong>
       resolved_through_html: "%{domain}を通して解決しました"
       title: メールドメインブロック
+    email_subscriptions:
+      accounts:
+        account: アカウント
     export_domain_allows:
       new:
         title: ドメイン許可をインポート

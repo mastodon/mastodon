@@ -69,6 +69,7 @@ da:
       demote: Degradér
       destroyed_msg: "%{username}s data er nu sat i kø mhp. snarlig sletning"
       disable: Frys
+      disable_sign_in_token: Deaktivér midlertidigt sikkerhedskode-udfordring
       disable_sign_in_token_auth: Deaktivér e-mailtoken godkendelse
       disable_two_factor_authentication: Deaktivér 2FA
       disabled: Frosset
@@ -78,6 +79,7 @@ da:
       email: E-mail
       email_status: E-mailstatus
       enable: Optø
+      enable_sign_in_token: Aktiver sikkerhedskode-udfordring
       enable_sign_in_token_auth: Aktivér e-mailtoken godkendelse
       enabled: Aktiveret
       enabled_msg: "%{username}s konto er optøet"
@@ -454,7 +456,7 @@ da:
         remove_all_data: Dette vil fjerne alt indhold, medier og profildata for dette domænes konti fra din server.
         stop_communication: Din server vil stoppe kommunikationen med disse servere.
         title: Bekræft blokering af domænet %{domain}
-        undo_relationships: Dette vil ophæve ethvert følgeforhold mellem konti på disse servere og dine.
+        undo_relationships: Dette vil ophæve ethver følgerelation mellem konti på disse servere og dine.
       created_msg: Domæneblokering under behandling
       destroyed_msg: Domæneblokering er blevet fjernet
       domain: Domæne
@@ -1891,7 +1893,7 @@ da:
       summary_html: Du bruger en app, der ikke understøtter den seneste version af Mastodon. %{link}.
       title: Du har modtaget en moderationsadvarsel.
     severed_relationships:
-      summary_html: En administrator fra %{from} har suspenderet %{target}, hvilket betyder, at du ikke længere kan modtage opdateringer fra dem eller interagere med dem. %{link} for at hente en liste over de tabte forhold.
+      summary_html: En administrator fra %{from} har suspenderet %{target}, hvilket betyder, at du ikke længere kan modtage opdateringer fra dem eller interagere med dem. %{link} for at hente en liste over de mistede relationer.
       title: Mistede forbindelser med %{name}
   notification_mailer:
     admin:
@@ -2107,7 +2109,7 @@ da:
     preferences: Præferencer
     profile: Offentlig profil
     relationships: Følger og følgere
-    severed_relationships: Afbrudte forhold
+    severed_relationships: Afbrudte relationer
     statuses_cleanup: Automatiseret sletning af indlæg
     strikes: Moderationsadvarsler
     two_factor_authentication: Tofaktorgodkendelse
@@ -2120,7 +2122,7 @@ da:
       user_domain_block: "%{target_name} blev blokeret"
     lost_followers: Mistet følgere
     lost_follows: Mistet fulgte
-    preamble: Du kan miste fulgte og følgere, når du blokerer et domæne, eller når dine moderatorer beslutter at suspendere en fjernserver. Når det sker, kan du downloade lister over afbrudte forhold til inspektion og eventuelt import til en anden server.
+    preamble: Du kan miste fulgte og følgere, når du blokerer et domæne, eller når dine moderatorer beslutter at suspendere en fjernserver. Når det sker, kan du downloade lister over afbrudte relationer til inspektion og eventuelt import til en anden server.
     purged: Oplysninger om denne server er blevet renset af serveradministratoreren.
     type: Begivenhed
   statuses:
@@ -2299,6 +2301,14 @@ da:
       further_actions_html: Var dette ikke dig, anbefales det straks at %{action}, da den kan være kompromitteret.
       subject: Anden faktor godkendelsesfejl
       title: Fejlede på anden faktor godkendelse
+    sign_in_token:
+      change_password: ændrer din adgangskode
+      details: 'Her er nogle detaljer om forsøget:'
+      explanation: 'Vi har registreret et forsøg på at logge ind på din konto efter lang tids inaktivitet. Hvis det er dig, bedes du indtaste sikkerhedskoden nedenfor på siden for login-udfordringen:'
+      further_actions: 'Hvis det ikke var dig, så ændr din adgangskode og aktiver tofaktor-godkendelse på din konto. Det kan du gøre her:'
+      further_actions_html: Hvis dette ikke var dig, anbefaler vi, at du straks %{action} og aktiverer to-faktor-godkendelse for at holde din konto sikker.
+      subject: Bekræft indlogningsforsøg
+      title: Indlogningsforsøg
     suspicious_sign_in:
       change_password: ændrer din adgangskode
       details: 'Her er nogle detaljer om login-forsøget:'
@@ -2388,8 +2398,12 @@ da:
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan maks. følge %{limit} personer
+    generic_access_help_html: Problemer med at tilgå din konto? Du kan kontakte %{email} for hjælp
     go_to_sso_account_settings: Gå til din identitetsudbyders kontoindstillinger
+    inactive_sign_in_confirmation: Det er længe siden, du loggede ind, så vi sender en sikkerhedskode til din e-mailadresse for at bekræfte, at det er dig.
+    inactive_sign_in_title: Bekræft venligst sikkerhedskode
     invalid_otp_token: Ugyldig tofaktorkode
+    invalid_sign_in_token: Ugyldig sikkerhedskode
     otp_lost_help_html: Har du mistet adgang til begge, kan du kontakte %{email}
     rate_limited: For mange godkendelsesforsøg. Prøv igen senere.
     seamless_external_login: Adgangskode- og e-mailindstillinger er utilgængelige, da der er logget ind via en ekstern tjeneste.

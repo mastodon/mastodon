@@ -69,6 +69,7 @@ pt-PT:
       demote: Despromovida
       destroyed_msg: Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato
       disable: Congelar
+      disable_sign_in_token: Desativar o desafio do código de segurança temporariamente
       disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar autenticação por dois fatores (2FA)
       disabled: Congelada
@@ -78,6 +79,7 @@ pt-PT:
       email: E-mail
       email_status: Estado do e-mail
       enable: Descongelar
+      enable_sign_in_token: Ativar código de segurança
       enable_sign_in_token_auth: Ativar token de autenticação por e-mail
       enabled: Ativado
       enabled_msg: Descongelou a conta %{username}
@@ -200,6 +202,7 @@ pt-PT:
         create_user_role: Criar função
         create_username_block: Criar Regra de Nome de Utilizador
         demote_user: Despromover utilizador
+        destroy_account: Apagar Dados da Conta
         destroy_announcement: Eliminar mensagem de manutenção
         destroy_canonical_email_block: Eliminar bloqueio de e-mail
         destroy_custom_emoji: Eliminar emoji personalizado
@@ -268,6 +271,7 @@ pt-PT:
         create_user_role_html: "%{name} criou a função %{target}"
         create_username_block_html: "%{name} adicionou regra para nomes de utilizadores que contêm %{target}"
         demote_user_html: "%{name} despromoveu o utilizador %{target}"
+        destroy_account_html: "%{name} apagou dados da conta de %{target}"
         destroy_announcement_html: "%{name} eliminou a mensagem de manutenção %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o e-mail com a hash %{target}"
         destroy_collection_html: "%{name} removeu a coleção de %{target}"
@@ -1494,8 +1498,11 @@ pt-PT:
   deletes:
     challenge_not_passed: A informação que inseriste não estava correta
     confirm_password: Introduz a palavra-passe atual para verificar a tua identidade
+    confirm_username: Confirmar nome de utilizador
+    confirm_username_hint_html: Digite <code>%{username}</code> para confirmar a conta que deseja eliminar
     proceed: Eliminar conta
     success_msg: A tua conta foi eliminada com sucesso
+    title: Eliminar conta %{acct}
     warning:
       before: 'Antes de continuares, por favor lê cuidadosamente estas notas:'
       caches: O conteúdo que foi armazenado em cache por outras instâncias pode perdurar
@@ -1595,6 +1602,7 @@ pt-PT:
       content: Pedimos desculpa, mas algo correu mal da nossa parte.
       title: Esta página não está correta
     '503': A página não pôde ser apresentada devido a uma falha temporária do servidor.
+    go_home: Ir para a Página Inicial
     noscript_html: Para usar a aplicação web do Mastodon, ativa o JavaScript. Alternativamente, experimenta uma das <a href="%{apps_path}">aplicações nativas</a> para o Mastodon na tua plataforma.
   existing_username_validator:
     not_found: não foi possível encontrar um utilizador local com esse nome
@@ -1691,6 +1699,7 @@ pt-PT:
       incompatible_type: Incompatível com o tipo de importação selecionado
       invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
       invalid_json_file: 'Ficheiro JSON inválido. Erro: %{error}'
+      no_data: Este ficheiro não contém nenhum dado correspondente a este tipo de importação
       over_rows_processing_limit: contém mais de %{count} linhas
       status_not_found_warning: Alguns dos teus filtros ocultam publicações específicas que não são conhecidas por este servidor. Estas publicações não serão filtradas automaticamente se forem descobertas mais tarde pelo servidor.
       too_large: O ficheiro é demasiado grande
@@ -2292,6 +2301,14 @@ pt-PT:
       further_actions_html: Se não foi você, recomendamos %{action} imediatamente, pois a conta pode ter sido comprometida.
       subject: Falha na autenticação do segundo fator
       title: Falha na autenticação do segundo fator
+    sign_in_token:
+      change_password: altere a sua palavra-passe
+      details: 'Aqui estão os detalhes da tentativa:'
+      explanation: 'Detetamos uma tentativa de entrar na sua conta após um longo tempo de inatividade. Se for você, insira o código de segurança abaixo na página de acesso:'
+      further_actions: 'Se não foi você, por favor altere a sua palavra-passe e ative a autenticação em duas etapas na sua conta. Pode fazê-lo aqui:'
+      further_actions_html: Se não foi você, recomendamos que %{action} imediatamente e ative a autenticação de dois fatores para manter a sua conta segura.
+      subject: Por favor, confirme a tentativa de acesso
+      title: Tentativa de acesso
     suspicious_sign_in:
       change_password: alterar a palavra-passe
       details: 'Eis os pormenores do início de sessão:'
@@ -2381,8 +2398,12 @@ pt-PT:
       title: Bem-vindo a bordo, %{name}!
   users:
     follow_limit_reached: Não podes seguir mais do que %{limit} pessoas
+    generic_access_help_html: Problemas a aceder à sua conta? Pode entrar em contacto com %{email} para obter ajuda
     go_to_sso_account_settings: Ir para as definições de conta do seu fornecedor de identidade
+    inactive_sign_in_confirmation: Já faz algum tempo desde que entrou, por isso enviamos um código de segurança para o seu endereço de e-mail para confirmar que é você.
+    inactive_sign_in_title: Por favor, confirme o código de segurança
     invalid_otp_token: Código de dois fatores inválido
+    invalid_sign_in_token: Código de segurança inválido
     otp_lost_help_html: Se perdeste o acesso a ambos, podes entrar em contacto com %{email}
     rate_limited: Demasiadas tentativas de autenticação, tenta novamente mais tarde.
     seamless_external_login: A sessão foi iniciada através de um serviço externo, pelo que as definições de palavra-passe e e-mail não estão disponíveis.

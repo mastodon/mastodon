@@ -69,6 +69,7 @@ de:
       demote: Zurückstufen
       destroyed_msg: Die Daten von %{username} befinden sich nun in der Warteschlange und werden in Kürze gelöscht
       disable: Einfrieren
+      disable_sign_in_token: Sicherheitscode für die Anmeldung vorübergehend deaktivieren
       disable_sign_in_token_auth: E-Mail-Token-Authentisierung deaktivieren
       disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
       disabled: Eingefroren
@@ -78,6 +79,7 @@ de:
       email: E-Mail-Adresse
       email_status: Status der E-Mail-Adresse
       enable: Freischalten
+      enable_sign_in_token: Sicherheitscode für die Anmeldung aktivieren
       enable_sign_in_token_auth: E-Mail-Token-Authentisierung aktivieren
       enabled: Freigegeben
       enabled_msg: Konto von %{username} erfolgreich freigegeben
@@ -250,7 +252,7 @@ de:
         update_user_role: Rolle bearbeiten
         update_username_block: Regel für Profilnamen aktualisieren
       actions:
-        approve_appeal_html: "%{name} genehmigte den Einspruch gegen eine Moderationsentscheidung von %{target}"
+        approve_appeal_html: "%{name} genehmigte den Einspruch gegen eine Moderationsmaßnahme von %{target}"
         approve_user_html: "%{name} genehmigte die Registrierung von %{target}"
         assigned_to_self_report_html: "%{name} wies sich die Meldung %{target} selbst zu"
         change_email_user_html: "%{name} änderte die E-Mail-Adresse von %{target}"
@@ -300,7 +302,7 @@ de:
         not_usable_tag_html: darf nicht verwendet werden
         promote_user_html: "%{name} beförderte %{target}"
         publish_terms_of_service_html: "%{name} aktualisierte die Nutzungsbedingungen"
-        reject_appeal_html: "%{name} lehnte den Einspruch gegen eine Moderationsentscheidung von %{target} ab"
+        reject_appeal_html: "%{name} lehnte den Einspruch gegen eine Moderationsmaßnahme von %{target} ab"
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} entfernte das Profilbild von %{target}"
         reopen_report_html: "%{name} öffnete die Meldung %{target} wieder"
@@ -508,7 +510,7 @@ de:
       resolved_dns_records_hint_html: Die Domain wird zu den folgenden MX-Domains aufgelöst, die für die Annahme von E-Mails zuständig sind. Das Sperren einer MX-Domain sperrt Anmeldungen aller E-Mail-Adressen, die dieselbe MX-Domain verwenden, auch wenn die sichtbare Domain anders lautet. <strong>Achte daher darauf, keine großen E-Mail-Anbieter versehentlich zu sperren.</strong>
       resolved_through_html: Durch %{domain} aufgelöst
       search: Suchen
-      title: Gesperrte E-Mail-Domains
+      title: E-Mail-Domains
     email_subscriptions:
       accounts:
         account: Konto
@@ -2300,6 +2302,14 @@ de:
       further_actions_html: Solltest du das nicht gewesen sein, empfehlen wir dir, sofort %{action}, da dein Konto möglicherweise kompromittiert ist.
       subject: Zwei-Faktor-Authentisierung fehlgeschlagen
       title: Zwei-Faktor-Authentisierung fehlgeschlagen
+    sign_in_token:
+      change_password: dein Passwort zu ändern
+      details: 'Details zum Anmeldeversuch:'
+      explanation: 'Du hast dich nach längerer Zeit wieder in dein Konto angemeldet. Um sicherzugehen, dass du das warst, gib den unten aufgeführten Sicherheitscode bei der Anmeldung an:'
+      further_actions: 'Wenn du dich nicht angemeldet hast, ändere dein Passwort und aktiviere die Zwei-Faktor-Authentisierung für dein Konto:'
+      further_actions_html: Wenn du dich nicht angemeldet hast, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentisierung für dein Konto zu aktivieren, um es abzusichern.
+      subject: Bitte bestätige deinen Anmeldeversuch
+      title: Anmeldeversuch
     suspicious_sign_in:
       change_password: dein Passwort zu ändern
       details: 'Hier sind die Details zu den Anmeldeversuchen:'
@@ -2389,8 +2399,12 @@ de:
       title: Willkommen an Bord, %{name}!
   users:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Profilen folgen
+    generic_access_help_html: Falls du Probleme hast, auf dein Konto zuzugreifen, tritt bitte mit uns über die E-Mail %{email} in Kontakt
     go_to_sso_account_settings: Kontoeinstellungen des Identitätsanbieters aufrufen
+    inactive_sign_in_confirmation: Du hast dich nach längerer Zeit wieder in dein Konto angemeldet. Um einen unbefugten Zugriff zu erschweren, haben wir einen Sicherheitscode an deine E-Mail-Adresse verschickt.
+    inactive_sign_in_title: Sicherheitscode bestätigen
     invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung (2FA)
+    invalid_sign_in_token: Ungültiger Sicherheitscode
     otp_lost_help_html: Wenn du sowohl die E-Mail-Adresse als auch das Passwort nicht mehr weißt, melde dich bitte bei uns unter %{email}
     rate_limited: Zu viele Authentisierungsversuche. Bitte versuche es später noch einmal.
     seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.
