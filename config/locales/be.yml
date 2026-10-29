@@ -8,6 +8,14 @@ be:
     hosted_on: Mastodon месціцца на %{domain}
     title: Пра нас
   accounts:
+    api_errors:
+      2fa_required: Вам нельга карыстацца ўліковым запісам без наладжанай двухфактарнай праверкі сапраўднасці
+      account_deleted: Ваш уліковы запіс быў выдалены
+      account_suspended: Ваш уліковы запіс быў заблакіраваны
+      login_disabled: Ваш уліковы запіс часова адключаны
+      memorial: Ваш уліковы запіс быў ператвораны ў мемарыял
+      pending_approval: Ваш уліковы запіс чакае мадэратарскага ўхвалення
+      pending_confirmation: У Вашым уліковым запісе адсутнічае пацверджаны адрас электроннай пошты
     errors:
       cannot_be_added_to_collections: Гэты ўліковы запіс нельга дадаць у калекцыі.
     followers:
@@ -75,6 +83,7 @@ be:
       demote: Панізіць у правах
       destroyed_msg: Даныя %{username} цяпер у чарзе на прымусовае выдаленне
       disable: Замарозіць
+      disable_sign_in_token: Часовы адключыць праверку кодам бяспекі
       disable_sign_in_token_auth: Выключыць аўтэнтыфікацыю па токену эл. пошты
       disable_two_factor_authentication: Адключыць 2FA
       disabled: Замарожаны
@@ -88,7 +97,9 @@ be:
       email: Электронная пошта
       email_status: Статус электроннай пошты
       enable: Размарозіць
+      enable_sign_in_token: Уключыць праверку кодам бяспекі
       enable_sign_in_token_auth: Уключыць аўтэнтыфікацыю па токену эл. пошты
+      enable_unconfirmed: Дазволіць пацвярджэнне электроннай поштай
       enabled: Уключана
       enabled_msg: Уліковы запіс %{username} размарожаны
       follow_recommendations:
@@ -289,6 +300,7 @@ be:
         create_domain_block_html: "%{name} заблакіраваў дамен %{target}"
         create_email_domain_block_html: "%{name} заблакіраваў дамен эл. пошты %{target}"
         create_ip_block_html: "%{name} стварыў правіла для IP %{target}"
+        create_moderation_subscription_html: "%{name} стварыў(-ла) мадэратарскую падпіску %{target}"
         create_relay_html: "%{name} стварыў(-ла) рэтранслятар %{target}"
         create_unavailable_domain_html: "%{name} прыпыніў дастаўку да дамена %{target}"
         create_user_role_html: "%{name} зрабіў ролю %{target}"
@@ -304,6 +316,7 @@ be:
         destroy_email_domain_block_html: "%{name} разблакіраваў дамен эл. пошты %{target}"
         destroy_instance_html: "%{name} цалкам прыбраў дамен %{target}"
         destroy_ip_block_html: "%{name} выдаліў правіла для IP %{target}"
+        destroy_moderation_subscription_html: "%{name} выдаліў(-ла) мадэратарскую падпіску %{target}"
         destroy_relay_html: "%{name} выдаліў(-ла) рэтранслятар %{target}"
         destroy_status_html: "%{name} выдаліў допіс %{target}"
         destroy_unavailable_domain_html: "%{name} дазволіў працягнуць адпраўку на дамен %{target}"
@@ -352,10 +365,18 @@ be:
         update_user_role_html: "%{name} змяніў ролю %{target}"
         update_username_block_html: Адміністратар %{name} змяніў правіла для імён карыстальнікаў, у якіх %{target}
         usable_tag_html: магчыма выкарыстаць;
+      automated_actions:
+        create_domain_allow_html: Аўтаматычна дазваляць федэрацыю з даменам %{target}
+        create_domain_block_html: Аўтаматычна блакіраваць дамен %{target}
+        destroy_domain_allow_html: Аўтаматычна адхіленая федэрацыя з даменам %{target}
+        destroy_domain_block_html: Аўтаматычна разблакіраваны дамен %{target}
+        update_domain_block_html: Аўтаматычна абноўленая блакіроўка дамена для %{target}
       deleted_account: выдалены ўліковы запіс
+      deleted_suggestion: выдаленая мадэратарская падпіска
       empty: Логі не знойдзены.
       filter_by_action: Фільтраваць па дзеянню
       filter_by_user: Адфільтраваць па карыстальніку
+      suggested_by_html: Дзеянне прапанаванае %{subscription}
       title: Аўдыт
       unavailable_instance: "(імя дамена недаступнае)"
     announcements:
@@ -481,6 +502,11 @@ be:
       undo: Забараніць федэрацыю з даменам
     domain_blocks:
       add_new: Дадаць новы блок дамену
+      confirm_downgrade:
+        cancel: Скасаваць
+        confirm: Панізіць
+        preamble_html: Вы збіраецеся панізіць узровень існуючай блакіроўкі <strong>%{domain}</strong> і яго паддаменаў.
+        title: Пацвердзіце паніжэнне ўзроўню блакіроўкі дамена для %{domain}
       confirm_suspension:
         cancel: Скасаваць
         confirm: Прыпыніць
@@ -640,6 +666,11 @@ be:
         title: Імпарт блакіровак дамену
       no_file: Файл не выбраны
     fasp:
+      capabilities:
+        activation_msg: Функцыя паспяхова ўключаная.
+        deactivation_msg: Функцыя паспяхова адключаная.
+        disable: Адключыць
+        enable: Уключыць
       debug:
         callbacks:
           created_at: Створана
@@ -651,6 +682,7 @@ be:
         active: Актыўны
         base_url: Базавы URL-адрас
         callback: Зваротны выклік
+        capabilities: Функцыі
         delete: Выдаліць
         edit: Рэдагаваць пастаўшчыка
         finish_registration: Завяршыць рэгістрацыю
@@ -676,6 +708,8 @@ be:
       title: Рэкамендацыі падпісак
       unsuppress: Аднавіць рэкамендацыі падпісак
     instances:
+      advisories:
+        title: Парады ад мадэратарскіх падпісак
       audit_log:
         title: Нядаўнія журналы аўдыту
         view_all: Праглядзець поўныя журналы аўдыту
@@ -703,6 +737,7 @@ be:
         comment: Унутраная нататка
         description_html: Вы можаце вызначыць палітыку кантэнту, якая будзе прымяняцца да ўсіх уліковых запісаў гэтага дамена і любога з яго субдаменаў.
         limited_federation_mode_description_html: Вы можаце выбраць ці дазволіць уваходзіць у федэрацыю з гэтым даменам.
+        moderation_subscription: Мадэратарская падпіска
         policies:
           reject_media: Адхіліць медыя
           reject_reports: Адхіліць справаздачы
@@ -785,6 +820,46 @@ be:
       reset: Скінуць
       search: Пошук
       title: IP правілы
+    moderation_subscriptions:
+      add_new: Дадаць падпіску
+      advisory_action: 'Дзеянне: %{action}'
+      advisory_actions:
+        accept: дазволіць
+        limit: заглушыць
+        reject: заблакіраваць
+      apply_automatically: Аўтаматычна ўжываць парады
+      apply_conditions:
+        always: Заўсёды
+        never: Ніколі
+        safely: Толькі калі гэта не шкодзіць адносінам
+      apply_conditions_hint:
+        always: Заўсёды аўтаматычна ўжываць рэкамендаваныя дзеянні. Ужывайце гэты варыянт толькі для спісаў, якім Вы цалкам давяраеце.
+        never: Ніколі не ўжываць аўтаматычна рэкамендаваныя дзеянні. Замест гэтага заўсёды генерыраваць прапанову.
+        safely: Ужываць рэкамендаваныя дзеянні, калі яны не шкодзяць існуючым падпісачным адносінам з мясцовымі карыстальнікамі. У такіх выпадках, замест гэтага будзе генерыравацца прапанова.
+      delete: Выдаліць
+      destroyed_msg: Паспяхова выдаленае мадэратарская падпіска
+      empty: На ніводны мадэратарскі спіс яшчэ няма падпіскі.
+      last_synced_at: Апошняя сінхранізацыя была
+      list_action: Тып падпіскі
+      list_actions:
+        accept: Спіс дазволеных
+        default: Змяшаны(Дазволіць і Адхіліць)
+        reject: Спіс заблакіраваных
+      list_actions_short:
+        accept: Спіс дазволеных
+        default: Змяшаны
+        reject: Спіс заблакіраваных
+      name: Назва
+      new:
+        create: Падпісацца
+        title: Новая мадэратарская падпіска
+      override_unattributed: Перапісваць ручныя блакіроўкі
+      override_unattributed_hint: Дазволіць гэтай падпісцы аўтаматычна абнаўляць або браць на сябе існуючыя ручныя блакіроўкі пры аўтаматычным ужыванні парад.
+      policies:
+        apply_advisories: Аўтаматычна ўжывае парады
+        apply_advisories_safely: Аўтаматычна ўжывае парады, якія не шкодзяць адносінам
+        apply_retractions: Аўтаматычна ўжывае скасаванні
+      priority: Прыярытэт
     relationships:
       title: Зносіны %{acct}
     relays:
@@ -985,6 +1060,31 @@ be:
       translation: Пераклад
       translations: Пераклады
       translations_explanation: Вы можаце па жаданні дадаваць пераклады Вашых правіл. Калі перакладу няма, то пакажацца арыгінальная версія. Калі ласка, заўсёды правярайце, каб пераклад быў такім жа актуальным, як і арыгінал.
+    server_checks:
+      categories:
+        completed:
+          title: Завершана
+        critical:
+          title: Крытычна
+        error:
+          title: Памылкі
+        ignored:
+          title: Прапушчана
+        suggestion:
+          title: Прапановы
+        unprocessed:
+          title: Неапрацавана
+        warning:
+          title: Папярэджанні
+      checks:
+        database_schema:
+          error:
+            title: Адбылася памылка падчас праверкі схемы базы даных
+        software_version:
+          pending:
+            lead:
+              regular_html: Даступная новая версія Mastodon
+      title: Стан сервера
     settings:
       about:
         manage_rules: Кіраваць правіламі сервера
@@ -1022,6 +1122,14 @@ be:
         all: Для ўсіх
         disabled: Нікому
         users: Лакальным карыстальнікам, якія ўвайшлі
+      external:
+        directory: Каталог серверу
+        opt_in_server_directory:
+          description: Дазволіць Вашаму серверу трапляць у спіс каталогаў серверу, кшталту таго, што можна ўбачыць на https://joinmastodon.org/servers.
+          title: Уключыць Ваш сервер у каталог серверу
+        opt_in_server_recommendation:
+          description: Дазволіць Вашаму серверу трапляць у рэкамендацыі пры рэгістрацыі ў праграмах, накшталт афіцыяльных кліентаў Mastodon.
+          title: Уключыць Ваш сервер у рэкамендацыі
       feed_access:
         modes:
           authenticated: Толькі аўтэнтыфікаваныя карыстальнікі
