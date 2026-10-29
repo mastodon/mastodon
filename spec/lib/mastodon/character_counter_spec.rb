@@ -9,37 +9,22 @@ RSpec.describe Mastodon::CharacterCounter do
   context 'when note is too long' do
     let(:too_long) { 'a' * 200 }
 
-    it 'with countable note text' do
-      expect(subject.countable_note_text(too_long)).to eq(too_long)
-    end
-
-    it 'with countable status text' do
-      expect(subject.countable_status_text(too_long)).to eq(too_long)
-    end
+    it { expect(subject.countable_note_text(too_long)).to eq(too_long) }
+    it { expect(subject.countable_status_text(too_long)).to eq(too_long) }
   end
 
   context 'when note has space separated linkable URLs' do
     let(:text) { [starting_string, example_link].join(' ') }
 
-    it 'with countable note text' do
-      expect(subject.countable_note_text(text)).to eq([starting_string, url_placeholder].join(' '))
-    end
-
-    it 'with countable status text' do
-      expect(subject.countable_status_text(text)).to eq([starting_string, url_placeholder].join(' '))
-    end
+    it { expect(subject.countable_note_text(text)).to eq([starting_string, url_placeholder].join(' ')) }
+    it { expect(subject.countable_status_text(text)).to eq([starting_string, url_placeholder].join(' ')) }
   end
 
   context 'when note has non-separated URLs' do
     let(:text) { [starting_string, example_link].join }
 
-    it 'with countable note text' do
-      expect(subject.countable_note_text(text)).to eq(text)
-    end
-
-    it 'with countable status text' do
-      expect(subject.countable_status_text(text)).to eq(text)
-    end
+    it { expect(subject.countable_note_text(text)).to eq(text) }
+    it { expect(subject.countable_status_text(text)).to eq(text) }
   end
 
   context 'with multiline text and mentions and URL' do
@@ -51,238 +36,128 @@ RSpec.describe Mastodon::CharacterCounter do
       TEXT
     end
 
-    it 'with countable note text' do
-      expect(subject.countable_note_text(text)).to include("great day here with @mause\n\n#{url_placeholder}\n")
-    end
-
-    it 'with countable status text' do
-      expect(subject.countable_status_text(text)).to include("great day here with @mause\n\n#{url_placeholder}\n")
-    end
+    it { expect(subject.countable_note_text(text)).to include("great day here with @mause\n\n#{url_placeholder}\n") }
+    it { expect(subject.countable_status_text(text)).to include("great day here with @mause\n\n#{url_placeholder}\n") }
   end
 
   context 'with multi-byte emoji' do
     let(:text) { '✨' * 100 }
 
-    it 'with countable note text' do
-      expect(subject.countable_note_text(text)).to eq(text)
-    end
-
-    it 'with countable status text' do
-      expect(subject.countable_status_text(text)).to eq(text)
-    end
+    it { expect(subject.countable_note_text(text)).to eq(text) }
+    it { expect(subject.countable_status_text(text)).to eq(text) }
   end
 
   context 'with ZWJ sequence emoji' do
     let(:text) { '🏳️‍⚧️' * 100 }
 
-    it 'with countable note text' do
-      expect(subject.countable_note_text(text)).to eq(text)
-    end
-
-    it 'with countable status text' do
-      expect(subject.countable_status_text(text)).to eq(text)
-    end
+    it { expect(subject.countable_note_text(text)).to eq(text) }
+    it { expect(subject.countable_status_text(text)).to eq(text) }
   end
 
   context 'when text and content warning combine to exceed limit' do
     let(:text) { 'a' * 50 }
 
-    it 'with countable note text' do
-      expect(subject.countable_note_text(text)).to eq(text)
-    end
-
-    it 'with countable status text' do
-      expect(subject.countable_status_text(text)).to eq(text)
-    end
+    it { expect(subject.countable_note_text(text)).to eq(text) }
+    it { expect(subject.countable_status_text(text)).to eq(text) }
   end
 
   context 'with long URLs' do
     let(:text) { "http://example.com/something#{'?valid=foo' * 10}" }
 
-    it 'with countable note text' do
-      expect(subject.countable_note_text(text)).to eq(url_placeholder)
-    end
-
-    it 'with countable status text' do
-      expect(subject.countable_status_text(text)).to eq(url_placeholder)
-    end
+    it { expect(subject.countable_note_text(text)).to eq(url_placeholder) }
+    it { expect(subject.countable_status_text(text)).to eq(url_placeholder) }
   end
 
   context 'with excessively long URLs' do
     let(:text) { "http://example.com/something#{'?valid=foo' * 1000}" }
 
-    it 'with countable note text' do
-      expect(subject.countable_note_text(text)).to eq(text)
-    end
-
-    it 'with countable status text' do
-      expect(subject.countable_status_text(text)).to eq(text)
-    end
+    it { expect(subject.countable_note_text(text)).to eq(text) }
+    it { expect(subject.countable_status_text(text)).to eq(text) }
   end
 
   context 'when remote account usernames cause limit excess' do
     let(:text) { ('a' * 75) + " @alice@#{'b' * 30}.com" }
 
-    it 'with countable note text' do
-      expect(subject.countable_note_text(text)).to eq("#{'a' * 75} @alice")
-    end
-
-    it 'with countable status text' do
-      expect(subject.countable_status_text(text)).to eq("#{'a' * 75} @alice")
-    end
+    it { expect(subject.countable_note_text(text)).to eq("#{'a' * 75} @alice") }
+    it { expect(subject.countable_status_text(text)).to eq("#{'a' * 75} @alice") }
   end
 
   context 'when remote usernames are attached to long domains' do
     let(:text) { "@alice@#{'b' * Extractor::MAX_DOMAIN_LENGTH * 2}.com" }
 
-    it 'with countable note text' do
-      expect(subject.countable_note_text(text)).to eq('@alice')
-    end
-
-    it 'with countable status text' do
-      expect(subject.countable_status_text(text)).to eq(text)
-    end
+    it { expect(subject.countable_note_text(text)).to eq('@alice') }
+    it { expect(subject.countable_status_text(text)).to eq(text) }
   end
 
   context 'with the tests from the javascript counter class to validate same behaviour' do
     describe 'passes plain text through unchanged' do
-      it do
-        expect(subject.countable_status_text('hello world')).to eq('hello world')
-      end
-
-      it do
-        expect(subject.countable_note_text('hello world')).to eq('hello world')
-      end
+      it { expect(subject.countable_status_text('hello world')).to eq('hello world') }
+      it { expect(subject.countable_note_text('hello world')).to eq('hello world') }
     end
 
     describe 'collapses an https URL to a 23-character placeholder' do
-      it do
-        expect(subject.countable_status_text('see https://example.com here')).to eq("see #{url_placeholder} here")
-      end
-
-      it do
-        expect(subject.countable_note_text('see https://example.com here')).to eq("see #{url_placeholder} here")
-      end
+      it { expect(subject.countable_status_text('see https://example.com here')).to eq("see #{url_placeholder} here") }
+      it { expect(subject.countable_note_text('see https://example.com here')).to eq("see #{url_placeholder} here") }
     end
 
     describe 'collapses a schemaless URL the same way' do
-      it do
-        expect(subject.countable_status_text('see example.com here')).to eq("see #{url_placeholder} here")
-      end
-
-      it do
-        expect(subject.countable_note_text('see example.com here')).to eq("see #{url_placeholder} here")
-      end
+      it { expect(subject.countable_status_text('see example.com here')).to eq("see #{url_placeholder} here") }
+      it { expect(subject.countable_note_text('see example.com here')).to eq("see #{url_placeholder} here") }
     end
 
     describe 'collapses a non-BMP URL the same way' do
-      it do
-        expect(subject.countable_status_text('look https://example.com/🐪/#camel here')).to eq("look #{url_placeholder} here")
-      end
-
-      it do
-        expect(subject.countable_note_text('look https://example.com/🐪/#camel here')).to eq("look #{url_placeholder} here")
-      end
+      it { expect(subject.countable_status_text('look https://example.com/🐪/#camel here')).to eq("look #{url_placeholder} here") }
+      it { expect(subject.countable_note_text('look https://example.com/🐪/#camel here')).to eq("look #{url_placeholder} here") }
     end
 
     describe 'collapses a schemaless non-BMP URL the same way' do
-      it do
-        expect(subject.countable_status_text('look example.com/🐪/#camel here')).to eq("look #{url_placeholder} here")
-      end
-
-      it do
-        expect(subject.countable_note_text('look example.com/🐪/#camel here')).to eq("look #{url_placeholder} here")
-      end
+      it { expect(subject.countable_status_text('look example.com/🐪/#camel here')).to eq("look #{url_placeholder} here") }
+      it { expect(subject.countable_note_text('look example.com/🐪/#camel here')).to eq("look #{url_placeholder} here") }
     end
 
     describe 'collapses an IDN URL the same way' do
-      it do
-        expect(subject.countable_status_text('besøk https://grå.org/ idag')).to eq("besøk #{url_placeholder} idag")
-      end
-
-      it do
-        expect(subject.countable_note_text('besøk https://grå.org/ idag')).to eq("besøk #{url_placeholder} idag")
-      end
+      it { expect(subject.countable_status_text('besøk https://grå.org/ idag')).to eq("besøk #{url_placeholder} idag") }
+      it { expect(subject.countable_note_text('besøk https://grå.org/ idag')).to eq("besøk #{url_placeholder} idag") }
     end
 
     describe 'collapses an IDN URL with non-Latin script' do
-      it do
-        expect(subject.countable_status_text('参观 https://慕田峪长城.网址/ 今天')).to eq("参观 #{url_placeholder} 今天")
-      end
-
-      it do
-        expect(subject.countable_note_text('参观 https://慕田峪长城.网址/ 今天')).to eq("参观 #{url_placeholder} 今天")
-      end
+      it { expect(subject.countable_status_text('参观 https://慕田峪长城.网址/ 今天')).to eq("参观 #{url_placeholder} 今天") }
+      it { expect(subject.countable_note_text('参观 https://慕田峪长城.网址/ 今天')).to eq("参观 #{url_placeholder} 今天") }
     end
 
     describe 'strips the host part of an ASCII remote mention' do
-      it do
-        expect(subject.countable_status_text('hi @bob@example.com')).to eq('hi @bob')
-      end
-
-      it do
-        expect(subject.countable_note_text('hi @bob@example.com')).to eq('hi @bob')
-      end
+      it { expect(subject.countable_status_text('hi @bob@example.com')).to eq('hi @bob') }
+      it { expect(subject.countable_note_text('hi @bob@example.com')).to eq('hi @bob') }
     end
 
     describe 'does not touch a local mention' do
-      it do
-        expect(subject.countable_status_text('hi @bob')).to eq('hi @bob')
-      end
-
-      it do
-        expect(subject.countable_note_text('hi @bob')).to eq('hi @bob')
-      end
+      it { expect(subject.countable_status_text('hi @bob')).to eq('hi @bob') }
+      it { expect(subject.countable_note_text('hi @bob')).to eq('hi @bob') }
     end
 
     describe 'handles a URL and a mention together' do
-      it do
-        expect(subject.countable_status_text('@bob@example.com look https://example.com')).to eq("@bob look #{url_placeholder}")
-      end
-
-      it do
-        expect(subject.countable_note_text('@bob@example.com look https://example.com')).to eq("@bob look #{url_placeholder}")
-      end
+      it { expect(subject.countable_status_text('@bob@example.com look https://example.com')).to eq("@bob look #{url_placeholder}") }
+      it { expect(subject.countable_note_text('@bob@example.com look https://example.com')).to eq("@bob look #{url_placeholder}") }
     end
 
     describe 'email-shaped text is left alone (no leading @, so not a mention)' do
-      it do
-        expect(subject.countable_status_text('mail arnt@grå.org for details')).to eq('mail arnt@grå.org for details')
-      end
-
-      it do
-        expect(subject.countable_note_text('mail arnt@grå.org for details')).to eq('mail arnt@grå.org for details')
-      end
+      it { expect(subject.countable_status_text('mail arnt@grå.org for details')).to eq('mail arnt@grå.org for details') }
+      it { expect(subject.countable_note_text('mail arnt@grå.org for details')).to eq('mail arnt@grå.org for details') }
     end
 
     describe 'strips a Latin-IDN remote mention' do
-      it do
-        expect(subject.countable_status_text('hi @arnt@grå.org')).to eq('hi @arnt')
-      end
-
-      it do
-        expect(subject.countable_note_text('hi @arnt@grå.org')).to eq('hi @arnt')
-      end
+      it { expect(subject.countable_status_text('hi @arnt@grå.org')).to eq('hi @arnt') }
+      it { expect(subject.countable_note_text('hi @arnt@grå.org')).to eq('hi @arnt') }
     end
 
     describe 'strips a CJK-IDN remote mention' do
-      it do
-        expect(subject.countable_status_text('hi @user@慕田峪长城.网址')).to eq('hi @user')
-      end
-
-      it do
-        expect(subject.countable_note_text('hi @user@慕田峪长城.网址')).to eq('hi @user')
-      end
+      it { expect(subject.countable_status_text('hi @user@慕田峪长城.网址')).to eq('hi @user') }
+      it { expect(subject.countable_note_text('hi @user@慕田峪长城.网址')).to eq('hi @user') }
     end
 
     describe 'leaves a mention with an implausible host alone' do
-      it do
-        expect(subject.countable_status_text('@arnt@invalid')).to eq('@arnt')
-      end
-
-      it do
-        expect(subject.countable_note_text('@arnt@invalid')).to eq('@arnt')
-      end
+      it { expect(subject.countable_status_text('@arnt@invalid')).to eq('@arnt') }
+      it { expect(subject.countable_note_text('@arnt@invalid')).to eq('@arnt') }
     end
 
     describe 'iterate through funky domains' do
@@ -328,8 +203,6 @@ RSpec.describe Mastodon::CharacterCounter do
 
       it 'collapses a bare %s to a 23-character placeholder' do
         funky_domains.each do |domain|
-          # tibetan domain fails on note text and produces
-          # "look xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx here"
           expect(subject.countable_note_text("look #{domain} here")).to eq("look #{url_placeholder} here")
           expect(subject.countable_status_text("look #{domain} here")).to eq("look #{url_placeholder} here")
         end
