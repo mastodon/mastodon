@@ -51,7 +51,7 @@ import {
   useStatusContext,
   useStatusHandlers,
 } from './hooks';
-import { StatusImage } from './image';
+import { StatusGalleryImage } from './image';
 import classes from './quote.module.scss';
 import { accountStatusLinkProps, statusLink } from './utils';
 
@@ -167,13 +167,14 @@ export const QuotedStatus: React.FC<{
       </CardTitle>
 
       <CardBody className={classes.body} noClamp={!clamp}>
-        <PrimaryCardLink
-          as={Link}
-          to={{ pathname: statusLink(status), state: { reference: 'status' } }}
-        >
-          <QuotedStatusBody status={status} />
-        </PrimaryCardLink>
+        <QuotedStatusBody status={status} />
       </CardBody>
+
+      <PrimaryCardLink
+        as={Link}
+        to={{ pathname: statusLink(status), state: { reference: 'status' } }}
+        className={classes.mainLink}
+      />
 
       {!status.spoilerHtml && <QuotedStatusLink status={status} />}
     </Card>
@@ -306,7 +307,8 @@ const QuotedStatusBody: React.FC<{
 
       {mainAttachment?.type === 'video' && (
         <div className={classNames(classes.media, classes.mediaSingle)}>
-          <StatusImage
+          <StatusGalleryImage
+            statusId={status.id}
             className={classes.image}
             attachment={mainAttachment}
             sensitive={sensitive}
@@ -317,7 +319,7 @@ const QuotedStatusBody: React.FC<{
 
               {duration}
             </div>
-          </StatusImage>
+          </StatusGalleryImage>
         </div>
       )}
 
@@ -331,8 +333,9 @@ const QuotedStatusBody: React.FC<{
           data-number={imageAttachments.length}
         >
           {imageAttachments.map((attachment) => (
-            <StatusImage
+            <StatusGalleryImage
               showAlt
+              statusId={status.id}
               className={classes.image}
               attachment={attachment}
               sensitive={sensitive}
