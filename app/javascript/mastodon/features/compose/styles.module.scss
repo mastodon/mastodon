@@ -12,7 +12,11 @@
   padding-bottom: calc(max(env(safe-area-inset-bottom), var(--space-4)));
   position: relative;
 
-  @media (width >= #{variables.$mobile-menu-breakpoint}) {
+  [data-narrow-height='true'] & {
+    overflow-y: scroll;
+  }
+
+  [data-fullscreen='false'] & {
     @include mixins.elevation-2;
 
     border-bottom: none;
@@ -127,6 +131,10 @@
 
   &[data-scroll-down='true']::after {
     opacity: 1;
+  }
+
+  [data-narrow-height='true'] & {
+    overflow-y: visible;
   }
 }
 

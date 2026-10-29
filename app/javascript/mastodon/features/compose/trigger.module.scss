@@ -33,7 +33,11 @@
   top: env(safe-area-inset-top);
   transition: bottom 200ms ease-in-out;
 
-  @media (width < #{variables.$mobile-menu-breakpoint}) {
+  &[data-narrow-height='true'] {
+    overflow-y: visible;
+  }
+
+  &[data-fullscreen='true'] {
     // Add a backdrop for the mobile composer to cover up the page
     // behind the composer that can be visible on Safari iOS
     &::before {
@@ -45,7 +49,7 @@
     }
   }
 
-  @media (width >= #{variables.$mobile-menu-breakpoint}) {
+  &[data-fullscreen='false'] {
     top: auto;
     display: grid;
     grid-template-columns: var(--columns-area-grid-columns);
@@ -56,7 +60,7 @@
 
 .composer,
 .composerMinimized {
-  @media (width >= #{variables.$mobile-menu-breakpoint}) {
+  [data-fullscreen='false'] & {
     box-sizing: border-box;
     grid-column: 2;
     pointer-events: auto;
@@ -64,13 +68,13 @@
 }
 
 .composer {
-  @media (width < #{variables.$mobile-menu-breakpoint}) {
+  [data-fullscreen='true'] & {
     // Set from the visualViewport API.
     height: var(--viewport-height, 100vh);
     max-height: 100vh;
   }
 
-  @media (width >= #{variables.$mobile-menu-breakpoint}) {
+  [data-fullscreen='false'] & {
     min-height: 270px;
     max-height: calc(100vh - (var(--space-4) * 2));
   }
