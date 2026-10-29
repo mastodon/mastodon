@@ -22,8 +22,12 @@ import {
 import { useSortableList } from '@/mastodon/components/sortable_list/hooks';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import {
+  selectComposeAttachment,
+  selectComposeAttachments,
+} from '../components/selectors';
+
 import classes from './modals.module.scss';
-import { selectComposeAttachment, selectComposeAttachments } from './selectors';
 
 const messages = defineMessages({
   screenReaderInstructions: {

@@ -9,7 +9,7 @@ import { statusLink } from '@/mastodon/components/status/utils';
 import { selectAccountStatus } from '@/mastodon/selectors/statuses';
 import { useAppSelector } from '@/mastodon/store';
 
-import classes from './styles.module.scss';
+import classes from '../styles.module.scss';
 
 export const ComposeReply: React.FC = () => {
   const replyId = useAppSelector(

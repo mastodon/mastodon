@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { RedesignComposeForm } from '.';
+import { ComposeForm } from './form';
 
 const meta = {
   title: 'Redesign/Compose',
-  component: RedesignComposeForm,
+  component: ComposeForm,
   render() {
     return (
       <div style={{ width: 'max(40vw, 400px)' }}>
-        <RedesignComposeForm />
+        <ComposeForm />
       </div>
     );
   },
@@ -34,7 +34,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof RedesignComposeForm>;
+} satisfies Meta<typeof ComposeForm>;
 
 export default meta;
 

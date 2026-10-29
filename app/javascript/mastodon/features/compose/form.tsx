@@ -4,6 +4,7 @@ import { useCallback, useEffect, useId } from 'react';
 import classNames from 'classnames';
 
 import { insertEmojiCompose } from '@/mastodon/actions/compose';
+import type { OnEmojiPick } from '@/mastodon/components/emoji/picker';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import {
   closeComposer,
@@ -13,21 +14,20 @@ import {
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { ComposeAttachments } from './attachments';
-import type { OnEmojiPick } from './emoji';
-import { ComposeFooter } from './footer';
-import { ComposeFormHeader } from './header';
-import { ComposeHints } from './hints';
-import { LanguageButton } from './language';
-import { ComposeReply } from './reply';
-import { selectComposeType } from './selectors';
-import { ComposeSensitiveField } from './sensitive';
-import { ComposeSettingsMenu } from './settings';
+import { ComposeAttachments } from './components/attachments';
+import { ComposeFooter } from './components/footer';
+import { ComposeFormHeader } from './components/header';
+import { ComposeHints } from './components/hints';
+import { LanguageButton } from './components/language';
+import { ComposeReply } from './components/reply';
+import { selectComposeType } from './components/selectors';
+import { ComposeSensitiveField } from './components/sensitive';
+import { ComposeSettingsMenu } from './components/settings';
+import { ComposeTextarea } from './components/textarea';
+import { ComposeVisibility } from './components/visibility';
 import classes from './styles.module.scss';
-import { ComposeTextarea } from './textarea';
-import { ComposeVisibility } from './visibility';
 
-interface RedesignComposeFormProps {
+interface ComposeFormProps {
   autoFocus?: boolean;
   headless?: boolean;
   className?: string;
@@ -35,8 +35,8 @@ interface RedesignComposeFormProps {
   redirectOnSuccess?: boolean;
 }
 
-export const RedesignComposeForm: React.FC<
-  RedesignComposeFormProps & React.ComponentPropsWithRef<'form'>
+export const ComposeForm: React.FC<
+  ComposeFormProps & React.ComponentPropsWithRef<'form'>
 > = ({
   autoFocus,
   headless,

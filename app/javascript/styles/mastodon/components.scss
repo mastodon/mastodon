@@ -5357,8 +5357,8 @@ a.status-card {
 
 .emoji-picker-dropdown__modifiers {
   position: absolute;
-  top: 60px;
-  inset-inline-end: 11px;
+  inset-block-start: 66px;
+  inset-inline-end: 15px;
   cursor: pointer;
 }
 
@@ -6571,7 +6571,8 @@ a.status-card {
     align-items: center;
     justify-content: space-between;
     flex-direction: row-reverse;
-    padding: 12px 24px;
+    padding: var(--space-3);
+    padding-inline: var(--space-6) var(--space-4);
     min-height: 61px;
 
     &__title {

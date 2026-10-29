@@ -5,21 +5,19 @@ import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import { CheckIcon, XIcon } from '@phosphor-icons/react';
+
 import {
   authorizeFollowRequest,
   rejectFollowRequest,
 } from '@/mastodon/actions/accounts';
+import { AvatarOverlay } from '@/mastodon/components/avatar_overlay';
+import { Button } from '@/mastodon/components/button/redesign';
+import { DisplayName } from '@/mastodon/components/display_name';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import type { Account } from '@/mastodon/models/account';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import CheckIcon from '@/material-icons/400-24px/check.svg?react';
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-
-import { AvatarOverlay } from '../avatar_overlay';
-import { Button } from '../button';
-import { DisplayName } from '../display_name';
-import { Icon } from '../icon';
 
 import classes from './styles.module.scss';
 
@@ -80,16 +78,14 @@ const FollowRequestNote: FC<{ account: Account }> = ({ account }) => {
       </MessageText>
 
       <div className={classes.bannerActions}>
-        <Button secondary onClick={handleAuthorize}>
-          <Icon id='check' icon={CheckIcon} />
+        <Button onClick={handleAuthorize} leadingIcon={CheckIcon} size='sm'>
           <FormattedMessage
             id='follow_request.authorize'
             defaultMessage='Authorize'
           />
         </Button>
 
-        <Button secondary onClick={handleReject}>
-          <Icon id='times' icon={CloseIcon} />
+        <Button onClick={handleReject} leadingIcon={XIcon} size='sm'>
           <FormattedMessage
             id='follow_request.reject'
             defaultMessage='Reject'

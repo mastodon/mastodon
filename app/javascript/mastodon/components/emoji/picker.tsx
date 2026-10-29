@@ -1,10 +1,18 @@
-import type React from 'react';
-import { lazy, Suspense, useCallback, useMemo, useRef, useState } from 'react';
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import type { Placement } from '@floating-ui/react-dom';
 import { SmileyIcon } from '@phosphor-icons/react';
 import type { EmojiData, EmojiSkin } from 'emoji-mart';
 
@@ -12,16 +20,28 @@ import { emojiUse } from '@/mastodon/actions/emojis';
 import { changeSetting } from '@/mastodon/actions/settings';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import { CircularProgress } from '@/mastodon/components/circular_progress';
+import {
+  PER_LINE,
+  selectFrequentlyUsedEmoji,
+} from '@/mastodon/components/emoji/selectors';
 import { MenuCard } from '@/mastodon/components/menu/card';
 import type { PopoverChildProps } from '@/mastodon/components/popover';
 import { Popover } from '@/mastodon/components/popover';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { PER_LINE, selectFrequentlyUsedEmoji } from './selectors';
-import classes from './styles.module.scss';
+import classes from './picker.module.scss';
 
 export type OnEmojiPick = (emoji: EmojiData) => void;
+
+export function emojiToString(emoji: EmojiData) {
+  if ('native' in emoji) {
+    return emoji.native;
+  } else if ('shortcode' in emoji && typeof emoji.shortcode === 'string') {
+    return `:${emoji.shortcode}:`;
+  }
+  return `:${emoji.name}:`;
+}
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
@@ -42,9 +62,11 @@ const messages = defineMessages({
   flags: { id: 'emoji_button.flags', defaultMessage: 'Flags' },
 });
 
-export const ComposeEmojiButton: React.FC<{ onPick: OnEmojiPick }> = ({
-  onPick,
-}) => {
+export const EmojiPickerButton: React.FC<{
+  onPick: OnEmojiPick;
+  disabled?: boolean;
+  placement?: Placement;
+}> = ({ onPick, disabled, placement = 'top-start' }) => {
   const [open, { onToggle, onFalse }] = useToggle();
   const [target, setTarget] = useState<HTMLButtonElement | null>(null);
 
@@ -67,14 +89,15 @@ export const ComposeEmojiButton: React.FC<{ onPick: OnEmojiPick }> = ({
         isOpen={open}
         onClose={onFalse}
         reference={target}
-        placement='top-start'
+        placement={placement}
         offset={4}
       >
         {({ props, placement }) => (
-          <ComposeEmojiDropdown
+          <EmojiDropdown
             onPick={onPick}
             onClose={onFalse}
             className={placement}
+            disabled={disabled}
             {...props}
           />
         )}
@@ -94,11 +117,12 @@ const Emoji = lazy(() =>
   })),
 );
 
-const ComposeEmojiDropdown: React.FC<
+export const EmojiDropdown: React.FC<
   {
     onClose: () => void;
     onPick: OnEmojiPick;
     className?: string;
+    disabled?: boolean;
   } & PopoverChildProps
 > = ({ onPick, onClose, className, ...props }) => {
   const intl = useIntl();
@@ -160,6 +184,19 @@ const ComposeEmojiDropdown: React.FC<
     [onFalse, open],
   );
 
+  // Due to a bug with the picker, if we set autoFocus to true immediately
+  // it causes the page to scroll.
+  const [autoFocus, setAutoFocus] = useState(false);
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      setAutoFocus(true);
+    });
+
+    return () => {
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
     <MenuCard
       {...props}
@@ -195,7 +232,7 @@ const ComposeEmojiDropdown: React.FC<
           showSkinTones={false}
           // We need to cast as unknown as this requires a legacy class component.
           notFound={NotFound as unknown as () => React.Component}
-          autoFocus
+          autoFocus={autoFocus}
           emojiTooltip
         />
 
@@ -233,7 +270,7 @@ const ModifierButton: React.FC<{ skin: EmojiSkin; onClose: () => void }> = ({
     [dispatch, onClose, skin],
   );
   return (
-    <button type='button' onClick={handleClick} data-index={1}>
+    <button type='button' onClick={handleClick}>
       <Emoji emoji='fist' size={22} skin={skin} />
     </button>
   );
