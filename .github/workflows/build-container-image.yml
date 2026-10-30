@@ -26,7 +26,10 @@ on:
 jobs:
   # Build each (amd64 and arm64) image separately
   build-image:
-    runs-on: ${{ matrix.runner }}
+    env:
+      # renovate: datasource=github-runners depName=ubuntu
+      UBUNTU_VERSION: ubuntu-24.04
+    runs-on: ${{ startsWith(matrix.platform, 'linux/arm') && '${ env.UBUNTU_VERSION }-arm' || '${ env.UBUNTU_VERSION }' }}
     strategy:
       fail-fast: false
       matrix:
