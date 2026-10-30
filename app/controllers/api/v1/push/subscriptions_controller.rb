@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 class Api::V1::Push::SubscriptionsController < Api::BaseController
+  include DeprecationConcern
   include Redisable
   include Lockable
+
+  deprecate_api '2026-12-31'
 
   before_action -> { doorkeeper_authorize! :push }
   before_action :require_user!
@@ -10,7 +13,7 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
   before_action :check_push_subscription, only: [:show, :update]
 
   def show
-    render json: @push_subscription, serializer: REST::WebPushSubscriptionSerializer
+    render json: @push_subscription, serializer: REST::WebPushSubscriptionV1Serializer
   end
 
   def create
@@ -19,12 +22,12 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
       @push_subscription = Web::PushSubscription.create!(web_push_subscription_params)
     end
 
-    render json: @push_subscription, serializer: REST::WebPushSubscriptionSerializer
+    render json: @push_subscription, serializer: REST::WebPushSubscriptionV1Serializer
   end
 
   def update
     @push_subscription.update!(data: data_params)
-    render json: @push_subscription, serializer: REST::WebPushSubscriptionSerializer
+    render json: @push_subscription, serializer: REST::WebPushSubscriptionV1Serializer
   end
 
   def destroy
