@@ -1,23 +1,29 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages } from 'react-intl';
+import { defineMessages } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
-import { injectIntl } from '@/mastodon/components/intl';
-import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
+import MoreHorizIcon from "@/material-icons/400-24px/more_horiz.svg?react";
+import { injectIntl } from "@/mastodon/components/intl";
+import {
+  identityContextPropShape,
+  withIdentity,
+} from "mastodon/identity_context";
+import {
+  PERMISSION_MANAGE_USERS,
+  PERMISSION_MANAGE_FEDERATION,
+} from "mastodon/permissions";
 
-import { IconButton } from '@/mastodon/components/icon_button';
-import { Dropdown } from 'mastodon/components/dropdown_menu';
-import { me, quickBoosting } from '@/mastodon/initial_state';
-import { BoostButton } from '@/mastodon/components/status/legacy/boost_button';
-import { quoteItemState } from '@/mastodon/components/status/boost_button_utils';
-import { selectStatusConditions } from '@/mastodon/selectors/statuses';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { IconButton } from "@/mastodon/components/icon_button";
+import { Dropdown } from "mastodon/components/dropdown_menu";
+import { me, quickBoosting } from "@/mastodon/initial_state";
+import { BoostButton } from "@/mastodon/components/status/legacy/boost_button";
+import { quoteItemState } from "@/mastodon/components/status/boost_button_utils";
+import { selectStatusConditions } from "@/mastodon/selectors/statuses";
+import { isRedesignEnabled } from "@/mastodon/utils/environment";
 import {
   StatusBookmarkActiveIcon,
   StatusBookmarkIcon,
@@ -25,58 +31,104 @@ import {
   StatusLikeIcon,
   StatusReplyAllIcon,
   StatusReplyIcon,
-} from '@/mastodon/components/status/icons';
+} from "@/mastodon/components/status/icons";
 
 const baseMessages = defineMessages({
-  delete: { id: 'status.delete', defaultMessage: 'Delete' },
-  redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
-  edit: { id: 'status.edit', defaultMessage: 'Edit' },
-  direct: { id: 'status.direct', defaultMessage: 'Privately mention @{name}' },
-  mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
-  reply: { id: 'status.reply', defaultMessage: 'Reply' },
-  favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
-  removeFavourite: { id: 'status.remove_favourite', defaultMessage: 'Remove from favorites' },
-  bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
-  removeBookmark: { id: 'status.remove_bookmark', defaultMessage: 'Remove bookmark' },
-  more: { id: 'status.more', defaultMessage: 'More' },
-  mute: { id: 'status.mute', defaultMessage: 'Mute @{name}' },
-  muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
-  unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
-  block: { id: 'status.block', defaultMessage: 'Block @{name}' },
-  report: { id: 'status.report', defaultMessage: 'Report @{name}' },
-  share: { id: 'status.share', defaultMessage: 'Share' },
-  pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
-  unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
-  embed: { id: 'status.embed', defaultMessage: 'Get embed code' },
-  admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
-  admin_status: { id: 'status.admin_status', defaultMessage: 'Open this post in the moderation interface' },
-  admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
-  copy: { id: 'status.copy', defaultMessage: 'Copy link to post' },
-  blockDomain: { id: 'account.block_domain', defaultMessage: 'Block domain {domain}' },
-  unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
-  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
-  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
-  openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
-  revokeQuote: { id: 'status.revoke_quote', defaultMessage: 'Remove my post from @{name}’s post' },
-  quotePolicyChange: { id: 'status.quote_policy_change', defaultMessage: 'Change who can quote' },
+  delete: { id: "status.delete", defaultMessage: "Delete" },
+  redraft: { id: "status.redraft", defaultMessage: "Delete & re-draft" },
+  edit: { id: "status.edit", defaultMessage: "Edit" },
+  direct: { id: "status.direct", defaultMessage: "Privately mention @{name}" },
+  mention: { id: "status.mention", defaultMessage: "Mention @{name}" },
+  reply: { id: "status.reply", defaultMessage: "Reply" },
+  favourite: { id: "status.favourite", defaultMessage: "Favorite" },
+  removeFavourite: {
+    id: "status.remove_favourite",
+    defaultMessage: "Remove from favorites",
+  },
+  bookmark: { id: "status.bookmark", defaultMessage: "Bookmark" },
+  removeBookmark: {
+    id: "status.remove_bookmark",
+    defaultMessage: "Remove bookmark",
+  },
+  more: { id: "status.more", defaultMessage: "More" },
+  mute: { id: "status.mute", defaultMessage: "Mute @{name}" },
+  muteConversation: {
+    id: "status.mute_conversation",
+    defaultMessage: "Mute conversation",
+  },
+  unmuteConversation: {
+    id: "status.unmute_conversation",
+    defaultMessage: "Unmute conversation",
+  },
+  block: { id: "status.block", defaultMessage: "Block @{name}" },
+  report: { id: "status.report", defaultMessage: "Report @{name}" },
+  share: { id: "status.share", defaultMessage: "Share" },
+  pin: { id: "status.pin", defaultMessage: "Pin on profile" },
+  unpin: { id: "status.unpin", defaultMessage: "Unpin from profile" },
+  embed: { id: "status.embed", defaultMessage: "Get embed code" },
+  admin_account: {
+    id: "status.admin_account",
+    defaultMessage: "Open moderation interface for @{name}",
+  },
+  admin_status: {
+    id: "status.admin_status",
+    defaultMessage: "Open this post in the moderation interface",
+  },
+  admin_domain: {
+    id: "status.admin_domain",
+    defaultMessage: "Open moderation interface for {domain}",
+  },
+  copy: { id: "status.copy", defaultMessage: "Copy link to post" },
+  blockDomain: {
+    id: "account.block_domain",
+    defaultMessage: "Block domain {domain}",
+  },
+  unblockDomain: {
+    id: "account.unblock_domain",
+    defaultMessage: "Unblock domain {domain}",
+  },
+  unmute: { id: "account.unmute", defaultMessage: "Unmute @{name}" },
+  unblock: { id: "account.unblock", defaultMessage: "Unblock @{name}" },
+  openOriginalPage: {
+    id: "account.open_original_page",
+    defaultMessage: "Open original page",
+  },
+  revokeQuote: {
+    id: "status.revoke_quote",
+    defaultMessage: "Remove my post from @{name}’s post",
+  },
+  quotePolicyChange: {
+    id: "status.quote_policy_change",
+    defaultMessage: "Change who can quote",
+  },
 });
 
 const redesignMessages = defineMessages({
-  favourite: { id: 'status.like', defaultMessage: 'Like' },
-  removeFavourite: { id: 'status.unlike', defaultMessage: 'Unlike' },
-  bookmark: { id: 'status.save', defaultMessage: 'Save post' },
-  removeBookmark: { id: 'status.remove_from_saved', defaultMessage: 'Remove from Saved' },
-})
+  favourite: { id: "status.like", defaultMessage: "Like" },
+  removeFavourite: { id: "status.unlike", defaultMessage: "Unlike" },
+  bookmark: { id: "status.save", defaultMessage: "Save post" },
+  removeBookmark: {
+    id: "status.remove_from_saved",
+    defaultMessage: "Remove from Saved",
+  },
+});
 
-const messages = isRedesignEnabled() ? {...baseMessages, ...redesignMessages} : baseMessages;
+const messages = isRedesignEnabled()
+  ? { ...baseMessages, ...redesignMessages }
+  : baseMessages;
 
 const mapStateToProps = (state, { status }) => {
-  const quotedStatusId = status.getIn(['quote', 'quoted_status']);
-  return ({
-    relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
-    quotedAccountId: quotedStatusId ? state.getIn(['statuses', quotedStatusId, 'account']) : null,
-    statusQuoteState: selectStatusConditions(state, status.get('id')),
-  });
+  const quotedStatusId = status.getIn(["quote", "quoted_status"]);
+  return {
+    relationship: state.getIn([
+      "relationships",
+      status.getIn(["account", "id"]),
+    ]),
+    quotedAccountId: quotedStatusId
+      ? state.getIn(["statuses", quotedStatusId, "account"])
+      : null,
+    statusQuoteState: selectStatusConditions(state, status.get("id")),
+  };
 };
 
 class ActionBar extends PureComponent {
@@ -151,18 +203,18 @@ class ActionBar extends PureComponent {
   };
 
   handleDirectClick = () => {
-    this.props.onDirect(this.props.status.get('account'));
+    this.props.onDirect(this.props.status.get("account"));
   };
 
   handleMentionClick = () => {
-    this.props.onMention(this.props.status.get('account'));
+    this.props.onMention(this.props.status.get("account"));
   };
 
   handleMuteClick = () => {
     const { status, relationship, onMute, onUnmute } = this.props;
-    const account = status.get('account');
+    const account = status.get("account");
 
-    if (relationship && relationship.get('muting')) {
+    if (relationship && relationship.get("muting")) {
       onUnmute(account);
     } else {
       onMute(account);
@@ -171,9 +223,9 @@ class ActionBar extends PureComponent {
 
   handleBlockClick = () => {
     const { status, relationship, onBlock, onUnblock } = this.props;
-    const account = status.get('account');
+    const account = status.get("account");
 
-    if (relationship && relationship.get('blocking')) {
+    if (relationship && relationship.get("blocking")) {
       onUnblock(account);
     } else {
       onBlock(status);
@@ -182,16 +234,16 @@ class ActionBar extends PureComponent {
 
   handleBlockDomain = () => {
     const { status, onBlockDomain } = this.props;
-    const account = status.get('account');
+    const account = status.get("account");
 
     onBlockDomain(account);
   };
 
   handleUnblockDomain = () => {
     const { status, onUnblockDomain } = this.props;
-    const account = status.get('account');
+    const account = status.get("account");
 
-    onUnblockDomain(account.get('acct').split('@')[1]);
+    onUnblockDomain(account.get("acct").split("@")[1]);
   };
 
   handleConversationMuteClick = () => {
@@ -207,9 +259,12 @@ class ActionBar extends PureComponent {
   };
 
   handleShare = () => {
-    navigator.share({
-      url: this.props.status.get('url'),
-    });
+    if (navigator?.share) {
+      navigator.share({
+        text: this.props.status.get("content"),
+        url: this.props.status.get("url"),
+      });
+    }
   };
 
   handleEmbed = () => {
@@ -217,35 +272,54 @@ class ActionBar extends PureComponent {
   };
 
   handleCopy = () => {
-    const url = this.props.status.get('url');
+    const url = this.props.status.get("url");
     navigator.clipboard.writeText(url);
   };
 
-  render () {
-    const { status, relationship, statusQuoteState, quotedAccountId, intl } = this.props;
+  render() {
+    const { status, relationship, statusQuoteState, quotedAccountId, intl } =
+      this.props;
     const { signedIn, permissions } = this.props.identity;
 
-    const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
-    const pinnableStatus     = ['public', 'unlisted', 'private'].includes(status.get('visibility'));
-    const mutingConversation = status.get('muted');
-    const account            = status.get('account');
-    const writtenByMe        = status.getIn(['account', 'id']) === me;
-    const isRemote           = status.getIn(['account', 'username']) !== status.getIn(['account', 'acct']);
+    const publicStatus = ["public", "unlisted"].includes(
+      status.get("visibility"),
+    );
+    const pinnableStatus = ["public", "unlisted", "private"].includes(
+      status.get("visibility"),
+    );
+    const mutingConversation = status.get("muted");
+    const account = status.get("account");
+    const writtenByMe = status.getIn(["account", "id"]) === me;
+    const isRemote =
+      status.getIn(["account", "username"]) !==
+      status.getIn(["account", "acct"]);
 
     let menu = [];
 
     if (publicStatus && isRemote) {
-      menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: status.get('url') });
+      menu.push({
+        text: intl.formatMessage(messages.openOriginalPage),
+        href: status.get("url"),
+      });
     }
 
-    menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
+    menu.push({
+      text: intl.formatMessage(messages.copy),
+      action: this.handleCopy,
+    });
 
-    if (publicStatus && 'share' in navigator) {
-      menu.push({ text: intl.formatMessage(messages.share), action: this.handleShare });
+    if (publicStatus && "share" in navigator) {
+      menu.push({
+        text: intl.formatMessage(messages.share),
+        action: this.handleShare,
+      });
     }
 
     if (publicStatus && (signedIn || !isRemote)) {
-      menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+      menu.push({
+        text: intl.formatMessage(messages.embed),
+        action: this.handleEmbed,
+      });
     }
 
     if (quickBoosting && signedIn) {
@@ -266,64 +340,164 @@ class ActionBar extends PureComponent {
 
       if (writtenByMe) {
         if (pinnableStatus) {
-          menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+          menu.push({
+            text: intl.formatMessage(
+              status.get("pinned") ? messages.unpin : messages.pin,
+            ),
+            action: this.handlePinClick,
+          });
           menu.push(null);
         }
 
-        menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
-        if (!['private', 'direct'].includes(status.get('visibility'))) {
-          menu.push({ text: intl.formatMessage(messages.quotePolicyChange), action: this.handleQuotePolicyChange });
+        menu.push({
+          text: intl.formatMessage(
+            mutingConversation
+              ? messages.unmuteConversation
+              : messages.muteConversation,
+          ),
+          action: this.handleConversationMuteClick,
+        });
+        if (!["private", "direct"].includes(status.get("visibility"))) {
+          menu.push({
+            text: intl.formatMessage(messages.quotePolicyChange),
+            action: this.handleQuotePolicyChange,
+          });
         }
         menu.push(null);
-        menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
-        menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
-        menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
+        menu.push({
+          text: intl.formatMessage(messages.edit),
+          action: this.handleEditClick,
+        });
+        menu.push({
+          text: intl.formatMessage(messages.delete),
+          action: this.handleDeleteClick,
+          dangerous: true,
+        });
+        menu.push({
+          text: intl.formatMessage(messages.redraft),
+          action: this.handleRedraftClick,
+          dangerous: true,
+        });
       } else {
-        if (!account.get('invalid_handle')) {
-          menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
+        if (!account.get("invalid_handle")) {
+          menu.push({
+            text: intl.formatMessage(messages.mention, {
+              name: status.getIn(["account", "username"]),
+            }),
+            action: this.handleMentionClick,
+          });
           menu.push(null);
         }
 
         if (quotedAccountId === me) {
-          menu.push({ text: intl.formatMessage(messages.revokeQuote, { name: account.get('username') }), action: this.handleRevokeQuoteClick, dangerous: true });
+          menu.push({
+            text: intl.formatMessage(messages.revokeQuote, {
+              name: account.get("username"),
+            }),
+            action: this.handleRevokeQuoteClick,
+            dangerous: true,
+          });
         }
 
-        if (relationship && relationship.get('muting')) {
-          menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.handleMuteClick });
+        if (relationship && relationship.get("muting")) {
+          menu.push({
+            text: intl.formatMessage(messages.unmute, {
+              name: account.get("username"),
+            }),
+            action: this.handleMuteClick,
+          });
         } else {
-          menu.push({ text: intl.formatMessage(messages.mute, { name: account.get('username') }), action: this.handleMuteClick, dangerous: true });
+          menu.push({
+            text: intl.formatMessage(messages.mute, {
+              name: account.get("username"),
+            }),
+            action: this.handleMuteClick,
+            dangerous: true,
+          });
         }
 
-        if (relationship && relationship.get('blocking')) {
-          menu.push({ text: intl.formatMessage(messages.unblock, { name: account.get('username') }), action: this.handleBlockClick });
+        if (relationship && relationship.get("blocking")) {
+          menu.push({
+            text: intl.formatMessage(messages.unblock, {
+              name: account.get("username"),
+            }),
+            action: this.handleBlockClick,
+          });
         } else {
-          menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.handleBlockClick, dangerous: true });
+          menu.push({
+            text: intl.formatMessage(messages.block, {
+              name: account.get("username"),
+            }),
+            action: this.handleBlockClick,
+            dangerous: true,
+          });
         }
 
-        menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport, dangerous: true });
+        menu.push({
+          text: intl.formatMessage(messages.report, {
+            name: status.getIn(["account", "username"]),
+          }),
+          action: this.handleReport,
+          dangerous: true,
+        });
 
-        if (account.get('acct') !== account.get('username') && !account.get('invalid_handle')) {
-          const domain = account.get('acct').split('@')[1];
+        if (
+          account.get("acct") !== account.get("username") &&
+          !account.get("invalid_handle")
+        ) {
+          const domain = account.get("acct").split("@")[1];
 
           menu.push(null);
 
-          if (relationship && relationship.get('domain_blocking')) {
-            menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain }), action: this.handleUnblockDomain });
+          if (relationship && relationship.get("domain_blocking")) {
+            menu.push({
+              text: intl.formatMessage(messages.unblockDomain, { domain }),
+              action: this.handleUnblockDomain,
+            });
           } else {
-            menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.handleBlockDomain, dangerous: true });
+            menu.push({
+              text: intl.formatMessage(messages.blockDomain, { domain }),
+              action: this.handleBlockDomain,
+              dangerous: true,
+            });
           }
         }
 
-        if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION)) {
+        if (
+          (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS ||
+          (isRemote &&
+            (permissions & PERMISSION_MANAGE_FEDERATION) ===
+              PERMISSION_MANAGE_FEDERATION)
+        ) {
           menu.push(null);
-          if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
-            menu.push({ text: intl.formatMessage(messages.admin_account, { name: status.getIn(['account', 'username']) }), href: `/admin/accounts/${status.getIn(['account', 'id'])}` });
-            menu.push({ text: intl.formatMessage(messages.admin_status), href: `/admin/accounts/${status.getIn(['account', 'id'])}/statuses/${status.get('id')}` });
+          if (
+            (permissions & PERMISSION_MANAGE_USERS) ===
+            PERMISSION_MANAGE_USERS
+          ) {
+            menu.push({
+              text: intl.formatMessage(messages.admin_account, {
+                name: status.getIn(["account", "username"]),
+              }),
+              href: `/admin/accounts/${status.getIn(["account", "id"])}`,
+            });
+            menu.push({
+              text: intl.formatMessage(messages.admin_status),
+              href: `/admin/accounts/${status.getIn(["account", "id"])}/statuses/${status.get("id")}`,
+            });
           }
-          if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
-            const domain = account.get('acct').split('@')[1];
+          if (
+            isRemote &&
+            (permissions & PERMISSION_MANAGE_FEDERATION) ===
+              PERMISSION_MANAGE_FEDERATION
+          ) {
+            const domain = account.get("acct").split("@")[1];
 
-            menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: `/admin/instances/${domain}` });
+            menu.push({
+              text: intl.formatMessage(messages.admin_domain, {
+                domain: domain,
+              }),
+              href: `/admin/instances/${domain}`,
+            });
           }
         }
       }
@@ -332,39 +506,86 @@ class ActionBar extends PureComponent {
     let replyIcon;
     let replyIconComponent;
 
-    if (status.get('in_reply_to_id', null) === null) {
-      replyIcon = 'reply';
+    if (status.get("in_reply_to_id", null) === null) {
+      replyIcon = "reply";
       replyIconComponent = StatusReplyIcon;
     } else {
-      replyIcon = 'reply-all';
+      replyIcon = "reply-all";
       replyIconComponent = StatusReplyAllIcon;
     }
 
-    const bookmarkTitle = intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark);
-    const favouriteTitle = intl.formatMessage(status.get('favourited') ? messages.removeFavourite : messages.favourite);
+    const bookmarkTitle = intl.formatMessage(
+      status.get("bookmarked") ? messages.removeBookmark : messages.bookmark,
+    );
+    const favouriteTitle = intl.formatMessage(
+      status.get("favourited") ? messages.removeFavourite : messages.favourite,
+    );
 
     return (
-      <div className='detailed-status__action-bar'>
-        <div className='detailed-status__button'>
-          <IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} iconComponent={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? StatusReplyIcon : replyIconComponent}  onClick={this.handleReplyClick} />
+      <div className="detailed-status__action-bar">
+        <div className="detailed-status__button">
+          <IconButton
+            title={intl.formatMessage(messages.reply)}
+            icon={
+              status.get("in_reply_to_account_id") ===
+              status.getIn(["account", "id"])
+                ? "reply"
+                : replyIcon
+            }
+            iconComponent={
+              status.get("in_reply_to_account_id") ===
+              status.getIn(["account", "id"])
+                ? StatusReplyIcon
+                : replyIconComponent
+            }
+            onClick={this.handleReplyClick}
+          />
         </div>
-        <div className='detailed-status__button'>
-          <BoostButton statusId={status.get('id')} />
+        <div className="detailed-status__button">
+          <BoostButton statusId={status.get("id")} />
         </div>
-        <div className='detailed-status__button'>
-          <IconButton className='star-icon' animate active={status.get('favourited')} title={favouriteTitle} icon='star' iconComponent={status.get('favourited') ? StatusLikeActiveIcon : StatusLikeIcon} onClick={this.handleFavouriteClick} />
+        <div className="detailed-status__button">
+          <IconButton
+            className="star-icon"
+            animate
+            active={status.get("favourited")}
+            title={favouriteTitle}
+            icon="star"
+            iconComponent={
+              status.get("favourited") ? StatusLikeActiveIcon : StatusLikeIcon
+            }
+            onClick={this.handleFavouriteClick}
+          />
         </div>
-        <div className='detailed-status__button'>
-          <IconButton className='bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={bookmarkTitle} icon='bookmark' iconComponent={status.get('bookmarked') ? StatusBookmarkActiveIcon : StatusBookmarkIcon} onClick={this.handleBookmarkClick} />
+        <div className="detailed-status__button">
+          <IconButton
+            className="bookmark-icon"
+            disabled={!signedIn}
+            active={status.get("bookmarked")}
+            title={bookmarkTitle}
+            icon="bookmark"
+            iconComponent={
+              status.get("bookmarked")
+                ? StatusBookmarkActiveIcon
+                : StatusBookmarkIcon
+            }
+            onClick={this.handleBookmarkClick}
+          />
         </div>
 
-        <div className='detailed-status__action-bar-dropdown'>
-          <Dropdown icon='ellipsis-h' iconComponent={MoreHorizIcon} status={status} items={menu} direction='left' title={intl.formatMessage(messages.more)} />
+        <div className="detailed-status__action-bar-dropdown">
+          <Dropdown
+            icon="ellipsis-h"
+            iconComponent={MoreHorizIcon}
+            status={status}
+            items={menu}
+            direction="left"
+            title={intl.formatMessage(messages.more)}
+          />
         </div>
       </div>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(withIdentity(injectIntl(ActionBar)));
