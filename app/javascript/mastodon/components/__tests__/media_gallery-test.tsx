@@ -27,7 +27,10 @@ describe('<MediaGallery /> visibility controls', () => {
   }: {
     visible: boolean;
     checked: boolean;
-  }): { reportCheckbox: HTMLInputElement; reportToggle: ReturnType<typeof vi.fn> } => {
+  }): {
+    reportCheckbox: HTMLInputElement;
+    reportToggle: ReturnType<typeof vi.fn>;
+  } => {
     const onToggle = vi.fn();
 
     render(
@@ -52,24 +55,24 @@ describe('<MediaGallery /> visibility controls', () => {
       reportCheckbox: screen.getByRole<HTMLInputElement>('checkbox'),
       reportToggle: onToggle,
     };
-  }
+  };
 
   const expectMediaButtonPresence = () => {
     expect(screen.getByRole('button', { name: 'Hide' })).toBeTruthy();
     expect(screen.queryByRole('button', { name: /click to show/i })).toBeNull();
     expect(screen.getByAltText('')).toBeTruthy();
-  }
+  };
 
   const expectMediaButtonHidden = () => {
     expect(screen.getByRole('button', { name: /click to show/i })).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Hide' })).toBeNull();
     expect(screen.queryByAltText('')).toBeNull();
-  }
+  };
 
   const expectCheckboxChecked = (checked: boolean) => {
     const reportCheckbox = screen.getByRole<HTMLInputElement>('checkbox');
     expect(reportCheckbox.checked).toBe(checked);
-  }
+  };
 
   it('keeps an unchecked report selection when showing and hiding hidden media', () => {
     const { reportCheckbox, reportToggle } = renderGallery({
