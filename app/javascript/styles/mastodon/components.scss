@@ -400,131 +400,6 @@ body > [data-popover-placement] {
   }
 }
 
-.autosuggest-textarea {
-  &__textarea {
-    background: transparent;
-    min-height: 100px;
-    padding-bottom: 0;
-    resize: none;
-    scrollbar-color: initial;
-
-    &::-webkit-scrollbar {
-      all: unset;
-    }
-  }
-
-  &__suggestions {
-    box-shadow: var(--dropdown-shadow);
-    background: var(--color-bg-primary);
-    border: 1px solid var(--color-border-primary);
-    border-radius: 0 0 4px 4px;
-    color: var(--color-text-primary);
-    font-size: 14px;
-    padding: 0;
-
-    &__item {
-      box-sizing: border-box;
-      display: flex;
-      align-items: center;
-      height: 48px;
-      cursor: pointer;
-      font-size: 14px;
-      line-height: 20px;
-      letter-spacing: 0.25px;
-      color: var(--color-text-primary);
-
-      &:last-child {
-        border-radius: 0 0 4px 4px;
-      }
-
-      &:hover,
-      &:focus,
-      &:active {
-        background: var(--color-bg-secondary);
-
-        .autosuggest-account .display-name__account {
-          color: inherit;
-        }
-      }
-
-      &.selected {
-        color: var(--color-text-on-brand-base);
-        background: var(--color-bg-brand-base);
-
-        .autosuggest-account .display-name__account {
-          color: inherit;
-        }
-      }
-    }
-  }
-}
-
-.autosuggest-account,
-.autosuggest-emoji,
-.autosuggest-hashtag {
-  flex: 1 0 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  padding: 8px 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.autosuggest-account {
-  .display-name {
-    font-weight: 400;
-    display: flex;
-    flex-direction: column;
-    flex: 1 0 0;
-  }
-
-  .display-name__account {
-    display: block;
-    line-height: 16px;
-    font-size: 12px;
-    color: var(--color-text-secondary);
-  }
-}
-
-.autosuggest-hashtag {
-  justify-content: space-between;
-
-  &__name {
-    flex: 1 1 auto;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  &__uses {
-    flex: 0 0 auto;
-    text-align: end;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-
-.autosuggest-emoji {
-  &__name {
-    flex: 1 0 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-
-.autosuggest-account .account__avatar,
-.autosuggest-emoji .emojione {
-  display: block;
-  width: 24px;
-  height: 24px;
-  flex: 0 0 auto;
-}
-
 .compose-form {
   display: flex;
   flex-direction: column;
@@ -594,22 +469,8 @@ body > [data-popover-placement] {
       width: 5px;
       flex: 0 0 auto;
     }
-
-    .autosuggest-input {
-      flex: 1 1 auto;
-      border-block: 1px solid var(--color-border-primary);
-      padding-block: 1px;
-      transition: border-color 0.15s ease-out;
-
-      &:focus-within {
-        padding-block: 0;
-        border-color: var(--color-border-brand);
-        border-block-width: 2px;
-      }
-    }
   }
 
-  .autosuggest-textarea__textarea,
   .spoiler-input__input {
     display: block;
     box-sizing: border-box;
@@ -1354,55 +1215,6 @@ body > [data-popover-placement] {
     &.unhandled-link {
       color: var(--color-text-brand);
     }
-  }
-}
-
-@each $lang in $vertical-lr-langs {
-  // writing-mode and width must be applied to a single element. When
-  // this element inherits a text direction that is opposite to its own,
-  // the start of this element's text is cut off.
-
-  // Posts on the timeline
-  .status:not(.status--is-quote)
-    > .status__content
-    > .status__content__text:lang(#{$lang}),
-  .conversation
-    > .conversation__content
-    > .status__content
-    > .status__content__text:lang(#{$lang}) {
-    writing-mode: vertical-lr;
-    width: 100%; // detecting overflow
-    max-width: calc(100% - mod(100%, 22px)); // avoid cut-offs
-    max-height: 209px; // roughly above 500 characters, readable
-    overflow-x: hidden; // read more
-  }
-
-  // Post editor
-  .autosuggest-textarea > .autosuggest-textarea__textarea:lang(#{$lang}) {
-    writing-mode: vertical-lr;
-    min-height: 209px; // writable
-    max-height: 209px; // suppress autosizing by react-textarea-autosize
-    overflow-x: auto;
-    scrollbar-color: unset;
-  }
-
-  // Alt text editor
-  .dialog-modal__content__form
-    > .input
-    > .label_input
-    > textarea#description:lang(#{$lang}) {
-    writing-mode: vertical-lr;
-    min-height: 150px; // writable
-    max-height: 150px; // suppress autosizing by react-textarea-autosize
-    overflow-x: auto;
-  }
-
-  // Detailed posts
-  .detailed-status > .status__content > .status__content__text:lang(#{$lang}) {
-    writing-mode: vertical-lr;
-    width: 100%; // detecting overflow
-    max-height: 50vh;
-    overflow-x: auto;
   }
 }
 
@@ -3289,10 +3101,6 @@ a.account__display-name {
   .filter-form {
     display: flex;
     flex-wrap: wrap;
-  }
-
-  .autosuggest-textarea__textarea {
-    font-size: 16px;
   }
 
   .scrollable {
