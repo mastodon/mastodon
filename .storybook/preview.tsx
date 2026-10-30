@@ -180,7 +180,6 @@ const preview: Preview = {
         <Story />
         <Route
           path='*'
-          // eslint-disable-next-line react/jsx-no-bind
           render={({ location }) => {
             if (location.pathname !== '/') {
               action(`route change to ${location.pathname}`)(location);

@@ -59,7 +59,7 @@ function normalizePath(
     state !== undefined &&
     isDevelopment()
   ) {
-    // eslint-disable-next-line no-console
+    // oxlint-disable-next-line no-console
     console.log(
       'You should avoid providing a 2nd state argument to push when the 1st argument is a location-like object that already has state; it is ignored',
     );

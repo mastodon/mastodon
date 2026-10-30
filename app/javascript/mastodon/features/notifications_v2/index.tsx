@@ -388,5 +388,5 @@ export const Notifications: React.FC<{
   );
 };
 
-// eslint-disable-next-line import/no-default-export
+// oxlint-disable-next-line import/no-default-export
 export default Notifications;
