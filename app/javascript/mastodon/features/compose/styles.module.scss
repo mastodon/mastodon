@@ -23,6 +23,12 @@
     border-radius: var(--radius-6) var(--radius-6) 0 0;
     overflow: hidden;
   }
+
+  [data-top-mode='true'] & {
+    border-radius: 0 0 var(--radius-6) var(--radius-6);
+    border-top: none;
+    border-bottom: inherit;
+  }
 }
 
 .headless {

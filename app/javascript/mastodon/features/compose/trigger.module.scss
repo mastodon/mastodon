@@ -56,6 +56,11 @@
     bottom: 0;
     pointer-events: none;
   }
+
+  &[data-top-mode='true'] {
+    top: 0;
+    bottom: auto;
+  }
 }
 
 .composer,
