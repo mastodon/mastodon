@@ -157,7 +157,7 @@ export const StatusPage: React.FC = () => {
     );
   }, [dispatch, statusId]);
 
-  if (isLoading) {
+  if (!hasStatus && isLoading) {
     return (
       <Column>
         <LoadingIndicator />
@@ -165,7 +165,7 @@ export const StatusPage: React.FC = () => {
     );
   }
 
-  if (!status) {
+  if (!hasStatus) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
   }
 
