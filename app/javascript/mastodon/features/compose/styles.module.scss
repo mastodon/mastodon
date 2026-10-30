@@ -135,6 +135,10 @@
 
   [data-narrow-height='true'] & {
     overflow-y: visible;
+
+    &[data-scroll-down='true']::after {
+      opacity: 0;
+    }
   }
 }
 
