@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { useRouteMatch } from 'react-router';
 
 import { PenNibIcon, ReadCvLogoIcon } from '@phosphor-icons/react';
+import { isIPad, isWebKit } from '@react-aria/utils';
 
 import type { IconButtonProps } from '@/mastodon/components/button/redesign';
 import { IconButton } from '@/mastodon/components/button/redesign';
@@ -89,6 +90,8 @@ export const ComposeButton: React.FC<{
     '--viewport-height': `${viewport.height}px`,
   } as React.CSSProperties;
 
+  const isIPadWebkit = isIPad() && isWebKit();
+
   if (displayState === 'minimized') {
     return isMobile ? (
       <FloatingActionButton
@@ -101,7 +104,12 @@ export const ComposeButton: React.FC<{
         <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
       </FloatingActionButton>
     ) : (
-      <div className={classes.root} style={style}>
+      <div
+        className={classes.root}
+        data-fullscreen={false}
+        data-top-mode={isIPadWebkit}
+        style={style}
+      >
         {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           onClick={handleMinimizedTextClick}
@@ -126,6 +134,7 @@ export const ComposeButton: React.FC<{
         ref={trackComposerHeight}
         data-fullscreen={isFullscreen}
         data-narrow-height={viewport.height < NARROW_HEIGHT}
+        data-top-mode={isIPadWebkit && !isFullscreen}
       >
         <ComposeForm autoFocus className={classes.composer} />
       </div>
