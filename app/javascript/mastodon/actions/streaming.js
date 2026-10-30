@@ -10,7 +10,7 @@ import {
   deleteAnnouncement,
 } from './announcements';
 import { updateConversations } from './conversations';
-import { processNewNotificationForGroups, refreshStaleNotificationGroups, pollRecentNotifications as pollRecentGroupNotifications } from './notification_groups';
+import { processNewNotificationForGroups, refreshStaleNotificationGroups, pollRecentNotifications as pollRecentGroupNotifications, fetchNotificationsGap } from './notification_groups';
 import { updateNotifications } from './notifications';
 import { updateStatus } from './statuses';
 import {
@@ -163,13 +163,31 @@ async function refreshHomeTimelineAndNotification(dispatch) {
 }
 
 /**
+ * @returns {(dispatch: Dispatch, getState: GetState) => void}
+ */
+function fillHomeAndNotificationGaps() {
+  return (dispatch, getState) => {
+    dispatch(fillHomeTimelineGaps());
+
+    // `disconnectTimeline` inserts a leading gap when the `user` channel
+    // drops, and nothing else re-fills it on reconnect. Only fill a gap
+    // that expects new content (`maxId` unset), like the click handler does.
+    const firstGroup = getState().notificationGroups.groups[0];
+
+    if (firstGroup?.type === 'gap' && firstGroup.maxId === undefined) {
+      void dispatch(fetchNotificationsGap({ gap: firstGroup }));
+    }
+  };
+}
+
+/**
  * @returns {StreamThunk}
  */
 export const connectUserStream = () =>
   connectTimelineStream('home', 'user', {}, {
     fallback: refreshHomeTimelineAndNotification,
     // @ts-expect-error
-    fillGaps: fillHomeTimelineGaps
+    fillGaps: fillHomeAndNotificationGaps
   });
 
 /**
