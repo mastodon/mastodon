@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'mastodon/character_counter'
+require 'character_counter'
 
 class StatusLengthValidator < ActiveModel::Validator
   MAX_CHARS = 500
@@ -19,6 +19,6 @@ class StatusLengthValidator < ActiveModel::Validator
   end
 
   def combined_text(status)
-    [status.spoiler_text, Mastodon::CharacterCounter.new.countable_status_text(status.text)].join
+    [status.spoiler_text, CharacterCounter.new.countable_text(status.text)].join
   end
 end

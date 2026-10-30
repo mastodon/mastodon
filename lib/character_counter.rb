@@ -1,22 +1,9 @@
 # frozen_string_literal: true
 
-class Mastodon::CharacterCounter
+class CharacterCounter
   URL_PLACEHOLDER = 'x' * 23
 
-  def countable_note_text(value)
-    return '' if value.nil?
-
-    entities = Extractor.remove_overlapping_entities(Extractor.extract_urls_with_indices(value).sort_by { |e| e[:indices].first })
-
-    result = rewrite_entities(value, entities) do |entity|
-      URL_PLACEHOLDER if entity[:url]
-    end
-
-    result.gsub!(Account::MENTION_RE, '@\2')
-    result
-  end
-
-  def countable_status_text(str)
+  def countable_text(str)
     return '' if str.blank?
 
     # To ensure that we only give length concessions to entities that

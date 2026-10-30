@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'mastodon/character_counter'
+require 'character_counter'
 
 class NoteLengthValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
@@ -10,6 +10,6 @@ class NoteLengthValidator < ActiveModel::EachValidator
   private
 
   def too_long?(value)
-    Mastodon::CharacterCounter.new.countable_note_text(value).each_grapheme_cluster.size > options[:maximum]
+    CharacterCounter.new.countable_text(value).each_grapheme_cluster.size > options[:maximum]
   end
 end
