@@ -20,6 +20,10 @@ class CharacterCounter
     end
   end
 
+  def character_count(str)
+    str.each_grapheme_cluster.size
+  end
+
   private
 
   def rewrite_entities(str, entities)
