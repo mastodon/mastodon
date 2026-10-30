@@ -51,7 +51,7 @@ import {
   useStatusContext,
   useStatusHandlers,
 } from './hooks';
-import { StatusGalleryImage } from './image';
+import { StatusGalleryImage, StatusImage } from './image';
 import classes from './quote.module.scss';
 import { accountStatusLinkProps, statusLink } from './utils';
 
@@ -170,7 +170,7 @@ export const QuotedStatus: React.FC<{
       </CardTitle>
 
       <CardBody className={classes.body} noClamp={!clamp}>
-        <QuotedStatusBody status={status} />
+        <QuotedStatusBody status={status} linkStatus={!onDelete} />
       </CardBody>
 
       {!disableOpen && (
@@ -184,7 +184,8 @@ export const QuotedStatus: React.FC<{
 
 const QuotedStatusBody: React.FC<{
   status: AccountStatusShape;
-}> = ({ status }) => {
+  linkStatus?: boolean;
+}> = ({ status, linkStatus = true }) => {
   const attachments = status.media_attachments;
   const mainAttachment = attachments.find(
     (
@@ -266,17 +267,22 @@ const QuotedStatusBody: React.FC<{
     );
   }
 
+  const text = (status.translation?.contentHtml ?? status.contentHtml).trim();
+  const ImageComp = linkStatus ? StatusGalleryImage : StatusImage;
+
   return (
     <>
       {!!reply && <p className={classes.reply}>{reply}</p>}
 
-      <EmojiHTML
-        htmlString={status.translation?.contentHtml ?? status.contentHtml}
-        extraEmojis={status.emojis}
-        lang={status.translation?.language ?? status.language}
-        onElement={onStatusLinksDisabled}
-        extraArgs={status}
-      />
+      {text && (
+        <EmojiHTML
+          htmlString={text}
+          extraEmojis={status.emojis}
+          lang={status.translation?.language ?? status.language}
+          onElement={onStatusLinksDisabled}
+          extraArgs={status}
+        />
+      )}
 
       {poll && (
         <div className={classes.spoiler}>
@@ -308,7 +314,7 @@ const QuotedStatusBody: React.FC<{
 
       {mainAttachment?.type === 'video' && (
         <div className={classNames(classes.media, classes.mediaSingle)}>
-          <StatusGalleryImage
+          <ImageComp
             statusId={status.id}
             className={classes.image}
             attachment={mainAttachment}
@@ -320,7 +326,7 @@ const QuotedStatusBody: React.FC<{
 
               {duration}
             </div>
-          </StatusGalleryImage>
+          </ImageComp>
         </div>
       )}
 
@@ -334,7 +340,7 @@ const QuotedStatusBody: React.FC<{
           data-number={imageAttachments.length}
         >
           {imageAttachments.map((attachment) => (
-            <StatusGalleryImage
+            <ImageComp
               showAlt
               statusId={status.id}
               className={classes.image}

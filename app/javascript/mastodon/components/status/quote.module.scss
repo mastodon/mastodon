@@ -102,10 +102,12 @@ a.nestedQuote {
   min-width: 120px;
   max-width: min(100%, 400px);
   aspect-ratio: var(--aspect);
+  border-radius: var(--radius-2);
 }
 
 a.image {
   max-height: 260px;
+  display: block;
 
   &:focus {
     outline: var(--outline-focus-default);
