@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -42,13 +42,6 @@ export const ComposeSensitiveField: React.FC<
   const intl = useIntl();
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
-  const isSensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
-  useEffect(() => {
-    if (!isSensitive) {
-      dispatch(requestComposerFocus());
-    }
-  }, [isSensitive, dispatch]);
-
   const errors = useAppSelector((state) => state.composer.publishErrors);
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
