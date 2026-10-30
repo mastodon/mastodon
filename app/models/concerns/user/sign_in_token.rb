@@ -20,7 +20,7 @@ module User::SignInToken
       !two_factor_enabled? &&
       encrypted_password? &&
       current_sign_in_at? &&
-      current_sign_in_at < SUSPICIOUS_INACTIVITY_DURATION.ago
+      !login_activities.where(success: true).exists?(created_at: SUSPICIOUS_INACTIVITY_DURATION.ago...)
   end
 
   def valid_sign_in_token?(token)
