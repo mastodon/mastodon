@@ -153,8 +153,10 @@ RSpec.describe Admin::AccountsController do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in approving account and logs action' do
+        account_user = account.user
         expect(subject).to redirect_to admin_accounts_path(status: 'pending')
-        expect(user.reload).to be_approved
+        expect(account_user.reload.approved).to be_truthy
+        expect(account_user.approved_at).to be_present
 
         expect(latest_admin_action_log)
           .to be_present
@@ -182,6 +184,9 @@ RSpec.describe Admin::AccountsController do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in rejecting account and logs action' do
+        account_user = account.user.reload
+        expect(account_user).to_not be_approved
+        expect(account_user.approved_at).to be_nil
         expect(subject).to redirect_to admin_accounts_path(status: 'pending')
 
         expect(latest_admin_action_log)

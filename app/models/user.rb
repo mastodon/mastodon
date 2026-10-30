@@ -7,6 +7,7 @@
 #  id                        :bigint(8)        not null, primary key
 #  age_verified_at           :datetime
 #  approved                  :boolean          default(TRUE), not null
+#  approved_at               :datetime
 #  chosen_languages          :string           is an Array
 #  confirmation_sent_at      :datetime
 #  confirmation_token        :string
@@ -282,7 +283,7 @@ class User < ApplicationRecord
     return if approved?
 
     enable! if disabled?
-    update!(approved: true)
+    update!(approved: true, approved_at: Time.current)
 
     # Avoid extremely unlikely race condition when approving and confirming
     # the user at the same time
