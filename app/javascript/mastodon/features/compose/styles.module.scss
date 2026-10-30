@@ -107,6 +107,8 @@
   scrollbar-width: thin;
   overscroll-behavior-y: contain;
   position: relative;
+  margin-inline: calc(-1 * var(--space-1));
+  padding-inline: var(--space-1);
 
   &::after {
     content: '';
