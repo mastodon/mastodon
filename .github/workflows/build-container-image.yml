@@ -26,7 +26,7 @@ on:
 jobs:
   # Build each (amd64 and arm64) image separately
   build-image:
-    runs-on: ${{ matrix.RUNNER_VERSION }}
+    runs-on: ubuntu-${{ matrix.RUNNER_VERSION }}${{ matrix.SUFFIX }}
     strategy:
       fail-fast: false
       matrix:
@@ -36,10 +36,12 @@ jobs:
         include:
           - platform: linux/amd64
             # renovate: datasource=github-runners depName=ubuntu
-            RUNNER_VERSION: ubuntu-24.04
+            RUNNER_VERSION: '24.04'
+            SUFFIX: ''
           - platform: linux/arm64
             # renovate: datasource=github-runners depName=ubuntu
-            RUNNER_VERSION: ubuntu-24.04-arm
+            RUNNER_VERSION: '24.04'
+            SUFFIX: '-arm'
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
