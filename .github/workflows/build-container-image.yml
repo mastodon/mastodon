@@ -26,7 +26,7 @@ on:
 jobs:
   # Build each (amd64 and arm64) image separately
   build-image:
-    runs-on: ${{ matrix.platform }}
+    runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
