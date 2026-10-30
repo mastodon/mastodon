@@ -129,6 +129,8 @@ export function useAutosuggestMenu({
             // Otherwise lose focus on the textarea.
             event.currentTarget.blur();
           }
+        } else if (key === 'tab' && event.shiftKey) {
+          onClear?.();
         } else if (
           (key === 'tab' || key === 'enter') &&
           suggestions.length > 0
@@ -160,6 +162,11 @@ export function useAutosuggestMenu({
       [onClear, onSelect, sourceRef, suggestions],
     );
 
+  const onMenuClose = useCallback(() => {
+    onClear?.();
+    sourceToElement(sourceRef)?.focus();
+  }, [onClear, sourceRef]);
+
   return {
     // Used by the parent.
     onTextChange,
@@ -168,6 +175,7 @@ export function useAutosuggestMenu({
 
     // For the component below.
     suggestProps: {
+      onMenuClose,
       suggestions,
       onSuggestionClick,
       source: sourceToElement(sourceRef),

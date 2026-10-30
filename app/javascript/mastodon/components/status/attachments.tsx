@@ -35,7 +35,6 @@ import classes from './attachments.module.scss';
 import { useStatusContext } from './hooks';
 import { PictureInPicturePlaceholder } from './legacy/picture_in_picture_placeholder';
 import { LinkCard } from './link';
-import { StatusQuote } from './quote';
 import mainClasses from './styles.module.scss';
 
 export const StatusAttachments: React.FC<{
@@ -61,11 +60,6 @@ export const StatusAttachments: React.FC<{
         defaultPosterUrl={status.account.avatar_static}
       />
     );
-  }
-
-  // Don't display the card or collection if this is a quote.
-  if (status.quote) {
-    return <StatusQuote {...status.quote} parentId={statusId} />;
   }
 
   const card = status.card;
@@ -367,7 +361,6 @@ const MediaAttachmentWrapper: React.FC<{
       <div
         className={classNames(
           mainClasses.contentWarningBlur,
-          classes.galleryContent,
           !visible && mainClasses.contentWarningBlurActive,
           !visible && classes.galleryHideButtons,
           !visible && classes.galleryHideActions,

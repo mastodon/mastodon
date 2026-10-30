@@ -99,8 +99,8 @@ GEM
     ast (2.4.3)
     attr_required (1.0.2)
     aws-eventstream (1.4.1)
-    aws-partitions (1.1298.0)
-    aws-sdk-core (3.260.0)
+    aws-partitions (1.1299.1)
+    aws-sdk-core (3.263.0)
       aws-eventstream (~> 1, >= 1.4.1)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -136,7 +136,7 @@ GEM
     bloom_fit (1.2.0)
       msgpack (~> 1.0)
     blurhash (0.1.8)
-    bootsnap (1.26.0)
+    bootsnap (1.26.1)
       msgpack (~> 1.5)
     brakeman (8.1.0)
       racc
@@ -154,7 +154,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    capybara-playwright-driver (0.5.13)
+    capybara-playwright-driver (0.5.14)
       addressable
       capybara
       playwright-ruby-client (>= 1.16.0)
@@ -302,7 +302,7 @@ GEM
       rubocop (>= 1.0)
       sysexits (~> 1.1)
     hashdiff (1.2.1)
-    hashie (5.1.0)
+    hashie (5.2.0)
       logger
     hcaptcha (7.1.0)
       json
@@ -448,13 +448,13 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.1013)
+    mime-types-data (3.2026.1020)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
-    msgpack (1.8.5)
+    msgpack (1.8.6)
     multi_json (1.21.2)
     mutex_m (0.3.0)
     net-http (0.9.1)
@@ -475,11 +475,11 @@ GEM
     nokogiri (1.19.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    omniauth (2.1.4)
-      hashie (>= 3.4.6)
+    omniauth (2.3.1)
+      hashie (>= 3.5.2)
       logger
-      rack (>= 2.2.3)
-      rack-protection
+      rack (>= 2.2.8)
+      rack-protection (>= 2.2.0)
     omniauth-cas (3.0.2)
       addressable (~> 2.8)
       nokogiri (~> 1.12)

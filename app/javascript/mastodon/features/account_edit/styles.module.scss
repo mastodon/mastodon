@@ -18,8 +18,8 @@
   }
 
   .imageButton {
-    top: 16px;
-    right: 24px;
+    top: var(--space-4);
+    right: var(--space-4);
   }
 }
 
@@ -135,52 +135,11 @@
   }
 }
 
-// Edit button component
-
-.editButton {
-  border: 1px solid var(--color-border-primary);
-  border-radius: 8px;
-  box-sizing: border-box;
-  padding: 4px;
-  transition:
-    color 0.2s ease-in-out,
-    background-color 0.2s ease-in-out;
-
-  &:global(.button) {
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-primary);
-    font-size: 13px;
-    padding: 4px 8px;
-
-    &:active,
-    &:focus,
-    &:hover {
-      background-color: var(--color-bg-brand-softest);
-    }
-
-    &:disabled {
-      background-color: var(--color-bg-primary);
-      opacity: 0.5;
-    }
-  }
-
-  svg {
-    width: 20px;
-    height: 20px;
-  }
-}
-
-.deleteButton {
-  --default-icon-color: var(--color-text-error);
-  --hover-bg-color: var(--color-bg-error-base);
-  --hover-icon-color: var(--color-text-on-error-base);
-}
-
 // Field component
 
 .fieldName,
 .fieldValue {
-  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 .fieldName {
@@ -196,36 +155,7 @@
 // Image edit component
 
 .imageButton {
-  --default-bg-color: var(--color-bg-primary);
-
-  &,
-  &:global(.active) {
-    // Overrides the transparent background added by default with .active
-    --hover-bg-color: var(--color-bg-brand-softest);
-  }
-
   position: absolute;
-  width: 28px;
-  height: 28px;
-  border: 1px solid var(--color-border-primary);
-  border-radius: 9999px;
-  box-sizing: border-box;
-  padding: 4px;
-  transition:
-    color 0.2s ease-in-out,
-    background-color 0.2s ease-in-out;
-
-  svg {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-.imageMenu {
-  svg {
-    width: 20px;
-    height: 20px;
-  }
 }
 
 // Item list component

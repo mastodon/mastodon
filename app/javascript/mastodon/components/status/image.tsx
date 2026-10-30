@@ -1,12 +1,20 @@
+import { useCallback } from 'react';
+
 import classNames from 'classnames';
 
+import { openAttachmentGallery } from '@/mastodon/actions/interactions_typed';
 import type {
   ApiGifvAttachmentJSON,
   ApiImageAttachmentJSON,
   ApiVideoAttachmentJSON,
 } from '@/mastodon/api_types/media_attachments';
 import { Blurhash } from '@/mastodon/components/blurhash';
+import { useBlurhash } from '@/mastodon/initial_state';
 import type { MediaAttachmentShape } from '@/mastodon/models/status';
+import { useAppDispatch } from '@/mastodon/store';
+import type { PolymorphicProps } from '@/types/polymorphic';
+
+import { AltTextBadge } from '../alt_text_badge';
 
 import classes from './content.module.scss';
 
@@ -15,15 +23,29 @@ type StatusImageAttachmentJSON =
   | ApiGifvAttachmentJSON
   | ApiVideoAttachmentJSON;
 
-export const StatusImage: React.FC<
-  {
-    attachment:
-      | StatusImageAttachmentJSON
-      | MediaAttachmentShape<StatusImageAttachmentJSON>;
-    children?: React.ReactNode;
-    sensitive?: boolean;
-  } & React.ComponentPropsWithRef<'div'>
-> = ({ attachment, children, sensitive, className, style, ...props }) => {
+interface StatusImageProps {
+  attachment:
+    | StatusImageAttachmentJSON
+    | MediaAttachmentShape<StatusImageAttachmentJSON>;
+  children?: React.ReactNode;
+  sensitive?: boolean;
+  showAlt?: boolean;
+  autoPlay?: boolean;
+  style?: React.CSSProperties;
+  className?: string;
+}
+
+export const StatusImage = <As extends React.ElementType = 'div'>({
+  as: asComp,
+  attachment,
+  children,
+  sensitive,
+  className,
+  style,
+  showAlt = false,
+  ...props
+}: PolymorphicProps<StatusImageProps, As>) => {
+  const Comp = asComp ?? 'div';
   let x = 50;
   let y = 50;
   const focusX = attachment.meta?.focus?.x;
@@ -47,17 +69,67 @@ export const StatusImage: React.FC<
   };
 
   return (
-    <div
+    <Comp
       {...props}
       className={classNames(classes.image, className)}
       style={imgStyle}
       data-color-scheme='dark'
     >
       {sensitive && attachment.blurhash && (
-        <Blurhash hash={attachment.blurhash} className={classes.blurHash} />
+        <Blurhash
+          hash={attachment.blurhash}
+          className={classes.blurHash}
+          dummy={!useBlurhash}
+        />
       )}
 
       {children}
-    </div>
+
+      {attachment.description && showAlt && (
+        <AltTextBadge
+          description={attachment.description}
+          className={classes.imageAltBadge}
+        />
+      )}
+    </Comp>
+  );
+};
+
+export const StatusGalleryImage: React.FC<
+  StatusImageProps & { statusId: string }
+> = ({ statusId, attachment, ...props }) => {
+  const dispatch = useAppDispatch();
+  const handleClick: React.MouseEventHandler<HTMLAnchorElement> = useCallback(
+    (event) => {
+      if (
+        event.target instanceof HTMLElement &&
+        event.target !== event.currentTarget &&
+        event.target.closest('a, button, input')
+      ) {
+        event.preventDefault();
+        return;
+      }
+
+      if (event.button === 0 && !(event.ctrlKey || event.metaKey)) {
+        event.preventDefault();
+        dispatch(
+          openAttachmentGallery({ statusId, attachmentId: attachment.id }),
+        );
+      }
+
+      event.stopPropagation();
+    },
+    [attachment.id, dispatch, statusId],
+  );
+  return (
+    <StatusImage
+      as='a'
+      href={attachment.remote_url ?? attachment.url}
+      attachment={attachment}
+      onClick={handleClick}
+      target='_blank'
+      rel='noopener'
+      {...props}
+    />
   );
 };
