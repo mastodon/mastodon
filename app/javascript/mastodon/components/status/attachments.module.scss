@@ -2,10 +2,11 @@
 
 .galleryWrapper {
   position: relative;
+  border-radius: var(--radius-4);
+  overflow: hidden;
 
   :global(.media-gallery) {
     margin-top: 0;
-    border-radius: var(--radius-4);
   }
 
   // Overrides .media-gallery--layout-2 > .media-gallery__item:nth-child(1)
@@ -29,10 +30,6 @@
   :global(.spoiler-button) {
     display: none;
   }
-}
-
-.galleryContent {
-  border-radius: var(--radius-4);
 }
 
 .gallerySpoiler {

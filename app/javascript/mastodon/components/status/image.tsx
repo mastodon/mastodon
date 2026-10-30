@@ -9,6 +9,7 @@ import type {
   ApiVideoAttachmentJSON,
 } from '@/mastodon/api_types/media_attachments';
 import { Blurhash } from '@/mastodon/components/blurhash';
+import { useBlurhash } from '@/mastodon/initial_state';
 import type { MediaAttachmentShape } from '@/mastodon/models/status';
 import { useAppDispatch } from '@/mastodon/store';
 import type { PolymorphicProps } from '@/types/polymorphic';
@@ -75,7 +76,11 @@ export const StatusImage = <As extends React.ElementType = 'div'>({
       data-color-scheme='dark'
     >
       {sensitive && attachment.blurhash && (
-        <Blurhash hash={attachment.blurhash} className={classes.blurHash} />
+        <Blurhash
+          hash={attachment.blurhash}
+          className={classes.blurHash}
+          dummy={!useBlurhash}
+        />
       )}
 
       {children}
