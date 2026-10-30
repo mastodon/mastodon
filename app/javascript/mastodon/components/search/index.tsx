@@ -121,12 +121,11 @@ export const Search: React.FC<{
   const [shouldOpenOnFocus, setShouldOpenOnFocus] = useState(
     context === 'sidebar',
   );
-  const focusAfterNavigation = useFocusAfterNavigation(
-    FOCUS_TARGET.SEARCH,
-    () => {
+  const focusAfterNavigation = useFocusAfterNavigation(FOCUS_TARGET.SEARCH, {
+    onAfterFocus: () => {
       setShouldOpenOnFocus(true);
     },
-  );
+  });
 
   const unfocus = useCallback(() => {
     document.querySelector('.ui')?.parentElement?.focus();

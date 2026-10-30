@@ -102,7 +102,11 @@ export const FocusTargetProvider: React.FC<{
 
 export function useFocusAfterNavigation(
   targetName?: NamedFocusTarget,
-  onAfterFocus?: (hasSetFocus: boolean) => void,
+  {
+    onAfterFocus,
+  }: {
+    onAfterFocus?: (hasSetFocus: boolean) => void;
+  } = {},
 ) {
   const focusTargetRef = useContext(FocusTargetContext);
   const hasFocusedOnceRef = useRef(false);
@@ -132,6 +136,7 @@ export function useFocusAfterNavigation(
       if (shouldSetFocus) {
         setTimeout(() => {
           element.focus({ preventScroll: true });
+
           onAfterFocus?.(true);
           // Prevent this focus handler from setting focus again
           hasFocusedOnceRef.current = true;
@@ -140,7 +145,7 @@ export function useFocusAfterNavigation(
         onAfterFocus?.(false);
       }
     },
-    [focusTargetRef, wasBackOrForwardNavigation, onAfterFocus, targetName],
+    [focusTargetRef, wasBackOrForwardNavigation, targetName, onAfterFocus],
   );
 }
 
