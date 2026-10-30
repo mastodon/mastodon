@@ -76,6 +76,14 @@ describe('countableText', () => {
     expect(countableText('@arnt@invalid')).toBe('@arnt');
   });
 
+  test('does not strip from non-ascii username', () => {
+    expect(countableText('@ça@example.com')).toBe('@ça@example.com');
+  });
+
+  test('strips a mention with an implausible host', () => {
+    expect(countableText('@arnt@どこでもつかえる.invalid')).toBe('@arnt');
+  });
+
   // UASG-004 universal-acceptance domains (one per script), plus a
   // Tibetan example. Each  domain should be recognized both as a bare
   // URL and as the host half of a remote mention.
@@ -160,7 +168,9 @@ describe('extractMentionsWithIndices', () => {
   });
 
   test('rejects an implausible host', () => {
-    expect(extractMentionsWithIndices('@arnt@nope')).toEqual([]);
+    expect(extractMentionsWithIndices('@arnt@nope')).toEqual([
+      { indices: [0, 10], username: 'arnt', host: 'nope' },
+    ]);
   });
 
   test('does not match after a slash (inside a URL path)', () => {

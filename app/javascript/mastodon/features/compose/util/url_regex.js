@@ -21,8 +21,11 @@ export function replaceUrls(text, replacement) {
 // don't. Lookbehind forbids slash (already inside a URL path) and any
 // letter/digit/underscore (already inside a word). Username stays
 // ASCII to mirror the canonical Account::USERNAME_RE.
-const MENTION_RE = /(?<![/\p{L}\p{N}_])@([a-z0-9_]+(?:[a-z0-9_.-]*[a-z0-9_])?)@([^\s@/<>?#]+)/giu;
+// equivalent to [[:word:]] we use \p{L}\p{N}\p{M} (letters, numbers, marks)
+// and whitelist the tibetan tsek character (\u0F0B)
 
+const MENTION_RE = /(?<![/\p{L}\p{N}_])@([a-z0-9_]+(?:[a-z0-9_.-]*[a-z0-9_])?)@((?:[\p{L}\p{N}\p{M}_\u0F0B]+)?(?:[.-][\p{L}\p{N}\p{M}\u0F0B]+)*)?/giu
+const MAX_DOMAIN_LENGTH = 253
 const TRAILING_HOST_PUNCT = /[.,;:!?)\]}'"`]+$/;
 
 export function extractMentionsWithIndices(text) {
@@ -31,9 +34,10 @@ export function extractMentionsWithIndices(text) {
     let host = m[2];
     const trail = TRAILING_HOST_PUNCT.exec(host);
     if (trail) host = host.slice(0, -trail[0].length);
-    if (!host || !extractor.isPlausibleHost(host)) continue;
+    if (!host) continue;
     const start = m.index;
     const end = start + 2 + m[1].length + host.length;
+    if ((end-start) > MAX_DOMAIN_LENGTH) continue;
     out.push({ indices: [start, end], username: m[1], host });
   }
   return out;

@@ -135,6 +135,10 @@ RSpec.describe CharacterCounter do
       it { expect(subject.countable_text('@arnt@invalid')).to eq('@arnt') }
     end
 
+    describe 'does not strip from non-ascii username' do
+      it { expect(subject.countable_text('@ça@example.com')).to eq('@ça@example.com') }
+    end
+
     describe 'iterate through funky domains' do
       # UASG-004 universal-acceptance domains (one per script), plus a
       # Tibetan example. Each  domain should be recognized both as a bare
