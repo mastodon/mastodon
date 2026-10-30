@@ -30,13 +30,8 @@ module Extractor
   # URL extraction and overlap resolution go through Uts58 (UTS #58).
   # xmpp: and magnet: URIs are handled by separate small extractors
   # below.
-  def extract_urls_with_indices(text, options = {})
-    urls = UTS58.extract_urls_with_indices(text, options)
-    # TODO: when the UTS58 gem supports not extracting
-    # schema less URLs the following line can be removed again
-    urls.filter do |i|
-      text[i[:indices].first...i[:indices].last] == i[:url]
-    end
+  def extract_urls_with_indices(text, _options = {})
+    UTS58.extract_urls_with_indices(text, extract_url_without_protocol: false)
   end
 
   def remove_overlapping_entities(entities)
