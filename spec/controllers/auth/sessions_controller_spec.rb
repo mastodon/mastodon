@@ -370,9 +370,9 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
-      context 'with WebAuthn and OTP enabled as second factor' do
+      context 'with WebAuthn enabled as second factor' do
         let!(:user) do
-          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret)
+          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh')
         end
 
         let!(:webauthn_credential) do
@@ -407,9 +407,26 @@ RSpec.describe Auth::SessionsController do
             post :create, params: { user: { email: user.email, password: user.password } }
           end
 
-          it 'renders webauthn authentication page' do
+          it 'renders webauthn authentication page with a recovery code fallback' do
             expect(response.parsed_body)
               .to have_css('h3.title', text: I18n.t('simple_form.title.sessions.webauthn'))
+              .and have_css('#link-to-otp', text: I18n.t('auth.link_to_recovery_code'))
+              .and have_css('#otp-authentication-form .authentication-hint', text: I18n.t('simple_form.hints.sessions.recovery_code'))
+          end
+        end
+
+        context 'when OTP is also enabled and using email and password' do
+          before do
+            user.update!(otp_required_for_login: true, otp_secret: User.generate_otp_secret)
+
+            post :create, params: { user: { email: user.email, password: user.password } }
+          end
+
+          it 'renders webauthn authentication page with an OTP fallback' do
+            expect(response.parsed_body)
+              .to have_css('h3.title', text: I18n.t('simple_form.title.sessions.webauthn'))
+              .and have_css('#link-to-otp', text: I18n.t('auth.link_to_otp'))
+              .and have_css('#otp-authentication-form .authentication-hint', text: I18n.t('simple_form.hints.sessions.otp'))
           end
         end
 

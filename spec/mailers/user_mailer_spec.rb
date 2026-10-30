@@ -287,6 +287,32 @@ RSpec.describe UserMailer do
     it_behaves_like 'delivery to memorialized user'
   end
 
+  describe '#otp_enabled' do
+    let(:mail) { described_class.otp_enabled(receiver) }
+
+    it 'renders otp_enabled mail' do
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('devise.mailer.otp_enabled.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.otp_enabled.explanation'))
+    end
+
+    it_behaves_like 'delivery to memorialized user'
+  end
+
+  describe '#otp_disabled' do
+    let(:mail) { described_class.otp_disabled(receiver) }
+
+    it 'renders otp_disabled mail' do
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('devise.mailer.otp_disabled.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.otp_disabled.explanation'))
+    end
+
+    it_behaves_like 'delivery to memorialized user'
+  end
+
   describe '#two_factor_recovery_codes_changed' do
     let(:mail) { described_class.two_factor_recovery_codes_changed(receiver) }
 

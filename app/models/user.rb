@@ -302,6 +302,23 @@ class User < ApplicationRecord
     otp_required_for_login? || webauthn_credentials.any?
   end
 
+  def can_remove_otp?
+    !role.require_2fa? || webauthn_enabled?
+  end
+
+  def can_remove_webauthn_credential?
+    !role.require_2fa? || otp_enabled? || webauthn_credentials.many?
+  end
+
+  def disable_otp_login!
+    return unless otp_required_for_login?
+
+    self.otp_required_for_login = false
+    self.otp_secret = nil
+
+    save!
+  end
+
   def disable_two_factor!
     self.otp_required_for_login = false
     self.otp_secret = nil

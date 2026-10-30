@@ -1,0 +1,13 @@
+= content_for :heading do
+  = render 'application/mailer/heading',
+           image_url: frontend_asset_url('images/mailer-new/heading/2fa-disabled.png'),
+           subtitle: t('devise.mailer.otp_disabled.explanation'),
+           title: t('devise.mailer.otp_disabled.title')
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td.email-prose
+            %p= t 'devise.mailer.otp_disabled.extra'
+            = render 'application/mailer/button', text: t('settings.account_settings'), url: edit_user_registration_url

@@ -8,7 +8,9 @@ module Settings
       skip_before_action :require_functional!
 
       before_action :verify_otp_not_enabled, only: [:show]
-      before_action :require_challenge!, only: [:create]
+      before_action :verify_otp_enabled, only: [:destroy]
+      before_action :verify_otp_removable, only: [:destroy]
+      before_action :require_challenge!, only: [:create, :destroy]
 
       def show
         @confirmation = Form::TwoFactorConfirmation.new
@@ -20,10 +22,30 @@ module Settings
         redirect_to new_settings_two_factor_authentication_confirmation_path(params.permit(:oauth))
       end
 
+      def destroy
+        if current_user.webauthn_enabled?
+          current_user.disable_otp_login!
+          UserMailer.otp_disabled(current_user).deliver_later!
+        else
+          current_user.disable_two_factor!
+          UserMailer.two_factor_disabled(current_user).deliver_later!
+        end
+
+        redirect_to settings_two_factor_authentication_methods_path
+      end
+
       private
 
       def verify_otp_not_enabled
         redirect_to settings_two_factor_authentication_methods_path if current_user.otp_enabled?
+      end
+
+      def verify_otp_enabled
+        redirect_to settings_two_factor_authentication_methods_path unless current_user.otp_enabled?
+      end
+
+      def verify_otp_removable
+        redirect_to settings_two_factor_authentication_methods_path unless current_user.can_remove_otp?
       end
     end
   end
