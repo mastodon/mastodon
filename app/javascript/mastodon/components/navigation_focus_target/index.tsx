@@ -100,13 +100,14 @@ export const FocusTargetProvider: React.FC<{
   );
 };
 
+interface FocusAfterNavigationOptions {
+  scrollIntoView?: boolean;
+  onAfterFocus?: (hasSetFocus: boolean) => void;
+}
+
 export function useFocusAfterNavigation(
   targetName?: NamedFocusTarget,
-  {
-    onAfterFocus,
-  }: {
-    onAfterFocus?: (hasSetFocus: boolean) => void;
-  } = {},
+  { scrollIntoView = false, onAfterFocus }: FocusAfterNavigationOptions = {},
 ) {
   const focusTargetRef = useContext(FocusTargetContext);
   const hasFocusedOnceRef = useRef(false);
@@ -133,8 +134,13 @@ export function useFocusAfterNavigation(
         ? focusTarget === targetName
         : focusTarget === true;
 
+      let timeout: ReturnType<typeof setTimeout> | undefined;
+
       if (shouldSetFocus) {
-        setTimeout(() => {
+        timeout = setTimeout(() => {
+          if (scrollIntoView) {
+            element.scrollIntoView(true);
+          }
           element.focus({ preventScroll: true });
 
           onAfterFocus?.(true);
@@ -144,23 +150,41 @@ export function useFocusAfterNavigation(
       } else {
         onAfterFocus?.(false);
       }
+      return () => {
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+      };
     },
-    [focusTargetRef, wasBackOrForwardNavigation, targetName, onAfterFocus],
+    [
+      focusTargetRef,
+      wasBackOrForwardNavigation,
+      targetName,
+      onAfterFocus,
+      scrollIntoView,
+    ],
   );
 }
 
 interface FocusTargetElementProps extends React.ComponentPropsWithoutRef<'h1'> {
   focusTargetName?: NamedFocusTarget;
+  scrollIntoViewOnFocus?: boolean;
+  onAfterFocus?: FocusAfterNavigationOptions['onAfterFocus'];
 }
 
 export const NavigationFocusTarget = <As extends React.ElementType = 'h1'>({
   as: asComp,
   focusTargetName,
+  scrollIntoViewOnFocus,
+  onAfterFocus,
   children,
   ...otherProps
 }: PolymorphicProps<FocusTargetElementProps, As>) => {
   const Component = asComp ?? 'h1';
-  const focusAfterNavigation = useFocusAfterNavigation(focusTargetName);
+  const focusAfterNavigation = useFocusAfterNavigation(focusTargetName, {
+    scrollIntoView: scrollIntoViewOnFocus,
+    onAfterFocus,
+  });
 
   return (
     <Component
