@@ -161,22 +161,11 @@ class UserRole < ApplicationRecord
   end
 
   def computed_permissions
-    # If called on the everyone role, no further computation needed
-    return permissions if everyone?
-
     # If called on the nobody role, no permissions are there to be given
     return Flags::NONE if nobody?
 
     # Otherwise, compute permissions based on special conditions
-    @computed_permissions ||= begin
-      permissions = self.class.everyone.permissions | self.permissions
-
-      if administrator?
-        Flags::ALL
-      else
-        permissions
-      end
-    end
+    @computed_permissions ||= administrator? ? Flags::ALL : permissions
   end
 
   def to_log_human_identifier
