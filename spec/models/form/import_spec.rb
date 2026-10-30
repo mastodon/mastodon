@@ -45,12 +45,42 @@ RSpec.describe Form::Import do
 
     describe 'when the import type is custom_filters' do
       let(:data)        { fixture_file_upload(import_file, content_type) }
-      let(:import_file) { File.open('spec/fixtures/files/custom_filters.json') }
+      let(:import_file) { 'custom_filters.json' }
       let(:import_type) { 'custom_filters' }
       let(:content_type) { 'application/json' }
 
       it 'passes validation' do
         expect(subject).to be_valid
+      end
+
+      it 'validates schema structure for imported filter items' do
+        allow(CustomFilterImportValidator).to receive(:validate_each)
+
+        subject.validate
+
+        expect(CustomFilterImportValidator)
+          .to have_received(:validate_each)
+          .with(subject, :data, all(a_kind_of(Hash)))
+      end
+
+      context 'when the file is empty' do
+        let(:import_file) { 'empty.json' }
+
+        it 'has errors' do
+          subject.validate
+          expect(subject.errors[:data]).to include(
+            I18n.t('imports.errors.invalid_json_file', error: 'unexpected end of input at line 1 column 1')
+          )
+        end
+      end
+
+      context 'when the file does not contain required fields' do
+        let(:import_file) { 'empty_root.json' }
+
+        it 'has errors' do
+          subject.validate
+          expect(subject.errors[:data]).to include(I18n.t('imports.errors.no_data'))
+        end
       end
     end
 
