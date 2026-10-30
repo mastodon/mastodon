@@ -47,7 +47,7 @@ class StatusCheckBox extends PureComponent {
         </div>
 
         <StatusContent status={status} />
-        <MediaAttachments status={status} visible={false} />
+        { status.get('media_attachments').size === 0 ? null : <MediaAttachments status={status} visible={false} /> }
       </div>
     );
 
