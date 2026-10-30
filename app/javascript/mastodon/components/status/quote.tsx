@@ -51,7 +51,7 @@ import {
   useStatusContext,
   useStatusHandlers,
 } from './hooks';
-import { StatusImage } from './image';
+import { StatusGalleryImage, StatusImage } from './image';
 import classes from './quote.module.scss';
 import { accountStatusLinkProps, statusLink } from './utils';
 
@@ -119,7 +119,10 @@ export const QuotedStatus: React.FC<{
     return null;
   }
 
-  const statusTo = `/@${status.account.acct}/${status.id}`;
+  const statusTo = {
+    pathname: statusLink(status),
+    state: { reference: 'status' },
+  };
 
   return (
     <Card
@@ -167,13 +170,12 @@ export const QuotedStatus: React.FC<{
       </CardTitle>
 
       <CardBody className={classes.body} noClamp={!clamp}>
-        <PrimaryCardLink
-          as={Link}
-          to={{ pathname: statusLink(status), state: { reference: 'status' } }}
-        >
-          <QuotedStatusBody status={status} />
-        </PrimaryCardLink>
+        <QuotedStatusBody status={status} linkStatus={!onDelete} />
       </CardBody>
+
+      {!disableOpen && (
+        <PrimaryCardLink as={Link} to={statusTo} tabIndex={-1} aria-hidden />
+      )}
 
       {!status.spoilerHtml && <QuotedStatusLink status={status} />}
     </Card>
@@ -182,7 +184,8 @@ export const QuotedStatus: React.FC<{
 
 const QuotedStatusBody: React.FC<{
   status: AccountStatusShape;
-}> = ({ status }) => {
+  linkStatus?: boolean;
+}> = ({ status, linkStatus = true }) => {
   const attachments = status.media_attachments;
   const mainAttachment = attachments.find(
     (
@@ -264,17 +267,22 @@ const QuotedStatusBody: React.FC<{
     );
   }
 
+  const text = (status.translation?.contentHtml ?? status.contentHtml).trim();
+  const ImageComp = linkStatus ? StatusGalleryImage : StatusImage;
+
   return (
     <>
       {!!reply && <p className={classes.reply}>{reply}</p>}
 
-      <EmojiHTML
-        htmlString={status.translation?.contentHtml ?? status.contentHtml}
-        extraEmojis={status.emojis}
-        lang={status.translation?.language ?? status.language}
-        onElement={onStatusLinksDisabled}
-        extraArgs={status}
-      />
+      {text && (
+        <EmojiHTML
+          htmlString={text}
+          extraEmojis={status.emojis}
+          lang={status.translation?.language ?? status.language}
+          onElement={onStatusLinksDisabled}
+          extraArgs={status}
+        />
+      )}
 
       {poll && (
         <div className={classes.spoiler}>
@@ -306,7 +314,8 @@ const QuotedStatusBody: React.FC<{
 
       {mainAttachment?.type === 'video' && (
         <div className={classNames(classes.media, classes.mediaSingle)}>
-          <StatusImage
+          <ImageComp
+            statusId={status.id}
             className={classes.image}
             attachment={mainAttachment}
             sensitive={sensitive}
@@ -317,7 +326,7 @@ const QuotedStatusBody: React.FC<{
 
               {duration}
             </div>
-          </StatusImage>
+          </ImageComp>
         </div>
       )}
 
@@ -331,7 +340,9 @@ const QuotedStatusBody: React.FC<{
           data-number={imageAttachments.length}
         >
           {imageAttachments.map((attachment) => (
-            <StatusImage
+            <ImageComp
+              showAlt
+              statusId={status.id}
               className={classes.image}
               attachment={attachment}
               sensitive={sensitive}

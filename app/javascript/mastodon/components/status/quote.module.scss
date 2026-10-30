@@ -86,6 +86,8 @@ a.nestedQuote {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   aspect-ratio: 3/2;
+  border-radius: var(--radius-2);
+  overflow: hidden;
 
   &[data-number='2'] {
     grid-template-rows: 1fr;
@@ -100,11 +102,17 @@ a.nestedQuote {
   min-width: 120px;
   max-width: min(100%, 400px);
   aspect-ratio: var(--aspect);
+  border-radius: var(--radius-2);
 }
 
-.image {
+a.image {
   max-height: 260px;
-  border-radius: var(--radius-2);
+  display: block;
+
+  &:focus {
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+  }
 }
 
 .videoDuration {

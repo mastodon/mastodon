@@ -13,26 +13,24 @@ import { useFetchFamiliarFollowers } from './use_fetch_familiar_followers';
 const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
   familiarFollowers,
 }) => {
-  const messageData = {
-    name1: (
-      <LinkedDisplayName
-        displayProps={{ account: familiarFollowers.at(0), variant: 'simple' }}
-      />
-    ),
-    name2: (
-      <LinkedDisplayName
-        displayProps={{ account: familiarFollowers.at(1), variant: 'simple' }}
-      />
-    ),
-    othersCount: familiarFollowers.length - 2,
-  };
+  const name1 = (
+    <LinkedDisplayName
+      displayProps={{ account: familiarFollowers.at(0), variant: 'simple' }}
+    />
+  );
+  const name2 = (
+    <LinkedDisplayName
+      displayProps={{ account: familiarFollowers.at(1), variant: 'simple' }}
+    />
+  );
+  const othersCount = familiarFollowers.length - 2;
 
   if (familiarFollowers.length === 1) {
     return (
       <FormattedMessage
         id='account.familiar_followers_one'
         defaultMessage='Followed by {name1}'
-        values={messageData}
+        values={{ name1 }}
       />
     );
   } else if (familiarFollowers.length === 2) {
@@ -40,7 +38,7 @@ const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
       <FormattedMessage
         id='account.familiar_followers_two'
         defaultMessage='Followed by {name1} and {name2}'
-        values={messageData}
+        values={{ name1, name2 }}
       />
     );
   } else {
@@ -48,7 +46,7 @@ const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
       <FormattedMessage
         id='account.familiar_followers_many'
         defaultMessage='Followed by {name1}, {name2}, and {othersCount, plural, one {one other you know} other {# others you know}}'
-        values={messageData}
+        values={{ name1, name2, othersCount }}
       />
     );
   }

@@ -148,7 +148,7 @@ export const CardBody = ({
 
 type PrimaryCardLinkProps<As extends React.ElementType> = PolymorphicProps<
   {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     className?: string;
   },
   As
