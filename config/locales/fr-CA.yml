@@ -831,7 +831,21 @@ fr-CA:
       new:
         create: S’abonner
         title: Nouvel abonnement de modération
+      override_unattributed: Remplacer les blocs manuels
+      override_unattributed_hint: Permettre à cet abonnement de mettre à jour automatiquement ou de prendre en charge les blocs manuels existants lors de l'application automatique des avertissements.
+      policies:
+        apply_advisories: Appliquer automatiquement les alertes
+        apply_advisories_safely: Appliquer automatiquement les alertes qui ne rompent pas les relations
+        apply_retractions: Appliquer automatiquement les rétractions
       priority: Priorité
+      priority_hint: Les abonnements de modération sont évalués par ordre de priorité, les abonnements avec un nombre inférieur surchargent les abonnements avec un plus élevé.
+      retract_automatically: Retirer automatiquement les alertes
+      retract_automatically_hint: Autoriser ou non les modifications de politique de rétractation ou de rétrogradation lorsque l'abonnement supprime un élément correspondant. Lorsque la rétractation automatique est activée et qu'une alerte équivalente existe dans une liste de priorités inférieures, elle sera adoptée. Lorsque la rétraction automatique est désactivée, une suggestion sera générée.
+      show:
+        delete_confirm: Êtes-vous sûr de vouloir supprimer cet abonnement de modération ?
+        edit: Modifier l'abonnement
+        empty: Cet abonnement n'a pas encore de notification.
+        title: 'Abonnement à la modération : %{name}'
       tabs:
         logs: Journaux
         subscriptions: Abonnements
@@ -854,6 +868,18 @@ fr-CA:
       apply_limit: Masquer
       apply_reject: Suspendre
       apply_retract: Retirer
+      current_states:
+        accept: actuellement autorisé
+        limit: actuellement limité
+        reject: actuellement suspendu
+      description: Voici les suggestions de vos abonnements à la modération, commandées par priorité.
+      destroyed_msg: Suggestion rejetée avec succès pour %{target_key}
+      dismiss: Rejeter les suggestions
+      empty: Il n'y a pas de suggestion de modération pour le moment.
+      retracted_msg: Politique rétractée avec succès pour %{target_key}
+      suggested_from_html: Suggéré par %{link}
+      title: Suggestions de modération
+      unable_to_apply_msg: Impossible d'appliquer la suggestion pour %{target_key}
     relationships:
       title: Relations de %{acct}
     relays:
