@@ -15,6 +15,7 @@ require_relative 'maintenance'
 require_relative 'media'
 require_relative 'preview_cards'
 require_relative 'search'
+require_relative 'secrets'
 require_relative 'settings'
 require_relative 'statuses'
 require_relative 'upgrade'
@@ -65,6 +66,9 @@ module Mastodon::CLI
 
     desc 'maintenance SUBCOMMAND ...ARGS', 'Various maintenance utilities'
     subcommand 'maintenance', Maintenance
+
+    desc 'secrets SUBCOMMAND ...ARGS', 'Utilities to manage secrets'
+    subcommand 'secrets', Secrets
 
     include Federation
 
