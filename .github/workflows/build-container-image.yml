@@ -36,11 +36,11 @@ jobs:
         include:
           - platform: linux/amd64
             # renovate: datasource=github-runners depName=ubuntu
-            RUNNER_VERSION: '24.04'
+            RUNNER_VERSION: '26.04'
             SUFFIX: ''
           - platform: linux/arm64
             # renovate: datasource=github-runners depName=ubuntu
-            RUNNER_VERSION: '24.04'
+            RUNNER_VERSION: '26.04'
             SUFFIX: '-arm'
 
     steps:

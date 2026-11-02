@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   download-translations:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     if: github.repository == 'mastodon/mastodon'
 
     steps:
