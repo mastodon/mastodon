@@ -5097,6 +5097,10 @@ a.status-card {
   height: 20px;
   border-radius: 100%;
 
+  svg {
+    pointer-events: none;
+  }
+
   &::-moz-focus-inner {
     border: 0;
   }
