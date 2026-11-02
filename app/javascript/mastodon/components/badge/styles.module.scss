@@ -29,6 +29,10 @@
     color: inherit;
     text-decoration: none;
   }
+
+  &::before {
+    @include mixins.high-contrast-outline;
+  }
 }
 
 .content {
