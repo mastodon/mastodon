@@ -23,20 +23,33 @@
     }
   },
 
-  "remoteUser": "root",
+  "remoteUser": "vscode",
 
   "otherPortsAttributes": {
     "onAutoForward": "silent"
   },
 
-  "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-  "postCreateCommand": "bin/setup",
+  "remoteEnv": {
+    "MISE_DATA_DIR": "/home/vscode/.local/share/mise",
+    "MISE_CONFIG_DIR": "/home/vscode/.config/mise",
+    "MISE_CACHE_DIR": "/home/vscode/.cache/mise"
+  },
+
+  "onCreateCommand": {
+    "git": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+    "mise": "mise settings add idiomatic_version_file_enable_tools ruby && mise settings add idiomatic_version_file_enable_tools node && mise install -y"
+  },
+  "postCreateCommand": "PATH=\"/home/vscode/.local/share/mise/shims:$PATH\" bin/setup",
   "waitFor": "postCreateCommand",
 
   "customizations": {
     "vscode": {
       "settings": {},
       "extensions": ["EditorConfig.EditorConfig", "webben.browserslist"]
+    },
+    "jetbrains": {
+      "backend": "RubyMine",
+      "plugins": ["org.toml.lang", "com.github.l34130.mise"]
     }
   }
 }
