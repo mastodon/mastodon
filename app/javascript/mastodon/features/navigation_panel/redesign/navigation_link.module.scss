@@ -30,6 +30,12 @@
   &[aria-current='page'] {
     background-color: var(--color-bg-highlight);
     text-decoration: none;
+
+    @media (forced-colors: active) {
+      &::after {
+        @include mixins.high-contrast-outline;
+      }
+    }
   }
 
   &:focus-visible {

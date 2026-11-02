@@ -146,6 +146,10 @@
       background-color: var(--color-bg-error-base);
       transition: none;
     }
+
+    @media (forced-colors: active) {
+      border: 1px solid transparent;
+    }
   }
 
   &:disabled,
@@ -5079,6 +5083,10 @@ a.status-card {
   transition: all 100ms linear;
   transition-property: transform, opacity;
   color: var(--color-text-secondary);
+
+  @media (forced-colors: active) {
+    color: CanvasText;
+  }
 }
 
 .search__icon.icon-search {
@@ -6945,15 +6953,20 @@ a.status-card {
       background: rgb(from var(--color-text-on-media) r g b / 35%);
       border-radius: 4px;
       display: block;
+      box-sizing: border-box;
       position: absolute;
       height: 4px;
       inset-inline-start: 0;
       top: 50%;
       transform: translate(0, -50%);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
     }
 
     &__current {
       display: block;
+      box-sizing: border-box;
       position: absolute;
       height: 4px;
       border-radius: 4px;
@@ -6961,9 +6974,13 @@ a.status-card {
       top: 50%;
       transform: translate(0, -50%);
       background: var(--color-text-on-media);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
     }
 
     &__handle {
+      box-sizing: border-box;
       position: absolute;
       z-index: 3;
       border-radius: 50%;
@@ -6976,6 +6993,9 @@ a.status-card {
       background: var(--color-text-on-media);
       box-shadow: 1px 2px 6px var(--color-shadow-primary);
       opacity: 0;
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
 
       .no-reduce-motion & {
         transition: opacity 100ms linear;
@@ -7024,10 +7044,14 @@ a.status-card {
     &__buffer {
       display: block;
       position: absolute;
+      box-sizing: border-box;
       height: 4px;
       border-radius: 4px;
       top: 14px;
       background: var(--color-text-on-media);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
     }
 
     &__buffer {
@@ -7039,12 +7063,16 @@ a.status-card {
       z-index: 3;
       opacity: 0;
       border-radius: 50%;
+      box-sizing: border-box;
       width: 12px;
       height: 12px;
       top: 10px;
       margin-inline-start: -6px;
       background: var(--color-text-on-media);
       box-shadow: 1px 2px 6px var(--color-shadow-primary);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
 
       .no-reduce-motion & {
         transition: opacity 0.1s ease;
@@ -7192,6 +7220,14 @@ a.status-card {
         border-radius: 4px 4px 0 0;
         background: var(--color-text-brand);
       }
+
+      @media (forced-colors: active) {
+        &::before {
+          display: none;
+        }
+
+        border-bottom: 3px solid ButtonBorder;
+      }
     }
   }
 
@@ -7270,6 +7306,10 @@ a.status-card {
   width: calc(100% - 4px);
   height: calc(100% - 4px);
   background: var(--color-text-brand);
+
+  @media (forced-colors: active) {
+    background-color: Highlight;
+  }
 }
 
 .check-box {
@@ -7994,12 +8034,6 @@ noscript {
   .search {
     width: 100%;
     margin-bottom: 0;
-  }
-
-  .search__icon {
-    top: 12px;
-    inset-inline-end: 12px;
-    color: var(--color-text-tertiary);
   }
 }
 

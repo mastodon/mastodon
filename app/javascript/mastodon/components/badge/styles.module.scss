@@ -1,6 +1,7 @@
 @use '@/styles/mastodon/mixins';
 
 .badge {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -28,6 +29,10 @@
   a {
     color: inherit;
     text-decoration: none;
+  }
+
+  &::before {
+    @include mixins.high-contrast-outline;
   }
 }
 
