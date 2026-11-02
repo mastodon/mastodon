@@ -146,6 +146,10 @@
       background-color: var(--color-bg-error-base);
       transition: none;
     }
+
+    @media (forced-colors: active) {
+      border: 1px solid transparent;
+    }
   }
 
   &:disabled,
