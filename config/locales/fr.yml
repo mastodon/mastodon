@@ -358,16 +358,16 @@ fr:
         update_username_block_html: "%{name} a mis à jour une règle pour les noms d'utilisateurs contenant %{target}"
         usable_tag_html: peut être utilisé ;
       automated_actions:
-        create_domain_allow_html: Fédération autorisée automatiquement avec le domaine %{target}
-        create_domain_block_html: Blocage automatique du domaine %{target}
-        destroy_domain_allow_html: Fédération refusée automatiquement avec le domaine %{target}
-        destroy_domain_block_html: Déblocage automatique du domaine %{target}
+        create_domain_allow_html: Fédération automatiquement autorisée avec le domaine %{target}
+        create_domain_block_html: Domaine %{target} automatiquement bloqué
+        destroy_domain_allow_html: Fédération automatiquement refusée avec le domaine %{target}
+        destroy_domain_block_html: Domaine %{target} automatiquement débloqué
         update_domain_block_html: Mise à jour automatique du blocage de domaine pour %{target}
       deleted_account: compte supprimé
       deleted_suggestion: un abonnement de modération supprimé
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
-      filter_by_user: Filtrer par utilisateur·ice
+      filter_by_user: Filtrer par utilisateur·rice
       suggested_by_html: Action suggérée par %{subscription}
       title: Journal d’audit
       unavailable_instance: "(nom de domaine indisponible)"
@@ -494,7 +494,7 @@ fr:
         confirm: Suspendre
         permanent_action: Annuler la suspension ne restaure aucune donnée ou relation.
         preamble_html: Vous êtes sur le point de suspendre <strong>%{domain}</strong> et ses sous-domaines.
-        remove_all_data: Cela supprimera de votre serveur tous les contenus, médias et données de profil pour les comptes de votre serveur.
+        remove_all_data: Cela supprimera de votre serveur tous les contenus, médias et données de profil des comptes de ce domaine.
         stop_communication: Votre serveur cessera de communiquer avec ces serveurs.
         title: Confirmer le blocage du domaine pour %{domain}
         undo_relationships: Cela annulera toute relation de suivi entre les comptes de ces serveurs et le vôtre.
@@ -689,7 +689,7 @@ fr:
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
       advisories:
-        title: Alertes des abonnements de modération
+        title: Recommandations des abonnements de modération
       audit_log:
         title: Journaux d'audit récents
         view_all: Voir les journaux d'audit complets
@@ -697,7 +697,7 @@ fr:
         description_html:
           one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong>, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine ne soit reçue.
           other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong>, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine ne soit reçue.
-        failure_threshold_reached: Le seuil de défaillance a été atteint le %{date}.
+        failure_threshold_reached: Seuil d'échec atteint le %{date}.
         failures_recorded:
           one: Tentative échouée pendant %{count} jour.
           other: Tentatives échouées pendant %{count} jours différents.
@@ -801,7 +801,7 @@ fr:
         accept: autoriser
         limit: masquer
         reject: suspendre
-      apply_automatically: Appliquer automatiquement les alertes
+      apply_automatically: Appliquer automatiquement les recommandations
       apply_conditions:
         always: Toujours
         never: Jamais
@@ -809,7 +809,7 @@ fr:
       apply_conditions_hint:
         always: Toujours appliquer automatiquement les actions recommandées. Utilisez cette option uniquement pour les listes de confiance.
         never: Ne jamais appliquer automatiquement les actions recommandées. Toujours générer une suggestion à la place.
-        safely: Appliquer les actions recommandées à moins qu'elles ne rompent les relations de suivi existantes avec des comptes locaux. Dans de tels cas, une suggestion sera générée.
+        safely: Appliquer les actions recommandées à moins qu'elles ne rompent des relations de suivi existantes avec des comptes locaux. Dans de tels cas, une suggestion sera générée.
       delete: Supprimer
       destroyed_msg: Abonnement de modération supprimé avec succès
       empty: Aucun abonnement de modération pour le moment.
@@ -824,14 +824,28 @@ fr:
         default: Les éléments sans action spécifiée seront traités comme des blocages. Les blocages et les autorisations seront tous les deux traités comme tels.
         reject: Les éléments sans action spécifiée seront traités comme des blocages. Les autorisations seront ignorées.
       list_actions_short:
-        accept: Liste d’autorisation
+        accept: Autorisation
         default: Mixte
-        reject: Liste de blocage
+        reject: Blocage
       name: Nom
       new:
         create: S’abonner
         title: Nouvel abonnement de modération
+      override_unattributed: Remplacer les blocages manuels
+      override_unattributed_hint: Permettre à cet abonnement de mettre à jour automatiquement ou de prendre en charge les blocages manuels existants lors de l'application automatique des recommandations.
+      policies:
+        apply_advisories: Appliquer automatiquement les recommandations
+        apply_advisories_safely: Appliquer automatiquement les recommandations qui ne rompent aucunes relations
+        apply_retractions: Appliquer automatiquement les rétractions
       priority: Priorité
+      priority_hint: Les abonnements de modération sont évalués par ordre de priorité, les abonnements avec un nombre inférieur surpassent ceux avec un nombre plus élevé.
+      retract_automatically: Rétracter automatiquement les recommandations
+      retract_automatically_hint: Autoriser la rétraction ou la rétrogradation des changements d'une politique quand l'abonnement supprime l'élément correspondant. Si la rétraction automatique est activée et qu'une recommandation équivalente dans une liste de priorité moindre existe, elle sera adoptée. Si la rétraction automatique est désactivée, une suggestion sera créée à la place.
+      show:
+        delete_confirm: Voulez-vous vraiment supprimer cet abonnement de modération ?
+        edit: Modifier l'abonnement
+        empty: Cet abonnement n'a pas encore de recommandations.
+        title: 'Abonnement de modération : %{name}'
       tabs:
         logs: Journaux
         subscriptions: Abonnements
@@ -853,7 +867,19 @@ fr:
       apply_accept: Autoriser
       apply_limit: Masquer
       apply_reject: Suspendre
-      apply_retract: Retirer
+      apply_retract: Rétracter
+      current_states:
+        accept: actuellement autorisé
+        limit: actuellement masqué
+        reject: actuellement suspendu
+      description: Voici les suggestions de vos abonnements de modération, ordonnées par priorité.
+      destroyed_msg: Suggestion rejetée avec succès pour %{target_key}
+      dismiss: Rejeter les suggestions
+      empty: Il n'y a pas de suggestion de modération pour le moment.
+      retracted_msg: Politique rétractée avec succès pour %{target_key}
+      suggested_from_html: Suggéré par %{link}
+      title: Suggestions de modération
+      unable_to_apply_msg: Impossible d'appliquer la suggestion pour %{target_key}
     relationships:
       title: Relations de %{acct}
     relays:
@@ -1061,7 +1087,7 @@ fr:
         suggestion:
           title: Suggestions 
         unprocessed:
-          title: Non traitée
+          title: Non traitées
         warning:
           title: Avertissements
       checks:
@@ -1084,14 +1110,14 @@ fr:
             title: Elasticsearch est configuré sans problèmes
           pending:
             lead:
-              analysis_index_mismatch_html: Les paramètres de l'analyseur d'index d'Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
-              cluster_health_red_html: Le cluster Elasticsearch n'est pas en bon état (statut rouge), les fonctionnalités de recherche ne sont pas disponibles
-              cluster_health_yellow_html: Le cluster Elasticsearch n'est pas en bon état (statut jaune), vous pouvez en chercher la cause
-              index_mismatch_html: Les mappings des index Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              analysis_index_mismatch_html: Les paramètres de l'analyseur d'index d'Elasticsearch sont obsolètes. Veuillez lancer <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Le cluster Elasticsearch n'est pas dans un bon état (statut rouge), les fonctionnalités de recherche ne sont pas disponibles
+              cluster_health_yellow_html: Le cluster Elasticsearch n'est pas dans un bon état (statut jaune), vous pouvez en chercher la cause
+              index_mismatch_html: Les mappings des index Elasticsearch sont obsolètes. Veuillez lancer <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
               preset_html: Votre cluster Elasticsearch a plus d’un nœud, mais Mastodon n’a pas été configuré pour les utiliser
               preset_single_node_html: Votre cluster Elasticsearch n’a qu’un seul nœud, <code>ES_PRESET</code> devrait avoir la valeur <code>single_node_cluster</code>
-              reset_chewy_html: L’index système d'Elasticsearch n’est plus à jour à cause d’un changement de paramètre. Veuillez lancer <code>tootctl search deploy --reset-chewy</code> pour le mettre à jour
-              running_check_html: Impossible de se connecter à Elasticsearch. Veuillez vérifier qu’il est en cours d’exécution ou désactiver la recherche en plein texte
+              reset_chewy_html: L’index système d'Elasticsearch est obsolète à cause d’un changement de paramètre. Veuillez lancer <code>tootctl search deploy --reset-chewy</code> pour le mettre à jour
+              running_check_html: Impossible de se connecter à Elasticsearch. Veuillez vérifier qu’il est en cours d’exécution ou désactiver la recherche sur le texte complet
               version_check_html: Elasticsearch %{running_version} est en cours d’exécution alors que la version %{required_version} est requise
             title: Il y a des problèmes avec Elasticsearch
           running:
@@ -1105,7 +1131,7 @@ fr:
             title: La confidentialité des médias de votre serveur est sécurisée
           pending:
             lead:
-              upload_check_privacy_error_html: Votre serveur web est mal configuré
+              upload_check_privacy_error_html: Votre serveur Web est mal configuré
               upload_check_privacy_error_object_storage_html: Votre stockage d'objets est mal configuré
             title: La confidentialité de vos utilisateur·rice·s est en danger
           running:
@@ -1143,7 +1169,7 @@ fr:
             title: Votre serveur Mastodon est à jour
           pending:
             lead:
-              patch_html: Une mise à jour de Mastodon est disponible
+              patch_html: Une mise à jour corrective de Mastodon est disponible
               regular_html: Une nouvelle version de Mastodon est disponible
               urgent_html: Une mise à jour critique de Mastodon est disponible, veuillez mettre à jour le plus rapidement possible
             title: Mettre à jour votre serveur Mastodon

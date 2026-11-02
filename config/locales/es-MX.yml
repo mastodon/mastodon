@@ -1124,8 +1124,69 @@ es-MX:
             title: El servidor está comprobando la configuración de Elasticsearch
           unprocessed:
             title: El servidor aún no ha comprobado la configuración de Elasticsearch
+        media_privacy:
+          error:
+            title: Hubo un error al comprobar la privacidad multimedia de tu servidor
+          ok:
+            title: La privacidad multimedia del servidor es segura
+          pending:
+            lead:
+              upload_check_privacy_error_html: Tu servidor web está mal configurado
+              upload_check_privacy_error_object_storage_html: Tu almacén de objetos está mal configurado
+            title: La privacidad de tus usuarios está en riesgo
+          running:
+            title: El servidor está comprobando el estado de privacidad
+          unprocessed:
+            title: El servidor aún no ha comprobado el estado de privacidad
+        rules:
+          error:
+            title: Hubo un error al comprobar las reglas de tu servidor
+          ok:
+            title: Las reglas de tu servidor están establecidas
+          pending:
+            lead_html: Tu servidor no tiene reglas publicadas. Las reglas claras ayudan a moderar y a establecer expectativas
+            title: Configurar reglas del servidor
+          running:
+            title: El servidor está comprobando tus reglas
+          unprocessed:
+            title: El servidor aún no ha comprobado si hay reglas
+        sidekiq_process:
+          error:
+            title: Hubo un error al comprobar la configuración de Sidekiq
+          ok:
+            title: Sidekiq está configurado sin problemas
+          pending:
+            lead_html: No hay ningún proceso Sidekiq ejecutándose para la(s) cola(s) %{missing_queues_str}
+            title: Por favor, revisa tu configuración de Sidekiq
+          running:
+            title: El servidor está comprobando la configuración de Sidekiq
+          unprocessed:
+            title: El servidor aún no ha comprobado la configuración de Sidekiq
+        software_version:
+          error:
+            title: Hubo un error al comprobar las actualizaciones de software
+          ok:
+            title: Tu instancia de Mastodon está actualizada
+          pending:
+            lead:
+              patch_html: Hay una actualización disponible con corrección de errores de Mastodon
+              regular_html: Hay una nueva versión de Mastodon disponible
+              urgent_html: Hay disponible una actualización crítica de Mastodon, por favor actualiza lo antes posible
+            title: Actualiza tu instancia de Mastodon
+          running:
+            title: El servidor está comprobando si hay alguna actualización de software pendiente
+          unprocessed:
+            title: El servidor aún no ha comprobado las actualizaciones de software
+      ignore:
+        label: Ignorar
+      lead: Recomendaciones para mantener su servidor seguro, acogedor y eficiente.
+      recommendations:
+        title: Recomendaciones
       restore:
         label: Restablecer
+      setup:
+        label: Configurar
+      title: Salud del Servidor
     settings:
       about:
         manage_rules: Administrar reglas del servidor

@@ -18,7 +18,7 @@ eo:
         text: Vi povas uzi skribmanierojn de afiŝoj, kiel URL-ojn, kradvortojn kaj menciojn
         title: Laŭvola. Ne videbla por la ricevanto
       admin_account_action:
-        include_statuses: La uzanto vidos, kiujn afiŝojn kaŭzis la agon de moderigo aŭ de averto
+        include_statuses: La uzanto vidos, kiujn afiŝojn kaŭzis la agon aŭ averton de kontrolado
         send_email_notification: La uzanto ricevos klarigon pri tio, kio okazis al ties konto
         type_html: Elektu kion fari kun <strong>%{acct}</strong>
         types:
@@ -85,6 +85,7 @@ eo:
         media_cache_retention_period: Amaskomunikilaj dosieroj de afiŝoj faritaj de foraj uzantoj estas konservitaj en kaŝmemoro en via servilo. Kiam agordita al pozitiva valoro, amaskomunikilaro estos forigita post la specifita nombro da tagoj. Se la amaskomunikilaro-datumoj estas petitaj post kiam ĝi estas forigita, ĝi estos re-elŝutita, se la fonta enhavo ankoraŭ disponeblas. Pro limigoj pri kiom ofte ligaj antaŭrigardaj kartoj enketas retejojn de ekstera liveranto, oni rekomendas agordi ĉi tiun valoron al almenaŭ 14 tagoj, aŭ ligaj antaŭrigardaj kartoj ne estos ĝisdatigitaj laŭpostule antaŭ tiu tempo.
         min_age: Uzantoj demandos konfirmi siajn naskiĝtagon dum registrado
         peers_api_enabled: Listo de domajnaj nomoj kiujn ĉi tiu servilo renkontis en la fediverso. Neniuj datumoj estas inkluditaj ĉi tie pri ĉu vi federacias kun donita servilo, nur ke via servilo scias pri ĝi. Ĉi tio estas uzata de servoj kiuj kolektas statistikojn pri federacio en ĝenerala signifo.
+        postpone_confirmation_emails: Kiam ŝaltita, konfirmajn retpoŝtaĵojn por aprobotaj kontoj estos senditaj nur post ties aprobo. Ĉi tio povas malfaciligi registradon por uzantoj, ĉar ili devos konfirmi sian retpoŝtadreson baldaŭ post ricevado de retpoŝtaĵo, sed ne povas kontroli, kiam ĝi estas sendita. Plue, ĉi tio malfaciligas laboron por la kontrolantoj, ĉar Mastodon ne povos filtri kontojn kun malĝustaj retpoŝtadresoj antaŭ ties aprobo.
         profile_directory: La profilujo listigas ĉiujn uzantojn kiu volonte malkovrebli.
         require_invite_text: Kiam registroj bezonas permanan aprobon, igi la "Kial vi volas aliĝi?" tekstoenigon deviga anstau nedeviga
         site_contact_email: Kiel personoj povas kontakti vin por juraj au subtenaj demandoj.
@@ -264,6 +265,7 @@ eo:
         media_cache_retention_period: Audovidaĵkaŝaĵretendauro
         min_age: Minimuma aĝo postulo
         peers_api_enabled: Eldonu liston de malkovritaj serviloj en la API
+        postpone_confirmation_emails: Posttempigi konfirmajn retpoŝtaĵojn post aprobo
         profile_directory: Ŝalti la profilujon
         registrations_mode: Kiu povas krei konton
         require_invite_text: Bezoni kialon por aliĝi
@@ -297,7 +299,7 @@ eo:
           sign_up_requires_approval: Limigi registriĝojn
         severity: Regulo
       notification_emails:
-        appeal: Iu apelacias moderigantodecidon
+        appeal: Iu apelacias decidon de kontrolanto
         digest: Sendi resumajn retmesaĝojn
         favourite: Sendi retmesaĝon kiam iu stelumas vian mesaĝon
         follow: Sendi retmesaĝon kiam iu sekvas vin
