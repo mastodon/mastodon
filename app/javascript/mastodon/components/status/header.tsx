@@ -96,13 +96,7 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
   }
 
   return (
-    <header
-      className={classNames(
-        className,
-        classes.root,
-        featured && classes.isFeatured,
-      )}
-    >
+    <header className={classNames(className, classes.root)}>
       <Link
         {...accountLinkProps}
         role='presentation'

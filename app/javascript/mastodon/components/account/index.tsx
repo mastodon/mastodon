@@ -5,8 +5,9 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { DotsThreeIcon } from '@phosphor-icons/react';
+
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
-import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import {
   blockAccount,
   unblockAccount,
@@ -22,10 +23,8 @@ import { initMuteModal } from 'mastodon/actions/mutes';
 import { apiFollowAccount } from 'mastodon/api/accounts';
 import { Avatar } from 'mastodon/components/avatar';
 import { VerifiedBadge } from 'mastodon/components/badge';
-import { Button } from 'mastodon/components/button';
 import { FollowersCounter } from 'mastodon/components/counters';
 import { DisplayName } from 'mastodon/components/display_name';
-import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { FollowButton } from 'mastodon/components/follow_button';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { ShortNumber } from 'mastodon/components/short_number';
@@ -34,6 +33,9 @@ import { useIdentity } from 'mastodon/identity_context';
 import { me } from 'mastodon/initial_state';
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
+
+import { IconButton, Button } from '../button/redesign';
+import { LegacyDropdownMenuItems, Menu, MenuList, MenuTrigger } from '../menu';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -244,35 +246,35 @@ export const Account: React.FC<AccountProps> = ({
 
   if (menu.length > 0 && withMenu) {
     dropdown = (
-      <Dropdown
-        items={menu}
-        icon='ellipsis-h'
-        iconComponent={MoreHorizIcon}
-        title={intl.formatMessage(messages.more)}
-      />
+      <Menu>
+        <MenuTrigger as={IconButton} icon={DotsThreeIcon} size='sm'>
+          {intl.formatMessage(messages.more)}
+        </MenuTrigger>
+        <MenuList>
+          <LegacyDropdownMenuItems items={menu} />
+        </MenuList>
+      </Menu>
     );
   }
 
   if (defaultAction === 'block') {
     button = (
-      <Button
-        text={intl.formatMessage(
+      <Button onClick={handleBlock} size='sm'>
+        {intl.formatMessage(
           relationship?.blocking ? messages.unblock : messages.block,
         )}
-        onClick={handleBlock}
-      />
+      </Button>
     );
   } else if (defaultAction === 'mute') {
     button = (
-      <Button
-        text={intl.formatMessage(
+      <Button onClick={handleMute} size='sm'>
+        {intl.formatMessage(
           relationship?.muting ? messages.unmute : messages.mute,
         )}
-        onClick={handleMute}
-      />
+      </Button>
     );
   } else {
-    button = <FollowButton accountId={id} reference={reference} />;
+    button = <FollowButton accountId={id} reference={reference} size='sm' />;
   }
 
   let muteTimeRemaining: React.ReactNode;

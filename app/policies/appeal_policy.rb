@@ -5,6 +5,10 @@ class AppealPolicy < ApplicationPolicy
     role.can?(:manage_appeals)
   end
 
+  def show?
+    role.can?(:manage_appeals)
+  end
+
   def approve?
     record.pending? && role.can?(:manage_appeals)
   end

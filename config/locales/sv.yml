@@ -1098,6 +1098,18 @@ sv:
             title: Det finns inga pågående databasmigreringar
           pending:
             lead_html: Kör dem för att se till att programmet beter sig som förväntat
+            title: Det finns väntande databasmigreringar
+          running:
+            title: Din server kontrollerar databasens schema
+      ignore:
+        label: Ignorera
+      recommendations:
+        title: Rekommendationer
+      restore:
+        label: Återställ
+      setup:
+        label: Ställ in
+      title: Serverhälsa
     settings:
       about:
         manage_rules: Hantera serverregler

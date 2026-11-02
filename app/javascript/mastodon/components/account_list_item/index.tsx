@@ -206,7 +206,7 @@ export const AccountListItemFollowButton: React.FC<{
   reference?: string;
 }> = ({ accountId, reference }) => (
   <FollowButton
-    compact
+    size='sm'
     labelLength='short'
     accountId={accountId}
     reference={reference}

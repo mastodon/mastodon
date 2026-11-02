@@ -15,7 +15,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
     @json = begin
       if prefetched_body.nil?
-        fetch_resource(uri, true, raise_on_error: :all)
+        fetch_resource(uri, raise_on_error: :all)
       else
         body_to_json(prefetched_body, compare_id: uri)
       end

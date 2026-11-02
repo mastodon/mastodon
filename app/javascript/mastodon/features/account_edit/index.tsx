@@ -9,7 +9,7 @@ import type { ModalType } from '@/mastodon/actions/modal';
 import { openModal } from '@/mastodon/actions/modal';
 import { AccountBio } from '@/mastodon/components/account_bio';
 import { Avatar } from '@/mastodon/components/avatar';
-import { Button } from '@/mastodon/components/button';
+import { Button } from '@/mastodon/components/button/redesign';
 import { DismissibleCallout } from '@/mastodon/components/callout/dismissible';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
@@ -265,6 +265,7 @@ export const AccountEdit: FC = () => {
                 <Button
                   className={classes.editButton}
                   onClick={handleCustomFieldReorder}
+                  size='sm'
                 >
                   <FormattedMessage
                     id='account_edit.custom_fields.reorder_button'
@@ -296,7 +297,10 @@ export const AccountEdit: FC = () => {
           <Button
             onClick={handleCustomFieldsVerifiedHelp}
             className={classes.verifiedLinkHelpButton}
-            plain
+            variant='ghost'
+            color='neutral'
+            size='sm'
+            clipPadding
           >
             <FormattedMessage
               id='account_edit.custom_fields.verified_hint'
@@ -339,6 +343,7 @@ export const AccountEdit: FC = () => {
             <Button
               className={classes.editButton}
               onClick={handleProfileDisplayEdit}
+              size='sm'
             >
               <FormattedMessage
                 id='account_edit.profile_tab.button_label'

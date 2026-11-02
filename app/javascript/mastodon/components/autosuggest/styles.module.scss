@@ -1,4 +1,5 @@
 @use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
 
 .mirror {
   visibility: hidden;
@@ -13,13 +14,13 @@
 
 .textAreaMirror {
   white-space: pre-wrap; // This makes the formatting match the text area.
-}
 
-.debug.mirror {
-  visibility: visible;
-  opacity: 0.2;
-  background-color: red;
-  color: white;
+  &:lang(#{variables.$vertical-lr-langs}) {
+    writing-mode: vertical-lr;
+    inset: 0 auto 0 0;
+    width: 1lh;
+    height: auto;
+  }
 }
 
 .menuWidth {
@@ -29,8 +30,13 @@
 
 .item {
   display: flex;
-  gap: var(--space-2);
+  gap: var(--space-1);
   min-height: var(--space-8);
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .itemIcon {
@@ -42,6 +48,7 @@
   border-radius: var(--radius-round);
   overflow: hidden;
   background-color: var(--color-bg-highlight);
+  flex-shrink: 0;
 }
 
 .itemHashUses {

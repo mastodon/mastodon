@@ -52,7 +52,7 @@ class ActivityPub::VerifyQuoteService < BaseService
 
   def fetch_approval_object(uri, prefetched_body: nil)
     if prefetched_body.nil?
-      fetch_resource(uri, true, @quote.account.followers.local.first, raise_on_error: :temporary)
+      fetch_resource(uri, on_behalf_of: @quote.account.followers.local.first, raise_on_error: :temporary)
     else
       body_to_json(prefetched_body, compare_id: uri)
     end

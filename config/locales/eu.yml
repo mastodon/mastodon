@@ -1076,6 +1076,119 @@ eu:
       translation: Itzulpena
       translations: Itzulpenak
       translations_explanation: Aukeran, arauen itzulpenak gehi ditzakezu. Itzulitako bertsiorik ez badago, balio lehenetsia erakutsiko da. Ziurtatu beti emandako itzulpenak balio lehenetsiarekin bat datozela.
+    server_checks:
+      categories:
+        completed:
+          title: Osatuak
+        critical:
+          title: Kritikoak
+        error:
+          title: Erroreak
+        ignored:
+          title: Ez ikusiak
+        suggestion:
+          title: Iradokizunak
+        unprocessed:
+          title: Prozesatu gabeak
+        warning:
+          title: Abisuak
+      checks:
+        database_schema:
+          error:
+            title: Errore bat gertatu da datu-basearen eskema egiaztatzean
+          ok:
+            title: Ez dago datu-basearen migraziorik aplikatzeke
+          pending:
+            lead_html: Exekutatu itzazu, aplikazioak espero bezala funtziona dezan
+            title: Aplikatu gabeko datu-basearen migrazioak daude
+          running:
+            title: Zure zerbitzaria datu-basearen eskema egiaztatzen ari da
+          unprocessed:
+            title: Zure zerbitzariak ez du oraindik datu-basearen eskema egiaztatu
+        elastic_search:
+          error:
+            title: Errore bat gertatu da Elasticsearch-en konfigurazioa egiaztatzean
+          ok:
+            title: Elasticsearch arazorik gabe konfiguratuta dago
+          pending:
+            lead:
+              analysis_index_mismatch_html: Elasticsearch indize-analizatzailearen ezarpenak zaharkituta daude. Mesedez, exekutatu <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Elasticsearch-en klusterra ez dago osasuntsu (egoera gorria), bilaketa-eginbideak ez daude erabilgarri
+              cluster_health_yellow_html: Elasticsearch-en klusterra ez dago osasuntsu (egoera horia), baliteke arrazoia ikertu nahi izatea
+              index_mismatch_html: Elasticsearch indexatze-mapeatzeak zaharkituta daude. Mesedez, exekutatu <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Zure Elasticsearch-eko klusterrak nodo bat baino gehiago dauka, baina Mastodon ez dago horiek erabiltzeko konfiguratuta
+              preset_single_node_html: Zure Elasticsearch-eko klusterrak nodo bakarra dauka; <code>ES_PRESET</code> <code>single_node_cluster</code> balioan ezarri beharko litzateke
+              reset_chewy_html: Zure Elasticsearch-eko sistema-indizea zaharkituta dago ezarpen bat aldatu delako. Eguneratzeko, exekutatu <code>tootctl search deploy --reset-chewy</code>
+              running_check_html: Ezin izan da Elasticsearch-era konektatu. Egiaztatu martxan dagoela, edo desgaitu testu osoko bilaketa
+              version_check_html: Elasticsearch %{running_version} exekutatzen ari da, baina %{required_version} behar da
+            title: Arazoak daude Elasticsearch-ekin
+          running:
+            title: Zerbitzaria Elasticsearch-en konfigurazioa egiaztatzen ari da
+          unprocessed:
+            title: Zerbitzariak ez du oraindik Elasticsearch-en konfigurazioa egiaztatu
+        media_privacy:
+          error:
+            title: Errore bat gertatu da zure zerbitzariko multimediaren pribatutasuna egiaztatzean
+          ok:
+            title: Zure zerbitzariko multimediaren pribatutasuna segurua da
+          pending:
+            lead:
+              upload_check_privacy_error_html: Zure web-zerbitzaria ez dago ongi konfiguratuta
+              upload_check_privacy_error_object_storage_html: Zure objektuen biltegiratzea ez dago ongi konfiguratuta
+            title: Zure erabiltzaileen pribatutasuna arriskuan dago
+          running:
+            title: Zerbitzaria bere pribatutasun-egoera egiaztatzen ari da
+          unprocessed:
+            title: Zerbitzariak ez du oraindik bere pribatutasun-egoera egiaztatu
+        rules:
+          error:
+            title: Errore bat gertatu da zure zerbitzariaren arauak egiaztatzean
+          ok:
+            title: Zure zerbitzariaren arauak ezarrita daude
+          pending:
+            lead_html: Zure zerbitzariak ez du araurik argitaratuta. Arau argiek moderazioari laguntzen diote eta itxaropenak finkatzen dituzte
+            title: Ezarri zerbitzariaren arauak
+          running:
+            title: Zerbitzaria zure arauak egiaztatzen ari da
+          unprocessed:
+            title: Zerbitzariak ez du oraindik egiaztatu araurik dagoen
+        sidekiq_process:
+          error:
+            title: Errore bat gertatu da Sidekiq-en konfigurazioa egiaztatzean
+          ok:
+            title: Sidekiq arazorik gabe konfiguratuta dago
+          pending:
+            lead_html: Ez da ari Sidekiq prozesurik exekutatzen %{missing_queues_str} ilad(et)an
+            title: Berrikusi zure Sidekiq-en konfigurazioa
+          running:
+            title: Zerbitzaria Sidekiq-en konfigurazioa egiaztatzen ari da
+          unprocessed:
+            title: Zerbitzariak ez du oraindik Sidekiq-en konfigurazioa egiaztatu
+        software_version:
+          error:
+            title: Errore bat gertatu da software-eguneraketak egiaztatzean
+          ok:
+            title: Zure Mastodon instantzia eguneratuta dago
+          pending:
+            lead:
+              patch_html: Mastodonen akats-konponketako eguneraketa bat eskuragarri dago
+              regular_html: Mastodonen bertsio berri bat eskuragarri dago
+              urgent_html: Mastodonen eguneraketa kritiko bat eskuragarri dago, mesedez eguneratu ahal bezain azkar
+            title: Eguneratu zure Mastodon instantzia
+          running:
+            title: Zerbitzaria egiaztatzen ari da software-eguneraketarik egiteke dagoen
+          unprocessed:
+            title: Zerbitzariak ez du oraindik software-eguneraketarik egiaztatu
+      ignore:
+        label: Ez ikusi egin
+      lead: Zure zerbitzaria seguru, abegikor eta eraginkor mantentzeko gomendioak.
+      recommendations:
+        title: Gomendioak
+      restore:
+        label: Leheneratu
+      setup:
+        label: Konfiguratu
+      title: Zerbitzariaren osasuna
     settings:
       about:
         manage_rules: Kudeatu zerbitzariaren arauak
@@ -1426,6 +1539,13 @@ eu:
     warning_presets:
       add_new: Gehitu berria
       delete: Ezabatu
+      dropdown:
+        all_actions: Ekintza guztiak
+        disable: Desgaitu
+        none: Abisua
+        sensitive: Hunkigarria
+        silence: Isilarazi
+        suspend: Kanporatu
       edit_preset: Editatu aurrez idatzitako erantzuna
       empty: Ez duzu aurrez idatzitako erantzunik definitu oraindik.
       navigation_title: Aurrez idatzitako erantzunak
@@ -1694,6 +1814,7 @@ eu:
       action_taken: Ezarritako neurria
       appeal: Apelazioa
       appeal_approved: Neurria behar bezala apelatu da eta jada ez da baliozkoa
+      appeal_handled_by: Apelazioa kudeatu duena
       appeal_rejected: Apelazioa baztertu da
       appeal_submitted_at: Apelazioa bidalita
       appealed_msg: Zure apelazioa bidali da. Onartzen bada, jakinaraziko zaizu.

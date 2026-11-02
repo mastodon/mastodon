@@ -1,0 +1,339 @@
+@use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
+
+.root {
+  box-sizing: border-box;
+  container-type: inline-size;
+  background: var(--color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  padding-bottom: calc(max(env(safe-area-inset-bottom), var(--space-4)));
+  position: relative;
+
+  @media (width >= #{variables.$mobile-menu-breakpoint}) {
+    @include mixins.elevation-2;
+
+    border-bottom: none;
+    border-radius: var(--radius-6) var(--radius-6) 0 0;
+    overflow: hidden;
+  }
+}
+
+.headless {
+  border: 0;
+  box-shadow: none;
+  flex-grow: 1;
+  border-radius: 0;
+  padding-block-start: 0;
+}
+
+:global(.compose-standalone) .headless {
+  min-height: 200px;
+
+  // 138px = header, 235px = footer, 8px padding
+  height: calc(100vh - (138px + 235px + var(--space-2)));
+  max-width: 400px;
+  margin-inline: auto;
+}
+
+.background {
+  mask-repeat: repeat;
+  mask-image: url('@/images/composer_message.svg');
+  mask-size: 311.36px auto;
+  background-color: var(--color-border-brand);
+  opacity: 0.15;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+  align-items: start;
+
+  h2 {
+    @include mixins.type-heading-sm;
+
+    flex-grow: 1;
+  }
+}
+
+.toolbar {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+
+  label {
+    font-weight: inherit;
+  }
+}
+
+.flexGrowWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-grow: 1;
+
+  .footer & {
+    justify-content: space-between;
+  }
+}
+
+.toolbarMessage {
+  display: flex;
+  gap: var(--space-1);
+  align-items: center;
+  color: var(--color-text-secondary);
+
+  svg {
+    width: var(--space-5);
+    height: var(--space-5);
+  }
+}
+
+.textareaWrapper {
+  --fade-size: var(--space-6);
+
+  overflow-y: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  overscroll-behavior-y: contain;
+  position: relative;
+  margin-inline: calc(-1 * var(--space-1));
+  padding-inline: var(--space-1);
+
+  &::after {
+    content: '';
+    height: var(--fade-size);
+    background: linear-gradient(
+      to top,
+      var(--color-bg-primary),
+      transparent var(--fade-size)
+    );
+    position: sticky;
+    bottom: 0;
+    flex-shrink: 0;
+    margin-top: calc(-1 * var(--fade-size));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms;
+  }
+
+  &[data-scroll-down='true']::after {
+    opacity: 1;
+  }
+}
+
+.sensitiveWrapper {
+  margin-block-end: var(--space-4);
+
+  [data-input] {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+}
+
+.sensitive {
+  outline-offset: -2px;
+  flex-grow: 1;
+}
+
+.textarea,
+.textareaMirror {
+  @include mixins.type-body;
+
+  padding: var(--space-1);
+
+  // Prevent automatic page zoom in Safari when focusing
+  // text fields with font-sizes below 16px
+  @media (width <= #{variables.$mobile-menu-breakpoint}) {
+    font-size: var(--fs-16);
+  }
+}
+
+.textarea {
+  flex-grow: 1;
+  flex-shrink: 0;
+  border-radius: var(--radius-2);
+  transition: border 200ms;
+  cursor: text;
+  border: none;
+  width: 100%;
+  outline: none;
+  background: none;
+  min-height: 3lh;
+
+  &:focus {
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  &:lang(#{variables.$vertical-lr-langs}) {
+    writing-mode: vertical-lr;
+  }
+}
+
+textarea.textarea {
+  resize: none;
+}
+
+.textareaMirror {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  white-space: pre-wrap; // This makes the formatting match the text area.
+}
+
+.attachments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-half);
+  font-family: var(--font-monospace);
+  color: var(--color-text-tertiary);
+  margin-inline-start: auto;
+}
+
+.counterError {
+  color: var(--color-text-error);
+}
+
+.calloutWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.calloutError {
+  @include mixins.type-body-compact;
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 32px;
+  color: var(--color-text-error);
+
+  > svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Language selector
+
+.languageMenu {
+  padding: var(--space-2);
+  height: 400px;
+
+  input {
+    margin-bottom: var(--space-2);
+
+    &:focus::placeholder {
+      color: transparent;
+    }
+  }
+}
+
+.languageComboboxWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.languageListBox {
+  flex: 1;
+  min-height: 0;
+  max-height: initial !important;
+  margin-top: 1px;
+}
+
+// Reply
+
+.reply {
+  column-gap: var(--space-1);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  margin-block-end: var(--space-4);
+
+  &::before {
+    border-block-start: 2px solid var(--color-border-primary);
+    border-inline-start: 2px solid var(--color-border-primary);
+    border-top-left-radius: var(--radius-4);
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    grid-row: span 2;
+    margin: var(--space-2) var(--space-1) 0;
+    width: 20px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.replyAccount {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-1);
+
+  > a,
+  > span {
+    display: block;
+  }
+}
+
+.replyAvatar {
+  margin-inline-end: var(--space-2);
+  border-radius: var(--radius-round);
+  overflow: hidden;
+}
+
+.replyTime {
+  color: var(--color-text-tertiary);
+}
+
+.replyText {
+  @include mixins.line-clamp(2);
+  @include mixins.type-body-compact;
+
+  display: block;
+
+  // Round two lines to the nearest 5px.
+  max-height: round(2lh, 5px);
+
+  strong {
+    font-weight: bold;
+  }
+}

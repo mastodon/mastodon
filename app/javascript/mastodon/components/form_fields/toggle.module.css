@@ -6,6 +6,11 @@
   display: inline-block;
   position: relative;
   height: calc(var(--diameter) + var(--padding) * 2);
+
+  &.small {
+    --padding: 2px;
+    --diameter: 14px;
+  }
 }
 
 .input {
@@ -22,8 +27,8 @@
   display: inline-flex;
   align-items: center;
   border-radius: 9999px;
-  width: calc(var(--diameter) * 2);
-  background: var(--color-bg-tertiary);
+  width: calc(2 * (var(--diameter) + var(--padding)));
+  background: var(--color-text-tertiary);
   padding: var(--padding);
   transition: background var(--transition);
   box-sizing: border-box;
@@ -34,8 +39,7 @@
   height: var(--diameter);
   width: var(--diameter);
   border-radius: 9999px;
-  background: var(--color-text-on-brand-base);
-  box-shadow: 0 2px 4px 0 color-mix(var(--color-black), transparent 75%);
+  background: var(--color-bg-primary);
   transition: transform var(--transition);
 }
 
@@ -60,10 +64,10 @@
 }
 
 .input:checked + .toggle::before {
-  transform: translateX(calc(var(--diameter) - (var(--padding) * 2)));
+  transform: translateX(var(--diameter));
 
   :global([dir='rtl']) & {
-    transform: translateX(calc(-1 * (var(--diameter) - (var(--padding) * 2))));
+    transform: translateX(calc(-1 * var(--diameter)));
   }
 }
 

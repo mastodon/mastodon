@@ -5,7 +5,7 @@ class ActivityPub::FetchRemoteFeaturedCollectionService < BaseService
 
   def call(uri, request_id: nil, prefetched_body: nil, on_behalf_of: nil)
     json = if prefetched_body.nil?
-             fetch_resource(uri, true, on_behalf_of)
+             fetch_resource(uri, on_behalf_of: on_behalf_of)
            else
              body_to_json(prefetched_body, compare_id: uri)
            end

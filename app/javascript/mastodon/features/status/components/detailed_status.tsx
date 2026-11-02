@@ -37,7 +37,7 @@ import { useIdentity } from 'mastodon/identity_context';
 import type { CollectionAttachment } from 'mastodon/models/status';
 import { compareUrls } from 'mastodon/utils/compare_urls';
 
-import Card from './card';
+import { Card } from './card';
 
 interface VideoModalOptions {
   startTime: number;

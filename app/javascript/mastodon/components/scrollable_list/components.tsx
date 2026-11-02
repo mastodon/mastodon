@@ -8,6 +8,8 @@ import { hasReactChildren } from '@/mastodon/utils/has_react_children';
 import { useColumn } from '../column/context';
 import { LoadingIndicator } from '../loading_indicator';
 
+import classes from './styles.module.scss';
+
 export const Scrollable = forwardRef<
   HTMLDivElement,
   ComponentPropsWithoutRef<'div'> & {
@@ -21,6 +23,7 @@ export const Scrollable = forwardRef<
       className={classNames(
         'scrollable',
         { 'scrollable--flex': flex, fullscreen },
+        classes.withComposerPadding,
         className,
       )}
       ref={ref}

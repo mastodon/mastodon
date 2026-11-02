@@ -2,9 +2,6 @@ import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-
 import type { Icon } from '@phosphor-icons/react';
 import { UserMinusIcon, UserPlusIcon } from '@phosphor-icons/react';
 
@@ -15,16 +12,14 @@ import {
   unmuteAccount,
 } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
-import { Button } from 'mastodon/components/button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { useBreakpoint } from '../features/ui/hooks/useBreakpoint';
-import { isRedesignEnabled } from '../utils/environment';
 
-import { Button as RedesignButton } from './button/redesign';
-import type { ButtonProps as RedesignButtonProps } from './button/redesign';
+import { Button } from './button/redesign';
+import type { ButtonProps } from './button/redesign';
 import type { MastodonLocationDescriptor } from './router';
 
 const longMessages = defineMessages({
@@ -214,43 +209,8 @@ export function useFollowButton({
   };
 }
 
-const FollowButtonLegacy: React.FC<
-  FollowButtonOptions & {
-    compact?: boolean;
-    className?: string;
-  }
-> = ({ compact, className, ...props }) => {
-  const { onClick, link, label, disabled, following, secondary } =
-    useFollowButton(props);
-
-  if (link) {
-    const buttonClasses = classNames(className, 'button button-secondary', {
-      'button--compact': compact,
-    });
-
-    return (
-      <Link to='/profile/edit' className={buttonClasses}>
-        {label}
-      </Link>
-    );
-  }
-
-  return (
-    <Button
-      onClick={onClick}
-      disabled={disabled}
-      secondary={secondary}
-      compact={compact}
-      className={classNames(className, { 'button--destructive': following })}
-    >
-      {label}
-    </Button>
-  );
-};
-
-const FollowButtonRedesign: React.FC<
-  FollowButtonOptions &
-    Pick<RedesignButtonProps, 'size' | 'color' | 'className'>
+export const FollowButton: React.FC<
+  FollowButtonOptions & Pick<ButtonProps, 'size' | 'color' | 'className'>
 > = ({ accountId, labelLength, withUnmute, reference, ...buttonProps }) => {
   const { onClick, link, label, icon, disabled, secondary, hidden } =
     useFollowButton({
@@ -268,19 +228,14 @@ const FollowButtonRedesign: React.FC<
 
   if (link) {
     return (
-      <RedesignButton
-        as='link'
-        to={link}
-        leadingIcon={leadingIcon}
-        {...buttonProps}
-      >
+      <Button as='link' to={link} leadingIcon={leadingIcon} {...buttonProps}>
         {label}
-      </RedesignButton>
+      </Button>
     );
   }
 
   return (
-    <RedesignButton
+    <Button
       {...buttonProps}
       leadingIcon={leadingIcon}
       onClick={onClick}
@@ -289,18 +244,6 @@ const FollowButtonRedesign: React.FC<
       color={secondary ? undefined : 'accent'}
     >
       {label}
-    </RedesignButton>
+    </Button>
   );
-};
-
-export const FollowButton: React.FC<
-  FollowButtonOptions & {
-    compact?: boolean;
-    className?: string;
-  }
-> = ({ compact, ...props }) => {
-  if (isRedesignEnabled()) {
-    return <FollowButtonRedesign {...props} size={compact ? 'sm' : 'md'} />;
-  }
-  return <FollowButtonLegacy compact={compact} {...props} />;
 };

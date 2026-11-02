@@ -1059,7 +1059,81 @@ zh-CN:
       translations: 翻译
       translations_explanation: 你可以选择性地为规则添加翻译。没有翻译版本则将显示默认值。 请确保任何提供的翻译都与默认值内容同步。
     server_checks:
+      categories:
+        completed:
+          title: 已完成
+        critical:
+          title: 关键
+        error:
+          title: 错误
+        ignored:
+          title: 已忽略
+        suggestion:
+          title: 建议
+        unprocessed:
+          title: 未处理
+        warning:
+          title: 警告
       checks:
+        database_schema:
+          error:
+            title: 检查数据库架构时发生错误
+          ok:
+            title: 没有待处理的数据库迁移
+          pending:
+            lead_html: 请运行它们以确保应用程序正常运行
+            title: 有待处理的数据库迁移
+          running:
+            title: 你的服务器正在检查数据库架构
+          unprocessed:
+            title: 你的服务器尚未检查数据库架构
+        elastic_search:
+          error:
+            title: 检查 Elasticsearch 配置时发生错误
+          ok:
+            title: Elasticsearch 配置没有问题
+          pending:
+            lead:
+              analysis_index_mismatch_html: Elasticsearch 索引分析器设置已过期。请运行<code>tootctl search deploy --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Elasticsearch 集群状态不健康（红色），搜索功能不可用
+              cluster_health_yellow_html: Elasticsearch 集群状态不健康（黄色），建议调查原因
+              index_mismatch_html: Elasticsearch 索引映射已过时。请运行<code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: 你的 Elasticsearch 集群有多个节点，但 Mastodon 尚未配置使用它们
+              preset_single_node_html: 你的 Elasticsearch 集群只有一个节点，<code>ES_PRESET</code> 应该设置为 <code>single_node_cluster</code>
+              reset_chewy_html: 你的 Elasticsearch 系统索引已过时，可能是由于设置更改导致的。请运行<code>tootctl search deploy --reset-chewy</code>命令来更新它
+              running_check_html: 无法连接到 Elasticsearch。请检查它是否正在运行，或禁用全文搜索
+              version_check_html: Elasticsearch 最低版本要求 %{required_version}，正在运行的版本是 %{running_version}
+            title: Elasticsearch 有问题
+          running:
+            title: 服务器正在检查 Elasticsearch 配置
+          unprocessed:
+            title: 服务器尚未检查 Elasticsearch 配置
+        media_privacy:
+          error:
+            title: 检查你服务器的媒体隐私时发生错误
+          ok:
+            title: 你服务器的媒体隐私目前是安全的
+          pending:
+            lead:
+              upload_check_privacy_error_html: 你的网站服务器配置错误
+              upload_check_privacy_error_object_storage_html: 你的对象存储配置错误
+            title: 你的用户的隐私处于危险中
+          running:
+            title: 服务器正在检查其隐私状态
+          unprocessed:
+            title: 服务器尚未检查其隐私状态
+        rules:
+          error:
+            title: 检查你的服务器规则时发生错误
+          ok:
+            title: 你的服务器规则已设置
+          pending:
+            lead_html: 你的服务器没有已发布的规则。清楚明白的规则有助于管理并为用户设立行为预期
+            title: 设置服务器规则
+          running:
+            title: 服务器正在检查你的规则
+          unprocessed:
+            title: 服务器尚未检查是否有任何规则
         sidekiq_process:
           error:
             title: 检查 Sidekiq 配置时发生错误

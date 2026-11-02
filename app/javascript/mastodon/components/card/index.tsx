@@ -1,3 +1,4 @@
+import type React from 'react';
 import { createContext, use, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -129,7 +130,7 @@ export const CardBody = ({
   isDescription,
   noClamp,
   ...props
-}: CardBodyProps) => {
+}: CardBodyProps & React.ComponentPropsWithRef<'div'>) => {
   return (
     <div
       {...props}
@@ -147,7 +148,7 @@ export const CardBody = ({
 
 type PrimaryCardLinkProps<As extends React.ElementType> = PolymorphicProps<
   {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     className?: string;
   },
   As

@@ -5,12 +5,16 @@
   position: sticky;
   top: 0;
   z-index: 10;
+
+  // Cover up outer borders on Column component
+  margin-inline: calc(-1 * var(--bw-default));
   padding-top: var(--space-1);
   color: var(--color-text-primary);
   background: var(--color-bg-desktop);
 
   @media (width <= variables.$mobile-menu-breakpoint) {
     padding-top: 0;
+    margin-inline: 0;
     background: var(--color-bg-primary);
   }
 
@@ -31,6 +35,11 @@
     transition:
       opacity,
       transform 250ms ease-out;
+
+    @media (width > variables.$mobile-menu-breakpoint) {
+      // Prevent fade from overlapping column border
+      inset-inline: var(--bw-default);
+    }
   }
 
   &.rootScrolledToTop::after {
@@ -57,18 +66,13 @@
   min-height: 48px;
   text-align: center;
   cursor: pointer;
-  border-radius: var(--radius-6) var(--radius-6) 0 0;
-  background: var(--color-bg-primary);
 
-  @media (width <= variables.$mobile-menu-breakpoint) {
-    border-radius: 0;
-    background: transparent;
+  @media (width > variables.$mobile-menu-breakpoint) {
+    background: var(--color-bg-primary);
+    border: var(--border-column);
+    border-bottom: none;
+    border-radius: var(--radius-6) var(--radius-6) 0 0;
   }
-
-  // html[data-color-scheme='dark'] & {
-  //   border: var(--border-default);
-  //   border-bottom: none;
-  // }
 }
 
 .unreadButton {
@@ -129,7 +133,7 @@
 .extraStickyContent {
   background: var(--color-bg-primary);
 
-  // html[data-color-scheme='dark'] & {
-  //   border-inline: var(--border-default);
-  // }
+  @media (width > variables.$mobile-menu-breakpoint) {
+    border-inline: var(--border-column);
+  }
 }

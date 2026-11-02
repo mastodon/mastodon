@@ -2,16 +2,15 @@ import { useCallback } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
-import CheckIcon from '@/material-icons/400-24px/check.svg?react';
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import PersonAddIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
+import { CheckIcon, UserPlusIcon, XIcon } from '@phosphor-icons/react';
+
 import {
   authorizeFollowRequest,
   rejectFollowRequest,
-} from 'mastodon/actions/accounts';
-import { IconButton } from 'mastodon/components/icon_button';
-import type { NotificationGroupFollowRequest } from 'mastodon/models/notification_group';
-import { useAppDispatch } from 'mastodon/store';
+} from '@/mastodon/actions/accounts';
+import { IconButton } from '@/mastodon/components/button/redesign';
+import type { NotificationGroupFollowRequest } from '@/mastodon/models/notification_group';
+import { useAppDispatch } from '@/mastodon/store';
 
 import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationGroupWithStatus } from './notification_group_with_status';
@@ -61,25 +60,19 @@ export const NotificationFollowRequest: React.FC<{
 
   const actions = (
     <>
-      <IconButton
-        title={intl.formatMessage(messages.authorize)}
-        icon='check'
-        iconComponent={CheckIcon}
-        onClick={onAuthorize}
-      />
-      <IconButton
-        title={intl.formatMessage(messages.reject)}
-        icon='times'
-        iconComponent={CloseIcon}
-        onClick={onReject}
-      />
+      <IconButton onClick={onAuthorize} icon={CheckIcon} size='sm'>
+        {intl.formatMessage(messages.authorize)}
+      </IconButton>
+      <IconButton onClick={onReject} icon={XIcon} size='sm'>
+        {intl.formatMessage(messages.reject)}
+      </IconButton>
     </>
   );
 
   return (
     <NotificationGroupWithStatus
       type='follow-request'
-      icon={PersonAddIcon}
+      icon={UserPlusIcon}
       iconId='person-add'
       accountIds={notification.sampleAccountIds}
       timestamp={notification.latest_page_notification_at}

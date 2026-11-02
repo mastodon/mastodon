@@ -89,6 +89,35 @@ RSpec.describe 'Admin Rules' do
           .to(change { rule.reload.text })
       end
 
+      it 'adds new translations with dynamic JS', :js, :streaming do
+        visit admin_rules_path
+
+        # Invalid submission
+        click_on rule.text
+
+        # Add translation
+        click_on I18n.t('admin.rules.add_translation')
+
+        # Fill in first translation
+        within('tbody') do
+          find('option[value=en-GB]').select_option
+          find('.rule_translations_text').fill_in with: 'En GB rule'
+        end
+
+        # Add another translation field
+        click_on I18n.t('admin.rules.add_translation')
+        expect(page).to have_text(I18n.t('filters.index.delete'))
+
+        # Fill in second translation
+        within(all('.nested-fields').last) do
+          find('option[value=es]').select_option
+          find('.rule_translations_text').fill_in with: 'Es rule'
+        end
+
+        expect { submit_form }
+          .to(change { rule.translations.count }.by(2))
+      end
+
       def submit_form
         click_on(submit_button)
       end

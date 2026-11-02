@@ -11,7 +11,6 @@ import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 import { Button, IconButton } from '../button/redesign';
 import { CopyIconButton } from '../copy_button';
@@ -97,10 +96,10 @@ const AccountButtonsOther: FC<
     <>
       {!isFollowing && !isMovedAndUnfollowedAccount && (
         <FollowButton
-          compact={isRedesignEnabled()}
           accountId={accountId}
           className={classes.followButton}
           withUnmute={false}
+          size='sm'
           labelLength='long'
           reference={reference}
         />

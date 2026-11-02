@@ -124,7 +124,7 @@ it:
         active: Attivo
         all: Tutto
         disabled: Disattivato
-        pending: In sospeso
+        pending: In attesa
         silenced: Limitato
         suspended: Sospeso
         title: Moderazione
@@ -1074,6 +1074,119 @@ it:
       translation: Traduzione
       translations: Traduzioni
       translations_explanation: Puoi opzionalmente aggiungere delle traduzioni per le regole. Il valore predefinito verrà mostrato se non è disponibile nessuna versione tradotta. Assicurarsi sempre che qualsiasi traduzione fornita sia sincronizzata con il valore predefinito.
+    server_checks:
+      categories:
+        completed:
+          title: Completate
+        critical:
+          title: Critiche
+        error:
+          title: Errori
+        ignored:
+          title: Ignorate
+        suggestion:
+          title: Suggerimenti
+        unprocessed:
+          title: Non elaborate
+        warning:
+          title: Avvisi
+      checks:
+        database_schema:
+          error:
+            title: Si è verificato un errore durante il controllo dello schema del database
+          ok:
+            title: Non ci sono migrazioni del database in sospeso
+          pending:
+            lead_html: Si prega di eseguirle per assicurarsi che l'applicazione funzioni come previsto
+            title: Ci sono migrazioni del database in sospeso
+          running:
+            title: Il tuo server sta controllando lo schema del database
+          unprocessed:
+            title: Il tuo server non ha ancora controllato lo schema del database
+        elastic_search:
+          error:
+            title: Si è verificato un errore durante il controllo della configurazione di Elasticsearch
+          ok:
+            title: Elasticsearch è configurato senza problemi
+          pending:
+            lead:
+              analysis_index_mismatch_html: Le impostazioni dell'analizzatore dell'indice di Elasticsearch sono obsolete. Si prega di eseguire <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Il cluster Elasticsearch non è in buono stato (stato rosso), le funzionalità di ricerca non sono disponibili
+              cluster_health_yellow_html: Il cluster Elasticsearch non è in buono stato (stato giallo), potresti indagarne il motivo
+              index_mismatch_html: Le mappature dell'indice di Elasticsearch sono obsolete. Si prega di eseguire <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Il tuo cluster Elasticsearch ha più di un nodo, ma Mastodon non è configurato per utilizzarli
+              preset_single_node_html: Il tuo cluster Elasticsearch ha un solo nodo, <code>ES_PRESET</code> dovrebbe essere impostato su <code>single_node_cluster</code>
+              reset_chewy_html: Il tuo indice di sistema di Elasticsearch è obsoleto a causa di una modifica alle impostazioni. Si prega di eseguire <code>tootctl search deploy --reset-chewy</code> per aggiornarlo
+              running_check_html: Impossibile connettersi a Elasticsearch. Verificare che sia in esecuzione o disabilitare la ricerca full-text
+              version_check_html: È in esecuzione la versione %{running_version} di Elasticsearch, ma è richiesta la versione %{required_version}
+            title: Ci sono dei problemi con Elasticsearch
+          running:
+            title: Il server sta controllando la configurazione di Elasticsearch
+          unprocessed:
+            title: Il server non ha ancora controllato la configurazione di Elasticsearch
+        media_privacy:
+          error:
+            title: Si è verificato un errore durante il controllo della privacy dei media del tuo server
+          ok:
+            title: La privacy dei media del tuo server è sicura
+          pending:
+            lead:
+              upload_check_privacy_error_html: Il tuo server web non è configurato correttamente
+              upload_check_privacy_error_object_storage_html: L'archiviazione degli oggetti non è configurata correttamente
+            title: La privacy dei tuoi utenti è a rischio
+          running:
+            title: Il server sta controllando il proprio stato di privacy
+          unprocessed:
+            title: Il server non ha ancora controllato il proprio stato di privacy
+        rules:
+          error:
+            title: Si è verificato un errore durante il controllo delle regole del tuo server
+          ok:
+            title: Le regole del tuo server sono impostate
+          pending:
+            lead_html: Il tuo server non ha pubblicato alcuna regola. Regole chiare aiutano la moderazione e definiscono le aspettative
+            title: Imposta le regole del server
+          running:
+            title: Il server sta controllando le tue regole
+          unprocessed:
+            title: Il server non ha ancora controllato se ci sono delle regole
+        sidekiq_process:
+          error:
+            title: Si è verificato un errore durante il controllo della configurazione di Sidekiq
+          ok:
+            title: Sidekiq è configurato senza problemi
+          pending:
+            lead_html: Nessun processo Sidekiq è in esecuzione per la/le coda/e %{missing_queues_str}
+            title: Si prega di controllare la configurazione di Sidekiq
+          running:
+            title: Il server sta controllando la configurazione di Sidekiq
+          unprocessed:
+            title: Il server non ha ancora controllato la configurazione di Sidekiq
+        software_version:
+          error:
+            title: Si è verificato un errore durante il controllo degli aggiornamenti del software
+          ok:
+            title: La tua istanza Mastodon è aggiornata
+          pending:
+            lead:
+              patch_html: È disponibile un aggiornamento correttivo di Mastodon
+              regular_html: C'è una nuova versione di Mastodon disponibile
+              urgent_html: È disponibile un aggiornamento critico di Mastodon. Si prega di aggiornare il più rapidamente possibile
+            title: Aggiorna la tua istanza Mastodon
+          running:
+            title: Il server sta controllando se ci sono aggiornamenti del software in sospeso
+          unprocessed:
+            title: Il server non ha ancora controllato la disponibilità di aggiornamenti del software
+      ignore:
+        label: Ignora
+      lead: Raccomandazioni per mantenere il tuo server sicuro, accogliente ed efficiente.
+      recommendations:
+        title: Raccomandazioni
+      restore:
+        label: Ripristina
+      setup:
+        label: Configura
+      title: Salute del server
     settings:
       about:
         manage_rules: Gestisci le regole del server

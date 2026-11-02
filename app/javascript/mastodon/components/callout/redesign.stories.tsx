@@ -7,7 +7,7 @@ import { Callout } from './redesign';
 
 const meta = {
   title: 'Redesign/Callout',
-  render(props) {
+  render({ hasIcon, ...props }) {
     const actionProps = props.actionText
       ? fn().mockName('actionClick')
       : undefined;
@@ -19,7 +19,7 @@ const meta = {
         {...props}
         {...actionProps}
         {...secondaryActionProps}
-        icon={props.hasIcon ? InfoIcon : undefined}
+        icon={hasIcon ? InfoIcon : undefined}
       />
     );
   },

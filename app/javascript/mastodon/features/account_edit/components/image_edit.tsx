@@ -5,19 +5,27 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import {
+  ArrowsClockwiseIcon,
+  CameraIcon,
+  PencilIcon,
+  PlusIcon,
+  TrashIcon,
+} from '@phosphor-icons/react';
+
 import type { ModalType } from '@/mastodon/actions/modal';
 import { openModal } from '@/mastodon/actions/modal';
-import { Dropdown } from '@/mastodon/components/dropdown_menu';
-import { IconButton } from '@/mastodon/components/icon_button';
+import { IconButton } from '@/mastodon/components/button/redesign';
+import {
+  LegacyDropdownMenuItems,
+  Menu,
+  MenuList,
+  MenuTrigger,
+} from '@/mastodon/components/menu';
 import type { MenuItem } from '@/mastodon/models/dropdown_menu';
 import type { ImageLocation } from '@/mastodon/reducers/slices/profile_edit';
 import { selectImageInfo } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import AddIcon from '@/material-icons/400-24px/add.svg?react';
-import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
-import EditIcon from '@/material-icons/400-24px/edit.svg?react';
-import CameraIcon from '@/material-icons/400-24px/photo_camera.svg?react';
-import ReplaceImageIcon from '@/material-icons/400-24px/replace_image.svg?react';
 
 import classes from '../styles.module.scss';
 
@@ -72,14 +80,14 @@ export const AccountImageEdit: FC<{
           action: () => {
             handleModal('ACCOUNT_EDIT_IMAGE_UPLOAD');
           },
-          icon: ReplaceImageIcon,
+          icon: ArrowsClockwiseIcon,
         },
         {
           text: intl.formatMessage(hasAlt ? messages.altEdit : messages.altAdd),
           action: () => {
             handleModal('ACCOUNT_EDIT_IMAGE_ALT');
           },
-          icon: hasAlt ? EditIcon : AddIcon,
+          icon: hasAlt ? PencilIcon : PlusIcon,
         },
         null,
         {
@@ -87,7 +95,7 @@ export const AccountImageEdit: FC<{
           action: () => {
             handleModal('ACCOUNT_EDIT_IMAGE_DELETE');
           },
-          icon: DeleteIcon,
+          icon: TrashIcon,
           dangerous: true,
         },
       ] satisfies MenuItem[],
@@ -103,25 +111,34 @@ export const AccountImageEdit: FC<{
   if (!src) {
     return (
       <IconButton
-        title={intl.formatMessage(messages.add)}
-        icon='camera'
-        iconComponent={CameraIcon}
+        icon={CameraIcon}
         className={iconClassName}
         onClick={handleAddImage}
-      />
+        size='sm'
+        variant='solid'
+      >
+        {intl.formatMessage(messages.add)}
+      </IconButton>
     );
   }
 
   return (
-    <Dropdown
-      items={items}
-      placement={location === 'header' ? 'bottom-end' : 'bottom-start'}
-      offset={6}
-      className={classes.imageMenu}
-      icon='camera'
-      title={intl.formatMessage(messages.replace)}
-      iconComponent={CameraIcon}
-      iconClassName={iconClassName}
-    />
+    <Menu>
+      <MenuTrigger
+        as={IconButton}
+        icon={CameraIcon}
+        size='sm'
+        variant='solid'
+        className={iconClassName}
+      >
+        {intl.formatMessage(messages.replace)}
+      </MenuTrigger>
+      <MenuList
+        offset={6}
+        placement={location === 'header' ? 'bottom-end' : 'bottom-start'}
+      >
+        <LegacyDropdownMenuItems items={items} />
+      </MenuList>
+    </Menu>
   );
 };

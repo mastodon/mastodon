@@ -1,9 +1,7 @@
 @use '@/styles/mastodon/mixins';
 
 .root {
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-template-rows: 1fr;
+  display: flex;
   align-items: center;
   color: var(--color-text-secondary);
 
@@ -20,10 +18,6 @@
   &:has(a[data-id]:hover) a[data-id] {
     text-decoration: var(--link-underline-stealthy-hover);
   }
-}
-
-.isFeatured {
-  grid-template-columns: var(--first-col-width) 1fr max-content;
 }
 
 .avatar {

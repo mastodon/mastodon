@@ -20,7 +20,7 @@ import { Avatar } from '@/mastodon/components/avatar';
 import { Button, IconButton } from '@/mastodon/components/button/redesign';
 import { Menu, MenuList, MenuTrigger } from '@/mastodon/components/menu';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
-import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
+import { ComposeButton } from '@/mastodon/features/compose/trigger';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
@@ -118,7 +118,7 @@ export const RedesignMobileNavigation: React.FC = () => {
               </MenuList>
             </Menu>
           </ul>
-          <ComposeRedesignButton inline />
+          <ComposeButton inline />
         </nav>
       ) : (
         // Logged out state:

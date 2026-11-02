@@ -164,7 +164,6 @@
 }
 
 .readMore {
-  grid-column: var(--content-col);
   width: max-content;
 
   &:focus-visible {
@@ -173,7 +172,6 @@
 }
 
 .image {
-  border-radius: var(--radius-4);
   position: relative;
   background-size: cover;
   background-position: center;
@@ -181,7 +179,14 @@
   overflow: hidden;
 }
 
+.imageAltBadge {
+  position: absolute;
+  inset-block-end: var(--space-1);
+  inset-inline-end: var(--space-1);
+}
+
 .blurHash {
   width: 100%;
   height: 100%;
+  background-color: var(--color-bg-overlay);
 }

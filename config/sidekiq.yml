@@ -78,7 +78,7 @@
       queue: scheduler
     moderation_list_synchronization_scheduler:
       every: ['6h', first_in: '<%= Random.rand(5..60) %> minutes']
-      class: ModerationListSynchronizationScheduler
+      class: Scheduler::ModerationListSynchronizationScheduler
       queue: scheduler
     pending_accounts_notification_scheduler:
       every: '1h'

@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 import { CheckIcon } from '@phosphor-icons/react';
 
-import { Toggle } from '../form_fields/redesign';
+import { Toggle } from '../form_fields';
 import { Icon } from '../icon';
 import type { IconProp } from '../icon';
 

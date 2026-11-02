@@ -6,8 +6,8 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
+import { Search } from '@/mastodon/components/search';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import { Search } from 'mastodon/features/compose/components/search';
 import { useIdentity } from 'mastodon/identity_context';
 
 import Links from './links';
