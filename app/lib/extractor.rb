@@ -30,8 +30,8 @@ module Extractor
   # URL extraction and overlap resolution go through Uts58 (UTS #58).
   # xmpp: and magnet: URIs are handled by separate small extractors
   # below.
-  def extract_urls_with_indices(text, _options = {})
-    UTS58.extract_urls_with_indices(text, extract_url_without_protocol: false)
+  def extract_urls_with_indices(text, options = {})
+    UTS58.extract_urls_with_indices(text, options.merge({ extract_url_without_protocol: false }))
   end
 
   def remove_overlapping_entities(entities)
