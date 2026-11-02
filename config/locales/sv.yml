@@ -1101,6 +1101,13 @@ sv:
             title: Det finns väntande databasmigreringar
           running:
             title: Din server kontrollerar databasens schema
+          unprocessed:
+            title: Din server har inte kontrollerat databasens schema ännu
+        elastic_search:
+          error:
+            title: Det gick inte att kontrollera Elasticsearch-konfigurationen
+          ok:
+            title: Elasticsearch är konfigurerad utan problem
       ignore:
         label: Ignorera
       recommendations:
