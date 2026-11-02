@@ -117,7 +117,7 @@
     {
       // Update @types/* packages every week, with one grouped PR
       matchManagers: ['npm'],
-      matchPackageNames: '@types/*',
+      matchPackageNames: ['@types/*'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'DefinitelyTyped types (non-major)',
       extends: ['schedule:weekly'],
