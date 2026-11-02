@@ -5079,6 +5079,10 @@ a.status-card {
   transition: all 100ms linear;
   transition-property: transform, opacity;
   color: var(--color-text-secondary);
+
+  @media (forced-colors: active) {
+    color: CanvasText;
+  }
 }
 
 .search__icon.icon-search {
@@ -7192,6 +7196,14 @@ a.status-card {
         border-radius: 4px 4px 0 0;
         background: var(--color-text-brand);
       }
+
+      @media (forced-colors: active) {
+        &::before {
+          display: none;
+        }
+
+        border-bottom: 3px solid ButtonBorder;
+      }
     }
   }
 
@@ -7998,12 +8010,6 @@ noscript {
   .search {
     width: 100%;
     margin-bottom: 0;
-  }
-
-  .search__icon {
-    top: 12px;
-    inset-inline-end: 12px;
-    color: var(--color-text-tertiary);
   }
 }
 
