@@ -8,7 +8,7 @@
 #  comment    :text             default(""), not null
 #  expires_at :datetime
 #  ip         :inet             default(#<IPAddr: IPv4:0.0.0.0/255.255.255.255>), not null
-#  severity   :integer          default(NULL), not null
+#  severity   :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
