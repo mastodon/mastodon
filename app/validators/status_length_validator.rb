@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'character_counter'
-
 class StatusLengthValidator < ActiveModel::Validator
   MAX_CHARS = 500
   URL_PLACEHOLDER_CHARS = 23
