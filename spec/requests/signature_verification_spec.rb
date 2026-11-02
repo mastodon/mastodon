@@ -735,7 +735,7 @@ RSpec.describe 'signature verification concern' do
       end
     end
 
-    context 'with a ML-DSA-44 key' do
+    context 'with a ML-DSA-44 key', openssl: '3.5' do
       # Include the private key so the tests can be easily adjusted and reviewed
       let(:actor_keypair) do
         OpenSSL::PKey.read(<<~PEM_TEXT)
