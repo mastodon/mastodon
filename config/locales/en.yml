@@ -1209,6 +1209,9 @@ en:
         danger_zone: Danger zone
         preamble: Control how user-generated content is stored in Mastodon.
         title: Content retention
+      crawlers:
+        preamble: Control how (well-behaved) bots such as search engine crawlers can interact with your Mastodon server. Malicious bots can ignore these settings and must be blocked at the network level.
+        title: Crawler controls
       default_noindex:
         desc_html: Affects all users who have not changed this setting themselves
         title: Opt users out of search engine indexing by default

@@ -38,17 +38,19 @@ def find_used_icons
     end
   end
 
-  Rails.root.join('config', 'navigation.rb').open('r') do |file|
-    pattern = /material_symbol\('(?<icon>[^']*)'\)/
-    file.each_line do |line|
-      match = pattern.match(line)
-      next if match.blank?
+  [Rails.root.join('config', 'navigation.rb'), Rails.root.join('app', 'views', 'admin', 'settings', 'shared', '_links.html.haml')].each do |path|
+    path.open('r') do |file|
+      pattern = /material_symbol\('(?<icon>[^']*)'\)/
+      file.each_line do |line|
+        match = pattern.match(line)
+        next if match.blank?
 
-      # navigation.rb only uses 400x24 icons, per material_symbol() in
-      # app/helpers/application_helper.rb
-      icons_by_weight_and_size[400] ||= {}
-      icons_by_weight_and_size[400][24] ||= Set.new
-      icons_by_weight_and_size[400][24] << match['icon']
+        # navigation.rb only uses 400x24 icons, per material_symbol() in
+        # app/helpers/application_helper.rb
+        icons_by_weight_and_size[400] ||= {}
+        icons_by_weight_and_size[400][24] ||= Set.new
+        icons_by_weight_and_size[400][24] << match['icon']
+      end
     end
   end
 

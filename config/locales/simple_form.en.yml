@@ -93,12 +93,14 @@ en:
         closed_registrations_message: Displayed when sign-ups are closed
         content_cache_retention_period: All posts from other servers (including boosts and replies) will be deleted after the specified number of days, without regard to any local user interaction with those posts. This includes posts where a local user has marked it as bookmarks or favorites. Private mentions between users from different instances will also be lost and impossible to restore. Use of this setting is intended for special purpose instances and breaks many user expectations when implemented for general purpose use.
         custom_css: You can apply custom styles on the web version of Mastodon.
+        custom_robots_html: <a href="%{path}">Syntax</a>
         email_footer_text: Optional text that appears in the footer of newsletter emails only.
         favicon: WEBP, PNG, GIF or JPG. Overrides the default Mastodon favicon with a custom icon.
         landing_page: Selects what page new visitors see when they first arrive on your server. If you select "Trends", then trends needs to be enabled in the Discovery Settings. If you select "Local feed", then "Access to live feeds featuring local posts" needs to be set to "Everyone" in the Discovery Settings.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Media files from posts made by remote users are cached on your server. When set to a positive value, media will be deleted after the specified number of days. If the media data is requested after it is deleted, it will be re-downloaded, if the source content is still available. Due to restrictions on how often link preview cards poll third-party sites, it is recommended to set this value to at least 14 days, or link preview cards will not be updated on demand before that time.
         min_age: Users will be asked to confirm their date of birth during sign-up
+        override_robots: Allows you to customize rules of access for well-behaved bots
         peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         postpone_confirmation_emails: When this setting is enabled, confirmation emails for accounts pending approval are only sent once those accounts are approved. This may provide a poorer sign-up experience for users as they will still need to confirm their e-mail address in a timely fashion after receiving the e-mail but will not be in control of when it is sent anymore. Furthermore, this may provide an increased workload for moderators, as Mastodon will not be able to filter out pending accounts with an invalid e-mail address before they are approved.
         profile_directory: The profile directory lists all users who have opted-in to be discoverable.
@@ -304,6 +306,7 @@ en:
         closed_registrations_message: Custom message when sign-ups are not available
         content_cache_retention_period: Remote content retention period
         custom_css: Custom CSS
+        custom_robots: Custom robots.txt
         email_footer_text: Additional footer text
         favicon: Favicon
         landing_page: Landing page for new visitors
@@ -312,6 +315,7 @@ en:
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
         min_age: Minimum age requirement
+        override_robots: Override default robots.txt
         peers_api_enabled: Publish list of discovered servers in the API
         postpone_confirmation_emails: Postpone confirmation emails after approval
         profile_directory: Enable profile directory
