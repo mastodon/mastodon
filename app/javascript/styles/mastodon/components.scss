@@ -6949,15 +6949,20 @@ a.status-card {
       background: rgb(from var(--color-text-on-media) r g b / 35%);
       border-radius: 4px;
       display: block;
+      box-sizing: border-box;
       position: absolute;
       height: 4px;
       inset-inline-start: 0;
       top: 50%;
       transform: translate(0, -50%);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
     }
 
     &__current {
       display: block;
+      box-sizing: border-box;
       position: absolute;
       height: 4px;
       border-radius: 4px;
@@ -6965,9 +6970,13 @@ a.status-card {
       top: 50%;
       transform: translate(0, -50%);
       background: var(--color-text-on-media);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
     }
 
     &__handle {
+      box-sizing: border-box;
       position: absolute;
       z-index: 3;
       border-radius: 50%;
@@ -6980,6 +6989,9 @@ a.status-card {
       background: var(--color-text-on-media);
       box-shadow: 1px 2px 6px var(--color-shadow-primary);
       opacity: 0;
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
 
       .no-reduce-motion & {
         transition: opacity 100ms linear;
@@ -7028,10 +7040,14 @@ a.status-card {
     &__buffer {
       display: block;
       position: absolute;
+      box-sizing: border-box;
       height: 4px;
       border-radius: 4px;
       top: 14px;
       background: var(--color-text-on-media);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
     }
 
     &__buffer {
@@ -7043,12 +7059,16 @@ a.status-card {
       z-index: 3;
       opacity: 0;
       border-radius: 50%;
+      box-sizing: border-box;
       width: 12px;
       height: 12px;
       top: 10px;
       margin-inline-start: -6px;
       background: var(--color-text-on-media);
       box-shadow: 1px 2px 6px var(--color-shadow-primary);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
 
       .no-reduce-motion & {
         transition: opacity 0.1s ease;
