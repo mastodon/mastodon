@@ -7270,6 +7270,10 @@ a.status-card {
   width: calc(100% - 4px);
   height: calc(100% - 4px);
   background: var(--color-text-brand);
+
+  @media (forced-colors: active) {
+    background-color: Highlight;
+  }
 }
 
 .check-box {
