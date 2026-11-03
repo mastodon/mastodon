@@ -68,13 +68,6 @@
       extends: ['schedule:weekly'],
     },
     {
-      // Require Dependency Dashboard Approval for major & minor bumps for the ruby image, this needs to be synced with .ruby-version
-      matchManagers: ['dockerfile'],
-      matchPackageNames: ['moritzheiber/ruby-jemalloc'],
-      matchUpdateTypes: ['minor', 'major'],
-      dependencyDashboardApproval: true,
-    },
-    {
       // Require Dependency Dashboard Approval for major bumps for the node image, this needs to be synced with .nvmrc
       matchManagers: ['dockerfile'],
       matchPackageNames: ['node'],
