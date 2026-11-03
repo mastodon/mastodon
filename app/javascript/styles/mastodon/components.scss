@@ -8655,9 +8655,9 @@ noscript {
 .dismissable-banner,
 .warning-banner {
   position: relative;
-  margin: 10px;
-  margin-bottom: 5px;
-  border-radius: 8px;
+  margin: var(--space-4);
+  margin-bottom: var(--space-1);
+  border-radius: var(--radius-4);
   border: 1px solid var(--color-border-brand-soft);
   background: var(--color-bg-brand-softest);
   overflow: hidden;
@@ -8674,15 +8674,14 @@ noscript {
   }
 
   &__message {
+    @include type-body;
+
     flex: 1 1 auto;
-    padding: 15px;
-    font-size: 15px;
-    line-height: 22px;
-    font-weight: bold;
+    padding: var(--space-4);
     color: var(--color-text-primary);
 
     p {
-      margin-bottom: 15px;
+      margin-bottom: var(--space-4);
 
       &:last-child {
         margin-bottom: 0;
@@ -8690,21 +8689,20 @@ noscript {
     }
 
     h1 {
+      @include type-heading-sm;
+
       color: var(--color-text-brand);
-      font-size: 22px;
-      line-height: 33px;
-      font-weight: 700;
-      margin-bottom: 15px;
+      margin-bottom: var(--space-2);
     }
 
     &__actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
+      gap: var(--space-1);
 
       &__wrapper {
         display: flex;
-        margin-top: 30px;
+        margin-top: var(--space-7);
       }
 
       .button {
