@@ -8,13 +8,26 @@ pl:
     hosted_on: Mastodon prowadzony na %{domain}
     title: O nas
   accounts:
+    api_errors:
+      2fa_required: Twoje konto nie może być używane bez ustawionego drugiego czynnika uwierzytelniania
+      account_deleted: Twoje konto zostało usunięte
+      account_suspended: Twoje konto zostało zawieszone
+      login_disabled: Twoje konto jest obecnie wyłączone
+      memorial: Twoje konto zostało zamienione w „In Memoriam”
+      pending_approval: Twoje konto oczekuje na zatwierdzenie przez moderację
+      pending_confirmation: Twoje konto nie ma potwierdzonego adresu e-mail
     errors:
       cannot_be_added_to_collections: To konto nie może być dodane do kolekcji.
     followers:
-      few: śledzących
-      many: śledzących
-      one: śledzący
-      other: obserwujących
+      few: Obserwujących
+      many: Obserwujących
+      one: Obserwujący(-a)
+      other: Obserwujących
+    following:
+      few: Obserwowanych
+      many: Obserwowanych
+      one: Obserwowany(-a)
+      other: Obserwowanych
     instance_actor_flash: To konto jest wirtualnym profilem używanym do reprezentowania samego serwera, a nie żadnego indywidualnego użytkownika. Jest ono stosowane do celów federacji i nie powinien być zawieszany.
     last_active: ostatnio aktywny(-a)
     link_verified_on: Własność tego odnośnika została sprawdzona %{date}
@@ -65,9 +78,12 @@ pl:
       custom: Własne
       delete: Usuń dane
       deleted: Usunięto
+      deletion_irreversible: Dane tego konta zostały nieodwracalnie usunięte.
+      deletion_reversible_hint_html: To konto oczekuje na usunięcie, a dane zostaną w pełni skasowane dnia %{date}.
       demote: Degraduj
       destroyed_msg: Dane %{username} są teraz w kolejce do natychmiastowego usunięcia
       disable: Dezaktywuj
+      disable_sign_in_token: Tymczasowo wyłącz wyzwanie autoryzacyjne kodu bezpieczeństwa
       disable_sign_in_token_auth: Wyłącz uwierzytelnianie tokenu e-mail
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuskładnikowe
       disabled: Dezaktywowano
@@ -77,9 +93,13 @@ pl:
       email: Adres e-mail
       email_status: Stan e-maila
       enable: Aktywuj
+      enable_sign_in_token: Włącz wyzwanie autoryzacyjne kodu bezpieczeństwa
       enable_sign_in_token_auth: Włącz uwierzytelnianie tokenu e-mail
+      enable_unconfirmed: Zezwalaj na e-mail z potwierdzeniem
       enabled: Aktywowano
       enabled_msg: Pomyślnie odblokowano konto %{username}
+      follow_recommendations:
+        allowed: Dozwolone
       followers: Obserwujący
       follows: Obserwowani
       header: Nagłówek
@@ -127,6 +147,7 @@ pl:
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież profil
       redownloaded_msg: Pomyślnie odświeżono profil %{username} z miejsca pochodzenia
+      registration_app: Aplikacja rejestracyjna
       reject: Odrzuć
       rejected_msg: Pomyślnie odrzucono wniosek o rejestrację %{username}
       remote_suspension_irreversible: Dane tego konta zostały nieodwracalnie usunięte.
@@ -166,6 +187,12 @@ pl:
       suspension_irreversible: Dane tego konta zostały bezpowrotnie usunięte. Możesz cofnąć zawieszenie tego konta aby można było z niego ponownie korzystać, lecz nie przywróci to danych które poprzednio się na nim znajdowały.
       suspension_reversible_hint_html: Twoje konto zostało zawieszone, a dane zostaną całkowicie usunięte %{date}. Do tego czasu, konto może zostać przywrócone bez żadnych negatywnych skutków. Jeżeli chcesz natychmiastowo usunąć wszystkie dane, możesz zrobić to niżej.
       title: Konta
+      trends:
+        allow: Zezwól
+        allowed: Dozwolone
+        disallow: Nie zezwalaj
+        disallowed: Niedozwolone
+        title: Popularne posty
       unblock_email: Odblokuj adres e-mail
       unblocked_email_msg: Pomyślnie odblokowano adres e-mail %{username}
       unconfirmed_email: Niepotwierdzony adres e-mail
@@ -201,6 +228,7 @@ pl:
         create_user_role: Utwórz rolę
         create_username_block: Utwórz zasadę nazwy użytkownika
         demote_user: Zdegraduj użytkownika
+        destroy_account: Usuń dane konta
         destroy_announcement: Usuń ogłoszenie
         destroy_canonical_email_block: Usuń blokadę e-mail
         destroy_custom_emoji: Usuń niestandardowe emoji
@@ -264,19 +292,23 @@ pl:
         create_domain_block_html: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block_html: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
         create_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
+        create_moderation_subscription_html: "%{name} utworzył(-a) subskrypcję moderacyjną %{target}"
         create_relay_html: "%{name} utworzył przekaźnik %{target}"
         create_unavailable_domain_html: "%{name} przestał(a) doręczać na domenę %{target}"
         create_user_role_html: "%{name} utworzył rolę %{target}"
         create_username_block_html: Użytkownik %{name} dodał zasadę dla nazw użytkowników zawierających %{target}
         demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
+        destroy_account_html: "%{name} usunął(-ęła) dane konta %{target}"
         destroy_announcement_html: "%{name} usunął(-ęła) ogłoszenie %{target}"
         destroy_canonical_email_block_html: "%{name} odblokował(a) e-mail z hashem %{target}"
+        destroy_collection_html: "%{name} usunął(-ęła) kolekcję konta %{target}"
         destroy_custom_emoji_html: "%{name} usunął emoji %{target}"
         destroy_domain_allow_html: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block_html: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block_html: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
         destroy_instance_html: "%{name} usunął domenę %{target}"
         destroy_ip_block_html: "%{name} usunął(-ęła) regułę dla IP %{target}"
+        destroy_moderation_subscription_html: "%{name} usunął(-ęła) subskrypcję moderacyjną %{target}"
         destroy_relay_html: "%{name} usunął przekaźnik %{target}"
         destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
@@ -291,7 +323,11 @@ pl:
         enable_relay_html: "%{name} włączył przekaźnik %{target}"
         enable_sign_in_token_auth_user_html: "%{name} włączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
         enable_user_html: Użytkownik %{name} przywrócił możliwość logowania użytkownikowi %{target}
+        listable_tag_html: może być sugerowany
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
+        not_listable_tag_html: nie będzie sugerowany
+        not_trendable_tag_html: nie pojawi się w trendach
+        not_usable_tag_html: nie może być użyty
         promote_user_html: Użytkownik %{name} podniósł uprawnienia użytkownikowi %{target}
         publish_terms_of_service_html: "%{name} opublikował aktualizacje warunków korzystania z usługi"
         reject_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
@@ -304,23 +340,35 @@ pl:
         sensitive_account_html: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
         silence_account_html: "%{name} wyciszył(a) konto %{target}"
         suspend_account_html: Zawieszono konto %{target} przez %{name}
+        trendable_tag_html: może pojawić się w trendach
         unassigned_report_html: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
         unblock_email_account_html: "%{name} odblokował adres e-mail %{target}"
         unsensitive_account_html: "%{name} cofnął(-ęła) oznaczenie zawartości multimedialnej %{target} jako wrażliwą"
         unsilence_account_html: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
         unsuspend_account_html: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
         update_announcement_html: Zaktualizowane ogłoszenie %{target} przez %{name}
+        update_collection_html: "%{name} zaktualizował(-a) kolekcję użytkownika %{target}"
         update_custom_emoji_html: Zaktualizowane emoji %{target} przez %{name}
         update_domain_block_html: Zaktualizowano blokadę domeny dla %{target} przez %{name}
         update_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
         update_report_html: "%{target} zaktualizowany przez %{name}"
         update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
+        update_tag_html: "%{name} zmienił(-a) ustawienia %{target} na: "
         update_user_role_html: "%{name} zmienił rolę %{target}"
         update_username_block_html: Użytkownik %{name} zaktualizował zasadę dla nazw użytkowników zawierających %{target}
+        usable_tag_html: może być użyty;
+      automated_actions:
+        create_domain_allow_html: Automatycznie dozwolona federacja z domeną %{target}
+        create_domain_block_html: Automatycznie zablokowana domena %{target}
+        destroy_domain_allow_html: Automatycznie zabroniona federacja z domeną %{target}
+        destroy_domain_block_html: Automatycznie odblokowana domena %{target}
+        update_domain_block_html: Automatycznie aktualizowana blokada domeny dla %{target}
       deleted_account: usunięte konto
+      deleted_suggestion: usunięta subskrypcja moderacji
       empty: Nie znaleziono aktywności w dzienniku.
       filter_by_action: Filtruj według działania
       filter_by_user: Filtruj według użytkownika
+      suggested_by_html: Akcja zasugerowana przez %{subscription}
       title: Dziennik działań administracyjnych
       unavailable_instance: "(domena niedostępna)"
     announcements:
@@ -346,10 +394,17 @@ pl:
       unpublished_msg: Pomyślnie wycofano publikację ogłoszenia!
       updated_msg: Pomyślnie zaktualizowano ogłoszenie!
     collections:
+      accounts: Konta
+      back_to_account: Powrót do strony konta
+      back_to_report: Powrót do strony zgłoszenia
       batch:
+        add_to_report: 'Dodaj do zgłoszenia #%{id}'
+        remove_from_report: Usuń ze zgłoszenia
         report: Zgłoś
       collection_title: Kolekcje od użytkownika %{name}
       contents: Zawartość
+      no_collection_selected: Nie zmieniono kolekcji, ponieważ żadnej nie wybrano
+      open: Otwórz
       title: Kolekcje kont — @%{name}
       view_publicly: Wyświetl publicznie
     critical_update_pending: Czeka krytyczna aktualizacja
@@ -434,6 +489,8 @@ pl:
       undo: Usuń z białej listy
     domain_blocks:
       add_new: Dodaj nową
+      confirm_downgrade:
+        cancel: Anuluj
       confirm_suspension:
         cancel: Anuluj
         confirm: Zawieś
@@ -501,14 +558,19 @@ pl:
       title: Zablokowane domeny e-mail
     email_subscriptions:
       accounts:
+        account: Konto
         empty:
           hint: Żadne konta nie mają jeszcze subskrybentów.
           no_lists_yet: Brak list
         last_email: Ostatnie e-maile
+        lead: Konta, które włączyły tę funkcję i mają subskrybentów, pojawią się poniżej.
         show:
           date: Data rejestracji
           disable_feature: Wyłącz funkcję
           email: Adres e-mail
+          empty:
+            hint: Nikt jeszcze nie zasubskrybował tego konta.
+            no_subscribers_yet: Brak subskrybentów
           enable_feature: Włącz funkcję
       compliance_settings:
         additional_footer_text:
@@ -559,6 +621,9 @@ pl:
         title: Importuj zablokowane domeny
       no_file: Nie wybrano pliku
     fasp:
+      capabilities:
+        disable: Wyłącz
+        enable: Włącz
       debug:
         callbacks:
           created_at: 'Utworzono:'
@@ -2009,7 +2074,7 @@ pl:
       user_domain_block: Zablokowano %{target_name}
     lost_followers: Utraceni obserwujący
     lost_follows: Utracone obserwowania
-    preamble: Możesz stracić obserwowania i obserwujących kiedy zablokujesz domenę albo kiedy twoi moderatorzy postanowią zawiesić obcy serwer. W tym wypadku będziesz móc pobrać listę zerwanych związków do przejrzenia i potencjalnego importu na innym serwerze.
+    preamble: Możesz stracić obserwowania i obserwujących, kiedy zablokujesz domenę albo kiedy twoi moderatorzy postanowią zawiesić obcy serwer. W tym wypadku będziesz móc pobrać listę zerwanych związków do przejrzenia i potencjalnego importu na innym serwerze.
     purged: Informacje o tym serwerze zostały wyczyszczone przez administratora twojego serwera.
     type: Zdarzenie
   statuses:
