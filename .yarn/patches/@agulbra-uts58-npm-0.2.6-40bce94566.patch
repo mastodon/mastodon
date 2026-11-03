@@ -1,0 +1,36 @@
+diff --git a/src/extractor.js b/src/extractor.js
+index 9abbaed7aaad912462dc85b24b44b02e9f60e8ad..3bc8820b7d7baa3f3123174da21e9fe335818340 100644
+--- a/src/extractor.js
++++ b/src/extractor.js
+@@ -28,11 +28,15 @@ const SEP_EXTRAS = '\\u00DF\\u03C2\\u06FD\\u06FE\\u0F0B\\u3007';
+ // an email address (or perhaps a bluesky/mastodon address) but it cannot
+ // be a http(s) URL. The rest of the set just keeps a trigger from
+ // firing inside a word, number, or path.
++// The preceding-character check is done in code (see PREV_BLOCKED_RE) because
++// regex lookbehind throws at construction time on Safari < 16.4.
+ const TRIGGER_RE = new RegExp(
+-  `(?<![-${ALNUM}\\p{M}.\\/@])(?=[${ALNUM}][-${LNM}${SEP_EXTRAS}]*[.:。])`,
++  `(?=[${ALNUM}][-${LNM}${SEP_EXTRAS}]*[.:。])`,
+   'gu',
+ );
+ 
++const PREV_BLOCKED_RE = new RegExp(`^[-${ALNUM}\\p{M}.\\/@]$`, 'u');
++
+ const SCHEME_RE = new RegExp(
+   '^([\\p{Script=Han}\\p{Script=Hiragana}\\p{Script=Katakana}\\p{Script=Hangul}\\p{Script=Thai}\\p{Script=Lao}\\p{Script=Khmer}\\p{Script=Myanmar}]*?)(https?:\\/\\/)',
+   'iu',
+@@ -222,6 +226,14 @@ export class Extractor {
+           (code >= 0xd800 && code <= 0xdbff ? 2 : 1);
+       }
+ 
++      if (triggerU16 > 0) {
++        const prevUnit = joined.charCodeAt(triggerU16 - 1);
++        const prevStart = prevUnit >= 0xdc00 && prevUnit <= 0xdfff && triggerU16 > 1
++          ? triggerU16 - 2
++          : triggerU16 - 1;
++        if (PREV_BLOCKED_RE.test(joined.slice(prevStart, triggerU16))) continue;
++      }
++
+       // post_match: everything from the trigger onward, as a
+       // codepoint-indexed view. We'll work in codepoint indices and
+       // build the result substring from `cps`.

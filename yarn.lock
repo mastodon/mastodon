@@ -21,6 +21,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@agulbra/uts58@patch:@agulbra/uts58@npm%3A0.2.6#~/.yarn/patches/@agulbra-uts58-npm-0.2.6-40bce94566.patch":
+  version: 0.2.6
+  resolution: "@agulbra/uts58@patch:@agulbra/uts58@npm%3A0.2.6#~/.yarn/patches/@agulbra-uts58-npm-0.2.6-40bce94566.patch::version=0.2.6&hash=a629f6"
+  dependencies:
+    punycode: "npm:^2.3.1"
+  checksum: 10c0/5ada4efbba4932dde521246eadb9903ea6341756b95b9964bc922bad802b4a84644902f9250b00093456228ce2e3dd4c30f5e4f7592f1c64040e647694df63bf
+  languageName: node
+  linkType: hard
+
 "@asamuzakjp/css-color@npm:^7.1.3":
   version: 7.1.3
   resolution: "@asamuzakjp/css-color@npm:7.1.3"
@@ -2969,7 +2978,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mastodon/mastodon@workspace:."
   dependencies:
-    "@agulbra/uts58": "npm:0.2.6"
+    "@agulbra/uts58": "patch:@agulbra/uts58@npm%3A0.2.6#~/.yarn/patches/@agulbra-uts58-npm-0.2.6-40bce94566.patch"
     "@csstools/stylelint-formatter-github": "npm:2.0.0"
     "@dnd-kit/core": "npm:6.3.1"
     "@dnd-kit/modifiers": "npm:9.0.0"

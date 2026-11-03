@@ -21,23 +21,24 @@ export function replaceUrls(text, replacement) {
 // anything that isn't whitespace or an obvious delimiter — and then
 // vetted by uts58's IDN-aware public-suffix check, so non-ASCII hosts
 // like grå.org or 慕田峪长城.网址 pass while bare words ("@arnt@nope")
-// don't. Lookbehind forbids slash (already inside a URL path) and any
-// letter/digit/underscore (already inside a word). Username stays
+// don't. The leading group forbids slash (already inside a URL path) and any
+// letter/digit/underscore (already inside a word); it's a capture group
+// rather than a lookbehind, which Safari < 16.4 can't parse. Username stays
 // ASCII to mirror the canonical Account::USERNAME_RE.
-const MENTION_RE = /(?<![/\p{L}\p{N}_])@([a-z0-9_]+(?:[a-z0-9_.-]*[a-z0-9_])?)@([^\s@/<>?#]+)/giu;
+const MENTION_RE = /(^|[^/\p{L}\p{N}_])@([a-z0-9_]+(?:[a-z0-9_.-]*[a-z0-9_])?)@([^\s@/<>?#]+)/giu;
 
 const TRAILING_HOST_PUNCT = /[.,;:!?)\]}'"`]+$/;
 
 export function extractMentionsWithIndices(text) {
   const out = [];
   for (const m of text.matchAll(MENTION_RE)) {
-    let host = m[2];
+    let host = m[3];
     const trail = TRAILING_HOST_PUNCT.exec(host);
     if (trail) host = host.slice(0, -trail[0].length);
     if (!host || !extractor.isPlausibleHost(host)) continue;
-    const start = m.index;
-    const end = start + 2 + m[1].length + host.length;
-    out.push({ indices: [start, end], username: m[1], host });
+    const start = m.index + m[1].length;
+    const end = start + 2 + m[2].length + host.length;
+    out.push({ indices: [start, end], username: m[2], host });
   }
   return out;
 }
