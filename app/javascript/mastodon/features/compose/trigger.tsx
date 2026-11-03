@@ -76,7 +76,7 @@ export const ComposeButton: React.FC<{
     viewport.height < NARROW_HEIGHT ||
     viewport.width < BREAKPOINTS.openable ||
     (isIPad() && isWebKit());
-  useBodyScrollLock(isFullscreen);
+  useBodyScrollLock(isFullscreen && displayState === 'showing');
 
   if (!signedIn) {
     return null;
