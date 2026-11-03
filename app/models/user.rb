@@ -586,6 +586,6 @@ class User < ApplicationRecord
   end
 
   def increment_invite_uses
-    Invite.where(id: invite_id).update_all('uses = invites.uses + 1') if invite_id.present?
+    invite&.increment!(:uses)
   end
 end
