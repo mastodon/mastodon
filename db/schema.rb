@@ -1744,9 +1744,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
   add_index "instances", ["domain"], name: "index_instances_on_domain", unique: true
 
   create_view "user_ips", sql_definition: <<-SQL
-      SELECT t0.user_id,
-      t0.ip,
-      max(t0.used_at) AS used_at
+      SELECT user_id,
+      ip,
+      max(used_at) AS used_at
      FROM ( SELECT users.id AS user_id,
               users.sign_up_ip AS ip,
               users.created_at AS used_at
@@ -1763,6 +1763,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
               login_activities.created_at
              FROM login_activities
             WHERE (login_activities.success = true)) t0
-    GROUP BY t0.user_id, t0.ip;
+    GROUP BY user_id, ip;
   SQL
 end
