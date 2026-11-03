@@ -22,7 +22,10 @@ RSpec.describe TranslationService::DeepL do
     context 'with invalid body response' do
       before do
         stub_request(:post, 'https://api.deepl.com/v2/translate')
-          .with(body: 'text=Hasta+la+vista&source_lang=ES&target_lang=en&tag_handling=html')
+          .with(
+            headers: { 'Content-Type' => 'application/json' },
+            body: { text: ['Hasta la vista'], source_lang: 'ES', target_lang: 'en', tag_handling: 'html' }
+          )
           .to_return(body: 'XXX')
       end
 
@@ -34,7 +37,10 @@ RSpec.describe TranslationService::DeepL do
 
     it 'returns translation with specified source language' do
       stub_request(:post, 'https://api.deepl.com/v2/translate')
-        .with(body: 'text=Hasta+la+vista&source_lang=ES&target_lang=en&tag_handling=html')
+        .with(
+          headers: { 'Content-Type' => 'application/json' },
+          body: { text: ['Hasta la vista'], source_lang: 'ES', target_lang: 'en', tag_handling: 'html' }
+        )
         .to_return(body: '{"translations":[{"detected_source_language":"ES","text":"See you soon"}]}')
 
       translations = service.translate(['Hasta la vista'], 'es', 'en')
@@ -48,7 +54,10 @@ RSpec.describe TranslationService::DeepL do
 
     it 'returns translation with auto-detected source language' do
       stub_request(:post, 'https://api.deepl.com/v2/translate')
-        .with(body: 'text=Guten+Tag&source_lang&target_lang=en&tag_handling=html')
+        .with(
+          headers: { 'Content-Type' => 'application/json' },
+          body: { text: ['Guten Tag'], target_lang: 'en', tag_handling: 'html' }
+        )
         .to_return(body: '{"translations":[{"detected_source_language":"DE","text":"Good morning"}]}')
 
       translations = service.translate(['Guten Tag'], nil, 'en')
@@ -62,7 +71,10 @@ RSpec.describe TranslationService::DeepL do
 
     it 'returns translation of multiple texts' do
       stub_request(:post, 'https://api.deepl.com/v2/translate')
-        .with(body: 'text=Guten+Morgen&text=Gute+Nacht&source_lang=DE&target_lang=en&tag_handling=html')
+        .with(
+          headers: { 'Content-Type' => 'application/json' },
+          body: { text: ['Guten Morgen', 'Gute Nacht'], source_lang: 'DE', target_lang: 'en', tag_handling: 'html' }
+        )
         .to_return(body: '{"translations":[{"detected_source_language":"DE","text":"Good morning"},{"detected_source_language":"DE","text":"Good night"}]}')
 
       translations = service.translate(['Guten Morgen', 'Gute Nacht'], 'de', 'en')

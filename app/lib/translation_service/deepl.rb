@@ -11,8 +11,8 @@ class TranslationService::DeepL < TranslationService
   end
 
   def translate(texts, source_language, target_language)
-    form = { text: texts, source_lang: source_language&.upcase, target_lang: target_language, tag_handling: 'html' }
-    request(:post, '/v2/translate', form: form) do |res|
+    body = { text: texts, source_lang: source_language&.upcase, target_lang: target_language, tag_handling: 'html' }.compact.to_json
+    request(:post, '/v2/translate', body:) do |res|
       transform_response(res.body_with_limit)
     end
   end
@@ -44,7 +44,7 @@ class TranslationService::DeepL < TranslationService
 
   def request(verb, path, **)
     req = Request.new(verb, "#{base_url}#{path}", **)
-    req.add_headers(Authorization: "DeepL-Auth-Key #{@api_key}")
+    req.add_headers(Authorization: "DeepL-Auth-Key #{@api_key}", 'Content-Type': 'application/json')
     req.perform do |res|
       case res.code
       when 429
