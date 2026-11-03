@@ -507,7 +507,7 @@ class UI extends PureComponent {
     if (searchField.checkVisibility()) {
       searchField.focus();
     } else {
-      this.props.history.push('/explore', { focusTarget: FOCUS_TARGET.SEARCH });
+      this.props.history.push('/search', { focusTarget: FOCUS_TARGET.SEARCH });
     }
   };
 
