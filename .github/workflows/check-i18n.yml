@@ -2,13 +2,11 @@ name: Check i18n
 
 on:
   push:
-    branches:
+    branches: &branches
       - 'main'
       - 'stable-*'
   pull_request:
-    branches:
-      - 'main'
-      - 'stable-*'
+    branches: *branches
 
 env:
   RAILS_ENV: test

@@ -3,13 +3,11 @@ name: 'CodeQL'
 on:
   merge_group:
   push:
-    branches:
+    branches: &branches
       - 'main'
       - 'stable-*'
   pull_request:
-    branches:
-      - 'main'
-      - 'stable-*'
+    branches: *branches
   schedule:
     - cron: '22 6 * * 1'
 
