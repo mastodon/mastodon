@@ -58,11 +58,15 @@ pl:
         authorize: Autoryzuj
         deny: Odmów
       error:
-        title: Wystapił błąd
+        title: Wystąpił błąd
       new:
-        prompt_html: "%{client_name} prosi o dostęp do twojego konta. <strong>Tylko zatwierdź tę prośbę, jeżeli ją rozpoznajesz i ufasz.</strong>"
+        prompt_html: "%{client_name} prosi o dostęp do twojego konta. <strong>Zatwierdź tę prośbę tylko, jeżeli ją rozpoznajesz i ufasz temu źródłu.</strong>"
         review_permissions: Sprawdź uprawnienia
         title: Wymagana jest autoryzacja
+      require_reauth:
+        log_out_and_continue: Wyloguj się i kontynuuj
+        prompt_html: Jesteś obecnie zalogowany(-a) jako <strong>%{handle}</strong>, ale żeby kontynuować, będziesz musiał(-a) się wylogować.
+        title: Wymagane ponowne uwierzytelnianie
       show:
         title: Skopiuj kod uwierzytelniający i wklej go w aplikacji.
     authorized_applications:
