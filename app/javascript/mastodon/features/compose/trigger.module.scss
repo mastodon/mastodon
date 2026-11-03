@@ -33,11 +33,9 @@
   top: env(safe-area-inset-top);
   transition: bottom 200ms ease-in-out;
 
-  &[data-narrow-height='true'] {
-    overflow-y: visible;
-  }
-
   &[data-fullscreen='true'] {
+    overflow-y: visible;
+
     // Add a backdrop for the mobile composer to cover up the page
     // behind the composer that can be visible on Safari iOS
     &::before {

@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { useRouteMatch } from 'react-router';
 
 import { PenNibIcon, ReadCvLogoIcon } from '@phosphor-icons/react';
+import { isIPad, isWebKit } from '@react-aria/utils';
 
 import type { IconButtonProps } from '@/mastodon/components/button/redesign';
 import { IconButton } from '@/mastodon/components/button/redesign';
@@ -72,7 +73,9 @@ export const ComposeButton: React.FC<{
   const trackComposerHeight = useTrackComposerHeight();
 
   const isFullscreen =
-    viewport.height < NARROW_HEIGHT || viewport.width < BREAKPOINTS.openable;
+    viewport.height < NARROW_HEIGHT ||
+    viewport.width < BREAKPOINTS.openable ||
+    (isIPad() && isWebKit());
   useBodyScrollLock(isFullscreen);
 
   if (!signedIn) {
@@ -101,7 +104,7 @@ export const ComposeButton: React.FC<{
         <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
       </FloatingActionButton>
     ) : (
-      <div className={classes.root} style={style}>
+      <div className={classes.root} style={style} data-fullscreen={false}>
         {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           onClick={handleMinimizedTextClick}
@@ -125,7 +128,6 @@ export const ComposeButton: React.FC<{
         style={style}
         ref={trackComposerHeight}
         data-fullscreen={isFullscreen}
-        data-narrow-height={viewport.height < NARROW_HEIGHT}
       >
         <ComposeForm autoFocus className={classes.composer} />
       </div>

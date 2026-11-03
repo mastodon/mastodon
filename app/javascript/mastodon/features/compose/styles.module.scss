@@ -12,7 +12,7 @@
   padding-bottom: calc(max(env(safe-area-inset-bottom), var(--space-4)));
   position: relative;
 
-  [data-narrow-height='true'] & {
+  [data-fullscreen='true'] & {
     overflow-y: scroll;
   }
 
@@ -135,7 +135,7 @@
     opacity: 1;
   }
 
-  [data-narrow-height='true'] & {
+  [data-fullscreen='true'] & {
     overflow-y: visible;
 
     &[data-scroll-down='true']::after {
