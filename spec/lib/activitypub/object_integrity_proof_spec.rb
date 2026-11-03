@@ -218,7 +218,7 @@ RSpec.describe ActivityPub::ObjectIntegrityProof do
     end
   end
 
-  describe 'verify_mldsa44_jcs_2024', skip: 'waiting for ubuntu-26.04 runners' do
+  describe 'verify_mldsa44_jcs_2024', openssl: '3.5' do
     # https://www.w3.org/TR/2026/WD-vc-di-quantum-resistant-1.0-20260616/#example-signed-credential-mldsa44-jcs-2024
 
     let(:keypair) do

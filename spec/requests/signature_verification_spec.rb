@@ -735,7 +735,7 @@ RSpec.describe 'signature verification concern' do
       end
     end
 
-    context 'with a ML-DSA-44 key', skip: 'waiting for ubuntu-26.04 runners' do
+    context 'with a ML-DSA-44 key', openssl: '3.5' do
       # Include the private key so the tests can be easily adjusted and reviewed
       let(:actor_keypair) do
         OpenSSL::PKey.read(<<~PEM_TEXT)
@@ -800,7 +800,7 @@ RSpec.describe 'signature verification concern' do
       end
 
       context 'with a known account' do
-        let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob') }
+        let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob', keypairs: []) }
 
         before do
           Fabricate(:keypair, account: actor, type: :'ml-dsa-44', public_key: actor_keypair.public_to_pem, uri: 'https://remote.domain/users/bob#main-key')
