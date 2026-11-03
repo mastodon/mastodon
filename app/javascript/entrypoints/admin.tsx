@@ -228,9 +228,29 @@ const onChangeAccountActionSelection = (target: HTMLSelectElement) => {
   }
 };
 
+const onChangeAccountActionTextBox = (target: HTMLSelectElement) => {
+  const accountAction = target.value;
+  if (!target.value) return;
+
+  const allMessages = document.querySelectorAll<HTMLElement>(
+    '#data-action-text-box .flash-message',
+  );
+
+  allMessages.forEach((element) => {
+    const optionType = element.dataset.type;
+
+    if (optionType === accountAction) {
+      element.classList.remove('hidden');
+    } else {
+      element.classList.add('hidden');
+    }
+  });
+};
+
 on('input', 'select[name="admin_account_action[type]"]', ({ target }) => {
   if (target instanceof HTMLSelectElement) {
     onChangeAccountActionSelection(target);
+    onChangeAccountActionTextBox(target);
   }
 });
 
@@ -389,10 +409,15 @@ ready(() => {
   if (overrideRobots) onChangeOverrideRobots(overrideRobots);
 
   const accountActionSelection = document.querySelector<HTMLSelectElement>(
-    'select[name="admin_account_action[type]"]:checked',
+    'select#admin_account_action_type',
   );
   if (accountActionSelection)
     onChangeAccountActionSelection(accountActionSelection);
+
+  const accountActionTextBox = document.querySelector<HTMLSelectElement>(
+    'select#admin_account_action_type',
+  );
+  if (accountActionTextBox) onChangeAccountActionTextBox(accountActionTextBox);
 
   const inviteUsersPermissionChecbkox =
     document.querySelector<HTMLInputElement>(
