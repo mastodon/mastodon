@@ -122,6 +122,7 @@ RSpec.describe 'Auth Registration' do
 
           expect { fill_in_and_submit_form(apply: false) }
             .to change(User, :count).by(1)
+            .and change { invite.reload.uses }.by(1)
 
           expect(User.find_by(email: 'test@example.com'))
             .to have_attributes(approved: true)
