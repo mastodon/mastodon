@@ -12,7 +12,13 @@ class ActivityPub::ProcessCollectionService < BaseService
     return unless @json.is_a?(Hash)
 
     begin
-      @json = compact(@json) if @json['signature'].is_a?(Hash)
+      if @json['signature'].is_a?(Hash)
+        check_jsonld_limits!(@json)
+
+        @json = compact(@json)
+      end
+
+      # Unsupported features can be aliased, so re-check after compaction
       check_jsonld_limits!(@json)
     rescue Mastodon::InvalidJsonLdError => e
       Rails.logger.debug { "JSON-LD handling for document from #{value_or_id(@json['actor'])} skipped: #{e.message}" }
