@@ -1,26 +1,30 @@
-= simple_form_for @account_action, url: admin_account_action_path(@account.id) do |f|
-  - @report_id = params[:report_id] if params[:report_id].present?
-  - @type = params[:type]
+- content_for :page_title do
+  = t('admin.account_actions.title', acct: @account.pretty_acct)
 
-  - content_for :page_title do
-    = t('admin.account_actions.title', acct: @account.pretty_acct)
+- @report_id = params[:report_id] if params[:report_id].present?
+- @type = params[:type] if params[:type].present?
+
+- if @account.suspended_locally?
+  .flash-message.alert
+    = t('admin.account_actions.already_suspended')
+- elsif @account.silenced?
+  .flash-message.warn
+    = t('admin.account_actions.already_silenced')
+
+= simple_form_for @account_action, url: admin_account_action_path(@account.id), html: { id: 'action_type' } do |f|
+  = f.input :report_id,
+            as: :hidden
 
   - content_for :heading_actions do
     .fields-group
       = f.input :type,
                 as: :select,
-                collection: Admin::AccountAction::TYPES,
+                collection: combined_types_collection,
                 include_blank: false,
                 label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type}") },
                 required: false,
-                input_html: { class: 'account_action_type' }
-
-  - if @account.suspended_locally?
-    .flash-message.alert
-      = t('admin.account_actions.already_suspended')
-  - elsif @account.silenced?
-    .flash-message.warn
-      = t('admin.account_actions.already_silenced')
+                input_html: { class: 'account_action_type' },
+                input_html: { form: 'action_type' }
 
   %div{ 'id' => 'data-action-text-box' }
     = render partial: 'actions_text_box', locals: { account: @account, report_id: @report_id }
@@ -61,6 +65,7 @@
       %hr.spacer/
 
   .actions
+    = link_to t('admin.reports.cancel'), admin_report_path(@report_id), class: 'button button-secondary' if @report_id.present?
     = f.button :button,
                t('admin.account_actions.action'),
                type: :submit
