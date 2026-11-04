@@ -62,6 +62,7 @@ export const StatusHeader: React.FC<StatusHeaderProps> = ({
             role='presentation'
             tabIndex={-1}
             id={handleId}
+            data-main='true'
           >
             {handle ?? <Skeleton width='7ch' />}
           </Link>
@@ -93,13 +94,13 @@ export const StatusHeaderAuthors: React.FC<
   );
 
   const { account } = status;
-  const accountLinkProps = accountStatusLinkProps(account);
 
   let displayName = (
     <Link
-      {...accountLinkProps}
+      {...accountStatusLinkProps(account)}
       className={classes.nameLink}
       aria-describedby={handleId}
+      data-main='true'
     >
       <DisplayName account={account} variant='noDomain' />
     </Link>
@@ -118,12 +119,16 @@ export const StatusHeaderAuthors: React.FC<
       displayName = (
         <FormattedMessage
           id='status.header.message_from_me'
-          defaultMessage='{author} to {name} {count, plural, =0 {} one {+ # other} other {+ # others}}'
+          defaultMessage='Me to {name} {count, plural, =0 {} one {+ # other} other {+ # others}}'
           description='DisplayName is the author, count is # of other people mentioned in the post'
           values={{
-            author: displayName,
             name: (
-              <DisplayName account={firstMentionAccount} variant='simple' />
+              <Link
+                {...accountStatusLinkProps(firstMentionAccount)}
+                className={classes.nameLink}
+              >
+                <DisplayName account={firstMentionAccount} variant='simple' />
+              </Link>
             ),
             // Minus two, as we're removing the current user as well.
             count: Math.max(status.mentions.length - 2, 0),
@@ -145,7 +150,8 @@ export const StatusHeaderAuthors: React.FC<
   return (
     <p className={classNames(className, classes.name)}>
       {displayName}
-      &bull;
+      {/* Wrap the bullet with a span to not have the whitespace collapse */}
+      <span>&bull;</span>
       <Link
         to={{
           pathname: statusLink(status),
