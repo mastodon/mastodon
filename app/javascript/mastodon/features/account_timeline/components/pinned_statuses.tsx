@@ -4,9 +4,9 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import IconPinned from '@/images/icons/icon_pinned.svg?react';
-import { Button } from '@/mastodon/components/button';
-import { Icon } from '@/mastodon/components/icon';
+import { PushPinIcon } from '@phosphor-icons/react';
+
+import { Button } from '@/mastodon/components/button/redesign';
 
 import { useAccountContext } from '../hooks/useAccountContext';
 import classes from '../styles.module.scss';
@@ -18,8 +18,9 @@ export const PinnedShowAllButton: FC = () => {
     <Button
       onClick={onShowAllPinned}
       className={classNames(classes.pinnedViewAllButton, 'focusable')}
+      leadingIcon={PushPinIcon}
+      color='accent'
     >
-      <Icon id='pinned' icon={IconPinned} />
       <FormattedMessage
         id='account.timeline.pinned.view_all'
         defaultMessage='View all pinned posts'

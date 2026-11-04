@@ -5,7 +5,8 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import IconPinned from '@/images/icons/icon_pinned.svg?react';
+import { PushPinIcon } from '@phosphor-icons/react';
+
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import type { AccountStatusShape } from '@/mastodon/models/status';
@@ -136,7 +137,7 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
       {featured && (
         <Badge
           className={classes.pinnedBadge}
-          icon={<Icon id='pinned' icon={IconPinned} />}
+          icon={<Icon id='pinned' icon={PushPinIcon} />}
           label={
             <FormattedMessage
               id='account.timeline.pinned'
