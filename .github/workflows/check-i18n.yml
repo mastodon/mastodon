@@ -28,12 +28,12 @@ jobs:
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
-      - name: Check for missing strings in English JSON
-        run: |
-          yarn i18n:extract --throws
-          git diff --exit-code
-
       - parallel:
+          - name: Check for missing strings in English JSON
+            run: |
+              yarn i18n:extract --throws
+              git diff --exit-code
+
           - name: Check locale file normalization
             run: bin/i18n-tasks check-normalized
 
@@ -41,8 +41,7 @@ jobs:
             run: bin/i18n-tasks unused -l en
 
           - name: Check for missing strings in English YML
-            run: |
-              bin/i18n-tasks missing -t used -l en
+            run: bin/i18n-tasks missing -t used -l en
 
           - name: Check for wrong string interpolations
             run: bin/i18n-tasks check-consistent-interpolations
