@@ -5,7 +5,7 @@ on:
     branches:
       - 'main'
       - 'stable-*'
-    paths:
+    paths: &paths
       - 'Gemfile*'
       - '.rubocop*.yml'
       - '.ruby-version'
@@ -15,14 +15,7 @@ on:
       - '.github/workflows/lint-ruby.yml'
 
   pull_request:
-    paths:
-      - 'Gemfile*'
-      - '.rubocop*.yml'
-      - '.ruby-version'
-      - 'bin/rubocop'
-      - '**/*.rb'
-      - '**/*.rake'
-      - '.github/workflows/lint-ruby.yml'
+    paths: *paths
 
 jobs:
   lint:

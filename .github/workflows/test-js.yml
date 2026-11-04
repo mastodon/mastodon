@@ -5,7 +5,7 @@ on:
     branches:
       - 'main'
       - 'stable-*'
-    paths:
+    paths: &paths
       - 'package.json'
       - 'yarn.lock'
       - '.nvmrc'
@@ -17,16 +17,7 @@ on:
       - '.github/workflows/test-js.yml'
 
   pull_request:
-    paths:
-      - 'package.json'
-      - 'yarn.lock'
-      - '.nvmrc'
-      - '**/*.js'
-      - '**/*.jsx'
-      - '**/*.ts'
-      - '**/*.tsx'
-      - '**/*.snap'
-      - '.github/workflows/test-js.yml'
+    paths: *paths
 
 jobs:
   test:

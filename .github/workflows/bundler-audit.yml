@@ -5,16 +5,13 @@ on:
     branches:
       - 'main'
       - 'stable-*'
-    paths:
+    paths: &paths
       - 'Gemfile*'
       - '.ruby-version'
       - '.github/workflows/bundler-audit.yml'
 
   pull_request:
-    paths:
-      - 'Gemfile*'
-      - '.ruby-version'
-      - '.github/workflows/bundler-audit.yml'
+    paths: *paths
 
   schedule:
     - cron: '0 5 * * 1'

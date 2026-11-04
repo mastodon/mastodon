@@ -6,7 +6,7 @@ on:
     branches:
       - 'main'
       - 'stable-*'
-    paths:
+    paths: &paths
       - 'Gemfile*'
       - '.ruby-version'
       - '**/*.rb'
@@ -15,12 +15,7 @@ on:
       - 'lib/tasks/db.rake'
 
   pull_request:
-    paths:
-      - 'Gemfile*'
-      - '.ruby-version'
-      - '**/*.rb'
-      - '.github/workflows/test-migrations.yml'
-      - 'lib/tasks/tests.rake'
+    paths: *paths
 
 jobs:
   test:

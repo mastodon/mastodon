@@ -5,7 +5,7 @@ on:
     branches:
       - 'main'
       - 'stable-*'
-    paths:
+    paths: &paths
       - 'package.json'
       - 'yarn.lock'
       - '.nvmrc'
@@ -15,14 +15,7 @@ on:
       - '.github/workflows/lint-css.yml'
 
   pull_request:
-    paths:
-      - 'package.json'
-      - 'yarn.lock'
-      - '.nvmrc'
-      - 'stylelint.config.js'
-      - '**/*.css'
-      - '**/*.scss'
-      - '.github/workflows/lint-css.yml'
+    paths: *paths
 
 jobs:
   lint:
