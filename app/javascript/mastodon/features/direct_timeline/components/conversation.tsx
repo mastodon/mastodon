@@ -199,7 +199,11 @@ export const Conversation: React.FC<{
   return (
     <Hotkeys handlers={handlers}>
       <div
-        className={classNames('conversation focusable muted', { unread })}
+        className={classNames(
+          'conversation focusable muted',
+          { unread },
+          classes.conversation,
+        )}
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={0}
       >
