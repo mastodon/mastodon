@@ -256,7 +256,7 @@ export const Conversation: React.FC<{
                   <FormattedMessage id='status.more' defaultMessage='More' />
                 </MenuTrigger>
 
-                <MenuList>
+                <MenuList placement='bottom-end'>
                   <LegacyDropdownMenuItems items={menu} />
                 </MenuList>
               </Menu>
