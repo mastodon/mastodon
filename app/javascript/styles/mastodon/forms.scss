@@ -912,6 +912,20 @@ code {
     }
   }
 
+  &.left-align {
+    text-align: start;
+    padding: 20px 20px 30px;
+
+    svg {
+      display: inline-block;
+      margin: 5px;
+    }
+
+    .lower-padding {
+      padding: 0 0 8px;
+    }
+  }
+
   p {
     margin-bottom: 15px;
   }
@@ -966,6 +980,10 @@ code {
       text-decoration: underline;
     }
   }
+}
+
+.indent {
+  padding: 0 25px;
 }
 
 .flash-message-stack {
