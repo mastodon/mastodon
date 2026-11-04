@@ -2,6 +2,77 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.0.0] - UNRELEASED
+
+### New web interface
+
+**Mastodon has a new look!**
+
+This version contains a redesign of Mastodon's web interface. This includes a refreshed visual design (with a new color theme setting to personalise it further), a new page layout and a new composer.
+
+This is only the start of the journey and this version is laying out the basis for many new things to come.
+
+You can read all about it in our [dedicated blog post](https://blog.joinmastodon.org/2026/10/5.0-a-closer-look/).
+
+### Added
+
+- Add a setting to pick a color theme for the web interface (#41088, #41094, #41153 by @diondiondion and @ClearlyClaire)
+- Add a user setting to have the Content Warning field on by default (#40824 by @ClearlyClaire)
+- Add a user setting to hide your own posts and boosts (#40813 and #40867 by @arte7)
+  - Your own boosts are now hidden by default.
+- Add ability to follow hashtag from the menu (#40640 by @ChaosExAnima)
+- **Add new Server Health admin page** (#41101 and #41282 by @jhbabon)
+- **Add bloom filters to limit which servers account deletion notices are sent to** (#40283 by @ClearlyClaire)
+  - This heavily reduces the number of deletion notices sent to other servers by storing the list of servers which fetched an account in a bloom filter. This is strongly recommended on large servers which regularly delete many accounts as it heavily decreases the number of federation Delete activities. This feature introduces a new setting to require signed requests for accounts in order to know where the request comes from.
+- Add server setting to postpone confirmation emails after accounts are approved (#40690, #40702, #41099 by @ClearlyClaire)
+- Add `DISABLE_ANNOUNCEMENT_REACTIONS` environment variable to disable emoji reactions in announcements (#40931 by @ClearlyClaire)
+- Add `RACK_COMPRESS` env to enable `Rack::Deflater` middleware (#39927 by @shleeable)
+- Add server directory and default server opt-in options (#40750 by @arte7)
+- Add new tab to server settings for external discovery (#40768 by @arte7)
+- Add moderation domain block/allow list synchronization feature (#40136, #41349 by @ClearlyClaire and @zunda)
+  - In this version, this is behind an experimental feature flag to allow us to gather feedback and test it in the real world. We expect this to be stable and enabled for all servers in our next release.
+- Add the app used for registration in the moderation view of an account (#40567 by @jhbabon)
+- Add canned response (formerly warning presets) categories to restrict them to a specific action (#41092, #41264 by @arte7)
+- Add information about who handled an appeal in moderation interface (#41186, #41427 by @arte7 and @ClearlyClaire)
+- Add information about trends and follow recommendation blocks in the account moderation page (#40398 by @jhbabon)
+- Add support for verifying ML-DSA-44 HTTP Message Signatures (#41119 by @ClearlyClaire)
+- Add support for signing-up through the OAuth flow (#40659 by @ClearlyClaire)
+  - You can read more about the new flow [in our documentation](https://docs.joinmastodon.org/methods/oauth/#authorize). The previous registration flow (`POST /api/v1/accounts`) is deprecated and will be removed in a future version.
+- Add `allow_nonfunctional` parameter to `GET /api/v1/accounts/verify_credentials` (#40803 by @ClearlyClaire)
+- Add server-side filtering to home feed endpoint (#40468, #41031 by @ClearlyClaire and @cacheflow)
+- Add counters to track which features result in users following each other (#40226, #40258, #40340 by @Gargron)
+
+### Fixed
+
+- Fix terms of service and privacy policy API failing on percent signs (#41343 by @dualfroz)
+- Fix size of date-of-birth input fields (#41021 by @ClearlyClaire)
+- Fix invisible links in server announcements (#40949 by @diondiondion)
+- Fixes infinite requests loop on hovering over broken emojis (#40884 by @FFederi)
+- Fix HTTP 200 response code on paths to remote accounts that don't exist (#40341 by @Gargron)
+- Fix performance of media attachment queries in admin instance page (#40515 by @crafkaz)
+- Fix deprecated nginx HTTP/2 directive (#36149 by @sirodoht)
+- Fix typo in new locales for admin account trending info (#40438 by @jhbabon)
+- Fix follows and followers pages to show "Today" instead of hours (#40367 by @FFederi)
+- Fix long dropdown menus being cut off on smaller screens (#41026 by @diondiondion)
+- Fix the moderation interface to allow seeing media reports of suspended accounts (#40274 by @jhbabon)
+
+### Changed
+
+- Change authentication errors to return HTTP 422 instead of HTTP 200 (#41503 by @ClearlyClaire)
+- Change account confirmation e-mail to not redirect to app (#41066 and #41181 by @ClearlyClaire and @oneiros)
+- Change empty search requests to return a HTTP 400 error (#40196 and #40214 by @Gargron)
+- Change warning presets to canned responses and move the navigation item (#41045 by @arte7)
+- Change FASP configuration to individual toggles for capabilities (#40764 and #40787 by @oneiros)
+- Change the web interface to check media attachment size limit before uploading (#30475 by @rgroothuijsen)
+
+### Removed
+
+- Remove discovery area in settings (#41258 by @ChaosExAnima)
+- Remove deprecated `tootctl accounts fix-duplicate` command (#40232 by @ClearlyClaire)
+- Remove support for node version 22 (#41152 by @mjankowski)
+- Remove support for ruby 3.3 and 3.4, only support a single version (#40603 by @mjankowski)
+- Remove support for pre-4.7 zero-downtime migrations (#40235 by @ClearlyClaire)
+
 ## [4.7.5] - 2026-11-03
 
 ### Security
