@@ -4,11 +4,12 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { Button } from '@/mastodon/components/button';
+import { DotsThreeIcon } from '@phosphor-icons/react';
+
+import { Button } from '@/mastodon/components/button/redesign';
 import { Icon } from '@/mastodon/components/icon';
 import { Popover } from '@/mastodon/components/popover';
 import { useDismissible } from '@/mastodon/hooks/useDismissible';
-import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 
 import classes from './remove_quote_hint.module.css';
 
@@ -72,7 +73,7 @@ export const RemoveQuoteHint: React.FC<{
             <div
               {...props}
               className={classNames(
-                'info-tooltip info-tooltip--solid dropdown-animation',
+                'info-tooltip dropdown-animation',
                 placement,
               )}
             >
@@ -88,8 +89,7 @@ export const RemoveQuoteHint: React.FC<{
                 values={{
                   icon: (
                     <Icon
-                      id='ellipsis-h'
-                      icon={MoreHorizIcon}
+                      icon={DotsThreeIcon}
                       aria-label={intl.formatMessage({
                         id: 'status.more',
                         defaultMessage: 'More',
@@ -101,16 +101,18 @@ export const RemoveQuoteHint: React.FC<{
               >
                 {(text) => <p>{text}</p>}
               </FormattedMessage>
-              <FormattedMessage
-                id='remove_quote_hint.button_label'
-                defaultMessage='Got it'
+              <Button
+                variant='ghost'
+                color='accent'
+                clipPadding
+                onClick={dismiss}
+                className={classes.button}
               >
-                {(text) => (
-                  <Button plain compact onClick={dismiss}>
-                    {text}
-                  </Button>
-                )}
-              </FormattedMessage>
+                <FormattedMessage
+                  id='remove_quote_hint.button_label'
+                  defaultMessage='Got it'
+                />
+              </Button>
             </div>
           )}
         </Popover>

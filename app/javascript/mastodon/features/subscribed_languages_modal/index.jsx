@@ -8,14 +8,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { ImmutablePureComponent } from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { followAccount } from 'mastodon/actions/accounts';
-import { Button } from 'mastodon/components/button';
-import { IconButton } from 'mastodon/components/icon_button';
+import { Button, IconButton } from 'mastodon/components/button/redesign';
 import { injectIntl } from '@/mastodon/components/intl';
 import Option from 'mastodon/features/report/components/option';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
 import { selectTimelinesByAccount } from '@/mastodon/selectors/timelines';
+import { XIcon } from '@phosphor-icons/react';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -107,7 +106,7 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal report-dialog-modal'>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} size={20} />
+          <IconButton className='report-modal__close' icon={XIcon} onClick={onClose} variant='ghost'>{intl.formatMessage(messages.close)}</IconButton>
           <FormattedMessage id='subscribed_languages.target' defaultMessage='Change subscribed languages for {target}' values={{ target: <strong>{acct}</strong> }} />
         </div>
 
@@ -121,7 +120,7 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
           <div className='flex-spacer' />
 
           <div className='report-dialog-modal__actions'>
-            <Button disabled={is(this.state.selectedLanguages, this.props.selectedLanguages)} onClick={this.handleSubmit}><FormattedMessage id='subscribed_languages.save' defaultMessage='Save changes' /></Button>
+            <Button disabled={is(this.state.selectedLanguages, this.props.selectedLanguages)} onClick={this.handleSubmit} color='accent' variant='solid'><FormattedMessage id='subscribed_languages.save' defaultMessage='Save changes' /></Button>
           </div>
         </div>
       </div>

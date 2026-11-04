@@ -5669,12 +5669,14 @@ a.status-card {
     &__collapsible {
       display: none;
       flex-direction: column;
-      gap: 16px;
+      gap: var(--space-6);
+      padding-inline: var(--space-3);
+      padding-bottom: var(--space-4);
     }
 
     &.active {
       background: var(--color-bg-primary);
-      padding-top: 24px;
+      padding-top: var(--space-6);
       border-top: var(--border-default);
 
       .safety-action-modal__bottom__collapsible {
@@ -5819,10 +5821,11 @@ a.status-card {
 .report-modal,
 .actions-modal,
 .compare-history-modal {
+  @include elevation-2;
+
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
-  border-radius: 4px;
-  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-4);
   overflow: hidden;
   max-width: 90vw;
   width: 480px;
@@ -5831,7 +5834,7 @@ a.status-card {
 
   @media screen and (max-width: $no-columns-breakpoint) {
     border-bottom: 0;
-    border-radius: 4px 4px 0 0;
+    border-radius: var(--radius-4) var(--radius-4) 0 0;
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
@@ -5853,13 +5856,14 @@ a.status-card {
 }
 
 .report-dialog-modal {
+  @include elevation-2;
+
   max-width: 90vw;
   width: 480px;
   height: 80vh;
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
-  border-radius: 4px;
-  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-4);
   overflow: hidden;
   position: relative;
   flex-direction: column;
@@ -5868,7 +5872,7 @@ a.status-card {
   &__container {
     box-sizing: border-box;
     border-top: 1px solid var(--color-border-primary);
-    padding: 20px;
+    padding: var(--space-5);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -6127,18 +6131,18 @@ a.status-card {
 }
 
 .report-modal__target {
-  padding: 15px;
+  padding: var(--space-4);
 
   .report-modal__close {
     position: absolute;
-    top: 10px;
-    inset-inline-end: 10px;
+    top: var(--space-1);
+    inset-inline-end: var(--space-1);
   }
 }
 
 .compare-history-modal {
   .report-modal__target {
-    border-bottom: 1px solid var(--color-border-primary);
+    border-bottom: var(--border-default);
   }
 
   &__container {
@@ -6260,17 +6264,18 @@ a.status-card {
 }
 
 .info-tooltip {
-  color: var(--color-text-on-media);
-  background: var(--color-bg-media);
-  backdrop-filter: $backdrop-blur-filter;
-  border-radius: 4px;
-  box-shadow: var(--dropdown-shadow);
-  padding: 16px;
+  @include elevation-1;
+
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-4);
+  padding: var(--space-4);
   min-width: 16em;
   min-height: 2em;
   max-width: 22em;
   max-height: 30em;
   overflow-y: auto;
+  overflow-wrap: anywhere;
   z-index: 10;
 
   &:focus-visible {
@@ -6283,28 +6288,16 @@ a.status-card {
     outline: 2px solid var(--color-bg-media);
   }
 
-  &--solid {
-    color: var(--color-text-primary);
-    background: var(--color-bg-primary);
-    border: 1px solid var(--color-border-primary);
-  }
-
   h4 {
-    font-size: 15px;
-    line-height: 20px;
-    font-weight: bold;
-    margin-bottom: 8px;
+    @include type-body-strong;
+
+    margin-bottom: var(--space-2);
   }
 
   p {
-    font-size: 15px;
-    line-height: 20px;
-    opacity: 0.85;
-    white-space: pre-line;
-  }
+    @include type-body;
 
-  .button {
-    margin-block-start: 8px;
+    white-space: pre-line;
   }
 }
 

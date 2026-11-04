@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { AccountField } from '@/mastodon/components/account_header/fields';
-import { Button } from '@/mastodon/components/button';
+import { Button } from '@/mastodon/components/button/redesign';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import {
   ModalShell,
@@ -41,7 +41,7 @@ export const AccountFieldModal: FC<{
         />
       </ModalShellBody>
       <ModalShellActions>
-        <Button onClick={onClose} plain>
+        <Button onClick={onClose} variant='ghost' color='accent'>
           <FormattedMessage id='lightbox.close' defaultMessage='Close' />
         </Button>
       </ModalShellActions>
