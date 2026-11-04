@@ -122,9 +122,37 @@ class Auth::SessionsController < Devise::SessionsController
     redirect_to new_user_session_path, alert: I18n.t('devise.failure.timeout')
   end
 
+  # This should only ever be called with a `user` that has passed password authentication
   def register_attempt_in_session(user)
     session[:attempt_user_id]         = user.id
     session[:attempt_user_updated_at] = user.updated_at.to_s
+  end
+
+  # Return a `User` object if the current user has previously passed the first authentication step,
+  # and otherwise call the provided block if they are just now passing it.
+  def ensure_first_authentication_step(allow_external: false)
+    if user_params[:email].present?
+      user = self.resource = find_user_from_params
+
+      yield user if user && ((allow_external && @password_verified_externally) || user.valid_password?(user_params[:password]))
+
+      return nil
+    end
+
+    if session[:attempt_user_id]
+      user = User.find_by(id: session[:attempt_user_id])
+      return if user.nil?
+
+      # If the user record has changed since the attempt has been recorded,
+      # its password or email could have changed, and we have to revoke they
+      # attempt.
+      if session[:attempt_user_updated_at] != user.updated_at.to_s
+        restart_session
+        return
+      end
+
+      self.resource = user
+    end
   end
 
   def clear_attempt_from_session
