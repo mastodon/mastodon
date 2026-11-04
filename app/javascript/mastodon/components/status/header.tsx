@@ -61,7 +61,6 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
         id='status.header.to_followers'
         defaultMessage='{author} to Followers {count, plural, =0 {} one {+ # other} other {+ # others}}'
         description='Count is # of other people mentioned in the post'
-        tagName='span'
         values={{ author: displayName, count: status.mentions.length }}
       />
     );
@@ -72,7 +71,6 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
           id='status.header.message_from_me'
           defaultMessage='{author} to {name} {count, plural, =0 {} one {+ # other} other {+ # others}}'
           description='DisplayName is the author, count is # of other people mentioned in the post'
-          tagName='span'
           values={{
             author: displayName,
             name: (
@@ -89,7 +87,6 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
           id='status.header.message_to_me'
           defaultMessage='{author} to You {count, plural, =0 {} one {+ # other} other {+ # others}}'
           description='DisplayName is the author, count is # of other people mentioned in the post'
-          tagName='span'
           values={{ author: displayName, count: status.mentions.length - 1 }}
         />
       );
