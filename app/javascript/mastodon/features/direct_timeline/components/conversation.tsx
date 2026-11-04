@@ -20,7 +20,7 @@ import {
   unmuteStatus,
   toggleStatusSpoilers,
 } from '@/mastodon/actions/statuses';
-import AvatarComposite from '@/mastodon/components/avatar_composite';
+import { Avatars } from '@/mastodon/components/avatar';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
@@ -36,13 +36,15 @@ import { StatusContent } from '@/mastodon/components/status/content';
 import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 import { statusLink } from '@/mastodon/components/status/utils';
 import { useAccountStatus } from '@/mastodon/hooks/useStatus';
-import type { Account } from '@/mastodon/models/account';
+import type { Account, AccountShapeFull } from '@/mastodon/models/account';
 import {
   createAppSelector,
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store';
 import { filterNulls } from '@/mastodon/utils/types';
+
+import classes from '../styles.module.scss';
 
 import { ConversationAttachments } from './attachments';
 
@@ -64,15 +66,24 @@ const messages = defineMessages({
 });
 
 const selectAccounts = createAppSelector(
-  [(state) => state.accounts, (_, accountIds: string[]) => accountIds],
-  (accounts: ImmutableMap<string, Account>, accountIds: string[]) =>
-    accountIds.map((id) => accounts.get(id)),
+  [
+    (state) => state.accounts,
+    (_, accountIds: Immutable.List<string>) => accountIds,
+  ],
+  (
+    accounts: ImmutableMap<string, Account>,
+    accountIds: Immutable.List<string>,
+  ) =>
+    accountIds
+      .map((id) => accounts.get(id))
+      .filter(filterNulls)
+      .toJS() as unknown as AccountShapeFull[],
 );
 
 export interface TConversation {
   id: string;
   unread: boolean;
-  accounts: string[];
+  accounts: Immutable.List<string>;
   last_status: string | null;
 }
 
@@ -128,16 +139,12 @@ export const Conversation: React.FC<{
   const names = useMemo(
     () =>
       intl.formatList(
-        accounts
-          .map((account) =>
-            account ? (
-              <LinkedDisplayName
-                displayProps={{ account, variant: 'simple' }}
-                key={account.id}
-              />
-            ) : null,
-          )
-          .filter(filterNulls),
+        accounts.map((account) => (
+          <LinkedDisplayName
+            displayProps={{ account, variant: 'simple' }}
+            key={account.id}
+          />
+        )),
       ),
     [accounts, intl],
   );
@@ -201,7 +208,14 @@ export const Conversation: React.FC<{
           onClick={handleClick}
           role='presentation'
         >
-          <AvatarComposite accounts={accounts} size={48} />
+          <Avatars
+            accounts={accounts.slice(0, 3)}
+            wrapperClassName={classNames(
+              classes.avatars,
+              accounts.length === 1 && classes.avatarsSingle,
+            )}
+            size={accounts.length === 1 ? 48 : 24}
+          />
         </div>
 
         <div className='conversation__content'>
