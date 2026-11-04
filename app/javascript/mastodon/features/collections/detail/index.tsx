@@ -5,6 +5,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { useHistory, useLocation, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
+import { ShareFatIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
@@ -13,7 +14,6 @@ import { ColumnHeader } from '@/mastodon/components/column_header';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import HelpIcon from '@/material-icons/400-24px/help.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
-import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 import StarIcon from '@/material-icons/400-24px/star.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import type {
@@ -21,11 +21,11 @@ import type {
   CollectionAccountItem,
 } from 'mastodon/api_types/collections';
 import { Badge } from 'mastodon/components/badge';
+import { IconButton } from 'mastodon/components/button/redesign';
 import { Callout } from 'mastodon/components/callout';
 import { DisplayName } from 'mastodon/components/display_name';
 import { useAccountHandle } from 'mastodon/components/display_name/default';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
-import { IconButton } from 'mastodon/components/icon_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { Scrollable } from 'mastodon/components/scrollable_list/components';
 import { useAccount } from 'mastodon/hooks/useAccount';
@@ -220,18 +220,10 @@ const CollectionHeader: React.FC<{
           <AuthorNote id={account_id} />
         </div>
         <div className={classes.headerButtonWrapper}>
-          <IconButton
-            iconComponent={ShareIcon}
-            icon='share-icon'
-            title={intl.formatMessage(messages.share)}
-            className={classes.iconButton}
-            onClick={openShareModal}
-          />
-          <CollectionMenu
-            context='collection'
-            collection={collection}
-            className={classes.iconButton}
-          />
+          <IconButton icon={ShareFatIcon} onClick={openShareModal}>
+            {intl.formatMessage(messages.share)}
+          </IconButton>
+          <CollectionMenu context='collection' collection={collection} />
         </div>
       </div>
       {withDescription && description && (
