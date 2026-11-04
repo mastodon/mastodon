@@ -9,7 +9,8 @@ module Auth::TwoFactorAuthenticationConcern
   end
 
   def two_factor_enabled?
-    find_user&.two_factor_enabled?
+    # Password verification is skipped at this stage, it will happen later if necessary
+    find_user(allow_unverified: true)&.two_factor_enabled?
   end
 
   def valid_webauthn_credential?(user, webauthn_credential)

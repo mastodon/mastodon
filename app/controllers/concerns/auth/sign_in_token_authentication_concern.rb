@@ -8,7 +8,8 @@ module Auth::SignInTokenAuthenticationConcern
   end
 
   def sign_in_token_required?
-    find_user&.suspicious_inactive_sign_in?
+    # Password verification is skipped at this stage, it will happen later if necessary
+    find_user(allow_unverified: true)&.suspicious_inactive_sign_in?
   end
 
   def authenticate_with_sign_in_token
