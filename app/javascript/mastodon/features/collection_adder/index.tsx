@@ -2,6 +2,8 @@ import { useCallback, useId, useState } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
+import { XIcon } from '@phosphor-icons/react';
+
 import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
 import { EmptyState } from '@/mastodon/components/empty_state';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
@@ -13,8 +15,7 @@ import {
   collectionEditorActions,
   removeCollectionItem,
 } from '@/mastodon/reducers/slices/collections';
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import { IconButton } from 'mastodon/components/icon_button';
+import { IconButton } from 'mastodon/components/button/redesign';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { MAX_COLLECTION_ACCOUNT_COUNT } from '../collections/editor/accounts';
@@ -132,11 +133,13 @@ export const CollectionAdder: React.FC<{
       <div className='dialog-modal__header'>
         <IconButton
           className='dialog-modal__header__close'
-          title={intl.formatMessage(messages.close)}
-          icon='times'
-          iconComponent={CloseIcon}
+          icon={XIcon}
           onClick={onClose}
-        />
+          size='sm'
+          variant='ghost'
+        >
+          {intl.formatMessage(messages.close)}
+        </IconButton>
 
         <NavigationFocusTarget
           as='h1'
@@ -174,12 +177,16 @@ export const CollectionAdder: React.FC<{
                 />
               }
             >
-              <NewCollectionButton compact onClick={handleNewCollection} />
+              <NewCollectionButton onClick={handleNewCollection} />
             </EmptyState>
           ) : (
             <>
               <div className={classes.newCollection}>
-                <NewCollectionButton secondary onClick={handleNewCollection}>
+                <NewCollectionButton
+                  size='md'
+                  variant='tonal'
+                  onClick={handleNewCollection}
+                >
                   <FormattedMessage
                     id='collections.create_new_collection'
                     defaultMessage='Create new collection'
