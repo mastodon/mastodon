@@ -1,0 +1,17 @@
+- combined_types_collection.each do |type|
+  .flash-message.warning.left-align{ 'data-type' => type, 'class' => ('hidden' unless type == params[:type]) }
+    %h6.lower-padding= safe_join([material_symbol('warning'), t('admin.account_actions.text_box_title')])
+    %p.warning-hint.indent= t("admin.reports.summary.action_preambles.#{type}_html", acct: account.pretty_acct)
+    %ul
+    .hint.indent
+      %li.hint= t("admin.reports.summary.actions.#{type}_html", acct: account.pretty_acct)
+      - if type == 'suspend'
+        %li.hint= t('admin.reports.summary.delete_data_html', acct: account.pretty_acct)
+      - if %w(silence suspend).include?(type)
+        %li.hint= t('admin.reports.summary.close_reports_html', acct: account.pretty_acct)
+      - else
+        %li= t('admin.reports.summary.close_report', id: report_id)
+      - unless type == 'none'
+        %li= t('admin.reports.summary.record_strike_html', acct: account.pretty_acct)
+      - if account.local?
+        %li= t('admin.reports.summary.send_email_html', acct: account.pretty_acct)
