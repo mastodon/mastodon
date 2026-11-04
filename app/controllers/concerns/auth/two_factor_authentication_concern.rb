@@ -76,11 +76,11 @@ module Auth::TwoFactorAuthenticationConcern
     else
       on_authentication_failure(user, :otp, :invalid_otp_token)
       flash.now[:alert] = I18n.t('users.invalid_otp_token')
-      prompt_for_two_factor(user)
+      prompt_for_two_factor(user, status: 422)
     end
   end
 
-  def prompt_for_two_factor(user)
+  def prompt_for_two_factor(user, status: 200)
     register_attempt_in_session(user)
 
     @webauthn_enabled = user.webauthn_enabled?
@@ -90,7 +90,7 @@ module Auth::TwoFactorAuthenticationConcern
                           'totp'
                         end
 
-    set_locale { render :two_factor }
+    set_locale { render :two_factor, status: status }
   end
 
   protected

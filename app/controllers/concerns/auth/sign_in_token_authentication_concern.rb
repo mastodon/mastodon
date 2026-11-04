@@ -41,17 +41,17 @@ module Auth::SignInTokenAuthenticationConcern
     else
       on_authentication_failure(user, :sign_in_token, :invalid_sign_in_token)
       flash.now[:alert] = I18n.t('users.invalid_sign_in_token')
-      prompt_for_sign_in_token(user)
+      prompt_for_sign_in_token(user, status: 422)
     end
   end
 
-  def prompt_for_sign_in_token(user, resend: false)
+  def prompt_for_sign_in_token(user, resend: false, status: 200)
     if resend || user.sign_in_token_expired?
       user.generate_sign_in_token && user.save
       UserMailer.sign_in_token(user, request.remote_ip, request.user_agent, Time.now.utc.to_s).deliver_later!
     end
 
     register_attempt_in_session(user)
-    render :sign_in_token
+    render :sign_in_token, status: status
   end
 end

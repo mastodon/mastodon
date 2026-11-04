@@ -342,6 +342,7 @@ RSpec.describe Auth::SessionsController do
             expect(flash[:alert]).to match I18n.t('users.invalid_otp_token')
 
             expect(controller.current_user).to be_nil
+            expect(response).to have_http_status(:unprocessable_content)
           end
         end
 
@@ -503,6 +504,7 @@ RSpec.describe Auth::SessionsController do
 
         it 'shows a login error' do
           expect(flash[:alert]).to match I18n.t('users.invalid_sign_in_token')
+          expect(response).to have_http_status(:unprocessable_content)
         end
 
         it "doesn't log the user in" do
