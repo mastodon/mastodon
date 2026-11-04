@@ -29,6 +29,7 @@ interface ConfirmationModalProps {
   className?: string;
   updating?: boolean;
   disabled?: boolean;
+  destructive?: boolean;
   noFocusButton?: boolean;
 }
 
@@ -49,6 +50,7 @@ export const ConfirmationModal: React.FC<
   className,
   updating,
   disabled,
+  destructive,
   noCloseOnConfirm = false,
   noFocusButton = false,
 }) => {
@@ -110,7 +112,7 @@ export const ConfirmationModal: React.FC<
           disabled={disabled}
           autoFocus={!noFocusButton}
           variant='solid'
-          color='accent'
+          color={destructive ? 'destructive' : 'accent'}
         >
           {confirm}
         </Button>

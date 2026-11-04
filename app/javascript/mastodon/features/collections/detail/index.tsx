@@ -5,16 +5,11 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { useHistory, useLocation, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import { ShareFatIcon } from '@phosphor-icons/react';
+import { QuestionIcon, ShareFatIcon, StarIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnHeader } from '@/mastodon/components/column_header';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import HelpIcon from '@/material-icons/400-24px/help.svg?react';
-import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
-import StarIcon from '@/material-icons/400-24px/star.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import type {
   ApiCollectionJSON,
@@ -124,7 +119,7 @@ export const PendingNote: React.FC = () => {
   return (
     <Callout
       variant='subtle'
-      icon={HelpIcon}
+      icon={QuestionIcon}
       title={
         <FormattedMessage
           id='collections.pending_accounts.title'
@@ -306,17 +301,7 @@ export const CollectionDetailPage: React.FC<{
 
   return (
     <Column bindToDocument={!multiColumn} label={pageTitle}>
-      {isRedesignEnabled() ? (
-        <ColumnHeader withBackButton title={pageTitle} />
-      ) : (
-        <LegacyColumnHeader
-          showBackButton
-          title={pageTitle}
-          icon='collection-icon'
-          iconComponent={ListAltIcon}
-          multiColumn={multiColumn}
-        />
-      )}
+      <ColumnHeader withBackButton title={pageTitle} />
 
       <Scrollable>
         {collection ? (
