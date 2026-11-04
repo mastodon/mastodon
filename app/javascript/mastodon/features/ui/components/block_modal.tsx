@@ -13,7 +13,7 @@ import CollectionsIcon from '@/material-icons/400-24px/category.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { blockAccount } from 'mastodon/actions/accounts';
 import { closeModal } from 'mastodon/actions/modal';
-import { Button } from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button/redesign';
 import { Icon } from 'mastodon/components/icon';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 
@@ -140,11 +140,7 @@ export const BlockModal: React.FC<{ accountId: string; acct: string }> = ({
 
         <div className='safety-action-modal__actions'>
           {domain && (
-            <button
-              type='button'
-              onClick={handleToggleLearnMore}
-              className='link-button'
-            >
+            <Button onClick={handleToggleLearnMore}>
               {expanded ? (
                 <FormattedMessage
                   id='block_modal.show_less'
@@ -156,19 +152,24 @@ export const BlockModal: React.FC<{ accountId: string; acct: string }> = ({
                   defaultMessage='Show more'
                 />
               )}
-            </button>
+            </Button>
           )}
 
           <div className='spacer' />
 
-          <button type='button' onClick={handleCancel} className='link-button'>
+          <Button onClick={handleCancel}>
             <FormattedMessage
               id='confirmation_modal.cancel'
               defaultMessage='Cancel'
             />
-          </button>
+          </Button>
 
-          <Button onClick={handleClick} dangerous autoFocus>
+          <Button
+            onClick={handleClick}
+            variant='solid'
+            color='destructive'
+            autoFocus
+          >
             <FormattedMessage
               id='confirmations.block.confirm'
               defaultMessage='Block'
