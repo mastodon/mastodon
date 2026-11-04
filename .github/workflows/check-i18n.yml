@@ -35,21 +35,22 @@ jobs:
           yarn i18n:extract --throws
           git diff --exit-code
 
-      - name: Check locale file normalization
-        run: bin/i18n-tasks check-normalized
+      - parallel:
+          - name: Check locale file normalization
+            run: bin/i18n-tasks check-normalized
 
-      - name: Check for unused strings
-        run: bin/i18n-tasks unused -l en
+          - name: Check for unused strings
+            run: bin/i18n-tasks unused -l en
 
-      - name: Check for missing strings in English YML
-        run: |
-          bin/i18n-tasks missing -t used -l en
+          - name: Check for missing strings in English YML
+            run: |
+              bin/i18n-tasks missing -t used -l en
 
-      - name: Check for wrong string interpolations
-        run: bin/i18n-tasks check-consistent-interpolations
+          - name: Check for wrong string interpolations
+            run: bin/i18n-tasks check-consistent-interpolations
 
-      - name: Check that all required locale files exist
-        run: bin/rake repo:check_locales_files
+          - name: Check that all required locale files exist
+            run: bin/rake repo:check_locales_files
 
-      - name: Run yaml/erb linter
-        run: bin/rake yaml:lint
+          - name: Run yaml/erb linter
+            run: bin/rake yaml:lint
