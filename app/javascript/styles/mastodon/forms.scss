@@ -383,9 +383,13 @@ code {
     align-items: center;
 
     input {
-      box-sizing: content-box;
-      width: unset;
+      width: auto;
       flex: 0;
+      min-width: 70px;
+    }
+
+    input[size='4'] {
+      min-width: 100px;
     }
   }
 
