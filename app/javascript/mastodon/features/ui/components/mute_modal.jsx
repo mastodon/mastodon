@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -7,46 +7,26 @@ import classNames from 'classnames';
 
 import { useDispatch } from 'react-redux';
 
-
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import CampaignIcon from '@/material-icons/400-24px/campaign.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
 import { muteAccount } from 'mastodon/actions/accounts';
 import { closeModal } from 'mastodon/actions/modal';
-import { Button } from 'mastodon/components/button';
-import { CheckBox } from 'mastodon/components/check_box';
+import { Button } from 'mastodon/components/button/redesign';
 import { Icon } from 'mastodon/components/icon';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
-import { RadioButton } from 'mastodon/components/radio_button';
 import { StatusReplyIcon } from '@/mastodon/components/status/icons';
+import { CheckboxField, RadioButtonField, Fieldset } from '@/mastodon/components/form_fields';
 
 const messages = defineMessages({
+  duration: { id: 'mute_modal.duration', defaultMessage: 'Duration' },
   minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
   hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
   days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
   indefinite: { id: 'mute_modal.indefinite', defaultMessage: 'Until I unmute them' },
   hideFromNotifications: { id: 'mute_modal.hide_from_notifications', defaultMessage: 'Hide from notifications' },
 });
-
-const RadioButtonLabel = ({ name, value, currentValue, onChange, label }) => (
-  <RadioButton
-    name={name}
-    value={value}
-    checked={value === currentValue}
-    onChange={onChange}
-    label={label}
-  />
-);
-
-RadioButtonLabel.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.oneOf([PropTypes.string, PropTypes.number, PropTypes.bool]),
-  currentValue: PropTypes.oneOf([PropTypes.string, PropTypes.number, PropTypes.bool]),
-  checked: PropTypes.bool,
-  onChange: PropTypes.func,
-  label: PropTypes.node,
-};
 
 export const MuteModal = ({ accountId, acct }) => {
   const intl = useIntl();
@@ -75,6 +55,13 @@ export const MuteModal = ({ accountId, acct }) => {
   const handleToggleSettings = useCallback(() => {
     setExpanded(!expanded);
   }, [expanded, setExpanded]);
+
+  const firstExpandedOptionRef = useRef();
+  useEffect(() => {
+    if (expanded) {
+      firstExpandedOptionRef.current?.focus();
+    }
+  }, [expanded])
 
   return (
     <div className='modal-root__modal safety-action-modal'>
@@ -117,31 +104,59 @@ export const MuteModal = ({ accountId, acct }) => {
 
       <div className={classNames('safety-action-modal__bottom', { active: expanded })}>
         <div className='safety-action-modal__bottom__collapsible'>
-          <div className='safety-action-modal__field-group'>
-            <RadioButtonLabel name='duration' value='0' label={intl.formatMessage(messages.indefinite)} currentValue={muteDuration} onChange={handleChangeMuteDuration} />
-            <RadioButtonLabel name='duration' value='21600' label={intl.formatMessage(messages.hours, { number: 6 })} currentValue={muteDuration} onChange={handleChangeMuteDuration} />
-            <RadioButtonLabel name='duration' value='86400' label={intl.formatMessage(messages.hours, { number: 24 })} currentValue={muteDuration} onChange={handleChangeMuteDuration} />
-            <RadioButtonLabel name='duration' value='604800' label={intl.formatMessage(messages.days, { number: 7 })} currentValue={muteDuration} onChange={handleChangeMuteDuration} />
-            <RadioButtonLabel name='duration' value='2592000' label={intl.formatMessage(messages.days, { number: 30 })} currentValue={muteDuration} onChange={handleChangeMuteDuration} />
-          </div>
+          <Fieldset legend={intl.formatMessage(messages.duration)} name='duration'>
+            <RadioButtonField
+              value='0'
+              label={intl.formatMessage(messages.indefinite)}
+              checked={muteDuration === '0'}
+              onChange={handleChangeMuteDuration}
+              ref={firstExpandedOptionRef}
+            />
+            <RadioButtonField
+              value='21600'
+              label={intl.formatMessage(messages.hours, { number: 6 })}
+              checked={muteDuration === '21600'}
+              onChange={handleChangeMuteDuration}
+            />
+            <RadioButtonField
+              value='86400'
+              label={intl.formatMessage(messages.hours, { number: 24 })}
+              checked={muteDuration === '86400'}
+              onChange={handleChangeMuteDuration}
+            />
+            <RadioButtonField
+              value='604800'
+              label={intl.formatMessage(messages.days, { number: 7 })}
+              checked={muteDuration === '604800'}
+              onChange={handleChangeMuteDuration}
+            />
+            <RadioButtonField
+              value='2592000'
+              label={intl.formatMessage(messages.days, { number: 30 })}
+              checked={muteDuration === '2592000'}
+              onChange={handleChangeMuteDuration}
+            />
+          </Fieldset>
 
-          <div className='safety-action-modal__field-group'>
-            <CheckBox label={intl.formatMessage(messages.hideFromNotifications)} checked={notifications} onChange={handleToggleNotifications} />
-          </div>
+          <CheckboxField
+            label={intl.formatMessage(messages.hideFromNotifications)}
+            checked={notifications}
+            onChange={handleToggleNotifications}
+          />
         </div>
 
         <div className='safety-action-modal__actions'>
-          <button type='button' onClick={handleToggleSettings} className='link-button'>
+          <Button onClick={handleToggleSettings}>
             {expanded ? <FormattedMessage id='mute_modal.hide_options' defaultMessage='Hide options' /> : <FormattedMessage id='mute_modal.show_options' defaultMessage='Show options' />}
-          </button>
+          </Button>
 
           <div className='spacer' />
 
-          <button type='button' onClick={handleCancel} className='link-button'>
+          <Button onClick={handleCancel}>
             <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
-          </button>
+          </Button>
 
-          <Button onClick={handleClick} autoFocus>
+          <Button variant='solid' color='accent' onClick={handleClick} autoFocus>
             <FormattedMessage id='confirmations.mute.confirm' defaultMessage='Mute' />
           </Button>
         </div>

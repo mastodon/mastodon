@@ -5669,12 +5669,13 @@ a.status-card {
     &__collapsible {
       display: none;
       flex-direction: column;
-      gap: 16px;
+      gap: var(--space-6);
+      padding-bottom: var(--space-4);
     }
 
     &.active {
       background: var(--color-bg-primary);
-      padding-top: 24px;
+      padding-top: var(--space-6);
       border-top: var(--border-default);
 
       .safety-action-modal__bottom__collapsible {
