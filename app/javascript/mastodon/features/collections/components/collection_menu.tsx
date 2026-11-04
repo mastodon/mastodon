@@ -217,6 +217,7 @@ export const CollectionMenu: React.FC<{
       <MenuTrigger
         as={IconButton}
         icon={DotsThreeVerticalIcon}
+        size={context === 'collection' ? 'md' : 'sm'}
         className={className}
       >
         {intl.formatMessage(messages.more)}
