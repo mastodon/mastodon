@@ -9,11 +9,13 @@ import type { Account, AccountShapeFull } from 'mastodon/models/account';
 
 import { useAccount } from '../hooks/useAccount';
 
+type AvatarAccount = Pick<
+  Account | AccountShapeFull,
+  'id' | 'acct' | 'avatar' | 'avatar_static'
+>;
+
 interface Props {
-  account?: Pick<
-    Account | AccountShapeFull,
-    'id' | 'acct' | 'avatar' | 'avatar_static'
-  >;
+  account?: AvatarAccount;
   alt?: string;
   size?: number | null;
   style?: React.CSSProperties;
@@ -105,4 +107,19 @@ export const AvatarById: React.FC<
 > = ({ accountId, ...otherProps }) => {
   const account = useAccount(accountId);
   return <Avatar account={account} {...otherProps} />;
+};
+
+export const Avatars: React.FC<
+  { accounts: AvatarAccount[]; wrapperClassName?: string } & Omit<
+    Props,
+    'account'
+  >
+> = ({ accounts, wrapperClassName, ...otherProps }) => {
+  return (
+    <div className={wrapperClassName}>
+      {accounts.map((account) => (
+        <Avatar key={account.id} account={account} {...otherProps} />
+      ))}
+    </div>
+  );
 };
