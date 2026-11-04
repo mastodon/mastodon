@@ -24,7 +24,7 @@ pl:
       one: Obserwujący(-a)
       other: Obserwujących
     following:
-      few: Obserwowanych
+      few: Obserwowane
       many: Obserwowanych
       one: Obserwowany(-a)
       other: Obserwowanych
@@ -404,6 +404,11 @@ pl:
       collection_title: Kolekcje od użytkownika %{name}
       contents: Zawartość
       no_collection_selected: Nie zmieniono kolekcji, ponieważ żadnej nie wybrano
+      number_of_accounts:
+        few: "%{count} konta"
+        many: "%{count} kont"
+        one: 1 konto
+        other: "%{count} kont"
       open: Otwórz
       title: Kolekcje kont — @%{name}
       view_publicly: Wyświetl publicznie
@@ -572,6 +577,10 @@ pl:
             hint: Nikt jeszcze nie zasubskrybował tego konta.
             no_subscribers_yet: Brak subskrybentów
           enable_feature: Włącz funkcję
+          view_account: Pokaż konto
+        status: Status
+        subscribers: Obserwujący
+        title: Listy mailingowe
       compliance_settings:
         additional_footer_text:
           action: Zarządzaj
@@ -585,6 +594,7 @@ pl:
           title: Wyłącz funkcję
         erase_all_data:
           action: Wyczyść dane
+          hint: Trwale usuwa wszystkie e-maile ze wszystkich list mailingowych
           title: Usuń wszystkie dane
       index:
         disabled:
@@ -596,6 +606,7 @@ pl:
         edit_role: Edytuj rolę
         manage_roles: Zarządzaj rolami
         role_name: Nazwa roli
+        title: Role
       setups:
         show:
           enable_feature: Włącz funkcję
@@ -622,6 +633,8 @@ pl:
       no_file: Nie wybrano pliku
     fasp:
       capabilities:
+        activation_msg: Pomyślnie włączono funkcję.
+        deactivation_msg: Pomyślnie wyłączono funkcję.
         disable: Wyłącz
         enable: Włącz
       debug:
@@ -630,9 +643,12 @@ pl:
           delete: Usuń
           ip: Adres IP
           request_body: Treść zgłoszenia
+          title: Debugowanie Callbacków
       providers:
         active: Aktywne
         base_url: Podstawowy adres URL
+        callback: Callback
+        capabilities: Funkcje
         delete: Usuń
         edit: Edytuj dostawców
         finish_registration: Zakończ rejestrację
@@ -642,6 +658,7 @@ pl:
         registration_requested: Wymagana rejestracja
         registrations:
           confirm: Zatwierdź
+          description: Otrzymano rejestrację od FASP. Odrzuć ją, jeśli tego nie zainicjowałeś(-aś). Jeśli to zainicjowałeś(-aś), należy dokładnie porównać nazwę i fingerprint klucza przed potwierdzeniem rejestracji.
           reject: Odrzuć
           title: Potwierdź rejestrację FASP
         sign_in: Zaloguj się
@@ -684,6 +701,7 @@ pl:
         comment: Wewnętrzna notatka
         description_html: Możesz zdefiniować zasady treści, które zostaną zastosowane do wszystkich kont z tej domeny i jej subdomen.
         limited_federation_mode_description_html: Możesz wybrać, czy zezwolić na federację z tą domeną.
+        moderation_subscription: Subskrypcja moderacyjna
         policies:
           reject_media: Odrzucaj media
           reject_reports: Odrzucaj zgłoszenia
@@ -763,7 +781,26 @@ pl:
       new:
         title: Utwórz nową regułę IP
       no_ip_block_selected: Żadna reguła nie została zmieniona, ponieważ żadna nie została wybrana
+      reset: Resetuj
+      search: Szukaj
       title: Reguły adresów IP
+    moderation_subscriptions:
+      add_new: Dodaj subskrypcję
+      advisory_action: 'Akcja: %{action}'
+      advisory_actions:
+        accept: zezwól
+        limit: wycisz
+        reject: wstrzymaj
+      apply_conditions:
+        always: Zawsze
+        never: Nigdy
+      list_actions_short:
+        reject: Lista zablokowanych
+      name: Nazwa
+      new:
+        create: Subskrybuj
+        title: Nowa subskrypcja moderacyjna
+      override_unattributed: Zastąp ręczne blokady
     relationships:
       title: Relacje %{acct}
     relays:
