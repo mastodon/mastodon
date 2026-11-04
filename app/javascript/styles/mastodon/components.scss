@@ -5720,8 +5720,7 @@ a.status-card {
     align-items: center;
     justify-content: space-between;
     flex-direction: row-reverse;
-    padding: var(--space-3);
-    padding-inline: var(--space-6) var(--space-4);
+    padding: var(--space-3) var(--space-4);
     min-height: 61px;
 
     &__title {
@@ -5778,7 +5777,7 @@ a.status-card {
       .gifv video,
       .video-player,
       .audio-player {
-        max-width: 360px;
+        max-width: min(360px, 100%);
         max-height: 45vh;
       }
     }
