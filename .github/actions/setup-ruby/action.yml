@@ -1,9 +1,6 @@
 name: 'Setup Ruby'
 description: 'Setup a Ruby environment ready to run the Mastodon code'
 inputs:
-  ruby-version:
-    description: The Ruby version to install
-    default: '.ruby-version'
   additional-system-dependencies:
     description: 'Additional packages to install'
 
@@ -26,5 +23,4 @@ runs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@de492cf36cbab201753d720ce4f4e336cd688c94 # v1.336.0
       with:
-        ruby-version: ${{ inputs.ruby-version }}
         bundler-cache: true
