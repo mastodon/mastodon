@@ -3,13 +3,14 @@ import type { FC } from 'react';
 
 import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
 
+import { XIcon } from '@phosphor-icons/react';
+
 import AnniversaryImage from '@/images/anniversary.svg?react';
 import { focusCompose, resetCompose } from '@/mastodon/actions/compose';
 import { closeModal } from '@/mastodon/actions/modal';
-import { Button } from '@/mastodon/components/button';
+import { Button, IconButton } from '@/mastodon/components/button/redesign';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
-import { IconButton } from '@/mastodon/components/icon_button';
 import { ModalShell, ModalShellBody } from '@/mastodon/components/modal_shell';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
@@ -18,7 +19,6 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store';
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
 import classes from './styles.module.scss';
 
@@ -125,12 +125,12 @@ export const AccountJoinModal: FC<{
         />
 
         <IconButton
-          iconComponent={CloseIcon}
-          icon='times'
+          icon={XIcon}
           onClick={onClose}
-          title={intl.formatMessage(closeMessage)}
           className={classes.joinClose}
-        />
+        >
+          {intl.formatMessage(closeMessage)}
+        </IconButton>
       </ModalShellBody>
     </ModalShell>
   );
@@ -246,7 +246,7 @@ const AccountAnniversaryShare: FC<{
   }
 
   return (
-    <Button onClick={onShare}>
+    <Button onClick={onShare} variant='solid'>
       {anniversary === 0 && isMe && (
         <FormattedMessage
           id='account.join_modal.share.intro'
