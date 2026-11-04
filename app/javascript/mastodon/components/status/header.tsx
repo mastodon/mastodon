@@ -119,7 +119,7 @@ export const StatusHeaderAuthors: React.FC<
       displayName = (
         <FormattedMessage
           id='status.header.message_from_me'
-          defaultMessage='Me to {name} {count, plural, =0 {} one {+ # other} other {+ # others}}'
+          defaultMessage='You to {name} {count, plural, =0 {} one {+ # other} other {+ # others}}'
           description='DisplayName is the author, count is # of other people mentioned in the post'
           values={{
             name: (
