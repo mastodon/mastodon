@@ -23,7 +23,6 @@
                 include_blank: false,
                 label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type}") },
                 required: false,
-                input_html: { class: 'account_action_type' },
                 input_html: { form: 'action_type' }
 
   %div{ 'id' => 'data-action-text-box' }
