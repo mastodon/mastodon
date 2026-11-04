@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Button } from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button/redesign';
 import { GIF } from 'mastodon/components/gif';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 
@@ -40,13 +40,13 @@ export const ModalPlaceholder: React.FC<{
             </p>
 
             <div className='modal-placeholder__error__message__actions'>
-              <Button onClick={handleRetry}>
+              <Button onClick={handleRetry} variant='solid' color='accent'>
                 <FormattedMessage
                   id='bundle_modal_error.retry'
                   defaultMessage='Try again'
                 />
               </Button>
-              <Button onClick={handleClose} className='button button-secondary'>
+              <Button onClick={handleClose}>
                 <FormattedMessage
                   id='bundle_modal_error.close'
                   defaultMessage='Close'
