@@ -44,7 +44,7 @@ Rails.application.routes.draw do
       get 'oauth-authorization-server', to: 'oauth_metadata#show', as: :oauth_metadata, defaults: { format: 'json' }
       get 'host-meta', to: 'host_meta#show', as: :host_meta
       get 'nodeinfo', to: 'node_info#index', as: :nodeinfo, defaults: { format: 'json' }
-      get 'webfinger', to: 'webfinger#show', as: :webfinger
+      get 'webfinger', to: 'webfinger#show', as: :webfinger, defaults: { format: 'json' }
     end
     get 'change-password', to: redirect('/auth/edit'), as: nil
     get 'proxy', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }, as: nil
@@ -101,7 +101,7 @@ Rails.application.routes.draw do
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
 
-    scope module: :activitypub do
+    scope module: :activitypub, defaults: { format: 'json' } do
       resource :outbox, only: [:show]
       resource :inbox, only: [:create]
       resources :collections, only: [:show], as: :actor_collections, constraints: { id: Regexp.union(ActivityPub::CollectionsController::SUPPORTED_COLLECTIONS) }
@@ -114,7 +114,7 @@ Rails.application.routes.draw do
     resources :statuses, only: [:show] do
       member do
         get :activity
-        get :embed
+        get :embed, defaults: { format: 'html' }
       end
 
       resources :replies, only: [:index], module: :activitypub
