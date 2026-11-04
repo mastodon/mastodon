@@ -6,7 +6,6 @@ import { PlusIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import {
   ColumnHeader,
   ColumnHeaderButton,
@@ -16,7 +15,6 @@ import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multic
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import {
   mountConversations,
@@ -78,63 +76,43 @@ const DirectTimeline: React.FC<ColumnBase> = ({ columnId, multiColumn }) => {
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.title)}
     >
-      {isRedesignEnabled() ? (
-        <ColumnHeader
-          title={intl.formatMessage(messages.title_redesign)}
-          withBackButton={multiColumn && !pinned && 'auto'}
-          extraButtons={
-            <>
-              <ColumnHeaderButton
-                showTextOnDesktop
-                variant='solid'
-                color='accent'
-                icon={PlusIcon}
-                onClick={composeNewMessage}
+      <ColumnHeader
+        title={intl.formatMessage(messages.title_redesign)}
+        withBackButton={multiColumn && !pinned && 'auto'}
+        extraButtons={
+          <>
+            <ColumnHeaderButton
+              showTextOnDesktop
+              variant='solid'
+              color='accent'
+              icon={PlusIcon}
+              onClick={composeNewMessage}
+            >
+              <FormattedMessage id='messages.new' defaultMessage='New' />
+            </ColumnHeaderButton>
+            {multiColumn && (
+              <ColumnSettingsMenu
+                labelPrefix={intl.formatMessage(messages.title_redesign)}
               >
-                <FormattedMessage id='messages.new' defaultMessage='New' />
-              </ColumnHeaderButton>
-              {multiColumn && (
-                <ColumnSettingsMenu
-                  labelPrefix={intl.formatMessage(messages.title_redesign)}
-                >
-                  <MultiColumnMenuItems
-                    onPin={handlePin}
-                    onMove={handleMove}
-                    pinned={pinned}
-                  />
-                </ColumnSettingsMenu>
-              )}
-            </>
-          }
-        />
-      ) : (
-        <LegacyColumnHeader
-          icon='at'
-          iconComponent={AlternateEmailIcon}
-          title={intl.formatMessage(messages.title)}
-          onPin={handlePin}
-          onMove={handleMove}
-          pinned={pinned}
-          multiColumn={multiColumn}
-          scrollTopOnClick
-        />
-      )}
+                <MultiColumnMenuItems
+                  onPin={handlePin}
+                  onMove={handleMove}
+                  pinned={pinned}
+                />
+              </ColumnSettingsMenu>
+            )}
+          </>
+        }
+      />
 
       <ConversationsList
         trackScroll={!pinned}
         scrollKey={`direct_timeline-${columnId}`}
         emptyMessage={
-          isRedesignEnabled() ? (
-            <FormattedMessage
-              id='empty_column.messages'
-              defaultMessage="You don't have any messages yet. When you send or receive one, it will show up here."
-            />
-          ) : (
-            <FormattedMessage
-              id='empty_column.direct'
-              defaultMessage="You don't have any private mentions yet. When you send or receive one, it will show up here."
-            />
-          )
+          <FormattedMessage
+            id='empty_column.messages'
+            defaultMessage="You don't have any messages yet. When you send or receive one, it will show up here."
+          />
         }
         bindToDocument={!multiColumn}
         prepend={
