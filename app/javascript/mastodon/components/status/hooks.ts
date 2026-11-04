@@ -17,10 +17,7 @@ import {
   directCompose,
   mentionCompose,
 } from '@/mastodon/actions/compose';
-import {
-  initDomainBlockModal,
-  unblockDomain,
-} from '@/mastodon/actions/domain_blocks';
+import { unblockDomain } from '@/mastodon/actions/domain_blocks';
 import type { StatusInteractionIntent } from '@/mastodon/actions/interactions_typed';
 import { statusInteraction } from '@/mastodon/actions/interactions_typed';
 import { openModal } from '@/mastodon/actions/modal';
@@ -956,7 +953,16 @@ function getMenuItems({
         if (isDomainBlocking) {
           dispatch(unblockDomain(domain));
         } else {
-          dispatch(initDomainBlockModal(account));
+          dispatch(
+            openModal({
+              modalType: 'DOMAIN_BLOCK',
+              modalProps: {
+                domain,
+                acct: account.acct,
+                accountId: account.id,
+              },
+            }),
+          );
         }
       },
       dangerous: !isDomainBlocking,
