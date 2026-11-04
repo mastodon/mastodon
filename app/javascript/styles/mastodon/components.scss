@@ -9098,60 +9098,6 @@ noscript {
   }
 }
 
-.hashtag-header {
-  border-bottom: 1px solid var(--color-border-primary);
-  padding: 15px;
-  font-size: 17px;
-  line-height: 22px;
-  color: var(--color-text-secondary);
-
-  strong {
-    font-weight: 700;
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    gap: 15px;
-
-    h1 {
-      color: var(--color-text-primary);
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      font-size: 22px;
-      line-height: 33px;
-      font-weight: 700;
-    }
-
-    &__buttons {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-
-      .button {
-        flex-shrink: 1;
-        white-space: nowrap;
-        min-width: 80px;
-      }
-
-      .icon-button {
-        border: 1px solid var(--color-border-primary);
-        border-radius: 4px;
-        box-sizing: content-box;
-        padding: 5px;
-
-        .icon {
-          width: 24px;
-          height: 24px;
-        }
-      }
-    }
-  }
-}
-
 .hashtag-bar {
   margin-top: 16px;
   display: flex;
