@@ -10,7 +10,7 @@ import PersonAlertIcon from '@/material-icons/400-24px/person_alert.svg?react';
 import ShieldQuestionIcon from '@/material-icons/400-24px/shield_question.svg?react';
 import { closeModal } from 'mastodon/actions/modal';
 import { updateNotificationsPolicy } from 'mastodon/actions/notification_policies';
-import { Button } from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button/redesign';
 import { Icon } from 'mastodon/components/icon';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 
@@ -86,19 +86,19 @@ export const IgnoreNotificationsModal = ({ filterType }) => {
 
       <div className='safety-action-modal__bottom'>
         <div className='safety-action-modal__actions'>
-          <Button onClick={handleSecondaryClick} secondary>
+          <Button onClick={handleSecondaryClick} color='accent'>
             <FormattedMessage id='ignore_notifications_modal.filter_instead' defaultMessage='Filter instead' />
           </Button>
 
           <div className='spacer' />
 
-          <button type='button' onClick={handleCancel} className='link-button'>
+          <Button onClick={handleCancel}>
             <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
-          </button>
+          </Button>
 
-          <button type='button' onClick={handleClick} className='link-button'>
+          <Button onClick={handleClick} variant='solid' color='destructive'>
             <FormattedMessage id='ignore_notifications_modal.ignore' defaultMessage='Ignore notifications' />
-          </button>
+          </Button>
         </div>
       </div>
     </div>
