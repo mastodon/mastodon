@@ -24,7 +24,7 @@ module User::SignInToken
   end
 
   def valid_sign_in_token?(token)
-    Devise.secure_compare(sign_in_token, token)
+    !sign_in_token_expired? && Devise.secure_compare(sign_in_token, token)
   end
 
   def sign_in_token_expired?
@@ -34,6 +34,12 @@ module User::SignInToken
   def generate_sign_in_token
     self.sign_in_token         = Devise.friendly_token(6)
     self.sign_in_token_sent_at = Time.now.utc
+  end
+
+  def clear_sign_in_token!
+    self.sign_in_token         = nil
+    self.sign_in_token_sent_at = nil
+    save!
   end
 
   def disable_sign_in_token!

@@ -12,7 +12,11 @@
   padding-bottom: calc(max(env(safe-area-inset-bottom), var(--space-4)));
   position: relative;
 
-  @media (width >= #{variables.$mobile-menu-breakpoint}) {
+  [data-fullscreen='true'] & {
+    overflow-y: scroll;
+  }
+
+  [data-fullscreen='false'] & {
     @include mixins.elevation-2;
 
     border-bottom: none;
@@ -130,6 +134,14 @@
   &[data-scroll-down='true']::after {
     opacity: 1;
   }
+
+  [data-fullscreen='true'] & {
+    overflow-y: visible;
+
+    &[data-scroll-down='true']::after {
+      opacity: 0;
+    }
+  }
 }
 
 .sensitiveWrapper {
@@ -143,7 +155,6 @@
 }
 
 .sensitive {
-  outline-offset: -2px;
   flex-grow: 1;
 }
 
@@ -164,17 +175,19 @@
   flex-grow: 1;
   flex-shrink: 0;
   border-radius: var(--radius-2);
-  transition: border 200ms;
+  transition: outline-color 0.1s ease-out;
   cursor: text;
   border: none;
   width: 100%;
-  outline: none;
+  outline: var(--outline-focus-default);
+  outline-color: transparent;
+  outline-offset: -2px;
   background: none;
   min-height: 3lh;
+  caret-color: var(--color-text-brand);
 
   &:focus {
-    outline: var(--outline-focus-default);
-    outline-offset: -2px;
+    outline-color: var(--color-border-brand);
 
     &::placeholder {
       color: transparent;

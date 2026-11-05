@@ -1,16 +1,13 @@
+@use '@/styles/mastodon/mixins';
+
 .wrapper {
   display: flex;
   align-items: start;
-  gap: 4px;
-  font-size: 13px;
-  font-weight: bold;
+  gap: var(--space-1);
+  @include mixins.type-caption;
 
   &[data-variant='success'] {
     color: var(--color-text-success);
-  }
-
-  &[data-variant='warning'] {
-    color: var(--color-text-warning);
   }
 
   &[data-variant='error'] {
@@ -25,5 +22,5 @@
 .icon {
   width: 16px;
   height: 16px;
-  margin-top: 1px;
+  margin-top: -1px;
 }

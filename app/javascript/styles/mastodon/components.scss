@@ -146,6 +146,10 @@
       background-color: var(--color-bg-error-base);
       transition: none;
     }
+
+    @media (forced-colors: active) {
+      border: 1px solid transparent;
+    }
   }
 
   &:disabled,
@@ -1062,23 +1066,6 @@ body > [data-popover-placement] {
     width: 40px;
     height: 40px;
     color: var(--color-text-tertiary);
-  }
-}
-
-.embed {
-  position: relative;
-
-  &__overlay {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .detailed-status {
-    border-top: 0;
   }
 }
 
@@ -2871,8 +2858,8 @@ a.account__display-name {
 
 .onboarding__profile {
   position: relative;
-  margin-bottom: 40px + 20px;
-  margin-top: -20px;
+  margin-bottom: var(--space-10);
+  margin-top: calc(-1 * var(--space-2));
 
   .app-form__avatar-input {
     border: 2px solid var(--color-bg-primary);
@@ -5079,6 +5066,10 @@ a.status-card {
   transition: all 100ms linear;
   transition-property: transform, opacity;
   color: var(--color-text-secondary);
+
+  @media (forced-colors: active) {
+    color: CanvasText;
+  }
 }
 
 .search__icon.icon-search {
@@ -5096,6 +5087,10 @@ a.status-card {
   width: 20px;
   height: 20px;
   border-radius: 100%;
+
+  svg {
+    pointer-events: none;
+  }
 
   &::-moz-focus-inner {
     border: 0;
@@ -5465,6 +5460,7 @@ a.status-card {
 }
 
 .safety-action-modal {
+  position: relative;
   width: 600px;
   flex-direction: column;
 
@@ -5657,12 +5653,14 @@ a.status-card {
     &__collapsible {
       display: none;
       flex-direction: column;
-      gap: 16px;
+      gap: var(--space-6);
+      padding-inline: var(--space-3);
+      padding-bottom: var(--space-4);
     }
 
     &.active {
       background: var(--color-bg-primary);
-      padding-top: 24px;
+      padding-top: var(--space-6);
       border-top: var(--border-default);
 
       .safety-action-modal__bottom__collapsible {
@@ -5706,8 +5704,7 @@ a.status-card {
     align-items: center;
     justify-content: space-between;
     flex-direction: row-reverse;
-    padding: var(--space-3);
-    padding-inline: var(--space-6) var(--space-4);
+    padding: var(--space-3) var(--space-4);
     min-height: 61px;
 
     &__title {
@@ -5764,7 +5761,7 @@ a.status-card {
       .gifv video,
       .video-player,
       .audio-player {
-        max-width: 360px;
+        max-width: min(360px, 100%);
         max-height: 45vh;
       }
     }
@@ -5807,10 +5804,11 @@ a.status-card {
 .report-modal,
 .actions-modal,
 .compare-history-modal {
+  @include elevation-2;
+
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
-  border-radius: 4px;
-  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-4);
   overflow: hidden;
   max-width: 90vw;
   width: 480px;
@@ -5819,7 +5817,7 @@ a.status-card {
 
   @media screen and (max-width: $no-columns-breakpoint) {
     border-bottom: 0;
-    border-radius: 4px 4px 0 0;
+    border-radius: var(--radius-4) var(--radius-4) 0 0;
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
@@ -5841,13 +5839,14 @@ a.status-card {
 }
 
 .report-dialog-modal {
+  @include elevation-2;
+
   max-width: 90vw;
   width: 480px;
   height: 80vh;
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
-  border-radius: 4px;
-  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-4);
   overflow: hidden;
   position: relative;
   flex-direction: column;
@@ -5856,7 +5855,7 @@ a.status-card {
   &__container {
     box-sizing: border-box;
     border-top: 1px solid var(--color-border-primary);
-    padding: 20px;
+    padding: var(--space-5);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -6115,18 +6114,18 @@ a.status-card {
 }
 
 .report-modal__target {
-  padding: 15px;
+  padding: var(--space-4);
 
   .report-modal__close {
     position: absolute;
-    top: 10px;
-    inset-inline-end: 10px;
+    top: var(--space-1);
+    inset-inline-end: var(--space-1);
   }
 }
 
 .compare-history-modal {
   .report-modal__target {
-    border-bottom: 1px solid var(--color-border-primary);
+    border-bottom: var(--border-default);
   }
 
   &__container {
@@ -6248,17 +6247,18 @@ a.status-card {
 }
 
 .info-tooltip {
-  color: var(--color-text-on-media);
-  background: var(--color-bg-media);
-  backdrop-filter: $backdrop-blur-filter;
-  border-radius: 4px;
-  box-shadow: var(--dropdown-shadow);
-  padding: 16px;
+  @include elevation-1;
+
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-4);
+  padding: var(--space-4);
   min-width: 16em;
   min-height: 2em;
   max-width: 22em;
   max-height: 30em;
   overflow-y: auto;
+  overflow-wrap: anywhere;
   z-index: 10;
 
   &:focus-visible {
@@ -6271,28 +6271,16 @@ a.status-card {
     outline: 2px solid var(--color-bg-media);
   }
 
-  &--solid {
-    color: var(--color-text-primary);
-    background: var(--color-bg-primary);
-    border: 1px solid var(--color-border-primary);
-  }
-
   h4 {
-    font-size: 15px;
-    line-height: 20px;
-    font-weight: bold;
-    margin-bottom: 8px;
+    @include type-body-strong;
+
+    margin-bottom: var(--space-2);
   }
 
   p {
-    font-size: 15px;
-    line-height: 20px;
-    opacity: 0.85;
-    white-space: pre-line;
-  }
+    @include type-body;
 
-  .button {
-    margin-block-start: 8px;
+    white-space: pre-line;
   }
 }
 
@@ -6941,15 +6929,20 @@ a.status-card {
       background: rgb(from var(--color-text-on-media) r g b / 35%);
       border-radius: 4px;
       display: block;
+      box-sizing: border-box;
       position: absolute;
       height: 4px;
       inset-inline-start: 0;
       top: 50%;
       transform: translate(0, -50%);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
     }
 
     &__current {
       display: block;
+      box-sizing: border-box;
       position: absolute;
       height: 4px;
       border-radius: 4px;
@@ -6957,9 +6950,13 @@ a.status-card {
       top: 50%;
       transform: translate(0, -50%);
       background: var(--color-text-on-media);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
     }
 
     &__handle {
+      box-sizing: border-box;
       position: absolute;
       z-index: 3;
       border-radius: 50%;
@@ -6972,6 +6969,9 @@ a.status-card {
       background: var(--color-text-on-media);
       box-shadow: 1px 2px 6px var(--color-shadow-primary);
       opacity: 0;
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
 
       .no-reduce-motion & {
         transition: opacity 100ms linear;
@@ -7020,10 +7020,14 @@ a.status-card {
     &__buffer {
       display: block;
       position: absolute;
+      box-sizing: border-box;
       height: 4px;
       border-radius: 4px;
       top: 14px;
       background: var(--color-text-on-media);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
     }
 
     &__buffer {
@@ -7035,12 +7039,16 @@ a.status-card {
       z-index: 3;
       opacity: 0;
       border-radius: 50%;
+      box-sizing: border-box;
       width: 12px;
       height: 12px;
       top: 10px;
       margin-inline-start: -6px;
       background: var(--color-text-on-media);
       box-shadow: 1px 2px 6px var(--color-shadow-primary);
+
+      // Outline for Windows forced-colors mode:
+      border: 1px solid transparent;
 
       .no-reduce-motion & {
         transition: opacity 0.1s ease;
@@ -7188,6 +7196,14 @@ a.status-card {
         border-radius: 4px 4px 0 0;
         background: var(--color-text-brand);
       }
+
+      @media (forced-colors: active) {
+        &::before {
+          display: none;
+        }
+
+        border-bottom: 3px solid ButtonBorder;
+      }
     }
   }
 
@@ -7266,6 +7282,10 @@ a.status-card {
   width: calc(100% - 4px);
   height: calc(100% - 4px);
   background: var(--color-text-brand);
+
+  @media (forced-colors: active) {
+    background-color: Highlight;
+  }
 }
 
 .check-box {
@@ -7626,7 +7646,7 @@ noscript {
   }
 
   &__close-button {
-    position: absolute;
+    position: absolute !important;
     top: var(--space-2);
     inset-inline-end: var(--space-2);
     z-index: 1;
@@ -7990,12 +8010,6 @@ noscript {
   .search {
     width: 100%;
     margin-bottom: 0;
-  }
-
-  .search__icon {
-    top: 12px;
-    inset-inline-end: 12px;
-    color: var(--color-text-tertiary);
   }
 }
 
@@ -8617,9 +8631,9 @@ noscript {
 .dismissable-banner,
 .warning-banner {
   position: relative;
-  margin: 10px;
-  margin-bottom: 5px;
-  border-radius: 8px;
+  margin: var(--space-4);
+  margin-bottom: var(--space-1);
+  border-radius: var(--radius-4);
   border: 1px solid var(--color-border-brand-soft);
   background: var(--color-bg-brand-softest);
   overflow: hidden;
@@ -8636,15 +8650,14 @@ noscript {
   }
 
   &__message {
+    @include type-body;
+
     flex: 1 1 auto;
-    padding: 15px;
-    font-size: 15px;
-    line-height: 22px;
-    font-weight: bold;
+    padding: var(--space-4);
     color: var(--color-text-primary);
 
     p {
-      margin-bottom: 15px;
+      margin-bottom: var(--space-4);
 
       &:last-child {
         margin-bottom: 0;
@@ -8652,21 +8665,20 @@ noscript {
     }
 
     h1 {
+      @include type-heading-sm;
+
       color: var(--color-text-brand);
-      font-size: 22px;
-      line-height: 33px;
-      font-weight: 700;
-      margin-bottom: 15px;
+      margin-bottom: var(--space-2);
     }
 
     &__actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
+      gap: var(--space-1);
 
       &__wrapper {
         display: flex;
-        margin-top: 30px;
+        margin-top: var(--space-7);
       }
 
       .button {
@@ -9066,60 +9078,6 @@ noscript {
     color: var(--color-text-on-media);
     height: var(--spinner-size);
     width: var(--spinner-size);
-  }
-}
-
-.hashtag-header {
-  border-bottom: 1px solid var(--color-border-primary);
-  padding: 15px;
-  font-size: 17px;
-  line-height: 22px;
-  color: var(--color-text-secondary);
-
-  strong {
-    font-weight: 700;
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    gap: 15px;
-
-    h1 {
-      color: var(--color-text-primary);
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      font-size: 22px;
-      line-height: 33px;
-      font-weight: 700;
-    }
-
-    &__buttons {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-
-      .button {
-        flex-shrink: 1;
-        white-space: nowrap;
-        min-width: 80px;
-      }
-
-      .icon-button {
-        border: 1px solid var(--color-border-primary);
-        border-radius: 4px;
-        box-sizing: content-box;
-        padding: 5px;
-
-        .icon {
-          width: 24px;
-          height: 24px;
-        }
-      }
-    }
   }
 }
 

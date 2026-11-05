@@ -19,7 +19,7 @@ import type {
   ApiCreateCollectionPayload,
   ApiUpdateCollectionPayload,
 } from 'mastodon/api_types/collections';
-import { Button } from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button/redesign';
 import {
   CheckboxField,
   ComboboxField,
@@ -299,7 +299,7 @@ export const CollectionDetails: React.FC = () => {
       </FormStack>
 
       <div className={classes.stickyFooter}>
-        <Button type='submit'>
+        <Button type='submit' variant='solid' color='accent'>
           {id ? (
             <FormattedMessage id='lists.save' defaultMessage='Save' />
           ) : (
@@ -386,7 +386,7 @@ const TopicField: React.FC = () => {
       status={
         topicHasSpecialCharacters
           ? {
-              variant: 'warning',
+              variant: 'error',
               message: intl.formatMessage({
                 id: 'collections.topic_special_chars_hint',
                 defaultMessage:

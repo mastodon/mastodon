@@ -1,50 +1,51 @@
-import { useCallback } from 'react';
+import type React from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 
-import type {
-  Map as ImmutableMap,
-  List as ImmutableList,
-  Record as ImmutableRecord,
-} from 'immutable';
+import { DotsThreeIcon } from '@phosphor-icons/react';
 
 import { replyComposeById } from '@/mastodon/actions/compose_typed';
-import { LinkedDisplayName } from '@/mastodon/components/display_name';
-import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
+import {
+  markConversationRead,
+  deleteConversation,
+} from '@/mastodon/actions/conversations';
+import {
+  muteStatus,
+  unmuteStatus,
+  toggleStatusSpoilers,
+} from '@/mastodon/actions/statuses';
+import { Avatars } from '@/mastodon/components/avatar';
+import { IconButton } from '@/mastodon/components/button/redesign';
+import { Hotkeys } from '@/mastodon/components/hotkeys';
+import {
+  LegacyDropdownMenuItems,
+  Menu,
+  MenuList,
+  MenuTrigger,
+} from '@/mastodon/components/menu';
+import { StatusContent } from '@/mastodon/components/status/content';
+import { StatusHeaderAuthors } from '@/mastodon/components/status/header';
 import { StatusReplyIcon } from '@/mastodon/components/status/icons';
-import StatusContent from '@/mastodon/components/status/legacy/content';
-import type { Account } from '@/mastodon/models/account';
-import type { StatusShape } from '@/mastodon/models/status';
+import { statusLink } from '@/mastodon/components/status/utils';
+import { useAccountStatus } from '@/mastodon/hooks/useStatus';
+import type { AccountShapeFull } from '@/mastodon/models/account';
 import {
   createAppSelector,
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store';
-import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
-import {
-  markConversationRead,
-  deleteConversation,
-} from 'mastodon/actions/conversations';
-import {
-  muteStatus,
-  unmuteStatus,
-  toggleStatusSpoilers,
-} from 'mastodon/actions/statuses';
-import AttachmentList from 'mastodon/components/attachment_list';
-import AvatarComposite from 'mastodon/components/avatar_composite';
-import { Dropdown } from 'mastodon/components/dropdown_menu';
-import { Hotkeys } from 'mastodon/components/hotkeys';
-import { IconButton } from 'mastodon/components/icon_button';
-import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-import { makeGetStatus } from 'mastodon/selectors';
+import { filterNulls } from '@/mastodon/utils/types';
+
+import classes from '../styles.module.scss';
+
+import { ConversationAttachments } from './attachments';
 
 const messages = defineMessages({
-  more: { id: 'status.more', defaultMessage: 'More' },
   open: { id: 'conversation.open', defaultMessage: 'View conversation' },
-  reply: { id: 'status.reply', defaultMessage: 'Reply' },
   markAsRead: {
     id: 'conversation.mark_as_read',
     defaultMessage: 'Mark as read',
@@ -60,43 +61,33 @@ const messages = defineMessages({
   },
 });
 
-const getAccounts = createAppSelector(
-  (state) => state.accounts,
-  (_, accountIds: ImmutableList<string>) => accountIds,
-  (
-    accounts: ImmutableMap<string, Account>,
-    accountIds: ImmutableList<string>,
-  ) => accountIds.map((id) => accounts.get(id)),
+const selectAccounts = createAppSelector(
+  [(state) => state.accounts, (_, accountIds: string[]) => accountIds],
+  (accounts, accountIds) =>
+    accountIds
+      .map((id) => accounts.get(id)?.toJS())
+      .filter(filterNulls) as unknown as AccountShapeFull[],
 );
 
-const getStatus = makeGetStatus();
-
-interface Conversation {
+export interface TConversation {
   id: string;
   unread: boolean;
-  accounts: ImmutableList<string>;
+  accounts: string[];
   last_status: string | null;
 }
 
 export const Conversation: React.FC<{
-  conversation: ImmutableRecord<Conversation>;
-  scrollKey: string;
-}> = ({ conversation, scrollKey }) => {
-  const id = conversation.get('id');
-  const unread = conversation.get('unread');
-  const lastStatusId = conversation.get('last_status');
-  const accountIds = conversation.get('accounts');
+  conversation: TConversation;
+}> = ({ conversation }) => {
+  const id = conversation.id;
+  const unread = conversation.unread;
+  const lastStatusId = conversation.last_status;
+  const accountIds = conversation.accounts;
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const lastStatus = useAppSelector(
-    (state) =>
-      // @ts-expect-error getStatus isn't properly typed yet
-      getStatus(state, { id: lastStatusId }) as
-        | ImmutableRecord<StatusShape>
-        | undefined,
-  );
-  const accounts = useAppSelector((state) => getAccounts(state, accountIds));
+  const lastStatus = useAccountStatus(lastStatusId);
+  const accounts = useAppSelector((state) => selectAccounts(state, accountIds));
 
   const handleClick = useCallback(() => {
     if (unread) {
@@ -104,81 +95,76 @@ export const Conversation: React.FC<{
     }
 
     if (lastStatus) {
-      history.push(
-        `/@${lastStatus.getIn(['account', 'acct']) as string}/${lastStatus.get('id')}`,
-      );
+      history.push(statusLink(lastStatus));
     }
   }, [dispatch, history, unread, id, lastStatus]);
 
-  const handleMarkAsRead = useCallback(() => {
-    dispatch(markConversationRead(id));
-  }, [dispatch, id]);
-
   const handleReply = useCallback(() => {
-    dispatch(replyComposeById({ statusId: lastStatus?.get('id') }));
+    dispatch(replyComposeById({ statusId: lastStatus?.id }));
+  }, [dispatch, lastStatus]);
+
+  const handleShowMore = useCallback(() => {
+    if (lastStatus) {
+      dispatch(toggleStatusSpoilers(lastStatus.id));
+    }
+  }, [dispatch, lastStatus]);
+
+  const handleConversationMute = useCallback(() => {
+    if (lastStatus?.muted) {
+      dispatch(unmuteStatus(lastStatus.id));
+    } else {
+      dispatch(muteStatus(lastStatus?.id));
+    }
   }, [dispatch, lastStatus]);
 
   const handleDelete = useCallback(() => {
     dispatch(deleteConversation(id));
   }, [dispatch, id]);
 
-  const handleConversationMute = useCallback(() => {
-    if (!lastStatus) return;
+  const handleMarkAsRead = useCallback(() => {
+    dispatch(markConversationRead(id));
+  }, [dispatch, id]);
 
-    if (lastStatus.get('muted')) {
-      dispatch(unmuteStatus(lastStatus.get('id')));
-    } else {
-      dispatch(muteStatus(lastStatus.get('id')));
-    }
-  }, [dispatch, lastStatus]);
+  const menu = useMemo(() => {
+    const menu = [
+      { text: intl.formatMessage(messages.open), action: handleClick },
+      null,
+      {
+        text: intl.formatMessage(
+          lastStatus?.muted
+            ? messages.unmuteConversation
+            : messages.muteConversation,
+        ),
+        action: handleConversationMute,
+      },
+    ];
 
-  const handleShowMore = useCallback(() => {
-    if (lastStatus) {
-      dispatch(toggleStatusSpoilers(lastStatus.get('id')));
+    if (unread) {
+      menu.push({
+        text: intl.formatMessage(messages.markAsRead),
+        action: handleMarkAsRead,
+      });
+      menu.push(null);
     }
-  }, [dispatch, lastStatus]);
+
+    menu.push({
+      text: intl.formatMessage(messages.delete),
+      action: handleDelete,
+    });
+    return menu;
+  }, [
+    handleClick,
+    handleConversationMute,
+    handleDelete,
+    handleMarkAsRead,
+    intl,
+    lastStatus?.muted,
+    unread,
+  ]);
 
   if (!lastStatus) {
     return null;
   }
-
-  const menu = [
-    { text: intl.formatMessage(messages.open), action: handleClick },
-    null,
-    {
-      text: intl.formatMessage(
-        lastStatus.get('muted')
-          ? messages.unmuteConversation
-          : messages.muteConversation,
-      ),
-      action: handleConversationMute,
-    },
-  ];
-
-  if (unread) {
-    menu.push({
-      text: intl.formatMessage(messages.markAsRead),
-      action: handleMarkAsRead,
-    });
-    menu.push(null);
-  }
-
-  menu.push({
-    text: intl.formatMessage(messages.delete),
-    action: handleDelete,
-  });
-
-  const names: React.ReactNode = accounts
-    .map((account) =>
-      account ? (
-        <LinkedDisplayName
-          displayProps={{ account, variant: 'simple' }}
-          key={account.get('id')}
-        />
-      ) : null,
-    )
-    .filter(Boolean)
-    .reduce((prev, cur) => [prev, ', ', cur]);
 
   const handlers = {
     reply: handleReply,
@@ -189,7 +175,11 @@ export const Conversation: React.FC<{
   return (
     <Hotkeys handlers={handlers}>
       <div
-        className={classNames('conversation focusable muted', { unread })}
+        className={classNames(
+          'conversation focusable muted',
+          { unread },
+          classes.conversation,
+        )}
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={0}
       >
@@ -198,64 +188,45 @@ export const Conversation: React.FC<{
           onClick={handleClick}
           role='presentation'
         >
-          <AvatarComposite accounts={accounts} size={48} />
+          <Avatars
+            accounts={accounts.slice(0, 3)}
+            wrapperClassName={classNames(
+              classes.avatars,
+              accounts.length === 1 && classes.avatarsSingle,
+            )}
+            size={accounts.length === 1 ? 48 : 24}
+          />
         </div>
 
         <div className='conversation__content'>
-          <div className='conversation__content__info'>
-            <div className='conversation__content__relative-time'>
-              {unread && <span className='conversation__unread' />}{' '}
-              <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
-            </div>
-
-            <AnimateEmojiProvider className='conversation__content__names'>
-              <FormattedMessage
-                id='conversation.with'
-                defaultMessage='With {names}'
-                values={{ names: <span>{names}</span> }}
-              />
-            </AnimateEmojiProvider>
-          </div>
+          <StatusHeaderAuthors status={lastStatus} className={classes.names} />
 
           <StatusContent
-            // @ts-expect-error StatusContent isn't typed yet
             status={lastStatus}
             onClick={handleClick}
-            expanded={!lastStatus.get('hidden')}
-            onExpandedToggle={handleShowMore}
+            onReadMore={handleShowMore}
             collapsible
           />
 
-          {lastStatus
-            // @ts-expect-error Status isn't properly typed yet
-            .get('media_attachments').size > 0 && (
-            <AttachmentList
-              compact
-              media={lastStatus.get('media_attachments')}
-            />
+          {lastStatus.media_attachments.length > 0 && (
+            <ConversationAttachments media={lastStatus.media_attachments} />
           )}
 
           <div className='status__action-bar'>
-            <IconButton
-              className='status__action-bar-button'
-              title={intl.formatMessage(messages.reply)}
-              icon='reply'
-              iconComponent={StatusReplyIcon}
-              onClick={handleReply}
-            />
+            <IconButton icon={StatusReplyIcon} onClick={handleReply} size='sm'>
+              <FormattedMessage id='status.reply' defaultMessage='Reply' />
+            </IconButton>
 
             <div className='status__action-bar-dropdown'>
-              <Dropdown
-                scrollKey={scrollKey}
-                // @ts-expect-error Dropdown status prop isn't properly typed
-                status={lastStatus}
-                items={menu}
-                icon='ellipsis-h'
-                iconComponent={MoreHorizIcon}
-                size={18}
-                direction='right'
-                title={intl.formatMessage(messages.more)}
-              />
+              <Menu>
+                <MenuTrigger as={IconButton} icon={DotsThreeIcon} size='sm'>
+                  <FormattedMessage id='status.more' defaultMessage='More' />
+                </MenuTrigger>
+
+                <MenuList placement='bottom-end'>
+                  <LegacyDropdownMenuItems items={menu} />
+                </MenuList>
+              </Menu>
             </div>
           </div>
         </div>

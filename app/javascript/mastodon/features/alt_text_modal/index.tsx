@@ -21,9 +21,8 @@ import { Tesseract as fetchTesseract } from '@/mastodon/features/ui/util/async-c
 import { showAlertForError } from 'mastodon/actions/alerts';
 import { uploadThumbnail } from 'mastodon/actions/compose';
 import { changeUploadCompose } from 'mastodon/actions/compose_typed';
-import { Button } from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button/redesign';
 import { GIFV } from 'mastodon/components/gifv';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { Skeleton } from 'mastodon/components/skeleton';
 import { Audio } from 'mastodon/features/audio';
@@ -84,7 +83,9 @@ const UploadButton: React.FC<{
 
   return (
     <label>
-      <Button onClick={handleClick}>{children}</Button>
+      <Button onClick={handleClick} variant='solid' color='accent'>
+        {children}
+      </Button>
 
       <input
         id='upload-modal__thumbnail'
@@ -402,15 +403,14 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
     return (
       <div className='modal-root__modal dialog-modal'>
         <div className='dialog-modal__header'>
-          <Button onClick={handleSubmit} disabled={!valid}>
-            {isSaving ? (
-              <LoadingIndicator />
-            ) : (
-              <FormattedMessage
-                id='alt_text_modal.done'
-                defaultMessage='Done'
-              />
-            )}
+          <Button
+            onClick={handleSubmit}
+            disabled={!valid}
+            loading={isSaving}
+            variant='solid'
+            color='accent'
+          >
+            <FormattedMessage id='alt_text_modal.done' defaultMessage='Done' />
           </Button>
 
           <NavigationFocusTarget
@@ -423,7 +423,7 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
             />
           </NavigationFocusTarget>
 
-          <Button secondary onClick={onClose}>
+          <Button onClick={onClose}>
             <FormattedMessage
               id='alt_text_modal.cancel'
               defaultMessage='Cancel'
@@ -491,17 +491,18 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
 
                 <div className='spacer' />
 
-                <button
-                  className='link-button'
+                <Button
+                  variant='ghost'
+                  color='accent'
+                  size='sm'
                   onClick={handleDetectClick}
                   disabled={type !== 'image' || isDetecting}
-                  type='button'
                 >
                   <FormattedMessage
                     id='alt_text_modal.add_text_from_image'
                     defaultMessage='Add text from image'
                   />
-                </button>
+                </Button>
 
                 <InfoButton />
               </div>

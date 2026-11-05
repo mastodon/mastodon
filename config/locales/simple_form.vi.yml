@@ -3,11 +3,11 @@ vi:
   simple_form:
     hints:
       account:
-        attribution_domains: Nhập mỗi cái một dòng, để tránh bị kết nối lẫn lộn với nhau.
+        attribution_domains: Nhập mỗi cái một dòng, để tránh bị ghi nhận sai.
         discoverable: Bạn có thể được nêu bật trong một gói khởi đầu của người khác. Bạn và tút công khai của bạn sẽ được đề xuất trên Mastodon.
         display_name: Tên đầy đủ hoặc biệt danh đều được.
         fields: Website, nghề nghiệp, tuổi hoặc bất kỳ thứ gì bạn thích.
-        indexable: Mọi người có thể tìm kiếm và tương tác với những bài đăng công khai của bạn trên Mastodon.
+        indexable: Mọi người có thể tìm kiếm và tương tác với những tút công khai của bạn trên Mastodon.
         note: 'Bạn có thể @aiđó hoặc #hashtags.'
         show_collections: Mọi người sẽ biết bạn theo dõi ai và ai theo dõi bạn.
         unlocked: Mọi người sẽ theo dõi bạn mà không cần bạn cho phép.
@@ -50,13 +50,13 @@ vi:
         email: Bạn vừa được nhận một email xác minh
         header: WEBP, PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         inbox_url: Sao chép URL của máy chủ mà bạn muốn dùng
-        irreversible: Bài đăng đã bị lọc qua sẽ không bao giờ hiển thị nữa, kể cả sau khi tắt bộ lọc
+        irreversible: Tút đã bị lọc sẽ không bao giờ hiển thị nữa, kể cả sau khi xóa bộ lọc
         locale: Ngôn ngữ của giao diện, email và thông báo đẩy
         password: Tối thiểu 8 ký tự
-        phrase: Khớp hiển thị với văn bản hoặc nội dung cảnh báo của bài đăng
+        phrase: Hiển thị khớp với văn bản hoặc nội dung cảnh báo của tút
         scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
-        setting_advanced_layout: Bố cục hiển thị nhiều cột. Cho phép bạn xem bảng tin, thông báo và một cột thứ ba tùy ý. Không khuyên dùng trên màn hình nhỏ.
-        setting_aggregate_reblogs: Không hiển thị lại những bài boost mới đã được boost trước đó (áp dụng cho bài boost mới)
+        setting_advanced_layout: Bố cục hiển thị nhiều cột. Cho phép bạn xem bảng tin, thông báo và một cột thứ ba tùy ý. Không nên dùng trên màn hình nhỏ.
+        setting_aggregate_reblogs: Không hiển thị lại những tút đăng lại đã có đăng lại trước đó (áp dụng cho những tút mới)
         setting_always_send_emails: Không gởi thông báo qua email khi bạn đang hoạt động trên Mastodon
         setting_boost_modal: Nếu bật, trước khi đăng lại sẽ mở hộp thoại xác nhận - trong đó bạn có thể thay đổi mức độ hiển thị tút của mình.
         setting_default_quote_policy_private: Không thể trích dẫn tút chỉ dành cho người theo dõi trên Mastodon.

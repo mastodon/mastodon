@@ -18,6 +18,7 @@
   border: 0;
   appearance: none;
   cursor: pointer;
+  position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -44,6 +45,12 @@
   &[aria-disabled='true'] {
     cursor: not-allowed;
     opacity: 0.5;
+  }
+
+  @media (forced-colors: active) {
+    &::before {
+      @include mixins.high-contrast-outline;
+    }
   }
 }
 

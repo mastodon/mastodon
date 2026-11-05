@@ -16,6 +16,10 @@
     outline: none;
   }
 
+  :global(.video-player) {
+    border-radius: var(--radius-4);
+  }
+
   :global(.media-gallery__alt__label--non-interactive) {
     @include mixins.type-label;
 

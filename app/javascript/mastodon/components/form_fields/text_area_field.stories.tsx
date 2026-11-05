@@ -46,7 +46,7 @@ export const WithWarning: Story = {
   args: {
     required: false,
     status: {
-      variant: 'warning',
+      variant: 'error',
       message: 'Special characters are not allowed',
     },
   },

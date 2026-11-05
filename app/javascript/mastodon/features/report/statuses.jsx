@@ -7,9 +7,9 @@ import { OrderedSet } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { Button } from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button/redesign';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
-import StatusCheckBox from 'mastodon/features/report/containers/status_check_box_container';
+import { StatusCheckBox } from './components/status_check_box'
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 
 const mapStateToProps = (state, { accountId }) => ({
@@ -57,7 +57,7 @@ class Statuses extends PureComponent {
         <div className='flex-spacer' />
 
         <div className='report-dialog-modal__actions'>
-          <Button onClick={this.handleNextClick}><FormattedMessage id='report.next' defaultMessage='Next' /></Button>
+          <Button onClick={this.handleNextClick} variant='solid' color='accent'><FormattedMessage id='report.next' defaultMessage='Next' /></Button>
         </div>
       </>
     );

@@ -484,7 +484,7 @@ RSpec.describe Auth::SessionsController do
         before do
           user.generate_sign_in_token
           user.save
-          post :create, params: { user: { sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_id: user.id }
+          post :create, params: { user: { sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
         end
 
         it 'redirects to home' do
@@ -498,7 +498,7 @@ RSpec.describe Auth::SessionsController do
 
       context 'when using an invalid sign in token' do
         before do
-          post :create, params: { user: { sign_in_token_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id }
+          post :create, params: { user: { sign_in_token_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
         end
 
         it 'shows a login error' do
@@ -512,7 +512,7 @@ RSpec.describe Auth::SessionsController do
 
       context 'when requesting a new sign in token' do
         subject do
-          post :create, params: { sign_in_token_resend: '', user: { sign_in_token_attempt: '' } }, session: { attempt_user_id: user.id }
+          post :create, params: { sign_in_token_resend: '', user: { sign_in_token_attempt: '' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
         end
 
         before do

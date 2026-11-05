@@ -11,7 +11,6 @@ The following instructions will guide you through the process of setting up a lo
 
 There are instructions for these environments:
 
-- [Vagrant](#vagrant)
 - [macOS](#macos)
 - [Linux](#linux)
 - [Docker](#docker)
@@ -19,18 +18,6 @@ There are instructions for these environments:
 - [GitHub Codespaces](#github-codespaces)
 
 Once completed, continue with the [Next steps](#next-steps) section below.
-
-### Vagrant
-
-A **Vagrant** configuration is included for development purposes. To use it,
-complete the following steps:
-
-- Install Vagrant and Virtualbox
-- Install the `vagrant-hostsupdater` plugin:
-  `vagrant plugin install vagrant-hostsupdater`
-- Run `vagrant up`
-- Run `vagrant ssh -c "cd /vagrant && bin/dev"`
-- Open `http://mastodon.local` in your browser
 
 ### macOS
 

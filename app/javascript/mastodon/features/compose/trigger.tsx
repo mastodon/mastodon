@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -6,10 +6,13 @@ import classNames from 'classnames';
 import { useRouteMatch } from 'react-router';
 
 import { PenNibIcon, ReadCvLogoIcon } from '@phosphor-icons/react';
+import { isIPad, isWebKit } from '@react-aria/utils';
 
 import type { IconButtonProps } from '@/mastodon/components/button/redesign';
 import { IconButton } from '@/mastodon/components/button/redesign';
+import { useBodyScrollLock } from '@/mastodon/hooks/useBodyScrollLock';
 import { useResizeObserver } from '@/mastodon/hooks/useObserver';
+import { useViewportSize } from '@/mastodon/hooks/useViewportSize';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
   minimizeComposerToggle,
@@ -18,12 +21,14 @@ import {
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { includeMultiColumnPaths } from '@/mastodon/utils/react_router';
 
-import { useBreakpoint } from '../ui/hooks/useBreakpoint';
+import { BREAKPOINTS, useBreakpoint } from '../ui/hooks/useBreakpoint';
 
 import { ComposeFormHeader } from './components/header';
 import { ComposeForm } from './form';
 import composerClasses from './styles.module.scss';
 import classes from './trigger.module.scss';
+
+const NARROW_HEIGHT = 500;
 
 export const ComposeButton: React.FC<{
   /**
@@ -38,19 +43,7 @@ export const ComposeButton: React.FC<{
     isMobile,
   });
 
-  // Update viewport based on visual size in order to account for the virtual keyboard.
-  const [viewportHeight, setViewportHeight] = useState<null | number>(null);
-  useEffect(() => {
-    const updateHeight = () => {
-      setViewportHeight(visualViewport?.height ?? null);
-    };
-
-    visualViewport?.addEventListener('resize', updateHeight);
-
-    return () => {
-      visualViewport?.removeEventListener('resize', updateHeight);
-    };
-  }, []);
+  const viewport = useViewportSize();
 
   const dispatch = useAppDispatch();
   const handleComposerOpen: React.MouseEventHandler<HTMLButtonElement> =
@@ -79,6 +72,12 @@ export const ComposeButton: React.FC<{
 
   const trackComposerHeight = useTrackComposerHeight();
 
+  const isFullscreen =
+    viewport.height < NARROW_HEIGHT ||
+    viewport.width < BREAKPOINTS.openable ||
+    (isIPad() && isWebKit());
+  useBodyScrollLock(isFullscreen && displayState === 'showing');
+
   if (!signedIn) {
     return null;
   }
@@ -90,7 +89,7 @@ export const ComposeButton: React.FC<{
 
   // Pass the viewport height as a CSS variable so it's only used for mobile.
   const style = {
-    '--viewport-height': viewportHeight ? `${viewportHeight}px` : undefined,
+    '--viewport-height': `${viewport.height}px`,
   } as React.CSSProperties;
 
   if (displayState === 'minimized') {
@@ -105,7 +104,7 @@ export const ComposeButton: React.FC<{
         <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
       </FloatingActionButton>
     ) : (
-      <div className={classes.root} style={style}>
+      <div className={classes.root} style={style} data-fullscreen={false}>
         {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           onClick={handleMinimizedTextClick}
@@ -124,7 +123,12 @@ export const ComposeButton: React.FC<{
 
   if (displayState === 'showing') {
     return (
-      <div className={classes.root} style={style} ref={trackComposerHeight}>
+      <div
+        className={classes.root}
+        style={style}
+        ref={trackComposerHeight}
+        data-fullscreen={isFullscreen}
+      >
         <ComposeForm autoFocus className={classes.composer} />
       </div>
     );

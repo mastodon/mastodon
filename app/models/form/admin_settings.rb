@@ -51,6 +51,8 @@ class Form::AdminSettings
     opt_in_server_recommendation
     postpone_confirmation_emails
     theme_color
+    custom_robots
+    override_robots
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -76,6 +78,7 @@ class Form::AdminSettings
     opt_in_server_recommendation
     wrapstodon
     postpone_confirmation_emails
+    override_robots
   ).freeze
 
   UPLOAD_KEYS = %i(

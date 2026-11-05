@@ -8,6 +8,8 @@ ru:
     hosted_on: Сервер Mastodon на сайте %{domain}
     title: О проекте
   accounts:
+    api_errors:
+      pending_approval: Ваша учётная запись ожидает одобрения модераторов
     errors:
       cannot_be_added_to_collections: Пользователь не может быть добавлен в подборки.
     followers:
@@ -269,11 +271,13 @@ ru:
         create_domain_block_html: "%{name} заблокировал(а) домен %{target}"
         create_email_domain_block_html: "%{name} заблокировал(а) домен электронной почты %{target}"
         create_ip_block_html: "%{name} создал(а) правило для IP %{target}"
+        create_moderation_subscription_html: '%{name} создал(а) подписку модерации "%{target}"'
         create_relay_html: "%{name} добавил(а) ретранслятор %{target}"
         create_unavailable_domain_html: "%{name} приостановил(а) доставку на сервер %{target}"
         create_user_role_html: "%{name} создал(а) роль %{target}"
         create_username_block_html: "%{name} создал(а) правило для имён пользователей, содержащих %{target}"
         demote_user_html: "%{name} разжаловал(а) пользователя %{target}"
+        destroy_account_html: "%{name} удалил данные аккаунта: %{target}"
         destroy_announcement_html: "%{name} удалил(а) объявление %{target}"
         destroy_canonical_email_block_html: "%{name} разблокировал(а) адрес электронной почты с хешем %{target}"
         destroy_collection_html: "%{name} удалил(а) подборку пользователя %{target}"
@@ -283,6 +287,7 @@ ru:
         destroy_email_domain_block_html: "%{name} разблокировал(а) домен электронной почты %{target}"
         destroy_instance_html: "%{name} удалил(а) данные сервера %{target}"
         destroy_ip_block_html: "%{name} удалил(а) правило для IP %{target}"
+        destroy_moderation_subscription_html: '%{name} удалил(а) подписку модерации "%{target}"'
         destroy_relay_html: "%{name} удалил(а) ретранслятор %{target}"
         destroy_status_html: "%{name} удалил(а) пост пользователя %{target}"
         destroy_unavailable_domain_html: "%{name} возобновил(а) доставку на сервер %{target}"
@@ -297,7 +302,11 @@ ru:
         enable_relay_html: "%{name} включил(а) ретранслятор %{target}"
         enable_sign_in_token_auth_user_html: "%{name} включил(а) аутентификацию с помощью одноразового пароля по электронной почте для %{target}"
         enable_user_html: "%{name} включил(а) учётную запись пользователя %{target}"
+        listable_tag_html: может появляться в рекомендациях
         memorialize_account_html: "%{name} превратил(а) учётную запись пользователя %{target} в мемориальную"
+        not_listable_tag_html: не будет появляться в рекомендациях
+        not_trendable_tag_html: не будет появляться в списке «актуального»
+        not_usable_tag_html: не может использоваться
         promote_user_html: "%{name} повысил(а) пользователя %{target}"
         publish_terms_of_service_html: "%{name} опубликовал(а) обновление пользовательского соглашения"
         reject_appeal_html: "%{name} отклонил(а) апелляцию %{target}"
@@ -310,6 +319,7 @@ ru:
         sensitive_account_html: "%{name} включил(а) принудительное скрытие медиа для учётной записи %{target}"
         silence_account_html: "%{name} ограничил(а) учётную запись %{target}"
         suspend_account_html: "%{name} заблокировал(а) учётную запись %{target}"
+        trendable_tag_html: может появляться в списке «актуального»
         unassigned_report_html: "%{name} отменил(а) назначение на жалобу %{target}"
         unblock_email_account_html: "%{name} разблокировал(а) адрес электронной почты пользователя %{target}"
         unsensitive_account_html: "%{name} отключил(а) принудительное скрытие медиа для учётной записи %{target}"
@@ -322,12 +332,22 @@ ru:
         update_ip_block_html: "%{name} внес(ла) изменения в правило для IP %{target}"
         update_report_html: "%{name} внес(ла) изменения в жалобу %{target}"
         update_status_html: "%{name} отредактировал(а) пост пользователя %{target}"
+        update_tag_html: "%{name} изменил(а) настройки для %{target}: "
         update_user_role_html: "%{name} внес(ла) изменения в роль %{target}"
         update_username_block_html: "%{name} внес(ла) изменения в правило для имён пользователей, содержащих %{target}"
+        usable_tag_html: может использоваться;
+      automated_actions:
+        create_domain_allow_html: Автоматически разрешена федерация с доменом %{target}
+        create_domain_block_html: Автоматически заблокирован домен %{target}
+        destroy_domain_allow_html: Автоматически запрещена федерация с доменом %{target}
+        destroy_domain_block_html: Автоматически разблокирован домен %{target}
+        update_domain_block_html: Автоматически обновлена блокировка домена %{target}
       deleted_account: удалённая учётная запись
+      deleted_suggestion: удалённая подписка модерации
       empty: Журнал пуст.
       filter_by_action: Фильтр по действию
       filter_by_user: Фильтр по пользователю
+      suggested_by_html: Действие предложено подпиской "%{subscription}"
       title: Журнал аудита
       unavailable_instance: "(доменное имя недоступно)"
     announcements:
@@ -453,6 +473,11 @@ ru:
       undo: Исключить из белого списка
     domain_blocks:
       add_new: Заблокировать домен
+      confirm_downgrade:
+        cancel: Отмена
+        confirm: Снизить
+        preamble_html: Вы пытаетесь снизить уровень существующей блокировки домена <strong>%{domain}</strong> и его поддоменов.
+        title: Подтвердите понижение уровня блокировки домена %{domain}
       confirm_suspension:
         cancel: Отмена
         confirm: Приостановить
@@ -527,8 +552,20 @@ ru:
         last_email: Последнее письмо отправлено
         lead: Пользователи, на почтовую рассылку которых кто-то подписался, будут показаны ниже.
         show:
+          confirm_disable_feature: Отключить рассылку обновлений по электронной почте для %{name}? Этот аккаунт больше не будет их получать. Пользователь сможет снова включить рассылку в своих настройках аккаунта. Чтобы полностью удалить доступ к этой функции, измените права аккаунта на странице "Роли".
+          confirm_remove_subscriber: "%{email} больше не будет получать электронную почту от %{name}. Это действие нельзя отменить."
+          consent: Подписчики согласились на получение только постов через электронную почту. Не используйте этот список в других целях.
+          date: Дата регистрации
           disable_feature: Отключить функцию
+          disabled: Эта функция была отключена, и письма больше не отправляются в этот список.
+          email: Адрес электронной почты
+          empty:
+            hint: Пока ещё никто не подписан на эту учётную запись.
+            no_subscribers_yet: Ещё нет подписчиков
           enable_feature: Включить функцию
+          no_access_html: Эта учётная запись больше не имеет права включить эту функцию. Измените это на странице "<a href="%{roles_path}">Роли</a>.
+          title: Рассылки по электронной почте от %{name}
+          view_account: Просмотр учётной записи
         status: Состояние
         subscribers: Подписчики
         title: Списки рассылки
@@ -559,6 +596,7 @@ ru:
       disabled_msg: Почтовые рассылки отключены.
       index:
         disabled:
+          cannot_be_enabled: Ваш технический провайдер не включил эту функцию для вашего сервера.
           description: Включите списки рассылки, чтобы определённые пользователи могли добавить в свой профиль виджет, позволяющий подписаться на новые посты без аккаунта Mastodon.
           get_started: Продолжить
         lead: Эта функция позволяет посетителям сервера оформлять подписку на новые посты определённых пользователей по электронной почте.
@@ -567,6 +605,9 @@ ru:
       roles:
         accounts: Учётные записи
         edit_role: Изменить роль
+        empty:
+          hint: Ни у кого нет права использовать эту функцию.
+          no_roles_added: Нет добавленных ролей
         lead: Пользователи с перечисленными ниже ролями могут включить эту функцию в своём профиле.
         manage_roles: Настроить роли
         role_name: Название роли
@@ -596,6 +637,11 @@ ru:
         title: Импорт доменных блокировок
       no_file: Файл не выбран
     fasp:
+      capabilities:
+        activation_msg: Способность успешно включена.
+        deactivation_msg: Способность успешно отключена.
+        disable: Отключить
+        enable: Включить
       debug:
         callbacks:
           created_at: Создано в
@@ -605,6 +651,7 @@ ru:
       providers:
         active: Активен
         base_url: Основной URL
+        capabilities: Способности
         delete: Удалить
         edit: Редактировать поставщика
         finish_registration: Завершить регистрацию
@@ -628,6 +675,8 @@ ru:
       title: Рекомендации профилей
       unsuppress: Восстановить рекомендацию
     instances:
+      advisories:
+        title: Рекомендации от подписок модерации
       audit_log:
         title: Последние записи из журналы аудита
         view_all: Открыть журнал аудита
@@ -655,6 +704,7 @@ ru:
         comment: Внутренняя заметка
         description_html: Вы можете определить политики контента, которые будут применяться ко всем учетным записям этого домена и любого из его субдоменов.
         limited_federation_mode_description_html: Вы можете разрешить или запретить федерацию с этим сервером.
+        moderation_subscription: Подписка модерации
         policies:
           reject_media: Отклонить медиа
           reject_reports: Отклонять жалобы
@@ -737,6 +787,92 @@ ru:
       reset: Сбросить
       search: Поиск
       title: Правила для IP-адресов
+    moderation_subscriptions:
+      add_new: Добавить подписку
+      advisory_action: 'Действие: %{action}'
+      advisory_actions:
+        accept: разрешить
+        limit: заглушить
+        reject: заблокировать
+      apply_automatically: Применять рекомендации автоматически
+      apply_conditions:
+        always: Всегда
+        never: Никогда
+        safely: Только если это не приводит к разрыву отношений
+      apply_conditions_hint:
+        always: Всегда применять рекомендуемые действия автоматически. Используйте только для списков, которым вы доверяете.
+        never: Никогда не применять рекомендуемые действия автоматически. Вместо этого генерировать предложение.
+        safely: Применять рекомендуемые действия, кроме случаев, когда они оборвут существующие подписки местных пользователей. В таких случаях будет генерироваться предложение.
+      delete: Удалить
+      destroyed_msg: Подписка модерации успешно удалена
+      empty: Ещё нет никаких подписок на списки модерации.
+      last_synced_at: Последняя синхронизация
+      list_action: Тип подписки
+      list_actions:
+        accept: Список разрешения
+        default: Смешанный (разрешения и запреты)
+        reject: Список запрета
+      list_actions_hint:
+        accept: Элементы без указанного действия будут рассматриваться как разрешения. Блокировки будут игнорироваться.
+        default: Элементы без указанного действия будут рассматироваться как блокировки. Блокировки и разрешения оба будут использованы.
+        reject: Элементы без указанного действия будут рассматриваться как блокировки. Разрешения будут игнорироваться.
+      list_actions_short:
+        accept: Разрешения
+        default: Смешанные
+        reject: Блокировки
+      name: Имя
+      new:
+        create: Подписаться
+        title: Новая подписка модерации
+      override_unattributed: Перехват ручных блокировок
+      override_unattributed_hint: Разрешить этой подписке автоматически повышать уровень или брать контроль над уже существующими ручными блокировками при автоматическом применении рекомендаций.
+      policies:
+        apply_advisories: Рекомендации применяются автоматически
+        apply_advisories_safely: Рекомендации применяются, если они не обрывают подписки
+        apply_retractions: Отмены рекомендаций применяются автоматически
+      priority: Приоритет
+      priority_hint: Подписки модерации рассчитываются по порядку приоритета; подписки с более низким значением "перекрывают" подписки с более высоким.
+      retract_automatically: Автоматически отменять рекомендации
+      retract_automatically_hint: Разрешить или нет удаление или снижение уровня правил модерации при удалении соответствующей рекомендации из подписки. Когда настройка включена и эквивалентный элемент существует в менее приоритетном списке, то тот элемент будет применён. Когда настройка выключена, вместо этого будет генерироваться предложение.
+      show:
+        delete_confirm: Вы уверены, что хотите удалить эту подписку модерации?
+        edit: Редактировать подписку
+        empty: У этой подписки пока нет рекомендаций.
+        title: 'Подписка модерации: %{name}'
+      tabs:
+        logs: Журналы
+        subscriptions: Подписки
+        suggestions: Предложения
+      title: Подписки модерации
+      type: Тип
+      types:
+        csv_list: Список CSV
+      url: URL
+    moderation_subscriptions_logs:
+      title: Журналы подписок модерации
+    moderation_suggestions:
+      actions:
+        accept: Разрешить
+        limit: Ограничить
+        reject: Заблокировать
+        retract: Отменить текущую политику
+      applied_msg: 'Успешно применено предложение: %{target_key}'
+      apply_accept: Разрешить
+      apply_limit: Ограничить
+      apply_reject: Заблокировать
+      apply_retract: Отменить
+      current_states:
+        accept: сейчас разрешено
+        limit: сейчас ограничено
+        reject: сейчас заблокировано
+      description: Ниже приведены предложения от вашей подписки модерации, в порядке приоритета.
+      destroyed_msg: 'Успешно отклонено предложение: %{target_key}'
+      dismiss: Отклонить предложения
+      empty: На данный момент отсутствуют предложения модерации.
+      retracted_msg: 'Политика модерации отменена: %{target_key}'
+      suggested_from_html: 'Источник предложения: %{link}'
+      title: Предложения модерации
+      unable_to_apply_msg: Ошибка при применении предложения для "%{target_key}"
     relationships:
       title: Отношения пользователя %{acct}
     relays:
@@ -880,6 +1016,8 @@ ru:
         administrator_description: Пользователи с этим разрешением смогут обойти любую проверку разрешений
         delete_user_data: Удаление пользовательских данных
         delete_user_data_description: Разрешить пользователям моментально удалять данные других пользователей
+        invite_bypass_approval: Приглашать пользователей без одобрения
+        invite_bypass_approval_description: Разрешает пользователям, приглашённым этими пользователями, не проходить одобрение модераторов
         invite_users: Приглашение пользователей
         invite_users_description: Разрешить пользователям приглашать на сервер новых людей
         manage_announcements: Управление объявлениями
@@ -890,6 +1028,7 @@ ru:
         manage_blocks_description: Позволить пользователям блокировать провайдеров электронной почты и IP-адреса
         manage_custom_emojis: Управление эмодзи
         manage_custom_emojis_description: Разрешить пользователям управлять эмодзи этого сервера
+        manage_email_subscriptions: Управлять подписками по электронной почте
         manage_federation: Управление федерацией с другими серверами
         manage_federation_description: Позволяет пользователям блокировать или разрешить объединение с другими доменами и контролировать возможность доставки
         manage_invites: Управление приглашениями
@@ -1283,6 +1422,8 @@ ru:
     new_pending_account:
       body: Ниже указана информация учётной записи. Вы можете одобрить или отклонить заявку.
       subject: Новая учётная запись для рассмотрения на %{instance} (%{username})
+    new_pending_accounts:
+      body: На сервере %{instance} были созданы новые учётные записи, но так как сервер был настроен на отправку писем подтверждения адреса электронной почты только после одобрения со стороны модераторов, у этих пользователей пока ещё не было возможности подтвердить свой адрес. Ниже указаны подробности этих учётных записей. Вы можете одобрить или отказать в их регистрации.
     new_report:
       body: "%{reporter} подал(а) жалобу на %{target}"
       body_remote: Кто-то с узла %{domain} пожаловался на %{target}
