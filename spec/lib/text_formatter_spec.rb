@@ -113,12 +113,10 @@ RSpec.describe TextFormatter do
     context 'when given a stand-alone IDN URL' do
       let(:text) { 'https://nic.みんな/' }
 
-      it 'matches the full URL' do
-        expect(subject).to include 'href="https://nic.みんな/"'
-      end
-
-      it 'has display URL' do
-        expect(subject).to include '<span class="">nic.みんな/</span>'
+      it 'matches the full URL and includes display url' do
+        expect(subject)
+          .to include('href="https://nic.みんな/"')
+          .and include('<span class="">nic.みんな/</span>')
       end
     end
 
@@ -279,30 +277,28 @@ RSpec.describe TextFormatter do
     context 'when given a URL containing unsafe code (XSS attack, visible part)' do
       let(:text) { 'http://example.com/b<del>b</del>' }
 
-      it 'does not include the HTML in the URL' do
+      it 'does not include the HTML in the URL and escapes the HTML', :aggregate_failures do
         # This is subtle: The old spec required that a part of the URL
         # was included, this requires that the attacker's part is not,
         # as the text above says. (The code in the same commit creates
         # no link at all.)
-        expect(subject).to_not match(/<a\b[^>]*del/i)
-      end
-
-      it 'escapes the HTML' do
-        expect(subject).to include '&lt;del&gt;b&lt;/del&gt;'
+        expect(subject)
+          .to_not match(/<a\b[^>]*del/i)
+        expect(subject)
+          .to include '&lt;del&gt;b&lt;/del&gt;'
       end
     end
 
     context 'when given a URL containing unsafe code (XSS attack, invisible part)' do
       let(:text) { 'http://example.com/blahblahblahblah/a<script>alert("Hello")</script>' }
 
-      it 'does not include the HTML in the URL' do
+      it 'does not include the HTML in the URL and escapes the HTML', :aggregate_failures do
         # Again, this requires that the attacker's attack is not included,
         # and the code passes by not creating a link at all.
-        expect(subject).to_not match(/<a\b[^>]*(?:script|alert)/i)
-      end
-
-      it 'escapes the HTML' do
-        expect(subject).to include '&lt;script&gt;alert(&quot;Hello&quot;)&lt;/script&gt;'
+        expect(subject)
+          .to_not match(/<a\b[^>]*(?:script|alert)/i)
+        expect(subject)
+          .to include '&lt;script&gt;alert(&quot;Hello&quot;)&lt;/script&gt;'
       end
     end
 
@@ -447,14 +443,14 @@ RSpec.describe TextFormatter do
       # of the middle; overlap resolution must keep the xmpp URI whole.
       let(:text) { 'reach me at xmpp:arnt@grå.org if you like' }
 
-      it 'links the URI, not the mention buried inside it' do
-        expect(subject).to include 'href="xmpp:arnt@grå.org"'
-        expect(subject).to_not match(/<a[^>]*class="[^"]*mention/i)
-      end
-
-      it 'leaves the surrounding text intact' do
-        expect(subject).to include 'reach me at '
-        expect(subject).to include ' if you like'
+      it 'links the URI, not the mention buried inside it, and leaves surrounding text intact', :aggregate_failures do
+        expect(subject)
+          .to include 'href="xmpp:arnt@grå.org"'
+        expect(subject)
+          .to_not match(/<a[^>]*class="[^"]*mention/i)
+        expect(subject)
+          .to include('reach me at ')
+          .and include(' if you like')
       end
     end
 
@@ -462,12 +458,10 @@ RSpec.describe TextFormatter do
       let(:text) { '@alice ping xmpp:bob@grå.org thanks' }
       let!(:alice) { Fabricate(:account, username: 'alice') }
 
-      it 'keeps the mention' do
-        expect(subject).to match(/<a [^>]*href="#{Regexp.escape(ActivityPub::TagManager.instance.url_for(alice))}"/)
-      end
-
-      it 'keeps the xmpp URI' do
-        expect(subject).to include 'href="xmpp:bob@grå.org"'
+      it 'keeps the mention and keeps the XMPP URI' do
+        expect(subject)
+          .to match(/<a [^>]*href="#{Regexp.escape(ActivityPub::TagManager.instance.url_for(alice))}"/)
+          .and include('href="xmpp:bob@grå.org"')
       end
     end
   end
