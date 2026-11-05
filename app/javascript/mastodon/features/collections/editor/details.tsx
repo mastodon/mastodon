@@ -386,7 +386,7 @@ const TopicField: React.FC = () => {
       status={
         topicHasSpecialCharacters
           ? {
-              variant: 'warning',
+              variant: 'error',
               message: intl.formatMessage({
                 id: 'collections.topic_special_chars_hint',
                 defaultMessage:

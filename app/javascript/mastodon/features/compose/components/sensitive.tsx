@@ -80,6 +80,7 @@ export const ComposeSensitiveField: React.FC<
 
   return (
     <FormFieldWrapper
+      compact
       className={classes.sensitiveWrapper}
       status={
         errors.includes('missing-content-warning')
