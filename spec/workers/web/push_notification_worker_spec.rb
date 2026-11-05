@@ -10,7 +10,6 @@ RSpec.describe Web::PushNotificationWorker do
   let(:notification) { Fabricate(:notification) }
   let(:vapid_public_key) { 'BB37UCyc8LLX4PNQSe-04vSFvpUWGrENubUaslVFM_l5TxcGVMY0C3RXPeUJAQHKYlcOM2P4vTYmkoo0VZGZTM4=' }
   let(:vapid_private_key) { 'OPrw1Sum3gRoL4-DXfSCC266r-qfFSRZrnj8MgIhRHg=' }
-  let(:vapid_key) { Webpush::VapidKey.from_keys(vapid_public_key, vapid_private_key) }
   let(:contact_email) { 'sender@example.com' }
 
   # Legacy values
@@ -41,13 +40,10 @@ RSpec.describe Web::PushNotificationWorker do
 
   describe 'perform' do
     around do |example|
-      original_private = Rails.configuration.x.vapid.private_key
-      original_public = Rails.configuration.x.vapid.public_key
-      Rails.configuration.x.vapid.private_key = vapid_private_key
-      Rails.configuration.x.vapid.public_key = vapid_public_key
+      original_keyring = Rails.configuration.x.vapid
+      Rails.configuration.x.vapid = Mastodon::VapidKeyring.new([vapid_private_key])
       example.run
-      Rails.configuration.x.vapid.private_key = original_private
-      Rails.configuration.x.vapid.public_key = original_public
+      Rails.configuration.x.vapid = original_keyring
     end
 
     before do
