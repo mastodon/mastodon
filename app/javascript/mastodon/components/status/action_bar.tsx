@@ -33,6 +33,7 @@ import {
 } from './hooks';
 import { RemoveQuoteHint } from './legacy/action_bar/remove_quote_hint';
 import classes from './styles.module.scss';
+import { getStatusContent } from './utils';
 
 interface StatusActionBarProps {
   statusId: string;
@@ -67,14 +68,27 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
     // We need to make this partial as by default share always is set, despite not being supported in FF.
     const nav = navigator as Partial<Pick<Navigator, 'share'>> &
       Pick<Navigator, 'clipboard'>;
+
     if (nav.share) {
+      const statusContentHtml =
+        status?.translation?.contentHtml ?? status?.contentHtml;
+      const statusContent = getStatusContent(statusContentHtml ?? '');
+
       void nav.share({
+        text: statusContent,
         url: statusUrl,
       });
     } else {
       dispatch(statusInteraction({ statusId, intent: 'copy', contextType }));
     }
-  }, [contextType, dispatch, statusId, statusUrl]);
+  }, [
+    contextType,
+    status?.contentHtml,
+    status?.translation?.contentHtml,
+    dispatch,
+    statusId,
+    statusUrl,
+  ]);
 
   const { reply, like, bookmark } = useStatusIcons(statusId);
 
