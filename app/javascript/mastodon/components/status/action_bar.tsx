@@ -156,7 +156,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   );
 };
 
-const StatusReblogButton: React.FC<{
+export const StatusReblogButton: React.FC<{
   statusId: string;
   children: React.ReactNode;
 }> = ({ statusId, children }) => {
