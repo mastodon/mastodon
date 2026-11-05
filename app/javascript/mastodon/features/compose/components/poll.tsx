@@ -14,8 +14,7 @@ import {
   updatePollOption,
 } from '@/mastodon/actions/compose_typed';
 import { Button, buttonClasses } from '@/mastodon/components/button/redesign';
-import { ToggleField } from '@/mastodon/components/form_fields';
-import { TextInput } from '@/mastodon/components/form_fields/redesign';
+import { ToggleField, TextInput } from '@/mastodon/components/form_fields';
 import { useAppSelector, useAppDispatch } from '@/mastodon/store';
 import { DAY, HOUR, MINUTE } from '@/mastodon/utils/time';
 

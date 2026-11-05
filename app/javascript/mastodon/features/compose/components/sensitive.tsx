@@ -6,8 +6,7 @@ import { TrashIcon } from '@phosphor-icons/react';
 
 import { changeComposeSpoilerText } from '@/mastodon/actions/compose';
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { FormFieldWrapper } from '@/mastodon/components/form_fields';
-import { TextInput } from '@/mastodon/components/form_fields/redesign';
+import { FormFieldWrapper, TextInput } from '@/mastodon/components/form_fields';
 import {
   matchesKeyCode,
   normalizeKey,
