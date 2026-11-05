@@ -159,15 +159,13 @@ RSpec.describe ActivityPub::Activity::Update do
 
       before do
         status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
-        subject.perform
       end
 
-      it 'updates poll numbers' do
-        expect(status.preloadable_poll.cached_tallies).to eq [0, 12]
-      end
-
-      it 'does not set status as edited' do
-        expect(status.edited_at).to be_nil
+      it 'updates poll numbers and keeps edited nil', :aggregate_failures do
+        expect { subject.perform }
+          .to_not(change { status.reload.edited_at }.from(nil))
+        expect(status.preloadable_poll.cached_tallies)
+          .to eq [0, 12]
       end
     end
 
