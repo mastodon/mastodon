@@ -244,10 +244,12 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong role', 'Moderator'
     it_behaves_like 'forbidden for disabled user'
 
-    it 'returns the updated domain block', :aggregate_failures do
-      subject
+    it 'updates the block severity and returns the updated domain block', :aggregate_failures do
+      expect { subject }
+        .to change { domain_block.reload.severity }.from('silence').to('suspend')
 
-      expect(response).to have_http_status(200)
+      expect(response)
+        .to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
       expect(response.parsed_body).to match a_hash_including(
@@ -258,10 +260,6 @@ RSpec.describe 'Domain Blocks' do
           severity: 'suspend',
         }
       )
-    end
-
-    it 'updates the block severity' do
-      expect { subject }.to change { domain_block.reload.severity }.from('silence').to('suspend')
     end
 
     context 'when domain block does not exist' do
