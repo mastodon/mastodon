@@ -20,6 +20,7 @@ import { StatusActionBar } from './action_bar';
 import { StatusAttachments } from './attachments';
 import { StatusContent } from './content';
 import { StatusHashtagBar } from './hashtag_bar';
+import { computeHashtagBarForStatus } from './hashtag_utils';
 import { StatusHeader } from './header';
 import {
   StatusContext,
@@ -27,7 +28,6 @@ import {
   useStatusHandlers,
   useTextForScreenReader,
 } from './hooks';
-import { computeHashtagBarForStatus } from './legacy/hashtag_bar';
 import { StatusMeta } from './meta';
 import { StatusPrepend } from './prepend';
 import { StatusQuote } from './quote';
