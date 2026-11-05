@@ -5,12 +5,13 @@ import { defineMessages } from 'react-intl';
 import { CopyIcon } from '@phosphor-icons/react';
 import type { DistributedOmit } from 'type-fest';
 
-import { showAlert } from 'mastodon/actions/alerts';
-import { useAppDispatch } from 'mastodon/store';
-
-import { Button } from './button';
-import type { IconButtonProps } from './button/redesign';
-import { IconButton } from './button/redesign';
+import { showAlert } from '@/mastodon/actions/alerts';
+import type {
+  ButtonProps,
+  IconButtonProps,
+} from '@/mastodon/components/button/redesign';
+import { Button, IconButton } from '@/mastodon/components/button/redesign';
+import { useAppDispatch } from '@/mastodon/store';
 
 const messages = defineMessages({
   copied: {
@@ -36,10 +37,7 @@ export function useCopyToClipboard({ text }: { text: string }) {
 }
 
 export const CopyButton: React.FC<
-  Omit<
-    React.ComponentPropsWithoutRef<typeof Button>,
-    'onClick' | 'text' | 'children'
-  > & {
+  DistributedOmit<ButtonProps, 'onClick' | 'children'> & {
     value: string;
     children: React.ReactNode | ((wasCopied: boolean) => React.ReactNode);
   }
