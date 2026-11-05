@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Badge } from '@/mastodon/components/badge';
 import { Button } from '@/mastodon/components/button/redesign';
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
@@ -15,9 +16,10 @@ import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import { updateAccount } from 'mastodon/actions/accounts';
 import { closeOnboarding } from 'mastodon/actions/onboarding';
 import {
+  FormStack,
   TextAreaField,
   TextInputField,
-  Toggle,
+  ToggleField,
 } from 'mastodon/components/form_fields';
 import { Icon } from 'mastodon/components/icon';
 import { me } from 'mastodon/initial_state';
@@ -212,83 +214,76 @@ export const Profile: React.FC<{
               />
             </label>
           </div>
+        </div>
 
-          <div className='fields-group'>
-            <TextInputField
-              maxLength={maxDisplayNameLength ?? 40}
-              label={
-                <FormattedMessage
-                  id='onboarding.profile.display_name'
-                  defaultMessage='Display name'
-                />
-              }
-              hint={
-                <FormattedMessage
-                  id='onboarding.profile.display_name_hint'
-                  defaultMessage='Your full name or your fun name…'
-                />
-              }
-              value={displayName}
-              onChange={handleDisplayNameChange}
-              status={errors?.display_name ? 'error' : undefined}
-              id='display_name'
-            />
-          </div>
+        <FormStack>
+          <TextInputField
+            maxLength={maxDisplayNameLength ?? 40}
+            label={
+              <FormattedMessage
+                id='onboarding.profile.display_name'
+                defaultMessage='Display name'
+              />
+            }
+            hint={
+              <FormattedMessage
+                id='onboarding.profile.display_name_hint'
+                defaultMessage='Your full name or your fun name…'
+              />
+            }
+            value={displayName}
+            onChange={handleDisplayNameChange}
+            status={errors?.display_name ? 'error' : undefined}
+            id='display_name'
+          />
 
-          <div className='fields-group'>
-            <TextAreaField
-              maxLength={500}
-              label={
-                <FormattedMessage
-                  id='onboarding.profile.note'
-                  defaultMessage='Bio'
-                />
-              }
-              hint={
-                <FormattedMessage
-                  id='onboarding.profile.note_hint'
-                  defaultMessage='You can @mention other people or #hashtags…'
-                />
-              }
-              value={note}
-              onChange={handleNoteChange}
-              status={errors?.note ? 'error' : undefined}
-              id='note'
-            />
-          </div>
+          <TextAreaField
+            maxLength={500}
+            label={
+              <FormattedMessage
+                id='onboarding.profile.note'
+                defaultMessage='Bio'
+              />
+            }
+            hint={
+              <FormattedMessage
+                id='onboarding.profile.note_hint'
+                defaultMessage='You can @mention other people or #hashtags…'
+              />
+            }
+            value={note}
+            onChange={handleNoteChange}
+            status={errors?.note ? 'error' : undefined}
+            id='note'
+          />
 
-          <label className='app-form__toggle'>
-            <div className='app-form__toggle__label'>
-              <strong>
+          <ToggleField
+            label={
+              <>
                 <FormattedMessage
                   id='onboarding.profile.discoverable'
                   defaultMessage='Make my profile discoverable'
+                />{' '}
+                <Badge
+                  label={
+                    <FormattedMessage
+                      id='recommended'
+                      defaultMessage='Recommended'
+                    />
+                  }
                 />
-              </strong>{' '}
-              <span className='recommended'>
-                <FormattedMessage
-                  id='recommended'
-                  defaultMessage='Recommended'
-                />
-              </span>
-              <span className='hint'>
-                <FormattedMessage
-                  id='onboarding.profile.discoverable_hint'
-                  defaultMessage='When you opt in to discoverability on Mastodon, your posts may appear in search results and trending, and your profile may be suggested to people with similar interests to you.'
-                />
-              </span>
-            </div>
-
-            <div className='app-form__toggle__toggle'>
-              <div>
-                <Toggle
-                  checked={discoverable}
-                  onChange={handleDiscoverableChange}
-                />
-              </div>
-            </div>
-          </label>
-        </div>
+              </>
+            }
+            hint={
+              <FormattedMessage
+                id='onboarding.profile.discoverable_hint'
+                defaultMessage='When you opt in to discoverability on Mastodon, your posts may appear in search results and trending, and your profile may be suggested to people with similar interests to you.'
+              />
+            }
+            checked={discoverable}
+            onChange={handleDiscoverableChange}
+          />
+        </FormStack>
 
         <div className='spacer' />
 
