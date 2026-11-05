@@ -62,7 +62,7 @@ export const StatusHeader: React.FC<StatusHeaderProps> = ({
             role='presentation'
             tabIndex={-1}
             id={handleId}
-            data-main='true'
+            data-main-account-link='true'
           >
             {handle ?? <Skeleton width='7ch' />}
           </Link>
@@ -100,7 +100,7 @@ export const StatusHeaderAuthors: React.FC<
       {...accountStatusLinkProps(account)}
       className={classes.nameLink}
       aria-describedby={handleId}
-      data-main='true'
+      data-main-account-link='true'
     >
       <DisplayName account={account} variant='noDomain' />
     </Link>

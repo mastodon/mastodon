@@ -15,7 +15,7 @@
   }
 
   // When hovering over any link with the account ID, underline them all.
-  &:has(a[data-main]:hover) a[data-main] {
+  &:has(a[data-main-account-link]:hover) a[data-main-account-link] {
     text-decoration: var(--link-underline-stealthy-hover);
   }
 
