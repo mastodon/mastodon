@@ -12,9 +12,10 @@
   background: var(--color-bg-primary);
   border: var(--bw-thin) solid var(--color-border-input);
   border-radius: var(--space-2);
+  caret-color: var(--color-text-brand);
   outline: var(--outline-focus-default);
   outline-color: transparent;
-  outline-offset: -1px;
+  outline-offset: -2px;
   transition: all 0.15s ease-out;
 
   @media screen and (width <= 600px) {

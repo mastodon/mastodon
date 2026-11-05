@@ -155,7 +155,6 @@
 }
 
 .sensitive {
-  outline-offset: -2px;
   flex-grow: 1;
 }
 
@@ -176,17 +175,19 @@
   flex-grow: 1;
   flex-shrink: 0;
   border-radius: var(--radius-2);
-  transition: border 200ms;
+  transition: outline-color 0.1s ease-out;
   cursor: text;
   border: none;
   width: 100%;
-  outline: none;
+  outline: var(--outline-focus-default);
+  outline-color: transparent;
+  outline-offset: -2px;
   background: none;
   min-height: 3lh;
+  caret-color: var(--color-text-brand);
 
   &:focus {
-    outline: var(--outline-focus-default);
-    outline-offset: -2px;
+    outline-color: var(--color-border-brand);
 
     &::placeholder {
       color: transparent;
