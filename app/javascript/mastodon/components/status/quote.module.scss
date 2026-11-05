@@ -1,5 +1,9 @@
 @use '@/styles/mastodon/mixins';
 
+.title {
+  white-space: nowrap;
+}
+
 // If hovering over an account link, underline all account links.
 .title:has(.accountLink:hover) {
   .accountLink {
@@ -11,6 +15,13 @@ a.accountLink {
   display: block;
   color: var(--color-text-primary);
   font-weight: bold;
+}
+
+// We target the parent of the account name as otherwise the collapse doesn't work as expected.
+span:has(> .accountName) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
 }
 
 .spoiler {

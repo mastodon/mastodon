@@ -160,12 +160,16 @@ export const QuotedStatus: React.FC<{
         {!disableOpen ? (
           <Link
             {...accountStatusLinkProps(status.account)}
-            className={classes.accountLink}
+            className={classNames(classes.accountLink, classes.accountName)}
           >
             <DisplayName account={status.account} variant='noDomain' />
           </Link>
         ) : (
-          <DisplayName account={status.account} variant='noDomain' />
+          <DisplayName
+            account={status.account}
+            variant='noDomain'
+            className={classes.accountName}
+          />
         )}
       </CardTitle>
 
