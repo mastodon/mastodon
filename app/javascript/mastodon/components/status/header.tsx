@@ -151,7 +151,7 @@ export const StatusHeaderAuthors: React.FC<
     <p className={classNames(className, classes.name)}>
       {displayName}
       {/* Wrap the bullet with a span to not have the whitespace collapse */}
-      <span>&bull;</span>
+      <span aria-hidden='true'>&bull;</span>
       <Link
         to={{
           pathname: statusLink(status),
