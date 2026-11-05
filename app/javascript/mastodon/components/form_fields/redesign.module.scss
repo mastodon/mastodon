@@ -1,37 +1,3 @@
-// Radio
-
-.radioWrapper {
-  [data-input] {
-    position: relative;
-  }
-
-  .icon {
-    position: absolute;
-    pointer-events: none;
-    opacity: 0;
-    transition:
-      color 200ms,
-      opacity 200ms;
-  }
-
-  .icon:has(+ :checked) {
-    opacity: 1;
-  }
-
-  input {
-    opacity: 0;
-  }
-
-  label {
-    font-size: var(--fs-14);
-  }
-}
-
-.icon {
-  width: var(--space-5);
-  height: var(--space-5);
-}
-
 // Text Input
 
 .inputWrapper {
