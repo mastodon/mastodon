@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/mixins';
+
 .wrapper {
   --form-field-label-gap: 6px;
 
@@ -30,7 +32,7 @@
 }
 
 .label {
-  font-weight: bold;
+  @include mixins.type-label;
 
   &[data-has-parent-fieldset='true'] {
     font-weight: normal;
@@ -42,8 +44,9 @@
 }
 
 .hint {
-  color: var(--color-text-secondary);
-  font-size: 13px;
+  @include mixins.type-caption;
+
+  color: var(--color-text-tertiary);
 }
 
 .status {
