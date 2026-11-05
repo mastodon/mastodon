@@ -279,12 +279,12 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      it 'gives correct author_name' do
-        expect(subject.author_name).to eq 'Author 1'
-      end
-
-      it 'gives provider_name' do
-        expect(subject.provider_name).to eq 'Pet News'
+      it 'gives correct author_name and provider_name' do
+        expect(subject)
+          .to have_attributes(
+            author_name: 'Author 1',
+            provider_name: 'Pet News'
+          )
       end
     end
 
@@ -314,12 +314,12 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      it 'gives correct title' do
-        expect(subject.title).to eq 'Title in English'
-      end
-
-      it 'gives correct description' do
-        expect(subject.description).to eq 'Text in English.'
+      it 'gives correct title and description' do
+        expect(subject)
+          .to have_attributes(
+            title: 'Title in English',
+            description: 'Text in English.'
+          )
       end
     end
   end
