@@ -53,7 +53,7 @@ export const StatusHeader: React.FC<StatusHeaderProps> = ({
         <Avatar account={account} size={null} />
       </Link>
 
-      <div>
+      <div className={classes.accountWrapper}>
         <StatusHeaderAuthors status={status} handleId={handleId} />
 
         <p className={classes.handle}>
