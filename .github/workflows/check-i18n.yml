@@ -2,13 +2,11 @@ name: Check i18n
 
 on:
   push:
-    branches:
+    branches: &branches
       - 'main'
       - 'stable-*'
   pull_request:
-    branches:
-      - 'main'
-      - 'stable-*'
+    branches: *branches
 
 env:
   RAILS_ENV: test
@@ -18,11 +16,11 @@ permissions:
 
 jobs:
   check-i18n:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -35,18 +33,22 @@ jobs:
           yarn i18n:extract --throws
           git diff --exit-code
 
-      - name: Check locale file normalization
-        run: bin/i18n-tasks check-normalized
+      - parallel:
+          - name: Check locale file normalization
+            run: bin/i18n-tasks check-normalized
 
-      - name: Check for unused strings
-        run: bin/i18n-tasks unused -l en
+          - name: Check for unused strings
+            run: bin/i18n-tasks unused -l en
 
-      - name: Check for missing strings in English YML
-        run: |
-          bin/i18n-tasks missing -t used -l en
+          - name: Check for missing strings in English YML
+            run: |
+              bin/i18n-tasks missing -t used -l en
 
-      - name: Check for wrong string interpolations
-        run: bin/i18n-tasks check-consistent-interpolations
+          - name: Check for wrong string interpolations
+            run: bin/i18n-tasks check-consistent-interpolations
 
-      - name: Check that all required locale files exist
-        run: bin/rake repo:check_locales_files
+          - name: Check that all required locale files exist
+            run: bin/rake repo:check_locales_files
+
+          - name: Run yaml/erb linter
+            run: bin/rake yaml:lint

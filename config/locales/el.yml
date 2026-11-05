@@ -93,6 +93,7 @@ el:
       enable: Ξεπάγωμα
       enable_sign_in_token: Ενεργοποίηση πρόκλησης κωδικού ασφαλείας
       enable_sign_in_token_auth: Ενεργοποίηση ελέγχου ταυτότητας διακριτικού e-mail
+      enable_unconfirmed: Να επιτραπεί email επιβεβαίωσης
       enabled: Ενεργοποιημένο
       enabled_msg: Επιτυχές ξεπάγωμα λογαριασμού του/της %{username}
       follow_recommendations:
@@ -291,6 +292,7 @@ el:
         create_domain_block_html: Ο/Η %{name} απέκλεισε τον τομέα %{target}
         create_email_domain_block_html: Ο χρήστης %{name} απέκλεισε τον τομέα email %{target}
         create_ip_block_html: Ο/Η %{name} δημιούργησε κανόνα για την IP %{target}
+        create_moderation_subscription_html: Ο/Η %{name} δημιούργησε συνδρομή συντονισμού %{target}
         create_relay_html: Ο χρήστης %{name} δημιούργησε ένα relay %{target}
         create_unavailable_domain_html: Ο/Η %{name} σταμάτησε να τροφοδοτεί τον τομέα %{target}
         create_user_role_html: Ο/Η %{name} δημιούργησε ρόλο %{target}
@@ -306,6 +308,7 @@ el:
         destroy_email_domain_block_html: Ο χρήστης %{name} έκανε άρση αποκλεισμού του τομέα email %{target}
         destroy_instance_html: Ο/Η %{name} εκκαθάρισε τον τομέα %{target}
         destroy_ip_block_html: Ο/Η %{name} διέγραψε τον κανόνα για την IP %{target}
+        destroy_moderation_subscription_html: Ο/Η %{name} διέγραψε συνδρομή συντονισμού %{target}
         destroy_relay_html: Ο χρήστης %{name} διέγραψε το relay %{target}
         destroy_status_html: Ο/Η %{name} αφαίρεσε την ανάρτηση του/της %{target}
         destroy_unavailable_domain_html: Ο/Η %{name} ξανάρχισε να τροφοδοτεί το domain %{target}
@@ -354,10 +357,18 @@ el:
         update_user_role_html: Ο/Η %{name} άλλαξε τον ρόλο %{target}
         update_username_block_html: "%{name} ενημέρωσε κανόνα για ονόματα χρηστών που περιέχουν %{target}"
         usable_tag_html: μπορεί να χρησιμοποιείται,
+      automated_actions:
+        create_domain_allow_html: Αυτόματα επιτράπηκε η συναλλαγή με τον τομέα %{target}
+        create_domain_block_html: Αυτόματα αποκλείστηκε ο τομέας %{target}
+        destroy_domain_allow_html: Αυτόματα απορρίφθηκε η συναλλαγή με τον τομέα %{target}
+        destroy_domain_block_html: Αυτόματα έγινε άρση αποκλεισμού του τομέα %{target}
+        update_domain_block_html: Αυτόματα ενημερώθηκε ο αποκλεισμός του τομέα %{target}
       deleted_account: λογαριασμός διαγράφηκε
+      deleted_suggestion: μια διαγραμμένη συνδρομή συντονισμού
       empty: Δεν βρέθηκαν αρχεία καταγραφής.
       filter_by_action: Φιλτράρισμα ανά ενέργεια
       filter_by_user: Φιλτράρισμα ανά χρήστη
+      suggested_by_html: Ενέργεια προτεινόμενη από %{subscription}
       title: Αρχείο ελέγχου
       unavailable_instance: "(μη διαθέσιμο όνομα τομέα)"
     announcements:
@@ -473,6 +484,11 @@ el:
       undo: Αφαίρεση συναλλαγής με τον τομέα
     domain_blocks:
       add_new: Προσθήκη νέου αποκλεισμού τομέα
+      confirm_downgrade:
+        cancel: Ακύρωση
+        confirm: Υποβάθμιση
+        preamble_html: Πρόκειται να υποβαθμίσετε τον υπάρχον αποκλεισμό στο <strong>%{domain}</strong> και τους υποτομείς του.
+        title: Επιβεβαίωση υποβάθμισης αποκλεισμού τομέα για %{domain}
       confirm_suspension:
         cancel: Άκυρο
         confirm: Αναστολή
@@ -672,6 +688,8 @@ el:
       title: Ακολούθησε τις προτάσεις
       unsuppress: Επαναφορά των συστάσεων ακολούθησης
     instances:
+      advisories:
+        title: Συμβουλές από συνδρομές συντονισμού
       audit_log:
         title: Πρόσφατα Αρχεία Ελέγχου
         view_all: Δείτε πλήρη αρχεία καταγραφής ελέγχων
@@ -695,6 +713,7 @@ el:
         comment: Εσωτερική σημείωση
         description_html: Μπορείς να ορίσεις τις πολιτικές περιεχομένου που θα εφαρμόζονται σε όλους τους λογαριασμούς από αυτόν τον τομέα και οποιονδήποτε από τους υποτομείς του.
         limited_federation_mode_description_html: Μπορείτε να επιλέξετε αν θα επιτρέψετε τις συναλλαγές με αυτόν τον τομέα.
+        moderation_subscription: Συνδρομή συντονισμού
         policies:
           reject_media: Απόρριψη πολυμέσων
           reject_reports: Απόρριψη αναφορών
@@ -775,6 +794,92 @@ el:
       reset: Επαναφορά
       search: Αναζήτηση
       title: Κανόνες IP
+    moderation_subscriptions:
+      add_new: Προσθήκη συνδρομής
+      advisory_action: 'Ενέργεια: %{action}'
+      advisory_actions:
+        accept: να επιτραπεί
+        limit: σίγαση
+        reject: αναστολή
+      apply_automatically: Αυτόματη εφαρμογή συμβουλών
+      apply_conditions:
+        always: Πάντα
+        never: Ποτέ
+        safely: Μόνον εάν δεν σπάσει τις σχέσεις
+      apply_conditions_hint:
+        always: Να εφαρμόζονται πάντα αυτόματα οι συνιστώμενες ενέργειες. Χρησιμοποιήστε αυτήν την επιλογή μόνο για λίστες που εμπιστεύεστε πλήρως.
+        never: Να μην εφαρμόζονται ποτέ αυτόματα οι συνιστώμενες ενέργειες. Αντ 'αυτού να δημιουργείται πάντα μια πρόταση.
+        safely: Να εφαρμόζονται οι συνιστώμενες ενέργειες εκτός αν σπάσουν υπάρχουσες σχέσεις ακολούθησης με τοπικούς χρήστες. Σε τέτοιες περιπτώσεις, θα δημιουργείται μια πρόταση.
+      delete: Διαγραφή
+      destroyed_msg: Επιτυχής διαγραφή συνδρομής συντονισμού
+      empty: Δεν έχει γίνει συνδρομή σε καμία λίστα συντονισμού ακόμη.
+      last_synced_at: Τελευταίος συγχρονισμός στις
+      list_action: Τύπος συνδρομής
+      list_actions:
+        accept: Λίστα επιτρεπόμενων
+        default: Μικτά (Επιτρέπεται & Άρνηση)
+        reject: Λίστα αποκλεισμένων
+      list_actions_hint:
+        accept: Αντικείμενα χωρίς συγκεκριμένη ενέργεια θα αντιμετωπιστούν ως επιτρεπόμενα. Οι αποκλεισμοί θα αγνοηθούν.
+        default: Αντικείμενα χωρίς συγκεκριμένη ενέργεια θα αντιμετωπίζονται ως αποκλεισμένα. Οι αποκλεισμοί και τα επιτρεπόμενα θα αντιμετωπίζονται και τα δύο ως τέτοια.
+        reject: Αντικείμενα χωρίς συγκεκριμένη ενέργεια θα αντιμετωπίζονται ως αποκλεισμένα. Τα επιτρεπόμενα θα αγνοηθούν.
+      list_actions_short:
+        accept: Λίστα επιτρεπόμενων
+        default: Μικτά
+        reject: Λίστα αποκλεισμένων
+      name: Όνομα
+      new:
+        create: Συνδρομή
+        title: Νέα συνδρομή συντονισμού
+      override_unattributed: Παράκαμψη χειροκίνητων αποκλεισμών
+      override_unattributed_hint: Να επιτραπεί σε αυτή τη συνδρομή να αναβαθμίσει αυτόματα ή να αναλάβει τους υπάρχοντες χειροκίνητους αποκλεισμούς, όταν εφαρμόζονται αυτόματα συμβουλές.
+      policies:
+        apply_advisories: Αυτόματη εφαρμογή συμβουλών
+        apply_advisories_safely: Εφαρμόζει αυτόματα συμβουλές που δεν σπάνε τις σχέσεις
+        apply_retractions: Αυτόματη εφαρμογή ανακλήσεων
+      priority: Προτεραιότητα
+      priority_hint: Οι συνδρομές συντονισμού αξιολογούνται κατά σειρά προτεραιότητας, οι συνδρομές με μικρότερο αριθμό παρακάμπτουν τις συνδρομές με υψηλότερη.
+      retract_automatically: Αυτόματη ανάκληση συμβουλών
+      retract_automatically_hint: Αν θα επιτρέποντα οι αλλαγές ανάκλησης ή υποβάθμισης πολιτικής όταν η συνδρομή αφαιρεί ένα αντίστοιχο στοιχείο. Όταν είναι ενεργοποιημένη η αυτόματη ανάκληση και υπάρχει ισοδύναμη συμβουλή σε λίστα χαμηλότερης προτεραιότητας, θα εγκριθεί. Όταν είναι απενεργοποιημένη η αυτόματη ανάκληση, θα δημιουργηθεί μια πρόταση.
+      show:
+        delete_confirm: Σίγουρα θέλετε να διαγράψετε αυτήν τη συνδρομή συντονισμού;
+        edit: Επεξεργασία συνδρομής
+        empty: Αυτή η συνδρομή δεν έχει ακόμη συμβουλή.
+        title: 'Συνδρομή συντονισμού: %{name}'
+      tabs:
+        logs: Καταγραφή
+        subscriptions: Συνδρομές
+        suggestions: Προτάσεις
+      title: Συνδρομές συντονισμού
+      type: Τύπος
+      types:
+        csv_list: Λίστα CSV
+      url: URL
+    moderation_subscriptions_logs:
+      title: Καταγραφή συνδρομών συντονισμού
+    moderation_suggestions:
+      actions:
+        accept: Να επιτραπεί
+        limit: Περιορισμός
+        reject: Αναστολή
+        retract: Ανάκληση τρέχουσας πολιτικής
+      applied_msg: Εφαρμόσθηκε επιτυχώς πρόταση για %{target_key}
+      apply_accept: Να επιτραπεί
+      apply_limit: Περιορισμός
+      apply_reject: Αναστολή
+      apply_retract: Ανάκληση
+      current_states:
+        accept: τρέχοντα επιτρεπόμενα
+        limit: τρέχοντα περιορισμένα
+        reject: τρέχοντα ανασταλμένα
+      description: Παρακάτω είναι προτάσεις από τις συνδρομές συντονισμού σας, ταξινομημένες κατά προτεραιότητα.
+      destroyed_msg: Παραβλέφθηκε επιτυχώς πρόταση για %{target_key}
+      dismiss: Παράβλεψη πρότασης
+      empty: Δεν υπάρχει πρόταση συντονισμού αυτήν τη στιγμή.
+      retracted_msg: Επιτυχής ανάκληση πολιτικής για %{target_key}
+      suggested_from_html: Προτάθηκε από %{link}
+      title: Προτάσεις συντονισμού
+      unable_to_apply_msg: Αδυναμία εφαρμογής πρότασης για %{target_key}
     relationships:
       title: Σχέσεις του/της %{acct}
     relays:
@@ -969,6 +1074,100 @@ el:
       translation: Μετάφραση
       translations: Μεταφράσεις
       translations_explanation: Προαιρετικά μπορείς να προσθέσεις μεταφράσεις για τους κανόνες. Η προεπιλεγμένη τιμή θα εμφανιστεί αν δεν υπάρχει διαθέσιμη μεταφρασμένη έκδοση. Παρακαλούμε πάντα βεβαιώσου ότι οποιαδήποτε παρεχόμενη μετάφραση είναι συγχρονισμένη με την προεπιλεγμένη τιμή.
+    server_checks:
+      categories:
+        completed:
+          title: Ολοκληρώθηκαν
+        critical:
+          title: Κρίσιμες
+        error:
+          title: Σφάλματα
+        ignored:
+          title: Αγνοήθηκαν
+        suggestion:
+          title: Προτάσεις
+        unprocessed:
+          title: Αδιεκπεραίωτες
+        warning:
+          title: Προειδοποιήσεις
+      checks:
+        elastic_search:
+          error:
+            title: Παρουσιάστηκε σφάλμα κατά τον έλεγχο της παραμετροποίησης του Elasticsearch
+          ok:
+            title: Το Elasticsearch έχει παραμετροποιηθεί χωρίς προβλήματα
+          pending:
+            lead:
+              running_check_html: Δεν ήταν δυνατή η σύνδεση στο Elasticsearch. Παρακαλούμε ελέγξτε ότι εκτελείται ή απενεργοποιήστε την αναζήτηση πλήρους κειμένου
+              version_check_html: Εκτελείται η έκδοση Elasticsearch %{running_version} ενώ απαιτείται η %{required_version}
+            title: Υπάρχουν ζητήματα με το Elasticsearch
+          running:
+            title: Ο διακομιστής ελέγχει την παραμετροποίηση του Elasticsearch
+          unprocessed:
+            title: Ο διακομιστής δεν έχει ελέγξει ακόμη την παραμετροποίηση του Elasticsearch
+        media_privacy:
+          error:
+            title: Παρουσιάστηκε σφάλμα κατά τον έλεγχο του απορρήτου των πολυμέσων του διακομιστή σας
+          ok:
+            title: Το απόρρητο πολυμέσων του διακομιστή σας είναι ασφαλές
+          pending:
+            lead:
+              upload_check_privacy_error_html: Ο διακομιστής ιστού σας δεν έχει ρυθμιστεί σωστά
+              upload_check_privacy_error_object_storage_html: Ο αποθηκευτικός χώρος των αντικειμένων σας δεν έχει ρυθμιστεί σωστά
+            title: Το απόρρητο των χρηστών σας κινδυνεύει
+          running:
+            title: Ο διακομιστής ελέγχει την κατάσταση απορρήτου του
+          unprocessed:
+            title: Ο διακομιστής δεν έχει ελέγξει ακόμη την κατάσταση απορρήτου του
+        rules:
+          error:
+            title: Παρουσιάστηκε σφάλμα κατά τον έλεγχο των κανόνων του διακομιστή σας
+          ok:
+            title: Οι κανόνες του διακομιστή σας έχουν οριστεί
+          pending:
+            lead_html: Ο διακομιστής σας δεν έχει δημοσιευμένους κανόνες. Οι σαφείς κανόνες βοηθούν τον συντονισμό και καθορίζουν τις προσδοκίες
+            title: Ρύθμιση κανόνων διακομιστή
+          running:
+            title: Ο διακομιστής ελέγχει τους κανόνες σας
+          unprocessed:
+            title: Ο διακομιστής δεν έχει ελέγξει ακόμη αν υπάρχουν κανόνες
+        sidekiq_process:
+          error:
+            title: Παρουσιάστηκε σφάλμα κατά τον έλεγχο της παραμετροποίησης του Sidekiq
+          ok:
+            title: Το Sidekiq έχει παραμετροποιηθεί χωρίς προβλήματα
+          pending:
+            lead_html: Δεν εκτελείται διεργασία Sidekiq για %{missing_queues_str} ουρά/ές
+            title: Παρακαλούμε ελέγξτε την παραμετροποίηση του Sidekiq
+          running:
+            title: Ο διακομιστής ελέγχει την παραμετροποίηση του Sidekiq
+          unprocessed:
+            title: Ο διακομιστής δεν έχει ελέγξει ακόμη την παραμετροποίηση του Sidekiq
+        software_version:
+          error:
+            title: Παρουσιάστηκε σφάλμα κατά τον έλεγχο για ενημερώσεις λογισμικού
+          ok:
+            title: Ο Mastodon διακομιστής σας είναι ενημερωμένος
+          pending:
+            lead:
+              patch_html: Υπάρχει διαθέσιμη μια ενημερωμένη έκδοση του Mastodon για διόρθωση σφάλματος
+              regular_html: Υπάρχει διαθέσιμη μια νέα έκδοση του Mastodon
+              urgent_html: Μια κρίσιμη ενημέρωση του Mastodon είναι διαθέσιμη, παρακαλούμε ενημερώστε το συντομότερο δυνατόν
+            title: Ενημερώστε τον Mastodon διακομιστή σας
+          running:
+            title: Ο διακομιστής ελέγχει εάν υπάρχει οποιαδήποτε ενημέρωση λογισμικού που εκκρεμεί
+          unprocessed:
+            title: Ο διακομιστής δεν έχει ελέγξει ακόμη για ενημερώσεις λογισμικού
+      ignore:
+        label: Αγνόηση
+      lead: Προτάσεις για να κρατήσετε τον διακομιστή σας ασφαλές, φιλόξενο και αποτελεσματικό.
+      recommendations:
+        title: Προτάσεις
+      restore:
+        label: Επαναφορά
+      setup:
+        label: Ρύθμιση
+      title: Υγεία διακομιστή
     settings:
       about:
         manage_rules: Διαχείριση κανόνων διακομιστή
@@ -1319,9 +1518,17 @@ el:
     warning_presets:
       add_new: Πρόσθεση νέου
       delete: Διαγραφή
-      edit_preset: Ενημέρωση προκαθορισμένης προειδοποίησης
-      empty: Δεν έχετε ακόμη ορίσει κάποια προκαθορισμένη προειδοποίηση.
-      title: Προεπιλογές προειδοποίησης
+      dropdown:
+        all_actions: Όλες οι ενέργειες
+        disable: Πάγωμα
+        none: Προειδοποίηση
+        sensitive: Ευαίσθητο
+        silence: Περιορισμός
+        suspend: Αναστολή
+      edit_preset: Επεξεργασία κονσερβοποιημένης απάντησης
+      empty: Δεν έχετε ακόμη ορίσει κάποια κονσερβοποιημένη απάντηση.
+      navigation_title: Κονσερβοποιημένες απαντήσεις
+      title: Κονσερβοποιημένες απαντήσεις συντονισμού
     webhooks:
       add_new: Προσθήκη σημείου τερματισμού
       delete: Διαγραφή
@@ -1370,9 +1577,15 @@ el:
     new_critical_software_updates:
       body: Έχουν κυκλοφορήσει νέες κρίσιμες εκδόσεις του Mastodon, καλύτερα να ενημερώσεις το συντομότερο δυνατόν!
       subject: Κρίσιμες ενημερώσεις Mastodon είναι διαθέσιμες για το %{instance}!
+    new_moderation_suggestions:
+      body: Οι λίστες συντονισμού στις οποίες έχει εγγραφεί ο διακομιστή σας, έχουν δημοσιεύσει νέες προτάσεις.
+      subject: Νέες προτάσεις συντονισμού διαθέσιμες στο %{instance}!
     new_pending_account:
       body: Τα στοιχεία του νέου λογαριασμού είναι παρακάτω. Μπορείς να εγκρίνεις ή να απορρίψεις αυτήν την αίτηση.
       subject: Νέος λογαριασμός προς έλεγχο στο %{instance} (%{username})
+    new_pending_accounts:
+      body: Νέοι λογαριασμοί έχουν δημιουργηθεί στο %{instance}. Δεδομένου ότι ο διακομιστής σας έχει ρυθμιστεί να αναβάλει τα email επιβεβαίωσης μέχρι την έγκριση του συντονισμού, αυτοί οι λογαριασμοί δεν είχαν την ευκαιρία να επαληθεύσουν τη διεύθυνση email τους ακόμη. Τα στοιχεία των νέων λογαριασμών είναι παρακάτω. Μπορείτε να εγκρίνετε ή να απορρίψετε αυτές τις αιτήσεις.
+      subject: Νέοι λογαριασμοί προς έλεγχο στο %{instance}
     new_report:
       body: Ο/Η %{reporter} ανέφερε τον/την %{target}
       body_remote: Κάποιος/α από τον τομέα %{domain} ανέφερε τον/την %{target}
@@ -1401,7 +1614,6 @@ el:
     animations_and_accessibility: Εφέ κινήσεων και προσβασιμότητα
     boosting_preferences: Προτιμήσεις ενισχύσεων
     boosting_preferences_info_html: "<strong>Συμβουλή:</strong> Ανεξάρτητα από τις ρυθμίσεις, κάνοντας <kbd>Shift</kbd> + <kbd>Κλικ</kbd> στο εικονίδιο %{icon} Ενίσχυση θα ενισχύσει άμεσα."
-    discovery: Ανακάλυψη
     localization:
       body: Το Mastodon μεταφράζεται από εθελοντές.
       guide_link: https://crowdin.com/project/mastodon
@@ -1481,11 +1693,16 @@ el:
     security: Ασφάλεια
     set_new_password: Ορισμός νέου συνθηματικού
     setup:
+      correct_email: Διόρθωση διεύθυνσης
       email_below_hint_html: Έλεγξε τον φάκελο ανεπιθύμητης αλληλογραφίας ή ζήτα καινούργιο. Μπορείς να διορθώσεις τη διεύθυνση email σου αν είναι λάθος.
       email_settings_hint_html: Κάνε κλικ στο σύνδεσμο που στείλαμε στο %{email} για να αρχίσεις να χρησιμοποιείς το Mastodon. Θα περιμένουμε εδώ.
+      email_settings_hint_wait_html: Η αίτηση σας είναι υπό εξέταση. Θα πρέπει σύντομα να λάβετε ένα μήνυμα στο %{email}. Μόλις γίνει, κάντε κλικ στον σύνδεσμο για να αρχίσετε να χρησιμοποιείτε το Mastodon. Θα περιμένουμε εδώ.
       link_not_received: Δεν έλαβες τον σύνδεσμο;
       new_confirmation_instructions_sent: Θα λάβεις ένα νέο email με το σύνδεσμο επιβεβαίωσης σε λίγα λεπτά!
       title: Ελέγξτε τα εισερχόμενά σας
+      title_wait: Έχε το νου σας στα εισερχόμενά σας
+      wrong_email: Λάθος διεύθυνση email;
+      wrong_email_below_hint_html: Μην πανικοβληθείτε! Μπορείτε να διορθώσετε τη διεύθυνση email σας παρακάτω.
     sign_in:
       preamble_html: Συνδεθείτε με τα διαπιστευτήριά σας στον <strong>%{domain}</strong>. Αν ο λογαριασμός σας φιλοξενείται σε διαφορετικό διακομιστή, δε θα μπορείτε να συνδεθείτε εδώ.
       title: Συνδεθείτε στο %{domain}
@@ -1522,6 +1739,12 @@ el:
     auto: Αυτόματος
     dark: Σκοτεινός
     light: Φωτεινός
+  color_theme:
+    cyan: Κυανό
+    indigo: Λουλακί
+    lime: Λαχανί
+    orange: Προτοκαλί
+    pink: Ροζ
   contrast:
     auto: Αυτόματη
     high: Υψηλή

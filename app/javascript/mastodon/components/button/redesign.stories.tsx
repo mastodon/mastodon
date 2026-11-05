@@ -19,12 +19,12 @@ const iconArgType = {
 } as const;
 
 const meta = {
-  title: 'Redesign/Button',
+  title: 'Components/Button',
   component: Button,
   args: {
     children: 'Action',
     size: 'md',
-    variant: 'solid',
+    variant: 'tonal',
     color: 'neutral',
     disabled: false,
     loading: false,
@@ -83,8 +83,8 @@ export const IconTrailing: Story = {
 };
 
 export const IconOnly: Story = {
-  render(args) {
-    return <IconButton {...args} icon={args.leadingIcon ?? ChatIcon} />;
+  render({ leadingIcon, ...args }) {
+    return <IconButton {...args} icon={leadingIcon ?? ChatIcon} />;
   },
   args: {
     leadingIcon: ChatIcon,

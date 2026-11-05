@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { scrollTopTimeline, loadPending } from '@/mastodon/actions/timelines';
-import { isNonStatusId } from '@/mastodon/actions/timelines_typed';
+import { loadPending } from '@/mastodon/actions/timelines';
+import { isNonStatusId, timelineScroll } from '@/mastodon/actions/timelines_typed';
 import StatusList from '@/mastodon/components/status_list';
 import { me } from '@/mastodon/initial_state';
 
@@ -71,11 +71,11 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = (dispatch, { timelineId }) => ({
 
   onScrollToTop: debounce(() => {
-    dispatch(scrollTopTimeline(timelineId, true));
+    dispatch(timelineScroll({ timelineId, top: true }));
   }, 100),
 
   onScroll: debounce(() => {
-    dispatch(scrollTopTimeline(timelineId, false));
+    dispatch(timelineScroll({ timelineId, top: false }));
   }, 100),
 
   onLoadPending: () => dispatch(loadPending(timelineId)),

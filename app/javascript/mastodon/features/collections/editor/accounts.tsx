@@ -12,7 +12,7 @@ import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { AccountListItem } from 'mastodon/components/account_list_item';
 import { Avatar } from 'mastodon/components/avatar';
 import { PendingBadge } from 'mastodon/components/badge';
-import { Button } from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button/redesign';
 import { DisplayName } from 'mastodon/components/display_name';
 import { useAccountHandle } from 'mastodon/components/display_name/default';
 import { EmptyState } from 'mastodon/components/empty_state';
@@ -54,7 +54,7 @@ const AddedAccountItem: React.FC<{
 
   const renderButton = useCallback(
     () => (
-      <Button compact secondary onClick={handleRemoveAccount}>
+      <Button size='sm' onClick={handleRemoveAccount}>
         <FormattedMessage
           id='collections.remove_account'
           defaultMessage='Remove'
@@ -388,7 +388,7 @@ export const CollectionAccounts: React.FC<{
             status={
               hasMaxItems
                 ? {
-                    variant: 'warning',
+                    variant: 'error',
                     message: intl.formatMessage({
                       id: 'collections.search_accounts_max_reached',
                       defaultMessage:
@@ -454,7 +454,7 @@ export const CollectionAccounts: React.FC<{
       </FormStack>
       {!isEditMode && hasItems && (
         <div className={classes.stickyFooter}>
-          <Button type='submit'>
+          <Button type='submit' variant='solid' color='accent'>
             {id ? (
               <FormattedMessage id='lists.save' defaultMessage='Save' />
             ) : (

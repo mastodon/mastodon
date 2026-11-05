@@ -4,20 +4,20 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { useLocation } from 'react-router';
 
-import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
-import { me } from '@/mastodon/initial_state';
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import { changeCompose, focusCompose } from 'mastodon/actions/compose';
-import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
-import { Button } from 'mastodon/components/button';
-import { CopyLinkField } from 'mastodon/components/form_fields';
-import { IconButton } from 'mastodon/components/icon_button';
+import { XIcon } from '@phosphor-icons/react';
+
+import { focusCompose } from '@/mastodon/actions/compose';
+import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
+import { Button, IconButton } from '@/mastodon/components/button/redesign';
+import { CopyLinkField } from '@/mastodon/components/form_fields';
 import {
   ModalShell,
   ModalShellActions,
   ModalShellBody,
-} from 'mastodon/components/modal_shell';
-import { useAppDispatch } from 'mastodon/store';
+} from '@/mastodon/components/modal_shell';
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
+import { me } from '@/mastodon/initial_state';
+import { useAppDispatch } from '@/mastodon/store';
 
 import { CollectionPreviewCard } from './collection_preview_card';
 import classes from './share_modal.module.scss';
@@ -60,8 +60,7 @@ export const CollectionShareModal: React.FC<{
     shareMessage += `\n\n${collectionLink}`;
 
     onClose();
-    dispatch(changeCompose(shareMessage));
-    dispatch(focusCompose());
+    dispatch(focusCompose(shareMessage));
   }, [onClose, collectionLink, dispatch, intl, isOwnCollection]);
 
   return (
@@ -82,15 +81,15 @@ export const CollectionShareModal: React.FC<{
         </NavigationFocusTarget>
 
         <IconButton
-          title={intl.formatMessage({
+          icon={XIcon}
+          className={classes.closeButtonDesktop}
+          onClick={onClose}
+        >
+          {intl.formatMessage({
             id: 'lightbox.close',
             defaultMessage: 'Close',
           })}
-          iconComponent={CloseIcon}
-          icon='close'
-          className={classes.closeButtonDesktop}
-          onClick={onClose}
-        />
+        </IconButton>
 
         <div className={classes.preview}>
           <CollectionPreviewCard collection={collection} headingLevel='h2' />
@@ -107,14 +106,14 @@ export const CollectionShareModal: React.FC<{
 
       <ModalShellActions className={classes.actions}>
         <div className={classes.shareButtonWrapper}>
-          <Button secondary onClick={handleShareViaPost}>
+          <Button onClick={handleShareViaPost} variant='solid' color='accent'>
             <FormattedMessage
               id='collection.share_modal.share_via_post'
               defaultMessage='Post on Mastodon'
             />
           </Button>
           {'share' in navigator && (
-            <Button secondary onClick={handleShareOnDevice}>
+            <Button onClick={handleShareOnDevice}>
               <FormattedMessage
                 id='collection.share_modal.share_via_system'
                 defaultMessage='Share to…'
@@ -123,7 +122,11 @@ export const CollectionShareModal: React.FC<{
           )}
         </div>
 
-        <Button plain onClick={onClose} className={classes.closeButtonMobile}>
+        <Button
+          variant='ghost'
+          onClick={onClose}
+          className={classes.closeButtonMobile}
+        >
           <FormattedMessage id='lightbox.close' defaultMessage='Close' />
         </Button>
       </ModalShellActions>

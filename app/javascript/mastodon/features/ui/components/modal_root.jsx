@@ -20,7 +20,7 @@ import {
   ClosedRegistrationsModal,
   IgnoreNotificationsModal,
   AnnualReportModal,
-} from 'mastodon/features/ui/util/async-components';
+} from '@/mastodon/features/ui/util/async-components';
 
 import { ActionsModal } from './actions_modal';
 import AudioModal from './audio_modal';
@@ -47,7 +47,6 @@ import { ImageModal } from './image_modal';
 import { MediaModal } from './media_modal';
 import { ModalPlaceholder } from './modal_placeholder';
 import VideoModal from './video_modal';
-import { VisibilityModal } from './visibility_modal';
 import { PrivateQuoteNotify } from './confirmation_modals/private_quote_notify';
 
 export const MODAL_COMPONENTS = {
@@ -91,7 +90,6 @@ export const MODAL_COMPONENTS = {
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
   'IGNORE_NOTIFICATIONS': IgnoreNotificationsModal,
   'ANNUAL_REPORT': AnnualReportModal,
-  'COMPOSE_PRIVACY': () => Promise.resolve({ default: VisibilityModal }),
   'ACCOUNT_NOTE': () => import('@/mastodon/features/account_timeline/modals/note_modal').then(module => ({ default: module.AccountNoteModal })),
   'ACCOUNT_FIELD_OVERFLOW': () => import('@/mastodon/features/account_timeline/modals/field_modal').then(module => ({ default: module.AccountFieldModal })),
   'ACCOUNT_JOIN_DATE': () => import('@/mastodon/features/account_timeline/modals/join_modal').then(module => ({ default: module.AccountJoinModal })),
@@ -106,11 +104,10 @@ export const MODAL_COMPONENTS = {
   'ACCOUNT_EDIT_IMAGE_DELETE': accountEditModal('ImageDeleteModal'),
   'ACCOUNT_EDIT_IMAGE_UPLOAD': accountEditModal('ImageUploadModal'),
   'ACCOUNT_HIDE_FEATURED_TAB': () => import('@/mastodon/features/ui/components/confirmation_modals/hide_featured_tab').then(module => ({ default: module.ConfirmHideFeaturedTabModal })),
-  'COMPOSER_DRAFT_DELETE': () => import('@/mastodon/features/compose/redesign/modal_cancel'),
-  'COMPOSER_REARRANGE': () => import('@/mastodon/features/compose/redesign/modal_rearrange'),
-  'COMPOSER_SWITCH_TO_POST': () => import('@/mastodon/features/compose/redesign/modal_switch'),
-  'COMPOSER_ADD_QUOTE': () => import('@/mastodon/features/compose/redesign/modal_quote'),
-  'COMPOSER_ADD_CONTENT_WARNING': () => import('@/mastodon/features/compose/redesign/modal_sensitive'),
+  'COMPOSER_DRAFT_DELETE': () => import('@/mastodon/features/compose/modals/modal_cancel'),
+  'COMPOSER_REARRANGE': () => import('@/mastodon/features/compose/modals/modal_rearrange'),
+  'COMPOSER_SWITCH_TO_POST': () => import('@/mastodon/features/compose/modals/modal_switch'),
+  'COMPOSER_ADD_QUOTE': () => import('@/mastodon/features/compose/modals/modal_quote'),
   'NOTIFICATION_SETTINGS': () => import('@/mastodon/features/notifications_v2/components/notification_settings_modal'),
   'NOTIFICATION_REQUESTS_SETTINGS': () => import('@/mastodon/features/notifications/components/notification_requests_settings').then(module => ({default: module.NotificationRequestsSettingsModal})),
   'HASHTAG_SETTINGS': () => import('@/mastodon/features/hashtag_timeline/components/column_settings_modal'),

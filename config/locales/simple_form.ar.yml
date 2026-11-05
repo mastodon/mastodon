@@ -20,7 +20,6 @@ ar:
       admin_account_action:
         include_statuses: سيرى المستخدم أي المنشورات تسببت في إجراء الإشراف أو التحذير
         send_email_notification: سوف يتلقى المستخدم رسالة تُفسِّر ما حدث على حسابه
-        text_html: اختياري، يمكنك استخدام بناء التبويق. يمكنك <a href="%{path}">إضافة إعدادات تحذير مسبقة</a> لتوفير الوقت
         type_html: اختر ما تود إجراؤه على <strong>%{acct}</strong>
         types:
           disable: منع المستخدم من استخدام حسابه، ولكن لا تَقم بحذف أو إخفاء محتواه.
@@ -28,7 +27,6 @@ ar:
           sensitive: إجبار جميع مرفقات الوسائط لهذا المستخدم على أن تكون حساسة.
           silence: منع المستخدم من القدرة على النشر للعامة، وإخفاء مشاركاته وإشعاراته لمن لا يتبعونه. إغلاق جميع التقارير المقترنة بهذا الحساب.
           suspend: منع أي تفاعل من هذا الحساب أو إليه وحذف محتوياته. يمكن التراجع عنه في غضون 30 يوما. إغلاق جميع التقارير المفتوحة ضد هذا الحساب.
-        warning_preset_id: اختياري. يمكنك إضافة نص مخصص إلى نهاية النموذج
       announcement:
         all_day: إن أختير، سيتم عرض تواريخ النطاق الزمني فقط
         ends_at: اختياري. سيتم إلغاء نشر الإعلان تلقائيا على هذه الساعة
@@ -163,12 +161,10 @@ ar:
       account_migration:
         acct: مُعرّف الحساب الجديد
       account_warning_preset:
-        text: نموذج نصي
         title: العنوان
       admin_account_action:
         include_statuses: أدرج المنشورات التي تم الإبلاغ عنها ضمن الرسالة الإلكترونية
         send_email_notification: إشعار المستخدِم عبر البريد الإلكتروني
-        text: تحذير مخصص
         type: الإجراء
         types:
           disable: تعطيل
@@ -176,7 +172,6 @@ ar:
           sensitive: حساس
           silence: كتم
           suspend: علِق
-        warning_preset_id: استخدم نموذج تنبيه
       announcement:
         all_day: حدث اليوم كله
         ends_at: نهاية الفعالية
@@ -214,7 +209,6 @@ ar:
         setting_aggregate_reblogs: جمّع المنشورات المعاد نشرها في الخيوط الزمنية
         setting_always_send_emails: ارسل إشعارات البريد الإلكتروني دائماً
         setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
-        setting_color_scheme: نظام الألوان
         setting_contrast: تباين
         setting_default_language: لغة النشر
         setting_default_privacy: مدى ظهور المنشور
@@ -233,7 +227,6 @@ ar:
         setting_system_font_ui: استخدم الخطوط الافتراضية للنظام
         setting_system_scrollbars_ui: استخدام شريط التمرير الافتراضي للنظام
         setting_theme: سمة الموقع
-        setting_trends: اعرض ما يُتداوَل اليوم
         setting_unfollow_modal: إظهار مربع حوار للتأكيد قبل إلغاء متابعة أي حساب
         setting_use_blurhash: أظهر ألوانًا متدرّجة على الوسائط المَخفية
         setting_use_pending_items: الوضع البطيء

@@ -1,0 +1,83 @@
+@use '@/styles/mastodon/variables';
+
+.buttonWrapper {
+  position: relative;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: all 200ms ease-out;
+  }
+
+  &:not(.buttonWrapperInline) {
+    position: fixed;
+    bottom: var(--space-4);
+    right: var(--space-4);
+    z-index: 2;
+  }
+}
+
+.buttonWrapperInline {
+  margin-inline-end: var(--space-2);
+}
+
+.buttonWrapperHidden {
+  transform: translateX(calc(100% + var(--space-4)));
+  opacity: 0;
+  transition-timing-function: ease-in;
+}
+
+.root {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  top: env(safe-area-inset-top);
+  transition: bottom 200ms ease-in-out;
+
+  &[data-fullscreen='true'] {
+    overflow-y: visible;
+
+    // Add a backdrop for the mobile composer to cover up the page
+    // behind the composer that can be visible on Safari iOS
+    &::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-color: var(--color-bg-primary);
+    }
+  }
+
+  &[data-fullscreen='false'] {
+    top: auto;
+    display: grid;
+    grid-template-columns: var(--columns-area-grid-columns);
+    bottom: 0;
+    pointer-events: none;
+  }
+}
+
+.composer,
+.composerMinimized {
+  [data-fullscreen='false'] & {
+    box-sizing: border-box;
+    grid-column: 2;
+    pointer-events: auto;
+  }
+}
+
+.composer {
+  [data-fullscreen='true'] & {
+    // Set from the visualViewport API.
+    height: var(--viewport-height, 100vh);
+    max-height: 100vh;
+  }
+
+  [data-fullscreen='false'] & {
+    min-height: 270px;
+    max-height: calc(100vh - (var(--space-4) * 2));
+  }
+}
+
+.composerMinimized {
+  cursor: pointer;
+}

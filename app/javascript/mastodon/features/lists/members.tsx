@@ -7,11 +7,8 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnSearchHeader } from '@/mastodon/components/column/search_header';
 import { ColumnHeader } from '@/mastodon/components/column_header';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { fetchRelationships } from 'mastodon/actions/accounts';
 import { showAlertForError } from 'mastodon/actions/alerts';
@@ -26,7 +23,7 @@ import {
 } from 'mastodon/api/lists';
 import { Avatar } from 'mastodon/components/avatar';
 import { VerifiedBadge } from 'mastodon/components/badge';
-import { Button } from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button/redesign';
 import { FollowersCounter } from 'mastodon/components/counters';
 import { DisplayName } from 'mastodon/components/display_name';
 import ScrollableList from 'mastodon/components/scrollable_list';
@@ -35,35 +32,23 @@ import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
 import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-const messagesLegacy = defineMessages({
+const messages = defineMessages({
   manageMembers: {
-    id: 'column.list_members',
-    defaultMessage: 'Manage list members',
+    id: 'custom_feeds.manage_accounts_title',
+    defaultMessage: 'Manage Feed Members',
   },
   placeholder: {
     id: 'lists.search',
     defaultMessage: 'Search',
   },
-  enterSearch: { id: 'lists.add_to_list', defaultMessage: 'Add to list' },
-  add: { id: 'lists.add_member', defaultMessage: 'Add' },
-  remove: { id: 'lists.remove_member', defaultMessage: 'Remove' },
-  back: { id: 'column_back_button.label', defaultMessage: 'Back' },
-});
-
-const messagesRedesign = defineMessages({
-  manageMembers: {
-    id: 'custom_feeds.manage_accounts_title',
-    defaultMessage: 'Manage Feed Members',
-  },
   enterSearch: {
     id: 'custom_feeds.add_to_feed',
     defaultMessage: 'Add to feed',
   },
+  add: { id: 'lists.add_member', defaultMessage: 'Add' },
+  remove: { id: 'lists.remove_member', defaultMessage: 'Remove' },
+  back: { id: 'column_back_button.label', defaultMessage: 'Back' },
 });
-
-const messages = isRedesignEnabled()
-  ? { ...messagesLegacy, ...messagesRedesign }
-  : messagesLegacy;
 
 type Mode = 'remove' | 'add';
 
@@ -157,12 +142,12 @@ const AccountItem: React.FC<{
 
         <div className='account__relationship'>
           <Button
-            text={intl.formatMessage(
-              partOfList ? messages.remove : messages.add,
-            )}
-            secondary={partOfList}
+            color={partOfList ? 'neutral' : 'accent'}
+            variant={partOfList ? 'tonal' : 'solid'}
             onClick={handleClick}
-          />
+          >
+            {intl.formatMessage(partOfList ? messages.remove : messages.add)}
+          </Button>
         </div>
       </div>
     </div>
@@ -249,20 +234,10 @@ const ListMembers: React.FC<{
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.manageMembers)}
     >
-      {isRedesignEnabled() ? (
-        <ColumnHeader
-          withBackButton
-          title={intl.formatMessage(messages.manageMembers)}
-        />
-      ) : (
-        <LegacyColumnHeader
-          title={intl.formatMessage(messages.manageMembers)}
-          icon='list-ul'
-          iconComponent={ListAltIcon}
-          multiColumn={multiColumn}
-          showBackButton
-        />
-      )}
+      <ColumnHeader
+        withBackButton
+        title={intl.formatMessage(messages.manageMembers)}
+      />
 
       <ColumnSearchHeader
         placeholder={intl.formatMessage(messages.placeholder)}
@@ -284,9 +259,14 @@ const ListMembers: React.FC<{
             {displayedAccountIds.length > 0 && <div className='spacer' />}
 
             <div className='column-footer'>
-              <Link to={`/lists/${id}`} className='button button--block'>
+              <Button
+                as='link'
+                to={`/lists/${id}`}
+                variant='solid'
+                color='accent'
+              >
                 <FormattedMessage id='lists.done' defaultMessage='Done' />
-              </Link>
+              </Button>
             </div>
           </>
         }

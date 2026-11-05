@@ -19,7 +19,6 @@ lad:
       admin_account_action:
         include_statuses: El utilizador vera kualas publikasyones tienen kauzado la aksyon de moderasyon o avertensya
         send_email_notification: El utilizador risivira una esplikasyon de lo kualo afito kon su kuento
-        text_html: Puedes kulanear sintaksa de publikasyones. Puede adjustar <a href="%{path}">konfigurasyones predefinidas de avertensya</a> para no pedrer tiempo
         type_html: Eskoje lo ke vas fazer kon <strong>%{acct}</strong>
         types:
           disable: Evita ke el utilizador utilize su kuento, pero no supreme ni eskonde sus kontenidos.
@@ -27,7 +26,6 @@ lad:
           sensitive: Forza ke todas las dosyas multimedia de este utilizador sean markados komo sensivles.
           silence: Evita ke el utilizador pueda publikar kon vizivilita publika, i eskonde sus mesajes i avizos a personas ke no lo sigen. Serra todos los raportos kontra este kuento.
           suspend: Evita kualseker interaksyon dizde o verso este kuento i supreme su kontenido. Reversivle en 30 diyas. Sierra todos los raportos kontra este kuento.
-        warning_preset_id: Opsyonal. Ainda puedes adjustar teksto personalizado al final de la konfigurasyon predefinida
       announcement:
         all_day: Kuando esta eskojido solo se amostraran las datas del rango de tiempo
         ends_at: Opsyonal. El pregon dezaparesera otomatikamente en este momento
@@ -140,12 +138,10 @@ lad:
       account_migration:
         acct: Alias del muevo kuento
       account_warning_preset:
-        text: Teksto predefinido
         title: Titolo
       admin_account_action:
         include_statuses: Inkluye en la posta elektronika las publikasyones raportadas
         send_email_notification: Aviza al utilizador por posta elektronika
-        text: Avizo personalizado
         type: Aksyon
         types:
           disable: Inkapasitar
@@ -153,7 +149,6 @@ lad:
           sensitive: Sensivle
           silence: Limita
           suspend: Suspende
-        warning_preset_id: Kulanea un avizo predeterminado
       announcement:
         all_day: Evenimiento de todo el diya
         ends_at: Fin del evenimiento
@@ -207,7 +202,6 @@ lad:
         setting_reduce_motion: Reduse el movimyento en animasyones
         setting_system_font_ui: Uza el font predeterminado del sistem
         setting_theme: Tema del sitio
-        setting_trends: Amostra los trendes de oy
         setting_unfollow_modal: Mostra dialogo de konfirmasyon antes de desegir a alguno
         setting_use_blurhash: Amostra gradientes koloridos para kontenido multimedia eskondido
         setting_use_pending_items: Modo lento

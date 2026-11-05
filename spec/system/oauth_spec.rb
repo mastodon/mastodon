@@ -57,8 +57,8 @@ RSpec.describe 'Using OAuth from an external app' do
       it 'does not include the PKCE values in the hidden inputs' do
         subject
 
-        code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: false)
-        code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: false)
+        code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: :hidden)
+        code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: :hidden)
 
         expect(code_challenge_inputs).to_not be_empty
         expect(code_challenge_method_inputs).to_not be_empty
@@ -80,8 +80,8 @@ RSpec.describe 'Using OAuth from an external app' do
         it 'includes the PKCE values in the hidden inputs' do
           subject
 
-          code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: false)
-          code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: false)
+          code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: :hidden)
+          code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: :hidden)
 
           expect(code_challenge_inputs).to_not be_empty
           expect(code_challenge_method_inputs).to_not be_empty
@@ -170,6 +170,20 @@ RSpec.describe 'Using OAuth from an external app' do
 
     let!(:rule) { Fabricate :rule, text: 'You must be seven meters tall' }
     let(:invite) { Fabricate :invite, autofollow: true }
+
+    it 'returns to app on cancel' do
+      subject
+
+      # Shows rules
+      expect(page)
+        .to have_title(I18n.t('auth.register'))
+        .and have_text(rule.text)
+
+      click_on I18n.t('generic.cancel')
+
+      # Redirects to the app's callback URL
+      expect(page).to redirect_to_callback_url
+    end
 
     it 'allows creating a new user' do
       subject

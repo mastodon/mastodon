@@ -5,7 +5,7 @@ class ActivityPub::VerifyFeaturedItemService
 
   def call(collection_item, approval_uri, request_id: nil)
     @collection_item = collection_item
-    @authorization = fetch_resource(approval_uri, true, raise_on_error: :temporary)
+    @authorization = fetch_resource(approval_uri, raise_on_error: :temporary)
 
     if @authorization.nil?
       @collection_item.update!(state: :rejected)

@@ -7,7 +7,6 @@ Fabricator(:account) do
   username              { sequence(:username) { |i| "#{Faker::Internet.user_name(separators: %w(_))}#{i}" } }
   last_webfingered_at   { Time.now.utc }
   public_key            { |attrs| attrs[:legacy_keypair] ? SigningKeysHelpers::PUBLIC_RSA_TEST_KEY : '' }
-  private_key           { |attrs| attrs[:legacy_keypair] && attrs[:domain].nil? ? SigningKeysHelpers::PRIVATE_RSA_TEST_KEY : nil }
   suspended_at          { |attrs| attrs[:suspended] ? Time.now.utc : nil }
   silenced_at           { |attrs| attrs[:silenced] ? Time.now.utc : nil }
   requested_deletion_at { |attrs| attrs[:requested_deletion] ? Time.now.utc : nil }
@@ -18,8 +17,9 @@ Fabricator(:account) do
   indexable             true
 
   # This is not strictly needed but this avoids generating multiple keys
-  # and, when `store_private_key` is passed, stores private keys for use in request specs
   keypairs do |attrs|
+    uri = attrs[:uri] ? "#{attrs[:uri]}#main-key" : "https://#{attrs[:domain]}/users/#{attrs[:username]}#main-key" if attrs[:domain].present?
+
     if attrs[:legacy_keypair] || attrs[:public_key].present?
       []
     else
@@ -28,7 +28,7 @@ Fabricator(:account) do
           type: :rsa,
           public_key: SigningKeysHelpers::PUBLIC_RSA_TEST_KEY,
           private_key: attrs[:domain].blank? ? SigningKeysHelpers::PRIVATE_RSA_TEST_KEY : nil,
-          uri: attrs[:domain].nil? ? nil : "https://#{attrs[:domain]}/users/#{attrs[:username]}#main-key",
+          uri: uri,
           local_fragment: attrs[:domain].nil? ? '#main-key' : nil
         ),
       ]

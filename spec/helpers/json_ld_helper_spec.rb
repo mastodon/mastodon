@@ -82,26 +82,26 @@ RSpec.describe JsonLdHelper do
   end
 
   describe '#fetch_resource' do
-    context 'when the second argument is false' do
+    context 'when allow_redirects is true' do
       it 'returns resource even if the retrieved ID and the given URI does not match' do
         stub_request(:get, 'https://bob.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, 'https://alice.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
 
-        expect(fetch_resource('https://bob.test/', false)).to eq({ 'id' => 'https://alice.test/' })
+        expect(fetch_resource('https://bob.test/', allow_redirects: true)).to eq({ 'id' => 'https://alice.test/' })
       end
 
       it 'returns nil if the object identified by the given URI and the object identified by the retrieved ID does not match' do
         stub_request(:get, 'https://mallory.test/').to_return(body: '{"id": "https://marvin.test/"}', headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, 'https://marvin.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
 
-        expect(fetch_resource('https://mallory.test/', false)).to be_nil
+        expect(fetch_resource('https://mallory.test/', allow_redirects: true)).to be_nil
       end
     end
 
-    context 'when the second argument is true' do
+    context 'when allow_redirects is false' do
       it 'returns nil if the retrieved ID and the given URI does not match' do
         stub_request(:get, 'https://mallory.test/').to_return(body: '{"id": "https://alice.test/"}', headers: { 'Content-Type': 'application/activity+json' })
-        expect(fetch_resource('https://mallory.test/', true)).to be_nil
+        expect(fetch_resource('https://mallory.test/', allow_redirects: false)).to be_nil
       end
     end
   end

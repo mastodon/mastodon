@@ -1,0 +1,26 @@
+@use '@/styles/mastodon/mixins';
+
+.wrapper {
+  display: flex;
+  align-items: start;
+  gap: var(--space-1);
+  @include mixins.type-caption;
+
+  &[data-variant='success'] {
+    color: var(--color-text-success);
+  }
+
+  &[data-variant='error'] {
+    color: var(--color-text-error);
+  }
+
+  &[data-variant='info'] {
+    color: var(--color-text-primary);
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-top: -1px;
+}

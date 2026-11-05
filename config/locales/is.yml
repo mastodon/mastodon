@@ -93,6 +93,7 @@ is:
       enable: Virkja
       enable_sign_in_token: Gera áskorun með öryggiskóða virka
       enable_sign_in_token_auth: Virkja auðkenningu með teikni í tölvupósti
+      enable_unconfirmed: Leyfa staðfestingarpóst
       enabled: Virkt
       enabled_msg: Tókst að affrysta aðgang notandans %{username}
       follow_recommendations:
@@ -291,6 +292,7 @@ is:
         create_domain_block_html: "%{name} útilokaði lénið %{target}"
         create_email_domain_block_html: "%{name} útilokaði póstlénið %{target}"
         create_ip_block_html: "%{name} útbjó reglu fyrir IP-vistfangið %{target}"
+        create_moderation_subscription_html: "%{name} útbjó umsjónaráskrift %{target}"
         create_relay_html: "%{name} bjó til endurvarpa %{target}"
         create_unavailable_domain_html: "%{name} stöðvaði afhendingu til lénsins %{target}"
         create_user_role_html: "%{name} útbjó %{target} hlutverk"
@@ -306,6 +308,7 @@ is:
         destroy_email_domain_block_html: "%{name} aflétti útilokun af póstléninu %{target}"
         destroy_instance_html: "%{name} henti léninu %{target}"
         destroy_ip_block_html: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
+        destroy_moderation_subscription_html: "%{name} eyddi umsjónaráskrift %{target}"
         destroy_relay_html: "%{name} eyddi endurvarpanum %{target}"
         destroy_status_html: "%{name} fjarlægði færslu frá %{target}"
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
@@ -354,10 +357,18 @@ is:
         update_user_role_html: "%{name} breytti hlutverki %{target}"
         update_username_block_html: "%{name} uppfærði reglu varðandi notendanöfn sem innihalda %{target}"
         usable_tag_html: má nota;
+      automated_actions:
+        create_domain_allow_html: Leyfði sjálfvirkt samband við lénið %{target}
+        create_domain_block_html: Lokaði sjálfvirkt á lénið %{target}
+        destroy_domain_allow_html: Bannaði sjálfvirkt samband við lénið %{target}
+        destroy_domain_block_html: Aflétti sjálfvirkt útilokun lénsins %{target}
+        update_domain_block_html: Uppfærði sjálfvirkt útilokun léna fyrir %{target}
       deleted_account: eyddur notandaaðgangur
+      deleted_suggestion: eydd umsjónaráskrift
       empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð
       filter_by_user: Sía eftir notanda
+      suggested_by_html: Aðgerð sem stungið var upp á af %{subscription}
       title: Atvikaskrá
       unavailable_instance: "(heiti léns ekki tiltækt)"
     announcements:
@@ -473,6 +484,11 @@ is:
       undo: Fjarlægja af lista yfir leyft
     domain_blocks:
       add_new: Bæta við nýrri útilokun á léni
+      confirm_downgrade:
+        cancel: Hætta við
+        confirm: Færa niður
+        preamble_html: Þú ert í þann mund að niðurfæra fyrirliggjandi útilokun á <strong>%{domain}</strong> og undirlénum þess.
+        title: Staðfestu niðurfærslu lénaútilokunar fyrir %{domain}
       confirm_suspension:
         cancel: Hætta við
         confirm: Setja í bið
@@ -672,6 +688,8 @@ is:
       title: Fylgja meðmælum
       unsuppress: Endurheimta að fylgja meðmælum
     instances:
+      advisories:
+        title: Ráðleggingar frá umsjónaráskriftum
       audit_log:
         title: Nýlegar atvikaskráningar
         view_all: Skoða heildar-atvikaskráningar
@@ -695,6 +713,7 @@ is:
         comment: Innri minnispunktur
         description_html: Þú getur skilgreint stefnu varðandi efni sem verður beitt á alla aðganga frá þessu léni og öllum undirlénum þess.
         limited_federation_mode_description_html: Þú getur valið hvort leyfa eigi skýjasamband við þetta lén.
+        moderation_subscription: Umsjónaráskrift
         policies:
           reject_media: Hafna myndefni
           reject_reports: Hafna kærum
@@ -775,6 +794,91 @@ is:
       reset: Endurstilla
       search: Leita
       title: IP-reglur
+    moderation_subscriptions:
+      add_new: Bæta við áskrift
+      advisory_action: 'Aðgerð: %{action}'
+      advisory_actions:
+        accept: leyfa
+        limit: hylja
+        reject: setja í frysti
+      apply_automatically: Virkja ráðleggingar sjálfkrafa
+      apply_conditions:
+        always: Alltaf
+        never: Aldrei
+        safely: Aðeins ef það rýfur ekki vensl
+      apply_conditions_hint:
+        always: Alltaf virkja ráðlagðar aðgerðir sjálfvirkt. Notaðu þetta eingöngu fyrir lista sem treystir að fullu.
+        never: Aldrei virkja ráðlagðar aðgerðir sjálfvirkt. Alltaf útbúa frekar tillögur.
+        safely: Virkja ráðlagðar aðgerðir nema þær myndu rjúfa fyrirliggjandi fylgjendavensl gagnvart notendum á netþjóninum. Í þeim tilfellum verða frekar útbúnar tillögur.
+      delete: Eyða
+      destroyed_msg: Tókst að eyða umsjónaráskrift
+      empty: Ekki er enn búið að skrá neina áskrift að umsjónarlistum.
+      last_synced_at: Síðast samstillt
+      list_action: Tegund áskriftar
+      list_actions:
+        accept: Listi yfir leyfilegt
+        default: Blandað (Leyfa og neita)
+        reject: Listi yfir bannað
+      list_actions_hint:
+        accept: Atriði með enga skilgreinda aðgerð verða meðhöndluð sem leyfð. Útilokanir verða hunsaðar.
+        default: Atriði með enga skilgreinda aðgerð verða meðhöndluð sem útilokuð. Leyfð atriði og útilokuð verða meðhöndluð sem slík.
+        reject: Atriði með enga skilgreinda aðgerð verða meðhöndluð sem útilokuð. Leyfð atriði verða hunsuð.
+      list_actions_short:
+        accept: Listi yfir leyfilegt
+        default: Blandaður
+        reject: Listi yfir bannað
+      name: Nafn
+      new:
+        create: Gerast áskrifandi
+        title: Ný umsjónaráskrift
+      override_unattributed: Taka yfir handvirkar útilokanir
+      override_unattributed_hint: Leyfa þessari áskrift að uppfæra sjálfvirkt eða taka yfir handvirkar útilokanir þegar ráðleggingar eru virkjaðar sjálfvirkt.
+      policies:
+        apply_advisories: Virkjar ráðleggingar sjálfvirkt
+        apply_advisories_safely: Virkjar sjálfvirkt ráðleggingar sem ekki rjúfa vensl
+        apply_retractions: Virkjar afturkallanir sjálfvirkt
+      priority: Forgangur
+      priority_hint: Umsjónaráskriftir eru metnar í forgangsröð, áskriftir með lægra númeri fara fram fyrir áskriftir með hærra númer.
+      retract_automatically: Afturkalla ráðleggingar sjálfkrafa
+      show:
+        delete_confirm: Ertu viss um að þú viljir eyða þessari umsjónaráskrift?
+        edit: Breyta áskrift
+        empty: Þessi áskrift er enn ekki með neinar ráðleggingar.
+        title: 'Umsjónaráskrift: %{name}'
+      tabs:
+        logs: Atvikaskrár
+        subscriptions: Áskriftir
+        suggestions: Tillögur
+      title: Umsjónaráskriftir
+      type: Tegund
+      types:
+        csv_list: CSV-listi
+      url: URL-slóð
+    moderation_subscriptions_logs:
+      title: Atvikaskrár umsjónaráskrifta
+    moderation_suggestions:
+      actions:
+        accept: Leyfa
+        limit: Takmarka
+        reject: Setja í frysti
+        retract: Afturkalla fyrirliggjandi stefnumörkun
+      applied_msg: Tókst að virkja tillögu fyrir %{target_key}
+      apply_accept: Leyfa
+      apply_limit: Takmarka
+      apply_reject: Setja í frysti
+      apply_retract: Taka aftur
+      current_states:
+        accept: núna leyft
+        limit: núna takmarkað
+        reject: núna í frysti
+      description: Hér fyrir neðan eru tillögur frá umsjónaráskriftunum þínum, raðað eftir forgangi.
+      destroyed_msg: Tókst að hafna tillögu fyrir %{target_key}
+      dismiss: Hafna tillögum
+      empty: Ekki er fyrirliggjandi nein umsjónartillaga á þessum tímapunkti.
+      retracted_msg: Tókst að afturkalla stefnumörkun fyrir %{target_key}
+      suggested_from_html: Tillaga frá %{link}
+      title: Umsjónartillögur
+      unable_to_apply_msg: Tókst ekki að virkja tillögu fyrir %{target_key}
     relationships:
       title: Vensl %{acct}
     relays:
@@ -969,6 +1073,119 @@ is:
       translation: Þýðing
       translations: Þýðingar
       translations_explanation: Þú getur valið að bæta við þýðingum fyrir reglurnar. Sjálfgefna gildið verður birt ef engin þýðing er fyrir hendi. Gakktu úr skugga um að uppgefnar þýðingar sé alltaf í samræmi við sjálfgefna gildið.
+    server_checks:
+      categories:
+        completed:
+          title: Lokið
+        critical:
+          title: Áríðandi
+        error:
+          title: Villur
+        ignored:
+          title: Hunsað
+        suggestion:
+          title: Tillögur
+        unprocessed:
+          title: Óunnið
+        warning:
+          title: Aðvaranir
+      checks:
+        database_schema:
+          error:
+            title: Upp kom villa við að athuga skema gagnagrunns
+          ok:
+            title: Það eru engar yfirfærslur gagnagrunna í bið
+          pending:
+            lead_html: Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
+            title: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum
+          running:
+            title: Netþjónninn þinn er að athuga skema gagnagrunnsins
+          unprocessed:
+            title: Netþjónninn þinn hefur ekki enn athugað skema gagnagrunnsins
+        elastic_search:
+          error:
+            title: Villa kom upp við að athuga grunnstillingar Elasticsearch
+          ok:
+            title: Tókst að grunnstilla Elasticsearch án vandkvæða
+          pending:
+            lead:
+              analysis_index_mismatch_html: Stillingar á Elasticsearch efnisskráningargreingu eru úreltar. Þú skalt endilega keyra <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Elasticsearch-klasinn er ekki í góðu standi (rauð staða), leitareiginleikar eru ekki tiltækir
+              cluster_health_yellow_html: Elasticsearch-klasinn er ekki í góðu standi (gul staða), þú gætir viljað rannsaka málið
+              index_mismatch_html: Elasticsearch atriðaskráningin er úrelt. Þú ættir að keyra <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Elasticsearch-klasinn þinn er með meira en einn hnút, en Mastodon er ekki sett upp til að nota þá
+              preset_single_node_html: Elasticsearch-klasinn þinn er með aðeins einn hnút, <code>ES_PRESET</code> ætti að vera stillt á <code>single_node_cluster</code>
+              reset_chewy_html: Elasticsearch-kerfisatriðaskráin þín er úrelt vegna breytinga á stillingum. Þú ættir að keyra <code>tootctl search deploy --reset-chewy</code> til að uppfæra hana
+              running_check_html: Gat ekki tengst við Elasticsearch. Gakktu úr skugga um að það sé í gangi, eða gerðu full-texta leit óvirka
+              version_check_html: Elasticsearch %{running_version} er keyrandi, en útgáfa %{required_version} er nauðsynleg
+            title: Það eru vandamál með Elasticsearch
+          running:
+            title: Netþjónninn er að kanna grunnstillingar Elasticsearch
+          unprocessed:
+            title: Netþjónninn hefur enn ekki kannað grunnstillingar Elasticsearch
+        media_privacy:
+          error:
+            title: Upp kom villa við að athuga gagnaleynd myndefnis á þjóninum þínum
+          ok:
+            title: Gagnaleynd myndefnis á þjóninum þínum er tryggð
+          pending:
+            lead:
+              upload_check_privacy_error_html: Vefþjónninn þinn er rangt stilltur
+              upload_check_privacy_error_object_storage_html: Geymsla gagnahluta er rangt stillt
+            title: Gagnaleynd notendanna þinna er í hættu
+          running:
+            title: Netþjónninn þinn er að athuga stöðu persónugagnaverndar
+          unprocessed:
+            title: Netþjónninn þinn hefur ekki enn athugað með stöðu persónugagnaverndar
+        rules:
+          error:
+            title: Upp kom villa við að athuga reglur netþjónsins
+          ok:
+            title: Reglur netþjónsins þíns eru stilltar
+          pending:
+            lead_html: Netþjónninn þinn er ekki með neinar útgefnar reglur. Skýrar reglur hjálpa til við umsjónarvinnu og afmarka væntingar notenda
+            title: Settu upp reglur netþjóns
+          running:
+            title: Netþjónninn þinn er að athuga reglurnar þínar
+          unprocessed:
+            title: Netþjónninn þinn hefur ekki enn athugað hvort einhverjar reglur séu til staðar
+        sidekiq_process:
+          error:
+            title: Villa kom upp við að athuga grunnstillingar Sidekiq
+          ok:
+            title: Tókst að grunnstilla Sidekiq án vandkvæða
+          pending:
+            lead_html: Ekkert Sidekiq-ferli er í gangi fyrir %{missing_queues_str} biðröð/biðraðir
+            title: Endilega athugaðu Sidekiq-uppsetninguna þína
+          running:
+            title: Netþjónninn þinn er að athuga grunnstillingar Sidekiq
+          unprocessed:
+            title: Netþjónninn þinn hefur ekki enn athugað grunnstillingar Sidekiq
+        software_version:
+          error:
+            title: Villa kom upp við að athuga með hugbúnaðaruppfærslur
+          ok:
+            title: Mastodon-tilvikið þitt er af nýjustu gerð
+          pending:
+            lead:
+              patch_html: Uppfærsla með lagfæringum á Mastodon er tiltæk
+              regular_html: Það er til nýrri útgáfa Mastodon
+              urgent_html: Áríðandi uppfærsla Mastodon er tiltæk, uppfærðu eins fljótt og auðið er
+            title: Uppfærðu Mastodon-tilvikið þitt
+          running:
+            title: Netþjónninn þinn er að athuga hvort einhverjar hugbúnaðaruppfærslur bíði
+          unprocessed:
+            title: Netþjónninn þinn hefur ekki enn athugað með hugbúnaðaruppfærslur
+      ignore:
+        label: Hunsa
+      lead: Ráðleggingar til að halda netþjóninum þínum öruggum, vingjarnlegum og afkastamiklum.
+      recommendations:
+        title: Ráðleggingar
+      restore:
+        label: Endurheimta
+      setup:
+        label: Setja upp
+      title: Heilsa netþjóns
     settings:
       about:
         manage_rules: Sýsla með reglur netþjónsins
@@ -1317,9 +1534,17 @@ is:
     warning_presets:
       add_new: Bæta við nýju
       delete: Eyða
-      edit_preset: Breyta forstilltri aðvörun
-      empty: Þú hefur ekki enn skilgreint neinar aðvaranaforstillingar.
-      title: Forstilltar aðvaranir
+      dropdown:
+        all_actions: Allar aðgerðir
+        disable: Frysta
+        none: Aðvörun
+        sensitive: Viðkvæmt
+        silence: Takmarka
+        suspend: Setja í frysti
+      edit_preset: Breyta stöðluðu svari
+      empty: Þú hefur enn ekki skilgreint nein stöðluð svör.
+      navigation_title: Stöðluð svör
+      title: Stöðluð svör umsjónar
     webhooks:
       add_new: Bæta við endapunkti
       delete: Eyða
@@ -1368,9 +1593,15 @@ is:
     new_critical_software_updates:
       body: Nýjar áríðandi uppfærslur fyrir Mastodon hafa verið gefnar út, þú gætir viljað uppfæra eins fljótt og mögulegt er!
       subject: Áríðandi Mastodon-uppfærslur eru tiltækar fyrir %{instance}!
+    new_moderation_suggestions:
+      body: Umsjónarlistarnir sem netþjónninn þinn er áskrifandi að hafa gefið út nýjar tillögur.
+      subject: Nýjar umsjónartillögur eru tiltækar á %{instance}!
     new_pending_account:
       body: Nákvæmari upplýsingar um nýja notandaaðganginn eru hér fyrir neðan. Þú getur samþykkt eða hafnað þessari umsókn.
       subject: Nýr notandaaðgangur er kominn til yfirferðar á %{instance} (%{username})
+    new_pending_accounts:
+      body: Nýir aðgangar hafa verið útbúnir á %{instance}. Þar sem netþjónninn þinn er stilltur á að hætta við sendingar staðfestingarpósta eftir samþykkt þeirra af umsjónarfólki, þá hafa þessir aðgangar ekki enn haft tækifæri til að sannreyna tölvupóstfangið sitt. Nánari upplýsingar um nýju aðgangana eru hér fyrir neðan. Þú getur samþykkt eða hafnað þessum umsóknum.
+      subject: Nýir notendaaðgangar eru komnir til yfirferðar á %{instance}
     new_report:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
@@ -1399,7 +1630,6 @@ is:
     animations_and_accessibility: Hreyfingar og algilt aðgengi
     boosting_preferences: Kjörstillingar fyrir endurbirtingar
     boosting_preferences_info_html: "<strong>Ábending:</strong> Hverjar svo sem stillingarnar eru, þá mun <kbd>Shift</kbd> + <kbd>smella</kbd> á %{icon} endurbirtingartáknið alltaf endurbirta strax."
-    discovery: Uppgötvun
     localization:
       body: Mastodon er þýtt af sjálfboðaliðum.
       guide_link: https://crowdin.com/project/mastodon/is
@@ -1481,11 +1711,16 @@ is:
     security: Öryggi
     set_new_password: Stilla nýtt lykilorð
     setup:
+      correct_email: Rétt tölvupóstfang
       email_below_hint_html: Skoðaðu ruslpóstmöppuna þína, eða biddu um annan póst. Þú getur leiðrétt tölvupóstfangið þitt ef þörf er á.
       email_settings_hint_html: Smelltu á tengilinn sem við sendum á %{email} til að byrja að nota Mastodon. Við bíðum hér á meðan.
+      email_settings_hint_wait_html: Verið er að yfirfara umsóknina þína. Þú ættir að fá fljótlega póst á %{email}. Um leið og það gerist ættirðu að smella á tengilinn til að byrja að nota Mastodon. Við bíðum hér á meðan.
       link_not_received: Fékkstu ekki neinn tengil?
       new_confirmation_instructions_sent: Þú munt fá nýjan tölvupóst með staðfestingartengli innan skamms!
       title: Athugaðu pósthólfið þitt
+      title_wait: Hafðu auga með pósthólfinu þínu
+      wrong_email: Rangt tölvupóstfang?
+      wrong_email_below_hint_html: Ekki örvænta! Þú getur leiðrétt tölvupóstfangið þitt hér.
     sign_in:
       preamble_html: Skráðu þig inn með auðkennum þínum fyrir <strong>%{domain}</strong>. Ef aðgangurinn þinn er hýstur á öðrum netþjóni, muntu ekki geta skráð þig inn hér.
       title: Skrá inn á %{domain}
@@ -1522,6 +1757,12 @@ is:
     auto: Sjálfvirkt
     dark: Dökkt
     light: Ljóst
+  color_theme:
+    cyan: Blágrænt
+    indigo: Djúpfjólublátt
+    lime: Límónugrænt
+    orange: Appelsínugult
+    pink: Bleikt
   contrast:
     auto: Sjálfvirkt
     high: Mikið
@@ -1570,6 +1811,7 @@ is:
       action_taken: Framkvæmd aðgerð
       appeal: Áfrýja
       appeal_approved: Þessari refsingu hefur verið áfrýjað með góðum árangri og hún því ekki lengur í gildi
+      appeal_handled_by: Áfrýun meðhöndluð af
       appeal_rejected: Áfrýjuninni hefur verið hafnað
       appeal_submitted_at: Áfrýjun send inn
       appealed_msg: Áfrýjun þín hefur verið sen dinn. Þú verður látin/n vita ef hún verður samþykkt.
@@ -2170,7 +2412,7 @@ is:
     relationships: Fylgist með og fylgjendur
     severed_relationships: Rofin tengsl
     statuses_cleanup: Sjálfvirk eyðing færslna
-    strikes: Umsýsla refsinga
+    strikes: Refsingar umsjónarfólks
     two_factor_authentication: Tveggja-þátta auðkenning
     webauthn_authentication: Öryggislyklar
   severed_relationships:

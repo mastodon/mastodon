@@ -18,7 +18,7 @@ class Scheduler::RepairRemoteCollectionsScheduler
 
     successful = true
     affected_collections.find_each do |collection|
-      json = fetch_resource(collection.uri, true)
+      json = fetch_resource(collection.uri)
       if json.nil? || !json.is_a?(Hash) || !json.key?('attributedTo')
         successful = false
         next

@@ -177,7 +177,6 @@ export const selectStatusInteractions = createAppSelector(
       copy: addAllowed({}),
       delete: addAllowed({ isMine }),
       edit: addAllowed({ isMine }),
-      editQuotePolicy: addAllowed({ isMine, isPublic }),
       embed: addAllowed({ isPublic, isLocal }),
       favourite: addAllowed({ isLoggedIn }),
       filter: addAllowed({ isLoggedIn, isNotMine }),

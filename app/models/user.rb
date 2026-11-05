@@ -69,7 +69,7 @@ class User < ApplicationRecord
          :confirmable
 
   belongs_to :account, inverse_of: :user
-  belongs_to :invite, counter_cache: :uses, optional: true
+  belongs_to :invite, optional: true
   belongs_to :created_by_application, class_name: 'Doorkeeper::Application', optional: true
   belongs_to :role, class_name: 'UserRole', optional: true
   accepts_nested_attributes_for :account
@@ -112,8 +112,9 @@ class User < ApplicationRecord
   scope :matches_ip, ->(value) { left_joins(:ips).merge(UserIp.contained_by(value)).group(users: [:id]) }
 
   before_validation :sanitize_role
-  before_create :set_approved
+  before_create :set_approved, prepend: true # Must be called before Devise callbacks
   before_create :set_age_verified_at
+  after_create :increment_invite_uses
   after_commit :send_pending_devise_notifications
   after_create_commit :trigger_webhooks
   after_commit :reload_home_feed, if: :saved_change_to_settings, on: [:create, :update]
@@ -175,8 +176,30 @@ class User < ApplicationRecord
     redis.publish("timeline:system:#{account.id}", { event: :kill }.to_json)
   end
 
+  def mails_disabled?
+    disabled? && confirmed_at.nil? && confirmation_sent_at.nil?
+  end
+
   def enable!
     update!(disabled: false)
+
+    # Users that are disabled at creation-time do not generate a confirmation link,
+    # so generate one on re-enable if that's the case
+    send_confirmation_instructions if confirmation_sent_at.nil? && confirmed_at.nil?
+  end
+
+  # Redefined so users that are created disabled do not cause a confirmation mail to be sent
+  def generate_confirmation_token
+    return if mails_disabled?
+
+    super
+  end
+
+  # Redefined so users that are created disabled do not cause a confirmation mail to be sent
+  def send_confirmation_instructions
+    return if mails_disabled?
+
+    super
   end
 
   def to_log_human_identifier
@@ -259,6 +282,7 @@ class User < ApplicationRecord
   def approve!
     return if approved?
 
+    enable! if disabled?
     update!(approved: true)
 
     # Avoid extremely unlikely race condition when approving and confirming
@@ -433,6 +457,8 @@ class User < ApplicationRecord
         open_registrations? || valid_bypassing_invitation? || external?
       end
     end
+
+    self.disabled ||= !approved && Setting.postpone_confirmation_emails
   end
 
   def set_age_verified_at
@@ -557,5 +583,9 @@ class User < ApplicationRecord
 
   def initial_setting_display_own_posts
     saved_change_to_settings.first['display_own_posts']
+  end
+
+  def increment_invite_uses
+    invite&.increment!(:uses)
   end
 end

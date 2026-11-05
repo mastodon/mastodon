@@ -15,7 +15,7 @@ $mobile-breakpoint: 540px;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 40px;
+  padding: var(--space-10);
   overflow-y: auto;
   scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
 
@@ -38,13 +38,13 @@ $mobile-breakpoint: 540px;
   position: absolute;
   top: var(--corner-distance);
   right: var(--corner-distance);
-  padding: 8px;
+  padding: var(--space-2);
   border-radius: 100%;
 
   @media (width < $mobile-breakpoint) {
     --corner-distance: 16px;
 
-    padding: 4px;
+    padding: var(--space-1);
   }
 }
 
@@ -54,8 +54,8 @@ $mobile-breakpoint: 540px;
   box-sizing: border-box;
   position: relative;
   max-width: 600px;
-  padding: 24px;
-  padding-top: 40px;
+  padding: var(--space-6);
+  padding-top: var(--space-10);
   contain: layout;
   flex: 0 0 auto;
   pointer-events: all;
@@ -91,26 +91,25 @@ $mobile-breakpoint: 540px;
   border-radius: 40px;
 
   @media (width < $mobile-breakpoint) {
-    padding-inline: 12px;
-    padding-bottom: 12px;
+    padding-inline: var(--space-3);
+    padding-bottom: var(--space-3);
     border-radius: 0;
   }
 }
 
 .header {
-  margin-bottom: 18px;
+  margin-bottom: var(--space-4);
   text-align: center;
 
   h1 {
     font-family: silkscreen-wrapstodon, monospace;
     font-size: 28px;
     line-height: 1;
-    margin-bottom: 4px;
-    padding-inline: 40px; // Prevent overlap with close button
+    margin-bottom: var(--space-1);
+    padding-inline: var(--space-10); // Prevent overlap with close button
 
     @media (width < $mobile-breakpoint) {
       font-size: 22px;
-      margin-bottom: 4px;
     }
   }
 
@@ -121,7 +120,7 @@ $mobile-breakpoint: 540px;
 }
 
 .stack {
-  --grid-spacing: 12px;
+  --grid-spacing: var(--space-3);
 
   display: grid;
   gap: var(--grid-spacing);
@@ -129,8 +128,8 @@ $mobile-breakpoint: 540px;
 
 .box {
   position: relative;
-  padding: 24px;
-  border-radius: 16px;
+  padding: var(--space-6);
+  border-radius: var(--radius-4);
   background: rgb(from var(--color-bg-primary) r g b / 60%);
   box-shadow: inset 0 0 0 1px rgb(from var(--color-text-primary) r g b / 40%);
 
@@ -162,7 +161,7 @@ $mobile-breakpoint: 540px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 8px;
+  gap: var(--space-2);
   font-size: 14px;
   text-align: center;
   text-wrap: balance;
@@ -175,7 +174,7 @@ $mobile-breakpoint: 540px;
 .title {
   text-transform: uppercase;
   color: var(--color-text-brand-soft);
-  font-weight: 500;
+  font-weight: bold;
 
   &:last-child {
     margin-bottom: -3px;
@@ -184,13 +183,13 @@ $mobile-breakpoint: 540px;
 
 .statLarge {
   font-size: 24px;
-  font-weight: 500;
+  font-weight: bold;
   overflow-wrap: break-word;
 }
 
 .statExtraLarge {
   font-size: 32px;
-  font-weight: 500;
+  font-weight: bold;
   line-height: 1;
   overflow-wrap: break-word;
 
@@ -200,8 +199,7 @@ $mobile-breakpoint: 540px;
 }
 
 .mostBoostedPost {
-  padding: 0;
-  padding-top: 24px;
+  padding: var(--space-6) 0;
   overflow: hidden;
 }
 
@@ -269,14 +267,14 @@ $mobile-breakpoint: 540px;
 
 .mostUsedHashtag {
   grid-area: hashtag;
-  padding-block: 24px;
+  padding-block: var(--space-6);
 }
 
 .archetype {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: var(--space-4);
 
   p {
     max-width: 460px;
@@ -336,14 +334,7 @@ $mobile-breakpoint: 540px;
 .shareButtonWrapper {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.secondaryShareButton {
-  // Extra selector is needed to override color
-  &:global(.button) {
-    color: var(--color-text-primary);
-  }
+  gap: var(--space-2);
 }
 
 .navItemBadge {

@@ -8,6 +8,14 @@ pt-PT:
     hosted_on: Mastodon alojado em %{domain}
     title: Sobre
   accounts:
+    api_errors:
+      2fa_required: A sua conta não pode ser usada sem um segundo fator de autenticação configurado
+      account_deleted: A sua conta foi eliminada
+      account_suspended: A sua conta foi suspensa
+      login_disabled: A sua conta está atualmente desativada
+      memorial: A sua conta foi transformada em memorial
+      pending_approval: A sua conta está a aguardar aprovação de moderação
+      pending_confirmation: A sua conta tem em falta um endereço de e-mail confirmado
     errors:
       cannot_be_added_to_collections: Esta conta não pode ser adicionada às coleções.
     followers:
@@ -69,6 +77,7 @@ pt-PT:
       demote: Despromovida
       destroyed_msg: Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato
       disable: Congelar
+      disable_sign_in_token: Desativar o desafio do código de segurança temporariamente
       disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar autenticação por dois fatores (2FA)
       disabled: Congelada
@@ -82,6 +91,7 @@ pt-PT:
       email: E-mail
       email_status: Estado do e-mail
       enable: Descongelar
+      enable_sign_in_token: Ativar código de segurança
       enable_sign_in_token_auth: Ativar token de autenticação por e-mail
       enabled: Ativado
       enabled_msg: Descongelou a conta %{username}
@@ -997,6 +1007,13 @@ pt-PT:
         disabled: Para ninguém
         users: Para utilizadores locais que se encontrem autenticados
       external:
+        directory: Diretoria do Servidor
+        opt_in_server_directory:
+          description: Permita que o seu servidor seja listado em diretorias de servidor, como o destaque em https://joinmastodon.org/servers.
+          title: Adicione o seu servidor para a diretoria do servidor
+        opt_in_server_recommendation:
+          description: Permitir que o seu servidor seja recomendado no horário de inscrição em aplicativos como os clientes oficiais do Mastodon.
+          title: Adicione o seu servidor para recomendação
         preamble: Controle quantas informações do seu servidor são partilhadas com outros serviços e como o seu servidor deve ser encontrado.
         privacy: Privacidade
         publish_statistics: Publicar estatísticas
@@ -1302,9 +1319,6 @@ pt-PT:
     warning_presets:
       add_new: Adicionar novo
       delete: Eliminar
-      edit_preset: Editar o aviso predefinido
-      empty: Ainda não definiu nenhum aviso predefinido.
-      title: Predefinições de aviso
     webhooks:
       add_new: Adicionar endpoint
       delete: Eliminar
@@ -1384,7 +1398,6 @@ pt-PT:
     animations_and_accessibility: Animações e acessibilidade
     boosting_preferences: Definições de partilha
     boosting_preferences_info_html: "<strong>Dica:</strong> Independente das definições, <kbd>Shift</kbd> + <kbd>Clique</kbd> no ícone %{icon} de Partilhar vai partilhar de imediato."
-    discovery: Descobrir
     localization:
       body: O Mastodon é traduzido por voluntários.
       guide_link: https://pt.crowdin.com/project/mastodon/
@@ -2343,6 +2356,14 @@ pt-PT:
       further_actions_html: Se não foi você, recomendamos %{action} imediatamente, pois a conta pode ter sido comprometida.
       subject: Falha na autenticação do segundo fator
       title: Falha na autenticação do segundo fator
+    sign_in_token:
+      change_password: altere a sua palavra-passe
+      details: 'Aqui estão os detalhes da tentativa:'
+      explanation: 'Detetamos uma tentativa de entrar na sua conta após um longo tempo de inatividade. Se for você, insira o código de segurança abaixo na página de acesso:'
+      further_actions: 'Se não foi você, por favor altere a sua palavra-passe e ative a autenticação em duas etapas na sua conta. Pode fazê-lo aqui:'
+      further_actions_html: Se não foi você, recomendamos que %{action} imediatamente e ative a autenticação de dois fatores para manter a sua conta segura.
+      subject: Por favor, confirme a tentativa de acesso
+      title: Tentativa de acesso
     suspicious_sign_in:
       change_password: alterar a palavra-passe
       details: 'Eis os pormenores do início de sessão:'
@@ -2432,8 +2453,12 @@ pt-PT:
       title: Bem-vindo a bordo, %{name}!
   users:
     follow_limit_reached: Não podes seguir mais do que %{limit} pessoas
+    generic_access_help_html: Problemas a aceder à sua conta? Pode entrar em contacto com %{email} para obter ajuda
     go_to_sso_account_settings: Ir para as definições de conta do seu fornecedor de identidade
+    inactive_sign_in_confirmation: Já faz algum tempo desde que entrou, por isso enviamos um código de segurança para o seu endereço de e-mail para confirmar que é você.
+    inactive_sign_in_title: Por favor, confirme o código de segurança
     invalid_otp_token: Código de dois fatores inválido
+    invalid_sign_in_token: Código de segurança inválido
     otp_lost_help_html: Se perdeste o acesso a ambos, podes entrar em contacto com %{email}
     rate_limited: Demasiadas tentativas de autenticação, tenta novamente mais tarde.
     seamless_external_login: A sessão foi iniciada através de um serviço externo, pelo que as definições de palavra-passe e e-mail não estão disponíveis.

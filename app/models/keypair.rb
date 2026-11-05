@@ -19,6 +19,7 @@
 
 class Keypair < ApplicationRecord
   include Expireable
+  include JsonLdHelper
 
   self.inheritance_column = nil
 
@@ -34,6 +35,7 @@ class Keypair < ApplicationRecord
 
   validates :uri, presence: true, uniqueness: true, if: -> { account.remote? }
   validates :uri, absence: true, if: -> { account.local? }
+  validate :validate_uri_origin, if: -> { account.remote? }
 
   validates :local_fragment, presence: true, uniqueness: { scope: :account_id }, format: { with: /\A#[A-Z0-9-]+\Z/i }, if: -> { account.local? }
   validates :local_fragment, absence: true, if: -> { account.remote? }
@@ -71,6 +73,8 @@ class Keypair < ApplicationRecord
         Linzer.new_rsa_v1_5_sha256_public_key(public_key)
       when 'ed25519'
         Linzer.new_ed25519_public_key(public_key)
+      when 'ml-dsa-44'
+        Linzer.new_ml_dsa_44_key(public_key)
       end
     end
   end
@@ -108,7 +112,7 @@ class Keypair < ApplicationRecord
       account:,
       uri: uri.presence || ActivityPub::TagManager.instance.key_uri_for(account),
       public_key: account.public_key,
-      private_key: account.private_key,
+      private_key: nil,
       type: :rsa
     )
   end
@@ -129,5 +133,11 @@ class Keypair < ApplicationRecord
         type: private_key_pem_or_hash['type']
       )
     end
+  end
+
+  private
+
+  def validate_uri_origin
+    errors.add(:uri, :cross_origin) if non_matching_uri_hosts?(uri, account.uri)
   end
 end

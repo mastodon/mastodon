@@ -11,6 +11,15 @@ import {
 } from './database';
 import { search } from './search';
 
+vi.mock(import('debug'), async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    // log writes to stdout and cannot be silenced with vitest config
+    log: () => vi.fn(),
+  };
+});
+
 function rawEmojiFactory(data: Partial<CompactEmoji> = {}): CompactEmoji {
   const factory = unicodeEmojiFactory();
   return {

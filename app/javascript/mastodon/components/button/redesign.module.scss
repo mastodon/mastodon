@@ -18,10 +18,10 @@
   border: 0;
   appearance: none;
   cursor: pointer;
+  position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  column-gap: var(--space-1);
   padding-inline: var(--inline-padding);
   box-sizing: border-box;
 
@@ -46,6 +46,16 @@
     cursor: not-allowed;
     opacity: 0.5;
   }
+
+  @media (forced-colors: active) {
+    &::before {
+      @include mixins.high-contrast-outline;
+    }
+  }
+}
+
+.label {
+  padding-inline: var(--space-1);
 }
 
 // Override default anchor styles
@@ -76,21 +86,21 @@ a.base {
 }
 
 .sm {
-  --inline-padding: var(--space-3);
+  --inline-padding: var(--space-2);
 
   padding-block: var(--space-1);
   min-height: 32px;
 }
 
 .md {
-  --inline-padding: var(--space-4);
+  --inline-padding: var(--space-3);
 
   padding-block: var(--space-2);
   min-height: 40px;
 }
 
 .lg {
-  --inline-padding: var(--space-5);
+  --inline-padding: var(--space-4);
 
   padding-block: var(--space-3);
   min-height: 48px;
@@ -101,6 +111,10 @@ a.base {
 .solid {
   --bg: var(--color-bg-inverted);
   --fg: var(--color-text-inverted);
+
+  &.contrastOnMedia:not(.accent, .destructive) {
+    border: 1px solid var(--color-border-primary);
+  }
 
   &.accent {
     --bg: var(--color-bg-brand-base);
@@ -161,6 +175,8 @@ a.base {
 // Ghost
 
 .ghost {
+  --bg-hover: var(--color-bg-highlight);
+
   @include active {
     --bg: var(--color-bg-inverted);
     --fg: var(--color-text-inverted);
@@ -236,5 +252,9 @@ a.base {
 }
 
 .clipPadding {
-  margin-inline-start: calc(-1 * var(--inline-padding));
+  margin-inline-start: calc(-1 * (var(--inline-padding) + var(--space-1)));
+
+  &:has(:global(.icon-leading)) {
+    margin-inline-start: calc(-1 * var(--inline-padding));
+  }
 }

@@ -105,10 +105,6 @@ code {
       display: flex;
       align-items: center;
       gap: 16px;
-
-      .character-counter {
-        flex: 0 0 auto;
-      }
     }
 
     &.hidden {
@@ -116,6 +112,10 @@ code {
     }
 
     &.radio_buttons {
+      &:not(:has(.radio)) {
+        display: none;
+      }
+
       .radio {
         margin-bottom: 15px;
 
@@ -280,7 +280,7 @@ code {
   }
 
   strong {
-    font-weight: 500;
+    font-weight: bold;
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -297,7 +297,7 @@ code {
         font-family: inherit;
         font-size: 14px;
         color: var(--color-text-primary);
-        font-weight: 500;
+        font-weight: bold;
         min-width: 150px;
         flex: 0 0 auto;
       }
@@ -322,7 +322,7 @@ code {
       display: block;
       margin-bottom: 8px;
       overflow-wrap: break-word;
-      font-weight: 500;
+      font-weight: bold;
     }
 
     .hint {
@@ -383,9 +383,13 @@ code {
     align-items: center;
 
     input {
-      box-sizing: content-box;
-      width: unset;
+      width: auto;
       flex: 0;
+      min-width: 70px;
+    }
+
+    input[size='4'] {
+      min-width: 100px;
     }
   }
 
@@ -400,6 +404,10 @@ code {
 
   .fields-group {
     margin-bottom: 25px;
+
+    &.hidden {
+      display: none;
+    }
 
     .input:last-child {
       margin-bottom: 0;
@@ -605,7 +613,7 @@ code {
 
     .error {
       display: block;
-      font-weight: 500;
+      font-weight: bold;
       color: var(--color-text-error);
       margin-top: 4px;
     }
@@ -649,8 +657,12 @@ code {
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: bold;
     outline: 0;
+
+    @media (forced-colors: active) {
+      border: 1px solid transparent;
+    }
 
     &:last-child {
       margin-inline-end: 0;
@@ -941,7 +953,7 @@ code {
   }
 
   strong {
-    font-weight: 500;
+    font-weight: bold;
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -1038,7 +1050,7 @@ code {
 
   strong {
     color: var(--color-text-primary);
-    font-weight: 500;
+    font-weight: bold;
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -1053,7 +1065,7 @@ code {
     color: var(--color-text-primary);
     font-size: 17px;
     line-height: 22px;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 30px;
   }
 
@@ -1246,7 +1258,7 @@ code {
       flex: 1 1 auto;
 
       &__title {
-        font-weight: 500;
+        font-weight: bold;
       }
 
       &__type {
@@ -1363,7 +1375,7 @@ code {
   .label {
     position: absolute;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: bold;
     color: var(--color-text-primary);
     padding-top: 10px;
     text-align: center;
@@ -1556,5 +1568,11 @@ code {
         height: 20px;
       }
     }
+  }
+}
+
+.full_width_form {
+  .button {
+    width: 100%;
   }
 }

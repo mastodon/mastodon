@@ -2,10 +2,9 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { unblockDomain } from 'mastodon/actions/domain_blocks';
-import { useAppDispatch } from 'mastodon/store';
-
-import { Button } from './button';
+import { unblockDomain } from '@/mastodon/actions/domain_blocks';
+import { Button } from '@/mastodon/components/button/redesign';
+import { useAppDispatch } from '@/mastodon/store';
 
 export const Domain: React.FC<{
   domain: string;
@@ -25,7 +24,7 @@ export const Domain: React.FC<{
       </div>
 
       <div className='domain__buttons'>
-        <Button onClick={handleDomainUnblock}>
+        <Button size='sm' onClick={handleDomainUnblock}>
           <FormattedMessage
             id='account.unblock_domain_short'
             defaultMessage='Unblock'

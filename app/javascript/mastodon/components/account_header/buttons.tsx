@@ -5,21 +5,16 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { ChatCircleDotsIcon, UserMinusIcon } from '@phosphor-icons/react';
 
-import { followAccount } from '@/mastodon/actions/accounts';
 import { directCompose } from '@/mastodon/actions/compose';
 import { openModal } from '@/mastodon/actions/modal';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
-import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
 
 import { Button, IconButton } from '../button/redesign';
-import { CopyIconButton, CopyIconButtonLegacy } from '../copy_button';
+import { CopyIconButton } from '../copy_button';
 import { FollowButton } from '../follow_button';
-import { IconButton as LegacyIconButton } from '../icon_button';
 
 import { AccountMenu } from './menu';
 import classes from './styles.module.scss';
@@ -74,12 +69,6 @@ const AccountButtonsOther: FC<
 
   const dispatch = useAppDispatch();
 
-  const handleNotifyToggle = useCallback(() => {
-    if (account) {
-      dispatch(followAccount(account.id, { notify: !relationship?.notifying }));
-    }
-  }, [dispatch, account, relationship]);
-
   const sendDirectMessage = useCallback(() => {
     if (account) {
       dispatch(directCompose(account));
@@ -101,23 +90,21 @@ const AccountButtonsOther: FC<
   }
 
   const isMovedAndUnfollowedAccount = account.moved && !relationship?.following;
-  const isFollowing = relationship?.requested || relationship?.following;
-
-  const shouldHideMainFollowButton = isRedesignEnabled() && isFollowing;
+  const isFollowing = relationship?.following;
 
   return (
     <>
-      {!shouldHideMainFollowButton && !isMovedAndUnfollowedAccount && (
+      {!isFollowing && !isMovedAndUnfollowedAccount && (
         <FollowButton
-          compact={isRedesignEnabled()}
           accountId={accountId}
           className={classes.followButton}
           withUnmute={false}
+          size='sm'
           labelLength='long'
           reference={reference}
         />
       )}
-      {isFollowing && isRedesignEnabled() && (
+      {isFollowing && (
         <>
           <Button
             leadingIcon={ChatCircleDotsIcon}
@@ -125,6 +112,7 @@ const AccountButtonsOther: FC<
             variant='solid'
             color='accent'
             onClick={sendDirectMessage}
+            className={classes.followButton}
           >
             <FormattedMessage
               id='account.menu.message'
@@ -137,36 +125,13 @@ const AccountButtonsOther: FC<
           </IconButton>
         </>
       )}
-      {isFollowing && !isRedesignEnabled() && (
-        <LegacyIconButton
-          icon={relationship.notifying ? 'bell' : 'bell-o'}
-          iconComponent={
-            relationship.notifying ? NotificationsActiveIcon : NotificationsIcon
-          }
-          active={relationship.notifying}
-          title={intl.formatMessage(
-            relationship.notifying
-              ? messages.disableNotifications
-              : messages.enableNotifications,
-            { name: account.username },
-          )}
-          onClick={handleNotifyToggle}
+      {!noShare && (
+        <CopyIconButton
+          title={intl.formatMessage(messages.copy)}
+          value={account.url}
+          size='sm'
         />
       )}
-      {!noShare &&
-        (isRedesignEnabled() ? (
-          <CopyIconButton
-            title={intl.formatMessage(messages.copy)}
-            value={account.url}
-            size='sm'
-          />
-        ) : (
-          <CopyIconButtonLegacy
-            className='optional'
-            title={intl.formatMessage(messages.copy)}
-            value={account.url}
-          />
-        ))}
     </>
   );
 };

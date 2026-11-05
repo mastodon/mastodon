@@ -1,4 +1,5 @@
 @use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables' as vars;
 
 .root {
   @include mixins.type-body;
@@ -38,6 +39,19 @@
 }
 
 .text {
+  overflow-wrap: break-word;
+
+  &:lang(#{vars.$vertical-lr-langs}) {
+    writing-mode: vertical-lr;
+    max-height: 10lh;
+    overflow-wrap: normal;
+
+    [data-variant='page'] & {
+      max-height: 50vh;
+      overflow-x: auto;
+    }
+  }
+
   p,
   pre,
   blockquote,
@@ -47,7 +61,7 @@
     unicode-bidi: plaintext;
 
     &:not(:last-child) {
-      margin-block-end: var(--space-4);
+      margin-block-end: 0.6lh;
     }
   }
 
@@ -64,6 +78,12 @@
   a,
   button {
     color: var(--color-text-brand);
+    text-decoration: var(--link-underline-default);
+
+    &:hover,
+    &:focus {
+      text-decoration: var(--link-underline-default-hover);
+    }
   }
 
   blockquote {
@@ -145,7 +165,6 @@
 }
 
 .readMore {
-  grid-column: var(--content-col);
   width: max-content;
 
   &:focus-visible {
@@ -154,7 +173,6 @@
 }
 
 .image {
-  border-radius: var(--radius-4);
   position: relative;
   background-size: cover;
   background-position: center;
@@ -162,7 +180,14 @@
   overflow: hidden;
 }
 
+.imageAltBadge {
+  position: absolute;
+  inset-block-end: var(--space-1);
+  inset-inline-end: var(--space-1);
+}
+
 .blurHash {
   width: 100%;
   height: 100%;
+  background-color: var(--color-bg-overlay);
 }

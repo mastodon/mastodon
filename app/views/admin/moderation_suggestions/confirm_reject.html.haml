@@ -1,0 +1,21 @@
+- content_for :page_title do
+  = t('admin.domain_blocks.confirm_suspension.title', domain: Addressable::IDNA.to_unicode(@moderation_suggestion.target_key))
+
+= simple_form_for @moderation_suggestion, url: apply_admin_moderation_suggestion_path, method: :post do |f|
+  %p.hint= t('admin.domain_blocks.confirm_suspension.preamble_html', domain: Addressable::IDNA.to_unicode(@moderation_suggestion.target_key))
+  %ul.hint
+    %li= t('admin.domain_blocks.confirm_suspension.stop_communication')
+    %li= t('admin.domain_blocks.confirm_suspension.remove_all_data')
+    %li= t('admin.domain_blocks.confirm_suspension.undo_relationships')
+    %li.negative-hint= t('admin.domain_blocks.confirm_suspension.permanent_action')
+
+  = f.hidden_field :id
+
+  %hr.spacer
+
+  = react_admin_component :impact_report,
+                          domain: @moderation_suggestion.target_key
+
+  .actions
+    = link_to t('admin.domain_blocks.confirm_suspension.cancel'), admin_moderation_suggestions_path, class: 'button button-secondary'
+    = f.button :submit, t('admin.domain_blocks.confirm_suspension.confirm'), class: 'button button--dangerous', name: :confirm

@@ -13,12 +13,11 @@ import type {
   ValidationErrorResponse,
   ValidationError,
 } from '@/mastodon/api_types/errors';
+import { Button } from '@/mastodon/components/button/redesign';
+import { DisplayName } from '@/mastodon/components/display_name';
+import type { FieldStatus } from '@/mastodon/components/form_fields';
+import { TextInputField } from '@/mastodon/components/form_fields/text_input_field';
 import { useAppSelector } from '@/mastodon/store';
-
-import { Button } from '../button';
-import { DisplayName } from '../display_name';
-import type { FieldStatus } from '../form_fields';
-import { TextInputField } from '../form_fields/text_input_field';
 
 import classes from './styles.module.scss';
 
@@ -158,7 +157,7 @@ export const AccountSubscriptionForm: React.FC<{ accountId: string }> = ({
         />
       </div>
 
-      <div className={classes.bannerInputButton}>
+      <div className={classes.bannerInputWrapper}>
         <TextInputField
           id={`${accessibilityId}-input`}
           type='email'
@@ -170,7 +169,13 @@ export const AccountSubscriptionForm: React.FC<{ accountId: string }> = ({
           }
         />
 
-        <Button type='submit' loading={submitting}>
+        <Button
+          type='submit'
+          loading={submitting}
+          variant='solid'
+          color='accent'
+          className={classes.bannerInputButton}
+        >
           <FormattedMessage
             id='email_subscriptions.form.action'
             defaultMessage='Subscribe'

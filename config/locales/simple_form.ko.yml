@@ -21,7 +21,6 @@ ko:
       admin_account_action:
         include_statuses: 사용자는 어떤 게시물에 대해 경고나 조치가 취해졌는지 볼 수 있게 됩니다
         send_email_notification: 사용자는 어떤 일이 일어났는 지에 대한 설명을 받게 됩니다
-        text_html: 선택사항. 게시물 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
         type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
         types:
           disable: 사용자가 계정을 사용하는 것을 막지만, 그의 게시물을 삭제하거나 숨기지는 않습니다.
@@ -29,7 +28,6 @@ ko:
           sensitive: 이 사용자의 모든 미디어 첨부를 민감함으로 강제 설정합니다.
           silence: 이 사용자가 공개 설정으로 게시물을 작성할 수 없도록 하고, 그를 팔로우 하지 않는 사람에게는 이 사용자의 게시물과 알림을 숨깁니다. 이 계정에 대한 모든 신고를 닫습니다.
           suspend: 이 계정과의 모든 상호작용을 막고 모든 내용을 삭제합니다. 30일 이내에 되돌리기가 가능합니다. 이 계정에 대한 모든 신고를 닫습니다.
-        warning_preset_id: 선택사항. 틀의 마지막에 임의의 텍스트를 추가 할 수 있습니다
       announcement:
         all_day: 체크 되었을 경우, 그 시간에 속한 날짜들에만 표시됩니다
         ends_at: 선택사항. 공지사항이 이 시간에 자동으로 발행 중지 됩니다
@@ -190,12 +188,10 @@ ko:
       account_migration:
         acct: 새 계정의 핸들
       account_warning_preset:
-        text: 프리셋 텍스트
         title: 제목
       admin_account_action:
         include_statuses: 신고된 게시물을 이메일에 포함
         send_email_notification: 이메일로 사용자에게 알리기
-        text: 커스텀 경고
         type: 조치
         types:
           disable: 동결
@@ -203,7 +199,6 @@ ko:
           sensitive: 민감함
           silence: 제한
           suspend: 정지
-        warning_preset_id: 경고 틀 사용하기
       announcement:
         all_day: 종일 일정
         ends_at: 이벤트 종료
@@ -243,7 +238,6 @@ ko:
         setting_always_send_emails: 항상 이메일 알림 보내기
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 공개범위 제어
-        setting_color_scheme: 색상 구성
         setting_contrast: 대비
         setting_default_language: 게시물 언어
         setting_default_privacy: 게시물 공개 범위
@@ -265,7 +259,6 @@ ko:
         setting_system_font_ui: 시스템의 기본 글꼴을 사용
         setting_system_scrollbars_ui: 시스템 기본 스크롤바 사용
         setting_theme: 사이트 테마
-        setting_trends: 오늘의 유행 보이기
         setting_unfollow_modal: 누군가를 언팔로우 할 때 확인란 표시하기
         setting_use_blurhash: 숨겨진 미디어에 대해 그라디언트 표시
         setting_use_pending_items: 느린 모드

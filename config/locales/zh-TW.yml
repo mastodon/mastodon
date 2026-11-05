@@ -92,6 +92,7 @@ zh-TW:
       enable: 啟用
       enable_sign_in_token: 啟用安全碼驗證 (security code challenge)
       enable_sign_in_token_auth: 啟用電子郵件 token 驗證
+      enable_unconfirmed: 允許發送驗證信
       enabled: 已啟用
       enabled_msg: 成功解除 %{username} 帳號的凍結
       follow_recommendations:
@@ -200,7 +201,7 @@ zh-TW:
       unsubscribe: 取消訂閱
       unsuspended_msg: 已成功取消停權 %{username} 的帳號
       username: 使用者名稱
-      view_domain: 查看站台概要
+      view_domain: 查看站點概要
       warn: 警告
       web: 頁面
       whitelisted: 已加入白名單
@@ -289,6 +290,7 @@ zh-TW:
         create_domain_block_html: "%{name} 已封鎖網域 %{target}"
         create_email_domain_block_html: "%{name} 已封鎖電子郵件網域 %{target}"
         create_ip_block_html: "%{name} 已設定 IP %{target} 的規則"
+        create_moderation_subscription_html: "%{name} 已新增管理訂閱 %{target}"
         create_relay_html: "%{name} 已新增中繼 %{target}"
         create_unavailable_domain_html: "%{name} 停止發送至網域 %{target}"
         create_user_role_html: "%{name} 已新增 %{target} 角色"
@@ -304,6 +306,7 @@ zh-TW:
         destroy_email_domain_block_html: "%{name} 已解除封鎖電子郵件網域 %{target}"
         destroy_instance_html: "%{name} 已清除網域 %{target}"
         destroy_ip_block_html: "%{name} 已刪除 IP %{target} 的規則"
+        destroy_moderation_subscription_html: "%{name} 已刪除管理訂閱 %{target}"
         destroy_relay_html: "%{name} 已刪除中繼 %{target}"
         destroy_status_html: "%{name} 已刪除 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 已恢復對網域 %{target} 的發送"
@@ -352,10 +355,18 @@ zh-TW:
         update_user_role_html: "%{name} 已變更 %{target} 角色"
         update_username_block_html: "%{name} 已變更使用者名稱包含 %{target} 之規則"
         usable_tag_html: 可被使用；
+      automated_actions:
+        create_domain_allow_html: 已自動允許 %{target} 網域加入聯邦宇宙
+        create_domain_block_html: 已自動封鎖網域 %{target}
+        destroy_domain_allow_html: 已自動不允許 %{target} 網域加入聯邦宇宙
+        destroy_domain_block_html: 已自動解除封鎖網域 %{target}
+        update_domain_block_html: 已自動更新 %{target} 之網域封鎖
       deleted_account: 已刪除帳號
+      deleted_suggestion: 已刪除管理訂閱
       empty: 找不到 log
       filter_by_action: 按動作過濾
       filter_by_user: 按使用者過濾
+      suggested_by_html: "%{subscription} 建議之動作"
       title: 營運日誌
       unavailable_instance: "（該域名無法使用）"
     announcements:
@@ -466,6 +477,11 @@ zh-TW:
       undo: 自聯邦宇宙白名單移除
     domain_blocks:
       add_new: 新增網域黑名單
+      confirm_downgrade:
+        cancel: 取消
+        confirm: 降級
+        preamble_html: 您正將要降級對 <strong>%{domain}</strong> 及其子網域之既存封鎖規則。
+        title: 確認對 %{domain} 網域之封鎖降級
       confirm_suspension:
         cancel: 取消
         confirm: 停權
@@ -478,7 +494,7 @@ zh-TW:
       created_msg: 正在進行網域封鎖
       destroyed_msg: 已撤銷網域封鎖
       domain: 站點
-      edit: 更改封鎖的站台
+      edit: 更改封鎖的站點
       existing_domain_block: 您已對 %{name} 施加更嚴格的限制。
       existing_domain_block_html: 您已對 %{name} 施加更嚴格的限制，您需要先<a href="%{unblock_url}">解除封鎖</a>。
       export: 匯出
@@ -497,9 +513,9 @@ zh-TW:
       obfuscate: 混淆網域名稱
       obfuscate_hint: 若啟用網域廣告列表限制，於列表部份混淆網域名稱
       private_comment: 私人留言
-      private_comment_hint: 請提供更多有關此站台限制的資訊以供管理員作內部參考。
+      private_comment_hint: 請提供更多有關此站點限制的資訊以供管理員作內部參考。
       public_comment: 公開留言
-      public_comment_hint: 如果您已經啟用站台限制列表的公告，請為一般大眾提供更多有關此站台限制的資訊。
+      public_comment_hint: 如果您已經啟用站點限制列表的公告，請為一般大眾提供更多有關此站點限制的資訊。
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地快取的媒體檔案，並且不再接收來自該站點的任何媒體檔案。與停權無關
       reject_reports: 拒絕檢舉
@@ -631,7 +647,7 @@ zh-TW:
         callbacks:
           created_at: 建立於
           delete: 刪除
-          ip: IP 地址
+          ip: IP 位址
           request_body: Request body
           title: 除錯 callback
       providers:
@@ -664,6 +680,8 @@ zh-TW:
       title: 跟隨建議
       unsuppress: 回復跟隨建議
     instances:
+      advisories:
+        title: 來自管理訂閱之通知
       audit_log:
         title: 近期審計紀錄
         view_all: 檢視完整審計紀錄
@@ -679,12 +697,13 @@ zh-TW:
       back_to_all: 所有
       back_to_limited: 受限制的
       back_to_warning: 警告
-      by_domain: 站台
+      by_domain: 站點
       confirm_purge: 您是否確定要永久刪除來自此網域的資料？
       content_policies:
         comment: 內部備註
         description_html: 您可以定義對所有此網域帳號及其子網域所實施之內容政策。
         limited_federation_mode_description_html: 您可以選擇是否允許此網域加入聯邦宇宙。
+        moderation_subscription: 管理訂閱
         policies:
           reject_media: 拒絕多媒體
           reject_reports: 拒絕檢舉
@@ -764,6 +783,92 @@ zh-TW:
       reset: 重設
       search: 搜尋
       title: IP 規則
+    moderation_subscriptions:
+      add_new: 新增訂閱
+      advisory_action: 動作：%{action}
+      advisory_actions:
+        accept: 允許
+        limit: 靜音
+        reject: 停權
+      apply_automatically: 自動套用通知內容
+      apply_conditions:
+        always: 總是
+        never: 永不
+        safely: 僅限於不破壞關係時
+      apply_conditions_hint:
+        always: 總是自動套用建議之動作。請只有對您完全信任之清單才使用此選項。
+        never: 永不自動套用建議之動作。總是僅產生建議動作清單。
+        safely: 預設套用建議動作，除非該動作將破壞本地使用者既存之跟隨關係。如遇此情況，將產生建議動作。
+      delete: 刪除
+      destroyed_msg: 成功刪除管理訂閱
+      empty: 尚未訂閱任何管理清單。
+      last_synced_at: 上次同步時間
+      list_action: 訂閱類型
+      list_actions:
+        accept: 允許清單
+        default: 混合（允許與拒絕）
+        reject: 拒絕清單
+      list_actions_hint:
+        accept: 無特別動作之項目將被視為允許。封鎖動作將被忽略。
+        default: 無特別動作之項目將被視為封鎖。封鎖或允許動作將皆被照此處理。
+        reject: 無特別動作之項目將被視為封鎖。允許動作將被忽略。
+      list_actions_short:
+        accept: 允許清單
+        default: 混合
+        reject: 拒絕清單
+      name: 名稱
+      new:
+        create: 訂閱
+        title: 新增管理訂閱
+      override_unattributed: 覆蓋手動封鎖
+      override_unattributed_hint: 允許此訂閱套用通知時自動升級或接管既存手動封鎖。
+      policies:
+        apply_advisories: 自動套用通知
+        apply_advisories_safely: 當不破壞關係時自動套用通知
+        apply_retractions: 自動套用撤回
+      priority: 優先權
+      priority_hint: 管理訂閱將依優先權評估，編號較小之訂閱將優先於編號較大之訂閱。
+      retract_automatically: 自動撤回通知
+      retract_automatically_hint: 當該訂閱移除對應項目時，是否允許撤回政策或對其降級。當自動撤回啟用且較低優先權列表中存在等效通知時，將採用該通知。當自動撤回停用時，則改產生動作建議。
+      show:
+        delete_confirm: 您是否確定欲刪除此管理訂閱？
+        edit: 編輯訂閱
+        empty: 此訂閱尚無通知。
+        title: 管理訂閱：%{name}
+      tabs:
+        logs: 日誌
+        subscriptions: 訂閱
+        suggestions: 動作建議
+      title: 管理訂閱
+      type: 類型
+      types:
+        csv_list: CVS 清單
+      url: URL
+    moderation_subscriptions_logs:
+      title: 管理訂閱日誌
+    moderation_suggestions:
+      actions:
+        accept: 允許
+        limit: 限制
+        reject: 停權
+        retract: 撤回目前政策
+      applied_msg: 已成功套用 %{target_key} 之動作建議
+      apply_accept: 允許
+      apply_limit: 限制
+      apply_reject: 停權
+      apply_retract: 撤回
+      current_states:
+        accept: 目前已允許
+        limit: 目前已限制
+        reject: 目前已停權
+      description: 以下是來自您的管理訂閱之建議，依照優先權排序。
+      destroyed_msg: 已成功忽略 %{target_key} 之動作建議
+      dismiss: 忽略建議
+      empty: 目前無管理動作建議。
+      retracted_msg: 已成功撤回對 %{target_key} 之政策
+      suggested_from_html: 被 %{link} 建議
+      title: 管理動作建議
+      unable_to_apply_msg: 無法套用對 %{target_key} 之動作建議
     relationships:
       title: "%{acct} 的關係"
     relays:
@@ -955,6 +1060,119 @@ zh-TW:
       translation: 翻譯
       translations: 翻譯
       translations_explanation: 您可以選擇性地替規則添加翻譯。若沒有翻譯版本，預設值將被顯示。請確保任何提供之翻譯與預設值內容同步。
+    server_checks:
+      categories:
+        completed:
+          title: 已完成
+        critical:
+          title: 重要
+        error:
+          title: 錯誤
+        ignored:
+          title: 已忽略
+        suggestion:
+          title: 動作建議
+        unprocessed:
+          title: 未處理
+        warning:
+          title: 警告
+      checks:
+        database_schema:
+          error:
+            title: 檢查資料庫結構 (database schema) 時出現錯誤
+          ok:
+            title: 無尚待執行之資料庫遷移作業
+          pending:
+            lead_html: 請執行以確保應用程式正常運作
+            title: 有待執行之資料庫遷移作業
+          running:
+            title: 您的伺服器正在檢查資料庫結構 (database schema)
+          unprocessed:
+            title: 您的伺服器尚未檢查資料庫結構 (database schema)
+        elastic_search:
+          error:
+            title: 檢查 Elasticsearch 設定時出現錯誤
+          ok:
+            title: Elasticsearch 設定無誤
+          pending:
+            lead:
+              analysis_index_mismatch_html: Elasticsearch 索引分析器設定 (index analyzer) 已過期。請執行 <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Elasticsearch 叢集健康狀態異常 (紅色)，無法提供搜尋功能
+              cluster_health_yellow_html: Elasticsearch 叢集健康狀態異常 (黃色)，您可能想進一步調查原因
+              index_mismatch_html: Elasticsearch 索引對應 (index mappings) 已過期。請執行 <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: 您的 Elasticsaerch 叢集由多個節點構成，但 Mastodon 並沒有設定使用它們
+              preset_single_node_html: 您的 Elasticsearch 叢集只有一個節點，<code>ES_PRESET</code> 應設定為 <code>single_node_cluster</code>
+              reset_chewy_html: 您的 Elasticsearch 系統索引 (index) 已過期並需執行設定變更。請執行 <code>tootctl search deploy --reset-chewy</code> 以更新它
+              running_check_html: 無法連接 Elasticsearch。請檢查是否正在執行中，或者已關閉全文搜尋
+              version_check_html: Elasticsearch %{running_version} 版正在執行，需要 %{required_version} 版
+            title: Elasticsearch 出現問題
+          running:
+            title: 伺服器正在檢查 Elasticsearch 設定
+          unprocessed:
+            title: 伺服器尚未檢查 Elasticsearch 設定
+        media_privacy:
+          error:
+            title: 檢查您的伺服器之多媒體隱私設定時出現錯誤
+          ok:
+            title: 您的伺服器之多媒體隱私設定是安全的
+          pending:
+            lead:
+              upload_check_privacy_error_html: 您的網頁伺服器設定錯誤
+              upload_check_privacy_error_object_storage_html: 您的物件儲存 (object storage) 設定錯誤
+            title: 您的使用者隱私正在暴露於風險中
+          running:
+            title: 伺服器正在檢查其隱私設定
+          unprocessed:
+            title: 伺服器尚未檢查其隱私設定
+        rules:
+          error:
+            title: 檢查您的伺服器規則時出現錯誤
+          ok:
+            title: 您的伺服器規則已設定
+          pending:
+            lead_html: 您的伺服器目前尚未發布管理規則。訂立清晰明確之伺服器規則將有助於管理作業以及確立使用者預期
+            title: 設定伺服器規則
+          running:
+            title: 伺服器正在檢查您的規則
+          unprocessed:
+            title: 伺服器尚未檢查是否有任何規則
+        sidekiq_process:
+          error:
+            title: 檢查 Sidekiq 設定時出現錯誤
+          ok:
+            title: Sidekiq 設定無誤
+          pending:
+            lead_html: 無 Sidekiq 行程運行於 %{missing_queues_str} 佇列
+            title: 請重新檢視您的 Sidekiq 設定
+          running:
+            title: 伺服器正在檢查 Sidekiq 設定
+          unprocessed:
+            title: 伺服器尚未檢查 Sidekiq 設定
+        software_version:
+          error:
+            title: 檢查您的伺服器軟體更新時出現錯誤
+          ok:
+            title: 您的 Mastodon 站點為最新坂本
+          pending:
+            lead:
+              patch_html: 有可取得之 Mastodon 臭蟲修復更新
+              regular_html: 有可取得之 Mastodon 新版本
+              urgent_html: 有可取得之重要 Mastodon 更新，請立即升級
+            title: 請更新您的 Mastodon 站點
+          running:
+            title: 伺服器正在檢查是否有待執行之軟體更新
+          unprocessed:
+            title: 伺服器尚未檢查軟體更新
+      ignore:
+        label: 忽略
+      lead: 使您的伺服器保持安全、友善且高效之建議。
+      recommendations:
+        title: 建議
+      restore:
+        label: 復原
+      setup:
+        label: 設定
+      title: 伺服器健康度
     settings:
       about:
         manage_rules: 管理伺服器規則
@@ -1048,7 +1266,7 @@ zh-TW:
       title: 伺服器設定
     site_uploads:
       delete: 刪除上傳的檔案
-      destroyed_msg: 成功刪除站台的上傳項目！
+      destroyed_msg: 成功刪除站點之上傳項目！
     skip_to_content: 跳轉至內容
     software_updates:
       critical_update: 重要 — 請儘速升級
@@ -1301,9 +1519,17 @@ zh-TW:
     warning_presets:
       add_new: 新增
       delete: 刪除
-      edit_preset: 編輯預設警告
-      empty: 您尚未定義任何預設警告。
-      title: 預設警告內容
+      dropdown:
+        all_actions: 所有動作
+        disable: 停用
+        none: 警告
+        sensitive: 敏感內容
+        silence: 限制
+        suspend: 停權
+      edit_preset: 編輯罐頭回應
+      empty: 您尚未定義任何罐頭回應。
+      navigation_title: 罐頭回應
+      title: 管理罐頭回應
     webhooks:
       add_new: 新增端點
       delete: 刪除
@@ -1351,9 +1577,17 @@ zh-TW:
     new_critical_software_updates:
       body: 有可取得的重要 Mastodon 新版本，請立即升級！
       subject: "%{instance} 有可取得的重要 Mastodon 更新！"
+    new_moderation_suggestions:
+      body: 您伺服器訂閱之審核清單已發布新建議。
+      subject: "%{instance} 有可用之新管理動作建議！"
     new_pending_account:
       body: 以下是新帳號的詳細資訊。您可以同意或拒絕這項申請。
       subject: "%{instance} 上有新帳號 (%{username}) 待審核"
+    new_pending_accounts:
+      body: |-
+        有新帳號於 %{instance} 建立。
+        由於您伺服器已設定於管理審核通過後方寄送驗證信，這些帳號尚未有機會驗證電子郵件地址。以下是這些新帳號之詳細資訊。您可以允許或拒絕這些申請。
+      subject: "%{instance} 有待審核之新帳號"
     new_report:
       body: "%{reporter} 已檢舉使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者已檢舉使用者 %{target}
@@ -1382,7 +1616,6 @@ zh-TW:
     animations_and_accessibility: 動畫與無障礙設定
     boosting_preferences: 轉嘟偏好設定
     boosting_preferences_info_html: "<strong>小撇步：</strong> 無論設定為何， <kbd>Shift</kbd> + <kbd>Click</kbd> 於 %{icon} 轉嘟圖示將會立即轉嘟。"
-    discovery: 探索
     localization:
       body: Mastodon 是由志願者所翻譯。
       guide_link: https://crowdin.com/project/mastodon
@@ -1462,11 +1695,16 @@ zh-TW:
     security: 登入資訊
     set_new_password: 設定新密碼
     setup:
+      correct_email: 更正電子郵件地址
       email_below_hint_html: 請檢查您的垃圾郵件資料夾，或是請求另一封驗證信。若不正確，您可以更正您的電子郵件地址。
       email_settings_hint_html: 請點擊我們寄至 %{email} 之連結以開始使用 Mastodon。我們將於此稍候。
+      email_settings_hint_wait_html: 您的申請正在審核中。 您將近期於 %{email} 收到電子郵件通知。當您收到通知時，請點擊連結以開始使用 Mastodon。我們在此靜候您的來訪。
       link_not_received: 無法取得連結嗎？
       new_confirmation_instructions_sent: 您將於幾分鐘之內收到新的包含驗證連結之電子郵件！
       title: 請檢查您的收件匣
+      title_wait: 記得時時檢查您的收件匣
+      wrong_email: 錯誤的電子郵件地址？
+      wrong_email_below_hint_html: 別慌張！您能於此更正您的電子郵件地址。
     sign_in:
       preamble_html: 請使用您於 <strong>%{domain}</strong> 的帳號密碼登入。若您的帳號託管於其他伺服器，您將無法於此登入。
       title: 登入 %{domain}
@@ -1503,6 +1741,12 @@ zh-TW:
     auto: 自動
     dark: 闇黑
     light: 淺色
+  color_theme:
+    cyan: 青藍色
+    indigo: 靛青色
+    lime: 青檸色
+    orange: 橘色
+    pink: 粉色
   contrast:
     auto: 自動
     high: 高
@@ -1551,6 +1795,7 @@ zh-TW:
       action_taken: 採取的行動
       appeal: 申訴
       appeal_approved: 此警示已成功申訴，不再有效
+      appeal_handled_by: 申訴處理者
       appeal_rejected: 申訴已被駁回
       appeal_submitted_at: 申訴已遞交
       appealed_msg: 您的申訴已遞交。若其被批准，您將會被通知。

@@ -69,6 +69,27 @@ RSpec.describe AdminMailer do
     end
   end
 
+  describe '.new_pending_accounts' do
+    let(:recipient) { Fabricate(:account, username: 'Barklums') }
+    let(:account) { Fabricate(:account) }
+    let(:mail) { described_class.with(recipient: recipient).new_pending_accounts([account]) }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.new_pending_accounts.subject', instance: Rails.configuration.x.local_domain)
+        )
+      expect(mail.body)
+        .to match("New accounts have been created on #{Rails.configuration.x.local_domain}")
+    end
+  end
+
   describe '.new_trends' do
     let(:recipient) { Fabricate(:account, username: 'Snurf') }
     let!(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
@@ -182,6 +203,70 @@ RSpec.describe AdminMailer do
     end
   end
 
+  describe '.end_of_support_three_months_warning' do
+    let(:recipient) { Fabricate(:account, username: 'Bob') }
+    let(:mail) { described_class.with(recipient: recipient).end_of_support_three_months_warning }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.end_of_support_three_months_warning.subject', instance: Rails.configuration.x.local_domain, branch: SoftwareDeprecation.current_branch)
+        )
+      expect(mail.body)
+        .to match(I18n.t('admin_mailer.end_of_support_three_months_warning.body'))
+    end
+  end
+
+  describe '.end_of_support_two_weeks_warning' do
+    let(:recipient) { Fabricate(:account, username: 'Bob') }
+    let(:mail) { described_class.with(recipient: recipient).end_of_support_two_weeks_warning }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.end_of_support_two_weeks_warning.subject', instance: Rails.configuration.x.local_domain, branch: SoftwareDeprecation.current_branch)
+        )
+      expect(mail.body)
+        .to match(I18n.t('admin_mailer.end_of_support_two_weeks_warning.body'))
+    end
+  end
+
+  describe '.end_of_support_out_of_support_warning' do
+    let(:recipient) { Fabricate(:account, username: 'Bob') }
+    let(:mail) { described_class.with(recipient: recipient).end_of_support_out_of_support_warning }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.end_of_support_out_of_support_warning.subject', instance: Rails.configuration.x.local_domain, branch: SoftwareDeprecation.current_branch)
+        )
+      expect(mail.body)
+        .to match(I18n.t('admin_mailer.end_of_support_out_of_support_warning.body'))
+      expect(mail)
+        .to have_header('Importance', 'high')
+        .and have_header('Priority', 'urgent')
+        .and have_header('X-Priority', '1')
+    end
+  end
+
   describe '.auto_close_registrations' do
     let(:recipient) { Fabricate(:account, username: 'Bob') }
     let(:mail) { described_class.with(recipient: recipient).auto_close_registrations }
@@ -199,6 +284,26 @@ RSpec.describe AdminMailer do
         )
       expect(mail.body)
         .to match('have been automatically switched')
+    end
+  end
+
+  describe '.new_moderation_suggestions' do
+    let(:recipient) { Fabricate(:account, username: 'Bob') }
+    let(:mail) { described_class.with(recipient: recipient).new_moderation_suggestions }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.new_moderation_suggestions.subject', instance: Rails.configuration.x.local_domain)
+        )
+      expect(mail.body)
+        .to match(I18n.t('admin_mailer.new_moderation_suggestions.body'))
     end
   end
 end

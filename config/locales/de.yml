@@ -93,6 +93,7 @@ de:
       enable: Freischalten
       enable_sign_in_token: Sicherheitscode für die Anmeldung aktivieren
       enable_sign_in_token_auth: E-Mail-Token-Authentisierung aktivieren
+      enable_unconfirmed: E-Mail-Bestätigung erlauben
       enabled: Freigegeben
       enabled_msg: Konto von %{username} erfolgreich freigegeben
       follow_recommendations:
@@ -277,7 +278,7 @@ de:
         update_user_role: Rolle bearbeiten
         update_username_block: Regel für Profilnamen aktualisieren
       actions:
-        approve_appeal_html: "%{name} genehmigte den Einspruch gegen eine Moderationsentscheidung von %{target}"
+        approve_appeal_html: "%{name} genehmigte den Einspruch gegen eine Moderationsmaßnahme von %{target}"
         approve_user_html: "%{name} genehmigte die Registrierung von %{target}"
         assigned_to_self_report_html: "%{name} wies sich die Meldung %{target} selbst zu"
         change_email_user_html: "%{name} änderte die E-Mail-Adresse von %{target}"
@@ -327,7 +328,7 @@ de:
         not_usable_tag_html: darf nicht verwendet werden
         promote_user_html: "%{name} beförderte %{target}"
         publish_terms_of_service_html: "%{name} aktualisierte die Nutzungsbedingungen"
-        reject_appeal_html: "%{name} lehnte den Einspruch gegen eine Moderationsentscheidung von %{target} ab"
+        reject_appeal_html: "%{name} lehnte den Einspruch gegen eine Moderationsmaßnahme von %{target} ab"
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} entfernte das Profilbild von %{target}"
         reopen_report_html: "%{name} öffnete die Meldung %{target} wieder"
@@ -473,6 +474,8 @@ de:
       undo: Von der Föderation ausschließen
     domain_blocks:
       add_new: Neue Domain einschränken
+      confirm_downgrade:
+        cancel: Abbrechen
       confirm_suspension:
         cancel: Abbrechen
         confirm: Sperren
@@ -535,7 +538,7 @@ de:
       resolved_dns_records_hint_html: Die Domain wird zu den folgenden MX-Domains aufgelöst, die für die Annahme von E-Mails zuständig sind. Das Sperren einer MX-Domain sperrt Anmeldungen aller E-Mail-Adressen, die dieselbe MX-Domain verwenden, auch wenn die sichtbare Domain anders lautet. <strong>Achte daher darauf, keine großen E-Mail-Anbieter versehentlich zu sperren.</strong>
       resolved_through_html: Durch %{domain} aufgelöst
       search: Suchen
-      title: Gesperrte E-Mail-Domains
+      title: E-Mail-Domains
     email_subscriptions:
       accounts:
         account: Konto
@@ -672,6 +675,8 @@ de:
       title: Follower-Empfehlungen
       unsuppress: Follower-Empfehlungen wiederherstellen
     instances:
+      advisories:
+        title: Bemerkungen zu abonnierbaren Listen
       audit_log:
         title: Neueste Protokolle
         view_all: Protokolle
@@ -695,6 +700,7 @@ de:
         comment: Nicht-öffentliche Notiz
         description_html: Du kannst Inhaltsrichtlinien definieren, die auf alle Konten dieser Domain und einer ihrer Subdomains angewendet werden.
         limited_federation_mode_description_html: Du kannst auswählen, ob du eine Föderation mit dieser Domain erlaubst.
+        moderation_subscription: Abonnierbare Listen
         policies:
           reject_media: Medien ablehnen
           reject_reports: Meldungen ablehnen
@@ -775,6 +781,61 @@ de:
       reset: Zurücksetzen
       search: Suchen
       title: IP-Regeln
+    moderation_subscriptions:
+      add_new: Abonnement hinzufügen
+      advisory_action: 'Aktion: %{action}'
+      advisory_actions:
+        accept: zulassen
+        limit: stummschalten
+        reject: sperren
+      apply_conditions:
+        always: Immer
+        never: Nie
+      delete: Entfernen
+      last_synced_at: Zuletzt synchronisiert am
+      list_actions:
+        accept: Ausnahmeliste
+        reject: Sperrliste
+      list_actions_short:
+        accept: Ausnahmeliste
+        reject: Sperrliste
+      name: Titel
+      new:
+        create: Abonnieren
+      priority: Priorität
+      show:
+        edit: Abonnement bearbeiten
+        empty: Dieses Abonnement hat noch keine Bemerkungen.
+        title: 'Abonnierbare Liste: %{name}'
+      tabs:
+        logs: Protokolle
+        subscriptions: Abonnements
+        suggestions: Vorschläge
+      title: Abonnierbare Listen
+      type: Art
+      types:
+        csv_list: CSV-Liste
+      url: URL
+    moderation_subscriptions_logs:
+      title: Protokolle zu abonnierbaren Listen
+    moderation_suggestions:
+      actions:
+        accept: Zulassen
+        limit: Einschränken
+        reject: Sperren
+        retract: Derzeitige Richtlinie zurückziehen
+      apply_accept: Zulassen
+      apply_limit: Einschränken
+      apply_reject: Sperren
+      apply_retract: Zurückziehen
+      current_states:
+        accept: derzeit zugelassen
+        limit: derzeit eingeschränkt
+        reject: derzeit gesperrt
+      dismiss: Vorschläge verwerfen
+      empty: Zurzeit gibt es keinen Moderationsvorschlag.
+      suggested_from_html: Vorgeschlagen von %{link}
+      title: Moderationsvorschläge
     relationships:
       title: Beziehungen von %{acct}
     relays:
@@ -969,6 +1030,72 @@ de:
       translation: Übersetzung
       translations: Übersetzungen
       translations_explanation: Du kannst Serverregeln übersetzen. Der Standardwert wird angezeigt, wenn keine übersetzte Version verfügbar ist. Bitte vergewissere dich, dass jede Übersetzung mit dem Standardwert übereinstimmt.
+    server_checks:
+      categories:
+        completed:
+          title: Fertig
+        critical:
+          title: Kritisch
+        error:
+          title: Fehler
+        ignored:
+          title: Ignoriert
+        suggestion:
+          title: Vorschläge
+        unprocessed:
+          title: Unbearbeitet
+        warning:
+          title: Warnungen
+      checks:
+        database_schema:
+          error:
+            title: Fehler beim Überprüfen des Datenbankschemas
+          ok:
+            title: Keine Datenbankmigration ausstehend
+          pending:
+            lead_html: Dadurch wird sichergestellt, dass die Anwendung ordnungsgemäß weiter arbeitet
+            title: Datenbankmigration ausstehend
+          running:
+            title: Datenbankschema wird überprüft
+          unprocessed:
+            title: Der Server das Datenbankschema noch nicht geprüft
+        elastic_search:
+          error:
+            title: Fehler beim Überprüfen der Elasticsearch-Konfiguration
+          ok:
+            title: Elasticsearch ist fehlerfrei konfiguriert
+          pending:
+            lead:
+              version_check_html: Elasticsearch %{running_version} wird verwendet, obwohl %{required_version} benötigt wird
+            title: Probleme mit Elasticsearch erkannt
+        rules:
+          ok:
+            title: Serverregeln festgelegt
+          pending:
+            lead_html: Dein Server hat keine Regeln festgelegt. Durch klare Regeln werden Rahmenbedingungen für die Moderation geschaffen und Erwartungen kommuniziert
+            title: Serverregeln festlegen
+        software_version:
+          ok:
+            title: Mastodon ist auf dem neuesten Stand
+          pending:
+            lead:
+              regular_html: Eine neue Mastodon-Version ist verfügbar
+              urgent_html: Ein wichtiges Sicherheitsupdate ist verfügbar – bitte aktualisiere Mastodon so schnell wie möglich
+            title: Mastodon aktualisieren
+          running:
+            title: Der Server überprüft gerade, ob ein Update verfügbar ist
+          unprocessed:
+            title: Der Server hat noch nicht auf Updates geprüft
+      ignore:
+        label: Ignorieren
+      lead: Empfehlungen, damit dein Server effizient, sicher und zugänglich bleibt.
+      recommendations:
+        title: Empfehlungen
+      restore:
+        label: Wiederherstellen
+      setup:
+        label: Einrichten
+      title: Serverstatus
     settings:
       about:
         manage_rules: Serverregeln verwalten
@@ -1309,9 +1436,17 @@ de:
     warning_presets:
       add_new: Neu hinzufügen
       delete: Löschen
-      edit_preset: Warnvorlage bearbeiten
-      empty: Du hast noch keine Warnvorlagen hinzugefügt.
-      title: Warnvorlagen
+      dropdown:
+        all_actions: Alle Maßnahmen
+        disable: Einfrieren
+        none: Verwarnung
+        sensitive: Inhaltswarnung
+        silence: Stummschalten
+        suspend: Sperren
+      edit_preset: Vorgefertigte Antwort bearbeiten
+      empty: Du hast noch keine vorgefertigten Antworten erstellt.
+      navigation_title: Vorgefertigte Antworten
+      title: Vorgefertigte Antworten für die Moderation
     webhooks:
       add_new: Endpunkt hinzufügen
       delete: Löschen
@@ -1360,9 +1495,14 @@ de:
     new_critical_software_updates:
       body: ein neues Sicherheitsupdate wurde veröffentlicht. Du solltest Mastodon so schnell wie möglich aktualisieren!
       subject: Kritische Mastodon-Updates sind für %{instance} verfügbar!
+    new_moderation_suggestions:
+      subject: Neue Moderationsvorschläge auf %{instance} verfügbar!
     new_pending_account:
       body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.
       subject: Neues Konto zum Überprüfen auf %{instance} verfügbar (%{username})
+    new_pending_accounts:
+      body: Neue Konten wurden auf %{instance} registriert. Sie haben bisher keine E-Mail-Bestätigung erhalten, weil der Versand bis zur manuellen Überprüfung aufgeschoben wird. Die Informationen zu den neuen Konten sind unten aufgelistet. Du kannst die Bewerbungen genehmigen oder ablehnen.
+      subject: Neue Konten zum Überprüfen auf %{instance} verfügbar
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
@@ -1391,7 +1531,6 @@ de:
     animations_and_accessibility: Animationen und Barrierefreiheit
     boosting_preferences: Teilen
     boosting_preferences_info_html: "<strong>Tipp:</strong> <kbd>Umschalttaste</kbd> + <kbd>Klick</kbd> beim Teilen-Symbol %{icon} wird den Beitrag immer sofort teilen."
-    discovery: Entdecken
     localization:
       body: Mastodon wird von Freiwilligen übersetzt.
       guide_link: https://de.crowdin.com/project/mastodon/de
@@ -1471,11 +1610,16 @@ de:
     security: Sicherheit
     set_new_password: Neues Passwort einrichten
     setup:
+      correct_email: Korrekte E-Mail-Adresse
       email_below_hint_html: Überprüfe deinen Spam-/Junk-Ordner oder lass dir den Bestätigungslink erneut zusenden. Falls du die vorherige E-Mail-Adresse falsch eingegeben hast, kannst du sie hier korrigieren.
       email_settings_hint_html: Klicke auf den Link, den wir dir an %{email} geschickt haben, um mit Mastodon zu starten. Wir warten hier solange auf dich.
+      email_settings_hint_wait_html: Deine Bewerbung wird geprüft. Sobald sie angenommen wurde, wird eine E-Mail mit einem Bestätigungslink an %{email} geschickt. Klicke anschließend auf den Link, um mit Mastodon loszulegen. Wir warten hier solange auf dich.
       link_not_received: Keinen Bestätigungslink erhalten?
       new_confirmation_instructions_sent: In wenigen Minuten wirst du eine neue E-Mail mit dem Bestätigungslink erhalten!
       title: Überprüfe dein E-Mail-Postfach
+      title_wait: Behalte dein Postfach im Auge
+      wrong_email: Falsche E-Mail-Adresse?
+      wrong_email_below_hint_html: Kein Grund zur Sorge! Du kannst deine E-Mail-Adresse im unteren Eingabefeld korrigieren.
     sign_in:
       preamble_html: Melde dich mit deinen Zugangsdaten für <strong>%{domain}</strong> an. Falls dein Konto auf einem anderen Mastodon-Server erstellt wurde, ist eine Anmeldung hier nicht möglich.
       title: Bei %{domain} anmelden
@@ -1512,6 +1656,12 @@ de:
     auto: Automatisch
     dark: Dunkel
     light: Hell
+  color_theme:
+    cyan: Cyan
+    indigo: Indigo
+    lime: Limette
+    orange: Orange
+    pink: Rosa
   contrast:
     auto: Automatisch
     high: Hoch
@@ -1560,6 +1710,7 @@ de:
       action_taken: Maßnahme
       appeal: Einspruch
       appeal_approved: Dieser Verstoß wurde erfolgreich angefochten und ist nicht mehr gültig
+      appeal_handled_by: Einspruch bearbeitet von
       appeal_rejected: Der Einspruch wurde abgelehnt
       appeal_submitted_at: Einspruch eingereicht
       appealed_msg: Dein Einspruch wurde übermittelt. Wenn er angenommen wird, wirst du benachrichtigt.
