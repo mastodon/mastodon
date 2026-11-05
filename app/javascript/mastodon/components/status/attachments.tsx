@@ -33,8 +33,8 @@ import { Button } from '../button/redesign';
 
 import classes from './attachments.module.scss';
 import { useStatusContext } from './hooks';
-import { PictureInPicturePlaceholder } from './legacy/picture_in_picture_placeholder';
 import { LinkCard } from './link';
+import { PictureInPicturePlaceholder } from './picture_in_picture_placeholder';
 import mainClasses from './styles.module.scss';
 
 export const StatusAttachments: React.FC<{
