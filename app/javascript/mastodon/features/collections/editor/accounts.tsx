@@ -388,7 +388,7 @@ export const CollectionAccounts: React.FC<{
             status={
               hasMaxItems
                 ? {
-                    variant: 'warning',
+                    variant: 'error',
                     message: intl.formatMessage({
                       id: 'collections.search_accounts_max_reached',
                       defaultMessage:

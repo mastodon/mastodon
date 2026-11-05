@@ -2875,8 +2875,8 @@ a.account__display-name {
 
 .onboarding__profile {
   position: relative;
-  margin-bottom: 40px + 20px;
-  margin-top: -20px;
+  margin-bottom: var(--space-10);
+  margin-top: calc(-1 * var(--space-2));
 
   .app-form__avatar-input {
     border: 2px solid var(--color-bg-primary);

@@ -14,13 +14,15 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import {
+  CaretDownIcon,
+  CaretUpIcon,
+  MagnifyingGlassIcon,
+} from '@phosphor-icons/react';
 import { getScrollParent } from '@react-aria/utils';
 
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
-import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
-import KeyboardArrowUpIcon from '@/material-icons/400-24px/keyboard_arrow_up.svg?react';
-import SearchIcon from '@/material-icons/400-24px/search.svg?react';
-import { IconButton } from 'mastodon/components/icon_button';
+import { IconButton } from 'mastodon/components/button/redesign';
 
 import { LoadingIndicator } from '../loading_indicator';
 import type { PopoverProps } from '../popover';
@@ -273,7 +275,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     closeOnSelect = listBoxType === 'in-place' ? false : true,
     autoHighlightFirstItem = true,
     suppressMenu = false,
-    icon = SearchIcon,
+    icon = MagnifyingGlassIcon,
     className,
     wrapperClassName,
     listBoxClassName,
@@ -581,24 +583,22 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
       />
       {hasMenuContent && listBoxType === 'popover' && (
         <IconButton
-          title={
-            isMenuOpen
-              ? intl.formatMessage({
-                  id: 'combobox.close_results',
-                  defaultMessage: 'Close results',
-                })
-              : intl.formatMessage({
-                  id: 'combobox.open_results',
-                  defaultMessage: 'Open results',
-                })
-          }
           className={classes.menuButton}
-          icon='results'
-          iconComponent={
-            isMenuOpen ? KeyboardArrowUpIcon : KeyboardArrowDownIcon
-          }
+          size='sm'
+          variant='ghost'
+          icon={isMenuOpen ? CaretUpIcon : CaretDownIcon}
           onClick={isMenuOpen ? closeMenu : openMenu}
-        />
+        >
+          {isMenuOpen
+            ? intl.formatMessage({
+                id: 'combobox.close_results',
+                defaultMessage: 'Close results',
+              })
+            : intl.formatMessage({
+                id: 'combobox.open_results',
+                defaultMessage: 'Open results',
+              })}
+        </IconButton>
       )}
       <span role='status' aria-live='polite' className='sr-only'>
         {isMenuOpen && statusMessage}

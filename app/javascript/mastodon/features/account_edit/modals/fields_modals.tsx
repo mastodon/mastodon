@@ -154,7 +154,7 @@ export const EditFieldModal = forwardRef<
 
       if (value.length > RECOMMENDED_LIMIT) {
         return {
-          variant: 'warning',
+          variant: 'error',
           message: intl.formatMessage(messages.warningLength),
         };
       }
@@ -165,14 +165,14 @@ export const EditFieldModal = forwardRef<
       );
       if (hasLink && hasEmoji) {
         return {
-          variant: 'warning',
+          variant: 'error',
           message: intl.formatMessage(messages.warningUrlEmoji),
         };
       }
 
       if (isUrlWithoutProtocol(value)) {
         return {
-          variant: 'warning',
+          variant: 'error',
           message: intl.formatMessage(messages.warningUrlProtocol, {
             protocol: 'https://',
           }),
