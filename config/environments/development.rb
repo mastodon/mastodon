@@ -87,10 +87,9 @@ Rails.application.configure do
 
   config.action_mailer.default_options = { from: 'notifications@localhost' }
 
-  # If using a Heroku, Vagrant or generic remote development environment,
-  # use letter_opener_web, accessible at  /letter_opener.
-  # Otherwise, use letter_opener, which launches a browser window to view sent mail.
-  config.action_mailer.delivery_method = ENV['HEROKU'] || ENV['VAGRANT'] || ENV['REMOTE_DEV'] ? :letter_opener_web : :letter_opener
+  # If using a remote env, use letter_opener_web, accessible at /letter_opener.
+  # Otherwise, use letter_opener, which launches a browser window to view mail.
+  config.action_mailer.delivery_method = ENV['HEROKU'] || ENV['REMOTE_DEV'] ? :letter_opener_web : :letter_opener
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
