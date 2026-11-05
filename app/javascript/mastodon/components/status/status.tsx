@@ -20,7 +20,7 @@ import { StatusActionBar } from './action_bar';
 import { StatusAttachments } from './attachments';
 import { StatusContent } from './content';
 import { StatusHashtagBar } from './hashtag_bar';
-import { StatusRedesignHeader } from './header';
+import { StatusHeader } from './header';
 import {
   StatusContext,
   useStatusContext,
@@ -201,7 +201,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           />
         )}
 
-        <StatusRedesignHeader status={status} featured={featured} />
+        <StatusHeader status={status} featured={featured} />
 
         <div
           className={classNames(

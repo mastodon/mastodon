@@ -18,9 +18,9 @@ import { Conversation } from './conversation';
 const selectConversations = createAppSelector(
   [(state) => state.conversations],
   (conversations) => ({
-    conversations: conversations.get('items') as unknown as Immutable.List<
-      Immutable.Map<string, unknown>
-    >,
+    conversations: (
+      conversations.get('items') as Immutable.List<unknown>
+    ).toJS() as TConversation[],
     isLoading: !!conversations.get('isLoading', true),
     hasMore: !!conversations.get('hasMore'),
   }),
@@ -40,9 +40,7 @@ export const ConversationsList = ({
   const { conversations, isLoading, hasMore } =
     useAppSelector(selectConversations);
   const dispatch = useAppDispatch();
-  const lastStatusId = conversations.last()?.get('last_status') as
-    | string
-    | null;
+  const lastStatusId = conversations.at(-1)?.last_status;
 
   const debouncedLoadMore = useDebouncedCallback(
     (id: string) => {
@@ -63,15 +61,12 @@ export const ConversationsList = ({
       {...other}
       scrollKey={scrollKey}
       isLoading={isLoading}
-      showLoading={isLoading && conversations.isEmpty()}
+      showLoading={isLoading && conversations.length === 0}
       hasMore={hasMore}
       onLoadMore={handleLoadMore}
     >
       {conversations.map((item) => (
-        <Conversation
-          key={item.get('id') as string}
-          conversation={item as unknown as Immutable.Record<TConversation>}
-        />
+        <Conversation key={item.id} conversation={item} />
       ))}
     </ScrollableList>
   );

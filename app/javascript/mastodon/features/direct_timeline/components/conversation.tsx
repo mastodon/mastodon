@@ -6,8 +6,6 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 
-import type { Map as ImmutableMap, Record as ImmutableRecord } from 'immutable';
-
 import { DotsThreeIcon } from '@phosphor-icons/react';
 
 import { replyComposeById } from '@/mastodon/actions/compose_typed';
@@ -22,8 +20,6 @@ import {
 } from '@/mastodon/actions/statuses';
 import { Avatars } from '@/mastodon/components/avatar';
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { LinkedDisplayName } from '@/mastodon/components/display_name';
-import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import { Hotkeys } from '@/mastodon/components/hotkeys';
 import {
   LegacyDropdownMenuItems,
@@ -31,12 +27,12 @@ import {
   MenuList,
   MenuTrigger,
 } from '@/mastodon/components/menu';
-import { RelativeTimestamp } from '@/mastodon/components/relative_timestamp';
 import { StatusContent } from '@/mastodon/components/status/content';
+import { StatusHeaderAuthors } from '@/mastodon/components/status/header';
 import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 import { statusLink } from '@/mastodon/components/status/utils';
 import { useAccountStatus } from '@/mastodon/hooks/useStatus';
-import type { Account, AccountShapeFull } from '@/mastodon/models/account';
+import type { AccountShapeFull } from '@/mastodon/models/account';
 import {
   createAppSelector,
   useAppDispatch,
@@ -66,34 +62,27 @@ const messages = defineMessages({
 });
 
 const selectAccounts = createAppSelector(
-  [
-    (state) => state.accounts,
-    (_, accountIds: Immutable.List<string>) => accountIds,
-  ],
-  (
-    accounts: ImmutableMap<string, Account>,
-    accountIds: Immutable.List<string>,
-  ) =>
+  [(state) => state.accounts, (_, accountIds: string[]) => accountIds],
+  (accounts, accountIds) =>
     accountIds
-      .map((id) => accounts.get(id))
-      .filter(filterNulls)
-      .toJS() as unknown as AccountShapeFull[],
+      .map((id) => accounts.get(id)?.toJS())
+      .filter(filterNulls) as unknown as AccountShapeFull[],
 );
 
 export interface TConversation {
   id: string;
   unread: boolean;
-  accounts: Immutable.List<string>;
+  accounts: string[];
   last_status: string | null;
 }
 
 export const Conversation: React.FC<{
-  conversation: ImmutableRecord<TConversation>;
+  conversation: TConversation;
 }> = ({ conversation }) => {
-  const id = conversation.get('id');
-  const unread = conversation.get('unread');
-  const lastStatusId = conversation.get('last_status');
-  const accountIds = conversation.get('accounts');
+  const id = conversation.id;
+  const unread = conversation.unread;
+  const lastStatusId = conversation.last_status;
+  const accountIds = conversation.accounts;
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const history = useHistory();
@@ -135,19 +124,6 @@ export const Conversation: React.FC<{
   const handleMarkAsRead = useCallback(() => {
     dispatch(markConversationRead(id));
   }, [dispatch, id]);
-
-  const names = useMemo(
-    () =>
-      intl.formatList(
-        accounts.map((account) => (
-          <LinkedDisplayName
-            displayProps={{ account, variant: 'simple' }}
-            key={account.id}
-          />
-        )),
-      ),
-    [accounts, intl],
-  );
 
   const menu = useMemo(() => {
     const menu = [
@@ -223,20 +199,7 @@ export const Conversation: React.FC<{
         </div>
 
         <div className='conversation__content'>
-          <div className='conversation__content__info'>
-            <div className='conversation__content__relative-time'>
-              {unread && <span className='conversation__unread' />}{' '}
-              <RelativeTimestamp timestamp={lastStatus.created_at} />
-            </div>
-
-            <AnimateEmojiProvider className='conversation__content__names'>
-              <FormattedMessage
-                id='conversation.with'
-                defaultMessage='With {names}'
-                values={{ names: <span>{names}</span> }}
-              />
-            </AnimateEmojiProvider>
-          </div>
+          <StatusHeaderAuthors status={lastStatus} className={classes.names} />
 
           <StatusContent
             status={lastStatus}

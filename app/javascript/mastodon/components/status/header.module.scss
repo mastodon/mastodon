@@ -15,9 +15,13 @@
   }
 
   // When hovering over any link with the account ID, underline them all.
-  &:has(a[data-id]:hover) a[data-id] {
+  &:has(a[data-main-account-link]:hover) a[data-main-account-link] {
     text-decoration: var(--link-underline-stealthy-hover);
   }
+}
+
+.accountWrapper {
+  overflow: hidden;
 }
 
 .avatar {
@@ -35,6 +39,7 @@
 
   display: flex;
   gap: var(--space-1);
+  white-space: nowrap;
 }
 
 // Overrides .header a

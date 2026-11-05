@@ -26,3 +26,16 @@
 .avatarsSingle {
   display: block;
 }
+
+.names {
+  color: var(--color-text-secondary);
+
+  :where(a) {
+    color: inherit;
+    text-decoration: var(--link-underline-stealthy);
+
+    &:hover {
+      text-decoration: var(--link-underline-stealthy-hover);
+    }
+  }
+}
