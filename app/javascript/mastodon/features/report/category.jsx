@@ -5,7 +5,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { Button } from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button/redesign';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { injectIntl } from '@/mastodon/components/intl';
 
@@ -110,7 +110,7 @@ class Category extends PureComponent {
         <div className='flex-spacer' />
 
         <div className='report-dialog-modal__actions'>
-          <Button onClick={this.handleNextClick} disabled={category === null}><FormattedMessage id='report.next' defaultMessage='Next' /></Button>
+          <Button onClick={this.handleNextClick} disabled={category === null} variant='solid' color='accent'><FormattedMessage id='report.next' defaultMessage='Next' /></Button>
         </div>
       </>
     );

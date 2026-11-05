@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/mixins';
+
 .wrapper {
   --diameter: 20px;
   --padding: 2px;
@@ -26,7 +28,7 @@
 .toggle {
   display: inline-flex;
   align-items: center;
-  border-radius: 9999px;
+  border-radius: var(--radius-round);
   width: calc(2 * (var(--diameter) + var(--padding)));
   background: var(--color-text-tertiary);
   padding: var(--padding);
@@ -34,13 +36,21 @@
   box-sizing: border-box;
 }
 
+/* Toggle handle */
 .toggle::before {
   content: '';
+  box-sizing: border-box;
   height: var(--diameter);
   width: var(--diameter);
-  border-radius: 9999px;
+  border-radius: inherit;
   background: var(--color-bg-primary);
   transition: transform var(--transition);
+  border: 1px solid transparent;
+}
+
+/* Outline for high-contrast mode */
+.toggle::after {
+  @include mixins.high-contrast-outline;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -68,6 +78,10 @@
 
   :global([dir='rtl']) & {
     transform: translateX(calc(-1 * var(--diameter)));
+  }
+
+  @media (forced-colors: active) {
+    background-color: Highlight;
   }
 }
 

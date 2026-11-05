@@ -13,8 +13,8 @@ import {
   statusFactoryImmutable,
 } from '@/testing/factories';
 
-import type { StatusVariant } from './status';
-import { StatusRedesign } from './status';
+import type { StatusVariant } from '.';
+import { Status } from '.';
 import type { AttachmentArgs } from './testing';
 import { attachmentArgTypes, attachmentFactory } from './testing';
 import type { StatusContextType } from './types';
@@ -77,7 +77,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     showPrepend = true,
   } = props;
   return (
-    <StatusRedesign
+    <Status
       {...staticProps}
       id='1'
       accountId={isReblog ? '1' : undefined}
@@ -155,7 +155,7 @@ const categoryDisplay = {
 } as const;
 
 const meta = {
-  title: 'Redesign/Status',
+  title: 'Components/Status',
   component: StatusStoryComponent,
   argTypes: {
     // Contents

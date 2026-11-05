@@ -4,9 +4,11 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import ContentCopyIcon from '@/material-icons/400-24px/content_copy.svg?react';
-import { Icon } from 'mastodon/components/icon';
+import { CopySimpleIcon } from '@phosphor-icons/react';
+
 import { useTimeout } from 'mastodon/hooks/useTimeout';
+
+import { Button } from './button/redesign';
 
 export const CopyPasteText: React.FC<{ value: string }> = ({ value }) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -58,24 +60,29 @@ export const CopyPasteText: React.FC<{ value: string }> = ({ value }) => {
   }, [setFocused]);
 
   return (
+    // The click handler on the div just duplicates the handler from the textarea
+    // for a larger click area – it's not essential so doesn't need its own focus stop.
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
       className={classNames('copy-paste-text', { copied, focused })}
-      tabIndex={0}
-      role='button'
       onClick={handleInputClick}
-      onKeyUp={handleKeyUp}
     >
       <textarea
         readOnly
         value={value}
         ref={inputRef}
         onClick={handleInputClick}
+        onKeyUp={handleKeyUp}
         onFocus={handleFocus}
         onBlur={handleBlur}
       />
 
-      <button className='button' onClick={handleButtonClick} type='button'>
-        <Icon id='copy' icon={ContentCopyIcon} />{' '}
+      <Button
+        onClick={handleButtonClick}
+        variant='solid'
+        color='accent'
+        leadingIcon={CopySimpleIcon}
+      >
         {copied ? (
           <FormattedMessage id='copypaste.copied' defaultMessage='Copied' />
         ) : (
@@ -84,7 +91,7 @@ export const CopyPasteText: React.FC<{ value: string }> = ({ value }) => {
             defaultMessage='Copy to clipboard'
           />
         )}
-      </button>
+      </Button>
     </div>
   );
 };

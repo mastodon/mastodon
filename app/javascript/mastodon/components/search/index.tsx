@@ -467,8 +467,12 @@ export const Search: React.FC<{
       switch (e.key) {
         case 'Escape':
           e.preventDefault();
-          searchInputRef.current?.focus();
-          setExpanded(false);
+          if (expanded) {
+            searchInputRef.current?.focus();
+            setExpanded(false);
+          } else {
+            handleClear();
+          }
 
           break;
         case 'ArrowDown':
@@ -516,7 +520,7 @@ export const Search: React.FC<{
           break;
       }
     },
-    [expanded, navigableOptions, selectedOption, submit, value],
+    [expanded, handleClear, navigableOptions, selectedOption, submit, value],
   );
 
   const handleInputFocus = useCallback(() => {

@@ -201,7 +201,7 @@ zh-TW:
       unsubscribe: 取消訂閱
       unsuspended_msg: 已成功取消停權 %{username} 的帳號
       username: 使用者名稱
-      view_domain: 查看站台概要
+      view_domain: 查看站點概要
       warn: 警告
       web: 頁面
       whitelisted: 已加入白名單
@@ -494,7 +494,7 @@ zh-TW:
       created_msg: 正在進行網域封鎖
       destroyed_msg: 已撤銷網域封鎖
       domain: 站點
-      edit: 更改封鎖的站台
+      edit: 更改封鎖的站點
       existing_domain_block: 您已對 %{name} 施加更嚴格的限制。
       existing_domain_block_html: 您已對 %{name} 施加更嚴格的限制，您需要先<a href="%{unblock_url}">解除封鎖</a>。
       export: 匯出
@@ -513,9 +513,9 @@ zh-TW:
       obfuscate: 混淆網域名稱
       obfuscate_hint: 若啟用網域廣告列表限制，於列表部份混淆網域名稱
       private_comment: 私人留言
-      private_comment_hint: 請提供更多有關此站台限制的資訊以供管理員作內部參考。
+      private_comment_hint: 請提供更多有關此站點限制的資訊以供管理員作內部參考。
       public_comment: 公開留言
-      public_comment_hint: 如果您已經啟用站台限制列表的公告，請為一般大眾提供更多有關此站台限制的資訊。
+      public_comment_hint: 如果您已經啟用站點限制列表的公告，請為一般大眾提供更多有關此站點限制的資訊。
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地快取的媒體檔案，並且不再接收來自該站點的任何媒體檔案。與停權無關
       reject_reports: 拒絕檢舉
@@ -647,7 +647,7 @@ zh-TW:
         callbacks:
           created_at: 建立於
           delete: 刪除
-          ip: IP 地址
+          ip: IP 位址
           request_body: Request body
           title: 除錯 callback
       providers:
@@ -697,7 +697,7 @@ zh-TW:
       back_to_all: 所有
       back_to_limited: 受限制的
       back_to_warning: 警告
-      by_domain: 站台
+      by_domain: 站點
       confirm_purge: 您是否確定要永久刪除來自此網域的資料？
       content_policies:
         comment: 內部備註
@@ -1060,6 +1060,119 @@ zh-TW:
       translation: 翻譯
       translations: 翻譯
       translations_explanation: 您可以選擇性地替規則添加翻譯。若沒有翻譯版本，預設值將被顯示。請確保任何提供之翻譯與預設值內容同步。
+    server_checks:
+      categories:
+        completed:
+          title: 已完成
+        critical:
+          title: 重要
+        error:
+          title: 錯誤
+        ignored:
+          title: 已忽略
+        suggestion:
+          title: 動作建議
+        unprocessed:
+          title: 未處理
+        warning:
+          title: 警告
+      checks:
+        database_schema:
+          error:
+            title: 檢查資料庫結構 (database schema) 時出現錯誤
+          ok:
+            title: 無尚待執行之資料庫遷移作業
+          pending:
+            lead_html: 請執行以確保應用程式正常運作
+            title: 有待執行之資料庫遷移作業
+          running:
+            title: 您的伺服器正在檢查資料庫結構 (database schema)
+          unprocessed:
+            title: 您的伺服器尚未檢查資料庫結構 (database schema)
+        elastic_search:
+          error:
+            title: 檢查 Elasticsearch 設定時出現錯誤
+          ok:
+            title: Elasticsearch 設定無誤
+          pending:
+            lead:
+              analysis_index_mismatch_html: Elasticsearch 索引分析器設定 (index analyzer) 已過期。請執行 <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Elasticsearch 叢集健康狀態異常 (紅色)，無法提供搜尋功能
+              cluster_health_yellow_html: Elasticsearch 叢集健康狀態異常 (黃色)，您可能想進一步調查原因
+              index_mismatch_html: Elasticsearch 索引對應 (index mappings) 已過期。請執行 <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: 您的 Elasticsaerch 叢集由多個節點構成，但 Mastodon 並沒有設定使用它們
+              preset_single_node_html: 您的 Elasticsearch 叢集只有一個節點，<code>ES_PRESET</code> 應設定為 <code>single_node_cluster</code>
+              reset_chewy_html: 您的 Elasticsearch 系統索引 (index) 已過期並需執行設定變更。請執行 <code>tootctl search deploy --reset-chewy</code> 以更新它
+              running_check_html: 無法連接 Elasticsearch。請檢查是否正在執行中，或者已關閉全文搜尋
+              version_check_html: Elasticsearch %{running_version} 版正在執行，需要 %{required_version} 版
+            title: Elasticsearch 出現問題
+          running:
+            title: 伺服器正在檢查 Elasticsearch 設定
+          unprocessed:
+            title: 伺服器尚未檢查 Elasticsearch 設定
+        media_privacy:
+          error:
+            title: 檢查您的伺服器之多媒體隱私設定時出現錯誤
+          ok:
+            title: 您的伺服器之多媒體隱私設定是安全的
+          pending:
+            lead:
+              upload_check_privacy_error_html: 您的網頁伺服器設定錯誤
+              upload_check_privacy_error_object_storage_html: 您的物件儲存 (object storage) 設定錯誤
+            title: 您的使用者隱私正在暴露於風險中
+          running:
+            title: 伺服器正在檢查其隱私設定
+          unprocessed:
+            title: 伺服器尚未檢查其隱私設定
+        rules:
+          error:
+            title: 檢查您的伺服器規則時出現錯誤
+          ok:
+            title: 您的伺服器規則已設定
+          pending:
+            lead_html: 您的伺服器目前尚未發布管理規則。訂立清晰明確之伺服器規則將有助於管理作業以及確立使用者預期
+            title: 設定伺服器規則
+          running:
+            title: 伺服器正在檢查您的規則
+          unprocessed:
+            title: 伺服器尚未檢查是否有任何規則
+        sidekiq_process:
+          error:
+            title: 檢查 Sidekiq 設定時出現錯誤
+          ok:
+            title: Sidekiq 設定無誤
+          pending:
+            lead_html: 無 Sidekiq 行程運行於 %{missing_queues_str} 佇列
+            title: 請重新檢視您的 Sidekiq 設定
+          running:
+            title: 伺服器正在檢查 Sidekiq 設定
+          unprocessed:
+            title: 伺服器尚未檢查 Sidekiq 設定
+        software_version:
+          error:
+            title: 檢查您的伺服器軟體更新時出現錯誤
+          ok:
+            title: 您的 Mastodon 站點為最新坂本
+          pending:
+            lead:
+              patch_html: 有可取得之 Mastodon 臭蟲修復更新
+              regular_html: 有可取得之 Mastodon 新版本
+              urgent_html: 有可取得之重要 Mastodon 更新，請立即升級
+            title: 請更新您的 Mastodon 站點
+          running:
+            title: 伺服器正在檢查是否有待執行之軟體更新
+          unprocessed:
+            title: 伺服器尚未檢查軟體更新
+      ignore:
+        label: 忽略
+      lead: 使您的伺服器保持安全、友善且高效之建議。
+      recommendations:
+        title: 建議
+      restore:
+        label: 復原
+      setup:
+        label: 設定
+      title: 伺服器健康度
     settings:
       about:
         manage_rules: 管理伺服器規則
@@ -1153,7 +1266,7 @@ zh-TW:
       title: 伺服器設定
     site_uploads:
       delete: 刪除上傳的檔案
-      destroyed_msg: 成功刪除站台的上傳項目！
+      destroyed_msg: 成功刪除站點之上傳項目！
     skip_to_content: 跳轉至內容
     software_updates:
       critical_update: 重要 — 請儘速升級

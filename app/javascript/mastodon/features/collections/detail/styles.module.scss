@@ -1,15 +1,17 @@
+@use '@/styles/mastodon/mixins';
+
 .header {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 16px;
-  padding-bottom: 24px;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  padding-bottom: var(--space-6);
 }
 
 .titleWithMenu {
   display: flex;
   align-items: start;
-  gap: 10px;
+  gap: var(--space-2);
 }
 
 .titleWrapper {
@@ -17,19 +19,19 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 4px;
+  gap: var(--space-1);
   min-width: 0;
 }
 
 .name {
-  font-size: 22px;
-  font-weight: bold;
-  line-height: 1.2;
+  @include mixins.type-heading-md;
+
   overflow-wrap: anywhere;
 }
 
 .authorNote {
-  font-size: 13px;
+  @include mixins.type-meta;
+
   color: var(--color-text-secondary);
 
   a {
@@ -43,36 +45,24 @@
 }
 
 .description {
-  font-size: 15px;
+  @include mixins.type-body;
 }
 
 .headerButtonWrapper {
   display: flex;
-  gap: 8px;
-}
-
-.iconButton {
-  box-sizing: content-box;
-  padding: 7px;
-  border-radius: 4px;
-  border: 1px solid var(--color-border-primary);
-
-  svg {
-    width: 20px;
-    height: 20px;
-  }
+  gap: var(--space-2);
 }
 
 .sensitiveScreen {
-  margin-inline: 16px;
+  margin-inline: var(--space-4);
 }
 
 .subheadingWithSelect {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px 16px;
-  padding-inline: 16px;
+  gap: var(--space-2) var(--space-4);
+  padding-inline: var(--space-4);
 }
 
 .selectWrapper {
@@ -83,11 +73,11 @@
 .select {
   height: 36px;
   border-radius: 8px;
-  font-size: 15px;
+  @include mixins.type-body;
+
   background-color: var(--color-bg-primary);
 }
 
 .columnSubheading {
-  font-size: 15px;
-  font-weight: bold;
+  @include mixins.type-body-strong;
 }

@@ -323,17 +323,13 @@ export const submitComposer = createAppThunk(
       dispatch(changeCompose(textareaValue));
     }
 
-    const { compose, composer, meta, statuses, server, settings } = getState();
+    const { compose, meta, statuses, server, settings } = getState();
 
     let text = compose.get('text') as string;
 
     const attachments = compose.get('media_attachments');
     const spoilerText = compose.get('spoiler_text') as string;
-    if (
-      (!text.trim() || text === composer.initialText) &&
-      isList(attachments) &&
-      attachments.isEmpty()
-    ) {
+    if (!text.trim() && isList(attachments) && attachments.isEmpty()) {
       dispatch(composerSlice.actions.addError('empty'));
     }
 

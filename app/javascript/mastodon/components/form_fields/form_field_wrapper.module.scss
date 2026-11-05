@@ -1,5 +1,7 @@
+@use '@/styles/mastodon/mixins';
+
 .wrapper {
-  --form-field-label-gap: 6px;
+  --form-field-label-gap: var(--space-1);
 
   display: flex;
   flex-direction: column;
@@ -7,10 +9,14 @@
   color: var(--color-text-primary);
   font-size: 15px;
 
+  &:has(.hint) {
+    --form-field-label-gap: var(--space-2);
+  }
+
   &[data-input-placement^='inline'] {
     flex-direction: row;
 
-    --form-field-label-gap: 8px;
+    --form-field-label-gap: var(--space-2);
   }
 
   &[data-input-placement='inline-start'] {
@@ -26,24 +32,29 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: 4px;
+  gap: var(--space-half);
+
+  [data-compact='true'] & {
+    gap: 0;
+  }
 }
 
 .label {
-  font-weight: bold;
+  @include mixins.type-label;
+
+  [data-compact='true'] & {
+    @include mixins.type-caption;
+  }
 
   &[data-has-parent-fieldset='true'] {
     font-weight: normal;
   }
-
-  [data-has-error='true'] & {
-    color: var(--color-text-error);
-  }
 }
 
 .hint {
-  color: var(--color-text-secondary);
-  font-size: 13px;
+  @include mixins.type-caption;
+
+  color: var(--color-text-tertiary);
 }
 
 .status {

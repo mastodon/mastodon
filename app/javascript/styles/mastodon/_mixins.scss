@@ -212,3 +212,16 @@
   -webkit-line-clamp: $lines;
   line-clamp: $lines;
 }
+
+// Mixin for a border that will only be visible in Windows'
+// high-contrast mode (@media (forced-colors: active)).
+// Use in a pseudo element so that it doesn't mess with the
+// parent element's layout/size
+@mixin high-contrast-outline() {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  border: 1px solid transparent;
+}
