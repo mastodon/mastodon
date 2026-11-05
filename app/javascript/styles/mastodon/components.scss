@@ -1069,23 +1069,6 @@ body > [data-popover-placement] {
   }
 }
 
-.embed {
-  position: relative;
-
-  &__overlay {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .detailed-status {
-    border-top: 0;
-  }
-}
-
 .scrollable > div:first-child .detailed-status {
   border-top: 0;
 }
