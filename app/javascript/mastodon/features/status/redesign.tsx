@@ -24,6 +24,7 @@ import {
   NavigationFocusTarget,
 } from '@/mastodon/components/navigation_focus_target';
 import { Scrollable } from '@/mastodon/components/scrollable_list/components';
+import { Status as Status } from '@/mastodon/components/status';
 import {
   useStatusMenuActions,
   useTextForScreenReader,
@@ -32,7 +33,6 @@ import {
   StatusBookmarkActiveIcon,
   StatusBookmarkIcon,
 } from '@/mastodon/components/status/icons';
-import { StatusRedesign as Status } from '@/mastodon/components/status/status';
 import { ScrollContainer } from '@/mastodon/containers/scroll_container';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import type { ExpandedStatusShape } from '@/mastodon/models/status';
