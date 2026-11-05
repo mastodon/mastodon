@@ -3,10 +3,45 @@
 require 'rails_helper'
 
 RSpec.describe 'Settings 2FA Confirmations' do
+  describe 'GET /settings/two_factor_authentication/confirmation/new' do
+    let(:user) { Fabricate(:user, encrypted_password: '', otp_secret: otp_secret) }
+
+    before { sign_in user }
+
+    context 'without an existing OTP secret' do
+      let(:otp_secret) { nil }
+
+      it 'redirects to setup when no new secret is stored in the session' do
+        get new_settings_two_factor_authentication_confirmation_path
+
+        expect(response)
+          .to redirect_to(settings_otp_authentication_path)
+      end
+    end
+
+    context 'with an existing OTP secret' do
+      let(:otp_secret) { User.generate_otp_secret }
+
+      it 'redirects to setup when no new secret is stored in the session' do
+        get new_settings_two_factor_authentication_confirmation_path
+
+        expect(response)
+          .to redirect_to(settings_otp_authentication_path)
+      end
+    end
+  end
+
   describe 'POST /settings/two_factor_authentication/confirmations' do
     before do
       sign_in Fabricate(:user, encrypted_password: '') # Empty encrypted password avoids challengable flow
       post settings_otp_authentication_path # Sets `session[:new_otp_secret]` which is needed for next step
+    end
+
+    it 'gracefully handles missing form params' do
+      post settings_two_factor_authentication_confirmation_path
+
+      expect(response)
+        .to have_http_status(400)
     end
 
     it 'gracefully handles invalid nested params' do
