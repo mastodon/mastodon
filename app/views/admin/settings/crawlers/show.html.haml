@@ -1,0 +1,33 @@
+- content_for :page_title do
+  = t('admin.settings.crawlers.title')
+
+- content_for :heading do
+  %h1= t('admin.settings.title')
+  = render partial: 'admin/settings/shared/links'
+
+= simple_form_for @admin_settings, url: admin_settings_crawlers_path do |f|
+  = render 'shared/error_messages', object: @admin_settings
+
+  %p.lead= t('admin.settings.crawlers.preamble')
+
+  .fields-group
+    = f.input :override_robots,
+              as: :boolean,
+              wrapper: :with_label
+
+  .fields-group{ class: !Setting.override_robots && 'hidden' }
+    = f.input :custom_robots,
+              as: :text,
+              wrapper: :with_block_label,
+              input_html: { rows: 8 },
+              hint: t('simple_form.hints.form_admin_settings.custom_robots_html', path: 'https://datatracker.ietf.org/doc/html/rfc9309')
+
+  .fields-group
+    = f.input :noindex,
+              as: :boolean,
+              hint: t('admin.settings.default_noindex.desc_html'),
+              label: t('admin.settings.default_noindex.title'),
+              wrapper: :with_label
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

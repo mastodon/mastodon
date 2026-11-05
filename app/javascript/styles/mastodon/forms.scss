@@ -405,6 +405,10 @@ code {
   .fields-group {
     margin-bottom: 25px;
 
+    &.hidden {
+      display: none;
+    }
+
     .input:last-child {
       margin-bottom: 0;
     }
