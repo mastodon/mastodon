@@ -103,7 +103,6 @@ module Mastodon
     config.x.mastodon = config_for(:mastodon)
     config.x.omniauth = config_for(:omniauth)
     config.x.translation = config_for(:translation)
-    config.x.vapid = config_for(:vapid)
 
     if ENV.fetch('QUERY_LOG_TAGS_ENABLED', 'false') == 'true'
       config.active_record.query_log_tags_enabled = ENV.fetch('QUERY_LOG_TAGS_ENABLED', 'false') == 'true'
