@@ -59,24 +59,21 @@ RSpec.describe 'FeaturedTags' do
   describe 'POST /api/v1/featured_tags' do
     let(:params) { { name: 'tag' } }
 
-    it 'returns http success and includes correct tag name' do
-      post '/api/v1/featured_tags', headers: headers, params: params
+    context 'with correct params and headers' do
+      subject { post '/api/v1/featured_tags', headers: headers, params: params }
 
-      expect(response).to have_http_status(200)
-      expect(response.content_type)
-        .to start_with('application/json')
-      expect(response.parsed_body)
-        .to include(
-          name: params[:name]
-        )
-    end
-
-    it 'creates a new featured tag for the requesting user' do
-      post '/api/v1/featured_tags', headers: headers, params: params
-
-      featured_tag = FeaturedTag.find_by(name: params[:name], account: user.account)
-
-      expect(featured_tag).to be_present
+      it 'creates a new tag and returns http success and includes correct tag name' do
+        expect { subject }
+          .to change { FeaturedTag.find_by(name: params[:name], account: user.account) }.from(nil).to(be_present)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.media_type)
+          .to eq('application/json')
+        expect(response.parsed_body)
+          .to include(
+            name: params[:name]
+          )
+      end
     end
 
     context 'with wrong scope' do
