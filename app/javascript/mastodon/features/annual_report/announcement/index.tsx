@@ -1,7 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 
 import type { ApiAnnualReportState } from '@/mastodon/api/annual_report';
-import { Button } from '@/mastodon/components/button';
+import { Button } from '@/mastodon/components/button/redesign';
 
 import styles from './styles.module.scss';
 
@@ -30,14 +30,19 @@ export const AnnualReportAnnouncement: React.FC<
         tagName='p'
       />
       {state === 'available' ? (
-        <Button onClick={onOpen}>
+        <Button onClick={onOpen} variant='solid' color='accent'>
           <FormattedMessage
             id='annual_report.announcement.action_view'
             defaultMessage='View my Wrapstodon'
           />
         </Button>
       ) : (
-        <Button loading={state === 'generating'} onClick={onRequestBuild}>
+        <Button
+          variant='solid'
+          color='accent'
+          loading={state === 'generating'}
+          onClick={onRequestBuild}
+        >
           <FormattedMessage
             id='annual_report.announcement.action_build'
             defaultMessage='Build my Wrapstodon'
@@ -45,7 +50,12 @@ export const AnnualReportAnnouncement: React.FC<
         </Button>
       )}
       {state === 'eligible' && (
-        <Button onClick={onDismiss} plain className={styles.closeButton}>
+        <Button
+          onClick={onDismiss}
+          variant='ghost'
+          size='sm'
+          className={styles.closeButton}
+        >
           <FormattedMessage
             id='annual_report.announcement.action_dismiss'
             defaultMessage='No thanks'

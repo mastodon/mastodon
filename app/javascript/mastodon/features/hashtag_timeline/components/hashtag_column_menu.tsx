@@ -18,8 +18,6 @@ import { useAppDispatch } from 'mastodon/store';
 
 import { useColumnSettings } from '../../public_timeline/components/feed_column_settings';
 
-import { messages } from './hashtag_header';
-
 export const HashtagColumnMenu: React.FC<{
   tagId: string;
   multiColumn?: boolean;
@@ -67,16 +65,28 @@ export const HashtagColumnMenu: React.FC<{
     >
       <MenuItem onClick={toggleFollow}>
         {tag.following ? (
-          <FormattedMessage {...messages.unfollowHashtag} />
+          <FormattedMessage
+            id='hashtag.unfollow'
+            defaultMessage='Unfollow hashtag'
+          />
         ) : (
-          <FormattedMessage {...messages.followHashtag} />
+          <FormattedMessage
+            id='hashtag.follow'
+            defaultMessage='Follow hashtag'
+          />
         )}
       </MenuItem>
       <MenuItem onClick={toggleFeature}>
         {tag.featuring ? (
-          <FormattedMessage {...messages.unfeature} />
+          <FormattedMessage
+            id='hashtag.unfeature'
+            defaultMessage="Don't feature on profile"
+          />
         ) : (
-          <FormattedMessage {...messages.feature} />
+          <FormattedMessage
+            id='hashtag.feature'
+            defaultMessage='Feature on profile'
+          />
         )}
       </MenuItem>
       {multiColumn && pinned && (

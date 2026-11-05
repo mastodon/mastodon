@@ -12,25 +12,24 @@ import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import { XIcon } from '@phosphor-icons/react';
 import type { Merge } from 'type-fest';
 
-import CancelFillIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
-import { fetchRelationships } from 'mastodon/actions/accounts';
-import { revealAccount } from 'mastodon/actions/accounts_typed';
-import { fetchStatus } from 'mastodon/actions/statuses';
-import { LearnMoreLink } from 'mastodon/components/learn_more_link';
-import { domain } from 'mastodon/initial_state';
-import type { Account } from 'mastodon/models/account';
-import type { Status } from 'mastodon/models/status';
-import { makeGetStatusWithExtraInfo } from 'mastodon/selectors';
-import { getAccountHidden } from 'mastodon/selectors/accounts';
-import type { RootState } from 'mastodon/store';
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
+import { fetchRelationships } from '@/mastodon/actions/accounts';
+import { revealAccount } from '@/mastodon/actions/accounts_typed';
+import { fetchStatus } from '@/mastodon/actions/statuses';
+import { Button, IconButton } from '@/mastodon/components/button/redesign';
+import { LearnMoreLink } from '@/mastodon/components/learn_more_link';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { domain } from '@/mastodon/initial_state';
+import type { Account } from '@/mastodon/models/account';
+import type { Status } from '@/mastodon/models/status';
+import { makeGetStatusWithExtraInfo } from '@/mastodon/selectors';
+import { getAccountHidden } from '@/mastodon/selectors/accounts';
+import type { RootState } from '@/mastodon/store';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { isRedesignEnabled } from '../../../utils/environment';
-import { Button } from '../../button';
-import { IconButton } from '../../icon_button';
-import { LoadingIndicator } from '../../loading_indicator';
 import { TypedStatusContainer } from '../types';
 import type { StatusContainerProps, StatusContextType } from '../types';
 
@@ -246,10 +245,10 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
             <IconButton
               onClick={onQuoteCancel}
               className='status__quote-cancel'
-              title={intl.formatMessage(quoteCancelMessage)}
-              icon='cancel-fill'
-              iconComponent={CancelFillIcon}
-            />
+              icon={XIcon}
+            >
+              {intl.formatMessage(quoteCancelMessage)}
+            </IconButton>
           )
         }
       />
@@ -331,7 +330,7 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
       <div className='status__quote status__quote--error'>
         {quoteError}
         {hasRemoveButton && (
-          <Button compact plain onClick={onQuoteCancel}>
+          <Button size='sm' variant='ghost' onClick={onQuoteCancel}>
             <FormattedMessage
               id='status.remove_quote'
               defaultMessage='Remove'
