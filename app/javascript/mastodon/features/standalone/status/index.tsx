@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 
 import { hydrateStore } from '@/mastodon/actions/store';
+import { Icon } from '@/mastodon/components/icon';
+import { IconLogo } from '@/mastodon/components/logo';
 import { FocusTargetProvider } from '@/mastodon/components/navigation_focus_target';
 import { Router } from '@/mastodon/components/router';
 import { Status } from '@/mastodon/components/status';
@@ -11,6 +13,8 @@ import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import { initialState } from '@/mastodon/initial_state';
 import { IntlProvider } from '@/mastodon/locales';
 import { store } from '@/mastodon/store';
+
+import classes from './styles.module.scss';
 
 const Embed: React.FC<{ id: string }> = ({ id }) => {
   const status = useExpandedStatus(id, true);
@@ -22,18 +26,20 @@ const Embed: React.FC<{ id: string }> = ({ id }) => {
   }
 
   return (
-    <div className='embed'>
-      <Status id={status?.id} />
+    <div className={classes.root}>
+      <Status id={status?.id} variant='page' />
 
       {status?.url && (
         <a
-          className='embed__overlay'
+          className={classes.overlay}
           href={status.url}
           target='_blank'
           rel='noopener'
           aria-label=''
         />
       )}
+
+      <Icon icon={IconLogo} className={classes.logo} />
     </div>
   );
 };
