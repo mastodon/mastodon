@@ -43,12 +43,21 @@ class BulkImportRowService
 
       list.accounts << @target_account
     when :custom_filters
-      filter = @account.custom_filters.create!(title: @data['title'], context: @data['context'])
-      filter.keywords = @data['keywords_attributes'].map { |keyword| CustomFilterKeyword.new(keyword: keyword['keyword'], whole_word: keyword['whole_word']) }
-      filter.action = @data['action'].to_sym
-      filter.expires_at = @data['expires_at']
-      status_ids = Status.where(uri: @data['statuses']).ids
-      filter.statuses = status_ids.map { |status| CustomFilterStatus.new(status_id: status) } if status_ids.any?
+      filter = @account.custom_filters.find_or_initialize_by(title: @data['title'])
+
+      if filter.new_record?
+        filter.context = @data['context']
+        filter.action = @data['action'].to_sym
+        filter.expires_at = @data['expires_at']
+      end
+
+      existing_keywords = filter.keywords.map(&:keyword)
+      @data['keywords_attributes'].each do |keyword|
+        filter.keywords.build(keyword: keyword['keyword'], whole_word: keyword['whole_word']) unless existing_keywords.include?(keyword['keyword'])
+      end
+
+      status_ids = Status.where(uri: @data['statuses']).ids - filter.statuses.map(&:status_id)
+      status_ids.each { |status_id| filter.statuses.build(status_id: status_id) }
       filter.save!
     end
 
