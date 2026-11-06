@@ -14,7 +14,7 @@ class LinkFeed < PublicFeed
   # @param [Integer] since_id
   # @param [Integer] min_id
   # @return [Array<Status>]
-  def get(limit, max_id = nil, since_id = nil, min_id = nil)
+  def get(limit:, max_id:, since_id: nil, min_id: nil)
     return [] if incompatible_feed_settings?
 
     scope = public_scope
