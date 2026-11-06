@@ -66,7 +66,7 @@ be:
       require_reauth:
         log_out_and_continue: Выйсці і працягнуць
         prompt_html: У гэты момант Вы карыстаецеся ўліковым запісам <strong>%{handle}</strong>, але, каб працягнуць, Вам спатрэбіцца выйсці.
-        title: Неабходная паўторная аўтэнтыфікацыя
+        title: Неабходная паўторная праверка сапраўднасці
       show:
         title: Скапіруйце гэты код аўтарызацыі і ўстаўце яго ў праграму.
     authorized_applications:
@@ -86,7 +86,7 @@ be:
       messages:
         access_denied: Уласнік рэсурсу або сэрвер аўтарызацыі адхіліў ваш запыт.
         credential_flow_not_configured: Resource Owner Password Credentials flow не прайшоў з-за таго, што ўласцівасць Doorkeeper.configure.resource_owner_from_credentials была не вызначана.
-        invalid_client: Збой аўтэнтыфікацыі кліента з-за невядомага кліента, адсутнасці аўтэнтыфікацыі кліента або метаду аўтэнтыфікацыі, які не падтрымліваецца.
+        invalid_client: Збой праверкі сапраўднасці праз невядомы кліент, адсутнасць праверкі сапраўднасці кліента або метад праверкі сапраўднасці, які не падтрымліваецца.
         invalid_code_challenge_method:
           one: code_challenge_method павінен быць %{challenge_methods}.
           other: code_challenge_method павінен быць адным з %{challenge_methods}.

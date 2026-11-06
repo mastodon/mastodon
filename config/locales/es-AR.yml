@@ -1209,6 +1209,9 @@ es-AR:
         danger_zone: Zona de peligro
         preamble: Controlá cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
+      crawlers:
+        preamble: Controlá cómo los bots (de buen comportamiento) tales como los rastreadores de motores de búsqueda pueden interactuar con tu servidor de Mastodon. Los robots maliciosos pueden ignorar estos ajustes y deben ser bloqueados a nivel de red.
+        title: Controles de rastreadores
       default_noindex:
         desc_html: Afecta a todos los usuarios que no cambiaron esta configuración por sí mismos
         title: Quitar predeterminadamente a los usuarios de la indexación de los motores de búsqueda

@@ -93,12 +93,14 @@ nl:
         closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
         content_cache_retention_period: Alle berichten van andere servers (inclusief boosts en reacties) worden verwijderd na het opgegeven aantal dagen, ongeacht enige lokale gebruikersinteractie met die berichten. Dit betreft ook berichten die een lokale gebruiker aan diens bladwijzers heeft toegevoegd of als favoriet heeft gemarkeerd. Privéberichten tussen gebruikers van verschillende servers gaan ook verloren en zijn onmogelijk te herstellen. Het gebruik van deze instelling is bedoeld voor servers die een speciaal doel dienen en overtreedt veel gebruikersverwachtingen wanneer deze voor algemeen gebruik wordt geïmplementeerd.
         custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
+        custom_robots_html: <a href="%{path}">Syntax</a>
         email_footer_text: Optionele tekst dat alleen onderin de e-mailnieuwsbrieven verschijnt.
         favicon: WEBP, PNG, GIF of JPG. Vervangt de standaard Mastodon favicon met een aangepast pictogram.
         landing_page: Selecteert welke pagina nieuwe bezoekers te zien krijgen wanneer ze voor het eerst op jouw server terechtkomen. Wanneer je ‘Trends’ selecteert, moeten trends ingeschakeld zijn onder 'Serverinstellingen > Ontdekken'. Wanneer je ‘Lokale tijdlijn’ selecteert, moet ‘Toegang tot openbare lokale berichten’ worden ingesteld op ‘Iedereen’ onder 'Serverinstellingen > Ontdekken'.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
         media_cache_retention_period: Mediabestanden van berichten van externe gebruikers worden op jouw server in de cache opgeslagen. Indien ingesteld op een positieve waarde, worden media verwijderd na het opgegeven aantal dagen. Als de mediagegevens worden opgevraagd nadat ze zijn verwijderd, worden ze opnieuw gedownload wanneer de originele inhoud nog steeds beschikbaar is. Vanwege beperkingen op hoe vaak linkvoorbeelden sites van derden raadplegen, wordt aanbevolen om deze waarde in te stellen op ten minste 14 dagen. Anders worden linkvoorbeelden niet op aanvraag bijgewerkt.
         min_age: Gebruikers krijgen tijdens hun inschrijving de vraag om hun geboortedatum te bevestigen
+        override_robots: Stelt je in staat om toegangsregels voor zich goed gedragende bots aan te passen
         peers_api_enabled: Een lijst met domeinnamen die deze server heeft aangetroffen in de fediverse. Er zijn hier geen gegevens inbegrepen over de vraag of je verbonden bent met een bepaalde server, alleen dat je server er van weet. Dit wordt gebruikt door diensten die statistieken over de federatie in algemene zin verzamelen.
         postpone_confirmation_emails: Wanneer deze instelling is ingeschakeld, worden bevestigingsmails voor accounts die wachten op goedkeuring pas verstuurd zodra die accounts zijn goedgekeurd. Dit kan een minder soepele aanmeldervaring voor gebruikers opleveren, omdat ze nog steeds hun e-mailadres op tijd moeten bevestigen nadat ze de mail hebben ontvangen, maar ze hebben geen controle meer over wanneer deze wordt verstuurd. Bovendien kan dit extra werk voor moderators betekenen, aangezien Mastodon niet in staat zal zijn om wachtende accounts met een ongeldig e-mailadres eruit te filteren voordat ze zijn goedgekeurd.
         profile_directory: De gebruikersgids bevat een lijst van alle gebruikers die ervoor gekozen hebben om ontdekt te kunnen worden.
@@ -304,6 +306,7 @@ nl:
         closed_registrations_message: Aangepast bericht wanneer registratie is uitgeschakeld
         content_cache_retention_period: Bewaartermijn voor externe inhoud
         custom_css: Aangepaste CSS
+        custom_robots: Robots.txt aanpassen
         email_footer_text: Aanvullende voettekst
         favicon: Favicon
         landing_page: Landingspagina voor nieuwe bezoekers
@@ -312,6 +315,7 @@ nl:
         mascot: Aangepaste mascotte (legacy)
         media_cache_retention_period: Bewaartermijn mediacache
         min_age: Vereiste minimumleeftijd
+        override_robots: Standaard robots.txt overschrijven
         peers_api_enabled: Lijst van bekende servers via de API publiceren
         postpone_confirmation_emails: Bevestigingsmails tot na goedkeuring uitstellen
         profile_directory: Gebruikersgids inschakelen

@@ -91,14 +91,16 @@ it:
         backups_retention_period: Gli utenti hanno la possibilità di generare archivi dei propri post da scaricare successivamente. Se impostati su un valore positivo, questi archivi verranno automaticamente eliminati dallo spazio di archiviazione dopo il numero di giorni specificato.
         bootstrap_timeline_accounts: Questi account verranno aggiunti in cima ai suggerimenti dei nuovi utenti. Fornisci un elenco di account separati da virgole.
         closed_registrations_message: Visualizzato alla chiusura delle iscrizioni
-        content_cache_retention_period: Tutti i post da altri server (inclusi booster e risposte) verranno eliminati dopo il numero specificato di giorni, senza tener conto di eventuali interazioni con gli utenti locali con tali post. Questo include i post in cui un utente locale ha contrassegnato come segnalibri o preferiti. Anche le menzioni private tra utenti di diverse istanze andranno perse e impossibile da ripristinare. L'uso di questa impostazione è inteso per casi di scopo speciale e rompe molte aspettative dell'utente quando implementato per uso generale.
+        content_cache_retention_period: Tutti i post da altri server (inclusi booster e risposte) verranno eliminati dopo il numero specificato di giorni, senza tener conto di eventuali interazioni con gli utenti locali con tali post. Questo include i post in cui un utente locale ha contrassegnato come segnalibri o sono stati aggiunti ai preferiti. Anche le menzioni private tra utenti di diverse istanze andranno perse e impossibili da ripristinare. L'uso di questa impostazione è inteso per casi di scopo speciale e rompe molte aspettative dell'utente quando implementato per uso generale.
         custom_css: È possibile applicare stili personalizzati sulla versione web di Mastodon.
+        custom_robots_html: <a href="%{path}">Sintassi</a>
         email_footer_text: Testo opzionale che compare solo nel piè di pagina delle email della newsletter.
         favicon: WEBP, PNG, GIF o JPG. Sostituisce la favicon predefinita di Mastodon con un'icona personalizzata.
         landing_page: Seleziona quale pagina vedono i nuovi visitatori al loro primo arrivo sul tuo server. Se selezioni "Tendenze", è necessario abilitare le tendenze nelle Impostazioni di scoperta. Se selezioni "Feed locale", allora è necessario impostare "Accesso ai feed in diretta con post locali" su "Tutti" nelle Impostazioni di scoperta.
         mascot: Sostituisce l'illustrazione nell'interfaccia web avanzata.
         media_cache_retention_period: I file multimediali da post fatti da utenti remoti sono memorizzati nella cache sul tuo server. Quando impostato a un valore positivo, i media verranno eliminati dopo il numero specificato di giorni. Se i dati multimediali sono richiesti dopo che sono stati eliminati, saranno nuovamente scaricati, se il contenuto sorgente è ancora disponibile. A causa di restrizioni su quanto spesso link anteprima carte sondaggio siti di terze parti, si consiglia di impostare questo valore ad almeno 14 giorni, o le schede di anteprima link non saranno aggiornate su richiesta prima di quel tempo.
         min_age: Agli utenti verrà chiesto di confermare la propria data di nascita durante l'iscrizione
+        override_robots: Consente di personalizzare le regole di accesso per i bot corretti nel loro funzionamento
         peers_api_enabled: Un elenco di nomi di dominio che questo server ha incontrato nel fediverse. Qui non sono inclusi dati sul fatto se si federano con un dato server, solo che il server ne è a conoscenza. Questo viene utilizzato dai servizi che raccolgono statistiche sulla federazione in senso generale.
         postpone_confirmation_emails: |-
           Quando questa impostazione è abilitata, le email di conferma per gli account in attesa di approvazione vengono inviate solo una volta che tali account vengono approvati.
@@ -307,6 +309,7 @@ it:
         closed_registrations_message: Messaggio personalizzato quando le iscrizioni non sono disponibili
         content_cache_retention_period: Periodo di ritenzione del contenuto remoto
         custom_css: Personalizza CSS
+        custom_robots: File robots.txt personalizzato
         email_footer_text: Testo aggiuntivo a piè di pagina
         favicon: Favicon
         landing_page: Pagina di destinazione per i nuovi visitatori
@@ -315,6 +318,7 @@ it:
         mascot: Personalizza mascotte (legacy)
         media_cache_retention_period: Periodo di conservazione della cache multimediale
         min_age: Età minima richiesta
+        override_robots: Sovrascrivi il file robots.txt predefinito
         peers_api_enabled: Pubblica l'elenco dei server scoperti nell'API
         postpone_confirmation_emails: Posticipare l'invio dell'email di conferma dopo l'approvazione
         profile_directory: Abilita directory del profilo

@@ -93,12 +93,14 @@ is:
         closed_registrations_message: Birtist þegar lokað er á nýskráningar
         content_cache_retention_period: Öllum færslum af öðrum netþjónum (þar með taldar endurbirtingar og svör) verður eytt eftir uppgefinn fjölda daga, án tillits til gagnvirkni staðværra notenda við þessar færslur. Þetta á einnig við um færslur sem notandinn hefur merkt sem bókamerki eða eftirlæti. Beinar tilvísanir (einkaspjall) milli notenda af mismunandi netþjónum munu einnig tapast og er engin leið til að endurheimta þær. Notkun á þessari stillingu er einungis ætluð sérstilltum netþjónum og mun skemma fyrir notendum ef þetta er sett upp fyrir almenna notkun.
         custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu Mastodon.
+        custom_robots_html: <a href="%{path}">Málskipan</a>
         email_footer_text: Valkvæður texti sem birtist neðst í tölvupóstum fréttabréfs.
         favicon: WEBP, PNG, GIF eða JPG. Tekur yfir sjálfgefna Mastodon favicon-táknmynd með sérsniðinni táknmynd.
         landing_page: Þetta ákvarðar hvaða síðu nýir gestir sjá þegar þeir koma fyrst á netþjóninn þinn. Ef þú velur "Vinsælt" þá þurfa vinsælar færslur að vera virkjaðar í stillingum fyrir Uppgötvun. Ef þú velur "Staðbundið streymi" þá þarf "Aðgangur að beinum streymum, þar með töldum staðværum færslum" að vera stillt á "Allir" í stillingum fyrir Uppgötvun.
         mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
         media_cache_retention_period: Myndefnisskrár úr færslum sem gerðar eru af fjartengdum notendum eru geymdar á netþjóninum þínum. Þegar þetta er stillt á jákvætt gildi, verður þessum skrám eytt sjáfkrafa eftir þeim tiltekna fjölda daga. Ef beðið er um myndefnið eftir að því er eytt, mun það verða sótt aftur ef frumgögnin eru ennþá aðgengileg. Vegna takmarkana á hversu oft forskoðunarspjöld tengla eru sótt á utanaðkomandi netþjóna, þá er mælt með því að setja þetta gildi á að minnsta kosti 14 daga, annars gæti mistekist að uppfæra forskoðunarspjöld tengla eftir þörfum fyrir þann tíma.
         min_age: Notendur verða beðnir um að staðfesta fæðingardag sinn við nýskráningu
+        override_robots: Gerir þér kleift að sérsníða aðgangsreglur fyrir hlýðna botta
         peers_api_enabled: Listi yfir þau lénaheiti sem þessi netþjónn hefur rekist á í skýjasambandinu. Engin gögn eru hér sem gefa til kynna hvort þú sért í sambandi við tiltekinn netþjón, bara að netþjónninn þinn viti um hann. Þetta er notað af þjónustum sem safna tölfræði um skýjasambönd á almennan hátt.
         profile_directory: Notendamappan telur upp alla þá notendur sem hafa valið að vera uppgötvanlegir.
         require_invite_text: Þegar nýskráningar krefjast handvirks samþykkis, þá skal gera textann í “Hvers vegna viltu taka þátt?” að kröfu en ekki valkvæðan
@@ -303,6 +305,7 @@ is:
         closed_registrations_message: Sérsniðin skilaboð þegar ekki er hægt að nýskrá
         content_cache_retention_period: Tímabil sem á að geyma fjartengt efni
         custom_css: Sérsniðið CSS
+        custom_robots: Sérsniðið robots.txt
         email_footer_text: Viðbótartexti neðst í skilaboðum
         favicon: Auðkennismynd
         landing_page: Kynningarsíða fyrir nýja gesti
@@ -311,6 +314,7 @@ is:
         mascot: Sérsniðið gæludýr (eldra)
         media_cache_retention_period: Tímalengd sem myndefni haldið
         min_age: Kröfur um lágmarksaldur
+        override_robots: Yfirtaka sérsniðið robots.txt
         peers_api_enabled: Birta lista yfir uppgötvaða netþjóna í API-kerfisviðmótinu
         postpone_confirmation_emails: Hætta við staðfestingarpósta eftir samþykkt
         profile_directory: Virkja notendamöppu

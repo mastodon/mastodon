@@ -1207,8 +1207,11 @@ fr:
         title: Exiger que les nouveaux utilisateurs résolvent un CAPTCHA pour confirmer leur compte
       content_retention:
         danger_zone: Zone de danger
-        preamble: Contrôle comment le contenu créé par les utilisateurs est enregistré et stocké dans Mastodon.
+        preamble: Contrôlez le stockage du contenu généré par les utilisateur·rice·s.
         title: Rétention du contenu
+      crawlers:
+        preamble: Contrôlez comment les robots (respectueux) tel que les indexeurs des moteurs de recherche peuvent interagir avec votre serveur Mastodon. Les robots malveillants peuvent ignorer ces paramètres et doivent être bloqués au niveau du réseau.
+        title: Contrôles des indexeurs
       default_noindex:
         desc_html: Affecte tous les comptes qui n'ont pas modifié ce paramètre
         title: Par défaut, ne pas indexer les comptes dans les moteurs de recherche

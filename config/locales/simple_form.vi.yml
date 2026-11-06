@@ -93,12 +93,14 @@ vi:
         closed_registrations_message: Được hiển thị khi đóng đăng ký
         content_cache_retention_period: Tất cả tút từ các máy chủ khác (bao gồm cả đăng lại và trả lời) sẽ bị xóa sau số ngày được chỉ định mà không tính đến bất kỳ tương tác nào của người dùng cục bộ với các tút đó. Điều này bao gồm các tút mà người dùng cục bộ đã đánh dấu nó là dấu trang hoặc mục yêu thích. Những lượt nhắc riêng tư giữa những người dùng từ các máy chủ khác nhau cũng sẽ bị mất và không thể khôi phục. Việc sử dụng cài đặt này dành cho các trường hợp có mục đích đặc biệt và phá vỡ nhiều kỳ vọng của người dùng khi được triển khai cho mục đích sử dụng chung.
         custom_css: Bạn có thể tùy chỉnh phong cách trên bản web của Mastodon.
+        custom_robots_html: <a href="%{path}">Cú pháp</a>
         email_footer_text: Văn bản tùy chọn chỉ xuất hiện ở phần chân trang của bản tin email.
         favicon: WEBP, PNG, GIF hoặc JPG. Dùng favicon Maston tùy chỉnh.
         landing_page: Chọn trang mà khách truy cập mới sẽ thấy khi họ lần đầu truy cập máy chủ của bạn. Nếu bạn chọn "Xu hướng", thì cần bật xu hướng trong Cài đặt Khám phá. Nếu bạn chọn "Bảng tin máy chủ", thì cần đặt "Truy cập vào nguồn cấp dữ liệu trực tiếp có bài đăng cục bộ" thành "Mọi người" trong Cài đặt Khám phá.
         mascot: Ghi đè hình minh họa trong giao diện web nâng cao.
         media_cache_retention_period: Các tệp phương tiện từ các tút do người dùng máy chủ khác thực hiện sẽ được lưu vào bộ đệm trên máy chủ của bạn. Khi được đặt thành giá trị dương, phương tiện sẽ bị xóa sau số ngày được chỉ định. Nếu dữ liệu phương tiện được yêu cầu sau khi bị xóa, dữ liệu đó sẽ được tải xuống lại nếu nội dung nguồn vẫn còn. Do những hạn chế về tần suất thẻ xem trước liên kết thăm dò ý kiến ​​các trang web của bên thứ ba, bạn nên đặt giá trị này thành ít nhất 14 ngày, nếu không thẻ xem trước liên kết sẽ không được cập nhật theo yêu cầu trước thời gian đó.
         min_age: Thành viên sẽ được yêu cầu xác nhận ngày sinh của họ trong quá trình đăng ký
+        override_robots: Cho phép bạn tùy chỉnh quyền truy cập của các bot biết-tuân thủ
         peers_api_enabled: Danh sách các máy chủ khác mà máy chủ này đã liên hợp. Không có dữ liệu nào được đưa vào đây về việc bạn có liên kết với một máy chủ nhất định hay không, chỉ là máy chủ của bạn biết về nó. Điều này được sử dụng bởi các dịch vụ thu thập số liệu thống kê về liên kết theo nghĩa chung.
         postpone_confirmation_emails: Khi cài đặt này được bật, các email xác minh dành cho những tài khoản đang chờ phê duyệt sẽ chỉ được gửi đi sau khi các tài khoản đó đã được phê duyệt. Điều này có thể gây bất tiện cho người dùng trong quá trình đăng ký, vì họ vẫn cần xác nhận địa chỉ email của mình kịp thời sau khi nhận được email, nhưng lại không còn quyền kiểm soát thời điểm email đó được gửi đi. Hơn nữa, điều này có thể làm tăng khối lượng công việc cho người kiểm duyệt, do Mastodon sẽ không thể lọc bỏ các tài khoản đang chờ phê duyệt có địa chỉ email không hợp lệ trước khi chúng được phê duyệt.
         profile_directory: Liệt kê tất cả người đã chọn tham gia để có thể khám phá.
@@ -303,6 +305,7 @@ vi:
         closed_registrations_message: Thông báo tùy chỉnh khi tắt đăng ký
         content_cache_retention_period: Khoảng thời gian lưu giữ nội dung máy chủ khác
         custom_css: Tùy chỉnh CSS
+        custom_robots: Tùy chỉnh robots.txt
         email_footer_text: Văn bản chân trang bổ sung
         favicon: Favicon
         landing_page: Trang mở đầu dành cho khách ghé thăm
@@ -311,6 +314,7 @@ vi:
         mascot: Tùy chỉnh linh vật (kế thừa)
         media_cache_retention_period: Thời hạn lưu trữ cache media
         min_age: Độ tuổi tối thiểu
+        override_robots: Ghi đè robots.txt
         peers_api_enabled: Công khai danh sách các máy chủ được phát hiện trong API
         postpone_confirmation_emails: Hoãn gửi email xác minh sau khi phê duyệt
         profile_directory: Cho phép hiện danh bạ thành viên
