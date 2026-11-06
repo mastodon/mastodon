@@ -13,7 +13,7 @@ import {
   unfollowHashtag,
 } from 'mastodon/actions/tags_typed';
 import type { ApiHashtagJSON } from 'mastodon/api_types/tags';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import { Hashtag } from 'mastodon/components/hashtag';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';

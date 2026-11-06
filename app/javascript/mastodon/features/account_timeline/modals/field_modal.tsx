@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { AccountField } from '@/mastodon/components/account_header/fields';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import {
   ModalShell,

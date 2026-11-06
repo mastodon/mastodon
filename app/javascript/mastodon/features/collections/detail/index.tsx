@@ -16,7 +16,7 @@ import type {
   CollectionAccountItem,
 } from 'mastodon/api_types/collections';
 import { Badge } from 'mastodon/components/badge';
-import { IconButton } from 'mastodon/components/button/redesign';
+import { IconButton } from 'mastodon/components/button';
 import { Callout } from 'mastodon/components/callout';
 import { DisplayName } from 'mastodon/components/display_name';
 import { useAccountHandle } from 'mastodon/components/display_name/default';

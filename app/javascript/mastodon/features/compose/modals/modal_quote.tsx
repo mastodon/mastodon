@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { resetCompose } from '@/mastodon/actions/compose';
 import { quoteCompose } from '@/mastodon/actions/compose_typed';
 import { closeModal } from '@/mastodon/actions/modal';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import {
   ModalShell,
   ModalActions,

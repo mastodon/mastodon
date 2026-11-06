@@ -11,7 +11,7 @@ import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { submitReport } from 'mastodon/actions/reports';
 import { fetchServer } from 'mastodon/actions/server';
 import { expandAccountTimeline } from 'mastodon/actions/timelines';
-import { IconButton } from 'mastodon/components/button/redesign';
+import { IconButton } from 'mastodon/components/button';
 import { injectIntl } from '@/mastodon/components/intl';
 import Category from 'mastodon/features/report/category';
 import Comment from 'mastodon/features/report/comment';

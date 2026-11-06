@@ -6,7 +6,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { MagnifyingGlassIcon, TranslateIcon } from '@phosphor-icons/react';
 
 import { changeComposeLanguage } from '@/mastodon/actions/compose';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { Combobox } from '@/mastodon/components/form_fields';
 import { ComboboxMenuItem } from '@/mastodon/components/form_fields/combobox_field';
 import { PopoverMenuCard } from '@/mastodon/components/menu/card';

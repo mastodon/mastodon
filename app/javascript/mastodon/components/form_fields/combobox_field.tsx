@@ -22,7 +22,7 @@ import {
 import { getScrollParent } from '@react-aria/utils';
 
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
-import { IconButton } from 'mastodon/components/button/redesign';
+import { IconButton } from 'mastodon/components/button';
 
 import { LoadingIndicator } from '../loading_indicator';
 import type { PopoverProps } from '../popover';

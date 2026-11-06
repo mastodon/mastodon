@@ -2,7 +2,7 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { Icon } from '@/mastodon/components/icon';
 import { CollectionMenu } from '@/mastodon/features/collections/components/collection_menu';

@@ -11,7 +11,7 @@ import pollster from '@/images/archetypes/pollster.png';
 import replier from '@/images/archetypes/replier.png';
 import space_elements from '@/images/archetypes/space_elements.png';
 import { Avatar } from '@/mastodon/components/avatar';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { me } from '@/mastodon/initial_state';
 import type { Account } from '@/mastodon/models/account';

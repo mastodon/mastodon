@@ -8,7 +8,7 @@ import { CopySimpleIcon } from '@phosphor-icons/react';
 
 import { useTimeout } from 'mastodon/hooks/useTimeout';
 
-import { Button } from './button/redesign';
+import { Button } from './button';
 
 export const CopyPasteText: React.FC<{ value: string }> = ({ value }) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);

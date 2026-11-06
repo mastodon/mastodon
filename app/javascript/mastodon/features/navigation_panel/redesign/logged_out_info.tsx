@@ -10,7 +10,7 @@ import { openModal } from '@/mastodon/actions/modal';
 import { fetchServer } from '@/mastodon/actions/server';
 import type { ApiInstanceJSON } from '@/mastodon/api_types/instance';
 import { Avatar } from '@/mastodon/components/avatar';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { Callout } from '@/mastodon/components/callout/redesign';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { LockupLink, LockupWrapper } from '@/mastodon/components/lockup';

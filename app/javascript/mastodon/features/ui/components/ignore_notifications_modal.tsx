@@ -8,7 +8,7 @@ import PersonAlertIcon from '@/material-icons/400-24px/person_alert.svg?react';
 import ShieldQuestionIcon from '@/material-icons/400-24px/shield_question.svg?react';
 import { closeModal } from 'mastodon/actions/modal';
 import { updateNotificationsPolicy } from 'mastodon/actions/notification_policies';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 

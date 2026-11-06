@@ -9,7 +9,7 @@ import { shallowEqual } from 'react-redux';
 import { Toggle } from '@/mastodon/components/form_fields/toggle_field';
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { fetchAccount } from 'mastodon/actions/accounts';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import type { Status } from 'mastodon/models/status';
 import type { RootState } from 'mastodon/store';
 import {

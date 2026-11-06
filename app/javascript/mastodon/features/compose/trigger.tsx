@@ -8,8 +8,8 @@ import { useRouteMatch } from 'react-router';
 import { PenNibIcon, ReadCvLogoIcon } from '@phosphor-icons/react';
 import { isIPad, isWebKit } from '@react-aria/utils';
 
-import type { IconButtonProps } from '@/mastodon/components/button/redesign';
-import { IconButton } from '@/mastodon/components/button/redesign';
+import type { IconButtonProps } from '@/mastodon/components/button';
+import { IconButton } from '@/mastodon/components/button';
 import { useBodyScrollLock } from '@/mastodon/hooks/useBodyScrollLock';
 import { useCloseOnHistoryBack } from '@/mastodon/hooks/useCloseOnHistoryBack';
 import { useResizeObserver } from '@/mastodon/hooks/useObserver';

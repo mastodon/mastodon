@@ -11,7 +11,7 @@ import {
   muteAccount,
   blockAccount,
 } from 'mastodon/actions/accounts';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 
 const mapStateToProps = () => ({});

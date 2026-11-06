@@ -9,7 +9,7 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { statusInteraction } from '@/mastodon/actions/interactions_typed';
 import { fetchStatus } from '@/mastodon/actions/statuses';
-import { ToggleIconButton } from '@/mastodon/components/button/redesign';
+import { ToggleIconButton } from '@/mastodon/components/button';
 import { Column } from '@/mastodon/components/column';
 import {
   ColumnHeader,

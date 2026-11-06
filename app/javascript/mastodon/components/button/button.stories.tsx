@@ -6,7 +6,7 @@ import ChatIcon from '@/material-icons/400-24px/chat.svg?react';
 import DownloadIcon from '@/material-icons/400-24px/download.svg?react';
 import HeadphonesIcon from '@/material-icons/400-24px/headphones.svg?react';
 
-import { Button, IconButton, ToggleButton, ToggleIconButton } from './redesign';
+import { Button, IconButton, ToggleButton, ToggleIconButton } from '.';
 
 const iconArgType = {
   control: 'select',

@@ -34,7 +34,7 @@ import { me } from 'mastodon/initial_state';
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { IconButton, Button } from '../button/redesign';
+import { IconButton, Button } from '../button';
 import { LegacyDropdownMenuItems, Menu, MenuList, MenuTrigger } from '../menu';
 
 const messages = defineMessages({

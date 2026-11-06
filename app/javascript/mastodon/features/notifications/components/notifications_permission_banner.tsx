@@ -4,7 +4,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { GearIcon } from '@phosphor-icons/react';
 
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { useAppDispatch } from '@/mastodon/store';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { requestBrowserPermission } from 'mastodon/actions/notifications';

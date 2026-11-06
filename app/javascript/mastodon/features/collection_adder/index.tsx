@@ -15,7 +15,7 @@ import {
   collectionEditorActions,
   removeCollectionItem,
 } from '@/mastodon/reducers/slices/collections';
-import { IconButton } from 'mastodon/components/button/redesign';
+import { IconButton } from 'mastodon/components/button';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { MAX_COLLECTION_ACCOUNT_COUNT } from '../collections/editor/accounts';

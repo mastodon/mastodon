@@ -12,7 +12,7 @@ import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { Button, IconButton } from '../button/redesign';
+import { Button, IconButton } from '../button';
 import { CopyIconButton } from '../copy_button';
 import { FollowButton } from '../follow_button';
 

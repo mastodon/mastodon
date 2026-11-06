@@ -8,7 +8,7 @@ import { XIcon } from '@phosphor-icons/react';
 
 import { focusCompose } from '@/mastodon/actions/compose';
 import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
-import { Button, IconButton } from '@/mastodon/components/button/redesign';
+import { Button, IconButton } from '@/mastodon/components/button';
 import { CopyLinkField } from '@/mastodon/components/form_fields';
 import {
   ModalShell,
