@@ -60,6 +60,29 @@ RSpec.describe Account::Suspensions do
             .to_not raise_error
         end
       end
+
+      context 'when a canonical domain block for that email is created concurrently' do
+        before do
+          Fabricate(:canonical_email_block, email: subject.user_email)
+
+          # Simulate another suspension committing a block for the same e-mail
+          # after the uniqueness validation has passed, so that the insert
+          # hits the unique index
+          allow(CanonicalEmailBlock).to receive(:create) do |attributes|
+            CanonicalEmailBlock.new(attributes).save!(validate: false)
+          end
+        end
+
+        it 'suspends the account without aborting the enclosing transaction' do
+          expect { ApplicationRecord.transaction { subject.suspend! } }
+            .to_not raise_error
+
+          expect(subject.reload)
+            .to be_suspended_locally
+          expect(CanonicalEmailBlock.where(reference_account: subject))
+            .to_not exist
+        end
+      end
     end
   end
 end
