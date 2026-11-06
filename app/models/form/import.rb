@@ -201,9 +201,10 @@ class Form::Import
 
   def validate_json_data
     return errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless allowed_type_for_json?
-    return errors.add(:data, I18n.t('imports.errors.no_data')) if json_data.empty?
+    return errors.add(:data, I18n.t('imports.errors.no_data')) if json_data.blank?
+    return errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if json_data.count > ROWS_PROCESSING_LIMIT
 
-    errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if json_data.count > ROWS_PROCESSING_LIMIT
+    CustomFilterImportValidator.validate_each(self, :data, parse_json['custom_filters'])
   end
 
   def content_type_is_json?
@@ -213,7 +214,7 @@ class Form::Import
   def json_data
     case type.to_sym
     when :custom_filters
-      parse_json['custom_filters'].map(&:deep_symbolize_keys)
+      parse_json['custom_filters']&.map(&:deep_symbolize_keys)
     end
   end
 
