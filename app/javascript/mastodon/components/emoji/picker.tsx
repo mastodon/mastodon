@@ -236,10 +236,10 @@ export const EmojiDropdown: React.FC<
           emojiTooltip
         />
 
-        <div className='emoji-picker-dropdown__modifiers'>
+        <div className={classes.modifiers}>
           <Emoji emoji='fist' size={22} skin={skinTone} onClick={onTrue} />
           <div
-            className='emoji-picker-dropdown__modifiers__menu'
+            className={classes.modifiersMenu}
             hidden={!open}
             ref={modifierRef}
           >
