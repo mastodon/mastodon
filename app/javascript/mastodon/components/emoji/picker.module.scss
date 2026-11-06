@@ -14,6 +14,12 @@ div.emojiRoot {
   @container (width > 400px) {
     min-height: 370px;
   }
+
+  :global(.emoji-mart-emoji) {
+    span {
+      background-repeat: no-repeat;
+    }
+  }
 }
 
 .modifiers {
@@ -48,13 +54,7 @@ div.emojiRoot {
     }
   }
 
-  .emoji-mart-emoji {
+  :global(.emoji-mart-emoji) {
     height: 22px;
-  }
-}
-
-.emoji-mart-emoji {
-  span {
-    background-repeat: no-repeat;
   }
 }
