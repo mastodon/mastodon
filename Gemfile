@@ -94,7 +94,7 @@ gem 'tty-prompt', '~> 0.23', require: false
 gem 'tzinfo-data', '~> 1.2023'
 gem 'uts58', '~> 0.2.6'
 gem 'webauthn', '~> 3.0'
-gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
+gem 'webpush', github: 'mastodon/webpush', ref: '0806260f4770a46a41d8678327532034e06c02eb'
 
 gem 'json', '< 3'
 gem 'json-canonicalization', '~> 1.0'
