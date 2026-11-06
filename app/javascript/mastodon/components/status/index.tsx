@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import type { Merge } from 'type-fest';
 
+import { showStatsInFeed } from '@/mastodon/initial_state';
 import type { ExpandedStatusShape } from '@/mastodon/models/status';
 import { selectStatusLoadingState } from '@/mastodon/selectors/statuses';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
@@ -85,7 +86,7 @@ export const Status: React.FC<StatusProps> = ({
   hidden,
   showActions = true,
   children,
-  withCounters = true,
+  withCounters = showStatsInFeed,
   withDismiss,
   onOpen,
   showThread,
