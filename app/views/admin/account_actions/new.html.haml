@@ -5,6 +5,7 @@
   @report_id = params[:report_id] if params[:report_id].present?
   @type = params[:type] if params[:type].present?
   @report = Report.find(@report_id) if @report_id
+  @url = (params[:report_id].present? ? admin_report_actions_path(@report_id) : admin_account_action_path(@account.id))
 
 - if @account.suspended_locally?
   .flash-message.alert
@@ -13,15 +14,14 @@
   .flash-message.warn
     = t('admin.account_actions.already_silenced')
 
-= simple_form_for @account_action, url: admin_account_action_path(@account.id), html: { id: 'action_type' } do |f|
-  = f.input :report_id,
-            as: :hidden
+= simple_form_for @account_action, url: @url, html: { id: 'action_type' } do |f|
+  = f.input :report_id, as: :hidden
 
   - content_for :heading_actions do
     .fields-group
       = f.input :type,
                 as: :select,
-                collection: Admin::AccountAction::TYPES,
+                collection: collection,
                 include_blank: false,
                 label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type}") },
                 required: false,
@@ -52,6 +52,7 @@
     .fields-group
       = f.input :text,
                 as: :text,
+                value: nil,
                 hint: t('simple_form.hints.admin_account_action.text'),
                 wrapper: :with_block_label
 
@@ -67,7 +68,11 @@
       %hr.spacer/
 
   .actions
-    = link_to t('admin.reports.cancel'), admin_report_path(@report_id), class: 'button button-secondary' if @report_id.present?
+    - if @report_id.present?
+      = link_to t('admin.reports.cancel'), admin_report_path(@report_id), class: 'button button-secondary'
+    - else
+      = link_to t('admin.reports.cancel'), admin_accounts_path, class: 'button button-secondary'
+
     = f.button :button,
                t('admin.account_actions.action'),
                type: :submit
