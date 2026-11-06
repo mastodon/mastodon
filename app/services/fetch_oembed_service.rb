@@ -10,7 +10,7 @@ class FetchOEmbedService
     @url     = url
     @options = options
 
-    if @options[:cached_endpoint]
+    if @options[:use_cached_endpoint]
       parse_cached_endpoint!
     else
       discover_endpoint!
@@ -57,9 +57,9 @@ class FetchOEmbedService
   end
 
   def parse_cached_endpoint!
-    cached = @options[:cached_endpoint]
+    cached = Rails.cache.read(cache_key)
 
-    return if cached[:endpoint].nil? || cached[:format].nil?
+    return if cached.nil? || cached[:endpoint].nil? || cached[:format].nil?
 
     @endpoint_url = Addressable::Template.new(cached[:endpoint]).expand(url: @url).to_s
     @format       = cached[:format]
@@ -68,14 +68,16 @@ class FetchOEmbedService
   def cache_endpoint!
     return unless URL_REGEX.match?(@endpoint_url)
 
-    url_domain = Addressable::URI.parse(@url).normalized_host
-
     endpoint_hash = {
       endpoint: @endpoint_url.gsub(URL_REGEX, '={url}'),
       format: @format,
     }
 
-    Rails.cache.write("oembed_endpoint:#{url_domain}", endpoint_hash, expires_in: ENDPOINT_CACHE_EXPIRES_IN)
+    Rails.cache.write(cache_key, endpoint_hash, expires_in: ENDPOINT_CACHE_EXPIRES_IN)
+  end
+
+  def cache_key
+    "oembed_endpoint:#{Addressable::URI.parse(@url).normalized_host}"
   end
 
   def fetch!
