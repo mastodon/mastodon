@@ -63,26 +63,88 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
         end
 
         describe 'when creation succeeds' do
-          let!(:otp_backup_codes) { user.generate_otp_backup_codes! }
+          context 'when user has already generated backup codes' do
+            before do
+              user.generate_otp_backup_codes!
+              user.save!
+              prepare_user_otp_consumption_response(true)
+              allow(controller).to receive(:current_user).and_return(user)
+            end
 
-          before do
-            prepare_user_otp_generation
-            prepare_user_otp_consumption_response(true)
-            allow(controller).to receive(:current_user).and_return(user)
+            it 'does not regenerate backup codes and redirects' do
+              allow(user).to receive(:generate_otp_backup_codes!)
+
+              expect { post_create_with_options }
+                .to change { user.reload.otp_secret }.to otp_secret_value
+
+              expect(user).to_not have_received(:generate_otp_backup_codes!)
+              expect(flash[:notice])
+                .to eq(I18n.t('two_factor_authentication.enabled_success'))
+              expect(response)
+                .to have_http_status(302)
+              expect(response)
+                .to redirect_to settings_two_factor_authentication_methods_path
+            end
           end
 
-          it 'renders page with success' do
-            expect { post_create_with_options }
-              .to change { user.reload.otp_secret }.to otp_secret_value
+          context 'when user has not generated backup codes yet' do
+            let!(:otp_backup_codes) { user.generate_otp_backup_codes! }
 
-            expect(flash[:notice])
-              .to eq(I18n.t('two_factor_authentication.enabled_success'))
-            expect(response)
-              .to have_http_status(200)
-            expect(response.body)
-              .to include(*otp_backup_codes)
-            expect(response.parsed_body)
-              .to have_title(I18n.t('settings.two_factor_authentication'))
+            before do
+              prepare_user_otp_generation
+              prepare_user_otp_consumption_response(true)
+              allow(controller).to receive(:current_user).and_return(user)
+            end
+
+            it 'renders page with success' do
+              expect { post_create_with_options }
+                .to change { user.reload.otp_secret }.to otp_secret_value
+
+              expect(flash[:notice])
+                .to eq(I18n.t('two_factor_authentication.enabled_success'))
+              expect(response)
+                .to have_http_status(200)
+              expect(response.body)
+                .to include(*otp_backup_codes)
+              expect(response.parsed_body)
+                .to have_title(I18n.t('settings.two_factor_authentication'))
+            end
+          end
+
+          context 'when user does not have a security key' do
+            before do
+              prepare_user_otp_consumption_response(true)
+              allow(controller).to receive(:current_user).and_return(user)
+            end
+
+            it 'notifies the user that two-factor authentication is enabled', :inline_jobs do
+              expect { post_create_with_options }
+                .to send_email(to: user.email, subject: I18n.t('devise.mailer.two_factor_enabled.subject'))
+            end
+
+            it 'does not notify the user that the authenticator app is enabled', :inline_jobs do
+              expect { post_create_with_options }
+                .to_not send_email(subject: I18n.t('devise.mailer.otp_enabled.subject'))
+            end
+          end
+
+          context 'when user has a security key' do
+            before do
+              user.update(webauthn_id: WebAuthn.generate_user_id)
+              Fabricate(:webauthn_credential, user_id: user.id, nickname: 'USB Key')
+              prepare_user_otp_consumption_response(true)
+              allow(controller).to receive(:current_user).and_return(user)
+            end
+
+            it 'notifies the user that the authenticator app is enabled', :inline_jobs do
+              expect { post_create_with_options }
+                .to send_email(to: user.email, subject: I18n.t('devise.mailer.otp_enabled.subject'))
+            end
+
+            it 'does not notify the user that two-factor authentication is enabled', :inline_jobs do
+              expect { post_create_with_options }
+                .to_not send_email(subject: I18n.t('devise.mailer.two_factor_enabled.subject'))
+            end
           end
         end
 

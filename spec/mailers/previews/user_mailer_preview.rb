@@ -35,6 +35,16 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.two_factor_recovery_codes_changed(User.first)
   end
 
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/otp_enabled
+  def otp_enabled
+    UserMailer.otp_enabled(User.first)
+  end
+
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/otp_disabled
+  def otp_disabled
+    UserMailer.otp_disabled(User.first)
+  end
+
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/webauthn_enabled
   def webauthn_enabled
     UserMailer.webauthn_enabled(User.first)

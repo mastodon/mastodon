@@ -5,7 +5,7 @@ module Auth::TwoFactorAuthenticationConcern
 
   included do
     prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
-    helper_method :webauthn_enabled?
+    helper_method :webauthn_enabled?, :otp_enabled?
   end
 
   def two_factor_enabled?
@@ -84,6 +84,7 @@ module Auth::TwoFactorAuthenticationConcern
     register_attempt_in_session(user)
 
     @webauthn_enabled = user.webauthn_enabled?
+    @otp_enabled      = user.otp_required_for_login?
     @scheme_type      = if user.webauthn_enabled? && user_params[:otp_attempt].blank?
                           'webauthn'
                         else
@@ -97,5 +98,9 @@ module Auth::TwoFactorAuthenticationConcern
 
   def webauthn_enabled?
     @webauthn_enabled
+  end
+
+  def otp_enabled?
+    @otp_enabled
   end
 end

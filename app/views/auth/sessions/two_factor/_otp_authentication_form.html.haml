@@ -2,7 +2,7 @@
                   as: resource_name,
                   url: session_path(resource_name),
                   html: { method: :post, id: 'otp-authentication-form', class: [hidden:] }) do |f|
-  %p.hint.authentication-hint= t('simple_form.hints.sessions.otp')
+  %p.hint.authentication-hint= otp_enabled? ? t('simple_form.hints.sessions.otp') : t('simple_form.hints.sessions.recovery_code')
 
   .fields-group
     = f.input :otp_attempt,
