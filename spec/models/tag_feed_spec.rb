@@ -68,17 +68,17 @@ RSpec.describe TagFeed do
     end
 
     it 'paginates with max_id' do
-      results = described_class.new(tag_cats, nil, any: [tag_dogs.name]).get(20, both.id)
+      results = described_class.new(tag_cats, nil, any: [tag_dogs.name]).get(limit: 20, max_id: both.id)
       expect(results).to contain_exactly(status_tagged_with_cats, status_tagged_with_dogs)
     end
 
     it 'paginates with since_id' do
-      results = described_class.new(tag_cats, nil, any: [tag_dogs.name]).get(20, nil, status_tagged_with_cats.id)
+      results = described_class.new(tag_cats, nil, any: [tag_dogs.name]).get(limit: 20, max_id: nil, since_id: status_tagged_with_cats.id)
       expect(results).to contain_exactly(status_tagged_with_dogs, both)
     end
 
     it 'paginates with min_id' do
-      results = described_class.new(tag_cats, nil, any: [tag_dogs.name]).get(20, nil, nil, status_tagged_with_cats.id)
+      results = described_class.new(tag_cats, nil, any: [tag_dogs.name]).get(limit: 20, max_id: nil, since_id: nil, min_id: status_tagged_with_cats.id)
       expect(results).to contain_exactly(status_tagged_with_dogs, both)
     end
 
