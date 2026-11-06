@@ -15,7 +15,7 @@ import {
   apiRemoveAccountFromList,
 } from 'mastodon/api/lists';
 import type { ApiListJSON } from 'mastodon/api_types/lists';
-import { Button, IconButton } from 'mastodon/components/button/redesign';
+import { Button, IconButton } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { getOrderedLists } from 'mastodon/selectors/lists';

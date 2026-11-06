@@ -1170,7 +1170,7 @@ zh-CN:
         label: 恢复
       setup:
         label: 设置
-      title: 服务器状态
+      title: 服务器健康状态
     settings:
       about:
         manage_rules: 管理服务器规则
@@ -1193,6 +1193,9 @@ zh-CN:
         danger_zone: 危险操作区
         preamble: 控制用户生成的内容在 Mastodon 中如何存储。
         title: 内容保留
+      crawlers:
+        preamble: 控制（行为良好的）机器人，例如搜索引擎爬虫等，如何与你的Mastodon服务器交互。恶意的机器人会忽略这些设置，必须在网络层面直接屏蔽。
+        title: 爬虫控制
       default_noindex:
         desc_html: 影响全部尚未更改此设置的用户
         title: 默认不让用户被搜索引擎索引

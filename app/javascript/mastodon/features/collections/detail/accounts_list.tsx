@@ -12,7 +12,7 @@ import {
   AccountListItemFollowButton,
 } from '@/mastodon/components/account_list_item';
 import { PendingBadge } from '@/mastodon/components/badge';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { SelectField } from '@/mastodon/components/form_fields';
 import {
   Article,

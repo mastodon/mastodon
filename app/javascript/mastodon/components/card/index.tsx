@@ -9,7 +9,7 @@ import { TrashIcon } from '@phosphor-icons/react';
 
 import type { PolymorphicProps } from '@/types/polymorphic';
 
-import { IconButton } from '../button/redesign';
+import { IconButton } from '../button';
 
 import classes from './styles.module.scss';
 

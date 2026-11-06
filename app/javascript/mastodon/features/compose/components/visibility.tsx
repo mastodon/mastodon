@@ -8,7 +8,7 @@ import { ChatCircleDotsIcon, EyeIcon } from '@phosphor-icons/react';
 
 import { changeComposeVisibility } from '@/mastodon/actions/compose_typed';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
-import { Button, CaretIcon } from '@/mastodon/components/button/redesign';
+import { Button, CaretIcon } from '@/mastodon/components/button';
 import { Icon } from '@/mastodon/components/icon';
 import {
   Menu,

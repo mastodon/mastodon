@@ -1209,6 +1209,9 @@ nl:
         danger_zone: Gevarenzone
         preamble: Toezicht houden op hoe berichten en media van gebruikers op Mastodon worden bewaard.
         title: Bewaartermijn berichten
+      crawlers:
+        preamble: Bepaal hoe (goed gedragende) bots, zoals die van zoekmachines met jouw Mastodon-server kunnen communiceren. Slecht gedragende bots kunnen deze instellingen negeren en moeten op netwerkniveau worden geblokkeerd.
+        title: Webcrawler-instellingen
       default_noindex:
         desc_html: Heeft invloed op alle gebruikers die deze instelling niet zelf hebben veranderd
         title: Gebruikers standaard niet door zoekmachines laten indexeren

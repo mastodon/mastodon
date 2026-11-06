@@ -7,7 +7,7 @@ import type { Area } from 'react-easy-crop';
 import Cropper from 'react-easy-crop';
 
 import { setDragUploadEnabled } from '@/mastodon/actions/compose_typed';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { RangeInputField } from '@/mastodon/components/form_fields/range_input_field';
 import {
   selectImageInfo,

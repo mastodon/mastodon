@@ -1209,6 +1209,9 @@ da:
         danger_zone: Farezone
         preamble: Styr, hvordan Mastodon gemmer brugergenereret indhold.
         title: Indholdsopbevaring
+      crawlers:
+        preamble: Kontroller, hvordan (velopdragne) bots, såsom søgemaskiners crawlere, kan interagere med din Mastodon-server. Ondsindede bots kan omgå disse indstillinger og skal derfor blokeres på netværksniveau.
+        title: Crawler-kontrol
       default_noindex:
         desc_html: Påvirker alle brugere, som ikke selv har ændret denne indstilling
         title: Fravælg som standard søgemaskineindeksering for brugere

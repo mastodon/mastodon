@@ -3,7 +3,6 @@ import { useCallback, useEffect, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { useLocation } from 'react-router';
 
 import {
   BellIcon,
@@ -17,11 +16,12 @@ import { useDrag } from '@use-gesture/react';
 
 import { closeNavigation, openNavigation } from '@/mastodon/actions/navigation';
 import { Avatar } from '@/mastodon/components/avatar';
-import { Button, IconButton } from '@/mastodon/components/button/redesign';
+import { Button, IconButton } from '@/mastodon/components/button';
 import { Menu, MenuList, MenuTrigger } from '@/mastodon/components/menu';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { ComposeButton } from '@/mastodon/features/compose/trigger';
 import { useAccount } from '@/mastodon/hooks/useAccount';
+import { useCloseOnHistoryBack } from '@/mastodon/hooks/useCloseOnHistoryBack';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
   registrationsOpen,
@@ -158,14 +158,9 @@ const MENU_WIDTH = 320;
 
 const SlideOutNavigation: React.FC = () => {
   const dispatch = useAppDispatch();
-  const location = useLocation();
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const isOpen = useAppSelector((state) => state.navigation.open);
-
-  useEffect(() => {
-    dispatch(closeNavigation());
-  }, [dispatch, location]);
 
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
@@ -260,6 +255,15 @@ const SlideOutNavigation: React.FC = () => {
       previouslyFocusedElementRef.current?.focus();
     }
   }, [isOpen]);
+
+  useCloseOnHistoryBack(
+    () => {
+      dispatch(closeNavigation());
+    },
+    {
+      active: isOpen,
+    },
+  );
 
   return (
     <div

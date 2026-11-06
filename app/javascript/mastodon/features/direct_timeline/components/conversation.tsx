@@ -19,7 +19,7 @@ import {
   toggleStatusSpoilers,
 } from '@/mastodon/actions/statuses';
 import { Avatars } from '@/mastodon/components/avatar';
-import { IconButton } from '@/mastodon/components/button/redesign';
+import { IconButton } from '@/mastodon/components/button';
 import { Hotkeys } from '@/mastodon/components/hotkeys';
 import {
   LegacyDropdownMenuItems,

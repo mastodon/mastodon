@@ -87,6 +87,9 @@ const composerSlice = createSlice({
       state.displayState =
         state.displayState === 'showing' ? 'minimized' : 'showing';
     },
+    minimizeComposer(state) {
+      state.displayState = 'minimized';
+    },
     hideComposer(state) {
       state.displayState = 'hidden';
     },
@@ -157,6 +160,7 @@ const composerSlice = createSlice({
 export const composer = composerSlice.reducer;
 
 export const {
+  minimizeComposer,
   requestFocus: requestComposerFocus,
   clearPendingFocus: clearComposerFocusRequest,
   clearErrors: clearComposerErrors,
@@ -304,6 +308,21 @@ export const closeComposer = createAppThunk((_arg, { getState, dispatch }) => {
     dispatch(resetComposer());
   }
 });
+
+/**
+ * Closes the composer if it's empty, otherwise minimises it
+ */
+export const closeOrMinimizeComposer = createAppThunk(
+  (_arg, { getState, dispatch }) => {
+    const isChanged = selectComposerIsChanged(getState());
+
+    if (isChanged) {
+      dispatch(minimizeComposer());
+    } else {
+      dispatch(closeComposer());
+    }
+  },
+);
 
 export const selectIsMinimized = createAppSelector(
   [(state) => state.composer.displayState],

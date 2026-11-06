@@ -7,7 +7,7 @@ import { OrderedSet } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { StatusCheckBox } from './components/status_check_box'
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';

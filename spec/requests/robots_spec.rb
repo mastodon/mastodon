@@ -10,17 +10,15 @@ RSpec.describe 'robots.txt' do
       before do
         Setting.override_robots = true
         Setting.custom_robots = 'hoge'
-        subject
-      end
-
-      it 'returns http success' do
-        expect(response)
-          .to have_http_status(200)
-        expect(response.content_type)
-          .to start_with('text/plain')
       end
 
       it 'returns custom robots.txt' do
+        subject
+
+        expect(response)
+          .to have_http_status(200)
+        expect(response.media_type)
+          .to eq('text/plain')
         expect(response.body)
           .to eq('hoge')
       end
@@ -30,35 +28,28 @@ RSpec.describe 'robots.txt' do
       before do
         Setting.override_robots = false
         Setting.custom_robots = 'hoge'
-        subject
       end
 
-      it 'returns http success' do
+      it 'returns default robots.txt' do
+        subject
+
         expect(response)
           .to have_http_status(200)
-        expect(response.content_type)
-          .to start_with('text/plain')
-      end
-
-      it 'returns custom robots.txt' do
+        expect(response.media_type)
+          .to eq('text/plain')
         expect(response.body)
           .to eq(RobotsController::DEFAULT_ROBOTS)
       end
     end
 
     context 'when using default robots.txt' do
-      before do
+      it 'returns default robots.txt' do
         subject
-      end
 
-      it 'returns http success' do
         expect(response)
           .to have_http_status(200)
-        expect(response.content_type)
-          .to start_with('text/plain')
-      end
-
-      it 'returns custom robots.txt' do
+        expect(response.media_type)
+          .to eq('text/plain')
         expect(response.body)
           .to eq(RobotsController::DEFAULT_ROBOTS)
       end

@@ -6,7 +6,7 @@ import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 import { CopyButton } from '@/mastodon/components/copy_button';
 import { EmptyState } from '@/mastodon/components/empty_state';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 
 import classes from './styles.module.scss';
 

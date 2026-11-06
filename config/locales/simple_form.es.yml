@@ -93,12 +93,14 @@ es:
         closed_registrations_message: Mostrado cuando los registros están cerrados
         content_cache_retention_period: Todas las publicaciones de otros servidores (incluso impulsos y respuestas) se eliminarán después del número de días especificado, sin tener en cuenta la interacción del usuario local con esos mensajes. Esto incluye mensajes donde un usuario local los ha marcado como marcadores o favoritos. Las menciones privadas entre usuarios de diferentes instancias también se perderán sin posibilidad de recuperación. El uso de esta configuración está destinado a instancias de propósito especial, y rompe muchas expectativas de los usuarios cuando se implementa para un uso de propósito general.
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
+        custom_robots_html: <a href="%{path}">Sintaxis</a>
         email_footer_text: Texto opcional que aparece únicamente en el pie de los correos electrónicos del boletín de correo electrónico.
         favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicon predeterminado de Mastodon con un icono personalizado.
         landing_page: Selecciona qué página ven los nuevos visitantes cuando llegan por primera vez a tu servidor. Si seleccionas "Tendencias", entonces las tendencias deben estar habilitadas en la Configuración de Descubrimiento. Si selecciona "Cronología local", entonces "Acceso a las cronologías que destacan publicaciones locales" debe configurarse a "Todos" en la Configuración de Descubrimiento.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
         media_cache_retention_period: Los archivos multimedia de las publicaciones creadas por usuarios remotos se almacenan en caché en tu servidor. Cuando se establece un valor positivo, estos archivos se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlaces realizan peticiones a sitios de terceros, se recomienda establecer este valor a al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese momento.
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
+        override_robots: Te permite personalizar las reglas de acceso para los bots bien intencionados
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Aquí no se incluye ningún dato sobre si federas con un servidor determinado, solo que tu servidor lo conoce. Esto es utilizado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         postpone_confirmation_emails: Cuando esta opción está activada, los correos electrónicos de confirmación de cuentas pendientes de aprobación sólo se envían una vez que esas cuentas son aprobadas. Esto podría derivar en una experiencia de registro más incómoda para los usuarios, ya que aún tendrán que confirmar su dirección de correo electrónico después de recibir la confirmación, pero no tendrán control sobre cuándo se envía. Además, esto puede proporcionar una mayor carga de trabajo para los moderadores, ya que Mastodon no podrá filtrar cuentas pendientes con una dirección de correo electrónico no válida antes de que sean aprobadas.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
@@ -304,6 +306,7 @@ es:
         closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
         content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
+        custom_robots: Robots.txt personalizado
         email_footer_text: Texto de pie de página adicional
         favicon: Favicon
         landing_page: Página de inicio para nuevos visitantes
@@ -312,6 +315,7 @@ es:
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de caché multimedia
         min_age: Edad mínima requerida
+        override_robots: Anular robots.txt por defecto
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
         postpone_confirmation_emails: Posponer correos de confirmación tras aprobación
         profile_directory: Habilitar directorio de perfiles

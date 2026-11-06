@@ -12,7 +12,7 @@ import type {
   StatusShape,
 } from '@/mastodon/models/status';
 
-import { Button } from '../button/redesign';
+import { Button } from '../button';
 import { EmojiHTML } from '../emoji/html';
 
 import classes from './content.module.scss';

@@ -17,7 +17,7 @@ import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?reac
 import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
 import { muteAccount } from 'mastodon/actions/accounts';
 import { closeModal } from 'mastodon/actions/modal';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 
