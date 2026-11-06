@@ -1,10 +1,16 @@
-import * as WebAuthnJSON from '@github/webauthn-json';
 import axios, { AxiosError } from 'axios';
 
 import ready from '../mastodon/ready';
 
-type PublicKeyCredentialCreationOptionsJSON =
-  WebAuthnJSON.CredentialCreationOptionsJSON['publicKey'];
+function isWebAuthnSupported() {
+  return (
+    typeof window.PublicKeyCredential !== 'undefined' &&
+    typeof PublicKeyCredential.parseCreationOptionsFromJSON === 'function' &&
+    typeof PublicKeyCredential.parseRequestOptionsFromJSON === 'function' &&
+    typeof navigator.credentials.create === 'function' &&
+    typeof navigator.credentials.get === 'function'
+  );
+}
 
 function exceptionHasAxiosError(
   error: unknown,
@@ -36,11 +42,11 @@ async function callback(
   url: string,
   body:
     | {
-        credential: WebAuthnJSON.PublicKeyCredentialWithAttestationJSON;
+        credential: RegistrationResponseJSON;
         nickname: string;
       }
     | {
-        user: { credential: WebAuthnJSON.PublicKeyCredentialWithAssertionJSON };
+        user: { credential: AuthenticationResponseJSON };
       },
 ) {
   try {
@@ -80,12 +86,18 @@ async function handleWebauthnCredentialRegistration(nickname: string) {
     const credentialOptions = response.data;
 
     try {
-      const credential = await WebAuthnJSON.create({
-        publicKey: credentialOptions,
+      const options =
+        PublicKeyCredential.parseCreationOptionsFromJSON(credentialOptions);
+      const credential = await navigator.credentials.create({
+        publicKey: options,
       });
 
+      if (!(credential instanceof PublicKeyCredential)) {
+        throw new Error('Failed to create public key credential');
+      }
+
       const params = {
-        credential: credential,
+        credential: credential.toJSON() as RegistrationResponseJSON,
         nickname: nickname,
       };
 
@@ -104,18 +116,26 @@ async function handleWebauthnCredentialRegistration(nickname: string) {
 
 async function handleWebauthnCredentialAuthentication() {
   try {
-    const response = await axios.get<PublicKeyCredentialCreationOptionsJSON>(
+    const response = await axios.get<PublicKeyCredentialRequestOptionsJSON>(
       'sessions/security_key_options',
     );
 
     const credentialOptions = response.data;
 
     try {
-      const credential = await WebAuthnJSON.get({
-        publicKey: credentialOptions,
+      const options =
+        PublicKeyCredential.parseRequestOptionsFromJSON(credentialOptions);
+      const credential = await navigator.credentials.get({
+        publicKey: options,
       });
 
-      const params = { user: { credential: credential } };
+      if (!(credential instanceof PublicKeyCredential)) {
+        throw new Error('Failed to get public key credential');
+      }
+
+      const params = {
+        user: { credential: credential.toJSON() as AuthenticationResponseJSON },
+      };
       void callback('sign_in', params);
     } catch (error) {
       const errorMessage = document.getElementById(
@@ -130,7 +150,7 @@ async function handleWebauthnCredentialAuthentication() {
 }
 
 ready(() => {
-  if (!WebAuthnJSON.supported()) {
+  if (!isWebAuthnSupported()) {
     const unsupported_browser_message = document.getElementById(
       'unsupported-browser-message',
     );
