@@ -170,5 +170,44 @@ RSpec.describe BulkImportRowService do
         end
       end
     end
+
+    context 'when importing a custom filter row' do
+      let(:import_type) { 'custom_filters' }
+      let(:data) do
+        {
+          'title' => 'my filter',
+          'context' => ['home'],
+          'action' => 'warn',
+          'expires_at' => nil,
+          'keywords_attributes' => [{ 'keyword' => 'foo', 'whole_word' => true }, { 'keyword' => 'bar', 'whole_word' => false }],
+          'statuses' => [],
+        }
+      end
+
+      context 'when the filter does not exist yet' do
+        it 'returns true and creates the filter' do
+          expect(subject.call(import_row)).to be true
+
+          filter = account.custom_filters.find_by(phrase: 'my filter')
+          expect(filter.keywords.pluck(:keyword)).to contain_exactly('foo', 'bar')
+        end
+      end
+
+      context 'when the filter exists' do
+        let!(:filter) { Fabricate(:custom_filter, account: account, phrase: 'my filter') }
+
+        before do
+          Fabricate(:custom_filter_keyword, custom_filter: filter, keyword: 'foo')
+          Fabricate(:custom_filter_keyword, custom_filter: filter, keyword: 'baz')
+        end
+
+        it 'returns true and adds the missing keywords to the existing filter' do
+          expect { expect(subject.call(import_row)).to be true }
+            .to_not(change { account.custom_filters.count })
+
+          expect(filter.reload.keywords.pluck(:keyword)).to contain_exactly('foo', 'bar', 'baz')
+        end
+      end
+    end
   end
 end
