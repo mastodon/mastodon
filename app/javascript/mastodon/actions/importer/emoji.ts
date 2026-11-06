@@ -1,5 +1,9 @@
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import { loadCustomEmoji } from '@/mastodon/features/emoji';
+import {
+  searchCustomEmojisByShortcodes,
+  clearCache,
+} from '@/mastodon/features/emoji/database';
 import { emojiLogger } from '@/mastodon/features/emoji/utils';
 
 const log = emojiLogger('actions');
@@ -10,9 +14,6 @@ export async function importCustomEmoji(emojis: ApiCustomEmojiJSON[]) {
   }
 
   // First, check if we already have them all.
-  const { searchCustomEmojisByShortcodes, clearCache } =
-    await import('@/mastodon/features/emoji/database');
-
   const existingEmojis = await searchCustomEmojisByShortcodes(
     emojis.map((emoji) => emoji.shortcode),
   );
