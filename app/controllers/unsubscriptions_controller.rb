@@ -17,7 +17,7 @@ class UnsubscriptionsController < ApplicationController
   def create
     case @scope
     when :user
-      @recipient.settings[@type] = false
+      @recipient.settings["notification_emails.#{@type}"] = false
       @recipient.save!
     when :email_subscription
       @recipient.destroy!
@@ -52,7 +52,7 @@ class UnsubscriptionsController < ApplicationController
   def email_type_from_param
     case params[:type]
     when 'follow', 'reblog', 'favourite', 'mention', 'follow_request'
-      "notification_emails.#{params[:type]}"
+      params[:type]
     end
   end
 end
