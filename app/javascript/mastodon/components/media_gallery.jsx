@@ -26,7 +26,7 @@ class Item extends PureComponent {
     standalone: PropTypes.bool,
     index: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
     displayWidth: PropTypes.number,
     visible: PropTypes.bool.isRequired,
     autoplay: PropTypes.bool,
@@ -68,7 +68,8 @@ class Item extends PureComponent {
   handleClick = (e) => {
     const { index, onClick } = this.props;
 
-    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+    // Without a handler (e.g. in embeds), let the link open normally
+    if (onClick && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       if (this.hoverToPlay()) {
         e.target.pause();
         e.target.currentTime = 0;
@@ -221,7 +222,7 @@ class MediaGallery extends PureComponent {
     lang: PropTypes.string,
     size: PropTypes.object,
     height: PropTypes.number.isRequired,
-    onOpenMedia: PropTypes.func.isRequired,
+    onOpenMedia: PropTypes.func,
     defaultWidth: PropTypes.number,
     cacheWidth: PropTypes.func,
     visible: PropTypes.bool,
@@ -298,9 +299,10 @@ class MediaGallery extends PureComponent {
   }
 
   render () {
-    const { media, lang, sensitive, defaultWidth, autoplay, matchedFilters } = this.props;
+    const { media, lang, sensitive, defaultWidth, autoplay, matchedFilters, onOpenMedia } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
+    const handleClick = onOpenMedia ? this.handleClick : undefined;
 
     let children;
 
@@ -316,9 +318,9 @@ class MediaGallery extends PureComponent {
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
     if (this.isFullSizeEligible()) {
-      children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
+      children = <Item standalone autoplay={autoplay} onClick={handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
     } else {
-      children = media.map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
+      children = media.map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
     return (
