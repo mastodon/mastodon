@@ -28,7 +28,7 @@ class InstanceFilter
   def scope_for(key, value)
     case key.to_s
     when 'limited'
-      Instance.joins(:domain_block).reorder(domain_blocks: { id: :desc })
+      limited_scope(value)
     when 'allowed'
       Instance.joins(:domain_allow).reorder(domain_allows: { id: :desc })
     when 'by_domain'
@@ -46,8 +46,23 @@ class InstanceFilter
       Instance.where(domain: DeliveryFailureTracker.warning_domains)
     when 'unavailable'
       Instance.joins(:unavailable_domain)
+    when 'healthy'
+      Instance.where.not(domain: DeliveryFailureTracker.warning_domains).where.not(domain: UnavailableDomain.select(:domain))
     else
       raise Mastodon::InvalidParameterError, "Unknown availability: #{value}"
+    end
+  end
+
+  def limited_scope(value)
+    case value
+    when 'suspended'
+      Instance.joins(:domain_block).where(domain_blocks: { severity: :suspend }).reorder(domain_blocks: { id: :desc })
+    when 'limited'
+      Instance.joins(:domain_block).where(domain_blocks: { severity: :silence }).reorder(domain_blocks: { id: :desc })
+    when 'reject_media'
+      Instance.joins(:domain_block).where(domain_blocks: { reject_media: true }).reorder(domain_blocks: { id: :desc })
+    else
+      Instance.joins(:domain_block).reorder(domain_blocks: { id: :desc })
     end
   end
 end
