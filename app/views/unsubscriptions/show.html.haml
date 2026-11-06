@@ -12,7 +12,9 @@
       = t('.email_subscription.title', name: display_name(@recipient.account))
   %p.lead
     - if @scope == :user
-      = t('.user.confirmation_html')
+      = t '.user.confirmation_html',
+          domain: content_tag(:strong, site_hostname),
+          type: content_tag(:strong, I18n.t(@type, scope: 'unsubscriptions.notification_emails'))
     - elsif @scope == :email_subscription
       = t('.email_subscription.confirmation_html')
 
