@@ -8,7 +8,7 @@ import { isFulfilled } from '@reduxjs/toolkit';
 
 import { Helmet } from '@unhead/react/helmet';
 
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 import { NotSignedInIndicator } from '@/mastodon/components/not_signed_in_indicator';

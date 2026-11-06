@@ -12,7 +12,7 @@ import { blockAccount } from 'mastodon/actions/accounts';
 import { blockDomain } from 'mastodon/actions/domain_blocks';
 import { closeModal } from 'mastodon/actions/modal';
 import { apiRequest } from 'mastodon/api';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { ShortNumber } from 'mastodon/components/short_number';

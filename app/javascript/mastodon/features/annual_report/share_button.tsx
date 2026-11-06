@@ -6,7 +6,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import { showAlert } from '@/mastodon/actions/alerts';
 import { resetCompose, focusCompose } from '@/mastodon/actions/compose';
 import { closeModal } from '@/mastodon/actions/modal';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import type { AnnualReport as AnnualReportData } from '@/mastodon/models/annual_report';
 import { useAppDispatch } from '@/mastodon/store';
 

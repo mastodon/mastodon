@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { AvatarById } from '@/mastodon/components/avatar';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { Icon } from '@/mastodon/components/icon';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';

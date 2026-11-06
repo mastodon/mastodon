@@ -13,7 +13,7 @@ import type {
   ValidationErrorResponse,
   ValidationError,
 } from '@/mastodon/api_types/errors';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { DisplayName } from '@/mastodon/components/display_name';
 import type { FieldStatus } from '@/mastodon/components/form_fields';
 import { TextInputField } from '@/mastodon/components/form_fields/text_input_field';

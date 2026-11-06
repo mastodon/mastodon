@@ -10,7 +10,7 @@ import type { FC, FocusEventHandler } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { closeModal } from '@/mastodon/actions/modal';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import type { FieldStatus } from '@/mastodon/components/form_fields';
 import { EmojiTextInputField } from '@/mastodon/components/form_fields';
 import { useCustomEmojis } from '@/mastodon/hooks/useCustomEmojis';

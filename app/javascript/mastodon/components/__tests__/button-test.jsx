@@ -1,6 +1,6 @@
 import { render, fireEvent, screen } from '@/testing/rendering';
 
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 
 describe('<Button />', () => {
   it('renders a button element', () => {

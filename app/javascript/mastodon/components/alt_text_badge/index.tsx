@@ -8,7 +8,7 @@ import { XIcon } from '@phosphor-icons/react';
 
 import { useSelectableClick } from '@/mastodon/hooks/useSelectableClick';
 
-import { Button, IconButton } from '../button/redesign';
+import { Button, IconButton } from '../button';
 import { Popover } from '../popover';
 
 import classes from './styles.module.scss';

@@ -8,7 +8,7 @@ import { useSpring, animated, config } from '@react-spring/web';
 import { throttle } from 'lodash';
 
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { useRevealedMedia } from '@/mastodon/hooks/useRevealedMedia';
 import Forward5Icon from '@/material-icons/400-24px/forward_5-fill.svg?react';
 import FullscreenIcon from '@/material-icons/400-24px/fullscreen.svg?react';

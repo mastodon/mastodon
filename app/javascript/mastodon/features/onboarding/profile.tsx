@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Badge } from '@/mastodon/components/badge';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 import AddPhotoAlternateIcon from '@/material-icons/400-24px/add_photo_alternate.svg?react';

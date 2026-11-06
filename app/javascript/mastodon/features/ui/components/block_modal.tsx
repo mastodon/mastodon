@@ -13,7 +13,7 @@ import CollectionsIcon from '@/material-icons/400-24px/category.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { blockAccount } from 'mastodon/actions/accounts';
 import { closeModal } from 'mastodon/actions/modal';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 

@@ -12,7 +12,7 @@ import { decodeIDNA } from '@/mastodon/utils/links';
 
 import { Avatar } from '../avatar';
 import { Blurhash } from '../blurhash';
-import { Button } from '../button/redesign';
+import { Button } from '../button';
 import {
   Card,
   CardActions,

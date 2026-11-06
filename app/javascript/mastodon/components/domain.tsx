@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { unblockDomain } from '@/mastodon/actions/domain_blocks';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { useAppDispatch } from '@/mastodon/store';
 
 export const Domain: React.FC<{

@@ -1,7 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 
 import type { ApiAnnualReportState } from '@/mastodon/api/annual_report';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 
 import styles from './styles.module.scss';
 

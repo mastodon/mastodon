@@ -15,7 +15,7 @@ import {
 
 import type { ModalType } from '@/mastodon/actions/modal';
 import { openModal } from '@/mastodon/actions/modal';
-import { IconButton } from '@/mastodon/components/button/redesign';
+import { IconButton } from '@/mastodon/components/button';
 import {
   LegacyDropdownMenuItems,
   Menu,

@@ -9,8 +9,8 @@ import { showAlert } from '@/mastodon/actions/alerts';
 import type {
   ButtonProps,
   IconButtonProps,
-} from '@/mastodon/components/button/redesign';
-import { Button, IconButton } from '@/mastodon/components/button/redesign';
+} from '@/mastodon/components/button';
+import { Button, IconButton } from '@/mastodon/components/button';
 import { useAppDispatch } from '@/mastodon/store';
 
 const messages = defineMessages({

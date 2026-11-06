@@ -5,7 +5,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { injectIntl } from '@/mastodon/components/intl';
 

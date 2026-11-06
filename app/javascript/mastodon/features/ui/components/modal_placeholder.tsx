@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import { GIF } from 'mastodon/components/gif';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 

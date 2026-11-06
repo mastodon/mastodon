@@ -20,7 +20,7 @@ import {
 } from '@/mastodon/actions/columns';
 import { submitMarkers } from '@/mastodon/actions/markers';
 import { openModal } from '@/mastodon/actions/modal';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { Column } from '@/mastodon/components/column';
 import {
   ColumnHeader,

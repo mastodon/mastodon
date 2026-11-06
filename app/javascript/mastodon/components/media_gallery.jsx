@@ -16,7 +16,7 @@ import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { formatTime } from 'mastodon/features/video';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
-import { Button } from './button/redesign';
+import { Button } from './button';
 
 class Item extends PureComponent {
 

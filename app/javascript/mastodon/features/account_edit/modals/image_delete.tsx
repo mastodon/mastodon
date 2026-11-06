@@ -3,7 +3,7 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { deleteImage } from '@/mastodon/reducers/slices/profile_edit';
 import type { ImageLocation } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';

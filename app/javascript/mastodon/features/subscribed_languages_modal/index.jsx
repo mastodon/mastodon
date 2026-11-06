@@ -9,7 +9,7 @@ import { ImmutablePureComponent } from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import { followAccount } from 'mastodon/actions/accounts';
-import { Button, IconButton } from 'mastodon/components/button/redesign';
+import { Button, IconButton } from 'mastodon/components/button';
 import { injectIntl } from '@/mastodon/components/intl';
 import Option from 'mastodon/features/report/components/option';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';

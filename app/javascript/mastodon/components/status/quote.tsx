@@ -36,7 +36,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { Avatar } from '../avatar';
-import { Button } from '../button/redesign';
+import { Button } from '../button';
 import { Card, CardBody, CardTitle, PrimaryCardLink } from '../card';
 import { DisplayName } from '../display_name';
 import { DisplayNameSimple } from '../display_name/simple';

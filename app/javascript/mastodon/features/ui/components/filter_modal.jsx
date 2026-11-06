@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import { fetchFilters, createFilter, createFilterStatus } from 'mastodon/actions/filters';
 import { fetchStatus } from 'mastodon/actions/statuses';
-import { IconButton } from 'mastodon/components/button/redesign';
+import { IconButton } from 'mastodon/components/button';
 import { injectIntl } from '@/mastodon/components/intl';
 import AddedToFilter from 'mastodon/features/filters/added_to_filter';
 import SelectFilter from 'mastodon/features/filters/select_filter';

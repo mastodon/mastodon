@@ -5,7 +5,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { TrashIcon } from '@phosphor-icons/react';
 
 import { changeComposeSpoilerText } from '@/mastodon/actions/compose';
-import { IconButton } from '@/mastodon/components/button/redesign';
+import { IconButton } from '@/mastodon/components/button';
 import { FormFieldWrapper, TextInput } from '@/mastodon/components/form_fields';
 import {
   matchesKeyCode,

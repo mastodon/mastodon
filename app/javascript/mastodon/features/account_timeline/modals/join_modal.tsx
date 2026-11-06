@@ -8,7 +8,7 @@ import { XIcon } from '@phosphor-icons/react';
 import AnniversaryImage from '@/images/anniversary.svg?react';
 import { focusCompose, resetCompose } from '@/mastodon/actions/compose';
 import { closeModal } from '@/mastodon/actions/modal';
-import { Button, IconButton } from '@/mastodon/components/button/redesign';
+import { Button, IconButton } from '@/mastodon/components/button';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
 import { ModalShell, ModalShellBody } from '@/mastodon/components/modal_shell';

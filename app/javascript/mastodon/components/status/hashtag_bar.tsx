@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { useOverflowButton } from '@/mastodon/hooks/useOverflow';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 
-import { Button } from '../button/redesign';
+import { Button } from '../button';
 import { HashtagMenu } from '../hashtag_menu';
 import { MenuTrigger } from '../menu';
 

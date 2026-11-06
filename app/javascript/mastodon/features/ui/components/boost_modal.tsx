@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Button, CaretIcon } from '@/mastodon/components/button/redesign';
+import { Button, CaretIcon } from '@/mastodon/components/button';
 import { Icon } from '@/mastodon/components/icon';
 import {
   Menu,
