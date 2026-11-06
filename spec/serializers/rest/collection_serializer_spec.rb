@@ -49,13 +49,9 @@ RSpec.describe REST::CollectionSerializer do
   context 'when the collection is remote' do
     let(:collection) { Fabricate(:remote_collection, description_html: '<p>remote</p>', url: 'https://example.com/c/1') }
 
-    it 'includes the uri' do
-      expect(subject).to include('url' => 'https://example.com/c/1')
-    end
-
-    it 'includes the html description' do
+    it 'includes the uri and html description' do
       expect(subject)
-        .to include('description' => '<p>remote</p>')
+        .to include('url' => 'https://example.com/c/1', 'description' => '<p>remote</p>')
     end
 
     context 'when the description contains unwanted HTML' do
