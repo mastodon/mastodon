@@ -134,4 +134,20 @@ RSpec.describe 'Public' do
       end
     end
   end
+
+  describe 'GET /public/local.rss' do
+    let!(:local_status)   { Fabricate(:status, account: Fabricate.build(:account, domain: nil)) }
+
+    it 'returns http success' do
+      get '/public/local.rss'
+
+      expect(response)
+        .to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/rss+xml')
+      expect(response.body)
+        .to include('<channel>')
+        .and include('<item>')
+    end
+  end
 end
