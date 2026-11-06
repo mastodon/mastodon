@@ -92,7 +92,11 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         onClick={reply.action}
         tooltip={{ type: 'label', text: reply.title }}
       >
-        {withCounters && reply.counter}
+        {withCounters
+          ? reply.counter
+          : reply.counter && reply.counter > 0
+            ? '1+'
+            : '0'}
       </Button>
 
       <StatusReblogButton statusId={statusId}>

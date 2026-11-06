@@ -44,6 +44,7 @@ class UserSettings
     setting :color_scheme, default: 'auto', in: %w(auto light dark)
     setting :contrast, default: 'auto', in: %w(auto high)
     setting :theme_color, default: 'indigo' # TODO: dynamic inclusion checking?
+    setting :show_stats_in_feed, default: true
   end
 
   namespace :notification_emails do
