@@ -14,9 +14,10 @@ class Admin::Reports::ActionsController < Admin::BaseController
     case action_from_button
     when 'delete', 'mark_as_sensitive'
       Admin::ModerationAction.new(moderation_action_params).save!
-    when 'silence', 'suspend'
+    when 'silence', 'suspend', 'none'
       Admin::AccountAction.new(account_action_params).save!
     else
+
       return redirect_to admin_report_path(@report), alert: I18n.t('admin.reports.unknown_action_msg', action: action_from_button)
     end
 
@@ -31,7 +32,7 @@ class Admin::Reports::ActionsController < Admin::BaseController
 
   def account_action_params
     shared_params
-      .merge(target_account: @report.target_account)
+      .merge(target_account: @report.target_account, warning_preset_id: params[:warning_preset_id])
   end
 
   def shared_params
@@ -59,6 +60,8 @@ class Admin::Reports::ActionsController < Admin::BaseController
       'suspend'
     elsif params[:moderation_action]
       params[:moderation_action]
+    elsif params[:admin_account_action]
+      params[:admin_account_action][:type] if params[:admin_account_action][:type]
     end
   end
 end

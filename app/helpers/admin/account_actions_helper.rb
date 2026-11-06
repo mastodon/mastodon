@@ -17,4 +17,12 @@ module Admin::AccountActionsHelper
   def combined_types_collection
     Admin::AccountAction::TYPES + Admin::ModerationAction::TYPES
   end
+
+  def collection
+    if params[:report_id].present?
+      combined_types_collection
+    else
+      Admin::AccountAction::TYPES
+    end
+  end
 end
