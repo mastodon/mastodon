@@ -76,25 +76,39 @@ module Mastodon::CLI
         c.table_name = 'statuses_to_be_deleted'
       end
 
+      Object.send(:remove_const, :StatusToBeDeleted) if Object.const_defined?(:StatusToBeDeleted)
       Object.const_set(:StatusToBeDeleted, klass)
 
-      scope     = StatusToBeDeleted
-      processed = 0
-      removed   = 0
-      progress  = create_progress_bar(scope.count.fdiv(options[:batch_size]).ceil)
+      scope         = StatusToBeDeleted
+      total_records = scope.count
+      total_batches = total_records.fdiv(options[:batch_size]).ceil
+      processed     = 0
+      removed       = 0
+      current_batch = 0
+
+      say("Found #{total_records} statuses to delete (#{total_batches} batches of #{options[:batch_size]})...")
+
+      progress = create_progress_bar(total_batches)
 
       scope.reorder(nil).in_batches(of: options[:batch_size]) do |relation|
-        ids        = relation.pluck(:id)
-        processed += ids.count
-        removed   += Status.unscoped.where(id: ids).delete_all
+        current_batch += 1
+        ids            = relation.pluck(:id)
+        processed     += ids.count
+        batch_removed  = Status.unscoped.where(id: ids).delete_all
+        removed       += batch_removed
+        progress.log("Batch #{current_batch}/#{total_batches}: Processed #{processed}/#{total_records} statuses (removed #{batch_removed} in this batch)") if options[:verbose]
         progress.increment
+      rescue => e
+        progress.log pastel.red("Error deleting batch #{current_batch}/#{total_batches} of statuses: #{e}")
       end
 
       progress.stop
 
-      ActiveRecord::Base.connection.drop_table('statuses_to_be_deleted')
+      ActiveRecord::Base.connection.drop_table('statuses_to_be_deleted') if ActiveRecord::Base.connection.table_exists?('statuses_to_be_deleted')
 
       say("Done after #{Time.now.to_f - start_at}s, removed #{removed} out of #{processed} statuses.", :green)
+    ensure
+      Object.send(:remove_const, :StatusToBeDeleted) if Object.const_defined?(:StatusToBeDeleted)
     end
 
     def remove_orphans_media_attachments
@@ -109,7 +123,7 @@ module Mastodon::CLI
       removed   = 0
       progress  = create_progress_bar(scope.count)
 
-      scope.find_each do |media_attachment|
+      scope.reorder(nil).find_each do |media_attachment|
         media_attachment.destroy!
 
         removed += 1
@@ -128,52 +142,80 @@ module Mastodon::CLI
     def remove_orphans_conversations
       start_at = Time.now.to_f
 
-      unless options[:continue] && ActiveRecord::Base.connection.table_exists?('conversations_to_be_deleted')
-        say('Creating temporary database indices...')
+      begin
+        unless options[:continue] && ActiveRecord::Base.connection.table_exists?('conversations_to_be_deleted')
+          if ActiveRecord::Base.connection.index_name_exists?(:statuses, :index_statuses_conversation_id)
+            say('Cleaning up index_statuses_conversation_id from a previously crashed run...')
+            ActiveRecord::Base.connection.remove_index(:statuses, name: :index_statuses_conversation_id, if_exists: true)
+          end
 
-        ActiveRecord::Base.connection.add_index(:statuses, :conversation_id, name: :index_statuses_conversation_id, algorithm: :concurrently, if_not_exists: true)
+          say('Creating temporary database indices...')
 
-        say('Extract the deletion target from conversations... This might take a while...')
+          ActiveRecord::Base.connection.add_index(:statuses, :conversation_id, name: :index_statuses_conversation_id, algorithm: :concurrently, if_not_exists: true)
 
-        ActiveRecord::Base.connection.create_table('conversations_to_be_deleted', force: true)
+          say('Extract the deletion target from conversations... This might take a while...')
 
-        ActiveRecord::Base.connection.exec_insert(<<~SQL.squish, 'SQL')
-          INSERT INTO conversations_to_be_deleted (id)
-          SELECT id FROM conversations WHERE NOT EXISTS (SELECT 1 FROM statuses WHERE statuses.conversation_id = conversations.id)
-        SQL
+          ActiveRecord::Base.connection.create_table('conversations_to_be_deleted', force: true)
 
+          Conversation.unscoped.in_batches(of: 10_000) do |relation|
+            min_id = relation.minimum(:id)
+            max_batch_id = relation.maximum(:id)
+            next if min_id.nil? || max_batch_id.nil?
+
+            ActiveRecord::Base.connection.exec_insert(ActiveRecord::Base.sanitize_sql_array([<<~SQL.squish, min_id, max_batch_id + 1]), 'SQL')
+              INSERT INTO conversations_to_be_deleted (id)
+              SELECT id FROM conversations WHERE (id >= ? AND id < ?) AND NOT EXISTS (SELECT 1 FROM statuses WHERE statuses.conversation_id = conversations.id)
+            SQL
+          end
+
+          say('Removing temporary database indices to restore write performance...')
+          ActiveRecord::Base.connection.remove_index(:statuses, name: :index_statuses_conversation_id, if_exists: true)
+        end
+
+        say('Beginning orphans removal... This might take a while...')
+
+        klass = Class.new(ApplicationRecord) do |c|
+          c.table_name = 'conversations_to_be_deleted'
+        end
+
+        Object.send(:remove_const, :ConversationsToBeDeleted) if Object.const_defined?(:ConversationsToBeDeleted)
+        Object.const_set(:ConversationsToBeDeleted, klass)
+
+        scope         = ConversationsToBeDeleted
+        total_records = scope.count
+        total_batches = total_records.fdiv(options[:batch_size]).ceil
+        processed     = 0
+        removed       = 0
+        current_batch = 0
+
+        say("Found #{total_records} conversations to delete (#{total_batches} batches of #{options[:batch_size]})...")
+
+        progress = create_progress_bar(total_batches)
+
+        scope.reorder(nil).in_batches(of: options[:batch_size]) do |relation|
+          current_batch += 1
+          ids            = relation.pluck(:id)
+          processed     += ids.count
+          batch_removed  = Conversation.unscoped.where(id: ids).delete_all
+          removed       += batch_removed
+          progress.log("Batch #{current_batch}/#{total_batches}: Processed #{processed}/#{total_records} conversations (removed #{batch_removed} in this batch)") if options[:verbose]
+          progress.increment
+        rescue => e
+          progress.log pastel.red("Error deleting batch #{current_batch}/#{total_batches} of conversations: #{e}")
+        end
+
+        progress.stop
+
+        ActiveRecord::Base.connection.drop_table('conversations_to_be_deleted') if ActiveRecord::Base.connection.table_exists?('conversations_to_be_deleted')
+
+        say("Done after #{Time.now.to_f - start_at}s, removed #{removed} out of #{processed} conversations.", :green)
+      rescue => e
+        say(pastel.red("Error during conversation removal: #{e}"))
+      ensure
         say('Removing temporary database indices to restore write performance...')
         ActiveRecord::Base.connection.remove_index(:statuses, name: :index_statuses_conversation_id, if_exists: true)
+        Object.send(:remove_const, :ConversationsToBeDeleted) if Object.const_defined?(:ConversationsToBeDeleted)
       end
-
-      say('Beginning orphans removal... This might take a while...')
-
-      klass = Class.new(ApplicationRecord) do |c|
-        c.table_name = 'conversations_to_be_deleted'
-      end
-
-      Object.const_set(:ConversationsToBeDeleted, klass)
-
-      scope     = ConversationsToBeDeleted
-      processed = 0
-      removed   = 0
-      progress  = create_progress_bar(scope.count.fdiv(options[:batch_size]).ceil)
-
-      scope.in_batches(of: options[:batch_size]) do |relation|
-        ids        = relation.pluck(:id)
-        processed += ids.count
-        removed   += Conversation.unscoped.where(id: ids).delete_all
-        progress.increment
-      end
-
-      progress.stop
-
-      ActiveRecord::Base.connection.drop_table('conversations_to_be_deleted')
-
-      say("Done after #{Time.now.to_f - start_at}s, removed #{removed} out of #{processed} conversations.", :green)
-    ensure
-      say('Removing temporary database indices to restore write performance...')
-      ActiveRecord::Base.connection.remove_index(:statuses, name: :index_statuses_conversation_id, if_exists: true)
     end
 
     def vacuum_and_analyze_statuses
