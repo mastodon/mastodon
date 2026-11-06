@@ -8,18 +8,16 @@
     - if report.collections.any? || statuses.any? { |status| (status.with_media? || status.with_preview_card?) && !status.discarded? }
       .report-actions__item
         .report-actions__item__button
-          = form.button t('admin.reports.mark_as_sensitive'),
-                        name: :mark_as_sensitive,
-                        class: 'button'
+          = link_to t('admin.reports.mark_as_sensitive'), new_admin_account_action_path(report.target_account_id, report_id: report.id, type: 'mark_as_sensitive'), name: :mark_as_sensitive, class: 'button'
         .report-actions__item__description
           = t('admin.reports.actions.mark_as_sensitive_description_html')
     .report-actions__item
       .report-actions__item__button
-        = form.button t('admin.reports.delete_and_resolve'),
-                      name: :delete,
-                      class: 'button button--destructive',
-                      disabled: (report.collections + statuses).empty?,
-                      title: (report.collections + statuses).empty? ? t('admin.reports.actions_no_posts') : ''
+        = link_to t('admin.reports.delete_and_resolve'), new_admin_account_action_path(report.target_account_id, report_id: report.id, type: 'delete'),
+                  name: :delete,
+                  class: 'button button--destructive',
+                  disabled: (report.collections + statuses).empty?,
+                  title: (report.collections + statuses).empty? ? t('admin.reports.actions_no_posts') : ''
       .report-actions__item__description
         = t('admin.reports.actions.delete_description_html')
     - if report.target_account.local? && report.target_account.user_approved?
