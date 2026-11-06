@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from 'react';
 import classNames from 'classnames';
 
 import { useBodyScrollLock } from '@/mastodon/hooks/useBodyScrollLock';
+import { useCloseOnHistoryBack } from '@/mastodon/hooks/useCloseOnHistoryBack';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import { useOnClickOutside } from '@/mastodon/hooks/useOnClickOutside';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
@@ -14,7 +15,7 @@ interface BottomSheetProps extends Omit<
   ComponentPropsWithRef<'dialog'>,
   'onClose'
 > {
-  onClose: (e: Event) => void;
+  onClose: (e?: Event) => void;
 }
 
 export const BottomSheet: React.FC<BottomSheetProps> = ({
@@ -27,6 +28,8 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   const contentRef = useRef<HTMLDivElement>(null);
 
   useBodyScrollLock();
+
+  useCloseOnHistoryBack(onClose, { ignoreFocus: true });
 
   useLayoutEffect(() => {
     const dialog = dialogRef.current;

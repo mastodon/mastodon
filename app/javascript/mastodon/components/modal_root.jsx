@@ -108,6 +108,7 @@ class ModalRoot extends PureComponent {
   }
 
   _handleModalOpen () {
+    // TODO: Replace with `useCloseOnHistoryBack` hook
     this._modalHistoryKey = Date.now();
     this.unlistenHistory = this.history.listen((_, action) => {
       if (action === 'POP') {
@@ -127,6 +128,7 @@ class ModalRoot extends PureComponent {
   }
 
   _ensureHistoryBuffer () {
+    // TODO: Replace with `useCloseOnHistoryBack` hook
     const { pathname, search, hash, state } = this.history.location;
     if (!state || state.mastodonModalKey !== this._modalHistoryKey) {
       this.history.push({ pathname, search, hash }, {
