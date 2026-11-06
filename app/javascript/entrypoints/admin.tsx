@@ -364,6 +364,73 @@ async function mountReactComponent(element: Element) {
   );
 }
 
+// Nested Field Addition
+on('click', '[data-action="add-association"]', (event: Event) => {
+  event.preventDefault();
+
+  const target = event.currentTarget ?? event.target;
+  if (!(target instanceof HTMLElement)) return;
+
+  const actualButton = target.closest('[data-action="add-association"]');
+  if (!(actualButton instanceof HTMLElement)) return;
+
+  const templateId = actualButton.dataset.templateId;
+  const containerSelector = actualButton.dataset.container;
+  const placeholder = actualButton.dataset.placeholder;
+
+  if (!templateId || !containerSelector || !placeholder) return;
+
+  const template = document.getElementById(templateId);
+  const container = document.querySelector(containerSelector);
+
+  if (
+    !(template instanceof HTMLTemplateElement) ||
+    !(container instanceof HTMLElement)
+  )
+    return;
+
+  const uniqueId = String(new Date().getTime());
+
+  let htmlMarkup = template.innerHTML;
+  const regex = new RegExp(placeholder, 'g');
+  htmlMarkup = htmlMarkup.replace(regex, uniqueId);
+
+  container.insertAdjacentHTML('beforeend', htmlMarkup);
+
+  const lastChild = container.lastElementChild;
+  if (lastChild) {
+    lastChild.dispatchEvent(
+      new CustomEvent('association:inserted', {
+        bubbles: true,
+        detail: { element: lastChild },
+      }),
+    );
+  }
+});
+
+// Nested Field Removal
+on('click', '[data-action="remove-association"]', (event: Event) => {
+  event.preventDefault();
+
+  const target = event.currentTarget ?? event.target;
+  if (!(target instanceof HTMLElement)) return;
+
+  const actualButton = target.closest('[data-action="remove-association"]');
+  if (!(actualButton instanceof HTMLElement)) return;
+
+  const row = actualButton.closest('.nested-fields');
+  if (!(row instanceof HTMLElement)) return;
+
+  const destroyFlag = row.querySelector('.destroy-flag');
+
+  if (destroyFlag instanceof HTMLInputElement) {
+    destroyFlag.value = '1';
+    row.style.display = 'none';
+  } else {
+    row.remove();
+  }
+});
+
 ready(() => {
   const domainBlockSeveritySelect = document.querySelector<HTMLSelectElement>(
     'select#domain_block_severity',

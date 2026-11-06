@@ -57,5 +57,9 @@
     %tfoot
       %tr
         %td{ colspan: 3 }
-          = link_to_add_association f, :keywords, class: 'table-action-link', partial: 'keyword_fields', 'data-association-insertion-node': '.keywords-table tbody', 'data-association-insertion-method': 'append' do
+          %button.table-action-link{ type: :button, data: { action: 'add-association', template_id: 'keyword-fields-template', placeholder: 'new_keywords', container: '.keywords-table tbody' } }
             = safe_join([material_symbol('add'), t('filters.edit.add_keyword')])
+
+%template#keyword-fields-template
+  = f.simple_fields_for :keywords, f.object.keywords.build, child_index: 'new_keywords' do |keyword|
+    = render 'keyword_fields', f: keyword
