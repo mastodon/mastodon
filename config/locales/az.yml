@@ -14,6 +14,7 @@ az:
     accounts:
       delete: Veriləri sil
       deletion_irreversible: Bu hesabın veriləri geri qaytarılmayacaq şəkildə silinib.
+      deletion_reversible_hint_html: Bu hesab silinmə ərəfəsindədir və verilər %{date} tarixində tamamilə silinəcək.
       destroyed_msg: "%{username} - verilərinin tezliklə silinməsi növbədədir"
       display_name: Ekran adı
       followers: İzləyicilər
@@ -35,6 +36,7 @@ az:
       suspension_irreversible: Bu hesabın veriləri geri qaytarılmayacaq şəkildə silinib. Hesabı istifadəyə yararlı etmək üçün hesab fəaliyyətinin dayandırılma prosesini ləğv edə bilərsiniz, ancaq daha əvvəl sahib olduğunuz heç bir veri geri qaytarılmayacaq.
     action_logs:
       action_types:
+        destroy_account: Hesab verilərini sil
         resend_user: Təsdiq poçtunu təkrar göndər
         reset_password_user: Parolu sıfırla
         update_announcement: Elanı güncəllə
@@ -44,6 +46,7 @@ az:
         update_status: Göndərişi güncəllə
       actions:
         approve_appeal_html: "%{name}, moderasiya qərarına %{target} tərəfindən verilən etirazı təsdiqlədi"
+        destroy_account_html: "%{name} %{target} verilərini sildi"
         reject_appeal_html: "%{name}, moderasiya qərarına %{target} tərəfindən verilən etirazı rədd etdi"
         reset_password_user_html: "%{name}, %{target} istifadəçisinin parolunu sıfırladı"
       deleted_account: silinmiş hesab
@@ -70,6 +73,9 @@ az:
           action: Veriləri sil
           title: Bütün veriləri sil
       purged_msg: Bütün e-poçt abunəlik veriləri silinir.
+      setups:
+        show:
+          important_information: Vacib bilgi
     export_domain_blocks:
       import:
         title: Əngəllənən domenləri daxilə köçür
@@ -89,13 +95,16 @@ az:
       moderation_notes:
         create: Moderasiya notu əlavə et
         description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
+        placeholder: Bu instansiya barədə bilgi, görülən tədbirlər və ya gələcəkdə bu instansiyanı moderasiya etməyə kömək edəcək hər hansı digər bilgilər.
         title: Moderasiya notları
       purge_description_html: Əgər bu domenin tamamilə oflayn olduğuna inanırsınızsa, deponuzdan bu domenə aid olan bütün hesab qeydlərini və əlaqəli veriləri silə bilərsiniz. Bu bir az vaxt aparacaq.
       totals_time_period_hint_html: Aşağıdakı cəmlərə bütün vaxtlardakı verilər daxildir.
     reports:
       actions:
+        other_description_html: Hesabın davranışına nəzarət etmək və bildirilən hesabın ünsiyyətini özəlləşdirmək üçün daha çox seçənəyə baxın.
         suspend_description_html: Hesab və onun bütün məzmunları əlçatmaz olacaq və nəticədə silinəcək və onunla əlaqə qurmaq mümkün olmayacaq. 30 gün ərzində geri qaytarıla bilər. Bu hesaba aid bütün hesabatları bağlayır.
       assigned: Təyin edilmiş moderator
+      comment_description_html: 'Daha çox bilgi təqdim etmək üçün %{name} bunu yazıb:'
       confirm_action: "@%{acct} üzərindəki moderasiya əməliyyatını təsdiqlə"
       notes_description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
       quick_actions_description_html: 'Cəld bir əməliyyat edin və ya bildirilən məzmuna baxmaq üçün aşağı diyirlərin:'
@@ -120,7 +129,22 @@ az:
         manage_users_description: İstifadəçilərin digər istifadəçilərin ayrıntılarını görməsinə və onlara qarşı moderasiya əməliyyatlarını icra etməsinə icazə verir
         view_dashboard_description: İstifadəçilərin idarəetmə lövhəsinə və müxtəlif metriklərə erişməsinə icazə verir
         view_devops_description: İstifadəçilərin Sidekiq və pgHero idarəetmə lövhələrinə erişməsinə icazə verir
+    server_checks:
+      checks:
+        database_schema:
+          error:
+            title: Veri bazasının sxemini yoxlayarkən xəta baş verdi
+          ok:
+            title: Gözləmədə olan veri bazası miqrasiyası yoxdur
+          pending:
+            title: Gözləmədə olan veri bazası miqrasiyası var
+          running:
+            title: Serveriniz veri bazası sxemini yoxlayır
+          unprocessed:
+            title: Serveriniz hələ veri bazası sxemini yoxlamayıb
     settings:
+      about:
+        preamble: Serverin necə idarə olunduğu, moderasiya edildiyi və maliyyələşdirildiyi barədə ətraflı bilgi verin.
       appearance:
         title: Görünüş
       content_retention:
@@ -128,6 +152,11 @@ az:
       discovery:
         public_timelines: Ümumi zaman xətləri
         title: Kəşf et
+      external:
+        preamble: Serveriniz haqqında nə qədər bilginin digər xidmətlərlə paylaşılacağına və serverinizin nə dərəcədə aşkar edilə bilən olacağına nəzarət edin.
+      landing_page:
+        hints:
+          about_html: Bu serverlə bağlı açıqlamanı, əlaqə bilgilərini, qaydaları və digər bilgiləri özündə əks etdirən səhifə.
       registrations:
         moderation_recommandation: Hər kəs üçün qeydiyyatı açmazdan əvvəl lütfən əmin olun ki, adekvat və reaktiv moderasiya komandanız var!
       registrations_mode:
@@ -137,17 +166,23 @@ az:
       application: Tətbiq
       metadata: Meta veri
     system_checks:
+      database_schema_check:
+        message_html: Gözləmədə olan veri bazası miqrasiyaları var. Tətbiqin gözlənildiyi kimi işləməsi üçün lütfən onları çalışdırın
       elasticsearch_running_check:
         message_html: Elasticsearch-a bağlana bilmədi. Lütfən çalışdığına əmin olun və ya tam mətn axtarışını sıradan çıxardın
       elasticsearch_version_check:
         message_html: 'Uyumlu olmayan Elasticsearch versiyası: %{value}'
+      upload_check_privacy_error:
+        action: Daha çox bilgi üçün buranı yoxlayın
       upload_check_privacy_error_object_storage:
+        action: Daha çox bilgi üçün buranı yoxlayın
         message_html: "<strong>Obyekt deponuz yanlış konfiqurasiya olunub. İstifadəçilərinizin məxfiliyi risk altındadır.</strong>"
     tags:
       updated_msg: Mövzu etiketi ayarları uğurla güncəlləndi
     terms_of_service:
       generates:
         chance_to_review_html: "<strong>Tərtib olunmuş xidmət şərtləri avtomatik olaraq dərc olunmayacaq.</strong> Nəticələri incələmə şansınız olacaq. Davam etmək üçün lütfən gərəkli ayrıntıları qeyd edin."
+        explanation_html: Təqdim olunan xidmət şərtləri nümunəsi yalnız bilgi məqsədi daşıyır və heç bir məsələ ilə bağlı hüquqi məsləhət kimi qəbul edilməməlidir. Lütfən, öz vəziyyətiniz və konkret hüquqi suallarınızla bağlı şəxsi hüquq məsləhətçinizə müraciət edin.
     trends:
       tags:
         used_by_over_week:
@@ -217,6 +252,7 @@ az:
     invalid_password: Yararsız parol
     prompt: Davam etmək üçün parolu təsdiqlə
   deletes:
+    challenge_not_passed: Daxil etdiyiniz bilgi doğru deyil
     confirm_password: Kimliyinizi doğrulamaq üçün hazırkı parolunuzu daxil edin
     proceed: Hesabı sil
     success_msg: Hesabınız uğurla silindi
@@ -258,6 +294,7 @@ az:
   imports:
     errors:
       incompatible_type: Seçilmiş daxilə köçürmə növü ilə uyumlu deyil
+      no_data: Bu fayl, verilmiş daxilə köçürmə növü ilə uyuşan heç bir verini ehtiva etmir
     preface: Başqa serverdən xaricə köçürdüyünüz veriləri (məsələn, izlədiyiniz və ya əngəllədiyiniz insanların siyahısını) daxilə köçürə bilərsiniz.
     success: Veriləriniz uğurla yüklənib və zamanla emal olunacaq
     type_groups:
@@ -297,6 +334,7 @@ az:
     public_timelines: Ümumi zaman xətləri
   privacy:
     privacy: Məxfilik
+    search_hint_html: Sizi necə tapacaqlarına özünüz qərar verin. İnsanların sizi hər kəsə açıq şəkildə paylaşdıqlarınız vasitəsilə tapmaqlarını istəyirsiniz? Mastodon-dan kənardakı insanların internetdə axtarış edərkən profilinizi tapmasını istəyirsiniz? Nəzərə alın ki, hər kəsə açıq bilgilərin bütün axtarış sistemlərindən tamamilə silinməsinə zəmanət verilə bilməz.
     title: Məxfilik və əlçatanlıq
   privacy_policy:
     title: Məxfilik Siyasəti
@@ -339,6 +377,7 @@ az:
   severed_relationships:
     lost_followers: İtirilən izləyicilər
     preamble: Bir domeni əngəllədiyiniz zaman və ya moderatorlarınız uzaq bir serverin fəaliyyətini dayandırmağa qərar verdiyi zaman izlədiklərinizi və izləyicilərinizi itirə bilərsiniz. Bu baş verdiyi zaman, kəsilmiş münasibətlərin bir siyahısını endirə, nəzərdən keçirə və bəlkə də başqa bir serverə köçürə biləcəksiniz.
+    purged: Bu server haqqında bilgilər serverinizin inzibatçıları tərəfindən silinib.
   statuses:
     boosted_from_html: "%{acct_link} üzərindən təkrar paylaşdı"
     default_language: İnterfeys dili ilə eyni

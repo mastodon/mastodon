@@ -91,6 +91,7 @@ fi:
         closed_registrations_message: Näkyy, kun rekisteröityminen on suljettu
         content_cache_retention_period: Kaikki muiden palvelinten julkaisut (mukaan lukien tehostukset ja vastaukset) poistuvat, kun määritetty määrä päiviä on kulunut, lukuun ottamatta paikallisen käyttäjän vuorovaikutusta näiden julkaisujen kanssa. Tämä sisältää julkaisut, jotka paikallinen käyttäjä on merkinnyt kirjanmerkiksi tai suosikiksi. Myös yksityismaininnat eri palvelinten käyttäjien välillä menetetään, eikä niitä voi palauttaa. Tämä asetus on tarkoitettu käytettäväksi erityistapauksissa ja rikkoo monia käyttäjien odotuksia, kun sitä sovelletaan yleiskäyttöön.
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin selainversiossa.
+        custom_robots_html: <a href="%{path}">Syntaksi</a>
         email_footer_text: Valinnainen teksti, joka näkyy vain uutiskirjeiden alatunnisteessa.
         favicon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen Mastodonin sivustokuvakkeen haluamallasi kuvakkeella.
         landing_page: Valitsee, minkä sivun uudet kävijät näkevät saapuessaan palvelimellesi. Jos valitset ”Trendit”, trendien tulee olla käytössä Löydettävyys-asetuksissa. Jos valitset ”Paikallinen syöte”, kohta ”Pääsy paikallisia julkaisuja esitteleviin livesyötteisiin” tulee asettaa arvoon ”Kaikki” Löydettävyys-asetuksissa.
@@ -299,6 +300,7 @@ fi:
         closed_registrations_message: Mukautettu viesti, kun rekisteröityminen ei ole saatavilla
         content_cache_retention_period: Etäsisällön säilytysaika
         custom_css: Mukautettu CSS
+        custom_robots: Mukautettu robots.txt
         email_footer_text: Alatunnisteen lisäteksti
         favicon: Sivustokuvake
         landing_page: Uusien kävijöiden aloitussivu
@@ -307,6 +309,7 @@ fi:
         mascot: Mukautettu maskotti (vanhentunut)
         media_cache_retention_period: Mediasisällön välimuistin säilytysaika
         min_age: Vähimmäisikävaatimus
+        override_robots: Korvaa oletusarvoinen robots.txt
         peers_api_enabled: Julkaise löydettyjen palvelinten luettelo ohjelmointirajapinnassa
         profile_directory: Ota profiilihakemisto käyttöön
         registrations_mode: Kuka voi rekisteröityä

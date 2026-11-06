@@ -1209,6 +1209,9 @@ it:
         danger_zone: Zona pericolosa
         preamble: Controlla come vengono memorizzati i contenuti generati dall'utente in Mastodon.
         title: Conservazione dei contenuti
+      crawlers:
+        preamble: Controlla come i bot (corretti nel loro funzionamento), come i crawler dei motori di ricerca, possono interagire con il tuo server Mastodon. I bot malevoli possono ignorare queste impostazioni e devono essere bloccati a livello di rete.
+        title: Controlli dei crawler
       default_noindex:
         desc_html: Interessa tutti gli utenti che non hanno modificato personalmente questa impostazione
         title: Esclude gli utenti dall'indicizzazione dei motori di ricerca per impostazione predefinita
@@ -1478,14 +1481,14 @@ it:
         confirm_allow_account: Sei sicuro di voler consentire gli account selezionati?
         confirm_disallow: Sei sicuro di non voler consentire gli stati selezionati?
         confirm_disallow_account: Sei sicuro di non voler consentire gli account selezionati?
-        description_html: Questi sono post noti al tuo server che sono attualmente molto condivisi e preferiti. Può aiutare i tuoi utenti (nuovi e non) a trovare più persone da seguire. Nessun post viene visualizzato pubblicamente fino a quando si approva l'autore, e l'autore permette che il suo account sia suggerito ad altri. È anche possibile permettere o rifiutare singoli post.
+        description_html: Questi sono post noti al tuo server e che, in questo momento, vengono molto condivisi e aggiunti ai preferiti. Possono aiutare gli utenti nuovi e quelli che ritornano a trovare altre persone da seguire. Nessun post viene mostrato pubblicamente, finché non approvi l'autore e quest'ultimo non autorizza che il proprio account venga suggerito ad altri utenti. Puoi anche approvare o rifiutare singoli post.
         disallow: Non consentire post
         disallow_account: Non consentire autore
         no_status_selected: Nessun post di tendenza è stato modificato in quanto nessuno è stato selezionato
         not_discoverable: L'autore non ha optato di essere scopribile
         shared_by:
-          one: Condiviso o preferito una volta
-          other: Condiviso e preferito %{friendly_count} volte
+          one: Condiviso o aggiunto ai preferiti una volta
+          other: Condiviso e aggiunto ai preferiti %{friendly_count} volte
         title: Post di tendenza
       tags:
         current_score: Punteggio corrente %{score}
@@ -2200,8 +2203,8 @@ it:
       sign_up:
         subject: "%{name} si è iscritto"
     favourite:
-      body: 'Il tuo status è stato apprezzato da %{name}:'
-      subject: "%{name} ha apprezzato il tuo status"
+      body: 'Il tuo status è stato aggiunto ai preferiti da %{name}:'
+      subject: "%{name} ha aggiunto il tuo post ai preferiti"
       title: Nuovo preferito
     follow:
       body: "%{name} ti sta seguendo!"
@@ -2401,7 +2404,7 @@ it:
     authorized_apps: Applicazioni autorizzate
     back: Torna su Mastodon
     development: Sviluppo
-    edit_profile: Modifica profilo
+    edit_profile: Modifica il profilo
     export: Esporta
     featured_tags: Hashtag in evidenza
     import: Importa
@@ -2481,10 +2484,10 @@ it:
     enabled_hint: Cancella automaticamente i tuoi post una volta raggiunta una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
     exceptions: Eccezioni
     explanation: L'eliminazione automatica viene eseguita con bassa priorità. Potrebbe verificarsi un ritardo tra il raggiungimento della soglia di età e la rimozione.
-    ignore_favs: Ignora preferiti
+    ignore_favs: Ignora i preferiti
     ignore_reblogs: Ignora le condivisioni
     interaction_exceptions: Eccezioni basate sulle interazioni
-    interaction_exceptions_explanation: I post che superano temporaneamente la soglia dei preferiti o delle condivisioni potrebbero essere conservati anche se in seguito vengono diminuiti.
+    interaction_exceptions_explanation: I post che superano temporaneamente la soglia di aggiunte ai preferiti o condivisioni potrebbero essere mantenuti anche se in seguito il loro numero diminuisce.
     keep_direct: Conserva messaggi diretti
     keep_direct_hint: Non cancella nessuno dei tuoi messaggi diretti
     keep_media: Conserva post con media allegati
@@ -2495,8 +2498,8 @@ it:
     keep_polls_hint: Non cancella nessuno dei tuoi sondaggi
     keep_self_bookmark: Conserva post che hai marcato con segnalibro
     keep_self_bookmark_hint: Non cancella i tuoi post se li hai marcati con segnalibro
-    keep_self_fav: Conserva post che hai marcato come apprezzato
-    keep_self_fav_hint: Non cancella i tuoi post se li hai marcati come apprezzati
+    keep_self_fav: Conserva i post che hai aggiunto ai preferiti
+    keep_self_fav_hint: Non cancella i tuoi post se li hai aggiunti ai preferiti
     min_age:
       '1209600': 2 settimane
       '15778476': 6 mesi
@@ -2507,8 +2510,8 @@ it:
       '63113904': 2 anni
       '7889238': 3 mesi
     min_age_label: Soglia di età
-    min_favs: Conserva i post preferiti più di
-    min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto almeno questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
+    min_favs: Conserva i post aggiunti ai preferiti per almeno
+    min_favs_hint: Non cancella nessuno dei tuoi post che sono stati aggiunti ai preferiti almeno il numero di volte indicato. Lascia il campo vuoto per cancellare i post indipendentemente da quante volte sono stati aggiunti ai preferiti
     min_reblogs: Mantieni i post condivisi almeno
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:
@@ -2563,7 +2566,7 @@ it:
       user:
         confirmation_html: Non riceverai più %{type} da Mastodon su %{domain}.
     notification_emails:
-      favourite: email di notifica per i post apprezzati
+      favourite: email di notifica per i post aggiunti ai preferiti
       follow: email di notifica per i nuovi follower
       follow_request: email di notifica per le richieste di seguirti
       mention: email di notifica per le menzioni

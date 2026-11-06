@@ -790,16 +790,26 @@ hu:
       delete: Törlés
       last_synced_at: 'Utolsó szinkronizálás:'
       list_actions:
+        accept: Engedélyezési lista
         default: Vegyes (engedélyezése és elutasítás)
+        reject: Tiltólista
       list_actions_short:
         accept: Engedélyezési lista
         default: Vegyes
         reject: Tiltólista
       name: Név
+      new:
+        create: Feliratkozás
+        title: Új moderációs feliratkozás
+      override_unattributed: Kézi tiltások felülbírálása
       priority: Prioritás
+      show:
+        edit: Feliratkozás szerkesztése
       tabs:
         logs: Naplók
+        subscriptions: Feliratkozások
         suggestions: Javaslatok
+      title: Moderációs feliratkozások
       type: Típus
       types:
         csv_list: CSV-lista
@@ -1015,6 +1025,98 @@ hu:
       translation: Fordítás
       translations: Fordítások
       translations_explanation: Fordításokat is hozzáadhatóak a szabályokhoz. Az alapértelmezett érték lesz megjelenítve, ha nem érhető el lefordított változat. Győződj meg arról, hogy a megadott fordítás szinkronban van az alapértelmezett értékkel.
+    server_checks:
+      checks:
+        database_schema:
+          error:
+            title: Hiba történt az adatbázisséma ellenőrzése során
+          ok:
+            title: Nincsenek függőben lévő adatbázis-migrációk
+          pending:
+            title: Függőben lévő adatbázis-migrációk vannak
+          running:
+            title: A kiszolgáló ellenőrzi az adatbázissémát
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte az adatbázissémát
+        elastic_search:
+          error:
+            title: Hiba történt az Elasticsearch konfigurációja ellenőrzése során
+          ok:
+            title: A Elasticsearch probléma nélkül be lett állítva
+          pending:
+            lead:
+              analysis_index_mismatch_html: Az Elasticsearch indexelemző beállításai elavultak. Futtasd a <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code> parancsot.
+              cluster_health_red_html: Az Elasticsearch klaszter egészségtelen (piros állapotú), a keresési funkciók nem érhetők el
+              cluster_health_yellow_html: Az Elasticsearch klaszter egészségtelen (sárga állapotú), érdemes megvizsgálni az okát
+              index_mismatch_html: Az Elasticsearch index-leképezései elavultak. Futtasd a <code>tootctl search deploy --only=%{mismatched_indexes_str}</code> parancsot.
+              preset_html: Az Elasticsearch klaszter egynél több csomóponttal rendelkezik, de a Mastodon nincs beállítva ezek használatára
+              preset_single_node_html: Az Elasticsearch klaszterednek csak egy csomópontja van, az <code>ES_PRESET</code> értéket <code>single_node_cluster</code> értékre kell állítani
+              reset_chewy_html: Az Elasticsearch rendszerindexed egy beállításmódosítás miatt elavult. A frissítéshez futtasd a <code>tootctl search deploy --reset-chewy</code> parancsot.
+              running_check_html: Nem sikerült az Elasticsearchhöz kapcsolódni. Ellenőrizd, hogy fut-e, vagy kapcsold ki a teljes szöveges keresést.
+              version_check_html: Az Elasticsearch %{running_version} fut, de %{required_version} szükséges
+            title: Problémák vannak az Elasticsearch-csel
+          running:
+            title: A kiszolgáló ellenőrzi az Elasticsearch konfigurációját
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte az Elasticsearch konfigurációját
+        media_privacy:
+          pending:
+            lead:
+              upload_check_privacy_error_html: A webkiszolgáló hibásan van beállítva
+              upload_check_privacy_error_object_storage_html: Az objektumtároló hibásan van beállítva
+            title: A felhasználóid adatvédelme veszélyben van
+          running:
+            title: A kiszolgáló ellenőrzi az adatvédelem állapotát
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte az adatvédelem állapotát
+        rules:
+          error:
+            title: Hiba történt a kiszolgálószabályok ellenőrzése során
+          ok:
+            title: A kiszolgálószabályok be vannak állítva
+          pending:
+            lead_html: A kiszolgáló nem rendelkezik közzétett szabályokkal. A világos szabályok segítik a moderációt, és elvárásokat fogalmaznak meg.
+            title: Kiszolgálószabályok beállítása
+          running:
+            title: A kiszolgáló ellenőrzi a szabályokat
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte, hogy vannak-e szabályok
+        sidekiq_process:
+          error:
+            title: Hiba történt a Sidekiq konfigurációja ellenőrzése során
+          ok:
+            title: A Sidekiq probléma nélkül be lett állítva
+          pending:
+            title: Tekintsd át a Sidekiq konfigurációját
+          running:
+            title: A kiszolgáló ellenőrzi a Sidekiq konfigurációját
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte a Sidekiq konfigurációját
+        software_version:
+          error:
+            title: Hiba történt a szoftverfrissítések ellenőrzése során
+          ok:
+            title: A Mastodon-példány naprakész
+          pending:
+            lead:
+              patch_html: Egy hibajavító Mastodon-frissítés érhető el
+              regular_html: A Mastodon új verziója érhető el
+              urgent_html: Kritikus Mastodon frissítés érhető el, frissíts a lehető leggyorsabban
+            title: Frissítsd a Mastodon-példányodat
+          running:
+            title: A kiszolgáló ellenőrzi, hogy van-e függőben lévő szoftverfrissítés
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte, hogy van-e szoftverfrissítés
+      ignore:
+        label: Mellőzés
+      lead: Javaslatok a kiszolgáló biztonságosan, barátságosan és hatékonyan tartásához.
+      recommendations:
+        title: Javaslatok
+      restore:
+        label: Helyreállítás
+      setup:
+        label: Beállítás
+      title: Kiszolgáló egészsége
     settings:
       about:
         manage_rules: Kiszolgáló szabályainak kezelése
@@ -1037,6 +1139,8 @@ hu:
         danger_zone: Veszélyzóna
         preamble: A felhasználók által előállított tartalom Mastodonon való tárolásának szabályozása.
         title: Tartalom megtartása
+      crawlers:
+        title: Keresőrobot-vezérlők
       default_noindex:
         desc_html: Azokat a felhasználókat érinti, akik nem módosították ezt a beállítást
         title: Alapértelmezetten ne indexeljék a keresők a felhasználókat
@@ -1189,7 +1293,7 @@ hu:
       elasticsearch_reset_chewy:
         message_html: Az Elasticsearch rendszerindexed egy beállításmódosítás miatt elavult. A frissítéshez futtasd a <code>tootctl search deploy --reset-chewy</code> parancsot.
       elasticsearch_running_check:
-        message_html: Nem sikerült az Elasticsearchhöz kapcsolódni. Ellenőrizze, hogy fut-e, vagy kapcsolja ki a teljes szöveges keresést.
+        message_html: Nem sikerült az Elasticsearchhöz kapcsolódni. Ellenőrizd, hogy fut-e, vagy kapcsold ki a teljes szöveges keresést.
       elasticsearch_version_check:
         message_html: 'Nem kompatibilis Elasticsearch verzió: %{value}'
         version_comparison: Az Elasticsearch %{running_version} fut, de %{required_version} szükséges
@@ -1365,6 +1469,15 @@ hu:
     warning_presets:
       add_new: Új hozzáadása
       delete: Törlés
+      dropdown:
+        all_actions: Összes művelet
+        disable: Befagyasztás
+        none: Figyelmeztetés
+        sensitive: Kényes
+        silence: Korlátozás
+        suspend: Felfüggesztés
+      edit_preset: Konzervválasz szerkesztése
+      empty: Még egyetlen konzervválaszt sem határoztál meg.
       navigation_title: Konzervválaszok
       title: Moderátori konzervválaszok
     webhooks:
@@ -1525,12 +1638,15 @@ hu:
     security: Biztonság
     set_new_password: Új jelszó beállítása
     setup:
+      correct_email: Cím javítása
       email_below_hint_html: Nézd meg a levélszemét mappát, vagy kérj egy újat. Módosíthatod az e-mail-címet, ha az hibás.
       email_settings_hint_html: A Mastodon használatának megkezdéséhez kattints a(z) %{email} címre küldött hivatkozásra. Itt fogunk várni.
       link_not_received: Nem kaptad meg a hivatkozást?
       new_confirmation_instructions_sent: Néhány perc múlva új e-mailt fogsz kapni a megerősítési hivatkozással.
       title: Bejövő postaláda ellenőrzése
+      title_wait: Kövesd szemmel a postafiókodat
       wrong_email: Hibás e-mail-cím?
+      wrong_email_below_hint_html: Nincs ok a pánikra! Alább kijavíthatod az e-mail-címedet.
     sign_in:
       preamble_html: Jelentkezz be a <strong>%{domain}</strong> hitelesítéső adataiddal. Ha másik kiszolgálón található a fiókod, akkor itt nem fogsz tudni belépni.
       title: 'Bejelentkezés ide: %{domain}'
@@ -1621,6 +1737,7 @@ hu:
       action_taken: Intézkedés
       appeal: Fellebbezés
       appeal_approved: Ezt a felrótt vétséget eredményesen fellebbezték, így már nem érvényes
+      appeal_handled_by: Fellebbezés kezelője
       appeal_rejected: A fellebbezést visszautasították
       appeal_submitted_at: Fellebbezés beküldve
       appealed_msg: A fellebbezésedet beküldtük. Ha jóváhagyták, értesítünk.
