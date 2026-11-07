@@ -282,4 +282,16 @@ RSpec.describe ApplicationHelper do
       end
     end
   end
+
+  describe 'grouped_scopes' do
+    it 'merges the access of a broader scope into narrower scopes' do
+      expect(helper.grouped_scopes(%w(read write:accounts)).to_h { |scope| [scope.key, scope.access] })
+        .to eq('all' => 'read', 'accounts' => 'read/write')
+    end
+
+    it 'keeps the profile scope read-only' do
+      expect(helper.grouped_scopes(%w(write profile)).to_h { |scope| [scope.key, scope.access] })
+        .to eq('all' => 'write', 'profile' => 'read')
+    end
+  end
 end

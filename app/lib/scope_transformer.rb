@@ -29,7 +29,7 @@ class ScopeTransformer < Parslet::Transform
     end
 
     def merge!(other_scope)
-      raise ArgumentError unless other_scope.namespace == namespace && other_scope.term == term
+      raise ArgumentError unless other_scope.namespace == namespace && [term, DEFAULT_TERM].include?(other_scope.term)
 
       @access.concat(other_scope.instance_variable_get(:@access))
       @access.uniq!

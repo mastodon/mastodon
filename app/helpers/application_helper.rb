@@ -245,7 +245,7 @@ module ApplicationHelper
     scope_parser      = ScopeParser.new
     scope_transformer = ScopeTransformer.new
 
-    scopes.each_with_object({}) do |str, h|
+    grouped = scopes.each_with_object({}) do |str, h|
       scope = scope_transformer.apply(scope_parser.parse(str))
 
       if h[scope.key]
@@ -253,7 +253,16 @@ module ApplicationHelper
       else
         h[scope.key] = scope
       end
-    end.values
+    end
+
+    grouped.each_value do |scope|
+      next if [ScopeTransformer::Scope::DEFAULT_TERM, 'profile'].include?(scope.term)
+
+      broader_scope = grouped[[scope.namespace, ScopeTransformer::Scope::DEFAULT_TERM].compact.join('/')]
+      scope.merge!(broader_scope) if broader_scope
+    end
+
+    grouped.values
   end
 
   def prerender_custom_emojis(html, custom_emojis, other_options = {})
