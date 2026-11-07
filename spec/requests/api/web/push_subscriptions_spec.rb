@@ -3,6 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe 'API Web Push Subscriptions' do
+  around do |test|
+    original_keyring = Rails.configuration.x.vapid
+    Rails.configuration.x.vapid = Mastodon::VapidKeyring.new ['EfghEfghEfghEfghEfghEfghEfghEfghEfghEfghEfg=', 'AbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbc=']
+
+    test.run
+
+    Rails.configuration.x.vapid = original_keyring
+  end
+
   let(:create_payload) do
     {
       subscription: {
@@ -12,6 +21,7 @@ RSpec.describe 'API Web Push Subscriptions' do
           auth: 'eH_C8rq2raXqlcBVDa1gLg==',
         },
         standard: standard,
+        server_key: server_key,
       },
     }
   end
@@ -34,7 +44,11 @@ RSpec.describe 'API Web Push Subscriptions' do
       },
     }
   end
+
   let(:standard) { '1' }
+
+  let(:server_key) { 'BHzvF0-q-RhWyAVcJ2wYcLCaY8sjcteBWXOa1uNgA1FKn8aWgNUvFvm8SELsVnnlZx0_oHpg1AoW4mqRPn_HNFQ=' }
+  let(:inactive_server_key) { 'BBU2OoloWyzatoc0k9QJKF1DiCo9cGniUZzJNa6qWGP-dYGLRSyCcQ7H7OtMfBPSuHAwE6cRRd6waoxhWeaMCOY=' }
 
   describe 'DELETE /api/web/push_subscriptions/:id' do
     subject { delete api_web_push_subscription_path(token) }
@@ -107,6 +121,25 @@ RSpec.describe 'API Web Push Subscriptions' do
         .to have_http_status(400)
     end
 
+    it 'rejects unknown server keys' do
+      post api_web_push_subscriptions_path, params: create_payload.deep_merge({ subscription: { server_key: 'notavalidkey' } })
+
+      expect(response)
+        .to have_http_status(422)
+    end
+
+    it 'accepts inactive server keys' do
+      post api_web_push_subscriptions_path, params: create_payload.deep_merge({ subscription: { server_key: inactive_server_key } })
+
+      expect(response)
+        .to have_http_status(200)
+
+      expect(created_push_subscription)
+        .to have_attributes(
+          server_key: eq(inactive_server_key)
+        )
+    end
+
     it 'saves push subscriptions with valid params' do
       post api_web_push_subscriptions_path, params: create_payload
       expect(response)
@@ -116,7 +149,8 @@ RSpec.describe 'API Web Push Subscriptions' do
         .to have_attributes(
           endpoint: eq(create_payload[:subscription][:endpoint]),
           key_p256dh: eq(create_payload[:subscription][:keys][:p256dh]),
-          key_auth: eq(create_payload[:subscription][:keys][:auth])
+          key_auth: eq(create_payload[:subscription][:keys][:auth]),
+          server_key: eq(create_payload[:subscription][:server_key])
         )
         .and be_standard
       expect(user.session_activations.first.web_push_subscription)

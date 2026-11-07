@@ -55,11 +55,12 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
       key_p256dh: subscription_params[:keys][:p256dh],
       standard: subscription_params[:standard] || false,
       user_id: current_user.id,
+      server_key: subscription_params[:server_key],
     }
   end
 
   def subscription_params
-    params.expect(subscription: [:endpoint, :standard, keys: [:auth, :p256dh]])
+    params.expect(subscription: [:endpoint, :standard, :server_key, keys: [:auth, :p256dh]])
   end
 
   def data_params

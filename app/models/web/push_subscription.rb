@@ -28,6 +28,7 @@ class Web::PushSubscription < ApplicationRecord
   validates :key_auth, presence: true
 
   validates_with WebPushKeyValidator
+  validates_with WebPushServerKeyValidator, on: :create
 
   delegate :locale, to: :user
   delegate :token, to: :access_token, prefix: :associated_access
