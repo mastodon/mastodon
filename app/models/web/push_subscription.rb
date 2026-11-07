@@ -9,6 +9,7 @@
 #  endpoint        :string           not null
 #  key_auth        :string           not null
 #  key_p256dh      :string           not null
+#  server_key      :string
 #  standard        :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -38,7 +39,7 @@ class Web::PushSubscription < ApplicationRecord
   end
 
   def vapid_key
-    Rails.configuration.x.vapid.lookup(nil)
+    Rails.configuration.x.vapid.lookup(server_key)
   end
 
   class << self
