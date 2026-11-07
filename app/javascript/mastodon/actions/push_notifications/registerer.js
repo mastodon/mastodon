@@ -1,19 +1,8 @@
 import api from '../../api';
 import { me } from '../../initial_state';
 import { pushNotificationsSetting } from '../../settings';
-import { decode as decodeBase64 } from '../../utils/base64';
 
 import { setBrowserSupport, setSubscription, clearSubscription } from './setter';
-
-// Taken from https://www.npmjs.com/package/web-push
-const urlBase64ToUint8Array = (base64String) => {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(/-/g, '+')
-    .replace(/_/g, '/');
-
-  return decodeBase64(base64);
-};
 
 const getApplicationServerKey = () => document.querySelector('[name="applicationServerKey"]').getAttribute('content');
 
@@ -26,14 +15,15 @@ const getPushSubscription = (registration) =>
 const subscribe = (registration) =>
   registration.pushManager.subscribe({
     userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(getApplicationServerKey()),
+    applicationServerKey: Uint8Array.fromBase64(getApplicationServerKey(), { alphabet: "base64url" }),
   });
 
 const unsubscribe = ({ registration, subscription }) =>
   subscription ? subscription.unsubscribe().then(() => registration) : registration;
 
 const sendSubscriptionToBackend = (subscription) => {
-  const params = { subscription: { ...subscription.toJSON(), standard: true } };
+  const server_key = (new Uint8Array(subscription.options.applicationServerKey)).toBase64({ alphabet: "base64url" });
+  const params = { subscription: { ...subscription.toJSON(), standard: true, server_key } };
 
   if (me) {
     const data = pushNotificationsSetting.get(me);
@@ -63,8 +53,8 @@ export function register () {
         .then(({ registration, subscription }) => {
           if (subscription !== null) {
             // We have a subscription, check if it is still valid
-            const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
-            const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
+            const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toBase64({ alphabet: "base64url" });
+            const subscriptionServerKey = getApplicationServerKey();
             const serverEndpoint = getState().getIn(['push_notifications', 'subscription', 'endpoint']);
 
             // If the VAPID public key did not change and the endpoint corresponds
