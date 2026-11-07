@@ -71,7 +71,7 @@ export function emojiToUnicodeHex(emoji: string): string {
 }
 
 const CHARS_ALLOWED_AROUND_EMOJI =
-  // eslint-disable-next-line no-control-regex
+  // oxlint-disable-next-line no-control-regex
   /[>< …\u0009-\u000d\u0085\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000]/;
 
 // TODO: Move to picker file when that's being built out.

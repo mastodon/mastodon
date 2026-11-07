@@ -33,7 +33,6 @@ export function withOptionalRouter<
     return (
       <__RouterContext.Consumer>
         {(context) => {
-          // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
           if (context) {
             return (
               // @ts-expect-error - Dynamic covariant generic components are tough to type.

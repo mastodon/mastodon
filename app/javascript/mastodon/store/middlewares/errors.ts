@@ -32,7 +32,7 @@ function isActionWithMaybeAlertParams(
   return isAction(action);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type -- we need to use `{}` here to ensure the dispatch types can be merged
+// oxlint-disable-next-line @typescript-eslint/no-empty-object-type -- we need to use `{}` here to ensure the dispatch types can be merged
 export const errorsMiddleware: Middleware<{}, RootState> =
   ({ dispatch }) =>
   (next) =>

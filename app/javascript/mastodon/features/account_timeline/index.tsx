@@ -196,5 +196,5 @@ const EmptyMessage: FC<{ accountId: string }> = ({ accountId }) => {
   );
 };
 
-// eslint-disable-next-line import/no-default-export
+// oxlint-disable-next-line import/no-default-export
 export default AccountTimeline;

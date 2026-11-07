@@ -51,7 +51,6 @@ function isSetHeightMessage(data: unknown): data is SetHeightMessage {
 }
 
 window.addEventListener('message', (e) => {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- typings are not correct, it can be null in very rare cases
   if (!e.data || !isSetHeightMessage(e.data) || !window.parent) return;
 
   const data = e.data;

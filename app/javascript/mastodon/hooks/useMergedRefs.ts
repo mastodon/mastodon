@@ -11,7 +11,7 @@ export function useMergedRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
             cleanups.push(cleanup);
           }
         } else if (ref) {
-          // eslint-disable-next-line react-hooks/immutability -- Refs can be mutated
+          // oxlint-disable-next-line react-hooks/immutability -- Refs can be mutated
           ref.current = node;
         }
       }
@@ -24,6 +24,5 @@ export function useMergedRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
     },
     [refs],
   );
-  // eslint-disable-next-line react-hooks/immutability
   return setRef;
 }

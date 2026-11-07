@@ -1,5 +1,5 @@
 const config = {
-  '*.{js,ts}': 'eslint --fix',
+  '*.{js,ts}': 'oxlint --fix',
   '**/*.ts': () => 'tsc -p tsconfig.json --noEmit',
 };
 
