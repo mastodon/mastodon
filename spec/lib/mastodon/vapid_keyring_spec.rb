@@ -4,6 +4,10 @@ require 'rails_helper'
 require 'mastodon/vapid_keyring'
 
 RSpec.describe Mastodon::VapidKeyring do
+  let(:inactive_keypair) { Webpush::VapidKey.new }
+  let(:active_keypair) { Webpush::VapidKey.new }
+  let(:keyring) { described_class.new([inactive_keypair.private_key, active_keypair.private_key]) }
+
   describe 'an empty keyring' do
     let(:keyring) { described_class.new([]) }
 
@@ -14,27 +18,31 @@ RSpec.describe Mastodon::VapidKeyring do
     it 'returns nil for public_key' do
       expect(keyring.public_key).to be_nil
     end
+  end
 
-    it 'returns nil for private_key' do
-      expect(keyring.private_key).to be_nil
+  describe 'active_key' do
+    it 'uses the last keypair' do
+      expect(keyring.active_key.private_key).to eq(active_keypair.private_key)
     end
   end
 
-  describe 'a non-empty keyring' do
-    let(:inactive_keypair) { Webpush::VapidKey.new }
-    let(:active_keypair) { Webpush::VapidKey.new }
-    let(:keyring) { described_class.new([inactive_keypair.private_key, active_keypair.private_key]) }
-
-    it 'uses the last keypair for the active key' do
-      expect(keyring.active_key).to eq(active_keypair)
-    end
-
-    it 'uses the last keypair for the public key' do
+  describe 'public_key' do
+    it 'uses the last keypair' do
       expect(keyring.public_key).to eq(active_keypair.public_key)
     end
+  end
 
-    it 'uses the last keypair for the private key' do
-      expect(keyring.private_key).to eq(active_keypair.private_key)
+  describe 'lookup' do
+    it 'returns the active key for nil' do
+      expect(keyring.lookup(nil).private_key).to eq(active_keypair.private_key)
+    end
+
+    it 'returns an inactive key when found' do
+      expect(keyring.lookup(inactive_keypair.public_key).private_key).to eq(inactive_keypair.private_key)
+    end
+
+    it 'returns nil when a key is not found' do
+      expect(keyring.lookup('invalid_public_key')).to be_nil
     end
   end
 end
