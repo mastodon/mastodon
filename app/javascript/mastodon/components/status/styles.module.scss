@@ -233,3 +233,27 @@
 .inlineIcon {
   vertical-align: middle;
 }
+
+.boostSpin :global(.icon) {
+  :global(.no-reduce-motion) & {
+    animation: boost-spin 0.4s ease-out;
+  }
+}
+
+@keyframes boost-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  55% {
+    transform: rotate(200deg) scale(1.15);
+  }
+
+  80% {
+    transform: rotate(170deg) scale(0.95);
+  }
+
+  100% {
+    transform: rotate(180deg) scale(1);
+  }
+}
