@@ -37,6 +37,10 @@ class Web::PushSubscription < ApplicationRecord
     policy_allows_notification?(notification) && alert_enabled_for_notification_type?(notification)
   end
 
+  def vapid_key
+    Rails.configuration.x.vapid.lookup(nil)
+  end
+
   class << self
     def unsubscribe_for(application_id, resource_owner)
       access_token_ids = Doorkeeper::AccessToken.where(application_id: application_id, resource_owner_id: resource_owner.id).not_revoked.pluck(:id)

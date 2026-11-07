@@ -100,6 +100,24 @@ RSpec.describe Web::PushNotificationWorker do
       end
     end
 
+    context 'with a missing vapid key' do
+      around do |example|
+        original_keyring = Rails.configuration.x.vapid
+        Rails.configuration.x.vapid = Mastodon::VapidKeyring.new([])
+        example.run
+        Rails.configuration.x.vapid = original_keyring
+      end
+
+      it 'removes the record and does not process the request' do
+        expect { subject.perform(std_subscription.id, notification.id) }
+          .to_not raise_error
+
+        expect { std_subscription.reload }.to raise_error ActiveRecord::RecordNotFound
+
+        expect(a_request(:post, endpoint)).to_not have_been_made
+      end
+    end
+
     def legacy_web_push_endpoint_request
       a_request(
         :post,
