@@ -34,6 +34,10 @@ import {
   useStatusIcons,
   useStatusMenuActions,
 } from './hooks';
+import {
+  StatusLikeBurstActiveIcon,
+  StatusLikeBurstIcon,
+} from './like_burst_icon';
 import classes from './styles.module.scss';
 
 interface StatusActionBarProps {
@@ -75,6 +79,30 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
 
   const { reply, like, bookmark } = useStatusIcons(statusId);
 
+  const currentAccountId = useCurrentAccountId();
+
+  const [likeBurst, setLikeBurst] = useState(false);
+
+  const handleLikeClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (currentAccountId && !like.active) {
+        setLikeBurst(true);
+      }
+
+      like.action(event);
+    },
+    [currentAccountId, like],
+  );
+
+  const handleLikeAnimationEnd = useCallback(
+    (event: React.AnimationEvent<HTMLButtonElement>) => {
+      if (event.animationName.endsWith('heart-pop')) {
+        setLikeBurst(false);
+      }
+    },
+    [],
+  );
+
   if (!status) {
     return null;
   }
@@ -104,8 +132,12 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         variant='ghost'
         active={like.active}
         tooltip={{ type: 'label', text: like.title }}
-        leadingIcon={like.icon}
-        onClick={like.action}
+        leadingIcon={
+          like.active ? StatusLikeBurstActiveIcon : StatusLikeBurstIcon
+        }
+        onClick={handleLikeClick}
+        data-like-burst={likeBurst || undefined}
+        onAnimationEnd={handleLikeAnimationEnd}
         className={classes.actionsButtonGap}
       >
         {withCounters && like.counter}
