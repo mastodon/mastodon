@@ -18,7 +18,8 @@ module Mastodon::CLI
       if Rails.configuration.active_record.encryption.primary_key.length < 2
         fail_with_message <<~ERROR
           Both the old and the new encryption key are required to re-encrypt the records in the database.
-          Ensure that ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY contains both, separated by a comma.
+          Ensure that ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY and ACTIVE_RECORD_ENCRYPTION_INACTIVE_KEYS are both set correctly
+          with the new and old encryption keys respectively.
         ERROR
       end
 
