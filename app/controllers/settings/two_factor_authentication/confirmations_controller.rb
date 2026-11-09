@@ -23,13 +23,7 @@ module Settings
 
           current_user.otp_required_for_login = true
           current_user.otp_secret = session[:new_otp_secret]
-
-          generated_otp_backup_codes = false
-          if current_user.otp_backup_codes.blank?
-            @recovery_codes = current_user.generate_otp_backup_codes!
-
-            generated_otp_backup_codes = true
-          end
+          @recovery_codes = current_user.generate_otp_backup_codes! if current_user.otp_backup_codes.blank?
 
           current_user.save!
 
@@ -37,7 +31,7 @@ module Settings
 
           session.delete(:new_otp_secret)
 
-          if generated_otp_backup_codes
+          if @recovery_codes
             render 'settings/two_factor_authentication/recovery_codes/index'
           else
             redirect_to settings_two_factor_authentication_methods_path
