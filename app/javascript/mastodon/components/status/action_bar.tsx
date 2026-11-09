@@ -18,6 +18,7 @@ import {
   useAppSelector,
 } from '@/mastodon/store/typed_functions';
 
+import { AnimatedNumber } from '../animated_number';
 import { Button, IconButton, ToggleButton, ToggleIconButton } from '../button';
 import { Icon } from '../icon';
 import {
@@ -92,11 +93,11 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         onClick={reply.action}
         tooltip={{ type: 'label', text: reply.title }}
       >
-        {withCounters && reply.counter}
+        {withCounters && <AnimatedNumber value={reply.counter ?? 0} />}
       </Button>
 
       <StatusReblogButton statusId={statusId}>
-        {withCounters && status.reblogs_count}
+        {withCounters && <AnimatedNumber value={status.reblogs_count} />}
       </StatusReblogButton>
 
       <ToggleButton
@@ -108,7 +109,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         onClick={like.action}
         className={classes.actionsButtonGap}
       >
-        {withCounters && like.counter}
+        {withCounters && <AnimatedNumber value={like.counter ?? 0} />}
       </ToggleButton>
 
       {isPublic && (
