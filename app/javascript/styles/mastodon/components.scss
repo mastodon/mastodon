@@ -2104,7 +2104,7 @@ a.account__display-name {
 
 .columns-area__panels__pane--overlay {
   pointer-events: auto;
-  background: rgb(from var(--color-bg-overlay) r g b / 50%);
+  background: var(--color-bg-overlay);
   z-index: 3;
 
   .columns-area__panels__pane__inner {
@@ -3894,7 +3894,7 @@ a.status-card {
 
 .upload-area {
   align-items: center;
-  background: rgb(from var(--color-bg-overlay) r g b / 80%);
+  background: var(--color-bg-overlay);
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -4385,7 +4385,7 @@ a.status-card {
   inset-inline-start: 0;
   inset-inline-end: 0;
   bottom: 0;
-  opacity: 0.5;
+  opacity: 1;
   background: var(--color-bg-overlay);
   transition: background 0.5s;
 }
@@ -5729,7 +5729,7 @@ a.status-card {
   top: 0;
   inset-inline-start: 0;
   z-index: -2;
-  background: var(--color-bg-overlay);
+  background: rgb(from var(--color-bg-overlay) r g b / 100%);
 
   &--hidden {
     display: none;
@@ -6554,16 +6554,6 @@ noscript {
     border-left: 0;
     border-right: 0;
   }
-}
-
-.drawer__backdrop {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  inset-inline-start: 0;
-  width: 100%;
-  height: 100%;
-  background: rgb(from var(--color-bg-overlay) r g b / 50%);
 }
 
 .focal-point {
