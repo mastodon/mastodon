@@ -56,7 +56,7 @@
     height: var(--space-8);
     background: radial-gradient(
       ellipse,
-      rgb(from var(--color-bg-brand-base) r g b / 23%) 0%,
+      rgb(from var(--color-bg-brand-base) r g b / 25%) 0%,
       transparent 60%
     );
     opacity: 0;
@@ -85,7 +85,10 @@
   // Ensure that a header without buttons is as tall as one with buttons
   min-height: 48px;
   text-align: center;
-  cursor: pointer;
+
+  .rootScrolledDown & {
+    cursor: pointer;
+  }
 
   @media (width > variables.$mobile-menu-breakpoint) {
     background: var(--color-bg-primary);
@@ -131,23 +134,17 @@
   white-space: nowrap;
   min-width: 0;
   padding: var(--column-header-padding);
+  border-radius: var(--radius-4);
 
-  > button {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 100%;
-    padding: 0;
-    border: none;
-    font: inherit;
-    color: inherit;
-    background: transparent;
-    border-radius: var(--radius-2);
-
-    &:focus-visible {
-      outline: var(--outline-focus-default);
-      outline-offset: 2px;
-    }
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: calc(-1 * var(--space-1));
   }
+}
+
+.scrollTopButton {
+  grid-area: 1 / 2;
+  opacity: 0;
 }
 
 .extraStickyContent {
