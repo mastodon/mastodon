@@ -36,7 +36,7 @@ import {
 import { Icon, iconWeight } from 'mastodon/components/icon';
 import { useIdentity } from 'mastodon/identity_context';
 import { domain, searchEnabled } from 'mastodon/initial_state';
-import type { RecentSearch, SearchType } from 'mastodon/models/search';
+import type { RecentSearch } from 'mastodon/models/search';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
 
@@ -103,13 +103,11 @@ interface SearchOption {
   forget?: (e: React.MouseEvent | React.KeyboardEvent) => void;
 }
 
-type NavSearchType = Extract<SearchType, ApiSearchType>;
-
 export const Search: React.FC<{
   singleColumn: boolean;
   context?: 'column' | 'sidebar';
   initialValue?: string;
-  initialType?: NavSearchType;
+  initialType?: ApiSearchType;
 }> = ({ singleColumn, context = 'column', initialValue, initialType }) => {
   const intl = useIntl();
   const recent = useAppSelector((state) => state.search.recent);
@@ -323,8 +321,11 @@ export const Search: React.FC<{
   );
 
   const submit = useCallback(
-    (q: string, type?: NavSearchType) => {
-      void dispatch(clickSearchResult({ q, type }));
+    (q: string, type?: ApiSearchType) => {
+      // We omit hashtags here as clickSearchResult stores search history types,
+      // which only can store the singular hashtag for the "Go to #hashtag" option.
+      const searchResultType = type === 'hashtags' ? undefined : type;
+      void dispatch(clickSearchResult({ q, type: searchResultType }));
       const queryParams = new URLSearchParams({ q });
       if (type) queryParams.set('type', type);
       history.push({ pathname: '/search', search: queryParams.toString() });

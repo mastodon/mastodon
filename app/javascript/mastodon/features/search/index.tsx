@@ -244,11 +244,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
         <Search
           singleColumn
           initialValue={trimmedValue}
-          initialType={
-            mappedType === 'accounts' || mappedType === 'statuses'
-              ? mappedType
-              : undefined
-          }
+          initialType={mappedType !== 'all' ? mappedType : undefined}
           key={trimmedValue}
         />
       </div>
