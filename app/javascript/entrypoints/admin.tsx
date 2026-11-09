@@ -240,18 +240,27 @@ const onChangeAccountActionSelection = (target: HTMLSelectElement) => {
   const accountAction = target.value;
   if (!target.value) return;
 
-  const presetsDropdown = document.getElementById(
-    'presets_dropdown',
-  ) as HTMLSelectElement | null;
+  const selectedOption = target.options[target.selectedIndex];
 
   const button = document.querySelector<HTMLElement>(
     'form#action_type button[type=submit]',
   );
-  const selectedOption = target.options[target.selectedIndex];
-  const contentTag = selectedOption?.dataset.buttonLabel ?? null;
+  const buttonContent = selectedOption?.dataset.buttonLabel ?? null;
   if (button) {
-    button.textContent = contentTag;
+    button.textContent = buttonContent;
   }
+
+  const strikeCard = document.querySelector<HTMLElement>(
+    '#data-action-strike-card p',
+  );
+  const strikeCardContent = selectedOption?.dataset.strikeCard ?? null;
+  if (strikeCard) {
+    strikeCard.textContent = strikeCardContent;
+  }
+
+  const presetsDropdown = document.getElementById(
+    'presets_dropdown',
+  ) as HTMLSelectElement | null;
 
   if (presetsDropdown) {
     const allOptions = Array.from(presetsDropdown.options);
