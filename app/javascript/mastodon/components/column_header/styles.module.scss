@@ -31,7 +31,8 @@
     @include mixins.elevation-1;
 
     border: none;
-    transition: opacity 250ms ease-out;
+    opacity: 0;
+    transition: opacity 250ms ease-in;
 
     @media (width > variables.$mobile-menu-breakpoint) {
       // Prevent shadow from overlapping column border
@@ -39,9 +40,32 @@
     }
   }
 
-  &.rootScrolledToTop::after {
+  &.rootScrolledDown::after {
+    opacity: 1;
+    transition-timing-function: ease-out;
+  }
+
+  // Glow effect when there's new content
+  &::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    bottom: calc(-1 * var(--space-4));
+    inset-inline: 0;
+    z-index: -2;
+    height: var(--space-8);
+    background: radial-gradient(
+      ellipse,
+      rgb(from var(--color-bg-brand-base) r g b / 23%) 0%,
+      transparent 60%
+    );
     opacity: 0;
-    transition-timing-function: ease-in;
+    transition: opacity 250ms ease-in;
+  }
+
+  &.withGlow::before {
+    opacity: 1;
+    transition-timing-function: ease-out;
   }
 }
 

@@ -73,7 +73,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
     [scrollTop],
   );
 
-  const hasNewContentIndicator = !isScrolledToTop && withUnreadMarker;
+  const hasUnreadIndicator = !isScrolledToTop && withUnreadMarker;
   const headerRef = useTrackColumnHeaderHeight();
 
   return (
@@ -83,9 +83,9 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
       className={classNames(
         className,
         classes.root,
-        isScrolledToTop && classes.rootScrolledToTop,
         hasExtraStickyContent && classes.withStickyContent,
-        !hasNewContentIndicator && classes.withGlow,
+        !isScrolledToTop && classes.rootScrolledDown,
+        hasUnreadIndicator && classes.withGlow,
       )}
     >
       {/* eslint-disable-next-line
