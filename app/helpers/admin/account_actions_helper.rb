@@ -32,6 +32,6 @@ module Admin::AccountActionsHelper
             else
               Admin::AccountAction::TYPES
             end
-    types.map { |type| [type, type, { data: { button_label: I18n.t("admin.account_actions.types.#{type}") } }] }
+    types.map { |type| [type, type, { data: { button_label: I18n.t("admin.account_actions.types.#{type}"), strike_card: I18n.t("user_mailer.warning.explanation.#{type}"), instance: Rails.configuration.x.local_domain } }] }
   end
 end
