@@ -16,12 +16,13 @@ sv:
       account_migration:
         acct: Ange användarnamn@domän för kontot du vill flytta till
       account_warning_preset:
+        action_category: Välj den modereringsåtgärd som detta svar ska användas till. Välj "Alla åtgärder" om svaret gäller mer än en åtgärd.
         text: Du kan använda inläggssyntax som webbadresser, hashtaggar och omnämnanden
         title: Valfri. Inte synlig för mottagaren
       admin_account_action:
         include_statuses: Användaren ser vilka inlägg som orsakat modereringsåtgärd eller varning
         send_email_notification: Användaren kommer få en förklaring på vad som hände med deras konto
-        text_html: Valfri. Du kan använda inläggssyntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
+        text: Valfritt. Du kan använda inläggssyntax. Det visas under det förinställda svaret
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
         types:
           disable: Förhindra användaren från att använda sitt konto, men radera eller dölj inte innehållet.
@@ -29,7 +30,7 @@ sv:
           sensitive: Tvinga alla denna användares mediebilagor till att flaggas som känsliga.
           silence: Hindra användaren från att göra offentliga inlägg, dölj hens inlägg och aviseringar för personer som inte följer hen. Stänger alla anmälningar mot detta konto.
           suspend: Förhindrar all interaktion från eller till detta konto och ta bort dess innehåll. Går att ångra inom 30 dagar. Stänger alla anmälningar mot detta konto.
-        warning_preset_id: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
+        warning_preset_html: Valfritt. Du kan <a href="%{path}">hantera dem här</a>
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
         ends_at: Valfri. Kungörelsen kommer automatiskt avpubliceras vid denna tidpunkt
@@ -61,6 +62,7 @@ sv:
         setting_default_quote_policy_private: Inlägg som endast är för följare och som författats på Mastodon kan inte citeras av andra.
         setting_default_quote_policy_unlisted: När folk citerar dig, kommer deras inlägg också att döljas från trendande tidslinjer.
         setting_default_sensitive: Känslig media döljs som standard och kan visas med ett klick
+        setting_default_spoiler_field: Håller fältet för innehållsvarning öppet i skrivläget. Du kan anpassa texten för varje inlägg.
         setting_display_media_default: Varna innan du visar media markerad som känslig
         setting_display_media_hide_all: Varna innan du visar alla medier
         setting_display_media_show_all: Visa alla medier utan varning, inklusive media markerad som känslig
@@ -98,6 +100,7 @@ sv:
         media_cache_retention_period: Mediafiler från inlägg som gjorts av fjärranvändare cachas på din server. När inställd på ett positivt värde kommer media att raderas efter det angivna antalet dagar. Om mediadatat begärs efter att det har raderats, kommer det att laddas ned igen om källinnehållet fortfarande är tillgängligt. På grund av begränsningar för hur ofta förhandsgranskningskort för länkar hämtas från tredjepartswebbplatser, rekommenderas det att ange detta värde till minst 14 dagar, annars kommer förhandsgranskningskorten inte att uppdateras på begäran före den tiden.
         min_age: Användare kommer att bli ombedda att bekräfta sitt födelsedatum under registreringen
         peers_api_enabled: En lista över domänen den här servern har stött på i fediversum. Ingen data inkluderas om du har federerat med servern, bara att din server känner till den. Detta används av tjänster som samlar statistik om federering i allmänhet.
+        postpone_confirmation_emails: När den här inställningen är aktiverad skickas bekräftelsemeddelanden för konton som väntar på godkännande först när dessa konton har godkänts. Detta kan ge en sämre registreringserfarenhet för användare eftersom de fortfarande kommer att behöva bekräfta sin e-postadress i tid efter att ha fått e-postmeddelandet men kommer inte att ha kontroll över när det skickas längre. Dessutom kan detta ge en ökad arbetsbelastning för moderatorer, eftersom Mastodon inte kommer att kunna filtrera bort väntande konton med en ogiltig e-postadress innan de godkänns.
         profile_directory: Profilkatalogen visar alla användare som har samtyckt till att bli upptäckbara.
         require_invite_text: Gör fältet "Varför vill du gå med?" obligatoriskt när nyregistreringar kräver manuellt godkännande
         site_contact_email: Hur människor kan nå dig för juridiska spörsmål eller supportfrågor.
@@ -191,20 +194,22 @@ sv:
       account_migration:
         acct: Namnet på det nya kontot
       account_warning_preset:
-        text: Förinställd text
+        action_category: Tilldela modereringsåtgärd
+        text: Svarstext
         title: Rubrik
       admin_account_action:
         include_statuses: Inkludera rapporterade inlägg i e-postmeddelandet
         send_email_notification: Avisera användaren via e-post
-        text: Anpassad varning
+        text: Anpassat svar
         type: Åtgärd
         types:
+          all_actions: Alla åtgärder
           disable: Frys
           none: Skicka en varning
           sensitive: Känslig
           silence: Tysta
           suspend: Pausa
-        warning_preset_id: Använd en förinställd varning
+        warning_preset_id: Förinställt svar
       announcement:
         all_day: Heldagsevenemang
         ends_at: Evenemangets slut
@@ -244,12 +249,13 @@ sv:
         setting_always_send_emails: Skicka alltid e-postnotiser
         setting_auto_play_gif: Spela upp GIF:ar automatiskt
         setting_boost_modal: Styr synligheten för boostar
-        setting_color_scheme: Färgschema
+        setting_color_scheme: Läge
         setting_contrast: Kontrast
         setting_default_language: Inläggsspråk
         setting_default_privacy: Inläggssynlighet
         setting_default_quote_policy: Vem kan citera
         setting_default_sensitive: Markera alltid media som känsligt
+        setting_default_spoiler_field: Använd innehållsvarningar som standard
         setting_delete_modal: Varna mig innan ett inlägg tas bort
         setting_disable_hover_cards: Inaktivera profilförhandsgranskning vid hovring
         setting_disable_swiping: Inaktivera svepande rörelser
@@ -257,6 +263,8 @@ sv:
         setting_display_media_default: Standard
         setting_display_media_hide_all: Dölj alla
         setting_display_media_show_all: Visa alla
+        setting_display_own_boosts: Visa mina egna boostar i mitt huvudflöde
+        setting_display_own_posts: Visa mina egna inlägg i mitt huvudflöde
         setting_emoji_style: Emoji-stil
         setting_expand_spoilers: Utöka alltid inlägg markerade med innehållsvarningar
         setting_hide_network: Göm ditt nätverk
@@ -267,7 +275,7 @@ sv:
         setting_system_font_ui: Använd systemets standardfont
         setting_system_scrollbars_ui: Använd systemets standardrullningsfält
         setting_theme: Sidans tema
-        setting_trends: Visa dagens trender
+        setting_theme_color: Temafärg
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
         setting_use_blurhash: Visa färgglada gradienter för dold media
         setting_use_pending_items: Långsamt läge
@@ -305,6 +313,7 @@ sv:
         media_cache_retention_period: Tid för bibehållande av mediecache
         min_age: Åldersgräns
         peers_api_enabled: Publicera lista över upptäckta servrar i API:et
+        postpone_confirmation_emails: Skjut upp bekräftelsemeddelanden efter godkännande
         profile_directory: Aktivera profilkatalog
         registrations_mode: Vem kan registrera sig
         remote_live_feed_access: Åtkomst till live-flöden med fjärrinlägg
@@ -352,6 +361,7 @@ sv:
         follow: Någon följt dig
         follow_request: Någon begärt att följa dig
         mention: Någon nämnt dig
+        moderation_suggestions: Automatiska modereringsförslag finns tillgängliga
         pending_account: Ett nytt konto behöver granskas
         quote: Någon citerade dig
         reblog: Någon boostade ditt inlägg

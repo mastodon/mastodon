@@ -5,34 +5,40 @@ require 'rails_helper'
 RSpec.describe TermsOfServicePolicy do
   subject { described_class }
 
-  let(:admin) { Fabricate(:admin_user).account }
-  let(:john) { Fabricate(:account) }
+  let(:admin) { Fabricate.build(:admin_user).account }
+  let(:john) { Fabricate.build(:account) }
 
   permissions :index?, :create? do
-    it { is_expected.to permit(admin, TermsOfService) }
-    it { is_expected.to_not permit(john, TermsOfService) }
+    it do
+      expect(subject).to permit(admin, TermsOfService)
+      expect(subject).to_not permit(john, TermsOfService)
+    end
   end
 
   permissions :update?, :destroy? do
-    let(:terms) { Fabricate(:terms_of_service, published_at: published) }
+    let(:terms) { Fabricate.build(:terms_of_service, published_at: published) }
 
     context 'with an unpublished terms' do
       let(:published) { nil }
 
-      it { is_expected.to permit(admin, terms) }
-      it { is_expected.to_not permit(john, terms) }
+      it do
+        expect(subject).to permit(admin, terms)
+        expect(subject).to_not permit(john, terms)
+      end
     end
 
     context 'with a published terms' do
       let(:published) { 5.days.ago }
 
-      it { is_expected.to_not permit(admin, terms) }
-      it { is_expected.to_not permit(john, terms) }
+      it do
+        expect(subject).to_not permit(admin, terms)
+        expect(subject).to_not permit(john, terms)
+      end
     end
   end
 
   permissions :distribute? do
-    let(:terms) { Fabricate(:terms_of_service, published_at: published, notification_sent_at: notification) }
+    let(:terms) { Fabricate.build(:terms_of_service, published_at: published, notification_sent_at: notification) }
 
     context 'with notification already sent' do
       let(:notification) { 3.days.ago }
@@ -40,15 +46,19 @@ RSpec.describe TermsOfServicePolicy do
       context 'with published true' do
         let(:published) { 5.days.ago }
 
-        it { is_expected.to_not permit(admin, terms) }
-        it { is_expected.to_not permit(john, terms) }
+        it do
+          expect(subject).to_not permit(admin, terms)
+          expect(subject).to_not permit(john, terms)
+        end
       end
 
       context 'with published false' do
         let(:published) { nil }
 
-        it { is_expected.to_not permit(admin, terms) }
-        it { is_expected.to_not permit(john, terms) }
+        it do
+          expect(subject).to_not permit(admin, terms)
+          expect(subject).to_not permit(john, terms)
+        end
       end
     end
 
@@ -58,15 +68,19 @@ RSpec.describe TermsOfServicePolicy do
       context 'with published true' do
         let(:published) { 5.days.ago }
 
-        it { is_expected.to permit(admin, terms) }
-        it { is_expected.to_not permit(john, terms) }
+        it do
+          expect(subject).to permit(admin, terms)
+          expect(subject).to_not permit(john, terms)
+        end
       end
 
       context 'with published false' do
         let(:published) { nil }
 
-        it { is_expected.to_not permit(admin, terms) }
-        it { is_expected.to_not permit(john, terms) }
+        it do
+          expect(subject).to_not permit(admin, terms)
+          expect(subject).to_not permit(john, terms)
+        end
       end
     end
   end

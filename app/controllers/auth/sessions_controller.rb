@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Auth::SessionsController < Devise::SessionsController
+  include ReauthConcern
   include Redisable
 
   MAX_2FA_ATTEMPTS_PER_HOUR = 10
@@ -11,8 +12,6 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :require_functional!
   skip_before_action :update_user_sign_in
-
-  around_action :preserve_stored_location, only: :destroy, if: :continue_after?
 
   prepend_before_action :check_suspicious!, only: [:create]
 
@@ -37,6 +36,15 @@ class Auth::SessionsController < Devise::SessionsController
     super
     session.delete(:challenge_passed_at)
     flash.delete(:notice)
+  end
+
+  # By default, sign_out wipes the session cookie, but we want to keep the redirect location
+  def sign_out
+    return super unless continue_after?
+
+    preserve_stored_location do
+      super
+    end
   end
 
   protected
@@ -106,7 +114,7 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def continue_after?
-    truthy_param?(:continue)
+    truthy_param?(:continue) || truthy_param?(:continue_to_stored_location)
   end
 
   def restart_session
@@ -140,6 +148,8 @@ class Auth::SessionsController < Devise::SessionsController
   def on_authentication_success(user, security_measure)
     @on_authentication_success_called = true
 
+    fulfil_reauth_request
+
     clear_2fa_attempt_from_user(user)
     clear_attempt_from_session
 
@@ -169,6 +179,10 @@ class Auth::SessionsController < Devise::SessionsController
         success: false
       )
     )
+
+    # No need to send a mail for failure to log in with a sign-in token, as that goes throug a mail
+    # as well
+    return if security_measure == :sign_in_token
 
     # Only send a notification email every hour at most
     return if redis.set("2fa_failure_notification:#{user.id}", '1', ex: 1.hour, get: true).present?

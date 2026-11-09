@@ -10,11 +10,13 @@ import { addReaction, removeReaction } from '@/mastodon/actions/announcements';
 import type { ApiAnnouncementReactionJSON } from '@/mastodon/api_types/announcements';
 import { AnimatedNumber } from '@/mastodon/components/animated_number';
 import { Emoji } from '@/mastodon/components/emoji';
-import { Icon } from '@/mastodon/components/icon';
-import EmojiPickerDropdown from '@/mastodon/features/compose/containers/emoji_picker_dropdown_container';
+import type { OnEmojiPick } from '@/mastodon/components/emoji/picker';
+import {
+  EmojiPickerButton,
+  emojiToString,
+} from '@/mastodon/components/emoji/picker';
 import { isUnicodeEmoji } from '@/mastodon/features/emoji/utils';
 import { useAppDispatch } from '@/mastodon/store';
-import AddIcon from '@/material-icons/400-24px/add.svg?react';
 
 export const ReactionsBar: FC<{
   reactions: ApiAnnouncementReactionJSON[];
@@ -26,9 +28,9 @@ export const ReactionsBar: FC<{
   );
 
   const dispatch = useAppDispatch();
-  const handleEmojiPick = useCallback(
-    (emoji: { native: string }) => {
-      dispatch(addReaction(id, emoji.native.replaceAll(/:/g, '')));
+  const handleEmojiPick: OnEmojiPick = useCallback(
+    (emoji) => {
+      dispatch(addReaction(id, emojiToString(emoji).replaceAll(/:/g, '')));
     },
     [dispatch, id],
   );
@@ -62,10 +64,7 @@ export const ReactionsBar: FC<{
       ))}
 
       {visibleReactions.length < 8 && (
-        <EmojiPickerDropdown
-          onPickEmoji={handleEmojiPick}
-          button={<Icon id='plus' icon={AddIcon} />}
-        />
+        <EmojiPickerButton onPick={handleEmojiPick} placement='bottom-start' />
       )}
     </div>
   );

@@ -61,15 +61,6 @@ RSpec.describe Auth::RegistrationsController do
       sign_in(user, scope: :user)
     end
 
-    it 'returns http success and cache headers' do
-      put :update
-
-      expect(response)
-        .to have_http_status(200)
-      expect(response.headers['Cache-Control'])
-        .to include('private, no-store')
-    end
-
     it 'can update the user email' do
       expect do
         put :update, params: {
@@ -78,8 +69,11 @@ RSpec.describe Auth::RegistrationsController do
             current_password: current_password,
           },
         }
-        expect(response).to redirect_to(edit_user_registration_path)
       end.to change { user.reload.unconfirmed_email }.to('newemail@example.com')
+
+      expect(response).to redirect_to(edit_user_registration_path)
+      expect(response.headers['Cache-Control'])
+        .to include('private, no-store')
     end
 
     it 'requires the current password to update the email' do
@@ -90,8 +84,11 @@ RSpec.describe Auth::RegistrationsController do
             current_password: 'something',
           },
         }
-        expect(response).to have_http_status(200)
       end.to_not(change { user.reload.unconfirmed_email })
+
+      expect(response).to have_http_status(422)
+      expect(response.headers['Cache-Control'])
+        .to include('private, no-store')
     end
 
     it 'can update the user password' do
@@ -103,8 +100,9 @@ RSpec.describe Auth::RegistrationsController do
             current_password: current_password,
           },
         }
-        expect(response).to redirect_to(edit_user_registration_path)
       end.to(change { user.reload.encrypted_password })
+
+      expect(response).to redirect_to(edit_user_registration_path)
     end
 
     it 'requires the password confirmation' do
@@ -116,8 +114,9 @@ RSpec.describe Auth::RegistrationsController do
             current_password: current_password,
           },
         }
-        expect(response).to have_http_status(200)
       end.to_not(change { user.reload.encrypted_password })
+
+      expect(response).to have_http_status(422)
     end
 
     it 'requires the current password to update the password' do
@@ -129,8 +128,9 @@ RSpec.describe Auth::RegistrationsController do
             current_password: 'something',
           },
         }
-        expect(response).to have_http_status(200)
       end.to_not(change { user.reload.encrypted_password })
+
+      expect(response).to have_http_status(422)
     end
 
     context 'when suspended' do
@@ -274,7 +274,7 @@ RSpec.describe Auth::RegistrationsController do
       it 'responds with an error message about the username' do
         subject
 
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(422)
         expect(username_error_text).to eq(I18n.t('errors.messages.taken'))
       end
 
@@ -304,7 +304,7 @@ RSpec.describe Auth::RegistrationsController do
       it 'responds with an error message about the date of birth' do
         expect { subject }.to_not raise_error
 
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(422)
         expect(date_of_birth_error_text).to eq(I18n.t('errors.messages.invalid'))
         expect(User.find_by(email: 'test@example.com')).to be_nil
       end

@@ -11,45 +11,18 @@
 }
 
 .logo-container {
-  margin: 50px auto;
-
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: min-content;
-    margin: 0 auto;
-    padding: 12px 16px;
-    color: var(--color-text-primary);
-    text-decoration: none;
-    outline: 0;
-    line-height: 32px;
-    font-weight: 500;
-    font-size: 14px;
-
-    &:focus-visible {
-      outline: var(--outline-focus-default);
-    }
-  }
+  display: flex;
+  margin: 50px 0;
+  justify-content: center;
 
   .logo {
     height: 42px;
-    margin-inline-end: 10px;
+    padding: var(--space-3) var(--space-4);
+    vertical-align: middle; // Removes extra spacing below image
   }
-}
 
-.compose-standalone {
-  .compose-form {
-    width: 400px;
-    margin: 0 auto;
-    padding: 10px 0;
-    padding-bottom: 20px;
-    box-sizing: border-box;
-
-    @media screen and (width <= 400px) {
-      width: 100%;
-      padding: 20px;
-    }
+  a:focus-visible {
+    outline: var(--outline-focus-default);
   }
 }
 
@@ -149,7 +122,7 @@
 
     a {
       color: var(--color-text-brand);
-      font-weight: 500;
+      font-weight: bold;
       text-decoration: none;
 
       &:hover,

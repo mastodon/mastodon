@@ -27,10 +27,10 @@ RSpec.describe 'OCR', :attachment_processing, :inline_jobs, :js, :streaming do
         click_on(frontend_translations('upload_button.label'))
       end
 
-      click_on('Add alt text')
+      click_on(frontend_translations('alt_text_badge.label'))
     end
 
-    click_on('Add text from image')
+    click_on(frontend_translations('alt_text_modal.add_text_from_image'))
 
     expect(page).to have_css('#description', text: /Hello Mastodon\s*/, wait: 20)
   end

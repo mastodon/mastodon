@@ -10,13 +10,13 @@ class RevokeCollectionItemService < BaseService
 
     @collection_item.revoke!
 
-    distribute_stamp_deletion! if @collection_item.remote?
+    distribute_stamp_deletion!
   end
 
   private
 
   def distribute_stamp_deletion!
-    ActivityPub::DeliveryWorker.perform_async(signed_activity_json, @account.id, @collection.account.inbox_url)
+    ActivityPub::DeliveryWorker.perform_async(signed_activity_json, @account.id, @collection.account.inbox_url) if @collection_item.remote?
     ActivityPub::CollectionRawDistributionWorker.perform_async(signed_activity_json, @collection.id)
   end
 

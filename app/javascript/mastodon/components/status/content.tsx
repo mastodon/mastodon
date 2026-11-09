@@ -12,7 +12,7 @@ import type {
   StatusShape,
 } from '@/mastodon/models/status';
 
-import { Button } from '../button/redesign';
+import { Button } from '../button';
 import { EmojiHTML } from '../emoji/html';
 
 import classes from './content.module.scss';
@@ -22,7 +22,7 @@ const MAX_LINES = 35;
 
 export const StatusContent: React.FC<
   {
-    status: StatusShape | ExpandedStatusShape;
+    status: Omit<StatusShape | ExpandedStatusShape, 'reblog'>;
     statusContent?: string;
     onTranslate?: () => void;
     onReadMore?: () => void;
@@ -77,15 +77,14 @@ export const StatusContent: React.FC<
         {...props}
         className={classNames(
           className,
-          classes.content,
+          classes.root,
           isCollapsed && classes.collapsed,
         )}
         style={style}
-        ref={onRef}
       >
         {text.trim().length > 0 && (
           <EmojiHTML
-            className={classes.contentText}
+            className={classes.text}
             ref={onRef}
             lang={language}
             htmlString={text}
@@ -102,7 +101,7 @@ export const StatusContent: React.FC<
           size='sm'
           onClick={onReadMore}
           trailingIcon={CaretRightIcon}
-          className={classes.contentReadMore}
+          className={classes.readMore}
         >
           <FormattedMessage
             id='status.view_post'

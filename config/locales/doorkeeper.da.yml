@@ -63,6 +63,10 @@ da:
         prompt_html: "%{client_name} vil ønsker tilladelse til at tilgå din konto. <strong>Godkend kun denne anmodning, hvis kilden genkendes, og man stoler på den.</strong>"
         review_permissions: Gennemgå tilladelser
         title: Godkendelse kræves
+      require_reauth:
+        log_out_and_continue: Log ud og fortsæt
+        prompt_html: Du er i øjeblikket logget ind som <strong>%{handle}</strong>, men for at fortsætte, skal du logge ud.
+        title: Fornyet godkendelse påkrævet
       show:
         title: Kopiér og indsæt denne godkendelseskode i applikationen.
     authorized_applications:

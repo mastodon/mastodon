@@ -1,0 +1,13 @@
+.server-check__container{ class: category }
+  .server-check__icon{ class: category }= admin_server_check_icon(category)
+
+  .server-check__info
+    .server-check__info__title= admin_server_check_title(check)
+    .server-check__info__lead= admin_server_check_lead(check)
+    - if check.checked_at
+      .server-check__info__date
+        %time.formatted{ datetime: check.checked_at.iso8601, title: l(check.checked_at) }= l(check.checked_at)
+
+  .server-check__ignore= admin_server_check_ignore_action(check)
+
+  .server-check__setup= admin_server_check_setup(check)

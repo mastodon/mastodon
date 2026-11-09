@@ -3,9 +3,12 @@
   extends: [
     'config:recommended',
     'customManagers:dockerfileVersions',
+    'customManagers:githubActionsVersions',
+    'helpers:pinGitHubActionDigests',
     ':labels(dependencies)',
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
     ':enableVulnerabilityAlertsWithLabel(security)',
+    ':maintainLockFilesWeekly',
   ],
   rebaseWhen: 'conflicted',
   minimumReleaseAge: '3 days', // Wait 3 days after the package has been published before upgrading it
@@ -16,19 +19,8 @@
   // to `null` after any other rule set it to something.
   dependencyDashboardHeader: 'This issue lists Renovate updates and detected dependencies. Read the [Dependency Dashboard](https://docs.renovatebot.com/key-concepts/dashboard/) docs to learn more. Before approving any upgrade: read the description and comments in the [`renovate.json5` file](https://github.com/mastodon/mastodon/blob/main/.github/renovate.json5).',
   postUpdateOptions: ['yarnDedupeHighest'],
-  devcontainer: {
-    managerFilePatterns: [
-      '/^\.devcontainer\/devcontainer\.json$/',
-      '/^\.devcontainer\.json$/',
-      '/^\.devcontainer\/devcontainer-lock\.json$/',
-    ],
-  },
   // The types are now included in recent versions,we ignore them here until we upgrade and remove the dependency
   ignoreDeps: ['@types/emoji-mart'],
-  lockFileMaintenance: {
-    enabled: true,
-    schedule: ['before 8am on monday'],
-  },
   packageRules: [
     {
       // Disable lock file maintenance for bundler for now, as we do not yet pin gems to their exact versions
@@ -62,15 +54,8 @@
     },
     {
       // Update GitHub Actions and Docker images weekly
-      matchManagers: ['github-actions', 'dockerfile', 'docker-compose'],
+      matchManagers: ['dockerfile', 'docker-compose'],
       extends: ['schedule:weekly'],
-    },
-    {
-      // Require Dependency Dashboard Approval for major & minor bumps for the ruby image, this needs to be synced with .ruby-version
-      matchManagers: ['dockerfile'],
-      matchPackageNames: ['moritzheiber/ruby-jemalloc'],
-      matchUpdateTypes: ['minor', 'major'],
-      dependencyDashboardApproval: true,
     },
     {
       // Require Dependency Dashboard Approval for major bumps for the node image, this needs to be synced with .nvmrc
@@ -85,14 +70,6 @@
       matchPackageNames: ['postgres'],
       matchUpdateTypes: ['major'],
       dependencyDashboardApproval: true,
-    },
-    {
-      // Update devDependencies every week, with one grouped PR
-      matchManagers: ['npm'],
-      matchDepTypes: 'devDependencies',
-      matchUpdateTypes: ['patch', 'minor'],
-      groupName: 'devDependencies (non-major)',
-      extends: ['schedule:weekly'],
     },
     {
       // Group all eslint-related packages with `eslint` in the same PR
@@ -128,8 +105,7 @@
         'actions/upload-artifact',
       ],
       matchUpdateTypes: ['major'],
-      groupName: 'artifact actions (major)',
-      extends: ['helpers:pinGitHubActionDigests'],
+      groupName: 'artifact actions',
     },
     {
       // Update @types/* packages every week, with one grouped PR
@@ -170,17 +146,21 @@
       groupName: 'opentelemetry-ruby (non-major)',
     },
     {
-      // The ruby portion of the Playwright group
-      matchManagers: ['bundler'],
-      matchPackageNames: ['playwright-ruby-client'],
+      // Unified Playwright group across Node and Ruby ecosystems
+      matchManagers: ['npm', 'bundler'],
+      matchPackageNames: ['playwright', 'playwright-ruby-client'],
+      matchUpdateTypes: ['patch', 'minor'],
       groupName: 'Playwright',
     },
     {
-      // The node portion of the Playwright group
+      // Update devDependencies every week, with one grouped PR
+      // Needs to stay at the bottom of the rule list, before match managers
       matchManagers: ['npm'],
-      matchPackageNames: ['playwright'],
-      groupName: 'Playwright',
+      matchDepTypes: ['devDependencies'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'devDependencies (non-major)',
     },
+
     // Add labels depending on package manager
     { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },
     { matchManagers: ['bundler', 'ruby-version'], addLabels: ['ruby'] },

@@ -11,6 +11,7 @@ import { initialState } from '@/mastodon/initial_state';
 import { IntlProvider } from '@/mastodon/locales';
 import { loadPolyfills } from '@/mastodon/polyfills';
 import ready from '@/mastodon/ready';
+import { requestComposerFocus } from '@/mastodon/reducers/slices/composer';
 import { store } from '@/mastodon/store';
 
 async function loaded() {
@@ -26,6 +27,14 @@ async function loaded() {
 
   await store.dispatch(fetchServer());
   await initializeEmoji();
+
+  // Put the caret at the end on load.
+  const caretPosition = initialState?.compose.text.length;
+  if (caretPosition) {
+    store.dispatch(
+      requestComposerFocus({ start: caretPosition, end: caretPosition }),
+    );
+  }
 
   const root = createRoot(mountNode);
 

@@ -2,7 +2,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { TrashIcon } from '@phosphor-icons/react';
 
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import DeleteForeverIcon from '@/material-icons/400-24px/delete_forever.svg?react';
 import { Icon } from 'mastodon/components/icon';

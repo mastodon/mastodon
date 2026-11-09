@@ -9,7 +9,7 @@ import { XIcon } from '@phosphor-icons/react';
 
 import elephantUIPlane from '@/images/elephant_ui_plane.svg';
 import { hideAnnouncements } from '@/mastodon/actions/announcements';
-import { IconButton } from '@/mastodon/components/button/redesign';
+import { IconButton } from '@/mastodon/components/button';
 import type { RenderSlideFn } from '@/mastodon/components/carousel';
 import { Carousel } from '@/mastodon/components/carousel';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';

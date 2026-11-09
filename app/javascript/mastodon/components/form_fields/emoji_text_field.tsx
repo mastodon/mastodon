@@ -13,9 +13,9 @@ import type { Merge } from 'type-fest';
 import { insertEmojiAtPosition } from '@/mastodon/features/emoji/utils';
 
 import { CharacterCounter } from '../character_counter';
-import { EmojiPickerButton } from '../emoji/picker_button';
+import type { OnEmojiPick } from '../emoji/picker';
+import { EmojiPickerButton, emojiToString } from '../emoji/picker';
 
-import classes from './emoji_text_field.module.scss';
 import type { CommonFieldWrapperProps, InputProps } from './form_field_wrapper';
 import { FormFieldWrapper } from './form_field_wrapper';
 import { TextArea } from './text_area_field';
@@ -135,14 +135,18 @@ const EmojiFieldWrapper: FC<
 }) => {
   const counterId = useId();
 
-  const handlePickEmoji = useCallback(
-    (emoji: string) => {
+  const handlePickEmoji: OnEmojiPick = useCallback(
+    (emoji) => {
       if (!value) {
         onChange?.('');
         return;
       }
       const position = inputRef.current?.selectionStart ?? value.length;
-      const newValue = insertEmojiAtPosition(value, emoji, position);
+      const newValue = insertEmojiAtPosition(
+        value,
+        emojiToString(emoji),
+        position,
+      );
       onChange?.(newValue);
     },
     [inputRef, value, onChange],
@@ -156,11 +160,7 @@ const EmojiFieldWrapper: FC<
   );
 
   return (
-    <FormFieldWrapper
-      className={classes.fieldWrapper}
-      describedById={counterId}
-      {...otherProps}
-    >
+    <FormFieldWrapper describedById={counterId} {...otherProps}>
       {(inputProps) => (
         <>
           {children({ ...inputProps, onChange: handleChange })}

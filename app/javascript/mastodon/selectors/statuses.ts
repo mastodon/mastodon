@@ -85,12 +85,18 @@ export const selectStatusLoadingState = createAppSelector(
       return { state: 'not-found', status: null } as const;
     }
 
-    if (status.isLoading) {
+    if (status.isLoading && !status.id) {
       return { state: 'loading', status: null } as const;
     }
 
     if (filterAction === 'hide') {
       return { state: 'filtered', status: null } as const;
+    }
+
+    // Fetching means we're refreshing data, but already the status object in Redux.
+    // We put this after checking the filter action so we don't accidentally return the status.
+    if (status.isLoading && status.id) {
+      return { state: 'fetching', status } as const;
     }
 
     return { state: 'loaded', status } as const;
@@ -171,11 +177,10 @@ export const selectStatusInteractions = createAppSelector(
       copy: addAllowed({}),
       delete: addAllowed({ isMine }),
       edit: addAllowed({ isMine }),
-      editQuotePolicy: addAllowed({ isMine, isPublic }),
       embed: addAllowed({ isPublic, isLocal }),
       favourite: addAllowed({ isLoggedIn }),
       filter: addAllowed({ isLoggedIn, isNotMine }),
-      mute: addAllowed({ isMine }),
+      mute: addAllowed({ isLoggedIn }),
       pin: addAllowed({ isMine, isNotDirect }),
       quote: addAllowed({ isLoggedIn }),
       reblog: addAllowed({ isLoggedIn }),

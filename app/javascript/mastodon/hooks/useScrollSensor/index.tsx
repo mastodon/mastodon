@@ -3,13 +3,13 @@ import { useLayoutEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
+import { getScrollParent } from '@react-aria/utils';
+
 import classes from './styles.module.scss';
 
 interface ScrollSensorOptions extends ComponentProps<'div'> {
   placement?: 'top' | 'bottom';
   tolerance?: number;
-  // Use document scrolling as reference
-  global?: boolean;
 }
 
 /**
@@ -28,27 +28,25 @@ interface ScrollSensorOptions extends ComponentProps<'div'> {
 export const useScrollSensor = ({
   placement = 'top',
   tolerance,
-  global,
   className,
   style,
   ...props
 }: ScrollSensorOptions = {}) => {
   const [isInViewport, setIsInViewport] = useState(true);
-  const sensorRef = useRef<HTMLDivElement>(null);
+  const [sensorElement, setSensorElement] = useState<HTMLDivElement | null>(
+    null,
+  );
   const observerRef = useRef<IntersectionObserver>(null);
 
   useLayoutEffect(() => {
-    const sensor = sensorRef.current;
-
-    if (!sensor) return;
+    if (!sensorElement) return;
 
     // Assign the IntersectionObserver to a ref so we don't
     // need to re-create it when the effect reruns
     if (!observerRef.current) {
-      // This could be enhanced with a util to actually walk up
-      // the tree to find the nearest scrollable element. For now,
-      // it assumes the immediate parent as the scroll root.
-      const root = global ? null : sensor.parentElement;
+      const scrollParent = getScrollParent(sensorElement);
+      const root =
+        scrollParent === document.documentElement ? null : scrollParent;
 
       observerRef.current = new IntersectionObserver(
         ([entry]) => {
@@ -62,21 +60,22 @@ export const useScrollSensor = ({
       );
     }
 
-    observerRef.current.observe(sensor);
+    observerRef.current.observe(sensorElement);
 
     return () => {
       if (observerRef.current) {
-        observerRef.current.unobserve(sensor);
+        observerRef.current.unobserve(sensorElement);
       }
     };
-  }, [sensorRef, global]);
+  }, [sensorElement]);
 
-  const sensorStyle = tolerance
-    ? ({
-        ...style,
-        '--tolerance': `${tolerance}px`,
-      } as CSSProperties)
-    : style;
+  const sensorStyle =
+    tolerance !== undefined
+      ? ({
+          ...style,
+          '--tolerance': `${tolerance}px`,
+        } as CSSProperties)
+      : style;
 
   const sensor = (
     <div
@@ -84,7 +83,7 @@ export const useScrollSensor = ({
       className={classNames(classes.sensor, className)}
       style={sensorStyle}
       data-placement={placement}
-      ref={sensorRef}
+      ref={setSensorElement}
     />
   );
 

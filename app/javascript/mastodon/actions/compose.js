@@ -17,7 +17,7 @@ import { openModal } from './modal';
 import { updateTimeline } from './timelines';
 import { insertStatusIntoAccountTimelines } from './timelines_typed';
 import { isRedesignEnabled } from '../utils/environment';
-import { requestComposerFocus } from '../reducers/slices/composer';
+import { initializeComposer, requestComposerFocus } from '../reducers/slices/composer';
 
 /** @type {AbortController | undefined} */
 let fetchComposeSuggestionsAccountsController;
@@ -131,23 +131,7 @@ export function replyCompose(status) {
 
     ensureComposeIsVisible(getState);
 
-    if (isRedesignEnabled()) {
-      const text = getState().getIn(['compose', 'text'], '');
-      // Preselect any mentions past the first, mirroring the reply text's leading `@user `.
-      dispatch(requestComposerFocus({ start: text.search(/\s/) + 1, end: text.length }));
-    }
-  };
-}
-
-export function replyComposeById(statusId) {
-  return (dispatch, getState) => {
-    const state = getState();
-    const status = state.statuses.get(statusId);
-
-    if (status) {
-      const account = state.accounts.get(status.get('account'));
-      dispatch(replyCompose(status.set('account', account)));
-    }
+    dispatch(initializeComposer({selectAfterFirstSpace: true}));
   };
 }
 
@@ -172,10 +156,7 @@ export const focusCompose = (defaultText = '', caretStart = false) => (dispatch,
 
   ensureComposeIsVisible(getState);
 
-  if (isRedesignEnabled()) {
-    const position = caretStart ? 0 : getState().getIn(['compose', 'text'], '').length;
-    dispatch(requestComposerFocus({ start: position, end: position }));
-  }
+  dispatch(initializeComposer({ noSelect: caretStart }));
 };
 
 export function mentionCompose(account) {
@@ -187,10 +168,7 @@ export function mentionCompose(account) {
 
     ensureComposeIsVisible(getState);
 
-    if (isRedesignEnabled()) {
-      const position = getState().getIn(['compose', 'text'], '').length;
-      dispatch(requestComposerFocus({ start: position, end: position }));
-    }
+    dispatch(initializeComposer());
   };
 }
 
@@ -209,10 +187,7 @@ export function directCompose(account) {
 
     ensureComposeIsVisible(getState);
 
-    if (isRedesignEnabled()) {
-      const position = getState().getIn(['compose', 'text'], '').length;
-      dispatch(requestComposerFocus({ start: position, end: position }));
-    }
+    dispatch(initializeComposer());
   };
 }
 

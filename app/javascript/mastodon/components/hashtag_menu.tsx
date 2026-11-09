@@ -1,5 +1,3 @@
-import { useCallback, useState } from 'react';
-
 import { FormattedMessage } from 'react-intl';
 
 import { useHashtag } from '@/mastodon/hooks/useHashtag';
@@ -21,77 +19,96 @@ export const HashtagMenu: React.FC<{
   accountId?: string;
   children?: React.ReactNode;
 }> = ({ tagId, accountId, children }) => {
-  const [wasMenuOpened, setWasMenuOpened] = useState(false);
-  const { tag, toggleFollow } = useHashtag(wasMenuOpened ? tagId : undefined);
+  return (
+    <Menu>
+      {children}
+
+      <MenuList container={undefined}>
+        <HashtagMenuInner tagId={tagId} accountId={accountId} />
+      </MenuList>
+    </Menu>
+  );
+};
+
+const HashtagMenuInner: React.FC<{ tagId: string; accountId?: string }> = ({
+  tagId,
+  accountId,
+}) => {
+  const { tag, toggleFollow } = useHashtag(tagId);
   const account = useAppSelector((state) =>
     selectPlainAccount(state, accountId),
   );
   const { signedIn } = useIdentity();
 
-  const handleMenuOpen = useCallback(() => {
-    setWasMenuOpened(true);
-  }, []);
+  if (!tag) {
+    return (
+      <MenuItem disabled>
+        <FormattedMessage
+          id='loading_indicator.label'
+          defaultMessage='Loading…'
+        />
+      </MenuItem>
+    );
+  }
 
-  const tagName = tag?.name ?? tagId;
-  const tagNameForUrl = tag ? encodeURIComponent(tag.name) : tagId;
+  const tagName = tag.name;
+  const tagNameForUrl = encodeURIComponent(tagName);
 
-  return (
-    <Menu onOpen={handleMenuOpen}>
-      {children}
-
-      <MenuList container={undefined}>
-        {signedIn && (
-          <MenuItem onClick={toggleFollow} disabled={!tag}>
-            {!tag ? (
-              <FormattedMessage
-                id='loading_indicator.label'
-                defaultMessage='Loading…'
-              />
-            ) : tag.following ? (
-              <FormattedMessage
-                id='hashtag.unfollow'
-                defaultMessage='Unfollow hashtag'
-              />
-            ) : (
-              <FormattedMessage
-                id='hashtag.follow'
-                defaultMessage='Follow hashtag'
-              />
-            )}
-          </MenuItem>
-        )}
-        <MenuItemLink to={`/tags/${tagNameForUrl}`}>
+  const signedOutItems = (
+    <>
+      <MenuItemLink to={`/tags/${tagNameForUrl}`}>
+        <FormattedMessage
+          id='hashtag.browse'
+          defaultMessage='Browse posts in #{hashtag}'
+          values={{ hashtag: tagName }}
+        />
+      </MenuItemLink>
+      {!!account && (
+        <MenuItemLink to={`/@${account.acct}/tagged/${tagNameForUrl}`}>
           <FormattedMessage
-            id='hashtag.browse'
-            defaultMessage='Browse posts in #{hashtag}'
-            values={{ hashtag: tagName }}
+            id='hashtag.browse_from_account'
+            defaultMessage='Browse posts from @{name} in #{hashtag}'
+            values={{
+              name: account.username,
+              hashtag: tagName,
+            }}
           />
         </MenuItemLink>
-        {!!account && (
-          <MenuItemLink to={`/@${account.acct}/tagged/${tagNameForUrl}`}>
-            <FormattedMessage
-              id='hashtag.browse_from_account'
-              defaultMessage='Browse posts from @{name} in #{hashtag}'
-              values={{
-                name: account.username,
-                hashtag: tagName,
-              }}
-            />
-          </MenuItemLink>
+      )}
+    </>
+  );
+
+  if (!signedIn) {
+    return signedOutItems;
+  }
+
+  return (
+    <>
+      <MenuItem onClick={toggleFollow}>
+        {tag.following ? (
+          <FormattedMessage
+            id='hashtag.unfollow'
+            defaultMessage='Unfollow hashtag'
+          />
+        ) : (
+          <FormattedMessage
+            id='hashtag.follow'
+            defaultMessage='Follow hashtag'
+          />
         )}
-        {signedIn && (
-          <>
-            <MenuItemDivider />
-            <MenuItemLink as='a' href='/filters' destructive>
-              <FormattedMessage
-                id='hashtag.mute'
-                defaultMessage='Mute #{hashtag}'
-                values={{ hashtag: tagName }}
-              />
-            </MenuItemLink>
-          </>
-        )}
-      </MenuList>
-    </Menu>
+      </MenuItem>
+
+      {signedOutItems}
+
+      <MenuItemDivider />
+
+      <MenuItemLink as='a' href='/filters' destructive>
+        <FormattedMessage
+          id='hashtag.mute'
+          defaultMessage='Mute #{hashtag}'
+          values={{ hashtag: tagName }}
+        />
+      </MenuItemLink>
+    </>
   );
 };

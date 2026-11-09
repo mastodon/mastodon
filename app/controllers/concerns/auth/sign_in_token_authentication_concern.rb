@@ -12,22 +12,34 @@ module Auth::SignInTokenAuthenticationConcern
   end
 
   def authenticate_with_sign_in_token
-    user = self.resource = find_user
+    if user_params[:email].present?
+      user = self.resource = find_user_from_params
+      prompt_for_sign_in_token(user) if user&.valid_password?(user_params[:password])
+    elsif session[:attempt_user_id]
+      user = self.resource = User.find_by(id: session[:attempt_user_id])
+      return if user.nil?
 
-    if params.key?(:sign_in_token_resend) && session[:attempt_user_id]
-      prompt_for_sign_in_token(user, resend: true)
-    elsif user_params[:sign_in_token_attempt].present? && session[:attempt_user_id]
-      authenticate_with_sign_in_token_attempt(user)
-    elsif user.present? && user.valid_password?(user_params[:password])
-      prompt_for_sign_in_token(user)
+      if session[:attempt_user_updated_at] != user.updated_at.to_s
+        restart_session
+      elsif params.key?(:sign_in_token_resend)
+        prompt_for_sign_in_token(user, resend: true)
+      elsif user_params[:sign_in_token_attempt].present?
+        authenticate_with_sign_in_token_attempt(user)
+      end
     end
   end
 
   def authenticate_with_sign_in_token_attempt(user)
+    if check_second_factor_rate_limits(user)
+      flash.now[:alert] = I18n.t('users.rate_limited')
+      return prompt_for_sign_in_token(user)
+    end
+
     if user.valid_sign_in_token?(user_params[:sign_in_token_attempt])
-      clear_attempt_from_session
-      sign_in(user)
+      user.clear_sign_in_token!
+      on_authentication_success(user, :sign_in_token)
     else
+      on_authentication_failure(user, :sign_in_token, :invalid_sign_in_token)
       flash.now[:alert] = I18n.t('users.invalid_sign_in_token')
       prompt_for_sign_in_token(user)
     end

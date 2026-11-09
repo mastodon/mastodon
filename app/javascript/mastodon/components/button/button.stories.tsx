@@ -1,158 +1,120 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { fn, expect } from 'storybook/test';
+import { fn } from 'storybook/test';
 
-import { Button } from '.';
+import { useToggle } from '@/mastodon/hooks/useToggle';
+import ChatIcon from '@/material-icons/400-24px/chat.svg?react';
+import DownloadIcon from '@/material-icons/400-24px/download.svg?react';
+import HeadphonesIcon from '@/material-icons/400-24px/headphones.svg?react';
+
+import { Button, IconButton, ToggleButton, ToggleIconButton } from '.';
+
+const iconArgType = {
+  control: 'select',
+  options: ['chat', 'download', 'audio'],
+  mapping: {
+    chat: ChatIcon,
+    download: DownloadIcon,
+    audio: HeadphonesIcon,
+  },
+} as const;
 
 const meta = {
   title: 'Components/Button',
   component: Button,
   args: {
-    secondary: false,
-    plain: false,
-    compact: false,
-    dangerous: false,
+    children: 'Action',
+    size: 'md',
+    variant: 'tonal',
+    color: 'neutral',
     disabled: false,
     loading: false,
+    as: 'button',
     onClick: fn(),
   },
   argTypes: {
-    text: {
+    children: {
       control: 'text',
-      type: 'string',
-      description:
-        'Alternative way of specifying the button label. Will override `children` if provided.',
     },
-    type: {
-      type: 'string',
-      control: 'text',
+    as: {
+      control: 'inline-radio',
+      options: ['button', 'a', 'link'],
+    },
+    size: {
+      control: 'inline-radio',
+      options: ['xs', 'sm', 'md', 'lg'],
+    },
+    variant: {
+      control: 'inline-radio',
+      options: ['solid', 'tonal', 'ghost'],
+    },
+    color: {
+      control: 'inline-radio',
+      options: ['neutral', 'accent', 'destructive'],
+    },
+    leadingIcon: iconArgType,
+    trailingIcon: iconArgType,
+    onClick: {
       table: {
-        type: { summary: 'string' },
+        disable: true,
       },
     },
   },
-  tags: ['test'],
+  parameters: {
+    redesign: true,
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const buttonTest: Story['play'] = async ({ args, canvas, userEvent }) => {
-  const button = await canvas.findByRole('button');
-  await userEvent.click(button);
-  await expect(args.onClick).toHaveBeenCalled();
-};
+export const Default: Story = {};
 
-export const Primary: Story = {
+export const IconLeading: Story = {
   args: {
-    children: 'Primary button',
+    leadingIcon: ChatIcon,
   },
-  play: buttonTest,
 };
 
-export const Secondary: Story = {
+export const IconTrailing: Story = {
   args: {
-    secondary: true,
-    children: 'Secondary button',
+    trailingIcon: HeadphonesIcon,
   },
-  play: buttonTest,
 };
 
-export const Plain: Story = {
+export const IconOnly: Story = {
+  render({ leadingIcon, ...args }) {
+    return <IconButton {...args} icon={leadingIcon ?? ChatIcon} />;
+  },
   args: {
-    plain: true,
-    children: 'Plain button',
+    leadingIcon: ChatIcon,
   },
-  play: buttonTest,
 };
 
-export const Compact: Story = {
+export const Link: Story = {
   args: {
-    compact: true,
-    children: 'Compact button',
+    as: 'link',
+    to: '/example',
   },
-  play: buttonTest,
 };
 
-export const CompactSecondary: Story = {
-  args: {
-    compact: true,
-    secondary: true,
-    children: 'Compact secondary button',
+export const Toggle: Story = {
+  render(args) {
+    const [active, { onToggle }] = useToggle();
+    return <ToggleButton {...args} active={active} onClick={onToggle} />;
   },
-  play: buttonTest,
 };
 
-export const CompactPlain: Story = {
-  args: {
-    compact: true,
-    plain: true,
-    children: 'Compact plain button',
+export const ToggleIcon: Story = {
+  render(args) {
+    const [active, { onToggle }] = useToggle();
+    return (
+      <ToggleIconButton
+        {...args}
+        active={active}
+        onClick={onToggle}
+        icon={args.leadingIcon ?? ChatIcon}
+      />
+    );
   },
-  play: buttonTest,
-};
-
-export const Dangerous: Story = {
-  args: {
-    dangerous: true,
-    children: 'Dangerous button',
-  },
-  play: buttonTest,
-};
-
-const disabledButtonTest: Story['play'] = async ({
-  args,
-  canvas,
-  userEvent,
-}) => {
-  const button = await canvas.findByRole('button');
-  await userEvent.click(button);
-  // Disabled controls can't be focused
-  await expect(button).not.toHaveFocus();
-  await expect(args.onClick).not.toHaveBeenCalled();
-};
-
-export const PrimaryDisabled: Story = {
-  args: {
-    ...Primary.args,
-    disabled: true,
-  },
-  play: disabledButtonTest,
-};
-
-export const SecondaryDisabled: Story = {
-  args: {
-    ...Secondary.args,
-    disabled: true,
-  },
-  play: disabledButtonTest,
-};
-
-export const PlainDisabled: Story = {
-  args: {
-    ...Plain.args,
-    disabled: true,
-  },
-  play: disabledButtonTest,
-};
-
-const loadingButtonTest: Story['play'] = async ({
-  args,
-  canvas,
-  userEvent,
-}) => {
-  const button = await canvas.findByRole('button', {
-    name: 'Primary button Loading…',
-  });
-  await userEvent.click(button);
-  await expect(button).toHaveFocus();
-  await expect(args.onClick).not.toHaveBeenCalled();
-};
-
-export const Loading: Story = {
-  args: {
-    ...Primary.args,
-    loading: true,
-  },
-  play: loadingButtonTest,
 };

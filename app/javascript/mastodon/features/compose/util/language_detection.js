@@ -1,7 +1,7 @@
 import lande from 'lande';
 import { debounce } from 'lodash';
 
-import { urlRegex } from './url_regex';
+import { replaceMentions, replaceUrls } from './url_regex';
 
 const ISO_639_MAP = {
   afr: 'af', // Afrikaans
@@ -56,14 +56,12 @@ const ISO_639_MAP = {
   vie: 'vi', // Vietnamese
 };
 
-const guessLanguage = (text) => {
-  text = text
-    .replace(urlRegex, '')
-    .replace(/(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig, '');
+export const guessLanguage = (text) => {
+  text = replaceUrls(replaceMentions(text, () => ''), '');
 
   if (text.length > 20) {
     const [lang, confidence] = lande(text)[0];
-  
+
     if (confidence > 0.8)
       return ISO_639_MAP[lang];
   }

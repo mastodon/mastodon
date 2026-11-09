@@ -26,4 +26,23 @@ module RegistrationHelper
       t('auth.user_privacy_agreement_html', privacy_policy_path: privacy_policy_path)
     end
   end
+
+  def pre_auth_from_stored_location
+    url = session[:user_return_to]
+    return if url.blank?
+
+    # TODO: Use Rack instead for consistency?
+    params = Addressable::URI.parse(url).query_values.with_indifferent_access
+    pre_auth_params = params.slice(:client_id, :code_challenge, :code_challenge_method, :response_type, :response_mode, :redirect_uri, :scope, :state)
+
+    pre_auth = Doorkeeper::OAuth::PreAuthorization.new(
+      Doorkeeper.configuration,
+      pre_auth_params,
+      nil
+    )
+
+    return unless pre_auth.client_valid? && pre_auth.authorizable?
+
+    pre_auth
+  end
 end

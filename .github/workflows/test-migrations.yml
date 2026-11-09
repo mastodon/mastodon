@@ -6,7 +6,7 @@ on:
     branches:
       - 'main'
       - 'stable-*'
-    paths:
+    paths: &paths
       - 'Gemfile*'
       - '.ruby-version'
       - '**/*.rb'
@@ -15,16 +15,11 @@ on:
       - 'lib/tasks/db.rake'
 
   pull_request:
-    paths:
-      - 'Gemfile*'
-      - '.ruby-version'
-      - '**/*.rb'
-      - '.github/workflows/test-migrations.yml'
-      - 'lib/tasks/tests.rake'
+    paths: *paths
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
 
     strategy:
@@ -73,7 +68,7 @@ jobs:
       BUNDLE_RETRY: 3
 
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby

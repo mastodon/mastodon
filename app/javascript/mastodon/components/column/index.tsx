@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { getColumnSkipLinkId } from '@/mastodon/features/ui/components/skip_links';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import { scrollTop } from 'mastodon/scroll';
 
 import { ColumnContext, useColumnIndexContext } from './context';
@@ -28,9 +28,17 @@ export const Column: React.FC<ColumnProps> = ({
 }) => {
   const nodeRef = useRef<HTMLDivElement>(null);
 
+  const { sensor: scrollSensor, isInViewport: isSensorInViewport } =
+    useScrollSensor({
+      placement: 'top',
+      tolerance: 4,
+    });
+
   const idleCallbackId = useRef<number>(null);
   const contextValue = useMemo(
     () => ({
+      scrollSensor: bindToDocument ? null : scrollSensor,
+      isScrolledToTop: isSensorInViewport,
       scrollTop() {
         let scrollable = null;
 
@@ -52,7 +60,7 @@ export const Column: React.FC<ColumnProps> = ({
         });
       },
     }),
-    [bindToDocument],
+    [bindToDocument, isSensorInViewport, scrollSensor],
   );
 
   const handleScroll = useDebouncedCallback(() => {
@@ -68,16 +76,17 @@ export const Column: React.FC<ColumnProps> = ({
       role='region'
       ref={nodeRef}
       onScroll={handleScroll}
-      className={classNames(
-        isRedesignEnabled() ? classes.root : 'column',
-        className,
-      )}
+      className={classNames(classes.root, className)}
       data-column-root // Used by hotkey handling code
       aria-label={label}
       aria-labelledby={
         label === undefined ? getColumnSkipLinkId(columnIndex) : undefined
       }
     >
+      {
+        // In multi-column mode, the scrollSensor is attached in <Scrollable>
+        bindToDocument ? scrollSensor : null
+      }
       <ColumnContext.Provider value={contextValue}>
         {children}
       </ColumnContext.Provider>

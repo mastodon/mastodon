@@ -4,7 +4,7 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
   include FormattingHelper
 
   attributes :id, :content, :starts_at, :ends_at, :all_day,
-             :published_at, :updated_at
+             :published_at, :updated_at, :reactions_allowed
 
   attribute :read, if: :current_user?
 
