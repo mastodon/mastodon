@@ -23,6 +23,38 @@ RSpec.describe 'Log out' do
     end
   end
 
+  context 'with a suspended user' do
+    before { bob.account.suspend! }
+
+    it 'logs the user out from account settings' do
+      visit edit_user_registration_path
+
+      within '.sidebar' do
+        click_on 'Logout'
+      end
+
+      expect(page)
+        .to have_title(I18n.t('auth.login'))
+        .and have_current_path('/auth/sign_in')
+    end
+  end
+
+  context 'with a deleted user' do
+    before { bob.account.mark_deleted! }
+
+    it 'logs the user out from account settings' do
+      visit edit_user_registration_path
+
+      within '.sidebar' do
+        click_on 'Logout'
+      end
+
+      expect(page)
+        .to have_title(I18n.t('auth.login'))
+        .and have_current_path('/auth/sign_in')
+    end
+  end
+
   describe 'Logging out from the JS app', :js, :streaming do
     it 'logs the user out' do
       # The frontend tries to load announcements after a short delay, but the session might be expired by then, and the browser will output an error.
