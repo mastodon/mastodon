@@ -79,6 +79,7 @@ sq:
       email_status: Gjendje email-i
       enable: Shkrije
       enable_sign_in_token_auth: Aktivizo mirëfilltësim me token email-i
+      enable_unconfirmed: Lejo email ripohimi
       enabled: E aktivizuar
       enabled_msg: U hoq me sukses ngrirja për llogarinë e %{username}
       followers: Ndjekës
@@ -444,6 +445,8 @@ sq:
       undo: Hiqe nga listë lejimesh
     domain_blocks:
       add_new: Shtoni bllokim të ri përkatësie
+      confirm_downgrade:
+        cancel: Anuloje
       confirm_suspension:
         cancel: Anuloje
         confirm: Pezulloje
@@ -742,6 +745,39 @@ sq:
       reset: Riktheje te parazgjedhjet
       search: Kërko
       title: Rregulla IP
+    moderation_subscriptions:
+      add_new: Shtoni pajtim
+      advisory_action: 'Veprim: %{action}'
+      advisory_actions:
+        accept: lejoje
+        limit: heshtoje
+        reject: pezulloje
+      apply_conditions:
+        always: Përherë
+        never: Kurrë
+        safely: Vetëm nëse s’dëmton marrëdhënie
+      delete: Fshije
+      last_synced_at: Njëkohësuar së fundi më
+      list_action: Lloj pajtimi
+      name: Emër
+      new:
+        create: Pajtohuni
+      priority: Përparësi
+      show:
+        edit: Përpunoni pajtim
+      tabs:
+        logs: Regjistra
+        subscriptions: Pajtime
+        suggestions: Sugjerime
+      type: Lloj
+      types:
+        csv_list: Listë CSV
+      url: URL
+    moderation_suggestions:
+      destroyed_msg: U hodh tej me sukses sugjerim për%{target_key}
+      dismiss: Hidhni tej sugjerime
+      suggested_from_html: Sugjeruar nga %{link}
+      unable_to_apply_msg: S’arrihet të aplikohet sugjerim për %{target_key}
     relationships:
       title: Marrëdhënie të %{acct}
     relays:
@@ -932,6 +968,106 @@ sq:
       translation: Përkthim
       translations: Përkthime
       translations_explanation: Në daçi, mund të shtoni përkthime për rregullat. Nëse s’ka version të përkthyer, do të shfaqet vlera parazgjedhje. Ju lutemi, garantoni përherë se përkthimi i dhënë është i njëkohësuar me vlerën parazgjedhje.
+    server_checks:
+      categories:
+        completed:
+          title: Të plotësuar
+        critical:
+          title: Kritikë
+        error:
+          title: Gabime
+        ignored:
+          title: Të shpërfillura
+        suggestion:
+          title: Sugjerime
+        unprocessed:
+          title: Të papërpunuara
+        warning:
+          title: Sinjalizime
+      checks:
+        database_schema:
+          error:
+            title: Pati një gabim në kontrollin e skemës së bazës së të dhënave
+          ok:
+            title: S’ka pezull ndonjë migrim baze të dhënash
+          pending:
+            lead_html: Ju lutemi, ribëjini, që të garantohet se aplikacioni sillet siç pritet
+            title: Ka migrime bazash të dhënash pezull
+          running:
+            title: Shërbyesi juaj po kotrollon skemën e bazës së të dhënave
+          unprocessed:
+            title: Shërbyesi juaj s’e ka kontrolluar ende skemën e bazës së të dhënave
+        elastic_search:
+          error:
+            title: Pati një gabim në kontrollin e formësimit të Elasticsearch-it
+          ok:
+            title: Elasticsearch-i është formësuar pa probleme
+          pending:
+            title: Ka probleme me Elasticsearch-in
+          running:
+            title: Shërbyesi po kontrollon formësimin e Elasticsearch-it
+          unprocessed:
+            title: Shërbyesi s’e ka kontrolluar ende formësimin e Elasticsearch-it
+        media_privacy:
+          error:
+            title: Pati një gabim në kontrollin e privatësisë së medias në shërbyesin tuaj
+          ok:
+            title: Privatësia e mediave në shërbyesin tuaj është e siguruar
+          pending:
+            lead:
+              upload_check_privacy_error_html: Shërbyesi juaj është i formësuar keq
+              upload_check_privacy_error_object_storage_html: Depozita juaj e objekteve është e formësuar keq
+            title: Privatësia e përdoruesve tuaj është në rrezik
+          running:
+            title: Shërbyesi po kontrollon gjendjen e privatësisë në të
+          unprocessed:
+            title: Shërbyesi s’e ka kontrolluar ende gjendjen e privatësisë në të
+        rules:
+          error:
+            title: Pati një gabim në kontrollin e rregullave të shërbyesit tuaj
+          ok:
+            title: Rregullat e shërbyesit tuaj janë ujdisur
+          pending:
+            lead_html: Shërbyesi juaj s’ka rregulla të publikuar. Rregulla të qarta ndihmojnë moderimin dhe vendosin ç’të pritet
+            title: Ujdisni rregulla shërbyesi
+          running:
+            title: Shërbyesi po kontrollon rregullat tuaja
+          unprocessed:
+            title: Shërbyesi s’ka kontrolluar ende nëse ka ndonjë rregull
+        sidekiq_process:
+          error:
+            title: Pati një gabim në kontrollin e formësimit të Sidekiq-ut
+          ok:
+            title: Sidekiq-u është formësuar pa probleme
+          pending:
+            title: Ju lutemi, shqyrtoni formësimin tuaj tëSidekiq-ut
+          running:
+            title: Shërbyesi po kontrollon formësimin e Sidekiq-ut
+          unprocessed:
+            title: Shërbyesi s’e ka kontrolluar ende formësimin e Sidekiq-ut
+        software_version:
+          error:
+            title: Pati një gabim në kontrollin për përditësime software-i
+          ok:
+            title: Instanca juaj Mastodon është e përditësuar
+          pending:
+            lead:
+              regular_html: Ka të gatshëm një version të ri të Mastodon-it
+            title: Përditësoni instancën tuaj Mastodon
+          running:
+            title: Shërbyesi po kotrollon nëse ka ndonjë përditësmi software-i pezull
+          unprocessed:
+            title: Shërbyesi s’ka kontrolluar ende për përditësime software-i
+      ignore:
+        label: Shpërfille
+      lead: Rekomandime për ta mbajtur shërbyesin tuaj të parrezik, mikpritës dhe efikas.
+      recommendations:
+        title: Rekomandime
+      restore:
+        label: Riktheje
+      setup:
+        label: Ujdiseni
+      title: Shëndet Shërbyesi
     settings:
       about:
         manage_rules: Administroni rregulla shërbyesi
@@ -954,6 +1090,9 @@ sq:
         danger_zone: Zonë rreziku
         preamble: Kontrolloni se si depozitohen në Mastodon lënda e prodhuar nga përdoruesit.
         title: Mbajtje lënde
+      crawlers:
+        preamble: Kontrolloni se si ndërveprojnë me shërbyesin tuaj Mastodon robotë (që sillen mirë), fjala vjen, tjerrës motorësh kërkimesh. Robotë dashakeqë mund t’i shpërfillin këto rregullime dhe duhen bllokuar në nivel rrjeti.
+        title: Kontrolle për tjerrës
       default_noindex:
         desc_html: Prek krejt përdoruesit që s’e kanë ndryshuar vetë këtë rregullim
         title: Lëri, si parazgjedhje, përdoruesit jashtë indeksimi nga motorë kërkimesh
@@ -1260,6 +1399,15 @@ sq:
     warning_presets:
       add_new: Shtoni të ri
       delete: Fshije
+      dropdown:
+        all_actions: Krejt veprimet
+        none: Kujdes
+        silence: Kufizoje
+        suspend: Pezulloje
+      edit_preset: Përpunoni përgjigje të gatshme
+      empty: S;keni përkufizuar ende ndonjë përgjigje të gatshme.
+      navigation_title: Përgjigje të Gatshme
+      title: Përgjigje të Gatshme Moderimi
     webhooks:
       add_new: Shtoni pikëmbarim
       delete: Fshije
@@ -1311,6 +1459,9 @@ sq:
     new_pending_account:
       body: Hollësitë e llogarisë së re gjenden më poshtë. Mund ta miratoni ose hidhni poshtë këtë aplikim.
       subject: Llogari e re për shqyrtim në %{instance} (%{username})
+    new_pending_accounts:
+      body: Te %{instance} kanë krijuar llogari të reja. Ngaqë shërbyesi juaj është formësuar të shtyjë pemail-e ripohimesh pas miratimi nga moderimir, këto llogari s’patën ende një mundësi të verifikojnë adresën e tyre email. Hollësitë e llogarive të reja gjenden më poshtë. Mundeni t’i miratoni, ose të mos i pranoni këto aplikime.
+      subject: Llogari të reja për shqyrtim në %{instance}
     new_report:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
@@ -1418,11 +1569,16 @@ sq:
     security: Siguri
     set_new_password: Caktoni fjalëkalim të ri
     setup:
+      correct_email: Ndreqni adresën
       email_below_hint_html: Shihni te dosja juaj e të padëshiruarve, ose kërkoni një tjetër. Mundeni të saktësoni adresën tuaj email, nëse është gabim.
       email_settings_hint_html: Që të filloni të përdorni Mastodon-in, klikoni mbi lidhjen që dërguam te%{email}. Do të presim këtu.
+      email_settings_hint_wait_html: Aplikimi juaj po shqyrtohet. Së shpejti duhet të merrni një email te %{email}. Pasi ta merrni, klikoni lidhjen, që të filloni të përdorni Mastodon-in. Do të presim mu këtu.
       link_not_received: S’morët lidhje?
       new_confirmation_instructions_sent: Brenda pak mintuash do të merrni një email të ri me lidhjen e ripohimit!
       title: Shihni te email-et tuaj
+      title_wait: Mbani mendjen te të marrët tuaj
+      wrong_email: Adresë email e gabuar?
+      wrong_email_below_hint_html: Mos u trembni! Mund ta ndreqni adresën tuaj email më poshtë.
     sign_in:
       preamble_html: Hyni me kredencialet tuaja për te <strong>%{domain}</strong>. Nëse llogaria juaj strehohet në një tjetër shërbyes, s’do të jeni në gjendje të bëni hyrjen këtu.
       title: Bëni hyrjen te %{domain}
@@ -1459,6 +1615,9 @@ sq:
     auto: Automatike
     dark: E errët
     light: E çelët
+  color_theme:
+    orange: Portokalli
+    pink: Bojë trëndafili
   contrast:
     auto: Automatik
     high: I lartë
@@ -1504,6 +1663,7 @@ sq:
       action_taken: Vendim i marrë
       appeal: Apelim
       appeal_approved: Ky paralajmërim është apeluar me sukses dhe s’vlen më
+      appeal_handled_by: Apelim i trajtuar nga
       appeal_rejected: Apelimi është hedhur poshtë
       appeal_submitted_at: Apelimi u parashtrua
       appealed_msg: Apelimi juaj u parashtruar. Nëse miratohet, do të njoftoheni.

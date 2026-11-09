@@ -7,6 +7,13 @@ ca:
     hosted_on: Mastodon allotjat a %{domain}
     title: Quant a
   accounts:
+    api_errors:
+      account_deleted: El vostre compte s'ha esborrat
+      account_suspended: El vostre compte s'ha suspès
+      login_disabled: S'ha desactivat el vostre compte
+      memorial: El vostre compte s'ha transformat en un memorial
+      pending_approval: El vostre compte està pendent d'aprovació per moderació
+      pending_confirmation: El vostre compte no té una adreça de correu confirmada
     errors:
       cannot_be_added_to_collections: Aquest compte no es pot afegir a coŀleccions.
     followers:
@@ -53,27 +60,43 @@ ca:
         label: Canvia rol
         no_role: Sense rol
         title: Canvia el rol per a %{username}
+      collections: Col·leccions
       confirm: Confirma
       confirmed: Confirmat
       confirming: Confirmant
       custom: Personalitzat
       delete: Esborra les dades
       deleted: Eliminat
+      deletion_irreversible: Les dades d'aquest compte s'han esborrat irreversiblement.
+      deletion_reversible_hint_html: Aquest compte està pendent d'esborrat, i les dades s'eliminaran completament el %{date}.
       demote: Degrada
       destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
       disable: Inhabilita
+      disable_sign_in_token: Deshabilitar temporalment la validació del codi de seguretat
       disable_sign_in_token_auth: Desactivar l'autenticació de token per correu-e
       disable_two_factor_authentication: Desactiva 2FA
       disabled: Inhabilitat
+      discoverable:
+        disabled: L'autor no vol ser detectable
+        enabled: L'autor ha activat poder ser detectable
+        title: Detectable
       display_name: Nom visible
       domain: Domini
       edit: Edita
       email: Adreça electrònica
       email_status: Estat de l'adreça electrònica
       enable: Habilita
+      enable_sign_in_token: Activar la validació del codi de seguretat
       enable_sign_in_token_auth: Activar l'autenticació de token per correu-e
+      enable_unconfirmed: Permetre correu de confirmació
       enabled: Habilitat
       enabled_msg: El compte de %{username} s’ha descongelat amb èxit
+      follow_recommendations:
+        allowed: Permès
+        suppress: Suprimeix les recomanacions de seguiment
+        suppressed: Suprimit
+        title: Recomanacions de comptes a seguir
+        unsuppress: Restaurar les recomanacions de seguiment
       followers: Seguidors
       follows: Seguits
       header: Capçalera
@@ -119,6 +142,7 @@ ca:
       push_subscription_expires: La subscripció PuSH expira
       redownload: Actualitza el perfil
       redownloaded_msg: El perfil de %{username} s’ha refrescat des de l’origen amb èxit
+      registration_app: Aplicació de registre
       reject: Rebutja
       rejected_msg: S'ha rebutjat la petició de registre de %{username}
       remote_suspension_irreversible: Les dades d'aquest compte s'han esborrat irreversiblement.
@@ -158,6 +182,12 @@ ca:
       suspension_irreversible: Les dades d’aquest compte s’han suprimit irreversiblament. Pots desfer la suspensió del compte per a fer-lo usable però això no recuperarà les dades si és que en tenia.
       suspension_reversible_hint_html: El compte ha estat suspès i les dades seran totalment suprimides el %{date}. Fins llavors, el compte pot ser restaurat sense problemes. Si vols suprimir immediatament totes les dades del compte, ho pots fer a continuació.
       title: Comptes
+      trends:
+        allow: Permet
+        allowed: Permès
+        disallow: No permetre
+        disallowed: No permès
+        title: Tuts en tendència
       unblock_email: Desbloqueja l'adreça de correu
       unblocked_email_msg: Adreça de correu de %{username} desbloquejada amb èxit
       unconfirmed_email: Correu electrònic sense confirmar
@@ -193,6 +223,7 @@ ca:
         create_user_role: Crea Rol
         create_username_block: Crear regla de nom d'usuari
         demote_user: Degrada l'usuari
+        destroy_account: Suprimeix les dades del compte
         destroy_announcement: Esborra l'anunci
         destroy_canonical_email_block: Elimina el blocatge del correu electrònic
         destroy_custom_emoji: Esborra l'emoji personalitzat
@@ -469,6 +500,35 @@ ca:
       resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, que són els responsables finals per a acceptar els correus. Blocar un domini MX blocarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible sigui diferent. <strong>Vigileu de no blocar els grans proveïdors de correu.</strong>
       resolved_through_html: Resolt mitjançant %{domain}
       title: Dominis de correu-e blocats
+    email_subscriptions:
+      accounts:
+        show:
+          disable_feature: Desactiva la funcionalitat
+          email: Adreça de correu electrònic
+          enable_feature: Activar aquesta funció
+          view_account: Veure compte
+        status: Estat
+        subscribers: Subscriptors
+        title: Llistes de correu
+      danger_zone:
+        disable_feature:
+          hint: Desactivar funcionalitat per a tots els comptes
+          title: Desactivar funcionalitat
+        erase_all_data:
+          action: Esborra les dades
+          hint: Esborrar de manera permanent tos els correus en totes les llistes de correu
+          title: Esborrar totes les dades
+        title: Zona de perill
+      index:
+        disabled:
+          get_started: Comença
+        title: Butlletins
+      roles:
+        accounts: Comptes
+        title: Rols
+      setups:
+        show:
+          important_information: Informació important
     export_domain_allows:
       new:
         title: Importa dominis permesos

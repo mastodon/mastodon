@@ -93,12 +93,14 @@ zh-TW:
         closed_registrations_message: 於註冊關閉時顯示
         content_cache_retention_period: 所有來自其他伺服器之嘟文（包括轉嘟與回嘟）將於指定之天數後自動刪除，不論這些嘟文與本地使用者間的任何互動。這將包含本地使用者已標記為書籤或最愛之嘟文。不同站點使用者間之私訊亦將遺失且不可回復。此設定應適用於特殊情況，若常規使用將超乎多數使用者預期。
         custom_css: 您於 Mastodon 網頁版本中能套用客製化風格。
+        custom_robots_html: <a href="%{path}">語法</a>
         email_footer_text: 僅顯示於電子報郵件中之可選填備註文字。
         favicon: WEBP、PNG、GIF、或 JPG。使用自訂圖示替代預設 Mastodon favicon 圖示。
         landing_page: 選擇當新訪客第一次造訪您伺服器時所見之頁面。若您選擇「熱門趨勢」，則該功能必須於探索設定中啟用。若您選擇「本站時間軸」，則探索設定中「允許瀏覽本站嘟文之即時內容」功能必須設定為「任何人」。
         mascot: 覆寫進階網頁介面中的圖例。
         media_cache_retention_period: 來自遠端伺服器嘟文中之多媒體附加檔案將快取於您的伺服器。當設定為正值時，這些多媒體內容將於指定之天數後自您的儲存空間中自動刪除。若多媒體資料於刪除後被請求，且原始內容仍可存取，它們將被重新下載。由於連結預覽中第三方網站查詢頻率限制，建議將其設定為至少 14 日，否則於此之前連結預覽將不被即時更新。
         min_age: 使用者將於註冊時被要求確認他們的生日
+        override_robots: 允許您自訂表現良好的機器人之存取規則
         peers_api_enabled: 浩瀚聯邦宇宙中與此伺服器曾經擦肩而過的網域列表。不包含關於您是否與此伺服器是否有與之串連，僅僅表示您的伺服器已知此網域。這是供收集聯邦宇宙中一般性統計資料服務使用。
         postpone_confirmation_emails: 當此項設定啟用時，待審核帳號之驗證信將於帳號被核准後發送。這可能使使用者的註冊體驗變差，因為他們收到信後仍需及時確認電子郵件地址，但已無法控制該信件何時被發送。此外，這也可能增加管理員之工作量，因為 Mastodon 於帳號核准前無法過濾掉電子郵件無效之待審核帳號。
         profile_directory: 個人檔案目錄將會列出那些有選擇被發現的使用者。
@@ -303,6 +305,7 @@ zh-TW:
         closed_registrations_message: 當註冊關閉時的客製化訊息
         content_cache_retention_period: 遠端內容保留期限
         custom_css: 自訂 CSS
+        custom_robots: 自訂 robots.txt 檔案
         email_footer_text: 其他備註文字
         favicon: 網站圖示 (Favicon)
         landing_page: 新訪客之登陸頁面
@@ -311,6 +314,7 @@ zh-TW:
         mascot: 自訂吉祥物 (legacy)
         media_cache_retention_period: 多媒體快取資料保留期間
         min_age: 最低年齡要求
+        override_robots: 複寫預設 robots.txt 檔案
         peers_api_enabled: 於 API 中公開已知伺服器的列表
         postpone_confirmation_emails: 審核批准後方寄送驗證信
         profile_directory: 啟用個人檔案目錄
