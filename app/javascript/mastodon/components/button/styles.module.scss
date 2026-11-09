@@ -4,7 +4,7 @@
   --bg: transparent;
   --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
   --fg: var(--color-text-primary);
-  --inline-padding: var(--space-2);
+  --inline-padding: var(--space-1);
 
   @include mixins.type-label;
 
@@ -82,7 +82,10 @@ a.base {
 // Sizes
 
 .xs {
-  min-height: 20px;
+  --inline-padding: var(--space-1);
+
+  min-height: 24px;
+  padding-block: var(--space-half);
 }
 
 .sm {
