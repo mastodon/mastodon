@@ -244,6 +244,15 @@ const onChangeAccountActionSelection = (target: HTMLSelectElement) => {
     'presets_dropdown',
   ) as HTMLSelectElement | null;
 
+  const button = document.querySelector<HTMLElement>(
+    'form#action_type button[type=submit]',
+  );
+  const selectedOption = target.options[target.selectedIndex];
+  const contentTag = selectedOption?.dataset.buttonLabel ?? null;
+  if (button) {
+    button.textContent = contentTag;
+  }
+
   if (presetsDropdown) {
     const allOptions = Array.from(presetsDropdown.options);
     presetsDropdown.value = '';

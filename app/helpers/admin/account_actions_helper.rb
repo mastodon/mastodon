@@ -25,4 +25,13 @@ module Admin::AccountActionsHelper
       Admin::AccountAction::TYPES
     end
   end
+
+  def button_collection
+    types = if params[:report_id].present?
+              combined_types_collection
+            else
+              Admin::AccountAction::TYPES
+            end
+    types.map { |type| [type, type, { data: { button_label: I18n.t("admin.account_actions.types.#{type}") } }] }
+  end
 end
