@@ -27,11 +27,21 @@ module Admin::AccountActionsHelper
   end
 
   def button_collection
+    key_map =
+      {
+        'delete' => 'delete_statuses',
+        'mark_as_sensitive' => 'mark_statuses_as_sensitive',
+        'sensitive' => 'sensitive',
+        'silence' => 'silence',
+        'suspend' => 'suspend',
+        'disable' => 'disable',
+      }
+
     types = if params[:report_id].present?
               combined_types_collection
             else
               Admin::AccountAction::TYPES
             end
-    types.map { |type| [type, type, { data: { button_label: I18n.t("admin.account_actions.types.#{type}"), strike_card: I18n.t("user_mailer.warning.explanation.#{type}"), instance: Rails.configuration.x.local_domain } }] }
+    types.map { |type| [type, type, { data: { button_label: I18n.t("admin.account_actions.types.#{type}"), strike_card: I18n.t("user_mailer.warning.explanation.#{key_map[type]}", instance: Rails.configuration.x.local_domain) } }] }
   end
 end

@@ -250,11 +250,17 @@ const onChangeAccountActionSelection = (target: HTMLSelectElement) => {
     button.textContent = buttonContent;
   }
 
+  const strikeCardParent = document.querySelector<HTMLElement>(
+    '#data-action-strike-card',
+  );
   const strikeCard = document.querySelector<HTMLElement>(
     '#data-action-strike-card p',
   );
   const strikeCardContent = selectedOption?.dataset.strikeCard ?? null;
   if (strikeCard) {
+    if (accountAction === 'none' && strikeCardParent) {
+      strikeCardParent.hidden = true;
+    }
     strikeCard.textContent = strikeCardContent;
   }
 
