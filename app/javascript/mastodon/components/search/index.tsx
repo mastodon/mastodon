@@ -21,6 +21,7 @@ import { isFulfilled } from '@reduxjs/toolkit';
 
 import { MagnifyingGlassIcon, XCircleIcon, XIcon } from '@phosphor-icons/react';
 
+import type { ApiSearchType } from '@/mastodon/api_types/search';
 import {
   FOCUS_TARGET,
   useFocusAfterNavigation,
@@ -102,11 +103,14 @@ interface SearchOption {
   forget?: (e: React.MouseEvent | React.KeyboardEvent) => void;
 }
 
+type NavSearchType = Extract<SearchType, ApiSearchType>;
+
 export const Search: React.FC<{
   singleColumn: boolean;
   context?: 'column' | 'sidebar';
   initialValue?: string;
-}> = ({ singleColumn, context = 'column', initialValue }) => {
+  initialType?: NavSearchType;
+}> = ({ singleColumn, context = 'column', initialValue, initialType }) => {
   const intl = useIntl();
   const recent = useAppSelector((state) => state.search.recent);
   const { signedIn } = useIdentity();
@@ -319,7 +323,7 @@ export const Search: React.FC<{
   );
 
   const submit = useCallback(
-    (q: string, type?: SearchType) => {
+    (q: string, type?: NavSearchType) => {
       void dispatch(clickSearchResult({ q, type }));
       const queryParams = new URLSearchParams({ q });
       if (type) queryParams.set('type', type);
@@ -501,7 +505,7 @@ export const Search: React.FC<{
           e.preventDefault();
 
           if (selectedOption === -1) {
-            submit(value);
+            submit(value, initialType);
           } else if (navigableOptions.length > 0) {
             navigableOptions[selectedOption]?.action(e);
           }
@@ -520,7 +524,15 @@ export const Search: React.FC<{
           break;
       }
     },
-    [expanded, handleClear, navigableOptions, selectedOption, submit, value],
+    [
+      expanded,
+      handleClear,
+      initialType,
+      navigableOptions,
+      selectedOption,
+      submit,
+      value,
+    ],
   );
 
   const handleInputFocus = useCallback(() => {
