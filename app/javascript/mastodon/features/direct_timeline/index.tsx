@@ -14,7 +14,6 @@ import {
 import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import {
   mountConversations,
@@ -118,17 +117,10 @@ const DirectTimeline: React.FC<ColumnBase> = ({ columnId, multiColumn }) => {
         prepend={
           <div className='follow_requests-unlocked_explanation'>
             <span>
-              {isRedesignEnabled() ? (
-                <FormattedMessage
-                  id='compose_form.encryption_warning_messages'
-                  defaultMessage='Messages are not end-to-end encrypted. Never share sensitive information, such as your phone number or banking details, on Mastodon.'
-                />
-              ) : (
-                <FormattedMessage
-                  id='compose_form.encryption_warning'
-                  defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.'
-                />
-              )}{' '}
+              <FormattedMessage
+                id='compose_form.encryption_warning_messages'
+                defaultMessage='Messages are not end-to-end encrypted. Never share sensitive information, such as your phone number or banking details, on Mastodon.'
+              />{' '}
               <a
                 href='https://docs.joinmastodon.org/user/posting/#private'
                 rel='noreferrer'
@@ -146,11 +138,7 @@ const DirectTimeline: React.FC<ColumnBase> = ({ columnId, multiColumn }) => {
       />
 
       <Helmet>
-        <title>
-          {intl.formatMessage(
-            isRedesignEnabled() ? messages.title_redesign : messages.title,
-          )}
-        </title>
+        <title>{intl.formatMessage(messages.title_redesign)}</title>
         <meta name='robots' content='noindex' />
       </Helmet>
     </Column>

@@ -15,7 +15,6 @@ import {
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { useIdentity } from '@/mastodon/identity_context';
 import { domain, sso_redirect } from '@/mastodon/initial_state';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { fetchServer } from 'mastodon/actions/server';
 import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import { TabLink, TabList } from 'mastodon/components/tab_list';
@@ -36,35 +35,28 @@ export const CustomHomepage: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div
-      className={classNames(
-        classes.page,
-        isRedesignEnabled() && classes.pageRedesign,
-      )}
-    >
-      {isRedesignEnabled() && (
-        <ColumnHeader
-          title={domain}
-          extraButtons={
-            !signedIn && (
-              <ColumnHeaderButton
-                as='a'
-                href={sso_redirect ?? '/auth/sign_in'}
-                data-method={sso_redirect ? 'post' : undefined}
-                showTextOnDesktop
-                icon={SignInIcon}
-                variant='solid'
-                color='accent'
-              >
-                <FormattedMessage
-                  id='sign_in_banner.sign_in'
-                  defaultMessage='Login'
-                />
-              </ColumnHeaderButton>
-            )
-          }
-        />
-      )}
+    <div className={classNames(classes.page, classes.pageRedesign)}>
+      <ColumnHeader
+        title={domain}
+        extraButtons={
+          !signedIn && (
+            <ColumnHeaderButton
+              as='a'
+              href={sso_redirect ?? '/auth/sign_in'}
+              data-method={sso_redirect ? 'post' : undefined}
+              showTextOnDesktop
+              icon={SignInIcon}
+              variant='solid'
+              color='accent'
+            >
+              <FormattedMessage
+                id='sign_in_banner.sign_in'
+                defaultMessage='Login'
+              />
+            </ColumnHeaderButton>
+          )
+        }
+      />
       <ServerHeroImage
         alt={server.item?.thumbnail.description ?? ''}
         blurhash={server.item?.thumbnail.blurhash ?? ''}

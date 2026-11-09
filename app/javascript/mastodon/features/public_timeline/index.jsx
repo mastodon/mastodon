@@ -22,7 +22,6 @@ import { expandPublicTimeline } from '../../actions/timelines';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { ColumnHeader, ColumnSettingsMenu } from '@/mastodon/components/column_header';
 import { FeedColumnSettings } from './components/feed_column_settings';
 import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
@@ -137,45 +136,29 @@ class PublicTimeline extends PureComponent {
       />
     );
 
-    const title = intl.formatMessage(isRedesignEnabled() ? messages.title_redesign : messages.title)
+    const title = intl.formatMessage(messages.title_redesign)
 
     return (
       <Column bindToDocument={!multiColumn} label={title}>
-        {isRedesignEnabled() ? (
-          <ColumnHeader
-            title={title}
-            withUnreadMarker={hasUnread}
-            extraButtons={
-              <ColumnSettingsMenu
-                labelPrefix={title}
-              >
-                <FeedColumnSettings columnId={columnId} />
-                {multiColumn && (
-                  <MultiColumnMenuItems
-                    withDivider
-                    pinned={pinned}
-                    onPin={this.handlePin}
-                    onMove={this.handleMove}
-                  />
-                )}
-              </ColumnSettingsMenu>
-            }
-          />
-        ) : (
-          <LegacyColumnHeader
-            icon='globe'
-            iconComponent={PublicIcon}
-            active={hasUnread}
-            title={title}
-            onPin={this.handlePin}
-            onMove={this.handleMove}
-            pinned={pinned}
-            multiColumn={multiColumn}
-            scrollTopOnClick
-          >
-            <ColumnSettingsContainer columnId={columnId} />
-          </LegacyColumnHeader>
-        )}
+        <ColumnHeader
+          title={title}
+          withUnreadMarker={hasUnread}
+          extraButtons={
+            <ColumnSettingsMenu
+              labelPrefix={title}
+            >
+              <FeedColumnSettings columnId={columnId} />
+              {multiColumn && (
+                <MultiColumnMenuItems
+                  withDivider
+                  pinned={pinned}
+                  onPin={this.handlePin}
+                  onMove={this.handleMove}
+                />
+              )}
+            </ColumnSettingsMenu>
+          }
+        />
 
         <StatusListContainer
           prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the fediverse that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}

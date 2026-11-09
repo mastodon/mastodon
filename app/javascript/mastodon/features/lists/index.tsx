@@ -8,15 +8,12 @@ import { PlusIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import {
   ColumnHeader,
   ColumnHeaderButton,
 } from '@/mastodon/components/column_header';
 import { NotSignedInIndicator } from '@/mastodon/components/not_signed_in_indicator';
 import { useIdentity } from '@/mastodon/identity_context';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
@@ -101,79 +98,42 @@ const Lists: React.FC<{
 
   const emptyMessage = (
     <>
-      {isRedesignEnabled() ? (
-        <span>
-          <FormattedMessage
-            id='custom_feeds.no_custom_feeds_yet'
-            defaultMessage='No custom feeds yet.'
-          />
-          <br />
-          <FormattedMessage
-            id='custom_feeds.create_a_list_to_organize'
-            defaultMessage='Create a new custom feed to organize your Following feed.'
-          />
-        </span>
-      ) : (
-        <span>
-          <FormattedMessage
-            id='lists.no_lists_yet'
-            defaultMessage='No lists yet.'
-          />
-          <br />
-          <FormattedMessage
-            id='lists.create_a_list_to_organize'
-            defaultMessage='Create a new list to organize your Home feed'
-          />
-        </span>
-      )}
+      <span>
+        <FormattedMessage
+          id='custom_feeds.no_custom_feeds_yet'
+          defaultMessage='No custom feeds yet.'
+        />
+        <br />
+        <FormattedMessage
+          id='custom_feeds.create_a_list_to_organize'
+          defaultMessage='Create a new custom feed to organize your Following feed.'
+        />
+      </span>
 
       <SquigglyArrow className='empty-column-indicator__arrow' />
     </>
   );
 
-  const title = intl.formatMessage(
-    isRedesignEnabled() ? messages.heading_redesign : messages.heading,
-  );
+  const title = intl.formatMessage(messages.heading_redesign);
 
   return (
     <Column bindToDocument={!multiColumn} label={title}>
-      {isRedesignEnabled() ? (
-        <ColumnHeader
-          withBackButton
-          title={title}
-          extraButtons={
-            <ColumnHeaderButton
-              showTextOnDesktop
-              variant='solid'
-              color='accent'
-              icon={PlusIcon}
-              as='link'
-              to='/lists/new'
-            >
-              {intl.formatMessage(messages.create_redesign)}
-            </ColumnHeaderButton>
-          }
-        />
-      ) : (
-        <LegacyColumnHeader
-          title={title}
-          icon='list-ul'
-          iconComponent={ListAltIcon}
-          multiColumn={multiColumn}
-          extraButton={
-            signedIn && (
-              <Link
-                to='/lists/new'
-                className='column-header__button'
-                title={intl.formatMessage(messages.create)}
-                aria-label={intl.formatMessage(messages.create)}
-              >
-                <Icon id='plus' icon={AddIcon} />
-              </Link>
-            )
-          }
-        />
-      )}
+      <ColumnHeader
+        withBackButton
+        title={title}
+        extraButtons={
+          <ColumnHeaderButton
+            showTextOnDesktop
+            variant='solid'
+            color='accent'
+            icon={PlusIcon}
+            as='link'
+            to='/lists/new'
+          >
+            {intl.formatMessage(messages.create_redesign)}
+          </ColumnHeaderButton>
+        }
+      />
 
       <ScrollableList
         scrollKey='lists'
