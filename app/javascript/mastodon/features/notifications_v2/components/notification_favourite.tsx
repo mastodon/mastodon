@@ -3,35 +3,13 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import { StatusLikeActiveIcon } from '@/mastodon/components/status/icons';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import type { NotificationGroupFavourite } from 'mastodon/models/notification_group';
 import { useAppSelector } from 'mastodon/store';
 
 import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationGroupWithStatus } from './notification_group_with_status';
 
-const messagesLegacy = defineMessages({
-  like: {
-    id: 'notification.favourite',
-    defaultMessage: '{name} favorited your post',
-  },
-  likeByMultiple: {
-    id: 'notification.favourite.name_and_others_with_link',
-    defaultMessage:
-      '{name} and <a>{count, plural, one {# other} other {# others}}</a> favorited your post',
-  },
-  messageLike: {
-    id: 'notification.favourite_pm',
-    defaultMessage: '{name} favorited your private mention',
-  },
-  messageLikeByMultiple: {
-    id: 'notification.favourite_pm.name_and_others_with_link',
-    defaultMessage:
-      '{name} and <a>{count, plural, one {# other} other {# others}}</a> favorited your private mention',
-  },
-});
-
-const messagesRedesign = defineMessages({
+const messages = defineMessages({
   like: {
     id: 'notification.like',
     defaultMessage: '{name} liked your post',
@@ -51,8 +29,6 @@ const messagesRedesign = defineMessages({
       '{name} and <a>{count, plural, one {# other} other {# others}}</a> liked your message',
   },
 });
-
-const messages = isRedesignEnabled() ? messagesRedesign : messagesLegacy;
 
 const labelRenderer: LabelRenderer = (displayedName, total, seeMoreHref) => {
   if (total === 1)

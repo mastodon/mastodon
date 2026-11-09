@@ -7,7 +7,6 @@ import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import { submitMarkers } from './markers';
 import { timelineDelete } from './timelines_typed';
-import { isRedesignEnabled } from '../utils/environment';
 
 export { disconnectTimeline } from './timelines_typed';
 
