@@ -227,11 +227,12 @@ export function useAutosuggestFloatingMenu({
       }
 
       // Set top to scroll offset so the mirror matches the current line location.
+      // offsetTop accounts for content above the source, like the reply preview.
       const lineOffset =
         mirrorElement.scrollHeight - mirrorElement.clientHeight;
       mirrorElement.style.setProperty(
         'top',
-        `${lineOffset - source.scrollTop}px`,
+        `${source.offsetTop + lineOffset - source.scrollTop}px`,
       );
 
       // Get the wrapper and mirror element bounds to check if the new location is out of sight...
