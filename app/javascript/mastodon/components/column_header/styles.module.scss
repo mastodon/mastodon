@@ -18,26 +18,23 @@
     background: var(--color-bg-primary);
   }
 
-  // Scroll fade that overlays the scrollable content below
+  // Drop shadow when scrolled down
   &::after {
     content: '';
     pointer-events: none;
     position: absolute;
-    top: 100%;
+    bottom: 0;
     inset-inline: 0;
     z-index: -1;
-    height: var(--space-10);
-    background: linear-gradient(
-      to bottom,
-      var(--color-bg-primary),
-      transparent
-    );
-    transition:
-      opacity,
-      transform 250ms ease-out;
+    height: var(--space-2);
+    background: var(--color-bg-primary);
+    @include mixins.elevation-1;
+
+    border: none;
+    transition: opacity 250ms ease-out;
 
     @media (width > variables.$mobile-menu-breakpoint) {
-      // Prevent fade from overlapping column border
+      // Prevent shadow from overlapping column border
       inset-inline: var(--bw-default);
     }
   }
@@ -45,12 +42,11 @@
   &.rootScrolledToTop::after {
     opacity: 0;
     transition-timing-function: ease-in;
-    transform: translateY(calc(-1 * var(--space-6)));
   }
 }
 
 .layout {
-  --column-header-padding: var(--space-3) var(--space-3) var(--space-1);
+  --column-header-padding: var(--space-2) var(--space-3);
 
   position: relative;
   display: grid;

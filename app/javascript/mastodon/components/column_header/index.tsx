@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { useLocation } from 'react-router';
 
-import { ArrowLeftIcon, ArrowUpIcon, ListIcon } from '@phosphor-icons/react';
+import { ArrowLeftIcon, ListIcon } from '@phosphor-icons/react';
 import type { DistributedOmit } from 'type-fest';
 
 import { openNavigation } from '@/mastodon/actions/navigation';
@@ -73,7 +73,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
     [scrollTop],
   );
 
-  const hasScrollToTopButton = !isScrolledToTop && withUnreadMarker;
+  const hasNewContentIndicator = !isScrolledToTop && withUnreadMarker;
   const headerRef = useTrackColumnHeaderHeight();
 
   return (
@@ -85,6 +85,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         classes.root,
         isScrolledToTop && classes.rootScrolledToTop,
         hasExtraStickyContent && classes.withStickyContent,
+        !hasNewContentIndicator && classes.withGlow,
       )}
     >
       {/* eslint-disable-next-line
@@ -107,21 +108,6 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
       </div>
       {hasExtraStickyContent && (
         <div className={classes.extraStickyContent}>{extraStickyContent}</div>
-      )}
-      {hasScrollToTopButton && (
-        <Button
-          size='sm'
-          color='accent'
-          variant='solid'
-          onClick={scrollTop}
-          leadingIcon={ArrowUpIcon}
-          className={classes.unreadButton}
-        >
-          <FormattedMessage
-            id='column_header.scroll_to_top'
-            defaultMessage='Scroll to top'
-          />
-        </Button>
       )}
     </header>
   );
