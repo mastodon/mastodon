@@ -3,6 +3,85 @@
 require 'rails_helper'
 
 RSpec.describe 'Auth Registration' do
+  context 'when signed in' do
+    let(:current_password) { 'current password' }
+    let(:user) { Fabricate(:user, password: current_password) }
+
+    before { sign_in user }
+
+    it 'shows account settings with private cache headers' do
+      visit edit_user_registration_path
+
+      expect(page)
+        .to have_title(I18n.t('settings.account_settings'))
+        .and have_private_cache_control
+    end
+
+    it 'can update the user email' do
+      visit edit_user_registration_path
+
+      fill_in 'user_email', with: 'newemail@example.com'
+      fill_in 'user_current_password', with: current_password
+      expect { click_on submit_button }
+        .to change { user.reload.unconfirmed_email }.to('newemail@example.com')
+
+      expect(page)
+        .to have_current_path(edit_user_registration_path)
+        .and have_private_cache_control
+    end
+
+    it 'can update the user password' do
+      visit edit_user_registration_path
+
+      fill_in 'user_password', with: 'new password'
+      fill_in 'user_password_confirmation', with: 'new password'
+      fill_in 'user_current_password', with: current_password
+      expect { click_on submit_button }
+        .to(change { user.reload.encrypted_password })
+
+      expect(page)
+        .to have_current_path(edit_user_registration_path)
+    end
+  end
+
+  context 'with open registrations' do
+    let(:accept_language) { 'de' }
+
+    before do
+      Setting.registrations_mode = 'open'
+      page.driver.header('Accept-Language', accept_language)
+    end
+
+    around do |example|
+      I18n.with_locale(I18n.locale) do
+        example.run
+      end
+    end
+
+    it 'shows the sign-up form and creates a user using the requested language' do
+      visit new_user_registration_path
+      expect(page)
+        .to have_title(I18n.t('auth.register', locale: accept_language))
+
+      # Avoid the registration spam check
+      travel_to 10.seconds.from_now
+
+      fill_in 'user_account_attributes_username', with: 'test'
+      fill_in 'user_email', with: 'test@example.com'
+      fill_in 'user_password', with: 'Test.123.Pass'
+      fill_in 'user_password_confirmation', with: 'Test.123.Pass'
+      check 'user_agreement'
+
+      expect { click_on I18n.t('auth.register', locale: accept_language) }
+        .to change(User, :count).by(1)
+      expect(User.find_by(email: 'test@example.com'))
+        .to be_present
+        .and have_attributes(locale: eq(accept_language))
+      expect(page)
+        .to have_current_path(auth_setup_path)
+    end
+  end
+
   context 'when there are server rules' do
     let!(:rule) { Fabricate :rule, text: 'You must be seven meters tall' }
     let!(:rule_translation) { Fabricate :rule_translation, rule:, hint: 'Rule translation hint', text: rule.text }
