@@ -251,10 +251,10 @@ const onChangeAccountActionSelection = (target: HTMLSelectElement) => {
   }
 
   const strikeCardParent = document.querySelector<HTMLElement>(
-    '#data-action-strike-card',
+    '#data-action-strike-card .preview',
   );
   const strikeCard = document.querySelector<HTMLElement>(
-    '#data-action-strike-card p',
+    '#data-action-strike-card .preview p',
   );
   const strikeCardContent = selectedOption?.dataset.strikeCard ?? null;
   if (strikeCard) {
