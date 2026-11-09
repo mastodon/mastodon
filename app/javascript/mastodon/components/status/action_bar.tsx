@@ -148,6 +148,19 @@ export const StatusReblogButton: React.FC<{
 }> = ({ statusId, children }) => {
   const { boost, quote } = useStatusIcons(statusId);
 
+  const isBoosted = !!boost.active;
+  const [wasBoosted, setWasBoosted] = useState(isBoosted);
+  const [boostSpin, setBoostSpin] = useState(false);
+
+  if (isBoosted !== wasBoosted) {
+    setWasBoosted(isBoosted);
+    setBoostSpin(isBoosted);
+  }
+
+  const handleBoostAnimationEnd = useCallback(() => {
+    setBoostSpin(false);
+  }, []);
+
   const handleShiftClick = useCallback(
     (e: React.MouseEvent) => {
       if (e.shiftKey) {
@@ -175,6 +188,8 @@ export const StatusReblogButton: React.FC<{
         leadingIcon={boost.icon}
         disabled={boost.disabled}
         onClick={boost.action}
+        className={boostSpin ? classes.boostSpin : undefined}
+        onAnimationEnd={handleBoostAnimationEnd}
       >
         {children}
       </ToggleButton>
@@ -200,6 +215,8 @@ export const StatusReblogButton: React.FC<{
         }}
         onClick={handleShiftClick}
         leadingIcon={boost.icon}
+        className={boostSpin ? classes.boostSpin : undefined}
+        onAnimationEnd={handleBoostAnimationEnd}
       >
         {children}
       </MenuTrigger>
