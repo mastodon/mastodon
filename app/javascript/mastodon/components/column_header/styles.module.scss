@@ -136,7 +136,8 @@
   padding: var(--column-header-padding);
   border-radius: var(--radius-4);
 
-  &:focus-visible {
+  &:focus-visible,
+  &:has(+ .scrollTopButton:focus-visible) {
     outline: var(--outline-focus-default);
     outline-offset: calc(-1 * var(--space-1));
   }
