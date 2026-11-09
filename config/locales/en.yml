@@ -43,6 +43,14 @@ en:
       notification_title: User Notification & Message
       text_box_title: Consequences of this action
       title: 'Perform moderation action on @%{acct}:'
+      types:
+        delete: Delete posts
+        disable: Freeze
+        mark_as_sensitive: Mark posts as sensitive
+        none: Send a warning
+        sensitive: Mark account as sensitive
+        silence: Limit
+        suspend: Suspend
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
