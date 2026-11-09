@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/mixins';
+
 .topLinks {
   display: flex;
   flex-wrap: wrap;
@@ -11,5 +13,24 @@
 
   &:empty {
     display: none;
+  }
+}
+
+.unreadBar {
+  @include mixins.type-label;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  min-height: var(--space-8);
+  column-gap: var(--space-2);
+  padding-inline: var(--space-4) var(--space-2);
+  padding-block: var(--space-half);
+  border-bottom: var(--border-default);
+
+  > span {
+    margin-inline-end: auto;
+    padding-block: calc(var(--space-1) + var(--space-half));
   }
 }

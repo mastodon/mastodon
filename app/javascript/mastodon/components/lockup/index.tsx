@@ -1,12 +1,13 @@
 import classNames from 'classnames';
+import type { LinkProps } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import type { PolymorphicProps } from '@/types/polymorphic';
 
 import classes from './styles.module.scss';
 
-interface WrapperProps extends Omit<
-  React.ComponentPropsWithoutRef<'div'>,
+interface LockupWrapperProps extends Omit<
+  React.ComponentPropsWithRef<'div'>,
   'title'
 > {
   icon?: React.ReactNode;
@@ -22,7 +23,7 @@ interface WrapperProps extends Omit<
  * `LockupContent` for a non-interactive item, `LockupButton` or `LockupLink`
  * for interactive items.
  */
-export const LockupWrapper: React.FC<WrapperProps> = ({
+export const LockupWrapper: React.FC<LockupWrapperProps> = ({
   icon,
   sideContent,
   children,
@@ -40,7 +41,7 @@ export const LockupWrapper: React.FC<WrapperProps> = ({
   );
 };
 
-interface ContentProps {
+interface LockupContentProps {
   subtitle?: React.ReactNode;
   subtitleId?: string;
 }
@@ -51,7 +52,7 @@ export const LockupContent = <As extends React.ElementType = 'h3'>({
   subtitleId,
   children,
   ...otherProps
-}: PolymorphicProps<ContentProps, As>) => {
+}: PolymorphicProps<LockupContentProps, As>) => {
   const Component = as ?? 'h3';
   return (
     <>
@@ -67,12 +68,12 @@ export const LockupContent = <As extends React.ElementType = 'h3'>({
   );
 };
 
-interface LinkProps
-  extends React.ComponentPropsWithoutRef<typeof Link>, ContentProps {
+interface LockupLinkProps extends LinkProps, LockupContentProps {
   isHotkeyNavigationTarget?: boolean;
+  as?: React.ElementType;
 }
 
-export const LockupLink = <As extends React.ElementType = 'h3'>({
+export const LockupLink = ({
   as,
   subtitle,
   subtitleId,
@@ -80,7 +81,7 @@ export const LockupLink = <As extends React.ElementType = 'h3'>({
   className,
   isHotkeyNavigationTarget = true,
   ...otherProps
-}: PolymorphicProps<LinkProps, As>) => {
+}: LockupLinkProps) => {
   return (
     <LockupContent as={as ?? 'h3'} subtitle={subtitle} subtitleId={subtitleId}>
       <Link
@@ -96,12 +97,13 @@ export const LockupLink = <As extends React.ElementType = 'h3'>({
   );
 };
 
-interface ButtonProps
-  extends React.ComponentPropsWithoutRef<'button'>, ContentProps {
+interface LockupButtonProps
+  extends React.ComponentPropsWithRef<'button'>, LockupContentProps {
   isHotkeyNavigationTarget?: boolean;
+  as?: React.ElementType;
 }
 
-export const LockupButton = <As extends React.ElementType = 'h3'>({
+export const LockupButton = ({
   as,
   subtitle,
   subtitleId,
@@ -109,7 +111,7 @@ export const LockupButton = <As extends React.ElementType = 'h3'>({
   className,
   isHotkeyNavigationTarget = true,
   ...otherProps
-}: PolymorphicProps<ButtonProps, As>) => {
+}: LockupButtonProps) => {
   const Comp = as ?? 'h3';
   return (
     <LockupContent as={Comp} subtitle={subtitle} subtitleId={subtitleId}>

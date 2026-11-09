@@ -4,23 +4,42 @@
 .card {
   @include mixins.elevation-1;
 
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: var(--space-1);
   inset: unset; // override default [popover] UA styles
   border-radius: var(--radius-4);
   background: var(--color-bg-primary);
   overflow: hidden;
   z-index: calc(infinity);
+  max-height: var(--popover-height-available, 100vw); // Set by Popover component
   max-width: var(--_max-card-width, 100vw);
+  min-width: var(--_min-card-width, 0);
   text-align: start;
+
+  &:not(&:has(.scrollableInnerCard)) {
+    padding: var(--space-1);
+
+    // Compensate for bottom margin of .item
+    padding-bottom: var(--space-half);
+  }
 
   &[data-elevation='2'] {
     @include mixins.elevation-2;
   }
 }
 
-.popoverCard {
+.scrollableInnerCard {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  overscroll-behavior: contain;
+  padding: var(--space-1);
+
+  // Compensate for bottom margin of .item
+  padding-bottom: var(--space-half);
+}
+
+.fullWidthCard {
   width: 100%;
 }
 
@@ -48,9 +67,11 @@
   align-items: center;
   border-radius: var(--radius-3);
   gap: var(--space-2);
+  margin-bottom: var(--space-half);
   padding: var(--space-2) var(--space-3);
   color: var(--color-text-primary);
   text-decoration: none;
+  text-wrap: balance;
   cursor: var(--cursor);
   transition:
     background 200ms,

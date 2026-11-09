@@ -21,11 +21,19 @@ RSpec.describe Auth::SessionsController do
     let(:user) { Fabricate(:user) }
 
     context 'with a regular user' do
+      before do
+        flash[:notice] = I18n.t('generic.all')
+        session[:challenge_passed_at] = 2.days.ago
+      end
+
       it 'redirects to home after sign out' do
         sign_in(user, scope: :user)
-        delete :destroy
 
-        expect(response).to redirect_to(new_user_session_path)
+        expect { delete :destroy }
+          .to change { flash[:notice] }.to(be_blank)
+          .and change { session[:challenge_passed_at] }.to(be_blank)
+        expect(response)
+          .to redirect_to(new_user_session_path)
       end
 
       it 'does not delete redirect location with continue=true' do
@@ -476,7 +484,7 @@ RSpec.describe Auth::SessionsController do
         before do
           user.generate_sign_in_token
           user.save
-          post :create, params: { user: { sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_id: user.id }
+          post :create, params: { user: { sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
         end
 
         it 'redirects to home' do
@@ -490,7 +498,7 @@ RSpec.describe Auth::SessionsController do
 
       context 'when using an invalid sign in token' do
         before do
-          post :create, params: { user: { sign_in_token_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id }
+          post :create, params: { user: { sign_in_token_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
         end
 
         it 'shows a login error' do
@@ -504,7 +512,7 @@ RSpec.describe Auth::SessionsController do
 
       context 'when requesting a new sign in token' do
         subject do
-          post :create, params: { sign_in_token_resend: '', user: { sign_in_token_attempt: '' } }, session: { attempt_user_id: user.id }
+          post :create, params: { sign_in_token_resend: '', user: { sign_in_token_attempt: '' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
         end
 
         before do

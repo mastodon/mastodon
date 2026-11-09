@@ -8,7 +8,7 @@ import { XIcon } from '@phosphor-icons/react';
 
 import type { PolymorphicProps } from '@/types/polymorphic';
 
-import { IconButton } from '../button/redesign';
+import { IconButton } from '../button';
 import type { NamedFocusTarget } from '../navigation_focus_target';
 import { NavigationFocusTarget } from '../navigation_focus_target';
 
@@ -38,6 +38,7 @@ export const ModalShell = <As extends React.ElementType>({
       className={classNames(
         className,
         classes.modal,
+        maxWidth && classes.modalMaxWidth,
         elevation === 2 && classes.modalElevated,
       )}
       style={{

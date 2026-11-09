@@ -180,6 +180,10 @@ class Auth::SessionsController < Devise::SessionsController
       )
     )
 
+    # No need to send a mail for failure to log in with a sign-in token, as that goes throug a mail
+    # as well
+    return if security_measure == :sign_in_token
+
     # Only send a notification email every hour at most
     return if redis.set("2fa_failure_notification:#{user.id}", '1', ex: 1.hour, get: true).present?
 

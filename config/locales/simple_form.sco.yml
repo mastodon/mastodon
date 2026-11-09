@@ -12,13 +12,11 @@ sco:
       admin_account_action:
         include_statuses: The uiser wull see whit posts causit the moderation action or warnin
         send_email_notification: The uiser wull get a explanation o whit happent wi their accoont
-        text_html: Optional. Ye kin uise post syntax. Ye kin <a href="%{path}">add warnin presets</a> tae save time
         type_html: Pick whit tae dae wi <strong>%{acct}</strong>
         types:
           disable: Stap the uiser fae uisin their accoont, but dinnae delete or hide their content.
           none: Uise this fir tae sen a warnin tae the uiser, athoot stertin onie ither actions.
           sensitive: Mak aw this uiser's media attachments hae a flag sayin it's sensitive.
-        warning_preset_id: Optional. Ye kin stull eik custom text tae the en o the preset
       announcement:
         all_day: Whan ticked, ainly the dates o the time range'll get shawn
         ends_at: Optional. Annooncement wull get automatically unpublishit at this time
@@ -115,12 +113,10 @@ sco:
       account_migration:
         acct: Haunnle o the new accoont
       account_warning_preset:
-        text: Preset text
         title: Title
       admin_account_action:
         include_statuses: Pit the clyped posts in the email
         send_email_notification: Tell the uiser bi email
-        text: Custom warnin
         type: Action
         types:
           disable: Freeze
@@ -128,7 +124,6 @@ sco:
           sensitive: Sensitive
           silence: Limit
           suspend: Suspend
-        warning_preset_id: Uise a warnin preset
       announcement:
         all_day: Aw-day event
         ends_at: En o event
@@ -178,7 +173,6 @@ sco:
         setting_reduce_motion: Reduce motion in animations
         setting_system_font_ui: Uise system's defaut font
         setting_theme: Steid theme
-        setting_trends: Shaw the day's trends
         setting_unfollow_modal: Shaw confirmation dialog afore unfollaein somebody
         setting_use_blurhash: Shaw colourfu gradients fir hid media
         setting_use_pending_items: Slaw mode

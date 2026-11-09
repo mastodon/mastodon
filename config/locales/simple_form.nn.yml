@@ -21,7 +21,6 @@ nn:
       admin_account_action:
         include_statuses: Brukaren får sjå kva tut som førte til moderatorhandlinga eller -åtvaringa
         send_email_notification: Brukaren får ei forklåring av kva som har hendt med kontoen sin
-        text_html: Valfritt. Du kan bruka tut-syntaks. Du kan <a href="%{path}">leggja til åtvaringsførehandsinnstillingar</a> for å spara tid
         type_html: Vel det du vil gjera med <strong>%{acct}</strong>
         types:
           disable: Hindre eigaren frå å bruke kontoen, men fjern eller skjul ikkje innhaldet deira.
@@ -29,7 +28,6 @@ nn:
           sensitive: Tving markering for sensitivt innhald på alle mediavedlegga til denne brukaren.
           silence: Hindre brukaren frå å leggja ut offentlege innlegg, gøym innlegga deira og varslingar frå folk som ikkje fylgjer dei. Lukkar alle rapportar om denne kontoen.
           suspend: Hindre samhandling med– og slett innhaldet til denne kontoen. Kan omgjerast innan 30 dagar. Lukkar alle rapportar om denne kontoen.
-        warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
       announcement:
         all_day: Når merka, vil berre datoane til tidsramma synast
         ends_at: Valfritt. Lysinga vert teken ned av seg sjølv på dette tidspunktet
@@ -191,12 +189,10 @@ nn:
       account_migration:
         acct: Brukarnamnet på den nye kontoen
       account_warning_preset:
-        text: Føreåtstekst
         title: Tittel
       admin_account_action:
         include_statuses: Ha med rapporterte tut i e-posten
         send_email_notification: Varsl brukaren med e-post
-        text: Eigen åtvaring
         type: Handling
         types:
           disable: Slå av innlogging
@@ -204,7 +200,6 @@ nn:
           sensitive: Ømtolig
           silence: Togn
           suspend: Utvis
-        warning_preset_id: Bruk åtvaringsoppsett
       announcement:
         all_day: Heildagshending
         ends_at: Hendinga er ferdig
@@ -244,7 +239,6 @@ nn:
         setting_always_send_emails: Alltid send epostvarsel
         setting_auto_play_gif: Spel av animerte GIF-ar automatisk
         setting_boost_modal: Kontroller korleis du framhevar innlegg
-        setting_color_scheme: Fargepalett
         setting_contrast: Kontrast
         setting_default_language: Språk på innlegg
         setting_default_privacy: Innleggsvising
@@ -266,7 +260,6 @@ nn:
         setting_system_font_ui: Bruk standardskrifttypen på systemet
         setting_system_scrollbars_ui: Bruk standardrullefeltet til systemet
         setting_theme: Sidetema
-        setting_trends: Vis kva som er populært i dag
         setting_unfollow_modal: Vis stadfesting før du sluttar å fylgja nokon
         setting_use_blurhash: Vis fargerike overgangar for gøymde medium
         setting_use_pending_items: Saktemodus

@@ -91,8 +91,8 @@ export function initBlockModal(account) {
     dispatch(openModal({
       modalType: 'BLOCK',
       modalProps: {
-        accountId: account.get('id'),
-        acct: account.get('acct'),
+        accountId: account.id,
+        acct: account.acct,
       },
     }));
   };

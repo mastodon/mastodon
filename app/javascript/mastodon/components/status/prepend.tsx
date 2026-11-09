@@ -129,7 +129,11 @@ const StatusPrependReply: React.FC<{
     <div className={classes.root}>
       <div className={classes.replyIcon} />
 
-      <Link to={statusLink({ id: replyId, account: accountId })}>{label}</Link>
+      {account ? (
+        <Link to={statusLink({ id: replyId, account })}>{label}</Link>
+      ) : (
+        label
+      )}
     </div>
   );
 };

@@ -210,7 +210,12 @@ const Comment: React.FC<Props> = ({
       <div className='flex-spacer' />
 
       <div className='report-dialog-modal__actions'>
-        <Button onClick={handleSubmit} disabled={isSubmitting}>
+        <Button
+          onClick={handleSubmit}
+          disabled={isSubmitting}
+          variant='solid'
+          color='accent'
+        >
           <FormattedMessage id='report.submit' defaultMessage='Submit report' />
         </Button>
       </div>

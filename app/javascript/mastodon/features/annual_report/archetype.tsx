@@ -211,7 +211,7 @@ export const Archetype: React.FC<{
         </p>
       </div>
       {!isRevealed && (
-        <Button onClick={reveal}>
+        <Button onClick={reveal} variant='solid' color='accent'>
           <FormattedMessage
             id='annual_report.summary.archetype.reveal'
             defaultMessage='Reveal my archetype'

@@ -21,7 +21,6 @@ gd:
       admin_account_action:
         include_statuses: Chì an cleachdaiche dè na postaichean a dh’adhbharaich gnìomh maorsainneachd no rabhadh
         send_email_notification: Ghaibh am faightear mìneachadh air dè thachair leis a’ chunntas aca
-        text_html: Roghainneil. Faodaidh tu co-chàradh puist a chleachdadh. ’S urrainn dhut <a href="%{path}">rabhaidhean ro-shuidhichte a chur ris</a> airson ùine a chaomhnadh
         type_html: Tagh dè nì thu le <strong>%{acct}</strong>
         types:
           disable: Bac an cleachdaiche o chleachdadh a’ chunntais aca ach na sguab às no falaich an t-susbaint aca.
@@ -29,7 +28,6 @@ gd:
           sensitive: Èignich comharra gu bheil e frionasach air a h-uile ceanglachan meadhain a’ chleachdaiche seo.
           silence: Bac an cleachdaiche o bhith a’ postadh le faicsinneachd poblach, falaich na postaichean aca agus brathan o na daoine nach eil ’ga leantainn. Dùinidh seo gach gearan mun chunntas seo.
           suspend: Bac eadar-ghnìomh sam bith leis a’ chunntas seo agus sguab às an t-susbaint aige. Gabhaidh seo a neo-dhèanamh am broinn 30 latha. Dùinidh seo gach gearan mun chunntas seo.
-        warning_preset_id: Roghainneil. ’S urrainn dhut teacsa gnàthaichte a chur ri deireadh an ro-sheata fhathast
       announcement:
         all_day: Nuair a bhios cromag ris, cha nochd ach cinn-latha na rainse-ama
         ends_at: Roghainneil. Thèid am brath-fios a neo-fhoillseachadh gu fèin-obrachail aig an àm ud
@@ -61,6 +59,7 @@ gd:
         setting_default_quote_policy_private: Chan urrainn do chàch postaichean dhan luchd-leantainn a-mhàin a chaidh a sgrìobhadh le Mastodon a luaidh.
         setting_default_quote_policy_unlisted: Nuair a luaidheas daoine thu, thèid am post aca-san fhalach o loidhnichean-ama nan treandaichean.
         setting_default_sensitive: Thèid meadhanan frionasach fhalach a ghnàth is gabhaidh an nochdadh le briogadh orra
+        setting_default_spoiler_field: Cumaidh seo raon rabhadh susbainte fosgailte sa chòmhradh sgrìobhaidh. ’S urrainn dhut an teacsa a ghnàthachadh do gach post.
         setting_display_media_default: Thoir rabhadh mus dèid meadhanan ris a bheil comharra gu bheil iad frionasach a shealltainn
         setting_display_media_hide_all: Thoir rabhadh mus dèid meadhan sam bith a shealltainn
         setting_display_media_show_all: Seall meadhan sam bith gun rabhadh, a’ gabhail a-staigh nam meadhanan ris a bheil comharra gu bheil iad frionasach
@@ -193,20 +192,22 @@ gd:
       account_migration:
         acct: Ainm-cleachdaiche a’ chunntais ùir
       account_warning_preset:
-        text: Teacsa ro-shocraichte
+        action_category: Iomruin gnìomh na maorsainneachd
+        text: Teacsa na freagairt
         title: Tiotal
       admin_account_action:
         include_statuses: Gabh a-steach na postaichean a chaidh gearan a dhèanamh mun dèidhinn sa phost-d
         send_email_notification: Cuir fios gun chleachdaiche air a’ phost-d
-        text: Rabhadh gnàthaichte
+        text: Freagairt ghnàthaichte
         type: Gnìomh
         types:
+          all_actions: Na h-uile gnìomh
           disable: Reòth
           none: Cuir rabhadh
           sensitive: Frionasach
           silence: Cuingich
           suspend: Cuir à rèim
-        warning_preset_id: Cleachd rabhadh ro-shuidhichte
+        warning_preset_id: Freagairt ro-shocraichte
       announcement:
         all_day: Tachartas fad an latha
         ends_at: Deireadh an tachartais
@@ -246,12 +247,13 @@ gd:
         setting_always_send_emails: Cuir brathan puist-d an-còmhnaidh
         setting_auto_play_gif: Cluich GIFs beòthaichte gu fèin-obrachail
         setting_boost_modal: Smachd air faicsinneachd nam brosnachaidhean
-        setting_color_scheme: Sgeama dhathan
+        setting_color_scheme: Modh
         setting_contrast: Iomsgaradh
         setting_default_language: Cànan postaidh
         setting_default_privacy: Faicsinneachd nam post
         setting_default_quote_policy: Cò dh’fhaodas luaidh
         setting_default_sensitive: Cuir comharra ri meadhanan an-còmhnaidh gu bheil iad frionasach
+        setting_default_spoiler_field: Seall rabhaidhean susbainte a ghnàth
         setting_delete_modal: Thoir rabhadh dhomh mus dèid post a sguabadh às
         setting_disable_hover_cards: Na ro-sheall pròifil nuair a dh’fhanas mi os a cionn
         setting_disable_swiping: Cuir gluasadan grad-shlaighdidh à comas
@@ -259,21 +261,25 @@ gd:
         setting_display_media_default: Bun-roghainn
         setting_display_media_hide_all: Falaich na h-uile
         setting_display_media_show_all: Seall na h-uile
+        setting_display_own_boosts: Seall na brosnachaidhean uam-sa air a’ phrìomh loidhne-ama
+        setting_display_own_posts: Seall na postaichean agam fhèin air a’ phrìomh loidhne-ama
         setting_emoji_style: Stoidhle nan Emojis
         setting_expand_spoilers: Leudaich postaichean ris a bheil rabhadh susbainte an-còmhnaidh
         setting_hide_network: Falaich an graf sòisealta agad
         setting_missing_alt_text_modal: Thoir rabhadh dhomh mus postaich mi meadhan às aonais roghainn teacsa
         setting_quick_boosting: Cuir am brosnachadh luath an comas
         setting_reduce_motion: Ìslich an gluasad sna beòthachaidhean
+        setting_split_default_privacy_discoverable: Dèan na postaichean agam so-rùraichte air loidhnichean-ama poblach ⁊ toraidhean an luirg
         setting_system_font_ui: Cleachd cruth-clò bunaiteach an t-siostaim
         setting_system_scrollbars_ui: Seall bàr-sgrolaidh bunaiteach an t-siostaim
         setting_theme: Ùrlar na làraich
-        setting_trends: Seall na treandaichean an-diugh
+        setting_theme_color: Dath an ùrlair
         setting_unfollow_modal: Seall còmhradh dearbhaidh mus sguir thu de chuideigin a leantainn
         setting_use_blurhash: Seall caiseadan dathte an àite meadhanan falaichte
         setting_use_pending_items: Am modh slaodach
         severity: Donad
         sign_in_token_attempt: Còd-tèarainteachd
+        sign_in_token_resend: Cuir an còd-tèarainteachd a-rithist
         title: Tiotal
         type: Seòrsa an ion-phortaidh
         username: Ainm-cleachdaiche
@@ -305,6 +311,7 @@ gd:
         media_cache_retention_period: Ùine glèidhidh aig tasgadan nam meadhanan
         min_age: Riatanas aoise as lugha
         peers_api_enabled: Foillsich liosta nam frithealaichean a chaidh a rùrachadh san API
+        postpone_confirmation_emails: Cuir puist-d dearbhaidh an dàil gu às dèidh an aontachaidh
         profile_directory: Cuir eòlaire nam pròifil an comas
         registrations_mode: Cò dh’fhaodas clàradh
         remote_live_feed_access: Inntrigeadh dhan t-saoghal bheò sa bheil postaichean cèine
@@ -352,6 +359,7 @@ gd:
         follow: Lean cuideigin thu
         follow_request: Dh’iarr cuideigin ’gad leantainn
         mention: Thug cuideigin iomradh ort
+        moderation_suggestions: Tha molaidhean na maorsainneachd fhèin-obrachail ri làimh
         pending_account: Tha cunntas ùr feumach air lèirmheas
         quote: Luaidh cuideigin thu
         reblog: Bhrosnaich cuideigin am post agad

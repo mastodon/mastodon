@@ -16,12 +16,13 @@ it:
       account_migration:
         acct: Indica il nomeutente@dominio dell'account al quale vuoi trasferirti
       account_warning_preset:
+        action_category: Seleziona l'azione di moderazione per cui deve essere utilizzata questa risposta. Seleziona “Tutte le azioni” se la risposta si applica a più di un'azione.
         text: Puoi usare la sintassi dei post, come URL, hashtag e menzioni
         title: Opzionale. Non visibile al destinatario
       admin_account_action:
         include_statuses: L'utente vedrà quali post hanno causato l'azione di moderazione o l'avviso
         send_email_notification: L'utente riceverà una spiegazione di ciò che è successo con suo account
-        text_html: Opzionale. Puoi usare la sintassi dei post. Puoi <a href="%{path}">aggiungere avvisi preimpostati</a> per risparmiare tempo
+        text: Opzionale. Puoi usare la sintassi per i post. Apparirà sotto la risposta predefinita
         type_html: Decidi cosa fare con <strong>%{acct}</strong>
         types:
           disable: Impedisce all'utente di utilizzare il suo account, ma non elimina o nasconde i suoi contenuti.
@@ -29,7 +30,7 @@ it:
           sensitive: Forza tutti gli allegati multimediali di questo utente ad essere contrassegnati come sensibili.
           silence: Impedisce all'utente di poter pubblicare con visibilità pubblica, nasconde i suoi post e notifiche a persone che non lo seguono. Chiude tutte le segnalazioni relative a questo account.
           suspend: Impedisce qualsiasi interazione da o verso questo account e cancellarne il contenuto. Annullabile entro 30 giorni. Chiude tutte le segnalazioni contro questo account.
-        warning_preset_id: Opzionale. Puoi aggiungere un testo personalizzato alla fine di quello preimpostato
+        warning_preset_html: Opzionale. Puoi <a href="%{path}">gestirli qui</a>
       announcement:
         all_day: Se selezionato, verranno visualizzate solo le date dell'intervallo di tempo
         ends_at: Opzionale. L'annuncio verrà automaticamente ritirato in questo momento
@@ -90,15 +91,21 @@ it:
         backups_retention_period: Gli utenti hanno la possibilità di generare archivi dei propri post da scaricare successivamente. Se impostati su un valore positivo, questi archivi verranno automaticamente eliminati dallo spazio di archiviazione dopo il numero di giorni specificato.
         bootstrap_timeline_accounts: Questi account verranno aggiunti in cima ai suggerimenti dei nuovi utenti. Fornisci un elenco di account separati da virgole.
         closed_registrations_message: Visualizzato alla chiusura delle iscrizioni
-        content_cache_retention_period: Tutti i post da altri server (inclusi booster e risposte) verranno eliminati dopo il numero specificato di giorni, senza tener conto di eventuali interazioni con gli utenti locali con tali post. Questo include i post in cui un utente locale ha contrassegnato come segnalibri o preferiti. Anche le menzioni private tra utenti di diverse istanze andranno perse e impossibile da ripristinare. L'uso di questa impostazione è inteso per casi di scopo speciale e rompe molte aspettative dell'utente quando implementato per uso generale.
+        content_cache_retention_period: Tutti i post da altri server (inclusi booster e risposte) verranno eliminati dopo il numero specificato di giorni, senza tener conto di eventuali interazioni con gli utenti locali con tali post. Questo include i post in cui un utente locale ha contrassegnato come segnalibri o sono stati aggiunti ai preferiti. Anche le menzioni private tra utenti di diverse istanze andranno perse e impossibili da ripristinare. L'uso di questa impostazione è inteso per casi di scopo speciale e rompe molte aspettative dell'utente quando implementato per uso generale.
         custom_css: È possibile applicare stili personalizzati sulla versione web di Mastodon.
+        custom_robots_html: <a href="%{path}">Sintassi</a>
         email_footer_text: Testo opzionale che compare solo nel piè di pagina delle email della newsletter.
         favicon: WEBP, PNG, GIF o JPG. Sostituisce la favicon predefinita di Mastodon con un'icona personalizzata.
         landing_page: Seleziona quale pagina vedono i nuovi visitatori al loro primo arrivo sul tuo server. Se selezioni "Tendenze", è necessario abilitare le tendenze nelle Impostazioni di scoperta. Se selezioni "Feed locale", allora è necessario impostare "Accesso ai feed in diretta con post locali" su "Tutti" nelle Impostazioni di scoperta.
         mascot: Sostituisce l'illustrazione nell'interfaccia web avanzata.
         media_cache_retention_period: I file multimediali da post fatti da utenti remoti sono memorizzati nella cache sul tuo server. Quando impostato a un valore positivo, i media verranno eliminati dopo il numero specificato di giorni. Se i dati multimediali sono richiesti dopo che sono stati eliminati, saranno nuovamente scaricati, se il contenuto sorgente è ancora disponibile. A causa di restrizioni su quanto spesso link anteprima carte sondaggio siti di terze parti, si consiglia di impostare questo valore ad almeno 14 giorni, o le schede di anteprima link non saranno aggiornate su richiesta prima di quel tempo.
         min_age: Agli utenti verrà chiesto di confermare la propria data di nascita durante l'iscrizione
+        override_robots: Consente di personalizzare le regole di accesso per i bot corretti nel loro funzionamento
         peers_api_enabled: Un elenco di nomi di dominio che questo server ha incontrato nel fediverse. Qui non sono inclusi dati sul fatto se si federano con un dato server, solo che il server ne è a conoscenza. Questo viene utilizzato dai servizi che raccolgono statistiche sulla federazione in senso generale.
+        postpone_confirmation_emails: |-
+          Quando questa impostazione è abilitata, le email di conferma per gli account in attesa di approvazione vengono inviate solo una volta che tali account vengono approvati.
+          Questo potrebbe peggiorare l'esperienza di iscrizione per gli utenti, perché dovranno comunque confermare il proprio indirizzo email tempestivamente dopo la ricezione del messaggio, ma non avranno più alcun controllo nel momento in cui tale email viene inviata.
+          Inoltre, ciò potrebbe comportare un maggiore carico di lavoro per i moderatori, dato che Mastodon non sarà in grado di filtrare gli account in attesa con un indirizzo email non valido prima che vengano approvati.
         profile_directory: La directory del profilo elenca tutti gli utenti che hanno acconsentito ad essere individuabili.
         require_invite_text: 'Quando le iscrizioni richiedono l''approvazione manuale, rendi la domanda: "Perché vuoi unirti?" obbligatoria anziché facoltativa'
         site_contact_email: In che modo le persone possono contattarti per richieste legali o di supporto.
@@ -192,20 +199,22 @@ it:
       account_migration:
         acct: Handle del nuovo account
       account_warning_preset:
-        text: Testo preimpostato
+        action_category: Assegna un'azione di moderazione
+        text: Testo della risposta
         title: Titolo
       admin_account_action:
         include_statuses: Includi i toots segnalati nell'email
         send_email_notification: Informa l'utente via email
-        text: Avviso personalizzato
+        text: Risposta personalizzata
         type: Azione
         types:
+          all_actions: Tutte le azioni
           disable: Disabilita
           none: Non fare nulla
           sensitive: Sensibile
           silence: Silenzia
           suspend: Sospendi e cancella i dati dell'account in modo irreversibile
-        warning_preset_id: Usa un avviso preimpostato
+        warning_preset_id: Risposta predefinita
       announcement:
         all_day: Tutto il giorno
         ends_at: Fine dell'evento
@@ -245,7 +254,7 @@ it:
         setting_always_send_emails: Manda sempre notifiche via email
         setting_auto_play_gif: Riproduci automaticamente le GIF animate
         setting_boost_modal: Controllo della visibilità della condivisione
-        setting_color_scheme: Schema dei colori
+        setting_color_scheme: Modalità
         setting_contrast: Contrasto
         setting_default_language: Lingua dei post
         setting_default_privacy: Visibilità dei post
@@ -271,7 +280,7 @@ it:
         setting_system_font_ui: Usa il carattere predefinito del sistema
         setting_system_scrollbars_ui: Utilizza la barra di scorrimento predefinita del sistema
         setting_theme: Tema del sito
-        setting_trends: Mostra tendenze di oggi
+        setting_theme_color: Colore del tema
         setting_unfollow_modal: Chiedi conferma prima di smettere di seguire qualcuno
         setting_use_blurhash: Mostra i gradienti colorati per i media nascosti
         setting_use_pending_items: Modalità lenta
@@ -300,6 +309,7 @@ it:
         closed_registrations_message: Messaggio personalizzato quando le iscrizioni non sono disponibili
         content_cache_retention_period: Periodo di ritenzione del contenuto remoto
         custom_css: Personalizza CSS
+        custom_robots: File robots.txt personalizzato
         email_footer_text: Testo aggiuntivo a piè di pagina
         favicon: Favicon
         landing_page: Pagina di destinazione per i nuovi visitatori
@@ -308,7 +318,9 @@ it:
         mascot: Personalizza mascotte (legacy)
         media_cache_retention_period: Periodo di conservazione della cache multimediale
         min_age: Età minima richiesta
+        override_robots: Sovrascrivi il file robots.txt predefinito
         peers_api_enabled: Pubblica l'elenco dei server scoperti nell'API
+        postpone_confirmation_emails: Posticipare l'invio dell'email di conferma dopo l'approvazione
         profile_directory: Abilita directory del profilo
         registrations_mode: Chi può iscriversi
         remote_live_feed_access: Accesso ai feed live con post remoti
@@ -356,6 +368,7 @@ it:
         follow: Invia email quando qualcuno ti segue
         follow_request: Invia email quando qualcuno chiede di seguirti
         mention: Invia email quando qualcuno ti menziona
+        moderation_suggestions: Sono disponibili suggerimenti per la moderazione automatica
         pending_account: Invia e-mail quando un nuovo account richiede l'approvazione
         quote: Qualcuno ti ha citato
         reblog: Qualcuno ha condiviso il tuo post

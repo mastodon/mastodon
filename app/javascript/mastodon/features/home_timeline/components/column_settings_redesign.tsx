@@ -37,8 +37,8 @@ export const HomeColumnSettings: React.FC<{
       icon={SlidersHorizontalIcon}
       label={
         <FormattedMessage
-          id='column.following_settings'
-          defaultMessage='Following Feed Settings'
+          id='column.home_settings'
+          defaultMessage='Home Settings'
         />
       }
     >

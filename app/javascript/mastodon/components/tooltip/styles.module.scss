@@ -6,5 +6,8 @@
   border-radius: var(--radius-3);
   color: var(--color-text-inverted);
   background-color: var(--color-bg-inverted);
+  max-width: min(80vw, 600px);
+  overflow-wrap: anywhere;
+  @include mixins.line-clamp(4);
   @include mixins.type-meta;
 }

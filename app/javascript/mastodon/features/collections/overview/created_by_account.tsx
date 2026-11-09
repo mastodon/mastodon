@@ -3,22 +3,24 @@ import { useEffect } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { PlusIcon } from '@phosphor-icons/react';
 
-import AddIcon from '@/material-icons/400-24px/add.svg?react';
-import { DisplayName } from 'mastodon/components/display_name';
-import { EmptyState } from 'mastodon/components/empty_state';
-import { Icon } from 'mastodon/components/icon';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
-import { ItemList } from 'mastodon/components/scrollable_list/components';
-import { useAccount } from 'mastodon/hooks/useAccount';
-import { useAccountId, useCurrentAccountId } from 'mastodon/hooks/useAccountId';
+import type { ButtonProps } from '@/mastodon/components/button';
+import { Button } from '@/mastodon/components/button';
+import { DisplayName } from '@/mastodon/components/display_name';
+import { EmptyState } from '@/mastodon/components/empty_state';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { ItemList } from '@/mastodon/components/scrollable_list/components';
+import { useAccount } from '@/mastodon/hooks/useAccount';
+import {
+  useAccountId,
+  useCurrentAccountId,
+} from '@/mastodon/hooks/useAccountId';
 import {
   fetchCollectionsCreatedByAccount,
   selectAccountCollections,
-} from 'mastodon/reducers/slices/collections';
-import { useAppSelector, useAppDispatch } from 'mastodon/store';
+} from '@/mastodon/reducers/slices/collections';
+import { useAppSelector, useAppDispatch } from '@/mastodon/store';
 
 import { CollectionListItem } from '../components/collection_list_item';
 import {
@@ -29,23 +31,22 @@ import {
 import classes from '../styles.module.scss';
 
 export const NewCollectionButton: React.FC<{
-  compact?: boolean;
-  secondary?: boolean;
+  size?: ButtonProps['size'];
+  variant?: ButtonProps['variant'];
   onClick?: () => void;
   children?: ReactNode;
-}> = ({ compact, secondary, onClick, children }) => (
-  <Link
+}> = ({ size = 'sm', variant = 'solid', onClick, children }) => (
+  <Button
+    size={size}
+    variant={variant}
+    color='accent'
+    leadingIcon={PlusIcon}
+    as='link'
     to='/collections/new'
-    className={classNames(
-      'button',
-      compact && 'button--compact',
-      secondary && 'button-secondary',
-    )}
     onClick={onClick}
   >
-    <Icon id='plus' icon={AddIcon} />
     {children ?? <FormattedMessage {...editorMessages.newCollection} />}
-  </Link>
+  </Button>
 );
 
 export const CollectionListError: React.FC = () => (
@@ -112,7 +113,7 @@ export const CollectionsCreatedByAccount: React.FC = () => {
             />
           }
         >
-          <NewCollectionButton compact />
+          <NewCollectionButton />
         </EmptyState>
       );
     } else {
@@ -144,7 +145,7 @@ export const CollectionsCreatedByAccount: React.FC = () => {
             }}
           />
         </h2>
-        {showCreateButton && <NewCollectionButton compact />}
+        {showCreateButton && <NewCollectionButton />}
       </div>
       <ItemList>
         {isOwnCollectionPage && !canCreateMoreCollections && (

@@ -19,6 +19,7 @@ export interface AutosuggestMenuProps {
   tokenCb: () => string | null;
   onSuggestionClick: React.MouseEventHandler;
   source: AutosuggestSourceElements | null;
+  onMenuClose: () => void;
   children?: React.ReactNode;
   listRef?: React.Ref<HTMLDivElement>;
   reference?: HTMLElement | null;
@@ -30,10 +31,11 @@ export const AutosuggestMenu: React.FC<AutosuggestMenuProps> = ({
   suggestions,
   onSuggestionClick,
   children,
+  onMenuClose,
   ...menuProps
 }) => {
   return (
-    <Menu noFocus>
+    <Menu noFocus onClose={onMenuClose}>
       {suggestions.length > 0 && (
         <AutosuggestMenuList {...menuProps} suggestions={suggestions}>
           {children ??
@@ -53,7 +55,7 @@ export const AutosuggestMenu: React.FC<AutosuggestMenuProps> = ({
 
 type AutosuggestMenuListProps = Omit<
   AutosuggestMenuProps,
-  'onSuggestionClick'
+  'onSuggestionClick' | 'onMenuClose'
 > & {
   children: React.ReactNode;
 };

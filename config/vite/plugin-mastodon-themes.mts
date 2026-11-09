@@ -130,7 +130,11 @@ async function loadThemesFromConfig(root: string) {
     throw new Error('Invalid themes.yml file');
   }
 
-  for (const [themeName, themePath] of Object.entries(themesObject)) {
+  for (const [themeName, themeDefinition] of Object.entries(themesObject)) {
+    const themePath =
+      typeof themeDefinition === 'object' && themeDefinition.path
+        ? themeDefinition.path
+        : themeDefinition;
     if (
       typeof themePath !== 'string' ||
       themePath.split('.').length !== 2 || // Ensure it has exactly one period

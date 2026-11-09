@@ -14,13 +14,15 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import {
+  CaretDownIcon,
+  CaretUpIcon,
+  MagnifyingGlassIcon,
+} from '@phosphor-icons/react';
 import { getScrollParent } from '@react-aria/utils';
 
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
-import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
-import KeyboardArrowUpIcon from '@/material-icons/400-24px/keyboard_arrow_up.svg?react';
-import SearchIcon from '@/material-icons/400-24px/search.svg?react';
-import { IconButton } from 'mastodon/components/icon_button';
+import { IconButton } from 'mastodon/components/button';
 
 import { LoadingIndicator } from '../loading_indicator';
 import type { PopoverProps } from '../popover';
@@ -115,6 +117,14 @@ interface ComboboxProps<
    * Change this to 'in-place' to render them directly below the text input
    */
   listBoxType?: 'popover' | 'in-place';
+  /**
+   * Customise styling of the list box container
+   */
+  listBoxClassName?: string;
+  /**
+   * Customise styling of the outermost combobox wrapper
+   */
+  wrapperClassName?: string;
   /**
    * Set to true to open the suggestion popover as soon as the input is focused.
    * Doesn't apply when `listBoxType='in-place'` is used.
@@ -265,8 +275,10 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     closeOnSelect = listBoxType === 'in-place' ? false : true,
     autoHighlightFirstItem = true,
     suppressMenu = false,
-    icon = SearchIcon,
+    icon = MagnifyingGlassIcon,
     className,
+    wrapperClassName,
+    listBoxClassName,
     ...otherProps
   }: ComboboxProps<Item, GroupKey>,
   ref: React.ForwardedRef<HTMLInputElement>,
@@ -544,7 +556,10 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
   const listId = `${id}-list`;
 
   return (
-    <div className={classes.wrapper} ref={wrapperRef}>
+    <div
+      className={classNames(classes.wrapper, wrapperClassName)}
+      ref={wrapperRef}
+    >
       <TextInput
         role='combobox'
         {...otherProps}
@@ -568,24 +583,22 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
       />
       {hasMenuContent && listBoxType === 'popover' && (
         <IconButton
-          title={
-            isMenuOpen
-              ? intl.formatMessage({
-                  id: 'combobox.close_results',
-                  defaultMessage: 'Close results',
-                })
-              : intl.formatMessage({
-                  id: 'combobox.open_results',
-                  defaultMessage: 'Open results',
-                })
-          }
           className={classes.menuButton}
-          icon='results'
-          iconComponent={
-            isMenuOpen ? KeyboardArrowUpIcon : KeyboardArrowDownIcon
-          }
+          size='sm'
+          variant='ghost'
+          icon={isMenuOpen ? CaretUpIcon : CaretDownIcon}
           onClick={isMenuOpen ? closeMenu : openMenu}
-        />
+        >
+          {isMenuOpen
+            ? intl.formatMessage({
+                id: 'combobox.close_results',
+                defaultMessage: 'Close results',
+              })
+            : intl.formatMessage({
+                id: 'combobox.open_results',
+                defaultMessage: 'Open results',
+              })}
+        </IconButton>
       )}
       <span role='status' aria-live='polite' className='sr-only'>
         {isMenuOpen && statusMessage}
@@ -597,6 +610,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
         ref={setPopoverElement}
         popoverElement={popoverElement}
         popoverReference={inputElement}
+        className={listBoxClassName}
       >
         <StatusMessageWrapper
           showStatus={showStatusMessageInMenu && !hasGroupEmptyMessages}
@@ -677,6 +691,7 @@ const OptionalPopover: React.FC<{
   popoverReference: PopoverProps['reference'];
   onClose: PopoverProps['onClose'];
   ref: React.Ref<HTMLDivElement>;
+  className: string | undefined;
   children: React.ReactNode;
 }> = ({
   renderAsPopover,
@@ -685,6 +700,7 @@ const OptionalPopover: React.FC<{
   popoverReference,
   ref,
   onClose,
+  className,
   children,
 }) => {
   if (renderAsPopover) {
@@ -707,6 +723,7 @@ const OptionalPopover: React.FC<{
             className={classNames(
               classes.listBoxWrapper,
               classes.listBoxWrapperPopover,
+              className,
               placement,
             )}
           >
@@ -718,7 +735,7 @@ const OptionalPopover: React.FC<{
   }
 
   return (
-    <div ref={ref} className={classes.listBoxWrapper}>
+    <div ref={ref} className={classNames(classes.listBoxWrapper, className)}>
       {children}
     </div>
   );

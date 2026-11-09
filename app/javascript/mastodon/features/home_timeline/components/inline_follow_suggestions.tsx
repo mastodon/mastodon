@@ -11,7 +11,7 @@ import {
   XIcon,
 } from '@phosphor-icons/react';
 
-import { Button, IconButton } from '@/mastodon/components/button/redesign';
+import { Button, IconButton } from '@/mastodon/components/button';
 import { useOverflowScroll } from '@/mastodon/hooks/useOverflow';
 import { changeSetting } from 'mastodon/actions/settings';
 import {

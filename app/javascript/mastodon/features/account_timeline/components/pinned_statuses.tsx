@@ -4,42 +4,12 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import IconPinned from '@/images/icons/icon_pinned.svg?react';
-import { Badge } from '@/mastodon/components/badge';
+import { PushPinIcon } from '@phosphor-icons/react';
+
 import { Button } from '@/mastodon/components/button';
-import { Icon } from '@/mastodon/components/icon';
-import { StatusHeader } from '@/mastodon/components/status/legacy/header';
-import type { StatusHeaderRenderFn } from '@/mastodon/components/status/legacy/header';
 
 import { useAccountContext } from '../hooks/useAccountContext';
 import classes from '../styles.module.scss';
-
-export const renderPinnedStatusHeader: StatusHeaderRenderFn = ({
-  featured,
-  ...args
-}) => {
-  if (!featured) {
-    return <StatusHeader {...args} />;
-  }
-  return (
-    <StatusHeader
-      {...args}
-      className={classes.pinnedStatusHeader}
-      contentBeforeDate={
-        <Badge
-          className={classes.pinnedBadge}
-          icon={<Icon id='pinned' icon={IconPinned} />}
-          label={
-            <FormattedMessage
-              id='account.timeline.pinned'
-              defaultMessage='Pinned'
-            />
-          }
-        />
-      }
-    />
-  );
-};
 
 export const PinnedShowAllButton: FC = () => {
   const { onShowAllPinned } = useAccountContext();
@@ -48,8 +18,9 @@ export const PinnedShowAllButton: FC = () => {
     <Button
       onClick={onShowAllPinned}
       className={classNames(classes.pinnedViewAllButton, 'focusable')}
+      leadingIcon={PushPinIcon}
+      color='accent'
     >
-      <Icon id='pinned' icon={IconPinned} />
       <FormattedMessage
         id='account.timeline.pinned.view_all'
         defaultMessage='View all pinned posts'

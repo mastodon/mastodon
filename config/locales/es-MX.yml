@@ -93,6 +93,7 @@ es-MX:
       enable: Habilitar
       enable_sign_in_token: Activar la comprobación con código de seguridad
       enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
+      enable_unconfirmed: Permitir correo de confirmación
       enabled: Habilitada
       enabled_msg: Se ha descongelado correctamente la cuenta de %{username}
       follow_recommendations:
@@ -291,6 +292,7 @@ es-MX:
         create_domain_block_html: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
         create_ip_block_html: "%{name} creó una regla para la IP %{target}"
+        create_moderation_subscription_html: "%{name} creó la suscripción de moderación %{target}"
         create_relay_html: "%{name} creó un relé %{target}"
         create_unavailable_domain_html: "%{name} detuvo las entregas al dominio %{target}"
         create_user_role_html: "%{name} creó el rol %{target}"
@@ -306,6 +308,7 @@ es-MX:
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
         destroy_instance_html: "%{name} purgó el dominio %{target}"
         destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
+        destroy_moderation_subscription_html: "%{name} eliminó la suscripción de moderación %{target}"
         destroy_relay_html: "%{name} eliminó el relé %{target}"
         destroy_status_html: "%{name} eliminó la publicación por %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
@@ -354,10 +357,18 @@ es-MX:
         update_user_role_html: "%{name} cambió el rol %{target}"
         update_username_block_html: "%{name} actualizó una regla para los nombres de usuario que contienen %{target}"
         usable_tag_html: se puede usar;
+      automated_actions:
+        create_domain_allow_html: Se permitió automáticamente la federación con el dominio %{target}
+        create_domain_block_html: Se bloqueó automáticamente el dominio %{target}
+        destroy_domain_allow_html: Se rescindió automáticamente la federación con el dominio %{target}
+        destroy_domain_block_html: Se desbloqueó automáticamente el dominio %{target}
+        update_domain_block_html: Se modificó automáticamente el bloqueo para el dominio %{target}
       deleted_account: cuenta eliminada
+      deleted_suggestion: una suscripción de moderación eliminada
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
+      suggested_by_html: Acción sugerida por %{subscription}
       title: Registro de auditoría
       unavailable_instance: "(nombre de dominio no disponible)"
     announcements:
@@ -473,6 +484,11 @@ es-MX:
       undo: Quitar de la lista blanca
     domain_blocks:
       add_new: Añadir nuevo
+      confirm_downgrade:
+        cancel: Cancelar
+        confirm: Desescalar
+        preamble_html: Estás a punto de desescalar el bloqueo existente en <strong>%{domain}</strong> y sus subdominios.
+        title: Confirmar el desescalado del bloqueo del dominio para %{domain}
       confirm_suspension:
         cancel: Cancelar
         confirm: Suspender
@@ -672,6 +688,8 @@ es-MX:
       title: Recomendaciones de cuentas
       unsuppress: Restaurar recomendaciones de cuentas
     instances:
+      advisories:
+        title: Avisos de suscripciones de moderación
       audit_log:
         title: Registros de auditoría recientes
         view_all: Ver registros de auditoría completos
@@ -695,6 +713,7 @@ es-MX:
         comment: Nota interna
         description_html: Puedes definir políticas de contenido que se aplicarán a todas las cuentas de este dominio y a cualquiera de sus subdominios.
         limited_federation_mode_description_html: Puedes elegir si permites la federación con este dominio.
+        moderation_subscription: Suscripción de moderación
         policies:
           reject_media: Rechazar multimedia
           reject_reports: Rechazar informes
@@ -775,6 +794,92 @@ es-MX:
       reset: Restablecer
       search: Buscar
       title: Reglas IP
+    moderation_subscriptions:
+      add_new: Añadir suscripción
+      advisory_action: 'Acción: %{action}'
+      advisory_actions:
+        accept: permitir
+        limit: silenciar
+        reject: suspender
+      apply_automatically: Aplicar avisos automáticamente
+      apply_conditions:
+        always: Siempre
+        never: Nunca
+        safely: Solo si no rompe relaciones
+      apply_conditions_hint:
+        always: Siempre aplicar automáticamente las acciones recomendadas. Utiliza esta opción solamente para listas en las que confíes plenamente.
+        never: Nunca aplicar automáticamente las acciones recomendadas. Siempre generar una sugerencia en su lugar.
+        safely: Aplicar las acciones recomendadas, a menos que estas rompan las relaciones con las cuentas seguidas por los usuarios locales. En tal caso, se generará una sugerencia en su lugar.
+      delete: Eliminar
+      destroyed_msg: Se eliminó la suscripción de moderación correctamente
+      empty: Aún no se ha suscrito ninguna lista de moderación.
+      last_synced_at: Última sincronización el
+      list_action: Tipo de suscripción
+      list_actions:
+        accept: Lista de permitidos
+        default: Mixto (Permitir y Denegar)
+        reject: Lista de bloqueos
+      list_actions_hint:
+        accept: Los elementos sin ninguna acción especificada se tratarán como permitidos. Se ignorarán los bloqueos.
+        default: Los elementos sin ninguna acción especificada se tratarán como bloqueos. Los bloqueos y permitidos se tratarán cada uno como lo que son.
+        reject: Los elementos sin ninguna acción especificada se tratarán como bloqueos. Se ignorarán los permitidos.
+      list_actions_short:
+        accept: Lista de permitidos
+        default: Mixto
+        reject: Lista de bloqueos
+      name: Nombre
+      new:
+        create: Suscribirse
+        title: Nueva suscripción de moderación
+      override_unattributed: Reemplazar bloqueos manuales
+      override_unattributed_hint: Permitir a esta suscripción actualizar automáticamente o tomar el control de los bloqueos manuales existentes cuando se apliquen automáticamente los avisos.
+      policies:
+        apply_advisories: Aplica automáticamente los avisos
+        apply_advisories_safely: Aplica automáticamente los avisos que no rompan las relaciones
+        apply_retractions: Aplica automáticamente retracciones
+      priority: Prioridad
+      priority_hint: Las suscripciones de moderación se evalúan por orden de prioridad, las suscripciones con un número más bajo anulan las suscripciones con uno más alto.
+      retract_automatically: Retractar avisos automáticamente
+      retract_automatically_hint: Permitir retractarse o desescalar cambios en las políticas cuando una suscripción elimina un elemento correspondiente. Cuando se activa la retracción automática y existe un aviso equivalente en una lista de prioridad inferior, esta se adoptará. Cuando la retracción automática está desactivada, se generará una sugerencia en su lugar.
+      show:
+        delete_confirm: "¿Seguro que deseas eliminar esta suscripción de moderación?"
+        edit: Editar suscripción
+        empty: Esta suscripción no tiene ningún aviso todavía.
+        title: 'Suscripción de moderación: %{name}'
+      tabs:
+        logs: Registros
+        subscriptions: Suscripciones
+        suggestions: Sugerencias
+      title: Suscripción de moderación
+      type: Tipo
+      types:
+        csv_list: Lista CSV
+      url: URL
+    moderation_subscriptions_logs:
+      title: Registros de suscripciones de moderación
+    moderation_suggestions:
+      actions:
+        accept: Permitir
+        limit: Limitar
+        reject: Suspender
+        retract: Retractar la política actual
+      applied_msg: Se aplicó con éxito la sugerencia para %{target_key}
+      apply_accept: Permitir
+      apply_limit: Limitar
+      apply_reject: Suspender
+      apply_retract: Retractar
+      current_states:
+        accept: actualmente permitido
+        limit: actualmente limitado
+        reject: actualmente suspendido
+      description: Debajo hay sugerencias de tus suscripciones de moderación, ordenadas por prioridad.
+      destroyed_msg: Se descartó con éxito la sugerencia para %{target_key}
+      dismiss: Descartar sugerencias
+      empty: No hay ninguna sugerencia de moderación en este momento.
+      retracted_msg: Se retractó la política para %{target_key} correctamente
+      suggested_from_html: Sugerido por %{link}
+      title: Sugerencias de moderación
+      unable_to_apply_msg: No se pudo aplicar la sugerencia para %{target_key}
     relationships:
       title: Relaciones de %{acct}
     relays:
@@ -969,6 +1074,119 @@ es-MX:
       translation: Traducción
       translations: Traducciones
       translations_explanation: Opcionalmente, puedes añadir traducciones para las reglas. Se mostrará el valor por defecto si no hay ninguna versión traducida disponible. Por favor, asegúrate siempre de que cualquier traducción proporcionada esté sincronizada con el valor por defecto.
+    server_checks:
+      categories:
+        completed:
+          title: Completado
+        critical:
+          title: Crítico
+        error:
+          title: Errores
+        ignored:
+          title: Ignorado
+        suggestion:
+          title: Sugerencias
+        unprocessed:
+          title: Sin procesar
+        warning:
+          title: Advertencias
+      checks:
+        database_schema:
+          error:
+            title: Se produjo un error al comprobar el esquema de la base de datos
+          ok:
+            title: No hay ninguna migración de base de datos pendiente
+          pending:
+            lead_html: Por favor, ejecútalas para asegurarte de que la aplicación se comporta como se espera
+            title: Hay migraciones de base de datos pendientes
+          running:
+            title: Tu servidor está comprobando el esquema de base de datos
+          unprocessed:
+            title: Tu servidor aún no ha comprobado el esquema de base de datos
+        elastic_search:
+          error:
+            title: Se produjo un error al comprobar la configuración de Elasticsearch
+          ok:
+            title: Elasticsearch está configurado sin problemas
+          pending:
+            lead:
+              analysis_index_mismatch_html: La configuración del analizador de índices Elasticsearch está desactualizada. Por favor ejecute <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: El estado del clúster de Elasticsearch no es saludable (estado rojo), las funciones de búsqueda no están disponibles
+              cluster_health_yellow_html: El estado del clúster de Elasticsearch no es saludable (estado amarillo), puede que quieras investigar la razón
+              index_mismatch_html: Los mapeos de índices de Elasticsearch están desactualizados. Ejecuta <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Tu clúster de Elasticsearch tiene más de un nodo, pero Mastodon no está configurado para usarlos
+              preset_single_node_html: Tu clúster de Elasticsearch solo tiene un nodo, <code>ES_PRESET</code> debe establecerse a <code>single_node_cluster</code>
+              reset_chewy_html: Tu índice de sistema de Elasticsearch está desactualizado debido a un cambio de configuración. Ejecuta <code>tootctl search deploy --reset-chewy</code> para actualizarlo
+              running_check_html: No se pudo conectar a Elasticsearch. Por favor, comprueba que está ejecutándose, o desactiva la búsqueda de texto completo
+              version_check_html: Se está ejecutando Elasticsearch %{running_version}, pero se necesita Elasticsearch %{required_version}
+            title: Hay problemas con Elasticsearch
+          running:
+            title: El servidor está comprobando la configuración de Elasticsearch
+          unprocessed:
+            title: El servidor aún no ha comprobado la configuración de Elasticsearch
+        media_privacy:
+          error:
+            title: Hubo un error al comprobar la privacidad multimedia de tu servidor
+          ok:
+            title: La privacidad multimedia del servidor es segura
+          pending:
+            lead:
+              upload_check_privacy_error_html: Tu servidor web está mal configurado
+              upload_check_privacy_error_object_storage_html: Tu almacén de objetos está mal configurado
+            title: La privacidad de tus usuarios está en riesgo
+          running:
+            title: El servidor está comprobando el estado de privacidad
+          unprocessed:
+            title: El servidor aún no ha comprobado el estado de privacidad
+        rules:
+          error:
+            title: Hubo un error al comprobar las reglas de tu servidor
+          ok:
+            title: Las reglas de tu servidor están establecidas
+          pending:
+            lead_html: Tu servidor no tiene reglas publicadas. Las reglas claras ayudan a moderar y a establecer expectativas
+            title: Configurar reglas del servidor
+          running:
+            title: El servidor está comprobando tus reglas
+          unprocessed:
+            title: El servidor aún no ha comprobado si hay reglas
+        sidekiq_process:
+          error:
+            title: Hubo un error al comprobar la configuración de Sidekiq
+          ok:
+            title: Sidekiq está configurado sin problemas
+          pending:
+            lead_html: No hay ningún proceso Sidekiq ejecutándose para la(s) cola(s) %{missing_queues_str}
+            title: Por favor, revisa tu configuración de Sidekiq
+          running:
+            title: El servidor está comprobando la configuración de Sidekiq
+          unprocessed:
+            title: El servidor aún no ha comprobado la configuración de Sidekiq
+        software_version:
+          error:
+            title: Hubo un error al comprobar las actualizaciones de software
+          ok:
+            title: Tu instancia de Mastodon está actualizada
+          pending:
+            lead:
+              patch_html: Hay una actualización disponible con corrección de errores de Mastodon
+              regular_html: Hay una nueva versión de Mastodon disponible
+              urgent_html: Hay disponible una actualización crítica de Mastodon, por favor actualiza lo antes posible
+            title: Actualiza tu instancia de Mastodon
+          running:
+            title: El servidor está comprobando si hay alguna actualización de software pendiente
+          unprocessed:
+            title: El servidor aún no ha comprobado las actualizaciones de software
+      ignore:
+        label: Ignorar
+      lead: Recomendaciones para mantener su servidor seguro, acogedor y eficiente.
+      recommendations:
+        title: Recomendaciones
+      restore:
+        label: Restablecer
+      setup:
+        label: Configurar
+      title: Salud del Servidor
     settings:
       about:
         manage_rules: Administrar reglas del servidor
@@ -991,6 +1209,9 @@ es-MX:
         danger_zone: Zona de peligro
         preamble: Controlar cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
+      crawlers:
+        preamble: Controla cómo los bots (bien intencionados) como los rastreadores de motores de búsqueda pueden interactuar con tu servidor de Mastodon. Los bots maliciosos pueden ignorar estos ajustes y deben ser bloqueados a nivel de red.
+        title: Controles para rastreadores
       default_noindex:
         desc_html: Afecta a todos los usuarios que no han cambiado esta configuración por sí mismos
         title: Optar por los usuarios fuera de la indexación en los motores de búsqueda por defecto
@@ -1319,9 +1540,17 @@ es-MX:
     warning_presets:
       add_new: Añadir nuevo
       delete: Eliminar
-      edit_preset: Editar aviso predeterminado
-      empty: Aún no has definido ningún preajuste de advertencia.
-      title: Preajustes de advertencia
+      dropdown:
+        all_actions: Todas las acciones
+        disable: Congelar
+        none: Advertencia
+        sensitive: Sensible
+        silence: Limitar
+        suspend: Suspender
+      edit_preset: Editar plantilla de respuesta
+      empty: No has configurado ninguna plantilla de respuesta aún.
+      navigation_title: Plantillas de respuesta
+      title: Plantillas de respuesta de Moderación
     webhooks:
       add_new: Añadir endpoint
       delete: Eliminar
@@ -1370,9 +1599,15 @@ es-MX:
     new_critical_software_updates:
       body: Se han lanzado nuevas versiones críticas de Mastodon, ¡es posible que quiera actualizar lo antes posible!
       subject: "¡Las actualizaciones críticas de Mastodon están disponibles para %{instance}!"
+    new_moderation_suggestions:
+      body: Las listas de moderación a las que está suscrito tu servidor han publicado nuevas sugerencias.
+      subject: "¡Nuevas sugerencias de moderación disponibles para %{instance}!"
     new_pending_account:
       body: Los detalles de la nueva cuenta están abajos. Puedes aprobar o rechazar esta aplicación.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
+    new_pending_accounts:
+      body: Se han creado nuevas cuentas en %{instance}. Como tu servidor está configurado para posponer correos de confirmación después de la aprobación de moderación, esas cuentas no han podido verificar su dirección de correo electrónico aún. Tienes los detalles de las nuevas cuentas a continuación. Puedes aprobar o rechazar estas solicitudes.
+      subject: Nuevas cuentas para revisar en %{instance}
     new_report:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
@@ -1401,7 +1636,6 @@ es-MX:
     animations_and_accessibility: Animaciones y accesibilidad
     boosting_preferences: Preferencias de impulso
     boosting_preferences_info_html: "<strong>Consejo:</strong> Sin importar los ajustes, pulsar <kbd>Mayus</kbd> al hacer <kbd>clic</kbd> en el icono de %{icon} Impulsar, dará impulso inmediatamente."
-    discovery: Descubrir
     localization:
       body: Mastodon es traducido con la ayuda de voluntarios.
       guide_link: https://es.crowdin.com/project/mastodon
@@ -1481,11 +1715,16 @@ es-MX:
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
     setup:
+      correct_email: Corregir dirección
       email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu dirección de correo electrónico si está mal.
       email_settings_hint_html: Haz clic en el enlace que te enviamos a %{email} para comenzar a usar Mastodon. Te esperamos aquí.
+      email_settings_hint_wait_html: Tu solicitud está siendo revisada. Pronto recibirás un correo en %{email}. Una vez que lo recibas, clica en el enlace para empezar a utilizar Mastodon. Estaremos esperándote.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
       title: Revisa tu bandeja de entrada
+      title_wait: Revisa tu bandeja de entrada
+      wrong_email: "¿Dirección de correo incorrecta?"
+      wrong_email_below_hint_html: "¡Que no cunda el pánico! Puedes corregir la dirección de correo justo debajo."
     sign_in:
       preamble_html: Registrate con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no podrás iniciar sesión aquí.
       title: Registrate en %{domain}
@@ -1522,6 +1761,12 @@ es-MX:
     auto: Automático
     dark: Oscuro
     light: Claro
+  color_theme:
+    cyan: Cian
+    indigo: Índigo
+    lime: Lima
+    orange: Naranja
+    pink: Rosa
   contrast:
     auto: Automático
     high: Alto
@@ -1570,6 +1815,7 @@ es-MX:
       action_taken: Acción realizada
       appeal: Apelar
       appeal_approved: Esta amonestación fue apelada exitosamente y ya no es válida
+      appeal_handled_by: Apelación gestionada por
       appeal_rejected: Se rechazó la apelación
       appeal_submitted_at: Apelación enviada
       appealed_msg: Tu apelación fue enviada. Si se aprueba, se te notificará.
@@ -2459,7 +2705,7 @@ es-MX:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
     generic_access_help_html: "¿Tienes problemas para acceder a tu cuenta? Puedes ponerte en contacto con %{email} para conseguir ayuda"
     go_to_sso_account_settings: Diríjete a la configuración de la cuenta de su proveedor de identidad
-    inactive_sign_in_confirmation: Ha pasado un tiempo desde que iniciaste sesión, así que estamos enviando un código de seguridad a tu dirección de correo electrónico para confirmar que es tú.
+    inactive_sign_in_confirmation: Ha pasado un tiempo desde que iniciaste sesión, así que estamos enviando un código de seguridad a tu dirección de correo electrónico para confirmar que eres tú.
     inactive_sign_in_title: Confirma el código de seguridad
     invalid_otp_token: Código de dos pasos incorrecto
     invalid_sign_in_token: Código de seguridad no válido

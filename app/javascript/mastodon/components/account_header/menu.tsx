@@ -23,7 +23,7 @@ import {
 import { openModal } from '@/mastodon/actions/modal';
 import { initMuteModal } from '@/mastodon/actions/mutes';
 import { initReport } from '@/mastodon/actions/reports';
-import { IconButton } from '@/mastodon/components/button/redesign';
+import { IconButton } from '@/mastodon/components/button';
 import {
   Menu,
   MenuList,

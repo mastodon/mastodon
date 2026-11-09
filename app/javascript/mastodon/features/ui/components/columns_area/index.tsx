@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 
-import { Search } from '@/mastodon/features/compose/components/search';
-import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
+import { Column } from '@/mastodon/components/column';
+import { ComposeButton } from '@/mastodon/features/compose/trigger';
+import { DiscoveryPanel } from '@/mastodon/features/discovery_panel';
 import { RedesignNavigationPanel } from '@/mastodon/features/navigation_panel/redesign';
 import { RedesignMobileNavigation } from '@/mastodon/features/navigation_panel/redesign/mobile_nav';
-import { isLayoutWithSearchEnabled } from '@/mastodon/utils/environment';
 import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';
@@ -40,15 +40,13 @@ export const ColumnsArea: React.FC<{
         <div className={classes.navigationWrapper}>
           <RedesignNavigationPanel />
         </div>
-        {isMobile ? <RedesignMobileNavigation /> : <ComposeRedesignButton />}
+        {isMobile ? <RedesignMobileNavigation /> : <ComposeButton />}
 
         <main className={classes.main}>{children}</main>
 
-        {isLayoutWithSearchEnabled() && (
-          <div className={classes.searchWrapper}>
-            <Search singleColumn context='sidebar' />
-          </div>
-        )}
+        <div className={classes.discoveryWrapper}>
+          <DiscoveryPanel />
+        </div>
       </div>
     );
   }
@@ -58,8 +56,12 @@ export const ColumnsArea: React.FC<{
       <div className={multiColClasses.navigationWrapper}>
         <RedesignNavigationPanel multiColumn />
       </div>
-      <ComposeRedesignButton />
+      <ComposeButton />
       <MultiColumnContent>{children}</MultiColumnContent>
+
+      <Column className={multiColClasses.discoveryColumn}>
+        <DiscoveryPanel />
+      </Column>
     </main>
   );
 };

@@ -421,7 +421,6 @@ oc:
     warning_presets:
       add_new: N’ajustar un nòu
       delete: Escafar
-      edit_preset: Modificar lo tèxt predefinit d’avertiment
     webhooks:
       delete: Suprimir
       disable: Desactivar
@@ -442,7 +441,6 @@ oc:
     remove: Desligar l’alias
   appearance:
     animations_and_accessibility: Animacion e accessibilitat
-    discovery: Descobèrta
     localization:
       body: Mastodon es traduch per de benevòls.
       guide_link_text: Tot lo monde pòt contribuïr.
@@ -808,6 +806,8 @@ oc:
     statuses_cleanup: Supression auto de las publicacions
     two_factor_authentication: Autentificacion en dos temps
     webauthn_authentication: Claus de seguretat
+  severed_relationships:
+    lost_followers: Seguidors perduts
   statuses:
     attached:
       audio:
@@ -834,8 +834,11 @@ oc:
       limit: Avètz ja lo maximum de tuts penjats
       ownership: Se pòt pas penjar lo tut de qualqu’un mai
       reblog: Se pòt pas penjar un tut partejat
+    quote_policies:
+      followers: Sonque pels seguidors
     title: '%{name} : "%{quote}"'
     visibilities:
+      private: Sonque pels seguidors
       public: Public
   statuses_cleanup:
     enabled: Supression automatica de publicacions ancianas

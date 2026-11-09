@@ -63,6 +63,10 @@ zh-TW:
         prompt_html: "%{client_name} 想要請求存取您帳號之權限。<strong>請僅於您所識別且信任此來源時允許請求。</strong>"
         review_permissions: 檢視權限
         title: 需要授權
+      require_reauth:
+        log_out_and_continue: 登出並繼續
+        prompt_html: 您現在正以 <strong>%{handle}</strong> 身分登入，但如欲繼續操作，您必須先登出。
+        title: 需要重新登入驗證
       show:
         title: 複製此授權碼並貼上到應用程式中。
     authorized_applications:
@@ -187,7 +191,7 @@ zh-TW:
       read:statuses: 檢視所有嘟文
       write: 修改您帳號的所有資料
       write:accounts: 修改您的個人檔案
-      write:blocks: 封鎖帳號及站台
+      write:blocks: 封鎖帳號及站點
       write:bookmarks: 書籤狀態
       write:conversations: 靜音及刪除對話
       write:favourites: 加到最愛

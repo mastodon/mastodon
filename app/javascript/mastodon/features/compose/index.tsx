@@ -1,4 +1,4 @@
-import { useEffect, useCallback, Suspense, lazy } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
@@ -12,7 +12,7 @@ import elephantUIPlane from '@/images/elephant_ui_plane.svg';
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnHeader } from '@/mastodon/components/column_header';
-import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { Search } from '@/mastodon/components/search';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import EditIcon from '@/material-icons/400-24px/edit_square.svg?react';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
@@ -34,8 +34,7 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { messages as navbarMessages } from '../ui/components/navigation_bar';
 
-import { Search } from './components/search';
-import ComposeFormContainer from './containers/compose_form_container';
+import { ComposeForm } from './form';
 
 const messages = defineMessages({
   live_feed_public: {
@@ -176,7 +175,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           aria-label={intl.formatMessage(navbarMessages.publish)}
         >
           <div className='drawer__inner' onFocus={handleFocus}>
-            <ComposeFormContainer />
+            <ComposeForm headless />
 
             <div className='drawer__inner__mastodon with-zig-zag-decoration'>
               <img alt='' draggable='false' src={mascot ?? elephantUIPlane} />
@@ -208,13 +207,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       )}
 
       <div className='scrollable scrollable--flex'>
-        {isRedesignEnabled() ? (
-          <Suspense fallback={<LoadingIndicator />}>
-            <ComposeLazyForm autoFocus headless />
-          </Suspense>
-        ) : (
-          <ComposeFormContainer autoFocus />
-        )}
+        <ComposeForm autoFocus headless />
       </div>
 
       <Helmet>
@@ -223,12 +216,6 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     </Column>
   );
 };
-
-const ComposeLazyForm = lazy(() =>
-  import('./redesign/index').then(({ RedesignComposeForm }) => ({
-    default: RedesignComposeForm,
-  })),
-);
 
 // eslint-disable-next-line import/no-default-export
 export default Compose;

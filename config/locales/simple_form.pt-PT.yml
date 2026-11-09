@@ -21,7 +21,6 @@ pt-PT:
       admin_account_action:
         include_statuses: O utilizador verá quais as publicações que foram a razão da moderação ou advertência
         send_email_notification: O utilizador receberá uma explicação sobre o que aconteceu com a sua conta
-        text_html: Opcional. Pode utilizar sintaxe de escrita. Pode <a href="%{path}">adicionar avisos predefinidos</a> para poupar tempo
         type_html: Escolhe o que fazer com <strong>%{acct}</strong>
         types:
           disable: Impede o utilizador de usar a sua conta, mas não elimina ou oculta o seu conteúdo.
@@ -29,7 +28,6 @@ pt-PT:
           sensitive: Força todos os anexos de media deste utilizador a serem sinalizados como sensíveis.
           silence: Impede que o utilizador possa publicar com visibilidade pública, ocultando as suas publicações e notificações de pessoas que não o seguem. Encerra todas as denúncias contra esta conta.
           suspend: Evita qualquer interação de ou para esta conta e elimina o seu conteúdo. Reversível num período de 30 dias. Encerra todas as denúncias contra esta conta.
-        warning_preset_id: Opcional. Tu ainda podes adicionar texto personalizado no fim do predefinido
       announcement:
         all_day: Quando marcado, apenas as datas do intervalo de tempo serão apresentadas
         ends_at: Opcional. A mensagem de manutenção deixará de estar publicada neste momento
@@ -61,6 +59,7 @@ pt-PT:
         setting_default_quote_policy_private: As publicações exclusivas para seguidores criadas no Mastodon não podem ser citadas por outras pessoas.
         setting_default_quote_policy_unlisted: Quando as pessoas o citarem, as respetivas publicações também serão ocultadas dos destaques.
         setting_default_sensitive: Os media sensíveis são ocultados por predefinição e podem ser revelados com um clique
+        setting_default_spoiler_field: Mantém o campo de aviso de conteúdo aberto no compositor. Pode personalizar o texto em cada publicação.
         setting_display_media_default: Avisar antes de mostrar media marcada como sensível
         setting_display_media_hide_all: Avisar antes de mostrar qualquer media
         setting_display_media_show_all: Mostrar toda a media sem aviso, incluindo media marcada como sensível
@@ -191,12 +190,10 @@ pt-PT:
       account_migration:
         acct: Nome de utilizador da nova conta
       account_warning_preset:
-        text: Texto pré-definido
         title: Título
       admin_account_action:
         include_statuses: Incluir no e-mail as publicações denunciadas
         send_email_notification: Notificar o utilizador por e-mail
-        text: Aviso personalizado
         type: Ação
         types:
           disable: Congelar
@@ -204,7 +201,6 @@ pt-PT:
           sensitive: Sensível
           silence: Limitar
           suspend: Suspender
-        warning_preset_id: Usar um aviso pré-definido
       announcement:
         all_day: Evento de dia inteiro
         ends_at: Fim do evento
@@ -244,12 +240,12 @@ pt-PT:
         setting_always_send_emails: Enviar sempre notificações por e-mail
         setting_auto_play_gif: Reproduzir GIF automaticamente
         setting_boost_modal: Controlar visibilidade da partilha
-        setting_color_scheme: Esquema de cores
         setting_contrast: Contraste
         setting_default_language: Idioma de publicação
         setting_default_privacy: Visibilidade da publicação
         setting_default_quote_policy: Quem pode citar
         setting_default_sensitive: Marcar sempre os media como sensíveis
+        setting_default_spoiler_field: Usar avisos de conteúdo por padrão
         setting_delete_modal: Avisar-me antes de eliminar uma publicação
         setting_disable_hover_cards: Desativar visualização de perfil ao passar o cursor
         setting_disable_swiping: Desativar os movimentos de deslize
@@ -257,6 +253,8 @@ pt-PT:
         setting_display_media_default: Pré-definição
         setting_display_media_hide_all: Ocultar todos
         setting_display_media_show_all: Mostrar todos
+        setting_display_own_boosts: Mostrar os meus próprios impulsos no meu feed principal
+        setting_display_own_posts: Mostrar as minhas próprias publicações no meu feed principal
         setting_emoji_style: Estilo de emojis
         setting_expand_spoilers: Expandir sempre as publicações marcadas com avisos de conteúdo
         setting_hide_network: Esconder a tua rede
@@ -267,12 +265,12 @@ pt-PT:
         setting_system_font_ui: Usar o tipo de letra padrão do sistema
         setting_system_scrollbars_ui: Utilizar a barra de deslocação predefinida do sistema
         setting_theme: Tema do sítio
-        setting_trends: Mostrar as tendências de hoje
         setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
         setting_use_blurhash: Mostrar gradientes coloridos para medias ocultas
         setting_use_pending_items: Modo lento
         severity: Gravidade
         sign_in_token_attempt: Código de segurança
+        sign_in_token_resend: Reenviar código de segurança
         title: Título
         type: Tipo de importação
         username: Nome de utilizador

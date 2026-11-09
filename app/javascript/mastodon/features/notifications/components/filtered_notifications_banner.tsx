@@ -1,8 +1,8 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
-import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { TrayIcon } from '@phosphor-icons/react';
 
@@ -16,48 +16,6 @@ import { selectSettingsNotificationsMinimizeFilteredBanner } from 'mastodon/sele
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import classes from './filtered_notifications_banner.module.scss';
-
-const messages = defineMessages({
-  filteredNotifications: {
-    id: 'notification_requests.title',
-    defaultMessage: 'Filtered notifications',
-  },
-});
-
-export const FilteredNotificationsIconButton: React.FC<{
-  className?: string;
-}> = ({ className }) => {
-  const intl = useIntl();
-  const history = useHistory();
-  const policy = useAppSelector((state) => state.notificationPolicy);
-  const minimizeSetting = useAppSelector(
-    selectSettingsNotificationsMinimizeFilteredBanner,
-  );
-
-  const handleClick = useCallback(() => {
-    history.push('/notifications/requests');
-  }, [history]);
-
-  if (policy === null || policy.summary.pending_requests_count <= 0) {
-    return null;
-  }
-
-  if (!minimizeSetting) {
-    return null;
-  }
-
-  return (
-    <button
-      aria-label={intl.formatMessage(messages.filteredNotifications)}
-      title={intl.formatMessage(messages.filteredNotifications)}
-      onClick={handleClick}
-      className={className}
-      type='button'
-    >
-      <Icon id='filtered-notifications' icon={InventoryIcon} />
-    </button>
-  );
-};
 
 export const FilteredNotificationsBanner: React.FC = () => {
   const dispatch = useAppDispatch();

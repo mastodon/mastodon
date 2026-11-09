@@ -4,12 +4,18 @@ require 'rails_helper'
 
 RSpec.describe Conversation do
   describe '#local?' do
-    it 'returns true when URI is nil' do
-      expect(Fabricate(:conversation).local?).to be true
+    subject { Fabricate.build :conversation, uri: }
+
+    context 'when uri is nil' do
+      let(:uri) { nil }
+
+      it { is_expected.to be_local }
     end
 
-    it 'returns false when URI is not nil' do
-      expect(Fabricate(:conversation, uri: 'abc').local?).to be false
+    context 'when uri is set' do
+      let(:uri) { 'abc' }
+
+      it { is_expected.to_not be_local }
     end
   end
 end

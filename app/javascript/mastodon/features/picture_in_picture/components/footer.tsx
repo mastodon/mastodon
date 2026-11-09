@@ -5,8 +5,8 @@ import { defineMessages, useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 
 import { replyComposeById } from '@/mastodon/actions/compose_typed';
+import { StatusReblogButton } from '@/mastodon/components/status/action_bar';
 import { useStatusIcons } from '@/mastodon/components/status/hooks';
-import { BoostButton } from '@/mastodon/components/status/legacy/boost_button';
 import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
@@ -95,7 +95,9 @@ export const Footer: React.FC<{
         counter={reply.counter}
       />
 
-      <BoostButton counters statusId={statusId} />
+      <StatusReblogButton statusId={statusId}>
+        {status.get('reblogs_count') as number}
+      </StatusReblogButton>
 
       <IconButton
         className='status__action-bar-button star-icon'

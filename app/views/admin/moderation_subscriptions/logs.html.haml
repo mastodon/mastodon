@@ -1,0 +1,16 @@
+- content_for(:heading) do
+  .content__heading__row
+    %h1= t('admin.moderation_subscriptions_logs.title')
+
+  = render 'admin/moderation_subscriptions/shared/links'
+
+%hr.spacer/
+
+- if @action_logs.empty?
+  .muted-hint.center-text
+    = t 'admin.action_logs.empty'
+- else
+  .report-notes
+    = render partial: 'admin/action_logs/action_log', collection: @action_logs
+
+= paginate @action_logs

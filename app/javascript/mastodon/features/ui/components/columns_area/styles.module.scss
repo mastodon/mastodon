@@ -5,6 +5,10 @@
   --navigation-width: 320px;
   --search-column-width: 320px;
 
+  // This grid definition is shared with the composer
+  --columns-area-grid-columns: minmax(var(--navigation-width), 1fr)
+    minmax(0, var(--main-column-max-width)) minmax(0, 1fr);
+
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -14,17 +18,9 @@
   min-height: 100dvh;
   padding-bottom: env(safe-area-inset-bottom);
 
-  @media (min-width: $no-gap-breakpoint) {
-    padding-inline: var(--space-1);
-  }
-
   @media (min-width: $mobile-menu-breakpoint) {
     display: grid;
-    grid-template-columns:
-      minmax(var(--navigation-width), 1fr)
-      minmax(0, var(--main-column-max-width))
-      minmax(0, 1fr);
-    gap: var(--space-2);
+    grid-template-columns: var(--columns-area-grid-columns);
   }
 }
 
@@ -48,7 +44,7 @@
 }
 
 .navigationWrapper,
-.searchWrapper {
+.discoveryWrapper {
   position: sticky;
   top: 0;
   z-index: 1;
@@ -75,12 +71,11 @@
   }
 }
 
-.searchWrapper {
+.discoveryWrapper {
   max-width: var(--search-column-width);
-  padding: var(--space-4);
-  padding-top: var(--space-5);
+  padding: var(--space-5) var(--space-4) var(--space-6);
 
-  @media (width <= 1200px) {
+  @media (width <= $no-gap-breakpoint) {
     display: none;
   }
 }
@@ -92,7 +87,7 @@
   flex-direction: column;
   flex: 1 1 auto;
   width: 100%;
-  contain: inline-size layout paint style;
+  contain: inline-size layout style;
   container: column / inline-size;
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);

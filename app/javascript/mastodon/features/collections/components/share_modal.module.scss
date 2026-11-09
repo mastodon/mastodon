@@ -1,11 +1,13 @@
+@use '@/styles/mastodon/mixins';
+
 .heading {
-  font-size: 28px;
-  line-height: 1.3;
-  margin-bottom: 16px;
+  @include mixins.type-heading-md;
+
+  margin-bottom: var(--space-4);
 }
 
 .preview {
-  margin-bottom: 16px;
+  margin-bottom: var(--space-4);
 }
 
 .actions {
@@ -20,7 +22,7 @@ $bottomsheet-breakpoint: 630px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: var(--space-2);
   width: 100%;
 
   & > button {
@@ -36,9 +38,8 @@ $bottomsheet-breakpoint: 630px;
 
 .closeButtonDesktop {
   position: absolute;
-  top: 4px;
-  inset-inline-end: 4px;
-  padding: 8px;
+  top: var(--space-4);
+  inset-inline-end: var(--space-4);
 
   @media (width <= $bottomsheet-breakpoint) {
     display: none;
@@ -46,8 +47,8 @@ $bottomsheet-breakpoint: 630px;
 }
 
 .closeButtonMobile {
-  margin-top: 16px;
-  margin-bottom: -18px;
+  margin-top: var(--space-4);
+  margin-bottom: calc(-1 * var(--space-4));
 
   @media (width > $bottomsheet-breakpoint) {
     display: none;

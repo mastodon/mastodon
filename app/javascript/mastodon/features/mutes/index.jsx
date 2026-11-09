@@ -23,7 +23,7 @@ import { ColumnHeader } from '@/mastodon/components/column_header';
 
 
 const messages = defineMessages({
-  heading: { id: 'column.mutes', defaultMessage: 'Muted users' },
+  heading: { id: 'column.muted_accounts', defaultMessage: 'Muted Accounts' },
 });
 
 const mapStateToProps = state => ({

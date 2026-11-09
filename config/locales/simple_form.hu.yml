@@ -21,7 +21,7 @@ hu:
       admin_account_action:
         include_statuses: A felhasználó látni fogja, melyik bejegyzés okozta a moderációs műveletet vagy figyelmeztetést
         send_email_notification: A felhasználó magyarázatot kap arra, mi történt a fiókjával
-        text_html: Opcionális. A bejegyzések szintaxisa használható. Időmegtakarítás végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
+        text: Nem kötelező. Használhatod a bejegyzések szintaktikáját. A konzervválasz alatt fog megjelenni.
         type_html: Megmondhatod, mi legyen vele <strong>%{acct}</strong>
         types:
           disable: A felhasználó nem fogja tudni használni a fiókját, de ettől még nem töröljük azt vagy rejtjük el a tartalmait.
@@ -29,7 +29,7 @@ hu:
           sensitive: Ennek a felhasználónak minden médiatartalmát jelöljük meg kényesként.
           silence: A felhasználó megakadályozása abban, hogy nyilvános bejegyzéseket tehessen közzé, bejegyzései és tőle származó értesítések elrejtése az őt követők számára. A fiók ellen indított minden bejelentés lezárása.
           suspend: A fiókkal való minden kapcsolat megakadályozása és a tartalmak törlése. 30 napig visszaállítható. A fiók ellen indított minden bejelentés lezárása.
-        warning_preset_id: Nem kötelező. A figyelmeztetés végére saját szöveget is írhatsz.
+        warning_preset_html: Nem kötelező. <a href="%{path}">Itt kezelheted őket</a>.
       announcement:
         all_day: Bejelölve csak a dátumok számítanak majd a megadott intervallumból
         ends_at: Opcionális. A közleményt ekkor automatikusan levesszük
@@ -61,6 +61,7 @@ hu:
         setting_default_quote_policy_private: A Mastodonon írt, csak követőknek szóló bejegyzéseket mások nem idézhetik.
         setting_default_quote_policy_unlisted: Amikor idéznek tőled, a bejegyzésük rejtve lesz a felkapott bejegyzések hírfolyamain is.
         setting_default_sensitive: A kényes médiatartalmat alapesetben elrejtjük, de egyetlen kattintással előhozható
+        setting_default_spoiler_field: Nyitva hagyja a tartalmi figyelmeztetés mezőjét a szerkesztőben. A szöveget az összes bejegyzésnél testreszabhatod.
         setting_display_media_default: Figyelmeztetés megjelenítése a kényesnek jelölt média megjelenítése előtt
         setting_display_media_hide_all: Figyelmeztetés az összes média megjelenítése előtt
         setting_display_media_show_all: Figyelmeztetés minden média megjelenítése esetén, köztük a kényesnek jelöltek esetén is
@@ -91,12 +92,14 @@ hu:
         closed_registrations_message: Akkor jelenik meg, amikor a regisztráció le van zárva
         content_cache_retention_period: Minden más kiszolgálóról származó bejegyzés (megtolásokkal és válaszokkal együtt) törölve lesz a megadott számú nap elteltével, függetlenül a helyi felhasználók ezekkel a bejegyzésekkel történő interakcióitól. Ebben azok a bejegyzések is benne vannak, melyeket a helyi felhasználó könyvjelzőzött vagy kedvencnek jelölt. A különböző kiszolgálók felhasználói közötti privát üzenetek is el fognak veszni visszaállíthatatlanul. Ennek a beállításnak a használata különleges felhasználási esetekre javasolt, mert számos felhasználói elvárás fog eltörni, ha általános céllal használják.
         custom_css: A Mastodon webes verziójában használhatsz egyéni stílusokat.
+        custom_robots_html: <a href="%{path}">Szintaktika</a>
         email_footer_text: Nem kötelező szöveg, amely csak a hírlevelek láblécében jelenik meg.
         favicon: WEBP, PNG, GIF vagy JPG. Az alapértelmezett Mastodon favicont felülírja egy egyéni ikonnal.
         landing_page: Kiválasztja, hogy a webhely új látogatói mit látnak, amikor először érkeznek a kiszolgálóra. Ha a „Trendek” lehetőséget választod, akkor engedélyezni kell a trendeket a Felfedezési beállításokban. Ha a „Helyi hírfolyamot” választod, akkor a „Helyi bejegyzéseket tartalmazó helyi élő idővonalak elérése” lehetőséget „Mindenki” értékre kell állítani a Felfedezési beállításokban.
         mascot: Felülbírálja a speciális webes felületen található illusztrációt.
         media_cache_retention_period: A távoli felhasználók bejegyzéseinek médiatartalmait a kiszolgálód gyorsítótárazza. Ha pozitív értékre állítják, ezek a médiatartalmak a megadott számú nap után törölve lesznek. Ha a médiát újra lekérik, miután törlődött, újra le fogjuk tölteni, ha az eredeti még elérhető. A hivatkozások előnézeti kártyáinak harmadik fél weboldalai felé történő hivatkozásaira alkalmazott megkötései miatt javasolt, hogy ezt az értéket legalább 14 napra állítsuk, ellenkező esetben a hivatkozások előnézeti kártyái szükség esetén nem fognak tudni frissülni ezen idő előtt.
         min_age: A felhasználók a regisztráció során arra lesznek kérve, hogy erősítsek meg a születési dátumukat
+        override_robots: Lehetővé teszi, hogy testreszadb a jól viselkedő botok hozzáférési szabályait
         peers_api_enabled: Azon domainek listája, melyekkel ez a kiszolgáló találkozott a fediverzumban. Nem csatolunk adatot arról, hogy föderált kapcsolatban vagy-e az adott kiszolgálóval, csak arról, hogy a kiszolgálód tud a másikról. Ezt olyan szolgáltatások használják, melyek általában a föderációról készítenek statisztikákat.
         profile_directory: A profilok jegyzéke minden olyan felhasználót felsorol, akik engedélyezték a felfedezhetőségüket.
         require_invite_text: Ha a regisztrációhoz manuális jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
@@ -191,20 +194,22 @@ hu:
       account_migration:
         acct: Az új fiók fiókneve
       account_warning_preset:
-        text: Figyelmeztető szöveg
+        action_category: Moderációs művelet hozzárendelése
+        text: Válasz szövege
         title: Cím
       admin_account_action:
         include_statuses: Tedd az e-mailbe a bejelentett bejegyzéseket
         send_email_notification: Figyelmeztessük a felhasználót e-mailben
-        text: Egyéni figyelmeztetés
+        text: Egyéni válasz
         type: Művelet
         types:
+          all_actions: Összes művelet
           disable: Letiltás
           none: Ne csinálj semmit
           sensitive: Kényes
           silence: Elnémítás
           suspend: Fiók felfüggesztése, adatok törlése visszaállíthatatlanul
-        warning_preset_id: Figyelmeztetés használata
+        warning_preset_id: Konzervválasz
       announcement:
         all_day: Egész napos esemény
         ends_at: Esemény vége
@@ -244,12 +249,13 @@ hu:
         setting_always_send_emails: E-mail-értesítések küldése mindig
         setting_auto_play_gif: GIF-ek automatikus lejátszása
         setting_boost_modal: Megtolás láthatóságának beállítása
-        setting_color_scheme: Színséma
+        setting_color_scheme: Mód
         setting_contrast: Kontraszt
         setting_default_language: Bejegyzések nyelve
         setting_default_privacy: Közzététel láthatósága
         setting_default_quote_policy: Ki idézhet
         setting_default_sensitive: Minden médiafájl megjelölése kényesként
+        setting_default_spoiler_field: Tartalmi figyelmeztetések használata alapértelmezetten
         setting_delete_modal: Figyelmeztetés egy bejegyzés törlése előtt
         setting_disable_hover_cards: Profilelőnézet letiltása föléhúzás esetén
         setting_disable_swiping: Elhúzás művelet kikapcsolása
@@ -269,7 +275,7 @@ hu:
         setting_system_font_ui: Rendszer betűtípusának használata
         setting_system_scrollbars_ui: Rendszer alapértelmezett görgetősávjának használata
         setting_theme: Megjelenítési sablon
-        setting_trends: Mai trend mutatása
+        setting_theme_color: Téma színe
         setting_unfollow_modal: Megerősítés kérése mielőtt abbahagyod valaki követését
         setting_use_blurhash: Színátmenetek megjelenítése a rejtett médiáknál
         setting_use_pending_items: Lassú mód
@@ -298,6 +304,7 @@ hu:
         closed_registrations_message: A feliratkozáskor megjelenő egyéni üzenet nem érhető el
         content_cache_retention_period: Távoli tartalmak megtartási időszaka
         custom_css: Egyéni CSS
+        custom_robots: Egyéni robots.txt
         email_footer_text: További láblécszöveg
         favicon: Könyvjelzőikon
         landing_page: Kezdőoldal az új látogatóknak
@@ -306,7 +313,9 @@ hu:
         mascot: Egyéni kabala (örökölt)
         media_cache_retention_period: Média-gyorsítótár megtartási időszaka
         min_age: Minimális korhatár
+        override_robots: Alapértelmezett robots.txt felülbírálása
         peers_api_enabled: Felfedezett kiszolgálók listájának közzététele az API-ban
+        postpone_confirmation_emails: Megerősítő levelek késleltetése a jóváhagyás utánra
         profile_directory: Profiladatbázis engedélyezése
         registrations_mode: Ki regisztrálhat
         remote_live_feed_access: Távoli bejegyzéseket bemutató élő hírfolyamok elérése
@@ -354,6 +363,7 @@ hu:
         follow: E-mail küldése, amikor valaki követni kezd téged
         follow_request: E-mail küldése, amikor valaki követni szeretne téged
         mention: E-mail küldése, amikor valaki megemlít téged
+        moderation_suggestions: Automatikus moderációs javaslatok érhetők el
         pending_account: E-mail küldése, ha új fiókot kell engedélyezni
         quote: E-mail küldése, amikor valaki idéz téged
         reblog: Valaki megtolta a bejegyzésedet

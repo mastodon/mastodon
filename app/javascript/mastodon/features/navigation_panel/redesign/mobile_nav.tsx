@@ -17,13 +17,18 @@ import { useDrag } from '@use-gesture/react';
 
 import { closeNavigation, openNavigation } from '@/mastodon/actions/navigation';
 import { Avatar } from '@/mastodon/components/avatar';
-import { Button, IconButton } from '@/mastodon/components/button/redesign';
+import { Button, IconButton } from '@/mastodon/components/button';
 import { Menu, MenuList, MenuTrigger } from '@/mastodon/components/menu';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
-import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
+import { ComposeButton } from '@/mastodon/features/compose/trigger';
 import { useAccount } from '@/mastodon/hooks/useAccount';
+import { useCloseOnHistoryBack } from '@/mastodon/hooks/useCloseOnHistoryBack';
 import { useIdentity } from '@/mastodon/identity_context';
-import { trendsEnabled } from '@/mastodon/initial_state';
+import {
+  registrationsOpen,
+  sso_redirect,
+  trendsEnabled,
+} from '@/mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import {
@@ -46,6 +51,14 @@ export const RedesignMobileNavigation: React.FC = () => {
   const openMobileNav = useCallback(() => {
     dispatch(openNavigation());
   }, [dispatch]);
+
+  // Hide the mobile sign-up button if registrations are closed or
+  // SSO is used (as there's not much room for a detailed label)
+  const hasSignUpButton = !sso_redirect && !registrationsOpen;
+
+  const signupUrl = useAppSelector(
+    (state) => state.server.server.item?.registrations.url ?? '/auth/sign_up',
+  );
 
   return (
     <>
@@ -106,7 +119,7 @@ export const RedesignMobileNavigation: React.FC = () => {
               </MenuList>
             </Menu>
           </ul>
-          <ComposeRedesignButton inline />
+          <ComposeButton inline />
         </nav>
       ) : (
         // Logged out state:
@@ -115,19 +128,21 @@ export const RedesignMobileNavigation: React.FC = () => {
             className={classNames(classes.floatingCard, classes.loggedOutInfo)}
           >
             <LogoLockup className={classes.logoLockup} />
-            <Button
-              as='a'
-              href='/auth/sign_up'
-              variant='solid'
-              color='accent'
-              size='sm'
-              className={classes.signUpButton}
-            >
-              <FormattedMessage
-                id='server_banner.sign_up'
-                defaultMessage='Sign up'
-              />
-            </Button>
+            {hasSignUpButton && (
+              <Button
+                as='a'
+                href={signupUrl}
+                variant='solid'
+                color='accent'
+                size='sm'
+                className={classes.signUpButton}
+              >
+                <FormattedMessage
+                  id='server_banner.sign_up'
+                  defaultMessage='Sign up'
+                />
+              </Button>
+            )}
             <IconButton size='sm' icon={InfoIcon} onClick={openMobileNav}>
               <FormattedMessage id='server_banner.info' defaultMessage='Info' />
             </IconButton>
@@ -144,14 +159,9 @@ const MENU_WIDTH = 320;
 
 const SlideOutNavigation: React.FC = () => {
   const dispatch = useAppDispatch();
-  const location = useLocation();
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const isOpen = useAppSelector((state) => state.navigation.open);
-
-  useEffect(() => {
-    dispatch(closeNavigation());
-  }, [dispatch, location]);
 
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
@@ -246,6 +256,23 @@ const SlideOutNavigation: React.FC = () => {
       previouslyFocusedElementRef.current?.focus();
     }
   }, [isOpen]);
+
+  // Close after navigation change
+  const { pathname, search } = useLocation();
+  const pathWithSearch = `${pathname}${search}`;
+  useEffect(() => {
+    dispatch(closeNavigation());
+  }, [pathWithSearch, dispatch]);
+
+  // Close after browser back navigation
+  useCloseOnHistoryBack(
+    () => {
+      dispatch(closeNavigation());
+    },
+    {
+      active: isOpen,
+    },
+  );
 
   return (
     <div

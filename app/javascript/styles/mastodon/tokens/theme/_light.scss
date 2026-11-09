@@ -1,30 +1,78 @@
 @use 'utils';
 
 @mixin base-indigo {
-  --base-color-bg: var(--color-indigo-50);
-  --base-color-bg-desktop: var(--color-indigo-100);
-  --base-color-fg: var(--color-indigo-950);
+  --base-color-bg: var(--color-white);
+  --base-color-bg-desktop: var(--color-indigo-50);
+  --base-color-fg: var(--color-grey-900);
   --base-color-fg-on-accent: var(--base-color-bg);
-  --base-color-accent: var(--color-indigo-600);
+  --base-color-fg-accent: var(--color-indigo-700);
+  --base-color-bg-accent: var(--color-indigo-500);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
-}
-@mixin base-indigo-contrast {
-  --base-color-accent: var(--color-indigo-700);
+
+  @include utils.high-contrast {
+    --base-color-bg-accent: var(--color-indigo-700);
+  }
 }
 
 @mixin base-lime {
-  --base-color-bg: var(--color-lime-50);
-  --base-color-bg-desktop: var(--color-lime-100);
-  --base-color-fg: var(--color-lime-950);
-  --base-color-fg-on-accent: var(--base-color-fg);
-  --base-color-accent: var(--color-lime-500);
+  --base-color-bg: var(--color-white);
+  --base-color-bg-desktop: var(--color-lime-50);
+  --base-color-fg: var(--color-grey-900);
+  --base-color-fg-on-accent: var(--base-color-bg);
+  --base-color-fg-accent: var(--color-lime-700);
+  --base-color-bg-accent: var(--color-lime-600);
   --base-color-danger: var(--color-red-700);
   --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-bg-accent: var(--color-lime-700);
+  }
 }
-@mixin base-lime-contrast {
+
+@mixin base-pink {
+  --base-color-bg: var(--color-white);
+  --base-color-bg-desktop: var(--color-pink-50);
+  --base-color-fg: var(--color-grey-900);
   --base-color-fg-on-accent: var(--base-color-bg);
-  --base-color-accent: var(--color-lime-800);
+  --base-color-fg-accent: var(--color-pink-700);
+  --base-color-bg-accent: var(--color-pink-600);
+  --base-color-danger: var(--color-red-700);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-bg-accent: var(--color-pink-700);
+  }
+}
+
+@mixin base-orange {
+  --base-color-bg: var(--color-white);
+  --base-color-bg-desktop: var(--color-orange-50);
+  --base-color-fg: var(--color-grey-900);
+  --base-color-fg-on-accent: var(--base-color-bg);
+  --base-color-fg-accent: var(--color-orange-700);
+  --base-color-bg-accent: var(--color-orange-600);
+  --base-color-danger: var(--color-red-700);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-bg-accent: var(--color-orange-700);
+  }
+}
+
+@mixin base-cyan {
+  --base-color-bg: var(--color-white);
+  --base-color-bg-desktop: var(--color-cyan-50);
+  --base-color-fg: var(--color-grey-900);
+  --base-color-fg-on-accent: var(--base-color-bg);
+  --base-color-fg-accent: var(--color-cyan-700);
+  --base-color-bg-accent: var(--color-cyan-600);
+  --base-color-danger: var(--color-red-700);
+  --base-highlight-strength: 8%;
+
+  @include utils.high-contrast {
+    --base-color-bg-accent: var(--color-cyan-700);
+  }
 }
 
 @mixin tokens {
@@ -34,7 +82,7 @@
   --color-text-secondary: #{utils.css-alpha(var(--base-color-fg), 80%)};
   --color-text-tertiary: #{utils.css-alpha(var(--base-color-fg), 70%)};
   --color-text-inverted: var(--base-color-bg);
-  --color-text-brand: var(--base-color-accent);
+  --color-text-brand: var(--base-color-fg-accent);
   --color-text-brand-soft: color-mix(
     in oklab,
     var(--color-text-primary),
@@ -42,7 +90,12 @@
   ); // legacy
 
   --color-text-on-brand-base: var(--base-color-fg-on-accent);
-  --color-text-brand-on-inverted: var(--color-indigo-400); // legacy
+  --color-text-brand-on-inverted: : color-mix(
+    in oklab,
+    var(--color-text-inverted),
+    var(--color-text-brand)
+  ); // legacy
+
   --color-text-error: var(--base-color-danger);
   --color-text-on-error-base: var(--color-text-inverted);
   --color-text-warning: var(--color-orange-700); // legacy
@@ -54,7 +107,7 @@
   --color-text-bookmark-highlight: var(--color-text-error); // legacy
   --color-text-favourite-highlight: var(--color-text-warning); // legacy
   --color-text-on-media: var(--color-text-inverted); // legacy
-  --color-text-status-links: var(--base-color-accent); // legacy
+  --color-text-status-links: var(--color-text-brand); // legacy
 
   /* BACKGROUND TOKENS */
 
@@ -62,7 +115,7 @@
   --color-bg-primary: var(--base-color-bg);
   --color-bg-desktop: var(--base-color-bg-desktop);
   --color-bg-highlight: #{utils.css-alpha(
-      var(--base-color-accent),
+      var(--base-color-bg-accent),
       var(--base-highlight-strength)
     )};
   --overlay-strength-secondary: 4%; // legacy
@@ -77,10 +130,10 @@
   --color-bg-disabled: var(--color-grey-400); // legacy
 
   // Brand
-  --color-bg-brand-base: var(--base-color-accent);
+  --color-bg-brand-base: var(--base-color-bg-accent);
   --color-bg-brand-base-hover: color-mix(
     in srgb,
-    var(--base-color-accent),
+    var(--base-color-bg-accent),
     var(--color-text-on-brand-base) 10%
   );
   --color-bg-brand-soft: var(--color-bg-highlight); // legacy
@@ -109,10 +162,24 @@
 
   /* BORDER TOKENS */
 
-  --color-border-primary: #{utils.css-alpha(var(--base-color-accent), 30%)};
+  --base-border-strength: 20%;
+  --base-border-column-strength: 15%;
+  @include utils.high-contrast {
+    --base-border-strength: 30%;
+    --base-border-column-strength: 30%;
+  }
+
+  --color-border-primary: #{utils.css-alpha(
+      var(--base-color-bg-accent),
+      var(--base-border-strength)
+    )};
+  --color-border-column: #{utils.css-alpha(
+      var(--base-color-bg-accent),
+      var(--base-border-column-strength)
+    )};
   --color-border-strong: var(--base-color-fg);
   --color-border-input: #{utils.css-alpha(var(--base-color-fg), 70%)};
-  --color-border-brand: var(--base-color-accent); // legacy
+  --color-border-brand: var(--base-color-bg-accent); // legacy
   --color-border-brand-soft: var(--color-border-primary); // legacy
   --color-border-error: var(--base-color-danger); // legacy
   --color-border-media: rgb(252 248 255 / 15%); // legacy
