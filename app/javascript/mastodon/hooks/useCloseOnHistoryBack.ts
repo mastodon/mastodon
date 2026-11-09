@@ -2,7 +2,7 @@ import { useEffect, useEffectEvent } from 'react';
 
 import { useHistory } from 'react-router';
 
-import type { MastodonLocation } from '@/mastodon/components/router';
+import type { LocationState } from '@/mastodon/components/router';
 import { IGNORE_FOCUS_ON_OPEN } from '@/mastodon/reducers/modal';
 
 /**
@@ -25,7 +25,7 @@ export function useCloseOnHistoryBack(
     ignoreFocus?: boolean | typeof IGNORE_FOCUS_ON_OPEN;
   } = {},
 ) {
-  const history = useHistory();
+  const history = useHistory<LocationState>();
   const close = useEffectEvent(onClose);
   const getFocusTarget = useEffectEvent(
     () => ignoreFocus !== IGNORE_FOCUS_ON_OPEN,
@@ -38,8 +38,7 @@ export function useCloseOnHistoryBack(
 
     const key = `${Date.now()}`;
 
-    const { pathname, search, hash, state } =
-      history.location as MastodonLocation;
+    const { pathname, search, hash, state } = history.location;
 
     if (state?.mastodonModalKey !== key) {
       history.push(
@@ -52,8 +51,8 @@ export function useCloseOnHistoryBack(
       );
     }
 
-    const unlisten = history.listen((_, action) => {
-      if (action === 'POP') {
+    const unlisten = history.listen((newLocation, action) => {
+      if (action === 'POP' && newLocation.state?.mastodonModalKey !== key) {
         close();
       }
     });
