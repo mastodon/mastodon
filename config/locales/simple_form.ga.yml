@@ -93,12 +93,14 @@ ga:
         closed_registrations_message: Ar taispeáint nuair a dhúntar clárúcháin
         content_cache_retention_period: Scriosfar gach postáil ó fhreastalaithe eile (lena n-áirítear treisithe agus freagraí) tar éis an líon sonraithe laethanta, gan aird ar aon idirghníomhaíocht úsáideora áitiúil leis na postálacha sin. Áirítear leis seo postálacha ina bhfuil úsáideoir áitiúil tar éis é a mharcáil mar leabharmharcanna nó mar cheanáin. Caillfear tagairtí príobháideacha idir úsáideoirí ó chásanna éagsúla freisin agus ní féidir iad a athchóiriú. Tá úsáid an tsocraithe seo beartaithe le haghaidh cásanna sainchuspóra agus sáraítear go leor ionchais úsáideoirí nuair a chuirtear i bhfeidhm é le haghaidh úsáid ghinearálta.
         custom_css: Is féidir leat stíleanna saincheaptha a chur i bhfeidhm ar an leagan gréasáin de Mastodon.
+        custom_robots_html: <a href="%{path}">Comhréir</a>
         email_footer_text: Téacs roghnach a thaispeántar i mbunús ríomhphoist nuachtlitir amháin.
         favicon: WEBP, PNG, GIF nó JPG. Sáraíonn sé an favicon Mastodon réamhshocraithe le deilbhín saincheaptha.
         landing_page: Roghnaíonn sé seo an leathanach a fheiceann cuairteoirí nua nuair a shroicheann siad do fhreastalaí den chéad uair. Má roghnaíonn tú "Treochtaí", ní mór treochtaí a chumasú sna Socruithe Fionnachtana. Má roghnaíonn tú "Fotha Áitiúil", ní mór "Rochtain ar fhothaí beo ina bhfuil poist áitiúla" a shocrú go "Gach Duine" sna Socruithe Fionnachtana.
         mascot: Sáraíonn sé an léaráid san ardchomhéadan gréasáin.
         media_cache_retention_period: Déantar comhaid meán ó phoist a dhéanann cianúsáideoirí a thaisceadh ar do fhreastalaí. Nuair a bheidh luach dearfach socraithe, scriosfar na meáin tar éis an líon sonraithe laethanta. Má iarrtar na sonraí meán tar éis é a scriosadh, déanfar é a ath-íoslódáil, má tá an t-ábhar foinse fós ar fáil. Mar gheall ar shrianta ar cé chomh minic is atá cártaí réamhamhairc ag vótaíocht do shuíomhanna tríú páirtí, moltar an luach seo a shocrú go 14 lá ar a laghad, nó ní dhéanfar cártaí réamhamhairc naisc a nuashonrú ar éileamh roimh an am sin.
         min_age: Iarrfar ar úsáideoirí a ndáta breithe a dhearbhú le linn clárúcháin
+        override_robots: Cuireann sé ar do chumas rialacha rochtana a shaincheapadh do róbait dea-iompartha
         peers_api_enabled: Liosta de na hainmneacha fearainn ar tháinig an freastalaí seo orthu sa choinbhleacht. Níl aon sonraí san áireamh anseo faoi cé acu an ndéanann tú cónascadh le freastalaí ar leith, díreach go bhfuil a fhios ag do fhreastalaí faoi. Úsáideann seirbhísí a bhailíonn staitisticí ar chónaidhm go ginearálta é seo.
         postpone_confirmation_emails: Nuair a bhíonn an socrú seo cumasaithe, ní sheoltar ríomhphoist dheimhnithe do chuntais atá ar feitheamh le formheas ach amháin nuair a bheidh na cuntais sin ceadaithe. D’fhéadfadh sé seo eispéireas clárúcháin níos measa a sholáthar d’úsáideoirí mar beidh orthu a seoladh ríomhphoist a dheimhniú go tráthúil tar éis dóibh an ríomhphost a fháil ach ní bheidh smacht acu a thuilleadh ar cathain a sheolfar é. Ina theannta sin, d’fhéadfadh sé seo ualach oibre méadaithe a chruthú do mhodhnóirí, mar ní bheidh Mastodon in ann cuntais atá ar feitheamh le seoladh ríomhphoist neamhbhailí a scagadh amach sula gceadaítear iad.
         profile_directory: Liostaíonn an t-eolaire próifíle na húsáideoirí go léir a roghnaigh isteach le bheith in-aimsithe.
@@ -307,6 +309,7 @@ ga:
         closed_registrations_message: Teachtaireacht saincheaptha nuair nach bhfuil sínithe suas ar fáil
         content_cache_retention_period: Tréimhse choinneála inneachair cianda
         custom_css: CSS saincheaptha
+        custom_robots: Robots.txt saincheaptha
         email_footer_text: Téacs breise sa bhuntásc
         favicon: Favicon
         landing_page: Leathanach tuirlingthe do chuairteoirí nua
@@ -315,6 +318,7 @@ ga:
         mascot: Mascóg saincheaptha (oidhreacht)
         media_cache_retention_period: Tréimhse choinneála taisce meán
         min_age: Riachtanas aoise íosta
+        override_robots: Sáraigh an robots.txt réamhshocraithe
         peers_api_enabled: Foilsigh liosta de na freastalaithe aimsithe san API
         postpone_confirmation_emails: Cuir ríomhphoist dheimhniúcháin ar athló tar éis formheasa
         profile_directory: Cumasaigh eolaire próifíle

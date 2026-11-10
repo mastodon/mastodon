@@ -14,4 +14,47 @@ div.emojiRoot {
   @container (width > 400px) {
     min-height: 370px;
   }
+
+  :global(.emoji-mart-emoji) {
+    span {
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.modifiers {
+  position: absolute;
+  inset-block-start: 66px;
+  inset-inline-end: 15px;
+  cursor: pointer;
+}
+
+.modifiersMenu {
+  position: absolute;
+  z-index: 4;
+  top: -5px;
+  inset-inline-start: -9px;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+  box-shadow: var(--dropdown-shadow);
+  overflow: hidden;
+
+  button {
+    display: block;
+    cursor: pointer;
+    border: 0;
+    padding: 4px 8px;
+    background: transparent;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: var(--color-border-primary);
+    }
+  }
+
+  :global(.emoji-mart-emoji) {
+    height: 22px;
+  }
 }

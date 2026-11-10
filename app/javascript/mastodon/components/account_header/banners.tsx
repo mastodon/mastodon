@@ -12,7 +12,7 @@ import {
   rejectFollowRequest,
 } from '@/mastodon/actions/accounts';
 import { AvatarOverlay } from '@/mastodon/components/avatar_overlay';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';

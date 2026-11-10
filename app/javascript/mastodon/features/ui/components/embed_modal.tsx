@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { showAlertForError } from 'mastodon/actions/alerts';
 import api from 'mastodon/api';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import { CopyPasteText } from 'mastodon/components/copy_paste_text';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { useAppDispatch } from 'mastodon/store';

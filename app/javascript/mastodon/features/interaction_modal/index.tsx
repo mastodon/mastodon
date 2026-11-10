@@ -11,7 +11,7 @@ import { DisplayName } from '@/mastodon/components/display_name';
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { openModal, closeModal } from 'mastodon/actions/modal';
 import { apiRequest } from 'mastodon/api';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import {
   domain as localDomain,
   registrationsOpen,

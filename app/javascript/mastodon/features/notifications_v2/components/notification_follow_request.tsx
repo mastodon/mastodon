@@ -8,7 +8,7 @@ import {
   authorizeFollowRequest,
   rejectFollowRequest,
 } from '@/mastodon/actions/accounts';
-import { IconButton } from '@/mastodon/components/button/redesign';
+import { IconButton } from '@/mastodon/components/button';
 import type { NotificationGroupFollowRequest } from '@/mastodon/models/notification_group';
 import { useAppDispatch } from '@/mastodon/store';
 

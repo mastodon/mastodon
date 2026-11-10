@@ -16,7 +16,7 @@ import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { formatTime } from 'mastodon/features/video';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
-import { Button } from './button/redesign';
+import { Button } from './button';
 
 class Item extends PureComponent {
 
@@ -330,10 +330,9 @@ class MediaGallery extends PureComponent {
         {(visible && !uncached) && (
           <div className='media-gallery__actions'>
             <Button
-              contrastOnMedia
               size='xs'
               type='button'
-              variant='solid'
+              variant='onMedia'
               className='media-gallery__actions__pill'
               onClick={this.handleOpen}
             >

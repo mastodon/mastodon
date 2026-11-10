@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { changeComposeVisibility } from '@/mastodon/actions/compose_typed';
 import { closeModal } from '@/mastodon/actions/modal';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import {
   ModalActions,
   ModalShell,

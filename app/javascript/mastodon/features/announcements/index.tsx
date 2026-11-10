@@ -9,7 +9,7 @@ import { XIcon } from '@phosphor-icons/react';
 
 import elephantUIPlane from '@/images/elephant_ui_plane.svg';
 import { hideAnnouncements } from '@/mastodon/actions/announcements';
-import { IconButton } from '@/mastodon/components/button/redesign';
+import { IconButton } from '@/mastodon/components/button';
 import type { RenderSlideFn } from '@/mastodon/components/carousel';
 import { Carousel } from '@/mastodon/components/carousel';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
@@ -20,7 +20,6 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 import type { IAnnouncement } from './announcement';
 import { Announcement } from './announcement';
@@ -69,17 +68,15 @@ export const Announcements: FC = () => {
         src={mascot ?? elephantUIPlane}
       />
 
-      {isRedesignEnabled() && (
-        <IconButton
-          icon={XIcon}
-          onClick={closeAnnouncements}
-          size='sm'
-          variant='ghost'
-          className='announcements__close-button'
-        >
-          <FormattedMessage id='lightbox.close' defaultMessage='Close' />
-        </IconButton>
-      )}
+      <IconButton
+        icon={XIcon}
+        onClick={closeAnnouncements}
+        size='sm'
+        variant='ghost'
+        className='announcements__close-button'
+      >
+        <FormattedMessage id='lightbox.close' defaultMessage='Close' />
+      </IconButton>
 
       <CustomEmojiProvider emojis={emojis}>
         <Carousel

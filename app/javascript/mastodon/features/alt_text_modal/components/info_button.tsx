@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import { QuestionIcon } from '@phosphor-icons/react';
 
-import { IconButton } from '@/mastodon/components/button/redesign';
+import { IconButton } from '@/mastodon/components/button';
 import { Popover } from '@/mastodon/components/popover';
 import { useSelectableClick } from 'mastodon/hooks/useSelectableClick';
 

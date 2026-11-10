@@ -19,7 +19,7 @@ import type {
   ApiCreateCollectionPayload,
   ApiUpdateCollectionPayload,
 } from 'mastodon/api_types/collections';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import {
   CheckboxField,
   ComboboxField,

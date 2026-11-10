@@ -18,7 +18,7 @@ import type { EmojiData, EmojiSkin } from 'emoji-mart';
 
 import { emojiUse } from '@/mastodon/actions/emojis';
 import { changeSetting } from '@/mastodon/actions/settings';
-import { IconButton } from '@/mastodon/components/button/redesign';
+import { IconButton } from '@/mastodon/components/button';
 import { CircularProgress } from '@/mastodon/components/circular_progress';
 import {
   PER_LINE,
@@ -236,10 +236,10 @@ export const EmojiDropdown: React.FC<
           emojiTooltip
         />
 
-        <div className='emoji-picker-dropdown__modifiers'>
+        <div className={classes.modifiers}>
           <Emoji emoji='fist' size={22} skin={skinTone} onClick={onTrue} />
           <div
-            className='emoji-picker-dropdown__modifiers__menu'
+            className={classes.modifiersMenu}
             hidden={!open}
             ref={modifierRef}
           >

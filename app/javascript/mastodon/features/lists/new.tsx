@@ -8,7 +8,7 @@ import { isFulfilled } from '@reduxjs/toolkit';
 
 import { Helmet } from '@unhead/react/helmet';
 
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 import { NotSignedInIndicator } from '@/mastodon/components/not_signed_in_indicator';
@@ -137,40 +137,45 @@ const NewList: React.FC<{ list?: List | null }> = ({ list }) => {
     [setRepliesPolicy],
   );
 
-  const handleSubmit = useCallback(() => {
-    setSubmitting(true);
+  const handleSubmit: React.SubmitEventHandler = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    if (id) {
-      void dispatch(
-        updateList({
-          id,
-          title,
-          exclusive,
-          replies_policy: repliesPolicy,
-        }),
-      ).then(() => {
-        setSubmitting(false);
-        return '';
-      });
-    } else {
-      void dispatch(
-        createList({
-          title,
-          exclusive,
-          replies_policy: repliesPolicy,
-        }),
-      ).then((result) => {
-        setSubmitting(false);
+      setSubmitting(true);
 
-        if (isFulfilled(result)) {
-          history.replace(`/lists/${result.payload.id}/edit`);
-          history.push(`/lists/${result.payload.id}/members`);
-        }
+      if (id) {
+        void dispatch(
+          updateList({
+            id,
+            title,
+            exclusive,
+            replies_policy: repliesPolicy,
+          }),
+        ).then(() => {
+          setSubmitting(false);
+          return '';
+        });
+      } else {
+        void dispatch(
+          createList({
+            title,
+            exclusive,
+            replies_policy: repliesPolicy,
+          }),
+        ).then((result) => {
+          setSubmitting(false);
 
-        return '';
-      });
-    }
-  }, [history, dispatch, setSubmitting, id, title, exclusive, repliesPolicy]);
+          if (isFulfilled(result)) {
+            history.replace(`/lists/${result.payload.id}/edit`);
+            history.push(`/lists/${result.payload.id}/members`);
+          }
+
+          return '';
+        });
+      }
+    },
+    [history, dispatch, setSubmitting, id, title, exclusive, repliesPolicy],
+  );
 
   return (
     <form className='simple_form app-form' onSubmit={handleSubmit}>

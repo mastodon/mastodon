@@ -4,7 +4,7 @@
   --bg: transparent;
   --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
   --fg: var(--color-text-primary);
-  --inline-padding: var(--space-2);
+  --inline-padding: var(--space-1);
 
   @include mixins.type-label;
 
@@ -82,7 +82,10 @@ a.base {
 // Sizes
 
 .xs {
-  min-height: 20px;
+  --inline-padding: var(--space-1);
+
+  min-height: 24px;
+  padding-block: var(--space-half);
 }
 
 .sm {
@@ -108,13 +111,12 @@ a.base {
 
 // Solid variant
 
-.solid {
+.solid,
+.solidOnMedia,
+// .onMedia appears like .solidOnMedia in high-contrast mode
+[data-contrast='high'] .onMedia {
   --bg: var(--color-bg-inverted);
   --fg: var(--color-text-inverted);
-
-  &.contrastOnMedia:not(.accent, .destructive) {
-    border: 1px solid var(--color-border-primary);
-  }
 
   &.accent {
     --bg: var(--color-bg-brand-base);
@@ -124,6 +126,34 @@ a.base {
   &.destructive {
     --bg: var(--color-bg-error-base);
     --fg: var(--color-text-on-error-base);
+  }
+}
+
+// Add a border to solidOnMedia styles
+.solidOnMedia:not(.accent, .destructive),
+[data-contrast='high'] .onMedia {
+  &::before {
+    @include mixins.high-contrast-outline;
+
+    border: var(--border-default);
+  }
+}
+
+// onMedia variant: semi-transparent for use on media
+// in high-contrast mode, this is displayed like `.solidOnMedia`
+
+.onMedia {
+  --bg: var(--color-bg-overlay);
+  --fg: var(--color-text-on-overlay);
+
+  &.accent {
+    --bg: var(--color-bg-overlay);
+    --fg: var(--color-text-on-overlay);
+  }
+
+  &.destructive {
+    --bg: var(--color-bg-overlay);
+    --fg: var(--color-text-on-overlay);
   }
 }
 

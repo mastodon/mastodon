@@ -21,12 +21,14 @@ import { isFulfilled } from '@reduxjs/toolkit';
 
 import { MagnifyingGlassIcon, XCircleIcon, XIcon } from '@phosphor-icons/react';
 
+import type { ApiSearchType } from '@/mastodon/api_types/search';
 import {
   FOCUS_TARGET,
   useFocusAfterNavigation,
 } from '@/mastodon/components/navigation_focus_target';
 import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
+import { isKeyComposing } from '@/mastodon/utils/events';
 import {
   clickSearchResult,
   forgetSearchResult,
@@ -35,7 +37,7 @@ import {
 import { Icon, iconWeight } from 'mastodon/components/icon';
 import { useIdentity } from 'mastodon/identity_context';
 import { domain, searchEnabled } from 'mastodon/initial_state';
-import type { RecentSearch, SearchType } from 'mastodon/models/search';
+import type { RecentSearch } from 'mastodon/models/search';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
 
@@ -106,7 +108,8 @@ export const Search: React.FC<{
   singleColumn: boolean;
   context?: 'column' | 'sidebar';
   initialValue?: string;
-}> = ({ singleColumn, context = 'column', initialValue }) => {
+  initialType?: ApiSearchType;
+}> = ({ singleColumn, context = 'column', initialValue, initialType }) => {
   const intl = useIntl();
   const recent = useAppSelector((state) => state.search.recent);
   const { signedIn } = useIdentity();
@@ -319,8 +322,11 @@ export const Search: React.FC<{
   );
 
   const submit = useCallback(
-    (q: string, type?: SearchType) => {
-      void dispatch(clickSearchResult({ q, type }));
+    (q: string, type?: ApiSearchType) => {
+      // We omit hashtags here as clickSearchResult stores search history types,
+      // which only can store the singular hashtag for the "Go to #hashtag" option.
+      const searchResultType = type === 'hashtags' ? undefined : type;
+      void dispatch(clickSearchResult({ q, type: searchResultType }));
       const queryParams = new URLSearchParams({ q });
       if (type) queryParams.set('type', type);
       history.push({ pathname: '/search', search: queryParams.toString() });
@@ -464,6 +470,9 @@ export const Search: React.FC<{
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
+      if (isKeyComposing(e)) {
+        return;
+      }
       switch (e.key) {
         case 'Escape':
           e.preventDefault();
@@ -501,7 +510,7 @@ export const Search: React.FC<{
           e.preventDefault();
 
           if (selectedOption === -1) {
-            submit(value);
+            submit(value, initialType);
           } else if (navigableOptions.length > 0) {
             navigableOptions[selectedOption]?.action(e);
           }
@@ -520,7 +529,15 @@ export const Search: React.FC<{
           break;
       }
     },
-    [expanded, handleClear, navigableOptions, selectedOption, submit, value],
+    [
+      expanded,
+      handleClear,
+      initialType,
+      navigableOptions,
+      selectedOption,
+      submit,
+      value,
+    ],
   );
 
   const handleInputFocus = useCallback(() => {

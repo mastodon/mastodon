@@ -5,8 +5,8 @@ import { FormattedMessage } from 'react-intl';
 
 import { PlusIcon } from '@phosphor-icons/react';
 
-import type { ButtonProps } from '@/mastodon/components/button/redesign';
-import { Button } from '@/mastodon/components/button/redesign';
+import type { ButtonProps } from '@/mastodon/components/button';
+import { Button } from '@/mastodon/components/button';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { EmptyState } from '@/mastodon/components/empty_state';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';

@@ -828,10 +828,7 @@ vi:
       actions:
         delete_description_html: Xóa các tút/gói khởi đầu và ghi lại 1 lần cảnh cáo.
         mark_as_sensitive_description_html: Đánh dấu nhạy cảm media trong các tút và ghi lại 1 lần cảnh cáo.
-        other_description_html: Tùy chọn cách kiểm soát và giao tiếp với tài khoản bị báo cáo.
         resolve_description_html: Không áp dụng trừng phạt nào và đóng báo cáo.
-        silence_description_html: Chỉ hiển thị trang với những người đã theo dõi hoặc tìm kiếm thủ công.
-        suspend_description_html: Tài khoản và tất cả nội dung của nó sẽ không thể truy cập được và cuối cùng sẽ bị xóa, đồng thời không thể tương tác với tài khoản đó. Có thể đảo ngược trong vòng 30 ngày. Đóng tất cả các báo cáo đối với tài khoản này.
       actions_description_html: Nếu áp đặt kiểm duyệt, một email thông báo sẽ được gửi cho người này, ngoại trừ <strong>Spam</strong>.
       actions_description_remote_html: Chọn hành động cần thực hiện để xử lý báo cáo này. Điều này sẽ chỉ ảnh hưởng đến cách máy chủ <strong>của bạn</strong> giao tiếp với tài khoản này và xử lý nội dung của nó.
       actions_no_posts: Báo cáo này không có tút liên quan để xóa
@@ -1034,6 +1031,9 @@ vi:
         danger_zone: Khu vực nguy hiểm
         preamble: Kiểm soát cách lưu trữ nội dung cá nhân trong Mastodon.
         title: Lưu giữ nội dung
+      crawlers:
+        preamble: Kiểm soát cách thức các bot "tuân thủ quy tắc" (như trình thu thập dữ liệu của công cụ tìm kiếm) tương tác với máy chủ Mastodon của bạn. Các bot độc hại có thể phớt lờ những thiết lập này và cần phải được chặn ở cấp độ mạng.
+        title: Điều khiển trình thu thập thông tin
       default_noindex:
         desc_html: Ảnh hưởng đến tất cả người không tự thay đổi cài đặt này
         title: Mặc định người dùng không xuất hiện trong công cụ tìm kiếm
@@ -1505,7 +1505,7 @@ vi:
     progress:
       confirm: Xác nhận email
       details: Điền thông tin
-      list: Quy trình đăng ký
+      list: Tiến độ đăng ký
       review: Đợi duyệt
       rules: Đọc nội quy
     providers:

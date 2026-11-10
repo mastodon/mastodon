@@ -8,7 +8,7 @@ import { Callout } from '@/mastodon/components/callout';
 import { submitReport } from 'mastodon/actions/reports';
 import { fetchServer } from 'mastodon/actions/server';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
-import { Button, IconButton } from 'mastodon/components/button/redesign';
+import { Button, IconButton } from 'mastodon/components/button';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useAppDispatch } from 'mastodon/store';

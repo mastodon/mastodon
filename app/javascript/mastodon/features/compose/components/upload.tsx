@@ -8,13 +8,14 @@ import classNames from 'classnames';
 import {
   ArrowsLeftRightIcon,
   PencilSimpleIcon,
+  PlusIcon,
   TrashIcon,
 } from '@phosphor-icons/react';
 
 import { undoUploadCompose } from '@/mastodon/actions/compose';
 import { openModal } from '@/mastodon/actions/modal';
 import type { ApiAudioAttachmentJSON } from '@/mastodon/api_types/media_attachments';
-import { Button, IconButton } from '@/mastodon/components/button/redesign';
+import { Button, IconButton } from '@/mastodon/components/button';
 import { StatusImage } from '@/mastodon/components/status/image';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
@@ -63,18 +64,22 @@ export const ComposeUpload: React.FC<{
       sensitive={mediaSensitive}
     >
       <Button
-        contrastOnMedia
-        size='sm'
-        variant='solid'
+        size='xs'
+        variant={attachment.description ? 'onMedia' : 'solidOnMedia'}
         onClick={handleAltEdit}
         className={classes.mediaMenuAltButton}
-        leadingIcon={PencilSimpleIcon}
+        leadingIcon={attachment.description ? PencilSimpleIcon : PlusIcon}
         tooltip={{
           type: 'label',
-          text: (
+          text: attachment.description ? (
             <FormattedMessage
               id='account_edit.image_alt_modal.edit_title'
               defaultMessage='Edit alt text'
+            />
+          ) : (
+            <FormattedMessage
+              id='account_edit.image_alt_modal.add_title'
+              defaultMessage='Add alt text'
             />
           ),
           placement: 'top',
@@ -90,9 +95,8 @@ export const ComposeUpload: React.FC<{
           <IconButton
             onClick={handleRearrange}
             icon={ArrowsLeftRightIcon}
-            contrastOnMedia
-            size='sm'
-            variant='solid'
+            size='xs'
+            variant='onMedia'
             tooltipPlacement='top'
           >
             <FormattedMessage
@@ -104,9 +108,8 @@ export const ComposeUpload: React.FC<{
         <IconButton
           onClick={handleDelete}
           icon={TrashIcon}
-          contrastOnMedia
-          size='sm'
-          variant='solid'
+          size='xs'
+          variant='onMedia'
           tooltipPlacement='top'
         >
           <FormattedMessage

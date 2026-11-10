@@ -7,7 +7,6 @@ import type { List, Record } from 'immutable';
 import { ColumnIndexContext } from '@/mastodon/components/column/context';
 import MultiColumnPlaceholderColumn from '@/mastodon/features/multi_column_placeholder';
 import { useAppSelector } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 import {
   Compose,
@@ -88,7 +87,7 @@ export const MultiColumnContent: React.FC<{
         const uuid = column.get('uuid');
         const id = column.get('id');
 
-        if (isRedesignEnabled() && id === 'COMPOSE') {
+        if (id === 'COMPOSE') {
           return null;
         }
 

@@ -3,10 +3,12 @@
 module Settings
   module TwoFactorAuthentication
     class WebauthnCredentialsController < BaseController
+      include ChallengableConcern
+
       skip_before_action :check_self_destruct!
       skip_before_action :require_functional!
 
-      before_action :redirect_invalid_otp, unless: -> { current_user.otp_enabled? }
+      before_action :require_challenge!, only: [:new]
       before_action :redirect_invalid_webauthn, only: [:index, :destroy], unless: -> { current_user.webauthn_enabled? }
 
       def index; end
@@ -31,7 +33,7 @@ module Settings
       end
 
       def create
-        webauthn_credential = WebAuthn::Credential.from_create(params[:credential])
+        webauthn_credential = WebAuthn::Credential.from_create(JSON.parse(params.require(:credential)))
 
         if webauthn_credential.verify(session[:webauthn_challenge])
           user_credential = current_user.webauthn_credentials.build(
@@ -42,24 +44,31 @@ module Settings
           )
 
           if user_credential.save
-            flash[:success] = I18n.t('webauthn_credentials.create.success')
-            status = :ok
+            if current_user.otp_backup_codes.blank?
+              @recovery_codes = current_user.generate_otp_backup_codes!
+              current_user.save!
+            end
 
             if current_user.webauthn_credentials.size == 1
               UserMailer.webauthn_enabled(current_user).deliver_later!
             else
               UserMailer.webauthn_credential_added(current_user, user_credential).deliver_later!
             end
+
+            if @recovery_codes
+              flash.now[:success] = I18n.t('webauthn_credentials.create.success')
+              render 'settings/two_factor_authentication/recovery_codes/index'
+            else
+              redirect_to settings_two_factor_authentication_methods_path, flash: { success: I18n.t('webauthn_credentials.create.success') }
+            end
           else
-            flash[:error] = I18n.t('webauthn_credentials.create.error')
-            status = :unprocessable_content
+            render_creation_error(:unprocessable_content)
           end
         else
-          flash[:error] = t('webauthn_credentials.create.error')
-          status = :unauthorized
+          render_creation_error(:unauthorized)
         end
-
-        render json: { redirect_path: settings_two_factor_authentication_methods_path }, status: status
+      rescue JSON::ParserError, WebAuthn::Error
+        render_creation_error(:unprocessable_content)
       end
 
       def destroy
@@ -69,7 +78,10 @@ module Settings
           if credential.destroyed?
             flash[:success] = I18n.t('webauthn_credentials.destroy.success')
 
-            if current_user.webauthn_credentials.empty?
+            if !current_user.otp_enabled? && current_user.webauthn_credentials.empty?
+              current_user.disable_two_factor!
+              UserMailer.two_factor_disabled(current_user).deliver_later!
+            elsif current_user.webauthn_credentials.empty?
               UserMailer.webauthn_disabled(current_user).deliver_later!
             else
               UserMailer.webauthn_credential_deleted(current_user, credential).deliver_later!
@@ -85,8 +97,9 @@ module Settings
 
       private
 
-      def redirect_invalid_otp
-        redirect_to settings_two_factor_authentication_methods_path, flash: { error: t('webauthn_credentials.otp_required') }
+      def render_creation_error(status)
+        flash.now[:error] = I18n.t('webauthn_credentials.create.error')
+        render :new, status: status
       end
 
       def redirect_invalid_webauthn

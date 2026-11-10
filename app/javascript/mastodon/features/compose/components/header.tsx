@@ -4,7 +4,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { PencilSimpleIcon, MinusIcon, XIcon } from '@phosphor-icons/react';
 
-import { IconButton } from '@/mastodon/components/button/redesign';
+import { IconButton } from '@/mastodon/components/button';
 import {
   closeComposer,
   minimizeComposerToggle,

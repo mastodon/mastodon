@@ -15,7 +15,7 @@ import {
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { openModal } from 'mastodon/actions/modal';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
-import { IconButton } from 'mastodon/components/button/redesign';
+import { IconButton } from 'mastodon/components/button';
 import { me } from 'mastodon/initial_state';
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppDispatch } from 'mastodon/store';

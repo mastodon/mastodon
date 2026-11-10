@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import escapeTextContentForBrowser from 'escape-html';
 
 import { closeModal } from 'mastodon/actions/modal';
-import { IconButton } from 'mastodon/components/button/redesign';
+import { IconButton } from 'mastodon/components/button';
 import InlineAccount from 'mastodon/components/inline_account';
 import MediaAttachments from 'mastodon/components/media_attachments';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';

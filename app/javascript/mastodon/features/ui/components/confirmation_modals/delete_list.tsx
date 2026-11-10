@@ -4,7 +4,6 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router';
 
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { removeColumn } from 'mastodon/actions/columns';
 import { deleteList } from 'mastodon/actions/lists';
 import { useAppDispatch } from 'mastodon/store';
@@ -12,22 +11,7 @@ import { useAppDispatch } from 'mastodon/store';
 import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
-const legacyMessages = defineMessages({
-  deleteTitle: {
-    id: 'confirmations.delete_list.title',
-    defaultMessage: 'Delete list?',
-  },
-  deleteMessage: {
-    id: 'confirmations.delete_list.message',
-    defaultMessage: 'Are you sure you want to permanently delete this list?',
-  },
-  deleteConfirm: {
-    id: 'confirmations.delete_list.confirm',
-    defaultMessage: 'Delete',
-  },
-});
-
-const redesignMessages = defineMessages({
+const messages = defineMessages({
   deleteTitle: {
     id: 'confirmations.delete_custom_feed.title',
     defaultMessage: 'Delete custom feed?',
@@ -42,8 +26,6 @@ const redesignMessages = defineMessages({
     defaultMessage: 'Delete',
   },
 });
-
-const messages = isRedesignEnabled() ? redesignMessages : legacyMessages;
 
 export const ConfirmDeleteListModal: React.FC<
   {

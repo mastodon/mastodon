@@ -8,13 +8,15 @@ import { useRouteMatch } from 'react-router';
 import { PenNibIcon, ReadCvLogoIcon } from '@phosphor-icons/react';
 import { isIPad, isWebKit } from '@react-aria/utils';
 
-import type { IconButtonProps } from '@/mastodon/components/button/redesign';
-import { IconButton } from '@/mastodon/components/button/redesign';
+import type { IconButtonProps } from '@/mastodon/components/button';
+import { IconButton } from '@/mastodon/components/button';
 import { useBodyScrollLock } from '@/mastodon/hooks/useBodyScrollLock';
+import { useCloseOnHistoryBack } from '@/mastodon/hooks/useCloseOnHistoryBack';
 import { useResizeObserver } from '@/mastodon/hooks/useObserver';
 import { useViewportSize } from '@/mastodon/hooks/useViewportSize';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
+  closeOrMinimizeComposer,
   minimizeComposerToggle,
   openNewComposer,
 } from '@/mastodon/reducers/slices/composer';
@@ -76,7 +78,19 @@ export const ComposeButton: React.FC<{
     viewport.height < NARROW_HEIGHT ||
     viewport.width < BREAKPOINTS.openable ||
     (isIPad() && isWebKit());
-  useBodyScrollLock(isFullscreen && displayState === 'showing');
+
+  const isFullscreenOpen = isFullscreen && displayState === 'showing';
+
+  useBodyScrollLock(isFullscreenOpen);
+
+  useCloseOnHistoryBack(
+    () => {
+      dispatch(closeOrMinimizeComposer());
+    },
+    {
+      active: isFullscreenOpen,
+    },
+  );
 
   if (!signedIn) {
     return null;

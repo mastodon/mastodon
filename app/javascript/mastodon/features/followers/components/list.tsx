@@ -3,7 +3,6 @@ import type { FC, ReactNode } from 'react';
 
 import { AccountListItem } from '@/mastodon/components/account_list_item';
 import { Column } from '@/mastodon/components/column';
-import { ColumnBackButton } from '@/mastodon/components/column/back_button';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import ScrollableList from '@/mastodon/components/scrollable_list';
@@ -11,7 +10,6 @@ import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_colu
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
 import { useLayout } from '@/mastodon/hooks/useLayout';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 import { RemoteHint } from './remote';
 
@@ -101,11 +99,7 @@ export const AccountList: FC<AccountListProps> = ({
 
   return (
     <Column>
-      {isRedesignEnabled() ? (
-        <ColumnHeader withBackButton title={title} />
-      ) : (
-        <ColumnBackButton />
-      )}
+      <ColumnHeader withBackButton title={title} />
 
       <ScrollableList
         scrollKey={scrollKey}

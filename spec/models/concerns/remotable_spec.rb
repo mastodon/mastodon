@@ -44,16 +44,11 @@ RSpec.describe Remotable do
     foo_class.remotable_attachment :hoge, 1.kilobyte
   end
 
-  it 'defines a method #hoge_remote_url=' do
-    expect(foo).to respond_to(:hoge_remote_url=)
-  end
-
-  it 'defines a method #reset_hoge!' do
-    expect(foo).to respond_to(:reset_hoge!)
-  end
-
-  it 'defines a method #download_hoge!' do
-    expect(foo).to respond_to(:download_hoge!)
+  it 'defines expected methods' do
+    expect(foo)
+      .to respond_to(:hoge_remote_url=)
+      .and respond_to(:reset_hoge!)
+      .and respond_to(:download_hoge!)
   end
 
   describe '#hoge_remote_url=' do

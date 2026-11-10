@@ -8,7 +8,6 @@ import { openModal } from '@/mastodon/actions/modal';
 import { expandAccountMediaTimeline } from '@/mastodon/actions/timelines';
 import { AccountHeader } from '@/mastodon/components/account_header';
 import { Column } from '@/mastodon/components/column';
-import { ColumnBackButton } from '@/mastodon/components/column/back_button';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
@@ -24,7 +23,6 @@ import {
   useAppDispatch,
   createAppSelector,
 } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 import { MediaItem } from './components/media_item';
 
@@ -216,14 +214,10 @@ export const AccountGallery: React.FC<{
 
   return (
     <Column>
-      {isRedesignEnabled() ? (
-        <ColumnHeader
-          withBackButton
-          title={<DisplayNameSimple account={account} />}
-        />
-      ) : (
-        <ColumnBackButton />
-      )}
+      <ColumnHeader
+        withBackButton
+        title={<DisplayNameSimple account={account} />}
+      />
 
       <ScrollableList
         className='account-gallery__container'

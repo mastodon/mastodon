@@ -11,7 +11,6 @@ import {
 } from '@/mastodon/actions/announcements';
 import type { ApiAnnouncementJSON } from '@/mastodon/api_types/announcements';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 type AnnouncementItem = ImmutableRecord<ApiAnnouncementJSON>;
 
@@ -40,7 +39,7 @@ export function useHasAnnouncements({
   const hasUnreadAnnouncements = !!unreadAnnouncementCount;
 
   useEffect(() => {
-    if (hasUnreadAnnouncements && isRedesignEnabled()) {
+    if (hasUnreadAnnouncements) {
       dispatch(showAnnouncements());
     }
   }, [hasUnreadAnnouncements, dispatch]);

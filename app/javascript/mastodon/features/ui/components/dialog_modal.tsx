@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import { XIcon } from '@phosphor-icons/react';
 
-import { Button, IconButton } from '@/mastodon/components/button/redesign';
+import { Button, IconButton } from '@/mastodon/components/button';
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 
 export type { BaseConfirmationModalProps as DialogModalProps } from './confirmation_modals/confirmation_modal';

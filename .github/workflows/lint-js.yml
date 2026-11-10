@@ -33,7 +33,7 @@ jobs:
         uses: ./.github/actions/setup-javascript
 
       - parallel:
-          - name: ESLint
+          - name: JS Linting
             run: yarn workspaces foreach --all --parallel run lint:js --max-warnings 0
 
           - name: Typecheck

@@ -115,18 +115,14 @@ RSpec.describe 'API V1 Accounts Statuses' do
         Fabricate(:status_pin, account: account, status: private_status)
       end
 
-      it 'returns http success' do
-        get "/api/v1/accounts/#{account.id}/statuses", params: { pinned: true }, headers: headers
-
-        expect(response).to have_http_status(200)
-        expect(response.content_type)
-          .to start_with('application/json')
-      end
-
       context 'when user does not follow account' do
         it 'lists the public status only' do
           get "/api/v1/accounts/#{account.id}/statuses", params: { pinned: true }, headers: headers
 
+          expect(response)
+            .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
           expect(response.parsed_body)
             .to contain_exactly(
               a_hash_including(id: status.id.to_s)
@@ -142,13 +138,15 @@ RSpec.describe 'API V1 Accounts Statuses' do
         it 'lists both the public and the private statuses' do
           get "/api/v1/accounts/#{account.id}/statuses", params: { pinned: true }, headers: headers
 
+          expect(response)
+            .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
           expect(response.parsed_body)
             .to contain_exactly(
               a_hash_including(id: status.id.to_s),
               a_hash_including(id: private_status.id.to_s)
             )
-          expect(response.content_type)
-            .to start_with('application/json')
         end
       end
     end

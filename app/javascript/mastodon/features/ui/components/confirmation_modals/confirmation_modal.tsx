@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
-import { Button } from 'mastodon/components/button/redesign';
+import { Button } from 'mastodon/components/button';
 import {
   ModalShell,
   ModalShellActions,
