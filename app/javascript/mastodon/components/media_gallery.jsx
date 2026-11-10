@@ -330,10 +330,9 @@ class MediaGallery extends PureComponent {
         {(visible && !uncached) && (
           <div className='media-gallery__actions'>
             <Button
-              contrastOnMedia
               size='xs'
               type='button'
-              variant='solid'
+              variant='onMedia'
               className='media-gallery__actions__pill'
               onClick={this.handleOpen}
             >

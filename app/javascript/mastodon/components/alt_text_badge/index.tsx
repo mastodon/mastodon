@@ -44,10 +44,9 @@ export const AltTextBadge: React.FC<{
   return (
     <>
       <Button
-        contrastOnMedia
         size='xs'
         type='button'
-        variant='solid'
+        variant='onMedia'
         ref={setButtonElement}
         className={classNames('media-gallery__alt__label', className)}
         onClick={handleClick}
