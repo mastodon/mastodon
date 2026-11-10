@@ -27,15 +27,29 @@ class Admin::Reports::ActionsController < Admin::BaseController
   private
 
   def moderation_action_params
-    shared_params
+    if params[:admin_account_action].present?
+      shared_params
+    else
+      moderation_params
+    end
   end
 
   def account_action_params
     shared_params
-      .merge(target_account: @report.target_account, warning_preset_id: params[:warning_preset_id], include_statuses: params[:include_statuses])
+      .merge(target_account: @report.target_account, warning_preset_id: params[:admin_account_action][:warning_preset_id], include_statuses: params[:admin_account_action][:include_statuses])
   end
 
   def shared_params
+    {
+      current_account: current_account,
+      report_id: @report.id,
+      send_email_notification: !@report.spam?,
+      text: params[:admin_account_action][:text],
+      type: action_from_button,
+    }
+  end
+
+  def moderation_params
     {
       current_account: current_account,
       report_id: @report.id,
