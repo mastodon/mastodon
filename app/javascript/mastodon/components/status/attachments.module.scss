@@ -23,12 +23,17 @@
   :global(.media-gallery__alt__label--non-interactive) {
     @include mixins.type-label;
 
-    color: var(--color-text-inverted);
+    color: var(--color-text-on-overlay);
     display: flex;
     align-items: center;
-    background-color: var(--color-bg-inverted);
+    background-color: var(--color-bg-overlay);
     border-radius: var(--radius-round);
     padding-inline: var(--space-2);
+
+    [data-contrast='high'] & {
+      color: var(--color-text-inverted);
+      background-color: var(--color-bg-inverted);
+    }
   }
 
   :global(.spoiler-button) {
