@@ -342,7 +342,7 @@ const QuotedStatusBody: React.FC<{
           )}
           data-number={imageAttachments.length}
         >
-          {imageAttachments.map((attachment) => (
+          {imageAttachments.map((attachment, index) => (
             <StatusImage
               showAlt
               statusId={linkStatus ? status.id : undefined}
@@ -351,6 +351,7 @@ const QuotedStatusBody: React.FC<{
               sensitive={sensitive}
               key={attachment.id}
               aria-label={attachment.description}
+              data-index={index}
             />
           ))}
         </div>
