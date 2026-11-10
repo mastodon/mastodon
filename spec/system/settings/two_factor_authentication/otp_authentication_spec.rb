@@ -3,11 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Settings OTP Authentication' do
-  let(:user) { Fabricate(:user, otp_secret: old_otp_secret, otp_required_for_login: otp_enabled) }
+  let(:user) { Fabricate(:user, otp_secret: old_otp_secret) }
   let(:old_otp_secret) { nil }
-  let(:otp_enabled) { false }
-  let(:setup_path) { settings_otp_authentication_path }
-  let(:setup_button) { I18n.t('otp_authentication.setup') }
 
   before do
     freeze_time
@@ -44,6 +41,10 @@ RSpec.describe 'Settings OTP Authentication' do
         .to have_current_path(settings_two_factor_authentication_methods_path)
     end
 
+    it_behaves_like 'rejecting an invalid OTP code'
+  end
+
+  shared_examples 'rejecting an invalid OTP code' do
     it 'rejects an invalid code without changing the existing OTP configuration' do
       start_setup
       new_secret = displayed_otp_secret
@@ -74,23 +75,43 @@ RSpec.describe 'Settings OTP Authentication' do
     it_behaves_like 'setting up OTP authentication'
   end
 
-  context 'with OTP already enabled' do
-    let(:old_otp_secret) { User.generate_otp_secret }
-    let(:otp_enabled) { true }
-    let(:setup_path) { settings_two_factor_authentication_methods_path }
-    let(:setup_button) { I18n.t('two_factor_authentication.edit') }
+  context 'with only a security key enabled' do
+    before do
+      user.update!(webauthn_id: WebAuthn.generate_user_id)
+      Fabricate(:webauthn_credential, user_id: user.id)
+      user.generate_otp_backup_codes!
+      user.save!
+    end
 
-    it_behaves_like 'setting up OTP authentication'
+    it 'enables OTP without replacing or redisplaying existing recovery codes', :inline_jobs do
+      start_setup
+      new_secret = displayed_otp_secret
+
+      fill_in 'form_two_factor_confirmation_otp_attempt', with: ROTP::TOTP.new(new_secret).now
+
+      expect { click_on I18n.t('otp_authentication.enable') }
+        .to change { user.reload.otp_secret }.to(new_secret)
+        .and(change { user.reload.otp_required_for_login }.to(true))
+        .and(not_change { user.reload.otp_backup_codes })
+        .and(send_email(to: user.email, subject: I18n.t('devise.mailer.two_factor_enabled.subject')))
+
+      expect(page)
+        .to have_current_path(settings_two_factor_authentication_methods_path)
+        .and have_text(I18n.t('two_factor_authentication.recovery_codes'))
+        .and have_no_css('ol.recovery-codes')
+    end
+
+    it_behaves_like 'rejecting an invalid OTP code'
   end
 
   private
 
   def start_setup
-    visit setup_path
+    visit settings_otp_authentication_path
     expect(page)
       .to have_title(I18n.t('settings.two_factor_authentication'))
 
-    click_on setup_button
+    click_on I18n.t('otp_authentication.setup')
     expect(page)
       .to have_title(I18n.t('challenge.prompt'))
 

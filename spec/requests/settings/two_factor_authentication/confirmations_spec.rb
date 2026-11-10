@@ -52,6 +52,59 @@ RSpec.describe 'Settings 2FA Confirmations' do
     end
   end
 
+  context 'when recovery codes already exist' do
+    let(:user) { Fabricate(:user, otp_secret: User.generate_otp_secret, otp_required_for_login: otp_enabled) }
+
+    before do
+      freeze_time
+      user.generate_otp_backup_codes!
+      user.save!
+      sign_in user
+    end
+
+    shared_examples 'preserving recovery codes' do
+      it 'confirms the new secret and redirects without regenerating recovery codes', :inline_jobs do
+        post settings_otp_authentication_path, params: { form_challenge: { current_password: user.password } }
+        follow_redirect!
+        new_secret = response.parsed_body.at_css('.qr-alternative__code').text.delete(' ')
+
+        expect do
+          post settings_two_factor_authentication_confirmation_path,
+               params: { form_two_factor_confirmation: { otp_attempt: ROTP::TOTP.new(new_secret).now } }
+        end.to change { user.reload.otp_secret }.to(new_secret)
+          .and(not_change { user.reload.otp_backup_codes })
+          .and(send_email(to: user.email, subject: I18n.t('devise.mailer.two_factor_enabled.subject')))
+
+        expect(user)
+          .to be_otp_required_for_login
+        expect(response)
+          .to redirect_to(settings_two_factor_authentication_methods_path)
+
+        get new_settings_two_factor_authentication_confirmation_path
+
+        expect(response)
+          .to redirect_to(settings_otp_authentication_path)
+      end
+    end
+
+    context 'when OTP is already enabled' do
+      let(:otp_enabled) { true }
+
+      it_behaves_like 'preserving recovery codes'
+    end
+
+    context 'when only a security key is enabled' do
+      let(:otp_enabled) { false }
+
+      before do
+        user.update!(webauthn_id: WebAuthn.generate_user_id)
+        Fabricate(:webauthn_credential, user_id: user.id)
+      end
+
+      it_behaves_like 'preserving recovery codes'
+    end
+  end
+
   context 'when not signed in' do
     it 'redirects on POST to create' do
       post settings_two_factor_authentication_confirmation_path(form_two_factor_confirmation: { otp_attempt: '123456' })
