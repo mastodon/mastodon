@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import { Column } from '@/mastodon/components/column';
 import { ComposeButton } from '@/mastodon/features/compose/trigger';
 import { DiscoveryPanel } from '@/mastodon/features/discovery_panel';
-import { RedesignNavigationPanel } from '@/mastodon/features/navigation_panel/redesign';
-import { RedesignMobileNavigation } from '@/mastodon/features/navigation_panel/redesign/mobile_nav';
+import { RedesignNavigationPanel } from '@/mastodon/features/navigation_panel';
+import { RedesignMobileNavigation } from '@/mastodon/features/navigation_panel/mobile_nav';
 import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';

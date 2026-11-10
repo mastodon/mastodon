@@ -59,7 +59,7 @@ const ErrorComponent = (props: { onRetry: () => void }) => (
 
 const renderLoading = (columnId: string) => {
   const LoadingComponent =
-    columnId === 'COMPOSE' ? <DrawerLoading /> : <ColumnLoading multiColumn />;
+    columnId === 'COMPOSE' ? <DrawerLoading /> : <ColumnLoading />;
   return () => LoadingComponent;
 };
 
