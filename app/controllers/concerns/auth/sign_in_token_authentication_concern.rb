@@ -8,24 +8,18 @@ module Auth::SignInTokenAuthenticationConcern
   end
 
   def sign_in_token_required?
-    find_user&.suspicious_inactive_sign_in?
+    # Password verification is skipped at this stage, it will happen later if necessary
+    find_user(allow_unverified: true)&.suspicious_inactive_sign_in?
   end
 
   def authenticate_with_sign_in_token
-    if user_params[:email].present?
-      user = self.resource = find_user_from_params
-      prompt_for_sign_in_token(user) if user&.valid_password?(user_params[:password])
-    elsif session[:attempt_user_id]
-      user = self.resource = User.find_by(id: session[:attempt_user_id])
-      return if user.nil?
+    user = ensure_first_authentication_step(allow_external: false) { |user| prompt_for_sign_in_token(user) }
+    return if user.nil?
 
-      if session[:attempt_user_updated_at] != user.updated_at.to_s
-        restart_session
-      elsif params.key?(:sign_in_token_resend)
-        prompt_for_sign_in_token(user, resend: true)
-      elsif user_params[:sign_in_token_attempt].present?
-        authenticate_with_sign_in_token_attempt(user)
-      end
+    if params.key?(:sign_in_token_resend)
+      prompt_for_sign_in_token(user, resend: true)
+    elsif user_params[:sign_in_token_attempt].present?
+      authenticate_with_sign_in_token_attempt(user)
     end
   end
 
