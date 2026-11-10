@@ -17,6 +17,7 @@ import {
   requestComposerFocus,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { isKeyComposing } from '@/mastodon/utils/events';
 
 import classes from '../styles.module.scss';
 
@@ -52,13 +53,7 @@ export const ComposeSensitiveField: React.FC<
   );
   const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = useCallback(
     (event) => {
-      // Check if this composing: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/isComposing
-      // and https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event#keydown_events_with_ime
-      if (
-        event.nativeEvent.isComposing ||
-        // eslint-disable-next-line @typescript-eslint/no-deprecated
-        event.nativeEvent.keyCode === 229
-      ) {
+      if (isKeyComposing(event)) {
         return;
       }
 
