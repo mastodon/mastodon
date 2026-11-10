@@ -7,9 +7,7 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { connect } from 'react-redux';
 
-import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { injectIntl } from '@/mastodon/components/intl';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
@@ -21,7 +19,6 @@ import { connectPublicStream } from '../../actions/streaming';
 import { expandPublicTimeline } from '../../actions/timelines';
 import StatusListContainer from '../ui/containers/status_list_container';
 
-import ColumnSettingsContainer from './containers/column_settings_container';
 import { ColumnHeader, ColumnSettingsMenu } from '@/mastodon/components/column_header';
 import { FeedColumnSettings } from './components/feed_column_settings';
 import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
