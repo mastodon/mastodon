@@ -136,10 +136,15 @@ const StatusImageContent: React.FC<
     y = (focus.y / -2 + 0.5) * 100;
   }
 
+  let alt = attachment.description;
+  if ('translation' in attachment && attachment.translation?.description) {
+    alt = attachment.translation.description;
+  }
+
   const image = (
     <img
       src={attachment.preview_url}
-      alt={attachment.description}
+      alt={alt}
       srcSet={srcSet}
       sizes={sizes}
       style={{ objectPosition: `${x}% ${y}%` }}
