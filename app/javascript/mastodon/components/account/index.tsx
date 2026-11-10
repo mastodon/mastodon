@@ -59,7 +59,7 @@ const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
   addToLists: {
     id: 'account.add_or_remove_from_list',
-    defaultMessage: 'Add or Remove from lists',
+    defaultMessage: 'Add or Remove from feeds',
   },
   openOriginalPage: {
     id: 'account.open_original_page',

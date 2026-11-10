@@ -158,10 +158,6 @@ const messages = defineMessages({
     id: 'account.menu.show_reblogs',
     defaultMessage: 'Show boosts in timeline',
   },
-  addToList: {
-    id: 'account.menu.add_to_list',
-    defaultMessage: 'Add to list…',
-  },
   addToCustomFeed: {
     id: 'account.menu.add_to_feed',
     defaultMessage: 'Add to custom feed…',
