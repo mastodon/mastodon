@@ -1806,8 +1806,7 @@ a.account__display-name {
 
 @media screen and (max-width: ($no-gap-breakpoint - 1px)) {
   .layout-single-column {
-    .column > .scrollable,
-    .column-search-header {
+    .column > .scrollable {
       border-left: 0;
       border-right: 0;
     }
@@ -8368,31 +8367,10 @@ noscript {
 
 .column-search-header {
   display: flex;
-  gap: 12px;
+  gap: var(--space-3);
   align-items: center;
-  padding: 16px;
-  padding-bottom: 8px;
-
-  input {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border-primary);
-    color: var(--color-text-primary);
-    padding: 12px;
-    font-size: 16px;
-    line-height: normal;
-    border-radius: 4px;
-    display: block;
-    flex: 1 1 auto;
-
-    &::placeholder {
-      color: var(--color-text-secondary);
-      opacity: 1;
-    }
-
-    &:focus {
-      outline: 0;
-    }
-  }
+  padding: var(--space-4);
+  padding-bottom: var(--space-2);
 }
 
 .column-footer {
