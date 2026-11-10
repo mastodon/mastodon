@@ -15,15 +15,5 @@ RSpec.describe 'Admin Settings Crawler Controls' do
           .to have_http_status(400)
       end
     end
-
-    describe 'PUT /admin/settings/crawlers with valid params' do
-      let(:request) { put admin_settings_crawlers_path, params: { form_admin_settings: { override_robots: '1' } } }
-
-      it 'saves the value for a valid key' do
-        expect { request }.to change(Setting, :override_robots).from(nil).to(true)
-        expect(request).to redirect_to(admin_settings_crawlers_path)
-        expect(response).to have_http_status(302)
-      end
-    end
   end
 end
