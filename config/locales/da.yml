@@ -910,11 +910,13 @@ da:
       action_taken_by: Handling foretaget af
       actions:
         delete_description_html: De anmeldte indlæg og/eller samlinger vil blive slettet, og der vil blive registreret en advarsel, som kan hjælpe dig med at eskalere fremtidige overtrædelser fra den samme konto.
+        disable_description_html: Forhindr brugeren i at bruge deres konto, men slet eller skjul ikke deres indhold. Denne handling kan omgøres. Dette lukker alle anmeldelser vedrørende denne konto.
+        force_sensitive_descption_html: Tving alle denne brugers medie-vedhæftninger til at blive markeret som følsomme. Dette kan omgøres. Dette lukker alle anmeldelser vedrørende denne konto.
         mark_as_sensitive_description_html: Medierne i det anmeldte indlæg markeres som sensitive, og en advarsel (strike) registreres mhp. eskalering ved evt. fremtidige overtrædelser fra samme konto.
-        other_description_html: Se flere muligheder for at kontrollere kontoens adfærd og tilpasse kommunikationen til den anmeldte konto.
         resolve_description_html: Ingen foranstaltninger træffes mod den anmeldte konto, ingen advarsel (strike) registreres og anmeldelsen lukkes.
-        silence_description_html: Kontoen vil kun være synlig for dem, der allerede følger den eller manuelt slår den op, hvilket alvorligt begrænser dens rækkevidde. Kan altid omgøres. Lukker alle indrapporteringer af denne konto.
-        suspend_description_html: Kontoen inkl. alt indhold utilgængeliggøres og interaktion umuliggøres, og den slettes på et tidspunkt. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
+        silence_description_html: Kontoen vil kun være synlig for dem, der allerede følger den eller manuelt søger efter den, hvilket i høj grad begrænser dens rækkevidde. Dette kan altid omgøres. Dette lukker alle anmeldelser vedrørende denne konto.
+        suspend_description_html: Kontoen og alt dens indhold vil blive utilgængeligt og til sidst slettet, og det vil ikke længere være muligt at interagere med den. Dette kan omgøres inden for 30 dage. Dette lukker alle anmeldelser vedrørende denne konto.
+        warn_description_html: Brug dette til at sende en advarsel til brugeren uden at udløse nogen anden handling.
       actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Ved en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       actions_description_remote_html: Fastslå en nødvendig handling mhp. at løse denne anmeldelse. Dette vil kun påvirke <strong>din</strong> servers kommunikation med, og indholdshåndtering for, fjernkontoen.
       actions_no_posts: Denne anmeldelse har ingen tilknyttede indlæg at slette

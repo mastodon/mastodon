@@ -912,11 +912,13 @@ es:
       action_taken_by: Acción tomada por
       actions:
         delete_description_html: Las publicaciones y/o colecciones informadas se borrarán, y se aplicará una amonestación para ayudarte a escalar futuras acciones sobre la misma cuenta.
+        disable_description_html: Prevenir al usuario hacer uso de la cuenta, pero no eliminar ni ocultar sus contenidos. Esta acción puede ser revertida. Se cerrarán todos los informes contra esta cuenta.
+        force_sensitive_descption_html: Forzar que todos los archivos multimedia adjuntos de este usuario sean marcados como sensibles. Esta acción puede ser revertida. Se cerrarán todos los informes contra esta cuenta.
         mark_as_sensitive_description_html: Los archivos multimedia en los mensajes informados se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
-        other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
-        silence_description_html: La cuenta será visible solo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los informes contra esta cuenta.
-        suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y finalmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los informes contra esta cuenta.
+        silence_description_html: La cuenta solo será visible para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Esta acción puede ser revertida. Se cerrarán todos los informes contra esta cuenta.
+        suspend_description_html: La cuenta y todo su contenido será inaccesible y posteriormente eliminada, y no será posible interactuar con ella. Esta acción puede ser revertida durante los próximos 30 días. Se cerrarán todos los informes contra esta cuenta.
+        warn_description_html: Utilízalo para enviar una advertencia al usuario, sin ejecutar ninguna otra acción.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este informe. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
       actions_no_posts: Este informe no tiene ningún mensaje asociado para eliminar
