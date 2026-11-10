@@ -61,7 +61,8 @@
       .fields-group
         = f.input :include_statuses,
                   as: :boolean,
-                  wrapper: :with_label
+                  wrapper: :with_label,
+                  input_html: { id: 'include_statuses' }
 
       %hr.spacer/
 
