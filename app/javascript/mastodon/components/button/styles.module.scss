@@ -113,6 +113,7 @@ a.base {
 
 .solid,
 .solidOnMedia,
+// .onMedia appears like .solidOnMedia in high-contrast mode
 [data-contrast='high'] .onMedia {
   --bg: var(--color-bg-inverted);
   --fg: var(--color-text-inverted);
@@ -128,12 +129,18 @@ a.base {
   }
 }
 
+// Add a border to solidOnMedia styles
 .solidOnMedia:not(.accent, .destructive),
 [data-contrast='high'] .onMedia {
-  border: 1px solid var(--color-border-primary);
+  &::before {
+    @include mixins.high-contrast-outline;
+
+    border: var(--border-default);
+  }
 }
 
-// onMedia variant
+// onMedia variant: semi-transparent for use on media
+// in high-contrast mode, this is displayed like `.solidOnMedia`
 
 .onMedia {
   --bg: var(--color-bg-overlay);
