@@ -1,6 +1,3 @@
-- content_for :page_title do
-  = t('admin.account_actions.title', acct: @account.pretty_acct)
-
 :ruby
   @report_id = params[:report_id] if params[:report_id].present?
   @type = params[:type] if params[:type].present?
@@ -17,15 +14,22 @@
 = simple_form_for @account_action, url: @url, html: { id: 'action_type' } do |f|
   = f.input :report_id, as: :hidden
 
-  - content_for :heading_actions do
+  - content_for :page_title do
+    = t('admin.account_actions.title', acct: @account.pretty_acct)
+    = f.input :type,
+              as: :select,
+              collection: button_collection,
+              include_blank: false,
+              label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type[0]}") },
+              required: false,
+              input_html: { form: 'action_type' }
+
+  - if @report_id.present?
     .fields-group
-      = f.input :type,
-                as: :select,
-                collection: button_collection,
-                include_blank: false,
-                label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type[0]}") },
-                required: false,
-                input_html: { form: 'action_type' }
+      - if @report.status_ids.present?
+        %p= t('admin.reports.summary.account_action_preamble_html', report: @report_id, count: @report.status_ids.count)
+      - else
+        %p= t('admin.reports.summary.account_action_preamble_no_posts_html', report: @report_id)
 
   %div{ 'id' => 'data-action-text-box' }
     = render partial: 'actions_text_box', locals: { account: @account, report: @report }
@@ -39,39 +43,58 @@
                 as: :boolean,
                 wrapper: :with_label
 
-    %hr.spacer/
+    %div{ 'id' => 'mail-content' }
+      %h2.spacer
 
-    %p.hint= t('admin.reports.summary.preview_preamble_html', acct: @account.pretty_acct)
-    %div{ 'id' => 'data-action-strike-card' }
-      - unless @type == 'none'
-        .strike-card.preview
+      %p.hint= t('admin.reports.summary.preview_preamble_html', acct: @account.pretty_acct)
+      %div{ 'id' => 'data-action-strike-card' }
+        .strike-card.preview{ 'hidden' => (true if @type == 'none') }
           %p= t "user_mailer.warning.explanation.#{@type}", instance: Rails.configuration.x.local_domain
         %hr.spacer/
 
-    - unless @warning_presets.empty?
+      - if @warning_presets.empty?
+        .filters
+          .input.with_block_label
+            %label= t('simple_form.labels.admin_account_action.warning_preset_id')
+          .back-link
+            = link_to admin_warning_presets_path do
+              = t('simple_form.labels.admin_account_action.cannes_response_back_link')
+            = material_symbol 'chevron_right'
+        %span.hint= t('simple_form.hints.admin_account_action.warning_preset_explanation')
+        %hr.spacer
+
+      - else
+        .filters
+          .input.with_block_label
+            %label= t('simple_form.labels.admin_account_action.warning_preset_id')
+          .back-link
+            = link_to admin_warning_presets_path do
+              = t('simple_form.labels.admin_account_action.cannes_response_back_link')
+            = material_symbol 'chevron_right'
+        .input.with_block_label
+          %span.hint= t('simple_form.hints.admin_account_action.warning_preset')
+
+        .fields-group
+          = f.input :warning_preset_id,
+                    collection: label_and_categories_collection(@warning_presets),
+                    input_html: { id: 'presets_dropdown' }
+
       .fields-group
-        = f.input :warning_preset_id,
-                  collection: label_and_categories_collection(@warning_presets),
+        = f.input :text,
+                  as: :text,
                   wrapper: :with_block_label,
-                  hint: t('simple_form.hints.admin_account_action.warning_preset_html', path: admin_warning_presets_path),
-                  input_html: { id: 'presets_dropdown' }
+                  hint: t('simple_form.hints.admin_account_action.text')
 
-    .fields-group
-      = f.input :text,
-                as: :text,
-                wrapper: :with_block_label,
-                hint: t('simple_form.hints.admin_account_action.text')
+      - if @account.local? && params[:report_id].present?
+        %hr.spacer/
 
-    - if @account.local? && params[:report_id].present?
-      %hr.spacer/
+        .fields-group
+          = f.input :include_statuses,
+                    as: :boolean,
+                    wrapper: :with_label,
+                    input_html: { id: 'include_statuses' }
 
-      .fields-group
-        = f.input :include_statuses,
-                  as: :boolean,
-                  wrapper: :with_label,
-                  input_html: { id: 'include_statuses' }
-
-      %hr.spacer/
+        %hr.spacer/
 
   .actions
     - if @report_id.present?
@@ -79,6 +102,4 @@
     - else
       = link_to t('admin.reports.cancel'), admin_accounts_path, class: 'button button-secondary'
 
-    = f.button :button,
-               I18n.t("admin.account_actions.types.#{@type}"),
-               type: :submit
+    %button.button{ type: :submit }= t("admin.account_actions.types.#{@type}")

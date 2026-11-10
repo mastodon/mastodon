@@ -36,16 +36,18 @@ class Admin::Reports::ActionsController < Admin::BaseController
 
   def account_action_params
     shared_params
-      .merge(target_account: @report.target_account, warning_preset_id: params[:admin_account_action][:warning_preset_id], include_statuses: params[:admin_account_action][:include_statuses])
+      .merge(target_account: @report.target_account)
   end
 
   def shared_params
     {
       current_account: current_account,
       report_id: @report.id,
-      send_email_notification: !@report.spam?,
-      text: params[:admin_account_action][:text],
+      send_email_notification: get_param('send_email_notification'),
+      text: get_param('text'),
       type: action_from_button,
+      warning_preset_id: get_param('warning_preset_id'),
+      include_statuses: get_param('include_statuses'),
     }
   end
 
@@ -76,6 +78,14 @@ class Admin::Reports::ActionsController < Admin::BaseController
       params[:moderation_action]
     elsif params[:admin_account_action]
       params[:admin_account_action][:type] if params[:admin_account_action][:type]
+    end
+  end
+
+  def get_param(param)
+    if params[:admin_account_action]
+      params[:admin_account_action][param.to_sym]
+    else
+      params[param.to_sym]
     end
   end
 end

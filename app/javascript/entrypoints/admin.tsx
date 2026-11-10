@@ -215,15 +215,21 @@ const onChangeEmailNotification = (target: HTMLInputElement) => {
     }
   });
 
+  const mailContent = document.getElementById('mail-content') as HTMLElement;
+
+  if (!target.checked) {
+    mailContent.hidden = true;
+  } else {
+    mailContent.hidden = false;
+  }
+
   const statusesCheckbox = document.getElementById(
     'include_statuses',
   ) as HTMLInputElement | null;
 
   if (statusesCheckbox) {
     if (!target.checked) {
-      statusesCheckbox.disabled = true;
-    } else {
-      statusesCheckbox.disabled = false;
+      statusesCheckbox.checked = false;
     }
   }
 };
@@ -262,6 +268,8 @@ const onChangeAccountActionSelection = (target: HTMLSelectElement) => {
   if (strikeCard) {
     if (accountAction === 'none' && strikeCardParent) {
       strikeCardParent.hidden = true;
+    } else if (strikeCardParent) {
+      strikeCardParent.hidden = false;
     }
     strikeCard.textContent = strikeCardContent;
   }
