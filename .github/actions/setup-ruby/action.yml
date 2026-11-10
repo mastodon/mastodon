@@ -13,7 +13,6 @@ runs:
         sudo sed -i s:azure\.archive\.ubuntu\.com:archive.ubuntu.com:g /etc/apt/apt-mirrors.txt
         sudo apt-get update
         sudo apt-get install --no-install-recommends -y \
-          libicu-dev \
           libidn11-dev \
           libvips42 \
           libheif-plugin-aomdec \
