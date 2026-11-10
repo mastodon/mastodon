@@ -30,7 +30,8 @@ en:
           sensitive: Force all this user's media attachments to be flagged as sensitive.
           silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
           suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
-        warning_preset_html: Optional. You can <a href="%{path}">manage them here</a>
+        warning_preset: Optional. You can still add custom text to end of the preset
+        warning_preset_explanation: You have no saved canned responses yet. Canned responses are messages that you can save and reuse on your reports.
       announcement:
         all_day: When checked, only the dates of the time range will be displayed
         ends_at: Optional. Announcement will be automatically unpublished at this time
@@ -200,6 +201,8 @@ en:
         text: Response text
         title: Title
       admin_account_action:
+        cannes_response_back_link: manage canned responses
+        include_rule_violatins: Include reported rule violations
         include_statuses: Include reported posts in the e-mail
         send_email_notification: Notify the user per e-mail
         text: Custom response

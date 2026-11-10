@@ -37,7 +37,6 @@ en:
     self_follow_error: Following your own account is not allowed
   admin:
     account_actions:
-      action: Perform action
       already_silenced: This account has already been limited.
       already_suspended: This account has already been suspended.
       notification_title: User Notification & Message
@@ -45,12 +44,12 @@ en:
       title: 'Perform moderation action on @%{acct}:'
       types:
         delete: Delete posts
-        disable: Freeze
+        disable: Freeze account
         mark_as_sensitive: Mark posts as sensitive
         none: Send a warning
         sensitive: Mark account as sensitive
-        silence: Limit
-        suspend: Suspend
+        silence: Limit account
+        suspend: Suspend account
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
@@ -980,6 +979,8 @@ en:
       statuses: Posts (%{count})
       statuses_description_html: Offending content will be cited in communication with the reported account
       summary:
+        account_action_preamble_html: From report %{report} with %{count} selected posts
+        account_action_preamble_no_posts_html: From report %{report} with no selected posts
         action_preambles:
           delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
           disable_html: 'You are about to <strong>freeze</strong> <strong>@%{acct}</strong>''s account. This will:'
