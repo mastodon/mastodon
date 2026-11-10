@@ -35,7 +35,6 @@ class AccountSearchService < BaseService
                 followers_score_function,
               ],
               boost_mode: 'sum',
-              score_mode: 'sum',
             },
           },
 
