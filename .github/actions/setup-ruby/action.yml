@@ -13,7 +13,6 @@ runs:
         sudo sed -i s:azure\.archive\.ubuntu\.com:archive.ubuntu.com:g /etc/apt/apt-mirrors.txt
         sudo apt-get update
         sudo apt-get install --no-install-recommends -y \
-          libicu-dev \
           libidn11-dev \
           libvips42 \
           libheif-plugin-aomdec \
@@ -21,6 +20,6 @@ runs:
           ${{ inputs.additional-system-dependencies }}
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@de492cf36cbab201753d720ce4f4e336cd688c94 # v1.336.0
+      uses: ruby/setup-ruby@b3aaceaef7e0ee231b499e7b5f49c03fc1d32199 # v1.338.0
       with:
         bundler-cache: true

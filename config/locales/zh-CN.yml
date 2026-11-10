@@ -896,11 +896,13 @@ zh-CN:
       action_taken_by: 操作执行者
       actions:
         delete_description_html: 被举报的嘟文和收藏列表将被删除，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
+        disable_description_html: 禁止用户使用账号，但不会删除或隐藏账号内容。此操作可以撤销。此操作会关闭针对此账号的全部举报。
+        force_sensitive_descption_html: 强制将此用户的全部媒体文件标记为敏感内容。此操作可以撤销。此操作会关闭针对此账号的全部举报。
         mark_as_sensitive_description_html: 被举报的嘟文将被标记为敏感，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
-        other_description_html: 查看更多控制该账号行为的选项，并自定义编写与被举报账号的通信。
         resolve_description_html: 不会对被举报账号采取任何动作，举报将被关闭，也不会留下处罚记录。
-        silence_description_html: 只有关注或手工搜索此账号才能查看其资料，将严重限制其触达范围。可随时撤销。关闭针对此账号的全部举报。
-        suspend_description_html: 该账号及其全部内容将无法访问并最终被删除，且无法与该账号进行互动。 在 30 天内可随时撤销。关闭针对此账号的全部举报。
+        silence_description_html: 只有关注或手工搜索此账号才能查看其资料，将严重限制其触达范围。此操作可随时撤销。此操作会关闭针对此账号的全部举报。
+        suspend_description_html: 该账号及其全部内容将无法访问并最终被删除，且无法与该账号进行互动。此操作在 30 天内可随时撤销。此操作会关闭针对此账号的全部举报。
+        warn_description_html: 用它来向用户发送警告，不会触发其他操作。
       actions_description_html: 决定采取何种措施处理此举报。如果对被举报账号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
       actions_description_remote_html: 决定采取何种行动来解决此举报。 这只会影响<strong>你的</strong>服务器如何与该远程账号的通信并处理其内容。
       actions_no_posts: 该举报没有相关嘟文可供删除

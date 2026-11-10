@@ -5,14 +5,11 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import {
   ColumnHeader,
   ColumnSettingsMenu,
 } from '@/mastodon/components/column_header';
 import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import {
   fetchFavouritedStatuses,
@@ -72,52 +69,32 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
 
   const pinned = !!columnId;
 
-  const emptyMessage = isRedesignEnabled() ? (
+  const emptyMessage = (
     <FormattedMessage
       id='empty_column.liked_posts'
       defaultMessage="You don't have any liked posts yet. When you like one, it will show up here."
     />
-  ) : (
-    <FormattedMessage
-      id='empty_column.favourited_statuses'
-      defaultMessage="You don't have any favorite posts yet. When you favorite one, it will show up here."
-    />
   );
 
-  const title = intl.formatMessage(
-    isRedesignEnabled() ? messages.heading_redesign : messages.heading,
-  );
+  const title = intl.formatMessage(messages.heading_redesign);
 
   return (
     <Column bindToDocument={!multiColumn} label={title}>
-      {isRedesignEnabled() ? (
-        <ColumnHeader
-          title={title}
-          withBackButton={multiColumn && !pinned && 'auto'}
-          extraButtons={
-            multiColumn && (
-              <ColumnSettingsMenu labelPrefix={title}>
-                <MultiColumnMenuItems
-                  onPin={handlePin}
-                  onMove={handleMove}
-                  pinned={pinned}
-                />
-              </ColumnSettingsMenu>
-            )
-          }
-        />
-      ) : (
-        <LegacyColumnHeader
-          icon='star'
-          iconComponent={StarIcon}
-          title={title}
-          onPin={handlePin}
-          onMove={handleMove}
-          pinned={pinned}
-          multiColumn={multiColumn}
-          scrollTopOnClick
-        />
-      )}
+      <ColumnHeader
+        title={title}
+        withBackButton={multiColumn && !pinned && 'auto'}
+        extraButtons={
+          multiColumn && (
+            <ColumnSettingsMenu labelPrefix={title}>
+              <MultiColumnMenuItems
+                onPin={handlePin}
+                onMove={handleMove}
+                pinned={pinned}
+              />
+            </ColumnSettingsMenu>
+          )
+        }
+      />
 
       <StatusList
         trackScroll={!pinned}

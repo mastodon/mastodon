@@ -241,7 +241,12 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
   const extraStickyHeaderContent = (
     <>
       <div className='explore__search-header'>
-        <Search singleColumn initialValue={trimmedValue} key={trimmedValue} />
+        <Search
+          singleColumn
+          initialValue={trimmedValue}
+          initialType={mappedType !== 'all' ? mappedType : undefined}
+          key={trimmedValue}
+        />
       </div>
 
       <div className='account__section-headline'>

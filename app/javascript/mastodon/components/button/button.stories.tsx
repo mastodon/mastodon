@@ -45,7 +45,7 @@ const meta = {
     },
     variant: {
       control: 'inline-radio',
-      options: ['solid', 'tonal', 'ghost'],
+      options: ['solid', 'tonal', 'ghost', 'solidOnMedia', 'onMedia'],
     },
     color: {
       control: 'inline-radio',

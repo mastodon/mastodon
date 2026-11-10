@@ -18,6 +18,7 @@ import {
   useAppSelector,
 } from '@/mastodon/store/typed_functions';
 
+import { AnimatedNumber } from '../animated_number';
 import { Button, IconButton, ToggleButton, ToggleIconButton } from '../button';
 import { Icon } from '../icon';
 import {
@@ -34,6 +35,10 @@ import {
   useStatusIcons,
   useStatusMenuActions,
 } from './hooks';
+import {
+  StatusLikeBurstActiveIcon,
+  StatusLikeBurstIcon,
+} from './like_burst_icon';
 import classes from './styles.module.scss';
 
 interface StatusActionBarProps {
@@ -75,6 +80,30 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
 
   const { reply, like, bookmark } = useStatusIcons(statusId);
 
+  const currentAccountId = useCurrentAccountId();
+
+  const [likeBurst, setLikeBurst] = useState(false);
+
+  const handleLikeClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (currentAccountId && !like.active) {
+        setLikeBurst(true);
+      }
+
+      like.action(event);
+    },
+    [currentAccountId, like],
+  );
+
+  const handleLikeAnimationEnd = useCallback(
+    (event: React.AnimationEvent<HTMLButtonElement>) => {
+      if (event.animationName.endsWith('heart-pop')) {
+        setLikeBurst(false);
+      }
+    },
+    [],
+  );
+
   if (!status) {
     return null;
   }
@@ -92,11 +121,11 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         onClick={reply.action}
         tooltip={{ type: 'label', text: reply.title }}
       >
-        {withCounters && reply.counter}
+        {withCounters && <AnimatedNumber value={reply.counter ?? 0} />}
       </Button>
 
       <StatusReblogButton statusId={statusId}>
-        {withCounters && status.reblogs_count}
+        {withCounters && <AnimatedNumber value={status.reblogs_count} />}
       </StatusReblogButton>
 
       <ToggleButton
@@ -104,11 +133,15 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         variant='ghost'
         active={like.active}
         tooltip={{ type: 'label', text: like.title }}
-        leadingIcon={like.icon}
-        onClick={like.action}
+        leadingIcon={
+          like.active ? StatusLikeBurstActiveIcon : StatusLikeBurstIcon
+        }
+        onClick={handleLikeClick}
+        data-like-burst={likeBurst || undefined}
+        onAnimationEnd={handleLikeAnimationEnd}
         className={classes.actionsButtonGap}
       >
-        {withCounters && like.counter}
+        {withCounters && <AnimatedNumber value={like.counter ?? 0} />}
       </ToggleButton>
 
       {isPublic && (
@@ -147,6 +180,19 @@ export const StatusReblogButton: React.FC<{
 }> = ({ statusId, children }) => {
   const { boost, quote } = useStatusIcons(statusId);
 
+  const isBoosted = !!boost.active;
+  const [wasBoosted, setWasBoosted] = useState(isBoosted);
+  const [boostSpin, setBoostSpin] = useState(false);
+
+  if (isBoosted !== wasBoosted) {
+    setWasBoosted(isBoosted);
+    setBoostSpin(isBoosted);
+  }
+
+  const handleBoostAnimationEnd = useCallback(() => {
+    setBoostSpin(false);
+  }, []);
+
   const handleShiftClick = useCallback(
     (e: React.MouseEvent) => {
       if (e.shiftKey) {
@@ -174,6 +220,8 @@ export const StatusReblogButton: React.FC<{
         leadingIcon={boost.icon}
         disabled={boost.disabled}
         onClick={boost.action}
+        className={boostSpin ? classes.boostSpin : undefined}
+        onAnimationEnd={handleBoostAnimationEnd}
       >
         {children}
       </ToggleButton>
@@ -199,6 +247,8 @@ export const StatusReblogButton: React.FC<{
         }}
         onClick={handleShiftClick}
         leadingIcon={boost.icon}
+        className={boostSpin ? classes.boostSpin : undefined}
+        onAnimationEnd={handleBoostAnimationEnd}
       >
         {children}
       </MenuTrigger>

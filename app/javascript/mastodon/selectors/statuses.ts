@@ -180,7 +180,7 @@ export const selectStatusInteractions = createAppSelector(
       embed: addAllowed({ isPublic, isLocal }),
       favourite: addAllowed({ isLoggedIn }),
       filter: addAllowed({ isLoggedIn, isNotMine }),
-      mute: addAllowed({ isMine }),
+      mute: addAllowed({ isLoggedIn }),
       pin: addAllowed({ isMine, isNotDirect }),
       quote: addAllowed({ isLoggedIn }),
       reblog: addAllowed({ isLoggedIn }),

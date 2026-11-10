@@ -7,12 +7,9 @@ RSpec.describe Account::Header do
     let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('attachment.jpg').read)}" }
     let(:account) { Fabricate(:account, header: base64_attachment) }
 
-    it 'saves header' do
+    it 'saves header and assigns file name', :aggregate_failures do
       expect(account.persisted?).to be true
       expect(account.header).to_not be_nil
-    end
-
-    it 'gives the header a file name' do
       expect(account.header_file_name).to_not be_blank
     end
 

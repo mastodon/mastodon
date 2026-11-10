@@ -22,6 +22,10 @@ class Auth::SessionsController < Devise::SessionsController
     p.form_action(false)
   end
 
+  # Two-factor and sign-in token authentication flows are implemented as a two-step flow, which
+  # entirely bypass the normal `create` method by prepending a `before_action` filter calling
+  # `ensure_first_authentication_step`, as `Devise::SessionsController#create` supports only
+  # one-step authentication through `warden.authenticate!`.
   def create
     super do |resource|
       # We only need to call this if this hasn't already been
@@ -49,25 +53,27 @@ class Auth::SessionsController < Devise::SessionsController
 
   protected
 
-  def find_user
+  # Unless `allow_unverified: true` is passed, the returned user has passed
+  # the first authentication step
+  def find_user(allow_unverified: false)
     if user_params[:email].present?
-      find_user_from_params
+      find_user_from_params(allow_unverified: allow_unverified)
     elsif session[:attempt_user_id]
       User.find_by(id: session[:attempt_user_id])
     end
   end
 
-  def find_user_from_params
-    user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
-    user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
-
-    if user.present?
-      @password_verified_externally = true
-      return user
+  # Unless `allow_unverified: true` is passed, the returned user has passed
+  # the first authentication step
+  def find_user_from_params(allow_external: true, allow_unverified: false)
+    if allow_external
+      user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
+      user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
+      return user if user.present?
     end
 
     user = User.find_for_authentication(email: user_params[:email])
-    user if user&.encrypted_password.present?
+    user if user&.encrypted_password.present? && (allow_unverified || user.valid_password?(user_params[:password]))
   end
 
   def user_params
@@ -101,7 +107,8 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def check_suspicious!
-    user = find_user
+    # Password verification is skipped at this stage, it will happen later if necessary
+    user = find_user(allow_unverified: true)
     @login_is_suspicious = suspicious_sign_in?(user) unless user.nil?
   end
 
@@ -122,9 +129,37 @@ class Auth::SessionsController < Devise::SessionsController
     redirect_to new_user_session_path, alert: I18n.t('devise.failure.timeout')
   end
 
+  # This should only ever be called with a `user` that has passed password authentication
   def register_attempt_in_session(user)
     session[:attempt_user_id]         = user.id
     session[:attempt_user_updated_at] = user.updated_at.to_s
+  end
+
+  # Return a `User` object if the current user has previously passed the first authentication step,
+  # and otherwise call the provided block if they are just now passing it.
+  def ensure_first_authentication_step(allow_external: false)
+    if user_params[:email].present?
+      user = self.resource = find_user_from_params(allow_external:)
+
+      yield user if user
+
+      return nil
+    end
+
+    if session[:attempt_user_id]
+      user = User.find_by(id: session[:attempt_user_id])
+      return if user.nil?
+
+      # If the user record has changed since the attempt has been recorded,
+      # its password or email could have changed, and we have to revoke they
+      # attempt.
+      if session[:attempt_user_updated_at] != user.updated_at.to_s
+        restart_session
+        return
+      end
+
+      self.resource = user
+    end
   end
 
   def clear_attempt_from_session

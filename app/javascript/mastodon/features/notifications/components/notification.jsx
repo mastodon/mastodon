@@ -28,7 +28,6 @@ import FollowRequestContainer from '../containers/follow_request_container';
 import { ModerationWarning } from './moderation_warning';
 import { RelationshipsSeveranceEvent } from './relationships_severance_event';
 import Report from './report';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { StatusBoostIcon, StatusLikeIcon, StatusQuoteIcon } from '@/mastodon/components/status/icons';
 
 const messages = defineMessages({
@@ -182,7 +181,7 @@ class Notification extends ImmutablePureComponent {
   renderFavourite (notification, link) {
     const { intl, unread } = this.props;
 
-    const likeMessage = isRedesignEnabled() ? messages.favourite_redesign : messages.favourite;
+    const likeMessage = messages.favourite_redesign;
 
     return (
       <Hotkeys handlers={this.getHandlers()}>

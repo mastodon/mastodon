@@ -17,6 +17,7 @@ import {
   requestComposerFocus,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { isKeyComposing } from '@/mastodon/utils/events';
 
 import classes from '../styles.module.scss';
 
@@ -52,6 +53,10 @@ export const ComposeSensitiveField: React.FC<
   );
   const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = useCallback(
     (event) => {
+      if (isKeyComposing(event)) {
+        return;
+      }
+
       const key = normalizeKey(event.key);
       if (key === 'enter') {
         event.preventDefault();

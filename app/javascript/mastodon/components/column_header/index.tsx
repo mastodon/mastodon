@@ -5,22 +5,25 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { useLocation } from 'react-router';
 
-import { ArrowLeftIcon, ArrowUpIcon, ListIcon } from '@phosphor-icons/react';
+import { ArrowLeftIcon, ListIcon } from '@phosphor-icons/react';
 import type { DistributedOmit } from 'type-fest';
 
 import { openNavigation } from '@/mastodon/actions/navigation';
+import type { IconButtonProps } from '@/mastodon/components/button';
+import { Button, IconButton } from '@/mastodon/components/button';
+import {
+  useColumn,
+  useColumnIndexContext,
+} from '@/mastodon/components/column/context';
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
+import type { LocationState } from '@/mastodon/components/router';
+import { useAppHistory } from '@/mastodon/components/router';
+import { Tooltip } from '@/mastodon/components/tooltip';
 import { getColumnSkipLinkId } from '@/mastodon/features/ui/components/skip_links';
 import { useBreakpoint } from '@/mastodon/features/ui/hooks/useBreakpoint';
 import { useResizeObserver } from '@/mastodon/hooks/useObserver';
 import { useAppDispatch } from '@/mastodon/store';
 import { hasReactChildren } from '@/mastodon/utils/has_react_children';
-
-import type { IconButtonProps } from '../button';
-import { Button, IconButton } from '../button';
-import { useColumn, useColumnIndexContext } from '../column/context';
-import { NavigationFocusTarget } from '../navigation_focus_target';
-import type { LocationState } from '../router';
-import { useAppHistory } from '../router';
 
 import classes from './styles.module.scss';
 
@@ -73,7 +76,20 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
     [scrollTop],
   );
 
-  const hasScrollToTopButton = !isScrolledToTop && withUnreadMarker;
+  const hasUnreadIndicator = !isScrolledToTop && withUnreadMarker;
+
+  const unreadText = hasUnreadIndicator ? (
+    <FormattedMessage
+      id='column_header.scroll_to_new_content'
+      defaultMessage='Scroll to new content'
+    />
+  ) : (
+    <FormattedMessage
+      id='column_header.scroll_to_top'
+      defaultMessage='Scroll to top'
+    />
+  );
+
   const headerRef = useTrackColumnHeaderHeight();
 
   return (
@@ -83,8 +99,9 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
       className={classNames(
         className,
         classes.root,
-        isScrolledToTop && classes.rootScrolledToTop,
         hasExtraStickyContent && classes.withStickyContent,
+        !isScrolledToTop && classes.rootScrolledDown,
+        hasUnreadIndicator && classes.withGlow,
       )}
     >
       {/* eslint-disable-next-line
@@ -92,36 +109,31 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         */}
       <div className={classes.layout} onClick={handleHeaderClick}>
         {hasBackButton ? <BackButton /> : <MobileMenuButton />}
-        <NavigationFocusTarget className={classes.title}>
-          <button
-            type='button'
-            onClick={scrollTop}
-            id={getColumnSkipLinkId(columnIndex)}
-          >
-            {title}
-          </button>
+        <NavigationFocusTarget
+          className={classes.title}
+          id={getColumnSkipLinkId(columnIndex)}
+        >
+          {title}
         </NavigationFocusTarget>
+        {!isScrolledToTop && (
+          <Tooltip text={unreadText} placement='bottom'>
+            {({ getTooltipProps }) => (
+              <button
+                type='button'
+                {...getTooltipProps({ onClick: scrollTop })}
+                className={classes.scrollTopButton}
+              >
+                {unreadText}
+              </button>
+            )}
+          </Tooltip>
+        )}
         {hasReactChildren(extraButtons) && (
           <div className={classes.rightButtons}>{extraButtons}</div>
         )}
       </div>
       {hasExtraStickyContent && (
         <div className={classes.extraStickyContent}>{extraStickyContent}</div>
-      )}
-      {hasScrollToTopButton && (
-        <Button
-          size='sm'
-          color='accent'
-          variant='solid'
-          onClick={scrollTop}
-          leadingIcon={ArrowUpIcon}
-          className={classes.unreadButton}
-        >
-          <FormattedMessage
-            id='column_header.scroll_to_top'
-            defaultMessage='Scroll to top'
-          />
-        </Button>
       )}
     </header>
   );

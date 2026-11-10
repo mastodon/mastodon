@@ -50,6 +50,8 @@ az:
         reject_appeal_html: "%{name}, moderasiya qərarına %{target} tərəfindən verilən etirazı rədd etdi"
         reset_password_user_html: "%{name}, %{target} istifadəçisinin parolunu sıfırladı"
       deleted_account: silinmiş hesab
+    custom_emojis:
+      unlisted: Sadalanmayıb
     dashboard:
       media_storage: Media deposu
       software: Yazılım
@@ -100,9 +102,6 @@ az:
       purge_description_html: Əgər bu domenin tamamilə oflayn olduğuna inanırsınızsa, deponuzdan bu domenə aid olan bütün hesab qeydlərini və əlaqəli veriləri silə bilərsiniz. Bu bir az vaxt aparacaq.
       totals_time_period_hint_html: Aşağıdakı cəmlərə bütün vaxtlardakı verilər daxildir.
     reports:
-      actions:
-        other_description_html: Hesabın davranışına nəzarət etmək və bildirilən hesabın ünsiyyətini özəlləşdirmək üçün daha çox seçənəyə baxın.
-        suspend_description_html: Hesab və onun bütün məzmunları əlçatmaz olacaq və nəticədə silinəcək və onunla əlaqə qurmaq mümkün olmayacaq. 30 gün ərzində geri qaytarıla bilər. Bu hesaba aid bütün hesabatları bağlayır.
       assigned: Təyin edilmiş moderator
       comment_description_html: 'Daha çox bilgi təqdim etmək üçün %{name} bunu yazıb:'
       confirm_action: "@%{acct} üzərindəki moderasiya əməliyyatını təsdiqlə"
@@ -225,7 +224,7 @@ az:
     migrate_account: Fərqli bir hesaba daşı
     migrate_account_html: Bu hesabı başqa bir hesaba yönləndirmək istəyirsinizsə, <a href="%{path}">burada konfiqurasiya edə</a> bilərsiniz.
     progress:
-      details: Məlumatlarınız
+      details: Ayrıntılarınız
     resend_confirmation: Təsdiq keçidini təkrar göndər
     reset_password: Parolu sıfırla
     rules:
@@ -426,6 +425,8 @@ az:
       title: Etiraz təsdiqlənib
     failed_2fa:
       details: 'Daxil olma cəhdi üçün ayrıntılar:'
+    sign_in_token:
+      details: 'Cəhdin ayrıntıları bunlardır:'
     suspicious_sign_in:
       change_password: parolu dəyişdir
       details: 'Daxil olmaq üçün ayrıntılar:'

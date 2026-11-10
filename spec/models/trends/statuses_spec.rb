@@ -97,12 +97,10 @@ RSpec.describe Trends::Statuses do
   end
 
   describe '#query' do
-    it 'returns a composable query scope' do
-      expect(subject.query).to be_a Trends::Query
-    end
-
-    it 'responds to filtered_for' do
-      expect(subject.query).to respond_to(:filtered_for)
+    it 'returns a composable query scope that can be filtered' do
+      expect(subject.query)
+        .to be_a(Trends::Query)
+        .and(respond_to(:filtered_for))
     end
   end
 

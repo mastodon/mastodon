@@ -21,7 +21,7 @@ export const buttonClasses = classes;
 
 interface ButtonPropsBase<As extends 'a' | 'button'> {
   size?: 'lg' | 'md' | 'sm' | 'xs';
-  variant?: 'solid' | 'tonal' | 'ghost';
+  variant?: 'solid' | 'tonal' | 'ghost' | 'onMedia' | 'solidOnMedia';
   color?: 'accent' | 'neutral' | 'destructive';
   onClick?: React.MouseEventHandler<
     As extends 'button' ? HTMLButtonElement : HTMLAnchorElement
@@ -37,12 +37,6 @@ interface ButtonPropsBase<As extends 'a' | 'button'> {
    * with the starting edge of its parent.
    */
   clipPadding?: boolean;
-  /**
-   * Adds a border around the button when a variant/color is used
-   * that may result in the button shape to be hard to see when the
-   * button is placed on top of an image
-   */
-  contrastOnMedia?: boolean;
   children: ReactNode;
 }
 
@@ -68,7 +62,6 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   loading,
   clipPadding,
   noActiveHighlight,
-  contrastOnMedia,
   'aria-disabled': ariaDisabled,
   'aria-live': ariaLive,
   ...props
@@ -105,7 +98,6 @@ const BaseButton: React.FC<BaseButtonProps> = ({
         classes[variant],
         clipPadding && classes.clipPadding,
         noActiveHighlight && classes.noActiveHighlight,
-        contrastOnMedia && classes.contrastOnMedia,
       )}
       onClick={handleClick}
       // Disabled buttons can't have focus, so we don't really

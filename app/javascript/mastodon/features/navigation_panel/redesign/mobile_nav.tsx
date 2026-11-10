@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { useLocation } from 'react-router';
 
 import {
   BellIcon,
@@ -256,6 +257,14 @@ const SlideOutNavigation: React.FC = () => {
     }
   }, [isOpen]);
 
+  // Close after navigation change
+  const { pathname, search } = useLocation();
+  const pathWithSearch = `${pathname}${search}`;
+  useEffect(() => {
+    dispatch(closeNavigation());
+  }, [pathWithSearch, dispatch]);
+
+  // Close after browser back navigation
   useCloseOnHistoryBack(
     () => {
       dispatch(closeNavigation());

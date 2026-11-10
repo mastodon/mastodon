@@ -30,8 +30,3 @@ export function isClientFeatureEnabled(feature: ClientFeatures) {
     return false;
   }
 }
-
-/* Checks if the 5.0 redesign features are enabled or not. */
-export function isRedesignEnabled() {
-  return true;
-}

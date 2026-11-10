@@ -23,10 +23,9 @@ import { PictureInPicture } from 'mastodon/features/picture_in_picture';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { layoutFromWindow, transientSingleColumn } from 'mastodon/is_mobile';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { checkAnnualReport } from '@/mastodon/reducers/slices/annual_report';
 
-import { uploadCompose, resetCompose } from '../../actions/compose';
+import { uploadCompose } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
 import { fetchServer, fetchServerTranslationLanguages } from '../../actions/server';
 import { expandHomeTimeline } from '../../actions/timelines';
@@ -35,7 +34,6 @@ import { initialState, forceSingleColumn, me, owner, singleUserMode, trendsEnabl
 import { openNewComposer, toggleContentWarning } from '@/mastodon/reducers/slices/composer';
 
 import { BundleColumnError } from './components/bundle_column_error';
-import { NavigationBar } from './components/navigation_bar';
 import { UploadArea } from './components/upload_area';
 import { HashtagMenuController } from './components/hashtag_menu_controller';
 import { ColumnsArea } from './components/columns_area';
@@ -164,9 +162,7 @@ class SwitchingColumnsArea extends PureComponent {
     const { signedIn } = this.props.identity;
     const pathName = this.props.location.pathname;
 
-    const defaultHomepage = (singleColumn || isRedesignEnabled())
-      ? '/home'
-      : '/deck/getting-started';
+    const defaultHomepage = '/home';
 
     let rootRedirect;
     if (signedIn) {
@@ -207,10 +203,7 @@ class SwitchingColumnsArea extends PureComponent {
             {(forceSingleColumn || transientSingleColumn) && pathName.startsWith('/deck/') ? <Redirect from={pathName} to={{...this.props.location, pathname: pathName.slice(5)}} /> : null}
             {/* Redirect old bookmarks (without /deck) with home-like routes to the advanced interface */}
             {!singleColumn && pathName === '/home' ? <Redirect from='/home' to={redirectWithoutFocusing(defaultHomepage)} exact /> : null}
-            {(pathName === '/getting-started' || isRedesignEnabled())
-              ? <Redirect from='/getting-started' to={redirectWithoutFocusing(defaultHomepage)} exact />
-              : null
-            }
+            <Redirect from='/getting-started' to={redirectWithoutFocusing(defaultHomepage)} exact />
 
             <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
             <WrappedRoute path='/about' component={About} content={children} />
@@ -478,23 +471,10 @@ class UI extends PureComponent {
   handleHotkeyNew = e => {
     e.preventDefault();
 
-    if (isRedesignEnabled()) {
-      this.props.dispatch(openNewComposer());
-      return;
-    }
-
-    const element = this.node.querySelector('.autosuggest-textarea__textarea');
-
-    if (element) {
-      element.focus();
-    }
+    this.props.dispatch(openNewComposer());
   };
 
   handleHotkeyNewMessage = (e) => {
-    if (!isRedesignEnabled()) {
-      return;
-    }
-
     e.preventDefault();
     this.props.dispatch(openNewComposer({ type: 'message' }));
   }
@@ -512,12 +492,7 @@ class UI extends PureComponent {
   };
 
   handleHotkeyForceNew = e => {
-    if (isRedesignEnabled()) {
-      this.props.dispatch(openNewComposer({ force: true }));
-      return;
-    }
-    this.handleHotkeyNew(e);
-    this.props.dispatch(resetCompose());
+    this.props.dispatch(openNewComposer({ force: true }));
   };
 
   handleHotkeyToggleComposeSpoilers = e => {
@@ -681,7 +656,6 @@ class UI extends PureComponent {
             {children}
           </SwitchingColumnsArea>
 
-          {!minimalShell && !isRedesignEnabled() && <NavigationBar />}
           {layout !== 'mobile' && <PictureInPicture />}
           <AlertsController />
           {!disableHoverCards && <HoverCardController />}

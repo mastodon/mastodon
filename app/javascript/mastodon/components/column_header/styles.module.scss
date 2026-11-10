@@ -18,39 +18,59 @@
     background: var(--color-bg-primary);
   }
 
-  // Scroll fade that overlays the scrollable content below
+  // Drop shadow when scrolled down
   &::after {
     content: '';
     pointer-events: none;
     position: absolute;
-    top: 100%;
+    bottom: 0;
     inset-inline: 0;
     z-index: -1;
-    height: var(--space-10);
-    background: linear-gradient(
-      to bottom,
-      var(--color-bg-primary),
-      transparent
-    );
-    transition:
-      opacity,
-      transform 250ms ease-out;
+    height: var(--space-2);
+    background: var(--color-bg-primary);
+    @include mixins.elevation-1;
+
+    border: none;
+    opacity: 0;
+    transition: opacity 250ms ease-in;
 
     @media (width > variables.$mobile-menu-breakpoint) {
-      // Prevent fade from overlapping column border
+      // Prevent shadow from overlapping column border
       inset-inline: var(--bw-default);
     }
   }
 
-  &.rootScrolledToTop::after {
+  &.rootScrolledDown::after {
+    opacity: 1;
+    transition-timing-function: ease-out;
+  }
+
+  // Glow effect when there's new content
+  &::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    bottom: calc(-1 * var(--space-4));
+    inset-inline: 0;
+    z-index: -2;
+    height: var(--space-8);
+    background: radial-gradient(
+      ellipse,
+      rgb(from var(--color-bg-brand-base) r g b / 25%) 0%,
+      transparent 60%
+    );
     opacity: 0;
-    transition-timing-function: ease-in;
-    transform: translateY(calc(-1 * var(--space-6)));
+    transition: opacity 250ms ease-in;
+  }
+
+  &.withGlow::before {
+    opacity: 1;
+    transition-timing-function: ease-out;
   }
 }
 
 .layout {
-  --column-header-padding: var(--space-3) var(--space-3) var(--space-1);
+  --column-header-padding: var(--space-2) var(--space-3);
 
   position: relative;
   display: grid;
@@ -65,7 +85,10 @@
   // Ensure that a header without buttons is as tall as one with buttons
   min-height: 48px;
   text-align: center;
-  cursor: pointer;
+
+  .rootScrolledDown & {
+    cursor: pointer;
+  }
 
   @media (width > variables.$mobile-menu-breakpoint) {
     background: var(--color-bg-primary);
@@ -111,23 +134,18 @@
   white-space: nowrap;
   min-width: 0;
   padding: var(--column-header-padding);
+  border-radius: var(--radius-4);
 
-  > button {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 100%;
-    padding: 0;
-    border: none;
-    font: inherit;
-    color: inherit;
-    background: transparent;
-    border-radius: var(--radius-2);
-
-    &:focus-visible {
-      outline: var(--outline-focus-default);
-      outline-offset: 2px;
-    }
+  &:focus-visible,
+  &:has(+ .scrollTopButton:focus-visible) {
+    outline: var(--outline-focus-default);
+    outline-offset: calc(-1 * var(--space-1));
   }
+}
+
+.scrollTopButton {
+  grid-area: 1 / 2;
+  opacity: 0;
 }
 
 .extraStickyContent {
