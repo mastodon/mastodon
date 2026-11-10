@@ -5,7 +5,7 @@
   @report_id = params[:report_id] if params[:report_id].present?
   @type = params[:type] if params[:type].present?
   @report = Report.find(@report_id) if @report_id
-  @url = (params[:report_id].present? ? admin_report_actions_path(@report_id) : admin_account_action_path(@account.id))
+  @url = (params[:report_id].present? ? admin_report_actions_path(@report) : admin_account_action_path(@account.id))
 
 - if @account.suspended_locally?
   .flash-message.alert
@@ -16,7 +16,6 @@
 
 = simple_form_for @account_action, url: @url, html: { id: 'action_type' } do |f|
   = f.input :report_id, as: :hidden
-  - @type = params[:type]
 
   - content_for :heading_actions do
     .fields-group
@@ -60,9 +59,8 @@
     .fields-group
       = f.input :text,
                 as: :text,
-                value: nil,
-                hint: t('simple_form.hints.admin_account_action.text'),
-                wrapper: :with_block_label
+                wrapper: :with_block_label,
+                hint: t('simple_form.hints.admin_account_action.text')
 
     - if @account.local? && params[:report_id].present?
       %hr.spacer/
