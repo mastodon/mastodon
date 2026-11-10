@@ -202,6 +202,30 @@ on(
   },
 );
 
+const onChangeEmailNotification = (target: HTMLInputElement) => {
+  const emailText = document.querySelectorAll<HTMLLIElement>(
+    '#data-action-text-box .email',
+  );
+
+  emailText.forEach((element) => {
+    if (!target.checked) {
+      element.style.display = 'none';
+    } else {
+      element.style.display = 'list-item';
+    }
+  });
+};
+
+on(
+  'change',
+  'input#admin_account_action_send_email_notification',
+  ({ target }) => {
+    if (target instanceof HTMLInputElement) {
+      onChangeEmailNotification(target);
+    }
+  },
+);
+
 const onChangeAccountActionSelection = (target: HTMLSelectElement) => {
   const accountAction = target.value;
   if (!target.value) return;
