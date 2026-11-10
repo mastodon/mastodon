@@ -6,15 +6,6 @@ RSpec.describe 'Admin Export Domain Blocks' do
   before { sign_in Fabricate(:admin_user) }
 
   describe 'POST /admin/export_domain_blocks/import' do
-    it 'displays an error when no file is selected' do
-      post import_admin_export_domain_blocks_path, params: { admin_import: {} }
-
-      expect(response)
-        .to have_http_status(200)
-      expect(response.body)
-        .to include(I18n.t('admin.export_domain_blocks.no_file'))
-    end
-
     it 'gracefully handles invalid nested params' do
       post import_admin_export_domain_blocks_path(admin_import: 'invalid')
 

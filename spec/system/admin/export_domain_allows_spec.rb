@@ -19,6 +19,14 @@ RSpec.describe 'Admin Export Domain Allows' do
     it 'allows the imported domains without importing the header' do
       visit new_admin_export_domain_allow_path
 
+      # Invalid without file attached
+      expect { click_on I18n.t('imports.upload') }
+        .to_not change(DomainAllow, :count)
+      expect(page)
+        .to have_text(I18n.t('admin.export_domain_allows.no_file'))
+
+      # Valid with file
+      visit new_admin_export_domain_allow_path
       attach_file 'admin_import_data', file_fixture('domain_allows.csv')
 
       expect { click_on I18n.t('imports.upload') }

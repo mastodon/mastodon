@@ -16,6 +16,16 @@ RSpec.describe 'Admin Export Domain Blocks' do
   end
 
   describe 'Importing domain blocks' do
+    it 'displays an error when no file is selected' do
+      visit new_admin_export_domain_block_path
+
+      # No file attached
+      click_on I18n.t('imports.upload')
+
+      expect(page)
+        .to have_text(I18n.t('admin.export_domain_blocks.no_file'))
+    end
+
     context 'with complete domain blocks CSV' do
       it 'shows the imported policies for review and saves the domain blocks' do
         upload_file('domain_blocks.csv')

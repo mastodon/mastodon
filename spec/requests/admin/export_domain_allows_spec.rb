@@ -6,15 +6,6 @@ RSpec.describe 'Admin Export Domain Allows' do
   before { sign_in Fabricate(:admin_user) }
 
   describe 'POST /admin/export_domain_allows/import' do
-    it 'displays an error when no file is selected' do
-      post import_admin_export_domain_allows_path, params: { admin_import: {} }
-
-      expect(response)
-        .to redirect_to(admin_instances_path)
-      expect(flash[:error])
-        .to eq(I18n.t('admin.export_domain_allows.no_file'))
-    end
-
     it 'gracefully handles invalid nested params' do
       post import_admin_export_domain_allows_path(admin_import: 'invalid')
 
