@@ -214,6 +214,16 @@ const onChangeEmailNotification = (target: HTMLInputElement) => {
       element.style.display = 'list-item';
     }
   });
+
+  const statusesCheckbox = document.getElementById(
+    'include_statuses',
+  ) as HTMLInputElement;
+
+  if (!target.checked) {
+    statusesCheckbox.disabled = true;
+  } else {
+    statusesCheckbox.disabled = false;
+  }
 };
 
 on(
