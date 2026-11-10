@@ -31,7 +31,7 @@ const makeGetStatusIds = (pending = false) => createSelector([
     if (statusForId.get('account') === me) return true;
 
     // Filter out private messages from Home and Profile feeds
-    if (['home', 'account'].includes(type) && statusForId.get('visibility') === 'private') {
+    if (['home', 'account'].includes(type) && statusForId.get('visibility') === 'direct') {
       return false;
     }
 
