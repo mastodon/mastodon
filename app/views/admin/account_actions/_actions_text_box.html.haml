@@ -9,9 +9,9 @@
         %li.hint= t('admin.reports.summary.delete_data_html', acct: account.pretty_acct)
       - if %w(silence suspend).include?(type)
         %li.hint= t('admin.reports.summary.close_reports_html', acct: account.pretty_acct)
-      - else
-        %li= t('admin.reports.summary.close_report', id: report_id)
+      - elsif report.id.present?
+        %li= t('admin.reports.summary.close_report', id: report.id)
       - unless type == 'none'
         %li= t('admin.reports.summary.record_strike_html', acct: account.pretty_acct)
-      - if account.local?
+      - if account.local? && (!report.spam? if report)
         %li= t('admin.reports.summary.send_email_html', acct: account.pretty_acct)
