@@ -66,7 +66,8 @@ export const EmojiPickerButton: React.FC<{
   onPick: OnEmojiPick;
   disabled?: boolean;
   placement?: Placement;
-}> = ({ onPick, disabled, placement = 'top-start' }) => {
+  className?: string;
+}> = ({ onPick, disabled, placement = 'top-start', className }) => {
   const [open, { onToggle, onFalse }] = useToggle();
   const [target, setTarget] = useState<HTMLButtonElement | null>(null);
 
@@ -78,6 +79,7 @@ export const EmojiPickerButton: React.FC<{
         ref={setTarget}
         onClick={onToggle}
         aria-expanded={open}
+        className={className}
       >
         <FormattedMessage
           id='emoji_button.label'
