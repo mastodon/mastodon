@@ -70,7 +70,7 @@ export const LinkCard: React.FC<{
       )}
 
       {authors.length > 0 && (
-        <CardActions>
+        <CardActions className={classes.cardAuthors}>
           <FormattedMessage
             id='status.link_preview.authors'
             defaultMessage='{count, plural, one {Find the author in the Fediverse:} other {Find the authors in the Fediverse:}}'
@@ -118,6 +118,7 @@ const LinkCardAuthor: React.FC<{ authorId?: string }> = ({ authorId }) => {
       variant='ghost'
       to={`/@${author.get('acct')}`}
       className={classes.cardAuthor}
+      clipPadding
     >
       <Avatar account={author} />
       <DisplayName variant='simple' account={author} />
