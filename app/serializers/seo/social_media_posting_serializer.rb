@@ -11,6 +11,7 @@ class SEO::SocialMediaPostingSerializer < ActiveModel::Serializer
   attribute :video, if: -> { object.ordered_media_attachments.any? { |attachment| attachment.video? || attachment.gifv? } }
   attribute :audio, if: -> { object.ordered_media_attachments.any?(&:audio?) }
   attribute :shared_content, if: -> { object.with_preview_card? || object.with_quote? }
+  attribute :parent_item, if: -> { object.reply? }
 
   has_one :author, serializer: SEO::PersonSerializer
 
@@ -113,7 +114,7 @@ class SEO::SocialMediaPostingSerializer < ActiveModel::Serializer
     if object.with_quote? && object.quote&.quoted_status.present?
       {
         type: 'SocialMediaPosting',
-        url: ActivityPub::TagManager.instance.uri_for(object.quote.quoted_status),
+        url: ActivityPub::TagManager.instance.url_for(object.quote.quoted_status),
       }
     elsif object.with_preview_card?
       {
@@ -121,5 +122,12 @@ class SEO::SocialMediaPostingSerializer < ActiveModel::Serializer
         url: object.preview_card.url,
       }
     end
+  end
+
+  def parent_item
+    {
+      type: 'SocialMediaPosting',
+      url: ActivityPub::TagManager.instance.url_for(object.thread),
+    }
   end
 end
