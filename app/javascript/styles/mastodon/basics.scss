@@ -27,12 +27,12 @@ html {
     --text-x-direction: -1;
   }
 
-  --scroll-fade-height: var(--space-8);
-
-  scroll-padding-top: calc(
-    var(--current-column-header-height) + var(--scroll-fade-height)
-  );
+  scroll-padding-top: calc(var(--current-column-header-height));
   scrollbar-gutter: stable;
+
+  &:has(input:focus, textarea:focus) {
+    scroll-padding-top: 0;
+  }
 
   &:has(.layout-multi-column) {
     --current-column-header-height: 0;
