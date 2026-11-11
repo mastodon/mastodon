@@ -866,8 +866,13 @@ de:
       action_taken_by: Maßnahme ergriffen von
       actions:
         delete_description_html: Die gemeldeten Beiträge/Sammlungen werden gelöscht und die ergriffene Maßnahme wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Kontos zu helfen.
+        disable_description_html: Das Konto kann zukünftig nicht mehr verwendet werden, aber dessen Inhalte bleiben erhalten. Alle Meldungen zu diesem Konto werden geschlossen. Die Entscheidung kann jederzeit rückgängig gemacht werden.
+        force_sensitive_descption_html: Alle Medienanhänge dieses Kontos als sensibel markieren. Alle Meldungen zu diesem Konto werden geschlossen. Die Entscheidung kann jederzeit rückgängig gemacht werden.
         mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung versehen und der Vorfall wird vermerkt, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
         resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen und der Vorgang wird nicht aufgezeichnet – die Meldung wird hiermit geschlossen.
+        silence_description_html: Das Konto wird nur für diejenigen sichtbar sein, die dem Konto bereits folgen oder es manuell aufrufen. Die Reichweite wird dadurch stark eingeschränkt und alle Meldungen zu diesem Konto werden geschlossen. Die Entscheidung kann jederzeit rückgängig gemacht werden.
+        suspend_description_html: Das Konto und dessen Inhalte werden nicht mehr aufrufbar sein und ggf. gelöscht. Eine Interaktion mit dem Konto wird unmöglich und alle Meldungen zu diesem Konto werden geschlossen. Die Entscheidung kann innerhalb von 30 Tagen rückgängig gemacht werden.
+        warn_description_html: Dem Konto eine Warnung zusenden, ohne dabei eine andere Aktion vorzunehmen.
       actions_description_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, erhält es eine E-Mail-Benachrichtigung, sofern nicht die <strong>Spam</strong>-Kategorie ausgewählt ist.
       actions_description_remote_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Dies wirkt sich lediglich darauf aus, wie <strong>dein</strong> Server mit diesem externen Konto kommuniziert und dessen Inhalt handhabt.
       actions_no_posts: Diese Meldung enthält keine zu löschenden Beiträge
@@ -2153,6 +2158,8 @@ de:
           unit: ''
   otp_authentication:
     code_hint: Gib den Code ein, den deine 2FA- bzw. TOTP-App generiert hat, um den Vorgang zu bestätigen
+    delete: Entfernen
+    delete_confirmation: Möchtest du die Authentisierungs-App wirklich von deinen Methoden der Zwei-Faktor-Authentisierung entfernen?
     description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich anmelden zu können.
     enable: Aktivieren
     instructions_html: "<strong>Scanne diesen QR-Code mit einer beliebigen Authentisierungs-App (TOTP)</strong> ein. Die App generiert dann zeitbasierte Codes, die du beim Anmelden zusätzlich zum regulären Passwort eingeben musst."
@@ -2633,7 +2640,6 @@ de:
     nickname_hint: Gib den Spitznamen deines neuen Sicherheitsschlüssels ein
     not_enabled: Du hast WebAuthn noch nicht aktiviert
     not_supported: Dieser Browser unterstützt keine Sicherheitsschlüssel
-    otp_required: Um Sicherheitsschlüssel zu verwenden, aktiviere zunächst die Zwei-Faktor-Authentisierung.
     registered_on: Registriert am %{date}
   wrapstodon:
     description: Sieh dir an, wie %{name} dieses Jahr Mastodon verwendet hat!

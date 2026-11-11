@@ -136,7 +136,7 @@ vi:
       perform_full_suspension: Vô hiệu hóa
       previous_strikes: Lịch sử kiểm duyệt
       previous_strikes_description_html:
-        other: Người này bị cảnh cáo <strong>%{count}</strong> lần.
+        other: Người này đã từng được cảnh báo <strong>%{count}</strong> lần.
       promote: Nâng vai trò
       protocol: Giao thức
       public: Công khai
@@ -200,7 +200,7 @@ vi:
       unsuspended_msg: Đã kích hoạt lại %{username} thành công
       username: Tài khoản
       view_domain: Xem mô tả tài khoản này
-      warn: Cảnh cáo
+      warn: Cảnh báo
       web: Web
       whitelisted: Danh sách trắng
     action_logs:
@@ -211,7 +211,7 @@ vi:
         change_email_user: Đổi email người dùng
         change_role_user: Đổi vai trò
         confirm_user: Xác minh
-        create_account_warning: Cảnh cáo
+        create_account_warning: Cảnh báo
         create_announcement: Tạo thông báo mới
         create_canonical_email_block: Chặn địa chỉ email biến thể
         create_custom_emoji: Tạo emoji
@@ -280,7 +280,7 @@ vi:
         change_email_user_html: "%{name} đã thay đổi địa chỉ email của %{target}"
         change_role_user_html: "%{name} đã thay đổi vai trò của %{target}"
         confirm_user_html: "%{name} đã xác minh địa chỉ email của %{target}"
-        create_account_warning_html: "%{name} đã cảnh cáo %{target}"
+        create_account_warning_html: "%{name} đã cảnh báo %{target}"
         create_announcement_html: "%{name} đã tạo thông báo %{target}"
         create_canonical_email_block_html: "%{name} đã chặn địa chỉ email biến thể %{target}"
         create_custom_emoji_html: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
@@ -499,7 +499,7 @@ vi:
         create: Tạo chặn
         hint: Chặn máy chủ sẽ không ngăn việc hiển thị tút của máy chủ đó trong cơ sở dữ liệu, nhưng sẽ khiến tự động áp dụng các phương pháp kiểm duyệt cụ thể trên các tài khoản đó.
         severity:
-          desc_html: "<strong>Hạn chế</strong> sẽ làm cho tút của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Dùng <strong>Cảnh cáo</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
+          desc_html: "<strong>Hạn chế</strong> sẽ làm cho tút của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Chọn <strong>Không</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
           noop: Không hoạt động
           silence: Ẩn
           suspend: Vô hiệu hóa
@@ -826,9 +826,14 @@ vi:
       action_log: Nhật ký kiểm duyệt
       action_taken_by: Quyết định bởi
       actions:
-        delete_description_html: Xóa các tút/gói khởi đầu và ghi lại 1 lần cảnh cáo.
-        mark_as_sensitive_description_html: Đánh dấu nhạy cảm media trong các tút và ghi lại 1 lần cảnh cáo.
+        delete_description_html: Xóa các tút/gói khởi đầu và ghi lại 1 lần cảnh báo.
+        disable_description_html: Ngăn người dùng sử dụng tài khoản của họ, nhưng không xóa hoặc ẩn nội dung của họ. Hành động này có thể được hoàn tác. Đồng thời đóng tất cả các báo cáo liên quan đến tài khoản này.
+        force_sensitive_descption_html: Buộc đánh dấu tất cả các tệp đính kèm đa phương tiện của người dùng này là nhạy cảm. Thao tác này có thể hoàn tác. Đồng thời đóng tất cả các báo cáo liên quan đến tài khoản này.
+        mark_as_sensitive_description_html: Đánh dấu nhạy cảm media trong các tút và ghi lại 1 lần cảnh báo.
         resolve_description_html: Không áp dụng trừng phạt nào và đóng báo cáo.
+        silence_description_html: Tài khoản này sẽ chỉ hiển thị với những người đã theo dõi hoặc tự tìm kiếm, điều này sẽ hạn chế đáng kể phạm vi tiếp cận của nó. Bạn luôn có thể hoàn tác thiết lập này. Đồng thời đóng tất cả các báo cáo liên quan đến tài khoản này.
+        suspend_description_html: Tài khoản và tất cả nội dung của nó sẽ không thể truy cập và cuối cùng sẽ bị xóa, việc tương tác với tài khoản này sẽ không thể thực hiện được. Thao tác này có thể được đảo ngược trong vòng 30 ngày. Đồng thời đóng tất cả các báo cáo liên quan đến tài khoản này.
+        warn_description_html: Dùng cái này để gửi cảnh báo cho người dùng mà không kích hoạt bất kỳ hành động nào khác.
       actions_description_html: Nếu áp đặt kiểm duyệt, một email thông báo sẽ được gửi cho người này, ngoại trừ <strong>Spam</strong>.
       actions_description_remote_html: Chọn hành động cần thực hiện để xử lý báo cáo này. Điều này sẽ chỉ ảnh hưởng đến cách máy chủ <strong>của bạn</strong> giao tiếp với tài khoản này và xử lý nội dung của nó.
       actions_no_posts: Báo cáo này không có tút liên quan để xóa
@@ -896,7 +901,7 @@ vi:
         close_reports_html: Đánh dấu <strong>tất cả</strong> báo cáo chống lại <strong>@%{acct}</strong> đã xử lý xong
         delete_data_html: Xóa trang <strong>@%{acct}</strong> và nội dung 30 ngày kể từ bây giờ trừ khi bỏ vô hiệu hóa
         preview_preamble_html: "<strong>@%{acct}</strong> sẽ nhận được cảnh báo với nội dung như sau:"
-        record_strike_html: Lưu lại cảnh cáo <strong>@%{acct}</strong> để giúp bạn đánh giá các vi phạm trong tương lai từ tài khoản này
+        record_strike_html: Lưu lại cảnh báo <strong>@%{acct}</strong> để giúp bạn đánh giá các vi phạm trong tương lai từ tài khoản này
         send_email_html: Gửi <strong>@%{acct}</strong> một email cảnh báo
         warning_placeholder: Lý do bổ sung cho hành động kiểm duyệt.
       target_origin: Nguồn báo cáo
@@ -1159,7 +1164,7 @@ vi:
         delete_statuses: "%{name} đã xóa tút của %{target}"
         disable: "%{name} đã ẩn %{target}"
         mark_statuses_as_sensitive: "%{name} đã đánh dấu tút của %{target} là nhạy cảm"
-        none: "%{name} đã gửi cảnh cáo %{target}"
+        none: "%{name} đã gửi cảnh báo %{target}"
         sensitive: "%{name} đã đánh dấu %{target} là nhạy cảm"
         silence: "%{name} đã ẩn %{target}"
         suspend: "%{name} đã vô hiệu hóa %{target}"
@@ -1551,7 +1556,7 @@ vi:
       pending: Đơn đăng ký của bạn đang chờ phê duyệt. Điều này có thể mất một thời gian. Bạn sẽ nhận được email nếu đơn đăng ký của bạn được chấp thuận.
       redirecting_to: Tài khoản của bạn không hoạt động vì hiện đang chuyển hướng đến %{acct}.
       self_destruct: Vì %{domain} đang đóng cửa, bạn sẽ chỉ có quyền truy cập hạn chế vào tài khoản của mình.
-      view_strikes: Xem những lần cảnh cáo cũ
+      view_strikes: Xem những lần cảnh báo cũ
     too_fast: Nghi vấn đăng ký spam, xin thử lại.
     use_security_key: Dùng khóa bảo mật
     user_agreement_html: Tôi đã đọc và đồng ý với <a href="%{terms_of_service_path}" target="_blank">điều khoản dịch vụ</a> và <a href="%{privacy_policy_path}" target="_blank">chính sách bảo mật</a>
@@ -1626,7 +1631,7 @@ vi:
     strikes:
       action_taken: Hành động áp dụng
       appeal: Khiếu nại
-      appeal_approved: Khiếu nại đã được chấp nhận và cảnh cáo không còn giá trị
+      appeal_approved: Khiếu nại đã được chấp nhận và cảnh báo không còn giá trị
       appeal_handled_by: Kháng cáo được xử lý bởi
       appeal_rejected: Khiếu nại bị từ chối
       appeal_submitted_at: Đã gửi khiếu nại
@@ -1636,7 +1641,7 @@ vi:
       approve_appeal: Chấp nhận khiếu nại
       associated_report: Báo cáo đính kèm
       created_at: Ngày
-      description_html: Đây là những cảnh cáo và áp đặt kiểm duyệt đối với bạn bởi đội ngũ %{instance}.
+      description_html: Đây là những cảnh báo và áp đặt kiểm duyệt đối với bạn bởi đội ngũ %{instance}.
       recipient: Người nhận
       reject_appeal: Từ chối khiếu nại
       status: 'Tút #%{id}'
@@ -1646,7 +1651,7 @@ vi:
         delete_statuses: Xóa tút
         disable: Đóng băng tài khoản
         mark_statuses_as_sensitive: Đánh dấu tút là nhạy cảm
-        none: Cảnh cáo
+        none: Cảnh báo
         sensitive: Đánh dấu tài khoản là nhạy cảm
         silence: Hạn chế tài khoản
         suspend: Vô hiệu hóa tài khoản
@@ -1978,7 +1983,7 @@ vi:
       summary_html: Bạn đang sử dụng một ứng dụng không hỗ trợ phiên bản Mastodon mới nhất. %{link} để có đầy đủ tính năng.
     moderation_warning:
       summary_html: Bạn đang sử dụng một ứng dụng không hỗ trợ phiên bản Mastodon mới nhất. %{link}.
-      title: Bạn vừa nhận một cảnh cáo kiểm duyệt.
+      title: Bạn vừa nhận một cảnh báo kiểm duyệt.
     severed_relationships:
       summary_html: Quản trị viên %{from} vừa vô hiệu hóa %{target}, điều này nghĩa là bạn không thể nhận được thông báo cập nhật từ họ hoặc tương tác với họ nữa. %{link} để khôi phục danh sách các mối quan hệ đã mất.
       title: Mất kết nối với %{name}
@@ -2043,6 +2048,8 @@ vi:
           trillion: T
   otp_authentication:
     code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận
+    delete: Xóa
+    delete_confirmation: Bạn có chắc muốn xóa ứng dụng xác thực của bạn khỏi các phương thức xác thực 2 bước?
     description_html: Bạn sẽ đăng nhập bằng mã token được tạo ra bởi điện thoại của bạn.
     enable: Kích hoạt
     instructions_html: "<strong>Quét mã QR bằng Google Authenticator hoặc một ứng dụng TOTP tương tự trên điện thoại của bạn</strong>. Kể từ bây giờ, ứng dụng đó sẽ tạo những token để bạn đăng nhập."
@@ -2200,7 +2207,7 @@ vi:
     relationships: Quan hệ
     severed_relationships: Quan hệ đứt gãy
     statuses_cleanup: Xóa tút cũ tự động
-    strikes: Lần cảnh cáo
+    strikes: Lần cảnh báo
     two_factor_authentication: Xác thực 2 bước
     webauthn_authentication: Khóa bảo mật
   severed_relationships:
@@ -2429,7 +2436,7 @@ vi:
         delete_statuses: Những tút %{acct} của bạn đã bị xóa bỏ
         disable: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
         mark_statuses_as_sensitive: Tút của bạn trên %{acct} bị đánh dấu nhạy cảm
-        none: Cảnh cáo %{acct}
+        none: Cảnh báo %{acct}
         sensitive: Tút của bạn trên %{acct} sẽ bị đánh dấu nhạy cảm kể từ bây giờ
         silence: Tài khoản %{acct} của bạn đã bị hạn chế
         suspend: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
@@ -2437,7 +2444,7 @@ vi:
         delete_statuses: Xóa tút
         disable: Tài khoản bị đóng băng
         mark_statuses_as_sensitive: Tút đã bị đánh dấu nhạy cảm
-        none: Cảnh cáo
+        none: Cảnh báo
         sensitive: Tài khoản đã bị đánh dấu nhạy cảm
         silence: Tài khoản bị hạn chế
         suspend: Tài khoản bị vô hiệu hóa
@@ -2516,7 +2523,6 @@ vi:
     nickname_hint: Nhập tên mới cho khóa bảo mật của bạn
     not_enabled: Bạn chưa kích hoạt WebAuthn
     not_supported: Trình duyệt của bạn không hỗ trợ khóa bảo mật
-    otp_required: Để dùng khóa bảo mật, trước tiên hãy kích hoạt xác thực 2 bước.
     registered_on: Đăng ký vào %{date}
   wrapstodon:
     description: Xem năm nay %{name} đã dùng Mastodon như thế nào!

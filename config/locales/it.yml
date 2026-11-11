@@ -2259,6 +2259,8 @@ it:
           trillion: T
   otp_authentication:
     code_hint: Inserisci il codice generato dall'app di autenticazione per confermare
+    delete: Elimina
+    delete_confirmation: Si è sicuri di voler eliminare la tua app di autenticazione dai tuoi metodi di autenticazione a due fattori?
     description_html: Se abiliti <strong>l'autenticazione a due fattori</strong> utilizzando un'app di autenticazione, per accedere sarà necessario essere in possesso del telefono, che genererà dei codici per l'accesso.
     enable: Abilita
     instructions_html: "<strong>Scansiona questo codice QR in Google Authenticator o in un'applicazione TOTP simile sul tuo telefono</strong>. D'ora in poi, quell'app genererà i codici che dovrai inserire quando accedi."
@@ -2739,7 +2741,6 @@ it:
     nickname_hint: Inserisci il soprannome della tua nuova chiave di sicurezza
     not_enabled: Non hai ancora abilitato WebAuthn
     not_supported: Questo browser non supporta le chiavi di sicurezza
-    otp_required: Per utilizzare le chiavi di sicurezza, prima abilita l'autenticazione a due fattori.
     registered_on: Registrato il %{date}
   wrapstodon:
     description: Guarda come %{name} ha utilizzato Mastodon quest'anno!

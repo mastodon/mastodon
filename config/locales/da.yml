@@ -2259,6 +2259,8 @@ da:
           trillion: tri.
   otp_authentication:
     code_hint: Angiv koden genereret af godkendelses-appen for at bekræfte
+    delete: Slet
+    delete_confirmation: Er du sikker på, at du vil slette din autentificeringsapp fra dine to-faktor godkendelsesmetoder?
     description_html: Aktiveres <strong>tofaktorgodkendelse</strong> vha. af en godkendelses-app, vil man skulle benytte sin mobil, der genererer det token, der skal angives ved indlogning.
     enable: Aktivér
     instructions_html: "<strong>Skan denne QR-kode i Google Authenticator eller en lign. TOTP-app på mobilen</strong>. Fremadrettet vil appen generere de tokens, som vil skulle angives ifm. indlogning."
@@ -2739,7 +2741,6 @@ da:
     nickname_hint: Angiv kaldenavnet på din nye sikkerhedsnøgle
     not_enabled: Du har endnu ikke aktiveret WebAuthn
     not_supported: Denne browser understøtter ikke sikkerhedsnøgler
-    otp_required: For at bruge sikkerhedsnøgler skal tofaktorgodkendelse først aktiveres.
     registered_on: Registreret d. %{date}
   wrapstodon:
     description: Se hvordan %{name} brugte Mastodon i år!

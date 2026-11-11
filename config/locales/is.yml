@@ -2252,6 +2252,7 @@ is:
           trillion: tr.
   otp_authentication:
     code_hint: Settu inn kóðann sem auðkenningarforritið útbjó til staðfestingar
+    delete: Eyða
     description_html: Ef þú virkjar <strong>tveggja-þátta auðkenningu</strong> með auðkenningarforriti, mun innskráning krefjast þess að þú hafir símann þinn við hendina, með honum þarf að útbúa öryggisteikn sem þú þarft að setja inn.
     enable: Virkja
     instructions_html: "<strong>Skannaðu þennar QR-kóða inn í Google Authenticator eða álíka TOTP-forrit á símanum þínum</strong>. Héðan í frá mun það forrit útbúa teikn sem þú verður að setja inn til að geta skráð þig inn."
@@ -2732,7 +2733,6 @@ is:
     nickname_hint: Settu inn stuttnefni fyrir nýja öryggislykilinn þinn
     not_enabled: Þú hefur ennþá ekki virkjað WebAuthn
     not_supported: Þessi vafri styður ekki öryggislykla
-    otp_required: Til að nota öryggislykla skaltu fyrst virkja tveggja-þátta auðkenningu.
     registered_on: Skráði sig %{date}
   wrapstodon:
     description: Sjáðu hvernig %{name} notaði Mastodon á árinu!
