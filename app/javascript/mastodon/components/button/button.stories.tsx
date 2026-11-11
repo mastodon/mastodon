@@ -118,3 +118,26 @@ export const ToggleIcon: Story = {
     );
   },
 };
+
+export const OnMedia: Story = {
+  args: {
+    color: 'media',
+  },
+  render(args) {
+    return (
+      <>
+        <Button {...args} />
+        <img
+          src='https://images.pexels.com/photos/33585484/pexels-photo-33585484.jpeg'
+          alt=''
+          style={{
+            position: 'fixed',
+            width: '100%',
+            inset: 0,
+            zIndex: -1,
+          }}
+        />
+      </>
+    );
+  },
+};
