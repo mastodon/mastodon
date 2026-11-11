@@ -2260,6 +2260,8 @@ es-AR:
           unit: ''
   otp_authentication:
     code_hint: Ingresá el código generado por tu aplicación de autenticación para confirmar
+    delete: Eliminar
+    delete_confirmation: "¿De verdad querés eliminar tu aplicación de autenticación de los métodos de autenticación de dos factores?"
     description_html: Si habilitás la <strong>autenticación de dos factores</strong> usando una aplicación de autenticación, entonces en el inicio de sesión se te pedirá que estés con tu dispositivo, el cual generará un código numérico ("token") para que lo ingresés.
     enable: Habilitar
     instructions_html: <strong>Escaneá este código QR en Authy, Google Authenticator o en otra aplicación TOTP en tu dispositivo</strong>. A partir de ahora, esa aplicación generará un código numérico ("token") para que lo ingresés.
@@ -2740,7 +2742,6 @@ es-AR:
     nickname_hint: Ingresá el apodo de tu nueva llave de seguridad
     not_enabled: Todavía no habilitaste WebAuthn
     not_supported: Este navegador web no soporta llaves de seguridad
-    otp_required: Para usar llaves de seguridad, por favor, primero habilitá la autenticación de dos factores.
     registered_on: Registrado el %{date}
   wrapstodon:
     description: "¡Enterate cómo %{name} usó Mastodon este año!"

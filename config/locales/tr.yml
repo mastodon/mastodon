@@ -910,8 +910,13 @@ tr:
       action_taken_by: tarafından gerçekleştirilen eylem
       actions:
         delete_description_html: Bildirilen gönderiler ve/veya koleksiyonlar silinecek ve aynı hesap tarafından gelecekte işlenecek ihlallerde durumun üst mercilere iletilmesine yardımcı olmak amacıyla bir uyarı kaydı tutulacaktır.
+        disable_description_html: Kullanıcının hesabını kullanmasını engelle, ancak içeriğini silme veya gizleme. Bu işlem geri alınabilir. Bu işlem, bu hesapla ilgili tüm bildirimleri kapatır.
+        force_sensitive_descption_html: Bu kullanıcının tüm medya eklerinin “hassas” olarak işaretlenmesini zorunlu kıl. Bu işlem geri alınabilir. Bu işlem, bu hesapla ilgili tüm bildirimleri kapatır.
         mark_as_sensitive_description_html: Bildirilen gönderilerdeki medya dosyaları hassas olarak işaretlenecek ve aynı hesabın gelecekteki ihlallerinde daha yetkili makamlara bildirmenize yardımcı olmak için bir eylem kaydedilecek.
         resolve_description_html: Bildirilen hesap için bir şey yapılmayacak, eylem kaydedilmeyecek ve bildirim kapatılacak.
+        silence_description_html: Bu hesap sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir. Hesaba yönelik tüm bildirimleri kapatır.
+        suspend_description_html: Bu hesap ve tüm içeriği erişilmez olacak ve nihayetinde silinecek ve bu hesapla etkileşim mümkün olmayacaktır. 30 gün içinde geri alınabilir. Hesaba yönelik tüm bildiriimleri kapatır.
+        warn_description_html: Bunu, başka bir eylem tetiklemeden kullanıcıya bir uyarı göndermek için kullan.
       actions_description_html: Bu bildirimi çözmek için ne yapılması gerektiğine karar verin. Bildirilen hesap için ceza işlemi yaparsanız, <strong>İstenmeyen</strong> kategorisi seçilmemişse, onlara bir e-posta duyurusu gönderilecektir.
       actions_description_remote_html: Bu bildirimi çözmek için hangi eylemi yapmak istediğinize karar verin. Bu yalnızca <strong>sizin</strong> sunucunuzun bu uzak hesapla nasıl etkileşeğini ve içeriğiyle ne yapacağını etkiler.
       actions_no_posts: Bu raporun ilişkili olduğu silinecek gönderi yok
@@ -2734,7 +2739,6 @@ tr:
     nickname_hint: Yeni güvenlik anahtarınızın takma adını girin
     not_enabled: Henüz WebAuthn'u etkinleştirmediniz
     not_supported: Bu tarayıcı güvenlik anahtarlarını desteklemiyor
-    otp_required: Güvenlik anahtarlarını kullanmak için lütfen önce iki adımlı kimlik doğrulamayı etkinleştirin.
     registered_on: "%{date} tarihinde kaydoldu"
   wrapstodon:
     description: "%{name} kullanıcısının bu yıl Mastodon'u nasıl kullandığını görün!"

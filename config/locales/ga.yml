@@ -952,8 +952,13 @@ ga:
       action_taken_by: Gníomh arna ghlacadh ag
       actions:
         delete_description_html: Scriosfar na poist agus/nó na bailiúcháin a tuairiscíodh agus taifeadfar stailc chun cabhrú leat sárú dlí amach anseo ag an gcuntas céanna a chur chun cinn.
+        disable_description_html: Cuir cosc ​​ar an úsáideoir a chuntas a úsáid, ach ná scrios ná ná folaigh an t-ábhar atá ann. Is féidir an gníomh seo a chealú. Dúnann sé seo gach tuairisc atá i gcoinne an chuntais seo.
+        force_sensitive_descption_html: Cuir iachall go marcálfar gach ceangaltán meán ón úsáideoir seo mar ábhar íogair. Is féidir an gníomh seo a chealú. Dúnann sé seo gach tuairisc atá déanta i gcoinne an chuntais seo.
         mark_as_sensitive_description_html: Déanfar na meáin sna poist tuairiscithe a mharcáil mar íogair agus déanfar stailc a thaifeadadh chun cabhrú leat sárú a dhéanamh ar sháruithe sa todhchaí tríd an gcuntas céanna.
         resolve_description_html: Ní dhéanfar aon ghníomhaíocht i gcoinne an chuntais thuairiscithe, ní dhéanfar aon stailc a thaifeadadh, agus dúnfar an tuarascáil.
+        silence_description_html: Ní bheidh an cuntas le feiceáil ach ag na daoine a leanann é cheana féin nó a dhéanann cuardach air de láimh; cuireann sé seo srian mór ar a raon teacht. Is féidir an t-athrú seo a chur ar ceal tráth ar bith. Dúnann sé seo gach tuairisc atá déanta i gcoinne an chuntais seo.
+        suspend_description_html: Beidh an cuntas agus a bhfuil ann ar fad do-rochtana, scriosfar é sa deireadh, agus ní bheidh sé indéanta idirghníomhú leis. Is féidir an próiseas seo a chur ar ceal laistigh de 30 lá. Dúnann sé seo gach tuairisc atá déanta i gcoinne an chuntais seo.
+        warn_description_html: Úsáid é seo chun rabhadh a sheoladh chuig an úsáideoir, gan aon ghníomh eile a spreagadh.
       actions_description_html: Déan cinneadh ar an ngníomh atá le déanamh chun an tuarascáil seo a réiteach. Má dhéanann tú beart pionósach in aghaidh an chuntais tuairiscithe, seolfar fógra ríomhphoist chucu, ach amháin nuair a roghnaítear an chatagóir <strong>Turscar</strong>.
       actions_description_remote_html: Déan cinneadh ar an ngníomh atá le déanamh chun an tuarascáil seo a réiteach. Ní bheidh tionchar aige seo ach ar an gcaoi a ndéanann <strong>do fhreastalaí</strong> cumarsáid leis an gcianchuntas seo agus a láimhseálann sé a ábhar.
       actions_no_posts: Níl aon phostáil ghaolmhar ag an tuarascáil seo le scriosadh
@@ -2403,6 +2408,8 @@ ga:
           trillion: T
   otp_authentication:
     code_hint: Cuir isteach an cód ginte ag d'aip fíordheimhnitheora le deimhniú
+    delete: Scrios
+    delete_confirmation: An bhfuil tú cinnte gur mian leat d’aip fhíordheimhnithe a scriosadh ó do mhodhanna fíordheimhnithe dhá fhachtóir?
     description_html: Má chumasaíonn tú <strong>fíordheimhniú dhá fhachtóir</strong> ag baint úsáide as aip fíordheimhneora, beidh ort do ghuthán a bheith i seilbh logáil isteach, rud a ghinfidh comharthaí chun tú a chur isteach.
     enable: Cumasaigh
     instructions_html: "<strong>Scan an cód QR seo isteach i Google Authenticator nó aip eile TOTP ar do ghuthán</strong>. As seo amach, ginfidh an aip sin comharthaí a chaithfidh tú a chur isteach agus tú ag logáil isteach."
@@ -2904,7 +2911,6 @@ ga:
     nickname_hint: Cuir isteach leasainm d'eochair shlándála nua
     not_enabled: Níl WebAuthn cumasaithe agat fós
     not_supported: Ní thacaíonn an brabhsálaí seo le heochracha slándála
-    otp_required: Chun eochracha slándála a úsáid cumasaigh fíordheimhniú dhá fhachtóir ar dtús.
     registered_on: Cláraithe ar %{date}
   wrapstodon:
     description: Féach conas a d'úsáid %{name} Mastodon i mbliana!

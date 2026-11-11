@@ -3,16 +3,16 @@ pl:
   simple_form:
     hints:
       account:
-        attribution_domains: Jedna na linię.
-        discoverable: Możesz być polecany w kolekcjach utworzonych przez innych użytkowników. Ty i Twoje publiczne wpisy mogą być również zasugerowane użytkownikom w różnych miejscach służących do odkrywania treści na Mastodonie.
+        attribution_domains: Jedna na linię. Chroni przed fałszywym przypisaniem autorstwa.
+        discoverable: Twoje konto może pojawiać się w kolekcjach tworzonych przez innych użytkowników. Ty i Twoje publiczne wpisy możecie też być polecani innym użytkownikom w różnych miejscach służących do odkrywania treści na Mastodonie.
         display_name: Twoje imię lub pseudonim.
-        fields: Co ci się tylko podoba – twoja strona domowa, zaimki, wiek…
+        fields: Twoja strona domowa, zaimki, wiek – cokolwiek chcesz.
         indexable: Twoje publiczne wpisy mogą pojawiać się w wynikach wyszukiwania w Mastodonie. Użytkownicy, którzy reagowali na Twoje wpisy, będą mogli je znaleźć niezależnie od tego ustawienia.
-        note: 'Możesz @wspomnieć użytkowników albo #hasztagi.'
-        show_collections: Twoja lista obserwowanych i obserwujących będzie widoczna dla wszystkich. Użytkownicy których obserwujesz będą jednak o tym wiedzieli.
+        note: 'Możesz @wspominać innych użytkowników lub dodawać #hasztagi.'
+        show_collections: Inni będą mogli przeglądać listę Twoich obserwowanych i obserwujących. Osoby, które obserwujesz, i tak będą o tym wiedzieć.
         unlocked: Inni użytkownicy będą mogli cię obserwować bez proszenia o zgodę. Odznacz, jeżeli chcesz aprobować obserwujących ręcznie po przejrzeniu próśb o obserwowanie.
       account_alias:
-        acct: Określ nazwę@domenę konta z którego chcesz się przenieść
+        acct: Podaj nazwę@domenę konta, z którego chcesz się przenieść
       account_migration:
         acct: Określ nazwę@domenę konta na które chcesz się przenieść
       account_warning_preset:
@@ -93,12 +93,14 @@ pl:
         closed_registrations_message: Wyświetlane po zamknięciu rejestracji
         content_cache_retention_period: Wszystkie wpisy z innych serwerów (w tym podbicia i odpowiedzi) zostaną usunięte po danej liczbie dni, bez względu na interakcje z nimi twoich użytkowników. Zawierają się w tym wpisy, które twoi użytkownicy dodali do zakładek lub ulubionych. Prywatne wzmianki od innych instancji zostaną utracone i będą nieprzywracalne. To ustawienie jest przeznaczone dla instancji zastosowania specjalnego i jest niezgodne z wieloma oczekiwaniami użytkowników.
         custom_css: Możesz zastosować niestandardowe style w internetowej wersji Mastodon.
+        custom_robots_html: <a href="%{path}">Składnia</a>
         email_footer_text: Opcjonalny tekst, który pojawia się wyłącznie w stopce wiadomości newslettera.
         favicon: WEBP, PNG, GIF, albo JPEG. Nadpisuje domyślną faviconę Mastodona.
         landing_page: Wybiera którą stronę pierwszą zobaczą odwiedzający na Twoim serwerze. Jeśli wybierzesz "Trendy", trendy muszą być włączone w ustawieniach odkrywania treści. Jeśli wybierzesz "Kanał lokalny", to "Uzyskaj dostęp do kanałów zawierających lokalne wpisy" musi być ustawiony na "Wszyscy" w ustawieniach wyszukiwania.
         mascot: Nadpisuje ilustrację w zaawansowanym interfejsie internetowym.
         media_cache_retention_period: Media z wpisów od obcych użytkowników są cache'owane na twoim serwerze. Kiedy dana wartość jest dodatnia, media te będą usunięte po tylu dniach. Jeżeli usunięte media zostaną potem zażądane, oryginał zostanie ponownie pobrany (o ile jest dalej dostępny). Z powodu ograniczeń dot. częstotliwości z jaką karty podglądu linków dopytują się o dane od stron trzecich, zalecana wartość to min. 14 dni, bo karty podglądu linków nie będą wcześniej odświeżane na żądane.
         min_age: Użytkownicy zostaną poproszeni o potwierdzenie daty urodzenia podczas rejestracji
+        override_robots: Pozwala dostosować reguły dostępu dla botów przestrzegających zasad
         peers_api_enabled: Lista nazw domen, z którymi ten serwer spotkał się w fediverse. Nie są tu zawarte żadne dane o tym, czy użytkownik dokonuje federacji z danym serwerem, a jedynie, że jego serwer o tym wie. Jest to wykorzystywane przez serwisy, które zbierają statystyki dotyczące federacji w ogólnym sensie.
         postpone_confirmation_emails: "Gdy to ustawienie jest włączone, \nwiadomości e-mail, z potwierdzeniem adresu e-mail dla oczekujących kont, są wysyłane dopiero po zatwierdzeniu tych kont. Może to pogorszyć doświadczenie użytkowników, ponieważ nadal będą musieli terminowo potwierdzić swój adres e-mail po otrzymaniu wiadomości, ale nie będą mieli kontroli nad momentem jej wysłania. Ponadto może to oznaczać więcej pracy dla moderatorów, ponieważ Mastodon nie będzie mógł filtrować oczekujących kont z nieprawidłowym adresem e-mail, zanim zostaną zatwierdzone."
         profile_directory: Katalog profili zawiera listę wszystkich użytkowników, którzy zgodzili się na bycie znalezionymi.
@@ -273,6 +275,7 @@ pl:
         setting_missing_alt_text_modal: Ostrzegaj mnie przed publikowaniem multimediów bez tekstu alternatywnego
         setting_quick_boosting: Włącz szybkie podbijanie
         setting_reduce_motion: Ogranicz ruch w animacjach
+        setting_show_stats_in_feed: Pokazuj statystyki interakcji w kanałach
         setting_split_default_privacy_discoverable: Uczyń moje wpisy widoczne w publicznym kanale i wynikach wyszukiwania
         setting_system_font_ui: Używaj domyślnej czcionki systemu
         setting_system_scrollbars_ui: Używaj domyślnego paska przewijania systemu
@@ -306,6 +309,7 @@ pl:
         closed_registrations_message: Niestandardowa wiadomość, gdy rejestracje nie są dostępne
         content_cache_retention_period: Okres zachowywania zdalnych treści
         custom_css: Niestandardowy CSS
+        custom_robots: Własny robots.txt
         email_footer_text: Dodatkowy tekst stopki
         favicon: Favicon
         landing_page: Strona docelowa dla nowych odwiedzających
@@ -314,6 +318,7 @@ pl:
         mascot: Własna ikona
         media_cache_retention_period: Okres przechowywania pamięci podręcznej
         min_age: Wymagany minimalny wiek
+        override_robots: Zastąp domyślny robots.txt
         peers_api_enabled: Opublikuj listę odkrytych serwerów w API
         postpone_confirmation_emails: Wyślij e-mail z potwierdzeniem dopiero po zatwierdzeniu konta
         profile_directory: Włącz katalog profilów

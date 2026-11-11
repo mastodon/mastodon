@@ -2210,6 +2210,8 @@ zh-CN:
           trillion: T
   otp_authentication:
     code_hint: 输入认证应用生成的代码以确认操作
+    delete: 删除
+    delete_confirmation: 你确定要从双因素认证方式中删除身份验证应用吗？
     description_html: 如果你使用身份验证应用并启用了<strong>双因素认证</strong>，登录时将需要用到你的手机，由它生成所需的令牌。
     enable: 启用
     instructions_html: "<strong>请使用 Google 身份验证器或其他的TOTP双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，在登录时，你需要输入该应用生成的代码。"
@@ -2683,7 +2685,6 @@ zh-CN:
     nickname_hint: 输入你的新安全密钥的昵称
     not_enabled: 你尚未启用WebAuthn
     not_supported: 此浏览器不支持安全密钥
-    otp_required: 要使用安全密钥，请先启用双因素认证。
     registered_on: 注册于 %{date}
   wrapstodon:
     description: 来看看%{name}今年是怎么使用Mastodon的！

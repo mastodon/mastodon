@@ -2259,6 +2259,8 @@ nl:
           trillion: bln.
   otp_authentication:
     code_hint: Voer de code in die door de authenticatie-app werd gegenereerd
+    delete: Verwijderen
+    delete_confirmation: Weet je zeker dat je jouw authenticatie-app uit je methoden voor tweestapsverificatie wilt verwijderen?
     description_html: Na het instellen van <strong>tweestapsverificatie</strong> met een authenticatie-app, kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren toegangscode.
     enable: Inschakelen
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Vanaf nu genereert deze app toegangscodes die je bij het inloggen moet invoeren."
@@ -2739,7 +2741,6 @@ nl:
     nickname_hint: Voer de bijnaam in van jouw nieuwe beveiligingssleutel
     not_enabled: Je hebt WebAuthn nog niet ingeschakeld
     not_supported: Deze browser ondersteunt geen beveiligingssleutels
-    otp_required: Om beveiligingssleutels te kunnen gebruiken, moet je eerst tweestapsverificatie inschakelen.
     registered_on: Geregistreerd op %{date}
   wrapstodon:
     description: Bekijk hoe %{name} dit jaar Mastodon heeft gebruikt!

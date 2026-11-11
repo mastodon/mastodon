@@ -2126,6 +2126,8 @@ sq:
           trillion: T
   otp_authentication:
     code_hint: Që të bëhet ripohimi, jepni kodin e prodhuar nga aplikacioni juaj i mirëfilltësimeve
+    delete: Fshije
+    delete_confirmation: Jeni i sigurt se doni të fshihet aplikacioni juaj i mirëfilltësimeve që nga metodat tuaja të mirëfilltësimeve dyfaktorëshe?
     description_html: Nëse aktivizoni <strong>mirëfilltësim dyfaktorësh</strong> duke përdorur një aplikacion mirëfilltësimesh, hyrja do të dojë që të keni telefonin tuaj, i cili do të prodhojë për ju token-ë hyrjesh.
     enable: Aktivizoje
     instructions_html: "<strong>Skanoje këtë kod QR me Google Authenticator ose një aplikacion të ngjashëm TOTP në telefonin tuaj</strong>. Tani e tutje, ai aplikacion do të prodhojë token-ë të cilët do t’ju duhet t’i jepni kur bëni hyrje."
@@ -2587,7 +2589,6 @@ sq:
     nickname_hint: Jepni nofkën e kyçit tuaj të ri të sigurisë
     not_enabled: S’e keni aktivizuar ende WebAuthn-in
     not_supported: Ky shfletues nuk mbulon kyçe sigurie
-    otp_required: Që të përdoren kyçe sigurie, ju lutemi, së pari aktivizoni mirëfilltësimin dyfaktorësh.
     registered_on: Regjistruar më %{date}
   wrapstodon:
     description: Shihni si u përdor Mastodon-in këtë vit nga %{name}!

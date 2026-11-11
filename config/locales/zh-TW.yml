@@ -2216,6 +2216,8 @@ zh-TW:
           trillion: T
   otp_authentication:
     code_hint: 請輸入您驗證應用程式所產生之 token 以確認
+    delete: 刪除
+    delete_confirmation: 您是否確定要自兩階段驗證中刪除驗證應用程式？
     description_html: 若您啟用使用驗證應用程式的<strong>兩階段驗證</strong>，您每次登入都需要輸入由您的手機所產生之 Token。
     enable: 啟用
     instructions_html: "<strong>請用您手機上的 Google Authenticator 或類似的 TOTP 應用程式掃描此 QR code</strong>。從現在開始，該應用程式將會產生您每次登入都必須輸入的 token。"
@@ -2693,7 +2695,6 @@ zh-TW:
     nickname_hint: 輸入您新安全金鑰的暱稱
     not_enabled: 您尚未啟用 WebAuthn
     not_supported: 此瀏覽器並不支援安全金鑰
-    otp_required: 請先啟用兩階段驗證以使用安全金鑰。
     registered_on: 註冊於 %{date}
   wrapstodon:
     description: 來瞧瞧 %{name} 今年是如何使用 Mastodon 吧！
