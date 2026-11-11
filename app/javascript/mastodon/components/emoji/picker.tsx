@@ -67,14 +67,21 @@ export const EmojiPickerButton: React.FC<{
   disabled?: boolean;
   placement?: Placement;
   className?: string;
-}> = ({ onPick, disabled, placement = 'top-start', className }) => {
+  size?: React.ComponentProps<typeof IconButton>['size'];
+}> = ({
+  onPick,
+  disabled,
+  placement = 'top-start',
+  className,
+  size = 'sm',
+}) => {
   const [open, { onToggle, onFalse }] = useToggle();
   const [target, setTarget] = useState<HTMLButtonElement | null>(null);
 
   return (
     <>
       <IconButton
-        size='sm'
+        size={size}
         icon={SmileyIcon}
         ref={setTarget}
         onClick={onToggle}

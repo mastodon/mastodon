@@ -170,6 +170,7 @@ const EmojiFieldWrapper: FC<
         <>
           {children({ ...inputProps, onChange: handleChange })}
           <EmojiPickerButton
+            size='xs'
             onPick={handlePickEmoji}
             disabled={disabled}
             className={classes.emojiButton}
