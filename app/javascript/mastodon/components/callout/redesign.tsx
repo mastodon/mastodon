@@ -63,7 +63,11 @@ export const Callout = <As extends React.ElementType>({
   const wrappedChildren = <div className={classes.textWrapper}>{children}</div>;
 
   const actionButton = actionText ? (
-    <Button onClick={actionClick} size={size === 'sm' ? 'xs' : 'sm'}>
+    <Button
+      onClick={actionClick}
+      className={classes.actionButton}
+      size={size === 'sm' ? 'xs' : 'sm'}
+    >
       {actionText}
     </Button>
   ) : null;
@@ -81,7 +85,12 @@ export const Callout = <As extends React.ElementType>({
     props;
 
   const secondaryButton = secondaryActionText ? (
-    <Button onClick={secondaryActionClick} size='sm' variant='ghost'>
+    <Button
+      size='sm'
+      variant='ghost'
+      onClick={secondaryActionClick}
+      className={classes.actionButton}
+    >
       {secondaryActionText}
     </Button>
   ) : null;
