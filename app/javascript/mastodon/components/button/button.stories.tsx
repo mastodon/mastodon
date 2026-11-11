@@ -45,11 +45,11 @@ const meta = {
     },
     variant: {
       control: 'inline-radio',
-      options: ['solid', 'tonal', 'ghost', 'solidOnMedia', 'onMedia'],
+      options: ['solid', 'tonal', 'ghost'],
     },
     color: {
       control: 'inline-radio',
-      options: ['neutral', 'accent', 'destructive'],
+      options: ['neutral', 'accent', 'destructive', 'media'],
     },
     leadingIcon: iconArgType,
     trailingIcon: iconArgType,
