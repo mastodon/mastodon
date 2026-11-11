@@ -85,13 +85,13 @@
   // Ensure that a header without buttons is as tall as one with buttons
   min-height: 48px;
   text-align: center;
+  background: var(--color-bg-primary);
 
   .rootScrolledDown & {
     cursor: pointer;
   }
 
   @media (width > variables.$mobile-menu-breakpoint) {
-    background: var(--color-bg-primary);
     border: var(--border-column);
     border-bottom: none;
     border-radius: var(--radius-6) var(--radius-6) 0 0;
