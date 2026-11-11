@@ -92,7 +92,7 @@ a.nestedQuote {
 
 .mediaGrid {
   display: grid;
-  height: 260px;
+  max-height: 260px;
   gap: var(--space-half);
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -117,7 +117,6 @@ a.nestedQuote {
 }
 
 .image > a {
-  max-height: 260px;
   display: block;
 
   &:focus {
@@ -129,6 +128,7 @@ a.nestedQuote {
 // Sets the border radius for the grid, ensuring items are flush.
 .mediaGrid {
   .image a {
+    max-height: 260px;
     border-radius: var(--radius-2);
   }
 

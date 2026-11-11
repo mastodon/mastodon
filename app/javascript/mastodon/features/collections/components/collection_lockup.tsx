@@ -104,7 +104,7 @@ export const CollectionInfo: React.FC<
   const authorHandle = useAccountHandle(authorAccount, domain);
 
   return (
-    <ul>
+    <ul className={classes.info}>
       {collection.sensitive && (
         <li className='sr-only'>
           <FormattedMessage

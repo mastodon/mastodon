@@ -45,6 +45,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-1);
+  overflow: hidden; // Forces the display name to not push contents out of view.
 }
 
 // Add a tag to override .root a
