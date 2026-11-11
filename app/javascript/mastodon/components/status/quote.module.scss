@@ -92,7 +92,7 @@ a.nestedQuote {
 
 .mediaGrid {
   display: grid;
-  height: 260px;
+  max-height: 260px;
   gap: var(--space-half);
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
