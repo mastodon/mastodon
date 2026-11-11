@@ -5,7 +5,11 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { useHistory, useLocation, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import { QuestionIcon, ShareFatIcon, StarIcon } from '@phosphor-icons/react';
+import {
+  QuestionIcon,
+  ShareNetworkIcon,
+  StarIcon,
+} from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
@@ -215,7 +219,7 @@ const CollectionHeader: React.FC<{
           <AuthorNote id={account_id} />
         </div>
         <div className={classes.headerButtonWrapper}>
-          <IconButton icon={ShareFatIcon} onClick={openShareModal}>
+          <IconButton icon={ShareNetworkIcon} onClick={openShareModal}>
             {intl.formatMessage(messages.share)}
           </IconButton>
           <CollectionMenu context='collection' collection={collection} />
