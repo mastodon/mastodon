@@ -36,7 +36,7 @@ class REST::CredentialAccountSerializer < REST::AccountSerializer
       confirmed: object.user.confirmed?,
       approved: object.user.approved?,
       error_code: error,
-      error: error.nil? ? nil : I18n.t(error, scope: 'accounts.api_errors'),
+      error: error.nil? ? nil : I18n.t("accounts.api_errors.#{error}"),
     }
   end
 end
