@@ -88,6 +88,8 @@ export default class MediaContainer extends PureComponent {
               } : {
                 onOpenMedia: this.handleOpenMedia,
               }),
+
+              showSpoilerButton: true, // To show spoiler button on the MediaGallery component
             });
 
             return createPortal(

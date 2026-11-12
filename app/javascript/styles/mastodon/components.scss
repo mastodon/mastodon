@@ -4637,10 +4637,10 @@ a.status-card {
 
 .media-gallery__actions {
   position: absolute;
-  top: 6px;
-  inset-inline-end: 6px;
+  inset-block-start: var(--space-2);
+  inset-inline-end: var(--space-2);
   display: flex;
-  gap: 2px;
+  gap: var(--space-1);
   z-index: 2;
 
   &__pill {

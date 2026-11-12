@@ -39,15 +39,25 @@
   :global(.spoiler-button) {
     display: none;
   }
+
+  &.galleryWrapperAspectForce {
+    aspect-ratio: var(--aspect-ratio);
+    max-height: var(--max-media-height-large);
+  }
 }
 
 .gallerySpoiler {
   position: absolute;
-  inset: 0;
   z-index: 10;
+  cursor: auto;
+  inset-block-start: var(--space-2);
+  inset-inline-end: var(--space-2);
+}
+
+.gallerySpoilerFilter {
   display: grid;
   place-content: center;
-  cursor: auto;
+  inset: 0;
 
   > p {
     @include mixins.type-body-compact;
@@ -58,14 +68,8 @@
   }
 }
 
-.galleryHideButtons {
-  :global(.media-gallery__item__badges),
-  :global(.media-gallery__actions) {
-    display: none;
-  }
-}
-
 .galleryHideActions {
+  :global(.media-gallery__item__badges),
   :global(.media-gallery__actions) {
     display: none;
   }

@@ -16,7 +16,8 @@ import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { formatTime } from 'mastodon/features/video';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
-import { Button } from './button';
+import { Button, IconButton } from './button';
+import { EyeIcon, EyeSlashIcon } from '@phosphor-icons/react';
 
 class Item extends PureComponent {
 
@@ -299,7 +300,7 @@ class MediaGallery extends PureComponent {
   }
 
   render () {
-    const { media, lang, sensitive, defaultWidth, autoplay, matchedFilters } = this.props;
+    const { media, lang, sensitive, defaultWidth, autoplay, matchedFilters, showSpoilerButton } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
 
@@ -328,17 +329,17 @@ class MediaGallery extends PureComponent {
 
         {(!visible || uncached) && <SpoilerButton uncached={uncached} sensitive={sensitive} onClick={this.handleOpen} matchedFilters={matchedFilters} />}
 
-        {(visible && !uncached) && (
+        {showSpoilerButton && (
           <div className='media-gallery__actions'>
-            <Button
+            <IconButton
+              icon={visible ? EyeSlashIcon : EyeIcon}
               size='xs'
-              type='button'
               variant='onMedia'
               className='media-gallery__actions__pill'
               onClick={this.handleOpen}
             >
               <FormattedMessage id='media_gallery.hide' defaultMessage='Hide' />
-            </Button>
+            </IconButton>
           </div>
         )}
       </div>
