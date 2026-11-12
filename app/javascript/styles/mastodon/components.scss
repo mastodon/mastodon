@@ -4942,6 +4942,12 @@ a.status-card {
   &--error img {
     visibility: hidden;
   }
+
+  .media-gallery__alt__label {
+    position: absolute;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+  }
 }
 
 .media-gallery__item-thumbnail {

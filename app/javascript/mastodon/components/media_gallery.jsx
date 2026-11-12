@@ -107,10 +107,6 @@ class Item extends PureComponent {
 
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
 
-    if (description?.length > 0) {
-      badges.push(<AltTextBadge key='alt' description={description} />);
-    }
-
     if (attachment.get('type') === 'unknown') {
       return (
         <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
@@ -202,6 +198,8 @@ class Item extends PureComponent {
         />
 
         {visible && thumbnail}
+
+        {visible && description && <AltTextBadge description={description} />}
 
         {visible && badges && (
           <div className='media-gallery__item__badges'>
