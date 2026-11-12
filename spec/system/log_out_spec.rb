@@ -33,7 +33,7 @@ RSpec.describe 'Log out' do
         .to have_css('body', class: 'app-body')
 
       within 'nav' do
-        click_on frontend_translations('tabs_bar.account_settings')
+        click_on frontend_translations('tabs_bar.account')
       end
 
       click_on frontend_translations('navigation_bar.sign_out')
