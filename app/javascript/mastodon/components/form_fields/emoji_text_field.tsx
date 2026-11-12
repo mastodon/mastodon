@@ -16,6 +16,7 @@ import { CharacterCounter } from '../character_counter';
 import type { OnEmojiPick } from '../emoji/picker';
 import { EmojiPickerButton, emojiToString } from '../emoji/picker';
 
+import classes from './emoji_text_field.module.scss';
 import type { CommonFieldWrapperProps, InputProps } from './form_field_wrapper';
 import { FormFieldWrapper } from './form_field_wrapper';
 import { TextArea } from './text_area_field';
@@ -160,11 +161,20 @@ const EmojiFieldWrapper: FC<
   );
 
   return (
-    <FormFieldWrapper describedById={counterId} {...otherProps}>
+    <FormFieldWrapper
+      describedById={counterId}
+      className={classes.fieldWrapper}
+      {...otherProps}
+    >
       {(inputProps) => (
         <>
           {children({ ...inputProps, onChange: handleChange })}
-          <EmojiPickerButton onPick={handlePickEmoji} disabled={disabled} />
+          <EmojiPickerButton
+            size='xs'
+            onPick={handlePickEmoji}
+            disabled={disabled}
+            className={classes.emojiButton}
+          />
           {counterMax && (
             <CharacterCounter
               currentString={value ?? ''}
