@@ -48,6 +48,7 @@ class Admin::Reports::ActionsController < Admin::BaseController
       type: action_from_button,
       warning_preset_id: get_param('warning_preset_id'),
       include_statuses: get_param('include_statuses'),
+      include_rule_violations: get_param('include_rule_violations'),
     }
   end
 

@@ -11,10 +11,16 @@ class Admin::ModerationAction < Admin::BaseAction
   attr_accessor :warning_preset_id
 
   attribute :include_statuses, :boolean, default: true
+  attribute :include_rule_violations, :boolean, default: false
 
   alias include_statuses? include_statuses
+  alias include_rule_violations? include_rule_violations
 
   private
+
+  def rule_ids
+    report.rule_ids if include_rule_violations?
+  end
 
   def status_ids
     report.status_ids if include_statuses?
