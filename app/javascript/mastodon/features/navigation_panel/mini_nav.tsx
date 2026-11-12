@@ -66,7 +66,7 @@ export const MiniNav: React.FC = () => {
         >
           <FormattedMessage id='tabs_bar.account' defaultMessage='Account' />
         </MenuTrigger>
-        <MenuList placement='top-end' offset={8}>
+        <MenuList placement='top-end' offset={8} minWidth={240}>
           <AccountMenuItems />
         </MenuList>
       </Menu>
