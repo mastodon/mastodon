@@ -4,7 +4,6 @@ import { Search } from '@/mastodon/components/search';
 import { useIdentity } from '@/mastodon/identity_context';
 import { includeMultiColumnPaths } from '@/mastodon/utils/react_router';
 
-import { FooterLinks } from './footer_links';
 import classes from './styles.module.scss';
 
 /**
@@ -40,10 +39,6 @@ export const DiscoveryPanel: React.FC = () => {
       {signedIn && isRouteWithSearchBar && (
         <Search singleColumn context='sidebar' />
       )}
-
-      <footer className={classes.footer}>
-        <FooterLinks context='search' />
-      </footer>
     </div>
   );
 };
