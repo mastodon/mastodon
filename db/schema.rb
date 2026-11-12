@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_12_113100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -164,6 +164,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
     t.bigint "target_account_id"
     t.text "text", default: "", null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.bigint "rule_ids", array: true
     t.index ["account_id"], name: "index_account_warnings_on_account_id"
     t.index ["target_account_id"], name: "index_account_warnings_on_target_account_id"
   end

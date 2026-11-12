@@ -49,7 +49,8 @@ class Admin::BaseAction
       report: report,
       action:,
       text: text_for_warning,
-      status_ids: status_ids
+      status_ids: status_ids,
+      rule_ids: rule_ids
     )
   end
 
