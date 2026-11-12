@@ -225,3 +225,8 @@
   border-radius: inherit;
   border: 1px solid transparent;
 }
+
+@mixin click-area($size: var(--space-1)) {
+  padding: $size;
+  margin: calc(-1 * #{$size});
+}
