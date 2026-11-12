@@ -139,7 +139,7 @@ const isFediverseFeedsLinkActive = (
 
 const MAX_HASHTAG_COUNT = 5;
 
-export const RedesignNavigationPanel: React.FC<{
+export const NavigationPanel: React.FC<{
   siteName?: string;
   /**
    * In 'slide-out' mode (used on smaller viewport sizes), some

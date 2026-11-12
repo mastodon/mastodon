@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Column } from '@/mastodon/components/column';
 import { ComposeButton } from '@/mastodon/features/compose/trigger';
 import { DiscoveryPanel } from '@/mastodon/features/discovery_panel';
-import { RedesignNavigationPanel } from '@/mastodon/features/navigation_panel';
+import { NavigationPanel } from '@/mastodon/features/navigation_panel';
 import { RedesignMobileNavigation } from '@/mastodon/features/navigation_panel/mobile_nav';
 import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 
@@ -38,7 +38,7 @@ export const ColumnsArea: React.FC<{
     return (
       <div ref={ref} className={classes.root}>
         <div className={classes.navigationWrapper}>
-          <RedesignNavigationPanel />
+          <NavigationPanel />
         </div>
         {isMobile ? <RedesignMobileNavigation /> : <ComposeButton />}
 
@@ -54,7 +54,7 @@ export const ColumnsArea: React.FC<{
   return (
     <main ref={ref} className={multiColClasses.root}>
       <div className={multiColClasses.navigationWrapper}>
-        <RedesignNavigationPanel multiColumn />
+        <NavigationPanel multiColumn />
       </div>
       <ComposeButton />
       <MultiColumnContent>{children}</MultiColumnContent>

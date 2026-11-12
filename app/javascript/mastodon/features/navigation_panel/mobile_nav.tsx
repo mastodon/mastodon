@@ -32,7 +32,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import {
-  RedesignNavigationPanel,
+  NavigationPanel,
   useNotificationsCount,
   handleSearchLinkClick,
 } from '.';
@@ -282,7 +282,7 @@ const SlideOutNavigation: React.FC = () => {
       inert={!isOpen}
     >
       <animated.div className={classes.slideOut} {...bind()} style={{ x }}>
-        <RedesignNavigationPanel mode='slide-out' />
+        <NavigationPanel mode='slide-out' />
       </animated.div>
     </div>
   );
