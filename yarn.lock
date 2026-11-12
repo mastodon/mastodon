@@ -2951,7 +2951,7 @@ __metadata:
     "@react-aria/utils": "npm:^3.34.1"
     "@react-spring/web": "npm:10.1.2"
     "@reduxjs/toolkit": "npm:2.14.0"
-    "@rolldown/plugin-babel": "npm:0.2.4"
+    "@rolldown/plugin-babel": "npm:0.3.1"
     "@storybook/addon-a11y": "npm:10.6.1"
     "@storybook/addon-docs": "npm:10.6.1"
     "@storybook/addon-vitest": "npm:10.6.2"
@@ -4175,10 +4175,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rolldown/plugin-babel@npm:0.2.4":
-  version: 0.2.4
-  resolution: "@rolldown/plugin-babel@npm:0.2.4"
+"@rolldown/plugin-babel@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@rolldown/plugin-babel@npm:0.3.1"
   dependencies:
+    artichokie: "npm:^0.4.5"
     picomatch: "npm:^4.0.7"
   peerDependencies:
     "@babel/core": ^7.29.0 || ^8.0.0-rc.1
@@ -4193,7 +4194,7 @@ __metadata:
       optional: true
     vite:
       optional: true
-  checksum: 10c0/1283804c979f32c24adf3e80177ff3ebb7f8db749660235ed0a511cd4e1a3c129bea4209dee5f9ee67b1709a6efc65986349ca10ff2f5557c86623d1eebd7b42
+  checksum: 10c0/ff4d1caf77e85d1337517cda0a7469b2d6f7f13c710a7723d960a4e07e7c8a6ab39e6a9726887b7089d8f32b84c717ab60f7cd52e1fe13e9278264269d82c645
   languageName: node
   linkType: hard
 
@@ -6172,6 +6173,13 @@ __metadata:
   version: 1.2.0
   resolution: "arrow-key-navigation@npm:1.2.0"
   checksum: 10c0/6a6ae0aa65cc1aeb2970fcd0ef855b3a4ba8366e785c20d2228e739c08364a2aac62aac09dc3224066aa9bc5fde1a95e7daf5084775fc71abb724649c54da68b
+  languageName: node
+  linkType: hard
+
+"artichokie@npm:^0.4.5":
+  version: 0.4.5
+  resolution: "artichokie@npm:0.4.5"
+  checksum: 10c0/919c7d3c9d6b049fea8f156269b10678cb87abe399740c5ff89f0bfa6768e9d5c5de8634a28ec6e713a3356b38dd5363fd11c0d383d86723ac8ac979e001bf66
   languageName: node
   linkType: hard
 
