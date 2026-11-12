@@ -38,10 +38,12 @@ RSpec.describe Web::PushNotificationWorker do
   # Invalid subscription:
   let(:invalid_subscription) { Fabricate.build(:web_push_subscription, user_id: user.id, key_p256dh: 'invalid', key_auth: 'invalid', endpoint: endpoint, standard: true, data: { alerts: { notification.type => true } }) }
 
+  let(:old_subscription) { Fabricate.build(:web_push_subscription, user_id: user.id, key_p256dh: std_p256dh, key_auth: std_auth, endpoint: endpoint, standard: true, server_key: std_as_public, data: { alerts: { notification.type => true } }) }
+
   describe 'perform' do
     around do |example|
       original_keyring = Rails.configuration.x.vapid
-      Rails.configuration.x.vapid = Mastodon::VapidKeyring.new([vapid_private_key])
+      Rails.configuration.x.vapid = Mastodon::VapidKeyring.new([], vapid_private_key)
       example.run
       Rails.configuration.x.vapid = original_keyring
     end
@@ -103,16 +105,23 @@ RSpec.describe Web::PushNotificationWorker do
     context 'with a missing vapid key' do
       around do |example|
         original_keyring = Rails.configuration.x.vapid
-        Rails.configuration.x.vapid = Mastodon::VapidKeyring.new([])
+        Rails.configuration.x.vapid = Mastodon::VapidKeyring.new([], nil)
         example.run
         Rails.configuration.x.vapid = original_keyring
       end
 
+      before do
+        # Simulating an existing valid subscription that is now valid because the
+        # server key was rotated. To do that we need to skip validation on the existing
+        # subscription to create it in the first place
+        old_subscription.save(validate: false)
+      end
+
       it 'removes the record and does not process the request' do
-        expect { subject.perform(std_subscription.id, notification.id) }
+        expect { subject.perform(old_subscription.id, notification.id) }
           .to_not raise_error
 
-        expect { std_subscription.reload }.to raise_error ActiveRecord::RecordNotFound
+        expect { old_subscription.reload }.to raise_error ActiveRecord::RecordNotFound
 
         expect(a_request(:post, endpoint)).to_not have_been_made
       end

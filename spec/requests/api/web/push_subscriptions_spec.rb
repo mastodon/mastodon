@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'API Web Push Subscriptions' do
   around do |test|
     original_keyring = Rails.configuration.x.vapid
-    Rails.configuration.x.vapid = Mastodon::VapidKeyring.new ['EfghEfghEfghEfghEfghEfghEfghEfghEfghEfghEfg=', 'AbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbc=']
+    Rails.configuration.x.vapid = Mastodon::VapidKeyring.new ['EfghEfghEfghEfghEfghEfghEfghEfghEfghEfghEfg='], 'AbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbc='
 
     test.run
 
