@@ -336,7 +336,13 @@ class MediaGallery extends PureComponent {
               className='media-gallery__actions__pill'
               onClick={this.handleOpen}
             >
-              <FormattedMessage id='media_gallery.hide' defaultMessage='Hide' />
+              {visible
+                ? <FormattedMessage id='media_gallery.hide' defaultMessage='Hide' />
+                : <FormattedMessage
+                    id='content_warning.media.show_short'
+                    defaultMessage='Show media'
+                  />
+              }
             </IconButton>
           </div>
         )}

@@ -46,6 +46,7 @@ describe('<MediaGallery /> visibility controls', () => {
             height={200}
             visible={visible}
             onOpenMedia={vi.fn()}
+            showSpoilerButton
           />
         }
       />,
