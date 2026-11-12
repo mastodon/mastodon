@@ -7,6 +7,7 @@
 #  id                :bigint(8)        not null, primary key
 #  action            :integer          default("none"), not null
 #  overruled_at      :datetime
+#  rule_ids          :bigint(8)        is an Array
 #  status_ids        :string           is an Array
 #  text              :text             default(""), not null
 #  created_at        :datetime         not null
