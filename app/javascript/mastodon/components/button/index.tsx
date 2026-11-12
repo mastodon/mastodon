@@ -21,8 +21,8 @@ export const buttonClasses = classes;
 
 interface ButtonPropsBase<As extends 'a' | 'button'> {
   size?: 'lg' | 'md' | 'sm' | 'xs';
-  variant?: 'solid' | 'tonal' | 'ghost' | 'onMedia' | 'solidOnMedia';
-  color?: 'accent' | 'neutral' | 'destructive';
+  variant?: 'solid' | 'tonal' | 'ghost';
+  color?: 'accent' | 'neutral' | 'destructive' | 'media';
   onClick?: React.MouseEventHandler<
     As extends 'button' ? HTMLButtonElement : HTMLAnchorElement
   >;

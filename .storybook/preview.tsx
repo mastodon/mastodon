@@ -63,6 +63,16 @@ const preview: Preview = {
         ],
       },
     },
+    contrast: {
+      description: 'Contrast mode',
+      toolbar: {
+        title: 'Contrast',
+        items: [
+          { value: 'default', icon: 'contrastignored' },
+          { value: 'high', icon: 'contrast' },
+        ],
+      },
+    },
     loggedIn: {
       description: 'Whether a user is logged in',
       toolbar: {
@@ -78,6 +88,7 @@ const preview: Preview = {
   initialGlobals: {
     locale: 'en',
     theme: 'light',
+    contrast: 'default',
     loggedIn: 'true',
   },
   decorators: [
@@ -170,9 +181,11 @@ const preview: Preview = {
     },
     (Story, { globals }) => {
       const theme = globals.theme;
+      const contrast = globals.contrast;
       useEffect(() => {
         document.documentElement.dataset.colorScheme = theme;
-      }, [theme]);
+        document.documentElement.dataset.contrast = contrast;
+      }, [contrast, theme]);
       return <Story />;
     },
     (Story) => (

@@ -65,7 +65,8 @@ export const ComposeUpload: React.FC<{
     >
       <Button
         size='xs'
-        variant={attachment.description ? 'onMedia' : 'solidOnMedia'}
+        color='media'
+        variant={attachment.description ? 'tonal' : 'solid'}
         onClick={handleAltEdit}
         className={classes.mediaMenuAltButton}
         leadingIcon={attachment.description ? PencilSimpleIcon : PlusIcon}
@@ -96,7 +97,7 @@ export const ComposeUpload: React.FC<{
             onClick={handleRearrange}
             icon={ArrowsLeftRightIcon}
             size='xs'
-            variant='onMedia'
+            color='media'
             tooltipPlacement='top'
           >
             <FormattedMessage
@@ -109,7 +110,7 @@ export const ComposeUpload: React.FC<{
           onClick={handleDelete}
           icon={TrashIcon}
           size='xs'
-          variant='onMedia'
+          color='media'
           tooltipPlacement='top'
         >
           <FormattedMessage
