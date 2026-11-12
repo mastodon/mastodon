@@ -56,7 +56,7 @@ export const MiniNav: React.FC = () => {
         />
       </MiniNavigationLink>
       <Menu>
-        <MenuTrigger as={AccountButton}>
+        <MenuTrigger as={AccountButton} withMenuIndicator>
           <FormattedMessage id='tabs_bar.account' defaultMessage='Account' />
         </MenuTrigger>
         <MenuList placement='top-end' offset={8} minWidth={240}>
@@ -67,8 +67,13 @@ export const MiniNav: React.FC = () => {
   );
 };
 
-export const AccountButton: React.FC<React.ComponentPropsWithRef<'button'>> = ({
+interface AccountButton extends React.ComponentPropsWithRef<'button'> {
+  withMenuIndicator?: boolean;
+}
+
+export const AccountButton: React.FC<AccountButton> = ({
   children,
+  withMenuIndicator,
   ...otherProps
 }) => {
   const { accountId } = useIdentity();
@@ -76,6 +81,7 @@ export const AccountButton: React.FC<React.ComponentPropsWithRef<'button'>> = ({
   return (
     <MiniNavigationLink
       as='button'
+      withMenuIndicator={withMenuIndicator}
       icon={{
         customIcon: (
           <Avatar size={20} account={account} className={classes.avatar} />
