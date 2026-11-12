@@ -86,7 +86,8 @@ export const MobileNavigation: React.FC = () => {
             <MiniNavigationLink
               to='/notifications'
               icon={BellIcon}
-              withDot={notificationsCount > 0}
+              badgeCount={notificationsCount}
+              badgeType='dot'
             >
               <FormattedMessage
                 id='tabs_bar.notifications'

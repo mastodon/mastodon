@@ -71,7 +71,8 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
 };
 
 export type MiniNavigationLinkProps = {
-  withDot?: boolean;
+  badgeType?: 'default' | 'dot';
+  badgeCount?: number;
   withMenuIndicator?: boolean;
   children: ReactNode;
   icon: Icon | React.FC<SVGProps<SVGSVGElement>> | { customIcon: ReactNode };
@@ -84,7 +85,8 @@ export type MiniNavigationLinkProps = {
 export const MiniNavigationLink: React.FC<MiniNavigationLinkProps> = ({
   as = 'link',
   icon: IconComp,
-  withDot,
+  badgeType = 'default',
+  badgeCount,
   withMenuIndicator,
   children,
   ...otherProps
@@ -104,6 +106,9 @@ export const MiniNavigationLink: React.FC<MiniNavigationLinkProps> = ({
     ) : (
       <IconComp size={24} weight={isActive ? 'fill' : undefined} />
     );
+
+  const withDot = !!badgeCount && badgeType === 'dot';
+  const withBadge = !!badgeCount && badgeType === 'default';
 
   return (
     <li>
@@ -128,6 +133,14 @@ export const MiniNavigationLink: React.FC<MiniNavigationLinkProps> = ({
                 weight='fill'
                 size={10}
                 className={classes.menuIndicatorIcon}
+              />
+            )}
+
+            {withBadge && (
+              <Badge
+                variant='accent'
+                label={badgeCount}
+                className={classes.miniBadge}
               />
             )}
           </Comp>

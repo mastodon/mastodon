@@ -48,7 +48,7 @@ export const MiniNav: React.FC = () => {
       <MiniNavigationLink
         to='/notifications'
         icon={BellIcon}
-        withDot={notificationsCount > 0}
+        badgeCount={notificationsCount}
       >
         <FormattedMessage
           id='tabs_bar.notifications'
