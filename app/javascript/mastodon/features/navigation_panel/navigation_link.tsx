@@ -13,7 +13,7 @@ import { useIsLinkActive } from '@/mastodon/hooks/useIsLinkActive';
 import classes from './navigation_link.module.scss';
 
 type NavigationLinkProps = {
-  iconComponent?: Icon | React.FC<SVGProps<SVGSVGElement>>;
+  icon?: Icon | React.FC<SVGProps<SVGSVGElement>>;
   badgeCount?: number;
   withDivider?: boolean;
 } & (
@@ -24,7 +24,7 @@ type NavigationLinkProps = {
 
 export const NavigationLink: React.FC<NavigationLinkProps> = ({
   as = 'link',
-  iconComponent: IconComp,
+  icon: IconComp,
   badgeCount = 0,
   withDivider = false,
   children,
@@ -69,55 +69,45 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
   );
 };
 
-type MobileNavLink = NavLinkProps & {
+export type MiniNavigationLinkProps = {
   withDot?: boolean;
   children: ReactNode;
-  iconComponent: Icon | React.FC<SVGProps<SVGSVGElement>>;
-};
+  icon: Icon | React.FC<SVGProps<SVGSVGElement>> | { customIcon: ReactNode };
+} & (
+  | ({ as?: 'button' } & React.ComponentPropsWithRef<'button'>)
+  | ({ as?: 'a' } & React.ComponentPropsWithRef<'a'>)
+  | ({ as?: 'link' } & NavLinkProps)
+);
 
-export const MiniNavLink: React.FC<MobileNavLink> = ({
-  iconComponent: IconComp,
+export const MiniNavigationLink: React.FC<MiniNavigationLinkProps> = ({
+  as = 'link',
+  icon: IconComp,
   withDot,
   children,
   ...otherProps
 }) => {
+  let Comp: React.ElementType = as;
+  if (as === 'link') {
+    Comp = NavLink;
+  }
+
   const isActive = useIsLinkActive(
     'to' in otherProps ? otherProps.to : undefined,
   );
 
-  return (
-    <li>
-      <Tooltip text={children} placement='top' offset={-2}>
-        {({ getTooltipProps }) => (
-          <NavLink
-            {...getTooltipProps(otherProps)}
-            className={classNames(classes.link, classes.linkMini)}
-          >
-            <span
-              className={classNames(
-                classes.icon,
-                withDot && classes.iconWithDot,
-              )}
-            >
-              <IconComp size={24} weight={isActive ? 'fill' : undefined} />
-            </span>
-            <span className='sr-only'>{children}</span>
-          </NavLink>
-        )}
-      </Tooltip>
-    </li>
-  );
-};
+  const icon =
+    'customIcon' in IconComp ? (
+      IconComp.customIcon
+    ) : (
+      <IconComp size={24} weight={isActive ? 'fill' : undefined} />
+    );
 
-export const MiniNavProfileButton: React.FC<
-  { avatar?: ReactNode } & Pick<MobileNavLink, 'children' | 'withDot'>
-> = ({ children, avatar, withDot, ...otherProps }) => {
   return (
     <li>
       <Tooltip text={children} placement='top' offset={-2}>
         {({ getTooltipProps }) => (
-          <button
-            type='button'
+          <Comp
+            type={as === 'button' ? 'button' : undefined}
             {...getTooltipProps(otherProps)}
             className={classNames(classes.link, classes.linkMini)}
           >
@@ -127,10 +117,10 @@ export const MiniNavProfileButton: React.FC<
                 withDot && classes.iconWithDot,
               )}
             >
-              {avatar}
+              {icon}
             </span>
             <span className='sr-only'>{children}</span>
-          </button>
+          </Comp>
         )}
       </Tooltip>
     </li>
