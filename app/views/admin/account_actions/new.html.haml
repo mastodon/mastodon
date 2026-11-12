@@ -27,9 +27,12 @@
   - if @report_id.present?
     .fields-group
       - if @report.status_ids.present?
-        %p= t('admin.reports.summary.account_action_preamble_html', report: @report_id, count: @report.status_ids.count)
+        - if @report.status_ids.count == 1
+          %p= t('admin.reports.summary.account_action_preamble.singular_html', report: @report_id, count: @report.status_ids.count, report_path: admin_report_path(@report_id))
+        - else
+          %p= t('admin.reports.summary.account_action_preamble.plural_html', report_path: admin_reports_path(@report_id), report: @report_id, count: @report.status_ids.count)
       - else
-        %p= t('admin.reports.summary.account_action_preamble_no_posts_html', report: @report_id)
+        %p= t('admin.reports.summary.account_action_preamble.none_html', report: @report_id, report_path: admin_report_path(@report_id))
 
   %div{ 'id' => 'data-action-text-box' }
     = render partial: 'actions_text_box', locals: { account: @account, report: @report }
