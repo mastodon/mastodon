@@ -173,7 +173,10 @@ export const NavigationPanel: React.FC<{
             <ExploreLink />
             <PublicFeedsLink />
             <NavigationLink to='/bookmarks' iconComponent={BookmarkSimpleIcon}>
-              <FormattedMessage id='tabs_bar.saved' defaultMessage='Saved' />
+              <FormattedMessage
+                id='navigation_bar.saved_posts'
+                defaultMessage='Saved Posts'
+              />
             </NavigationLink>
 
             <ListSection
