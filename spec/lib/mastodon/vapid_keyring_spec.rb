@@ -6,10 +6,10 @@ require 'mastodon/vapid_keyring'
 RSpec.describe Mastodon::VapidKeyring do
   let(:inactive_keypair) { Webpush::VapidKey.new }
   let(:active_keypair) { Webpush::VapidKey.new }
-  let(:keyring) { described_class.new([inactive_keypair.private_key, active_keypair.private_key]) }
+  let(:keyring) { described_class.new([inactive_keypair.private_key], active_keypair.private_key) }
 
   describe 'an empty keyring' do
-    let(:keyring) { described_class.new([]) }
+    let(:keyring) { described_class.new([], nil) }
 
     it 'returns nil for active_key' do
       expect(keyring.active_key).to be_nil
