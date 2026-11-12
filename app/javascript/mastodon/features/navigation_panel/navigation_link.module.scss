@@ -58,7 +58,7 @@
     min-height: 48px;
   }
 
-  &[aria-current='page']:not(:where(.linkStacked, .linkMobile)) {
+  &[aria-current='page']:not(:where(.linkStacked, .linkMini)) {
     font-weight: bold;
   }
 }
@@ -72,7 +72,7 @@
   @include mixins.type-micro;
 }
 
-.linkMobile {
+.linkMini {
   --icon-size: 24px;
   --border-radius: var(--radius-round);
 
