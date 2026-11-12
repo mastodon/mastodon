@@ -3,7 +3,6 @@
 .root {
   --main-column-max-width: 600px;
   --navigation-width: 288px;
-  --search-column-width: 288px;
 
   // This grid definition is shared with the composer
   --columns-area-grid-columns: minmax(var(--navigation-width), 1fr)
@@ -43,8 +42,7 @@
   overflow-x: auto;
 }
 
-.navigationWrapper,
-.discoveryWrapper {
+.navigationWrapper {
   position: sticky;
   top: 0;
   z-index: 1;
@@ -67,15 +65,6 @@
   }
 
   @media (max-width: ($mobile-menu-breakpoint - 1)) {
-    display: none;
-  }
-}
-
-.discoveryWrapper {
-  max-width: var(--search-column-width);
-  padding: var(--space-5) var(--space-4) var(--space-6);
-
-  @media (width <= $no-gap-breakpoint) {
     display: none;
   }
 }
