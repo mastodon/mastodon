@@ -161,9 +161,9 @@ class Item extends PureComponent {
       const duration = attachment.getIn(['meta', 'original', 'duration']);
 
       if (attachment.get('type') === 'gifv') {
-        badges.push(<span key='gif' className='media-gallery__alt__label media-gallery__alt__label--non-interactive'>GIF</span>);
+        badges.push(<span key='gif' className='media-gallery__label'>GIF</span>);
       } else {
-        badges.push(<span key='video' className='media-gallery__alt__label media-gallery__alt__label--non-interactive'>{formatTime(Math.floor(duration))}</span>);
+        badges.push(<span key='video' className='media-gallery__label'>{formatTime(Math.floor(duration))}</span>);
       }
 
       thumbnail = (

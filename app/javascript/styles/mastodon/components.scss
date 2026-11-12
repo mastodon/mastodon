@@ -4673,32 +4673,19 @@ a.status-card {
   pointer-events: none;
 }
 
-.media-gallery__alt__label {
+.media-gallery__label {
   display: block;
   text-align: center;
   color: var(--color-text-on-media);
   background: var(--color-bg-media);
-  backdrop-filter: $backdrop-blur-filter;
   border: 0;
   padding: 3px 8px;
-  border-radius: 4px;
+  border-radius: var(--radius-round);
   font-size: 12px;
   font-weight: 700;
   z-index: 1;
   line-height: 20px;
-  cursor: pointer;
-  pointer-events: auto;
-
-  &:focus-visible {
-    outline: none;
-    box-shadow:
-      inset 0 0 0 2px var(--color-text-on-media),
-      0 0 0 2px var(--color-bg-media);
-  }
-
-  &--non-interactive {
-    pointer-events: none;
-  }
+  pointer-events: none;
 }
 
 .info-tooltip {
