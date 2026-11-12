@@ -1,19 +1,22 @@
+@use '@/styles/mastodon/mixins';
+
 .input {
   box-sizing: border-box;
   display: block;
   width: 100%;
-  padding: 10px 16px;
+  padding: var(--space-2);
   font-family: inherit;
-  font-size: 14px;
-  line-height: 20px;
+  @include mixins.type-body-compact;
+
   color: var(--color-text-primary);
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border-primary);
-  border-radius: 4px;
+  background: var(--color-bg-primary);
+  border: var(--bw-thin) solid var(--color-border-input);
+  border-radius: var(--space-2);
+  caret-color: var(--color-text-brand);
   outline: var(--outline-focus-default);
   outline-color: transparent;
-  outline-offset: -1px;
-  transition: outline-color 0.15s ease-out;
+  outline-offset: -2px;
+  transition: all 0.15s ease-out;
 
   @media screen and (width <= 600px) {
     font-size: 16px;
@@ -21,7 +24,7 @@
 
   .iconWrapper & {
     // Make space for icon displayed at start of input
-    padding-inline-start: 36px;
+    padding-inline-start: 30px;
   }
 
   &::placeholder {
@@ -31,20 +34,16 @@
   &:focus:user-invalid,
   &:required:user-invalid,
   [data-has-error='true'] & {
-    outline-color: var(--color-border-error);
+    border-color: var(--color-border-error);
   }
 
   &:focus {
     outline-color: var(--color-border-brand);
-  }
-
-  &:required:user-valid {
-    outline-color: var(--color-text-success);
+    outline-width: 2px;
   }
 
   &:disabled {
-    color: var(--color-text-disabled);
-    border-color: transparent;
+    opacity: 0.5;
     cursor: not-allowed;
   }
 }
@@ -60,9 +59,9 @@ textarea.input {
 .icon {
   pointer-events: none;
   position: absolute;
-  width: 22px;
-  height: 22px;
-  inset-inline-start: 10px;
-  inset-block-start: 10px;
+  width: 20px;
+  height: 20px;
+  inset-inline-start: var(--space-2);
+  inset-block-start: var(--space-2);
   color: var(--color-text-secondary);
 }

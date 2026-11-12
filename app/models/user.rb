@@ -69,7 +69,7 @@ class User < ApplicationRecord
          :confirmable
 
   belongs_to :account, inverse_of: :user
-  belongs_to :invite, counter_cache: :uses, optional: true
+  belongs_to :invite, optional: true
   belongs_to :created_by_application, class_name: 'Doorkeeper::Application', optional: true
   belongs_to :role, class_name: 'UserRole', optional: true
   accepts_nested_attributes_for :account
@@ -114,6 +114,7 @@ class User < ApplicationRecord
   before_validation :sanitize_role
   before_create :set_approved, prepend: true # Must be called before Devise callbacks
   before_create :set_age_verified_at
+  after_create :increment_invite_uses
   after_commit :send_pending_devise_notifications
   after_create_commit :trigger_webhooks
   after_commit :reload_home_feed, if: :saved_change_to_settings, on: [:create, :update]
@@ -300,6 +301,15 @@ class User < ApplicationRecord
 
   def two_factor_enabled?
     otp_required_for_login? || webauthn_credentials.any?
+  end
+
+  def disable_otp_login!
+    return unless otp_required_for_login?
+
+    self.otp_required_for_login = false
+    self.otp_secret = nil
+
+    save!
   end
 
   def disable_two_factor!
@@ -582,5 +592,9 @@ class User < ApplicationRecord
 
   def initial_setting_display_own_posts
     saved_change_to_settings.first['display_own_posts']
+  end
+
+  def increment_invite_uses
+    invite&.increment!(:uses)
   end
 end

@@ -96,6 +96,7 @@
     var(--color-text-brand)
   ); // legacy
 
+  --color-text-on-overlay: var(--base-color-bg);
   --color-text-error: var(--base-color-danger);
   --color-text-on-error-base: var(--color-text-inverted);
   --color-text-warning: var(--color-orange-700); // legacy
@@ -118,13 +119,18 @@
       var(--base-color-bg-accent),
       var(--base-highlight-strength)
     )};
+  --color-bg-highlight-solid: color-mix(
+    in srgb,
+    var(--color-bg-primary),
+    var(--base-color-bg-accent) var(--base-highlight-strength)
+  );
   --overlay-strength-secondary: 4%; // legacy
   --color-bg-secondary: var(--color-bg-highlight); // legacy
   --color-bg-tertiary: var(--color-bg-highlight); // legacy
 
   // Utility
   --color-bg-inverted: var(--base-color-fg);
-  --color-bg-overlay: var(--color-black); // legacy
+  --color-bg-overlay: #{utils.css-alpha(var(--color-black), 50%)};
   --color-bg-media-base: var(--color-black); // legacy
   --color-bg-media: #{utils.css-alpha(var(--color-bg-media-base), 65%)}; // legacy
   --color-bg-disabled: var(--color-grey-400); // legacy

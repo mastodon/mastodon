@@ -910,11 +910,13 @@ es-MX:
       action_taken_by: Acción tomada por
       actions:
         delete_description_html: Las publicaciones y/o colecciones denunciadas serán eliminadas y se registrará una advertencia para ayudarte a tomar medidas más estrictas en caso de futuras infracciones por parte de la misma cuenta.
+        disable_description_html: Prevenir al usuario hacer uso de la cuenta, pero no eliminar ni ocultar sus contenidos. Esta acción puede ser revertida. Se cerrarán todos los informes contra esta cuenta.
+        force_sensitive_descption_html: Forzar que todos los archivos multimedia adjuntos de este usuario sean marcados como sensibles. Esta acción puede ser revertida. Se cerrarán todos los informes contra esta cuenta.
         mark_as_sensitive_description_html: Los archivos multimedia en las publicaciones reportadas se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
-        other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
-        silence_description_html: La cuenta será visible solo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los reportes contra esta cuenta.
-        suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y eventualmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los reportes contra esta cuenta.
+        silence_description_html: La cuenta solo será visible para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Esta acción puede ser revertida. Se cerrarán todos los informes contra esta cuenta.
+        suspend_description_html: La cuenta y todo su contenido será inaccesible y posteriormente eliminada, y no será posible interactuar con ella. Esta acción puede ser revertida durante los próximos 30 días. Se cerrarán todos los informes contra esta cuenta.
+        warn_description_html: Utilízalo para enviar una advertencia al usuario, sin ejecutar ninguna otra acción.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este reporte. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
       actions_no_posts: Este informe no tiene ninguna publicación asociada para eliminar
@@ -1124,8 +1126,69 @@ es-MX:
             title: El servidor está comprobando la configuración de Elasticsearch
           unprocessed:
             title: El servidor aún no ha comprobado la configuración de Elasticsearch
+        media_privacy:
+          error:
+            title: Hubo un error al comprobar la privacidad multimedia de tu servidor
+          ok:
+            title: La privacidad multimedia del servidor es segura
+          pending:
+            lead:
+              upload_check_privacy_error_html: Tu servidor web está mal configurado
+              upload_check_privacy_error_object_storage_html: Tu almacén de objetos está mal configurado
+            title: La privacidad de tus usuarios está en riesgo
+          running:
+            title: El servidor está comprobando el estado de privacidad
+          unprocessed:
+            title: El servidor aún no ha comprobado el estado de privacidad
+        rules:
+          error:
+            title: Hubo un error al comprobar las reglas de tu servidor
+          ok:
+            title: Las reglas de tu servidor están establecidas
+          pending:
+            lead_html: Tu servidor no tiene reglas publicadas. Las reglas claras ayudan a moderar y a establecer expectativas
+            title: Configurar reglas del servidor
+          running:
+            title: El servidor está comprobando tus reglas
+          unprocessed:
+            title: El servidor aún no ha comprobado si hay reglas
+        sidekiq_process:
+          error:
+            title: Hubo un error al comprobar la configuración de Sidekiq
+          ok:
+            title: Sidekiq está configurado sin problemas
+          pending:
+            lead_html: No hay ningún proceso Sidekiq ejecutándose para la(s) cola(s) %{missing_queues_str}
+            title: Por favor, revisa tu configuración de Sidekiq
+          running:
+            title: El servidor está comprobando la configuración de Sidekiq
+          unprocessed:
+            title: El servidor aún no ha comprobado la configuración de Sidekiq
+        software_version:
+          error:
+            title: Hubo un error al comprobar las actualizaciones de software
+          ok:
+            title: Tu instancia de Mastodon está actualizada
+          pending:
+            lead:
+              patch_html: Hay una actualización disponible con corrección de errores de Mastodon
+              regular_html: Hay una nueva versión de Mastodon disponible
+              urgent_html: Hay disponible una actualización crítica de Mastodon, por favor actualiza lo antes posible
+            title: Actualiza tu instancia de Mastodon
+          running:
+            title: El servidor está comprobando si hay alguna actualización de software pendiente
+          unprocessed:
+            title: El servidor aún no ha comprobado las actualizaciones de software
+      ignore:
+        label: Ignorar
+      lead: Recomendaciones para mantener su servidor seguro, acogedor y eficiente.
+      recommendations:
+        title: Recomendaciones
       restore:
         label: Restablecer
+      setup:
+        label: Configurar
+      title: Salud del Servidor
     settings:
       about:
         manage_rules: Administrar reglas del servidor
@@ -1148,6 +1211,9 @@ es-MX:
         danger_zone: Zona de peligro
         preamble: Controlar cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
+      crawlers:
+        preamble: Controla cómo los bots (bien intencionados) como los rastreadores de motores de búsqueda pueden interactuar con tu servidor de Mastodon. Los bots maliciosos pueden ignorar estos ajustes y deben ser bloqueados a nivel de red.
+        title: Controles para rastreadores
       default_noindex:
         desc_html: Afecta a todos los usuarios que no han cambiado esta configuración por sí mismos
         title: Optar por los usuarios fuera de la indexación en los motores de búsqueda por defecto
@@ -2673,7 +2739,6 @@ es-MX:
     nickname_hint: Introduzca el apodo de su nueva clave de seguridad
     not_enabled: Aún no has activado WebAuthn
     not_supported: Este navegador no soporta claves de seguridad
-    otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de dos pasos.
     registered_on: Registrado el %{date}
   wrapstodon:
     description: "¡Ve cómo %{name} usó Mastodon este año!"

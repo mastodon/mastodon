@@ -9,7 +9,7 @@ import { TrashIcon } from '@phosphor-icons/react';
 
 import type { PolymorphicProps } from '@/types/polymorphic';
 
-import { IconButton } from '../button/redesign';
+import { IconButton } from '../button';
 
 import classes from './styles.module.scss';
 
@@ -148,7 +148,7 @@ export const CardBody = ({
 
 type PrimaryCardLinkProps<As extends React.ElementType> = PolymorphicProps<
   {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     className?: string;
   },
   As

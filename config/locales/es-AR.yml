@@ -910,11 +910,13 @@ es-AR:
       action_taken_by: Acción tomada por
       actions:
         delete_description_html: Los mensajes y/o las colecciones denunciadas serán eliminadas y se registrará un incumplimiento para ayudarte a escalar en futuras infracciones por la misma cuenta.
+        disable_description_html: Previene que el usuario use su cuenta, pero no elimina ni oculta sus contenidos. Esta acción puede ser revertida. Esto cierra todas las denuncias contra esta cuenta.
+        force_sensitive_descption_html: Fuerza a que todos los archivos adjuntos de este usuario sean marcados como sensibles. Esto puede ser revertido. Esto cierra todas las denuncias contra esta cuenta.
         mark_as_sensitive_description_html: Los archivos de medios en los mensajes denunciados se marcarán como sensibles y se registrará un incumplimiento para ayudarte a escalar las futuras infracciones de la misma cuenta.
-        other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta denunciada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará el incumplimiento, y se cerrará la denuncia.
         silence_description_html: La cuenta será visible solo para quienes ya la siguen o la busquen manualmente, limitando severamente su alcance. Siempre puede ser revertido. Esto cierra todas las denuncias contra esta cuenta.
         suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y finalmente eliminados, e interactuar con ella será imposible. Revertible en 30 días. Esto cierra todas las denuncias contra esta cuenta.
+        warn_description_html: Usá esto para enviarle una advertencia al usuario, sin ejecutar ninguna otra acción.
       actions_description_html: Decidí qué medidas tomar para resolver esta denuncia. Si tomás una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decidí qué medidas tomar para resolver esta denuncia. Esto solo afectará la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y maneja su contenido.
       actions_no_posts: Esta denuncia no tiene ningún mensaje asociado para eliminar
@@ -1209,6 +1211,9 @@ es-AR:
         danger_zone: Zona de peligro
         preamble: Controlá cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
+      crawlers:
+        preamble: Controlá cómo los bots (de buen comportamiento) tales como los rastreadores de motores de búsqueda pueden interactuar con tu servidor de Mastodon. Los robots maliciosos pueden ignorar estos ajustes y deben ser bloqueados a nivel de red.
+        title: Controles de rastreadores
       default_noindex:
         desc_html: Afecta a todos los usuarios que no cambiaron esta configuración por sí mismos
         title: Quitar predeterminadamente a los usuarios de la indexación de los motores de búsqueda
@@ -2255,6 +2260,8 @@ es-AR:
           unit: ''
   otp_authentication:
     code_hint: Ingresá el código generado por tu aplicación de autenticación para confirmar
+    delete: Eliminar
+    delete_confirmation: "¿De verdad querés eliminar tu aplicación de autenticación de los métodos de autenticación de dos factores?"
     description_html: Si habilitás la <strong>autenticación de dos factores</strong> usando una aplicación de autenticación, entonces en el inicio de sesión se te pedirá que estés con tu dispositivo, el cual generará un código numérico ("token") para que lo ingresés.
     enable: Habilitar
     instructions_html: <strong>Escaneá este código QR en Authy, Google Authenticator o en otra aplicación TOTP en tu dispositivo</strong>. A partir de ahora, esa aplicación generará un código numérico ("token") para que lo ingresés.
@@ -2735,7 +2742,6 @@ es-AR:
     nickname_hint: Ingresá el apodo de tu nueva llave de seguridad
     not_enabled: Todavía no habilitaste WebAuthn
     not_supported: Este navegador web no soporta llaves de seguridad
-    otp_required: Para usar llaves de seguridad, por favor, primero habilitá la autenticación de dos factores.
     registered_on: Registrado el %{date}
   wrapstodon:
     description: "¡Enterate cómo %{name} usó Mastodon este año!"

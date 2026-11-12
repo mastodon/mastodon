@@ -896,11 +896,13 @@ zh-CN:
       action_taken_by: 操作执行者
       actions:
         delete_description_html: 被举报的嘟文和收藏列表将被删除，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
+        disable_description_html: 禁止用户使用账号，但不会删除或隐藏账号内容。此操作可以撤销。此操作会关闭针对此账号的全部举报。
+        force_sensitive_descption_html: 强制将此用户的全部媒体文件标记为敏感内容。此操作可以撤销。此操作会关闭针对此账号的全部举报。
         mark_as_sensitive_description_html: 被举报的嘟文将被标记为敏感，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
-        other_description_html: 查看更多控制该账号行为的选项，并自定义编写与被举报账号的通信。
         resolve_description_html: 不会对被举报账号采取任何动作，举报将被关闭，也不会留下处罚记录。
-        silence_description_html: 只有关注或手工搜索此账号才能查看其资料，将严重限制其触达范围。可随时撤销。关闭针对此账号的全部举报。
-        suspend_description_html: 该账号及其全部内容将无法访问并最终被删除，且无法与该账号进行互动。 在 30 天内可随时撤销。关闭针对此账号的全部举报。
+        silence_description_html: 只有关注或手工搜索此账号才能查看其资料，将严重限制其触达范围。此操作可随时撤销。此操作会关闭针对此账号的全部举报。
+        suspend_description_html: 该账号及其全部内容将无法访问并最终被删除，且无法与该账号进行互动。此操作在 30 天内可随时撤销。此操作会关闭针对此账号的全部举报。
+        warn_description_html: 用它来向用户发送警告，不会触发其他操作。
       actions_description_html: 决定采取何种措施处理此举报。如果对被举报账号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
       actions_description_remote_html: 决定采取何种行动来解决此举报。 这只会影响<strong>你的</strong>服务器如何与该远程账号的通信并处理其内容。
       actions_no_posts: 该举报没有相关嘟文可供删除
@@ -1170,7 +1172,7 @@ zh-CN:
         label: 恢复
       setup:
         label: 设置
-      title: 服务器状态
+      title: 服务器健康状态
     settings:
       about:
         manage_rules: 管理服务器规则
@@ -1193,6 +1195,9 @@ zh-CN:
         danger_zone: 危险操作区
         preamble: 控制用户生成的内容在 Mastodon 中如何存储。
         title: 内容保留
+      crawlers:
+        preamble: 控制（行为良好的）机器人，例如搜索引擎爬虫等，如何与你的Mastodon服务器交互。恶意的机器人会忽略这些设置，必须在网络层面直接屏蔽。
+        title: 爬虫控制
       default_noindex:
         desc_html: 影响全部尚未更改此设置的用户
         title: 默认不让用户被搜索引擎索引
@@ -2205,6 +2210,8 @@ zh-CN:
           trillion: T
   otp_authentication:
     code_hint: 输入认证应用生成的代码以确认操作
+    delete: 删除
+    delete_confirmation: 你确定要从双因素认证方式中删除身份验证应用吗？
     description_html: 如果你使用身份验证应用并启用了<strong>双因素认证</strong>，登录时将需要用到你的手机，由它生成所需的令牌。
     enable: 启用
     instructions_html: "<strong>请使用 Google 身份验证器或其他的TOTP双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，在登录时，你需要输入该应用生成的代码。"
@@ -2678,7 +2685,6 @@ zh-CN:
     nickname_hint: 输入你的新安全密钥的昵称
     not_enabled: 你尚未启用WebAuthn
     not_supported: 此浏览器不支持安全密钥
-    otp_required: 要使用安全密钥，请先启用双因素认证。
     registered_on: 注册于 %{date}
   wrapstodon:
     description: 来看看%{name}今年是怎么使用Mastodon的！

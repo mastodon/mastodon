@@ -87,6 +87,9 @@ const composerSlice = createSlice({
       state.displayState =
         state.displayState === 'showing' ? 'minimized' : 'showing';
     },
+    minimizeComposer(state) {
+      state.displayState = 'minimized';
+    },
     hideComposer(state) {
       state.displayState = 'hidden';
     },
@@ -157,6 +160,7 @@ const composerSlice = createSlice({
 export const composer = composerSlice.reducer;
 
 export const {
+  minimizeComposer,
   requestFocus: requestComposerFocus,
   clearPendingFocus: clearComposerFocusRequest,
   clearErrors: clearComposerErrors,
@@ -305,6 +309,21 @@ export const closeComposer = createAppThunk((_arg, { getState, dispatch }) => {
   }
 });
 
+/**
+ * Closes the composer if it's empty, otherwise minimises it
+ */
+export const closeOrMinimizeComposer = createAppThunk(
+  (_arg, { getState, dispatch }) => {
+    const isChanged = selectComposerIsChanged(getState());
+
+    if (isChanged) {
+      dispatch(minimizeComposer());
+    } else {
+      dispatch(closeComposer());
+    }
+  },
+);
+
 export const selectIsMinimized = createAppSelector(
   [(state) => state.composer.displayState],
   (displayState) => displayState === 'minimized',
@@ -312,7 +331,7 @@ export const selectIsMinimized = createAppSelector(
 
 export const submitComposer = createAppThunk(
   (
-    { redirectOnSuccess }: { redirectOnSuccess?: boolean },
+    arg: undefined | { redirectOnSuccess?: boolean },
     { getState, dispatch },
   ) => {
     const textareaValue = getComposerTextarea()?.value;
@@ -323,17 +342,16 @@ export const submitComposer = createAppThunk(
       dispatch(changeCompose(textareaValue));
     }
 
-    const { compose, composer, meta, statuses, server, settings } = getState();
+    const { compose, meta, statuses, server, settings } = getState();
 
     let text = compose.get('text') as string;
+    const spoilerText = compose.get('spoiler_text') as string;
+    if (compose.get('spoiler') && spoilerText) {
+      text += spoilerText;
+    }
 
     const attachments = compose.get('media_attachments');
-    const spoilerText = compose.get('spoiler_text') as string;
-    if (
-      (!text.trim() || text === composer.initialText) &&
-      isList(attachments) &&
-      attachments.isEmpty()
-    ) {
+    if (!text.trim() && isList(attachments) && attachments.isEmpty()) {
       dispatch(composerSlice.actions.addError('empty'));
     }
 
@@ -343,9 +361,6 @@ export const submitComposer = createAppThunk(
 
     const maxChars =
       server.server.item?.configuration.statuses.max_characters ?? 500;
-    if (compose.get('spoiler') && typeof spoilerText === 'string') {
-      text += spoilerText;
-    }
     const textLength = length(countableText(text));
     if (textLength > maxChars) {
       dispatch(composerSlice.actions.addError('too-long'));
@@ -398,7 +413,7 @@ export const submitComposer = createAppThunk(
     } else {
       dispatch(
         submitCompose((status: ApiStatusJSON) => {
-          if (redirectOnSuccess) {
+          if (arg?.redirectOnSuccess) {
             window.location.assign(status.url);
           }
 
@@ -409,8 +424,14 @@ export const submitComposer = createAppThunk(
   },
 );
 
-export const toggleContentWarning = createAppThunk((_arg, { dispatch }) => {
-  dispatch(changeComposeSpoilerText(''));
-  dispatch(changeComposeSpoilerness());
-  dispatch(clearComposerErrors(['missing-content-warning']));
-});
+export const toggleContentWarning = createAppThunk(
+  (_arg, { dispatch, getState }) => {
+    dispatch(changeComposeSpoilerText(''));
+    dispatch(changeComposeSpoilerness());
+    dispatch(clearComposerErrors(['missing-content-warning', 'empty']));
+
+    if (!getState().compose.get('spoiler')) {
+      dispatch(requestComposerFocus());
+    }
+  },
+);

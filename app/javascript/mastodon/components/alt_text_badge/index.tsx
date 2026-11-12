@@ -8,7 +8,7 @@ import { XIcon } from '@phosphor-icons/react';
 
 import { useSelectableClick } from '@/mastodon/hooks/useSelectableClick';
 
-import { Button, IconButton } from '../button/redesign';
+import { Button, IconButton } from '../button';
 import { Popover } from '../popover';
 
 import classes from './styles.module.scss';
@@ -44,10 +44,9 @@ export const AltTextBadge: React.FC<{
   return (
     <>
       <Button
-        contrastOnMedia
         size='xs'
         type='button'
-        variant='solid'
+        color='media'
         ref={setButtonElement}
         className={classNames('media-gallery__alt__label', className)}
         onClick={handleClick}
@@ -72,7 +71,7 @@ export const AltTextBadge: React.FC<{
         isOpen={open}
         onClose={handleClose}
         reference={buttonElement}
-        placement='top-end'
+        placement='bottom-start'
         offset={4}
       >
         {({ props }) => (

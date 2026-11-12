@@ -6,13 +6,12 @@ import classNames from 'classnames';
 
 import { CaretRightIcon } from '@phosphor-icons/react';
 
-import { useResizeObserver } from '@/mastodon/hooks/useObserver';
 import type {
   ExpandedStatusShape,
   StatusShape,
 } from '@/mastodon/models/status';
 
-import { Button } from '../button/redesign';
+import { Button } from '../button';
 import { EmojiHTML } from '../emoji/html';
 
 import classes from './content.module.scss';
@@ -22,7 +21,7 @@ const MAX_LINES = 35;
 
 export const StatusContent: React.FC<
   {
-    status: StatusShape | ExpandedStatusShape;
+    status: Omit<StatusShape | ExpandedStatusShape, 'reblog'>;
     statusContent?: string;
     onTranslate?: () => void;
     onReadMore?: () => void;
@@ -40,22 +39,15 @@ export const StatusContent: React.FC<
 }) => {
   // Determines if a long post should show the read more button.
   const [collapsed, setCollapsed] = useState(false);
-  const onResize: ResizeObserverCallback = useCallback((entries) => {
-    for (const { target } of entries) {
-      setCollapsed(isElementOverflowing(target));
-    }
-  }, []);
-  const observer = useResizeObserver(onResize);
   const onRef = useCallback(
     (node: HTMLDivElement | null) => {
       if (!node || collapsed) {
         return;
       }
 
-      observer.observe(node);
       setCollapsed(isElementOverflowing(node));
     },
-    [collapsed, observer],
+    [collapsed],
   );
 
   const htmlHandlers = useHandlersForStatus(status);

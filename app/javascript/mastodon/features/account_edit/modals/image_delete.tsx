@@ -30,7 +30,12 @@ export const ImageDeleteModal: FC<
         />
       }
       buttons={
-        <Button dangerous onClick={handleDelete} disabled={isPending}>
+        <Button
+          variant='solid'
+          color='destructive'
+          onClick={handleDelete}
+          disabled={isPending}
+        >
           <FormattedMessage
             id='account_edit.image_delete_modal.delete_button'
             defaultMessage='Delete'

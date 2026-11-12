@@ -8,18 +8,8 @@
 
 .menuButton {
   position: absolute;
-  inset-inline-end: 1px;
-  top: 1px;
-  padding: 7px;
-
-  &::before {
-    // Subtle divider line separating the button from the input field
-    content: '';
-    position: absolute;
-    inset-inline-start: 0;
-    inset-block: 10px;
-    border-inline-start: 1px solid var(--color-border-primary);
-  }
+  inset-inline-end: var(--space-1);
+  top: 3px;
 }
 
 .listBoxWrapper {

@@ -154,7 +154,7 @@ export const EditFieldModal = forwardRef<
 
       if (value.length > RECOMMENDED_LIMIT) {
         return {
-          variant: 'warning',
+          variant: 'error',
           message: intl.formatMessage(messages.warningLength),
         };
       }
@@ -165,14 +165,14 @@ export const EditFieldModal = forwardRef<
       );
       if (hasLink && hasEmoji) {
         return {
-          variant: 'warning',
+          variant: 'error',
           message: intl.formatMessage(messages.warningUrlEmoji),
         };
       }
 
       if (isUrlWithoutProtocol(value)) {
         return {
-          variant: 'warning',
+          variant: 'error',
           message: intl.formatMessage(messages.warningUrlProtocol, {
             protocol: 'https://',
           }),
@@ -313,7 +313,12 @@ export const DeleteFieldModal: FC<DialogModalProps & { fieldKey: string }> = ({
         />
       }
       buttons={
-        <Button dangerous onClick={handleDelete} disabled={isPending}>
+        <Button
+          variant='solid'
+          color='destructive'
+          onClick={handleDelete}
+          disabled={isPending}
+        >
           <FormattedMessage
             id='account_edit.field_delete_modal.delete_button'
             defaultMessage='Delete'

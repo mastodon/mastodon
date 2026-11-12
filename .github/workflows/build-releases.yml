@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   check-latest-stable:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     outputs:
       latest: ${{ steps.check.outputs.is_latest_stable }}
     steps:

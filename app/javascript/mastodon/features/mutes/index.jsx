@@ -10,15 +10,12 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
 import { fetchMutes, expandMutes } from '@/mastodon/actions/mutes';
 import { Account } from '@/mastodon/components/account';
 import { Column } from '@/mastodon/components/column';
 import { injectIntl } from '@/mastodon/components/intl';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import ScrollableList from '@/mastodon/components/scrollable_list';
-import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 
 
@@ -67,14 +64,10 @@ class Mutes extends ImmutablePureComponent {
 
     return (
       <Column bindToDocument={!multiColumn}>
-        {isRedesignEnabled() ? (
-          <ColumnHeader
-            withBackButton
-            title={intl.formatMessage(messages.heading)}
-          />
-        ) : (
-          <LegacyColumnHeader icon='volume-off' iconComponent={VolumeOffIcon} title={intl.formatMessage(messages.heading)} showBackButton />
-        )}
+        <ColumnHeader
+          withBackButton
+          title={intl.formatMessage(messages.heading)}
+        />
         <ScrollableList
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}

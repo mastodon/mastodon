@@ -7,11 +7,12 @@
   position: relative;
   display: inline-flex;
   margin: 0;
+  margin-block-start: var(--space-half); // For vertical alignment next to label
   width: var(--size);
   height: var(--size);
   vertical-align: top;
   border-radius: calc(var(--size) / 4);
-  border: var(--border-width) solid var(--color-border-primary);
+  border: var(--border-width) solid var(--color-border-input);
   background-color: var(--color-bg-primary);
   transition: 0.15s ease-out;
   transition-property: background-color, border-color;
@@ -60,6 +61,10 @@
   &:indeterminate {
     background-color: var(--color-bg-brand-base);
     border-color: var(--color-bg-brand-base);
+
+    @media (forced-colors: active) {
+      background-color: Highlight;
+    }
 
     &:disabled {
       border: none;

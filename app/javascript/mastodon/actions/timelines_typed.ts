@@ -6,7 +6,6 @@ import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 import type { ApiStatusJSON } from '../api_types/statuses';
 import type { Status } from '../models/status';
 import { createAppThunk } from '../store/typed_functions';
-import { isRedesignEnabled } from '../utils/environment';
 
 import {
   expandTimeline,
@@ -41,9 +40,7 @@ export const expandTimelineByParams = createAppThunk(
       if (!params.boosts) {
         extra.exclude_reblogs = true;
       }
-      if (isRedesignEnabled()) {
-        extra.exclude_direct = true;
-      }
+      extra.exclude_direct = true;
       if (params.pinned) {
         extra.pinned = true;
       }

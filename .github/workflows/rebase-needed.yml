@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   label-rebase-needed:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     if: github.repository == 'mastodon/mastodon'
 
     concurrency:

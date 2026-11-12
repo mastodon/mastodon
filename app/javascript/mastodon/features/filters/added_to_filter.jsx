@@ -98,7 +98,7 @@ class AddedToFilter extends PureComponent {
         <div className='flex-spacer' />
 
         <div className='report-dialog-modal__actions'>
-          <Button onClick={this.handleCloseClick}><FormattedMessage id='report.close' defaultMessage='Done' /></Button>
+          <Button variant='solid' color='accent' onClick={this.handleCloseClick}><FormattedMessage id='report.close' defaultMessage='Done' /></Button>
         </div>
       </>
     );

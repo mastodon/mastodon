@@ -11,7 +11,7 @@ on:
 jobs:
   pathcheck:
     name: Check for relevant changes
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     outputs:
       changed: ${{ steps.filter.outputs.src }}
@@ -38,7 +38,7 @@ jobs:
 
   chromatic:
     name: Run Chromatic
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     needs: pathcheck
     if: github.repository == 'mastodon/mastodon' && needs.pathcheck.outputs.changed == 'true'
@@ -55,7 +55,7 @@ jobs:
         run: yarn build-storybook
 
       - name: Run Chromatic
-        uses: chromaui/action@5bcadb5104b09e360e210c54f95a7437c2d82bab # v18
+        uses: chromaui/action@f305ef908327aee3b80b0e6b3bbb60a742eaa049 # v18
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           zip: true

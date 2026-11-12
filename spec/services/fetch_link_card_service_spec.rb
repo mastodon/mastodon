@@ -374,7 +374,39 @@ RSpec.describe FetchLinkCardService do
     end
 
     it 'fetches the schemaless URL (as https://)' do
-      expect(a_request(:get, 'https://example.com')).to have_been_made
+      expect(a_request(:get, 'https://example.com')).to_not have_been_made
+    end
+  end
+
+  context 'with schmeless url' do
+    describe 'preview source selection with schmeless url' do
+      let(:status) do
+        Fabricate(:status, text: 'text with just example.com not wanting this to be catched')
+      end
+
+      it 'fetches the schemaless URL (as https://)' do
+        expect(a_request(:get, 'https://example.com')).to_not have_been_made
+      end
+    end
+
+    describe 'preview source selection with multiple schmeless url' do
+      let(:status) do
+        Fabricate(:status, text: 'text with just example.com not wanting this to be catched and of course tooot.social')
+      end
+
+      it 'fetches the schemaless URL (as https://)' do
+        expect(a_request(:get, 'https://example.com')).to_not have_been_made
+      end
+    end
+
+    describe 'preview source selection with multiple schmeless url and a correct one' do
+      let(:status) do
+        Fabricate(:status, text: 'text with just cats.com not wanting this to be catched and of course tooot.social on my https://example.com')
+      end
+
+      it 'fetches the schemaless URL (as https://)' do
+        expect(a_request(:get, 'https://example.com')).to have_been_made
+      end
     end
   end
 end

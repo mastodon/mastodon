@@ -6,8 +6,7 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import { Search } from 'mastodon/features/compose/components/search';
+import { Search } from '@/mastodon/components/search';
 import { useIdentity } from 'mastodon/identity_context';
 
 import Links from './links';
@@ -84,11 +83,7 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       </Switch>
 
       <Helmet>
-        <title>
-          {intl.formatMessage(
-            isRedesignEnabled() ? messages.titleRedesign : messages.title,
-          )}
-        </title>
+        <title>{intl.formatMessage(messages.titleRedesign)}</title>
         <meta name='robots' content='all' />
       </Helmet>
     </Column>

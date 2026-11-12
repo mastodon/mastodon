@@ -14,7 +14,6 @@ import { closeModal } from 'mastodon/actions/modal';
 import { apiRequest } from 'mastodon/api';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { useAppDispatch } from 'mastodon/store';
@@ -185,7 +184,7 @@ export const DomainBlockModal: React.FC<{
 
       <div className='safety-action-modal__bottom'>
         <div className='safety-action-modal__actions'>
-          <Button onClick={handleSecondaryClick} secondary>
+          <Button onClick={handleSecondaryClick} color='destructive'>
             <FormattedMessage
               id='domain_block_modal.block_account_instead'
               defaultMessage='Block @{name} instead'
@@ -195,22 +194,23 @@ export const DomainBlockModal: React.FC<{
 
           <div className='spacer' />
 
-          <button onClick={handleCancel} className='link-button' type='button'>
+          <Button onClick={handleCancel}>
             <FormattedMessage
               id='confirmation_modal.cancel'
               defaultMessage='Cancel'
             />
-          </button>
+          </Button>
 
-          <Button onClick={handleClick} dangerous aria-busy={loading}>
-            {loading ? (
-              <LoadingIndicator />
-            ) : (
-              <FormattedMessage
-                id='domain_block_modal.block'
-                defaultMessage='Block server'
-              />
-            )}
+          <Button
+            onClick={handleClick}
+            variant='solid'
+            color='destructive'
+            loading={loading}
+          >
+            <FormattedMessage
+              id='domain_block_modal.block'
+              defaultMessage='Block server'
+            />
           </Button>
         </div>
       </div>

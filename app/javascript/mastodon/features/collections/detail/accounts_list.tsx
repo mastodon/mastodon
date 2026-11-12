@@ -2,29 +2,29 @@ import { useCallback, useMemo, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { PendingBadge } from '@/mastodon/components/badge';
-import { SelectField } from '@/mastodon/components/form_fields';
-import { useSearchParam } from '@/mastodon/hooks/useSearchParam';
-import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import type {
   ApiCollectionJSON,
   CollectionAccountItem,
-} from 'mastodon/api_types/collections';
-import type { RenderButtonOptions } from 'mastodon/components/account_list_item';
+} from '@/mastodon/api_types/collections';
+import type { RenderButtonOptions } from '@/mastodon/components/account_list_item';
 import {
   AccountListItem,
   AccountListItemFollowButton,
-} from 'mastodon/components/account_list_item';
-import { Button } from 'mastodon/components/button';
+} from '@/mastodon/components/account_list_item';
+import { PendingBadge } from '@/mastodon/components/badge';
+import { Button } from '@/mastodon/components/button';
+import { SelectField } from '@/mastodon/components/form_fields';
 import {
   Article,
   ItemList,
-} from 'mastodon/components/scrollable_list/components';
-import type { TruncatedListItemInfo } from 'mastodon/components/truncated_list';
-import { TruncatedListItems } from 'mastodon/components/truncated_list';
-import { me } from 'mastodon/initial_state';
-import type { Account } from 'mastodon/models/account';
-import { createAppSelector, useAppSelector } from 'mastodon/store';
+} from '@/mastodon/components/scrollable_list/components';
+import type { TruncatedListItemInfo } from '@/mastodon/components/truncated_list';
+import { TruncatedListItems } from '@/mastodon/components/truncated_list';
+import { useSearchParam } from '@/mastodon/hooks/useSearchParam';
+import { me } from '@/mastodon/initial_state';
+import type { Account } from '@/mastodon/models/account';
+import { createAppSelector, useAppSelector } from '@/mastodon/store';
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 
 import { useConfirmRevoke } from './revoke_collection_inclusion_modal';
 import classes from './styles.module.scss';
@@ -159,7 +159,7 @@ export const CollectionAccountsList: React.FC<{
 
       if (accountId === me) {
         return (
-          <Button secondary compact onClick={confirmRevoke}>
+          <Button size='sm' onClick={confirmRevoke}>
             <FormattedMessage
               id='collections.detail.revoke_inclusion'
               defaultMessage='Remove me'

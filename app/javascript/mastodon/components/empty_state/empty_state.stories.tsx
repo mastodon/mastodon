@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 
-import { Button } from '../button';
+import { Button } from '@/mastodon/components/button';
 
 import { EmptyState } from '.';
 
@@ -40,8 +40,12 @@ export const Error: Story = {
 export const WithAction: Story = {
   args: {
     ...Default.args,
-    // eslint-disable-next-line react/jsx-no-bind
-    children: <Button onClick={() => action('Refresh')}>Refresh</Button>,
+    children: (
+      // eslint-disable-next-line react/jsx-no-bind
+      <Button variant='solid' color='accent' onClick={() => action('Refresh')}>
+        Refresh
+      </Button>
+    ),
   },
 };
 

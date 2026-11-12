@@ -110,7 +110,7 @@ class Category extends PureComponent {
         <div className='flex-spacer' />
 
         <div className='report-dialog-modal__actions'>
-          <Button onClick={this.handleNextClick} disabled={category === null}><FormattedMessage id='report.next' defaultMessage='Next' /></Button>
+          <Button onClick={this.handleNextClick} disabled={category === null} variant='solid' color='accent'><FormattedMessage id='report.next' defaultMessage='Next' /></Button>
         </div>
       </>
     );

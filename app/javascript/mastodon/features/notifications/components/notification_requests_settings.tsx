@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { closeModal } from '@/mastodon/actions/modal';
 import { changeSetting } from '@/mastodon/actions/settings';
-import { Button } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button';
 import {
   ModalShell,
   ModalActions,

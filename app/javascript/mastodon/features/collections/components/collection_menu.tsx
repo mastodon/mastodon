@@ -2,14 +2,20 @@ import { useCallback, useMemo } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import { DotsThreeVerticalIcon } from '@phosphor-icons/react';
+
 import { showAlert } from '@/mastodon/actions/alerts';
 import { initBlockModal } from '@/mastodon/actions/blocks';
+import {
+  LegacyDropdownMenuItems,
+  Menu,
+  MenuList,
+  MenuTrigger,
+} from '@/mastodon/components/menu';
 import { useAccount } from '@/mastodon/hooks/useAccount';
-import MoreVertIcon from '@/material-icons/400-24px/more_vert.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
-import { Dropdown } from 'mastodon/components/dropdown_menu';
-import { IconButton } from 'mastodon/components/icon_button';
+import { IconButton } from 'mastodon/components/button';
 import { me } from 'mastodon/initial_state';
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppDispatch } from 'mastodon/store';
@@ -207,13 +213,18 @@ export const CollectionMenu: React.FC<{
   ]);
 
   return (
-    <Dropdown scrollKey='collections' items={menu}>
-      <IconButton
-        icon='menu-icon'
-        iconComponent={MoreVertIcon}
-        title={intl.formatMessage(messages.more)}
+    <Menu>
+      <MenuTrigger
+        as={IconButton}
+        icon={DotsThreeVerticalIcon}
+        size={context === 'collection' ? 'md' : 'sm'}
         className={className}
-      />
-    </Dropdown>
+      >
+        {intl.formatMessage(messages.more)}
+      </MenuTrigger>
+      <MenuList>
+        <LegacyDropdownMenuItems items={menu} />
+      </MenuList>
+    </Menu>
   );
 };

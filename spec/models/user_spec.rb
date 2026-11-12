@@ -24,10 +24,22 @@ RSpec.describe User do
 
   describe 'Associations' do
     it { is_expected.to belong_to(:account).required }
-    it { is_expected.to belong_to(:invite).optional.counter_cache(:uses) }
+    it { is_expected.to belong_to(:invite).optional }
     it { is_expected.to have_many(:invites).inverse_of(:user).dependent(false) }
     it { is_expected.to have_many(:login_activities) }
     it { is_expected.to have_one(:invite_request).inverse_of(:user).dependent(:destroy).class_name(UserInviteRequest) }
+
+    describe 'invite' do
+      let(:invite) { Fabricate(:invite) }
+
+      it 'increments invite uses on creation but does not decrement it on deletion' do
+        expect { Fabricate(:user, email: 'alice@example.com', invite: invite) }
+          .to change { invite.reload.uses }.by(1)
+
+        expect { described_class.find_by(email: 'alice@example.com').destroy }
+          .to_not(change { invite.reload.uses })
+      end
+    end
   end
 
   describe 'Validations' do
@@ -368,6 +380,52 @@ RSpec.describe User do
 
           expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
         end
+      end
+    end
+  end
+
+  describe '#disable_otp_login!' do
+    describe 'when user has OTP enabled' do
+      let(:user) do
+        Fabricate(
+          :user,
+          otp_required_for_login: true,
+          otp_secret: 'oldotpcode'
+        )
+      end
+
+      it 'saves false for otp_required_for_login' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_required_for_login).to be false
+      end
+
+      it 'saves nil for otp_secret' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_secret).to be_nil
+      end
+    end
+
+    describe 'when user does not have OTP enabled' do
+      let(:user) do
+        Fabricate(
+          :user,
+          otp_required_for_login: false,
+          otp_secret: nil
+        )
+      end
+
+      it 'does not change for otp_required_for_login' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_required_for_login).to be false
+      end
+
+      it 'does not change for otp_secret' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_secret).to be_nil
       end
     end
   end

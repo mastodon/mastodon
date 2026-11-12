@@ -16,6 +16,7 @@ zh-TW:
       account_migration:
         acct: 指定欲移動至帳號之「使用者名稱@網域名稱」
       account_warning_preset:
+        action_category: 請選擇此回應適用之管理動作。若此回應適用多個動作，請選擇「所有動作」。
         text: 您可使用嘟文語法，例如網址、「#」標籤與提及功能
         title: 可選的。不會向收件者顯示
       admin_account_action:
@@ -92,12 +93,14 @@ zh-TW:
         closed_registrations_message: 於註冊關閉時顯示
         content_cache_retention_period: 所有來自其他伺服器之嘟文（包括轉嘟與回嘟）將於指定之天數後自動刪除，不論這些嘟文與本地使用者間的任何互動。這將包含本地使用者已標記為書籤或最愛之嘟文。不同站點使用者間之私訊亦將遺失且不可回復。此設定應適用於特殊情況，若常規使用將超乎多數使用者預期。
         custom_css: 您於 Mastodon 網頁版本中能套用客製化風格。
+        custom_robots_html: <a href="%{path}">語法</a>
         email_footer_text: 僅顯示於電子報郵件中之可選填備註文字。
         favicon: WEBP、PNG、GIF、或 JPG。使用自訂圖示替代預設 Mastodon favicon 圖示。
         landing_page: 選擇當新訪客第一次造訪您伺服器時所見之頁面。若您選擇「熱門趨勢」，則該功能必須於探索設定中啟用。若您選擇「本站時間軸」，則探索設定中「允許瀏覽本站嘟文之即時內容」功能必須設定為「任何人」。
         mascot: 覆寫進階網頁介面中的圖例。
         media_cache_retention_period: 來自遠端伺服器嘟文中之多媒體附加檔案將快取於您的伺服器。當設定為正值時，這些多媒體內容將於指定之天數後自您的儲存空間中自動刪除。若多媒體資料於刪除後被請求，且原始內容仍可存取，它們將被重新下載。由於連結預覽中第三方網站查詢頻率限制，建議將其設定為至少 14 日，否則於此之前連結預覽將不被即時更新。
         min_age: 使用者將於註冊時被要求確認他們的生日
+        override_robots: 允許您自訂表現良好的機器人之存取規則
         peers_api_enabled: 浩瀚聯邦宇宙中與此伺服器曾經擦肩而過的網域列表。不包含關於您是否與此伺服器是否有與之串連，僅僅表示您的伺服器已知此網域。這是供收集聯邦宇宙中一般性統計資料服務使用。
         postpone_confirmation_emails: 當此項設定啟用時，待審核帳號之驗證信將於帳號被核准後發送。這可能使使用者的註冊體驗變差，因為他們收到信後仍需及時確認電子郵件地址，但已無法控制該信件何時被發送。此外，這也可能增加管理員之工作量，因為 Mastodon 於帳號核准前無法過濾掉電子郵件無效之待審核帳號。
         profile_directory: 個人檔案目錄將會列出那些有選擇被發現的使用者。
@@ -152,7 +155,7 @@ zh-TW:
         arbitration_website: 能為網路表單，或「N/A」如使用 email。
         choice_of_law: 城市、區域、領土或州的內部實體法律應規範任何及所有權利。
         dmca_address: 位於美國的運營團隊，請使用於 DMCA 指定代理目錄中註冊之地址。可直接請求 PO Box 清單，使用 DMCA 指定代理郵局信箱豁免請求向版權局發送電子郵件，並描述您是一名在家工作之內容管理員，擔心您的行為將遭報復，需要使用 PO Box 保護您的私人住址。
-        dmca_email: 能使用上述用於「法律通知用途電子郵件」之相同電子郵件。
+        dmca_email: 能使用上述用於「法律通知用途電子郵件地址」之相同電子郵件。
         domain: 您所提供線上服務之唯一識別。
         jurisdiction: 列出帳單支付人之居住國家。若為公司或其他實體，請列出其註冊地所在的國家，及城市、地區、領土、或州別等。
         min_age: 不應低於您所屬司法管轄區要求之最低年齡。
@@ -192,6 +195,7 @@ zh-TW:
       account_migration:
         acct: 新帳號名稱
       account_warning_preset:
+        action_category: 指派管理動作
         text: 回應文字
         title: 標題
       admin_account_action:
@@ -200,6 +204,7 @@ zh-TW:
         text: 客製化回應
         type: 動作
         types:
+          all_actions: 所有動作
           disable: 停用
           none: 什麼也不做
           sensitive: 敏感内容
@@ -267,6 +272,7 @@ zh-TW:
         setting_missing_alt_text_modal: 於發出未含有 ALT 說明文字之嘟文前警告我
         setting_quick_boosting: 啟用快速轉嘟
         setting_reduce_motion: 減少過渡動畫效果
+        setting_show_stats_in_feed: 於時間軸中顯示互動統計資訊
         setting_split_default_privacy_discoverable: 使我的嘟文於公開時間軸與搜尋結果中可見
         setting_system_font_ui: 使用系統預設字型
         setting_system_scrollbars_ui: 使用系統預設捲動軸
@@ -300,6 +306,7 @@ zh-TW:
         closed_registrations_message: 當註冊關閉時的客製化訊息
         content_cache_retention_period: 遠端內容保留期限
         custom_css: 自訂 CSS
+        custom_robots: 自訂 robots.txt 檔案
         email_footer_text: 其他備註文字
         favicon: 網站圖示 (Favicon)
         landing_page: 新訪客之登陸頁面
@@ -308,6 +315,7 @@ zh-TW:
         mascot: 自訂吉祥物 (legacy)
         media_cache_retention_period: 多媒體快取資料保留期間
         min_age: 最低年齡要求
+        override_robots: 複寫預設 robots.txt 檔案
         peers_api_enabled: 於 API 中公開已知伺服器的列表
         postpone_confirmation_emails: 審核批准後方寄送驗證信
         profile_directory: 啟用個人檔案目錄
@@ -386,7 +394,7 @@ zh-TW:
         effective_date: 生效日期
         text: 服務條款
       terms_of_service_generator:
-        admin_email: 法律通知用途電子郵件
+        admin_email: 法律通知用途電子郵件地址
         arbitration_address: 仲裁通知之實體地址
         arbitration_website: 提交仲裁通知之網站
         choice_of_law: 法律選擇

@@ -910,11 +910,13 @@ nl:
       action_taken_by: Maatregel genomen door
       actions:
         delete_description_html: De gerapporteerde berichten en/of verzamelingen worden verwijderd en er wordt een overtreding geregistreerd om toekomstige overtredingen door hetzelfde account sneller af te kunnen handelen.
+        disable_description_html: Voorkom dat de gebruiker diens account gebruikt, maar verwijder of verberg diens inhoud niet. Deze actie kan ongedaan gemaakt worden. Dit sluit alle rapporten tegen dit account af.
+        force_sensitive_descption_html: Alle mediabijlagen van deze gebruiker altijd als gevoelig markeren. Dit kan ongedaan worden gemaakt. Dit sluit alle rapporten tegen dit account af.
         mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
-        other_description_html: Bekijk meer opties voor het controleren van het gedrag van en de communicatie met het gerapporteerde account.
         resolve_description_html: Er wordt tegen het gerapporteerde account geen maatregel genomen, geen overtreding geregistreerd en de rapportage wordt gemarkeerd als opgelost.
         silence_description_html: Het account is alleen zichtbaar voor degenen die het al volgen of handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Dit kan altijd ongedaan worden gemaakt. Dit sluit alle rapporten tegen dit account af.
         suspend_description_html: Het account en de inhoud hiervan is niet meer toegankelijk, en het is ook niet meer mogelijk om ermee interactie te hebben. Uiteindelijk wordt het account volledig verwijderd. Dit is omkeerbaar binnen 30 dagen. Dit sluit alle rapporten tegen dit account af.
+        warn_description_html: Gebruik dit om een waarschuwing naar de gebruiker te sturen, zonder dat nog een andere maatregel wordt genomen.
       actions_description_html: Beslis welke maatregel moet worden genomen om deze rapportage op te lossen. Wanneer je een (straf)maatregel tegen het gerapporteerde account neemt, krijgt het account een e-mailmelding, behalve wanneer de <strong>spam</strong>-categorie is gekozen.
       actions_description_remote_html: Beslis welke actie moet worden ondernomen om deze rapportage op te lossen. Dit is alleen van invloed op hoe <strong>jouw</strong> server met dit externe account communiceert en de inhoud ervan beheert.
       actions_no_posts: Dit rapport heeft geen bijbehorende berichten om te verwijderen
@@ -1209,6 +1211,9 @@ nl:
         danger_zone: Gevarenzone
         preamble: Toezicht houden op hoe berichten en media van gebruikers op Mastodon worden bewaard.
         title: Bewaartermijn berichten
+      crawlers:
+        preamble: Bepaal hoe (goed gedragende) bots, zoals die van zoekmachines met jouw Mastodon-server kunnen communiceren. Slecht gedragende bots kunnen deze instellingen negeren en moeten op netwerkniveau worden geblokkeerd.
+        title: Webcrawler-instellingen
       default_noindex:
         desc_html: Heeft invloed op alle gebruikers die deze instelling niet zelf hebben veranderd
         title: Gebruikers standaard niet door zoekmachines laten indexeren
@@ -2254,6 +2259,8 @@ nl:
           trillion: bln.
   otp_authentication:
     code_hint: Voer de code in die door de authenticatie-app werd gegenereerd
+    delete: Verwijderen
+    delete_confirmation: Weet je zeker dat je jouw authenticatie-app uit je methoden voor tweestapsverificatie wilt verwijderen?
     description_html: Na het instellen van <strong>tweestapsverificatie</strong> met een authenticatie-app, kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren toegangscode.
     enable: Inschakelen
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Vanaf nu genereert deze app toegangscodes die je bij het inloggen moet invoeren."
@@ -2734,7 +2741,6 @@ nl:
     nickname_hint: Voer de bijnaam in van jouw nieuwe beveiligingssleutel
     not_enabled: Je hebt WebAuthn nog niet ingeschakeld
     not_supported: Deze browser ondersteunt geen beveiligingssleutels
-    otp_required: Om beveiligingssleutels te kunnen gebruiken, moet je eerst tweestapsverificatie inschakelen.
     registered_on: Geregistreerd op %{date}
   wrapstodon:
     description: Bekijk hoe %{name} dit jaar Mastodon heeft gebruikt!

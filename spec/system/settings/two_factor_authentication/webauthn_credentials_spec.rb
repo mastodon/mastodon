@@ -18,11 +18,15 @@ RSpec.describe 'Settings TwoFactorAuthentication WebauthnCredentials', :js, :str
     it 'requires a nickname and saves a new credential', :inline_jobs do
       visit new_settings_webauthn_credential_path
 
+      # Fill in challenge form
+      fill_in 'form_challenge_current_password', with: user.password
+      click_on I18n.t('challenge.confirm')
+
       click_on I18n.t('webauthn_credentials.add')
       expect(page)
         .to have_current_path(new_settings_webauthn_credential_path)
 
-      fill_in 'new_webauthn_credential_nickname', with: credential_name
+      fill_in 'nickname', with: credential_name
       expect { create_credential }
         .to change(user.webauthn_credentials, :count).by(1)
         .and send_email(subject: I18n.t('devise.mailer.webauthn_enabled.subject'))
@@ -41,7 +45,12 @@ RSpec.describe 'Settings TwoFactorAuthentication WebauthnCredentials', :js, :str
   describe 'Authenticating with a security key' do
     it 'authenticates using the security key' do
       visit new_settings_webauthn_credential_path
-      fill_in 'new_webauthn_credential_nickname', with: credential_name
+
+      # Fill in challenge form
+      fill_in 'form_challenge_current_password', with: user.password
+      click_on I18n.t('challenge.confirm')
+
+      fill_in 'nickname', with: credential_name
       click_on I18n.t('webauthn_credentials.add')
       expect(page)
         .to have_text(I18n.t('webauthn_credentials.create.success'))

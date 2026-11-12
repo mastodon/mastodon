@@ -92,7 +92,7 @@ gem 'stoplight'
 gem 'strong_migrations'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'tzinfo-data', '~> 1.2023'
-gem 'uts58', '~> 0.2.3'
+gem 'uts58', '~> 0.2.6'
 gem 'webauthn', '~> 3.0'
 gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
 
@@ -115,7 +115,7 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-faraday', '~> 0.33.0', require: false
   gem 'opentelemetry-instrumentation-http', '~> 0.30.0', require: false
   gem 'opentelemetry-instrumentation-http_client', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-net_http', '~> 0.29.0', require: false
+  gem 'opentelemetry-instrumentation-net_http', '~> 0.30.0', require: false
   gem 'opentelemetry-instrumentation-pg', '~> 0.37.0', require: false
   gem 'opentelemetry-instrumentation-rack', '~> 0.31.0', require: false
   gem 'opentelemetry-instrumentation-rails', '~> 0.42.0', require: false

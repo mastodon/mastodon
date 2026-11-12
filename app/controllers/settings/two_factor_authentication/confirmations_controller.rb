@@ -23,14 +23,19 @@ module Settings
 
           current_user.otp_required_for_login = true
           current_user.otp_secret = session[:new_otp_secret]
-          @recovery_codes = current_user.generate_otp_backup_codes!
+          @recovery_codes = current_user.generate_otp_backup_codes! if current_user.otp_backup_codes.blank?
+
           current_user.save!
 
           UserMailer.two_factor_enabled(current_user).deliver_later!
 
           session.delete(:new_otp_secret)
 
-          render 'settings/two_factor_authentication/recovery_codes/index'
+          if @recovery_codes
+            render 'settings/two_factor_authentication/recovery_codes/index'
+          else
+            redirect_to settings_two_factor_authentication_methods_path
+          end
         else
           flash.now[:alert] = I18n.t('otp_authentication.wrong_code')
           prepare_two_factor_form

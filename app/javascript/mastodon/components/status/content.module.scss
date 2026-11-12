@@ -48,6 +48,7 @@
 
     [data-variant='page'] & {
       max-height: 50vh;
+      overflow-x: auto;
     }
   }
 
@@ -172,15 +173,30 @@
 }
 
 .image {
-  border-radius: var(--radius-4);
   position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   overflow: hidden;
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.imageAltBadge {
+  position: absolute;
+  inset-block-start: var(--space-1);
+  inset-inline-start: var(--space-1);
 }
 
 .blurHash {
   width: 100%;
   height: 100%;
+  background-color: rgb(from var(--color-bg-overlay) r g b / 100%);
 }

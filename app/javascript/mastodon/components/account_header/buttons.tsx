@@ -3,17 +3,14 @@ import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { ChatCircleDotsIcon, UserMinusIcon } from '@phosphor-icons/react';
-
 import { directCompose } from '@/mastodon/actions/compose';
 import { openModal } from '@/mastodon/actions/modal';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
-import { Button, IconButton } from '../button/redesign';
+import { Button } from '../button';
 import { CopyIconButton } from '../copy_button';
 import { FollowButton } from '../follow_button';
 
@@ -97,10 +94,10 @@ const AccountButtonsOther: FC<
     <>
       {!isFollowing && !isMovedAndUnfollowedAccount && (
         <FollowButton
-          compact={isRedesignEnabled()}
           accountId={accountId}
           className={classes.followButton}
           withUnmute={false}
+          size='sm'
           labelLength='long'
           reference={reference}
         />
@@ -108,7 +105,6 @@ const AccountButtonsOther: FC<
       {isFollowing && (
         <>
           <Button
-            leadingIcon={ChatCircleDotsIcon}
             size='sm'
             variant='solid'
             color='accent'
@@ -121,9 +117,9 @@ const AccountButtonsOther: FC<
               description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
             />
           </Button>
-          <IconButton icon={UserMinusIcon} size='sm' onClick={confirmUnfollow}>
+          <Button size='sm' onClick={confirmUnfollow}>
             <FormattedMessage id='account.unfollow' defaultMessage='Unfollow' />
-          </IconButton>
+          </Button>
         </>
       )}
       {!noShare && (

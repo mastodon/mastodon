@@ -15,9 +15,21 @@ describe('countableText', () => {
   });
 
   test('collapses a schemaless URL the same way', () => {
-    expect(countableText('see example.com here')).toBe(
-      `see ${URL_PLACEHOLDER} here`,
-    );
+    expect(countableText('see example.com here')).toBe(`see example.com here`);
+  });
+
+  test('wit two valid urls in one string', () => {
+    expect(
+      countableText(
+        'see https://example.com here is another link https://example.com',
+      ),
+    ).toBe(`see ${URL_PLACEHOLDER} here is another link ${URL_PLACEHOLDER}`);
+  });
+
+  test('with a schemaless URL and a valid url of the same domain', () => {
+    expect(
+      countableText('see example.com here I link to https://example.com'),
+    ).toBe(`see example.com here I link to ${URL_PLACEHOLDER}`);
   });
 
   test('collapses a non-BMP URL the same way', () => {
@@ -28,7 +40,7 @@ describe('countableText', () => {
 
   test('collapses a schemaless non-BMP URL the same way', () => {
     expect(countableText('look example.com/🐪/#camel here')).toBe(
-      `look ${URL_PLACEHOLDER} here`,
+      `look example.com/🐪/#camel here`,
     );
   });
 
@@ -118,9 +130,7 @@ describe('countableText', () => {
   test.each(funkyDomains)(
     'collapses a bare %s to a 23-character placeholder',
     (domain) => {
-      expect(countableText(`look ${domain} here`)).toBe(
-        `look ${URL_PLACEHOLDER} here`,
-      );
+      expect(countableText(`look ${domain} here`)).toBe(`look ${domain} here`);
     },
   );
 

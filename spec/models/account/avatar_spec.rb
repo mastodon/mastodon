@@ -30,12 +30,9 @@ RSpec.describe Account::Avatar do
     let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('attachment.jpg').read)}" }
     let(:account) { Fabricate(:account, avatar: base64_attachment) }
 
-    it 'saves avatar' do
+    it 'saves avatar and gives a file name', :aggregate_failures do
       expect(account.persisted?).to be true
       expect(account.avatar).to_not be_nil
-    end
-
-    it 'gives the avatar a file name' do
       expect(account.avatar_file_name).to_not be_blank
     end
 

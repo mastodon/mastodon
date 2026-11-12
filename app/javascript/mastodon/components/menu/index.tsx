@@ -11,7 +11,7 @@ import { mergeProps } from '@react-aria/utils';
 
 import type { PolymorphicProps } from '@/types/polymorphic';
 
-import { Button } from '../button/redesign';
+import { Button } from '../button';
 import { normalizeKey } from '../hotkeys/utils';
 
 import { PopoverMenuCard } from './card';
