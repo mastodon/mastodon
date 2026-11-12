@@ -36,7 +36,7 @@ import {
   useNotificationsCount,
   handleSearchLinkClick,
 } from '.';
-import { AccountMenuItems } from './account_card_and_menu';
+import { AccountMenuItems } from './account_menu_items';
 import { LogoLockup } from './header';
 import classes from './mobile_nav.module.scss';
 import { MiniNavLink, MiniNavProfileButton } from './navigation_link';

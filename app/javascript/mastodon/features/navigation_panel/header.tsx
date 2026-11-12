@@ -17,6 +17,7 @@ import { useAppDispatch } from '@/mastodon/store';
 import { getNavigationSkipLinkId } from '../ui/components/skip_links';
 
 import classes from './header.module.scss';
+import { MiniNav } from './mini_nav';
 
 export const NavigationHeader: React.FC<{
   siteName?: string;
@@ -32,6 +33,8 @@ export const NavigationHeader: React.FC<{
   return (
     <header className={classes.root} data-stuck={isStuck}>
       <LogoLockup siteName={siteName} />
+
+      <MiniNav />
 
       <Button
         leadingIcon={PenNibIcon}
