@@ -197,9 +197,8 @@ export const VerifiedBadge: React.FC<{ link: string; className?: string }> = ({
   className,
 }) => (
   <Badge
-    variant='success'
     icon={<Icon id='verified' icon={IconVerified} noFill />}
     label={<EmojiHTML as='span' htmlString={link} onAttribute={onAttribute} />}
-    className={className}
+    className={classNames(className, classes.verified)}
   />
 );

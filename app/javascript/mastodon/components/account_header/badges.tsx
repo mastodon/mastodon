@@ -3,11 +3,12 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { UserIcon } from '@phosphor-icons/react';
+
 import { fetchRelationships } from '@/mastodon/actions/accounts';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import type { AccountRole } from '@/mastodon/models/account';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import PersonIcon from '@/material-icons/400-24px/person.svg?react';
 
 import {
   AdminBadge,
@@ -58,7 +59,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
     } else {
       badges.push(
         <Badge
-          icon={<PersonIcon />}
+          icon={<UserIcon />}
           key={role.id}
           label={role.name}
           domain={`(${domain})`}

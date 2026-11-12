@@ -5,14 +5,16 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { CopyIcon, QuestionIcon } from '@phosphor-icons/react';
+import {
+  AtIcon,
+  CopyIcon,
+  GlobeIcon,
+  QuestionIcon,
+} from '@phosphor-icons/react';
 
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import { useAppSelector } from '@/mastodon/store';
-import AtIcon from '@/material-icons/400-24px/alternate_email.svg?react';
-import HelpIcon from '@/material-icons/400-24px/help.svg?react';
-import DomainIcon from '@/material-icons/400-24px/language.svg?react';
 
 import { FollowsYouBadge } from '../badge';
 import { CopyButton } from '../copy_button';
@@ -105,8 +107,7 @@ const InvalidAccountHelp: FC = () => {
         />
 
         <Icon
-          id='help'
-          icon={HelpIcon}
+          icon={QuestionIcon}
           aria-label={intl.formatMessage(messages.nameInfo)}
         />
       </button>
@@ -213,7 +214,7 @@ const AccountNameHelp: FC<{
                 )}
               </li>
               <li>
-                <Icon id='domain' icon={DomainIcon} />
+                <Icon id='domain' icon={GlobeIcon} />
                 {isSelf ? (
                   <FormattedMessage
                     id='account.name.help.domain_self'
