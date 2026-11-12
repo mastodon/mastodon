@@ -23,6 +23,9 @@ search:
   exclude:
     - app/javascript
 
+  ast_matchers:
+    - 'I18n::Tasks::Scanners::AstMatchers::DefaultI18nSubjectMatcher'
+
 ignore_missing:
   - 'activemodel.errors.*'
   - 'activerecord.attributes.*'
@@ -55,10 +58,8 @@ ignore_unused:
   - 'admin_mailer.new_appeal.actions.*'
   - 'statuses.attached.*'
   - 'move_handler.carry_{mutes,blocks}_over_text'
-  - 'admin_mailer.*.subject'
-  - 'user_mailer.*.subject'
-  - 'email_subscription_mailer.*'
-  - 'notification_mailer.*'
+  - 'email_subscription_mailer.notification.*' # View uses ternary key selection
+  - 'notification_mailer.admin.*' # Used in Notification::PROPERTIES
   - 'imports.overwrite_preambles.{following,blocking,muting,domain_blocking,bookmarks,lists,custom_filters}_html.*'
   - 'imports.preambles.{following,blocking,muting,domain_blocking,bookmarks,lists,custom_filters}_html.*'
   - 'mail_subscriptions.unsubscribe.emails.*'
