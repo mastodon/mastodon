@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -9,10 +9,10 @@ import type {
   ApiVideoAttachmentJSON,
 } from '@/mastodon/api_types/media_attachments';
 import { Blurhash } from '@/mastodon/components/blurhash';
+import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useBlurhash } from '@/mastodon/initial_state';
 import type { MediaAttachmentShape } from '@/mastodon/models/status';
 import { useAppDispatch } from '@/mastodon/store';
-import type { PolymorphicProps } from '@/types/polymorphic';
 
 import { AltTextBadge } from '../alt_text_badge';
 
@@ -27,6 +27,7 @@ interface StatusImageProps {
   attachment:
     | StatusImageAttachmentJSON
     | MediaAttachmentShape<StatusImageAttachmentJSON>;
+  statusId?: string;
   children?: React.ReactNode;
   sensitive?: boolean;
   showAlt?: boolean;
@@ -35,51 +36,48 @@ interface StatusImageProps {
   className?: string;
 }
 
-export const StatusImage = <As extends React.ElementType = 'div'>({
-  as: asComp,
+export const StatusImage: React.FC<
+  StatusImageProps & React.ComponentPropsWithRef<'div'>
+> = ({
   attachment,
+  statusId,
   children,
   sensitive,
   className,
   style,
   showAlt = false,
   ...props
-}: PolymorphicProps<StatusImageProps, As>) => {
-  const Comp = asComp ?? 'div';
-  let x = 50;
-  let y = 50;
-  const focusX = attachment.meta?.focus?.x;
-  const focusY = attachment.meta?.focus?.y;
-  if (focusX && focusY) {
-    x = (focusX / 2 + 0.5) * 100;
-    y = (focusY / -2 + 0.5) * 100;
-  }
+}) => {
+  const [loaded, { onTrue: onLoaded }] = useToggle();
 
   const width = attachment.meta?.original?.width;
   const height = attachment.meta?.original?.height;
 
-  const imgStyle = {
-    backgroundImage:
-      !sensitive && attachment.preview_url
-        ? `url(${attachment.preview_url})`
-        : undefined,
-    backgroundPosition: `${x}% ${y}%`,
+  const wrapperStyle = {
     '--aspect': width && height ? `${width} / ${height}` : undefined,
     ...style,
   };
 
   return (
-    <Comp
+    <div
       {...props}
       className={classNames(classes.image, className)}
-      style={imgStyle}
       data-color-scheme='dark'
+      style={wrapperStyle}
     >
-      {sensitive && attachment.blurhash && (
+      {(sensitive || !loaded) && attachment.blurhash && (
         <Blurhash
           hash={attachment.blurhash}
           className={classes.blurHash}
           dummy={!useBlurhash}
+        />
+      )}
+
+      {!sensitive && (
+        <StatusImageContent
+          attachment={attachment}
+          statusId={statusId}
+          onLoaded={onLoaded}
         />
       )}
 
@@ -91,26 +89,17 @@ export const StatusImage = <As extends React.ElementType = 'div'>({
           className={classes.imageAltBadge}
         />
       )}
-    </Comp>
+    </div>
   );
 };
 
-export const StatusGalleryImage: React.FC<
-  StatusImageProps & { statusId: string }
-> = ({ statusId, attachment, ...props }) => {
+const StatusImageContent: React.FC<
+  Pick<StatusImageProps, 'attachment' | 'statusId'> & { onLoaded: () => void }
+> = ({ attachment, statusId, onLoaded }) => {
   const dispatch = useAppDispatch();
   const handleClick: React.MouseEventHandler<HTMLAnchorElement> = useCallback(
     (event) => {
-      if (
-        event.target instanceof HTMLElement &&
-        event.target !== event.currentTarget &&
-        event.target.closest('a, button, input')
-      ) {
-        event.preventDefault();
-        return;
-      }
-
-      if (event.button === 0 && !(event.ctrlKey || event.metaKey)) {
+      if (statusId && event.button === 0 && !(event.ctrlKey || event.metaKey)) {
         event.preventDefault();
         dispatch(
           openAttachmentGallery({ statusId, attachmentId: attachment.id }),
@@ -121,15 +110,61 @@ export const StatusGalleryImage: React.FC<
     },
     [attachment.id, dispatch, statusId],
   );
+
+  const { original, small, focus } = attachment.meta ?? {};
+
+  let srcSet = '';
+  if (original?.width && small?.width && attachment.type === 'image') {
+    srcSet = `${attachment.url} ${original.width}w, ${attachment.preview_url} ${small.width}w`;
+  }
+
+  const [width, setWidth] = useState(0);
+  const imgRef = useCallback((node: HTMLImageElement | null) => {
+    if (node) {
+      setWidth(node.offsetWidth);
+    }
+  }, []);
+  let sizes = '';
+  if (width > 0) {
+    sizes = `${width}px`;
+  }
+
+  let x = 50;
+  let y = 50;
+  if (focus) {
+    x = (focus.x / 2 + 0.5) * 100;
+    y = (focus.y / -2 + 0.5) * 100;
+  }
+
+  let alt = attachment.description;
+  if ('translation' in attachment && attachment.translation?.description) {
+    alt = attachment.translation.description;
+  }
+
+  const image = (
+    <img
+      src={attachment.preview_url}
+      alt={alt}
+      srcSet={srcSet}
+      sizes={sizes}
+      style={{ objectPosition: `${x}% ${y}%` }}
+      onLoad={onLoaded}
+      ref={imgRef}
+    />
+  );
+
+  if (!statusId) {
+    return image;
+  }
+
   return (
-    <StatusImage
-      as='a'
+    <a
       href={attachment.remote_url ?? attachment.url}
-      attachment={attachment}
       onClick={handleClick}
       target='_blank'
       rel='noopener'
-      {...props}
-    />
+    >
+      {image}
+    </a>
   );
 };

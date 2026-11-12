@@ -129,11 +129,13 @@
 
 .title {
   @include mixins.type-heading-sm;
+  @include mixins.text-ellipsis;
 
   grid-area: 1 / 2;
   white-space: nowrap;
   min-width: 0;
   padding: var(--column-header-padding);
+  padding-inline: 0;
   border-radius: var(--radius-4);
 
   &:focus-visible,
@@ -144,6 +146,8 @@
 }
 
 .scrollTopButton {
+  @include mixins.text-ellipsis;
+
   grid-area: 1 / 2;
   opacity: 0;
 }

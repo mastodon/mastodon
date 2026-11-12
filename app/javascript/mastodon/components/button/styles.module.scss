@@ -111,10 +111,7 @@ a.base {
 
 // Solid variant
 
-.solid,
-.solidOnMedia,
-// .onMedia appears like .solidOnMedia in high-contrast mode
-[data-contrast='high'] .onMedia {
+.solid {
   --bg: var(--color-bg-inverted);
   --fg: var(--color-text-inverted);
 
@@ -127,33 +124,13 @@ a.base {
     --bg: var(--color-bg-error-base);
     --fg: var(--color-text-on-error-base);
   }
-}
 
-// Add a border to solidOnMedia styles
-.solidOnMedia:not(.accent, .destructive),
-[data-contrast='high'] .onMedia {
-  &::before {
-    @include mixins.high-contrast-outline;
+  &.media {
+    &::before {
+      @include mixins.high-contrast-outline;
 
-    border: var(--border-default);
-  }
-}
-
-// onMedia variant: semi-transparent for use on media
-// in high-contrast mode, this is displayed like `.solidOnMedia`
-
-.onMedia {
-  --bg: var(--color-bg-overlay);
-  --fg: var(--color-text-on-overlay);
-
-  &.accent {
-    --bg: var(--color-bg-overlay);
-    --fg: var(--color-text-on-overlay);
-  }
-
-  &.destructive {
-    --bg: var(--color-bg-overlay);
-    --fg: var(--color-text-on-overlay);
+      border: var(--border-default);
+    }
   }
 }
 
@@ -198,6 +175,25 @@ a.base {
 
     @include active {
       --fg: var(--color-text-on-error-base);
+    }
+  }
+
+  &.media {
+    --bg-color: var(--color-black);
+    --bg-opacity: 50%;
+    --bg-hover-opacity: 40%;
+    --fg: var(--color-text-on-overlay);
+
+    // Appears like the solid variant in high-contrast mode
+    [data-contrast='high'] & {
+      --bg: var(--color-bg-inverted);
+      --fg: var(--color-text-inverted);
+
+      &::before {
+        @include mixins.high-contrast-outline;
+
+        border: var(--border-default);
+      }
     }
   }
 }

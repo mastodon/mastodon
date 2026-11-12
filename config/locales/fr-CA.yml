@@ -910,11 +910,16 @@ fr-CA:
       action_taken_by: Intervention de
       actions:
         delete_description_html: Les messages ou les collections signalés seront supprimés et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas de nouvelles infractions par le même compte.
+        disable_description_html: Empêcher l'utilisation du compte, sans supprimer ni masquer son contenu. Cette action est réversible et clôt tous les signalements envers ce compte.
+        force_sensitive_descption_html: Forcer tous les médias de ce compte à être marqués comme sensibles. Cette action est réversible et clôt tous les signalements envers ce compte.
         mark_as_sensitive_description_html: Les médias des messages signalés seront marqués comme sensibles et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
+        silence_description_html: Le compte sera visible uniquement pour les personnes qui le suivent déjà ou qui le recherchent manuellement, limitant fortement sa portée. Cette action est réversible et clôt tous les signalements envers ce compte.
+        suspend_description_html: Le compte et son contenu seront inaccessibles puis supprimés, et toute interaction sera impossible. Cette action est réversible pendant 30 jours et clôt tous les signalements envers ce compte.
+        warn_description_html: Utilisez ceci pour envoyer un avertissement à l’utilisateur·rice, sans déclencher aucune autre action.
       actions_description_html: Décider de l'action à entreprendre pour traiter ce signalement. Si vous prenez une mesure punitive à l'encontre du compte signalé, une notification sera envoyée par courriel, sauf si la catégorie <strong>Spam</strong> est sélectionnée.
       actions_description_remote_html: Décidez des mesures à prendre pour résoudre ce signalement. Cela n'affectera que la manière dont <strong>votre</strong> serveur communique avec ce compte distant et traite son contenu.
-      actions_no_posts: Ce signalement n'a pas de messages qui lui sont associés et qui devraient être supprimés
+      actions_no_posts: Ce signalement n'a pas de messages associés à supprimer
       add_to_report: Ajouter davantage au rapport
       already_suspended_badges:
         local: Déjà suspendu sur ce serveur
@@ -2254,6 +2259,8 @@ fr-CA:
           trillion: T
   otp_authentication:
     code_hint: Entrez le code généré par votre application d'authentification pour confirmer
+    delete: Supprimer
+    delete_confirmation: Voulez-vous vraiment supprimer votre application d'authentification de vos méthodes d'authentification à deux facteurs ?
     description_html: Si vous activez <strong>l’authentification à deux facteurs</strong> en utilisant une application d'authentification, votre connexion vous imposera d'être en possession de votre téléphone, ce qui génèrera des jetons que vous devrez saisir.
     enable: Activer
     instructions_html: "<strong>Scannez ce code QR dans Google Authenticator ou une application TOTP similaire sur votre téléphone</strong>. À partir de maintenant, cette application générera des jetons que vous devrez entrer lorsque vous vous connecterez."
@@ -2734,7 +2741,6 @@ fr-CA:
     nickname_hint: Entrez le surnom de votre nouvelle clé de sécurité
     not_enabled: Vous n'avez pas encore activé WebAuthn
     not_supported: Ce navigateur ne prend pas en charge les clés de sécurité
-    otp_required: Pour utiliser les clés de sécurité, veuillez d'abord activer l'authentification à deux facteurs.
     registered_on: Inscrit le %{date}
   wrapstodon:
     description: Voir comment %{name} a utilisé Mastodon cette année !

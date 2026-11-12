@@ -59,6 +59,9 @@ az:
       export: Xaricə köçür
     domain_blocks:
       export: Xaricə köçür
+      private_comment: Məxfi şərh
+      private_comment_hint: Bu domen məhdudiyyəti barədə şərh, moderatorlar tərəfindən daxili istifadə üçündür.
+      public_comment: Hər kəsə açıq şərh
     email_subscriptions:
       additional_footer_texts:
         show:
@@ -99,6 +102,8 @@ az:
         description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
         placeholder: Bu instansiya barədə bilgi, görülən tədbirlər və ya gələcəkdə bu instansiyanı moderasiya etməyə kömək edəcək hər hansı digər bilgilər.
         title: Moderasiya notları
+      private_comment: Məxfi şərh
+      public_comment: Hər kəsə açıq şərh
       purge_description_html: Əgər bu domenin tamamilə oflayn olduğuna inanırsınızsa, deponuzdan bu domenə aid olan bütün hesab qeydlərini və əlaqəli veriləri silə bilərsiniz. Bu bir az vaxt aparacaq.
       totals_time_period_hint_html: Aşağıdakı cəmlərə bütün vaxtlardakı verilər daxildir.
     reports:
@@ -141,6 +146,22 @@ az:
             title: Serveriniz veri bazası sxemini yoxlayır
           unprocessed:
             title: Serveriniz hələ veri bazası sxemini yoxlamayıb
+        media_privacy:
+          ok:
+            title: Serverinizin media məxfiliyi təhlükəsizdir
+          pending:
+            title: İstifadəçilərinizin məxfiliyi risk altındadır
+          running:
+            title: Server məxfilik statusunu yoxlayır
+          unprocessed:
+            title: Server məxfilik statusunu hələ yoxlamayıb
+        software_version:
+          error:
+            title: Yazılım güncəlləmələrini yoxlayarkən bir xəta baş verdi
+          running:
+            title: Server, gözləyən hər hansısa bir yazılım güncəlləməsi olub-olmadığını yoxlayır
+          unprocessed:
+            title: Server, yazılım güncəlləmələrini hələ yoxlamayıb
     settings:
       about:
         preamble: Serverin necə idarə olunduğu, moderasiya edildiyi və maliyyələşdirildiyi barədə ətraflı bilgi verin.
@@ -153,6 +174,7 @@ az:
         title: Kəşf et
       external:
         preamble: Serveriniz haqqında nə qədər bilginin digər xidmətlərlə paylaşılacağına və serverinizin nə dərəcədə aşkar edilə bilən olacağına nəzarət edin.
+        privacy: Məxfilik
       landing_page:
         hints:
           about_html: Bu serverlə bağlı açıqlamanı, əlaqə bilgilərini, qaydaları və digər bilgiləri özündə əks etdirən səhifə.
@@ -160,6 +182,8 @@ az:
         moderation_recommandation: Hər kəs üçün qeydiyyatı açmazdan əvvəl lütfən əmin olun ki, adekvat və reaktiv moderasiya komandanız var!
       registrations_mode:
         warning_hint: Moderasiya komandanızın spam və zərərli qeydiyyatları vaxtında idarə edə biləcəyinə əmin deyilsinizsə, “Qeydiyyat üçün təsdiq tələb olunur”dan istifadə etməyi tövsiyə edirik.
+      security:
+        authorized_fetch_overridden_hint: Bir ortam dəyişəni tərəfindən yararsız edildiyi üçün hazırda bu ayarı dəyişdirə bilməzsiniz.
       title: Server ayarları
     statuses:
       application: Tətbiq
@@ -182,6 +206,7 @@ az:
       generates:
         chance_to_review_html: "<strong>Tərtib olunmuş xidmət şərtləri avtomatik olaraq dərc olunmayacaq.</strong> Nəticələri incələmə şansınız olacaq. Davam etmək üçün lütfən gərəkli ayrıntıları qeyd edin."
         explanation_html: Təqdim olunan xidmət şərtləri nümunəsi yalnız bilgi məqsədi daşıyır və heç bir məsələ ilə bağlı hüquqi məsləhət kimi qəbul edilməməlidir. Lütfən, öz vəziyyətiniz və konkret hüquqi suallarınızla bağlı şəxsi hüquq məsləhətçinizə müraciət edin.
+        title: Xidmət Şərtləri Qurulumu
     trends:
       tags:
         used_by_over_week:
@@ -245,7 +270,7 @@ az:
       functional: Hesabınız tamamilə işləkdir.
       self_destruct: "%{domain} bağlandığı üçün, hesabınıza yalnız məhdud erişiminiz olacaq."
   author_attribution:
-    example_title: Nümunə mətn
+    example_title: Örnək mətn
   challenge:
     hint_html: "<strong>İpucu:</strong> Sonrakı bir saat ərzində sizdən parolu soruşmayacağıq."
     invalid_password: Yararsız parol
@@ -256,6 +281,7 @@ az:
     proceed: Hesabı sil
     success_msg: Hesabınız uğurla silindi
     warning:
+      caches: Digər serverlər tərəfindən keşlənən məzmun qalıcı ola bilər
       data_removal: Göndərişləriniz və digər veriləriniz həmişəlik silinəcək
       irreversible: Hesabınızı bərpa edə və ya təkrar aktivləşdirə bilməyəcəksiniz
       more_details_html: Daha çox ayrıntı üçün <a href="%{terms_path}">məxfilik siyasətinə</a> baxın.
@@ -337,6 +363,8 @@ az:
     title: Məxfilik və əlçatanlıq
   privacy_policy:
     title: Məxfilik Siyasəti
+  redirects:
+    prompt: Bu keçidə güvənirsinizsə, davam etmək üçün klikləyin.
   relationships:
     activity: Hesab fəaliyyəti
     confirm_follow_selected_followers: Seçilmiş izləyicləri izləmək istədiyinizə əminsiniz?
@@ -358,8 +386,10 @@ az:
   sessions:
     browsers:
       edge: Microsoft Edge
+    current_session: Hazırkı oturum
     explanation: Bunlar, hazırda Mastodon hesabınıza giriş etmiş veb brauzerlərdir.
-    title: Seanslar
+    revoke_success: Oturum uğurla ləğv edildi
+    title: Oturumlar
     view_authentication_history: Hesabınızın kimlik doğrulama tarixçəsinə baxın
   settings:
     account_settings: Hesab ayarları

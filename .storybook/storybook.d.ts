@@ -33,6 +33,7 @@ declare module 'storybook/internal/csf' {
   export interface Globals {
     locale: string;
     theme: 'light' | 'dark';
+    contrast: 'default' | 'high';
     loggedIn: 'true' | 'false';
   }
 

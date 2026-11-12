@@ -1,0 +1,23 @@
+.fieldWrapper [data-input] {
+  position: relative;
+
+  > input,
+  > textarea {
+    padding-inline-end: calc(24px + var(--space-2));
+  }
+
+  > textarea {
+    min-height: calc(24px + var(--space-4)); // Button size with 8px margin
+  }
+}
+
+.emojiButton {
+  position: absolute;
+  inset-block-start: var(--space-2);
+  inset-inline-end: var(--space-2);
+  z-index: 1;
+
+  &:not(:active) {
+    color: var(--color-text-secondary);
+  }
+}

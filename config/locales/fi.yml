@@ -2149,6 +2149,8 @@ fi:
           trillion: bilj.
   otp_authentication:
     code_hint: Anna todennussovelluksen luoma koodi vahvistaaksesi
+    delete: Poista
+    delete_confirmation: Haluatko varmasti poistaa todennussovelluksesi kaksivaiheisen todennuksen menetelmistä?
     description_html: Jos otat <strong>kaksivaiheisen todennuksen</strong> käyttöön käyttämällä todennussovellusta, kirjautumiseen vaaditaan puhelin, jolla voidaan luoda kirjautumistunnuksia.
     enable: Ota käyttöön
     instructions_html: "<strong>Lue tämä QR-koodi puhelimen Google Authenticator- tai vastaavalla TOTP-sovelluksella</strong>. Sen jälkeen sovellus luo tunnuksia, joita tarvitset kun kirjaudut sisään."
@@ -2626,7 +2628,6 @@ fi:
     nickname_hint: Anna uuden suojausaivaimesi lempinimi
     not_enabled: Et ole vielä ottanut WebAuthn-ohjelmaa käyttöön
     not_supported: Tämä selain ei tue suojausavaimia
-    otp_required: Jos haluat käyttää suojausavaimia, ota ensin kaksivaiheinen todennus käyttöön.
     registered_on: Rekisteröity %{date}
   wrapstodon:
     description: Katso, kuinka %{name} käytti Mastodonia tänä vuonna!

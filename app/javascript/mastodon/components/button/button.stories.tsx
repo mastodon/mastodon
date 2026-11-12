@@ -45,11 +45,11 @@ const meta = {
     },
     variant: {
       control: 'inline-radio',
-      options: ['solid', 'tonal', 'ghost', 'solidOnMedia', 'onMedia'],
+      options: ['solid', 'tonal', 'ghost'],
     },
     color: {
       control: 'inline-radio',
-      options: ['neutral', 'accent', 'destructive'],
+      options: ['neutral', 'accent', 'destructive', 'media'],
     },
     leadingIcon: iconArgType,
     trailingIcon: iconArgType,
@@ -115,6 +115,29 @@ export const ToggleIcon: Story = {
         onClick={onToggle}
         icon={args.leadingIcon ?? ChatIcon}
       />
+    );
+  },
+};
+
+export const OnMedia: Story = {
+  args: {
+    color: 'media',
+  },
+  render(args) {
+    return (
+      <>
+        <Button {...args} />
+        <img
+          src='https://images.pexels.com/photos/33585484/pexels-photo-33585484.jpeg'
+          alt=''
+          style={{
+            position: 'fixed',
+            width: '100%',
+            inset: 0,
+            zIndex: -1,
+          }}
+        />
+      </>
     );
   },
 };

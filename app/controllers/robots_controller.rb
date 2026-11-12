@@ -28,7 +28,14 @@ class RobotsController < ActionController::Base # rubocop:disable Rails/Applicat
     Disallow: /
 
     User-agent: *
+    Disallow: /authorize_follow
+    Disallow: /authorize_interaction
+    Disallow: /intent
+    Disallow: /invite/
+    Disallow: /media/
     Disallow: /media_proxy/
+    Disallow: /remote_interaction_helper
+    Disallow: /share
   TXT
 
   def show

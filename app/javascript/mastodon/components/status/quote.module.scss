@@ -92,7 +92,7 @@ a.nestedQuote {
 
 .mediaGrid {
   display: grid;
-  height: 260px;
+  max-height: 260px;
   gap: var(--space-half);
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -116,13 +116,61 @@ a.nestedQuote {
   border-radius: var(--radius-2);
 }
 
-a.image {
-  max-height: 260px;
+.image > a {
   display: block;
 
   &:focus {
     outline: var(--outline-focus-default);
     outline-offset: -2px;
+  }
+}
+
+// Sets the border radius for the grid, ensuring items are flush.
+.mediaGrid {
+  .image a {
+    max-height: 260px;
+    border-radius: var(--radius-2);
+  }
+
+  // The first image always has right side flush.
+  [data-index='0'] a {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  // The second image always has the left side flush.
+  [data-index='1'] a {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+
+  // The third item always is flush except for the bottom right corner.
+  [data-index='2'] a {
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  // The fourth item is always flush except for the bottom left corner.
+  [data-index='3'] a {
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+    border-end-start-radius: 0;
+  }
+
+  // For numbers 3 or more, the second image always has the bottom right corner flush.
+  &[data-number='3'],
+  &[data-number='4'] {
+    [data-index='1'] a {
+      border-end-end-radius: 0;
+    }
+  }
+
+  // For four images, the first image is flush in the lower left.
+  &[data-number='4'] {
+    [data-index='0'] a {
+      border-end-start-radius: 0;
+    }
   }
 }
 

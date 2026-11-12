@@ -1105,6 +1105,12 @@ sv:
             title: Det gick inte att kontrollera Elasticsearch-konfigurationen
           ok:
             title: Elasticsearch är konfigurerad utan problem
+        rules:
+          pending:
+            title: Ställ in serverregler
+        software_version:
+          ok:
+            title: Din Mastodon-instans är uppdaterad
       ignore:
         label: Ignorera
       recommendations:
@@ -2181,6 +2187,7 @@ sv:
           trillion: T
   otp_authentication:
     code_hint: Ange koden som genererats av din autentiseringsapp för att bekräfta
+    delete: Radera
     description_html: Om du aktiverar <strong>tvåfaktorsautentisering</strong> med en autentiseringsapp kommer du behöva din mobiltelefon för att logga in, som kommer generera koder för dig att ange.
     enable: Aktivera
     instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app i din telefon</strong>. Från och med nu så kommer den appen att generera symboler som du måste skriva in när du ska logga in."
@@ -2661,7 +2668,6 @@ sv:
     nickname_hint: Ange smeknamnet på din nya säkerhetsnyckel
     not_enabled: Du har inte aktiverat WebAuthn än
     not_supported: Denna webbläsare stöder inte säkerhetsnycklar
-    otp_required: För att använda säkerhetsnycklar måste du först aktivera tvåfaktorsautentisering.
     registered_on: Registrerad den %{date}
   wrapstodon:
     description: Se hur %{name} använde Mastodon i år!

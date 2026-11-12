@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { IconLogo } from '@/mastodon/components/logo';
 import { customAppIcon, domain, title } from '@/mastodon/initial_state';
 
-import { getNavigationSkipLinkId } from '../../ui/components/skip_links';
+import { getNavigationSkipLinkId } from '../ui/components/skip_links';
 
 import classes from './header.module.scss';
 

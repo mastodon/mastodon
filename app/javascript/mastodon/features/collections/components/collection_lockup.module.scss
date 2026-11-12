@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/mixins';
+
 .wrapper {
   --lockup-padding: 0px;
 }
@@ -29,4 +31,8 @@
   border-radius: 8px;
   fill: var(--color-text-primary);
   background: var(--color-bg-warning-softest);
+}
+
+.info > li {
+  @include mixins.text-ellipsis;
 }

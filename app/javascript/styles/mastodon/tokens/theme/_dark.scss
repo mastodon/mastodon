@@ -119,6 +119,11 @@
       var(--base-color-bg-accent),
       var(--base-highlight-strength)
     )};
+  --color-bg-highlight-solid: color-mix(
+    in srgb,
+    var(--color-bg-primary),
+    var(--base-color-bg-accent) var(--base-highlight-strength)
+  );
   --overlay-strength-secondary: 4%; // legacy
   --color-bg-secondary: var(--color-bg-highlight); // legacy
   --color-bg-tertiary: var(--color-bg-highlight); // legacy

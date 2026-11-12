@@ -2,7 +2,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { UserPlusIcon } from '@phosphor-icons/react';
 
-import { useFollowRequestsCount } from '../../navigation_panel/redesign';
+import { useFollowRequestsCount } from '../../navigation_panel';
 import { LinkBanner } from '../../notifications/components/filtered_notifications_banner';
 
 /**
