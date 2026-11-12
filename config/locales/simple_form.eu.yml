@@ -93,12 +93,14 @@ eu:
         closed_registrations_message: Izen-ematea itxia dagoenean bistaratua
         content_cache_retention_period: Beste zerbitzarietako argitalpen guztiak (bultzadak eta erantzunak barne) ezabatuko dira zehazturiko egunen buruan, argitalpen horiek izan ditzaketen erabiltzaile lokalaren interakzioa kontuan izanik gabe. Instantzia desberdinetako erabiltzaileen arteko aipamen pribatuak ere galdu egingo dira eta ezin izango dira berreskuratu. Ezarpen honen erabilera xede berezia duten instantziei zuzendua dago eta erabiltzaileen itxaropena hausten da orotariko erabilerarako inplementatzean.
         custom_css: Estilo pertsonalizatuak aplikatu ditzakezu Mastodonen web bertsioan.
+        custom_robots_html: <a href="%{path}">Sintaxia</a>
         email_footer_text: Buletinen mezu elektronikoen oinean soilik agertzen den testu aukerakoa.
         favicon: WEBP, PNG, GIF or JPG. Mastodon-en favicon-a gainidazten du ikono pertsonalizatu batekin.
         landing_page: Bisitari berriek zure zerbitzarira lehen aldiz iristean ikusiko duten orria hautatzen du. "Joerak" hautatzen baduzu, joerek gaituta egon behar dute Aurkikuntza-ezarpenetan. "Jario lokala" hautatzen baduzu, "Bidalketa lokalak dituzten zuzeneko jarioetarako sarbidea" "Edonork" gisa ezarri behar da Aurkikuntza-ezarpenetan.
         mascot: Web interfaze aurreratuko ilustrazioa gainidazten du.
         media_cache_retention_period: Multimedia-fitxategiak dituzten urruneko erabiltzaileen argitalpenak zure zerbitzarian gordetzen dira cachean. Balio positiboa ezartzean, multimedia zehazturiko egunen buruan ezabatuko da. Multimedia-datuak eskatzen badira ezabatu ostean, berriro deskargatuko dira, iturburuko edukia oraindik erabilgarri badago. Estekaren aurrebistako txartelek hirugarrenen guneei zenbatetan dei diezaieketen mugatzen dieten murrizketak direla eta, balio honi, gutxienez, 14 egunen balioa ezartzea gomendatzen da, bestela, esteken aurrebistako txartelak ez dira eguneratuko eskatu ahala denbora horren aurretik.
         min_age: Erabiltzaileei jaiotze-data berresteko eskatuko zaie izen-ematean
+        override_robots: Ondo portatzen diren botentzako sarbide-arauak pertsonalizatzeko aukera ematen du
         peers_api_enabled: Zerbitzari honek fedibertsoan ikusi dituen zerbitzarien domeinu-izenen zerrenda. Ez da daturik ematen zerbitzari jakin batekin federatzearen ala ez federatzearen inguruan, zerbitzariak haien berri duela soilik. Federazioari buruzko estatistika orokorrak biltzen dituzten zerbitzuek erabiltzen dute hau.
         postpone_confirmation_emails: Ezarpen hau gaituta dagoenean, onarpenaren zain dauden kontuen berrespen-mezuak kontu horiek onartzen direnean bakarrik bidaltzen dira. Horrek izena emateko esperientzia okerragoa eman diezaieke erabiltzaileei, mezua jaso ondoren helbide elektronikoa garaiz berretsi beharko baitute, baina ez baitute jada kontrolatuko noiz bidaltzen den. Gainera, moderatzaileen lan-karga handitu dezake, Mastodonek ezin izango baititu iragazi helbide elektroniko baliogabea duten zain dauden kontuak onartu aurretik.
         profile_directory: Profilen direktorioan ikusgai egotea aukeratu duten erabiltzaile guztiak zerrendatzen dira.
@@ -271,6 +273,7 @@ eu:
         setting_missing_alt_text_modal: Eman abisua testu alternatiborik gabeko multimedia-edukia argitaratu aurretik
         setting_quick_boosting: Gaitu bultzada azkarra
         setting_reduce_motion: Murriztu animazioen mugimenduak
+        setting_show_stats_in_feed: Erakutsi interakzio-estatistikak jarioetan
         setting_split_default_privacy_discoverable: Egin nire bidalketak aurkigarri jario publikoan eta bilaketa-emaitzetan
         setting_system_font_ui: Erabili sistemako tipografia lehenetsia
         setting_system_scrollbars_ui: Erabili sistemako desplazamendu-barra lehenetsia
@@ -304,6 +307,7 @@ eu:
         closed_registrations_message: Izen-emateak itxita daudenerako mezu pertsonalizatua
         content_cache_retention_period: Urruneko edukiaren atxikipen-aldia
         custom_css: CSS pertsonalizatua
+        custom_robots: robots.txt pertsonalizatua
         email_footer_text: Oineko testu gehigarria
         favicon: Gune-ikurra
         landing_page: Bisitari berrientzako harrera-orria
@@ -312,6 +316,7 @@ eu:
         mascot: Maskota pertsonalizatua (zaharkitua)
         media_cache_retention_period: Multimediaren cachea atxikitzeko epea
         min_age: Gutxieneko adin-eskakizuna
+        override_robots: Gainidatzi robots.txt lehenetsia
         peers_api_enabled: Argitaratu aurkitutako zerbitzarien zerrenda APIan
         postpone_confirmation_emails: Atzeratu berrespen-mezuak onarpenaren ondora arte
         profile_directory: Gaitu profil-direktorioa

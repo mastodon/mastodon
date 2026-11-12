@@ -360,6 +360,7 @@ vi:
         destroy_domain_block_html: Tự động bỏ chặn tên miền %{target}
         update_domain_block_html: Tự động cập nhật chặn tên miền với %{target}
       deleted_account: tài khoản đã xóa
+      deleted_suggestion: một gói đăng ký kiểm duyệt đã bị xóa
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động
       filter_by_user: Theo người
@@ -477,6 +478,7 @@ vi:
       confirm_downgrade:
         cancel: Hủy bỏ
         confirm: Giáng cấp
+        preamble_html: Bạn sắp hạ cấp việc chặn hiện có trên <strong>%{domain}</strong> và các tên miền phụ của nó.
         title: Xác nhận giáng cấp tên miền %{domain}
       confirm_suspension:
         cancel: Hủy bỏ
@@ -676,6 +678,8 @@ vi:
       title: Gợi ý theo dõi
       unsuppress: Mở lại gợi ý theo dõi
     instances:
+      advisories:
+        title: Các thông báo từ các gói đăng ký kiểm duyệt
       audit_log:
         title: Kiểm duyệt gần đây
         view_all: Xem lịch sử đầy đủ
@@ -697,6 +701,7 @@ vi:
         comment: Lưu ý nội bộ
         description_html: Bạn có thể xác định các chính sách nội dung sẽ được áp dụng cho tất cả các tài khoản trên máy chủ này và bất kỳ tên miền phụ nào của nó.
         limited_federation_mode_description_html: Bạn có thể chọn nếu muốn cho phép liên hợp với máy chủ này.
+        moderation_subscription: Gói đăng ký kiểm duyệt
         policies:
           reject_media: Từ chối media
           reject_reports: Từ chối báo cáo
@@ -781,9 +786,11 @@ vi:
       advisory_action: 'Hành động: %{action}'
       advisory_actions:
         accept: cho phép
+      apply_automatically: Tự động áp dụng các khuyến nghị
       apply_conditions:
         always: Luôn luôn
         never: Không bao giờ
+        safely: Chỉ khi điều đó không làm đứt gãy các mối quan hệ
       delete: Xóa bỏ
       last_synced_at: Đồng bộ lần cuối lúc
       list_actions:
@@ -798,6 +805,15 @@ vi:
       new:
         create: Đăng ký
       priority: Ưu tiên
+    moderation_suggestions:
+      description: Dưới đây là đề xuất từ ​​các đăng ký kiểm duyệt của bạn, được sắp xếp theo mức độ ưu tiên.
+      destroyed_msg: Đã bỏ qua thành công đề xuất về %{target_key}
+      dismiss: Bỏ qua đề xuất
+      empty: Hiện tại không có đề xuất kiểm duyệt nào.
+      retracted_msg: Đã thu hồi thành công chính sách đối với %{target_key}
+      suggested_from_html: Đề xuất bởi %{link}
+      title: Đề xuất kiểm duyệt
+      unable_to_apply_msg: Không thể áp dụng đề xuất đối với %{target_key}
     relationships:
       title: Mối quan hệ của %{acct}
     relays:
@@ -1013,6 +1029,13 @@ vi:
             title: Đã xảy ra lỗi khi kiểm tra lược đồ cơ sở dữ liệu.
           ok:
             title: Hiện không có yêu cầu di chuyển cơ sở dữ liệu nào đang chờ xử lý.
+          pending:
+            lead_html: Vui lòng chạy chúng để đảm bảo ứng dụng hoạt động như mong đợi
+            title: Có tác vụ di chuyển cơ sở dữ liệu đang chờ xử lý
+          running:
+            title: Máy chủ của bạn đang kiểm tra lược đồ cơ sở dữ liệu
+          unprocessed:
+            title: Máy chủ của bạn chưa kiểm tra lược đồ cơ sở dữ liệu
       title: Sức khỏe máy chủ
     settings:
       about:
