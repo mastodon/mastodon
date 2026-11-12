@@ -12,9 +12,9 @@ import { useIsLinkActive } from '@/mastodon/hooks/useIsLinkActive';
 import classes from './navigation_link.module.scss';
 
 type NavigationLinkProps = {
-  stacked?: boolean;
   iconComponent?: Icon | React.FC<SVGProps<SVGSVGElement>>;
   badgeCount?: number;
+  withDivider?: boolean;
 } & (
   | ({ as?: 'button' } & React.ComponentPropsWithRef<'button'>)
   | ({ as?: 'a' } & React.ComponentPropsWithRef<'a'>)
@@ -22,10 +22,10 @@ type NavigationLinkProps = {
 );
 
 export const NavigationLink: React.FC<NavigationLinkProps> = ({
-  stacked = false,
   as = 'link',
   iconComponent: IconComp,
   badgeCount = 0,
+  withDivider = false,
   children,
   ...otherProps
 }) => {
@@ -39,11 +39,16 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
   );
 
   return (
-    <li className={classes.wrapper}>
+    <li
+      className={classNames(
+        classes.wrapper,
+        withDivider && classes.wrapperWithDivider,
+      )}
+    >
       <Comp
         {...otherProps}
         type={as === 'button' ? 'button' : undefined}
-        className={classNames(classes.link, stacked && classes.linkStacked)}
+        className={classes.link}
       >
         {IconComp && (
           <span className={classes.icon}>
