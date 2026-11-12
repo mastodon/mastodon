@@ -390,10 +390,14 @@ const MediaAttachmentWrapper: React.FC<MediaAttachmentWrapperProps> = ({
             size='xs'
             onClick={onToggle}
           >
-            <FormattedMessage
-              id='content_warning.media.show_short'
-              defaultMessage='Show media'
-            />
+            {visible ? (
+              <FormattedMessage id='media_gallery.hide' defaultMessage='Hide' />
+            ) : (
+              <FormattedMessage
+                id='content_warning.media.show_short'
+                defaultMessage='Show media'
+              />
+            )}
           </IconButton>
         )}
       </div>
