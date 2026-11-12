@@ -4,7 +4,7 @@ import { Column } from '@/mastodon/components/column';
 import { ComposeButton } from '@/mastodon/features/compose/trigger';
 import { DiscoveryPanel } from '@/mastodon/features/discovery_panel';
 import { NavigationPanel } from '@/mastodon/features/navigation_panel';
-import { RedesignMobileNavigation } from '@/mastodon/features/navigation_panel/mobile_nav';
+import { MobileNavigation } from '@/mastodon/features/navigation_panel/mobile_nav';
 import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';
@@ -24,7 +24,7 @@ export const ColumnsArea: React.FC<{
   if (minimalShell) {
     return (
       <div ref={ref} className={classNames(classes.root, classes.rootMinimal)}>
-        {isMobile && <RedesignMobileNavigation />}
+        {isMobile && <MobileNavigation />}
         <div className={classes.main}>
           <div>{children}</div>
 
@@ -40,7 +40,7 @@ export const ColumnsArea: React.FC<{
         <div className={classes.navigationWrapper}>
           <NavigationPanel />
         </div>
-        {isMobile ? <RedesignMobileNavigation /> : <ComposeButton />}
+        {isMobile ? <MobileNavigation /> : <ComposeButton />}
 
         <main className={classes.main}>{children}</main>
 

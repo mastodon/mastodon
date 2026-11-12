@@ -41,7 +41,7 @@ import { LogoLockup } from './header';
 import classes from './mobile_nav.module.scss';
 import { MobileNavLink, MobileNavProfileButton } from './navigation_link';
 
-export const RedesignMobileNavigation: React.FC = () => {
+export const MobileNavigation: React.FC = () => {
   const dispatch = useAppDispatch();
   const { accountId, signedIn } = useIdentity();
   const account = useAccount(accountId);
