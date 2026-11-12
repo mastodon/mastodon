@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import type { NavLinkProps } from 'react-router-dom';
 
+import { CaretDownIcon } from '@phosphor-icons/react';
 import type { Icon } from '@phosphor-icons/react';
 
 import { Badge } from '@/mastodon/components/badge';
@@ -71,6 +72,7 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
 
 export type MiniNavigationLinkProps = {
   withDot?: boolean;
+  withMenuIndicator?: boolean;
   children: ReactNode;
   icon: Icon | React.FC<SVGProps<SVGSVGElement>> | { customIcon: ReactNode };
 } & (
@@ -83,6 +85,7 @@ export const MiniNavigationLink: React.FC<MiniNavigationLinkProps> = ({
   as = 'link',
   icon: IconComp,
   withDot,
+  withMenuIndicator,
   children,
   ...otherProps
 }) => {
@@ -120,6 +123,13 @@ export const MiniNavigationLink: React.FC<MiniNavigationLinkProps> = ({
               {icon}
             </span>
             <span className='sr-only'>{children}</span>
+            {withMenuIndicator && (
+              <CaretDownIcon
+                weight='fill'
+                size={10}
+                className={classes.menuIndicatorIcon}
+              />
+            )}
           </Comp>
         )}
       </Tooltip>
