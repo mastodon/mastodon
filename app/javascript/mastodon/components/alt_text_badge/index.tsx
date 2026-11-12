@@ -71,7 +71,7 @@ export const AltTextBadge: React.FC<{
         isOpen={open}
         onClose={handleClose}
         reference={buttonElement}
-        placement='top-end'
+        placement='bottom-start'
         offset={4}
       >
         {({ props }) => (
