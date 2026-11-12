@@ -7,6 +7,7 @@ import type { NavLinkProps } from 'react-router-dom';
 import type { Icon } from '@phosphor-icons/react';
 
 import { Badge } from '@/mastodon/components/badge';
+import { Tooltip } from '@/mastodon/components/tooltip';
 import { useIsLinkActive } from '@/mastodon/hooks/useIsLinkActive';
 
 import classes from './navigation_link.module.scss';
@@ -86,17 +87,24 @@ export const MiniNavLink: React.FC<MobileNavLink> = ({
 
   return (
     <li>
-      <NavLink
-        {...otherProps}
-        className={classNames(classes.link, classes.linkMini)}
-      >
-        <span
-          className={classNames(classes.icon, withDot && classes.iconWithDot)}
-        >
-          <IconComp size={24} weight={isActive ? 'fill' : undefined} />
-        </span>
-        <span className='sr-only'>{children}</span>
-      </NavLink>
+      <Tooltip text={children} placement='top' offset={-2}>
+        {({ getTooltipProps }) => (
+          <NavLink
+            {...getTooltipProps(otherProps)}
+            className={classNames(classes.link, classes.linkMini)}
+          >
+            <span
+              className={classNames(
+                classes.icon,
+                withDot && classes.iconWithDot,
+              )}
+            >
+              <IconComp size={24} weight={isActive ? 'fill' : undefined} />
+            </span>
+            <span className='sr-only'>{children}</span>
+          </NavLink>
+        )}
+      </Tooltip>
     </li>
   );
 };
@@ -106,18 +114,25 @@ export const MiniNavProfileButton: React.FC<
 > = ({ children, avatar, withDot, ...otherProps }) => {
   return (
     <li>
-      <button
-        type='button'
-        {...otherProps}
-        className={classNames(classes.link, classes.linkMini)}
-      >
-        <span
-          className={classNames(classes.icon, withDot && classes.iconWithDot)}
-        >
-          {avatar}
-        </span>
-        <span className='sr-only'>{children}</span>
-      </button>
+      <Tooltip text={children} placement='top' offset={-2}>
+        {({ getTooltipProps }) => (
+          <button
+            type='button'
+            {...getTooltipProps(otherProps)}
+            className={classNames(classes.link, classes.linkMini)}
+          >
+            <span
+              className={classNames(
+                classes.icon,
+                withDot && classes.iconWithDot,
+              )}
+            >
+              {avatar}
+            </span>
+            <span className='sr-only'>{children}</span>
+          </button>
+        )}
+      </Tooltip>
     </li>
   );
 };
