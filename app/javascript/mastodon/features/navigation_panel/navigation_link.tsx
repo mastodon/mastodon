@@ -69,7 +69,7 @@ type MobileNavLink = NavLinkProps & {
   iconComponent: Icon | React.FC<SVGProps<SVGSVGElement>>;
 };
 
-export const MobileNavLink: React.FC<MobileNavLink> = ({
+export const MiniNavLink: React.FC<MobileNavLink> = ({
   iconComponent: IconComp,
   withDot,
   children,
@@ -83,7 +83,7 @@ export const MobileNavLink: React.FC<MobileNavLink> = ({
     <li>
       <NavLink
         {...otherProps}
-        className={classNames(classes.link, classes.linkMobile)}
+        className={classNames(classes.link, classes.linkMini)}
       >
         <span
           className={classNames(classes.icon, withDot && classes.iconWithDot)}
@@ -96,7 +96,7 @@ export const MobileNavLink: React.FC<MobileNavLink> = ({
   );
 };
 
-export const MobileNavProfileButton: React.FC<
+export const MiniNavProfileButton: React.FC<
   { avatar?: ReactNode } & Pick<MobileNavLink, 'children' | 'withDot'>
 > = ({ children, avatar, withDot, ...otherProps }) => {
   return (
@@ -104,7 +104,7 @@ export const MobileNavProfileButton: React.FC<
       <button
         type='button'
         {...otherProps}
-        className={classNames(classes.link, classes.linkMobile)}
+        className={classNames(classes.link, classes.linkMini)}
       >
         <span
           className={classNames(classes.icon, withDot && classes.iconWithDot)}
