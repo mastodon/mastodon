@@ -1,11 +1,10 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 
 import {
-  PenNibIcon,
   HouseIcon,
   MagnifyingGlassIcon,
   RssSimpleIcon,
@@ -21,9 +20,7 @@ import {
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 import { fetchFollowRequests } from '@/mastodon/actions/accounts';
 import { fetchLists } from '@/mastodon/actions/lists';
-import { closeNavigation } from '@/mastodon/actions/navigation';
 import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
-import { Button } from '@/mastodon/components/button';
 import { Callout } from '@/mastodon/components/callout/redesign';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { useHasAnnouncements } from '@/mastodon/features/announcements/hooks';
@@ -41,7 +38,6 @@ import {
   canViewAdminDashboard,
   canViewFeed,
 } from '@/mastodon/permissions';
-import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { getOrderedLists } from '@/mastodon/selectors/lists';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -149,17 +145,11 @@ export const NavigationPanel: React.FC<{
   multiColumn?: boolean;
 }> = ({ siteName, mode = 'static', multiColumn }) => {
   const intl = useIntl();
-  const dispatch = useAppDispatch();
   const { signedIn, permissions } = useIdentity();
   const notificationsCount = useNotificationsCount();
 
   const isManager = canManageReports(permissions);
   const isAdmin = canViewAdminDashboard(permissions);
-
-  const openComposer = useCallback(() => {
-    dispatch(closeNavigation());
-    dispatch(openNewComposer({ type: 'post' }));
-  }, [dispatch]);
 
   const { customFeeds } = useCustomFeeds();
   const { followedHashtags } = useFollowedHashtags();
@@ -276,21 +266,6 @@ export const NavigationPanel: React.FC<{
           </ul>
 
           <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
-            <div className={classes.newPostButton}>
-              <Button
-                leadingIcon={PenNibIcon}
-                onClick={openComposer}
-                variant='solid'
-                color='accent'
-                size='md'
-              >
-                <FormattedMessage
-                  id='tabs_bar.publish'
-                  defaultMessage='New Post'
-                />
-              </Button>
-            </div>
-
             {mode !== 'slide-out' && (
               <>
                 <ul className={classes.footerNav}>
