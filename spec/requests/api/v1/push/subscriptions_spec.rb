@@ -3,6 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe 'API V1 Push Subscriptions' do
+  around do |test|
+    original_keyring = Rails.configuration.x.vapid
+    Rails.configuration.x.vapid = Mastodon::VapidKeyring.new ['EfghEfghEfghEfghEfghEfghEfghEfghEfghEfghEfg='], 'AbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbcdAbc='
+
+    test.run
+
+    Rails.configuration.x.vapid = original_keyring
+  end
+
   let(:user) { Fabricate(:user) }
   let(:endpoint) { 'https://fcm.googleapis.com/fcm/send/fiuH06a27qE:APA91bHnSiGcLwdaxdyqVXNDR9w1NlztsHb6lyt5WDKOC_Z_Q8BlFxQoR8tWFSXUIDdkyw0EdvxTu63iqamSaqVSevW5LfoFwojws8XYDXv_NRRLH6vo2CdgiN4jgHv5VLt2A8ah6lUX' }
   let(:keys) do
@@ -17,6 +26,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
         endpoint: endpoint,
         keys: keys,
         standard: standard,
+        server_key: server_key,
       },
     }.with_indifferent_access
   end
@@ -38,6 +48,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
     }.with_indifferent_access
   end
   let(:standard) { '1' }
+  let(:server_key) { 'BHzvF0-q-RhWyAVcJ2wYcLCaY8sjcteBWXOa1uNgA1FKn8aWgNUvFvm8SELsVnnlZx0_oHpg1AoW4mqRPn_HNFQ=' }
   let(:scopes) { 'push' }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
@@ -65,6 +76,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
           endpoint: eq(create_payload[:subscription][:endpoint]),
           key_p256dh: eq(create_payload[:subscription][:keys][:p256dh]),
           key_auth: eq(create_payload[:subscription][:keys][:auth]),
+          server_key: eq(create_payload[:subscription][:server_key]),
           user_id: eq(user.id),
           access_token_id: eq(token.id)
         )
@@ -84,6 +96,19 @@ RSpec.describe 'API V1 Push Subscriptions' do
 
         expect(endpoint_push_subscription)
           .to_not be_standard
+      end
+    end
+
+    context 'when using an inactive key' do
+      let(:server_key) { 'BBU2OoloWyzatoc0k9QJKF1DiCo9cGniUZzJNa6qWGP-dYGLRSyCcQ7H7OtMfBPSuHAwE6cRRd6waoxhWeaMCOY=' }
+
+      it 'saves push subscription using the inactive key' do
+        subject
+
+        expect(endpoint_push_subscription)
+          .to have_attributes(
+            server_key: eq(create_payload[:subscription][:server_key])
+          )
       end
     end
 
