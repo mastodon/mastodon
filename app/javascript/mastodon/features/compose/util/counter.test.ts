@@ -84,8 +84,16 @@ describe('countableText', () => {
     expect(countableText('hi @user@慕田峪长城.网址')).toBe('hi @user');
   });
 
-  test('leaves a mention with an implausible host alone', () => {
-    expect(countableText('@arnt@invalid')).toBe('@arnt@invalid');
+  test('strips a mention with an implausible host', () => {
+    expect(countableText('@arnt@invalid')).toBe('@arnt');
+  });
+
+  test('does not strip from non-ascii username', () => {
+    expect(countableText('@ça@example.com')).toBe('@ça@example.com');
+  });
+
+  test('strips a mention with an implausible host', () => {
+    expect(countableText('@arnt@どこでもつかえる.invalid')).toBe('@arnt');
   });
 
   // UASG-004 universal-acceptance domains (one per script), plus a
@@ -170,7 +178,9 @@ describe('extractMentionsWithIndices', () => {
   });
 
   test('rejects an implausible host', () => {
-    expect(extractMentionsWithIndices('@arnt@nope')).toEqual([]);
+    expect(extractMentionsWithIndices('@arnt@nope')).toEqual([
+      { indices: [0, 10], username: 'arnt', host: 'nope' },
+    ]);
   });
 
   test('does not match after a slash (inside a URL path)', () => {
