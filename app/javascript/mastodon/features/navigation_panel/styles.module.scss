@@ -9,13 +9,11 @@
   scrollbar-width: thin;
   isolation: isolate;
 
-  // Approximate height of fixed navigation elements
-  // to ensure focused elements are scrolled into view
-  // as needed.
-  --header-height: 80px;
-  --footer-height: 180px;
+  // Approximate height of fixed navigation header to ensure
+  // that focused elements are scrolled into view as needed.
+  --header-height: 310px;
 
-  scroll-padding-block: var(--header-height) var(--footer-height);
+  scroll-padding-top: var(--header-height);
 
   --navigation-background-color: var(--color-bg-desktop);
 
@@ -33,33 +31,29 @@
 }
 
 .footer {
-  position: sticky;
-  bottom: 0;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: end;
-  padding: var(--space-6);
-  padding-top: 0;
+  padding-inline: var(--space-8);
+  padding-bottom: var(--space-6);
   background-color: var(--navigation-background-color);
+}
 
-  &::before {
+.bottomScrollFade {
+  position: sticky;
+  bottom: 0;
+  height: 0;
+
+  &::after {
     @include mixins.scroll-gradient(bottom, var(--navigation-background-color));
 
     opacity: 0;
     transition: opacity ease 250ms;
   }
 
-  &[data-stuck='true']::before {
+  &[data-stuck='true']::after {
     opacity: 1;
-  }
-
-  @media (height < 560px) {
-    position: relative;
-
-    &::before {
-      display: none;
-    }
   }
 }
 
