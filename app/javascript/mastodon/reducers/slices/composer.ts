@@ -331,7 +331,7 @@ export const selectIsMinimized = createAppSelector(
 
 export const submitComposer = createAppThunk(
   (
-    arg: undefined | { redirectOnSuccess?: boolean },
+    arg: undefined | { redirectOnSuccess?: boolean; force?: boolean } = {},
     { getState, dispatch },
   ) => {
     const textareaValue = getComposerTextarea()?.value;
@@ -392,10 +392,13 @@ export const submitComposer = createAppThunk(
       statuses.getIn([quotedStatusId, 'account']) !== me &&
       !settings.getIn(['dismissed_banners', PRIVATE_QUOTE_MODAL_ID]);
 
+    const { force, redirectOnSuccess } = arg;
+
     if (
       !!meta.get('missing_alt_text_modal') &&
       missingAltText &&
-      privacy !== 'direct'
+      privacy !== 'direct' &&
+      !force
     ) {
       dispatch(
         openModal({
@@ -403,7 +406,7 @@ export const submitComposer = createAppThunk(
           modalProps: {},
         }),
       );
-    } else if (quoteToPrivate) {
+    } else if (quoteToPrivate && !force) {
       dispatch(
         openModal({
           modalType: 'CONFIRM_PRIVATE_QUOTE_NOTIFY',
@@ -413,7 +416,7 @@ export const submitComposer = createAppThunk(
     } else {
       dispatch(
         submitCompose((status: ApiStatusJSON) => {
-          if (arg?.redirectOnSuccess) {
+          if (redirectOnSuccess) {
             window.location.assign(status.url);
           }
 
