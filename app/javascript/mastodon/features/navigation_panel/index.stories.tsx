@@ -3,11 +3,11 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import IconLogo from '@/images/logo-symbol-icon.svg?react';
 import { accountFactoryImmutable } from '@/testing/factories';
 
-import { RedesignNavigationPanel } from '.';
+import { NavigationPanel } from '.';
 
 const meta = {
   title: 'Redesign/NavigationPanel',
-  component: RedesignNavigationPanel,
+  component: NavigationPanel,
   render(args) {
     return (
       <div
@@ -17,7 +17,7 @@ const meta = {
           backgroundColor: 'var(--color-bg-desktop)',
         }}
       >
-        <RedesignNavigationPanel {...args} />
+        <NavigationPanel {...args} />
         <div inert aria-hidden='true' className='logo-resources'>
           {/* In our web app, this icon is embedded server-side */}
           <IconLogo />
@@ -36,7 +36,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof RedesignNavigationPanel>;
+} satisfies Meta<typeof NavigationPanel>;
 
 export default meta;
 

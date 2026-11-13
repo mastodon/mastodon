@@ -1,10 +1,8 @@
 import classNames from 'classnames';
 
-import { Column } from '@/mastodon/components/column';
 import { ComposeButton } from '@/mastodon/features/compose/trigger';
-import { DiscoveryPanel } from '@/mastodon/features/discovery_panel';
-import { RedesignNavigationPanel } from '@/mastodon/features/navigation_panel';
-import { RedesignMobileNavigation } from '@/mastodon/features/navigation_panel/mobile_nav';
+import { NavigationPanel } from '@/mastodon/features/navigation_panel';
+import { MobileNavigation } from '@/mastodon/features/navigation_panel/mobile_nav';
 import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';
@@ -24,7 +22,7 @@ export const ColumnsArea: React.FC<{
   if (minimalShell) {
     return (
       <div ref={ref} className={classNames(classes.root, classes.rootMinimal)}>
-        {isMobile && <RedesignMobileNavigation />}
+        {isMobile && <MobileNavigation />}
         <div className={classes.main}>
           <div>{children}</div>
 
@@ -38,15 +36,11 @@ export const ColumnsArea: React.FC<{
     return (
       <div ref={ref} className={classes.root}>
         <div className={classes.navigationWrapper}>
-          <RedesignNavigationPanel />
+          <NavigationPanel />
         </div>
-        {isMobile ? <RedesignMobileNavigation /> : <ComposeButton />}
+        {isMobile ? <MobileNavigation /> : <ComposeButton />}
 
         <main className={classes.main}>{children}</main>
-
-        <div className={classes.discoveryWrapper}>
-          <DiscoveryPanel />
-        </div>
       </div>
     );
   }
@@ -54,14 +48,10 @@ export const ColumnsArea: React.FC<{
   return (
     <main ref={ref} className={multiColClasses.root}>
       <div className={multiColClasses.navigationWrapper}>
-        <RedesignNavigationPanel multiColumn />
+        <NavigationPanel multiColumn />
       </div>
       <ComposeButton />
       <MultiColumnContent>{children}</MultiColumnContent>
-
-      <Column className={multiColClasses.discoveryColumn}>
-        <DiscoveryPanel />
-      </Column>
     </main>
   );
 };

@@ -1,33 +1,25 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 
 import {
-  PenNibIcon,
-  HouseIcon,
-  MagnifyingGlassIcon,
   RssSimpleIcon,
-  BellIcon,
-  ChatCircleDotsIcon,
   BookmarkSimpleIcon,
   PlusIcon,
   InfoIcon,
   GavelIcon,
   ShieldStarIcon,
+  CompassIcon,
 } from '@phosphor-icons/react';
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 import { fetchFollowRequests } from '@/mastodon/actions/accounts';
 import { fetchLists } from '@/mastodon/actions/lists';
-import { closeNavigation } from '@/mastodon/actions/navigation';
 import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
-import { Button } from '@/mastodon/components/button';
 import { Callout } from '@/mastodon/components/callout/redesign';
-import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { useHasAnnouncements } from '@/mastodon/features/announcements/hooks';
-import { FooterLinks } from '@/mastodon/features/discovery_panel/footer_links';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
@@ -42,13 +34,12 @@ import {
   canViewAdminDashboard,
   canViewFeed,
 } from '@/mastodon/permissions';
-import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { getOrderedLists } from '@/mastodon/selectors/lists';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
-import { NavigationAccountCardAndMenu } from './account_card_and_menu';
+import { FooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
 import { ListSection } from './list_section';
 import { DisabledAccountBanner, LoggedOutInfo } from './logged_out_info';
@@ -139,7 +130,7 @@ const isFediverseFeedsLinkActive = (
 
 const MAX_HASHTAG_COUNT = 5;
 
-export const RedesignNavigationPanel: React.FC<{
+export const NavigationPanel: React.FC<{
   siteName?: string;
   /**
    * In 'slide-out' mode (used on smaller viewport sizes), some
@@ -149,17 +140,10 @@ export const RedesignNavigationPanel: React.FC<{
   multiColumn?: boolean;
 }> = ({ siteName, mode = 'static', multiColumn }) => {
   const intl = useIntl();
-  const dispatch = useAppDispatch();
   const { signedIn, permissions } = useIdentity();
-  const notificationsCount = useNotificationsCount();
 
   const isManager = canManageReports(permissions);
   const isAdmin = canViewAdminDashboard(permissions);
-
-  const openComposer = useCallback(() => {
-    dispatch(closeNavigation());
-    dispatch(openNewComposer({ type: 'post' }));
-  }, [dispatch]);
 
   const { customFeeds } = useCustomFeeds();
   const { followedHashtags } = useFollowedHashtags();
@@ -186,37 +170,14 @@ export const RedesignNavigationPanel: React.FC<{
         <>
           {transientSingleColumn && <TransientSingleColumnCallout />}
           <ul className={classes.list}>
-            <NavigationLink to='/home' iconComponent={HouseIcon}>
-              <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
-            </NavigationLink>
             <ExploreLink />
             <PublicFeedsLink />
-
-            {isAdmin && (
-              <NavigationLink
-                as='a'
-                href='/admin/dashboard'
-                iconComponent={GavelIcon}
-              >
-                <FormattedMessage
-                  id='navigation_bar.administration'
-                  defaultMessage='Administration'
-                />
-              </NavigationLink>
-            )}
-
-            {isManager && (
-              <NavigationLink
-                as='a'
-                href='/admin/reports'
-                iconComponent={ShieldStarIcon}
-              >
-                <FormattedMessage
-                  id='navigation_bar.moderation'
-                  defaultMessage='Moderation'
-                />
-              </NavigationLink>
-            )}
+            <NavigationLink to='/bookmarks' iconComponent={BookmarkSimpleIcon}>
+              <FormattedMessage
+                id='navigation_bar.saved_posts'
+                defaultMessage='Saved Posts'
+              />
+            </NavigationLink>
 
             <ListSection
               id='custom-feeds'
@@ -273,64 +234,38 @@ export const RedesignNavigationPanel: React.FC<{
                 )}
               </ListSection>
             )}
+
+            {isAdmin && (
+              <NavigationLink
+                withDivider
+                as='a'
+                href='/admin/dashboard'
+                iconComponent={GavelIcon}
+              >
+                <FormattedMessage
+                  id='navigation_bar.administration'
+                  defaultMessage='Administration'
+                />
+              </NavigationLink>
+            )}
+
+            {isManager && (
+              <NavigationLink
+                withDivider={!isAdmin}
+                as='a'
+                href='/admin/reports'
+                iconComponent={ShieldStarIcon}
+              >
+                <FormattedMessage
+                  id='navigation_bar.moderation'
+                  defaultMessage='Moderation'
+                />
+              </NavigationLink>
+            )}
           </ul>
 
           <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
-            <div className={classes.newPostButton}>
-              <Button
-                leadingIcon={PenNibIcon}
-                onClick={openComposer}
-                variant='solid'
-                color='accent'
-                size='md'
-              >
-                <FormattedMessage
-                  id='tabs_bar.publish'
-                  defaultMessage='New Post'
-                />
-              </Button>
-            </div>
-
-            {mode !== 'slide-out' && (
-              <>
-                <ul className={classes.footerNav}>
-                  <NavigationLink
-                    stacked
-                    to='/notifications'
-                    iconComponent={BellIcon}
-                    badgeCount={notificationsCount}
-                  >
-                    <FormattedMessage
-                      id='tabs_bar.notifications'
-                      defaultMessage='Notifications'
-                    />
-                  </NavigationLink>
-                  <NavigationLink
-                    stacked
-                    to='/conversations'
-                    iconComponent={ChatCircleDotsIcon}
-                  >
-                    <FormattedMessage
-                      id='tabs_bar.messages'
-                      defaultMessage='Messages'
-                      description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
-                    />
-                  </NavigationLink>
-                  <NavigationLink
-                    stacked
-                    to='/bookmarks'
-                    iconComponent={BookmarkSimpleIcon}
-                  >
-                    <FormattedMessage
-                      id='tabs_bar.saved'
-                      defaultMessage='Saved'
-                    />
-                  </NavigationLink>
-                </ul>
-                <NavigationAccountCardAndMenu />
-              </>
-            )}
-            <FooterLinks context='navigation' multiColumn={multiColumn} />
+            <FooterLinks multiColumn={multiColumn} />
           </footer>
         </>
       )}
@@ -348,7 +283,7 @@ export const RedesignNavigationPanel: React.FC<{
           </ul>
           <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
             {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
-            <FooterLinks context='navigation' multiColumn={multiColumn} />
+            <FooterLinks multiColumn={multiColumn} />
           </footer>
         </>
       )}
@@ -358,20 +293,15 @@ export const RedesignNavigationPanel: React.FC<{
 };
 
 const ExploreLink: React.FC = () => {
+  if (!trendsEnabled) return null;
+
   return (
     <NavigationLink
-      to={{
-        pathname: trendsEnabled ? '/explore' : '/search',
-        state: { focusTarget: FOCUS_TARGET.SEARCH },
-      }}
-      iconComponent={MagnifyingGlassIcon}
+      to='/explore'
+      iconComponent={CompassIcon}
       onClick={handleSearchLinkClick}
     >
-      {trendsEnabled ? (
-        <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
-      ) : (
-        <FormattedMessage id='navigation_bar.search' defaultMessage='Search' />
-      )}
+      <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
     </NavigationLink>
   );
 };

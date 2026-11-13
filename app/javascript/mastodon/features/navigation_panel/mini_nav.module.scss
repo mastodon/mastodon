@@ -1,0 +1,11 @@
+.root {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  gap: var(--space-half);
+  margin-block-end: var(--space-2);
+
+  > li {
+    flex-grow: 1;
+  }
+}
