@@ -1,5 +1,6 @@
 import type React from 'react';
 
+import { StatusImageGrid } from '@/mastodon/components/status/image';
 import { StatusQuotePending } from '@/mastodon/components/status/quote';
 import { useAppSelector } from '@/mastodon/store';
 
@@ -39,22 +40,20 @@ const ComposeMediaAttachments: React.FC = () => {
   );
   const totalAttachments = attachments.length + pendingAttachments;
 
-  if (totalAttachments === 1) {
-    return (
-      <div className={classes.mediaSingle}>
-        <ComposeUpload id={attachments.at(0)?.id} single />
-      </div>
-    );
-  }
-
   return (
-    <div className={classes.mediaGrid} data-number={totalAttachments}>
+    <StatusImageGrid count={totalAttachments}>
       {attachments.map(({ id }, index) => (
-        <ComposeUpload key={id} id={id} showSensitive={index === 1} />
+        <ComposeUpload
+          key={id}
+          id={id}
+          showSensitive={index === 1}
+          single={totalAttachments === 1}
+          data-index={index}
+        />
       ))}
       {[...Array(pendingAttachments).keys()].map((_, index) => (
         <ComposeUpload key={index} className={classes.mediaUploadPending} />
       ))}
-    </div>
+    </StatusImageGrid>
   );
 };

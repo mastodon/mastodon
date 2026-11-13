@@ -51,7 +51,7 @@ import {
   useStatusContext,
   useStatusHandlers,
 } from './hooks';
-import { StatusImage } from './image';
+import { StatusImage, StatusImageGrid } from './image';
 import classes from './quote.module.scss';
 import { accountStatusLinkProps, statusLink } from './utils';
 
@@ -334,13 +334,9 @@ const QuotedStatusBody: React.FC<{
       )}
 
       {imageAttachments.length > 0 && (
-        <div
-          className={classNames(
-            classes.media,
-            imageAttachments.length === 1 && classes.mediaSingle,
-            imageAttachments.length > 1 && classes.mediaGrid,
-          )}
-          data-number={imageAttachments.length}
+        <StatusImageGrid
+          className={classes.media}
+          count={imageAttachments.length}
         >
           {imageAttachments.map((attachment, index) => (
             <StatusImage
@@ -354,7 +350,7 @@ const QuotedStatusBody: React.FC<{
               data-index={index}
             />
           ))}
-        </div>
+        </StatusImageGrid>
       )}
     </>
   );

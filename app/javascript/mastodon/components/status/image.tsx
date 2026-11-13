@@ -16,7 +16,7 @@ import { useAppDispatch } from '@/mastodon/store';
 
 import { AltTextBadge } from '../alt_text_badge';
 
-import classes from './content.module.scss';
+import classes from './image.module.scss';
 
 type StatusImageAttachmentJSON =
   | ApiImageAttachmentJSON
@@ -166,5 +166,31 @@ const StatusImageContent: React.FC<
     >
       {image}
     </a>
+  );
+};
+
+export const StatusImageGrid: React.FC<
+  {
+    count: number;
+    children: React.ReactNode;
+    className?: string;
+  } & React.ComponentPropsWithRef<'div'>
+> = ({ count, children, className, ...props }) => {
+  if (count <= 1) {
+    return (
+      <div className={classNames(className, classes.mediaSingle)} {...props}>
+        {children}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={classNames(className, classes.mediaGrid)}
+      data-number={count}
+      {...props}
+    >
+      {children}
+    </div>
   );
 };

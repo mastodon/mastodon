@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -7,7 +6,6 @@ import classNames from 'classnames';
 
 import {
   ArrowsLeftRightIcon,
-  EyeIcon,
   EyeSlashIcon,
   PencilSimpleIcon,
   PlusIcon,
@@ -28,12 +26,13 @@ import classes from './attachments.module.scss';
 import type { ComposeAttachment } from './selectors';
 import { selectComposeAttachment, selectComposeSensitive } from './selectors';
 
-export const ComposeUpload: React.FC<{
-  id?: string;
-  className?: string;
-  single?: boolean;
-  showSensitive?: boolean;
-}> = ({ id, className, single, showSensitive = single }) => {
+export const ComposeUpload: React.FC<
+  {
+    id?: string;
+    single?: boolean;
+    showSensitive?: boolean;
+  } & React.ComponentPropsWithRef<'div'>
+> = ({ id, className, single, showSensitive = single, ...props }) => {
   const attachment = useAppSelector((state) =>
     selectComposeAttachment(state, id),
   );
@@ -67,36 +66,8 @@ export const ComposeUpload: React.FC<{
     return <ComposeAudioUpload attachment={attachment} />;
   }
 
-  let sensitiveLabel: React.ReactNode = null;
-  if (sensitive) {
-    sensitiveLabel = (
-      <FormattedMessage
-        id='compose.sensitive.media_added'
-        defaultMessage='Media is always blurred if a content warning is added'
-      />
-    );
-  } else if (mediaSensitive) {
-    sensitiveLabel = (
-      <FormattedMessage
-        id='compose.sensitive.show'
-        defaultMessage='Show all media'
-      />
-    );
-  } else {
-    sensitiveLabel = (
-      <FormattedMessage
-        id='compose.sensitive.blur'
-        defaultMessage='Blur all media'
-      />
-    );
-  }
-
   return (
-    <StatusImage
-      attachment={attachment}
-      className={classNames(className, classes.mediaUpload)}
-      sensitive={mediaSensitive}
-    >
+    <StatusImage attachment={attachment} sensitive={mediaSensitive} {...props}>
       <Button
         size='xs'
         color='media'
@@ -126,16 +97,18 @@ export const ComposeUpload: React.FC<{
       </Button>
 
       <div className={classes.mediaMenuButtons}>
-        {showSensitive && (
+        {showSensitive && !sensitive && (
           <IconButton
             onClick={handleToggleSensitive}
-            icon={mediaSensitive && !sensitive ? EyeIcon : EyeSlashIcon}
+            icon={EyeSlashIcon}
             size='xs'
             color='media'
             tooltipPlacement='top'
-            aria-disabled={sensitive}
           >
-            {sensitiveLabel}
+            <FormattedMessage
+              id='compose.sensitive.blur'
+              defaultMessage='Blur all media'
+            />
           </IconButton>
         )}
         {!single && (

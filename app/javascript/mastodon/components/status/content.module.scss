@@ -171,32 +171,3 @@
     outline-offset: -2px;
   }
 }
-
-.image {
-  position: relative;
-  overflow: hidden;
-
-  a {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.imageAltBadge {
-  position: absolute;
-  inset-block-start: var(--space-1);
-  inset-inline-start: var(--space-1);
-}
-
-.blurHash {
-  width: 100%;
-  height: 100%;
-  background-color: rgb(from var(--color-bg-overlay) r g b / 100%);
-}
