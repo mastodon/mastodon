@@ -4,11 +4,16 @@
 
 $no-columns-breakpoint: 890px;
 $sidebar-width: 320px;
-$content-width: 840px;
+$main-column-width: 600px;
+$content-width: $main-column-width + $sidebar-width;
 
 .admin-wrapper {
-  display: flex;
-  justify-content: center;
+  // Borrow front-end grid, extend admin content into far column
+  display: grid;
+  grid-template-columns:
+    minmax($sidebar-width, 1fr)
+    minmax(0, $main-column-width)
+    minmax(0, 1fr);
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
@@ -28,7 +33,6 @@ $content-width: 840px;
     min-height: 100dvh;
     overflow: hidden;
     pointer-events: none;
-    flex: 1 1 auto;
 
     &__inner {
       display: flex;
@@ -165,27 +169,22 @@ $content-width: 840px;
   }
 
   .content-wrapper {
+    grid-column: 2 / -1;
     box-sizing: border-box;
     width: 100%;
     max-width: $content-width;
-    flex: 1 1 auto;
+    min-width: 0;
+    background: var(--color-bg-primary);
     isolation: isolate;
-  }
-
-  @media screen and (max-width: ($content-width + $sidebar-width)) {
-    .sidebar-wrapper--empty {
-      display: none;
-    }
-
-    .sidebar-wrapper {
-      width: $sidebar-width;
-      flex: 0 0 auto;
-    }
   }
 
   @media screen and (max-width: $no-columns-breakpoint) {
     .sidebar-wrapper {
       width: 100%;
+    }
+
+    .content-wrapper {
+      max-width: none;
     }
   }
 
