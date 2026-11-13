@@ -736,7 +736,7 @@ function getMenuItems({
 
   if (isPublic && 'share' in navigator) {
     menu.push({
-      text: intl.formatMessage(menuMessages.share),
+      text: status.content,
       action: () => {
         void navigator.share({
           url: statusUrl,
