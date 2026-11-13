@@ -484,7 +484,7 @@ class UI extends PureComponent {
 
     const searchField = this.node.querySelector('[data-main-search="true"]');
 
-    if (searchField.checkVisibility()) {
+    if (searchField?.checkVisibility()) {
       searchField.focus();
     } else {
       this.props.history.push('/search', { focusTarget: FOCUS_TARGET.SEARCH });

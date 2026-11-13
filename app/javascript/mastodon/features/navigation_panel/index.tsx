@@ -260,7 +260,7 @@ export const NavigationPanel: React.FC<{
             )}
           </ul>
 
-          <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
+          <footer className={classes.footer}>
             <FooterLinks multiColumn={multiColumn} />
           </footer>
         </>
@@ -277,12 +277,16 @@ export const NavigationPanel: React.FC<{
             <ExploreLink />
             <PublicFeedsLink />
           </ul>
-          <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
+          <footer className={classes.footer}>
             {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
             <FooterLinks multiColumn={multiColumn} />
           </footer>
         </>
       )}
+      <div
+        className={classes.bottomScrollFade}
+        data-stuck={!isScrolledToBottom}
+      />
       {bottomSensor}
     </nav>
   );

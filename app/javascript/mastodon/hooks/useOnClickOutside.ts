@@ -9,29 +9,23 @@ type PlainElement = Element | null;
 type ElementOrRef = PlainElement | RefObject<PlainElement>;
 
 export function useOnClickOutside(
-  excludedElement: ElementOrRef | ElementOrRef[],
+  excludedElements: ElementOrRef | ElementOrRef[],
   onClick: (e: MouseEvent) => void,
   enabled = true,
 ) {
   const handleClickOutside = useEffectEvent((event: MouseEvent) => {
-    const excludedRefs = Array.isArray(excludedElement)
-      ? excludedElement
-      : [excludedElement];
+    const excludedRefs = Array.isArray(excludedElements)
+      ? excludedElements
+      : [excludedElements];
 
     for (const ref of excludedRefs) {
       const excludedElement = ref instanceof Element ? ref : ref?.current;
 
-      // Bail out if the clicked element or the currently focused element
-      // is inside of excludedElement. We're also checking the focused element
-      // to prevent an issue in Chrome where initiating a drag inside of an
-      // input (to select the text inside of it) and ending that drag outside
-      // of the input fires a click event, breaking our excludedElement rule.
+      // Bail out if the clicked element element is inside of excludedElement.
       if (
         excludedElement &&
         (excludedElement === event.target ||
-          excludedElement === document.activeElement ||
-          excludedElement.contains(event.target as Node) ||
-          excludedElement.contains(document.activeElement))
+          excludedElement.contains(event.target as Node))
       ) {
         return;
       }
