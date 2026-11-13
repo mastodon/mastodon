@@ -2,6 +2,7 @@
 
 SimpleNavigation::Configuration.run do |navigation|
   self_destruct = SelfDestructHelper.self_destruct?
+  functional = current_user.functional?
 
   navigation.items do |n|
     n.item :web, safe_join([material_symbol('chevron_left'), t('settings.back')]), root_path
@@ -14,22 +15,22 @@ SimpleNavigation::Configuration.run do |navigation|
            html: { class: SoftwareUpdate.urgent_pending? || SoftwareDeprecation.current&.unsupported? ? 'warning' : nil },
            if: -> { Rails.configuration.x.mastodon.software_update_url.present? && current_user.can?(:view_devops) && SoftwareUpdate.pending? }
 
-    n.item :profile, safe_join([material_symbol('person'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification}
-    n.item :privacy, safe_join([material_symbol('globe'), t('privacy.title')]), settings_privacy_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/privacy}
+    n.item :profile, safe_join([material_symbol('person'), t('settings.profile')]), settings_profile_path, if: -> { functional && !self_destruct }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification}
+    n.item :privacy, safe_join([material_symbol('globe'), t('privacy.title')]), settings_privacy_path, if: -> { functional && !self_destruct }, highlights_on: %r{/settings/privacy}
 
-    n.item :preferences, safe_join([material_symbol('settings'), t('settings.preferences')]), settings_preferences_path, if: -> { current_user.functional? && !self_destruct } do |s|
+    n.item :preferences, safe_join([material_symbol('settings'), t('settings.preferences')]), settings_preferences_path, if: -> { functional && !self_destruct } do |s|
       s.item :appearance, safe_join([material_symbol('computer'), t('settings.appearance')]), settings_preferences_appearance_path
       s.item :posting_defaults, safe_join([material_symbol('edit_square'), t('preferences.posting_defaults')]), settings_preferences_posting_defaults_path
       s.item :notifications, safe_join([material_symbol('mail'), t('settings.notifications')]), settings_preferences_notifications_path
       s.item :other, safe_join([material_symbol('tune'), t('preferences.other')]), settings_preferences_other_path
     end
 
-    n.item :relationships, safe_join([material_symbol('groups'), t('settings.relationships')]), relationships_path, if: -> { current_user.functional? && !self_destruct } do |s|
+    n.item :relationships, safe_join([material_symbol('groups'), t('settings.relationships')]), relationships_path, if: -> { functional && !self_destruct } do |s|
       s.item :current, safe_join([material_symbol('groups'), t('settings.relationships')]), relationships_path
       s.item :severed_relationships, safe_join([material_symbol('link_off'), t('settings.severed_relationships')]), severed_relationships_path
     end
 
-    n.item :filters, safe_join([material_symbol('filter_alt'), t('filters.index.title')]), filters_path, highlights_on: %r{/filters}, if: -> { current_user.functional? && !self_destruct }
+    n.item :filters, safe_join([material_symbol('filter_alt'), t('filters.index.title')]), filters_path, highlights_on: %r{/filters}, if: -> { functional && !self_destruct }
     n.item :statuses_cleanup, safe_join([material_symbol('history'), t('settings.statuses_cleanup')]), statuses_cleanup_path, if: -> { current_user.functional_or_moved? && !self_destruct }
 
     n.item :security, safe_join([material_symbol('account_circle'), t('settings.account')]), edit_user_registration_path do |s|
@@ -39,12 +40,12 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     n.item :data, safe_join([material_symbol('cloud_sync'), t('settings.import_and_export')]), settings_export_path do |s|
-      s.item :import, safe_join([material_symbol('cloud_upload'), t('settings.import')]), settings_imports_path, highlights_on: %r{/settings/imports}, if: -> { current_user.functional? && !self_destruct }
+      s.item :import, safe_join([material_symbol('cloud_upload'), t('settings.import')]), settings_imports_path, highlights_on: %r{/settings/imports}, if: -> { functional && !self_destruct }
       s.item :export, safe_join([material_symbol('cloud_download'), t('settings.export')]), settings_export_path
     end
 
-    n.item :user_invites, safe_join([material_symbol('person_add'), t('invites.title')]), invites_path, if: -> { current_user.can?(:invite_users) && current_user.functional? && !self_destruct }
-    n.item :development, safe_join([material_symbol('code'), t('settings.development')]), settings_applications_path, highlights_on: %r{/settings/applications}, if: -> { current_user.functional? && !self_destruct }
+    n.item :user_invites, safe_join([material_symbol('person_add'), t('invites.title')]), invites_path, if: -> { current_user.can?(:invite_users) && functional && !self_destruct }
+    n.item :development, safe_join([material_symbol('code'), t('settings.development')]), settings_applications_path, highlights_on: %r{/settings/applications}, if: -> { functional && !self_destruct }
 
     n.item :trends, safe_join([material_symbol('trending_up'), t('admin.trends.title')]), admin_trends_statuses_path, if: -> { current_user.can?(:manage_taxonomies) && !self_destruct } do |s|
       s.item :statuses, safe_join([material_symbol('chat_bubble'), t('admin.trends.statuses.title')]), admin_trends_statuses_path, highlights_on: %r{/admin/trends/statuses}
