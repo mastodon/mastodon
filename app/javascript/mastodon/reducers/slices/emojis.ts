@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { Locale } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
+import { loadAllCustomEmoji } from '@/mastodon/features/emoji/database';
 import { toSupportedLocale } from '@/mastodon/features/emoji/locale';
 import { createAsyncThunk } from '@/mastodon/store/typed_functions';
 
@@ -66,8 +67,6 @@ export const { loadLocale } = emojisSlice.actions;
 export const loadCustomEmojis = createAsyncThunk(
   `${emojisSlice.name}/loadCustomEmojis`,
   async () => {
-    const { loadAllCustomEmoji } =
-      await import('@/mastodon/features/emoji/database');
     return loadAllCustomEmoji();
   },
 );
