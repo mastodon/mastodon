@@ -1,14 +1,20 @@
 @use 'sass:color';
 @use 'sass:math';
 @use 'variables' as *;
+@use 'mixins';
 
 $no-columns-breakpoint: 890px;
-$sidebar-width: 300px;
-$content-width: 840px;
+$sidebar-width: 320px;
+$main-column-width: 600px;
+$content-width: $main-column-width + $sidebar-width;
 
 .admin-wrapper {
-  display: flex;
-  justify-content: center;
+  // Borrow front-end grid, extend admin content into far column
+  display: grid;
+  grid-template-columns:
+    minmax($sidebar-width, 1fr)
+    minmax(0, $main-column-width)
+    minmax(0, 1fr);
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
@@ -28,7 +34,6 @@ $content-width: 840px;
     min-height: 100dvh;
     overflow: hidden;
     pointer-events: none;
-    flex: 1 1 auto;
 
     &__inner {
       display: flex;
@@ -89,9 +94,9 @@ $content-width: 840px;
 
     .logo {
       display: block;
-      margin: 40px auto;
-      width: 100px;
-      height: 100px;
+      margin: 0;
+      width: 40px;
+      height: 40px;
     }
 
     .logo--wordmark {
@@ -117,11 +122,11 @@ $content-width: 840px;
       }
 
       a {
-        font-size: 14px;
         display: flex;
         align-items: center;
         gap: 6px;
         padding: 15px;
+        border-radius: var(--radius-3);
         color: color-mix(
           in oklab,
           var(--color-text-primary),
@@ -135,6 +140,11 @@ $content-width: 840px;
           color: var(--color-text-primary);
           transition: all 100ms linear;
           transition-property: color, background-color;
+        }
+
+        &:hover,
+        &:focus-visible {
+          background-color: var(--color-bg-highlight);
         }
 
         &:focus-visible {
@@ -162,24 +172,67 @@ $content-width: 840px;
         border-bottom: 0;
       }
     }
+
+    @media screen and (min-width: ($no-columns-breakpoint + 1px)) {
+      & > a:first-child {
+        display: block;
+        width: fit-content;
+        margin: var(--space-6) var(--space-5);
+      }
+
+      & > nav > ul {
+        margin-inline: var(--space-4);
+        margin-bottom: var(--space-6);
+      }
+
+      ul {
+        li {
+          padding-bottom: var(--space-1);
+        }
+
+        a {
+          @include mixins.type-body-compact;
+
+          box-sizing: border-box;
+          min-height: 36px;
+          gap: var(--space-2);
+          padding: var(--space-2);
+          overflow-wrap: anywhere;
+
+          .icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            margin: 0;
+          }
+        }
+
+        ul a {
+          padding: var(--space-2);
+          padding-inline-start: var(--space-8);
+        }
+
+        .simple-navigation-active-leaf > a {
+          font-weight: 700;
+        }
+      }
+    }
   }
 
   .content-wrapper {
+    grid-column: 2 / -1;
     box-sizing: border-box;
     width: 100%;
-    max-width: $content-width;
-    flex: 1 1 auto;
+    min-width: 0;
+    background: var(--color-bg-primary);
     isolation: isolate;
-  }
 
-  @media screen and (max-width: ($content-width + $sidebar-width)) {
-    .sidebar-wrapper--empty {
-      display: none;
-    }
-
-    .sidebar-wrapper {
-      width: $sidebar-width;
-      flex: 0 0 auto;
+    @media screen and (min-width: ($no-columns-breakpoint + 1px)) {
+      max-width: $content-width;
+      margin-top: var(--space-1);
+      border: var(--border-column);
+      border-bottom: none;
+      border-radius: var(--radius-6) var(--radius-6) 0 0;
     }
   }
 
