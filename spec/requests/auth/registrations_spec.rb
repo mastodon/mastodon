@@ -10,7 +10,13 @@ RSpec.describe 'Auth Registrations' do
         follow_redirect!
       end
 
-      before { Setting.registrations_mode = 'none' }
+      around do |example|
+        original = Setting.registrations_mode
+        Setting.registrations_mode = 'none'
+        example.run
+        Setting.registrations_mode = original
+        Setting.closed_registrations_message = ''
+      end
 
       context 'when there is a custom message' do
         before { Setting.closed_registrations_message = 'You shall not pass' }
