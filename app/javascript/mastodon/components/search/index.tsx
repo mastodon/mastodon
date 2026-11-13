@@ -1,12 +1,5 @@
 import type { ForwardedRef } from 'react';
-import {
-  useCallback,
-  useState,
-  useRef,
-  useEffect,
-  useMemo,
-  useId,
-} from 'react';
+import { useCallback, useState, useRef, useMemo, useId } from 'react';
 
 import {
   defineMessages,
@@ -29,6 +22,7 @@ import {
 } from '@/mastodon/components/navigation_focus_target';
 import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
+import { useOnClickOutside } from '@/mastodon/hooks/useOnClickOutside';
 import { isKeyComposing } from '@/mastodon/utils/events';
 import {
   clickSearchResult,
@@ -314,8 +308,9 @@ export const Search: React.FC<{
       if (type) queryParams.set('type', type);
       history.push({ pathname: '/search', search: queryParams.toString() });
       unfocus();
+      onClose?.();
     },
-    [dispatch, history, unfocus],
+    [dispatch, history, onClose, unfocus],
   );
 
   const handleChange = useCallback(
@@ -560,31 +555,29 @@ export const Search: React.FC<{
   }, []);
 
   const formRef = useRef<HTMLFormElement>(null);
+  // Close the dropdown on click outside
+  useOnClickOutside(
+    formRef,
+    () => {
+      setExpanded(false);
+    },
+    {
+      enabled: expanded,
+      includeFocus: true,
+    },
+  );
 
-  useEffect(() => {
-    // If the search popover is expanded, close it when tabbing or
-    // clicking outside of it or the search form, while allowing
-    // tabbing or clicking inside of the popover
-    if (expanded) {
-      function closeOnLeave(event: FocusEvent | MouseEvent) {
-        const form = formRef.current;
-        const isClickInsideForm =
-          form &&
-          (form === event.target || form.contains(event.target as Node));
-        if (!isClickInsideForm) {
-          setExpanded(false);
-        }
-      }
-      document.addEventListener('focusin', closeOnLeave);
-      document.addEventListener('click', closeOnLeave);
-
-      return () => {
-        document.removeEventListener('focusin', closeOnLeave);
-        document.removeEventListener('click', closeOnLeave);
-      };
-    }
-    return () => null;
-  }, [expanded]);
+  // Close the search on click outside if it is empty
+  useOnClickOutside(
+    formRef,
+    () => {
+      onClose?.();
+    },
+    {
+      enabled: !!onClose && value.length === 0,
+      includeFocus: true,
+    },
+  );
 
   const searchOptionsHeading = useId();
   const placeholder = intl.formatMessage(
