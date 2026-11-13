@@ -5,6 +5,9 @@
 
   display: grid;
   grid-template-columns: var(--first-col-width) auto;
+
+  // Force an explicit track size otherwise Safari 17 doesn't calculate correctly.
+  grid-template-rows: minmax(auto, max-content);
   align-items: center;
   color: var(--color-text-secondary);
 
