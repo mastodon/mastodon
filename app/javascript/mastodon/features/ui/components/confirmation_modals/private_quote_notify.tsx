@@ -51,7 +51,7 @@ export const PrivateQuoteNotify = forwardRef<
 
     const dispatch = useAppDispatch();
     const handleConfirm = useCallback(() => {
-      dispatch(submitComposer());
+      dispatch(submitComposer({ force: true }));
       if (dismiss) {
         dispatch(
           changeSetting(['dismissed_banners', PRIVATE_QUOTE_MODAL_ID], true),
