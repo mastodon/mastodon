@@ -10,6 +10,7 @@ import { PenNibIcon } from '@phosphor-icons/react';
 import { closeNavigation } from '@/mastodon/actions/navigation';
 import { Button } from '@/mastodon/components/button';
 import { IconLogo } from '@/mastodon/components/logo';
+import { useIdentity } from '@/mastodon/identity_context';
 import { customAppIcon, domain, title } from '@/mastodon/initial_state';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch } from '@/mastodon/store';
@@ -23,6 +24,7 @@ export const NavigationHeader: React.FC<{
   siteName?: string;
   isStuck: boolean;
 }> = ({ siteName, isStuck }) => {
+  const { signedIn } = useIdentity();
   const dispatch = useAppDispatch();
 
   const openComposer = useCallback(() => {
@@ -34,18 +36,22 @@ export const NavigationHeader: React.FC<{
     <header className={classes.root} data-stuck={isStuck}>
       <LogoLockup siteName={siteName} />
 
-      <MiniNav />
+      {signedIn && (
+        <>
+          <MiniNav />
 
-      <Button
-        leadingIcon={PenNibIcon}
-        onClick={openComposer}
-        variant='solid'
-        color='accent'
-        size='md'
-        className={classes.newPostButton}
-      >
-        <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
-      </Button>
+          <Button
+            leadingIcon={PenNibIcon}
+            onClick={openComposer}
+            variant='solid'
+            color='accent'
+            size='md'
+            className={classes.newPostButton}
+          >
+            <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
+          </Button>
+        </>
+      )}
     </header>
   );
 };
