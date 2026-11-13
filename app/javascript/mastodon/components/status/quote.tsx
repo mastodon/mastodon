@@ -316,7 +316,7 @@ const QuotedStatusBody: React.FC<{
       )}
 
       {mainAttachment?.type === 'video' && (
-        <div className={classNames(classes.media, classes.mediaSingle)}>
+        <div className={classes.media}>
           <StatusImage
             statusId={linkStatus ? status.id : undefined}
             className={classes.image}

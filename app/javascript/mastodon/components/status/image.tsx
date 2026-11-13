@@ -3,11 +3,6 @@ import { useCallback, useState } from 'react';
 import classNames from 'classnames';
 
 import { openAttachmentGallery } from '@/mastodon/actions/interactions_typed';
-import type {
-  ApiGifvAttachmentJSON,
-  ApiImageAttachmentJSON,
-  ApiVideoAttachmentJSON,
-} from '@/mastodon/api_types/media_attachments';
 import { Blurhash } from '@/mastodon/components/blurhash';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useBlurhash } from '@/mastodon/initial_state';
@@ -17,11 +12,9 @@ import { useAppDispatch } from '@/mastodon/store';
 import { AltTextBadge } from '../alt_text_badge';
 
 import classes from './image.module.scss';
-
-type StatusImageAttachmentJSON =
-  | ApiImageAttachmentJSON
-  | ApiGifvAttachmentJSON
-  | ApiVideoAttachmentJSON;
+import mainClasses from './styles.module.scss';
+import type { StatusImageAttachmentJSON } from './types';
+import { attachmentAspectRatio } from './utils';
 
 interface StatusImageProps {
   attachment:
@@ -50,11 +43,8 @@ export const StatusImage: React.FC<
 }) => {
   const [loaded, { onTrue: onLoaded }] = useToggle();
 
-  const width = attachment.meta?.original?.width;
-  const height = attachment.meta?.original?.height;
-
   const wrapperStyle = {
-    '--aspect': width && height ? `${width} / ${height}` : undefined,
+    '--aspect': attachmentAspectRatio(attachment),
     ...style,
   };
 
@@ -174,11 +164,21 @@ export const StatusImageGrid: React.FC<
     count: number;
     children: React.ReactNode;
     className?: string;
+    sensitive?: boolean;
   } & React.ComponentPropsWithRef<'div'>
-> = ({ count, children, className, ...props }) => {
+> = ({ count, children, className, sensitive, ...props }) => {
   if (count <= 1) {
     return (
-      <div className={classNames(className, classes.mediaSingle)} {...props}>
+      <div
+        className={classNames(
+          className,
+          classes.mediaRoot,
+          classes.mediaSingle,
+          mainClasses.contentWarningBlur,
+          sensitive && mainClasses.contentWarningBlurActive,
+        )}
+        {...props}
+      >
         {children}
       </div>
     );
@@ -186,7 +186,13 @@ export const StatusImageGrid: React.FC<
 
   return (
     <div
-      className={classNames(className, classes.mediaGrid)}
+      className={classNames(
+        className,
+        classes.mediaRoot,
+        classes.mediaGrid,
+        mainClasses.contentWarningBlur,
+        sensitive && mainClasses.contentWarningBlurActive,
+      )}
       data-number={count}
       {...props}
     >

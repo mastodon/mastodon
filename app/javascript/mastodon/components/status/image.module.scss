@@ -1,8 +1,15 @@
+.mediaRoot {
+  --media-radius: var(--radius-2);
+
+  position: relative;
+  border-radius: var(--media-radius);
+  overflow: hidden;
+}
+
 .mediaSingle .image {
   min-width: 120px;
   max-width: min(100%, 400px);
   aspect-ratio: var(--aspect);
-  border-radius: var(--radius-2);
 }
 
 // Sets the border radius for the grid, ensuring items are flush.
@@ -12,15 +19,13 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   aspect-ratio: 3/2;
-  border-radius: var(--radius-2);
-  overflow: hidden;
 
   &[data-number='2'] {
     grid-template-rows: 1fr;
   }
 
   .image > :is(a, img) {
-    border-radius: var(--radius-2);
+    border-radius: var(--media-radius);
   }
 
   // The first image always has right side flush.

@@ -1,6 +1,8 @@
 import type { AccountShape } from '@/mastodon/models/account';
 import type { AccountStatusShape } from '@/mastodon/models/status';
 
+import type { StatusImageAttachmentJSON } from './types';
+
 export function statusLink({
   account,
   id,
@@ -25,7 +27,7 @@ export function accountStatusLinkProps(
 
 const domParser = new DOMParser();
 
-const getContent = (html: string, selectorName: string) => {
+function getContent(html: string, selectorName: string) {
   let content = '';
   const selectors = domParser
     .parseFromString(html, 'text/html')
@@ -38,6 +40,19 @@ const getContent = (html: string, selectorName: string) => {
     }
   }
   return content;
-};
+}
 
 export const getStatusContent = (html: string) => getContent(html, 'p');
+
+export function attachmentAspectRatio(
+  attachment?: Pick<StatusImageAttachmentJSON, 'meta'>,
+) {
+  const width = attachment?.meta?.original?.width;
+  const height = attachment?.meta?.original?.height;
+
+  if (!width || !height) {
+    return undefined;
+  }
+
+  return `${width} / ${height}`;
+}
