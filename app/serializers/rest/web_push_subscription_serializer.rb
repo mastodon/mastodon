@@ -9,10 +9,6 @@ class REST::WebPushSubscriptionSerializer < ActiveModel::Serializer
     (object.data&.dig('alerts') || {}).transform_values { |v| ActiveModel::Type::Boolean.new.cast(v) }
   end
 
-  def server_key
-    Rails.configuration.x.vapid.public_key
-  end
-
   def policy
     object.data&.dig('policy') || 'all'
   end

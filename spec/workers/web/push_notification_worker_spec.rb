@@ -10,7 +10,6 @@ RSpec.describe Web::PushNotificationWorker do
   let(:notification) { Fabricate(:notification) }
   let(:vapid_public_key) { 'BB37UCyc8LLX4PNQSe-04vSFvpUWGrENubUaslVFM_l5TxcGVMY0C3RXPeUJAQHKYlcOM2P4vTYmkoo0VZGZTM4=' }
   let(:vapid_private_key) { 'OPrw1Sum3gRoL4-DXfSCC266r-qfFSRZrnj8MgIhRHg=' }
-  let(:vapid_key) { Webpush::VapidKey.from_keys(vapid_public_key, vapid_private_key) }
   let(:contact_email) { 'sender@example.com' }
 
   # Legacy values
@@ -39,15 +38,14 @@ RSpec.describe Web::PushNotificationWorker do
   # Invalid subscription:
   let(:invalid_subscription) { Fabricate.build(:web_push_subscription, user_id: user.id, key_p256dh: 'invalid', key_auth: 'invalid', endpoint: endpoint, standard: true, data: { alerts: { notification.type => true } }) }
 
+  let(:old_subscription) { Fabricate.build(:web_push_subscription, user_id: user.id, key_p256dh: std_p256dh, key_auth: std_auth, endpoint: endpoint, standard: true, server_key: std_as_public, data: { alerts: { notification.type => true } }) }
+
   describe 'perform' do
     around do |example|
-      original_private = Rails.configuration.x.vapid.private_key
-      original_public = Rails.configuration.x.vapid.public_key
-      Rails.configuration.x.vapid.private_key = vapid_private_key
-      Rails.configuration.x.vapid.public_key = vapid_public_key
+      original_keyring = Rails.configuration.x.vapid
+      Rails.configuration.x.vapid = Mastodon::VapidKeyring.new([], vapid_private_key)
       example.run
-      Rails.configuration.x.vapid.private_key = original_private
-      Rails.configuration.x.vapid.public_key = original_public
+      Rails.configuration.x.vapid = original_keyring
     end
 
     before do
@@ -99,6 +97,31 @@ RSpec.describe Web::PushNotificationWorker do
 
         expect { invalid_subscription.reload }
           .to raise_error ActiveRecord::RecordNotFound
+
+        expect(a_request(:post, endpoint)).to_not have_been_made
+      end
+    end
+
+    context 'with a missing vapid key' do
+      around do |example|
+        original_keyring = Rails.configuration.x.vapid
+        Rails.configuration.x.vapid = Mastodon::VapidKeyring.new([], nil)
+        example.run
+        Rails.configuration.x.vapid = original_keyring
+      end
+
+      before do
+        # Simulating an existing valid subscription that is now valid because the
+        # server key was rotated. To do that we need to skip validation on the existing
+        # subscription to create it in the first place
+        old_subscription.save(validate: false)
+      end
+
+      it 'removes the record and does not process the request' do
+        expect { subject.perform(old_subscription.id, notification.id) }
+          .to_not raise_error
+
+        expect { old_subscription.reload }.to raise_error ActiveRecord::RecordNotFound
 
         expect(a_request(:post, endpoint)).to_not have_been_made
       end

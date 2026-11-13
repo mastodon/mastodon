@@ -9,6 +9,7 @@
 #  endpoint        :string           not null
 #  key_auth        :string           not null
 #  key_p256dh      :string           not null
+#  server_key      :string
 #  standard        :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -27,6 +28,7 @@ class Web::PushSubscription < ApplicationRecord
   validates :key_auth, presence: true
 
   validates_with WebPushKeyValidator
+  validates_with WebPushServerKeyValidator, on: :create
 
   delegate :locale, to: :user
   delegate :token, to: :access_token, prefix: :associated_access
@@ -35,6 +37,10 @@ class Web::PushSubscription < ApplicationRecord
 
   def pushable?(notification)
     policy_allows_notification?(notification) && alert_enabled_for_notification_type?(notification)
+  end
+
+  def vapid_key
+    Rails.configuration.x.vapid.lookup(server_key)
   end
 
   class << self

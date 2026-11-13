@@ -15,6 +15,7 @@ class WebPushRequest
     :endpoint,
     :key_auth,
     :key_p256dh,
+    :vapid_key,
     to: :web_push_subscription
   )
 
@@ -75,13 +76,6 @@ class WebPushRequest
 
   def payload_subject
     [:mailto, contact_email].join(':')
-  end
-
-  def vapid_key
-    @vapid_key ||= Webpush::VapidKey.from_keys(
-      Rails.configuration.x.vapid.public_key,
-      Rails.configuration.x.vapid.private_key
-    )
   end
 
   def contact_email
