@@ -6,8 +6,6 @@ import { length } from 'stringz';
 
 import {
   changeCompose,
-  changeComposeSpoilerness,
-  changeComposeSpoilerText,
   clearComposeSuggestions,
   COMPOSE_DIRECT,
   COMPOSE_FOCUS,
@@ -413,18 +411,6 @@ export const submitComposer = createAppThunk(
           dispatch(resetComposer());
         }),
       );
-    }
-  },
-);
-
-export const toggleContentWarning = createAppThunk(
-  (_arg, { dispatch, getState }) => {
-    dispatch(changeComposeSpoilerText(''));
-    dispatch(changeComposeSpoilerness());
-    dispatch(clearComposerErrors(['empty']));
-
-    if (!getState().compose.get('spoiler')) {
-      dispatch(requestComposerFocus());
     }
   },
 );
