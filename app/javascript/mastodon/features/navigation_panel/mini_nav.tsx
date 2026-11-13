@@ -47,9 +47,7 @@ export const MiniNav: React.FC = () => {
   useEffect(() => {
     if (shouldHandleFocusRef.current) {
       if (isSearchOpen) {
-        setTimeout(() => {
-          searchFieldRef.current?.focus();
-        }, 0);
+        searchFieldRef.current?.focus();
       } else {
         searchButtonRef.current?.focus();
       }
