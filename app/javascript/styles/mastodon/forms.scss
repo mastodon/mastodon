@@ -1593,3 +1593,21 @@ code {
     width: 100%;
   }
 }
+
+.strike-card.preview {
+  color: var(--color-text-secondary);
+  background: var(--color-bg-brand-softest);
+  font-size: 14px;
+}
+
+h1 .admin_account_action_type {
+  display: inline;
+
+  select#admin_account_action_type.select.optional {
+    padding: 7px;
+  }
+}
+
+.new_admin_account_action .filters {
+  height: 20px;
+}

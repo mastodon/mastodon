@@ -8,10 +8,16 @@ class Admin::ModerationAction < Admin::BaseAction
 
   validates :report_id, presence: true
 
+  attr_accessor :warning_preset_id
+
+  attribute :include_statuses, :boolean, default: true
+
+  alias include_statuses? include_statuses
+
   private
 
   def status_ids
-    report.status_ids
+    report.status_ids if include_statuses?
   end
 
   def statuses
@@ -116,5 +122,11 @@ class Admin::ModerationAction < Admin::BaseAction
     report.target_account
   end
 
-  def text_for_warning = text
+  def text_for_warning
+    [warning_preset&.text, text].compact.join("\n\n")
+  end
+
+  def warning_preset
+    @warning_preset ||= AccountWarningPreset.find(warning_preset_id) if warning_preset_id.present?
+  end
 end

@@ -27,9 +27,11 @@ RSpec.describe 'Admin Account Actions' do
       expect(page)
         .to have_title(account.pretty_acct)
     end
+  end
 
-    def submit_form
-      click_on I18n.t('admin.account_actions.action')
+  def submit_form
+    within '.actions' do
+      find('input[type="submit"], button[type="submit"]').click
     end
   end
 end

@@ -37,12 +37,19 @@ en:
     self_follow_error: Following your own account is not allowed
   admin:
     account_actions:
-      action: Perform action
       already_silenced: This account has already been limited.
       already_suspended: This account has already been suspended.
       notification_title: User Notification & Message
       text_box_title: Consequences of this action
       title: 'Perform moderation action on @%{acct}:'
+      types:
+        delete: Delete posts
+        disable: Freeze account
+        mark_as_sensitive: Mark posts as sensitive
+        none: Send a warning
+        sensitive: Mark account as sensitive
+        silence: Limit account
+        suspend: Suspend account
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
@@ -919,7 +926,7 @@ en:
         silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. This can always be reverted. This closes all reports against this account.
         suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. This is reversible within 30 days. This closes all reports against this account.
         warn_description_html: Use this to send a warning to the user, without triggering any other action.
-      actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an email notification will be sent to them, except when the <strong>Spam</strong> category is selected.
+      actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, you will be able to select what will appear in the email notification that will be sent to them, except when the <strong>Spam</strong> category is selected.
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       actions_no_posts: This report doesn't have any associated posts to delete
       add_to_report: Add more to report
@@ -972,6 +979,10 @@ en:
       statuses: Posts (%{count})
       statuses_description_html: Offending content will be cited in communication with the reported account
       summary:
+        account_action_preamble:
+          none_html: From report <a href="%{report_path}">#%{report}</a> with no selected posts
+          plural_html: From report <a href="%{report_path}">#%{report}</a> with %{count} selected posts
+          singular_html: From report <a href="%{report_path}">#%{report}</a> with %{count} selected post
         action_preambles:
           delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
           disable_html: 'You are about to <strong>freeze</strong> <strong>@%{acct}</strong>''s account. This will:'
