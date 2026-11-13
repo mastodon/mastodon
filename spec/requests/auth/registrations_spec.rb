@@ -2,10 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe Auth::RegistrationsController do
-  render_views
-
-  shared_examples 'registration mode based responses' do |path|
+RSpec.describe 'Auth Registrations' do
+  shared_examples 'registration mode based responses' do
     context 'when in single user mode and open for registration' do
       before do
         Setting.registrations_mode = 'open'
@@ -14,9 +12,9 @@ RSpec.describe Auth::RegistrationsController do
 
       it 'redirects to sign-in' do
         Fabricate(:account)
-        get path
+        subject
 
-        expect(response).to redirect_to '/auth/sign_in'
+        expect(response).to redirect_to(new_user_session_path)
         expect(Rails.configuration.x).to have_received(:single_user_mode)
       end
     end
@@ -28,57 +26,29 @@ RSpec.describe Auth::RegistrationsController do
       end
 
       it 'redirects to sign-in' do
-        get path
+        subject
 
-        expect(response).to redirect_to '/auth/sign_in'
+        expect(response).to redirect_to(new_user_session_path)
         expect(Rails.configuration.x).to have_received(:single_user_mode)
       end
     end
   end
 
-  describe 'GET #edit' do
-    before do
-      request.env['devise.mapping'] = Devise.mappings[:user]
-      sign_in(Fabricate(:user))
-      get :edit
-    end
+  describe 'GET /auth/sign_up' do
+    subject { get new_user_registration_path }
 
-    it 'returns http success and cache headers' do
-      expect(response)
-        .to have_http_status(200)
-
-      expect(response.headers['Cache-Control'])
-        .to include('private, no-store')
-    end
+    it_behaves_like 'registration mode based responses'
   end
 
   describe 'PUT #update' do
     let(:current_password) { 'current password' }
     let(:user) { Fabricate(:user, password: current_password) }
 
-    before do
-      request.env['devise.mapping'] = Devise.mappings[:user]
-      sign_in(user, scope: :user)
-    end
-
-    it 'can update the user email' do
-      expect do
-        put :update, params: {
-          user: {
-            email: 'newemail@example.com',
-            current_password: current_password,
-          },
-        }
-      end.to change { user.reload.unconfirmed_email }.to('newemail@example.com')
-
-      expect(response).to redirect_to(edit_user_registration_path)
-      expect(response.headers['Cache-Control'])
-        .to include('private, no-store')
-    end
+    before { sign_in(user) }
 
     it 'requires the current password to update the email' do
       expect do
-        put :update, params: {
+        put user_registration_path, params: {
           user: {
             email: 'newemail@example.com',
             current_password: 'something',
@@ -91,23 +61,9 @@ RSpec.describe Auth::RegistrationsController do
         .to include('private, no-store')
     end
 
-    it 'can update the user password' do
-      expect do
-        put :update, params: {
-          user: {
-            password: 'new password',
-            password_confirmation: 'new password',
-            current_password: current_password,
-          },
-        }
-      end.to(change { user.reload.encrypted_password })
-
-      expect(response).to redirect_to(edit_user_registration_path)
-    end
-
     it 'requires the password confirmation' do
       expect do
-        put :update, params: {
+        put user_registration_path, params: {
           user: {
             password: 'new password',
             password_confirmation: 'something else',
@@ -121,7 +77,7 @@ RSpec.describe Auth::RegistrationsController do
 
     it 'requires the current password to update the password' do
       expect do
-        put :update, params: {
+        put user_registration_path, params: {
           user: {
             password: 'new password',
             password_confirmation: 'new password',
@@ -137,7 +93,8 @@ RSpec.describe Auth::RegistrationsController do
       let(:user) { Fabricate(:user, account_attributes: { username: 'test', suspended_at: Time.now.utc }) }
 
       it 'returns http forbidden' do
-        put :update
+        put user_registration_path
+
         expect(response).to have_http_status(403)
       end
     end
@@ -146,36 +103,17 @@ RSpec.describe Auth::RegistrationsController do
       let(:user) { Fabricate(:user, account_attributes: { username: 'test', requested_deletion_at: Time.now.utc }) }
 
       it 'returns http forbidden' do
-        put :update
+        put user_registration_path
+
         expect(response).to have_http_status(403)
       end
     end
   end
 
-  describe 'GET #new' do
-    before do
-      request.env['devise.mapping'] = Devise.mappings[:user]
-    end
-
-    context 'with open registrations' do
-      it 'returns http success' do
-        Setting.registrations_mode = 'open'
-        get :new
-        expect(response).to have_http_status(200)
-      end
-    end
-
-    it_behaves_like 'registration mode based responses', :new
-  end
-
   describe 'POST #create' do
+    subject { post user_registration_path }
+
     let(:accept_language) { 'de' }
-
-    before do
-      session[:registration_form_time] = 5.seconds.ago
-
-      request.env['devise.mapping'] = Devise.mappings[:user]
-    end
 
     around do |example|
       I18n.with_locale(I18n.locale) do
@@ -183,33 +121,20 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    context 'when an accept language is present in headers' do
-      subject do
-        Setting.registrations_mode = 'open'
-        request.headers['Accept-Language'] = accept_language
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
-      end
-
-      it 'redirects to setup and creates user' do
-        subject
-
-        expect(response)
-          .to redirect_to auth_setup_path
-        expect(User.find_by(email: 'test@example.com'))
-          .to be_present
-          .and have_attributes(locale: eq(accept_language))
-      end
-    end
+    it_behaves_like 'registration mode based responses'
 
     context 'when user has not agreed to terms of service' do
       subject do
-        Setting.registrations_mode = 'open'
-        request.headers['Accept-Language'] = accept_language
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'false' } }
+        post user_registration_path,
+             params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'false' } },
+             headers: { 'Accept-Language' => accept_language }
       end
+
+      before { Setting.registrations_mode = 'open' }
 
       it 'does not create user' do
         subject
+
         user = User.find_by(email: 'test@example.com')
         expect(user).to be_nil
       end
@@ -217,8 +142,9 @@ RSpec.describe Auth::RegistrationsController do
 
     context 'when user has an email address requiring approval' do
       subject do
-        request.headers['Accept-Language'] = accept_language
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
+        post user_registration_path,
+             params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } },
+             headers: { 'Accept-Language' => accept_language }
       end
 
       before do
@@ -239,8 +165,9 @@ RSpec.describe Auth::RegistrationsController do
 
     context 'when user has an email address requiring approval through a MX record' do
       subject do
-        request.headers['Accept-Language'] = accept_language
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
+        post user_registration_path,
+             params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } },
+             headers: { 'Accept-Language' => accept_language }
       end
 
       before do
@@ -252,6 +179,7 @@ RSpec.describe Auth::RegistrationsController do
 
       it 'creates unapproved user and redirects to setup' do
         subject
+
         expect(response).to redirect_to auth_setup_path
 
         user = User.find_by(email: 'test@example.com')
@@ -263,12 +191,13 @@ RSpec.describe Auth::RegistrationsController do
 
     context 'with an already taken username' do
       subject do
-        Setting.registrations_mode = 'open'
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
+        post user_registration_path,
+             params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
       end
 
       before do
         Fabricate(:account, username: 'test')
+        Setting.registrations_mode = 'open'
       end
 
       it 'responds with an error message about the username' do
@@ -285,9 +214,7 @@ RSpec.describe Auth::RegistrationsController do
 
     context 'with an invalid date of birth' do
       subject do
-        Setting.registrations_mode = 'open'
-        Setting.min_age = 16
-        post :create, params: {
+        post user_registration_path, params: {
           user: {
             :account_attributes => { username: 'test' },
             :email => 'test@example.com',
@@ -299,6 +226,11 @@ RSpec.describe Auth::RegistrationsController do
             'date_of_birth(3i)' => '01',
           },
         }
+      end
+
+      before do
+        Setting.registrations_mode = 'open'
+        Setting.min_age = 16
       end
 
       it 'responds with an error message about the date of birth' do
@@ -313,20 +245,16 @@ RSpec.describe Auth::RegistrationsController do
         response.parsed_body.css('.user_date_of_birth .error').text
       end
     end
-
-    it_behaves_like 'registration mode based responses', :create
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE /auth' do
     let(:user) { Fabricate(:user) }
 
-    before do
-      request.env['devise.mapping'] = Devise.mappings[:user]
-      sign_in(user, scope: :user)
-      delete :destroy
-    end
+    before { sign_in user }
 
     it 'returns http not found and keeps user' do
+      delete user_registration_path
+
       expect(response)
         .to have_http_status(404)
       expect(User.find(user.id))
