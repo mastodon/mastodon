@@ -83,10 +83,12 @@ class ScrollableList extends PureComponent {
     noSnippet: PropTypes.bool,
     footer: PropTypes.node,
     className: PropTypes.string,
+    infiniteScroll: PropTypes.bool,
   };
 
   static defaultProps = {
     trackScroll: true,
+    infiniteScroll: true,
   };
 
   state = {
@@ -103,7 +105,7 @@ class ScrollableList extends PureComponent {
       const clientHeight = this.getClientHeight();
       const offset = scrollHeight - scrollTop - clientHeight;
 
-      if (scrollTop > 0 && offset < 400 && this.props.onLoadMore && this.props.hasMore && !this.props.isLoading) {
+      if (scrollTop > 0 && offset < 400 && this.props.onLoadMore && this.props.hasMore && !this.props.isLoading && this.props.infiniteScroll) {
         this.props.onLoadMore();
       }
 
