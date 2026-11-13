@@ -7,12 +7,17 @@ import classNames from 'classnames';
 
 import {
   ArrowsLeftRightIcon,
+  EyeIcon,
+  EyeSlashIcon,
   PencilSimpleIcon,
   PlusIcon,
   TrashIcon,
 } from '@phosphor-icons/react';
 
-import { undoUploadCompose } from '@/mastodon/actions/compose';
+import {
+  changeComposeSensitivity,
+  undoUploadCompose,
+} from '@/mastodon/actions/compose';
 import { openModal } from '@/mastodon/actions/modal';
 import type { ApiAudioAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import { Button, IconButton } from '@/mastodon/components/button';
@@ -27,11 +32,11 @@ export const ComposeUpload: React.FC<{
   id?: string;
   className?: string;
   single?: boolean;
-}> = ({ id, className, single }) => {
+  showSensitive?: boolean;
+}> = ({ id, className, single, showSensitive = single }) => {
   const attachment = useAppSelector((state) =>
     selectComposeAttachment(state, id),
   );
-  const { mediaSensitive } = useAppSelector(selectComposeSensitive);
 
   const dispatch = useAppDispatch();
 
@@ -49,12 +54,41 @@ export const ComposeUpload: React.FC<{
     dispatch(undoUploadCompose(id));
   }, [dispatch, id]);
 
+  const { mediaSensitive, sensitive } = useAppSelector(selectComposeSensitive);
+  const handleToggleSensitive = useCallback(() => {
+    dispatch(changeComposeSensitivity());
+  }, [dispatch]);
+
   if (!attachment || attachment.type === 'unknown') {
     return <div className={classNames(classes.mediaUpload, className)} />;
   }
 
   if (attachment.type === 'audio') {
     return <ComposeAudioUpload attachment={attachment} />;
+  }
+
+  let sensitiveLabel: React.ReactNode = null;
+  if (sensitive) {
+    sensitiveLabel = (
+      <FormattedMessage
+        id='compose.sensitive.media_added'
+        defaultMessage='Media is always blurred if a content warning is added'
+      />
+    );
+  } else if (mediaSensitive) {
+    sensitiveLabel = (
+      <FormattedMessage
+        id='compose.sensitive.show'
+        defaultMessage='Show all media'
+      />
+    );
+  } else {
+    sensitiveLabel = (
+      <FormattedMessage
+        id='compose.sensitive.blur'
+        defaultMessage='Blur all media'
+      />
+    );
   }
 
   return (
@@ -92,6 +126,18 @@ export const ComposeUpload: React.FC<{
       </Button>
 
       <div className={classes.mediaMenuButtons}>
+        {showSensitive && (
+          <IconButton
+            onClick={handleToggleSensitive}
+            icon={mediaSensitive && !sensitive ? EyeIcon : EyeSlashIcon}
+            size='xs'
+            color='media'
+            tooltipPlacement='top'
+            aria-disabled={sensitive}
+          >
+            {sensitiveLabel}
+          </IconButton>
+        )}
         {!single && (
           <IconButton
             onClick={handleRearrange}
