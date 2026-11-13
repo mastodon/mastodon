@@ -459,8 +459,8 @@ export const composeReducer = (state = initialState, action) => {
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_SPOILER_TEXT_CHANGE:
-    if (!state.get('spoiler')) return state;
     return state
+      .set('spoiler', !!action.text)
       .set('spoiler_text', action.text)
       .set('idempotencyKey', uuid());
   case COMPOSE_CHANGE:

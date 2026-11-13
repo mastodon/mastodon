@@ -104,15 +104,15 @@
 .textareaWrapper {
   --fade-size: var(--space-6);
 
-  overflow-y: auto;
+  overflow: hidden auto;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   scrollbar-width: thin;
   overscroll-behavior-y: contain;
   position: relative;
-  margin-inline: calc(-1 * var(--space-1));
-  padding-inline: var(--space-1);
+  margin-inline: calc(-1 * var(--space-2));
+  padding-inline: var(--space-2);
 
   // Only show fade in desktop.
   [data-fullscreen='false'] &::after {
@@ -145,18 +145,55 @@
   }
 }
 
-.sensitiveWrapper {
-  margin-block-end: var(--space-4);
+.sensitiveWrapper,
+.textarea {
+  border-radius: var(--radius-2);
+  padding: var(--space-2);
+  margin-inline: calc(-1 * var(--space-2));
 
-  [data-input] {
-    display: flex;
-    align-items: center;
-    gap: var(--space-1);
+  &:hover {
+    outline: var(--border-thin);
+    outline-offset: calc(-1 * var(--bw-thin));
+  }
+
+  &:focus-within {
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+
+    &,
+    input {
+      &::placeholder {
+        color: transparent;
+      }
+    }
+  }
+}
+
+.sensitiveWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-half);
+  margin-block-end: var(--space-half);
+  color: var(--color-text-tertiary);
+
+  &:focus-within,
+  &[data-contents='true'] {
+    color: var(--color-text-primary);
+  }
+
+  > svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
   }
 }
 
 .sensitive {
   flex-grow: 1;
+  outline: none;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
 }
 
 .textarea,
@@ -173,21 +210,16 @@
 .textarea {
   flex-grow: 1;
   flex-shrink: 0;
-  border-radius: var(--radius-2);
   transition: outline-color 0.1s ease-out;
   cursor: text;
   border: none;
-  width: 100%;
-  outline: var(--outline-focus-default);
-  outline-color: transparent;
-  outline-offset: -2px;
+  width: auto;
   background: none;
   min-height: 3lh;
   caret-color: var(--color-text-brand);
+  outline: transparent;
 
   &:focus {
-    outline-color: var(--color-border-brand);
-
     &::placeholder {
       color: transparent;
     }
@@ -211,6 +243,7 @@ textarea.textarea {
   right: 0;
   white-space: pre-wrap; // This makes the formatting match the text area.
   padding: var(--space-2); // Matches the default textarea component.
+  margin-inline: calc(-1 * var(--space-2));
 }
 
 .attachments {
