@@ -20,16 +20,8 @@ search:
     - app/
     - config/navigation.rb
 
-  relative_roots:
-    - app/controllers
-    - app/helpers
-    - app/mailers
-    - app/views
-
   exclude:
-    - app/assets/images
-    - app/assets/fonts
-    - app/assets/videos
+    - app/javascript
 
 ignore_missing:
   - 'activemodel.errors.*'
