@@ -97,6 +97,16 @@
                     wrapper: :with_label,
                     input_html: { id: 'include_statuses' }
 
+        - if @report.violation? && @report.rule_ids.present?
+          .fields-group
+            = f.input :include_rule_violations,
+                      as: :boolean,
+                      wrapper: :with_label
+
+          %ul.strike-card__rules{ id: 'include_rule_violations' }
+            - @report.rules.each do |rule|
+              %li
+                %span.strike-card__rules__text= rule.text
         %hr.spacer/
 
   .actions
