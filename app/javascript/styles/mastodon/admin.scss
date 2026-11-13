@@ -94,9 +94,9 @@ $content-width: $main-column-width + $sidebar-width;
 
     .logo {
       display: block;
-      margin: 40px auto;
-      width: 100px;
-      height: 100px;
+      margin: 0;
+      width: 40px;
+      height: 40px;
     }
 
     .logo--wordmark {
@@ -122,7 +122,6 @@ $content-width: $main-column-width + $sidebar-width;
       }
 
       a {
-        font-size: 14px;
         display: flex;
         align-items: center;
         gap: 6px;
@@ -179,12 +178,6 @@ $content-width: $main-column-width + $sidebar-width;
         display: block;
         width: fit-content;
         margin: var(--space-6) var(--space-5);
-
-        .logo {
-          width: 40px;
-          height: 40px;
-          margin: 0;
-        }
       }
 
       & > nav > ul {
@@ -219,7 +212,6 @@ $content-width: $main-column-width + $sidebar-width;
           padding-inline-start: var(--space-8);
         }
 
-        .warning a,
         .simple-navigation-active-leaf > a {
           font-weight: 700;
         }
@@ -231,12 +223,12 @@ $content-width: $main-column-width + $sidebar-width;
     grid-column: 2 / -1;
     box-sizing: border-box;
     width: 100%;
-    max-width: $content-width;
     min-width: 0;
     background: var(--color-bg-primary);
     isolation: isolate;
 
     @media screen and (min-width: ($no-columns-breakpoint + 1px)) {
+      max-width: $content-width;
       margin-top: var(--space-1);
       border: var(--border-column);
       border-bottom: none;
@@ -247,10 +239,6 @@ $content-width: $main-column-width + $sidebar-width;
   @media screen and (max-width: $no-columns-breakpoint) {
     .sidebar-wrapper {
       width: 100%;
-    }
-
-    .content-wrapper {
-      max-width: none;
     }
   }
 
