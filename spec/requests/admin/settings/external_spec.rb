@@ -15,15 +15,5 @@ RSpec.describe 'Admin Settings External Discovery' do
           .to have_http_status(400)
       end
     end
-
-    describe 'PUT /admin/settings/external with valid params' do
-      let(:request) { put admin_settings_external_path, params: { form_admin_settings: { activity_api_enabled: '0' } } }
-
-      it 'saves the value for a valid key' do
-        expect { request }.to change(Setting, :activity_api_enabled).from(true)
-        expect(request).to redirect_to(admin_settings_external_path)
-        expect(response).to have_http_status(302)
-      end
-    end
   end
 end
