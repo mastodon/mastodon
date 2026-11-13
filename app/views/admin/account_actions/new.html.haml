@@ -1,6 +1,11 @@
 - content_for :page_title do
   = t('admin.account_actions.title', acct: @account.pretty_acct)
 
+:ruby
+  @report_id = params[:report_id] if params[:report_id].present?
+  @type = params[:type] if params[:type].present?
+  @report = Report.find(@report_id) if @report_id
+
 - if @account.suspended_locally?
   .flash-message.alert
     = t('admin.account_actions.already_suspended')
@@ -8,34 +13,31 @@
   .flash-message.warn
     = t('admin.account_actions.already_silenced')
 
-= simple_form_for @account_action, url: admin_account_action_path(@account.id) do |f|
+= simple_form_for @account_action, url: admin_account_action_path(@account.id), html: { id: 'action_type' } do |f|
   = f.input :report_id,
             as: :hidden
 
-  .fields-group
-    = f.input :type,
-              as: :radio_buttons,
-              collection: Admin::AccountAction.types_for_account(@account),
-              disabled: Admin::AccountAction.disabled_types_for_account(@account),
-              hint: t('simple_form.hints.admin_account_action.type_html', acct: @account.pretty_acct),
-              include_blank: false,
-              label_method: ->(type) { account_action_type_label(type) },
-              wrapper: :with_block_label,
-              input_html: { class: 'account_action_type' }
+  - content_for :heading_actions do
+    .fields-group
+      = f.input :type,
+                as: :select,
+                collection: Admin::AccountAction::TYPES,
+                include_blank: false,
+                label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type}") },
+                required: false,
+                input_html: { form: 'action_type' }
+
+  %div{ 'id' => 'data-action-text-box' }
+    = render partial: 'actions_text_box', locals: { account: @account, report: @report }
 
   - if @account.local?
     %hr.spacer/
+    %h3= t('admin.account_actions.notification_title')
 
     .fields-group
       = f.input :send_email_notification,
                 as: :boolean,
                 wrapper: :with_label
-
-    - if params[:report_id].present?
-      .fields-group
-        = f.input :include_statuses,
-                  as: :boolean,
-                  wrapper: :with_label
 
     %hr.spacer/
 
@@ -53,7 +55,19 @@
                 hint: t('simple_form.hints.admin_account_action.text'),
                 wrapper: :with_block_label
 
+    - if @account.local? && params[:report_id].present?
+      %hr.spacer/
+
+      .fields-group
+        = f.input :include_statuses,
+                  as: :boolean,
+                  wrapper: :with_label,
+                  input_html: { id: 'include_statuses' }
+
+      %hr.spacer/
+
   .actions
+    = link_to t('admin.reports.cancel'), admin_report_path(@report_id), class: 'button button-secondary' if @report_id.present?
     = f.button :button,
                t('admin.account_actions.action'),
                type: :submit

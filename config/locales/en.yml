@@ -40,7 +40,9 @@ en:
       action: Perform action
       already_silenced: This account has already been limited.
       already_suspended: This account has already been suspended.
-      title: Perform moderation action on %{acct}
+      notification_title: User Notification & Message
+      text_box_title: Consequences of this action
+      title: 'Perform moderation action on @%{acct}:'
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
@@ -972,12 +974,18 @@ en:
       summary:
         action_preambles:
           delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          disable_html: 'You are about to <strong>freeze</strong> <strong>@%{acct}</strong>''s account. This will:'
           mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          none_html: 'You are about to <strong>warn</strong> <strong>@%{acct}</strong>. This will:'
+          sensitive_html: 'You are about to <strong>mark</strong> <strong>@%{acct}</strong>''s account as <strong>sensitive</strong>. This will:'
           silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
           suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
         actions:
           delete_html: Remove the offending posts
+          disable_html: Prevent the user from using their account, but won't delete or hide their contents
           mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          none_html: Send a warning to the user, without triggering any other action
+          sensitive_html: Force all this user's media attachments to be flagged as sensitive
           silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
           suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
         close_report: 'Mark report #%{id} as resolved'
@@ -1544,7 +1552,9 @@ en:
       delete: Delete
       dropdown:
         all_actions: All actions
+        delete: Delete
         disable: Freeze
+        mark_as_sensitive: Mark as sensitive
         none: Warning
         sensitive: Sensitive
         silence: Limit

@@ -13,4 +13,8 @@ module Admin::AccountActionsHelper
   def label_and_categories_collection(warning_presets)
     warning_presets.map { |p| [[p.title.presence, truncate(p.text)].compact.join(' - '), p.id, { data: { type: p.action_category } }] }
   end
+
+  def combined_types_collection
+    Admin::AccountAction::TYPES + Admin::ModerationAction::TYPES
+  end
 end
