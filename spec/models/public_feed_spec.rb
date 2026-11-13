@@ -6,7 +6,7 @@ RSpec.describe PublicFeed do
   let(:account) { Fabricate(:account) }
 
   describe '#get' do
-    subject { described_class.new(nil).get(20).map(&:id) }
+    subject { described_class.new(nil).get(limit: 20).map(&:id) }
 
     it 'only includes statuses with public visibility' do
       public_status = Fabricate(:status, visibility: :public)
@@ -42,7 +42,7 @@ RSpec.describe PublicFeed do
     end
 
     context 'without local_only option' do
-      subject { described_class.new(viewer).get(20).map(&:id) }
+      subject { described_class.new(viewer).get(limit: 20).map(&:id) }
 
       let(:viewer) { nil }
 
@@ -73,7 +73,7 @@ RSpec.describe PublicFeed do
     end
 
     context 'with a local_only option set' do
-      subject { described_class.new(viewer, local: true).get(20).map(&:id) }
+      subject { described_class.new(viewer, local: true).get(limit: 20).map(&:id) }
 
       let!(:local_account)  { Fabricate(:account, domain: nil) }
       let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
@@ -106,7 +106,7 @@ RSpec.describe PublicFeed do
     end
 
     context 'with a remote_only option set' do
-      subject { described_class.new(viewer, remote: true).get(20).map(&:id) }
+      subject { described_class.new(viewer, remote: true).get(limit: 20).map(&:id) }
 
       let!(:local_account)  { Fabricate(:account, domain: nil) }
       let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
@@ -133,7 +133,7 @@ RSpec.describe PublicFeed do
     end
 
     describe 'with an account passed in' do
-      subject { described_class.new(account).get(20).map(&:id) }
+      subject { described_class.new(account).get(limit: 20).map(&:id) }
 
       let!(:account) { Fabricate(:account) }
 
@@ -210,7 +210,7 @@ RSpec.describe PublicFeed do
       end
 
       context 'without local_only option' do
-        subject { described_class.new(viewer).get(20).map(&:id) }
+        subject { described_class.new(viewer).get(limit: 20).map(&:id) }
 
         let(:viewer) { nil }
 
@@ -246,7 +246,7 @@ RSpec.describe PublicFeed do
       end
 
       context 'with a local_only option set' do
-        subject { described_class.new(viewer, local: true).get(20).map(&:id) }
+        subject { described_class.new(viewer, local: true).get(limit: 20).map(&:id) }
 
         let!(:local_account)  { Fabricate(:account, domain: nil) }
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
@@ -280,7 +280,7 @@ RSpec.describe PublicFeed do
       end
 
       context 'with a remote_only option set' do
-        subject { described_class.new(viewer, remote: true).get(20).map(&:id) }
+        subject { described_class.new(viewer, remote: true).get(limit: 20).map(&:id) }
 
         let!(:local_account)  { Fabricate(:account, domain: nil) }
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
@@ -320,7 +320,7 @@ RSpec.describe PublicFeed do
       end
 
       context 'without local_only option' do
-        subject { described_class.new(viewer).get(20).map(&:id) }
+        subject { described_class.new(viewer).get(limit: 20).map(&:id) }
 
         let(:viewer) { nil }
 
@@ -349,7 +349,7 @@ RSpec.describe PublicFeed do
       end
 
       context 'with a local_only option set' do
-        subject { described_class.new(viewer, local: true).get(20).map(&:id) }
+        subject { described_class.new(viewer, local: true).get(limit: 20).map(&:id) }
 
         let!(:local_account)  { Fabricate(:account, domain: nil) }
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
@@ -383,7 +383,7 @@ RSpec.describe PublicFeed do
       end
 
       context 'with a remote_only option set' do
-        subject { described_class.new(viewer, remote: true).get(20).map(&:id) }
+        subject { described_class.new(viewer, remote: true).get(limit: 20).map(&:id) }
 
         let!(:local_account)  { Fabricate(:account, domain: nil) }
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
@@ -416,7 +416,7 @@ RSpec.describe PublicFeed do
       end
 
       context 'without local_only option' do
-        subject { described_class.new(viewer).get(20).map(&:id) }
+        subject { described_class.new(viewer).get(limit: 20).map(&:id) }
 
         let(:viewer) { nil }
 
@@ -451,7 +451,7 @@ RSpec.describe PublicFeed do
       end
 
       context 'with a local_only option set' do
-        subject { described_class.new(viewer, local: true).get(20).map(&:id) }
+        subject { described_class.new(viewer, local: true).get(limit: 20).map(&:id) }
 
         let!(:local_account)  { Fabricate(:account, domain: nil) }
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
@@ -484,7 +484,7 @@ RSpec.describe PublicFeed do
       end
 
       context 'with a remote_only option set' do
-        subject { described_class.new(viewer, remote: true).get(20).map(&:id) }
+        subject { described_class.new(viewer, remote: true).get(limit: 20).map(&:id) }
 
         let!(:local_account)  { Fabricate(:account, domain: nil) }
         let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
