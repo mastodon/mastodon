@@ -1,6 +1,7 @@
 @use 'sass:color';
 @use 'sass:math';
 @use 'variables' as *;
+@use 'mixins';
 
 $no-columns-breakpoint: 890px;
 $sidebar-width: 320px;
@@ -126,6 +127,7 @@ $content-width: $main-column-width + $sidebar-width;
         align-items: center;
         gap: 6px;
         padding: 15px;
+        border-radius: var(--radius-3);
         color: color-mix(
           in oklab,
           var(--color-text-primary),
@@ -139,6 +141,11 @@ $content-width: $main-column-width + $sidebar-width;
           color: var(--color-text-primary);
           transition: all 100ms linear;
           transition-property: color, background-color;
+        }
+
+        &:hover,
+        &:focus-visible {
+          background-color: var(--color-bg-highlight);
         }
 
         &:focus-visible {
@@ -164,6 +171,58 @@ $content-width: $main-column-width + $sidebar-width;
       .simple-navigation-active-leaf a {
         color: var(--color-text-brand);
         border-bottom: 0;
+      }
+    }
+
+    @media screen and (min-width: ($no-columns-breakpoint + 1px)) {
+      & > a:first-child {
+        display: block;
+        width: fit-content;
+        margin: var(--space-6) var(--space-5);
+
+        .logo {
+          width: 40px;
+          height: 40px;
+          margin: 0;
+        }
+      }
+
+      & > nav > ul {
+        margin-inline: var(--space-4);
+        margin-bottom: var(--space-6);
+      }
+
+      ul {
+        li {
+          padding-bottom: var(--space-1);
+        }
+
+        a {
+          @include mixins.type-body-compact;
+
+          box-sizing: border-box;
+          min-height: 36px;
+          gap: var(--space-2);
+          padding: var(--space-2);
+          overflow-wrap: anywhere;
+
+          .icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            margin: 0;
+          }
+        }
+
+        ul a {
+          padding: var(--space-2);
+          padding-inline-start: var(--space-8);
+        }
+
+        .warning a,
+        .simple-navigation-active-leaf > a {
+          font-weight: 700;
+        }
       }
     }
   }
