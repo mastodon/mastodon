@@ -30,9 +30,9 @@ export const ComposeUpload: React.FC<
   {
     id?: string;
     single?: boolean;
-    showSensitive?: boolean;
+    showMediaControls?: boolean;
   } & React.ComponentPropsWithRef<'div'>
-> = ({ id, className, single, showSensitive = single, ...props }) => {
+> = ({ id, className, single, showMediaControls = single, ...props }) => {
   const attachment = useAppSelector((state) =>
     selectComposeAttachment(state, id),
   );
@@ -53,7 +53,7 @@ export const ComposeUpload: React.FC<
     dispatch(undoUploadCompose(id));
   }, [dispatch, id]);
 
-  const { mediaSensitive, sensitive } = useAppSelector(selectComposeSensitive);
+  const { mediaSensitive } = useAppSelector(selectComposeSensitive);
   const handleToggleSensitive = useCallback(() => {
     dispatch(changeComposeSensitivity());
   }, [dispatch]);
@@ -66,8 +66,12 @@ export const ComposeUpload: React.FC<
     return <ComposeAudioUpload attachment={attachment} />;
   }
 
+  if (mediaSensitive) {
+    return <StatusImage attachment={attachment} sensitive {...props} />;
+  }
+
   return (
-    <StatusImage attachment={attachment} sensitive={mediaSensitive} {...props}>
+    <StatusImage attachment={attachment} {...props}>
       <Button
         size='xs'
         color='media'
@@ -97,7 +101,7 @@ export const ComposeUpload: React.FC<
       </Button>
 
       <div className={classes.mediaMenuButtons}>
-        {showSensitive && !sensitive && (
+        {showMediaControls && (
           <IconButton
             onClick={handleToggleSensitive}
             icon={EyeSlashIcon}
@@ -111,7 +115,7 @@ export const ComposeUpload: React.FC<
             />
           </IconButton>
         )}
-        {!single && (
+        {!single && showMediaControls && (
           <IconButton
             onClick={handleRearrange}
             icon={ArrowsLeftRightIcon}

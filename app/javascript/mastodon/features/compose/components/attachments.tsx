@@ -1,8 +1,15 @@
-import type React from 'react';
+import { useCallback } from 'react';
 
+import { FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
+import { changeComposeSensitivity } from '@/mastodon/actions/compose';
+import { Button } from '@/mastodon/components/button';
 import { StatusImageGrid } from '@/mastodon/components/status/image';
 import { StatusQuotePending } from '@/mastodon/components/status/quote';
-import { useAppSelector } from '@/mastodon/store';
+import { attachmentAspectRatio } from '@/mastodon/components/status/utils';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import classes from './attachments.module.scss';
 import { ComposePoll } from './poll';
@@ -10,6 +17,7 @@ import { ComposeQuote } from './quote';
 import {
   selectComposeAttachments,
   selectComposeHasAttachments,
+  selectComposeSensitive,
 } from './selectors';
 import { ComposeUpload } from './upload';
 
@@ -39,14 +47,35 @@ const ComposeMediaAttachments: React.FC = () => {
     Math.max(Number(state.compose.get('pending_media_attachments')), 0),
   );
   const totalAttachments = attachments.length + pendingAttachments;
+  const { mediaSensitive, sensitive } = useAppSelector(selectComposeSensitive);
+
+  const dispatch = useAppDispatch();
+  const onShowMedia = useCallback(() => {
+    dispatch(changeComposeSensitivity());
+  }, [dispatch]);
 
   return (
-    <StatusImageGrid count={totalAttachments}>
+    <StatusImageGrid
+      count={totalAttachments}
+      className={classNames(
+        classes.mediaRoot,
+        totalAttachments === 1 && classes.mediaLockAspect,
+      )}
+      sensitive={mediaSensitive}
+      style={
+        {
+          ['--aspect']:
+            totalAttachments === 1
+              ? attachmentAspectRatio(attachments[0])
+              : undefined,
+        } as React.CSSProperties
+      }
+    >
       {attachments.map(({ id }, index) => (
         <ComposeUpload
           key={id}
           id={id}
-          showSensitive={index === 1}
+          showMediaControls={index === 1 || totalAttachments === 1}
           single={totalAttachments === 1}
           data-index={index}
         />
@@ -54,6 +83,23 @@ const ComposeMediaAttachments: React.FC = () => {
       {[...Array(pendingAttachments).keys()].map((_, index) => (
         <ComposeUpload key={index} className={classes.mediaUploadPending} />
       ))}
+      {mediaSensitive && (
+        <div className={classes.mediaSpoilerShowButton}>
+          {sensitive && (
+            <FormattedMessage
+              id='compose.sensitive.media_blur_warning'
+              defaultMessage='Users will always see blurred media with a content warning. Click show media to edit alt text and rearrange images.'
+              tagName='p'
+            />
+          )}
+          <Button color='media' size='sm' onClick={onShowMedia}>
+            <FormattedMessage
+              id='content_warning.media.show_short'
+              defaultMessage='Show media'
+            />
+          </Button>
+        </div>
+      )}
     </StatusImageGrid>
   );
 };
