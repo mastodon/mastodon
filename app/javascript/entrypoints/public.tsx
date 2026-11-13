@@ -25,8 +25,6 @@ import { getNestedProperty } from '@/mastodon/utils/objects';
 import { isDarkMode } from '@/mastodon/utils/theme';
 import { formatTime } from '@/mastodon/utils/time';
 
-import 'cocoon-js-vanilla';
-
 const messages = defineMessages({
   usernameTaken: {
     id: 'username.taken',
