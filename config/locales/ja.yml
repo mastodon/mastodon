@@ -481,10 +481,14 @@ ja:
       not_permitted: 権限がありません
       resolved_dns_records_hint_html: 入力されたドメイン名のMXレコードから以下のドメインが解決されました。MXレコードが指すドメインはメールの送受信において重要な役割をもっています。MXレコードのドメインをブロックすると、見た目のドメインが異なるメールアドレスからの登録であっても、そのドメイン名から解決されるMXレコードのドメインが同じ場合はブロックの対象になります。<strong>大手のメールプロバイダをブロックしないように注意してください。</strong>
       resolved_through_html: "%{domain}を通して解決しました"
+      search: 検索
       title: メールドメインブロック
     email_subscriptions:
       accounts:
         account: アカウント
+      compliance_settings:
+        privacy_policy:
+          title: プライバシーポリシー
     export_domain_allows:
       new:
         title: ドメイン許可をインポート
@@ -632,6 +636,7 @@ ja:
       new:
         title: 新規IPルール
       no_ip_block_selected: 何も選択されていないためIPルールを変更しませんでした
+      search: 検索
       title: IPルール
     relationships:
       title: "%{acct} さんのフォロー・フォロワー"
@@ -845,6 +850,8 @@ ja:
         all: 誰にでも許可
         disabled: 誰にも許可しない
         users: ログイン済みローカルユーザーのみ許可
+      external:
+        privacy: プライバシー
       feed_access:
         modes:
           authenticated: ログイン済みユーザーのみ

@@ -60,8 +60,13 @@ sk:
       error:
         title: Nastala chyba
       new:
+        prompt_html: Aplikácia %{client_name} žiada o prístup k vášmu účtu. <strong>Túto žiadosť schváľte iba vtedy, ak zdroj poznáte a dôverujete mu.</strong>
         review_permissions: Preskúmať povolenia
         title: Je potrebné schválenie
+      require_reauth:
+        log_out_and_continue: Odhlásiť sa a pokračovať
+        prompt_html: Momentálne ste prihlásení ako <strong>%{handle}</strong>. Ak chcete pokračovať, musíte sa odhlásiť.
+        title: Vyžaduje sa opätovné overenie totožnosti
       show:
         title: Skopírujte tento overovací kód a vložte ho do aplikácie.
     authorized_applications:
@@ -82,6 +87,10 @@ sk:
         access_denied: Vlastník zdroja alebo autorizačný server žiadosť zamietol.
         credential_flow_not_configured: Protokol poverení vlastníka prostriedkov narazil na chybu z dôvodu nesprávnej konfigurácie Doorkeeper.configure.resource_owner_from_credentials.
         invalid_client: Overenie klienta zlyhalo z dôvodu neznámeho klienta, nebolo zahrnuté overenie klienta alebo nie je podporovaná metóda overovania.
+        invalid_code_challenge_method:
+          one: Parameter code_challenge_method musí mať hodnotu %{challenge_methods}.
+          other: Parameter code_challenge_method musí mať jednu z hodnôt %{challenge_methods}.
+          zero: Autorizačný server nepodporuje PKCE, pretože neprijíma žiadnu hodnotu parametra code_challenge_method.
         invalid_grant: Dané povolenie je neplatné, vypršalo, bolo zrušené, nesúhlasí s presmerovacou URI použitou v autorizačnej požiadavke alebo bolo vydané pre iného klienta.
         invalid_redirect_uri: Presmerovacia URI je neplatná.
         invalid_request:
@@ -165,6 +174,7 @@ sk:
       admin:write:reports: vykonávať moderovacie akcie voči hláseniam
       crypto: používať šifrovanie end-to-end
       follow: upravovať vzťahy medzi účtami
+      profile: čítať iba profilové údaje vášho účtu
       push: dostávať vaše upozornenia push
       read: čítať všetky údaje vášho účtu
       read:accounts: čítať informácie o účtoch
