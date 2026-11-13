@@ -87,7 +87,7 @@ class StatusReachFinder
 
   def relay_inboxes
     if @status.public_visibility?
-      Relay.enabled.pluck(:inbox_url)
+      Relay.enabled.for_account(@status.account_id).pluck(:inbox_url)
     else
       []
     end

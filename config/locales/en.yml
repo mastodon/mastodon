@@ -884,14 +884,16 @@ en:
       title: "%{acct}'s relationships"
     relays:
       add_new: Add new relay
+      bidirectional: Bidirectional
+      broadcast: Broadcast
       delete: Delete
       description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public posts between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
       disable: Disable
       disabled: Disabled
       enable: Enable
-      enable_hint: Once enabled, your server will subscribe to all public posts from this relay, and will begin sending this server's public posts to it.
       enabled: Enabled
-      inbox_url: Relay URL
+      opt_in: Opt-in
+      opt_out: Opt-out
       pending: Waiting for relay's approval
       save_and_enable: Save and enable
       setup: Setup a relay connection
@@ -2301,9 +2303,11 @@ en:
     privacy_hint_html: Control how much you want to disclose for the benefit of others. People discover interesting profiles and cool apps by browsing other people's follows and seeing which apps they post from, but you may prefer to keep it hidden.
     reach: Reach
     reach_hint_html: Control whether you want to be discovered and followed by new people. Do you want your posts to appear on the Explore screen? Do you want other people to see you in their follow recommendations? Do you want to accept all new followers automatically, or have granular control over each one?
+    relays_hint_html: You can additionally opt-in to preconfigured relays that distribute your public posts to an even wider audience across the fediverse.
     search: Search
     search_hint_html: Control how you want to be found. Do you want people to find you by what you've publicly posted about? Do you want people outside Mastodon to find your profile when searching the web? Please mind that total exclusion from all search engines cannot be guaranteed for public information.
     title: Privacy and reach
+    view_relays: Manage your relays
   privacy_policy:
     title: Privacy Policy
   reactions:
@@ -2334,6 +2338,11 @@ en:
     remove_selected_followers: Remove selected followers
     remove_selected_follows: Unfollow selected users
     status: Account status
+  relay_preferences:
+    explanation_html: These are relays that %{domain} can connect with. <strong>Fediverse relays can help your public posts reach a wider audience.</strong> If you opt-in to a relay, your <strong>public</strong> posts will be shared with the relay, which can share them further. Other kinds of posts are never sent to relays.
+    opt_in: Opt-in to sharing
+    relay: Relay
+    title: Relay preferences
   remote_follow:
     missing_resource: Could not find the required redirect URL for your account
   reports:

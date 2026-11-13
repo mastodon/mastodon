@@ -4,18 +4,24 @@ require 'rails_helper'
 
 RSpec.describe Relay do
   describe 'Normalizations' do
-    describe 'inbox_url' do
-      it { is_expected.to normalize(:inbox_url).from('  http://host.example  ').to('http://host.example') }
+    describe 'acct' do
+      it { is_expected.to normalize(:acct).from('  @foo@bar  ').to('foo@bar') }
     end
   end
 
   describe 'Validations' do
-    it { is_expected.to validate_presence_of(:inbox_url) }
-    it { is_expected.to validate_uniqueness_of(:inbox_url) }
+    subject { described_class.new(account: Fabricate(:account)) }
+
+    it { is_expected.to validate_presence_of(:acct).on(:preflight) }
+    it { is_expected.to validate_presence_of(:inbox_url).on(:create) }
+    it { is_expected.to validate_presence_of(:uri).on(:create) }
+    it { is_expected.to validate_presence_of(:account_id).on(:create) }
+    it { is_expected.to validate_uniqueness_of(:uri).on(:create) }
   end
 
   describe 'Enumerations' do
     it { is_expected.to define_enum_for(:state) }
+    it { is_expected.to define_enum_for(:direction) }
   end
 
   describe 'Scopes' do
@@ -62,10 +68,9 @@ RSpec.describe Relay do
   describe '#to_log_human_identifier' do
     subject { relay.to_log_human_identifier }
 
-    let(:relay) { Fabricate.build :relay, inbox_url: }
-    let(:inbox_url) { 'https://host.example' }
+    let(:relay) { Fabricate.build :relay }
 
-    it { is_expected.to eq(inbox_url) }
+    it { is_expected.to eq(relay.account.uri) }
   end
 
   describe '#disable' do

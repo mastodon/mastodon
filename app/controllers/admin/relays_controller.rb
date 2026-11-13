@@ -7,7 +7,7 @@ module Admin
 
     def index
       authorize :relay, :update?
-      @relays = Relay.all
+      @relays = Relay.includes(:account)
     end
 
     def new
@@ -20,13 +20,20 @@ module Admin
 
       @relay = Relay.new(resource_params)
 
-      if @relay.save
-        log_action :create, @relay
-        @relay.enable!
-        redirect_to admin_relays_path
-      else
-        render :new
+      if @relay.valid?(:preflight)
+        ActivityPub::FetchRelayService.new.call(@relay)
+
+        if @relay.save
+          log_action :create, @relay
+          @relay.enable!
+          redirect_to(admin_relays_path) and return
+        end
       end
+
+      render :new
+    rescue ActivityPub::FetchRelayService::Error => e
+      @relay.errors.add(:acct, e.message)
+      render :new
     end
 
     def destroy
@@ -58,7 +65,7 @@ module Admin
 
     def resource_params
       params
-        .expect(relay: [:inbox_url])
+        .expect(relay: [:acct, :direction, :requires_opt_in])
     end
 
     def warn_signatures_not_enabled!

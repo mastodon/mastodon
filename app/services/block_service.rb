@@ -14,11 +14,17 @@ class BlockService < BaseService
 
     NotificationPermission.where(account: account, from_account: target_account).destroy_all
 
-    block = account.block!(target_account)
+    ApplicationRecord.transaction do
+      @block = account.block!(target_account)
+
+      relay = Relay.find_by(account: target_account)
+
+      RelayPreference.upsert({ relay_id: relay.id, account_id: account.id, enabled: false }, unique_by: %w(account_id relay_id)) if relay
+    end
 
     BlockWorker.perform_async(account.id, target_account.id)
-    create_notification(block) if !target_account.local? && target_account.activitypub?
-    block
+    create_notification(@block) if !target_account.local? && target_account.activitypub?
+    @block
   end
 
   private
