@@ -52,9 +52,7 @@ ignore_unused:
   - 'admin.action_logs.actions.*'
   - 'admin.reports.summary.action_preambles.*'
   - 'admin.reports.summary.actions.*'
-  - 'admin_mailer.new_appeal.actions.*'
   - 'statuses.attached.*'
-  - 'move_handler.carry_{mutes,blocks}_over_text'
   - 'admin_mailer.*.subject'
   - 'user_mailer.*.subject'
   - 'email_subscription_mailer.*'
@@ -65,9 +63,6 @@ ignore_unused:
   - 'preferences.other' # some locales are missing other keys, therefore leading i18n-tasks to detect `preferences` as plural and not finding use
   - 'edit_profile.other' # some locales are missing other keys, therefore leading i18n-tasks to detect `preferences` as plural and not finding use
   - 'admin.terms_of_service.generate' # temporarily disabled
-  - 'admin.username_blocks.matches_exactly_html'
-  - 'admin.username_blocks.contains_html'
-  - 'accounts.api_errors.{2fa_required,account_deleted,account_suspended,login_disabled,memorial,pending_approval,pending_confirmation}'
 
 ignore_inconsistent_interpolations:
   - '*.one'

@@ -120,7 +120,9 @@ class MoveWorker
     @source_account.blocked_by_relationships.where(account: Account.local).find_each do |block|
       unless skip_block_move?(block)
         BlockService.new.call(block.account, @target_account)
-        add_account_note_if_needed!(block.account, 'move_handler.carry_blocks_over_text')
+        add_account_note_if_needed!(block.account) do
+          I18n.t('move_handler.carry_blocks_over_text', acct: @source_account.acct)
+        end
       end
     rescue => e
       @deferred_error = e
@@ -131,19 +133,19 @@ class MoveWorker
     @source_account.muted_by_relationships.where(account: Account.local).find_each do |mute|
       unless skip_mute_move?(mute)
         MuteService.new.call(mute.account, @target_account, notifications: mute.hide_notifications)
-        add_account_note_if_needed!(mute.account, 'move_handler.carry_mutes_over_text')
+        add_account_note_if_needed!(mute.account) do
+          I18n.t('move_handler.carry_mutes_over_text', acct: @source_account.acct)
+        end
       end
     rescue => e
       @deferred_error = e
     end
   end
 
-  def add_account_note_if_needed!(account, id)
+  def add_account_note_if_needed!(account, &block)
     return if @target_account.targeted_account_notes.exists?(account:)
 
-    text = I18n.with_locale(account.user_locale.presence || I18n.default_locale) do
-      I18n.t(id, acct: @source_account.acct)
-    end
+    text = I18n.with_locale(account.user_locale.presence || I18n.default_locale, &block)
     AccountNote.create!(account: account, target_account: @target_account, comment: text)
   end
 
