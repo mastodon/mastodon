@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import type { NavLinkProps } from 'react-router-dom';
 
+import { CaretDownIcon } from '@phosphor-icons/react';
 import type { Icon } from '@phosphor-icons/react';
 
 import { Badge } from '@/mastodon/components/badge';
@@ -13,7 +14,7 @@ import { useIsLinkActive } from '@/mastodon/hooks/useIsLinkActive';
 import classes from './navigation_link.module.scss';
 
 type NavigationLinkProps = {
-  iconComponent?: Icon | React.FC<SVGProps<SVGSVGElement>>;
+  icon?: Icon | React.FC<SVGProps<SVGSVGElement>>;
   badgeCount?: number;
   withDivider?: boolean;
 } & (
@@ -24,7 +25,7 @@ type NavigationLinkProps = {
 
 export const NavigationLink: React.FC<NavigationLinkProps> = ({
   as = 'link',
-  iconComponent: IconComp,
+  icon: IconComp,
   badgeCount = 0,
   withDivider = false,
   children,
@@ -69,55 +70,52 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
   );
 };
 
-type MobileNavLink = NavLinkProps & {
-  withDot?: boolean;
+export type MiniNavigationLinkProps = {
+  badgeType?: 'default' | 'dot';
+  badgeCount?: number;
+  withMenuIndicator?: boolean;
   children: ReactNode;
-  iconComponent: Icon | React.FC<SVGProps<SVGSVGElement>>;
-};
+  icon: Icon | React.FC<SVGProps<SVGSVGElement>> | { customIcon: ReactNode };
+} & (
+  | ({ as?: 'button' } & React.ComponentPropsWithRef<'button'>)
+  | ({ as?: 'a' } & React.ComponentPropsWithRef<'a'>)
+  | ({ as?: 'link' } & NavLinkProps)
+);
 
-export const MiniNavLink: React.FC<MobileNavLink> = ({
-  iconComponent: IconComp,
-  withDot,
+export const MiniNavigationLink: React.FC<MiniNavigationLinkProps> = ({
+  as = 'link',
+  icon: IconComp,
+  badgeType = 'default',
+  badgeCount,
+  withMenuIndicator,
   children,
   ...otherProps
 }) => {
+  let Comp: React.ElementType = as;
+  if (as === 'link') {
+    Comp = NavLink;
+  }
+
   const isActive = useIsLinkActive(
     'to' in otherProps ? otherProps.to : undefined,
   );
 
-  return (
-    <li>
-      <Tooltip text={children} placement='top' offset={-2}>
-        {({ getTooltipProps }) => (
-          <NavLink
-            {...getTooltipProps(otherProps)}
-            className={classNames(classes.link, classes.linkMini)}
-          >
-            <span
-              className={classNames(
-                classes.icon,
-                withDot && classes.iconWithDot,
-              )}
-            >
-              <IconComp size={24} weight={isActive ? 'fill' : undefined} />
-            </span>
-            <span className='sr-only'>{children}</span>
-          </NavLink>
-        )}
-      </Tooltip>
-    </li>
-  );
-};
+  const icon =
+    'customIcon' in IconComp ? (
+      IconComp.customIcon
+    ) : (
+      <IconComp size={24} weight={isActive ? 'fill' : undefined} />
+    );
 
-export const MiniNavProfileButton: React.FC<
-  { avatar?: ReactNode } & Pick<MobileNavLink, 'children' | 'withDot'>
-> = ({ children, avatar, withDot, ...otherProps }) => {
+  const withDot = !!badgeCount && badgeType === 'dot';
+  const withBadge = !!badgeCount && badgeType === 'default';
+
   return (
     <li>
       <Tooltip text={children} placement='top' offset={-2}>
         {({ getTooltipProps }) => (
-          <button
-            type='button'
+          <Comp
+            type={as === 'button' ? 'button' : undefined}
             {...getTooltipProps(otherProps)}
             className={classNames(classes.link, classes.linkMini)}
           >
@@ -127,10 +125,25 @@ export const MiniNavProfileButton: React.FC<
                 withDot && classes.iconWithDot,
               )}
             >
-              {avatar}
+              {icon}
             </span>
             <span className='sr-only'>{children}</span>
-          </button>
+            {withMenuIndicator && (
+              <CaretDownIcon
+                weight='fill'
+                size={10}
+                className={classes.menuIndicatorIcon}
+              />
+            )}
+
+            {withBadge && (
+              <Badge
+                variant='accent'
+                label={badgeCount}
+                className={classes.miniBadge}
+              />
+            )}
+          </Comp>
         )}
       </Tooltip>
     </li>

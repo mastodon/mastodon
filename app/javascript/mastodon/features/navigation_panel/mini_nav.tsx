@@ -16,54 +16,47 @@ import { useIdentity } from '@/mastodon/identity_context';
 import { handleSearchLinkClick, useNotificationsCount } from '.';
 import { AccountMenuItems } from './account_menu_items';
 import classes from './mini_nav.module.scss';
-import { MiniNavLink, MiniNavProfileButton } from './navigation_link';
+import { MiniNavigationLink } from './navigation_link';
 
 /**
  * The small link bar at the top of the main navigation
  */
 export const MiniNav: React.FC = () => {
-  const { accountId } = useIdentity();
-  const account = useAccount(accountId);
   const notificationsCount = useNotificationsCount();
   return (
     <ul className={classes.root}>
-      <MiniNavLink to='/home' iconComponent={HouseIcon}>
+      <MiniNavigationLink to='/home' icon={HouseIcon}>
         <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
-      </MiniNavLink>
-      <MiniNavLink
+      </MiniNavigationLink>
+      <MiniNavigationLink
         to={{
           pathname: '/search',
           state: { focusTarget: FOCUS_TARGET.SEARCH },
         }}
-        iconComponent={MagnifyingGlassIcon}
+        icon={MagnifyingGlassIcon}
         onClick={handleSearchLinkClick}
       >
         <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
-      </MiniNavLink>
-      <MiniNavLink to='/conversations' iconComponent={ChatCircleDotsIcon}>
+      </MiniNavigationLink>
+      <MiniNavigationLink to='/conversations' icon={ChatCircleDotsIcon}>
         <FormattedMessage
           id='tabs_bar.messages'
           defaultMessage='Messages'
           description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
         />
-      </MiniNavLink>
-      <MiniNavLink
+      </MiniNavigationLink>
+      <MiniNavigationLink
         to='/notifications'
-        iconComponent={BellIcon}
-        withDot={notificationsCount > 0}
+        icon={BellIcon}
+        badgeCount={notificationsCount}
       >
         <FormattedMessage
           id='tabs_bar.notifications'
           defaultMessage='Notifications'
         />
-      </MiniNavLink>
+      </MiniNavigationLink>
       <Menu>
-        <MenuTrigger
-          as={MiniNavProfileButton}
-          avatar={
-            <Avatar size={20} account={account} className={classes.avatar} />
-          }
-        >
+        <MenuTrigger as={AccountButton} withMenuIndicator>
           <FormattedMessage id='tabs_bar.account' defaultMessage='Account' />
         </MenuTrigger>
         <MenuList placement='top-end' offset={8} minWidth={240}>
@@ -71,5 +64,32 @@ export const MiniNav: React.FC = () => {
         </MenuList>
       </Menu>
     </ul>
+  );
+};
+
+interface AccountButton extends React.ComponentPropsWithRef<'button'> {
+  withMenuIndicator?: boolean;
+}
+
+export const AccountButton: React.FC<AccountButton> = ({
+  children,
+  withMenuIndicator,
+  ...otherProps
+}) => {
+  const { accountId } = useIdentity();
+  const account = useAccount(accountId);
+  return (
+    <MiniNavigationLink
+      as='button'
+      withMenuIndicator={withMenuIndicator}
+      icon={{
+        customIcon: (
+          <Avatar size={20} account={account} className={classes.avatar} />
+        ),
+      }}
+      {...otherProps}
+    >
+      {children}
+    </MiniNavigationLink>
   );
 };
