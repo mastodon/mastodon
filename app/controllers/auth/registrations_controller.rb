@@ -106,7 +106,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to new_user_session_path, alert: I18n.t('devise.failure.closed_registrations', email: Setting.site_contact_email) unless allowed_registration?(request.remote_ip, @invite)
+    redirect_to new_user_session_path, alert: closed_registration_message unless allowed_registration?(request.remote_ip, @invite)
+  end
+
+  def closed_registration_message
+    Setting.closed_registrations_message.presence || I18n.t('devise.failure.closed_registrations', email: Setting.site_contact_email)
   end
 
   def invite_code
