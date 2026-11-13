@@ -43,7 +43,9 @@ export const ComposeSensitiveField: React.FC<
   const onChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       dispatch(changeComposeSpoilerText(event.target.value));
-      dispatch(clearComposerErrors(['missing-content-warning']));
+      if (event.target.value) {
+        dispatch(clearComposerErrors(['empty']));
+      }
     },
     [dispatch],
   );
