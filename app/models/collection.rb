@@ -23,7 +23,9 @@
 #
 class Collection < ApplicationRecord
   MAX_ITEMS = 25
+  NAME_LENGTH_LOCAL_LIMIT = 40
   NAME_LENGTH_HARD_LIMIT = 256
+  DESCRIPTION_LENGTH_LOCAL_LIMIT = 100
   DESCRIPTION_LENGTH_HARD_LIMIT = 2048
 
   belongs_to :account
@@ -36,10 +38,10 @@ class Collection < ApplicationRecord
   has_many :notifications, as: :activity, dependent: :destroy
 
   validates :name, presence: true
-  validates :name, length: { maximum: 40 }, if: :local?
+  validates :name, length: { maximum: NAME_LENGTH_LOCAL_LIMIT }, if: :local?
   validates :name, length: { maximum: NAME_LENGTH_HARD_LIMIT }, if: :remote?
   validates :description,
-            length: { maximum: 100 },
+            length: { maximum: DESCRIPTION_LENGTH_LOCAL_LIMIT },
             if: :local?
   validates :description_html,
             length: { maximum: DESCRIPTION_LENGTH_HARD_LIMIT },

@@ -125,6 +125,12 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       limited_federation: limited_federation?,
+
+      collections: {
+        max_items: Collection::MAX_ITEMS,
+        max_name_length: Collection::NAME_LENGTH_LOCAL_LIMIT,
+        max_description_length: Collection::DESCRIPTION_LENGTH_LOCAL_LIMIT,
+      },
     }
   end
 
