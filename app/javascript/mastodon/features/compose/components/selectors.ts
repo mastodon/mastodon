@@ -156,10 +156,10 @@ export const selectComposeSensitive = createAppSelector(
     (state) => state.compose.get('spoiler_text'),
     (state) => !!state.compose.get('sensitive'),
   ],
-  (spoiler, text, sensitive) => ({
-    sensitive: spoiler,
+  (sensitive, text, mediaSensitive) => ({
+    sensitive,
+    mediaSensitive,
     sensitiveText: typeof text === 'string' ? text : '',
-    mediaSensitive: sensitive || spoiler,
   }),
 );
 

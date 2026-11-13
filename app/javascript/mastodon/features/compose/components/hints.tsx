@@ -18,7 +18,7 @@ import {
 import classes from '../styles.module.scss';
 
 import { languageName, useLanguageGuess } from './hooks';
-import { selectComposeAttachments } from './selectors';
+import { selectComposeAttachments, selectComposeSensitive } from './selectors';
 
 const selectComposeAttachmentsWithoutAlt = createAppSelector(
   [
@@ -107,6 +107,19 @@ export const ComposeHints = (props: React.ComponentPropsWithRef<'div'>) => {
         onDismiss={onDismiss}
         key='different-language'
       />,
+    );
+  }
+
+  const { mediaSensitive, sensitive } = useAppSelector(selectComposeSensitive);
+  if (!mediaSensitive && sensitive) {
+    messages.push(
+      defaultWrapper(
+        <FormattedMessage
+          id='compose.hints.sensitive-showing-media'
+          defaultMessage='Users will see blurred media when a content warning is set.'
+        />,
+        'media-sensitive',
+      ),
     );
   }
 

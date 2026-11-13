@@ -2,6 +2,20 @@
 
 // Attachments
 
+.mediaRoot {
+  --media-radius: var(--radius-4);
+
+  &::after {
+    background-color: var(--color-bg-media);
+  }
+}
+
+.mediaLockAspect {
+  min-width: 120px;
+  max-width: min(100%, 400px);
+  aspect-ratio: var(--aspect);
+}
+
 .mediaUploadPending {
   animation: pulse 1s ease-in-out infinite;
   background-color: var(--color-bg-disabled);
@@ -29,6 +43,22 @@
   position: absolute;
   inset-block-start: var(--space-2);
   inset-inline-start: var(--space-2);
+}
+
+.mediaSpoilerShowButton {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    padding-inline: var(--space-4);
+    margin-block-end: var(--space-2);
+    text-align: center;
+  }
 }
 
 // Audio
