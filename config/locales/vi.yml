@@ -786,17 +786,30 @@ vi:
       advisory_action: 'Hành động: %{action}'
       advisory_actions:
         accept: cho phép
+        limit: hạn chế
+        reject: vô hiệu hóa
       apply_automatically: Tự động áp dụng các khuyến nghị
       apply_conditions:
         always: Luôn luôn
         never: Không bao giờ
         safely: Chỉ khi điều đó không làm đứt gãy các mối quan hệ
+      apply_conditions_hint:
+        always: Luôn tự động áp dụng các hành động được đề xuất. Chỉ sử dụng tùy chọn này cho các danh sách mà bạn hoàn toàn tin tưởng.
+        never: Không bao giờ tự động áp dụng các hành động được đề xuất. Thay vào đó, hãy luôn tạo ra một gợi ý.
+        safely: Áp dụng các hành động được đề xuất trừ khi chúng làm đứt gãy mối quan hệ theo dõi hiện có với người dùng máy chủ. Trong những trường hợp như vậy, một đề xuất sẽ được tạo ra để thay thế.
       delete: Xóa bỏ
+      destroyed_msg: Đã xóa thành công gói đăng ký kiểm duyệt
+      empty: Chưa đăng ký theo dõi danh sách kiểm duyệt nào.
       last_synced_at: Đồng bộ lần cuối lúc
+      list_action: Kiểu đăng ký
       list_actions:
         accept: Danh sách cho phép
         default: Hỗn hợp (Cho phép & Từ chối)
         reject: Danh sách chặn
+      list_actions_hint:
+        accept: Các mục không có hành động được chỉ định sẽ được coi là được phép. Các mục bị chặn sẽ bị bỏ qua.
+        default: Các mục không được chỉ định hành động cụ thể sẽ được coi là các mục bị chặn. Cả các mục được thiết lập là chặn hay cho phép đều sẽ được xử lý theo đúng phân loại đó.
+        reject: Các mục không có hành động được chỉ định sẽ được xử lý chặn. Các mục được cho phép sẽ bị bỏ qua.
       list_actions_short:
         accept: Danh sách cho phép
         default: Hỗn hợp
@@ -804,8 +817,48 @@ vi:
       name: Gói đăng ký
       new:
         create: Đăng ký
+        title: Gói đăng ký kiểm duyệt mới
+      override_unattributed: Ghi đè các lượt chặn thủ công
+      override_unattributed_hint: Cho phép gói đăng ký này tự động nâng cấp hoặc thay thế các mục chặn thủ công hiện có khi tự động áp dụng các khuyến nghị.
+      policies:
+        apply_advisories: Tự động áp dụng các khuyến nghị
+        apply_advisories_safely: Tự động áp dụng các khuyến nghị không làm đứt gãy các mối liên hệ
+        apply_retractions: Tự động áp dụng các đính chính
       priority: Ưu tiên
+      priority_hint: Các đăng ký kiểm duyệt được đánh giá theo thứ tự ưu tiên; các đăng ký có số thứ tự thấp hơn sẽ được ưu tiên áp dụng thay cho các đăng ký có số thứ tự cao hơn.
+      retract_automatically: Tự động thu hồi các thông báo
+      retract_automatically_hint: Xác định xem có cho phép thu hồi hoặc hạ cấp các thay đổi chính sách khi một mục tương ứng bị loại bỏ khỏi gói đăng ký hay không. Nếu tính năng tự động thu hồi được bật và một khuyến nghị tương đương tồn tại trong danh sách có mức ưu tiên thấp hơn, thì khuyến nghị đó sẽ được áp dụng. Nếu tính năng tự động thu hồi bị tắt, hệ thống sẽ đưa ra một gợi ý thay vì tự động thực hiện thay đổi.
+      show:
+        delete_confirm: Bạn có chắc muốn xóa đăng ký kiểm duyệt này?
+        edit: Sửa đăng ký
+        empty: Gói đăng ký này chưa có tư vấn nào.
+        title: 'Đăng ký kiểm duyệt: %{name}'
+      tabs:
+        logs: Nhật ký
+        subscriptions: Lượt đăng ký
+        suggestions: Đề xuất
+      title: Các gói đăng ký kiểm duyệt
+      type: Loại
+      types:
+        csv_list: Danh sách CSV
+      url: URL
+    moderation_subscriptions_logs:
+      title: Nhật ký đăng ký kiểm duyệt
     moderation_suggestions:
+      actions:
+        accept: Cho phép
+        limit: Hạn chế
+        reject: Vô hiệu hóa
+        retract: Thu hồi chính sách hiện tại
+      applied_msg: Đã áp dụng thành công đề xuất về %{target_key}
+      apply_accept: Cho phép
+      apply_limit: Hạn chế
+      apply_reject: Vô hiệu hóa
+      apply_retract: Thu hồi
+      current_states:
+        accept: cho phép gần đây
+        limit: hạn chế gần đây
+        reject: vô hiệu hóa gần đây
       description: Dưới đây là đề xuất từ ​​các đăng ký kiểm duyệt của bạn, được sắp xếp theo mức độ ưu tiên.
       destroyed_msg: Đã bỏ qua thành công đề xuất về %{target_key}
       dismiss: Bỏ qua đề xuất
@@ -1036,6 +1089,89 @@ vi:
             title: Máy chủ của bạn đang kiểm tra lược đồ cơ sở dữ liệu
           unprocessed:
             title: Máy chủ của bạn chưa kiểm tra lược đồ cơ sở dữ liệu
+        elastic_search:
+          error:
+            title: Đã xảy ra lỗi khi kiểm tra cấu hình Elasticsearch
+          ok:
+            title: Elasticsearch đã được cấu hình mà không gặp vấn đề gì
+          pending:
+            lead:
+              analysis_index_mismatch_html: Các thiết lập phân tích cho chỉ mục trong Elasticsearch đã lỗi thời. Vui lòng chạy lệnh <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Cụm Elasticsearch không ở trạng thái tốt (trạng thái đỏ), các tính năng tìm kiếm hiện không khả dụng
+              cluster_health_yellow_html: Cụm Elasticsearch đang ở trạng thái không ổn định (trạng thái vàng), bạn nên kiểm tra nguyên nhân
+              index_mismatch_html: Các ánh xạ chỉ mục trong Elasticsearch đã lỗi thời. Vui lòng chạy lệnh <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Cụm Elasticsearch của bạn có nhiều hơn một node, nhưng Mastodon chưa được cấu hình để sử dụng chúng
+              preset_single_node_html: Cụm Elasticsearch của bạn chỉ có một node, <code>ES_PRESET</code> cần được thiết lập thành <code>single_node_cluster</code>
+              reset_chewy_html: Chỉ mục hệ thống Elasticsearch của bạn đã lỗi thời do có thay đổi trong phần thiết lập. Vui lòng chạy lệnh <code>tootctl search deploy --reset-chewy</code> để cập nhật chỉ mục này
+              running_check_html: Không thể kết nối với Elasticsearch. Vui lòng kiểm tra xem dịch vụ này có đang chạy hay không, hoặc tắt tính năng tìm kiếm toàn văn
+              version_check_html: Elasticsearch %{running_version} đang chạy, trong khi yêu cầu phiên bản %{required_version}
+            title: Có các vấn đề với Elasticsearch
+          running:
+            title: Máy chủ đang kiểm tra cấu hình Elasticsearch
+          unprocessed:
+            title: Máy chủ vẫn chưa kiểm tra cấu hình Elasticsearch
+        media_privacy:
+          error:
+            title: Đã xảy ra lỗi khi kiểm tra quyền riêng tư phương tiện trên máy chủ của bạn
+          ok:
+            title: Quyền riêng tư đối với phương tiện trên máy chủ của bạn được bảo đảm
+          pending:
+            lead:
+              upload_check_privacy_error_html: Máy chủ web của bạn được cấu hình sai
+              upload_check_privacy_error_object_storage_html: Bộ lưu trữ đối tượng của bạn được cấu hình sai
+            title: Quyền riêng tư của người dùng của bạn đang gặp rủi ro
+          running:
+            title: Máy chủ đang kiểm tra trạng thái quyền riêng tư của nó
+          unprocessed:
+            title: Máy chủ vẫn chưa kiểm tra trạng thái quyền riêng tư của nó
+        rules:
+          error:
+            title: Đã xảy ra lỗi khi kiểm tra các nội quy máy chủ của bạn
+          ok:
+            title: Các nội quy máy chủ của bạn đã được thiết lập
+          pending:
+            lead_html: Máy chủ của bạn chưa có các nội quy được công bố. Những quy tắc rõ ràng sẽ hỗ trợ công tác kiểm duyệt và thiết lập các kỳ vọng
+            title: Thiết lập nội quy máy chủ
+          running:
+            title: Máy chủ đang kiểm tra các nội quy của bạn
+          unprocessed:
+            title: Máy chủ vẫn chưa kiểm tra xem có nội quy nào hay không
+        sidekiq_process:
+          error:
+            title: Đã xảy ra lỗi khi kiểm tra cấu hình Sidekiq
+          ok:
+            title: Sidekiq đã được cấu hình mà không gặp vấn đề gì
+          pending:
+            lead_html: Không có tiến trình Sidekiq nào đang chạy cho (các) hàng đợi %{missing_queues_str}
+            title: Vui lòng xem lại cấu hình Sidekiq của bạn
+          running:
+            title: Máy chủ đang kiểm tra cấu hình Sidekiq
+          unprocessed:
+            title: Máy chủ vẫn chưa kiểm tra cấu hình Sidekiq
+        software_version:
+          error:
+            title: Đã xảy ra lỗi khi kiểm tra cập nhật phần mềm của bạn
+          ok:
+            title: Máy chủ Mastodon của bạn đã được cập nhật
+          pending:
+            lead:
+              patch_html: Đã có bản cập nhật sửa lỗi cho Mastodon
+              regular_html: Đã có phiên bản Mastodon mới
+              urgent_html: Đã có bản cập nhật quan trọng cho Mastodon, vui lòng cập nhật sớm nhất có thể
+            title: Cập nhật máy chủ Mastodon của bạn
+          running:
+            title: Máy chủ đang kiểm tra xem có bản cập nhật phần mềm nào đang chờ xử lý hay không
+          unprocessed:
+            title: Máy chủ vẫn chưa kiểm tra các bản cập nhật phần mềm
+      ignore:
+        label: Bỏ qua
+      lead: Các đề xuất giúp máy chủ của bạn luôn an toàn, thân thiện và hoạt động hiệu quả.
+      recommendations:
+        title: Đề xuất
+      restore:
+        label: Khôi phục
+      setup:
+        label: Thiết lập
       title: Sức khỏe máy chủ
     settings:
       about:
@@ -1442,6 +1578,9 @@ vi:
     new_critical_software_updates:
       body: Các phiên bản quan trọng mới của Mastodon đã được phát hành, bạn nên cập nhật càng sớm càng tốt!
       subject: Các bản cập nhật quan trọng của Mastodon cho %{instance}!
+    new_moderation_suggestions:
+      body: Các danh sách kiểm duyệt mà máy chủ của bạn đã đăng ký vừa công bố những đề xuất mới.
+      subject: Các đề xuất kiểm duyệt mới đã có trên %{instance}!
     new_pending_account:
       body: Thông tin chi tiết của tài khoản mới ở phía dưới. Bạn có thể phê duyệt hoặc từ chối người này.
       subject: Tài khoản chờ xét duyệt trên %{instance} (%{username})
