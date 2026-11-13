@@ -235,6 +235,13 @@ $content-width: $main-column-width + $sidebar-width;
     min-width: 0;
     background: var(--color-bg-primary);
     isolation: isolate;
+
+    @media screen and (min-width: ($no-columns-breakpoint + 1px)) {
+      margin-top: var(--space-1);
+      border: var(--border-column);
+      border-bottom: none;
+      border-radius: var(--radius-6) var(--radius-6) 0 0;
+    }
   }
 
   @media screen and (max-width: $no-columns-breakpoint) {
