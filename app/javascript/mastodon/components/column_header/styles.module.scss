@@ -141,7 +141,6 @@
   &:focus-visible,
   &:has(+ .scrollTopButton:focus-visible) {
     outline: var(--outline-focus-default);
-    outline-offset: calc(-1 * var(--space-1));
   }
 }
 
