@@ -22,3 +22,22 @@ export function accountStatusLinkProps(
     'data-hover-card-reference': 'status',
   };
 }
+
+const domParser = new DOMParser();
+
+const getContent = (html: string, selectorName: string) => {
+  let content = '';
+  const selectors = domParser
+    .parseFromString(html, 'text/html')
+    .querySelectorAll(selectorName);
+  for (const selector of selectors) {
+    const selectorText = selector.textContent.trim() || '';
+
+    if (selectorText.length > 0) {
+      content += ` ${selectorText}`;
+    }
+  }
+  return content;
+};
+
+export const getStatusContent = (html: string) => getContent(html, 'p');
