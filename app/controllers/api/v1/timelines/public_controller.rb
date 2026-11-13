@@ -9,7 +9,16 @@ class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
   def show
     cache_if_unauthenticated!
     @statuses = load_statuses
-    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
+    respond_to do |format|
+      format.rss do
+        # restore default CSP
+        request.content_security_policy = Rails.application.config.content_security_policy
+        render rss: @statuses
+      end
+      format.any do
+        render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
+      end
+    end
   end
 
   private
