@@ -5,15 +5,19 @@
   box-sizing: border-box;
   width: 100%;
   padding: var(--space-2) var(--space-3);
-  padding-inline-start: 38px;
+  padding-inline-start: var(--space-8);
   color: var(--color-text-primary);
   background-color: transparent;
-  border-radius: var(--radius-round);
+  border-radius: var(--radius-3);
   border: var(--border-input);
   font: inherit;
   @include mixins.type-body-compact;
 
-  line-height: var(--lh-normal);
+  line-height: var(--lh-tighter);
+
+  &:has(~ .closeButton) {
+    padding-inline-end: var(--space-8);
+  }
 
   &:focus {
     outline: var(--outline-focus-default);
@@ -30,9 +34,24 @@
 }
 
 .searchIcon {
-  top: 10px;
+  position: absolute;
+  top: var(--space-2);
+  inset-inline-start: var(--space-2);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
 
   @media screen and (width <= variables.$mobile-breakpoint) {
-    top: 12px;
+    top: 10px;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 6px;
+  inset-inline-end: 6px;
+
+  @media screen and (width <= variables.$mobile-breakpoint) {
+    top: 8px;
   }
 }

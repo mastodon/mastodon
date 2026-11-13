@@ -1,3 +1,4 @@
+import type { ForwardedRef } from 'react';
 import {
   useCallback,
   useState,
@@ -19,7 +20,7 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
-import { MagnifyingGlassIcon, XCircleIcon, XIcon } from '@phosphor-icons/react';
+import { MagnifyingGlassIcon, XIcon } from '@phosphor-icons/react';
 
 import type { ApiSearchType } from '@/mastodon/api_types/search';
 import {
@@ -34,12 +35,14 @@ import {
   forgetSearchResult,
   openURL,
 } from 'mastodon/actions/search';
-import { Icon, iconWeight } from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 import { useIdentity } from 'mastodon/identity_context';
 import { domain, searchEnabled } from 'mastodon/initial_state';
 import type { RecentSearch } from 'mastodon/models/search';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
+
+import { IconButton } from '../button';
 
 import classes from './styles.module.scss';
 
@@ -50,9 +53,10 @@ const messages = defineMessages({
     defaultMessage: 'Search…',
   },
   clearSearch: { id: 'search.clear', defaultMessage: 'Clear search' },
+  closeSearch: { id: 'search.close', defaultMessage: 'Close search' },
   placeholderSignedIn: {
     id: 'search.search_or_paste',
-    defaultMessage: 'Search or paste URL',
+    defaultMessage: 'Search or paste link…',
   },
 });
 
@@ -67,36 +71,6 @@ const labelForRecentSearch = (search: RecentSearch) => {
   }
 };
 
-const ClearButton: React.FC<{
-  onClick: () => void;
-  hasValue: boolean;
-}> = ({ onClick, hasValue }) => {
-  const intl = useIntl();
-
-  return (
-    <div
-      className={classNames('search__icon-wrapper', classes.searchIcon, {
-        'has-value': hasValue,
-      })}
-    >
-      <Icon id='search' icon={MagnifyingGlassIcon} className='search__icon' />
-      <button
-        type='button'
-        onClick={onClick}
-        className='search__icon search__icon--clear-button'
-        tabIndex={hasValue ? undefined : -1}
-        aria-hidden={!hasValue}
-      >
-        <Icon
-          id='times-circle'
-          icon={iconWeight(XCircleIcon, 'fill')}
-          aria-label={intl.formatMessage(messages.clearSearch)}
-        />
-      </button>
-    </div>
-  );
-};
-
 interface SearchOption {
   key: string;
   label: React.ReactNode;
@@ -109,7 +83,16 @@ export const Search: React.FC<{
   context?: 'column' | 'sidebar';
   initialValue?: string;
   initialType?: ApiSearchType;
-}> = ({ singleColumn, context = 'column', initialValue, initialType }) => {
+  onClose?: () => void;
+  ref?: ForwardedRef<HTMLInputElement>;
+}> = ({
+  singleColumn,
+  context = 'column',
+  initialValue,
+  initialType,
+  onClose,
+  ref: outerRef,
+}) => {
   const intl = useIntl();
   const recent = useAppSelector((state) => state.search.recent);
   const { signedIn } = useIdentity();
@@ -465,8 +448,16 @@ export const Search: React.FC<{
     setValue('');
     setQuickActions([]);
     setSelectedOption(-1);
-    unfocus();
-  }, [unfocus]);
+    searchInputRef.current?.focus();
+  }, []);
+
+  const handleCloseOrClear = useCallback(() => {
+    if (value.length > 0) {
+      handleClear();
+    } else {
+      onClose?.();
+    }
+  }, [handleClear, onClose, value.length]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -480,7 +471,7 @@ export const Search: React.FC<{
             searchInputRef.current?.focus();
             setExpanded(false);
           } else {
-            handleClear();
+            handleCloseOrClear();
           }
 
           break;
@@ -531,7 +522,7 @@ export const Search: React.FC<{
     },
     [
       expanded,
-      handleClear,
+      handleCloseOrClear,
       initialType,
       navigableOptions,
       selectedOption,
@@ -596,12 +587,11 @@ export const Search: React.FC<{
   }, [expanded]);
 
   const searchOptionsHeading = useId();
-  let placeholder = intl.formatMessage(
+  const placeholder = intl.formatMessage(
     signedIn ? messages.placeholderSignedIn : messages.placeholder,
   );
-  if (context === 'sidebar') {
-    placeholder = intl.formatMessage(messages.placeholderSidebar);
-  }
+
+  const hasCloseButton = !!onClose || value.length > 0;
 
   return (
     <form
@@ -615,6 +605,7 @@ export const Search: React.FC<{
         data-main-search
         ref={useMergedRefs(
           searchInputRef,
+          outerRef,
           context === 'column' ? focusAfterNavigation : null,
         )}
         className={classes.search}
@@ -627,7 +618,28 @@ export const Search: React.FC<{
         onBlur={handleInputBlur}
       />
 
-      <ClearButton hasValue={hasValue} onClick={handleClear} />
+      <Icon
+        id='search'
+        icon={MagnifyingGlassIcon}
+        className={classes.searchIcon}
+      />
+
+      {hasCloseButton && (
+        <IconButton
+          key={value.length === 0 ? 'close' : 'clear'}
+          icon={XIcon}
+          onClick={handleCloseOrClear}
+          size='xs'
+          tooltipPlacement='top'
+          className={classes.closeButton}
+        >
+          {value.length === 0 ? (
+            <FormattedMessage {...messages.closeSearch} />
+          ) : (
+            <FormattedMessage {...messages.clearSearch} />
+          )}
+        </IconButton>
+      )}
 
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
       <div
