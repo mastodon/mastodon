@@ -850,6 +850,7 @@ export const Video: React.FC<{
           !editable &&
           !fullscreen &&
           !alwaysVisible &&
+          !onToggleVisibility &&
           revealed && (
             <div
               className={classNames('media-gallery__actions', {
