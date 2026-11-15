@@ -77,4 +77,34 @@ RSpec.describe 'API V1 Trends Statuses' do
       end
     end
   end
+
+  describe 'GET /explore.rss' do
+    before do
+      Fabricate(:status, account: Fabricate.build(:account, domain: nil))
+    end
+
+    context 'when trends are enabled' do
+      before { Setting.trends = true }
+
+      it 'returns http success' do
+        prepare_trends
+        get '/explore.rss'
+
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/rss+xml')
+        expect(response.body)
+          .to include('<channel>')
+          .and include('<item>')
+      end
+
+      def prepare_trends
+        Fabricate.times(3, :status, trendable: true, language: 'en').each do |status|
+          2.times { |i| Trends.statuses.add(status, i) }
+        end
+        Trends::Statuses.new(threshold: 1, decay_threshold: -1).refresh
+      end
+    end
+  end
 end

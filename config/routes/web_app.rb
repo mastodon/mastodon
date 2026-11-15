@@ -4,6 +4,8 @@
 # - Require indexing
 # - Have alternative format representations
 
+get '/explore.rss', to: 'api/v1/trends/statuses#index'
+
 %w(
   /blocks/(*any)
   /bookmarks
