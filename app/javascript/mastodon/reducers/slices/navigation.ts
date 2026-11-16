@@ -1,13 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { forceSingleColumn } from '../../initial_state';
+
 interface State {
   isMobileMenuOpen: boolean;
   isInlineSearchOpen: boolean;
+  isMenuCollapsed: boolean;
 }
 
 const initialState: State = {
   isMobileMenuOpen: false,
   isInlineSearchOpen: false,
+  isMenuCollapsed: !forceSingleColumn,
 };
 
 const navigationSlice = createSlice({
@@ -34,6 +38,16 @@ const navigationSlice = createSlice({
     toggleInlineSearch(state) {
       state.isInlineSearchOpen = !state.isInlineSearchOpen;
     },
+    // Collapsible main nav
+    openCollapsibleMenu(state) {
+      state.isMenuCollapsed = false;
+    },
+    closeCollapsibleMenu(state) {
+      state.isMenuCollapsed = true;
+    },
+    toggleCollapsibleMenu(state) {
+      state.isMenuCollapsed = !state.isMenuCollapsed;
+    },
   },
 });
 
@@ -46,4 +60,7 @@ export const {
   openInlineSearch,
   closeInlineSearch,
   toggleInlineSearch,
+  openCollapsibleMenu,
+  closeCollapsibleMenu,
+  toggleCollapsibleMenu,
 } = navigationSlice.actions;
