@@ -116,7 +116,7 @@ export const ComposeButton: React.FC<{
         >
           <FormattedMessage
             id='compose.expand'
-            defaultMessage='Show composer'
+            defaultMessage='Expand composer'
           />
         </FloatingActionButton>
       );

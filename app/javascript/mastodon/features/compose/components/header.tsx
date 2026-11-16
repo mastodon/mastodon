@@ -97,8 +97,8 @@ export const ComposeFormHeader: React.FC<{
         >
           {isMinimized ? (
             <FormattedMessage
-              id='compose.resume_draft'
-              defaultMessage='Resume draft'
+              id='compose.expand'
+              defaultMessage='Expand composer'
             />
           ) : (
             <FormattedMessage
