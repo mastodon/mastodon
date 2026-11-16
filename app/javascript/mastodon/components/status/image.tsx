@@ -26,6 +26,7 @@ interface StatusImageProps {
   showAlt?: boolean;
   autoPlay?: boolean;
   style?: React.CSSProperties;
+  index?: number;
   className?: string;
 }
 
@@ -38,6 +39,7 @@ export const StatusImage: React.FC<
   sensitive,
   className,
   style,
+  index,
   showAlt = false,
   ...props
 }) => {
@@ -53,6 +55,7 @@ export const StatusImage: React.FC<
       {...props}
       className={classNames(classes.image, className)}
       data-color-scheme='dark'
+      data-index={index}
       style={wrapperStyle}
     >
       {(sensitive || !loaded) && attachment.blurhash && (

@@ -347,7 +347,7 @@ const QuotedStatusBody: React.FC<{
               sensitive={sensitive}
               key={attachment.id}
               aria-label={attachment.description}
-              data-index={index}
+              index={index}
             />
           ))}
         </StatusImageGrid>
