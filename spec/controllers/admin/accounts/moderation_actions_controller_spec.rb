@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::Reports::ActionsController do
+RSpec.describe Admin::Accounts::ModerationActionsController do
   render_views
 
   let(:user) { Fabricate(:admin_user) }
@@ -13,9 +13,11 @@ RSpec.describe Admin::Reports::ActionsController do
 
   describe 'POST #preview' do
     let(:report) { Fabricate(:report) }
+    let(:account_id) { report.account.id }
+    let(:action) { '' }
 
     before do
-      post :preview, params: { :report_id => report.id, action => '' }
+      post :preview, params: { 'account_id' => account_id, 'report_id' => report.id, 'type' => action }
     end
 
     context 'when the action is "suspend"' do
@@ -55,13 +57,14 @@ RSpec.describe Admin::Reports::ActionsController do
     let(:target_account) { Fabricate(:account) }
     let(:statuses)       { [Fabricate(:status, account: target_account), Fabricate(:status, account: target_account)] }
     let(:report)         { Fabricate(:report, target_account: target_account, status_ids: statuses.map(&:id)) }
+    let(:account_id)     { target_account.id }
     let(:text)           { 'hello' }
-    let(:common_params) do
-      { report_id: report.id, text: text }
-    end
+    let(:action)         { 'none' }
+    let(:common_params)  { { :account_id => account_id, 'report_id' => report.id, 'text' => text, 'type' => action } }
 
     before do
       _media = Fabricate(:media_attachment, account: target_account, status: statuses[0])
+      post :preview, params: common_params
     end
 
     shared_examples 'common behavior' do
@@ -73,9 +76,7 @@ RSpec.describe Admin::Reports::ActionsController do
       end
 
       context 'when text is unset' do
-        let(:common_params) do
-          { report_id: report.id }
-        end
+        let(:common_params) { { 'account_id' => account_id, 'report_id' => report.id } }
 
         it 'closes the report and redirects' do
           expect { subject }.to mark_report_action_taken.and create_target_account_strike
@@ -148,7 +149,9 @@ RSpec.describe Admin::Reports::ActionsController do
       context 'when the action is "invalid_action"' do
         let(:action) { 'invalid_action' }
 
-        it { is_expected.to redirect_to(admin_report_path(report)) }
+        it do
+          expect(subject).to redirect_to(admin_report_path(report))
+        end
       end
     end
 
