@@ -292,6 +292,7 @@ de:
         create_domain_block_html: "%{name} sperrte die Domain %{target}"
         create_email_domain_block_html: "%{name} sperrte die E-Mail-Domain %{target}"
         create_ip_block_html: "%{name} erstellte eine IP-Regel für %{target}"
+        create_moderation_subscription_html: "%{name} erstellte die abonnierbare Liste %{target}"
         create_relay_html: "%{name} erstellte ein Relais %{target}"
         create_unavailable_domain_html: "%{name} beendete die Zustellung an die Domain %{target}"
         create_user_role_html: "%{name} erstellte die Rolle %{target}"
@@ -307,6 +308,7 @@ de:
         destroy_email_domain_block_html: "%{name} entsperrte die E-Mail-Domain %{target}"
         destroy_instance_html: "%{name} entfernte die Daten der Domain %{target} von diesem Server"
         destroy_ip_block_html: "%{name} entfernte eine IP-Regel für %{target}"
+        destroy_moderation_subscription_html: "%{name} löschte die abonnierbare Liste %{target}"
         destroy_relay_html: "%{name} löschte das Relais %{target}"
         destroy_status_html: "%{name} entfernte einen Beitrag von %{target}"
         destroy_unavailable_domain_html: "%{name} nahm die Zustellung an die Domain %{target} wieder auf"
@@ -355,10 +357,18 @@ de:
         update_user_role_html: "%{name} änderte die Rolle von %{target}"
         update_username_block_html: "%{name} aktualisierte eine Regel für Profilnamen mit %{target}"
         usable_tag_html: darf verwendet werden;
+      automated_actions:
+        create_domain_allow_html: Föderation mit der Domain %{target} wurde automatisch erlaubt
+        create_domain_block_html: Domain %{target} wurde automatisch gesperrt
+        destroy_domain_allow_html: Föderation mit der Domain %{target} wurde automatisch verwehrt
+        destroy_domain_block_html: Domain %{target} ist nicht mehr gesperrt
+        update_domain_block_html: Domain-Sperre für %{target} wurde automatisch aktualisiert
       deleted_account: gelöschtes Konto
+      deleted_suggestion: einer gelöschten abonnierbaren Liste
       empty: Protokolle nicht gefunden.
       filter_by_action: Nach Aktion filtern
       filter_by_user: Nach Benutzer*in filtern
+      suggested_by_html: Vorgeschlagene Aktion von %{subscription}
       title: Protokoll
       unavailable_instance: "(Server nicht verfügbar)"
     announcements:
@@ -476,6 +486,7 @@ de:
       add_new: Neue Domain einschränken
       confirm_downgrade:
         cancel: Abbrechen
+        confirm: Herabstufen
       confirm_suspension:
         cancel: Abbrechen
         confirm: Sperren
@@ -792,18 +803,30 @@ de:
         always: Immer
         never: Nie
       delete: Entfernen
+      destroyed_msg: Abonnierbare Liste erfolgreich gelöscht
+      empty: Keine abonnierten Listen vorhanden.
       last_synced_at: Zuletzt synchronisiert am
+      list_action: Art des Abonnements
       list_actions:
         accept: Ausnahmeliste
+        default: Gemischt (Ausnahmen und Sperren)
         reject: Sperrliste
+      list_actions_hint:
+        accept: Elemente ohne festgelegte Aktion werden als Ausnahme betrachtet. Sperren werden ignoriert.
+        default: Elemente ohne festgelegte Aktion werden als Sperre betrachtet. Sperren und Ausnahmen werden beide als solche behandelt.
+        reject: Elemente ohne festgelegte Aktion werden als Sperre betrachtet. Ausnahmen werden ignoriert.
       list_actions_short:
         accept: Ausnahmeliste
+        default: Gemischt
         reject: Sperrliste
       name: Titel
       new:
         create: Abonnieren
+        title: Neue abonnierbare Liste
       priority: Priorität
+      priority_hint: Abonnierbare Listen werden in der Reihenfolge ihrer Priorität ausgewertet. Abonnements mit einem niedrigeren Wert überschreiben höhere Werte.
       show:
+        delete_confirm: Möchtest du die abonnierbare Liste wirklich löschen?
         edit: Abonnement bearbeiten
         empty: Dieses Abonnement hat noch keine Bemerkungen.
         title: 'Abonnierbare Liste: %{name}'
@@ -832,6 +855,7 @@ de:
         accept: derzeit zugelassen
         limit: derzeit eingeschränkt
         reject: derzeit gesperrt
+      description: Nachfolgend stehen einige Vorschläge aus deinen abonnierten Listen, gewichtet nach Priorität, zur Verfügung.
       dismiss: Vorschläge verwerfen
       empty: Zurzeit gibt es keinen Moderationsvorschlag.
       suggested_from_html: Vorgeschlagen von %{link}
@@ -1060,7 +1084,7 @@ de:
           running:
             title: Datenbankschema wird überprüft
           unprocessed:
-            title: Der Server das Datenbankschema noch nicht geprüft
+            title: Der Server hat das Datenbankschema noch nicht geprüft
         elastic_search:
           error:
             title: Fehler beim Überprüfen der Elasticsearch-Konfiguration
@@ -1070,17 +1094,43 @@ de:
             lead:
               version_check_html: Elasticsearch %{running_version} wird verwendet, obwohl %{required_version} benötigt wird
             title: Probleme mit Elasticsearch erkannt
+          running:
+            title: Elasticsearch-Konfiguration wird überprüft
+          unprocessed:
+            title: Der Server hat die Elasticsearch-Konfiguration noch nicht geprüft
+        media_privacy:
+          pending:
+            lead:
+              upload_check_privacy_error_html: Dein Webserver ist fehlerhaft konfiguriert
+              upload_check_privacy_error_object_storage_html: Dein Objektspeicher ist fehlerhaft konfiguriert
+            title: Die Privatsphäre deiner Nutzer*innen ist gefährdet
+          running:
+            title: Privatsphärenstatus wird überprüft
+          unprocessed:
+            title: Der Server hat den Privatsphärenstatus noch nicht geprüft
         rules:
           ok:
             title: Serverregeln festgelegt
           pending:
             lead_html: Dein Server hat keine Regeln festgelegt. Durch klare Regeln werden Rahmenbedingungen für die Moderation geschaffen und Erwartungen kommuniziert
             title: Serverregeln festlegen
+          running:
+            title: Deine Regeln werden überprüft
+          unprocessed:
+            title: Der Server hat deine Regeln noch nicht geprüft
+        sidekiq_process:
+          ok:
+            title: Sidekiq ist ohne Fehler konfiguriert
+          running:
+            title: Sidekiq-Konfiguration wird überprüft
+          unprocessed:
+            title: Der Server hat die Sidekiq-Konfiguration noch nicht geprüft
         software_version:
           ok:
             title: Mastodon ist auf dem neuesten Stand
           pending:
             lead:
+              patch_html: Ein Mastodon-Update mit Fehlerbehebungen ist verfügbar
               regular_html: Eine neue Mastodon-Version ist verfügbar
               urgent_html: Ein wichtiges Sicherheitsupdate ist verfügbar – bitte aktualisiere Mastodon so schnell wie möglich
             title: Mastodon aktualisieren
@@ -1501,6 +1551,7 @@ de:
       body: ein neues Sicherheitsupdate wurde veröffentlicht. Du solltest Mastodon so schnell wie möglich aktualisieren!
       subject: Kritische Mastodon-Updates sind für %{instance} verfügbar!
     new_moderation_suggestions:
+      body: Es gibt neue Vorschläge aus deinen abonnierten Listen.
       subject: Neue Moderationsvorschläge auf %{instance} verfügbar!
     new_pending_account:
       body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.

@@ -77,6 +77,7 @@ sq:
       demote: Zhgradoje
       destroyed_msg: Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme
       disable: Çaktivizoje
+      disable_sign_in_token: Çaktivizo përkohësisht hapin e kodit të sigurisë
       disable_sign_in_token_auth: Çaktivizo mirëfilltësim me token email-i
       disable_two_factor_authentication: Çaktivizoni 2FA-në
       disabled: E çaktivizuar
@@ -86,6 +87,7 @@ sq:
       email: Email
       email_status: Gjendje email-i
       enable: Shkrije
+      enable_sign_in_token: Aktivizo hapin e kodit të sigurisë
       enable_sign_in_token_auth: Aktivizo mirëfilltësim me token email-i
       enable_unconfirmed: Lejo email ripohimi
       enabled: E aktivizuar
@@ -285,6 +287,7 @@ sq:
         create_user_role_html: "%{name} krijoi rolin %{target}"
         create_username_block_html: "%{name} shtoi rregull për emra përdoruesish që përmbajnë %{target}"
         demote_user_html: "%{name} zhgradoi përdoruesin %{target}"
+        destroy_account_html: "%{name} fshiu të dhëna llogarie për %{target}"
         destroy_announcement_html: "%{name} fshiu lajmërimin për %{target}"
         destroy_canonical_email_block_html: "%{name} zhbllokoi email me hashin %{target}"
         destroy_collection_html: "%{name} hoqi koleksion nga %{target}"
@@ -1143,6 +1146,10 @@ sq:
         directory: Drejtori Shërbyesish
         opt_in_server_directory:
           description: Lejoni që shërbyesi juaj të paraqitet në drejtori shërbyesish të tilla si ajo e pranishme te https://joinmastodon.org/servers.
+          title: Zgjidhni futjen e shërbyesit tuaj te drejtoria e shërbyesve
+        opt_in_server_recommendation:
+          description: Lejoni që shërbyesi juaj të rekomandohet gjatë kohës së regjistrimit, në aplikacione të tillë si klientë zyrtarë Mastodon.
+          title: Zgjidhni përdorjen e shërbyesit tuaj në rekomandime shërbyesish
         preamble: Kontrolloni sa informacion rreth shërbyesit tuaj u jepet shërbimeve të tjera dhe sa i zbulueshëm duhet të jetë shërbyesi juaj.
         privacy: Privatësi
         publish_statistics: Botoni statistika
@@ -1175,6 +1182,15 @@ sq:
         warning_hint: Rekomandojmë përdorimin e “Për regjistrim lypset miratim”. veç nëse jeni i bindur se ekipi juaj i moderimit mund të trajtojë në kohë mesazhe të padëshiruar dhe regjistrime dashakeqe.
       security:
         authorized_fetch: Kërko doemos mirëfilltësim prej shërbyes të federuar
+        authorized_fetch_hint: Vendosni kur është e domosdoshme që shërbyes të largët të bëjnë mirëfilltësimin, kur sjellin lëndë nga ky shërbyes.
+        authorized_fetch_hints:
+          actors: Kërkimi doemos i mirëfilltësimit për profile aktivizon ndjekjen se cili shërbyes ka zbuluar ndonjëherë secilën e llogarive tuaja vendore, çka mundet të ulë ndjeshëm numrin e kërkesave të panevojshme të kryera kur njoftohen shërbyes për fshirje të një llogarie. Kjo mundësi vjen me një kosto të lehtë mbi funksionimin, kur shërbehen profile, për shkak të ndjekjes së përmendur më sipër dhe paaftësisë së “reverse-proxy” të ruajë në fshehtinë përgjigje për këto kërkesa. Kjo mundet të prodhojë probleme përputhjeje me disa shërbime të federuar.
+          all: Tej përfitimeve dhe mangësive të kërkimit doemos të mirëfilltësimit për profile, kërkim pa kushte i mirëfilltësimit nga shërbyes të federuar aktivizon zbatim më rigoroz të bllokimeve si në shkallë përdoruesi, ashtu edhe në shkallë shërbyesi, por pengon gjithashtu ruajtjen në fshehtinë të të dhënave për shumicën e kërkesavce. Do të ulë gjithashtu përhpajen e përgjigjeve tuaja, ngaqë përcjellja e përgjigjeve do të çaktivizohetshtrirjen e përgjigje.
+          none: Kërkimi doemos i mirëfilltësimit vetëm kur është rreptësisht e nevojshme, i lejon ndërmjetësit tuaj “reverse proxy” të ruajë në fshehtinë më tepër kërkesa. Kjo mundtësi mund të hiqet në të ardhmen. Përdoreni vetëm nëse mundësitë e tjera shkaktojnë probleme.
+        authorized_fetch_modes:
+          actors: Për profile dhe lëndë private
+          all: Për çdo kërkesë
+          none: Vetëm për lëndë private
         authorized_fetch_overridden_hint: Aktualisht s’jeni në gjendje të ndryshoni këtë rregullim, ngaqë anashkalohet nga një ndryshore mjedisi.
         federation_authentication: Detyrim mirëfilltësimi të federuarish
       title: Rregullime shërbyesi
@@ -1678,8 +1694,11 @@ sq:
   deletes:
     challenge_not_passed: Hollësitë që dhatë s’qenë të sakta
     confirm_password: Që të verifikohet identiteti juaj, jepni fjalëkalimin tuaj të tanishëm
+    confirm_username: Ripohoni emrin e përdoruesit
+    confirm_username_hint_html: Që të ripohoni llogarinë që doni të fshihet, ju lutemi, shtypni <code>%{username}</code>
     proceed: Fshini llogarinë
     success_msg: Llogaria juaj u fshi me sukses
+    title: Fshi llogarinë %{acct}
     warning:
       before: 'Përpara se të vazhdoni, ju lutemi, lexoni me kujdes këto shënime:'
       caches: Lënda e ruajtur në fshehtinë nga shërbyes të tjerë mund të vazhdojë të gjendet në ta
@@ -2470,6 +2489,14 @@ sq:
       further_actions_html: Nëse s’qetë ju, rekomandojmë të %{action} menjëherë, ngaqë mund të jetë komprometua.
       subject: Dështim faktori të dytë mirëfilltësimesh
       title: Dështoi mirëfilltësimi me faktor të dytë
+    sign_in_token:
+      change_password: të ndryshoni fjalëkalimin tuaj
+      details: 'Ja hollësitë e përpjekjes:'
+      explanation: 'Pikasëm një përpjekje për hyrje në llogarinë tuaj pas një kohe të gjatë pa veprimtari. Nëse ky jeni ju, ju lutemi, jepni më poshtë kodin e sigurisë te faqja e verifikimit të hyrjes:'
+      further_actions: 'Nëse s’qetë ju, ju lutemi, ndryshoni fjalëkalimin tuaj dhe aktivizoni mirëfilltësim dyfaktorësh në llogarinë tuaj. Këtë mund ta bëni këtu:'
+      further_actions_html: Nëse s’qetë ju, rekomandojmë që %{action} menjëherë dhe të aktivizoni mirëfilltësim dyfaktorësh, për ta mbajtur të siguruar llogarinë tuaj.
+      subject: Ju lutemi, ripohoni hyrjen e tentuar
+      title: Përpjekje hyrjeje
     suspicious_sign_in:
       change_password: ndryshoni fjalëkalimin tuaj
       details: 'Ja hollësitë për hyrjen:'
@@ -2559,8 +2586,12 @@ sq:
       title: Mirë se vini, %{name}!
   users:
     follow_limit_reached: S’mund të ndiqni më tepër se %{limit} persona
+    generic_access_help_html: Probeme me përdorimin e llogarisë tuaj? Mund të lidheni me %{email} për asistencë
     go_to_sso_account_settings: Kaloni te rregullime llogarie te shërbimi juaj i identitetit
+    inactive_sign_in_confirmation: U bë ca kohë që kur keni bërë hyrje, ndaj po dërgojmë një kod sigurie te adresa juaj email, që të ripohoni se jeni ju.
+    inactive_sign_in_title: Ju lutemi, ripohoni kodin e sigurisë
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
+    invalid_sign_in_token: Kod sigurie i pavlefshëm
     otp_lost_help_html: Nëse humbët hyrjen te të dy, mund të lidheni me %{email}
     rate_limited: Shumë përpjekje mirëfilltësimi, riprovoni më vonë.
     seamless_external_login: Keni bërë hyrjen përmes një shërbimi të jashtëm, ndaj rregullimet për fjalëkalimin dhe email-in s’janë të përdorshme këtu.
