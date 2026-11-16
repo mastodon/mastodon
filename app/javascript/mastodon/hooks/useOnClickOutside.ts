@@ -10,38 +10,70 @@ type ElementOrRef = PlainElement | RefObject<PlainElement>;
 
 export function useOnClickOutside(
   excludedElements: ElementOrRef | ElementOrRef[],
-  onClick: (e: MouseEvent) => void,
-  enabled = true,
+  callback: (e: MouseEvent | FocusEvent) => void,
+  {
+    enabled = true,
+    includeFocus = false,
+  }: {
+    enabled?: boolean;
+    /**
+     * Also runs the callback on focus events outside of excludedElements
+     */
+    includeFocus?: boolean;
+  } = {},
 ) {
-  const handleClickOutside = useEffectEvent((event: MouseEvent) => {
-    const excludedRefs = Array.isArray(excludedElements)
-      ? excludedElements
-      : [excludedElements];
+  const handleClickOutside = useEffectEvent(
+    (event: MouseEvent | FocusEvent) => {
+      const excludedRefs = Array.isArray(excludedElements)
+        ? excludedElements
+        : [excludedElements];
 
-    for (const ref of excludedRefs) {
-      const excludedElement = ref instanceof Element ? ref : ref?.current;
+      for (const ref of excludedRefs) {
+        const excludedElement = ref instanceof Element ? ref : ref?.current;
 
-      // Bail out if the clicked element element is inside of excludedElement.
-      if (
-        excludedElement &&
-        (excludedElement === event.target ||
-          excludedElement.contains(event.target as Node))
-      ) {
-        return;
+        // Bail out if the clicked element element is inside of excludedElement.
+        if (
+          excludedElement &&
+          (excludedElement === event.target ||
+            excludedElement.contains(event.target as Node))
+        ) {
+          return;
+        }
       }
-    }
 
-    onClick(event);
-  });
+      callback(event);
+    },
+  );
 
   useEffect(() => {
-    if (enabled) {
-      document.addEventListener('click', handleClickOutside);
-
-      return () => {
-        document.removeEventListener('click', handleClickOutside);
-      };
+    if (!enabled) {
+      return () => null;
     }
-    return () => null;
-  }, [enabled]);
+
+    // Delay mounting the listeners by one tick to ignore the event
+    // that caused this effect to run to prevent race conditions.
+    let shouldListen = false;
+    const listenTimeout = setTimeout(() => {
+      shouldListen = true;
+    }, 0);
+
+    const listener = (event: MouseEvent | FocusEvent) => {
+      if (shouldListen) {
+        handleClickOutside(event);
+      }
+    };
+
+    document.addEventListener('click', listener);
+    if (includeFocus) {
+      document.addEventListener('focus', listener, { capture: true });
+    }
+
+    return () => {
+      clearTimeout(listenTimeout);
+      document.removeEventListener('click', listener);
+      if (includeFocus) {
+        document.removeEventListener('focus', listener, { capture: true });
+      }
+    };
+  }, [enabled, includeFocus]);
 }

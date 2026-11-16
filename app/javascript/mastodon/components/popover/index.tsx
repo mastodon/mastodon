@@ -187,7 +187,7 @@ export const Popover: React.FC<PopoverProps> = ({
     (e) => {
       onClose(e);
     },
-    isOpen && closeOnClickOutside,
+    { enabled: isOpen && closeOnClickOutside },
   );
 
   // Close when pressing Escape
