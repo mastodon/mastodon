@@ -10,21 +10,6 @@
 
   @include mixins.type-caption;
 
-  // Hide footer links from the nav when they fit into the Discovery panel…
-  // …in single column layout:
-  :global(body.layout-single-column) &[data-context='navigation'] {
-    @media (width > variables.$no-gap-breakpoint) {
-      display: none;
-    }
-  }
-
-  // …in multi-column layout:
-  :global(body.layout-multiple-columns) &[data-context='navigation'] {
-    @media (width > variables.$mobile-breakpoint) {
-      display: none;
-    }
-  }
-
   a {
     color: inherit;
     text-decoration: var(--link-underline-contrast);

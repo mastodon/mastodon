@@ -7,14 +7,15 @@ import type { NavLinkProps } from 'react-router-dom';
 import type { Icon } from '@phosphor-icons/react';
 
 import { Badge } from '@/mastodon/components/badge';
+import { Tooltip } from '@/mastodon/components/tooltip';
 import { useIsLinkActive } from '@/mastodon/hooks/useIsLinkActive';
 
 import classes from './navigation_link.module.scss';
 
 type NavigationLinkProps = {
-  stacked?: boolean;
   iconComponent?: Icon | React.FC<SVGProps<SVGSVGElement>>;
   badgeCount?: number;
+  withDivider?: boolean;
 } & (
   | ({ as?: 'button' } & React.ComponentPropsWithRef<'button'>)
   | ({ as?: 'a' } & React.ComponentPropsWithRef<'a'>)
@@ -22,10 +23,10 @@ type NavigationLinkProps = {
 );
 
 export const NavigationLink: React.FC<NavigationLinkProps> = ({
-  stacked = false,
   as = 'link',
   iconComponent: IconComp,
   badgeCount = 0,
+  withDivider = false,
   children,
   ...otherProps
 }) => {
@@ -39,11 +40,16 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
   );
 
   return (
-    <li className={classes.wrapper}>
+    <li
+      className={classNames(
+        classes.wrapper,
+        withDivider && classes.wrapperWithDivider,
+      )}
+    >
       <Comp
         {...otherProps}
         type={as === 'button' ? 'button' : undefined}
-        className={classNames(classes.link, stacked && classes.linkStacked)}
+        className={classes.link}
       >
         {IconComp && (
           <span className={classes.icon}>
@@ -69,7 +75,7 @@ type MobileNavLink = NavLinkProps & {
   iconComponent: Icon | React.FC<SVGProps<SVGSVGElement>>;
 };
 
-export const MobileNavLink: React.FC<MobileNavLink> = ({
+export const MiniNavLink: React.FC<MobileNavLink> = ({
   iconComponent: IconComp,
   withDot,
   children,
@@ -81,38 +87,52 @@ export const MobileNavLink: React.FC<MobileNavLink> = ({
 
   return (
     <li>
-      <NavLink
-        {...otherProps}
-        className={classNames(classes.link, classes.linkMobile)}
-      >
-        <span
-          className={classNames(classes.icon, withDot && classes.iconWithDot)}
-        >
-          <IconComp size={24} weight={isActive ? 'fill' : undefined} />
-        </span>
-        <span className='sr-only'>{children}</span>
-      </NavLink>
+      <Tooltip text={children} placement='top' offset={-2}>
+        {({ getTooltipProps }) => (
+          <NavLink
+            {...getTooltipProps(otherProps)}
+            className={classNames(classes.link, classes.linkMini)}
+          >
+            <span
+              className={classNames(
+                classes.icon,
+                withDot && classes.iconWithDot,
+              )}
+            >
+              <IconComp size={24} weight={isActive ? 'fill' : undefined} />
+            </span>
+            <span className='sr-only'>{children}</span>
+          </NavLink>
+        )}
+      </Tooltip>
     </li>
   );
 };
 
-export const MobileNavProfileButton: React.FC<
+export const MiniNavProfileButton: React.FC<
   { avatar?: ReactNode } & Pick<MobileNavLink, 'children' | 'withDot'>
 > = ({ children, avatar, withDot, ...otherProps }) => {
   return (
     <li>
-      <button
-        type='button'
-        {...otherProps}
-        className={classNames(classes.link, classes.linkMobile)}
-      >
-        <span
-          className={classNames(classes.icon, withDot && classes.iconWithDot)}
-        >
-          {avatar}
-        </span>
-        <span className='sr-only'>{children}</span>
-      </button>
+      <Tooltip text={children} placement='top' offset={-2}>
+        {({ getTooltipProps }) => (
+          <button
+            type='button'
+            {...getTooltipProps(otherProps)}
+            className={classNames(classes.link, classes.linkMini)}
+          >
+            <span
+              className={classNames(
+                classes.icon,
+                withDot && classes.iconWithDot,
+              )}
+            >
+              {avatar}
+            </span>
+            <span className='sr-only'>{children}</span>
+          </button>
+        )}
+      </Tooltip>
     </li>
   );
 };

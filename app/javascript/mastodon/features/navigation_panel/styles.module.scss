@@ -29,7 +29,7 @@
 }
 
 .list {
-  margin-inline: var(--space-4);
+  margin-inline: var(--space-6);
 }
 
 .footer {
@@ -61,19 +61,6 @@
       display: none;
     }
   }
-}
-
-.newPostButton {
-  margin-inline-start: calc(-1 * var(--space-1));
-  margin-bottom: auto;
-  padding-block: var(--space-4);
-}
-
-.footerNav {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-1);
-  margin-bottom: var(--space-2);
 }
 
 .callout {

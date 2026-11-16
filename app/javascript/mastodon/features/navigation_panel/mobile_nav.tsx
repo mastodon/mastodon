@@ -32,16 +32,16 @@ import {
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import {
-  RedesignNavigationPanel,
+  NavigationPanel,
   useNotificationsCount,
   handleSearchLinkClick,
 } from '.';
-import { AccountMenuItems } from './account_card_and_menu';
+import { AccountMenuItems } from './account_menu_items';
 import { LogoLockup } from './header';
 import classes from './mobile_nav.module.scss';
-import { MobileNavLink, MobileNavProfileButton } from './navigation_link';
+import { MiniNavLink, MiniNavProfileButton } from './navigation_link';
 
-export const RedesignMobileNavigation: React.FC = () => {
+export const MobileNavigation: React.FC = () => {
   const dispatch = useAppDispatch();
   const { accountId, signedIn } = useIdentity();
   const account = useAccount(accountId);
@@ -65,10 +65,10 @@ export const RedesignMobileNavigation: React.FC = () => {
       {signedIn ? (
         <nav className={classes.root}>
           <ul className={classNames(classes.floatingCard, classes.list)}>
-            <MobileNavLink to='/home' iconComponent={HouseIcon}>
+            <MiniNavLink to='/home' iconComponent={HouseIcon}>
               <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
-            </MobileNavLink>
-            <MobileNavLink
+            </MiniNavLink>
+            <MiniNavLink
               to={{
                 pathname: trendsEnabled ? '/explore' : '/search',
                 state: { focusTarget: FOCUS_TARGET.SEARCH },
@@ -77,18 +77,15 @@ export const RedesignMobileNavigation: React.FC = () => {
               onClick={handleSearchLinkClick}
             >
               <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
-            </MobileNavLink>
-            <MobileNavLink
-              to='/conversations'
-              iconComponent={ChatCircleDotsIcon}
-            >
+            </MiniNavLink>
+            <MiniNavLink to='/conversations' iconComponent={ChatCircleDotsIcon}>
               <FormattedMessage
                 id='tabs_bar.messages'
                 defaultMessage='Messages'
                 description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
               />
-            </MobileNavLink>
-            <MobileNavLink
+            </MiniNavLink>
+            <MiniNavLink
               to='/notifications'
               iconComponent={BellIcon}
               withDot={notificationsCount > 0}
@@ -97,10 +94,10 @@ export const RedesignMobileNavigation: React.FC = () => {
                 id='tabs_bar.notifications'
                 defaultMessage='Notifications'
               />
-            </MobileNavLink>
+            </MiniNavLink>
             <Menu>
               <MenuTrigger
-                as={MobileNavProfileButton}
+                as={MiniNavProfileButton}
                 avatar={
                   <Avatar
                     size={24}
@@ -110,8 +107,8 @@ export const RedesignMobileNavigation: React.FC = () => {
                 }
               >
                 <FormattedMessage
-                  id='tabs_bar.account_settings'
-                  defaultMessage='Account settings'
+                  id='tabs_bar.account'
+                  defaultMessage='Account'
                 />
               </MenuTrigger>
               <MenuList placement='top-end' offset={8}>
@@ -282,7 +279,7 @@ const SlideOutNavigation: React.FC = () => {
       inert={!isOpen}
     >
       <animated.div className={classes.slideOut} {...bind()} style={{ x }}>
-        <RedesignNavigationPanel mode='slide-out' />
+        <NavigationPanel mode='slide-out' />
       </animated.div>
     </div>
   );

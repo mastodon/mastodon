@@ -15,9 +15,8 @@ import {
 import classes from './footer_links.module.scss';
 
 export const FooterLinks: React.FC<{
-  context: 'navigation' | 'search';
   multiColumn?: boolean;
-}> = ({ context, multiColumn }) => {
+}> = ({ multiColumn }) => {
   const multiColumnLinkAttrs = multiColumn
     ? {
         target: '_blank',
@@ -25,7 +24,7 @@ export const FooterLinks: React.FC<{
     : undefined;
 
   return (
-    <div className={classes.root} data-context={context}>
+    <div className={classes.root}>
       <section>
         <h2 className={classes.heading}>{title ?? domain}</h2>
         <ul className={classes.list}>
