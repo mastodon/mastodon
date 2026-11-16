@@ -61,7 +61,6 @@ const ComposeMediaAttachments: React.FC = () => {
         classes.mediaRoot,
         totalAttachments === 1 && classes.mediaLockAspect,
       )}
-      sensitive={mediaSensitive}
       style={
         {
           ['--aspect']:
@@ -83,21 +82,21 @@ const ComposeMediaAttachments: React.FC = () => {
       {[...Array(pendingAttachments).keys()].map((_, index) => (
         <ComposeUpload key={index} className={classes.mediaUploadPending} />
       ))}
-      {mediaSensitive && (
+      {(mediaSensitive || sensitive) && (
         <div className={classes.mediaSpoilerShowButton}>
-          {sensitive && (
-            <FormattedMessage
-              id='compose.sensitive.media_blur_warning'
-              defaultMessage='Select “Show media” to edit or rearrange. Users will see this media blurred by default.'
-              tagName='p'
-            />
+          <FormattedMessage
+            id='compose.sensitive.media_blur_warning'
+            defaultMessage='Select “Show media” to edit or rearrange. Users will see this media blurred by default.'
+            tagName='p'
+          />
+          {mediaSensitive && (
+            <Button color='media' size='sm' onClick={onShowMedia}>
+              <FormattedMessage
+                id='content_warning.media.show_short'
+                defaultMessage='Show media'
+              />
+            </Button>
           )}
-          <Button color='media' size='sm' onClick={onShowMedia}>
-            <FormattedMessage
-              id='content_warning.media.show_short'
-              defaultMessage='Show media'
-            />
-          </Button>
         </div>
       )}
     </StatusImageGrid>

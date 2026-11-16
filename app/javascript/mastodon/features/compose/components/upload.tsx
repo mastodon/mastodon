@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import {
   ArrowsLeftRightIcon,
+  EyeIcon,
   EyeSlashIcon,
   PencilSimpleIcon,
   PlusIcon,
@@ -53,7 +54,7 @@ export const ComposeUpload: React.FC<
     dispatch(undoUploadCompose(id));
   }, [dispatch, id]);
 
-  const { mediaSensitive } = useAppSelector(selectComposeSensitive);
+  const { sensitive, mediaSensitive } = useAppSelector(selectComposeSensitive);
   const handleToggleSensitive = useCallback(() => {
     dispatch(changeComposeSensitivity());
   }, [dispatch]);
@@ -64,10 +65,6 @@ export const ComposeUpload: React.FC<
 
   if (attachment.type === 'audio') {
     return <ComposeAudioUpload attachment={attachment} />;
-  }
-
-  if (mediaSensitive) {
-    return <StatusImage attachment={attachment} sensitive {...props} />;
   }
 
   return (
@@ -101,10 +98,10 @@ export const ComposeUpload: React.FC<
       </Button>
 
       <div className={classes.mediaMenuButtons}>
-        {showMediaControls && (
+        {!sensitive && showMediaControls && (
           <IconButton
             onClick={handleToggleSensitive}
-            icon={EyeSlashIcon}
+            icon={mediaSensitive ? EyeIcon : EyeSlashIcon}
             size='xs'
             color='media'
             tooltipPlacement='top'
