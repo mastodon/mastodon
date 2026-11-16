@@ -243,10 +243,7 @@ $content-width: $main-column-width + $sidebar-width;
   }
 
   .content {
-    padding-top: 55px;
-    padding-bottom: 20px;
-    padding-inline-start: 25px;
-    padding-inline-end: 15px;
+    padding: var(--space-6);
 
     @media screen and (max-width: $no-columns-breakpoint) {
       max-width: none;
@@ -577,8 +574,6 @@ hr.spacer {
 
 body,
 .admin-wrapper .content {
-  padding: var(--space-6);
-
   .muted-hint {
     color: var(--color-text-secondary);
 
