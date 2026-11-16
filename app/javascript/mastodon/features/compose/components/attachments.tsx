@@ -88,7 +88,7 @@ const ComposeMediaAttachments: React.FC = () => {
           {sensitive && (
             <FormattedMessage
               id='compose.sensitive.media_blur_warning'
-              defaultMessage='Users will always see blurred media with a content warning. Click show media to edit alt text and rearrange images.'
+              defaultMessage='Select “Show media” to edit or rearrange. Users will see this media blurred by default.'
               tagName='p'
             />
           )}
