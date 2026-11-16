@@ -27,7 +27,6 @@ import { BREAKPOINTS, useBreakpoint } from '../ui/hooks/useBreakpoint';
 
 import { ComposeFormHeader } from './components/header';
 import { ComposeForm } from './form';
-import composerClasses from './styles.module.scss';
 import classes from './trigger.module.scss';
 
 const NARROW_HEIGHT = 500;
@@ -57,17 +56,20 @@ export const ComposeButton: React.FC<{
     dispatch(minimizeComposerToggle());
   }, [dispatch]);
 
+  const isMinimized = displayState === 'minimized';
+
   const handleMinimizedTextClick: React.MouseEventHandler<HTMLDivElement> =
     useCallback(
       (event) => {
         if (
+          isMinimized &&
           event.target instanceof HTMLElement &&
           !event.target.closest('button')
         ) {
           dispatch(minimizeComposerToggle());
         }
       },
-      [dispatch],
+      [dispatch, isMinimized],
     );
 
   const { signedIn } = useIdentity();
@@ -106,8 +108,8 @@ export const ComposeButton: React.FC<{
     '--viewport-height': `${viewport.height}px`,
   } as React.CSSProperties;
 
-  if (displayState === 'minimized') {
-    if (isMobile) {
+  if (isMobile) {
+    if (isMinimized) {
       return (
         <FloatingActionButton
           icon={ReadCvLogoIcon}
@@ -125,47 +127,38 @@ export const ComposeButton: React.FC<{
     }
 
     return (
-      <div
-        className={classNames(classes.root, classes.minimized)}
-        style={style}
+      <FloatingActionButton
+        icon={PenNibIcon}
+        onClick={handleComposerOpen}
+        {...floatingButtonProps}
       >
-        {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-        <div
-          onClick={handleMinimizedTextClick}
-          className={classNames(
-            classes.composerMinimized,
-            composerClasses.root,
-          )}
-          ref={trackComposerHeight}
-        >
-          <ComposeFormHeader />
-        </div>
-        {/* eslint-enable */}
-      </div>
-    );
-  }
-
-  if (displayState === 'showing') {
-    return (
-      <div
-        className={classNames(classes.root, classes.showing)}
-        style={style}
-        ref={trackComposerHeight}
-        data-fullscreen={isFullscreen}
-      >
-        <ComposeForm autoFocus className={classes.composer} />
-      </div>
+        <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
+      </FloatingActionButton>
     );
   }
 
   return (
-    <FloatingActionButton
-      icon={PenNibIcon}
-      onClick={handleComposerOpen}
-      {...floatingButtonProps}
+    <div
+      className={classNames(
+        classes.root,
+        isMinimized && classes.minimized,
+        !isMinimized && classes.showing,
+      )}
+      style={style}
+      data-fullscreen={isFullscreen}
     >
-      <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
-    </FloatingActionButton>
+      {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+      <div
+        className={classNames(
+          isMinimized ? classes.composerMinimized : classes.composer,
+        )}
+        ref={trackComposerHeight}
+        onClick={handleMinimizedTextClick}
+      >
+        {/* eslint-enable */}
+        {!isMinimized ? <ComposeForm autoFocus /> : <ComposeFormHeader />}
+      </div>
+    </div>
   );
 };
 

@@ -2,20 +2,12 @@
 @use '@/styles/mastodon/variables';
 
 .root {
-  box-sizing: border-box;
   position: fixed;
   z-index: 200;
   inset: 0;
 
   &[data-fullscreen='true'] {
     overflow-y: visible;
-  }
-
-  &[data-fullscreen='false'] {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
 }
 
@@ -36,39 +28,55 @@
   }
 }
 
-.minimized {
-  padding: var(--space-2);
-  inset-inline-start: auto;
-  inset-block-start: auto;
-}
-
 .composer,
 .composerMinimized {
+  width: 100%;
+  position: fixed;
   box-sizing: border-box;
+
+  [data-fullscreen='false'] & {
+    max-width: 500px;
+  }
+
+  :global(.no-reduce-motion) & {
+    transition:
+      inset-inline-end 200ms ease-out,
+      inset-block-end 200ms ease-out,
+      width 200ms ease-out,
+      transform 200ms ease-out;
+  }
 }
 
 .composer {
-  width: 100%;
+  [data-fullscreen='false'] & {
+    max-width: 500px;
+    min-height: 270px;
+    max-height: calc(100vh - (var(--space-4) * 2));
+    inset-inline-end: 50%;
+    inset-block-end: 50%;
+    transform: translate(50%, 50%);
+  }
 
   [data-fullscreen='true'] & {
     // Set from the visualViewport API.
     height: var(--viewport-height, 100vh);
     max-height: 100vh;
   }
-
-  [data-fullscreen='false'] & {
-    max-width: 500px;
-    min-height: 270px;
-    max-height: calc(100vh - (var(--space-4) * 2));
-  }
 }
 
 .composerMinimized {
   @include mixins.elevation-1;
 
+  inset-inline-end: var(--space-2);
+  inset-block-end: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-bg-primary);
   border-radius: var(--radius-4);
   cursor: pointer;
-  width: 240px;
+
+  [data-fullscreen='false'] & {
+    max-width: 240px;
+  }
 }
 
 .buttonWrapper {
