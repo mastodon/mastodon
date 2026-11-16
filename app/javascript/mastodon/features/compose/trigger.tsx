@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { useRouteMatch } from 'react-router';
 
 import { PenNibIcon, ReadCvLogoIcon } from '@phosphor-icons/react';
+import { isIPad } from '@react-aria/utils';
 
 import type { IconButtonProps } from '@/mastodon/components/button';
 import { IconButton } from '@/mastodon/components/button';
@@ -156,7 +157,8 @@ export const ComposeButton: React.FC<{
       >
         {/* eslint-enable */}
         {!isMinimized ? (
-          <ComposeForm autoFocus className={classes.composeForm} />
+          // Disable autofocus for iPad as it causes scrolling.
+          <ComposeForm autoFocus={!isIPad()} className={classes.composeForm} />
         ) : (
           <ComposeFormHeader />
         )}
