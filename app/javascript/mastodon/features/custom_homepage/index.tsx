@@ -2,23 +2,23 @@ import { useEffect } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 import { SignInIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
+import { fetchServer } from '@/mastodon/actions/server';
+import { Column } from '@/mastodon/components/column';
 import {
   ColumnHeader,
   ColumnHeaderButton,
 } from '@/mastodon/components/column_header';
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
+import { ServerHeroImage } from '@/mastodon/components/server_hero_image';
+import { TabLink, TabList } from '@/mastodon/components/tab_list';
 import { useIdentity } from '@/mastodon/identity_context';
 import { domain, sso_redirect } from '@/mastodon/initial_state';
-import { fetchServer } from 'mastodon/actions/server';
-import { ServerHeroImage } from 'mastodon/components/server_hero_image';
-import { TabLink, TabList } from 'mastodon/components/tab_list';
-import { useAppSelector, useAppDispatch } from 'mastodon/store';
+import { useAppSelector, useAppDispatch } from '@/mastodon/store';
 
 import { About } from './about';
 import { LatestActivity } from './latest_activity';
@@ -35,7 +35,7 @@ export const CustomHomepage: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div className={classNames(classes.page, classes.pageRedesign)}>
+    <Column bindToDocument label={domain}>
       <ColumnHeader
         title={domain}
         extraButtons={
@@ -99,6 +99,6 @@ export const CustomHomepage: React.FC = () => {
         <title>{server.item?.domain}</title>
         <meta name='robots' content='all' />
       </Helmet>
-    </div>
+    </Column>
   );
 };
