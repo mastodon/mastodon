@@ -1,34 +1,7 @@
 @use '@/styles/mastodon/mixins';
 
-.page {
-  min-height: 100%;
-
-  &:not(.pageRedesign) {
-    border-radius: 16px;
-    border: 1px solid var(--color-border-primary);
-    background: var(--color-bg-primary);
-
-    :global(.item-list) article:last-child :global(.status) {
-      border-bottom: 0;
-    }
-
-    @media screen and (width <= 1175px) {
-      border-radius: 0;
-    }
-  }
-}
-
 .header {
   aspect-ratio: 40/21;
-  border-radius: 16px 16px 0 0;
-
-  @media screen and (width <= 1175px) {
-    border-radius: 0;
-  }
-
-  .pageRedesign & {
-    border-radius: 0;
-  }
 }
 
 .banner {
