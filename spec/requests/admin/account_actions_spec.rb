@@ -9,7 +9,7 @@ RSpec.describe 'Admin Account Actions' do
     let(:account) { Fabricate :account }
 
     it 'gracefully handles invalid nested params' do
-      post admin_account_action_path(account.id, admin_account_action: 'invalid')
+      post admin_account_moderation_action_path(account.id, admin_account_action: 'invalid')
 
       expect(response)
         .to have_http_status(400)
