@@ -120,17 +120,17 @@ export const ComposeButton: React.FC<{
           />
         </FloatingActionButton>
       );
+    } else if (displayState === 'hidden') {
+      return (
+        <FloatingActionButton
+          icon={PenNibIcon}
+          onClick={handleComposerOpen}
+          {...floatingButtonProps}
+        >
+          <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
+        </FloatingActionButton>
+      );
     }
-
-    return (
-      <FloatingActionButton
-        icon={PenNibIcon}
-        onClick={handleComposerOpen}
-        {...floatingButtonProps}
-      >
-        <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
-      </FloatingActionButton>
-    );
   }
 
   if (displayState === 'hidden') {
