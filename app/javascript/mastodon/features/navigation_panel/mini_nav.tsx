@@ -20,8 +20,9 @@ import {
   useAppSelector,
 } from '@/mastodon/store/typed_functions';
 
-import { handleSearchLinkClick, useNotificationsCount } from '.';
+import { handleSearchLinkClick } from '.';
 import { AccountMenuItems } from './account_menu_items';
+import { useNotificationsCount } from './hooks';
 import classes from './mini_nav.module.scss';
 import { MiniNavigationLink } from './navigation_link';
 

@@ -1,8 +1,4 @@
-import { useEffect } from 'react';
-
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
-
-import type { Map as ImmutableMap } from 'immutable';
 
 import {
   RssSimpleIcon,
@@ -15,11 +11,7 @@ import {
 } from '@phosphor-icons/react';
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
-import { fetchFollowRequests } from '@/mastodon/actions/accounts';
-import { fetchLists } from '@/mastodon/actions/lists';
-import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
 import { Callout } from '@/mastodon/components/callout/redesign';
-import { useHasAnnouncements } from '@/mastodon/features/announcements/hooks';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
@@ -34,13 +26,11 @@ import {
   canViewAdminDashboard,
   canViewFeed,
 } from '@/mastodon/permissions';
-import { getOrderedLists } from '@/mastodon/selectors/lists';
-import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
 import { FooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
+import { useCustomFeeds, useFollowedHashtags } from './hooks';
 import { ListSection } from './list_section';
 import { DisabledAccountBanner, LoggedOutInfo } from './logged_out_info';
 import { NavigationLink } from './navigation_link';
@@ -54,79 +44,6 @@ const messages = defineMessages({
       'Label for the main navigation; should not contain the word "navigation".',
   },
 });
-
-function useCustomFeeds() {
-  const dispatch = useAppDispatch();
-  const { signedIn } = useIdentity();
-  const customFeeds = useAppSelector((state) => getOrderedLists(state));
-
-  useEffect(() => {
-    if (signedIn) {
-      void dispatch(fetchLists());
-    }
-  }, [dispatch, signedIn]);
-
-  return {
-    customFeeds,
-  };
-}
-
-function useFollowedHashtags() {
-  const dispatch = useAppDispatch();
-  const { signedIn } = useIdentity();
-  const { tags, stale } = useAppSelector((state) => state.followedTags);
-
-  useEffect(() => {
-    if (stale && signedIn) {
-      void dispatch(fetchFollowedHashtags());
-    }
-  }, [dispatch, stale, signedIn]);
-
-  return { followedHashtags: tags };
-}
-
-export function useFollowRequestsCount({
-  fetch = true,
-}: { fetch?: boolean } = {}) {
-  const followRequestsCount = useAppSelector(
-    (state) =>
-      (
-        state.user_lists.getIn(['follow_requests', 'items']) as
-          | ImmutableMap<string, unknown>
-          | undefined
-      )?.size ?? 0,
-  );
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (fetch) {
-      dispatch(fetchFollowRequests());
-    }
-  }, [dispatch, fetch]);
-
-  return followRequestsCount;
-}
-
-export function useNotificationsCount() {
-  const unreadNotificationsCount = useAppSelector(
-    selectUnreadNotificationGroupsCount,
-  );
-  const { signedIn } = useIdentity();
-  const followRequestsCount = useFollowRequestsCount({ fetch: signedIn });
-
-  const { unreadAnnouncementCount } = useHasAnnouncements({ fetch: signedIn });
-
-  return (
-    unreadNotificationsCount + followRequestsCount + unreadAnnouncementCount
-  );
-}
-
-const isFediverseFeedsLinkActive = (
-  match: unknown,
-  { pathname }: { pathname: string },
-) => {
-  return !!match || pathname.startsWith('/public');
-};
 
 const MAX_HASHTAG_COUNT = 5;
 
@@ -296,34 +213,18 @@ const ExploreLink: React.FC = () => {
   if (!trendsEnabled) return null;
 
   return (
-    <NavigationLink
-      to='/explore'
-      icon={CompassIcon}
-      onClick={handleSearchLinkClick}
-    >
+    <NavigationLink to='/explore' icon={CompassIcon}>
       <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
     </NavigationLink>
   );
 };
 
-export function handleSearchLinkClick() {
-  const mainSearchInput = document.querySelector<HTMLInputElement>(
-    '[data-column-root] input[data-main-search]',
-  );
-
-  // Focus the main search input if we're already on the search page
-  if (mainSearchInput) {
-    mainSearchInput.focus();
-    return;
-  }
-
-  // Otherwise, the search element is not on screen yet and
-  // the page needs to be rendered first. In this case, we use
-  // `invokeVirtualIosKeyboard` to work around an iOS quirk that
-  // prevents the virtual keyboard from opening when an element wasn't
-  // focused synchronously.
-  invokeVirtualIosKeyboard();
-}
+const isFediverseFeedsLinkActive = (
+  match: unknown,
+  { pathname }: { pathname: string },
+) => {
+  return !!match || pathname.startsWith('/public');
+};
 
 const PublicFeedsLink: React.FC = () => {
   const { signedIn, permissions } = useIdentity();
@@ -381,3 +282,22 @@ const TransientSingleColumnCallout: React.FC = () => (
     </a>
   </Callout>
 );
+
+export function handleSearchLinkClick() {
+  const mainSearchInput = document.querySelector<HTMLInputElement>(
+    '[data-column-root] input[data-main-search]',
+  );
+
+  // Focus the main search input if we're already on the search page
+  if (mainSearchInput) {
+    mainSearchInput.focus();
+    return;
+  }
+
+  // Otherwise, the search element is not on screen yet and
+  // the page needs to be rendered first. In this case, we use
+  // `invokeVirtualIosKeyboard` to work around an iOS quirk that
+  // prevents the virtual keyboard from opening when an element wasn't
+  // focused synchronously.
+  invokeVirtualIosKeyboard();
+}

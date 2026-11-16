@@ -32,13 +32,10 @@ import {
 } from '@/mastodon/reducers/slices/navigation';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import {
-  NavigationPanel,
-  useNotificationsCount,
-  handleSearchLinkClick,
-} from '.';
+import { NavigationPanel, handleSearchLinkClick } from '.';
 import { AccountMenuItems } from './account_menu_items';
 import { LogoLockup } from './header';
+import { useNotificationsCount } from './hooks';
 import { AccountButton } from './mini_nav';
 import classes from './mobile_nav.module.scss';
 import { MiniNavigationLink } from './navigation_link';
