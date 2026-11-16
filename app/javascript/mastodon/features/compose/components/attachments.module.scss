@@ -46,6 +46,8 @@
 }
 
 .mediaSpoilerShowButton {
+  @include mixins.type-body-compact;
+
   position: absolute;
   z-index: 3;
   display: flex;
@@ -57,6 +59,8 @@
   padding: var(--space-2);
   gap: var(--space-2);
   justify-content: center;
+  min-height: 40px;
+  box-sizing: border-box;
 }
 
 // Audio
