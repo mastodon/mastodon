@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { useRouteMatch } from 'react-router';
 
 import { PenNibIcon, ReadCvLogoIcon } from '@phosphor-icons/react';
-import { isIPad, isWebKit } from '@react-aria/utils';
 
 import type { IconButtonProps } from '@/mastodon/components/button';
 import { IconButton } from '@/mastodon/components/button';
@@ -77,13 +76,10 @@ export const ComposeButton: React.FC<{
   const trackComposerHeight = useTrackComposerHeight();
 
   const isFullscreen =
-    viewport.height < NARROW_HEIGHT ||
-    viewport.width < BREAKPOINTS.openable ||
-    (isIPad() && isWebKit());
-
+    viewport.height < NARROW_HEIGHT || viewport.width < BREAKPOINTS.openable;
   const isFullscreenOpen = isFullscreen && displayState === 'showing';
 
-  useBodyScrollLock(isFullscreenOpen);
+  useBodyScrollLock(displayState === 'showing');
 
   useCloseOnHistoryBack(
     () => {
@@ -135,6 +131,10 @@ export const ComposeButton: React.FC<{
         <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
       </FloatingActionButton>
     );
+  }
+
+  if (displayState === 'hidden') {
+    return null;
   }
 
   return (
