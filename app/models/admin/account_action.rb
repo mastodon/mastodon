@@ -130,10 +130,6 @@ class Admin::AccountAction < Admin::BaseAction
     report.status_ids if with_report? && include_statuses?
   end
 
-  def rule_ids
-    report.rule_ids if with_report? && include_rule_violations?
-  end
-
   def reports
     @reports ||= if type == 'none'
                    with_report? ? [report] : []
