@@ -97,6 +97,14 @@ export const ComposeButton: React.FC<{
         node.inert = inert;
       }
     }
+
+    return () => {
+      for (const node of nodes) {
+        if (node instanceof HTMLElement) {
+          node.inert = false;
+        }
+      }
+    };
   }, [isShowing]);
   const handleOverlayClick: React.MouseEventHandler = useCallback(
     (event) => {
