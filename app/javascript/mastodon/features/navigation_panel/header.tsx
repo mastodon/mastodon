@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 
 import { PenNibIcon } from '@phosphor-icons/react';
 
-import { closeNavigation } from '@/mastodon/actions/navigation';
 import { Button } from '@/mastodon/components/button';
 import { IconLogo } from '@/mastodon/components/logo';
 import { useIdentity } from '@/mastodon/identity_context';
 import { customAppIcon, domain, title } from '@/mastodon/initial_state';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
+import { closeMobileMenu } from '@/mastodon/reducers/slices/navigation';
 import { useAppDispatch } from '@/mastodon/store';
 
 import { getNavigationSkipLinkId } from '../ui/components/skip_links';
@@ -28,7 +28,7 @@ export const NavigationHeader: React.FC<{
   const dispatch = useAppDispatch();
 
   const openComposer = useCallback(() => {
-    dispatch(closeNavigation());
+    dispatch(closeMobileMenu());
     dispatch(openNewComposer({ type: 'post' }));
   }, [dispatch]);
 

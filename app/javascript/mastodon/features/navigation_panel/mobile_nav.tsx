@@ -15,7 +15,6 @@ import {
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 
-import { closeNavigation, openNavigation } from '@/mastodon/actions/navigation';
 import { Button, IconButton } from '@/mastodon/components/button';
 import { Menu, MenuList, MenuTrigger } from '@/mastodon/components/menu';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
@@ -27,6 +26,10 @@ import {
   sso_redirect,
   trendsEnabled,
 } from '@/mastodon/initial_state';
+import {
+  closeMobileMenu,
+  openMobileMenu,
+} from '@/mastodon/reducers/slices/navigation';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import {
@@ -47,7 +50,7 @@ export const MobileNavigation: React.FC = () => {
   const notificationsCount = useNotificationsCount();
 
   const openMobileNav = useCallback(() => {
-    dispatch(openNavigation());
+    dispatch(openMobileMenu());
   }, [dispatch]);
 
   // Hide the mobile sign-up button if registrations are closed or
@@ -148,18 +151,18 @@ const SlideOutNavigation: React.FC = () => {
   const dispatch = useAppDispatch();
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  const isOpen = useAppSelector((state) => state.navigation.mobileMenuOpen);
+  const isOpen = useAppSelector((state) => state.navigation.isMobileMenuOpen);
 
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
       if (overlayRef.current && e.target === overlayRef.current) {
-        dispatch(closeNavigation());
+        dispatch(closeMobileMenu());
       }
     };
 
     const handleDocumentKeyUp = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        dispatch(closeNavigation());
+        dispatch(closeMobileMenu());
       }
     };
 
@@ -182,9 +185,9 @@ const SlideOutNavigation: React.FC = () => {
       onRest: {
         x({ value }: { value: number }) {
           if (value === 0) {
-            dispatch(openNavigation());
+            dispatch(openMobileMenu());
           } else if (value === OPEN_MENU_OFFSET) {
-            dispatch(closeNavigation());
+            dispatch(closeMobileMenu());
           }
         },
       },
@@ -248,13 +251,13 @@ const SlideOutNavigation: React.FC = () => {
   const { pathname, search } = useLocation();
   const pathWithSearch = `${pathname}${search}`;
   useEffect(() => {
-    dispatch(closeNavigation());
+    dispatch(closeMobileMenu());
   }, [pathWithSearch, dispatch]);
 
   // Close after browser back navigation
   useCloseOnHistoryBack(
     () => {
-      dispatch(closeNavigation());
+      dispatch(closeMobileMenu());
     },
     {
       active: isOpen,

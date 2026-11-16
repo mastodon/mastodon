@@ -9,12 +9,12 @@ import {
   MagnifyingGlassIcon,
 } from '@phosphor-icons/react';
 
-import { toggleInlineSearch } from '@/mastodon/actions/navigation';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Menu, MenuList, MenuTrigger } from '@/mastodon/components/menu';
 import { Search } from '@/mastodon/components/search';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
+import { toggleInlineSearch } from '@/mastodon/reducers/slices/navigation';
 import {
   useAppDispatch,
   useAppSelector,
@@ -33,7 +33,9 @@ export const MiniNav: React.FC = () => {
   const shouldHandleFocusRef = useRef(false);
   const searchFieldRef = useRef<HTMLInputElement>(null);
   const searchButtonRef = useRef<HTMLButtonElement>(null);
-  const isSearchOpen = useAppSelector((state) => state.navigation.searchOpen);
+  const isSearchOpen = useAppSelector(
+    (state) => state.navigation.isInlineSearchOpen,
+  );
 
   const toggleSearch = useCallback(() => {
     dispatch(toggleInlineSearch());
