@@ -141,8 +141,7 @@ export const ComposeButton: React.FC<{
     <div
       className={classNames(
         classes.root,
-        isMinimized && classes.minimized,
-        !isMinimized && classes.showing,
+        isMinimized ? classes.minimized : classes.showing,
       )}
       style={style}
       data-fullscreen={isFullscreen}
@@ -156,7 +155,11 @@ export const ComposeButton: React.FC<{
         onClick={handleMinimizedTextClick}
       >
         {/* eslint-enable */}
-        {!isMinimized ? <ComposeForm autoFocus /> : <ComposeFormHeader />}
+        {!isMinimized ? (
+          <ComposeForm autoFocus className={classes.composeForm} />
+        ) : (
+          <ComposeFormHeader />
+        )}
       </div>
     </div>
   );

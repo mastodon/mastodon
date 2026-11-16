@@ -28,11 +28,16 @@
   }
 }
 
+.minimized {
+  pointer-events: none;
+}
+
 .composer,
 .composerMinimized {
   width: 100%;
   position: fixed;
   box-sizing: border-box;
+  pointer-events: auto;
 
   [data-fullscreen='false'] & {
     max-width: 500px;
@@ -50,11 +55,14 @@
 .composer {
   [data-fullscreen='false'] & {
     max-width: 500px;
-    min-height: 270px;
-    max-height: calc(100vh - (var(--space-4) * 2));
     inset-inline-end: 50%;
     inset-block-end: 50%;
     transform: translate(50%, 50%);
+
+    .composeForm {
+      min-height: 270px;
+      max-height: calc(100vh - (var(--space-4) * 2));
+    }
   }
 
   [data-fullscreen='true'] & {
