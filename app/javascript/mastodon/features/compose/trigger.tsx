@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { useRouteMatch } from 'react-router';
 
 import { PenNibIcon, ReadCvLogoIcon } from '@phosphor-icons/react';
-import { isIPad, isWebKit } from '@react-aria/utils';
+import { isIPad } from '@react-aria/utils';
 
 import type { IconButtonProps } from '@/mastodon/components/button';
 import { IconButton } from '@/mastodon/components/button';
@@ -27,7 +27,6 @@ import { BREAKPOINTS, useBreakpoint } from '../ui/hooks/useBreakpoint';
 
 import { ComposeFormHeader } from './components/header';
 import { ComposeForm } from './form';
-import composerClasses from './styles.module.scss';
 import classes from './trigger.module.scss';
 
 const NARROW_HEIGHT = 500;
@@ -57,105 +56,147 @@ export const ComposeButton: React.FC<{
     dispatch(minimizeComposerToggle());
   }, [dispatch]);
 
+  const isMinimized = displayState === 'minimized';
+  const isShowing = displayState === 'showing';
+
   const handleMinimizedTextClick: React.MouseEventHandler<HTMLDivElement> =
     useCallback(
       (event) => {
         if (
+          isMinimized &&
           event.target instanceof HTMLElement &&
           !event.target.closest('button')
         ) {
           dispatch(minimizeComposerToggle());
         }
       },
-      [dispatch],
+      [dispatch, isMinimized],
     );
 
-  const { signedIn } = useIdentity();
-
-  const trackComposerHeight = useTrackComposerHeight();
-
-  const isFullscreen =
-    viewport.height < NARROW_HEIGHT ||
-    viewport.width < BREAKPOINTS.openable ||
-    (isIPad() && isWebKit());
-
-  const isFullscreenOpen = isFullscreen && displayState === 'showing';
-
-  useBodyScrollLock(isFullscreenOpen);
-
+  useBodyScrollLock(isShowing);
   useCloseOnHistoryBack(
     () => {
       dispatch(closeOrMinimizeComposer());
     },
-    {
-      active: isFullscreenOpen,
+    { active: isShowing },
+  );
+  const rootRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const nodes = rootRef.current?.parentElement?.childNodes;
+    if (!nodes) {
+      return;
+    }
+
+    let inert = false;
+    if (isShowing) {
+      inert = true;
+    }
+
+    for (const node of nodes) {
+      if (node !== rootRef.current && node instanceof HTMLElement) {
+        node.inert = inert;
+      }
+    }
+
+    return () => {
+      for (const node of nodes) {
+        if (node instanceof HTMLElement) {
+          node.inert = false;
+        }
+      }
+    };
+  }, [isShowing]);
+  const handleOverlayClick: React.MouseEventHandler = useCallback(
+    (event) => {
+      if (event.target === rootRef.current) {
+        dispatch(minimizeComposerToggle());
+      }
     },
+    [dispatch],
   );
 
+  const trackComposerHeight = useTrackComposerHeight();
+
+  const { signedIn } = useIdentity();
   if (!signedIn) {
     return null;
   }
 
-  const floatingButtonProps = {
-    inline,
-    hidden: !hasMobileFloatingActionButton,
-  } as const;
+  if (isMobile) {
+    const floatingButtonProps = {
+      inline,
+      hidden: !hasMobileFloatingActionButton,
+    } as const;
+
+    if (isMinimized) {
+      return (
+        <FloatingActionButton
+          icon={ReadCvLogoIcon}
+          onClick={toggleMinimize}
+          {...floatingButtonProps}
+          hidden={false} // never hide minimized composer button
+          color='neutral'
+        >
+          <FormattedMessage
+            id='compose.expand'
+            defaultMessage='Expand composer'
+          />
+        </FloatingActionButton>
+      );
+    } else if (displayState === 'hidden') {
+      return (
+        <FloatingActionButton
+          icon={PenNibIcon}
+          onClick={handleComposerOpen}
+          {...floatingButtonProps}
+        >
+          <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
+        </FloatingActionButton>
+      );
+    }
+  }
+
+  if (displayState === 'hidden') {
+    return null;
+  }
 
   // Pass the viewport height as a CSS variable so it's only used for mobile.
   const style = {
     '--viewport-height': `${viewport.height}px`,
   } as React.CSSProperties;
+  const isFullscreen =
+    viewport.height < NARROW_HEIGHT || viewport.width < BREAKPOINTS.openable;
 
-  if (displayState === 'minimized') {
-    return isMobile ? (
-      <FloatingActionButton
-        icon={ReadCvLogoIcon}
-        onClick={toggleMinimize}
-        {...floatingButtonProps}
-        hidden={false} // never hide minimized composer button
-        color='neutral'
-      >
-        <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
-      </FloatingActionButton>
-    ) : (
-      <div className={classes.root} style={style} data-fullscreen={false}>
-        {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-        <div
-          onClick={handleMinimizedTextClick}
-          className={classNames(
-            classes.composerMinimized,
-            composerClasses.root,
-          )}
-          ref={trackComposerHeight}
-        >
-          <ComposeFormHeader />
-        </div>
-        {/* eslint-enable */}
-      </div>
-    );
+  {
+    /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
   }
-
-  if (displayState === 'showing') {
-    return (
-      <div
-        className={classes.root}
-        style={style}
-        ref={trackComposerHeight}
-        data-fullscreen={isFullscreen}
-      >
-        <ComposeForm autoFocus className={classes.composer} />
-      </div>
-    );
-  }
-
   return (
-    <FloatingActionButton
-      icon={PenNibIcon}
-      onClick={handleComposerOpen}
-      {...floatingButtonProps}
+    <div
+      className={classNames(
+        classes.root,
+        isMinimized ? classes.minimized : classes.showing,
+      )}
+      style={style}
+      ref={rootRef}
+      data-fullscreen={isFullscreen}
+      onClick={handleOverlayClick}
     >
-      <FormattedMessage id='tabs_bar.publish' defaultMessage='New Post' />
-    </FloatingActionButton>
+      <div
+        className={classNames(
+          isMinimized ? classes.composerMinimized : classes.composer,
+        )}
+        ref={trackComposerHeight}
+        onClick={handleMinimizedTextClick}
+      >
+        {/* eslint-enable */}
+        {!isMinimized ? (
+          // Disable autofocus for iPad as it causes scrolling.
+          <ComposeForm autoFocus={!isIPad()} className={classes.composeForm} />
+        ) : (
+          <ComposeFormHeader />
+        )}
+      </div>
+    </div>
   );
 };
 

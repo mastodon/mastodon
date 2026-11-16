@@ -20,7 +20,7 @@
     @include mixins.elevation-2;
 
     border-bottom: none;
-    border-radius: var(--radius-6) var(--radius-6) 0 0;
+    border-radius: var(--radius-6);
     overflow: hidden;
   }
 }
@@ -114,7 +114,8 @@
   margin-inline: calc(-1 * var(--space-1));
   padding-inline: var(--space-1);
 
-  &::after {
+  // Only show fade in desktop.
+  [data-fullscreen='false'] &::after {
     content: '';
     height: var(--fade-size);
     background: linear-gradient(
@@ -161,8 +162,6 @@
 .textarea,
 .textareaMirror {
   @include mixins.type-body;
-
-  padding: var(--space-1);
 
   // Prevent automatic page zoom in Safari when focusing
   // text fields with font-sizes below 16px
@@ -211,6 +210,7 @@ textarea.textarea {
   left: 0;
   right: 0;
   white-space: pre-wrap; // This makes the formatting match the text area.
+  padding: var(--space-2); // Matches the default textarea component.
 }
 
 .attachments {

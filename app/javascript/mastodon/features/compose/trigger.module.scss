@@ -1,4 +1,97 @@
+@use '@/styles/mastodon/mixins';
 @use '@/styles/mastodon/variables';
+
+.root {
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+
+  &[data-fullscreen='true'] {
+    overflow-y: visible;
+  }
+}
+
+.showing {
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    // Add a backdrop for the mobile composer to cover up the page
+    // behind the composer that can be visible on Safari iOS
+    background-color: var(--color-bg-primary);
+  }
+
+  &[data-fullscreen='false']::before {
+    background-color: var(--color-bg-overlay);
+  }
+}
+
+.minimized {
+  pointer-events: none;
+}
+
+.composer,
+.composerMinimized {
+  width: 100%;
+  position: fixed;
+  box-sizing: border-box;
+  pointer-events: auto;
+
+  [data-fullscreen='false'] & {
+    max-width: 500px;
+
+    :global(.no-reduce-motion) & {
+      overflow: hidden; // Hide overflow for animating max-height.
+      transition:
+        inset-inline-end 200ms ease-out,
+        inset-block-end 200ms ease-out,
+        width 200ms ease-out,
+        max-height 200ms ease-out,
+        transform 200ms ease-out;
+    }
+  }
+}
+
+.composer {
+  [data-fullscreen='false'] & {
+    max-width: 500px;
+    max-height: 100vh; // Full height for transition effects.
+    inset-inline-end: 50%;
+    inset-block-end: 50%;
+    transform: translate(50%, 50%);
+
+    .composeForm {
+      min-height: 270px;
+      max-height: calc(100vh - (var(--space-4) * 2));
+    }
+  }
+
+  [data-fullscreen='true'] & {
+    .composeForm {
+      // Set from the visualViewport API.
+      height: var(--viewport-height, 100vh);
+      max-height: 100vh;
+    }
+  }
+}
+
+.composerMinimized {
+  @include mixins.elevation-1;
+
+  inset-inline-end: var(--space-2);
+  inset-block-end: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-4);
+  cursor: pointer;
+
+  [data-fullscreen='false'] & {
+    max-width: 240px;
+    max-height: 100px; // Twice the "normal" amount to allow for translated strings to wrap.
+  }
+}
 
 .buttonWrapper {
   position: relative;
@@ -23,61 +116,4 @@
   transform: translateX(calc(100% + var(--space-4)));
   opacity: 0;
   transition-timing-function: ease-in;
-}
-
-.root {
-  box-sizing: border-box;
-  position: fixed;
-  z-index: 200;
-  inset: 0;
-  top: env(safe-area-inset-top);
-  transition: bottom 200ms ease-in-out;
-
-  &[data-fullscreen='true'] {
-    overflow-y: visible;
-
-    // Add a backdrop for the mobile composer to cover up the page
-    // behind the composer that can be visible on Safari iOS
-    &::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background-color: var(--color-bg-primary);
-    }
-  }
-
-  &[data-fullscreen='false'] {
-    top: auto;
-    display: grid;
-    grid-template-columns: var(--columns-area-grid-columns);
-    bottom: 0;
-    pointer-events: none;
-  }
-}
-
-.composer,
-.composerMinimized {
-  [data-fullscreen='false'] & {
-    box-sizing: border-box;
-    grid-column: 2;
-    pointer-events: auto;
-  }
-}
-
-.composer {
-  [data-fullscreen='true'] & {
-    // Set from the visualViewport API.
-    height: var(--viewport-height, 100vh);
-    max-height: 100vh;
-  }
-
-  [data-fullscreen='false'] & {
-    min-height: 270px;
-    max-height: calc(100vh - (var(--space-4) * 2));
-  }
-}
-
-.composerMinimized {
-  cursor: pointer;
 }
