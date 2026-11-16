@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { WarningIcon } from '@phosphor-icons/react';
+import { EyeSlashIcon } from '@phosphor-icons/react';
 
 import { toggleStatusSpoilers } from '@/mastodon/actions/statuses';
 import { selectStatusFilters } from '@/mastodon/selectors/filters';
@@ -85,7 +85,7 @@ const StatusWarningDisplay: React.FC<{
       className={classes.spoiler}
       aria-controls={wrapperId}
       actionClick={onToggle}
-      icon={WarningIcon}
+      icon={EyeSlashIcon}
       actionText={
         hidden ? (
           <FormattedMessage
