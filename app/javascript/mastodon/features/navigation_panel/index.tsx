@@ -10,27 +10,24 @@ import {
   CompassIcon,
 } from '@phosphor-icons/react';
 
-import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 import { Callout } from '@/mastodon/components/callout/redesign';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import { useIdentity } from '@/mastodon/identity_context';
-import {
-  disabledAccountId,
-  localLiveFeedAccess,
-  remoteLiveFeedAccess,
-  trendsEnabled,
-} from '@/mastodon/initial_state';
+import { disabledAccountId, trendsEnabled } from '@/mastodon/initial_state';
 import { transientSingleColumn } from '@/mastodon/is_mobile';
 import {
   canManageReports,
   canViewAdminDashboard,
-  canViewFeed,
 } from '@/mastodon/permissions';
 import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
 import { FooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
-import { useCustomFeeds, useFollowedHashtags } from './hooks';
+import {
+  useCustomFeeds,
+  useFollowedHashtags,
+  usePublicFeedsLink,
+} from './hooks';
 import { ListSection } from './list_section';
 import { DisabledAccountBanner, LoggedOutInfo } from './logged_out_info';
 import { NavigationLink } from './navigation_link';
@@ -74,6 +71,23 @@ export const NavigationPanel: React.FC<{
       placement: 'bottom',
     });
 
+  const explore = trendsEnabled && (
+    <NavigationLink to='/explore' icon={CompassIcon}>
+      <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
+    </NavigationLink>
+  );
+
+  const publicFeedsLink = usePublicFeedsLink();
+  const publicFeeds = publicFeedsLink && (
+    <NavigationLink
+      to={publicFeedsLink.link}
+      icon={publicFeedsLink.icon}
+      isActive={publicFeedsLink.isActive}
+    >
+      {publicFeedsLink.label}
+    </NavigationLink>
+  );
+
   return (
     <nav
       className={classes.root}
@@ -87,8 +101,8 @@ export const NavigationPanel: React.FC<{
         <>
           {transientSingleColumn && <TransientSingleColumnCallout />}
           <ul className={classes.list}>
-            <ExploreLink />
-            <PublicFeedsLink />
+            {explore}
+            {publicFeeds}
             <NavigationLink to='/bookmarks' icon={BookmarkSimpleIcon}>
               <FormattedMessage
                 id='navigation_bar.saved_posts'
@@ -191,8 +205,8 @@ export const NavigationPanel: React.FC<{
                 defaultMessage='About'
               />
             </NavigationLink>
-            <ExploreLink />
-            <PublicFeedsLink />
+            {explore}
+            {publicFeeds}
           </ul>
           <footer className={classes.footer}>
             {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
@@ -206,64 +220,6 @@ export const NavigationPanel: React.FC<{
       />
       {bottomSensor}
     </nav>
-  );
-};
-
-const ExploreLink: React.FC = () => {
-  if (!trendsEnabled) return null;
-
-  return (
-    <NavigationLink to='/explore' icon={CompassIcon}>
-      <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
-    </NavigationLink>
-  );
-};
-
-const isFediverseFeedsLinkActive = (
-  match: unknown,
-  { pathname }: { pathname: string },
-) => {
-  return !!match || pathname.startsWith('/public');
-};
-
-const PublicFeedsLink: React.FC = () => {
-  const { signedIn, permissions } = useIdentity();
-
-  const canViewLocalFeed = canViewFeed(
-    signedIn,
-    permissions,
-    localLiveFeedAccess,
-  );
-  const canViewRemoteFeed = canViewFeed(
-    signedIn,
-    permissions,
-    remoteLiveFeedAccess,
-  );
-
-  if (!canViewLocalFeed && !canViewRemoteFeed) {
-    return null;
-  }
-
-  const canViewOnlyOneFeed = canViewLocalFeed !== canViewRemoteFeed;
-
-  return (
-    <NavigationLink
-      to={canViewLocalFeed ? '/public/local' : '/public/remote'}
-      icon={FediIcon}
-      isActive={isFediverseFeedsLinkActive}
-    >
-      {canViewOnlyOneFeed ? (
-        <FormattedMessage
-          id='tabs_bar.public_feed'
-          defaultMessage='Public Feed'
-        />
-      ) : (
-        <FormattedMessage
-          id='tabs_bar.public_feeds'
-          defaultMessage='Public Feeds'
-        />
-      )}
-    </NavigationLink>
   );
 };
 

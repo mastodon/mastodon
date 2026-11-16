@@ -1,11 +1,19 @@
 import { useEffect } from 'react';
 
+import { FormattedMessage } from 'react-intl';
+
 import type { Map as ImmutableMap } from 'immutable';
 
+import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 import { fetchFollowRequests } from '@/mastodon/actions/accounts';
 import { fetchLists } from '@/mastodon/actions/lists';
 import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
 import { useIdentity } from '@/mastodon/identity_context';
+import {
+  localLiveFeedAccess,
+  remoteLiveFeedAccess,
+} from '@/mastodon/initial_state';
+import { canViewFeed } from '@/mastodon/permissions';
 import { getOrderedLists } from '@/mastodon/selectors/lists';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -76,4 +84,49 @@ export function useNotificationsCount() {
   return (
     unreadNotificationsCount + followRequestsCount + unreadAnnouncementCount
   );
+}
+
+const isFediverseFeedsLinkActive = (
+  match: unknown,
+  { pathname }: { pathname: string },
+) => {
+  return !!match || pathname.startsWith('/public');
+};
+
+export function usePublicFeedsLink() {
+  const { signedIn, permissions } = useIdentity();
+
+  const canViewLocalFeed = canViewFeed(
+    signedIn,
+    permissions,
+    localLiveFeedAccess,
+  );
+  const canViewRemoteFeed = canViewFeed(
+    signedIn,
+    permissions,
+    remoteLiveFeedAccess,
+  );
+
+  if (!canViewLocalFeed && !canViewRemoteFeed) {
+    return null;
+  }
+
+  const canViewOnlyOneFeed = canViewLocalFeed !== canViewRemoteFeed;
+
+  return {
+    link: canViewLocalFeed ? '/public/local' : '/public/remote',
+    icon: FediIcon,
+    isActive: isFediverseFeedsLinkActive,
+    label: canViewOnlyOneFeed ? (
+      <FormattedMessage
+        id='tabs_bar.public_feed'
+        defaultMessage='Public Feed'
+      />
+    ) : (
+      <FormattedMessage
+        id='tabs_bar.public_feeds'
+        defaultMessage='Public Feeds'
+      />
+    ),
+  };
 }
