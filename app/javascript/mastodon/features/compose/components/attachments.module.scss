@@ -47,19 +47,16 @@
 
 .mediaSpoilerShowButton {
   position: absolute;
-  inset: 0;
   z-index: 3;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  inset-inline: var(--space-2);
+  inset-block-end: var(--space-2);
+  background-color: var(--color-bg-overlay);
+  border-radius: var(--radius-2);
+  padding: var(--space-2);
+  gap: var(--space-2);
   justify-content: center;
-  pointer-events: none;
-
-  p {
-    padding-inline: var(--space-4);
-    margin-block-end: var(--space-2);
-    text-align: center;
-  }
 }
 
 // Audio

@@ -86,14 +86,13 @@ const ComposeMediaAttachments: React.FC = () => {
         <div className={classes.mediaSpoilerShowButton}>
           <FormattedMessage
             id='compose.sensitive.media_blur_warning'
-            defaultMessage='Select “Show media” to edit or rearrange. Users will see this media blurred by default.'
-            tagName='p'
+            defaultMessage='Media will be blurred on the published post'
           />
-          {mediaSensitive && (
-            <Button color='media' size='sm' onClick={onShowMedia}>
+          {!sensitive && (
+            <Button variant='solid' size='xs' onClick={onShowMedia}>
               <FormattedMessage
-                id='content_warning.media.show_short'
-                defaultMessage='Show media'
+                id='compose.sensitive.media_blur_undo'
+                defaultMessage='Undo'
               />
             </Button>
           )}

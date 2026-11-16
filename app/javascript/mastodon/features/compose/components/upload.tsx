@@ -106,10 +106,17 @@ export const ComposeUpload: React.FC<
             color='media'
             tooltipPlacement='top'
           >
-            <FormattedMessage
-              id='compose.sensitive.blur'
-              defaultMessage='Blur all media'
-            />
+            {mediaSensitive ? (
+              <FormattedMessage
+                id='compose.sensitive.unblur'
+                defaultMessage='Remove blur'
+              />
+            ) : (
+              <FormattedMessage
+                id='compose.sensitive.blur'
+                defaultMessage='Blur all media'
+              />
+            )}
           </IconButton>
         )}
         {!single && showMediaControls && (
