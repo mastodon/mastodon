@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -57,6 +57,7 @@ export const ComposeButton: React.FC<{
   }, [dispatch]);
 
   const isMinimized = displayState === 'minimized';
+  const isShowing = displayState === 'showing';
 
   const handleMinimizedTextClick: React.MouseEventHandler<HTMLDivElement> =
     useCallback(
@@ -72,25 +73,43 @@ export const ComposeButton: React.FC<{
       [dispatch, isMinimized],
     );
 
-  const { signedIn } = useIdentity();
-
-  const trackComposerHeight = useTrackComposerHeight();
-
-  const isFullscreen =
-    viewport.height < NARROW_HEIGHT || viewport.width < BREAKPOINTS.openable;
-  const isFullscreenOpen = isFullscreen && displayState === 'showing';
-
-  useBodyScrollLock(displayState === 'showing');
-
+  useBodyScrollLock(isShowing);
   useCloseOnHistoryBack(
     () => {
       dispatch(closeOrMinimizeComposer());
     },
-    {
-      active: isFullscreenOpen,
+    { active: isShowing },
+  );
+  const rootRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const nodes = rootRef.current?.parentElement?.childNodes;
+    if (!nodes) {
+      return;
+    }
+
+    let inert = false;
+    if (isShowing) {
+      inert = true;
+    }
+
+    for (const node of nodes) {
+      if (node !== rootRef.current && node instanceof HTMLElement) {
+        node.inert = inert;
+      }
+    }
+  }, [isShowing]);
+  const handleOverlayClick: React.MouseEventHandler = useCallback(
+    (event) => {
+      if (event.target === rootRef.current) {
+        dispatch(minimizeComposerToggle());
+      }
     },
+    [dispatch],
   );
 
+  const trackComposerHeight = useTrackComposerHeight();
+
+  const { signedIn } = useIdentity();
   if (!signedIn) {
     return null;
   }
@@ -137,7 +156,12 @@ export const ComposeButton: React.FC<{
   const style = {
     '--viewport-height': `${viewport.height}px`,
   } as React.CSSProperties;
+  const isFullscreen =
+    viewport.height < NARROW_HEIGHT || viewport.width < BREAKPOINTS.openable;
 
+  {
+    /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+  }
   return (
     <div
       className={classNames(
@@ -145,9 +169,10 @@ export const ComposeButton: React.FC<{
         isMinimized ? classes.minimized : classes.showing,
       )}
       style={style}
+      ref={rootRef}
       data-fullscreen={isFullscreen}
+      onClick={handleOverlayClick}
     >
-      {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <div
         className={classNames(
           isMinimized ? classes.composerMinimized : classes.composer,
