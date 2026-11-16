@@ -457,19 +457,12 @@ export const composeReducer = (state = initialState, action) => {
     return state.withMutations(map => {
       const spoiler = !state.get('spoiler')
       map.set('spoiler', spoiler);
-      if (spoiler) {
-        map.set('sensitive', true);
-      }
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_SPOILER_TEXT_CHANGE:
     return state.withMutations(map => {
-      const spoiler = !!action.text;
-      map.set('spoiler', spoiler);
-      map.set('spoiler_text', action.text)
-      if (spoiler) {
-        map.set('sensitive', true);
-      }
+      map.set('spoiler', !!action.text);
+      map.set('spoiler_text', action.text);
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_CHANGE:
