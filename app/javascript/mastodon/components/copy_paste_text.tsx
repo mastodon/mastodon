@@ -62,7 +62,7 @@ export const CopyPasteText: React.FC<{ value: string }> = ({ value }) => {
   return (
     // The click handler on the div just duplicates the handler from the textarea
     // for a larger click area – it's not essential so doesn't need its own focus stop.
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    // oxlint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
       className={classNames('copy-paste-text', { copied, focused })}
       onClick={handleInputClick}
