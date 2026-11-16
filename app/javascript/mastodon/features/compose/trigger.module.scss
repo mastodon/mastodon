@@ -41,20 +41,23 @@
 
   [data-fullscreen='false'] & {
     max-width: 500px;
-  }
 
-  :global(.no-reduce-motion) & {
-    transition:
-      inset-inline-end 200ms ease-out,
-      inset-block-end 200ms ease-out,
-      width 200ms ease-out,
-      transform 200ms ease-out;
+    :global(.no-reduce-motion) & {
+      overflow: hidden; // Hide overflow for animating max-height.
+      transition:
+        inset-inline-end 200ms ease-out,
+        inset-block-end 200ms ease-out,
+        width 200ms ease-out,
+        max-height 200ms ease-out,
+        transform 200ms ease-out;
+    }
   }
 }
 
 .composer {
   [data-fullscreen='false'] & {
     max-width: 500px;
+    max-height: 100vh; // Full height for transition effects.
     inset-inline-end: 50%;
     inset-block-end: 50%;
     transform: translate(50%, 50%);
@@ -86,6 +89,7 @@
 
   [data-fullscreen='false'] & {
     max-width: 240px;
+    max-height: 100px; // Twice the "normal" amount to allow for translated strings to wrap.
   }
 }
 

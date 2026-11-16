@@ -95,17 +95,12 @@ export const ComposeButton: React.FC<{
     return null;
   }
 
-  const floatingButtonProps = {
-    inline,
-    hidden: !hasMobileFloatingActionButton,
-  } as const;
-
-  // Pass the viewport height as a CSS variable so it's only used for mobile.
-  const style = {
-    '--viewport-height': `${viewport.height}px`,
-  } as React.CSSProperties;
-
   if (isMobile) {
+    const floatingButtonProps = {
+      inline,
+      hidden: !hasMobileFloatingActionButton,
+    } as const;
+
     if (isMinimized) {
       return (
         <FloatingActionButton
@@ -137,6 +132,11 @@ export const ComposeButton: React.FC<{
   if (displayState === 'hidden') {
     return null;
   }
+
+  // Pass the viewport height as a CSS variable so it's only used for mobile.
+  const style = {
+    '--viewport-height': `${viewport.height}px`,
+  } as React.CSSProperties;
 
   return (
     <div
