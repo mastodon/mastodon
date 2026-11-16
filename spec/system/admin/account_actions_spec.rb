@@ -11,7 +11,7 @@ RSpec.describe 'Admin Account Actions' do
     let(:account) { Fabricate(:account) }
 
     it 'creates the action and redirects to the account page with preselected warning' do
-      visit new_admin_account_action_path(account_id: account.id)
+      visit new_admin_account_moderation_action_path(account_id: account.id)
 
       expect(page)
         .to have_title(I18n.t('admin.account_actions.title', acct: account.pretty_acct))
@@ -19,7 +19,7 @@ RSpec.describe 'Admin Account Actions' do
     end
 
     it 'creates the action and redirects to the account page' do
-      visit new_admin_account_action_path(account_id: account.id)
+      visit new_admin_account_moderation_action_path(account_id: account.id)
 
       select 'Limit', from: 'admin_account_action[type]'
       expect { submit_form }
