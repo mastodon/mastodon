@@ -107,18 +107,28 @@ export const ComposeButton: React.FC<{
   } as React.CSSProperties;
 
   if (displayState === 'minimized') {
-    return isMobile ? (
-      <FloatingActionButton
-        icon={ReadCvLogoIcon}
-        onClick={toggleMinimize}
-        {...floatingButtonProps}
-        hidden={false} // never hide minimized composer button
-        color='neutral'
+    if (isMobile) {
+      return (
+        <FloatingActionButton
+          icon={ReadCvLogoIcon}
+          onClick={toggleMinimize}
+          {...floatingButtonProps}
+          hidden={false} // never hide minimized composer button
+          color='neutral'
+        >
+          <FormattedMessage
+            id='compose.expand'
+            defaultMessage='Show composer'
+          />
+        </FloatingActionButton>
+      );
+    }
+
+    return (
+      <div
+        className={classNames(classes.root, classes.minimized)}
+        style={style}
       >
-        <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
-      </FloatingActionButton>
-    ) : (
-      <div className={classes.root} style={style} data-fullscreen={false}>
         {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           onClick={handleMinimizedTextClick}
@@ -138,7 +148,7 @@ export const ComposeButton: React.FC<{
   if (displayState === 'showing') {
     return (
       <div
-        className={classes.root}
+        className={classNames(classes.root, classes.showing)}
         style={style}
         ref={trackComposerHeight}
         data-fullscreen={isFullscreen}

@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { PencilSimpleIcon, MinusIcon, XIcon } from '@phosphor-icons/react';
+import { MinusIcon, XIcon, ArrowSquareUpLeftIcon } from '@phosphor-icons/react';
 
 import { IconButton } from '@/mastodon/components/button';
 import {
@@ -91,7 +91,7 @@ export const ComposeFormHeader: React.FC<{
         <IconButton
           size='sm'
           variant='ghost'
-          icon={isMinimized ? PencilSimpleIcon : MinusIcon}
+          icon={isMinimized ? ArrowSquareUpLeftIcon : MinusIcon}
           onClick={onMinimize}
           tooltipPlacement='top'
         >

@@ -1,4 +1,75 @@
+@use '@/styles/mastodon/mixins';
 @use '@/styles/mastodon/variables';
+
+.root {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+
+  &[data-fullscreen='true'] {
+    overflow-y: visible;
+  }
+
+  &[data-fullscreen='false'] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.showing {
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    // Add a backdrop for the mobile composer to cover up the page
+    // behind the composer that can be visible on Safari iOS
+    background-color: var(--color-bg-primary);
+  }
+
+  &[data-fullscreen='false']::before {
+    background-color: var(--color-bg-overlay);
+  }
+}
+
+.minimized {
+  padding: var(--space-2);
+  inset-inline-start: auto;
+  inset-block-start: auto;
+}
+
+.composer,
+.composerMinimized {
+  box-sizing: border-box;
+}
+
+.composer {
+  width: 100%;
+
+  [data-fullscreen='true'] & {
+    // Set from the visualViewport API.
+    height: var(--viewport-height, 100vh);
+    max-height: 100vh;
+  }
+
+  [data-fullscreen='false'] & {
+    max-width: 500px;
+    min-height: 270px;
+    max-height: calc(100vh - (var(--space-4) * 2));
+  }
+}
+
+.composerMinimized {
+  @include mixins.elevation-1;
+
+  border-radius: var(--radius-4);
+  cursor: pointer;
+  width: 240px;
+}
 
 .buttonWrapper {
   position: relative;
@@ -23,61 +94,4 @@
   transform: translateX(calc(100% + var(--space-4)));
   opacity: 0;
   transition-timing-function: ease-in;
-}
-
-.root {
-  box-sizing: border-box;
-  position: fixed;
-  z-index: 200;
-  inset: 0;
-  top: env(safe-area-inset-top);
-  transition: bottom 200ms ease-in-out;
-
-  &[data-fullscreen='true'] {
-    overflow-y: visible;
-
-    // Add a backdrop for the mobile composer to cover up the page
-    // behind the composer that can be visible on Safari iOS
-    &::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background-color: var(--color-bg-primary);
-    }
-  }
-
-  &[data-fullscreen='false'] {
-    top: auto;
-    display: grid;
-    grid-template-columns: var(--columns-area-grid-columns);
-    bottom: 0;
-    pointer-events: none;
-  }
-}
-
-.composer,
-.composerMinimized {
-  [data-fullscreen='false'] & {
-    box-sizing: border-box;
-    grid-column: 2;
-    pointer-events: auto;
-  }
-}
-
-.composer {
-  [data-fullscreen='true'] & {
-    // Set from the visualViewport API.
-    height: var(--viewport-height, 100vh);
-    max-height: 100vh;
-  }
-
-  [data-fullscreen='false'] & {
-    min-height: 270px;
-    max-height: calc(100vh - (var(--space-4) * 2));
-  }
-}
-
-.composerMinimized {
-  cursor: pointer;
 }
