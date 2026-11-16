@@ -35,7 +35,7 @@ export const CustomHomepage: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <Column>
+    <Column bindToDocument label={domain}>
       <ColumnHeader
         title={domain}
         extraButtons={
