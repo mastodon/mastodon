@@ -10,25 +10,25 @@ import {
 } from 'mastodon/actions/navigation';
 
 interface State {
-  open: boolean;
+  mobileMenuOpen: boolean;
   searchOpen: boolean;
 }
 
 const initialState: State = {
-  open: false,
+  mobileMenuOpen: false,
   searchOpen: false,
 };
 
 export const navigationReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(openNavigation, (state) => {
-      state.open = true;
+      state.mobileMenuOpen = true;
     })
     .addCase(closeNavigation, (state) => {
-      state.open = false;
+      state.mobileMenuOpen = false;
     })
     .addCase(toggleNavigation, (state) => {
-      state.open = !state.open;
+      state.mobileMenuOpen = !state.mobileMenuOpen;
     })
     .addCase(openInlineSearch, (state) => {
       state.searchOpen = true;

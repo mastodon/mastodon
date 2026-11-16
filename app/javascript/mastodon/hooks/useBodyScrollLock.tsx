@@ -13,7 +13,7 @@ import {
 const getShouldLockBodyScroll = createAppSelector(
   [
     (state) => state.scrollLockStack.stack.length > 0,
-    (state) => state.navigation.open,
+    (state) => state.navigation.mobileMenuOpen,
     (state) => state.modal.get('stack').size > 0,
     (state) =>
       state.composer.displayState === 'showing' &&

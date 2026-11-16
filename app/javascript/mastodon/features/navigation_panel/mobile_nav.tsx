@@ -148,7 +148,7 @@ const SlideOutNavigation: React.FC = () => {
   const dispatch = useAppDispatch();
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  const isOpen = useAppSelector((state) => state.navigation.open);
+  const isOpen = useAppSelector((state) => state.navigation.mobileMenuOpen);
 
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
