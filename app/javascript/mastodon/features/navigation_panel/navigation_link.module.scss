@@ -118,6 +118,20 @@
   }
 }
 
+.menuIndicatorIcon {
+  position: absolute;
+  top: 7px;
+  inset-inline-end: 5px;
+  color: inherit;
+}
+
+.miniBadge {
+  position: absolute;
+  top: var(--space-half);
+  inset-inline-end: 9px;
+  padding: var(--space-half);
+}
+
 .label {
   max-width: 100%;
   min-width: 0;
@@ -125,16 +139,4 @@
   flex-shrink: 1;
   overflow-wrap: break-word;
   hyphens: auto;
-
-  .linkStacked & {
-    text-align: center;
-  }
-}
-
-.badge {
-  .linkStacked & {
-    position: absolute;
-    top: var(--space-half);
-    inset-inline-start: calc(50% + var(--space-half));
-  }
 }

@@ -172,7 +172,7 @@ export const NavigationPanel: React.FC<{
           <ul className={classes.list}>
             <ExploreLink />
             <PublicFeedsLink />
-            <NavigationLink to='/bookmarks' iconComponent={BookmarkSimpleIcon}>
+            <NavigationLink to='/bookmarks' icon={BookmarkSimpleIcon}>
               <FormattedMessage
                 id='navigation_bar.saved_posts'
                 defaultMessage='Saved Posts'
@@ -188,11 +188,7 @@ export const NavigationPanel: React.FC<{
                 />
               }
             >
-              <NavigationLink
-                key='new'
-                to='/lists/new'
-                iconComponent={PlusIcon}
-              >
+              <NavigationLink key='new' to='/lists/new' icon={PlusIcon}>
                 <FormattedMessage
                   id='tabs_bar.create_custom_feed'
                   defaultMessage='Create Feed'
@@ -202,7 +198,7 @@ export const NavigationPanel: React.FC<{
                 <NavigationLink
                   key={feed.id}
                   to={`/lists/${feed.id}`}
-                  iconComponent={RssSimpleIcon}
+                  icon={RssSimpleIcon}
                 >
                   {feed.title}
                 </NavigationLink>
@@ -240,7 +236,7 @@ export const NavigationPanel: React.FC<{
                 withDivider
                 as='a'
                 href='/admin/dashboard'
-                iconComponent={GavelIcon}
+                icon={GavelIcon}
               >
                 <FormattedMessage
                   id='navigation_bar.administration'
@@ -254,7 +250,7 @@ export const NavigationPanel: React.FC<{
                 withDivider={!isAdmin}
                 as='a'
                 href='/admin/reports'
-                iconComponent={ShieldStarIcon}
+                icon={ShieldStarIcon}
               >
                 <FormattedMessage
                   id='navigation_bar.moderation'
@@ -272,7 +268,7 @@ export const NavigationPanel: React.FC<{
       {!signedIn && (
         <>
           <ul className={classes.list}>
-            <NavigationLink to='/about' iconComponent={InfoIcon}>
+            <NavigationLink to='/about' icon={InfoIcon}>
               <FormattedMessage
                 id='footer.about_this_server'
                 defaultMessage='About'
@@ -298,7 +294,7 @@ const ExploreLink: React.FC = () => {
   return (
     <NavigationLink
       to='/explore'
-      iconComponent={CompassIcon}
+      icon={CompassIcon}
       onClick={handleSearchLinkClick}
     >
       <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
@@ -348,7 +344,7 @@ const PublicFeedsLink: React.FC = () => {
   return (
     <NavigationLink
       to={canViewLocalFeed ? '/public/local' : '/public/remote'}
-      iconComponent={FediIcon}
+      icon={FediIcon}
       isActive={isFediverseFeedsLinkActive}
     >
       {canViewOnlyOneFeed ? (
