@@ -180,7 +180,7 @@ const NewList: React.FC<{ list?: List | null }> = ({ list }) => {
   );
 
   return (
-    <FormStack onSubmit={handleSubmit}>
+    <FormStack as='form' onSubmit={handleSubmit}>
       <TextInputField
         required
         maxLength={30}
