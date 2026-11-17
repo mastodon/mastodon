@@ -22,7 +22,7 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
     authorize @report, :show? if with_report?
     authorize @target_account, :show?
 
-    @account_action = Admin::AccountAction.new(account_params)
+    @account_action = Admin::AccountAction.new(account_action_params)
     @account_action.target_account  = @target_account
     @account_action.current_account = current_account
     @account = @target_account
@@ -31,7 +31,7 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
     when 'delete', 'mark_as_sensitive'
       Admin::ModerationAction.new(moderation_action_params).save!
     when 'silence', 'suspend', 'none', 'disable', 'sensitive'
-      Admin::AccountAction.new(account_params).save!
+      Admin::AccountAction.new(account_action_params).save!
     else
       if with_report?
         return redirect_to admin_report_path(@report), alert: I18n.t('admin.reports.unknown_action_msg', action: action_from_button)
@@ -61,10 +61,6 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
     else
       moderation_params
     end
-  end
-
-  def account_params
-    params.expect(admin_account_action: account_action_params)
   end
 
   def account_action_params
