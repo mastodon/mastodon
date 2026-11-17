@@ -31,7 +31,11 @@ import { useAppDispatch } from '@/mastodon/store';
 
 import { handleSearchLinkClick } from '.';
 import classes from './collapsed.module.scss';
-import { useCustomFeeds, useFollowedHashtags } from './hooks';
+import {
+  useCustomFeeds,
+  useFollowedHashtags,
+  usePublicFeedsLink,
+} from './hooks';
 import {
   MiniAccountLink,
   MiniHomeLink,
@@ -60,6 +64,8 @@ export const CollapsedNavigationPanel: React.FC<{
   const dispatch = useAppDispatch();
   const { customFeeds } = useCustomFeeds();
   const { followedHashtags } = useFollowedHashtags();
+
+  const publicFeedsLink = usePublicFeedsLink();
 
   const openComposer = useCallback(() => {
     dispatch(openNewComposer({ type: 'post' }));
@@ -143,6 +149,16 @@ export const CollapsedNavigationPanel: React.FC<{
               />
             </MiniNavigationLink>
           </li>
+        )}
+        {publicFeedsLink && (
+          <MiniNavigationLink
+            to={publicFeedsLink.link}
+            icon={publicFeedsLink.icon}
+            isActive={publicFeedsLink.isActive}
+            tooltipPlacement={tooltipPlacement}
+          >
+            {publicFeedsLink.label}
+          </MiniNavigationLink>
         )}
         <li className={classes.itemWithBottomBorder}>
           <MiniNavigationLink
