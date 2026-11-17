@@ -70,6 +70,9 @@ module ContextHelper
       'interactingObject' => { '@id' => 'gts:interactingObject', '@type' => '@id' },
       'interactionTarget' => { '@id' => 'gts:interactionTarget', '@type' => '@id' },
     },
+    actor_featured_collections: {
+      'featuredCollections' => { '@id' => 'https://w3id.org/fep/7aa9#featuredCollections', '@type' => '@id' },
+    },
   }.freeze
 
   def full_context
