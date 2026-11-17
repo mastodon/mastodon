@@ -20,7 +20,7 @@ import { ComposeFormHeader } from './components/header';
 import { ComposeHints } from './components/hints';
 import { LanguageButton } from './components/language';
 import { ComposeReply } from './components/reply';
-import { selectComposeType } from './components/selectors';
+import { selectComposePrivacy } from './components/selectors';
 import { ComposeSensitiveField } from './components/sensitive';
 import { ComposeSettingsMenu } from './components/settings';
 import { ComposeTextarea } from './components/textarea';
@@ -45,7 +45,7 @@ export const ComposeForm: React.FC<
   redirectOnSuccess,
   ...props
 }) => {
-  const type = useAppSelector(selectComposeType);
+  const visibility = useAppSelector(selectComposePrivacy);
 
   const { onEmojiPick, onSubmit } = useComposeHandlers({
     redirectOnSuccess,
@@ -65,12 +65,9 @@ export const ComposeForm: React.FC<
         className,
         classes.root,
         headless && classes.headless,
+        visibility === 'direct' && classes.background,
       )}
     >
-      {(type === 'message' || type === 'replyPrivate') && (
-        <div className={classes.background} />
-      )}
-
       {!headless && <ComposeFormHeader id={titleId} noMinimize={noMinimize} />}
 
       <div className={classes.toolbar}>

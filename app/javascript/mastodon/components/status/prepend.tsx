@@ -10,10 +10,12 @@ import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { useAppSelector } from '@/mastodon/store';
 
 import { Avatar } from '../avatar';
+import { Badge } from '../badge';
 import { DisplayName } from '../display_name';
 import { Icon } from '../icon';
 import { RelativeTimestamp } from '../relative_timestamp';
 
+import { useStatusContext } from './hooks';
 import { StatusBoostIcon } from './icons';
 import classes from './prepend.module.scss';
 import { statusLink } from './utils';
@@ -23,7 +25,11 @@ export const StatusPrepend: React.FC<{
   reblogId?: string;
   showThread?: boolean;
 }> = ({ status, showThread, reblogId }) => {
-  if (!reblogId && (!showThread || !status.in_reply_to_id)) {
+  if (
+    !reblogId &&
+    (!showThread || !status.in_reply_to_id) &&
+    status.visibility !== 'direct'
+  ) {
     return null;
   }
 
@@ -39,6 +45,9 @@ export const StatusPrepend: React.FC<{
             replyAccountId={status.in_reply_to_account_id}
           />
         )}
+      {status.visibility === 'direct' && (
+        <StatusBadge isReply={!!status.in_reply_to_id} />
+      )}
     </>
   );
 };
@@ -135,5 +144,31 @@ const StatusPrependReply: React.FC<{
         label
       )}
     </div>
+  );
+};
+
+const StatusBadge: React.FC<{ isReply: boolean }> = ({ isReply }) => {
+  const { variant } = useStatusContext();
+  if (variant === 'page') {
+    return null;
+  }
+
+  return (
+    <Badge
+      className={classes.badge}
+      label={
+        isReply ? (
+          <FormattedMessage
+            id='status.badges.private_reply'
+            defaultMessage='Private reply'
+          />
+        ) : (
+          <FormattedMessage
+            id='status.badges.message'
+            defaultMessage='Private message'
+          />
+        )
+      }
+    />
   );
 };

@@ -34,7 +34,11 @@ import { StatusPrepend } from './prepend';
 import { StatusQuote } from './quote';
 import classes from './styles.module.scss';
 import { TranslateButton } from './translate';
-import type { StatusContainerProps, StatusContextType } from './types';
+import type {
+  StatusContainerProps,
+  StatusContextType,
+  StatusVariant,
+} from './types';
 import { StatusWarning } from './warning';
 
 type StatusProps = Merge<
@@ -45,8 +49,6 @@ type StatusProps = Merge<
     variant?: StatusVariant;
   }
 >;
-
-export type StatusVariant = 'feed' | 'thread' | 'page';
 
 const selectStatusReblog = createAppSelector(
   [
@@ -172,7 +174,12 @@ export const Status: React.FC<StatusProps> = ({
 
   return (
     <StatusContext.Provider
-      value={{ id, contextType, registerHotkeyCallback: registerHotkey }}
+      value={{
+        id,
+        contextType,
+        variant,
+        registerHotkeyCallback: registerHotkey,
+      }}
     >
       <StatusHotkeys
         {...hotkeysProps}

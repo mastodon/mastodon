@@ -19,6 +19,8 @@ export type StatusContextType =
   | 'search'
   | 'thread';
 
+export type StatusVariant = 'feed' | 'thread' | 'page';
+
 export interface StatusContainerProps {
   id?: string | null;
   account?: TAccount;
