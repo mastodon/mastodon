@@ -122,6 +122,7 @@ const ExpandedNavigationPanel: React.FC<NavigationPanelProps> = ({
     >
       {topSensor}
       <NavigationHeader
+        multiColumn={multiColumn}
         siteName={siteName}
         isStuck={!isScrolledToTop}
         onToggleCollapsed={onToggleCollapsed}

@@ -14,6 +14,7 @@ import {
   RssSimpleIcon,
   ArrowUpRightIcon,
   HashIcon,
+  CaretLineLeftIcon,
 } from '@phosphor-icons/react';
 
 import { IconButton } from '@/mastodon/components/button';
@@ -59,7 +60,7 @@ const MAX_MENU_ITEM_COUNT = 10;
 export const CollapsedNavigationPanel: React.FC<{
   multiColumn?: boolean;
   onToggleCollapsed?: () => void;
-}> = ({ onToggleCollapsed }) => {
+}> = ({ multiColumn, onToggleCollapsed }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { customFeeds } = useCustomFeeds();
@@ -79,7 +80,7 @@ export const CollapsedNavigationPanel: React.FC<{
       aria-label={intl.formatMessage(messages.main)}
     >
       <IconButton
-        icon={CaretLineRightIcon}
+        icon={multiColumn ? CaretLineRightIcon : CaretLineLeftIcon}
         size='sm'
         tooltipPlacement={tooltipPlacement}
         onClick={onToggleCollapsed}

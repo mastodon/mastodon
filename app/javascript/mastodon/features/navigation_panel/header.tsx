@@ -5,7 +5,11 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { CaretLineLeftIcon, PenNibIcon } from '@phosphor-icons/react';
+import {
+  CaretLineLeftIcon,
+  CaretLineRightIcon,
+  PenNibIcon,
+} from '@phosphor-icons/react';
 
 import { Button, IconButton } from '@/mastodon/components/button';
 import { IconLogo } from '@/mastodon/components/logo';
@@ -22,10 +26,11 @@ import { MiniNav } from './mini_nav';
 
 export const NavigationHeader: React.FC<{
   siteName?: string;
+  multiColumn?: boolean;
   isStuck: boolean;
   mode: 'slide-out' | 'static';
   onToggleCollapsed?: () => void;
-}> = ({ siteName, isStuck, mode, onToggleCollapsed }) => {
+}> = ({ siteName, multiColumn, isStuck, mode, onToggleCollapsed }) => {
   const { signedIn } = useIdentity();
   const dispatch = useAppDispatch();
 
@@ -40,7 +45,7 @@ export const NavigationHeader: React.FC<{
         <LogoLockup siteName={siteName} />
         {signedIn && mode === 'static' && (
           <IconButton
-            icon={CaretLineLeftIcon}
+            icon={multiColumn ? CaretLineLeftIcon : CaretLineRightIcon}
             size='sm'
             tooltipPlacement='bottom'
             onClick={onToggleCollapsed}
