@@ -34,7 +34,7 @@ export const ComposeSettingsMenu: React.FC = () => {
         <FormattedMessage id='compose.settings' defaultMessage='Settings' />
       </MenuTrigger>
 
-      <MenuList maxWidth={310} placement='top-end' strategy='fixed'>
+      <MenuList maxWidth={310} placement='bottom-end' strategy='fixed'>
         <ComposeSettingsInnerMenu />
       </MenuList>
     </Menu>
