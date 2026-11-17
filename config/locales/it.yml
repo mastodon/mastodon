@@ -343,7 +343,7 @@ it:
         trendable_tag_html: può apparire nelle tendenze
         unassigned_report_html: "%{name} ha disassegnato il rapporto %{target}"
         unblock_email_account_html: "%{name} ha sbloccato l'indirizzo email di %{target}"
-        unsensitive_account_html: "%{name} ha annullato il segnare il media di %{target} come sensibile"
+        unsensitive_account_html: "%{name} ha annullato il contrassegno come sensibile il media di %{target}"
         unsilence_account_html: "%{name} ha riattivato l'account di %{target}"
         unsuspend_account_html: "%{name} ha annullato la sospensione dell'account di %{target}"
         update_announcement_html: "%{name} ha aggiornato l'annuncio %{target}"
@@ -912,7 +912,7 @@ it:
         delete_description_html: I post e/o le collezioni segnalate saranno eliminate e una sanzione verrà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni da parte dello stesso account.
         disable_description_html: Impedisci all'utente di utilizzare il proprio account, senza però eliminare o nascondere i suoi contenuti. Questa azione può essere annullata. Ciò comporta la chiusura di tutte le segnalazioni relative a questo account.
         force_sensitive_descption_html: Forza l'atto di contrassegnare come sensibili tutti gli allegati multimediali di questo utente. Questa operazione può essere annullata. Ciò chiude tutte le segnalazioni relative a questo account.
-        mark_as_sensitive_description_html: I contenuti nei post segnalati saranno segnati come sensibili e verrà registrata una sanzione per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
+        mark_as_sensitive_description_html: I media presenti nei post segnalati verranno contrassegnati come sensibili e verrà registrata una violazione, il che ti consentirà di adottare provvedimenti più severi in caso di ulteriori infrazioni da parte dello stesso account.
         resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna sanzione registrata, e la segnalazione sarà chiusa.
         silence_description_html: L'account sarà visibile solo a coloro che già lo seguono o lo cercano manualmente, limitandone fortemente la sua visibilità. Questa operazione può essere annullata. Ciò chiude tutte le segnalazioni relative a questo account.
         suspend_description_html: L'account e tutti i suoi contenuti non saranno più accessibili e verranno infine eliminati; non sarà più possibile interagire con esso. Questa operazione è reversibile entro 30 giorni. Ciò chiude tutte le segnalazioni relative a questo account.
@@ -943,7 +943,7 @@ it:
       forwarded_replies_explanation: Questa segnalazione proviene da un utente remoto e tratta di contenuti remoti. È stato inoltrato a voi perché il contenuto riportato è in risposta a uno dei vostri utenti.
       forwarded_to: Inoltrato a %{domain}
       mark_as_resolved: Segna come risolto
-      mark_as_sensitive: Segna come sensibile
+      mark_as_sensitive: Contrassegna come sensibile
       mark_as_unresolved: Segna come non risolto
       no_one_assigned: Nessuno
       notes:
@@ -1338,7 +1338,7 @@ it:
       actions:
         delete_statuses: "%{name} ha eliminato i post di %{target}"
         disable: "%{name} ha congelato l'account di %{target}"
-        mark_statuses_as_sensitive: "%{name} ha segnato il media di %{target} come sensibile"
+        mark_statuses_as_sensitive: "%{name} ha contrassegnato il media di %{target} come sensibile"
         none: "%{name} ha inviato un avviso a %{target}"
         sensitive: "%{name} ha contrassegnato l'account di %{target} come sensibile"
         silence: "%{name} ha limitato l'account di %{target}"
@@ -1835,9 +1835,9 @@ it:
       title_actions:
         delete_statuses: Eliminazione del post
         disable: Congelamento dell'account
-        mark_statuses_as_sensitive: Marcatura dei post come sensibili
+        mark_statuses_as_sensitive: Contrassegno dei post come sensibili
         none: Avviso
-        sensitive: Marcatura dell'account come sensibile
+        sensitive: Contrassegno dell'account come sensibile
         silence: Limitazione dell'account
         suspend: Sospensione dell'account
       your_appeal_approved: Il tuo appello è stato approvato
