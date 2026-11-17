@@ -309,6 +309,10 @@ button {
   }
 }
 
+.rtl-flip {
+  scale: var(--text-x-direction) 1;
+}
+
 .logo-resources {
   // Not using display: none because of https://bugs.chromium.org/p/chromium/issues/detail?id=258029
   visibility: hidden;

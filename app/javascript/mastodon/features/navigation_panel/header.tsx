@@ -44,6 +44,7 @@ export const NavigationHeader: React.FC<{
             size='sm'
             tooltipPlacement='bottom'
             onClick={onToggleCollapsed}
+            className='rtl-flip'
           >
             <FormattedMessage
               id='navigation_bar.minimize'

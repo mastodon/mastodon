@@ -2,6 +2,8 @@ import { useCallback } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import {
   BookmarkSimpleIcon,
   CompassIcon,
@@ -75,7 +77,7 @@ export const CollapsedNavigationPanel: React.FC<{
         size='sm'
         tooltipPlacement={tooltipPlacement}
         onClick={onToggleCollapsed}
-        className={classes.expandButton}
+        className={classNames(classes.expandButton, 'rtl-flip')}
       >
         <FormattedMessage
           id='navigation_bar.expand'
