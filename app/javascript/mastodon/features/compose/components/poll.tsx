@@ -59,7 +59,7 @@ function durationToMessage(durationMs: number) {
 }
 
 export const ComposePoll: React.FC = () => {
-  const { options, maxOptions, expiresIn, multiple } =
+  const { options, maxOptions, maxCharacters, expiresIn, multiple } =
     useAppSelector(selectComposePoll);
   const listId = useId();
   const intl = useIntl();
@@ -129,6 +129,7 @@ export const ComposePoll: React.FC = () => {
             key={index}
             value={option}
             index={index}
+            maxLength={maxCharacters}
             onKeyDown={handleKeyDown}
             disabled={firstItemEmpty && index > 0}
           />
@@ -215,12 +216,13 @@ export const ComposePoll: React.FC = () => {
 const ComposePollOption: React.FC<{
   index: number;
   value: string;
+  maxLength: number;
   onKeyDown: (
     index: number,
     event: React.KeyboardEvent<HTMLInputElement>,
   ) => void;
   disabled: boolean;
-}> = ({ index, value, disabled, onKeyDown }) => {
+}> = ({ index, value, maxLength, disabled, onKeyDown }) => {
   const intl = useIntl();
 
   const dispatch = useAppDispatch();
@@ -247,7 +249,7 @@ const ComposePollOption: React.FC<{
         placeholder={intl.formatMessage(messages.option_placeholder, {
           number: index + 1,
         })}
-        maxLength={50}
+        maxLength={maxLength}
         autoFocus={index === 0}
         data-index={index}
         spellCheck
