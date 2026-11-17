@@ -105,6 +105,7 @@ cy:
       enable: Dadrewi
       enable_sign_in_token: Galluogi her cod diogelwch
       enable_sign_in_token_auth: Galluogi dilysu tocyn e-bost
+      enable_unconfirmed: Caniatáu e-bost cadarnhau
       enabled: Wedi ei alluogi
       enabled_msg: Wedi dadrewi cyfrif %{username} yn llwyddiannus
       follow_recommendations:
@@ -307,6 +308,7 @@ cy:
         create_domain_block_html: Mae %{name} wedi rhwystro parth %{target}
         create_email_domain_block_html: Mae %{name} wedi rhwystro parth e-bost %{target}
         create_ip_block_html: Mae %{name} wedi creu rheol ar gyfer IP %{target}
+        create_moderation_subscription_html: Mae %{name} wedi creu tanysgrifiad cymedroli %{target}
         create_relay_html: Creodd %{name} gyfnewidiad %{target}
         create_unavailable_domain_html: Mae %{name} wedi stopio danfon i barth %{target}
         create_user_role_html: Mae %{name} wedi creu rôl %{target}
@@ -322,6 +324,7 @@ cy:
         destroy_email_domain_block_html: Mae %{name} wedi dad-rwystro parth e-bost %{target}
         destroy_instance_html: Mae %{name} wedi dileu parth %{target}
         destroy_ip_block_html: Mae %{name} dileu rheol ar gyfer IP %{target}
+        destroy_moderation_subscription_html: Mae %{name} wedi creu tanysgrifiad cymedroli %{target}
         destroy_relay_html: Dileodd %{name} y cyfnewidiad %{target}
         destroy_status_html: Mae %{name} wedi tynnu postiad gan %{target}
         destroy_unavailable_domain_html: Mae %{name} wedi ailddechrau anfon i barth %{target}
@@ -370,10 +373,18 @@ cy:
         update_user_role_html: Mae %{name} wedi newid rôl %{target}
         update_username_block_html: Mae %{name} wedi diweddaru rheol ar gyfer enwau defnyddwyr sy'n cynnwys %{target}
         usable_tag_html: mae modd ei ddefnyddio;
+      automated_actions:
+        create_domain_allow_html: Ffederasiwn wedi'i ganiatáu'n awtomatig gyda'r parth %{target}
+        create_domain_block_html: Parth wedi'i rwystro'n awtomatig %{target}
+        destroy_domain_allow_html: Gwahardd ffederasiwn yn awtomatig gyda'r parth %{target}
+        destroy_domain_block_html: Parth wedi'i ddadrwystro'n awtomatig %{target}
+        update_domain_block_html: Rhwystro parth wedi'i ddiweddaru'n awtomatig ar gyfer %{target}
       deleted_account: cyfrif wedi'i ddileu
+      deleted_suggestion: tanysgrifiad cymedroli wedi'i ddileu
       empty: Dim logiau ar gael.
       filter_by_action: Hidlo yn ôl gweithred
       filter_by_user: Hidlo yn ôl defnyddiwr
+      suggested_by_html: Camau gweithredu awgrymwyd gan %{subscription}
       title: Cofnod archwilio
       unavailable_instance: "(nid yw enw'r parth ar gael)"
     announcements:
@@ -511,6 +522,9 @@ cy:
       add_new: Ychwanegu bloc parth newydd
       confirm_downgrade:
         cancel: Canslo
+        confirm: Israddio
+        preamble_html: Rydych chi ar fin israddio'r rhwystr presennol ar <strong>%{domain}</strong> a'i is-barthau.
+        title: Cadarnhau israddio rhwystro parth ar gyfer %{domain}
       confirm_suspension:
         cancel: Canslo
         confirm: Atal
@@ -714,6 +728,8 @@ cy:
       title: Dilyn yr argymhellion
       unsuppress: Adfer argymhelliad dilyn
     instances:
+      advisories:
+        title: Cynghorion gan danysgrifiadau cymedroli
       audit_log:
         title: Cofnodion Archwilio Diweddar
         view_all: Gweld y cofnodion archwilio llawn
@@ -745,6 +761,7 @@ cy:
         comment: Nodyn mewnol
         description_html: Gallwch ddiffinio polisïau cynnwys a fydd yn cael eu cymhwyso i bob cyfrif o'r parth hwn ac unrhyw un o'i is-barthau.
         limited_federation_mode_description_html: Gallwch ddewis a ydych am ganiatáu ffedereiddio â'r parth hwn.
+        moderation_subscription: Tanysgrifiad cymedroli
         policies:
           reject_media: Gwrthod cyfryngau
           reject_reports: Gwrthod adroddiadau
@@ -830,18 +847,91 @@ cy:
       search: Chwilio
       title: Rheolau IP
     moderation_subscriptions:
+      add_new: Ychwanegu tanysgrifiad
+      advisory_action: 'Gweithred: %{action}'
       advisory_actions:
         accept: caniatáu
+        limit: distawrwydd
         reject: atal
+      apply_automatically: Rhoi cynghorion ar waith yn awtomatig
       apply_conditions:
         always: Bob tro
         never: Byth
+        safely: Dim ond os nad yw'n torri perthnasoedd
+      apply_conditions_hint:
+        always: Defnyddiwch y camau gweithredu sy'n cael eu hargymell yn awtomatig bob amser. Defnyddiwch yr dewis hwn dim ond ar gyfer rhestrau rydych chi'n ymddiried ynddyn nhw'n llwyr.
+        never: Peidio byth â rhoi camau gweithredu sy'n cael eu hargymell ar waith yn awtomatig. Rhaid cynhyrchu awgrym bob tro yn lle hynny.
+        safely: Gosod camau gweithredu sy'n cael eu hargymell oni bai y bydden nhw'n torri perthnasoedd dilyn presennol gyda defnyddwyr lleol. Mewn achosion o'r fath, bydd awgrym yn cael ei gynhyrchu yn lle hynny.
       delete: Dileu
+      destroyed_msg: Tanysgrifiad cymedroli wedi'i ddileu'n llwyddiannus
+      empty: Does dim rhestr gymedroli wedi'i thanysgrifio iddi eto.
+      last_synced_at: Cydweddiad diwethaf am
+      list_action: Math o danysgrifiad
+      list_actions:
+        accept: Rhestr ganiatâd
+        default: Cymysg (Caniatáu a Gwrthod)
+        reject: Rhestr rhwystro
+      list_actions_hint:
+        accept: Bydd eitemau heb unrhyw gamau penodol yn cael eu trin fel rhai sy'n cael eu caniatáu. Bydd rhwystro'n cael eu hanwybyddu.
+        default: Bydd eitemau heb unrhyw weithred benodol yn cael eu trin fel rhwystro. Bydd rhwystro a chaniatâd yn cael eu trin felly.
+        reject: Bydd eitemau heb unrhyw gamau penodol yn cael eu trin fel rhwystro. Bydd caniatâd yn cael ei anwybyddu.
       list_actions_short:
+        accept: Rhestr ganiatâd
         default: Cymysg
+        reject: Rhestr rhwystro
       name: Enw
       new:
         create: Tanysgrifio
+        title: Tanysgrifiad cymedroli newydd
+      override_unattributed: Diystyru rhwystro â llaw
+      override_unattributed_hint: Caniatáu i'r tanysgrifiad hwn uwchraddio'n awtomatig neu gymryd drosodd ry hwystro â llaw presennol wrth osod cynghorion yn awtomatig.
+      policies:
+        apply_advisories: Yn gosod cynghorion yn awtomatig
+        apply_advisories_safely: Yn gosod cynghorion yn awtomatig nad yw'n torri perthnasoedd
+        apply_retractions: Yn gosod tynnu'n ôl yn awtomatig
+      priority: Blaenoriaeth
+      priority_hint: Caiff tanysgrifiadau cymedroli eu gwerthuso yn nhrefn blaenoriaeth, mae tanysgrifiadau â rhif is yn diystyru tanysgrifiadau ag un uwch.
+      retract_automatically: Tynnu cynghorion yn ôl yn awtomatig
+      retract_automatically_hint: Mae polisi i ganiatáu tynnu'n ôl neu israddio yn newid pan fydd y tanysgrifiad yn tynnu eitem gyfatebol. Pan fydd tynnu'n ôl awtomatig wedi'i alluogi a bod cynghorion cyfatebol yn bodoli mewn rhestr flaenoriaeth is, caiff ei fabwysiadu. Pan fydd tynnu'n ôl awtomatig wedi'i analluogi, bydd awgrym yn cael ei gynhyrchu yn lle hynny.
+      show:
+        delete_confirm: Ydych chi'n siŵr eich bod chi eisiau dileu'r tanysgrifiad cymedroli hwn?
+        edit: Golygu tanysgrifiad
+        empty: Does gan y tanysgrifiad hwn ddim cynghorion eto.
+        title: 'Tanysgrifiad cymedroli: %{name}'
+      tabs:
+        logs: Logiau
+        subscriptions: Tanysgrifiadau
+        suggestions: Awgrymiadau
+      title: Tanysgrifiadau cymedroli
+      type: Math
+      types:
+        csv_list: rhestr CSV
+      url: URL
+    moderation_subscriptions_logs:
+      title: Logiau tanysgrifiadau cymedroli
+    moderation_suggestions:
+      actions:
+        accept: Caniatáu
+        limit: Terfyn
+        reject: Atal
+        retract: Tynnu'r polisi presennol yn ôl
+      applied_msg: Awgrym wedi'i osod yn llwyddiannus ar gyfer %{target_key}
+      apply_accept: Caniatáu
+      apply_limit: Terfyn
+      apply_reject: Atal
+      apply_retract: Tynnu'n ôl
+      current_states:
+        accept: caniatâd ar hyn o bryd
+        limit: cyfyngedig ar hyn o bryd
+        reject: atal ar hyn o bryd
+      description: Isod mae awgrymiadau o'ch tanysgrifiadau cymedroli, wedi'u trefnu yn ôl blaenoriaeth.
+      destroyed_msg: Llwyddwyd i wrthod awgrym ar gyfer %{target_key}
+      dismiss: Diystyru awgrymiadau
+      empty: Does ddim awgrym cymedroli ar hyn o bryd.
+      retracted_msg: Polisi wedi'i dynnu'n ôl yn llwyddiannus ar gyfer %{target_key}
+      suggested_from_html: Awgrymwyd gan %{link}
+      title: Awgrymiadau cymedroli
+      unable_to_apply_msg: Methu gosod awgrym ar gyfer %{target_key}
     relationships:
       title: Perthnasau %{acct}
     relays:
@@ -876,8 +966,13 @@ cy:
       action_taken_by: Camau a gymerwyd gan
       actions:
         delete_description_html: Bydd y postiadau yr adroddwyd amdanyn nhw'n cael eu dileu a bydd rhybudd yn cael ei recordio i'ch helpu i gynyddu achosion o dordyletswydd yn y dyfodol gan yr un cyfrif.
+        disable_description_html: Ataliwch y defnyddiwr rhag defnyddio ei gyfrif, ond peidiwch â dileu na chuddio ei gynnwys. Mae modd gwrthdroi'r weithred hon. Mae hyn yn cau pob adroddiad yn erbyn y cyfrif hwn.
+        force_sensitive_descption_html: Gorfodi holl atodiadau cyfryngau'r defnyddiwr hwn i gael eu nodi fel rhai sensitif. Mae modd gwrthdroi hyn. Mae hyn yn cau pob adroddiad yn erbyn y cyfrif hwn.
         mark_as_sensitive_description_html: Bydd y cyfryngau yn y postiadau sy'n cael eu hadrodd yn cael eu marcio'n sensitif a bydd rhybudd yn cael ei recordio i'ch helpu i gynyddu achosion o dorri rheolau yn y dyfodol gan yr un cyfrif.
         resolve_description_html: Ni fydd unrhyw gamau yn cael eu cymryd yn erbyn y cyfrif a adroddwyd, ni chofnodwyd rhybudd, a bydd yr adroddiad yn cael ei gau.
+        silence_description_html: Dim ond i'r rhai sydd eisoes yn ei ddilyn neu sy'n edrych amdano â llaw y bydd y cyfrif yn weladwy, gan gyfyngu'n sylweddol ar ei gyrhaeddiad. Mae gwrthdroi hyn bob amser. Mae hyn yn cau pob adroddiad yn erbyn y cyfrif hwn.
+        suspend_description_html: Bydd dim modd cael mynediad at y cyfrif a'i holl gynnwys ac yn y pen draw byddan nhw'n cael eu dileu, a bydd rhyngweithio ag ef yn amhosibl. Mae modd gwrthdroi hyn o fewn 30 diwrnod. Mae hyn yn cau pob adroddiad yn erbyn y cyfrif hwn.
+        warn_description_html: Defnyddiwch hwn i anfon rhybudd at y defnyddiwr, heb gychwyn unrhyw gamau eraill.
       actions_description_html: Penderfynwch pa gamau i'w cymryd i delio gyda'r adroddiad hwn. Os cymerwch gamau cosbi yn erbyn y cyfrif a adroddwyd, bydd hysbysiad e-bost yn cael ei anfon atyn nhw, ac eithrio pan fydd y categori <strong>Sbam</strong> yn cael ei ddewis.
       actions_description_remote_html: Penderfynwch pa gamau i'w cymryd i ddatrys yr adroddiad hwn. Bydd hyn ond yn effeithio ar sut <strong>mae'ch</strong> gweinydd yn cyfathrebu â'r cyfrif hwn o bell ac yn trin ei gynnwys.
       actions_no_posts: Nid oes gan yr adroddiad hwn unrhyw bostiadau cysylltiedig i'w dileu
@@ -1045,6 +1140,119 @@ cy:
       translation: Cyfieithiad
       translations: Cyfieithiadau
       translations_explanation: Gallwch ychwanegu cyfieithiadau ar gyfer y rheolau yn ôl eich dewis. Bydd y gwerth rhagosodedig yn cael ei ddangos os nad oes fersiwn wedi'i chyfieithu ar gael. Gwnewch yn siŵr bob amser bod unrhyw gyfieithiad sy'n cael ei ddarparu'n gyson â'r gwerth rhagosodedig.
+    server_checks:
+      categories:
+        completed:
+          title: Wedi ei gwblhau
+        critical:
+          title: Beirniadol
+        error:
+          title: Gwallau
+        ignored:
+          title: Anwybyddwyd
+        suggestion:
+          title: Awgrymiadau
+        unprocessed:
+          title: Heb ei brosesu
+        warning:
+          title: Rhybuddion
+      checks:
+        database_schema:
+          error:
+            title: Roedd gwall wrth wirio'r cynllun cronfa ddata
+          ok:
+            title: Does dim mudo cronfeydd data ar fin digwydd
+          pending:
+            lead_html: Rhedwch nhw i sicrhau bod y rhaglen yn ymddwyn fel y disgwyl
+            title: Mae mudo cronfeydd data ar fin digwydd
+          running:
+            title: Mae eich gweinydd yn gwirio cynllun y gronfa ddata
+          unprocessed:
+            title: Dyw eich gweinydd heb wirio'r cynllun cronfa ddata eto
+        elastic_search:
+          error:
+            title: Roedd gwall wrth wirio ffurfweddiad Elasticsearch
+          ok:
+            title: Mae Elasticsearch wedi'i ffurfweddu heb broblem
+          pending:
+            lead:
+              analysis_index_mismatch_html: Mae gosodiadau dadansoddwr mynegai Elasticsearch wedi dyddio. Rhedwch <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Mae clwstwr Elasticsearch yn afiach (statws coch), nid yw'r nodweddion chwilio ar gael
+              cluster_health_yellow_html: Mae clwstwr Elasticsearch yn afiach (statws melyn), efallai hoffech chi ymchwilio i'r rheswm
+              index_mismatch_html: Mae mapiau mynegai Elasticsearch wedi dyddio. Rhedwch <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Mae gan eich clwstwr Elasticsearch fwy nag un nod, ond nid yw Mastodon wedi'i ffurfweddu i'w defnyddio
+              preset_single_node_html: Dim ond un nod sydd gan eich clwstwr Elasticsearch, rhaid gosod <code>ES_PRESET</code> i <code>single_node_cluster</code>
+              reset_chewy_html: Mae mynegai eich system Elasticsearch wedi dyddio oherwydd newid gosodiad. Rhedwch <code>tootctl search deploy --reset-chewy</code> i'w ddiweddaru
+              running_check_html: Methu cysylltu ag Elasticsearch. Gwiriwch ei fod yn rhedeg, neu analluogwch chwiliad testun llawn
+              version_check_html: Mae Elasticsearch %{running_version} yn rhedeg tra bod angen %{required_version}
+            title: Mae problemau gydag Elasticsearch
+          running:
+            title: Mae'r gweinydd yn gwirio ffurfweddiad Elasticsearch
+          unprocessed:
+            title: Nid yw'r gweinydd wedi gwirio ffurfweddiad Elasticsearch eto
+        media_privacy:
+          error:
+            title: Bu gwall wrth wirio preifatrwydd cyfryngau eich gweinydd
+          ok:
+            title: Mae preifatrwydd cyfryngau eich gweinydd yn ddiogel
+          pending:
+            lead:
+              upload_check_privacy_error_html: Mae eich gweinydd gwe wedi'i gamffurfweddu
+              upload_check_privacy_error_object_storage_html: Mae eich storfa gwrthrychau wedi'i chamffurfweddu
+            title: Mae preifatrwydd eich defnyddwyr mewn perygl
+          running:
+            title: Mae'r gweinydd yn gwirio ei statws preifatrwydd
+          unprocessed:
+            title: Nid yw'r gweinydd wedi gwirio ei statws preifatrwydd eto
+        rules:
+          error:
+            title: Bu gwall wrth wirio rheolau eich gweinydd
+          ok:
+            title: Mae rheolau eich gweinydd wedi'u gosod
+          pending:
+            lead_html: Does gan eich gweinydd ddim rheolau cyhoeddedig. Mae rheolau clir yn helpu i gymedroli a gosod disgwyliadau
+            title: Gosod rheolau gweinydd
+          running:
+            title: Mae'r gweinydd yn gwirio eich rheolau
+          unprocessed:
+            title: Nid yw'r gweinydd wedi gwirio a oes unrhyw reolau eto
+        sidekiq_process:
+          error:
+            title: Roedd gwall wrth wirio ffurfweddiad Sidekiq
+          ok:
+            title: Mae Sidekiq wedi'i ffurfweddu heb broblemau
+          pending:
+            lead_html: Does dim proses Sidekiq yn rhedeg ar gyfer y ciw(iau) %{missing_queues_str}
+            title: Adolygwch eich ffurfweddiad Sidekiq
+          running:
+            title: Mae'r gweinydd yn gwirio ffurfweddiad Sidekiq
+          unprocessed:
+            title: Nid yw'r gweinydd wedi gwirio'r ffurfweddiad Sidekiq eto
+        software_version:
+          error:
+            title: Roedd gwall wrth wirio am ddiweddariadau meddalwedd
+          ok:
+            title: Mae eich enghraifft Mastodon yn gyfredol
+          pending:
+            lead:
+              patch_html: Mae diweddariad Mastodon ar gael i drwsio gwallau
+              regular_html: Mae fersiwn newydd o Mastodon ar gael
+              urgent_html: Mae diweddariad Mastodon hanfodol ar gael, diweddarwch cyn gynted â phosibl, os gwelwch yn dda
+            title: Diweddarwch eich enghraifft Mastodon
+          running:
+            title: Mae'r gweinydd yn gwirio a oes unrhyw ddiweddariad meddalwedd ar fin digwydd
+          unprocessed:
+            title: Dyw'r gweinydd heb wirio diweddariadau meddalwedd eto
+      ignore:
+        label: Anwybyddu
+      lead: Argymhellion i gadw'ch gweinydd yn ddiogel, yn groesawgar ac yn effeithlon.
+      recommendations:
+        title: Argymhellion
+      restore:
+        label: Adfer
+      setup:
+        label: Gosod
+      title: Iechyd y Gweinydd
     settings:
       about:
         manage_rules: Rheoli rheolau gweinydd
@@ -1067,6 +1275,8 @@ cy:
         danger_zone: Parth perygl
         preamble: Rheoli sut mae cynnwys sy'n cael ei gynhyrchu gan ddefnyddwyr yn cael ei storio yn Mastodon.
         title: Cadw cynnwys
+      crawlers:
+        preamble: Rheoli sut y gall botiau (sy'n ymddwyn yn dda) fel cropwyr peiriannau chwilio ryngweithio â'ch gweinydd Mastodon. Gall botiau maleisus anwybyddu'r gosodiadau hyn a rhaid eu rhwystro ar lefel y rhwydwaith.
       default_noindex:
         desc_html: Yn effeithio pob defnyddwr sydd heb newid y gosodiad ei hun
         title: Eithrio defnyddwyr o fynegai peiriannau chwilio, fel rhagosodiad
