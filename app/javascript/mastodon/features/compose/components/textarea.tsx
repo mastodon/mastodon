@@ -19,14 +19,12 @@ import type { OnSuggestionSelect } from '@/mastodon/components/autosuggest/hooks
 import { useAutosuggestFloatingMenu } from '@/mastodon/components/autosuggest/hooks';
 import { AutosuggestMenu } from '@/mastodon/components/autosuggest/list';
 import { TextArea } from '@/mastodon/components/form_fields';
-import { matchesKeyCode } from '@/mastodon/components/hotkeys/utils';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import { VERTICAL_LANG_CODES } from '@/mastodon/locales';
 import {
   clearComposerErrors,
   clearComposerFocusRequest,
   COMPOSER_TEXTAREA_ID,
-  toggleContentWarning,
 } from '@/mastodon/reducers/slices/composer';
 import {
   createAppSelector,
@@ -173,25 +171,12 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     [dispatch],
   );
 
-  const onKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> =
-    useCallback(
-      (event) => {
-        if (matchesKeyCode('x', event.code) && event.altKey) {
-          event.preventDefault();
-          dispatch(toggleContentWarning());
-          return false;
-        }
-        return;
-      },
-      [dispatch],
-    );
-
   const { sensor, isInViewport } = useScrollSensor({
     placement: 'bottom',
     tolerance: 10,
   });
 
-  const textAreaProps = mergeProps(props, sourceProps, { onKeyDown });
+  const textAreaProps = mergeProps(props, sourceProps);
 
   return (
     <div

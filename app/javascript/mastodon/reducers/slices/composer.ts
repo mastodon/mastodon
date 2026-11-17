@@ -6,8 +6,6 @@ import { length } from 'stringz';
 
 import {
   changeCompose,
-  changeComposeSpoilerness,
-  changeComposeSpoilerText,
   clearComposeSuggestions,
   COMPOSE_DIRECT,
   COMPOSE_FOCUS,
@@ -57,10 +55,7 @@ type DisplayState = 'hidden' | 'showing' | 'minimized';
 
 export type ComposeType = 'post' | 'message' | 'reply' | 'replyPrivate';
 
-export type ComposerPublishError =
-  | 'empty'
-  | 'too-long'
-  | 'missing-content-warning';
+export type ComposerPublishError = 'empty' | 'too-long';
 
 interface ComposerState {
   displayState: DisplayState;
@@ -344,19 +339,12 @@ export const submitComposer = createAppThunk(
 
     const { compose, meta, statuses, server, settings } = getState();
 
-    let text = compose.get('text') as string;
-    const spoilerText = compose.get('spoiler_text') as string;
-    if (compose.get('spoiler') && spoilerText) {
-      text += spoilerText;
-    }
+    const text =
+      (compose.get('text') as string) + (compose.get('spoiler_text') as string);
 
     const attachments = compose.get('media_attachments');
     if (!text.trim() && isList(attachments) && attachments.isEmpty()) {
       dispatch(composerSlice.actions.addError('empty'));
-    }
-
-    if (!!compose.get('spoiler') && !spoilerText.trim()) {
-      dispatch(composerSlice.actions.addError('missing-content-warning'));
     }
 
     const maxChars =
@@ -423,18 +411,6 @@ export const submitComposer = createAppThunk(
           dispatch(resetComposer());
         }),
       );
-    }
-  },
-);
-
-export const toggleContentWarning = createAppThunk(
-  (_arg, { dispatch, getState }) => {
-    dispatch(changeComposeSpoilerText(''));
-    dispatch(changeComposeSpoilerness());
-    dispatch(clearComposerErrors(['missing-content-warning', 'empty']));
-
-    if (!getState().compose.get('spoiler')) {
-      dispatch(requestComposerFocus());
     }
   },
 );

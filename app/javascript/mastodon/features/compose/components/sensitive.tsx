@@ -1,19 +1,16 @@
 import { useCallback, useRef } from 'react';
 
-import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
-import { TrashIcon } from '@phosphor-icons/react';
+import { EyeSlashIcon, PlusIcon } from '@phosphor-icons/react';
 
 import { changeComposeSpoilerText } from '@/mastodon/actions/compose';
-import { IconButton } from '@/mastodon/components/button';
-import { FormFieldWrapper, TextInput } from '@/mastodon/components/form_fields';
-import {
-  matchesKeyCode,
-  normalizeKey,
-} from '@/mastodon/components/hotkeys/utils';
+import { TextInput } from '@/mastodon/components/form_fields';
+import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
+import { Icon } from '@/mastodon/components/icon';
+import { useToggle } from '@/mastodon/hooks/useToggle';
 import {
   clearComposerErrors,
-  toggleContentWarning,
   requestComposerFocus,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -24,9 +21,9 @@ import classes from '../styles.module.scss';
 import { selectComposeSensitive } from './selectors';
 
 const messages = defineMessages({
-  sensitiveText: {
-    id: 'compose.sensitive.text',
-    defaultMessage: 'Content warning',
+  placeholder: {
+    id: 'compose.sensitive.placeholder',
+    defaultMessage: 'Add content warning…',
   },
   sensitiveMissing: {
     id: 'form_error.blank',
@@ -42,12 +39,13 @@ export const ComposeSensitiveField: React.FC<
   const intl = useIntl();
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
-  const errors = useAppSelector((state) => state.composer.publishErrors);
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       dispatch(changeComposeSpoilerText(event.target.value));
-      dispatch(clearComposerErrors(['missing-content-warning']));
+      if (event.target.value) {
+        dispatch(clearComposerErrors(['empty']));
+      }
     },
     [dispatch],
   );
@@ -66,64 +64,42 @@ export const ComposeSensitiveField: React.FC<
         event.preventDefault();
         inputRef.current?.blur();
         return false;
-      } else if (matchesKeyCode('x', event.code) && event.altKey) {
-        event.preventDefault();
-        dispatch(toggleContentWarning());
-        return false;
       }
       return;
     },
     [dispatch],
   );
-  const onRemove = useCallback(() => {
-    dispatch(toggleContentWarning());
-  }, [dispatch]);
 
-  if (!sensitive) {
-    return null;
-  }
+  const onWrapperClick: React.MouseEventHandler = useCallback((event) => {
+    if (event.target instanceof HTMLInputElement) {
+      return;
+    }
+    inputRef.current?.focus();
+  }, []);
+
+  const [focused, { onTrue: onFocus, onFalse: onBlur }] = useToggle();
 
   return (
-    <FormFieldWrapper
-      compact
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div
       className={classes.sensitiveWrapper}
-      status={
-        errors.includes('missing-content-warning')
-          ? {
-              variant: 'error',
-              message: intl.formatMessage(messages.sensitiveMissing),
-            }
-          : undefined
-      }
-      label={intl.formatMessage(messages.sensitiveText)}
+      data-contents={!!sensitiveText}
+      onClick={onWrapperClick}
     >
-      {(inputProps) => (
-        <>
-          <TextInput
-            {...props}
-            {...inputProps}
-            autoFocus
-            ref={inputRef}
-            aria-required='true'
-            value={sensitiveText}
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-            className={classes.sensitive}
-          />
-
-          <IconButton
-            size='sm'
-            icon={TrashIcon}
-            onClick={onRemove}
-            color='destructive'
-          >
-            <FormattedMessage
-              id='compose.sensitive.delete'
-              defaultMessage='Remove content warning'
-            />
-          </IconButton>
-        </>
-      )}
-    </FormFieldWrapper>
+      <Icon icon={focused || sensitive ? EyeSlashIcon : PlusIcon} />
+      <TextInput
+        {...props}
+        autoFocus
+        ref={inputRef}
+        aria-required='true'
+        value={sensitiveText}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        className={classes.sensitive}
+        placeholder={intl.formatMessage(messages.placeholder)}
+      />
+    </div>
   );
 };
