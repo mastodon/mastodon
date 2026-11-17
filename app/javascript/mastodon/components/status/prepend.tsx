@@ -44,8 +44,8 @@ export const StatusPrepend: React.FC<{
             replyAccountId={status.in_reply_to_account_id}
           />
         )}
-      {status.visibility === 'direct' && !status.in_reply_to_id && (
-        <StatusBadge />
+      {status.visibility === 'direct' && (
+        <StatusBadge isReply={!!status.in_reply_to_id} />
       )}
     </>
   );
@@ -146,15 +146,22 @@ const StatusPrependReply: React.FC<{
   );
 };
 
-const StatusBadge: React.FC = () => {
+const StatusBadge: React.FC<{ isReply: boolean }> = ({ isReply }) => {
   return (
     <Badge
       className={classes.badge}
       label={
-        <FormattedMessage
-          id='status.badges.message'
-          defaultMessage='Private message'
-        />
+        isReply ? (
+          <FormattedMessage
+            id='status.badges.private_reply'
+            defaultMessage='Private reply'
+          />
+        ) : (
+          <FormattedMessage
+            id='status.badges.message'
+            defaultMessage='Private message'
+          />
+        )
       }
     />
   );
