@@ -14,7 +14,6 @@ import { IconButton } from '@/mastodon/components/button';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { trendsEnabled } from '@/mastodon/initial_state';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
-import { openCollapsibleSidebar } from '@/mastodon/reducers/slices/navigation';
 import { useAppDispatch } from '@/mastodon/store';
 
 import { handleSearchLinkClick } from '.';
@@ -41,15 +40,12 @@ const messages = defineMessages({
 
 export const CollapsedNavigationPanel: React.FC<{
   multiColumn?: boolean;
-}> = () => {
+  onToggleCollapsed?: () => void;
+}> = ({ onToggleCollapsed }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   // const { customFeeds } = useCustomFeeds();
   // const { followedHashtags } = useFollowedHashtags();
-
-  const expandNavigation = useCallback(() => {
-    dispatch(openCollapsibleSidebar());
-  }, [dispatch]);
 
   const openComposer = useCallback(() => {
     dispatch(openNewComposer({ type: 'post' }));
@@ -66,7 +62,7 @@ export const CollapsedNavigationPanel: React.FC<{
         icon={CaretLineRightIcon}
         size='sm'
         tooltipPlacement={tooltipPlacement}
-        onClick={expandNavigation}
+        onClick={onToggleCollapsed}
         className={classes.expandButton}
       >
         <FormattedMessage

@@ -1,8 +1,13 @@
+import { useCallback } from 'react';
+
 import classNames from 'classnames';
 
 import { ComposeButton } from '@/mastodon/features/compose/trigger';
 import { NavigationPanel } from '@/mastodon/features/navigation_panel';
 import { MobileNavigation } from '@/mastodon/features/navigation_panel/mobile_nav';
+import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
+import { useStorageState } from '@/mastodon/hooks/useStorage';
+import { useIdentity } from '@/mastodon/identity_context';
 import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';
@@ -19,6 +24,18 @@ export const ColumnsArea: React.FC<{
 }> = ({ children, minimalShell, singleColumn, ref }) => {
   const isMobile = useBreakpoint('openable');
 
+  const { accountId } = useIdentity();
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useStorageState<boolean>(
+    'navigation-sidebar-collapsed',
+    singleColumn ? false : true,
+    { prefix: accountId },
+  );
+  const toggleIsCollapsed = useCallback(() => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  }, [isSidebarCollapsed, setIsSidebarCollapsed]);
+
+  const multiColScrollSensor = useScrollSensor();
+
   if (minimalShell) {
     return (
       <div ref={ref} className={classNames(classes.root, classes.rootMinimal)}>
@@ -34,9 +51,16 @@ export const ColumnsArea: React.FC<{
 
   if (singleColumn) {
     return (
-      <div ref={ref} className={classes.root}>
+      <div
+        ref={ref}
+        className={classes.root}
+        data-collapsed={isSidebarCollapsed}
+      >
         <div className={classes.navigationWrapper}>
-          <NavigationPanel />
+          <NavigationPanel
+            collapsed={isSidebarCollapsed}
+            onToggleCollapsed={toggleIsCollapsed}
+          />
         </div>
         {isMobile ? <MobileNavigation /> : <ComposeButton />}
 
@@ -46,10 +70,22 @@ export const ColumnsArea: React.FC<{
   }
 
   return (
-    <main ref={ref} className={multiColClasses.root}>
-      <div className={multiColClasses.navigationWrapper}>
-        <NavigationPanel multiColumn />
+    <main
+      ref={ref}
+      className={multiColClasses.root}
+      data-collapsed={isSidebarCollapsed}
+    >
+      <div
+        className={multiColClasses.navigationWrapper}
+        data-is-scrolled={!multiColScrollSensor.isInViewport}
+      >
+        <NavigationPanel
+          multiColumn
+          collapsed={isSidebarCollapsed}
+          onToggleCollapsed={toggleIsCollapsed}
+        />
       </div>
+      {multiColScrollSensor.sensor}
       <ComposeButton />
       <MultiColumnContent>{children}</MultiColumnContent>
     </main>

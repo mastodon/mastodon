@@ -1,13 +1,13 @@
 @use '@/styles/mastodon/variables' as *;
+@use '@/styles/mastodon/mixins';
 
 .root {
-  --multi-column-navigation-width: 320px;
   --multi-column-gap: var(--space-1);
+  --sidebar-width: var(--main-navigation-width);
 
-  // This grid definition is shared with the composer
-  --columns-area-grid-columns: minmax(0, var(--multi-column-navigation-width))
-    minmax(0, 600px) minmax(0, 1fr);
-  --columns-area-grid-gap: var(--multi-column-gap);
+  &[data-collapsed='true'] {
+    --sidebar-width: var(--main-navigation-width-collapsed);
+  }
 
   position: relative;
   display: flex;
@@ -15,8 +15,8 @@
   justify-content: flex-start;
   gap: var(--multi-column-gap);
   padding-inline-end: var(--multi-column-gap);
+  margin-inline-start: var(--sidebar-width);
   overflow-x: auto;
-  scroll-padding-inline-start: var(--multi-column-navigation-width);
 
   &:focus-visible {
     // Scrollable elements are made focusable by some browsers, this adds
@@ -29,9 +29,19 @@
 }
 
 .navigationWrapper {
-  min-width: var(--multi-column-navigation-width);
+  position: fixed;
+  inset-inline-start: 0;
+  inset-block: 0;
+  z-index: 20;
+  width: var(--sidebar-width);
   padding-bottom: env(safe-area-inset-bottom);
   background: var(--color-bg-desktop);
+
+  &[data-is-scrolled='true'] {
+    box-shadow:
+      0 0 var(--space-half) 0 var(--color-border-primary),
+      var(--space-1) 0 var(--space-2) 0 var(--color-bg-highlight);
+  }
 
   @media (max-width: ($mobile-menu-breakpoint - 1)) {
     display: none;

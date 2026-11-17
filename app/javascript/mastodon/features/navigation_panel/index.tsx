@@ -19,7 +19,6 @@ import {
   canManageReports,
   canViewAdminDashboard,
 } from '@/mastodon/permissions';
-import { useAppSelector } from '@/mastodon/store';
 import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
 import { CollapsedNavigationPanel } from './collapsed';
@@ -54,17 +53,20 @@ interface NavigationPanelProps {
    */
   mode?: 'static' | 'slide-out';
   multiColumn?: boolean;
+  collapsed?: boolean;
+  onToggleCollapsed?: () => void;
 }
 
 export const NavigationPanel: React.FC<NavigationPanelProps> = (props) => {
-  const isSidebarCollapsed = useAppSelector(
-    (state) => state.navigation.isSidebarCollapsed,
-  );
+  const { mode = 'static', multiColumn, collapsed, onToggleCollapsed } = props;
 
-  const { mode = 'static', multiColumn } = props;
-
-  if (mode === 'static' && isSidebarCollapsed) {
-    return <CollapsedNavigationPanel multiColumn={multiColumn} />;
+  if (mode === 'static' && collapsed) {
+    return (
+      <CollapsedNavigationPanel
+        multiColumn={multiColumn}
+        onToggleCollapsed={onToggleCollapsed}
+      />
+    );
   } else {
     return <ExpandedNavigationPanel {...props} />;
   }
@@ -74,6 +76,7 @@ const ExpandedNavigationPanel: React.FC<NavigationPanelProps> = ({
   siteName,
   mode = 'static',
   multiColumn,
+  onToggleCollapsed,
 }) => {
   const intl = useIntl();
   const { signedIn, permissions } = useIdentity();
@@ -118,7 +121,12 @@ const ExpandedNavigationPanel: React.FC<NavigationPanelProps> = ({
       aria-label={intl.formatMessage(messages.main)}
     >
       {topSensor}
-      <NavigationHeader siteName={siteName} isStuck={!isScrolledToTop} />
+      <NavigationHeader
+        siteName={siteName}
+        isStuck={!isScrolledToTop}
+        onToggleCollapsed={onToggleCollapsed}
+        mode={mode}
+      />
       {signedIn && (
         <>
           {transientSingleColumn && <TransientSingleColumnCallout />}

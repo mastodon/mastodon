@@ -12,10 +12,7 @@ import { IconLogo } from '@/mastodon/components/logo';
 import { useIdentity } from '@/mastodon/identity_context';
 import { customAppIcon, domain, title } from '@/mastodon/initial_state';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
-import {
-  closeCollapsibleSidebar,
-  closeMobileMenu,
-} from '@/mastodon/reducers/slices/navigation';
+import { closeMobileMenu } from '@/mastodon/reducers/slices/navigation';
 import { useAppDispatch } from '@/mastodon/store';
 
 import { getNavigationSkipLinkId } from '../ui/components/skip_links';
@@ -26,7 +23,9 @@ import { MiniNav } from './mini_nav';
 export const NavigationHeader: React.FC<{
   siteName?: string;
   isStuck: boolean;
-}> = ({ siteName, isStuck }) => {
+  mode: 'slide-out' | 'static';
+  onToggleCollapsed?: () => void;
+}> = ({ siteName, isStuck, mode, onToggleCollapsed }) => {
   const { signedIn } = useIdentity();
   const dispatch = useAppDispatch();
 
@@ -35,20 +34,16 @@ export const NavigationHeader: React.FC<{
     dispatch(openNewComposer({ type: 'post' }));
   }, [dispatch]);
 
-  const minimizeNavigation = useCallback(() => {
-    dispatch(closeCollapsibleSidebar());
-  }, [dispatch]);
-
   return (
     <header className={classes.root} data-stuck={isStuck}>
       <div className={classes.logoLockupWrapper}>
         <LogoLockup siteName={siteName} />
-        {signedIn && (
+        {signedIn && mode === 'static' && (
           <IconButton
             icon={CaretLineLeftIcon}
             size='sm'
             tooltipPlacement='bottom'
-            onClick={minimizeNavigation}
+            onClick={onToggleCollapsed}
           >
             <FormattedMessage
               id='navigation_bar.minimize'
@@ -58,7 +53,7 @@ export const NavigationHeader: React.FC<{
         )}
       </div>
 
-      {signedIn && (
+      {signedIn && mode === 'static' && (
         <>
           <MiniNav />
 
