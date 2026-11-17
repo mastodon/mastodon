@@ -218,10 +218,7 @@ export const StatusPage: React.FC = () => {
               onClick={handleBookmarkClick}
             >
               {!status.bookmarked ? (
-                <FormattedMessage
-                  id='status.bookmark'
-                  defaultMessage='Bookmark'
-                />
+                <FormattedMessage id='status.save' defaultMessage='Save post' />
               ) : (
                 <FormattedMessage
                   id='status.remove_bookmark'
