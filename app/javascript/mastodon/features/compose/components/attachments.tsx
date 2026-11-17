@@ -18,6 +18,7 @@ import {
   selectComposeAttachments,
   selectComposeHasAttachments,
   selectComposeSensitive,
+  selectComposeType,
 } from './selectors';
 import { ComposeUpload } from './upload';
 
@@ -48,6 +49,7 @@ const ComposeMediaAttachments: React.FC = () => {
   );
   const totalAttachments = attachments.length + pendingAttachments;
   const { mediaSensitive, sensitive } = useAppSelector(selectComposeSensitive);
+  const type = useAppSelector(selectComposeType);
 
   const dispatch = useAppDispatch();
   const onShowMedia = useCallback(() => {
@@ -84,10 +86,17 @@ const ComposeMediaAttachments: React.FC = () => {
       ))}
       {(mediaSensitive || sensitive) && (
         <div className={classes.mediaSpoilerShowButton}>
-          <FormattedMessage
-            id='compose.sensitive.media_blur_warning'
-            defaultMessage='Media will be blurred on the published post'
-          />
+          {type !== 'message' && type !== 'replyPrivate' ? (
+            <FormattedMessage
+              id='compose.sensitive.media_blur_warning'
+              defaultMessage='Media will be blurred on the published post'
+            />
+          ) : (
+            <FormattedMessage
+              id='compose.sensitive.media_blur_warning.message'
+              defaultMessage='Media will be blurred for recipients'
+            />
+          )}
           {!sensitive && (
             <Button variant='solid' size='xs' onClick={onShowMedia}>
               <FormattedMessage
