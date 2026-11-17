@@ -70,10 +70,22 @@ export const ComposeSensitiveField: React.FC<
     [dispatch],
   );
 
+  const onWrapperClick: React.MouseEventHandler = useCallback((event) => {
+    if (event.target instanceof HTMLInputElement) {
+      return;
+    }
+    inputRef.current?.focus();
+  }, []);
+
   const [focused, { onTrue: onFocus, onFalse: onBlur }] = useToggle();
 
   return (
-    <div className={classes.sensitiveWrapper} data-contents={!!sensitiveText}>
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div
+      className={classes.sensitiveWrapper}
+      data-contents={!!sensitiveText}
+      onClick={onWrapperClick}
+    >
       <Icon icon={focused || sensitive ? EyeSlashIcon : PlusIcon} />
       <TextInput
         {...props}
