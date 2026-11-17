@@ -10,6 +10,7 @@ import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { useAppSelector } from '@/mastodon/store';
 
 import { Avatar } from '../avatar';
+import { Badge } from '../badge';
 import { DisplayName } from '../display_name';
 import { Icon } from '../icon';
 import { RelativeTimestamp } from '../relative_timestamp';
@@ -23,7 +24,11 @@ export const StatusPrepend: React.FC<{
   reblogId?: string;
   showThread?: boolean;
 }> = ({ status, showThread, reblogId }) => {
-  if (!reblogId && (!showThread || !status.in_reply_to_id)) {
+  if (
+    !reblogId &&
+    (!showThread || !status.in_reply_to_id) &&
+    status.visibility !== 'direct'
+  ) {
     return null;
   }
 
@@ -39,6 +44,9 @@ export const StatusPrepend: React.FC<{
             replyAccountId={status.in_reply_to_account_id}
           />
         )}
+      {status.visibility === 'direct' && !status.in_reply_to_id && (
+        <StatusBadge />
+      )}
     </>
   );
 };
@@ -135,5 +143,19 @@ const StatusPrependReply: React.FC<{
         label
       )}
     </div>
+  );
+};
+
+const StatusBadge: React.FC = () => {
+  return (
+    <Badge
+      className={classes.badge}
+      label={
+        <FormattedMessage
+          id='status.badges.message'
+          defaultMessage='Private message'
+        />
+      }
+    />
   );
 };
