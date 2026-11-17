@@ -1,4 +1,4 @@
-- combined_types_collection.each do |type|
+- account_actions_combined_types_collection.each do |type|
   .flash-message.warning.left-align{ 'data-type' => type, 'class' => ('hidden' unless type == params[:type]) }
     %h6.lower-padding= safe_join([material_symbol('warning'), t('admin.account_actions.text_box_title')])
     %p.warning-hint.indent= t("admin.reports.summary.action_preambles.#{type}_html", acct: account.pretty_acct)

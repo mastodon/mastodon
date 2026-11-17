@@ -17,7 +17,7 @@ RSpec.describe Admin::Accounts::ModerationActionsController do
     let(:action) { '' }
 
     before do
-      post :preview, params: { 'account_id' => account_id, 'report_id' => report.id, 'type' => action }
+      post :preview, params: { admin_account_action: { report_id: report.id, type: action }, account_id: account_id }
     end
 
     context 'when the action is "suspend"' do
@@ -60,7 +60,7 @@ RSpec.describe Admin::Accounts::ModerationActionsController do
     let(:account_id)     { target_account.id }
     let(:text)           { 'hello' }
     let(:action)         { 'none' }
-    let(:common_params)  { { :account_id => account_id, 'report_id' => report.id, 'text' => text, 'type' => action } }
+    let(:common_params)  { { admin_account_action: { report_id: report.id, text: text, type: action, include_statuses: true }, account_id: account_id } }
 
     before do
       _media = Fabricate(:media_attachment, account: target_account, status: statuses[0])
@@ -76,7 +76,7 @@ RSpec.describe Admin::Accounts::ModerationActionsController do
       end
 
       context 'when text is unset' do
-        let(:common_params) { { 'account_id' => account_id, 'report_id' => report.id } }
+        let(:common_params) { { admin_account_action: { report_id: report.id, type: action, include_statuses: true }, account_id: account_id } }
 
         it 'closes the report and redirects' do
           expect { subject }.to mark_report_action_taken.and create_target_account_strike
@@ -157,12 +157,6 @@ RSpec.describe Admin::Accounts::ModerationActionsController do
 
     context 'with action as submit button' do
       subject { post :create, params: common_params.merge({ action => '' }) }
-
-      it_behaves_like 'all action types'
-    end
-
-    context 'with moderation action as an extra field' do
-      subject { post :create, params: common_params.merge({ moderation_action: action }) }
 
       it_behaves_like 'all action types'
     end

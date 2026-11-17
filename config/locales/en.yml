@@ -980,10 +980,10 @@ en:
       statuses: Posts (%{count})
       statuses_description_html: Offending content will be cited in communication with the reported account
       summary:
-        account_action_preamble:
-          none_html: From report <a href="%{report_path}">#%{report}</a> with no selected posts
-          plural_html: From report <a href="%{report_path}">#%{report}</a> with %{count} selected posts
-          singular_html: From report <a href="%{report_path}">#%{report}</a> with %{count} selected post
+        account_action_preamble_html:
+          one: From report <a href="%{report_path}">#%{report}</a> with %{count} selected post
+          other: From report <a href="%{report_path}">#%{report}</a> with %{count} selected posts
+          zero: From report <a href="%{report_path}">#%{report}</a> with no selected posts
         action_preambles:
           delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
           disable_html: 'You are about to <strong>freeze</strong> <strong>@%{acct}</strong>''s account. This will:'
