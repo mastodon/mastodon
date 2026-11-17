@@ -80,10 +80,9 @@
 }
 
 .toolbarMessage {
-  display: flex;
   gap: var(--space-1);
-  align-items: center;
   color: var(--color-text-secondary);
+  width: min-content;
 
   svg {
     width: var(--space-5);
