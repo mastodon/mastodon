@@ -151,7 +151,7 @@ export const MiniAccountLink: React.FC<
   }
 > = ({ tooltipPlacement, menuPlacement = 'top-end' }) => {
   return (
-    <Menu>
+    <Menu type='navigation'>
       <MenuTrigger
         as={AccountButton}
         withMenuIndicator

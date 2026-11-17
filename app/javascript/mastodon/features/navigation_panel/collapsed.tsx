@@ -8,9 +8,20 @@ import {
   CaretLineRightIcon,
   MagnifyingGlassIcon,
   PenNibIcon,
+  PlusIcon,
+  RssSimpleIcon,
+  ArrowUpRightIcon,
+  HashIcon,
 } from '@phosphor-icons/react';
 
 import { IconButton } from '@/mastodon/components/button';
+import {
+  Menu,
+  MenuItemGroup,
+  MenuItemLink,
+  MenuList,
+  MenuTrigger,
+} from '@/mastodon/components/menu';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { trendsEnabled } from '@/mastodon/initial_state';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
@@ -18,13 +29,14 @@ import { useAppDispatch } from '@/mastodon/store';
 
 import { handleSearchLinkClick } from '.';
 import classes from './collapsed.module.scss';
-// import { useCustomFeeds, useFollowedHashtags } from './hooks';
+import { useCustomFeeds, useFollowedHashtags } from './hooks';
 import {
   MiniAccountLink,
   MiniHomeLink,
   MiniMessagesLink,
   MiniNotificationsLink,
 } from './mini_nav';
+import type { MiniNavigationLinkProps } from './navigation_link';
 import { MiniNavigationLink } from './navigation_link';
 
 const messages = defineMessages({
@@ -36,7 +48,7 @@ const messages = defineMessages({
   },
 });
 
-// const MAX_HASHTAG_COUNT = 10;
+const MAX_MENU_ITEM_COUNT = 10;
 
 export const CollapsedNavigationPanel: React.FC<{
   multiColumn?: boolean;
@@ -44,8 +56,8 @@ export const CollapsedNavigationPanel: React.FC<{
 }> = ({ onToggleCollapsed }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  // const { customFeeds } = useCustomFeeds();
-  // const { followedHashtags } = useFollowedHashtags();
+  const { customFeeds } = useCustomFeeds();
+  const { followedHashtags } = useFollowedHashtags();
 
   const openComposer = useCallback(() => {
     dispatch(openNewComposer({ type: 'post' }));
@@ -143,58 +155,115 @@ export const CollapsedNavigationPanel: React.FC<{
           </MiniNavigationLink>
         </li>
 
-        {/* <ListSection
-          id='custom-feeds'
-          title={
-            <FormattedMessage
-              id='tabs_bar.custom_feeds'
-              defaultMessage='Custom Feeds'
-            />
-          }
-        >
-          <NavigationLink key='new' to='/lists/new' icon={PlusIcon}>
-            <FormattedMessage
-              id='tabs_bar.create_custom_feed'
-              defaultMessage='Create Feed'
-            />
-          </NavigationLink>
-          {customFeeds.map((feed) => (
-            <NavigationLink
-              key={feed.id}
-              to={`/lists/${feed.id}`}
-              icon={RssSimpleIcon}
-            >
-              {feed.title}
-            </NavigationLink>
-          ))}
-        </ListSection>
-
-        {followedHashtags.length > 0 && (
-          <ListSection
-            id='followed-hashtags'
+        <li>
+          <MenuSection
+            icon={RssSimpleIcon}
             title={
               <FormattedMessage
-                id='tabs_bar.followed_hashtags'
-                defaultMessage='Followed Hashtags'
+                id='tabs_bar.custom_feeds'
+                defaultMessage='Custom Feeds'
               />
             }
           >
-            {followedHashtags.slice(0, MAX_HASHTAG_COUNT).map((tag) => (
-              <NavigationLink key={tag.name} to={`/tags/${tag.name}`}>
-                #{tag.name}
-              </NavigationLink>
+            <MenuItemLink to='/lists/new' icon={PlusIcon}>
+              <FormattedMessage
+                id='tabs_bar.create_custom_feed'
+                defaultMessage='Create Feed'
+              />
+            </MenuItemLink>
+
+            {customFeeds.slice(0, MAX_MENU_ITEM_COUNT).map((feed) => (
+              <MenuItemLink
+                key={feed.id}
+                to={`/lists/${feed.id}`}
+                icon={RssSimpleIcon}
+              >
+                {feed.title}
+              </MenuItemLink>
             ))}
-            {followedHashtags.length > MAX_HASHTAG_COUNT && (
-              <NavigationLink key='view-all' to='/followed_tags'>
+
+            {customFeeds.length > MAX_MENU_ITEM_COUNT && (
+              <MenuItemLink key='view-all' to='/lists' icon={ArrowUpRightIcon}>
                 <FormattedMessage
                   id='tabs_bar.followed_tags_view_all'
                   defaultMessage='View all'
                 />
-              </NavigationLink>
+              </MenuItemLink>
             )}
-          </ListSection>
-        )} */}
+          </MenuSection>
+        </li>
+
+        {followedHashtags.length > 0 && (
+          <li>
+            <MenuSection
+              icon={HashIcon}
+              title={
+                <FormattedMessage
+                  id='tabs_bar.followed_hashtags'
+                  defaultMessage='Followed Hashtags'
+                />
+              }
+            >
+              {followedHashtags.slice(0, MAX_MENU_ITEM_COUNT).map((tag) => (
+                <MenuItemLink key={tag.name} to={`/tags/${tag.name}`}>
+                  #{tag.name}
+                </MenuItemLink>
+              ))}
+
+              {followedHashtags.length > MAX_MENU_ITEM_COUNT && (
+                <MenuItemLink
+                  key='view-all'
+                  to='/lists'
+                  icon={ArrowUpRightIcon}
+                >
+                  <FormattedMessage
+                    id='tabs_bar.followed_tags_view_all'
+                    defaultMessage='View all'
+                  />
+                </MenuItemLink>
+              )}
+            </MenuSection>
+          </li>
+        )}
       </ul>
     </nav>
+  );
+};
+
+const MenuSection: React.FC<{
+  title: React.ReactNode;
+  icon: MiniNavigationLinkProps['icon'];
+  children: React.ReactNode;
+}> = ({ title, icon, children }) => {
+  return (
+    <Menu type='navigation'>
+      <MenuTrigger as={MiniNavigationLinkAsMenuButton} icon={icon}>
+        {title}
+      </MenuTrigger>
+      <MenuList placement='right'>
+        <MenuItemGroup label={title}>{children}</MenuItemGroup>
+      </MenuList>
+    </Menu>
+  );
+};
+
+interface AccountButton
+  extends
+    React.ComponentPropsWithRef<'button'>,
+    Pick<MiniNavigationLinkProps, 'icon'> {}
+
+export const MiniNavigationLinkAsMenuButton: React.FC<AccountButton> = ({
+  children,
+  ...otherProps
+}) => {
+  return (
+    <MiniNavigationLink
+      as='button'
+      withMenuIndicator
+      tooltipPlacement='right'
+      {...otherProps}
+    >
+      {children}
+    </MiniNavigationLink>
   );
 };
