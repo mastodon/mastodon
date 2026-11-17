@@ -13,7 +13,7 @@ import classNames from 'classnames';
 
 import { fromJS } from 'immutable';
 
-import { EyeIcon, EyeSlashIcon } from '@phosphor-icons/react';
+import { EyeSlashIcon } from '@phosphor-icons/react';
 
 import { openModal } from '@/mastodon/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
@@ -344,23 +344,25 @@ const MediaAttachmentWrapper: React.FC<MediaAttachmentWrapperProps> = ({
       )}
       style={{ ['--aspect-ratio']: aspectRatio } as React.CSSProperties}
     >
-      {!visible && !statusHidden && mediaFilters.length > 0 && (
+      {!visible && !statusHidden && (
         <div
           className={classNames(
-            classes.gallerySpoiler,
+            classes.gallerySpoilerBox,
             mediaFilters.length > 0 && classes.gallerySpoilerFilter,
           )}
           data-interactive-post-content='true'
         >
-          <FormattedMessage
-            id='filter_warning.matches_filter'
-            defaultMessage='Matches filter “<span>{title}</span>”'
-            tagName='p'
-            values={{
-              title: mediaFilters.join(', '),
-              span: (chunks) => <span>{chunks}</span>,
-            }}
-          />
+          {mediaFilters.length > 0 && (
+            <FormattedMessage
+              id='filter_warning.matches_filter'
+              defaultMessage='Matches filter “<span>{title}</span>”'
+              tagName='p'
+              values={{
+                title: mediaFilters.join(', '),
+                span: (chunks) => <span>{chunks}</span>,
+              }}
+            />
+          )}
           <Button color='media' size='sm' onClick={onToggle}>
             <FormattedMessage
               id='content_warning.media.show_short'
@@ -382,22 +384,15 @@ const MediaAttachmentWrapper: React.FC<MediaAttachmentWrapperProps> = ({
         >
           {children}
         </Suspense>
-        {(mediaFilters.length === 0 || visible) && (
+        {visible && (
           <IconButton
-            icon={visible ? EyeSlashIcon : EyeIcon}
-            className={classes.gallerySpoiler}
+            icon={EyeSlashIcon}
+            className={classes.gallerySpoilerButton}
             color='media'
             size='xs'
             onClick={onToggle}
           >
-            {visible ? (
-              <FormattedMessage id='media_gallery.hide' defaultMessage='Hide' />
-            ) : (
-              <FormattedMessage
-                id='content_warning.media.show_short'
-                defaultMessage='Show media'
-              />
-            )}
+            <FormattedMessage id='media_gallery.hide' defaultMessage='Hide' />
           </IconButton>
         )}
       </div>
