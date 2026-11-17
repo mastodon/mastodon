@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import type { Placement } from '@floating-ui/react-dom';
 import {
   BellIcon,
   ChatCircleDotsIcon,
@@ -24,6 +25,7 @@ import { handleSearchLinkClick } from '.';
 import { AccountMenuItems } from './account_menu_items';
 import { useNotificationsCount } from './hooks';
 import classes from './mini_nav.module.scss';
+import type { MiniNavigationLinkProps } from './navigation_link';
 import { MiniNavigationLink } from './navigation_link';
 
 /**
@@ -57,8 +59,6 @@ export const MiniNav: React.FC = () => {
     }
   }, [isSearchOpen]);
 
-  const notificationsCount = useNotificationsCount();
-
   return (
     <div className={classes.root}>
       {isSearchOpen ? (
@@ -70,58 +70,109 @@ export const MiniNav: React.FC = () => {
         />
       ) : (
         <ul className={classes.list}>
-          <MiniNavigationLink to='/home' icon={HouseIcon}>
-            <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
-          </MiniNavigationLink>
-          <MiniNavigationLink
-            as='button'
-            icon={MagnifyingGlassIcon}
-            onClick={toggleSearch}
-            ref={searchButtonRef}
-          >
-            <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
-          </MiniNavigationLink>
-          <MiniNavigationLink to='/conversations' icon={ChatCircleDotsIcon}>
-            <FormattedMessage
-              id='tabs_bar.messages'
-              defaultMessage='Messages'
-              description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
-            />
-          </MiniNavigationLink>
-          <MiniNavigationLink
-            to='/notifications'
-            icon={BellIcon}
-            badgeCount={notificationsCount}
-          >
-            <FormattedMessage
-              id='tabs_bar.notifications'
-              defaultMessage='Notifications'
-            />
-          </MiniNavigationLink>
-          <Menu>
-            <MenuTrigger as={AccountButton} withMenuIndicator>
-              <FormattedMessage
-                id='tabs_bar.account'
-                defaultMessage='Account'
-              />
-            </MenuTrigger>
-            <MenuList placement='top-end' offset={8} minWidth={240}>
-              <AccountMenuItems />
-            </MenuList>
-          </Menu>
+          <li>
+            <MiniHomeLink />
+          </li>
+          <li>
+            <MiniNavigationLink
+              as='button'
+              icon={MagnifyingGlassIcon}
+              onClick={toggleSearch}
+              ref={searchButtonRef}
+            >
+              <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
+            </MiniNavigationLink>
+          </li>
+          <li>
+            <MiniMessagesLink />
+          </li>
+          <li>
+            <MiniNotificationsLink />
+          </li>
+          <li>
+            <MiniAccountLink />
+          </li>
         </ul>
       )}
     </div>
   );
 };
 
-interface AccountButton extends React.ComponentPropsWithRef<'button'> {
-  withMenuIndicator?: boolean;
-}
+export const MiniHomeLink: React.FC<
+  Pick<MiniNavigationLinkProps, 'tooltipPlacement'>
+> = ({ tooltipPlacement }) => (
+  <MiniNavigationLink
+    to='/home'
+    icon={HouseIcon}
+    tooltipPlacement={tooltipPlacement}
+  >
+    <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
+  </MiniNavigationLink>
+);
+
+export const MiniMessagesLink: React.FC<
+  Pick<MiniNavigationLinkProps, 'tooltipPlacement'>
+> = ({ tooltipPlacement }) => (
+  <MiniNavigationLink
+    to='/conversations'
+    icon={ChatCircleDotsIcon}
+    tooltipPlacement={tooltipPlacement}
+  >
+    <FormattedMessage
+      id='tabs_bar.messages'
+      defaultMessage='Messages'
+      description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
+    />
+  </MiniNavigationLink>
+);
+
+export const MiniNotificationsLink: React.FC<
+  Pick<MiniNavigationLinkProps, 'tooltipPlacement' | 'badgeType'>
+> = (props) => {
+  const notificationsCount = useNotificationsCount();
+  return (
+    <MiniNavigationLink
+      to='/notifications'
+      icon={BellIcon}
+      badgeCount={notificationsCount}
+      {...props}
+    >
+      <FormattedMessage
+        id='tabs_bar.notifications'
+        defaultMessage='Notifications'
+      />
+    </MiniNavigationLink>
+  );
+};
+
+export const MiniAccountLink: React.FC<
+  Pick<MiniNavigationLinkProps, 'tooltipPlacement'> & {
+    menuPlacement?: Placement;
+  }
+> = ({ tooltipPlacement, menuPlacement = 'top-end' }) => {
+  return (
+    <Menu>
+      <MenuTrigger
+        as={AccountButton}
+        withMenuIndicator
+        tooltipPlacement={tooltipPlacement}
+      >
+        <FormattedMessage id='tabs_bar.account' defaultMessage='Account' />
+      </MenuTrigger>
+      <MenuList placement={menuPlacement} offset={8} minWidth={240}>
+        <AccountMenuItems />
+      </MenuList>
+    </Menu>
+  );
+};
+
+interface AccountButton
+  extends
+    Pick<MiniNavigationLinkProps, 'tooltipPlacement' | 'withMenuIndicator'>,
+    React.ComponentPropsWithRef<'button'> {}
 
 export const AccountButton: React.FC<AccountButton> = ({
   children,
-  withMenuIndicator,
   ...otherProps
 }) => {
   const { accountId } = useIdentity();
@@ -129,7 +180,6 @@ export const AccountButton: React.FC<AccountButton> = ({
   return (
     <MiniNavigationLink
       as='button'
-      withMenuIndicator={withMenuIndicator}
       icon={{
         customIcon: (
           <Avatar size={20} account={account} className={classes.avatar} />

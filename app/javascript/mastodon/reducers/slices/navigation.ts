@@ -5,13 +5,13 @@ import { forceSingleColumn } from '../../initial_state';
 interface State {
   isMobileMenuOpen: boolean;
   isInlineSearchOpen: boolean;
-  isMenuCollapsed: boolean;
+  isSidebarCollapsed: boolean;
 }
 
 const initialState: State = {
   isMobileMenuOpen: false,
   isInlineSearchOpen: false,
-  isMenuCollapsed: !forceSingleColumn,
+  isSidebarCollapsed: !forceSingleColumn,
 };
 
 const navigationSlice = createSlice({
@@ -39,14 +39,14 @@ const navigationSlice = createSlice({
       state.isInlineSearchOpen = !state.isInlineSearchOpen;
     },
     // Collapsible main nav
-    openCollapsibleMenu(state) {
-      state.isMenuCollapsed = false;
+    openCollapsibleSidebar(state) {
+      state.isSidebarCollapsed = false;
     },
-    closeCollapsibleMenu(state) {
-      state.isMenuCollapsed = true;
+    closeCollapsibleSidebar(state) {
+      state.isSidebarCollapsed = true;
     },
-    toggleCollapsibleMenu(state) {
-      state.isMenuCollapsed = !state.isMenuCollapsed;
+    toggleCollapsibleSidebar(state) {
+      state.isSidebarCollapsed = !state.isSidebarCollapsed;
     },
   },
 });
@@ -60,7 +60,7 @@ export const {
   openInlineSearch,
   closeInlineSearch,
   toggleInlineSearch,
-  openCollapsibleMenu,
-  closeCollapsibleMenu,
-  toggleCollapsibleMenu,
+  openCollapsibleSidebar,
+  closeCollapsibleSidebar,
+  toggleCollapsibleSidebar,
 } = navigationSlice.actions;

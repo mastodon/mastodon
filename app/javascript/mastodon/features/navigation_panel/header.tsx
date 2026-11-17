@@ -5,14 +5,17 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { PenNibIcon } from '@phosphor-icons/react';
+import { CaretLineLeftIcon, PenNibIcon } from '@phosphor-icons/react';
 
-import { Button } from '@/mastodon/components/button';
+import { Button, IconButton } from '@/mastodon/components/button';
 import { IconLogo } from '@/mastodon/components/logo';
 import { useIdentity } from '@/mastodon/identity_context';
 import { customAppIcon, domain, title } from '@/mastodon/initial_state';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
-import { closeMobileMenu } from '@/mastodon/reducers/slices/navigation';
+import {
+  closeCollapsibleSidebar,
+  closeMobileMenu,
+} from '@/mastodon/reducers/slices/navigation';
 import { useAppDispatch } from '@/mastodon/store';
 
 import { getNavigationSkipLinkId } from '../ui/components/skip_links';
@@ -32,9 +35,28 @@ export const NavigationHeader: React.FC<{
     dispatch(openNewComposer({ type: 'post' }));
   }, [dispatch]);
 
+  const minimizeNavigation = useCallback(() => {
+    dispatch(closeCollapsibleSidebar());
+  }, [dispatch]);
+
   return (
     <header className={classes.root} data-stuck={isStuck}>
-      <LogoLockup siteName={siteName} />
+      <div className={classes.logoLockupWrapper}>
+        <LogoLockup siteName={siteName} />
+        {signedIn && (
+          <IconButton
+            icon={CaretLineLeftIcon}
+            size='sm'
+            tooltipPlacement='bottom'
+            onClick={minimizeNavigation}
+          >
+            <FormattedMessage
+              id='navigation_bar.minimize'
+              defaultMessage='Minimize Menu'
+            />
+          </IconButton>
+        )}
+      </div>
 
       {signedIn && (
         <>

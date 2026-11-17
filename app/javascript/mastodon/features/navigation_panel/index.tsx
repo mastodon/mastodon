@@ -19,8 +19,10 @@ import {
   canManageReports,
   canViewAdminDashboard,
 } from '@/mastodon/permissions';
+import { useAppSelector } from '@/mastodon/store';
 import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
+import { CollapsedNavigationPanel } from './collapsed';
 import { FooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
 import {
@@ -44,15 +46,35 @@ const messages = defineMessages({
 
 const MAX_HASHTAG_COUNT = 5;
 
-export const NavigationPanel: React.FC<{
+interface NavigationPanelProps {
   siteName?: string;
   /**
-   * In 'slide-out' mode (used on smaller viewport sizes), some
-   * menu items are hidden and the design is tweaked slightly
+   * In 'slide-out' mode (used on mobile), some menu items
+   * are hidden and the design is tweaked slightly
    */
   mode?: 'static' | 'slide-out';
   multiColumn?: boolean;
-}> = ({ siteName, mode = 'static', multiColumn }) => {
+}
+
+export const NavigationPanel: React.FC<NavigationPanelProps> = (props) => {
+  const isSidebarCollapsed = useAppSelector(
+    (state) => state.navigation.isSidebarCollapsed,
+  );
+
+  const { mode = 'static', multiColumn } = props;
+
+  if (mode === 'static' && isSidebarCollapsed) {
+    return <CollapsedNavigationPanel multiColumn={multiColumn} />;
+  } else {
+    return <ExpandedNavigationPanel {...props} />;
+  }
+};
+
+const ExpandedNavigationPanel: React.FC<NavigationPanelProps> = ({
+  siteName,
+  mode = 'static',
+  multiColumn,
+}) => {
   const intl = useIntl();
   const { signedIn, permissions } = useIdentity();
 
