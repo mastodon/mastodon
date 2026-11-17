@@ -15,6 +15,7 @@ import { DisplayName } from '../display_name';
 import { Icon } from '../icon';
 import { RelativeTimestamp } from '../relative_timestamp';
 
+import { useStatusContext } from './hooks';
 import { StatusBoostIcon } from './icons';
 import classes from './prepend.module.scss';
 import { statusLink } from './utils';
@@ -147,6 +148,11 @@ const StatusPrependReply: React.FC<{
 };
 
 const StatusBadge: React.FC<{ isReply: boolean }> = ({ isReply }) => {
+  const { variant } = useStatusContext();
+  if (variant === 'page') {
+    return null;
+  }
+
   return (
     <Badge
       className={classes.badge}

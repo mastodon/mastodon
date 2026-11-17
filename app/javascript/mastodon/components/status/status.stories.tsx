@@ -13,11 +13,10 @@ import {
   statusFactoryImmutable,
 } from '@/testing/factories';
 
-import type { StatusVariant } from '.';
 import { Status } from '.';
 import type { AttachmentArgs } from './testing';
 import { attachmentArgTypes, attachmentFactory } from './testing';
-import type { StatusContextType } from './types';
+import type { StatusContextType, StatusVariant } from './types';
 
 interface StatusStoryProps extends AttachmentArgs {
   // Contents
