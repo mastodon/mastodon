@@ -4,10 +4,10 @@
   report = Report.find(params[:report_id]) if params[:report_id].present?
   account_id = params[:account_id]
 
-- if @account.suspended_locally?
+- if @target_account.suspended_locally?
   .flash-message.alert
     = t('admin.account_actions.already_suspended')
-- elsif @account.silenced?
+- elsif @target_account.silenced?
   .flash-message.warn
     = t('admin.account_actions.already_silenced')
 
@@ -15,10 +15,10 @@
   = f.input :report_id, as: :hidden if report_id
 
   - content_for :page_title do
-    = t('admin.account_actions.title', acct: @account.pretty_acct)
+    = t('admin.account_actions.title', acct: @target_account.pretty_acct)
     = f.input :type,
               as: :select,
-              collection: button_collection,
+              collection: account_actions_button_collection,
               include_blank: false,
               label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type[0]}") },
               required: false,
@@ -26,18 +26,12 @@
 
   - if report_id.present?
     .fields-group
-      - if report.status_ids.present?
-        - if report.status_ids.count == 1
-          %p= t('admin.reports.summary.account_action_preamble.singular_html', report: report_id, count: report.status_ids.count, report_path: admin_report_path(report_id))
-        - else
-          %p= t('admin.reports.summary.account_action_preamble.plural_html', report_path: admin_reports_path(report_id), report: report_id, count: report.status_ids.count)
-      - else
-        %p= t('admin.reports.summary.account_action_preamble.none_html', report: report_id, report_path: admin_report_path(report_id))
+      %p= t('admin.reports.summary.account_action_preamble_html', report: report_id, count: report.status_ids.count, report_path: admin_report_path(report_id))
 
-  %div{ 'id' => 'data-action-text-box' }
-    = render partial: 'actions_text_box', locals: { account: @account, report: @report }
+  #data-action-text-box
+    = render partial: 'actions_text_box', locals: { account: @target_account, report: report }
 
-  - if @account.local?
+  - if @target_account.local?
     %hr.spacer/
     %h3= t('admin.account_actions.notification_title')
 
@@ -46,12 +40,12 @@
                 as: :boolean,
                 wrapper: :with_label
 
-    %div{ 'id' => 'mail-content' }
+    #mail-content
       %h2.spacer
 
-      %p.hint= t('admin.reports.summary.preview_preamble_html', acct: @account.pretty_acct)
-      %div{ 'id' => 'data-action-strike-card' }
-        .strike-card.preview{ 'hidden' => (true if type == 'none') }
+      %p.hint= t('admin.reports.summary.preview_preamble_html', acct: @target_account.pretty_acct)
+      #data-action-strike-card
+        .strike-card.preview{ hidden: (true if type == 'none') }
           %p= t "user_mailer.warning.explanation.#{type}", instance: Rails.configuration.x.local_domain
         %hr.spacer/
 
@@ -79,7 +73,7 @@
 
         .fields-group
           = f.input :warning_preset_id,
-                    collection: label_and_categories_collection(@warning_presets),
+                    collection: account_action_label_and_categories_collection(@warning_presets),
                     input_html: { id: 'presets_dropdown' }
 
       .fields-group
@@ -88,7 +82,7 @@
                   wrapper: :with_block_label,
                   hint: t('simple_form.hints.admin_account_action.text')
 
-      - if @account.local? && params[:report_id].present?
+      - if @target_account.local? && params[:report_id].present?
         %hr.spacer/
 
         .fields-group

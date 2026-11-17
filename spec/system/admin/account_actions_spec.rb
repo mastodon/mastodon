@@ -31,7 +31,7 @@ RSpec.describe 'Admin Account Actions' do
 
   def submit_form
     within '.actions' do
-      find('input[type="submit"], button[type="submit"]').click
+      click_button
     end
   end
 end

@@ -10,23 +10,15 @@ module Admin::AccountActionsHelper
     )
   end
 
-  def label_and_categories_collection(warning_presets)
+  def account_action_label_and_categories_collection(warning_presets)
     warning_presets.map { |p| [[p.title.presence, truncate(p.text)].compact.join(' - '), p.id, { data: { type: p.action_category } }] }
   end
 
-  def combined_types_collection
+  def account_actions_combined_types_collection
     Admin::AccountAction::TYPES + Admin::ModerationAction::TYPES
   end
 
-  def collection
-    if params[:report_id].present?
-      combined_types_collection
-    else
-      Admin::AccountAction::TYPES
-    end
-  end
-
-  def button_collection
+  def account_actions_button_collection
     key_map =
       {
         'delete' => 'delete_statuses',
@@ -38,7 +30,7 @@ module Admin::AccountActionsHelper
       }
 
     types = if params[:report_id].present?
-              combined_types_collection
+              account_actions_combined_types_collection
             else
               Admin::AccountAction::TYPES
             end

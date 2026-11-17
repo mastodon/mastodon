@@ -7,7 +7,6 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
   def new
     authorize @target_account, :show?
 
-    @account = @target_account
     @account_action  = Admin::AccountAction.new(type: get_param('type'), report_id: get_param('report_id'), send_email_notification: true, include_statuses: true)
     @warning_presets = AccountWarningPreset.all
   end
@@ -23,15 +22,12 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
     authorize @target_account, :show?
 
     @account_action = Admin::AccountAction.new(account_action_params)
-    @account_action.target_account  = @target_account
-    @account_action.current_account = current_account
-    @account = @target_account
 
     case action_from_button
     when 'delete', 'mark_as_sensitive'
-      Admin::ModerationAction.new(moderation_action_params).save!
+      Admin::ModerationAction.new(shared_params).save!
     when 'silence', 'suspend', 'none', 'disable', 'sensitive'
-      Admin::AccountAction.new(account_action_params).save!
+      @account_action.save!
     else
       if with_report?
         return redirect_to admin_report_path(@report), alert: I18n.t('admin.reports.unknown_action_msg', action: action_from_button)
@@ -52,14 +48,6 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
       redirect_to admin_reports_path, notice: I18n.t('admin.reports.processed_msg', id: @report.id)
     else
       redirect_to admin_account_path(@target_account.id)
-    end
-  end
-
-  def moderation_action_params
-    if params[:admin_account_action].present?
-      shared_params
-    else
-      moderation_params
     end
   end
 
@@ -91,19 +79,7 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
   end
 
   def action_from_button
-    if params[:delete]
-      'delete'
-    elsif params[:mark_as_sensitive]
-      'mark_as_sensitive'
-    elsif params[:silence]
-      'silence'
-    elsif params[:suspend]
-      'suspend'
-    elsif params[:moderation_action]
-      params[:moderation_action]
-    elsif params[:admin_account_action].is_a?(ActionController::Parameters)
-      params[:admin_account_action][:type] if params[:admin_account_action][:type]
-    end
+    params[:admin_account_action][:type] if params[:admin_account_action].is_a?(ActionController::Parameters) && params[:admin_account_action][:type]
   end
 
   def get_param(param)
