@@ -29,6 +29,7 @@ const MENTION_RE = /(^|[^/\p{L}\p{N}_])@([a-z0-9_]+(?:[a-z0-9_.-]*[a-z0-9_])?)@(
 
 const TRAILING_HOST_PUNCT = /[.,;:!?)\]}'"`]+$/;
 
+/** @param {string} text */
 export function extractMentionsWithIndices(text) {
   const out = [];
   for (const m of text.matchAll(MENTION_RE)) {

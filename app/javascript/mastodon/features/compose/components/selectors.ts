@@ -102,54 +102,6 @@ export const selectComposeHasAttachments = createAppSelector(
   },
 );
 
-export const selectComposeCanSubmit = createAppSelector(
-  [
-    (state) => !!state.compose.get('is_submitting'),
-    (state) => !!state.compose.get('is_uploading'),
-    (state) => !!state.compose.get('is_changing_upload'),
-    selectComposeHasAttachments,
-    selectComposeCharsCount,
-  ],
-  (
-    isSubmitting,
-    isUploading,
-    isChangingUpload,
-    { hasAttachments, hasPoll, quotedStatusId },
-    { text, max },
-  ) =>
-    !isSubmitting &&
-    !isUploading &&
-    !isChangingUpload &&
-    text.trim().length <= max &&
-    (hasAttachments || hasPoll || quotedStatusId || text.trim().length > 0),
-);
-
-export const selectComposeMentions = createAppSelector(
-  [
-    (state) => state.accounts_map,
-    (state) => state.compose.get('text') as string,
-    (state) => state.server.server.item?.domain,
-  ],
-  (accountsMap, text, localDomain) => {
-    const accounts = new Set<string>();
-    const potentialAccounts = text.matchAll(
-      /:\/\/[^\s]+|@(?<username>[a-zA-Z0-9_.-]+)(?<domain>@[a-zA-Z0-9_.-]+)?/g,
-    );
-    for (const match of potentialAccounts) {
-      const { username, domain } = match.groups ?? {};
-      if (!username) {
-        continue;
-      }
-      const account =
-        domain && domain !== localDomain ? `${username}@${domain}` : username;
-      if (accountsMap[account]) {
-        accounts.add(accountsMap[account]);
-      }
-    }
-    return [...accounts];
-  },
-);
-
 export const selectComposeSensitive = createAppSelector(
   [
     (state) => !!state.compose.get('spoiler'),
