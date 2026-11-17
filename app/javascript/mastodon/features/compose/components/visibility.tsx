@@ -4,12 +4,11 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { ChatCircleDotsIcon, EyeIcon } from '@phosphor-icons/react';
+import { ChatCircleDotsIcon } from '@phosphor-icons/react';
 
 import { changeComposeVisibility } from '@/mastodon/actions/compose_typed';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import { Button, CaretIcon } from '@/mastodon/components/button';
-import { Icon } from '@/mastodon/components/icon';
 import {
   Menu,
   MenuList,
@@ -36,10 +35,9 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
   if (privacy === 'direct') {
     return (
       <div className={classNames(className, classes.toolbarMessage)}>
-        <Icon icon={EyeIcon} />
         <FormattedMessage
           id='compose.privacy.direct.hint'
-          defaultMessage='Visible to everyone mentioned. Not encrypted.'
+          defaultMessage='Visible to mentions, including people you reply to or quote. Not encrypted.'
         />
       </div>
     );
