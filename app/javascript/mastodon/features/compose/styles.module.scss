@@ -153,7 +153,7 @@
 
   &:hover {
     outline: var(--border-thin);
-    outline-offset: calc(-1 * var(--bw-thin));
+    outline-offset: -1px;
   }
 
   &:focus-within {
@@ -196,6 +196,7 @@
   border-radius: 0;
 }
 
+.sensitive,
 .textarea,
 .textareaMirror {
   @include mixins.type-body;
