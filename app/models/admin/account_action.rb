@@ -42,6 +42,12 @@ class Admin::AccountAction < Admin::BaseAction
     end
   end
 
+  def include_rule_violations
+    return false unless include_rule_violations?
+
+    include_rule_violations?
+  end
+
   private
 
   def process_action!
