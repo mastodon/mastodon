@@ -55,7 +55,7 @@ export const NotificationAdminReport: React.FC<{
   const locality = intl.formatMessage(isLocal ? messages.local : messages.remote);
   const name = <DisplayName account={account} variant='simple' />;
   const target = <DisplayName account={targetAccount} variant='simple' />;
-  const category = intl.formatMessage(messages[report.category]);
+  const category = intl.formatMessage(messages[report.category] ?? messages.other);
   const count = report.status_ids.length;
 
   let message;
