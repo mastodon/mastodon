@@ -178,6 +178,7 @@ class HashtagTimeline extends PureComponent {
               tagId={id}
               multiColumn={multiColumn}
               columnId={columnId}
+              pinned={pinned}
               onPin={this.handlePin}
               onMove={this.handleMove}
             />

@@ -28,6 +28,7 @@ export const HashtagColumnHeaderButtons: React.FC<{
   tagId: string;
   multiColumn?: boolean;
   columnId?: string;
+  pinned: boolean;
   onPin: () => void;
   onMove: (dir: number) => void;
 }> = ({ tagId, multiColumn, columnId, onPin, onMove }) => {
@@ -63,7 +64,7 @@ export const HashtagColumnHeaderButtons: React.FC<{
 
   return (
     <>
-      {!tag.following && (
+      {!tag.following && !pinned && (
         <ColumnHeaderButton
           showTextOnDesktop
           variant='solid'
@@ -92,7 +93,7 @@ export const HashtagColumnHeaderButtons: React.FC<{
           />
         }
       >
-        {(tag.following || isMobile) && (
+        {(tag.following || pinned || isMobile) && (
           <MenuItem onClick={toggleFollow}>
             {tag.following ? (
               <FormattedMessage
