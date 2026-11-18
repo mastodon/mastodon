@@ -197,7 +197,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'pry'
   # Interactive Debugging tools
   gem 'debug', '~> 1.8', require: false
 
