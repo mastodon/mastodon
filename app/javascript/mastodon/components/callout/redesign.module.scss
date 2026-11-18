@@ -15,8 +15,9 @@
 .rootLarge {
   padding: var(--space-3);
 
+  // Adds padding to push the buttons flush with the text if it wraps.
   &:has(.icon) {
-    padding-left: var(--space-8);
+    padding-left: calc(var(--space-3) + var(--space-5) + var(--space-1));
   }
 }
 
@@ -40,8 +41,10 @@
 .content {
   flex-grow: 1;
 
+  // Then remove the padding for the content so the icon is correctly placed.
+  // We use a negative margin instead of absolute positioning as the icon needs to be roughly centered on the text.
   &:has(.icon) {
-    margin-left: calc(-1 * var(--space-5));
+    margin-left: calc(-1 * var(--space-6));
   }
 }
 
