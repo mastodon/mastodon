@@ -18,7 +18,7 @@ RSpec.describe 'Well Known routes' do
   describe 'the webfinger route' do
     it 'routes to correct place with json format' do
       expect(get('/.well-known/webfinger'))
-        .to route_to('well_known/webfinger#show')
+        .to route_to('well_known/webfinger#show', format: 'json')
     end
   end
 end
