@@ -18,6 +18,12 @@ class Admin::ModerationAction < Admin::BaseAction
 
   private
 
+  def include_rule_violations
+    return false unless include_rule_violations?
+
+    include_rule_violations?
+  end
+
   def status_ids
     report.status_ids if include_statuses?
   end
