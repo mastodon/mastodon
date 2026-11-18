@@ -1277,6 +1277,7 @@ cy:
         title: Cadw cynnwys
       crawlers:
         preamble: Rheoli sut y gall botiau (sy'n ymddwyn yn dda) fel cropwyr peiriannau chwilio ryngweithio â'ch gweinydd Mastodon. Gall botiau maleisus anwybyddu'r gosodiadau hyn a rhaid eu rhwystro ar lefel y rhwydwaith.
+        title: Rheolyddion Crawler
       default_noindex:
         desc_html: Yn effeithio pob defnyddwr sydd heb newid y gosodiad ei hun
         title: Eithrio defnyddwyr o fynegai peiriannau chwilio, fel rhagosodiad
@@ -1629,6 +1630,17 @@ cy:
     warning_presets:
       add_new: Ychwanegu newydd
       delete: Dileu
+      dropdown:
+        all_actions: Pob gweithred
+        disable: Rhewi
+        none: Rhybudd
+        sensitive: Sensitif
+        silence: Cyfyngu
+        suspend: Atal
+      edit_preset: Golygu ymateb llafar parod
+      empty: Dydych heb ddiffinio unrhyw ymatebion llafar parod eto.
+      navigation_title: Ymatebion Llafar Parod
+      title: Ymatebion Llafar Parod Cymedroli
     webhooks:
       add_new: Ychwanegu diweddbwynt
       delete: Dileu
@@ -1681,9 +1693,15 @@ cy:
     new_critical_software_updates:
       body: Mae fersiynau hanfodol newydd o Mastodon wedi'u rhyddhau, efallai y byddwch am eu diweddaru cyn gynted â phosibl!
       subject: Mae diweddariadau hanfodol Mastodon ar gael ar gyfer %{instance}!
+    new_moderation_suggestions:
+      body: Mae'r rhestr gymedroli y mae eich gweinydd wedi tanysgrifio iddo fod wedi cyhoeddi awgrymiadau newydd.
+      subject: Awgrymiadau cymedroli newydd ar gael ar %{instance}!
     new_pending_account:
       body: Mae manylion y cyfrif newydd yn isod. Gallwch gymeradwyo neu wrthod y cais hwn.
       subject: Cyfrif newydd i'w adolygu ar %{instance} (%{username})
+    new_pending_accounts:
+      body: Mae cyfrifon newydd wedi'u creu ar %{instance}. Gan fod eich gweinydd wedi'i ffurfweddu i ohirio e-byst cadarnhau ar ôl cymeradwyaeth cymedroli, doedd dim cyfle gan y cyfrifon hynny i wirio eu cyfeiriad e-bost eto. Mae manylion y cyfrifon newydd isod. Gallwch gymeradwyo neu wrthod y ceisiadau hyn.
+      subject: Cyfrifon newydd i'w hadolygu ar %{instance}
     new_report:
       body: Mae %{reporter} wedi adrodd am %{target}
       body_remote: Mae rhywun o %{domain} wedi adrodd am %{target}
@@ -1791,11 +1809,16 @@ cy:
     security: Diogelwch
     set_new_password: Gosod cyfrinair newydd
     setup:
+      correct_email: Cyfeiriad cywir
       email_below_hint_html: Gwiriwch eich ffolder sbam, neu gofynnwch am un arall. Gallwch gywiro eich cyfeiriad e-bost os yw'n anghywir.
       email_settings_hint_html: Cliciwch y ddolen anfonwyd at %{email} i ddechrau defnyddio Mastodon. Byddwn yn aros yn fan hyn.
+      email_settings_hint_wait_html: Mae eich cais yn cael ei adolygu. Dylech dderbyn e-bost yn fuan ar %{email}. Unwaith y byddwch wedi gwneud hynny, cliciwch ar y ddolen i ddechrau defnyddio Mastodon. Byddwn yn aros yma.
       link_not_received: Heb gael dolen?
       new_confirmation_instructions_sent: Byddwch yn derbyn e-bost newydd gyda'r ddolen gadarnhau ymhen ychydig funudau!
       title: Gwiriwch eich blwch derbyn
+      title_wait: Cadwch lygad ar eich blwch derbyn
+      wrong_email: Cyfeiriad e-bost anghywir?
+      wrong_email_below_hint_html: Peidiwch â chynhyrfu! Gallwch gywiro'ch cyfeiriad e-bost isod.
     sign_in:
       preamble_html: Mewngofnodwch gyda'ch manylion <strong>%{domain}</strong>. Os yw eich cyfrif yn cael ei gynnal ar weinydd gwahanol, ni fydd modd i chi fewngofnodi yma.
       title: Mewngofnodi i %{domain}
@@ -1832,6 +1855,12 @@ cy:
     auto: Awto
     dark: Tywyll
     light: Golau
+  color_theme:
+    cyan: Gwyrddlas
+    indigo: Indigo
+    lime: Calch
+    orange: Oren
+    pink: Pinc
   contrast:
     auto: Awto
     high: Uchel
@@ -1880,6 +1909,7 @@ cy:
       action_taken: Camau a gymerwyd
       appeal: Apêl
       appeal_approved: Apeliwyd yn llwyddiannus yn erbyn y rhybudd hwn ac nid yw'n ddilys bellach
+      appeal_handled_by: Apêl wedi'i thrin gan
       appeal_rejected: Mae’r apêl wedi’i gwrthod
       appeal_submitted_at: Apêl wedi'i chyflwyno
       appealed_msg: Mae eich apêl wedi'i chyflwyno. Os caiff ei gymeradwyo, byddwch yn cael gwybod.
@@ -2425,6 +2455,8 @@ cy:
           trillion: Triliwn
   otp_authentication:
     code_hint: Rhowch y cod a gynhyrchwyd gan eich ap dilysu i gadarnhau
+    delete: Dileu
+    delete_confirmation: Ydych chi'n siŵr eich bod chi eisiau dileu eich ap dilysu o'ch dulliau dilysu dau ffactor?
     description_html: Os ydych chi'n galluogi <strong>dilysu dau-ffactor</strong> gan ddefnyddio ap dilysu, bydd mewngofnodi yn ei gwneud yn ofynnol i chi fod â'ch ffôn yn eich meddiant, a fydd yn cynhyrchu tocynnau i chi fynd i mewn iddo.
     enable: Galluogi
     instructions_html: "<strong>Sganiwch y cod QR hwn i mewn i Google Authenticator neu ap TOTP tebyg ar eich ffôn</strong>. O hyn ymlaen, bydd yr ap hwnnw'n cynhyrchu tocynnau y bydd yn rhaid i chi eu rhoi wrth fewngofnodi."
