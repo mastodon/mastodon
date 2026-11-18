@@ -1,4 +1,4 @@
-import { createAppSelector } from 'mastodon/store';
+import { createAppSelector } from 'mastodon/store/typed_functions';
 
 export const getAncestorsIds = createAppSelector(
   [(_, id?: string) => id, (state) => state.contexts.inReplyTos],
@@ -94,4 +94,14 @@ export const getDescendantsIds = createAppSelector(
 
     return descendantsIds;
   },
+);
+
+export const selectHasAnyRelations = createAppSelector(
+  [
+    (_, id: string) => id,
+    (state) => state.contexts.replies,
+    (state) => state.contexts.inReplyTos,
+  ],
+  (statusId, replies, inReplyTos) =>
+    !!replies[statusId]?.length || !!inReplyTos[statusId]?.length,
 );
