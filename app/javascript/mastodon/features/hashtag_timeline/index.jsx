@@ -19,7 +19,7 @@ import { remoteTopicFeedAccess, me, localTopicFeedAccess } from 'mastodon/initia
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import { ColumnHeader } from '@/mastodon/components/column_header';
-import { HashtagColumnMenu } from './components/hashtag_column_menu';
+import { HashtagColumnHeaderButtons } from './components/hashtag_column_header_buttons';
 
 const mapStateToProps = (state, props) => {
   const local = props.params.local || (!me && remoteTopicFeedAccess !== 'public');
@@ -174,7 +174,7 @@ class HashtagTimeline extends PureComponent {
           withUnreadMarker={hasUnread}
           withBackButton={multiColumn && !pinned && 'auto'}
           extraButtons={
-            <HashtagColumnMenu
+            <HashtagColumnHeaderButtons
               tagId={id}
               multiColumn={multiColumn}
               columnId={columnId}
