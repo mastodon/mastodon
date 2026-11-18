@@ -46,32 +46,40 @@
 }
 
 .button {
-  background-color: var(--color-bg-brand-base);
-  border: 1px solid transparent;
-  border-radius: 4px;
   box-sizing: border-box;
-  color: var(--color-text-on-brand-base);
-  cursor: pointer;
+  overflow: hidden;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: bold;
-  letter-spacing: 0;
-  line-height: 22px;
-  overflow: hidden;
-  padding: 6px 17px;
-  position: relative;
+  gap: var(--space-1);
+  width: auto;
+  min-height: 40px;
+  padding: var(--space-2) var(--space-4);
+
+  @include type-label;
+
   text-align: center;
   text-decoration: none;
   text-overflow: ellipsis;
+  color: var(--color-text-on-brand-base);
+  background: var(--color-bg-brand-base);
+  border: 0;
+  border-radius: var(--radius-round);
   white-space: nowrap;
-  width: auto;
+  cursor: pointer;
+  transition:
+    background-color 200ms,
+    color 200ms,
+    opacity 200ms;
+
+  @media (forced-colors: active) {
+    &::before {
+      @include high-contrast-outline;
+    }
+  }
 
   &:active,
-  &:focus,
   &:hover {
     background-color: var(--color-bg-brand-base-hover);
   }
@@ -81,12 +89,15 @@
     outline-offset: 2px;
   }
 
+  &:focus {
+    border-radius: var(--radius-round);
+  }
+
   &--dangerous {
     background-color: var(--color-bg-error-base);
     color: var(--color-text-on-error-base);
 
     &:active,
-    &:focus,
     &:hover {
       background-color: var(--color-bg-error-base-hover);
       transition: none;
@@ -95,23 +106,17 @@
 
   &--destructive {
     &:active,
-    &:focus,
     &:hover {
       color: var(--color-text-on-error-base);
       background-color: var(--color-bg-error-base);
       transition: none;
     }
-
-    @media (forced-colors: active) {
-      border: 1px solid transparent;
-    }
   }
 
   &:disabled,
   &.disabled {
-    color: var(--color-text-on-disabled);
-    background-color: var(--color-bg-disabled);
     cursor: not-allowed;
+    opacity: 0.5;
   }
 
   &.copied {
@@ -121,16 +126,16 @@
   }
 
   &.button-secondary {
-    color: var(--color-text-brand);
-    background: transparent;
+    --bg-opacity: 4%;
+
+    color: var(--color-text-primary);
+    background: rgb(from var(--color-text-primary) r g b / var(--bg-opacity));
     border-color: var(--color-border-brand);
 
     &:active,
-    &:focus,
     &:hover {
-      border-color: var(--color-border-brand);
-      color: var(--color-text-brand);
-      background-color: transparent;
+      --bg-opacity: 10%;
+
       text-decoration: none;
     }
 
@@ -140,19 +145,6 @@
       &:hover {
         border-color: var(--color-border-error);
         color: var(--color-text-error);
-      }
-    }
-
-    &:disabled,
-    &.disabled {
-      border-color: var(--color-text-disabled);
-      color: var(--color-text-disabled);
-
-      &:active,
-      &:focus,
-      &:hover {
-        border-color: var(--color-text-disabled);
-        color: var(--color-text-disabled);
       }
     }
   }

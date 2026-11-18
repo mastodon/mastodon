@@ -1,5 +1,6 @@
 @use 'sass:color';
 @use 'variables' as *;
+@use 'mixins';
 
 code {
   font-family: var(--font-monospace);
@@ -141,9 +142,9 @@ code {
       margin-bottom: 0;
 
       .label_input > label {
-        font-family: inherit;
-        font-size: 14px;
-        padding-top: 5px;
+        @include mixins.type-label;
+
+        padding-top: var(--space-half);
         color: var(--color-text-primary);
         display: block;
         width: auto;
@@ -226,6 +227,8 @@ code {
   }
 
   .hint {
+    @include mixins.type-caption;
+
     color: var(--color-text-secondary);
 
     a {
@@ -254,8 +257,12 @@ code {
 
   span.hint {
     display: block;
-    font-size: 12px;
-    margin-top: 4px;
+    margin-top: var(--space-1);
+  }
+
+  label + span.hint {
+    margin-top: 0;
+    margin-bottom: var(--space-1);
   }
 
   p.hint {
@@ -316,17 +323,16 @@ code {
 
   .input.with_label {
     .label_input > label {
-      font-family: inherit;
-      font-size: 14px;
+      @include mixins.type-label;
+
       color: var(--color-text-primary);
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: var(--space-1);
       overflow-wrap: break-word;
-      font-weight: bold;
     }
 
     .hint {
-      margin-top: 6px;
+      margin-top: var(--space-1);
     }
 
     ul {
@@ -338,17 +344,14 @@ code {
     max-width: none;
 
     & > label {
-      font-family: inherit;
-      font-size: 14px;
+      @include mixins.type-label;
+
       color: var(--color-text-primary);
       display: block;
-      font-weight: 600;
-      line-height: 20px;
     }
 
     .hint {
-      line-height: 16px;
-      margin-bottom: 12px;
+      @include mixins.type-caption;
     }
 
     ul {
@@ -559,20 +562,21 @@ code {
   input[type='datetime-local'],
   textarea {
     box-sizing: border-box;
-    font-size: 14px;
-    line-height: 20px;
-    color: var(--color-text-primary);
     display: block;
     width: 100%;
+    padding: var(--space-2);
     font-family: inherit;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border-primary);
-    border-radius: 4px;
-    padding: 10px 16px;
+    @include mixins.type-body-compact;
+
+    color: var(--color-text-primary);
+    background: var(--color-bg-primary);
+    border: var(--bw-thin) solid var(--color-border-input);
+    border-radius: var(--space-2);
+    caret-color: var(--color-text-brand);
     outline: var(--outline-focus-default);
-    outline-offset: -2px;
     outline-color: transparent;
-    transition: outline-color 0.15s ease-out;
+    outline-offset: -2px;
+    transition: outline-color 0.2s ease-out;
 
     &:focus {
       outline: var(--outline-focus-default);
@@ -646,19 +650,23 @@ code {
     display: block;
     width: 100%;
     border: 0;
-    border-radius: 4px;
+    border-radius: var(--radius-round);
     background: var(--color-bg-brand-base);
     color: var(--color-text-on-brand-base);
-    font-size: 15px;
-    line-height: 22px;
+    @include mixins.type-label;
+
     height: auto;
-    padding: 7px 18px;
+    min-height: 40px;
+    padding: var(--space-2) var(--space-3);
     text-decoration: none;
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
-    font-weight: bold;
     outline: 0;
+    transition:
+      background-color 200ms,
+      color 200ms,
+      opacity 200ms;
 
     @media (forced-colors: active) {
       border: 1px solid transparent;
@@ -674,7 +682,6 @@ code {
     }
 
     &:active,
-    &:focus,
     &:hover {
       background: var(--color-bg-brand-base-hover);
     }
@@ -696,28 +703,25 @@ code {
     }
 
     &.secondary {
-      color: var(--color-text-brand);
-      background: transparent;
-      border: 1px solid transparent;
-      border-color: var(--color-border-brand);
+      --bg-opacity: 4%;
+
+      color: var(--color-text-primary);
+      background: rgb(from var(--color-text-primary) r g b / var(--bg-opacity));
 
       &:active,
       &:focus,
       &:hover {
-        border-color: var(--color-border-brand);
-        color: var(--color-text-brand);
-        background-color: transparent;
+        --bg-opacity: 10%;
+
         text-decoration: none;
       }
 
       &:disabled {
-        border-color: var(--color-text-disabled);
         color: var(--color-text-disabled);
 
         &:active,
         &:focus,
         &:hover {
-          border-color: var(--color-text-disabled);
           color: var(--color-text-disabled);
         }
       }
@@ -728,22 +732,28 @@ code {
     appearance: none;
     box-sizing: border-box;
     font-size: 14px;
-    color: var(--color-text-primary);
     display: block;
     width: 100%;
-    outline: 0;
+    padding: var(--space-2);
+    padding-inline-end: var(--space-7);
     font-family: inherit;
-    resize: vertical;
-    background: var(--color-bg-highlight-solid);
-    border: 1px solid var(--color-border-primary);
-    border-radius: 4px;
-    padding-inline-start: 10px;
-    padding-inline-end: 30px;
-    height: 41px;
+    @include mixins.type-body-compact;
+
+    color: var(--color-text-primary);
+    background: var(--color-bg-primary);
+    border: var(--bw-thin) solid var(--color-border-input);
+    border-radius: var(--space-2);
+    caret-color: var(--color-text-brand);
+    outline: var(--outline-focus-default);
+    outline-color: transparent;
+    outline-offset: -2px;
+    transition:
+      background-color 200ms,
+      color 200ms,
+      opacity 200ms;
 
     &:focus-visible {
       outline: var(--outline-focus-default);
-      outline-offset: 2px;
     }
 
     @media screen and (width <= 600px) {
@@ -757,6 +767,10 @@ code {
 
   .label_input {
     position: relative;
+
+    &:has(input[type='radio'], input[type='checkbox']) {
+      margin-block-start: var(--space-2);
+    }
 
     &__loading-indicator {
       box-sizing: border-box;
@@ -860,30 +874,25 @@ code {
 }
 
 .flash-message {
-  color: var(--color-text-brand);
-  background: transparent;
-  border: 1px solid var(--color-border-brand);
-  border-radius: 4px;
-  padding: 15px 10px;
-  margin-bottom: 30px;
-  text-align: center;
+  padding: var(--space-3);
+  margin-bottom: var(--space-7);
+
+  @include mixins.type-body-compact;
+
+  color: var(--color-text-primary);
+  background: var(--color-bg-highlight);
+  border-radius: var(--radius-3);
 
   &.notice {
-    border: 1px solid var(--color-border-success-soft);
     background: var(--color-bg-success-softest);
-    color: var(--color-text-success);
   }
 
   &.warning {
-    border: 1px solid var(--color-border-warning-soft);
     background: var(--color-bg-warning-softest);
-    color: var(--color-text-warning);
   }
 
   &.alert {
-    border: 1px solid var(--color-border-error-soft);
     background: var(--color-bg-error-softest);
-    color: var(--color-text-error);
   }
 
   &.hidden {

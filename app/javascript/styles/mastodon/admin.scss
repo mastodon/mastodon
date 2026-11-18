@@ -283,12 +283,16 @@ $content-width: $main-column-width + $sidebar-width;
           display: inline-flex;
           align-items: center;
           padding: 7px 10px;
-          border-radius: 4px;
+          border-radius: var(--radius-round);
           color: var(--color-text-secondary);
           text-decoration: none;
           font-weight: bold;
           gap: 5px;
           white-space: nowrap;
+          transition:
+            background-color 200ms,
+            color 200ms,
+            opacity 200ms;
 
           @media screen and (max-width: $mobile-breakpoint) {
             flex: 1 0 50%;
