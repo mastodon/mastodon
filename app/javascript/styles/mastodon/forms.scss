@@ -1013,30 +1013,6 @@ code {
   }
 }
 
-.quick-nav {
-  list-style: none;
-  margin-bottom: 25px;
-  font-size: 14px;
-
-  li {
-    display: inline-block;
-    margin-inline-end: 10px;
-  }
-
-  a {
-    color: var(--color-text-brand);
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 700;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: var(--color-text-brand-soft);
-    }
-  }
-}
-
 .oauth-prompt,
 .follow-prompt {
   margin-bottom: 30px;
