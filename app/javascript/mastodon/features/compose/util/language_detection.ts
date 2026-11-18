@@ -1,3 +1,4 @@
+import { eld } from 'eld/extrasmall';
 import lande from 'lande';
 import { debounce } from 'lodash';
 
@@ -56,19 +57,43 @@ const ISO_639_MAP = {
   vie: 'vi', // Vietnamese
 };
 
-export const guessLanguage = (text) => {
-  text = replaceUrls(replaceMentions(text, () => ''), '');
+const CONFIDENCE_MIN = 0.8;
+
+export function guessLanguage(text: string) {
+  text = replaceUrls(
+    replaceMentions(text, () => ''),
+    '',
+  );
 
   if (text.length > 20) {
-    const [lang, confidence] = lande(text)[0];
+    const guess = lande(text)[0];
+    const guess2 = eld.detect(text);
+    console.log('guessing', guess, guess2, 'from:', text);
 
-    if (confidence > 0.8)
-      return ISO_639_MAP[lang];
+    if (!guess) {
+      return '';
+    }
+    const [lang, confidence] = guess;
+
+    if (guess2.isReliable()) {
+      const lang = guess2.language;
+      return isValidLanguage(lang) ? ISO_639_MAP[lang] : '';
+    }
+
+    if (confidence > CONFIDENCE_MIN) return ISO_639_MAP[lang];
   }
 
   return '';
-};
+}
 
-export const debouncedGuess = debounce((text, setGuess) => {
-  setGuess(guessLanguage(text));
-}, 500, { maxWait: 1500, leading: true, trailing: true });
+export const debouncedGuess = debounce(
+  (text: string, setGuess: (text: string) => void) => {
+    setGuess(guessLanguage(text));
+  },
+  500,
+  { maxWait: 1500, leading: true, trailing: true },
+);
+
+function isValidLanguage(lang: string): lang is keyof typeof ISO_639_MAP {
+  return lang in ISO_639_MAP;
+}

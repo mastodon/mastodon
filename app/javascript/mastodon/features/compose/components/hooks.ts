@@ -24,6 +24,10 @@ export function useLanguageGuess() {
   const [guess, setGuess] = useState('');
 
   useEffect(() => {
+    if (text.length < 20) {
+      return;
+    }
+
     void import('../util/language_detection').then(({ debouncedGuess }) => {
       if (text.length > 20) {
         debouncedGuess(text, setGuess);
