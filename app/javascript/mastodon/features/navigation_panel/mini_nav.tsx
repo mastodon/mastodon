@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { useLocation } from 'react-router';
+
 import type { Placement } from '@floating-ui/react-dom';
 import {
   BellIcon,
@@ -15,7 +17,10 @@ import { Menu, MenuList, MenuTrigger } from '@/mastodon/components/menu';
 import { Search } from '@/mastodon/components/search';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
-import { toggleInlineSearch } from '@/mastodon/reducers/slices/navigation';
+import {
+  closeInlineSearch,
+  openInlineSearch,
+} from '@/mastodon/reducers/slices/navigation';
 import {
   useAppDispatch,
   useAppSelector,
@@ -41,14 +46,14 @@ export const MiniNav: React.FC = () => {
   );
 
   const openSearch = useCallback(() => {
-    dispatch(toggleInlineSearch());
+    dispatch(openInlineSearch());
     shouldHandleFocusRef.current = true;
     handleSearchLinkClick();
   }, [dispatch]);
 
   const closeSearch = useCallback(
     (shouldHandleFocus: boolean) => {
-      dispatch(toggleInlineSearch());
+      dispatch(closeInlineSearch());
       shouldHandleFocusRef.current = shouldHandleFocus;
     },
     [dispatch, isSearchOpen],
@@ -63,6 +68,13 @@ export const MiniNav: React.FC = () => {
       }
     }
   }, [isSearchOpen]);
+
+  // Close after navigation change
+  const { pathname, search } = useLocation();
+  const pathWithSearch = `${pathname}${search}`;
+  useEffect(() => {
+    dispatch(closeInlineSearch());
+  }, [pathWithSearch, dispatch]);
 
   return (
     <div className={classes.root}>
