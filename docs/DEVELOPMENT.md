@@ -33,6 +33,8 @@ To set up **macOS** for native development, complete the following steps:
 - Run `RAILS_ENV=development bin/setup`, which will install the required ruby gems and node
   packages and prepare the database for local development
 
+  (Note: The `development` and `test` gem groups are optional. `bin/setup` configures Bundler to install them. If you run `bundle install` yourself, first run `bundle config set --local with 'development test'`.)
+
   (Note: If you are on Apple Silicon and get an error related to `libidn`, you should be able to fix this by running `gem install idn-ruby -- --with-idn-dir=$(brew --prefix libidn)`, then re-running the command above.)
 
 - Finally, run the `bin/dev` script which will launch services via `overmind`

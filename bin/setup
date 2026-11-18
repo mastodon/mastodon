@@ -15,6 +15,11 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== Installing Ruby dependencies =="
   system! 'gem install bundler --conservative'
+  # The development and test gem groups are optional. Add them to the groups that Bundler installs and keep other groups.
+  require 'bundler'
+  bundle_with = Bundler.settings[:with].map(&:to_s)
+  missing_groups = %w(development test) - bundle_with
+  system!('bundle', 'config', 'set', '--local', 'with', *bundle_with, *missing_groups) unless missing_groups.empty?
   system('bundle check') || system!('bundle install')
 
   puts "\n== Installing JS dependencies =="
