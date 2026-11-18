@@ -20,7 +20,6 @@ class REST::CredentialAccountSerializer < REST::AccountSerializer
       indexable: object.indexable,
       attribution_domains: object.attribution_domains,
       quote_policy: user.setting_default_quote_policy,
-      spoiler_field: user.setting_default_spoiler_field,
     }
   end
 
