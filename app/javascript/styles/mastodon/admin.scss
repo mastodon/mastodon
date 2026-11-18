@@ -692,38 +692,6 @@ kbd {
   }
 }
 
-.report-accounts {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.report-accounts__item {
-  display: flex;
-  flex: 250px;
-  flex-direction: column;
-  margin: 0 5px;
-
-  & > strong {
-    display: block;
-    margin: 0 0 10px -5px;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 18px;
-    color: var(--color-text-primary);
-
-    @each $lang in $cjk-langs {
-      &:lang(#{$lang}) {
-        font-weight: 700;
-      }
-    }
-  }
-
-  .account-card {
-    flex: 1 1 auto;
-  }
-}
-
 .report-status,
 .account-status {
   display: flex;
