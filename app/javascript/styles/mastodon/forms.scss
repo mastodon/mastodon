@@ -142,9 +142,8 @@ code {
       margin-bottom: 0;
 
       .label_input > label {
-        @include mixins.type-body-compact;
+        @include mixins.type-label;
 
-        font-weight: bold;
         padding-top: var(--space-half);
         color: var(--color-text-primary);
         display: block;
@@ -228,6 +227,8 @@ code {
   }
 
   .hint {
+    @include mixins.type-caption;
+
     color: var(--color-text-secondary);
 
     a {
@@ -322,9 +323,8 @@ code {
 
   .input.with_label {
     .label_input > label {
-      @include mixins.type-body-compact;
+      @include mixins.type-label;
 
-      font-weight: bold;
       color: var(--color-text-primary);
       display: block;
       margin-bottom: var(--space-1);
@@ -344,9 +344,8 @@ code {
     max-width: none;
 
     & > label {
-      @include mixins.type-body-compact;
+      @include mixins.type-label;
 
-      font-weight: bold;
       color: var(--color-text-primary);
       display: block;
     }
@@ -733,22 +732,25 @@ code {
     appearance: none;
     box-sizing: border-box;
     font-size: 14px;
-    color: var(--color-text-primary);
     display: block;
     width: 100%;
-    outline: 0;
+    padding: var(--space-2);
+    padding-inline-end: var(--space-7);
     font-family: inherit;
-    resize: vertical;
-    background: var(--color-bg-highlight-solid);
-    border: 1px solid var(--color-border-primary);
-    border-radius: 4px;
-    padding-inline-start: 10px;
-    padding-inline-end: 30px;
-    height: 41px;
+    @include mixins.type-body-compact;
+
+    color: var(--color-text-primary);
+    background: var(--color-bg-primary);
+    border: var(--bw-thin) solid var(--color-border-input);
+    border-radius: var(--space-2);
+    caret-color: var(--color-text-brand);
+    outline: var(--outline-focus-default);
+    outline-color: transparent;
+    outline-offset: -2px;
+    transition: all 0.15s ease-out;
 
     &:focus-visible {
       outline: var(--outline-focus-default);
-      outline-offset: 2px;
     }
 
     @media screen and (width <= 600px) {
@@ -762,6 +764,10 @@ code {
 
   .label_input {
     position: relative;
+
+    &:has(input[type='radio'], input[type='checkbox']) {
+      margin-block-start: var(--space-2);
+    }
 
     &__loading-indicator {
       box-sizing: border-box;
