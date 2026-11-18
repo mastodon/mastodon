@@ -274,10 +274,15 @@ export const Search: React.FC<{
           } else {
             const queryParams = new URLSearchParams({ q: search.q });
             if (search.type) queryParams.set('type', search.type);
-            history.push({
-              pathname: '/search',
-              search: queryParams.toString(),
-            });
+            history.push(
+              {
+                pathname: '/search',
+                search: queryParams.toString(),
+              },
+              {
+                focusTarget: FOCUS_TARGET.SEARCH,
+              },
+            );
           }
 
           unfocus();
