@@ -40,14 +40,19 @@ export const MiniNav: React.FC = () => {
     (state) => state.navigation.isInlineSearchOpen,
   );
 
-  const toggleSearch = useCallback(() => {
+  const openSearch = useCallback(() => {
     dispatch(toggleInlineSearch());
     shouldHandleFocusRef.current = true;
+    handleSearchLinkClick();
+  }, [dispatch]);
 
-    if (!isSearchOpen) {
-      handleSearchLinkClick();
-    }
-  }, [dispatch, isSearchOpen]);
+  const closeSearch = useCallback(
+    (shouldHandleFocus: boolean) => {
+      dispatch(toggleInlineSearch());
+      shouldHandleFocusRef.current = shouldHandleFocus;
+    },
+    [dispatch, isSearchOpen],
+  );
 
   useEffect(() => {
     if (shouldHandleFocusRef.current) {
@@ -66,7 +71,7 @@ export const MiniNav: React.FC = () => {
           singleColumn
           context='sidebar'
           ref={searchFieldRef}
-          onClose={toggleSearch}
+          onClose={closeSearch}
         />
       ) : (
         <ul className={classes.list}>
@@ -77,7 +82,7 @@ export const MiniNav: React.FC = () => {
             <MiniNavigationLink
               as='button'
               icon={MagnifyingGlassIcon}
-              onClick={toggleSearch}
+              onClick={openSearch}
               ref={searchButtonRef}
             >
               <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />

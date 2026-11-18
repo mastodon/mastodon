@@ -77,7 +77,7 @@ export const Search: React.FC<{
   context?: 'column' | 'sidebar';
   initialValue?: string;
   initialType?: ApiSearchType;
-  onClose?: () => void;
+  onClose?: (shouldHandleFocus: boolean) => void;
   ref?: ForwardedRef<HTMLInputElement>;
 }> = ({
   singleColumn,
@@ -306,9 +306,12 @@ export const Search: React.FC<{
       void dispatch(clickSearchResult({ q, type: searchResultType }));
       const queryParams = new URLSearchParams({ q });
       if (type) queryParams.set('type', type);
-      history.push({ pathname: '/search', search: queryParams.toString() });
+      history.push(
+        { pathname: '/search', search: queryParams.toString() },
+        { focusTarget: FOCUS_TARGET.SEARCH },
+      );
       unfocus();
-      onClose?.();
+      onClose?.(false);
     },
     [dispatch, history, onClose, unfocus],
   );
@@ -450,7 +453,7 @@ export const Search: React.FC<{
     if (value.length > 0) {
       handleClear();
     } else {
-      onClose?.();
+      onClose?.(true);
     }
   }, [handleClear, onClose, value.length]);
 
@@ -571,7 +574,7 @@ export const Search: React.FC<{
   useOnClickOutside(
     formRef,
     () => {
-      onClose?.();
+      onClose?.(false);
     },
     {
       enabled: !!onClose && value.length === 0,
