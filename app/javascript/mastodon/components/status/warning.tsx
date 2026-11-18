@@ -16,6 +16,7 @@ import {
   useAppSelector,
 } from '@/mastodon/store/typed_functions';
 
+import { Button } from '../button';
 import { Callout } from '../callout/redesign';
 import { EmojiHTML } from '../emoji/html';
 
@@ -97,42 +98,42 @@ const StatusWarningDisplay: React.FC<{
   children: React.ReactElement;
   wrapperId?: string;
 }> = ({ hidden, onToggle, onThreadToggle, children, wrapperId }) => {
-  const props = onThreadToggle
-    ? {
-        secondaryActionClick: onThreadToggle,
-        secondaryActionText: hidden ? (
-          <FormattedMessage
-            id='content_warning.hide_thread'
-            defaultMessage='Hide entire thread'
-          />
-        ) : (
-          <FormattedMessage
-            id='content_warning.show_thread'
-            defaultMessage='Show entire thread'
-          />
-        ),
-      }
-    : {};
-
   return (
     <Callout
-      {...props}
       className={classes.spoiler}
       aria-controls={wrapperId}
-      actionClick={onToggle}
       icon={EyeSlashIcon}
-      actionText={
-        hidden ? (
-          <FormattedMessage
-            id='content_warning.hide_post'
-            defaultMessage='Hide post'
-          />
-        ) : (
-          <FormattedMessage
-            id='content_warning.show_post'
-            defaultMessage='Show post'
-          />
-        )
+      actions={
+        <>
+          <Button size='sm' onClick={onToggle}>
+            {hidden ? (
+              <FormattedMessage
+                id='content_warning.hide_post'
+                defaultMessage='Hide post'
+              />
+            ) : (
+              <FormattedMessage
+                id='content_warning.show_post'
+                defaultMessage='Show post'
+              />
+            )}
+          </Button>
+          {onThreadToggle && (
+            <Button size='sm' onClick={onThreadToggle}>
+              {hidden ? (
+                <FormattedMessage
+                  id='content_warning.hide_thread'
+                  defaultMessage='Hide entire thread'
+                />
+              ) : (
+                <FormattedMessage
+                  id='content_warning.show_thread'
+                  defaultMessage='Show entire thread'
+                />
+              )}
+            </Button>
+          )}
+        </>
       }
       data-interactive-post-content='true'
     >

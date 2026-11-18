@@ -2,43 +2,19 @@ import type React from 'react';
 
 import classNames from 'classnames';
 
-import { Button } from '../button';
 import { Icon } from '../icon';
 import type { IconProp } from '../icon';
 
 import classes from './redesign.module.scss';
 
-type RenameKeysStartingWith<
-  TObject extends Record<string, unknown>,
-  TPrefix extends string,
-  TReplacement extends string,
-> = {
-  [
-    TKey in keyof TObject as TKey extends `${TPrefix}${infer TSuffix}`
-      ? `${TReplacement}${TSuffix}`
-      : TKey
-  ]: TObject[TKey];
-};
-
-type ActionProps =
-  | { actionClick: () => void; actionText: React.ReactNode }
-  | { actionClick?: never; actionText?: never };
-
-type MiniCalloutProps = {
+interface MiniCalloutProps {
   size: 'sm';
-} & ActionProps;
+}
 
-type LargeCalloutProps = {
+interface LargeCalloutProps {
   size?: 'lg';
   icon?: IconProp;
-} & (
-  | (ActionProps & {
-      secondaryActionClick?: never;
-      secondaryActionText?: never;
-    })
-  | (Required<ActionProps> &
-      RenameKeysStartingWith<ActionProps, 'action', 'secondaryAction'>)
-);
+}
 
 export type CalloutProps<As extends React.ElementType> = (
   | MiniCalloutProps
@@ -47,60 +23,39 @@ export type CalloutProps<As extends React.ElementType> = (
   as?: As;
   children: React.ReactNode;
   className?: string;
+  actions?: React.ReactNode;
 } & React.ComponentPropsWithoutRef<As>;
 
 export const Callout = <As extends React.ElementType>({
   as: asComp,
+  actions,
   size,
   children,
   className,
-  actionText,
-  actionClick,
   ...props
 }: CalloutProps<As>) => {
   const Comp = asComp ?? 'div';
 
   const wrappedChildren = <div className={classes.textWrapper}>{children}</div>;
 
-  const actionButton = actionText ? (
-    <Button
-      onClick={actionClick}
-      className={classes.actionButton}
-      size={size === 'sm' ? 'xs' : 'sm'}
-    >
-      {actionText}
-    </Button>
-  ) : null;
-
   if (size === 'sm') {
     return (
       <Comp {...props} className={classNames(className, classes.rootSmall)}>
         {wrappedChildren}
-        {actionButton}
+        {actions}
       </Comp>
     );
   }
 
-  const { icon, secondaryActionClick, secondaryActionText, ...restProps } =
-    props;
-
-  const secondaryButton = secondaryActionText ? (
-    <Button
-      size='sm'
-      variant='ghost'
-      onClick={secondaryActionClick}
-      className={classes.actionButton}
-    >
-      {secondaryActionText}
-    </Button>
-  ) : null;
+  const { icon, ...restProps } = props;
 
   return (
     <Comp {...restProps} className={classNames(className, classes.rootLarge)}>
-      {icon && <Icon icon={icon} className={classes.icon} />}
-      {wrappedChildren}
-      {actionButton}
-      {secondaryButton}
+      <div className={classes.content}>
+        {icon && <Icon icon={icon} className={classes.icon} />}
+        {wrappedChildren}
+      </div>
+      {actions && <div className={classes.actions}>{actions}</div>}
     </Comp>
   );
 };
