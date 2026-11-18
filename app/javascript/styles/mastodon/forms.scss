@@ -747,7 +747,10 @@ code {
     outline: var(--outline-focus-default);
     outline-color: transparent;
     outline-offset: -2px;
-    transition: all 0.15s ease-out;
+    transition:
+      background-color 200ms,
+      color 200ms,
+      opacity 200ms;
 
     &:focus-visible {
       outline: var(--outline-focus-default);
@@ -871,30 +874,25 @@ code {
 }
 
 .flash-message {
-  color: var(--color-text-brand);
-  background: transparent;
-  border: 1px solid var(--color-border-brand);
-  border-radius: 4px;
-  padding: 15px 10px;
-  margin-bottom: 30px;
-  text-align: center;
+  padding: var(--space-3);
+  margin-bottom: var(--space-7);
+
+  @include mixins.type-body-compact;
+
+  color: var(--color-text-primary);
+  background: var(--color-bg-highlight);
+  border-radius: var(--radius-3);
 
   &.notice {
-    border: 1px solid var(--color-border-success-soft);
     background: var(--color-bg-success-softest);
-    color: var(--color-text-success);
   }
 
   &.warning {
-    border: 1px solid var(--color-border-warning-soft);
     background: var(--color-bg-warning-softest);
-    color: var(--color-text-warning);
   }
 
   &.alert {
-    border: 1px solid var(--color-border-error-soft);
     background: var(--color-bg-error-softest);
-    color: var(--color-text-error);
   }
 
   &.hidden {

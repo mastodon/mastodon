@@ -89,6 +89,10 @@
     outline-offset: 2px;
   }
 
+  &:focus {
+    border-radius: var(--radius-round);
+  }
+
   &--dangerous {
     background-color: var(--color-bg-error-base);
     color: var(--color-text-on-error-base);
