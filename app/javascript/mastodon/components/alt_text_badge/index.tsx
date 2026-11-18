@@ -4,10 +4,11 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import { useSelectableClick } from 'mastodon/hooks/useSelectableClick';
+import { XIcon } from '@phosphor-icons/react';
 
-import { IconButton } from '../icon_button';
+import { useSelectableClick } from '@/mastodon/hooks/useSelectableClick';
+
+import { Button, IconButton } from '../button';
 import { Popover } from '../popover';
 
 import classes from './styles.module.scss';
@@ -42,29 +43,45 @@ export const AltTextBadge: React.FC<{
 
   return (
     <>
-      <button
+      <Button
+        size='xs'
         type='button'
+        color='media'
         ref={setButtonElement}
         className={classNames('media-gallery__alt__label', className)}
         onClick={handleClick}
         aria-expanded={open}
         aria-controls={popoverId}
         aria-haspopup='dialog'
+        tooltip={{
+          type: 'description',
+          text: (
+            <FormattedMessage
+              id='alt_text_badge.title'
+              defaultMessage='Image description'
+            />
+          ),
+        }}
       >
         ALT
-      </button>
+        {/* Not translatable so it stays compact, like an icon */}
+      </Button>
 
       <Popover
         isOpen={open}
         onClose={handleClose}
         reference={buttonElement}
-        placement='top-end'
+        placement='bottom-start'
         offset={4}
       >
         {({ props }) => (
           <div {...props} className='hover-card-controller'>
             <div // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
-              className='info-tooltip dropdown-animation'
+              className={classNames(
+                'info-tooltip',
+                'dropdown-animation',
+                classes.redesignPopover,
+              )}
               role='dialog'
               aria-labelledby={titleId}
               ref={popoverRef}
@@ -77,20 +94,22 @@ export const AltTextBadge: React.FC<{
               <h4 id={titleId}>
                 <FormattedMessage
                   id='alt_text_badge.title'
-                  defaultMessage='Alt text'
+                  defaultMessage='Image description'
                 />
               </h4>
 
               <IconButton
-                title={intl.formatMessage({
+                icon={XIcon}
+                onClick={handleClose}
+                variant='ghost'
+                className={classes.closeButton}
+                tooltipPlacement='top'
+              >
+                {intl.formatMessage({
                   id: 'lightbox.close',
                   defaultMessage: 'Close',
                 })}
-                icon='close'
-                iconComponent={CloseIcon}
-                onClick={handleClose}
-                className={classes.closeButton}
-              />
+              </IconButton>
 
               <p>{description}</p>
             </div>

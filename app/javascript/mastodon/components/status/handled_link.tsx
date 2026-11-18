@@ -1,12 +1,19 @@
 import { useCallback } from 'react';
-import type { ComponentProps, FC } from 'react';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { mergeProps } from '@react-aria/utils';
+
 import type { ApiMentionJSON } from '@/mastodon/api_types/statuses';
 import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import type { OnElementHandler } from '@/mastodon/utils/html';
+
+import { HashtagMenu } from '../hashtag_menu';
+import { MenuTriggerText } from '../menu';
+import { Tooltip } from '../tooltip';
+
+import classes from './handled_link.module.scss';
 
 export interface HandledLinkProps {
   href: string;
@@ -17,7 +24,9 @@ export interface HandledLinkProps {
   collectionId?: string;
 }
 
-export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
+export const HandledLink: React.FC<
+  HandledLinkProps & React.ComponentProps<'a'>
+> = ({
   href,
   text,
   prevText,
@@ -39,14 +48,14 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
     const hashtag = text.slice(1).trim();
 
     return (
-      <Link
-        className={classNames('mention hashtag', className)}
-        to={`/tags/${encodeURIComponent(hashtag)}`}
-        rel='tag'
-        data-menu-hashtag={hashtagAccountId}
-      >
-        {children}
-      </Link>
+      <HashtagMenu tagId={hashtag} accountId={hashtagAccountId}>
+        <MenuTriggerText
+          className={classes.hashtag}
+          href={`/tags/${encodeURIComponent(hashtag)}`}
+        >
+          {children}
+        </MenuTriggerText>
+      </HashtagMenu>
     );
   } else if (mention) {
     // Handle mentions
@@ -75,24 +84,35 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   // Non-absolute paths treated as internal links. This shouldn't happen, but just in case.
   if (href.startsWith('/')) {
     return (
-      <Link className={classNames('unhandled-link', className)} to={href}>
-        {children}
-      </Link>
+      <Tooltip text={href}>
+        {({ getTooltipProps }) => (
+          <Link
+            {...getTooltipProps()}
+            className={classNames('unhandled-link', className)}
+            to={href}
+          >
+            {children}
+          </Link>
+        )}
+      </Tooltip>
     );
   }
 
   return (
-    <a
-      {...props}
-      href={href}
-      title={href}
-      className={classNames('unhandled-link', className)}
-      target='_blank'
-      rel='noopener'
-      translate='no'
-    >
-      {children}
-    </a>
+    <Tooltip text={href}>
+      {({ getTooltipProps }) => (
+        <a
+          {...mergeProps(props, getTooltipProps())}
+          href={href}
+          className={classNames('unhandled-link', className)}
+          target='_blank'
+          rel='noopener'
+          translate='no'
+        >
+          {children}
+        </a>
+      )}
+    </Tooltip>
   );
 };
 

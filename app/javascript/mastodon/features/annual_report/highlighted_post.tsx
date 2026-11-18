@@ -67,8 +67,8 @@ export const HighlightedPost: React.FC<{
   } else if (by_favourites) {
     label = (
       <FormattedMessage
-        id='annual_report.summary.highlighted_post.favourite_count'
-        defaultMessage='This post was favorited {count, plural, one {once} other {# times}}.'
+        id='annual_report.summary.highlighted_post.like_count'
+        defaultMessage='This post was liked {count, plural, one {once} other {# times}}.'
         values={{ count: status.get('favourites_count') }}
       />
     );

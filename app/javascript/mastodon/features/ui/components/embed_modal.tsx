@@ -74,13 +74,13 @@ const EmbedModal: React.FC<{
   return (
     <div className='modal-root__modal dialog-modal'>
       <div className='dialog-modal__header'>
-        <Button onClick={onClose}>
+        <Button onClick={onClose} variant='solid' color='accent'>
           <FormattedMessage id='report.close' defaultMessage='Done' />
         </Button>
         <NavigationFocusTarget as='h1' className='dialog-modal__header__title'>
           <FormattedMessage id='status.embed' defaultMessage='Get embed code' />
         </NavigationFocusTarget>
-        <Button secondary onClick={onClose}>
+        <Button onClick={onClose}>
           <FormattedMessage
             id='confirmation_modal.cancel'
             defaultMessage='Cancel'

@@ -8,7 +8,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
 import type { Preview } from '@storybook/react-vite';
-import { initialize, mswLoader } from 'msw-storybook-addon';
+import { mswLoader } from 'msw-storybook-addon/csf3';
+import { setupWorker } from 'msw/browser';
 import { action } from 'storybook/actions';
 
 import {
@@ -20,21 +21,21 @@ import { IdentityContext } from '@/mastodon/identity_context';
 import type { LocaleData } from '@/mastodon/locales';
 import { reducerWithInitialState } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
-import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
+import { mockHandlers, unhandledFrameHandler } from '@/testing/api';
 
 import { modes } from './modes';
 
 import '../app/javascript/styles/application.scss';
 import './styles.css';
 
-// Disabling locales in Storybook as it's breaking with Vite 8.
-// const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
-//   query: { as: 'json' },
-// });
+const startMsw = mswLoader(async () => {
+  const worker = setupWorker();
 
-// Initialize MSW
-initialize({
-  onUnhandledRequest: unhandledRequestHandler,
+  await worker.start({
+    onUnhandledFrame: unhandledFrameHandler,
+  });
+
+  return worker;
 });
 
 const preview: Preview = {
@@ -62,6 +63,16 @@ const preview: Preview = {
         ],
       },
     },
+    contrast: {
+      description: 'Contrast mode',
+      toolbar: {
+        title: 'Contrast',
+        items: [
+          { value: 'default', icon: 'contrastignored' },
+          { value: 'high', icon: 'contrast' },
+        ],
+      },
+    },
     loggedIn: {
       description: 'Whether a user is logged in',
       toolbar: {
@@ -77,6 +88,7 @@ const preview: Preview = {
   initialGlobals: {
     locale: 'en',
     theme: 'light',
+    contrast: 'default',
     loggedIn: 'true',
   },
   decorators: [
@@ -169,9 +181,11 @@ const preview: Preview = {
     },
     (Story, { globals }) => {
       const theme = globals.theme;
+      const contrast = globals.contrast;
       useEffect(() => {
         document.documentElement.dataset.colorScheme = theme;
-      }, [theme]);
+        document.documentElement.dataset.contrast = contrast;
+      }, [contrast, theme]);
       return <Story />;
     },
     (Story) => (
@@ -204,20 +218,17 @@ const preview: Preview = {
         </IdentityContext.Provider>
       );
     },
-    (Story, { parameters }) => {
-      useEffect(() => {
-        document.documentElement.dataset.redesign = parameters.redesign
-          ? 'true'
-          : 'false';
-      }, [parameters.redesign]);
-      return <Story />;
-    },
   ],
   loaders: [
-    mswLoader,
-    importCustomEmojiData,
-    importLegacyShortcodes,
-    ({ globals: { locale } }) => importEmojiData(locale),
+    // Storybook runs loaders concurrently, so wait for msw to be ready
+    async (context) => {
+      await startMsw(context);
+      await Promise.all([
+        importCustomEmojiData(),
+        importLegacyShortcodes(),
+        importEmojiData(context.globals.locale),
+      ]);
+    },
   ],
   parameters: {
     layout: 'centered',

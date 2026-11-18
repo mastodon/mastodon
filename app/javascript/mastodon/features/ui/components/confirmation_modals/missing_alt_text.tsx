@@ -4,7 +4,7 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import type { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
-import { submitCompose } from 'mastodon/actions/compose';
+import { submitComposer } from '@/mastodon/reducers/slices/composer';
 import { openModal } from 'mastodon/actions/modal';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
@@ -64,7 +64,7 @@ export const ConfirmMissingAltTextModal: React.FC<
   }, [dispatch, mediaId]);
 
   const handleSecondary = useCallback(() => {
-    dispatch(submitCompose());
+    dispatch(submitComposer({ force: true }));
   }, [dispatch]);
 
   return (

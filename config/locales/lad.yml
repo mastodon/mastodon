@@ -510,7 +510,6 @@ lad:
         registrations:
           confirm: Konfirma
           reject: Refuza
-        save: Guadra
         sign_in: Konektate
         status: Estado
       title: FASP
@@ -650,10 +649,7 @@ lad:
       action_taken_by: Aksyon tomada por
       actions:
         mark_as_sensitive_description_html: Las dosyas de multimedia en los mesajes enformados se markaran komo sensivles i se aplikara un amonestamiento para ayudarte kon las futuras infraksyones del mezmo kuento.
-        other_description_html: Ve mas opsiones para kontrolar el komporto del kuento i personalizar la komunikasyon del kuento raportado.
         resolve_description_html: No se tomaran aksyones kontra el kuento denunsiado, no se enrejistrara el amonestamiento, i se serrara el raporto.
-        silence_description_html: El profil sera vizivle solo para akeyos ke ya lo sigan o lo bushken manualmente, limitando seriamente su alkanse. Siempre puede ser revertido.
-        suspend_description_html: El profil i todos sus kontenidos seran inaksesivles asta ke sean enfin supremidos. La enteraksion kon el kuento sera emposivle. Reversivle durante un tiempo de 30 diyas.
       actions_description_html: Dechide kualas mizuras tomar para rezolver esta denunsia. Si tomas una aksion punitiva kontra el kuento denunsiada, se le embiara a dicho kuento un avizo por posta elektronika, ekseptado kuando se eskoja la kategoria <strong>Spam</strong>.
       actions_description_remote_html: Dechide ke fazer para rezolver este raporto. Esto solo va afektar komo <strong>tu</strong> sirvidor komunike kon este kuento remoto i ke faze kon su kontenido.
       add_to_report: Adjusta mas al raporto
@@ -825,10 +821,8 @@ lad:
       discovery:
         follow_recommendations: Rekomendasyones de kuentos
         preamble: Ekspone kontenido enteresante a la superfisie es fundamental para inkorporar muevos utilizadores ke pueden no koneser a dinguno en Mastodon. Kontrola komo fonksionan varias opsiones de diskuvrimiento en tu sirvidor.
-        privacy: Privasita
         profile_directory: Katalogo de profiles
         public_timelines: Linyas de tiempo publikas
-        publish_statistics: Publika estatistikas
         title: Diskuvrimiento
         trends: Trendes
       domain_blocks:
@@ -850,7 +844,6 @@ lad:
         warning_hint: Rekomendamos el uzo de "Se rekiere achetasion para enrejistrarse" a manko ke estes siguro ke tu taifa de moderasyon puede moderar el spam i los enrejistramyentos malisiozos en un tyempo razonavle.
       security:
         authorized_fetch: Rekere autentifikasyon de sirvidores federados
-        authorized_fetch_hint: Rekerir autentifikasyon de sirvidores federados permite un forsamyento mas estrikto de los blokos a nivel de utilizador i a nivel de sirvidor. Malgrado esto, el koste de esto es una penalizasyon de efisyensya, reduksyon del alkanse de tus repuestas i puede introduzir problemas de kompatibilita kon algunos sirvisyos federados. Ademas, esto no impidira ke aktores dedikados obtengan tus kuentos publikos i publikasyones publikas.
         authorized_fetch_overridden_hint: Agora no puedes trokar esta konfigurasyon dkee esta sovreeskrita por una variable de entorno.
         federation_authentication: Forzamyento de autentifikasyon para la federasyon
       title: Konfigurasyon del sirvidor
@@ -1069,8 +1062,6 @@ lad:
     warning_presets:
       add_new: Adjusta muevo
       delete: Efasa
-      edit_preset: Edita avizo predeterminado
-      empty: Ainda no tienes definido ningun avizo predeterminado.
     webhooks:
       add_new: Adjusta endpoint
       delete: Efasa
@@ -1140,7 +1131,6 @@ lad:
     advanced_settings: Konfigurasyon avansada
     animations_and_accessibility: Animasyones i aksesivilita
     boosting_preferences: Preferensias de repartajar
-    discovery: Diskuvrimiento
     localization:
       body: Mastodon es trezladado por volontarios.
       guide_link: https://crowdin.com/project/mastodon
@@ -1277,7 +1267,6 @@ lad:
   deletes:
     challenge_not_passed: Los datos introdusidos son yerrados
     confirm_password: Eskrive tu kod aktual para demostrar tu identita
-    confirm_username: Eskrive tu nombre de utilizador para konfirmar
     proceed: Efasa kuento
     success_msg: Tu kuento fue efasado kon reushita
     warning:
@@ -1755,7 +1744,6 @@ lad:
     appearance: Aparensya
     authorized_apps: Aplikasyones autorizadas
     back: Retorna a Mastodon
-    delete: Efasa kuento
     development: Dezvelopamiento
     edit_profile: Edita profil
     export: Eksporto
@@ -2033,5 +2021,4 @@ lad:
     nickname_hint: Introduska el sovrenombre de tu mueva yave de sigurita
     not_enabled: Ainda no tienes aktivado WebAuthn
     not_supported: Este navigador no soporta yaves de sigurita
-    otp_required: Para uzar yaves de sigurita, por favor kapasite primero la autentifikasyon de dos pasos.
     registered_on: Enrejistrado el %{date}

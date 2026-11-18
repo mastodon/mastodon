@@ -21,7 +21,6 @@ gl:
       admin_account_action:
         include_statuses: A usuaria verá que publicacións causaron a acción da moderación ou aviso
         send_email_notification: A usuaria recibirá unha explicación sobre o que lle aconteceu a súa conta
-        text_html: Optativo. Podes utilizar formato na publicación. Podes <a href="%{path}">engadir avisos preestablecidos</a> para aforrar tempo
         type_html: Elixe que facer con <strong>%{acct}</strong>
         types:
           disable: Evitar que a usuaria utilice a súa conta, mais non eliminala ou agochar o seu contido.
@@ -29,7 +28,6 @@ gl:
           sensitive: Forzar que tódolos ficheiros multimedia das usuarias sexan marcadas como sensibles.
           silence: Evitar que a usuaria poida publicar de xeito público, agochar as súas publicacións e notificacións para a xente que non a sigue. Isto pecha tódalas denuncias acerca desta conta.
           suspend: Evita calquera interacción con/ou desta conta e elimina os seus contidos. Reversible durante 30 días. Isto pecha tódalas denuncias acerca desta conta.
-        warning_preset_id: Optativo. Poderás engadir texto personalizado ao final do preestablecido
       announcement:
         all_day: Cando se marca, só serán amosadas as datas do intre de tempo
         ends_at: Opcional. O anuncio non se publicará de xeito automático neste intre
@@ -191,12 +189,10 @@ gl:
       account_migration:
         acct: Usuaria na nova conta
       account_warning_preset:
-        text: Texto preestablecido
         title: Título
       admin_account_action:
         include_statuses: Incluír no correo as publicacións denunciadas
         send_email_notification: Notificar á usuaria por email
-        text: Aviso personalizado
         type: Acción
         types:
           disable: Desactivar
@@ -204,7 +200,6 @@ gl:
           sensitive: Sensible
           silence: Limitar
           suspend: Suspender
-        warning_preset_id: Utilizar un aviso preestablecido
       announcement:
         all_day: Evento para todo o día
         ends_at: Final do acontecemento
@@ -244,7 +239,6 @@ gl:
         setting_always_send_emails: Enviar sempre notificacións por correo electrónico
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Controlar a visibilidade das promocións
-        setting_color_scheme: Abano de cores
         setting_contrast: Contraste
         setting_default_language: Idioma de publicación
         setting_default_privacy: Visibilidade da publicación
@@ -266,7 +260,6 @@ gl:
         setting_system_font_ui: Utilizar a tipografía por defecto do sistema
         setting_system_scrollbars_ui: Usar barras de desprazamento predeterminadas no sistema
         setting_theme: Decorado da instancia
-        setting_trends: Mostrar as tendencias de hoxe
         setting_unfollow_modal: Solicitar confirmación antes de deixar de seguir alguén
         setting_use_blurhash: Mostrar gradientes coloridos para multimedia oculto
         setting_use_pending_items: Modo lento

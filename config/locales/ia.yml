@@ -509,8 +509,6 @@ ia:
           description: Tu ha recipite un registration de un FSAF. Rejecta lo si tu non lo ha initiate. Si tu lo ha initiate, compara attentemente le nomine e le dactylogramma del clave ante de confirmar le registration.
           reject: Rejectar
           title: Confirmar registration FSAF
-        save: Salvar
-        select_capabilities: Selige capacitates
         sign_in: Aperir session
         status: Stato
         title: Fornitores de Servicios Auxiliar del Fediverso
@@ -655,10 +653,7 @@ ia:
       action_taken_by: Mesura prendite per
       actions:
         mark_as_sensitive_description_html: Le files multimedial in le messages reportate essera marcate como sensibile e un sanction essera registrate pro adjutar te a prender mesuras adequate in caso de futur infractiones committite desde le mesme conto.
-        other_description_html: Vider plus optiones pro controlar le comportamento del conto e personalisar le communication al conto signalate.
         resolve_description_html: Necun mesura essera prendite contra le conto denunciate, necun sanction registrate, e le reporto essera claudite.
-        silence_description_html: Iste conto essera visibile solmente a qui ja lo seque o manualmente lo cerca, limitante gravemente su portata. Pote sempre esser revertite. Claude tote le reportos contra iste conto.
-        suspend_description_html: Le conto e tote su contento essera inaccessibile e finalmente delite, e interager con illo essera impossibile. Reversibile intra 30 dies. Claude tote le reportos contra iste conto.
       actions_description_html: Decider que mesuras prender pro resolver iste reporto. Si tu prende un mesura punitive contra le conto reportate, un aviso email les sera inviate, salvo quando le categoria <strong>Spam</strong> es seligite.
       actions_description_remote_html: Decide qual mesura prender pro resolver iste reporto. Isto affectara solmente le maniera in que <strong>tu</strong> servitor communica con iste conto remote e gere su contento.
       actions_no_posts: Iste reporto non ha alcun message associate a deler
@@ -836,10 +831,8 @@ ia:
       discovery:
         follow_recommendations: Recommendationes de contos a sequer
         preamble: Presentar contento interessante es essential pro attraher e retener nove usatores qui pote non cognoscer alcun persona sur Mastodon. Controla como varie optiones de discoperta functiona sur tu servitor.
-        privacy: Confidentialitate
         profile_directory: Directorio de profilos
         public_timelines: Chronologias public
-        publish_statistics: Publicar statisticas
         title: Discoperta
         trends: Tendentias
       domain_blocks:
@@ -863,7 +856,6 @@ ia:
         warning_hint: Nos recommenda usar “Approbation necessari pro le inscription” si tu non es secur que tu equipa de moderation pote tractar spam e inscriptiones malevolente in tempore utile.
       security:
         authorized_fetch: Require authentication ab servitores federate
-        authorized_fetch_hint: Requirer authentication de servitores federate permitte un application plus stricte de blocadas a nivello de usator e de servitor. Nonobstante, isto diminue le prestationes del servitor, reduce le portata de tu responsas e pote introducer problemas de compatibilitate con certe servicios federate. In plus, isto non impedira le actores dedicate a recuperar tu messages public e tu contos.
         authorized_fetch_overridden_hint: Tu actualmente non pote cambiar iste parametro perque illo es supplantate per un variabile de ambiente.
         federation_authentication: Application del authentication de federation
       title: Parametros de servitor
@@ -1116,9 +1108,6 @@ ia:
     warning_presets:
       add_new: Adder nove
       delete: Deler
-      edit_preset: Rediger aviso predefinite
-      empty: Tu non ha ancora definite alcun avisos predefinite.
-      title: Predefinitiones de avisos
     webhooks:
       add_new: Adder puncto final
       delete: Deler
@@ -1189,7 +1178,6 @@ ia:
     animations_and_accessibility: Animationes e accessibilitate
     boosting_preferences: Preferentias de impulso
     boosting_preferences_info_html: "<strong>Consilio:</strong> Independentemente del parametros, <kbd>Shift</kbd> + <kbd>clic</kbd> sur le icone %{icon} “Impulsar” impulsara immediatemente."
-    discovery: Discoperta
     localization:
       body: Mastodon es traducite per voluntarios.
       guide_link: https://crowdin.com/project/mastodon/ia
@@ -1328,7 +1316,6 @@ ia:
   deletes:
     challenge_not_passed: Le informationes que tu ha inserite non es correcte
     confirm_password: Insere tu contrasigno actual pro verificar tu identitate
-    confirm_username: Insere tu nomine de usator pro confirmar le procedura
     proceed: Deler le conto
     success_msg: Tu conto ha essite delite
     warning:
@@ -1839,7 +1826,6 @@ ia:
     appearance: Apparentia
     authorized_apps: Apps autorisate
     back: Retornar a Mastodon
-    delete: Deletion de conto
     development: Disveloppamento
     edit_profile: Modificar profilo
     export: Exportar
@@ -2132,5 +2118,4 @@ ia:
     nickname_hint: Insere le pseudonymo de tu nove clave de securitate
     not_enabled: Tu ancora non ha activate WebAuthn
     not_supported: Iste navigator non supporta claves de securitate
-    otp_required: Pro usar le claves de securitate activa prime le authentication de duo factores.
     registered_on: Inscribite le %{date}

@@ -74,6 +74,8 @@ export const CopyLinkField = forwardRef<HTMLInputElement, CopyLinkFieldProps>(
               className={classNames(className, classes.input)}
             />
             <CopyIconButton
+              variant='ghost'
+              color='accent'
               value={value}
               title={intl.formatMessage({
                 id: 'copy_icon_button.copy_this_text',

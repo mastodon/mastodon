@@ -1,0 +1,81 @@
+@use '@/styles/mastodon/mixins';
+
+.meta {
+  @include mixins.type-meta;
+
+  display: flex;
+  gap: var(--space-2) var(--space-4);
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  color: var(--color-text-secondary);
+  padding-block-start: var(--space-2);
+  margin-block-start: var(--space-2);
+  border-block-start: var(--border-default);
+  margin-inline: calc(-1 * var(--space-4));
+  padding-inline: var(--space-4);
+
+  li:not(:first-child) {
+    &::before {
+      content: '• ';
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: var(--link-underline-default);
+
+    &:hover,
+    &:hover * {
+      text-decoration: var(--link-underline-default-hover);
+    }
+  }
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.editedButton {
+  appearance: none;
+  background: none;
+  border: 0;
+  color: inherit;
+  padding: 0;
+  text-decoration: var(--link-underline-default);
+
+  &:hover {
+    text-decoration: var(--link-underline-default-hover);
+  }
+}
+
+.editedBadge {
+  margin-inline-end: var(--space-1);
+}
+
+.editedHeader {
+  @include mixins.type-caption;
+
+  color: var(--color-text-tertiary);
+  padding: var(--space-2) var(--space-3);
+  border-block-end: var(--border-default);
+}
+
+.editedItem {
+  gap: var(--space-1);
+
+  > :global(.inline-account) {
+    flex-shrink: 1;
+
+    img {
+      display: block;
+    }
+  }
+
+  > * {
+    flex-shrink: 0;
+  }
+}

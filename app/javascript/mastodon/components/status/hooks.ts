@@ -4,55 +4,120 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router';
 
-import { mentionComposeById } from '@/mastodon/actions/compose';
+import { fromJS } from 'immutable';
+
+import {
+  followAccount,
+  unblockAccount,
+  unmuteAccount,
+} from '@/mastodon/actions/accounts';
+import { initBlockModal } from '@/mastodon/actions/blocks';
+import {
+  mentionComposeById,
+  directCompose,
+  mentionCompose,
+} from '@/mastodon/actions/compose';
+import { unblockDomain } from '@/mastodon/actions/domain_blocks';
 import type { StatusInteractionIntent } from '@/mastodon/actions/interactions_typed';
 import { statusInteraction } from '@/mastodon/actions/interactions_typed';
 import { openModal } from '@/mastodon/actions/modal';
+import { initMuteModal } from '@/mastodon/actions/mutes';
 import { toggleStatusSpoilers } from '@/mastodon/actions/statuses';
-import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
+import { useRelationship } from '@/mastodon/hooks/useRelationship';
+import { useExpandedStatus, useStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
+import { useIdentity } from '@/mastodon/identity_context';
+import { quickBoosting } from '@/mastodon/initial_state';
+import type { MenuItem as DropdownItem } from '@/mastodon/models/dropdown_menu';
+import type { Relationship } from '@/mastodon/models/relationship';
 import type {
   AccountStatusShape,
   ExpandedStatusShape,
+  MediaAttachment,
   StatusShape,
 } from '@/mastodon/models/status';
+import {
+  PERMISSION_MANAGE_FEDERATION,
+  PERMISSION_MANAGE_USERS,
+} from '@/mastodon/permissions';
 import { selectStatusFilters } from '@/mastodon/selectors/filters';
+import type {
+  StatusConditions,
+  StatusInteractionsAllowed,
+} from '@/mastodon/selectors/statuses';
+import {
+  selectStatusConditions,
+  selectStatusInteractionsAllowed,
+} from '@/mastodon/selectors/statuses';
 import { useAppSelector, useAppDispatch } from '@/mastodon/store';
+import type { AppDispatch } from '@/mastodon/store';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
+import type { HotkeyHandlerFunction, HotkeyName } from '../hotkeys';
 import { FOCUS_TARGET } from '../navigation_focus_target';
 
+import { boostItemState, quoteItemState } from './boost_button_utils';
 import { useElementHandledLink } from './handled_link';
-import type { StatusContextType } from './types';
+import {
+  StatusBookmarkActiveIcon,
+  StatusBookmarkIcon,
+  StatusBoostActiveIcon,
+  StatusBoostIcon,
+  StatusLikeActiveIcon,
+  StatusLikeIcon,
+  StatusReplyAllIcon,
+  StatusReplyIcon,
+} from './icons';
+import type { StatusContextType, StatusVariant } from './types';
 
 export const StatusContext = createContext<{
   id?: string | null;
   contextType?: StatusContextType;
+  variant?: StatusVariant;
+  registerHotkeyCallback?: (
+    hotkey: HotkeyName,
+    handler: HotkeyHandlerFunction,
+  ) => void;
 }>({});
 
 export function useStatusContext() {
   return use(StatusContext);
 }
 
-const messages = defineMessages({
-  quote_noun: {
-    id: 'status.quote_noun',
-    defaultMessage: 'Quote',
-    description: 'Quote as a noun',
-  },
-  contains_quote: {
-    id: 'status.contains_quote',
-    defaultMessage: 'Contains quote',
-  },
-  boosted: { id: 'status.reblogged_by', defaultMessage: '{name} boosted' },
-});
+interface EventShiftKey {
+  shiftKey?: boolean;
+}
+
+export function useStatusInteractionFactory(
+  statusId?: string,
+  contextTypeArg?: StatusContextType,
+) {
+  const statusContext = useStatusContext();
+  const contextType = contextTypeArg ?? statusContext.contextType;
+  const dispatch = useAppDispatch();
+  return useCallback(
+    (intent: StatusInteractionIntent) => {
+      return (event?: EventShiftKey) => {
+        dispatch(
+          statusInteraction({
+            statusId,
+            intent,
+            contextType,
+            force: event?.shiftKey,
+          }),
+        );
+      };
+    },
+    [contextType, dispatch, statusId],
+  );
+}
 
 export function useStatusHandlers({
   status,
   contextType,
   onOpen,
 }: {
-  status?: ExpandedStatusShape;
+  status?: ExpandedStatusShape | AccountStatusShape | null;
   contextType?: StatusContextType;
   onOpen?: () => void;
 }) {
@@ -79,14 +144,7 @@ export function useStatusHandlers({
   }, [dispatch, filterAction, onFilterToggle, showDespiteFilter, status]);
 
   // Interaction handlers
-  const handlerFactory = useCallback(
-    (intent: StatusInteractionIntent) => {
-      return () => {
-        dispatch(statusInteraction({ statusId, intent, contextType }));
-      };
-    },
-    [contextType, dispatch, statusId],
-  );
+  const handlerFactory = useStatusInteractionFactory(statusId, contextType);
 
   const accountId = status?.account.id;
   const onMention = useCallback(() => {
@@ -118,6 +176,31 @@ export function useStatusHandlers({
 
   const onOpenClick: React.MouseEventHandler = useCallback(
     (event) => {
+      const target = event.target;
+
+      const isQuotedStatus = event.currentTarget.matches(
+        '[data-interactive-post-content="true"]',
+      );
+      // When clicking a quoted post, we stop event propagation
+      // so it doesn't trigger this handler on the parent post.
+      if (isQuotedStatus) {
+        event.stopPropagation();
+      }
+
+      // Quoted posts are always inside of an element with `data-interactive-post-content`,
+      // so we exclude it from the selector.
+      const interactiveElementSelector = isQuotedStatus
+        ? 'a, button, dialog, input, textarea, label'
+        : 'a, button, dialog, input, textarea, label, [data-interactive-post-content="true"]';
+
+      if (
+        !(target instanceof HTMLElement) ||
+        target.closest(interactiveElementSelector) ||
+        contextType === 'detailed' ||
+        window.getSelection()?.type === 'Range'
+      ) {
+        return;
+      }
       event.preventDefault();
 
       if (event.button === 0 && !(event.ctrlKey || event.metaKey)) {
@@ -129,7 +212,7 @@ export function useStatusHandlers({
         onOpenCallback(true);
       }
     },
-    [onOpenCallback],
+    [contextType, onOpenCallback],
   );
 
   const acct = status?.account.acct;
@@ -139,19 +222,25 @@ export function useStatusHandlers({
     }
   }, [history, acct]);
 
+  const immutableMedia = useAppSelector(
+    (state) =>
+      state.statuses.getIn([statusId, 'media_attachments']) as
+        | Immutable.List<MediaAttachment>
+        | undefined,
+  );
+  const lang = status?.translation?.language ?? status?.language;
   const onOpenMedia = useCallback(() => {
-    const attachment = status?.media_attachments[0];
-    if (!attachment) {
+    const attachment = immutableMedia?.first();
+    if (!attachment || !statusId) {
       return;
     }
 
-    const lang = status.translation?.language ?? status.language;
-    if (attachment.type === 'video') {
+    if (attachment.get('type') === 'video') {
       dispatch(
         openModal({
           modalType: 'VIDEO',
           modalProps: {
-            statusId: status.id,
+            statusId,
             media: attachment,
             lang,
             options: { startTime: 0 },
@@ -163,15 +252,15 @@ export function useStatusHandlers({
         openModal({
           modalType: 'MEDIA',
           modalProps: {
-            statusId: status.id,
-            media: status.media_attachments,
+            statusId,
+            media: immutableMedia,
             lang,
             index: 0,
           },
         }),
       );
     }
-  }, [dispatch, status]);
+  }, [dispatch, immutableMedia, lang, statusId]);
 
   return useMemo(
     () => ({
@@ -180,7 +269,7 @@ export function useStatusHandlers({
       onOpenClick,
       onFilterToggle,
       onMention,
-      onOpen: () => {
+      onOpenCallback: () => {
         onOpenCallback();
       },
       onOpenMedia,
@@ -208,6 +297,124 @@ export function useStatusHandlers({
 }
 export type StatusHandlers = ReturnType<typeof useStatusHandlers>;
 
+interface StatusIcon {
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  title: string;
+  meta?: string;
+  counter?: number;
+  active?: boolean;
+  action: (event?: EventShiftKey) => void;
+  disabled: boolean;
+}
+
+const iconMessages = defineMessages({
+  reply: { id: 'status.reply', defaultMessage: 'Reply' },
+  replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
+  favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
+  removeFavourite: {
+    id: 'status.remove_favourite',
+    defaultMessage: 'Remove from favorites',
+  },
+  like: { id: 'status.like', defaultMessage: 'Like' },
+  removeLike: {
+    id: 'status.unlike',
+    defaultMessage: 'Unlike',
+  },
+  bookmark: { id: 'status.save', defaultMessage: 'Save post' },
+  removeBookmark: {
+    id: 'status.remove_from_saved',
+    defaultMessage: 'Remove from Saved',
+  },
+});
+
+export function useStatusIcons(statusId: string) {
+  const intl = useIntl();
+  const conditions = useAppSelector((state) =>
+    selectStatusConditions(state, statusId),
+  );
+  const status = useStatus(statusId);
+  const interactions = useAppSelector((state) =>
+    selectStatusInteractionsAllowed(state, statusId),
+  );
+  const interactionFactory = useStatusInteractionFactory(statusId);
+
+  const isReplyAll = !!status?.in_reply_to_id;
+  const reply: StatusIcon = {
+    icon: isReplyAll ? StatusReplyAllIcon : StatusReplyIcon,
+    title: intl.formatMessage(
+      isReplyAll ? iconMessages.replyAll : iconMessages.reply,
+    ),
+    counter: status?.replies_count,
+    action: interactionFactory('reply'),
+    disabled: interactions.reply,
+  };
+
+  const boostState = boostItemState(conditions);
+  const boost: StatusIcon = {
+    icon: status?.reblogged ? StatusBoostActiveIcon : StatusBoostIcon,
+    title: intl.formatMessage(boostState.title),
+    meta: boostState.meta ? intl.formatMessage(boostState.meta) : undefined,
+    counter: status?.reblogs_count,
+    active: status?.reblogged ?? false,
+    action: interactionFactory('reblog'),
+    disabled: boostState.disabled ?? false,
+  };
+
+  const quoteState = quoteItemState(conditions);
+  const quote: StatusIcon = {
+    icon: quoteState.iconComponent,
+    title: intl.formatMessage(quoteState.title),
+    meta: quoteState.meta ? intl.formatMessage(quoteState.meta) : undefined,
+    counter: status?.quotes_count,
+    action: interactionFactory('quote'),
+    disabled: quoteState.disabled ?? false,
+  };
+
+  const isLiked = !!status?.favourited;
+  const like: StatusIcon = {
+    icon: isLiked ? StatusLikeActiveIcon : StatusLikeIcon,
+    title: intl.formatMessage(
+      isLiked ? iconMessages.removeLike : iconMessages.like,
+    ),
+    counter: status?.favourites_count ?? 0,
+    active: isLiked,
+    action: interactionFactory('favourite'),
+    disabled: interactions.favourite,
+  };
+
+  const isBookmarked = !!status?.bookmarked;
+  const bookmark: StatusIcon = {
+    icon: isBookmarked ? StatusBookmarkActiveIcon : StatusBookmarkIcon,
+    title: intl.formatMessage(
+      isBookmarked ? iconMessages.removeBookmark : iconMessages.bookmark,
+    ),
+    active: isBookmarked,
+    action: interactionFactory('bookmark'),
+    disabled: interactions.bookmark,
+  };
+
+  return {
+    reply,
+    boost,
+    quote,
+    like,
+    bookmark,
+  } as const;
+}
+
+const screenReaderMessages = defineMessages({
+  quote_noun: {
+    id: 'status.quote_noun',
+    defaultMessage: 'Quote',
+    description: 'Quote as a noun',
+  },
+  contains_quote: {
+    id: 'status.contains_quote',
+    defaultMessage: 'Contains quote',
+  },
+  boosted: { id: 'status.reblogged_by', defaultMessage: '{name} boosted' },
+});
+
 const domParser = new DOMParser();
 export function useTextForScreenReader({
   statusId,
@@ -228,16 +435,28 @@ export function useTextForScreenReader({
 
     const spoilerText = status.translation?.spoiler_text ?? status.spoiler_text;
     const contentHtml = status.translation?.contentHtml ?? status.contentHtml;
-    const contentText = domParser.parseFromString(contentHtml, 'text/html')
-      .documentElement.textContent;
+    let contentText = spoilerText;
+    if (!status.hidden) {
+      contentText = '';
+      for (const paragraph of domParser
+        .parseFromString(contentHtml, 'text/html')
+        .querySelectorAll('p')) {
+        const text = paragraph.textContent.trim();
+        if (text) {
+          contentText += ` ${text}`;
+        }
+      }
+    }
 
     const values = [
-      isQuote ? intl.formatMessage(messages.quote_noun) : undefined,
+      isQuote ? intl.formatMessage(screenReaderMessages.quote_noun) : undefined,
       displayName.length === 0
         ? status.account.acct.split('@')[0]
         : displayName,
-      spoilerText && status.hidden ? spoilerText : contentText,
-      status.quote ? intl.formatMessage(messages.contains_quote) : undefined,
+      contentText,
+      status.quote
+        ? intl.formatMessage(screenReaderMessages.contains_quote)
+        : undefined,
       intl.formatDate(status.created_at, {
         hour: '2-digit',
         minute: '2-digit',
@@ -246,7 +465,7 @@ export function useTextForScreenReader({
       }),
       status.account.acct,
       reblogAcct
-        ? intl.formatMessage(messages.boosted, { name: reblogAcct })
+        ? intl.formatMessage(screenReaderMessages.boosted, { name: reblogAcct })
         : false,
     ].filter((val) => !!val);
 
@@ -269,12 +488,38 @@ export function useHandlersForStatus(
       status?.tagged_collections.find((item) => item.url === href)?.id,
     [status?.tagged_collections],
   );
-  return useElementHandledLink({
+  const { onElement: onElementHandledLink } = useElementHandledLink({
     hashtagAccountId:
       typeof status?.account === 'string' ? status.account : status?.account.id,
     hrefToCollectionId,
     hrefToMention,
   });
+
+  const onElement: OnElementHandler = useCallback(
+    (element, { key, ...props }, children, extra) => {
+      if (element instanceof HTMLAnchorElement) {
+        return onElementHandledLink(
+          element,
+          { key, ...props },
+          children,
+          extra,
+        );
+      } else if (
+        element instanceof HTMLSpanElement &&
+        props.className === 'invisible'
+      ) {
+        return createElement(
+          'span',
+          { key: key as React.Key, 'aria-disabled': true, ...props },
+          children,
+        );
+      }
+      return undefined;
+    },
+    [onElementHandledLink],
+  );
+
+  return { onElement };
 }
 
 export const onStatusLinksDisabled: OnElementHandler<AccountStatusShape> = (
@@ -300,3 +545,462 @@ export const onStatusLinksDisabled: OnElementHandler<AccountStatusShape> = (
   }
   return undefined;
 };
+
+const menuMessages = defineMessages({
+  delete: { id: 'status.delete', defaultMessage: 'Delete' },
+  redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
+  edit: { id: 'status.edit', defaultMessage: 'Edit' },
+  follow: { id: 'status.follow', defaultMessage: 'Follow @{name}' },
+  message: { id: 'status.message', defaultMessage: 'Message @{name}' },
+  mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
+  mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
+  muteBoosts: {
+    id: 'account.mute_boosts',
+    defaultMessage: 'Mute boosts from @{name}',
+  },
+  unmuteBoosts: {
+    id: 'account.unmute_boosts',
+    defaultMessage: 'Unmute boosts from @{name}',
+  },
+  block: { id: 'account.block', defaultMessage: 'Block @{name}' },
+  share: { id: 'status.share', defaultMessage: 'Share' },
+  open: { id: 'status.open', defaultMessage: 'Expand this status' },
+  report: { id: 'status.report', defaultMessage: 'Report @{name}' },
+  muteConversation: {
+    id: 'status.mute_conversation',
+    defaultMessage: 'Mute conversation',
+  },
+  unmuteConversation: {
+    id: 'status.unmute_conversation',
+    defaultMessage: 'Unmute conversation',
+  },
+  pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
+  unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
+  embed: { id: 'status.embed', defaultMessage: 'Get embed code' },
+  admin_account: {
+    id: 'status.admin_account',
+    defaultMessage: 'Open moderation interface for @{name}',
+  },
+  admin_status: {
+    id: 'status.admin_status',
+    defaultMessage: 'Open this post in the moderation interface',
+  },
+  admin_domain: {
+    id: 'status.admin_domain',
+    defaultMessage: 'Open moderation interface for {domain}',
+  },
+  copy: { id: 'status.copy', defaultMessage: 'Copy link to post' },
+  blockDomain: {
+    id: 'account.block_domain',
+    defaultMessage: 'Block domain {domain}',
+  },
+  unblockDomain: {
+    id: 'account.unblock_domain',
+    defaultMessage: 'Unblock domain {domain}',
+  },
+  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
+  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
+  filter: { id: 'status.filter', defaultMessage: 'Filter this post' },
+  openOriginalPage: {
+    id: 'account.open_original_page',
+    defaultMessage: 'Open original page',
+  },
+  revokeQuote: {
+    id: 'status.revoke_quote',
+    defaultMessage: 'Remove my post from @{name}’s post',
+  },
+  quotePolicyChange: {
+    id: 'status.quote_policy_change',
+    defaultMessage: 'Change who can quote',
+  },
+});
+
+export function useStatusMenuActions({
+  status,
+  reblogStatus,
+  contextType,
+  withDismiss = false,
+}: {
+  status: Omit<AccountStatusShape, 'reblog'>;
+  reblogStatus: AccountStatusShape | null;
+  withDismiss?: boolean;
+  contextType?: StatusContextType;
+}) {
+  const account = status.account;
+  const { permissions } = useIdentity();
+  const relationship = useRelationship(account.id);
+  const reblogAccountRelationship = useRelationship(reblogStatus?.account.id);
+  const intl = useIntl();
+  const dispatch = useAppDispatch();
+
+  const conditions = useAppSelector((state) =>
+    selectStatusConditions(state, status.id),
+  );
+  const interactions = useAppSelector((state) =>
+    selectStatusInteractionsAllowed(state, status.id),
+  );
+  const statusInteractionFactory = useStatusInteractionFactory(
+    status.id,
+    contextType,
+  );
+
+  return useMemo(
+    () =>
+      getMenuItems({
+        status,
+        reblogStatus,
+        conditions,
+        interactions,
+        onStatusInteraction: statusInteractionFactory,
+        withDismiss,
+        permissions,
+        intl,
+        relationship,
+        reblogAccountRelationship,
+        contextType,
+        dispatch,
+      }),
+    [
+      status,
+      reblogStatus,
+      conditions,
+      interactions,
+      statusInteractionFactory,
+      withDismiss,
+      permissions,
+      intl,
+      relationship,
+      reblogAccountRelationship,
+      contextType,
+      dispatch,
+    ],
+  );
+}
+
+interface MenuItemsParams {
+  status: AccountStatusShape;
+  reblogStatus: AccountStatusShape | null;
+  conditions: StatusConditions;
+  interactions: StatusInteractionsAllowed;
+  onStatusInteraction: (
+    intent: StatusInteractionIntent,
+  ) => (event: EventShiftKey) => void;
+  withDismiss?: boolean;
+  permissions: number;
+  intl: ReturnType<typeof useIntl>;
+  relationship?: Relationship | null;
+  reblogAccountRelationship?: Relationship | null;
+  contextType?: StatusContextType;
+  dispatch: AppDispatch;
+}
+
+function getMenuItems({
+  status,
+  reblogStatus,
+  conditions,
+  interactions,
+  onStatusInteraction,
+  withDismiss,
+  permissions,
+  intl,
+  relationship,
+  reblogAccountRelationship,
+  contextType,
+  dispatch,
+}: MenuItemsParams) {
+  const menu: DropdownItem[] = [];
+
+  const statusId = status.id;
+  const account = status.account;
+  const statusUrl = status.url ?? status.uri;
+  const { isPublic, isLocal, isLoggedIn, isMine } = conditions;
+  const isBoost = !!reblogStatus;
+
+  if (contextType !== 'detailed') {
+    menu.push({
+      text: intl.formatMessage(menuMessages.open),
+      to: `/@${account.acct}/${statusId}`,
+    });
+  }
+
+  if (isPublic && !isLocal) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.openOriginalPage),
+      href: statusUrl,
+    });
+  }
+
+  menu.push({
+    text: intl.formatMessage(menuMessages.copy),
+    action: onStatusInteraction('copy'),
+  });
+
+  if (isPublic && 'share' in navigator) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.share),
+      action: () => {
+        void navigator.share({
+          url: statusUrl,
+        });
+      },
+    });
+  }
+
+  if (interactions.embed) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.embed),
+      action: onStatusInteraction('embed'),
+    });
+  }
+
+  if (!isLoggedIn) {
+    return menu;
+  }
+
+  if (quickBoosting) {
+    menu.push(null);
+    const quoteItem = quoteItemState(conditions);
+    menu.push({
+      text: intl.formatMessage(quoteItem.title),
+      description: quoteItem.meta
+        ? intl.formatMessage(quoteItem.meta)
+        : undefined,
+      disabled: quoteItem.disabled,
+      action: onStatusInteraction('quote'),
+    });
+  }
+
+  menu.push(null);
+
+  if (interactions.pin) {
+    menu.push({
+      text: intl.formatMessage(
+        status.pinned ? menuMessages.unpin : menuMessages.pin,
+      ),
+      action: onStatusInteraction('pin'),
+    });
+    menu.push(null);
+  }
+
+  if (interactions.mute || withDismiss) {
+    menu.push({
+      text: intl.formatMessage(
+        status.muted
+          ? menuMessages.unmuteConversation
+          : menuMessages.muteConversation,
+      ),
+      action: onStatusInteraction('mute'),
+    });
+    menu.push(null);
+  }
+
+  if (interactions.edit && interactions.delete && interactions.redraft) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.edit),
+      action: onStatusInteraction('edit'),
+    });
+    menu.push({
+      text: intl.formatMessage(menuMessages.delete),
+      action: onStatusInteraction('delete'),
+      dangerous: true,
+    });
+    menu.push({
+      text: intl.formatMessage(menuMessages.redraft),
+      action: onStatusInteraction('redraft'),
+      dangerous: true,
+    });
+  }
+
+  if (isMine) {
+    // Add the filter to handle the edge case of not having account data.
+    if (interactions.filter) {
+      menu.push(null);
+      menu.push({
+        text: intl.formatMessage(menuMessages.filter),
+        action: onStatusInteraction('filter'),
+        dangerous: true,
+      });
+    }
+    return menu;
+  }
+
+  if (!account.invalid_handle) {
+    if (relationship && !relationship.following) {
+      menu.push({
+        text: intl.formatMessage(menuMessages.follow, {
+          name: account.username,
+        }),
+        action: () => {
+          dispatch(followAccount(account.id));
+        },
+      });
+    }
+
+    menu.push({
+      text: intl.formatMessage(menuMessages.mention, {
+        name: account.username,
+      }),
+      action: () => {
+        dispatch(mentionCompose(fromJS(account)));
+      },
+    });
+    menu.push({
+      text: intl.formatMessage(menuMessages.message, {
+        name: account.username,
+      }),
+      action: () => {
+        dispatch(directCompose(fromJS(account)));
+      },
+    });
+    menu.push(null);
+  }
+
+  if (interactions.revokeQuote) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.revokeQuote, {
+        name: account.username,
+      }),
+      action: onStatusInteraction('revokeQuote'),
+      dangerous: true,
+    });
+  }
+
+  if (isBoost && reblogAccountRelationship) {
+    const isMutingBoosts = !reblogAccountRelationship.showing_reblogs;
+    menu.push({
+      text: intl.formatMessage(
+        isMutingBoosts ? menuMessages.unmuteBoosts : menuMessages.muteBoosts,
+        { name: reblogStatus.account.username },
+      ),
+      action: () => {
+        dispatch(
+          followAccount(reblogStatus.account.id, {
+            reblogs: isMutingBoosts,
+          }),
+        );
+      },
+      dangerous: !isMutingBoosts,
+    });
+  }
+
+  const isMuted = !!relationship?.muting;
+  menu.push({
+    text: intl.formatMessage(
+      isMuted ? menuMessages.unmute : menuMessages.mute,
+      {
+        name: account.username,
+      },
+    ),
+    action: () => {
+      if (isMuted) {
+        dispatch(unmuteAccount(account.id));
+      } else {
+        dispatch(initMuteModal(account));
+      }
+    },
+    dangerous: !isMuted,
+  });
+
+  const isBlocking = !!relationship?.blocking;
+  menu.push({
+    text: intl.formatMessage(
+      isBlocking ? menuMessages.unblock : menuMessages.block,
+      {
+        name: account.username,
+      },
+    ),
+    action: () => {
+      if (isBlocking) {
+        dispatch(unblockAccount(account.id));
+      } else {
+        dispatch(initBlockModal(account));
+      }
+    },
+    dangerous: !isBlocking,
+  });
+
+  if (interactions.filter) {
+    menu.push(null);
+    menu.push({
+      text: intl.formatMessage(menuMessages.filter),
+      action: onStatusInteraction('filter'),
+      dangerous: true,
+    });
+  }
+  menu.push(null);
+
+  menu.push({
+    text: intl.formatMessage(menuMessages.report, {
+      name: account.username,
+    }),
+    action: onStatusInteraction('report'),
+    dangerous: true,
+  });
+
+  const domain = account.acct.split('@')[1];
+
+  if (!isLocal) {
+    menu.push(null);
+
+    const isDomainBlocking = !!relationship?.domain_blocking;
+    menu.push({
+      text: intl.formatMessage(
+        isDomainBlocking
+          ? menuMessages.unblockDomain
+          : menuMessages.blockDomain,
+        { domain },
+      ),
+      action: () => {
+        if (isDomainBlocking) {
+          dispatch(unblockDomain(domain));
+        } else {
+          dispatch(
+            openModal({
+              modalType: 'DOMAIN_BLOCK',
+              modalProps: {
+                domain,
+                acct: account.acct,
+                accountId: account.id,
+              },
+            }),
+          );
+        }
+      },
+      dangerous: !isDomainBlocking,
+    });
+  }
+
+  const canManageUsers =
+    (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS;
+  const canManageFederation =
+    (permissions & PERMISSION_MANAGE_FEDERATION) ===
+      PERMISSION_MANAGE_FEDERATION && !isLocal;
+
+  if (!canManageUsers && !canManageFederation) {
+    return menu;
+  }
+
+  menu.push(null);
+  if (canManageUsers) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.admin_account, {
+        name: account.username,
+      }),
+      href: `/admin/accounts/${account.id}`,
+    });
+    menu.push({
+      text: intl.formatMessage(menuMessages.admin_status),
+      href: `/admin/accounts/${account.id}/statuses/${status.id}`,
+    });
+  }
+  if (canManageFederation) {
+    menu.push({
+      text: intl.formatMessage(menuMessages.admin_domain, {
+        domain,
+      }),
+      href: `/admin/instances/${domain}`,
+    });
+  }
+
+  return menu;
+}

@@ -24,6 +24,29 @@ RSpec.describe HomeFeed do
         )
       end
 
+      it 'returns statuses older than max_id' do
+        limit = 3
+        max_id = 3
+        expect(subject.get(limit, max_id).map(&:id)).to eq [2, 1]
+      end
+
+      it 'returns the newest statuses newer than since_id' do
+        limit = 2
+        max_id = nil
+        since_id = 1
+
+        expect(subject.get(limit, max_id, since_id).map(&:id)).to eq [4, 3]
+      end
+
+      it 'returns the nearest statuses newer than min_id' do
+        limit = 2
+        max_id = nil
+        since_id = nil
+        min_id = 1
+
+        expect(subject.get(limit, max_id, since_id, min_id).map(&:id)).to eq [3, 2]
+      end
+
       it 'gets statuses with ids in the range from redis according to the given parameters' do
         expect(described_class.new(account).get(3).map(&:id)).to eq [4, 3, 2]
         expect(described_class.new(account, { exclude_direct: true }).get(3).map(&:id)).to eq [4, 2, 1]

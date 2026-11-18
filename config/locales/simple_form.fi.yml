@@ -21,7 +21,7 @@ fi:
       admin_account_action:
         include_statuses: Käyttäjä näkee, mitkä julkaisut johtivat moderointitoimeen tai -⁠varoitukseen
         send_email_notification: Käyttäjä saa selvityksen siitä, mitä hänen tililleen tapahtui
-        text_html: Valinnainen. Voit käyttää julkaisun syntaksia. Voit <a href="%{path}">lisätä varoitusasetuksia</a> säästääksesi aikaa
+        text: Valinnainen. Voit käyttää julkaisun syntaksia. Se näkyy valmiin vastauksen jälkeen
         type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
         types:
           disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
@@ -29,7 +29,7 @@ fi:
           sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluonteisiksi.
           silence: Estä käyttäjää lähettämästä julkaisuja, joiden näkyvyys on julkinen, sekä piilota hänen julkaisunsa ja häneen liittyvät ilmoitukset niiltä, jotka eivät seuraa häntä. Sulkee kaikki tiliin kohdistuvat raportit.
           suspend: Estä kaikki vuorovaikutus tältä tililtä ja tälle tilille sekä poista kaikki sen sisältö. Peruttavissa 30 päivän ajan. Sulkee kaikki tiliin kohdistuvat raportit.
-        warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
+        warning_preset_html: Valinnainen. Voit <a href="%{path}">hallita niitä täältä</a>
       announcement:
         all_day: Kun valittuna, vain aikavälin päivät näytetään
         ends_at: Valinnainen. Tiedote poistetaan automaattisesti tällä hetkellä
@@ -91,6 +91,7 @@ fi:
         closed_registrations_message: Näkyy, kun rekisteröityminen on suljettu
         content_cache_retention_period: Kaikki muiden palvelinten julkaisut (mukaan lukien tehostukset ja vastaukset) poistuvat, kun määritetty määrä päiviä on kulunut, lukuun ottamatta paikallisen käyttäjän vuorovaikutusta näiden julkaisujen kanssa. Tämä sisältää julkaisut, jotka paikallinen käyttäjä on merkinnyt kirjanmerkiksi tai suosikiksi. Myös yksityismaininnat eri palvelinten käyttäjien välillä menetetään, eikä niitä voi palauttaa. Tämä asetus on tarkoitettu käytettäväksi erityistapauksissa ja rikkoo monia käyttäjien odotuksia, kun sitä sovelletaan yleiskäyttöön.
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin selainversiossa.
+        custom_robots_html: <a href="%{path}">Syntaksi</a>
         email_footer_text: Valinnainen teksti, joka näkyy vain uutiskirjeiden alatunnisteessa.
         favicon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen Mastodonin sivustokuvakkeen haluamallasi kuvakkeella.
         landing_page: Valitsee, minkä sivun uudet kävijät näkevät saapuessaan palvelimellesi. Jos valitset ”Trendit”, trendien tulee olla käytössä Löydettävyys-asetuksissa. Jos valitset ”Paikallinen syöte”, kohta ”Pääsy paikallisia julkaisuja esitteleviin livesyötteisiin” tulee asettaa arvoon ”Kaikki” Löydettävyys-asetuksissa.
@@ -174,7 +175,7 @@ fi:
         username: Vastaa riippumatta aakkoskoosta ja yleisistä homoglyyfeistä kuten ”4” merkille ”a” ja ”3” merkille ”e”
       webhook:
         events: Valitse lähetettävät tapahtumat
-        template: Luo oma JSON-hyötykuorma käyttäen muuttujien interpolointia. Jätä kenttä tyhjäksi käyttääksesi vakio-JSON-kuormaa.
+        template: Laadi oma JSON-hyötykuormasi käyttäen muuttujien interpolointia. Jätä tyhjäksi käyttääksesi oletusarvoista JSON-kuormaa.
         url: Mihin tapahtumat lähetetään
     labels:
       account:
@@ -191,20 +192,20 @@ fi:
       account_migration:
         acct: Uuden tilin käyttäjätunnus
       account_warning_preset:
-        text: Esimääritetty teksti
+        text: Vastauksen teksti
         title: Nimi
       admin_account_action:
         include_statuses: Sisällytä raportoidut viestit sähköposti-ilmoitukseen
         send_email_notification: Ilmoita käyttäjälle sähköpostitse
-        text: Mukautettu varoitus
+        text: Mukautettu vastaus
         type: Toimi
         types:
           disable: Jäädytä
           none: Lähetä varoitus
-          sensitive: Arkaluonteinen
+          sensitive: Merkitse arkaluonteiseksi
           silence: Rajoita
           suspend: Jäädytä
-        warning_preset_id: Käytä varoituspohjaa
+        warning_preset_id: Valmis vastaus
       announcement:
         all_day: Koko päivän tapahtuma
         ends_at: Tapahtuman loppu
@@ -244,12 +245,13 @@ fi:
         setting_always_send_emails: Lähetä sähköposti-ilmoitukset aina
         setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
         setting_boost_modal: Hallitse tehostuksen näkyvyyttä
-        setting_color_scheme: Väriteema
+        setting_color_scheme: Tila
         setting_contrast: Kontrasti
         setting_default_language: Julkaisun kieli
         setting_default_privacy: Julkaisun näkyvyys
         setting_default_quote_policy: Kuka voi lainata
         setting_default_sensitive: Merkitse media aina arkaluonteiseksi
+        setting_default_spoiler_field: Käytä sisältövaroituksia oletuksena
         setting_delete_modal: Varoita ennen kuin poistan julkaisun
         setting_disable_hover_cards: Poista käytöstä profiilin esikatselu osoitettaessa
         setting_disable_swiping: Poista pyyhkäisyeleet käytöstä
@@ -257,21 +259,26 @@ fi:
         setting_display_media_default: Oletus
         setting_display_media_hide_all: Piilota kaikki
         setting_display_media_show_all: Näytä kaikki
+        setting_display_own_boosts: Näytä omat tehostukseni pääsyötteessäni
+        setting_display_own_posts: Näytä omat julkaisuni pääsyötteessäni
         setting_emoji_style: Emojityyli
         setting_expand_spoilers: Laajenna aina sisältövaroituksilla merkityt julkaisut
         setting_hide_network: Piilota verkostotietosi
         setting_missing_alt_text_modal: Varoita ennen kuin julkaisen mediaa ilman tekstivastinetta
         setting_quick_boosting: Ota nopea tehostus käyttöön
         setting_reduce_motion: Vähennä animaatioiden liikettä
+        setting_show_stats_in_feed: Näytä vuorovaikutustilastot syötteissä
+        setting_split_default_privacy_discoverable: Muuta julkaisuni löydettäviksi julkisista syötteistä ja hakutuloksista
         setting_system_font_ui: Käytä järjestelmän oletusfonttia
         setting_system_scrollbars_ui: Käytä järjestelmän oletusarvoista vierityspalkkia
         setting_theme: Sivuston teema
-        setting_trends: Näytä päivän trendit
+        setting_theme_color: Teemaväri
         setting_unfollow_modal: Kysy vahvistusta ennen seuraamisen lopettamista
         setting_use_blurhash: Käytä värikästä liukusävytystä piilotetulle mediasisällölle
         setting_use_pending_items: Hidas tila
         severity: Vakavuus
         sign_in_token_attempt: Turvakoodi
+        sign_in_token_resend: Lähetä turvakoodi uudelleen
         title: Nimi
         type: Tuontityyppi
         username: Käyttäjänimi
@@ -294,6 +301,7 @@ fi:
         closed_registrations_message: Mukautettu viesti, kun rekisteröityminen ei ole saatavilla
         content_cache_retention_period: Etäsisällön säilytysaika
         custom_css: Mukautettu CSS
+        custom_robots: Mukautettu robots.txt
         email_footer_text: Alatunnisteen lisäteksti
         favicon: Sivustokuvake
         landing_page: Uusien kävijöiden aloitussivu
@@ -302,6 +310,7 @@ fi:
         mascot: Mukautettu maskotti (vanhentunut)
         media_cache_retention_period: Mediasisällön välimuistin säilytysaika
         min_age: Vähimmäisikävaatimus
+        override_robots: Korvaa oletusarvoinen robots.txt
         peers_api_enabled: Julkaise löydettyjen palvelinten luettelo ohjelmointirajapinnassa
         profile_directory: Ota profiilihakemisto käyttöön
         registrations_mode: Kuka voi rekisteröityä
@@ -345,10 +354,12 @@ fi:
       notification_emails:
         appeal: Joku valittaa moderaattorin päätöksestä
         digest: Lähetä koosteviestejä sähköpostitse
+        end_of_support: Nykyisen Mastodon-version tuki lähenee loppuaan
         favourite: Joku lisäsi julkaisusi suosikkeihinsa
         follow: Joku seurasi sinua
         follow_request: Joku pyysi lupaa seurata sinua
         mention: Joku mainitsi sinut
+        moderation_suggestions: Automaattiset moderointiehdotukset ovat saatavilla
         pending_account: Uusi tili tarvitsee tarkastuksen
         quote: Joku lainasi sinua
         reblog: Joku tehosti julkaisuasi

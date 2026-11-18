@@ -1,0 +1,103 @@
+.likeBurstIcon {
+  overflow: visible;
+
+  > path {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+}
+
+.ring {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.confetti {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+:global(.no-reduce-motion) [data-like-burst] {
+  .likeBurstIcon > path {
+    animation: heart-pop 0.85s cubic-bezier(0.17, 0.89, 0.32, 1.28);
+  }
+
+  .ring {
+    animation: ring-flash 0.52s ease-out forwards;
+  }
+
+  .confetti {
+    animation: confetti-burst 0.5s ease-out 0.15s forwards;
+  }
+
+  .confetti + .confetti {
+    animation-delay: 0.24s;
+  }
+}
+
+@keyframes heart-pop {
+  0%,
+  18% {
+    transform: scale(1);
+  }
+
+  28% {
+    transform: scale(0);
+  }
+
+  55% {
+    transform: scale(1.2);
+  }
+
+  72% {
+    transform: scale(0.92);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes ring-flash {
+  0% {
+    opacity: 1;
+    transform: scale(0.3);
+    stroke-width: 277;
+  }
+
+  24% {
+    opacity: 1;
+    transform: scale(1);
+    stroke-width: 256;
+  }
+
+  33% {
+    opacity: 1;
+    transform: scale(1.06);
+    stroke-width: 21;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+    stroke-width: 0;
+  }
+}
+
+@keyframes confetti-burst {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}

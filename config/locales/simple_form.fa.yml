@@ -21,7 +21,6 @@ fa:
       admin_account_action:
         include_statuses: این کاربر خواهد دید که کدام فرسته او موجب اقدام مدیریتی یا هشدار شده است
         send_email_notification: توضیحی که کاربر می‌بینید که برای حسابش چه رخ داده است
-        text_html: اختیاری. می‌توانید مثل فرسته‌های معمولی بنویسید. می‌توانید برای صرفه‌جویی در زمان <a href="%{path}">هشدارهای ازپیش‌آماده بیفزایید</a>
         type_html: با حساب <strong>%{acct}</strong> می‌خواهید چه کار کنید؟‌
         types:
           disable: از استفادهٔ کاربر از حسابش جلوگیری می‌کند، ولی محتوایش را حذف یا پنهان نمی‌کند.
@@ -29,7 +28,6 @@ fa:
           sensitive: اجبار همهٔ پیوست‌های رسانه‌ای این کاربر برای نشانه‌گذاری به عنوان حساس.
           silence: جلوگیری از توانایی کاربر برای فرستادن با نمایانی عمومی، نهفتن فرسته‌ها و آگاهی‌هایش از افرادی که دنبالش نمی‌کنند. تمامی گزارش‌ها در مورد این حساب را می‌بندد.
           suspend: جلوگیری از هر برهم‌کنشی از یا به این حساب و حذف محتواهایش. قابل بازگشت در عرض ۳۰ روز. تمامی گزارش‌ها در مورد این حساب را می‌بندد.
-        warning_preset_id: اختیاری. همچنان می‌توانید در پایان متن آماده چیزی بیفزایید
       announcement:
         all_day: هنگام گزینش، تنها تاریخ‌های بازهٔ زمانی نمایش داده خواهند شد
         ends_at: اختیاری. اعلامیه در این به صورت خودکار نامنتشر خواهد شد
@@ -191,12 +189,12 @@ fa:
       account_migration:
         acct: نشانی حساب تازه
       account_warning_preset:
-        text: متن از پیش آماده‌شده
+        text: متن پاسخ
         title: عنوان
       admin_account_action:
         include_statuses: قرار دادن فرسته‌های گزارش شده در رایانامه
         send_email_notification: آگاهی کاربر به ازای هر رایانامه
-        text: هشدار موردی
+        text: پاسخ سفارشی
         type: کنش
         types:
           disable: غیرفعال‌کردن
@@ -204,7 +202,7 @@ fa:
           sensitive: حساس
           silence: بی‌صدا کردن
           suspend: تعلیق و پاک‌کردن کامل همهٔ اطلاعات حساب
-        warning_preset_id: یک هشدار از پیش‌آماده را به کار ببرید
+        warning_preset_id: پاسخ بسته شده
       announcement:
         all_day: رویداد تمام‌روز
         ends_at: پایان رویداد
@@ -244,7 +242,7 @@ fa:
         setting_always_send_emails: فرستادن همیشگی آگاهی‌های رایانامه‌ای
         setting_auto_play_gif: پخش خودکار تصویرهای متحرک
         setting_boost_modal: واپایش نمایانی تقویت
-        setting_color_scheme: طرحوارهٔ رنگی
+        setting_color_scheme: حالت
         setting_contrast: سایه‌روشن
         setting_default_language: زبان نوشته‌های شما
         setting_default_privacy: نمایانی فرسته
@@ -266,7 +264,7 @@ fa:
         setting_system_font_ui: به‌کاربردن قلم پیش‌فرض سیستم
         setting_system_scrollbars_ui: از نوار اسکرول پیش فرض سیستم استفاده کنید
         setting_theme: تم سایت
-        setting_trends: نشان‌دادن موضوعات پرطرفدار روز
+        setting_theme_color: رنگ زمینه
         setting_unfollow_modal: نمایش پیغام تأیید پیش از لغو پیگیری دیگران
         setting_use_blurhash: به جای تصویرهای پنهان‌شده، سایه‌های رنگی نشان بده
         setting_use_pending_items: حالت آهسته

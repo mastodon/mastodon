@@ -8,14 +8,13 @@ import { isFulfilled } from '@reduxjs/toolkit';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Button } from '@/mastodon/components/button';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 import { NotSignedInIndicator } from '@/mastodon/components/not_signed_in_indicator';
+import { Scrollable } from '@/mastodon/components/scrollable_list/components';
 import { useIdentity } from '@/mastodon/identity_context';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
-import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { fetchList } from 'mastodon/actions/lists';
 import { createList, updateList } from 'mastodon/actions/lists_typed';
 import { apiGetListAccounts } from 'mastodon/api/lists';
@@ -24,39 +23,17 @@ import type { RepliesPolicyType } from 'mastodon/api_types/lists';
 import { Avatar } from 'mastodon/components/avatar';
 import { AvatarGroup } from 'mastodon/components/avatar_group';
 import {
+  FormStack,
   SelectField,
   TextInputField,
-  Toggle,
+  ToggleField,
 } from 'mastodon/components/form_fields';
 import { Icon } from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import type { List } from 'mastodon/models/list';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-const messagesLegacy = defineMessages({
-  edit: { id: 'column.edit_list', defaultMessage: 'Edit list' },
-  create: { id: 'column.create_list', defaultMessage: 'Create list' },
-  manageMembers: {
-    id: 'column.list_members',
-    defaultMessage: 'Manage list members',
-  },
-  nameFieldLabel: { id: 'lists.list_name', defaultMessage: 'List name' },
-  showRepliesTo: {
-    id: 'lists.show_replies_to',
-    defaultMessage: 'Include replies from list members to',
-  },
-  replyPolicyList: {
-    id: 'lists.replies_policy.list',
-    defaultMessage: 'Members of the list',
-  },
-  exclusiveHint: {
-    id: 'lists.exclusive_hint',
-    defaultMessage:
-      'If someone is on this list, hide them in your Home feed to avoid seeing their posts twice.',
-  },
-});
-
-const messagesRedesign = defineMessages({
+const messages = defineMessages({
   edit: { id: 'column.edit_custom_feed', defaultMessage: 'Edit Custom Feed' },
   create: {
     id: 'column.create_custom_feed',
@@ -81,8 +58,6 @@ const messagesRedesign = defineMessages({
       'If someone is in this custom feed, hide them in your Home feed to avoid seeing their posts twice.',
   },
 });
-
-const messages = isRedesignEnabled() ? messagesRedesign : messagesLegacy;
 
 const MembersLink: React.FC<{
   id: string;
@@ -164,120 +139,109 @@ const NewList: React.FC<{ list?: List | null }> = ({ list }) => {
     [setRepliesPolicy],
   );
 
-  const handleSubmit = useCallback(() => {
-    setSubmitting(true);
+  const handleSubmit: React.SubmitEventHandler = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    if (id) {
-      void dispatch(
-        updateList({
-          id,
-          title,
-          exclusive,
-          replies_policy: repliesPolicy,
-        }),
-      ).then(() => {
-        setSubmitting(false);
-        return '';
-      });
-    } else {
-      void dispatch(
-        createList({
-          title,
-          exclusive,
-          replies_policy: repliesPolicy,
-        }),
-      ).then((result) => {
-        setSubmitting(false);
+      setSubmitting(true);
 
-        if (isFulfilled(result)) {
-          history.replace(`/lists/${result.payload.id}/edit`);
-          history.push(`/lists/${result.payload.id}/members`);
-        }
+      if (id) {
+        void dispatch(
+          updateList({
+            id,
+            title,
+            exclusive,
+            replies_policy: repliesPolicy,
+          }),
+        ).then(() => {
+          setSubmitting(false);
+          return '';
+        });
+      } else {
+        void dispatch(
+          createList({
+            title,
+            exclusive,
+            replies_policy: repliesPolicy,
+          }),
+        ).then((result) => {
+          setSubmitting(false);
 
-        return '';
-      });
-    }
-  }, [history, dispatch, setSubmitting, id, title, exclusive, repliesPolicy]);
+          if (isFulfilled(result)) {
+            history.replace(`/lists/${result.payload.id}/edit`);
+            history.push(`/lists/${result.payload.id}/members`);
+          }
+
+          return '';
+        });
+      }
+    },
+    [history, dispatch, setSubmitting, id, title, exclusive, repliesPolicy],
+  );
 
   return (
-    <form className='simple_form app-form' onSubmit={handleSubmit}>
-      <div className='fields-group'>
-        <TextInputField
-          required
-          maxLength={30}
-          label={intl.formatMessage(messages.nameFieldLabel)}
-          value={title}
-          onChange={handleTitleChange}
-          id='list_title'
-        />
-      </div>
+    <FormStack as='form' onSubmit={handleSubmit}>
+      <TextInputField
+        required
+        maxLength={30}
+        label={intl.formatMessage(messages.nameFieldLabel)}
+        value={title}
+        onChange={handleTitleChange}
+        id='list_title'
+      />
 
-      <div className='fields-group'>
-        <SelectField
-          label={intl.formatMessage(messages.showRepliesTo)}
-          value={repliesPolicy}
-          onChange={handleRepliesPolicyChange}
-          id='list_replies_policy'
-        >
-          <option value='none'>
-            <FormattedMessage
-              id='lists.replies_policy.none'
-              defaultMessage='No one'
-            />
-          </option>
-          <option value='list'>
-            {intl.formatMessage(messages.replyPolicyList)}
-          </option>
-          <option value='followed'>
-            <FormattedMessage
-              id='lists.replies_policy.followed'
-              defaultMessage='Any followed user'
-            />
-          </option>
-        </SelectField>
-      </div>
+      <SelectField
+        label={intl.formatMessage(messages.showRepliesTo)}
+        value={repliesPolicy}
+        onChange={handleRepliesPolicyChange}
+        id='list_replies_policy'
+      >
+        <option value='none'>
+          <FormattedMessage
+            id='lists.replies_policy.none'
+            defaultMessage='No one'
+          />
+        </option>
+        <option value='list'>
+          {intl.formatMessage(messages.replyPolicyList)}
+        </option>
+        <option value='followed'>
+          <FormattedMessage
+            id='lists.replies_policy.followed'
+            defaultMessage='Any followed user'
+          />
+        </option>
+      </SelectField>
 
-      {id && (
-        <div className='fields-group'>
-          <MembersLink id={id} />
-        </div>
-      )}
+      {id && <MembersLink id={id} />}
 
-      <div className='fields-group'>
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label className='app-form__toggle'>
-          <div className='app-form__toggle__label'>
-            <strong>
-              <FormattedMessage
-                id='lists.exclusive'
-                defaultMessage='Hide members in Home'
-              />
-            </strong>
-            <span className='hint'>
-              {intl.formatMessage(messages.exclusiveHint)}
-            </span>
-          </div>
-
-          <div className='app-form__toggle__toggle'>
-            <div>
-              <Toggle checked={exclusive} onChange={handleExclusiveChange} />
-            </div>
-          </div>
-        </label>
-      </div>
+      <ToggleField
+        label={
+          <FormattedMessage
+            id='lists.exclusive'
+            defaultMessage='Hide members in Home'
+          />
+        }
+        hint={intl.formatMessage(messages.exclusiveHint)}
+        checked={exclusive}
+        onChange={handleExclusiveChange}
+      />
 
       <div className='actions'>
-        <button className='button' type='submit'>
-          {submitting ? (
-            <LoadingIndicator />
-          ) : id ? (
+        <Button
+          type='submit'
+          loading={submitting}
+          color='accent'
+          variant='solid'
+        >
+          {id ? (
             <FormattedMessage id='lists.save' defaultMessage='Save' />
           ) : (
             <FormattedMessage id='lists.create' defaultMessage='Create' />
           )}
-        </button>
+        </Button>
       </div>
-    </form>
+    </FormStack>
   );
 };
 
@@ -303,19 +267,9 @@ const NewListWrapper: React.FC<{
 
   return (
     <Column bindToDocument={!multiColumn} label={title}>
-      {isRedesignEnabled() ? (
-        <ColumnHeader withBackButton title={title} />
-      ) : (
-        <LegacyColumnHeader
-          title={title}
-          icon='list-ul'
-          iconComponent={ListAltIcon}
-          multiColumn={multiColumn}
-          showBackButton
-        />
-      )}
+      <ColumnHeader withBackButton title={title} />
 
-      <div className='scrollable'>
+      <Scrollable>
         {!signedIn ? (
           <NotSignedInIndicator />
         ) : isLoading ? (
@@ -323,7 +277,7 @@ const NewListWrapper: React.FC<{
         ) : (
           <NewList list={list} />
         )}
-      </div>
+      </Scrollable>
 
       <Helmet>
         <title>{title}</title>

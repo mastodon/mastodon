@@ -63,6 +63,10 @@ zh-CN:
         prompt_html: "%{client_name} 请求获得访问你账号的权限。 <strong>请在确保自己了解并信任此来源后再批准该请求。</strong>"
         review_permissions: 检查权限
         title: 需要授权
+      require_reauth:
+        log_out_and_continue: 退出登录并继续
+        prompt_html: 你当前以 <strong>%{handle}</strong> 登录，但要继续此操作，你需要退出登录。
+        title: 需要重新认证
       show:
         title: 接下来请复制此处的授权代码并粘贴到应用中。
     authorized_applications:

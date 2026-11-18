@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < Api::BaseController
+  include DeprecationConcern
   include RegistrationHelper
 
   before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:create, :follow, :unfollow, :remove_from_followers, :block, :unblock, :mute, :unmute]
@@ -22,6 +23,8 @@ class Api::V1::AccountsController < Api::BaseController
   skip_before_action :require_authenticated_user!, only: :create
 
   override_rate_limit_headers :follow, family: :follows
+
+  deprecate_api '2026-10-01', only: :create
 
   def index
     render json: @accounts, each_serializer: REST::AccountSerializer
@@ -128,6 +131,6 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def check_enabled_registrations
-    forbidden unless allowed_registration?(request.remote_ip, invite)
+    forbidden if ENV['SSO_ACCOUNT_SIGN_UP'].present? || !allowed_registration?(request.remote_ip, invite)
   end
 end

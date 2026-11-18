@@ -2,9 +2,9 @@
 
 class DateOfBirthInput < SimpleForm::Inputs::Base
   OPTIONS = {
-    day: { autocomplete: 'bday-day', maxlength: 2, pattern: '[0-9]+', placeholder: 'DD' },
-    month: { autocomplete: 'bday-month', maxlength: 2, pattern: '[0-9]+', placeholder: 'MM' },
-    year: { autocomplete: 'bday-year', maxlength: 4, pattern: '[0-9]+', placeholder: 'YYYY' },
+    day: { autocomplete: 'bday-day', maxlength: 2, size: 2, pattern: '[0-9]+', placeholder: 'DD' },
+    month: { autocomplete: 'bday-month', maxlength: 2, size: 2, pattern: '[0-9]+', placeholder: 'MM' },
+    year: { autocomplete: 'bday-year', maxlength: 4, size: 4, pattern: '[0-9]+', placeholder: 'YYYY' },
   }.freeze
 
   def input(wrapper_options = nil)

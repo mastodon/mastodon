@@ -6,7 +6,6 @@
 #
 #  id                      :bigint(8)        not null, primary key
 #  base_url                :string           not null
-#  capabilities            :jsonb            not null
 #  confirmed               :boolean          default(FALSE), not null
 #  contact_email           :string
 #  delivery_last_failed_at :datetime
@@ -28,6 +27,7 @@ class Fasp::Provider < ApplicationRecord
   has_many :fasp_backfill_requests, inverse_of: :fasp_provider, class_name: 'Fasp::BackfillRequest', dependent: :delete_all
   has_many :fasp_debug_callbacks, inverse_of: :fasp_provider, class_name: 'Fasp::DebugCallback', dependent: :delete_all
   has_many :fasp_subscriptions, inverse_of: :fasp_provider, class_name: 'Fasp::Subscription', dependent: :delete_all
+  has_many :fasp_capabilities, inverse_of: :fasp_provider, class_name: 'Fasp::Capability', dependent: :delete_all
 
   validates :name, presence: true
   validates :base_url, presence: true, url: true
@@ -35,42 +35,22 @@ class Fasp::Provider < ApplicationRecord
   validates :remote_identifier, presence: true
 
   before_create :create_keypair
-  after_commit :update_remote_capabilities
 
   scope :confirmed, -> { where(confirmed: true) }
   scope :with_capability, lambda { |capability_name|
-    where('fasp_providers.capabilities @> ?::jsonb', "[{\"id\": \"#{capability_name}\", \"enabled\": true}]")
+    joins(:fasp_capabilities).where(fasp_capabilities: { name: capability_name, enabled: true })
   }
 
-  def capabilities
-    read_attribute(:capabilities).map do |attributes|
-      Fasp::Capability.new(attributes)
-    end
-  end
-
-  def capabilities_attributes=(attributes)
-    capability_objects = attributes.values.map { |a| Fasp::Capability.new(a) }
-    self[:capabilities] = capability_objects.map(&:attributes)
-  end
+  accepts_nested_attributes_for :fasp_capabilities
 
   def enabled_capabilities
-    capabilities.select(&:enabled).map(&:id)
-  end
-
-  def capability?(capability_name)
-    return false unless confirmed?
-
-    capabilities.present? && capabilities.any? do |capability|
-      capability.id == capability_name
-    end
+    fasp_capabilities.select(&:enabled).map(&:id)
   end
 
   def capability_enabled?(capability_name)
     return false unless confirmed?
 
-    capabilities.present? && capabilities.any? do |capability|
-      capability.id == capability_name && capability.enabled
-    end
+    fasp_capabilities.exists?(name: capability_name, enabled: true)
   end
 
   def server_private_key
@@ -110,16 +90,22 @@ class Fasp::Provider < ApplicationRecord
   end
 
   def update_info!(confirm: false)
-    self.confirmed = true if confirm
-    provider_info = Fasp::Request.new(self).get('/provider_info')
-    assign_attributes(
-      privacy_policy: provider_info['privacyPolicy'],
-      capabilities: provider_info['capabilities'],
-      sign_in_url: provider_info['signInUrl'],
-      contact_email: provider_info['contactEmail'],
-      fediverse_account: provider_info['fediverseAccount']
-    )
-    save!
+    self.class.transaction do
+      self.confirmed = true if confirm
+      provider_info = Fasp::Request.new(self).get('/provider_info')
+      assign_attributes(
+        privacy_policy: provider_info['privacyPolicy'],
+        sign_in_url: provider_info['signInUrl'],
+        contact_email: provider_info['contactEmail'],
+        fediverse_account: provider_info['fediverseAccount']
+      )
+      capabilities_info = provider_info['capabilities'] || []
+      fasp_capabilities.where.not(name: capabilities_info.map { |c| c['id'] }).destroy_all
+      capabilities_info.each do |capability_info|
+        fasp_capabilities.find_or_create_by!(name: capability_info['id'], version: capability_info['version'])
+      end
+      save!
+    end
   end
 
   def delivery_failure_tracker
@@ -141,26 +127,6 @@ class Fasp::Provider < ApplicationRecord
   def create_keypair
     self.server_private_key_pem ||=
       OpenSSL::PKey.generate_key('ed25519').private_to_pem
-  end
-
-  def update_remote_capabilities
-    return unless saved_change_to_attribute?(:capabilities)
-
-    old, current = saved_change_to_attribute(:capabilities)
-    old ||= []
-    current.each do |capability|
-      update_remote_capability(capability) if capability.key?('enabled') && !old.include?(capability)
-    end
-  end
-
-  def update_remote_capability(capability)
-    version, = capability['version'].split('.')
-    path = "/capabilities/#{capability['id']}/#{version}/activation"
-    if capability['enabled']
-      Fasp::Request.new(self).post(path)
-    else
-      Fasp::Request.new(self).delete(path)
-    end
   end
 
   def retry_worthwile?

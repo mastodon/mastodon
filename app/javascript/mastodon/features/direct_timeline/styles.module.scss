@@ -1,0 +1,28 @@
+@use '@/styles/mastodon/mixins';
+
+.conversation {
+  @include mixins.message-background;
+}
+
+.avatars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.avatarsSingle {
+  display: block;
+}
+
+.names {
+  color: var(--color-text-secondary);
+
+  :where(a) {
+    color: inherit;
+    text-decoration: var(--link-underline-stealthy);
+
+    &:hover {
+      text-decoration: var(--link-underline-stealthy-hover);
+    }
+  }
+}

@@ -562,10 +562,7 @@ ie:
       action_taken_by: Action fat de
       actions:
         mark_as_sensitive_description_html: Li medie in li raportat postas va esser marcat quam sensitiv e un admoniment va esser registrat por auxiliar te escalar si hay futuri infractiones del sam conto.
-        other_description_html: Vider plu optiones por controlar li conduida del conto e customisar comunication al raportat conto.
         resolve_description_html: Null action va esser fat contra li raportat conto, null admoniment registrat, e li raporte va esser cludet.
-        silence_description_html: Li conto va esser visibil nur a tis qui ja seque it o qui sercha it manualmen, limitante severimen su atingement. Ti sempre posse esser revertet. Ti clude omni raportes contra ti conto.
-        suspend_description_html: Ti-ci conto e omni contenete va esser ínaccessibil e finalmen deletet, e interacter con it va esser ínpossibil. Reversibil til que 30 dies ha passat. Clude omni raportes contra ti conto.
       actions_description_remote_html: Decider quel action a far por soluer ti raporte. It va afecter solmen qualmen <strong>vor</strong> servitor comunica con ti lontan conto e tractar su contenete.
       add_to_report: Adjunter plu al raporte
       already_suspended_badges:
@@ -727,7 +724,6 @@ ie:
         follow_recommendations: Seque-recomandationes
         profile_directory: Profilarium
         public_timelines: Public témpor-lineas
-        publish_statistics: Publicar statisticas
         title: Decovriment
         trends: Tendenties
       domain_blocks:
@@ -746,7 +742,6 @@ ie:
         warning_hint: Noi recomanda usar "Aprobation besonat por inscrir" si tu ne es confident que tui equip de moderation posse gerer spam e maliciosi registrationes in un curt témpor.
       security:
         authorized_fetch: Postular autentication de federat servitores
-        authorized_fetch_hint: Postular autentication de federat servitores possibilisa plu strict infortiament de ambi usatori e servitori bloccas. Támen, ti fórsan va limitar li potentie de vor servitor, reducter li atingement de vor responses, e possibilmen introducter problemas de compatibilitá con quelc federat servicies. Additionalmen, ti ne va preventer dedicat actores de accesser vor public postas e contos.
         authorized_fetch_overridden_hint: Tu actualmen ne posse changear ti parametre pro que it es controlat de un environmental variabile.
         federation_authentication: Infortiation de federational autentication
       title: Parametres del servitor
@@ -907,8 +902,6 @@ ie:
     warning_presets:
       add_new: Adjunter un nov
       delete: Deleter
-      edit_preset: Modificar prefiguration de avise
-      empty: Vu ancor ha definit null prefigurationes de avise.
     webhooks:
       add_new: Adjunter punctu terminal
       delete: Deleter
@@ -976,7 +969,6 @@ ie:
     remove: Desconexer alias
   appearance:
     animations_and_accessibility: Animationes e accessibilitá
-    discovery: Decovriment
     localization:
       body: Mastodon es traductet de voluntarios.
       guide_link: https://crowdin.com/project/mastodon
@@ -1095,7 +1087,6 @@ ie:
   deletes:
     challenge_not_passed: Li information quel tu dat ne esset corect
     confirm_password: Introducte tui actual passa-parol por verificar tui identitá
-    confirm_username: Scri tu usator-nómine por confirmar li procedura
     proceed: Deleter li conto
     success_msg: Tui conto esset successosimen deletet
     warning:
@@ -1541,7 +1532,6 @@ ie:
     appearance: Aspecte
     authorized_apps: Autorisat aplicationes
     back: Retornar a Mastodon
-    delete: Deletion de conto
     development: Developation
     edit_profile: Modificar profil
     featured_tags: Recomandat hashtags
@@ -1792,5 +1782,4 @@ ie:
     nickname_hint: Scrir li moc-nómine de tui nov clave de securitá
     not_enabled: Tu ancor ne ha possibilisat WebAuthn
     not_supported: Ti-ci navigator ne subtene claves de securitá
-    otp_required: Por usar claves de securitá, ples activisar 2-factor autentication.
     registered_on: Adheret ye %{date}

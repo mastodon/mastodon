@@ -20,7 +20,8 @@
               hint: t('simple_form.hints.admin_account_action.type_html', acct: @account.pretty_acct),
               include_blank: false,
               label_method: ->(type) { account_action_type_label(type) },
-              wrapper: :with_block_label
+              wrapper: :with_block_label,
+              input_html: { class: 'account_action_type' }
 
   - if @account.local?
     %hr.spacer/
@@ -41,14 +42,15 @@
     - unless @warning_presets.empty?
       .fields-group
         = f.input :warning_preset_id,
-                  collection: @warning_presets,
-                  label_method: ->(warning_preset) { [warning_preset.title.presence, truncate(warning_preset.text)].compact.join(' - ') },
-                  wrapper: :with_block_label
+                  collection: label_and_categories_collection(@warning_presets),
+                  wrapper: :with_block_label,
+                  hint: t('simple_form.hints.admin_account_action.warning_preset_html', path: admin_warning_presets_path),
+                  input_html: { id: 'presets_dropdown' }
 
     .fields-group
       = f.input :text,
                 as: :text,
-                hint: t('simple_form.hints.admin_account_action.text_html', path: admin_warning_presets_path),
+                hint: t('simple_form.hints.admin_account_action.text'),
                 wrapper: :with_block_label
 
   .actions

@@ -26,20 +26,12 @@ RSpec.describe Status::FetchRepliesConcern do
     context 'with a remote status' do
       let(:account) { bob }
 
-      it 'fetches old statuses' do
-        expect(statuses).to include(status_old)
-      end
-
-      it 'fetches statuses that have never been fetched and weren\'t created recently' do
-        expect(statuses).to include(status_never_fetched)
-      end
-
-      it 'does not fetch statuses that were fetched recently' do
-        expect(statuses).to_not include(status_fetched_recently)
-      end
-
-      it 'does not fetch statuses that were created recently' do
-        expect(statuses).to_not include(status_created_recently)
+      it 'fetches correct statuses' do
+        expect(statuses)
+          .to include(status_old)
+          .and include(status_never_fetched)
+          .and not_include(status_fetched_recently)
+          .and not_include(status_created_recently)
       end
     end
   end
@@ -56,20 +48,12 @@ RSpec.describe Status::FetchRepliesConcern do
     context 'with a remote status' do
       let(:account) { bob }
 
-      it 'fetches old statuses' do
-        expect(statuses).to_not include(status_old)
-      end
-
-      it 'fetches statuses that have never been fetched and weren\'t created recently' do
-        expect(statuses).to_not include(status_never_fetched)
-      end
-
-      it 'does not fetch statuses that were fetched recently' do
-        expect(statuses).to include(status_fetched_recently)
-      end
-
-      it 'does not fetch statuses that were created recently' do
-        expect(statuses).to include(status_created_recently)
+      it 'fetches correct statuses' do
+        expect(statuses)
+          .to not_include(status_old)
+          .and not_include(status_never_fetched)
+          .and include(status_fetched_recently)
+          .and include(status_created_recently)
       end
     end
   end

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import { Button } from '../button/redesign';
+import { Button } from '../button';
 
 import { Card, CardActions, CardBody, CardTitle } from './index';
 

@@ -546,8 +546,6 @@ en-GB:
           description: You received a registration from a FASP. Reject it if you did not initiate this. If you initiated this, carefully compare name and key fingerprint before confirming the registration.
           reject: Reject
           title: Confirm FASP Registration
-        save: Save
-        select_capabilities: Select Capabilities
         sign_in: Sign In
         status: Status
         title: Fediverse Auxiliary Service Providers
@@ -692,10 +690,7 @@ en-GB:
       action_taken_by: Action taken by
       actions:
         mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
-        other_description_html: See more options for controlling the account's behaviour and customising communication to the reported account.
         resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
-        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. This can always be reverted. This closes all reports against this account.
-        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. This is reversible within 30 days. This closes all reports against this account.
       actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an email notification will be sent to them, except when the <strong>Spam</strong> category is selected.
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handles its content.
       actions_no_posts: This report doesn't have any associated posts to delete
@@ -881,10 +876,8 @@ en-GB:
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone on Mastodon. Control how various discovery features work on your server.
-        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
-        publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
         wrapstodon: Wrapstodon
@@ -909,7 +902,6 @@ en-GB:
         warning_hint: We recommend using “Approval required for sign up” unless you are confident your moderation team can handle spam and malicious registrations in a timely fashion.
       security:
         authorized_fetch: Require authentication from federated servers
-        authorized_fetch_hint: Requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks. However, this comes at the cost of a performance penalty, reduces the reach of your replies, and may introduce compatibility issues with some federated services. In addition, this will not prevent dedicated actors from fetching your public posts and accounts.
         authorized_fetch_overridden_hint: You are currently unable to change this setting because it is overridden by an environment variable.
         federation_authentication: Federation authentication enforcement
       title: Server settings
@@ -1162,9 +1154,6 @@ en-GB:
     warning_presets:
       add_new: Add new
       delete: Delete
-      edit_preset: Edit warning preset
-      empty: You haven't defined any warning presets yet.
-      title: Warning presets
     webhooks:
       add_new: Add endpoint
       delete: Delete
@@ -1235,7 +1224,6 @@ en-GB:
     animations_and_accessibility: Animations and accessibility
     boosting_preferences: Boosting preferences
     boosting_preferences_info_html: "<strong>Tip:</strong> Regardless of settings, <kbd>Shift</kbd> + <kbd>Click</kbd> on the %{icon} Boost icon will immediately boost."
-    discovery: Discovery
     localization:
       body: Mastodon is translated by volunteers.
       guide_link: https://crowdin.com/project/mastodon
@@ -1383,7 +1371,6 @@ en-GB:
   deletes:
     challenge_not_passed: The information you entered was not correct
     confirm_password: Enter your current password to verify your identity
-    confirm_username: Enter your username to confirm the procedure
     proceed: Delete account
     success_msg: Your account was successfully deleted
     warning:
@@ -1938,7 +1925,6 @@ en-GB:
     appearance: Appearance
     authorized_apps: Authorised apps
     back: Back to Mastodon
-    delete: Account deletion
     development: Development
     edit_profile: Edit profile
     export: Export
@@ -2261,7 +2247,6 @@ en-GB:
     nickname_hint: Enter the nickname of your new security key
     not_enabled: You haven't enabled WebAuthn yet
     not_supported: This browser doesn't support security keys
-    otp_required: To use security keys please enable two-factor authentication first.
     registered_on: Registered on %{date}
   wrapstodon:
     description: See how %{name} used Mastodon this year!

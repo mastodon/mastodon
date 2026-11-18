@@ -5,7 +5,7 @@ import { DotsThreeIcon } from '@phosphor-icons/react';
 import { ColumnHeaderButton } from '@/mastodon/components/column_header';
 import { Menu, MenuList, MenuTrigger } from '@/mastodon/components/menu';
 
-import type { IconButtonProps } from '../button/redesign';
+import type { IconButtonProps } from '../button';
 
 type ColumnSettingsMenuProps = {
   icon?: IconButtonProps['icon'];
@@ -30,7 +30,7 @@ export const ColumnSettingsMenu: React.FC<ColumnSettingsMenuProps> = ({
   return (
     <Menu>
       <MenuTrigger as={ColumnHeaderButton} icon={icon}>
-        {labelPrefix}
+        {labelPrefix && <>{labelPrefix} </>}
         {label ?? (
           <FormattedMessage
             id='column.settings'

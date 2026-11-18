@@ -6,8 +6,9 @@ import {
   useCallback,
 } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
+import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import type { PolymorphicProps } from '@/types/polymorphic';
 
 import type { MastodonLocation } from '../router';
@@ -99,15 +100,33 @@ export const FocusTargetProvider: React.FC<{
   );
 };
 
-export function useFocusOnNavigation(targetName?: NamedFocusTarget) {
+interface FocusAfterNavigationOptions {
+  scrollIntoView?: boolean;
+  onAfterFocus?: (hasSetFocus: boolean) => void;
+}
+
+export function useFocusAfterNavigation(
+  targetName?: NamedFocusTarget,
+  { scrollIntoView = false, onAfterFocus }: FocusAfterNavigationOptions = {},
+) {
   const focusTargetRef = useContext(FocusTargetContext);
+  const hasFocusedOnceRef = useRef(false);
+  const wasBackOrForwardNavigation = useHistory().action === 'POP';
 
   return useCallback(
     (element: HTMLElement | null) => {
       const focusTarget = focusTargetRef?.current;
 
-      // Bail out if focusTarget was set to `false`
-      if (!element || !focusTarget) {
+      // Bail out if focusTarget was set to `false`,
+      // if there has already been a focus attempt,
+      // or if the navigation was history.back/forward
+      if (
+        !element ||
+        !focusTarget ||
+        hasFocusedOnceRef.current ||
+        wasBackOrForwardNavigation
+      ) {
+        onAfterFocus?.(false);
         return;
       }
 
@@ -115,31 +134,64 @@ export function useFocusOnNavigation(targetName?: NamedFocusTarget) {
         ? focusTarget === targetName
         : focusTarget === true;
 
+      let timeout: ReturnType<typeof setTimeout> | undefined;
+
       if (shouldSetFocus) {
-        setTimeout(() => {
+        timeout = setTimeout(() => {
+          if (scrollIntoView) {
+            element.scrollIntoView(true);
+          }
           element.focus({ preventScroll: true });
+
+          onAfterFocus?.(true);
+          // Prevent this focus handler from setting focus again
+          hasFocusedOnceRef.current = true;
         }, 0);
+      } else {
+        onAfterFocus?.(false);
       }
+      return () => {
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+      };
     },
-    [focusTargetRef, targetName],
+    [
+      focusTargetRef,
+      wasBackOrForwardNavigation,
+      targetName,
+      onAfterFocus,
+      scrollIntoView,
+    ],
   );
 }
 
 interface FocusTargetElementProps extends React.ComponentPropsWithoutRef<'h1'> {
   focusTargetName?: NamedFocusTarget;
+  scrollIntoViewOnFocus?: boolean;
+  onAfterFocus?: FocusAfterNavigationOptions['onAfterFocus'];
 }
 
 export const NavigationFocusTarget = <As extends React.ElementType = 'h1'>({
   as: asComp,
   focusTargetName,
+  scrollIntoViewOnFocus,
+  onAfterFocus,
   children,
   ...otherProps
 }: PolymorphicProps<FocusTargetElementProps, As>) => {
   const Component = asComp ?? 'h1';
-  const focusOnNavigation = useFocusOnNavigation(focusTargetName);
+  const focusAfterNavigation = useFocusAfterNavigation(focusTargetName, {
+    scrollIntoView: scrollIntoViewOnFocus,
+    onAfterFocus,
+  });
 
   return (
-    <Component ref={focusOnNavigation} tabIndex={-1} {...otherProps}>
+    <Component
+      {...otherProps}
+      ref={useMergedRefs(focusAfterNavigation, otherProps.ref)}
+      tabIndex={-1}
+    >
       {children}
     </Component>
   );

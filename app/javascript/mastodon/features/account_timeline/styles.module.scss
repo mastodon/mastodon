@@ -9,7 +9,7 @@
   background: none;
   padding: 8px 0;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: bold;
   display: flex;
   align-items: center;
   transition: color 0.2s ease-in-out;
@@ -90,22 +90,10 @@
 }
 
 .pinnedViewAllButton {
-  background-color: var(--color-bg-primary);
-  border-radius: 8px;
-  border: 1px solid var(--color-border-primary);
-  box-sizing: border-box;
-  color: var(--color-text-primary);
-  line-height: normal;
-  margin: 12px 16px;
-  padding: 8px;
-  transition: border-color 0.2s ease-in-out;
-  width: calc(100% - 32px);
+  --horizontal-margin: var(--space-4);
 
-  &:hover,
-  &:focus {
-    background-color: inherit;
-    border-color: var(--color-bg-brand-base-hover);
-  }
+  margin: var(--space-3) var(--horizontal-margin);
+  width: calc(100% - var(--horizontal-margin) * 2);
 }
 
 .pinnedStatusHeader {
@@ -122,11 +110,4 @@
   > :global(.status__display-name) {
     grid-row: span 2;
   }
-}
-
-.pinnedBadge {
-  justify-self: end;
-
-  // Allow "click to open post" event to pass through
-  pointer-events: none;
 }

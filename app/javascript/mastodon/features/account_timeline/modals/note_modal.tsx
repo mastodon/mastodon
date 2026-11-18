@@ -146,7 +146,6 @@ const InnerNodeModal: FC<{
                 ? { variant: 'error', message: errorText }
                 : undefined
             }
-            // eslint-disable-next-line jsx-a11y/no-autofocus -- We want to focus here as it's a modal.
             autoFocus
           />
         </>

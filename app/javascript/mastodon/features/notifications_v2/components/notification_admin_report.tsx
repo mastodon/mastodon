@@ -44,14 +44,10 @@ export const NotificationAdminReport: React.FC<{
   if (!account || !targetAccount) return null;
 
   const isLocal = !targetAccount.acct.includes('@');
-
-  const values = {
-    name: <DisplayName account={account} variant='simple' />,
-    target: <DisplayName account={targetAccount} variant='simple' />,
-    category: intl.formatMessage(messages[report.category]),
-    count: report.status_ids.length,
-    isLocal: isLocal ? 'Local' : 'Remote',
-  };
+  const name = <DisplayName account={account} variant='simple' />;
+  const target = <DisplayName account={targetAccount} variant='simple' />;
+  const category = intl.formatMessage(messages[report.category]);
+  const count = report.status_ids.length;
 
   let message;
 
@@ -61,7 +57,7 @@ export const NotificationAdminReport: React.FC<{
         <FormattedMessage
           id='notification.admin.report_account_other'
           defaultMessage='{name} reported {count, plural, one {one post} other {# posts}} from {target} ({isLocal})'
-          values={values}
+          values={{ name, count, target }}
         />
       );
     } else {
@@ -69,7 +65,7 @@ export const NotificationAdminReport: React.FC<{
         <FormattedMessage
           id='notification.admin.report_account'
           defaultMessage='{name} reported {count, plural, one {one post} other {# posts}} from {target} ({isLocal}) for {category}'
-          values={values}
+          values={{ name, count, target, category }}
         />
       );
     }
@@ -79,7 +75,7 @@ export const NotificationAdminReport: React.FC<{
         <FormattedMessage
           id='notification.admin.report_statuses_other'
           defaultMessage='{name} reported {target} ({isLocal})'
-          values={values}
+          values={{ name, target }}
         />
       );
     } else {
@@ -87,7 +83,7 @@ export const NotificationAdminReport: React.FC<{
         <FormattedMessage
           id='notification.admin.report_statuses'
           defaultMessage='{name} reported {target} ({isLocal}) for {category}'
-          values={values}
+          values={{ name, target, category }}
         />
       );
     }

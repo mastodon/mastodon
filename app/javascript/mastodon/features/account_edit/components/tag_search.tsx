@@ -3,13 +3,14 @@ import { useCallback, useId, useState } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import { MagnifyingGlassIcon } from '@phosphor-icons/react';
+
 import { Combobox } from '@/mastodon/components/form_fields';
 import { ComboboxMenuItem } from '@/mastodon/components/form_fields/combobox_field';
 import { useSearchTags } from '@/mastodon/hooks/useSearchTags';
 import type { TagSearchResult } from '@/mastodon/hooks/useSearchTags';
 import { addFeaturedTags } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch } from '@/mastodon/store';
-import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 
 import classes from '../styles.module.scss';
 
@@ -71,7 +72,7 @@ export const AccountEditTagSearch: FC = () => {
         renderItem={renderItem}
         onSelectItem={handleSelect}
         className={classes.autoComplete}
-        icon={SearchIcon}
+        icon={MagnifyingGlassIcon}
         type='search'
       />
     </>

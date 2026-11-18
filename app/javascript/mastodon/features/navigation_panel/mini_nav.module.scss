@@ -1,0 +1,14 @@
+.root {
+  margin-block-end: var(--space-2);
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  gap: var(--space-half);
+
+  > li {
+    flex-grow: 1;
+  }
+}

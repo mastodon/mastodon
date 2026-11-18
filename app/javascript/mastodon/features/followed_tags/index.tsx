@@ -7,10 +7,7 @@ import { isFulfilled } from '@reduxjs/toolkit';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnHeader } from '@/mastodon/components/column_header';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import {
   fetchFollowedHashtags,
   unfollowHashtag,
@@ -53,7 +50,7 @@ const FollowedTag: React.FC<{
       withGraph={false}
       people={people}
     >
-      <Button onClick={handleClick}>
+      <Button onClick={handleClick} size='sm' color='destructive'>
         <FormattedMessage id='account.unfollow' defaultMessage='Unfollow' />
       </Button>
     </Hashtag>
@@ -99,21 +96,10 @@ const FollowedTags: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.heading)}
     >
-      {isRedesignEnabled() ? (
-        <ColumnHeader
-          withBackButton
-          title={intl.formatMessage(messages.heading)}
-        />
-      ) : (
-        <LegacyColumnHeader
-          icon='hashtag'
-          iconComponent={TagIcon}
-          title={intl.formatMessage(messages.heading)}
-          multiColumn={multiColumn}
-          showBackButton
-          scrollTopOnClick
-        />
-      )}
+      <ColumnHeader
+        withBackButton
+        title={intl.formatMessage(messages.heading)}
+      />
 
       <ScrollableList
         scrollKey='followed_tags'

@@ -180,6 +180,16 @@ async function loaded() {
     document.querySelector('#user_settings_attributes_default_privacy'),
   );
 
+  updateDefaultDiscoverableFromPrivacy(
+    document.querySelector('#user_settings_attributes_split_default_privacy'),
+  );
+
+  updateThemeColorsFromTheme(
+    document.querySelector(
+      '#user_settings_attributes_theme, #form_admin_settings_theme',
+    ),
+  );
+
   truncateRuleHints();
 
   applyRailsA11yPatches();
@@ -443,6 +453,148 @@ const updateDefaultQuotePrivacyFromPrivacy = (
 on('change', '#user_settings_attributes_default_privacy', ({ target }) => {
   updateDefaultQuotePrivacyFromPrivacy(target);
 });
+
+const updateDefaultDiscoverableFromPrivacy = (
+  privacySelect: EventTarget | null,
+) => {
+  if (!(privacySelect instanceof HTMLSelectElement) || !privacySelect.form)
+    return;
+
+  const checkbox = privacySelect.form.querySelector<HTMLInputElement>(
+    'input#user_settings_attributes_split_default_privacy_discoverable',
+  );
+  if (!checkbox) return;
+
+  if (privacySelect.value === 'private') {
+    checkbox.checked = false;
+  }
+
+  setInputDisabled(checkbox, privacySelect.value === 'private');
+};
+
+on(
+  'change',
+  '#user_settings_attributes_split_default_privacy',
+  ({ target }) => {
+    updateDefaultDiscoverableFromPrivacy(target);
+  },
+);
+
+const updateThemeColorsFromTheme = (themeSelect: EventTarget | null) => {
+  if (!(themeSelect instanceof HTMLSelectElement) || !themeSelect.form) return;
+
+  const selectedItem = themeSelect.options[themeSelect.selectedIndex];
+
+  if (!selectedItem?.dataset.colors) return;
+
+  const colors = JSON.parse(selectedItem.dataset.colors) as Record<
+    string,
+    string
+  >;
+
+  const themeColorDiv = themeSelect.form.querySelector<HTMLDivElement>(
+    '.user_settings_web\\.theme_color .label_input__wrapper, .form_admin_settings_theme_color .label_input__wrapper',
+  );
+  if (!themeColorDiv) return;
+
+  const hiddenInput =
+    themeColorDiv.querySelector<HTMLInputElement>('input[type=hidden]');
+  if (!hiddenInput) return;
+
+  const inputName = hiddenInput.name;
+
+  const selectedColor = themeSelect.form.querySelector<HTMLInputElement>(
+    `input[name="${inputName}"]:checked`,
+  )?.value;
+
+  // Remove existing fields
+  themeColorDiv
+    .querySelectorAll<HTMLSpanElement>('span.radio')
+    .forEach((element) => {
+      element.remove();
+    });
+
+  // TODO: check if it's needed? This is already covered by selectors, but only pretty recent ones
+  themeColorDiv.style.display = Object.keys(colors).length > 0 ? '' : 'none';
+
+  // Re-add fields
+  for (const [color, translation] of Object.entries(colors)) {
+    // TODO: is there a way to make that more readable?
+    const newSpanElement = document.createElement('span');
+    const newLabelElement = document.createElement('label');
+    const newInputElement = document.createElement('input');
+
+    newInputElement.className = 'radio_buttons optional';
+    newInputElement.type = 'radio';
+    newInputElement.value = color;
+    newInputElement.name = inputName;
+    newInputElement.id = `user_settings_attributes_web.theme_color_${color}`;
+    newInputElement.checked = color === selectedColor;
+
+    newLabelElement.htmlFor = newInputElement.id;
+    newLabelElement.appendChild(document.createTextNode(translation));
+    newLabelElement.appendChild(newInputElement);
+
+    newSpanElement.className = 'radio';
+    newSpanElement.appendChild(newLabelElement);
+
+    themeColorDiv.appendChild(newSpanElement);
+  }
+
+  // Select first color if could not carry the previously selected color over
+  if (!selectedColor || !colors[selectedColor]) {
+    const inputElement =
+      themeColorDiv.querySelector<HTMLInputElement>('input[type=radio]');
+    if (inputElement) inputElement.checked = true;
+  }
+};
+
+on(
+  'change',
+  '#user_settings_attributes_theme, #form_admin_settings_theme',
+  ({ target }) => {
+    updateThemeColorsFromTheme(target);
+  },
+);
+
+const updateDefaultQuotePrivacyFromSplitPrivacy = () => {
+  const privacySelect = document.querySelector<HTMLSelectElement>(
+    'select#user_settings_attributes_split_default_privacy',
+  );
+  if (!(privacySelect instanceof HTMLSelectElement) || !privacySelect.form)
+    return;
+
+  const discoverableCheckbox = document.querySelector<HTMLInputElement>(
+    'input#user_settings_attributes_split_default_privacy_discoverable',
+  );
+  if (!discoverableCheckbox) return;
+
+  const select = privacySelect.form.querySelector<HTMLSelectElement>(
+    'select#user_settings_attributes_default_quote_policy',
+  );
+  if (!select) return;
+
+  let privacy = privacySelect.value;
+  if (privacy === 'public' && !discoverableCheckbox.checked)
+    privacy = 'unlisted';
+
+  setInputHint(select, privacy);
+
+  if (privacySelect.value === 'private') {
+    select.value = 'nobody';
+    setInputDisabled(select, true);
+  } else {
+    setInputDisabled(select, false);
+  }
+};
+
+on(
+  'change',
+  '#user_settings_attributes_split_default_privacy,#user_settings_attributes_split_default_privacy_discoverable',
+  () => {
+    updateDefaultQuotePrivacyFromSplitPrivacy();
+  },
+);
 
 // Empty the honeypot fields in JS in case something like an extension
 // automatically filled them.

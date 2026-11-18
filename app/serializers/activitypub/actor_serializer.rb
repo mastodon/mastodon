@@ -8,9 +8,8 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
                      :moved_to, :property_value, :discoverable, :suspended,
-                     :memorial, :indexable, :attribution_domains, :profile_settings
-
-  context_extensions :interaction_policies
+                     :memorial, :indexable, :attribution_domains, :profile_settings,
+                     :interaction_policies, :actor_featured_collections
 
   attributes :id, :webfinger, :type, :following, :followers,
              :inbox, :outbox, :featured, :featured_tags,

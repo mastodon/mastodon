@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Auth::RegistrationsController < Devise::RegistrationsController
+  include ReauthConcern
   include RegistrationHelper
   include Auth::RegistrationSpamConcern
 
@@ -20,6 +21,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   skip_before_action :require_functional!, only: [:edit, :update]
 
   def new
+    extend_csp_for_oauth! if session[:registration_app_id]
+
     super(&:build_invite_request)
   end
 
@@ -28,7 +31,18 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    super
+    extend_csp_for_oauth! if session[:registration_app_id]
+
+    super do |resource|
+      if resource.persisted?
+        # If created through an app, mark it as such
+        session[:created_by_app_id] = session.delete(:registration_app_id) if session[:registration_app_id]
+
+        fulfil_reauth_request
+      end
+    end
+  rescue ActiveRecord::MultiparameterAssignmentErrors => e
+    handle_multiparameter_assignment_error(e.errors)
   end
 
   def update
@@ -67,6 +81,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(_resource)
+    last_url = stored_location_for(:user)
+    return last_url if last_url.present? && Rails.application.routes.recognize_path(last_url)[:controller] == 'oauth/authorizations'
+
     auth_setup_path
   end
 
@@ -102,10 +119,45 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   private
 
+  def extend_csp_for_oauth!
+    # When registering from an application, we redirect to it after submitting the form.
+    # As we do that through redirects, some browsers apply the `form-action` Content Security Policy,
+    # which would block the redirect if left to our application-wide default.
+    #
+    # We could set it to include the application's `redirect_uri` specifically, but the
+    # benefits from that are marginal, as it would most probably be attacker-controlled to begin with.
+
+    request.content_security_policy = request.content_security_policy.clone.tap do |p|
+      p.form_action(false)
+    end
+  end
+
   def set_invite
     @invite = begin
       invite = Invite.find_by(code: invite_code) if invite_code.present?
       invite if invite&.valid_for_use?
+    end
+  end
+
+  def handle_multiparameter_assignment_error(errors)
+    build_resource(sign_up_params_without_invalid_multiparameter_attributes(errors))
+
+    errors.each do |attribute_error|
+      resource.errors.add(attribute_error.attribute, :invalid)
+    end
+
+    clean_up_passwords resource
+    set_minimum_password_length
+    respond_with resource
+  end
+
+  def sign_up_params_without_invalid_multiparameter_attributes(errors)
+    invalid_attributes = errors.map { |attribute_error| attribute_error.attribute.to_s }
+
+    sign_up_params.to_h.reject do |key, _value|
+      invalid_attributes.any? do |attribute|
+        key.to_s == attribute || key.to_s.match?(/\A#{Regexp.escape(attribute)}\(\d+i\)\z/)
+      end
     end
   end
 

@@ -1,15 +1,15 @@
 import { useSyncExternalStore } from 'react';
 
-const breakpoints = {
+export const BREAKPOINTS = {
   narrow: 479, // Device width under which horizontal space is constrained
   openable: 759, // Device width at which the sidebar becomes an openable hamburger menu
   full: 1174, // Device width at which all 3 columns can be displayed
 };
 
-type Breakpoint = keyof typeof breakpoints;
+type Breakpoint = keyof typeof BREAKPOINTS;
 
 export const useBreakpoint = (breakpoint: Breakpoint) => {
-  const query = `(max-width: ${breakpoints[breakpoint]}px)`;
+  const query = `(max-width: ${BREAKPOINTS[breakpoint]}px)`;
 
   const isMatching = useSyncExternalStore(
     (callback) => {

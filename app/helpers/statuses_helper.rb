@@ -87,10 +87,21 @@ module StatusesHelper
     ActiveModel::Type::Boolean.new.cast(params[:autoplay]) || current_user&.setting_auto_play_gif
   end
 
-  def render_seo_schema(status)
+  def render_seo_schema(object)
+    serializer = begin
+      case object
+      when Status
+        SEO::SocialMediaPostingSerializer
+      when Account
+        SEO::ProfilePageSerializer
+      else
+        raise ArgumentError
+      end
+    end
+
     json = ActiveModelSerializers::SerializableResource.new(
-      status,
-      serializer: SEO::SocialMediaPostingSerializer,
+      object,
+      serializer:,
       adapter: SEO::Adapter
     ).to_json
 

@@ -21,11 +21,19 @@ RSpec.describe Auth::SessionsController do
     let(:user) { Fabricate(:user) }
 
     context 'with a regular user' do
+      before do
+        flash[:notice] = I18n.t('generic.all')
+        session[:challenge_passed_at] = 2.days.ago
+      end
+
       it 'redirects to home after sign out' do
         sign_in(user, scope: :user)
-        delete :destroy
 
-        expect(response).to redirect_to(new_user_session_path)
+        expect { delete :destroy }
+          .to change { flash[:notice] }.to(be_blank)
+          .and change { session[:challenge_passed_at] }.to(be_blank)
+        expect(response)
+          .to redirect_to(new_user_session_path)
       end
 
       it 'does not delete redirect location with continue=true' do
@@ -362,9 +370,9 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
-      context 'with WebAuthn and OTP enabled as second factor' do
+      context 'with WebAuthn enabled as second factor' do
         let!(:user) do
-          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret)
+          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh')
         end
 
         let!(:webauthn_credential) do
@@ -430,6 +438,103 @@ RSpec.describe Auth::SessionsController do
 
             expect(webauthn_credential.reload.sign_count).to eq(sign_count)
           end
+        end
+      end
+    end
+
+    context 'when 2FA is disabled and inactive for long' do
+      let!(:user) { Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', current_sign_in_at: 7.months.ago) }
+
+      before do
+        allow(UserMailer).to receive(:sign_in_token).and_return(instance_double(ActionMailer::MessageDelivery, deliver_later!: nil))
+      end
+
+      context 'when using email and password' do
+        before do
+          post :create, params: { user: { email: user.email, password: user.password } }
+        end
+
+        it 'renders sign in token authentication page' do
+          expect(response.parsed_body)
+            .to have_css('p.lead', text: I18n.t('users.inactive_sign_in_confirmation'))
+        end
+
+        it 'generates sign in token' do
+          expect(user.reload.sign_in_token).to_not be_nil
+        end
+
+        it 'sends sign in token e-mail' do
+          expect(UserMailer).to have_received(:sign_in_token)
+        end
+      end
+
+      context 'when using an invalid password' do
+        before do
+          post :create, params: { user: { email: user.email, password: 'wrongpw' } }
+        end
+
+        it 'shows a login error and does not log the user in' do
+          expect(flash[:alert]).to match(/#{failure_message_invalid_email}/i)
+
+          expect(controller.current_user).to be_nil
+        end
+      end
+
+      context 'when using a valid sign in token' do
+        before do
+          user.generate_sign_in_token
+          user.save
+          post :create, params: { user: { sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+        end
+
+        it 'redirects to home' do
+          expect(response).to redirect_to(root_path)
+        end
+
+        it 'logs the user in' do
+          expect(controller.current_user).to eq user
+        end
+      end
+
+      context 'when using an invalid sign in token' do
+        before do
+          post :create, params: { user: { sign_in_token_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+        end
+
+        it 'shows a login error' do
+          expect(flash[:alert]).to match I18n.t('users.invalid_sign_in_token')
+        end
+
+        it "doesn't log the user in" do
+          expect(controller.current_user).to be_nil
+        end
+      end
+
+      context 'when requesting a new sign in token' do
+        subject do
+          post :create, params: { sign_in_token_resend: '', user: { sign_in_token_attempt: '' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+        end
+
+        before do
+          user.generate_sign_in_token
+          user.save
+        end
+
+        it 'renders sign in token authentication page' do
+          subject
+
+          expect(response.parsed_body)
+            .to have_css('p.lead', text: I18n.t('users.inactive_sign_in_confirmation'))
+        end
+
+        it 'generates a new sign in token' do
+          expect { subject }.to(change { user.reload.sign_in_token })
+        end
+
+        it 'sends sign in token e-mail' do
+          subject
+
+          expect(UserMailer).to have_received(:sign_in_token)
         end
       end
     end

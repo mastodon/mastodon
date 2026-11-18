@@ -11,7 +11,9 @@ declare module '@storybook/addon-vitest/vitest-plugin' {
 }
 
 type TypedRootState = {
-  [Key in keyof RootState]?: RootState[Key] extends Immutable.OrderedCollection<any>
+  [
+    Key in keyof RootState
+  ]?: RootState[Key] extends Immutable.OrderedCollection<any>
     ? unknown
     : PartialDeep<RootState[Key]>;
 };
@@ -31,6 +33,7 @@ declare module 'storybook/internal/csf' {
   export interface Globals {
     locale: string;
     theme: 'light' | 'dark';
+    contrast: 'default' | 'high';
     loggedIn: 'true' | 'false';
   }
 

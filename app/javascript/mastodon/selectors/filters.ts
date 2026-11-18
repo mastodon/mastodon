@@ -68,7 +68,7 @@ export const selectStatusFilters = createAppSelector(
       !!contextType &&
       ['detailed', 'bookmarks', 'favourites', 'search'].includes(contextType);
 
-    const filtered = status.reblog?.filtered ?? status.filtered;
+    const filtered = status.reblog?.filtered ?? status.filtered ?? [];
     for (const result of filtered) {
       const filter = filters[result.filter];
       if (!filter) {
@@ -77,7 +77,7 @@ export const selectStatusFilters = createAppSelector(
 
       if (filter.filter_action === 'hide' && !warnInsteadOfHide) {
         filterAction = 'hide';
-      } else {
+      } else if (filter.filter_action !== 'blur') {
         filterAction ??= 'warn';
       }
 

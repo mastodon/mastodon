@@ -35,11 +35,8 @@ RSpec.describe WorkerBatch do
     end
 
     context 'when called with empty array' do
-      it 'does not persist the number of pending jobs' do
+      it 'does not persist the number of pending jobs or job IDs' do
         expect(subject.info).to be_empty
-      end
-
-      it 'does not persist the job IDs' do
         expect(subject.jobs).to eq []
       end
     end

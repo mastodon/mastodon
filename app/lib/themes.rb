@@ -15,4 +15,10 @@ class Themes
   def names
     @conf.keys
   end
+
+  def available_theme_colors(theme)
+    return [] unless @conf[theme].is_a?(Hash) && @conf[theme]['colors'].present?
+
+    @conf[theme]['colors']
+  end
 end

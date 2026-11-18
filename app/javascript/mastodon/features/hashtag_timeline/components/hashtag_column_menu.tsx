@@ -12,12 +12,11 @@ import {
   MenuItemDivider,
 } from '@/mastodon/components/menu';
 import type { MenuItemCheckboxChangeHandler } from '@/mastodon/components/menu/items';
+import { useHashtag } from '@/mastodon/hooks/useHashtag';
 import { useIdentity } from '@/mastodon/identity_context';
 import { useAppDispatch } from 'mastodon/store';
 
 import { useColumnSettings } from '../../public_timeline/components/feed_column_settings';
-
-import { useHashtag, messages } from './hashtag_header';
 
 export const HashtagColumnMenu: React.FC<{
   tagId: string;
@@ -44,10 +43,10 @@ export const HashtagColumnMenu: React.FC<{
     dispatch(
       openModal({
         modalType: 'HASHTAG_SETTINGS',
-        modalProps: { columnId, tagId },
+        modalProps: { columnId },
       }),
     );
-  }, [columnId, dispatch, tagId]);
+  }, [columnId, dispatch]);
 
   if (!tag || !signedIn) {
     return null;
@@ -66,16 +65,28 @@ export const HashtagColumnMenu: React.FC<{
     >
       <MenuItem onClick={toggleFollow}>
         {tag.following ? (
-          <FormattedMessage {...messages.unfollowHashtag} />
+          <FormattedMessage
+            id='hashtag.unfollow'
+            defaultMessage='Unfollow hashtag'
+          />
         ) : (
-          <FormattedMessage {...messages.followHashtag} />
+          <FormattedMessage
+            id='hashtag.follow'
+            defaultMessage='Follow hashtag'
+          />
         )}
       </MenuItem>
       <MenuItem onClick={toggleFeature}>
         {tag.featuring ? (
-          <FormattedMessage {...messages.unfeature} />
+          <FormattedMessage
+            id='hashtag.unfeature'
+            defaultMessage="Don't feature on profile"
+          />
         ) : (
-          <FormattedMessage {...messages.feature} />
+          <FormattedMessage
+            id='hashtag.feature'
+            defaultMessage='Feature on profile'
+          />
         )}
       </MenuItem>
       {multiColumn && pinned && (
@@ -96,7 +107,6 @@ export const HashtagColumnMenu: React.FC<{
             <FormattedMessage
               id='hashtags.add_more_tags'
               defaultMessage='Add more tags to this column…'
-              values={{ tag: tagId }}
             />
           </MenuItem>
         </>

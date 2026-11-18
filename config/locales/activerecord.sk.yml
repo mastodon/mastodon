@@ -23,6 +23,8 @@ sk:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: obsahuje hodnoty bez názvov
             username:
               invalid: iba písmená, číslice a podčiarkovníky
               reserved: je obsadené
@@ -30,6 +32,12 @@ sk:
           attributes:
             url:
               invalid: nie je platnou URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: je ich príliš veľa, povolený počet je najviac %{count}
+            tag:
+              unusable: sa nesmie použiť
         doorkeeper/application:
           attributes:
             website:
@@ -38,12 +46,23 @@ sk:
           attributes:
             data:
               malformed: je deformovaný
+        list_account:
+          attributes:
+            account_id:
+              taken: už je v zozname
+          must_be_following: musí ísť o účet, ktorý sledujete
         status:
           attributes:
             reblog:
               taken: príspevku už existuje
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: je príliš skoro, musí byť po %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: nedosahuje minimálnu vekovú hranicu
             email:
               blocked: používa nepovoleného poskytovateľa e-mailu
               unreachable: vyzerá, že neexistuje

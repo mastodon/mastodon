@@ -24,7 +24,22 @@ RSpec.describe User do
 
   describe 'Associations' do
     it { is_expected.to belong_to(:account).required }
+    it { is_expected.to belong_to(:invite).optional }
+    it { is_expected.to have_many(:invites).inverse_of(:user).dependent(false) }
     it { is_expected.to have_many(:login_activities) }
+    it { is_expected.to have_one(:invite_request).inverse_of(:user).dependent(:destroy).class_name(UserInviteRequest) }
+
+    describe 'invite' do
+      let(:invite) { Fabricate(:invite) }
+
+      it 'increments invite uses on creation but does not decrement it on deletion' do
+        expect { Fabricate(:user, email: 'alice@example.com', invite: invite) }
+          .to change { invite.reload.uses }.by(1)
+
+        expect { described_class.find_by(email: 'alice@example.com').destroy }
+          .to_not(change { invite.reload.uses })
+      end
+    end
   end
 
   describe 'Validations' do
@@ -46,6 +61,18 @@ RSpec.describe User do
       it { is_expected.to allow_value(10.seconds.ago).for(:registration_form_time) }
       it { is_expected.to_not allow_value(1.second.ago).for(:registration_form_time).against(:base) }
     end
+
+    context 'when invite request is required by settings' do
+      before do
+        Setting.require_invite_text = true
+        Setting.registrations_mode = 'none'
+        subject.invite_id = nil
+        subject.external = false
+        subject.bypass_registration_checks = false
+      end
+
+      it { is_expected.to_not allow_values(nil).for(:invite_request) }
+    end
   end
 
   describe 'Normalizations' do
@@ -63,6 +90,10 @@ RSpec.describe User do
       it { is_expected.to normalize(:chosen_languages).from(['en', 'fr', '']).to(%w(en fr)) }
       it { is_expected.to normalize(:chosen_languages).from(['']).to(nil) }
     end
+  end
+
+  describe 'Nesting' do
+    it { is_expected.to accept_nested_attributes_for(:invite_request) }
   end
 
   describe 'scopes', :inline_jobs do
@@ -220,8 +251,95 @@ RSpec.describe User do
     end
   end
 
+  describe '#invited?' do
+    subject { user.invited? }
+
+    let(:user) { Fabricate.build :user }
+
+    context 'when invite is present' do
+      before { user.invite = Fabricate(:invite) }
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when invite is not present' do
+      before { user.invite = nil }
+
+      it { is_expected.to be(false) }
+    end
+  end
+
+  describe '#valid_invitation?' do
+    subject { user.valid_invitation? }
+
+    let(:user) { Fabricate.build :user }
+    let(:invite) { Fabricate :invite }
+
+    context 'when invite is present' do
+      before { user.invite = invite }
+
+      context 'when invite is valid for use' do
+        before { allow(invite).to receive(:valid_for_use?).and_return(true) }
+
+        it { is_expected.to be(true) }
+      end
+
+      context 'when invite is not valid for use' do
+        before { allow(invite).to receive(:valid_for_use?).and_return(false) }
+
+        it { is_expected.to be(false) }
+      end
+    end
+  end
+
+  describe '#invite_code=' do
+    let(:user) { Fabricate.build :user }
+
+    before { user.invite_code = code }
+
+    context 'when code is nil' do
+      let(:code) { nil }
+
+      it 'sets invite code to nil and does not populate invite' do
+        expect(user.invite)
+          .to be_nil
+        expect(user.invite_code)
+          .to be_nil
+      end
+    end
+
+    context 'when code is present but does not match an invite' do
+      let(:code) { 'ABC123' }
+
+      it 'sets invite code to value and does not populate invite' do
+        expect(user.invite)
+          .to be_nil
+        expect(user.invite_code)
+          .to eq(code)
+      end
+    end
+
+    context 'when code is present and does match an invite' do
+      let(:code) { invite.code }
+      let(:invite) { Fabricate :invite }
+
+      it 'sets invite code to value and populates invite' do
+        expect(user.invite)
+          .to eq(invite)
+        expect(user.invite_code)
+          .to eq(code)
+      end
+    end
+  end
+
   describe '#approve!' do
     subject { user.approve! }
+
+    around do |example|
+      queue_adapter = ActiveJob::Base.queue_adapter
+      example.run
+      ActiveJob::Base.queue_adapter = queue_adapter
+    end
 
     before do
       Setting.registrations_mode = 'approved'
@@ -245,6 +363,69 @@ RSpec.describe User do
         expect { subject }.to change { user.reload.approved? }.to(true)
 
         expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
+      end
+
+      context 'when the user is disabled' do
+        let(:user) { Fabricate(:user, confirmed_at: nil, approved: false, disabled: true) }
+
+        it 'sets the approved flag, enables the account, sends a mail but does not trigger web hook' do
+          ActiveJob::Base.queue_adapter = :test
+
+          expect { subject }
+            .to change { user.reload.approved? }.to(true)
+            .and change(user, :disabled?).to(false)
+            .and change(user, :confirmation_token).from(nil)
+            .and change(user, :confirmation_sent_at).from(nil)
+            .and enqueue_job(ActionMailer::MailDeliveryJob)
+
+          expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
+        end
+      end
+    end
+  end
+
+  describe '#disable_otp_login!' do
+    describe 'when user has OTP enabled' do
+      let(:user) do
+        Fabricate(
+          :user,
+          otp_required_for_login: true,
+          otp_secret: 'oldotpcode'
+        )
+      end
+
+      it 'saves false for otp_required_for_login' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_required_for_login).to be false
+      end
+
+      it 'saves nil for otp_secret' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_secret).to be_nil
+      end
+    end
+
+    describe 'when user does not have OTP enabled' do
+      let(:user) do
+        Fabricate(
+          :user,
+          otp_required_for_login: false,
+          otp_secret: nil
+        )
+      end
+
+      it 'does not change for otp_required_for_login' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_required_for_login).to be false
+      end
+
+      it 'does not change for otp_secret' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_secret).to be_nil
       end
     end
   end
@@ -281,6 +462,40 @@ RSpec.describe User do
       ActiveJob::Base.queue_adapter = :test
 
       expect { user.send_confirmation_instructions }.to have_enqueued_job(ActionMailer::MailDeliveryJob)
+    end
+
+    context 'with a disabled unconfirmed user' do
+      it 'does not send a mail nor generates a confirmation token' do
+        ActiveJob::Base.queue_adapter = :test
+
+        user = Fabricate(:user, disabled: true, approved: false, confirmed_at: nil)
+
+        expect { user.send_confirmation_instructions }
+          .to_not have_enqueued_job(ActionMailer::MailDeliveryJob)
+
+        expect(user.reload)
+          .to have_attributes(
+            confirmed_at: nil,
+            confirmation_token: nil,
+            confirmation_sent_at: nil
+          )
+      end
+    end
+  end
+
+  describe '#mails_disabled?' do
+    subject { user.mails_disabled? }
+
+    context 'with a disabled unconfirmed user' do
+      let(:user) { Fabricate(:user, disabled: true, approved: false, confirmed_at: nil) }
+
+      it { is_expected.to be true }
+    end
+
+    context 'with a pending user that is not disabled' do
+      let(:user) { Fabricate(:user, disabled: false, approved: false, confirmed_at: nil) }
+
+      it { is_expected.to be false }
     end
   end
 
@@ -436,12 +651,32 @@ RSpec.describe User do
   describe '#enable!' do
     subject(:user) { Fabricate(:user, disabled: true) }
 
-    before do
-      user.enable!
+    around do |example|
+      queue_adapter = ActiveJob::Base.queue_adapter
+      example.run
+      ActiveJob::Base.queue_adapter = queue_adapter
     end
 
-    it 'enables user' do
-      expect(user).to have_attributes(disabled: false)
+    it 'enables user without sending spurious mails' do
+      ActiveJob::Base.queue_adapter = :test
+
+      expect { user.enable! }
+        .to change { user.reload.disabled? }.to(false)
+        .and have_enqueued_job(ActionMailer::MailDeliveryJob).exactly(0).times
+    end
+
+    context 'when the user had mails disabled' do
+      subject(:user) { Fabricate(:user, disabled: true, confirmed_at: nil, approved: false) }
+
+      it 'enables user and sends confirmation mail' do
+        ActiveJob::Base.queue_adapter = :test
+
+        expect { user.enable! }
+          .to change(user, :disabled?).to(false)
+          .and change(user, :confirmation_token).from(nil)
+          .and change(user, :confirmation_sent_at).from(nil)
+          .and enqueue_job(ActionMailer::MailDeliveryJob)
+      end
     end
   end
 

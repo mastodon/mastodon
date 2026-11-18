@@ -4,11 +4,12 @@
   @include mixins.type-meta;
 
   display: grid;
-  grid-template-columns: subgrid;
-  grid-template-rows: 1fr;
+  grid-template-columns: var(--first-col-width) auto;
+
+  // Force an explicit track size otherwise Safari 17 doesn't calculate correctly.
+  grid-template-rows: minmax(auto, max-content);
   align-items: center;
   color: var(--color-text-secondary);
-  grid-column: span 2;
 
   a {
     color: inherit;
@@ -28,16 +29,17 @@
 .reblogIcon {
   padding-inline-end: var(--col-gap);
   justify-self: end;
-  color: var(--color-text-brand);
+  color: var(--color-text-tertiary);
+  width: 1rem;
+  height: 1rem;
 }
 
 .replyIcon {
-  border-block-start: 2px solid var(--color-border-primary);
-  border-inline-start: 2px solid var(--color-border-primary);
+  border-block-start: var(--bw-thick) solid var(--color-border-primary);
+  border-inline-start: var(--bw-thick) solid var(--color-border-primary);
   border-top-left-radius: var(--radius-4);
-  box-sizing: border-box;
   margin: var(--space-2) var(--col-gap) 0 var(--space-1);
-  width: calc(var(--avatar-size) / 2 + 1px);
+  width: calc(var(--avatar-size) / 2 - 1px);
   height: calc(100% - var(--space-2));
   justify-self: end;
 }
@@ -46,17 +48,26 @@
   display: flex;
   align-items: center;
   gap: var(--space-1);
+  overflow: hidden; // Forces the display name to not push contents out of view.
 }
 
 // Add a tag to override .root a
 a.account {
+  @include mixins.text-ellipsis;
+
   font-weight: bold;
-  color: var(--color-text-primary);
 }
 
-.text {
-  @include mixins.line-clamp(1);
+.time {
+  flex-shrink: 0;
 
-  display: block;
-  margin-block-start: var(--space-1);
+  &::before {
+    content: '•';
+    margin-inline-end: var(--space-1);
+  }
+}
+
+.badge {
+  margin-inline-start: var(--first-col-width);
+  align-self: flex-start;
 }

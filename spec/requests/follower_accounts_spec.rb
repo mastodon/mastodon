@@ -2,12 +2,148 @@
 
 require 'rails_helper'
 
-RSpec.describe 'FollowerAccountsController' do
-  describe 'The follower_accounts route' do
-    it "returns a http 'moved_permanently' code" do
-      get '/users/:username/followers'
+RSpec.describe 'Follower accounts' do
+  let(:account) { Fabricate(:account, username: 'alice') }
 
-      expect(response).to have_http_status(301)
+  describe 'GET /users/:username/followers' do
+    it 'redirects to the canonical URL' do
+      get account_followers_path(account)
+
+      expect(response)
+        .to redirect_to("/@#{account.username}/followers")
+        .and have_http_status(301)
+    end
+  end
+
+  describe 'GET /@:username/followers' do
+    subject { get "/@#{account.username}/followers", params: { page: page }, as: format }
+
+    let(:format) { :html }
+    let(:page) { nil }
+
+    shared_examples 'unavailable account responses' do
+      context 'when account is permanently suspended' do
+        before do
+          account.suspend!
+          account.deletion_request.destroy
+        end
+
+        it 'returns http gone' do
+          subject
+
+          expect(response)
+            .to have_http_status(410)
+        end
+      end
+
+      context 'when account is temporarily suspended' do
+        before { account.suspend! }
+
+        it 'returns http forbidden' do
+          subject
+
+          expect(response)
+            .to have_http_status(403)
+        end
+      end
+    end
+
+    context 'with HTML' do
+      it_behaves_like 'unavailable account responses'
+    end
+
+    context 'with JSON' do
+      let(:format) { :json }
+      let(:follower_bob) { Fabricate(:account, username: 'bob') }
+      let(:follower_chris) { Fabricate(:account, username: 'chris') }
+
+      before do
+        follower_bob.follow!(account)
+        follower_chris.follow!(account)
+      end
+
+      context 'with page' do
+        let(:page) { 1 }
+
+        it 'returns followers' do
+          subject
+
+          expect(response)
+            .to have_http_status(200)
+          expect(response.parsed_body)
+            .to include(
+              orderedItems: contain_exactly(
+                ActivityPub::TagManager.instance.uri_for(follower_bob),
+                ActivityPub::TagManager.instance.uri_for(follower_chris)
+              ),
+              totalItems: eq(2),
+              partOf: be_present
+            )
+        end
+
+        context 'when account hides their network' do
+          before { account.update(hide_collections: true) }
+
+          it 'returns forbidden response' do
+            subject
+
+            expect(response)
+              .to have_http_status(403)
+            expect(response.parsed_body)
+              .to include(error: /forbidden/i)
+          end
+        end
+
+        context 'when signed in and blocking an account' do
+          let(:user) { Fabricate(:user) }
+
+          before do
+            Fabricate :block, account: user.account, target_account: follower_bob
+            sign_in user
+          end
+
+          it 'returns followers without blocked accounts' do
+            subject
+
+            expect(response)
+              .to have_http_status(200)
+            expect(response.parsed_body)
+              .to include(
+                orderedItems: contain_exactly(
+                  ActivityPub::TagManager.instance.uri_for(follower_chris)
+                )
+              )
+          end
+        end
+
+        it_behaves_like 'unavailable account responses'
+      end
+
+      context 'without page' do
+        it 'returns the followers collection' do
+          subject
+
+          expect(response)
+            .to have_http_status(200)
+          expect(response.parsed_body)
+            .to include(totalItems: eq(2))
+            .and not_include(:partOf)
+        end
+
+        context 'when account hides their network' do
+          before { account.update(hide_collections: true) }
+
+          it 'returns followers count but not any items' do
+            subject
+
+            expect(response.parsed_body)
+              .to include(totalItems: eq(2))
+              .and not_include(:items, :orderedItems, :first, :last)
+          end
+        end
+
+        it_behaves_like 'unavailable account responses'
+      end
     end
   end
 end

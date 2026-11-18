@@ -55,7 +55,8 @@ interface AppThunkOptions<Arg> {
 
 // Type definitions for the sync thunks.
 type AppThunk<Arg = void, Returned = void> = (
-  arg: Arg,
+  // When Arg explicitly includes undefined, allow it to be optional.
+  ...args: undefined extends Arg ? [arg?: Arg] : [arg: Arg]
 ) => (dispatch: AppDispatch, getState: () => RootState) => Returned;
 
 type AppThunkCreator<Arg = void, Returned = void, ExtraArg = unknown> = (
@@ -103,7 +104,7 @@ export function createAppThunk<Arg = void, Returned = void, ExtraArg = unknown>(
   let action: null | AppThunkActionCreator<Arg, Returned> = null;
 
   // Creates a thunk that dispatches the action with the result of the creator.
-  const actionCreator: AppThunk<Arg, Returned> = (arg) => {
+  const actionCreator = ((arg: Arg) => {
     return (dispatch, getState) => {
       const result = creator(arg, { dispatch, getState }, extra);
       if (action) {
@@ -113,7 +114,7 @@ export function createAppThunk<Arg = void, Returned = void, ExtraArg = unknown>(
       }
       return result;
     };
-  };
+  }) as AppThunk<Arg, Returned>; // Case the const as an AppThunk avoids errors around undefined Arg.
 
   // No action name provided, return the thunk directly.
   if (!name) {

@@ -3,6 +3,7 @@
 .rootLarge,
 .rootSmall {
   align-items: center;
+  color: var(--color-text-primary);
   background-color: var(--color-bg-highlight);
   border-radius: var(--radius-3);
   box-sizing: border-box;
@@ -19,10 +20,25 @@
 }
 
 .textWrapper {
+  @include mixins.type-body-compact;
+
   flex-grow: 1;
+
+  a {
+    color: inherit;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+    }
+  }
 }
 
 .icon {
   width: var(--space-5);
   height: var(--space-5);
+}
+
+.actionButton {
+  flex-shrink: 0;
 }

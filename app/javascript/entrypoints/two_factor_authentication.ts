@@ -3,8 +3,6 @@ import axios, { AxiosError } from 'axios';
 
 import ready from '../mastodon/ready';
 
-import 'regenerator-runtime/runtime';
-
 type PublicKeyCredentialCreationOptionsJSON =
   WebAuthnJSON.CredentialCreationOptionsJSON['publicKey'];
 
@@ -36,14 +34,9 @@ function hideFlashMessages() {
 
 async function callback(
   url: string,
-  body:
-    | {
-        credential: WebAuthnJSON.PublicKeyCredentialWithAttestationJSON;
-        nickname: string;
-      }
-    | {
-        user: { credential: WebAuthnJSON.PublicKeyCredentialWithAssertionJSON };
-      },
+  body: {
+    user: { credential: WebAuthnJSON.PublicKeyCredentialWithAssertionJSON };
+  },
 ) {
   try {
     const response = await axios.post<{ redirect_path: string }>(
@@ -73,34 +66,39 @@ async function callback(
   }
 }
 
-async function handleWebauthnCredentialRegistration(nickname: string) {
+async function fetchWebauthnCredentialCreationOptions() {
   try {
     const response = await axios.get<PublicKeyCredentialCreationOptionsJSON>(
       '/settings/security_keys/options',
     );
 
-    const credentialOptions = response.data;
-
-    try {
-      const credential = await WebAuthnJSON.create({
-        publicKey: credentialOptions,
-      });
-
-      const params = {
-        credential: credential,
-        nickname: nickname,
-      };
-
-      await callback('/settings/security_keys', params);
-    } catch (error) {
-      const errorMessage = document.getElementById(
-        'security-key-error-message',
-      );
-      errorMessage?.classList.remove('hidden');
-      console.error(error);
-    }
+    return response.data;
   } catch (error) {
     logAxiosResponseError(error);
+    return undefined;
+  }
+}
+
+async function handleWebauthnCredentialRegistration(
+  form: HTMLFormElement,
+  credentialOptions: PublicKeyCredentialCreationOptionsJSON,
+) {
+  try {
+    const credential = await WebAuthnJSON.create({
+      publicKey: credentialOptions,
+    });
+
+    const credentialInput = form.querySelector<HTMLInputElement>(
+      'input[name="credential"]',
+    );
+    if (!credentialInput) return;
+
+    credentialInput.value = JSON.stringify(credential);
+    form.submit();
+  } catch (error) {
+    const errorMessage = document.getElementById('security-key-error-message');
+    errorMessage?.classList.remove('hidden');
+    console.error(error);
   }
 }
 
@@ -148,17 +146,34 @@ ready(() => {
   const webAuthnCredentialRegistrationForm =
     document.querySelector<HTMLFormElement>('form#new_webauthn_credential');
   if (webAuthnCredentialRegistrationForm) {
+    const registrationButton =
+      webAuthnCredentialRegistrationForm.querySelector<HTMLButtonElement>(
+        'button.js-webauthn',
+      );
+    let credentialOptions: PublicKeyCredentialCreationOptionsJSON | undefined;
+
+    if (WebAuthnJSON.supported()) {
+      void fetchWebauthnCredentialCreationOptions().then((options) => {
+        credentialOptions = options;
+        if (options && registrationButton) registrationButton.disabled = false;
+      });
+    }
+
     webAuthnCredentialRegistrationForm.addEventListener('submit', (event) => {
       event.preventDefault();
 
-      if (!(event.target instanceof HTMLFormElement)) return;
+      if (!(event.target instanceof HTMLFormElement) || !credentialOptions)
+        return;
 
       const nickname = event.target.querySelector<HTMLInputElement>(
-        'input[name="new_webauthn_credential[nickname]"]',
+        'input[name="nickname"]',
       );
 
       if (nickname?.value) {
-        void handleWebauthnCredentialRegistration(nickname.value);
+        void handleWebauthnCredentialRegistration(
+          event.target,
+          credentialOptions,
+        );
       } else {
         nickname?.focus();
       }

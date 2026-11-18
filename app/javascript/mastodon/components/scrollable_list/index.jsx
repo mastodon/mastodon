@@ -27,7 +27,7 @@ const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 /**
  *
  * @param {import('mastodon/store').RootState} state
- * @param {*} props
+ * @param {{ scrollKey: string }} props
  */
 const mapStateToProps = (state, { scrollKey }) => {
   return {
@@ -80,6 +80,7 @@ class ScrollableList extends PureComponent {
     children: PropTypes.node,
     bindToDocument: PropTypes.bool,
     preventScroll: PropTypes.bool,
+    noSnippet: PropTypes.bool,
     footer: PropTypes.node,
     className: PropTypes.string,
   };
@@ -326,7 +327,7 @@ class ScrollableList extends PureComponent {
   };
 
   render () {
-    const { children, scrollKey, className, trackScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, footer, emptyMessage, onLoadMore } = this.props;
+    const { children, scrollKey, className, trackScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, footer, emptyMessage, onLoadMore, noSnippet } = this.props;
     const { fullscreen } = this.state;
     const childrenCount = Children.count(children);
 
@@ -336,7 +337,7 @@ class ScrollableList extends PureComponent {
 
     if (showLoading) {
       scrollableArea = (
-        <Scrollable ref={this.setRef}>
+        <Scrollable ref={this.setRef} data-nosnippet={noSnippet}>
           {prepend}
 
           <ItemList isLoading />
@@ -346,7 +347,7 @@ class ScrollableList extends PureComponent {
       );
     } else if (isLoading || childrenCount > 0 || numPending > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
-        <Scrollable fullscreen={fullscreen} ref={this.setRef} onMouseMove={this.handleMouseMove}>
+        <Scrollable fullscreen={fullscreen} ref={this.setRef} onMouseMove={this.handleMouseMove} data-nosnippet={noSnippet}>
           {prepend}
 
           <ItemList className={className}>
@@ -381,7 +382,7 @@ class ScrollableList extends PureComponent {
       );
     } else {
       scrollableArea = (
-        <Scrollable fullscreen={fullscreen} ref={this.setRef}>
+        <Scrollable fullscreen={fullscreen} ref={this.setRef} data-nosnippet={noSnippet}>
           {alwaysPrepend && prepend}
 
           <div className='empty-column-indicator'>

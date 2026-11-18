@@ -8,6 +8,7 @@ import { useSpring, animated, config } from '@react-spring/web';
 import { throttle } from 'lodash';
 
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
+import { Button } from '@/mastodon/components/button';
 import { useRevealedMedia } from '@/mastodon/hooks/useRevealedMedia';
 import Forward5Icon from '@/material-icons/400-24px/forward_5-fill.svg?react';
 import FullscreenIcon from '@/material-icons/400-24px/fullscreen.svg?react';
@@ -849,13 +850,16 @@ export const Video: React.FC<{
           !editable &&
           !fullscreen &&
           !alwaysVisible &&
+          !onToggleVisibility &&
           revealed && (
             <div
               className={classNames('media-gallery__actions', {
                 active: paused || hovered,
               })}
             >
-              <button
+              <Button
+                size='xs'
+                color='media'
                 className='media-gallery__actions__pill'
                 onClick={toggleReveal}
                 type='button'
@@ -864,7 +868,7 @@ export const Video: React.FC<{
                   id='media_gallery.hide'
                   defaultMessage='Hide'
                 />
-              </button>
+              </Button>
             </div>
           )}
 

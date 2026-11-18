@@ -505,8 +505,6 @@ lv:
           description: Tu saņēmi reģistrēšanos no FĀPS. Tā ir jānoraida, ja to neveici. Ja veici, rūpīgi jāsalīdzina nosaukums un atslēgas pirkstu nospiedums, pirms reģistrēšanās apstiprināšanas.
           reject: Noraidīt
           title: Apstiprināt FĀPS reģistrēšanos
-        save: Saglabāt
-        select_capabilities: Atlasīt spējas
         sign_in: Pieteikties
         status: Stāvoklis
         title: Fediverse ārējie pakalpojumu sniedzēji
@@ -648,10 +646,7 @@ lv:
       action_taken_by: Veiktā darbība
       actions:
         mark_as_sensitive_description_html: Informācijas nesēji ierakstos, par kuriem ziņots, tiks atzīmēti kā jūtīgi, un tiks iegrāmatots brīdinājums, lai palīdzētu ziņot par turpmākiem tā paša konta pārkāpumiem.
-        other_description_html: Skatīt vairāk iespēju kontrolēt konta uzvedību un pielāgot saziņu ar paziņoto kontu.
         resolve_description_html: Pret norādīto kontu netiks veiktas nekādas darbības, netiks reģistrēts brīdinājums, un ziņojums tiks slēgts.
-        silence_description_html: Konts būs redzams tikai tiem, kas tam jau seko vai meklē to manuāli, ievērojami ierobežojot tā sasniedzamību. To vienmēr var atgriezt. Tiek aizvērti visi šī konta pārskati.
-        suspend_description_html: Konts un viss tā saturs nebūs pieejams un galu galā tiks izdzēsts, un mijiedarbība ar to nebūs iespējama. Atgriežams 30 dienu laikā. Tiek aizvērti visi šī konta pārskati.
       actions_description_html: Izlem, kādas darbības jāveic, lai atrisinātu šo ziņojumu. Ja tiks pieņemti sodoši mēri pret kontu, par kuru ziņots, tam e-pastā tiks nosūtīts paziņojums, izņemot gadījumus, kad ir atlasīta kategorija <strong>Mēstules</strong>.
       actions_description_remote_html: Izlem, kādas darbības jāveic, lai atrisinātu šo ziņojumu. Tas ietekmēs tikai to, kā <strong>tavs</strong> serveris sazinās ar šo attālo kontu un apstrādā tā saturu.
       actions_no_posts: Šim ziņojumam nav saistītu ierakstu, kurus izdzēst
@@ -828,10 +823,8 @@ lv:
         title: Pēc noklusējuma lietotāji būs atteikušies no meklētājprogrammu indeksēšanas
       discovery:
         follow_recommendations: Sekošanas ieteikumi
-        privacy: Konfidencialitāte
         profile_directory: Profila direktorija
         public_timelines: Publiskās ziņu lentas
-        publish_statistics: Publicēt statistiku
         title: Atklāt
         trends: Tendences
       domain_blocks:
@@ -850,7 +843,6 @@ lv:
         warning_hint: Mēs iesakām izmantot "Nepieciešams reģistrēšanās apstiprinājums", izņemot, ja esi pārliecināts, ka Tava satura pārraudzības komanda var laicīgi apstrādāt mēstules un ļaunprātīgas reģistrācijas.
       security:
         authorized_fetch: Pieprasīt autentifikāciju no federētajiem serveriem
-        authorized_fetch_hint: Pieprasot autentifikāciju no federētajiem serveriem, tiek nodrošināta stingrāka gan lietotāja līmeņa, gan servera līmeņa bloku izpilde. Tomēr tas ir saistīts ar izpildes sodu, samazina tavu atbilžu sasniedzamību un var radīt saderības problēmas ar dažiem federētajiem pakalpojumiem. Turklāt tas netraucēs īpašiem dalībniekiem ienest tavas publiskās ziņas un kontus.
         authorized_fetch_overridden_hint: Tu pašlaik nevari mainīt šo iestatījumu, jo to aizstāj vides mainīgais.
         federation_authentication: Federācijas autentifikācijas izpilde
       title: Servera iestatījumi
@@ -1090,9 +1082,6 @@ lv:
     warning_presets:
       add_new: Pievienot jaunu
       delete: Dzēst
-      edit_preset: Labot iepriekš iestatītus brīdinājumus
-      empty: Tu vēl neesi definējis iepriekš iestatītos brīdinājumus.
-      title: Brīdinājumu priekšiestatījums
     webhooks:
       add_new: Pievienot galapunktu
       delete: Dzēst
@@ -1161,7 +1150,6 @@ lv:
     remove: Atsaistīt aizstājvārdu
   appearance:
     animations_and_accessibility: Animācijas un pieejamība
-    discovery: Atklāšana
     localization:
       body: Mastodon ir tulkojuši brīvprātīgie.
       guide_link: https://crowdin.com/project/mastodon
@@ -1300,7 +1288,6 @@ lv:
   deletes:
     challenge_not_passed: Tevis ievadītā informācija nebija pareiza
     confirm_password: Ievadi savu pašreizējo paroli, lai pārbaudītu savu identitāti
-    confirm_username: Ievadi savu lietotājvārdu, lai apstiprinātu procedūru
     proceed: Dzēst kontu
     success_msg: Tavs konts tika sekmīgi izdzēsts
     warning:
@@ -1815,7 +1802,6 @@ lv:
     appearance: Izskats
     authorized_apps: Pilnvarotās lietotnes
     back: Atgriezties Mastodon
-    delete: Konta izdzēšana
     development: Izstrāde
     edit_profile: Labot profilu
     export: Izgūt
@@ -2099,5 +2085,4 @@ lv:
     nickname_hint: Ievadi savas jaunās drošības atslēgas segvārdu
     not_enabled: Tu vel neesi iespējojis WebAuthn
     not_supported: Šī pārlūkprogramma neatbalsta drošības atslēgas
-    otp_required: Lai izmantotu drošības atslēgas, lūgums vispirms iespējot divpakāpju autentifikāciju.
     registered_on: Reģistrēts %{date}

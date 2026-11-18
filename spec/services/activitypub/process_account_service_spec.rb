@@ -744,29 +744,23 @@ RSpec.describe ActivityPub::ProcessAccountService do
     context 'when locally' do
       let(:suspension_origin) { :local }
 
-      it 'does not unsuspend it' do
-        expect(subject.suspended?).to be true
-      end
-
-      it 'does not update any attributes' do
-        expect(subject.display_name).to_not eq 'Hoge'
+      it 'does not update attributes or unsuspend' do
+        expect(subject)
+          .to be_suspended
+          .and have_attributes(display_name: not_eq('Hoge'))
       end
     end
 
     context 'when remotely' do
       let(:suspension_origin) { :remote }
 
-      it 'unsuspends it' do
-        expect(subject.suspended?).to be false
-      end
-
-      it 'queues unsuspension worker' do
-        subject
-        expect(Admin::UnsuspensionWorker).to have_received(:perform_async)
-      end
-
-      it 'updates attributes' do
-        expect(subject.display_name).to eq 'Hoge'
+      it 'updates attributes and unsuspends it and queues worker', :aggregate_failures do
+        expect(subject)
+          .to_not be_suspended
+        expect(subject)
+          .to have_attributes(display_name: 'Hoge')
+        expect(Admin::UnsuspensionWorker)
+          .to have_received(:perform_async)
       end
     end
   end

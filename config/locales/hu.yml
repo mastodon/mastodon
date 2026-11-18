@@ -8,6 +8,14 @@ hu:
     hosted_on: "%{domain} Mastodon-kiszolgáló"
     title: Névjegy
   accounts:
+    api_errors:
+      2fa_required: A fiók nem használható második hitelesítési lépcső beállítása nélkül
+      account_deleted: A fiókodat törölték
+      account_suspended: A fiókodat felfüggesztették
+      login_disabled: A fiókod jelenleg le van tiltva
+      memorial: A fiókodat emlékfiókká alakították
+      pending_approval: A fiókod jelenleg moderátori jóváhagyásra vár
+      pending_confirmation: A fiókodból hiányzik egy megerősített e-mail-cím
     errors:
       cannot_be_added_to_collections: Ez a fiók nem adható hozzá gyűjteményekhez.
     followers:
@@ -69,6 +77,7 @@ hu:
       demote: Lefokozás
       destroyed_msg: A %{username} fiók adatai bekerültek a végleges törlése váró sorba
       disable: Befagyasztás
+      disable_sign_in_token: Biztonsági kódos kihívás ideiglenes letiltása
       disable_sign_in_token_auth: Tokenes e-mail-hitelesítés letiltása
       disable_two_factor_authentication: Kétlépcsős hitelesítés kikapcsolása
       disabled: Befagyasztva
@@ -82,7 +91,9 @@ hu:
       email: E-mail-cím
       email_status: E-mail állapot
       enable: Kiolvasztás
+      enable_sign_in_token: Biztonsági kódos kihívás engedélyezése
       enable_sign_in_token_auth: Tokenes e-mail-hitelesítés engedélyezése
+      enable_unconfirmed: Megerősítő e-mail engedélyezése
       enabled: Bekapcsolva
       enabled_msg: "%{username} fiókja befagyasztása sikeresen visszavonva"
       follow_recommendations:
@@ -136,6 +147,7 @@ hu:
       push_subscription_expires: A PuSH feliratkozás elévül
       redownload: Profilkép frissítése
       redownloaded_msg: "%{username} profilját sikeresen frissítettük az eredetiből"
+      registration_app: Regisztrációs alkalmazás
       reject: Elutasítás
       rejected_msg: A %{username} fiók regisztrációs kérelmét sikeresen elutasítottuk
       remote_suspension_irreversible: A fiók adatait véglegesen törölték.
@@ -216,6 +228,7 @@ hu:
         create_user_role: Szerepkör létrehozása
         create_username_block: Felhasználónév-szabály létrehozása
         demote_user: Felhasználó lefokozása
+        destroy_account: Fiókadatok törlése
         destroy_announcement: Közlemény törlése
         destroy_canonical_email_block: E-mail-tiltás törlése
         destroy_custom_emoji: Egyéni emodzsi törlése
@@ -279,20 +292,23 @@ hu:
         create_domain_block_html: "%{name} letiltotta a %{target} domaint"
         create_email_domain_block_html: "%{name} letiltotta a(z) %{target} e-mail-domaint"
         create_ip_block_html: "%{name} létrehozta a(z) %{target} IP-címre vonatkozó szabályt"
+        create_moderation_subscription_html: "%{name} létrehozta a moderációs feliratkozást: %{target}"
         create_relay_html: "%{name} létrehozta az átirányítót: %{target}"
         create_unavailable_domain_html: "%{name} leállította a kézbesítést a %{target} domainbe"
         create_user_role_html: "%{name} létrehozta a(z) %{target} szerepkört"
         create_username_block_html: "%{name} az ezt tartalmazó felhasználónevekre vonatkozó szabályt hozott létre: %{target}"
         demote_user_html: "%{name} lefokozta %{target} felhasználót"
+        destroy_account_html: "%{name} törölte %{target} fiókadatait"
         destroy_announcement_html: "%{name} törölte a %{target} közleményt"
         destroy_canonical_email_block_html: "%{name} engedélyezte a(z) %{target} hashű e-mailt"
         destroy_collection_html: "%{name} eltávolította %{target} felhasználó gyűjteményét"
         destroy_custom_emoji_html: "%{name} törölte a(z) %{target} emodzsit"
-        destroy_domain_allow_html: "%{name} letiltotta a föderációt a %{target} domainnel"
+        destroy_domain_allow_html: "%{name} letiltotta a föderációt a domainnel: %{target}"
         destroy_domain_block_html: "%{name} engedélyezte a %{target} domaint"
         destroy_email_domain_block_html: "%{name} engedélyezte a(z) %{target} e-mail-domaint"
         destroy_instance_html: "%{name} véglegesen törölte a(z) %{target} domaint"
         destroy_ip_block_html: "%{name} törölte a(z) %{target} IP-címre vonatkozó szabályt"
+        destroy_moderation_subscription_html: "%{name} törölte a moderációs feliratkozást: %{target}"
         destroy_relay_html: "%{name} törölte az átirányítót: %{target}"
         destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
@@ -341,10 +357,18 @@ hu:
         update_user_role_html: "%{name} módosította a(z) %{target} szerepkört"
         update_username_block_html: "%{name} az ezt tartalmazó felhasználónevekre vonatkozó szabályt frissített: %{target}"
         usable_tag_html: használható;
+      automated_actions:
+        create_domain_allow_html: 'Föderáció automatikusan engedélyezve a domainnel: %{target}'
+        create_domain_block_html: 'Automatikusan blokkolta a domaint: %{target}'
+        destroy_domain_allow_html: 'Föderáció automatikusan letiltva a domainnel: %{target}'
+        destroy_domain_block_html: 'Automatikusan feloldotta a domain blokkolását: %{target}'
+        update_domain_block_html: 'Automatikusan frissítette a domain tiltását: %{target}'
       deleted_account: törölt fiók
+      deleted_suggestion: egy törölt a moderációs feliratkozás
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
       filter_by_user: Szűrés felhasználó alapján
+      suggested_by_html: 'Műveletet javasolta: %{subscription}'
       title: Audit napló
       unavailable_instance: "(domain név nem elérhető)"
     announcements:
@@ -460,6 +484,8 @@ hu:
       undo: Eltávolítás az engedélyező-listáról
     domain_blocks:
       add_new: Új tiltott domain hozzáadása
+      confirm_downgrade:
+        cancel: Mégse
       confirm_suspension:
         cancel: Mégsem
         confirm: Felfüggesztés
@@ -617,6 +643,11 @@ hu:
         title: Domain tiltások importálása
       no_file: Nincs fájl kiválasztva
     fasp:
+      capabilities:
+        activation_msg: A képesség sikeresen engedélyezve.
+        deactivation_msg: A képesség sikeresen letiltva.
+        disable: Letiltás
+        enable: Engedélyezés
       debug:
         callbacks:
           created_at: Létrehozva
@@ -628,6 +659,7 @@ hu:
         active: Aktív
         base_url: Alapwebcím
         callback: Visszahívás
+        capabilities: Képességek
         delete: Törlés
         edit: Szolgáltató szerkesztése
         finish_registration: Regisztráció befejezése
@@ -640,8 +672,6 @@ hu:
           description: Regisztrációt kaptál egy FASP-től. Ha nem te kérted, utasítsd el. Ha te kérted, akkor a regisztráció megerősítése előtt figyelmesen hasonlítsd össze a nevét és a kulcsának ujjlenyomatát.
           reject: Elutasítás
           title: FASP regisztráció megerősítése
-        save: Mentés
-        select_capabilities: Képességek kiválasztása
         sign_in: Bejelentkezés
         status: Állapot
         title: A Födiverzum segédszolgáltatói
@@ -655,6 +685,8 @@ hu:
       title: Követési ajánlatok
       unsuppress: Követési ajánlatok visszaállítása
     instances:
+      advisories:
+        title: Értesítők a moderációs feliratkozásokból
       audit_log:
         title: Legutóbbi auditnapló
         view_all: Teljes auditnapló megtekintése
@@ -678,6 +710,7 @@ hu:
         comment: Belső megjegyzés
         description_html: Definiálhatsz tartalmi szabályokat, melyek ezen domain és minden aldomain fiókjára vonatkozni fognak.
         limited_federation_mode_description_html: Eldöntheted, hogy engeded-e a föderációt ezzel a domainnel.
+        moderation_subscription: Moderációs feliratkozás
         policies:
           reject_media: Média elutasítása
           reject_reports: Bejelentések elutasítása
@@ -758,6 +791,92 @@ hu:
       reset: Visszaállítás
       search: Keresés
       title: IP szabály
+    moderation_subscriptions:
+      add_new: Feliratkozás hozzáadása
+      advisory_action: 'Művelet: %{action}'
+      advisory_actions:
+        accept: engedélyezés
+        limit: némítás
+        reject: felfüggesztés
+      apply_automatically: Értesítők automatikus alkalmazása
+      apply_conditions:
+        always: Mindig
+        never: Soha
+        safely: Csak akkor, ha nem ront el kapcsolatokat
+      apply_conditions_hint:
+        always: Mindig automatikusan alkalmazza a műveleteket. Csak azoknál a listáknál használja, melyekben teljesen megbízik.
+        never: Sosem alkalmazza automatikusan a műveleteket. Helyette mindig javaslatot állít elő.
+        safely: Javasolt műveletek alkalmazása, hacsak nem rontana el kapcsolatokat a helyi felhasználók között. Ezekben az esetekben inkább javaslatok lesznek előállítva.
+      delete: Törlés
+      destroyed_msg: A moderációs feliratkozás sikeresen törölve
+      empty: Még nem iratkoztál fel moderációs listára.
+      last_synced_at: 'Utolsó szinkronizálás:'
+      list_action: Feliratkozás típusa
+      list_actions:
+        accept: Engedélyezési lista
+        default: Vegyes (engedélyezése és elutasítás)
+        reject: Tiltólista
+      list_actions_hint:
+        accept: A megadott művelet nélküli elemek engedélyezésként lesznek kezelve. A tiltások figyelmen kívül lesznek hagyva.
+        default: A megadott művelet nélküli elemek tiltásként lesznek kezelve. A tiltások és az engedélyezettek akként lesznek kezelve.
+        reject: A megadott művelet nélküli elemek tiltásként lesznek kezelve. A tiltások figyelmen kívül lesznek hagyva.
+      list_actions_short:
+        accept: Engedélyezési lista
+        default: Vegyes
+        reject: Tiltólista
+      name: Név
+      new:
+        create: Feliratkozás
+        title: Új moderációs feliratkozás
+      override_unattributed: Kézi tiltások felülbírálása
+      override_unattributed_hint: Engedélyezés, hogy ez a feliratkozás automatikusan frissítse vagy átvegye a kézi tiltásokat az értesítők alkalmazása során.
+      policies:
+        apply_advisories: Automatikusan alkalmazza az értesítőket
+        apply_advisories_safely: Automatikusan alkalmazza a kapcsolatokat el nem rontó értesítőket
+        apply_retractions: Automatikusan alkalmazza a visszavonásokat
+      priority: Prioritás
+      priority_hint: A moderációs feliratkozások prioritásos sorrendben lesznek kiértékelve, ahol a kisebb számú feliratkozások felülbírálják a nagyobbakat.
+      retract_automatically: Értesítők automatikus visszavonása
+      retract_automatically_hint: Meghatározza, hogy engedélyezhető-e a szabálymódosítások visszavonása vagy alacsonyabb prioritásúra állítása, amikor a feliratkozásból eltávolítják a vonatkozó elemet. Ha az automatikus visszavonás engedélyezve van, és egy alacsonyabb prioritású listában létezik egy azzal egyenértékű ajánlás, akkor az lesz átvéve. Ha az automatikus visszavonás le van tiltva, akkor helyette javaslat lesz előállítva.
+      show:
+        delete_confirm: Biztos, hogy törlöd ezt a moderációs feliratkozást?
+        edit: Feliratkozás szerkesztése
+        empty: Ennek a feliratkozásnak még nincs értesítője.
+        title: 'Moderációs feliratkozás: %{name}'
+      tabs:
+        logs: Naplók
+        subscriptions: Feliratkozások
+        suggestions: Javaslatok
+      title: Moderációs feliratkozások
+      type: Típus
+      types:
+        csv_list: CSV-lista
+      url: Webcím
+    moderation_subscriptions_logs:
+      title: Moderációs feliratkozási naplók
+    moderation_suggestions:
+      actions:
+        accept: Engedélyezés
+        limit: Korlátozás
+        reject: Felfüggesztés
+        retract: Jelenlegi szabályzat visszavonása
+      applied_msg: 'A javaslat sikeresen alkalmazva ennél: %{target_key}'
+      apply_accept: Engedélyezés
+      apply_limit: Korlátozás
+      apply_reject: Felfüggesztés
+      apply_retract: Visszavonás
+      current_states:
+        accept: jelenleg engedélyezve
+        limit: jelenleg korlátozva
+        reject: jelenleg felfüggesztve
+      description: Az alábbiakban a moderációs feliratkozásaidból származó javaslatok láthatóak, prioritás szerinti sorrendben.
+      destroyed_msg: 'A javaslat sikeresen elvetve ennél: %{target_key}'
+      dismiss: Javaslatok eltüntetése
+      empty: Most nincsenek moderációs javaslatok.
+      retracted_msg: 'A szabály sikeresen visszavonva ennél: %{target_key}'
+      suggested_from_html: 'Javasolta: %{link}'
+      title: Moderációs javaslatok
+      unable_to_apply_msg: 'Nem sikerült a javaslat alkalmazása ennél: %{target_key}'
     relationships:
       title: "%{acct} kapcsolatai"
     relays:
@@ -789,10 +908,7 @@ hu:
       actions:
         delete_description_html: A bejelentett bejegyzéseket vagy gyűjteményeket törölni fogjuk és feljegyzünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
         mark_as_sensitive_description_html: A bejelentett bejegyzések médaitartalmait érzékenynek jelöljük, és rögzítünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
-        other_description_html: További lehetőségek megjelenítése a fiók viselkedésének szabályozásához, és a jelentett fiók kommunikációjának testreszabásához.
         resolve_description_html: Nem csinálunk semmit a bejelentett fiókkal, nem jegyzünk fel vétséget, és bezárjuk a bejelentést.
-        silence_description_html: A profil csak azok számára lesz látható, akik már követik, vagy kézileg rákeresnek, ezzel jelentősen korlátozva az elérését. Ez a művelet bármikor visszafordítható. A fiókkal szemben indított minden bejelentést lezár.
-        suspend_description_html: A fiók és minden tartalma elérhetetlenné válik és végül törlésre kerül. A fiókkal kapcsolatbalépni lehetetlen lesz. Ez a művelet 30 napig visszafordítható. A fiók ellen indított minden bejelentést lezárunk.
       actions_description_html: Döntsd el, mit csináljunk, hogy megoldjuk ezt a bejelentést. Ha valamilyen büntető intézkedést hozol a bejelentett fiók ellen, küldünk neki egy figyelmeztetést e-mailben, kivéve ha a <strong>Spam</strong> kategóriát választod.
       actions_description_remote_html: Döntsd el, mit tegyünk a bejelentés lezárásának érdekében. Ez csak azt befolyásolja, hogy a <strong>saját</strong> kiszolgálód hogyan kommunikál ezzel a távoli fiókkal és hogyan kezeli annak tartalmait.
       actions_no_posts: Ennek a bejelentésnek nincs egyetlen törölhető, társított bejegyzése sem
@@ -952,6 +1068,114 @@ hu:
       translation: Fordítás
       translations: Fordítások
       translations_explanation: Fordításokat is hozzáadhatóak a szabályokhoz. Az alapértelmezett érték lesz megjelenítve, ha nem érhető el lefordított változat. Győződj meg arról, hogy a megadott fordítás szinkronban van az alapértelmezett értékkel.
+    server_checks:
+      categories:
+        completed:
+          title: Kész
+        critical:
+          title: Kritikus
+        error:
+          title: Hibák
+        ignored:
+          title: Mellőzve
+        suggestion:
+          title: Javaslatok
+        unprocessed:
+          title: Feldolgozatlan
+        warning:
+          title: Figyelmeztetések
+      checks:
+        database_schema:
+          error:
+            title: Hiba történt az adatbázisséma ellenőrzése során
+          ok:
+            title: Nincsenek függőben lévő adatbázis-migrációk
+          pending:
+            lead_html: Futtasd őket, hogy meggyőződj arról, hogy az alkalmazás a vártak szerint működik
+            title: Függőben lévő adatbázis-migrációk vannak
+          running:
+            title: A kiszolgáló ellenőrzi az adatbázissémát
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte az adatbázissémát
+        elastic_search:
+          error:
+            title: Hiba történt az Elasticsearch konfigurációja ellenőrzése során
+          ok:
+            title: A Elasticsearch probléma nélkül be lett állítva
+          pending:
+            lead:
+              analysis_index_mismatch_html: Az Elasticsearch indexelemző beállításai elavultak. Futtasd a <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code> parancsot.
+              cluster_health_red_html: Az Elasticsearch klaszter egészségtelen (piros állapotú), a keresési funkciók nem érhetők el
+              cluster_health_yellow_html: Az Elasticsearch klaszter egészségtelen (sárga állapotú), érdemes megvizsgálni az okát
+              index_mismatch_html: Az Elasticsearch index-leképezései elavultak. Futtasd a <code>tootctl search deploy --only=%{mismatched_indexes_str}</code> parancsot.
+              preset_html: Az Elasticsearch klaszter egynél több csomóponttal rendelkezik, de a Mastodon nincs beállítva ezek használatára
+              preset_single_node_html: Az Elasticsearch klaszterednek csak egy csomópontja van, az <code>ES_PRESET</code> értéket <code>single_node_cluster</code> értékre kell állítani
+              reset_chewy_html: Az Elasticsearch rendszerindexed egy beállításmódosítás miatt elavult. A frissítéshez futtasd a <code>tootctl search deploy --reset-chewy</code> parancsot.
+              running_check_html: Nem sikerült az Elasticsearchhöz kapcsolódni. Ellenőrizd, hogy fut-e, vagy kapcsold ki a teljes szöveges keresést.
+              version_check_html: Az Elasticsearch %{running_version} fut, de %{required_version} szükséges
+            title: Problémák vannak az Elasticsearch-csel
+          running:
+            title: A kiszolgáló ellenőrzi az Elasticsearch konfigurációját
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte az Elasticsearch konfigurációját
+        media_privacy:
+          pending:
+            lead:
+              upload_check_privacy_error_html: A webkiszolgáló hibásan van beállítva
+              upload_check_privacy_error_object_storage_html: Az objektumtároló hibásan van beállítva
+            title: A felhasználóid adatvédelme veszélyben van
+          running:
+            title: A kiszolgáló ellenőrzi az adatvédelem állapotát
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte az adatvédelem állapotát
+        rules:
+          error:
+            title: Hiba történt a kiszolgálószabályok ellenőrzése során
+          ok:
+            title: A kiszolgálószabályok be vannak állítva
+          pending:
+            lead_html: A kiszolgáló nem rendelkezik közzétett szabályokkal. A világos szabályok segítik a moderációt, és elvárásokat fogalmaznak meg.
+            title: Kiszolgálószabályok beállítása
+          running:
+            title: A kiszolgáló ellenőrzi a szabályokat
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte, hogy vannak-e szabályok
+        sidekiq_process:
+          error:
+            title: Hiba történt a Sidekiq konfigurációja ellenőrzése során
+          ok:
+            title: A Sidekiq probléma nélkül be lett állítva
+          pending:
+            title: Tekintsd át a Sidekiq konfigurációját
+          running:
+            title: A kiszolgáló ellenőrzi a Sidekiq konfigurációját
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte a Sidekiq konfigurációját
+        software_version:
+          error:
+            title: Hiba történt a szoftverfrissítések ellenőrzése során
+          ok:
+            title: A Mastodon-példány naprakész
+          pending:
+            lead:
+              patch_html: Egy hibajavító Mastodon-frissítés érhető el
+              regular_html: A Mastodon új verziója érhető el
+              urgent_html: Kritikus Mastodon frissítés érhető el, frissíts a lehető leggyorsabban
+            title: Frissítsd a Mastodon-példányodat
+          running:
+            title: A kiszolgáló ellenőrzi, hogy van-e függőben lévő szoftverfrissítés
+          unprocessed:
+            title: A kiszolgáló még nem ellenőrizte, hogy van-e szoftverfrissítés
+      ignore:
+        label: Mellőzés
+      lead: Javaslatok a kiszolgáló biztonságosan, barátságosan és hatékonyan tartásához.
+      recommendations:
+        title: Javaslatok
+      restore:
+        label: Helyreállítás
+      setup:
+        label: Beállítás
+      title: Kiszolgáló egészsége
     settings:
       about:
         manage_rules: Kiszolgáló szabályainak kezelése
@@ -974,16 +1198,16 @@ hu:
         danger_zone: Veszélyzóna
         preamble: A felhasználók által előállított tartalom Mastodonon való tárolásának szabályozása.
         title: Tartalom megtartása
+      crawlers:
+        title: Keresőrobot-vezérlők
       default_noindex:
         desc_html: Azokat a felhasználókat érinti, akik nem módosították ezt a beállítást
         title: Alapértelmezetten ne indexeljék a keresők a felhasználókat
       discovery:
         follow_recommendations: Ajánlottak követése
         preamble: Az érdekes tartalmak felszínre hozása fontos szerepet játszik az új felhasználók bevonásában, akik esetleg nem ismerik a Mastodont. Szabályozd, hogy a különböző felfedezési funkciók hogyan működjenek a kiszolgálón.
-        privacy: Adatvédelem
         profile_directory: Profiladatbázis
         public_timelines: Nyilvános idővonalak
-        publish_statistics: Statisztikák közzététele
         title: Felfedezés
         trends: Trendek
         wrapstodon: Wrapstodon
@@ -991,6 +1215,18 @@ hu:
         all: Mindenkinek
         disabled: Senkinek
         users: Bejelentkezett helyi felhasználóknak
+      external:
+        directory: Kiszolgálócímtár
+        opt_in_server_directory:
+          description: Engedélyezés, hogy a kiszolgálódat felsorolják a kiszolgálócímtárakban, például a https://joinmastodon.org/servers címen találhatóban.
+          title: A kiszolgáló szerepelhet a kiszolgálócímtárban
+        opt_in_server_recommendation:
+          description: Engedélyezés, hogy a kiszolgálódat javasolják az alkalmazásokban történő regisztrációkor, mint például a hivatalos Mastodon-kliensekben.
+          title: A kiszolgáló szerepelhet a kiszolgálójavaslatokban
+        preamble: Állítsd be, hogy a kiszolgálódról mennyi információt osztasz meg más szolgáltatásokkal, és hogy a kiszolgálód mennyire legyen felfedezhező.
+        privacy: Adatvédelem
+        publish_statistics: Statisztikák közzététele
+        title: Külső felfedezés
       feed_access:
         modes:
           authenticated: Csak hitelesített felhasználók
@@ -1019,7 +1255,15 @@ hu:
         warning_hint: Javasoljuk a "Jóváhagyás szükséges a regisztrációhoz” lehetőség használatát, hacsak nem vagy biztos abban, hogy a moderátor csapatod időben tudja kezelni a szemetet és a rosszindulatú regisztrációkat.
       security:
         authorized_fetch: Hitelesítés szükséges a föderációs kiszolgálóktól
-        authorized_fetch_hint: A hitelesítés megkövetelése föderált kiszolgálók felé lehetővé teszi a felhasználó- és kiszolgáló szintű letiltások szigorúbb kikényszerítését. Azonban ennek az ára teljesítménycsökkenés, a válaszaid elérésének csökkenése, és vezethet kombatibilitási problémákhoz is bizonyos föderációs szolgáltatásokkal. Ráadásul ez nem akadályozza meg, hogy eltökélt aktorok letöltsék a nyilvános bejegyzéseidet és fiókjaidat.
+        authorized_fetch_hint: Döntsd el, hogy mikor kell a távoli kiszolgálóknak hitelesíteniük, amikor tartalmat kérnek le erről a kiszolgálóról.
+        authorized_fetch_hints:
+          actors: A profilok kötelező hitelesítésének engedélyezése lehetővé teszi annak nyomon követését, hogy melyik kiszolgáló fedezte fel az egyes helyi fiókjaidat, ami jelentősen csökkentheti a fiók törléséről szóló értesítés során végrehajtott felesleges kérések számát. Ez a lehetőség a profilok kiszolgálásakor enyhe teljesítménycsökkenéssel jár, mivel a nyomon követés miatt a fordított proxy nem tudja gyorsítótárazni az ezekre a kérésekre adott válaszokat. Ez emellett kompatibilitási problémákat is okozhat egyes föderált szolgáltatásoknál.
+          all: A profilok kötelező hitelesítésének előnyei és hátrányai mellett, a föderált kiszolgálóktól feltétel nélkül megkövetelt hitelesítés lehetővé teszi mind a felhasználó-, mind a kiszolgálószintű blokkolás szigorúbb érvényesítését, ugyanakkor megakadályozza a legtöbb kérés gyorsítótárazását is. Emellett csökkenti a válaszok elérését is, mivel a válaszok továbbítása le lesz tiltva.
+          none: Ha a hitelesítést csak akkor követeled meg, amikor az feltétlenül szükséges, a fordított proxy több kérést tud gyorsítótárazni. Ez az lehetőség a jövőben eltűnhet. Csak akkor használd, ha a többi választás problémákat okoz.
+        authorized_fetch_modes:
+          actors: Profilokhoz és privát tartalomhoz
+          all: Minden kéréshez
+          none: Csak privát tartalomhoz
         authorized_fetch_overridden_hint: Jelenleg nem lehet ezt a beállítást megváltoztatni, mert azt egy környezeti változó felülbírálja.
         federation_authentication: Föderációs hitelesítés kikényszerítése
       title: Kiszolgáló-beállítások
@@ -1108,7 +1352,7 @@ hu:
       elasticsearch_reset_chewy:
         message_html: Az Elasticsearch rendszerindexed egy beállításmódosítás miatt elavult. A frissítéshez futtasd a <code>tootctl search deploy --reset-chewy</code> parancsot.
       elasticsearch_running_check:
-        message_html: Nem sikerült az Elasticsearchhöz kapcsolódni. Ellenőrizze, hogy fut-e, vagy kapcsolja ki a teljes szöveges keresést.
+        message_html: Nem sikerült az Elasticsearchhöz kapcsolódni. Ellenőrizd, hogy fut-e, vagy kapcsold ki a teljes szöveges keresést.
       elasticsearch_version_check:
         message_html: 'Nem kompatibilis Elasticsearch verzió: %{value}'
         version_comparison: Az Elasticsearch %{running_version} fut, de %{required_version} szükséges
@@ -1284,9 +1528,17 @@ hu:
     warning_presets:
       add_new: Új hozzáadása
       delete: Törlés
-      edit_preset: Figyelmeztetés szerkesztése
-      empty: Nem definiáltál még egyetlen figyelmeztetést sem.
-      title: Figyelmeztető szövegek
+      dropdown:
+        all_actions: Összes művelet
+        disable: Befagyasztás
+        none: Figyelmeztetés
+        sensitive: Kényes
+        silence: Korlátozás
+        suspend: Felfüggesztés
+      edit_preset: Konzervválasz szerkesztése
+      empty: Még egyetlen konzervválaszt sem határoztál meg.
+      navigation_title: Konzervválaszok
+      title: Moderátori konzervválaszok
     webhooks:
       add_new: Végpont hozzáadása
       delete: Törlés
@@ -1338,6 +1590,8 @@ hu:
     new_pending_account:
       body: Az új fiók részletesen alább látható. Ezt a jelentkezést engedélyezheted vagy elutasíthatod.
       subject: Új fiók (%{username}) engedélyezésre vár a %{instance} szerveren
+    new_pending_accounts:
+      subject: 'Új jóváhagyandó fiókok ezen: %{instance}'
     new_report:
       body: "%{reporter} jelentette: %{target}"
       body_remote: Valaki a %{domain} domainről jelentette %{target}
@@ -1366,7 +1620,6 @@ hu:
     animations_and_accessibility: Animáció és akadálymentesítés
     boosting_preferences: Megtolási beállítások
     boosting_preferences_info_html: "<strong>Tipp:</strong> A beállításoktól függetlenül, ha <kbd>Shift</kbd> + <kbd>katinttást</kbd> használsz a %{icon} Megtolás ikonon, akkor azonnal megteszi."
-    discovery: Felfedezés
     localization:
       body: A Mastodont önkéntesek fordítják.
       guide_link: https://crowdin.com/project/mastodon
@@ -1413,7 +1666,7 @@ hu:
     dont_have_your_security_key: Nincs biztonsági kulcsod?
     forgot_password: Elfelejtetted a jelszavad?
     invalid_reset_password_token: A jelszó-visszaállítási kulcs nem megfelelő vagy lejárt. Kérlek generálj egy újat.
-    link_to_otp: Írj be egy kétlépcsős azonosító kódot a telefonodról vagy egy visszaállító kódot
+    link_to_otp: Írj be egy kétlépcsős hitelesítőkódot a telefonodról vagy egy tartalék bejelentkezési kódot
     link_to_webauth: Használd a biztonsági kulcs eszközödet
     log_in_with: Bejelentkezés, mint
     login: Bejelentkezés
@@ -1446,11 +1699,15 @@ hu:
     security: Biztonság
     set_new_password: Új jelszó beállítása
     setup:
+      correct_email: Cím javítása
       email_below_hint_html: Nézd meg a levélszemét mappát, vagy kérj egy újat. Módosíthatod az e-mail-címet, ha az hibás.
       email_settings_hint_html: A Mastodon használatának megkezdéséhez kattints a(z) %{email} címre küldött hivatkozásra. Itt fogunk várni.
       link_not_received: Nem kaptad meg a hivatkozást?
       new_confirmation_instructions_sent: Néhány perc múlva új e-mailt fogsz kapni a megerősítési hivatkozással.
       title: Bejövő postaláda ellenőrzése
+      title_wait: Kövesd szemmel a postafiókodat
+      wrong_email: Hibás e-mail-cím?
+      wrong_email_below_hint_html: Nincs ok a pánikra! Alább kijavíthatod az e-mail-címedet.
     sign_in:
       preamble_html: Jelentkezz be a <strong>%{domain}</strong> hitelesítéső adataiddal. Ha másik kiszolgálón található a fiókod, akkor itt nem fogsz tudni belépni.
       title: 'Bejelentkezés ide: %{domain}'
@@ -1487,6 +1744,12 @@ hu:
     auto: Automatikus
     dark: Sötét
     light: Világos
+  color_theme:
+    cyan: Cián
+    indigo: Indigókék
+    lime: Lime
+    orange: Narancs
+    pink: Rózsaszín
   contrast:
     auto: Automatikus
     high: Magas
@@ -1514,9 +1777,11 @@ hu:
   deletes:
     challenge_not_passed: A beírt információ helytelen
     confirm_password: Személyazonosságod megerősítéséhez írd be a jelenlegi jelszavad
-    confirm_username: Add meg a felhasználói nevedet a jóváhagyáshoz
+    confirm_username: Felhasználónév megerősítése
+    confirm_username_hint_html: 'Írd be ezt: <code>%{username}</code>, hogy megerősítsd a törlendő fiókot'
     proceed: Felhasználói fiók törlése
     success_msg: Felhasználói fiókod sikeresen töröltük
+    title: "%{acct} fiók törlése"
     warning:
       before: 'Mielőtt továbbmész, alaposan olvasd el ezt:'
       caches: Más szerverek által cache-elt tartalmak még megmaradhatnak
@@ -1533,6 +1798,7 @@ hu:
       action_taken: Intézkedés
       appeal: Fellebbezés
       appeal_approved: Ezt a felrótt vétséget eredményesen fellebbezték, így már nem érvényes
+      appeal_handled_by: Fellebbezés kezelője
       appeal_rejected: A fellebbezést visszautasították
       appeal_submitted_at: Fellebbezés beküldve
       appealed_msg: A fellebbezésedet beküldtük. Ha jóváhagyták, értesítünk.
@@ -1836,7 +2102,7 @@ hu:
       limit: Elérted a listák maximális számát
   login_activities:
     authentication_methods:
-      otp: kétlépcsős azonosító alkalmazás
+      otp: kétlépcsős hitelesítő alkalmazás
       password: jelszó
       sign_in_token: e-mailben küldött biztonsági kód
       webauthn: biztonsági kulcsok
@@ -1974,6 +2240,8 @@ hu:
           trillion: T
   otp_authentication:
     code_hint: Jóváhagyáshoz írd be a hitelesítő alkalmazás által generált kódot
+    delete: Törlés
+    delete_confirmation: Biztos, hogy törlöd a hitelesítő alkalmazásodat a kétlépcsős hitelesítési módok közül?
     description_html: Ha engedélyezed a <strong>kétlépcsős hitelesítést</strong>, akkor a bejelentkezéshez szükséged lesz a telefonodra és egy alkalmazásra, amely hozzáférési kódokat állít elő a belépéshez.
     enable: Engedélyezés
     instructions_html: "<strong>Olvasd be ezt a QR-kódot a telefonodon futó Google Authenticator vagy egyéb TOTP alkalmazással</strong>. A jövőben ez az alkalmazás fog számodra hozzáférési kódot generálni a belépéshez."
@@ -2120,7 +2388,6 @@ hu:
     appearance: Megjelenés
     authorized_apps: Jóváhagyott alkalmazások
     back: Vissza a Mastodonhoz
-    delete: Fiók törlése
     development: Fejlesztőknek
     edit_profile: Profil szerkesztése
     export: Exportálás
@@ -2260,16 +2527,16 @@ hu:
       too_many_requests: Az előzőekben túl sok kérés érkezett a fordítási szolgáltatáshoz.
   two_factor_authentication:
     add: Hozzáadás
-    disable: Kikapcsolás
+    disable: Kétlépcsős hitelesítés kikapcsolása
     disabled_success: A kétlépcsős hitelesítés sikeresen letiltva
     edit: Szerkesztés
     enabled: Kétlépcsős hitelesítés engedélyezve
     enabled_success: A kétlépcsős hitelesítés sikeresen engedélyezve
-    generate_recovery_codes: Visszaállítási kódok generálása
-    lost_recovery_codes: A visszaállítási kódok segítségével tudsz belépni, ha elveszítenéd a telefonod. Ha a visszaállítási kódjaidat hagytad el, itt generálhatsz újakat. A régi kódokat ebben az esetben érvénytelenítjük.
+    generate_recovery_codes: Tartalék bejelentkezési kódok előállítása
+    lost_recovery_codes: A tartalék bejelentkezési kódok segítségével tudsz belépni, ha elveszítenéd a telefonod. Ha a tartalék bejelentkezési kódjaidat elvesztetted, itt állíthatsz elő újakat. A régi kódokat ebben az esetben érvénytelenítjük.
     methods: Kétlépcsős eljárások
     otp: Hitelesítő alkalmazás
-    recovery_codes: Visszaállítási kódok biztonsági mentése
+    recovery_codes: Tartalék bejelentkezési kódok mentése
     recovery_codes_regenerated: A visszaállítási kódokat sikeresen újrageneráltuk
     recovery_instructions_html: A visszaállítási kódok egyikének segítségével tudsz majd belépni, ha elveszítenéd a telefonod. <strong>Tartsd biztos helyen a visszaállítási kódjaid</strong>! Például nyomtasd ki őket és tárold a többi fontos iratoddal együtt.
     resume_app_authorization: Alkalmazás jogosultság-ellenőrzésének folytatása
@@ -2324,6 +2591,14 @@ hu:
       further_actions_html: Ha ez nem te voltál, azt javasoljuk, hogy azonnal %{action}, mivel lehetséges, hogy az rossz kezekbe került.
       subject: Második körös hitelesítés sikertelen
       title: Sikertelen a második körös hitelesítés
+    sign_in_token:
+      change_password: változtasd meg a jelszavadat
+      details: 'Itt vannak a kísérlet részletei:'
+      explanation: 'Hosszú idejű inaktivitás után bejelentkezési kísérletet észleltünk a fiókodnál. Ha ez te vagy, írd be az alábbi biztonsági kódot a bejelentkezési oldal ezt kérő részén:'
+      further_actions: 'Ha nem te voltál, változtasd meg a jelszavadat, és engedélyezd a kétlépcsős hitelesítést a fiókodban. Itt megteheted:'
+      further_actions_html: Ha nem te voltál, akkor azt javasoljuk, hogy azonnal %{action} és engedélyezd a kétlépcsős hitelesítést, hogy biztonságban tudd a fiókodat.
+      subject: Erősítsd meg a megkísérelt bejelentkezést
+      title: Bejelentkezési kísérlet
     suspicious_sign_in:
       change_password: módosítsd a jelszavad
       details: 'Itt vannak a bejelentkezés részletei:'
@@ -2413,8 +2688,12 @@ hu:
       title: Üdv a fedélzeten, %{name}!
   users:
     follow_limit_reached: Nem követhetsz több, mint %{limit} embert
+    generic_access_help_html: 'Nem tudod elérni a fiókodat? Segítségért lépj kapcsolatba velünk ezen a címen: %{email}'
     go_to_sso_account_settings: Ugrás az azonosítási szolgáltatód fiókbeállításaihoz
-    invalid_otp_token: Érvénytelen ellenőrző kód
+    inactive_sign_in_confirmation: Már egy ideje nem léptél be, így küldünk egy biztonsági kódot az e-mail-címedre, hogy megerősítsük, hogy te vagy az.
+    inactive_sign_in_title: Erősítsd meg a biztonsági kódot
+    invalid_otp_token: Érvénytelen kétlépcsős kód
+    invalid_sign_in_token: Érvénytelen biztonsági kód
     otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}
     rate_limited: Túl sok hiteleítési kísérlet történt. Próbáld újra később.
     seamless_external_login: Külső szolgáltatáson keresztül jelentkeztél be, így a jelszó és e-mail-beállítások nem érhetők el.
@@ -2443,7 +2722,6 @@ hu:
     nickname_hint: Írd be az új biztonsági kulcsod becenevét
     not_enabled: Még nem engedélyezted a WebAuthn-t
     not_supported: Ez a böngésző nem támogatja a biztonsági kulcsokat
-    otp_required: A biztonsági kulcsok használatához először engedélyezd a kétlépcsős hitelesítést.
     registered_on: 'Regisztráció ekkor: %{date}'
   wrapstodon:
     description: Nézd meg, hogy %{name} hogyan használta a Mastodont az éven!

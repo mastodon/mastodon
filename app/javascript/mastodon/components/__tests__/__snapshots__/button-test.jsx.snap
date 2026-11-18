@@ -1,59 +1,52 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`<Button /> > adds class "button-secondary" if props.secondary given 1`] = `
-<button
-  class="button button-secondary"
-  type="button"
-/>
-`;
-
 exports[`<Button /> > renders a button element 1`] = `
 <button
-  class="button"
+  class="_base_41b7f2 _md_41b7f2 _neutral_41b7f2 _tonal_41b7f2"
   type="button"
-/>
+>
+  <span
+    class="_label_41b7f2"
+  />
+</button>
 `;
 
 exports[`<Button /> > renders a disabled attribute if props.disabled given 1`] = `
 <button
-  class="button"
+  class="_base_41b7f2 _md_41b7f2 _neutral_41b7f2 _tonal_41b7f2"
   disabled=""
   type="button"
-/>
-`;
-
-exports[`<Button /> > renders class="button--block" if props.block given 1`] = `
-<button
-  class="button button--block"
-  type="button"
-/>
+>
+  <span
+    class="_label_41b7f2"
+  />
+</button>
 `;
 
 exports[`<Button /> > renders the children 1`] = `
 <button
-  class="button"
+  class="_base_41b7f2 _md_41b7f2 _neutral_41b7f2 _tonal_41b7f2"
   type="button"
 >
-  <p>
-    children
-  </p>
+  <span
+    class="_label_41b7f2"
+  >
+    <i>
+      children
+    </i>
+  </span>
 </button>
 `;
 
 exports[`<Button /> > renders the given text 1`] = `
 <button
-  class="button"
+  class="_base_41b7f2 _md_41b7f2 _neutral_41b7f2 _tonal_41b7f2"
   type="button"
 >
-  foo
-</button>
-`;
-
-exports[`<Button /> > renders the props.text instead of children 1`] = `
-<button
-  class="button"
-  type="button"
->
-  foo
+  <span
+    class="_label_41b7f2"
+  >
+    foo
+  </span>
 </button>
 `;

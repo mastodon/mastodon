@@ -56,11 +56,6 @@ namespace :tests do
         exit(1)
       end
 
-      if Account.local.where.not(private_key: nil).exists?
-        puts 'Private keys not properly migrated'
-        exit(1)
-      end
-
       unless Account.find_by(username: 'user', domain: nil).custom_filters.map { |filter| filter.keywords.pluck(:keyword) } == [['test'], ['take']]
         puts 'CustomFilterKeyword records not created as expected'
         exit(1)

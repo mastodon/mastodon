@@ -90,21 +90,14 @@ RSpec.describe 'Links' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for disabled user'
 
-    it 'returns http success' do
+    it 'returns http success with link data' do
       expect { subject }
-        .to_not change_link_trendable
+        .to_not(change { preview_card.reload.trendable })
 
-      expect(response).to have_http_status(200)
-      expect(response.content_type)
-        .to start_with('application/json')
-    end
-
-    def change_link_trendable
-      change { preview_card.reload.trendable }
-    end
-
-    it 'returns the link data' do
-      subject
+      expect(response)
+        .to have_http_status(200)
+      expect(response.media_type)
+        .to eq('application/json')
 
       expect(response.parsed_body).to match(
         a_hash_including(

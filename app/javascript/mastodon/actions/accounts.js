@@ -150,7 +150,7 @@ export function fetchAccountFail(id, error) {
  * @param {boolean} [options.reblogs]
  * @param {boolean} [options.notify]
  * @param {string} [options.ref]
- * @returns {function(): void}
+ * @returns {import('@reduxjs/toolkit').ThunkAction}
  */
 export function followAccount(id, options = { reblogs: true }) {
   return (dispatch, getState) => {

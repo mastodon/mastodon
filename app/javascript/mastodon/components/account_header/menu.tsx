@@ -1,7 +1,16 @@
 import { useMemo } from 'react';
 import type { FC } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+
+import {
+  DotsThreeIcon,
+  LinkIcon,
+  ProhibitIcon,
+  ShareNetworkIcon,
+  UserMinusIcon,
+  WarningOctagonIcon,
+} from '@phosphor-icons/react';
 
 import {
   followAccount,
@@ -13,7 +22,7 @@ import {
 import { removeAccountFromFollowers } from '@/mastodon/actions/accounts_typed';
 import { showAlert } from '@/mastodon/actions/alerts';
 import { initBlockModal } from '@/mastodon/actions/blocks';
-import { directCompose, mentionCompose } from '@/mastodon/actions/compose';
+import { directCompose } from '@/mastodon/actions/compose';
 import {
   initDomainBlockModal,
   unblockDomain,
@@ -21,6 +30,13 @@ import {
 import { openModal } from '@/mastodon/actions/modal';
 import { initMuteModal } from '@/mastodon/actions/mutes';
 import { initReport } from '@/mastodon/actions/reports';
+import { IconButton } from '@/mastodon/components/button';
+import {
+  Menu,
+  MenuList,
+  MenuTrigger,
+  LegacyDropdownMenuItems,
+} from '@/mastodon/components/menu';
 import {
   canAccountBeAdded,
   canAccountBeAddedByFollowers,
@@ -28,7 +44,7 @@ import {
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
 import type { Account } from '@/mastodon/models/account';
-import type { MenuItem } from '@/mastodon/models/dropdown_menu';
+import type { MenuItem as DropdownMenuItem } from '@/mastodon/models/dropdown_menu';
 import type { Relationship } from '@/mastodon/models/relationship';
 import {
   PERMISSION_MANAGE_FEDERATION,
@@ -36,17 +52,6 @@ import {
 } from '@/mastodon/permissions';
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import BlockIcon from '@/material-icons/400-24px/block.svg?react';
-import LinkIcon from '@/material-icons/400-24px/link_2.svg?react';
-import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
-import PersonRemoveIcon from '@/material-icons/400-24px/person_remove.svg?react';
-import ReportIcon from '@/material-icons/400-24px/report.svg?react';
-import ShareIcon from '@/material-icons/400-24px/share.svg?react';
-
-import { Dropdown } from '../dropdown_menu';
-
-import classes from './styles.module.scss';
 
 export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
   const intl = useIntl();
@@ -76,14 +81,24 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
       dispatch,
     });
   }, [account, signedIn, isMe, permissions, intl, relationship, dispatch]);
+
   return (
-    <Dropdown
-      disabled={menuItems.length === 0}
-      items={menuItems}
-      icon='ellipsis-v'
-      iconComponent={MoreHorizIcon}
-      className={classes.buttonMenu}
-    />
+    <Menu>
+      <MenuTrigger
+        as={IconButton}
+        size='sm'
+        icon={DotsThreeIcon}
+        disabled={menuItems.length === 0}
+      >
+        <FormattedMessage
+          id='account.menu.label'
+          defaultMessage='More account options'
+        />
+      </MenuTrigger>
+      <MenuList>
+        <LegacyDropdownMenuItems items={menuItems} />
+      </MenuList>
+    </Menu>
   );
 };
 
@@ -145,9 +160,9 @@ const messages = defineMessages({
     id: 'account.menu.show_reblogs',
     defaultMessage: 'Show boosts in timeline',
   },
-  addToList: {
-    id: 'account.menu.add_to_list',
-    defaultMessage: 'Add to list…',
+  addToCustomFeed: {
+    id: 'account.menu.add_to_feed',
+    defaultMessage: 'Add to custom feed…',
   },
   addToCollection: {
     id: 'account.menu.add_to_collection',
@@ -186,6 +201,14 @@ const messages = defineMessages({
     id: 'status.admin_domain',
     defaultMessage: 'Open moderation interface for {domain}',
   },
+  enableNotifications: {
+    id: 'account.notify_me',
+    defaultMessage: 'Notify me about new posts',
+  },
+  disableNotifications: {
+    id: 'account.stop_notifying_me',
+    defaultMessage: 'Stop notifying me about new posts',
+  },
   languages: {
     id: 'account.languages',
     defaultMessage: 'Change subscribed languages',
@@ -212,8 +235,8 @@ function getMenuItems({
   intl,
   relationship,
   dispatch,
-}: MenuItemsParams): MenuItem[] {
-  const items: MenuItem[] = [];
+}: MenuItemsParams): DropdownMenuItem[] {
+  const items: DropdownMenuItem[] = [];
   const isRemote = account.acct !== account.username;
   const remoteDomain = isRemote ? account.acct.split('@')[1] : null;
 
@@ -227,7 +250,7 @@ function getMenuItems({
             url: account.url,
           });
         },
-        icon: ShareIcon,
+        icon: ShareNetworkIcon,
       });
     }
     items.push({
@@ -254,31 +277,14 @@ function getMenuItems({
 
   // Mention and direct message options
   if (signedIn && !account.suspended) {
-    items.push(null);
     if (!account.invalid_handle) {
-      if (isRedesignEnabled()) {
-        items.push({
+      if (!relationship?.following) {
+        items.push(null, {
           text: intl.formatMessage(messages.redesignMessage),
           action: () => {
             dispatch(directCompose(account));
           },
         });
-      } else {
-        items.push(
-          {
-            text: intl.formatMessage(messages.mention),
-            action: () => {
-              dispatch(mentionCompose(account));
-            },
-          },
-
-          {
-            text: intl.formatMessage(messages.direct),
-            action: () => {
-              dispatch(directCompose(account));
-            },
-          },
-        );
       }
       items.push(null);
     }
@@ -291,7 +297,7 @@ function getMenuItems({
   // Add to list
   if (relationship?.following) {
     items.push({
-      text: intl.formatMessage(messages.addToList),
+      text: intl.formatMessage(messages.addToCustomFeed),
       action: () => {
         dispatch(
           openModal({
@@ -366,13 +372,24 @@ function getMenuItems({
     items.push(
       {
         text: intl.formatMessage(
+          relationship.notifying
+            ? messages.disableNotifications
+            : messages.enableNotifications,
+        ),
+        action: () => {
+          dispatch(
+            followAccount(account.id, { notify: !relationship.notifying }),
+          );
+        },
+      },
+      {
+        text: intl.formatMessage(
           relationship.showing_reblogs
             ? messages.hideReblogs
             : messages.showReblogs,
         ),
         action: () => {
           dispatch(
-            // @ts-expect-error this action is not typed yet
             followAccount(account.id, {
               reblogs: !relationship.showing_reblogs,
             }),
@@ -439,7 +456,7 @@ function getMenuItems({
         );
       },
       dangerous: true,
-      icon: PersonRemoveIcon,
+      icon: UserMinusIcon,
     });
   }
 
@@ -455,7 +472,7 @@ function getMenuItems({
       }
     },
     dangerous: true,
-    icon: BlockIcon,
+    icon: ProhibitIcon,
   });
 
   if (!account.suspended) {
@@ -465,7 +482,7 @@ function getMenuItems({
         dispatch(initReport(account));
       },
       dangerous: true,
-      icon: ReportIcon,
+      icon: WarningOctagonIcon,
     });
   }
 
@@ -487,7 +504,7 @@ function getMenuItems({
         }
       },
       dangerous: true,
-      icon: BlockIcon,
+      icon: ProhibitIcon,
       iconId: 'domain-block',
     });
   }

@@ -25,6 +25,13 @@ export const WithoutHint: Story = {
   },
 };
 
+export const Compact: Story = {
+  args: {
+    compact: true,
+    hint: undefined,
+  },
+};
+
 export const Required: Story = {
   args: {
     required: true,
@@ -48,7 +55,7 @@ export const WithWarning: Story = {
   args: {
     required: false,
     status: {
-      variant: 'warning',
+      variant: 'error',
       message: 'Special characters are not allowed',
     },
   },

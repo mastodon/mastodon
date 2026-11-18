@@ -8,6 +8,13 @@ pt-BR:
     hosted_on: Mastodon hospedado em %{domain}
     title: Sobre
   accounts:
+    api_errors:
+      account_deleted: Sua conta foi deletada
+      account_suspended: Sua conta foi suspensa
+      login_disabled: Sua conta está atualmente desativada
+      memorial: Sua conta foi transformada em um memorial
+      pending_approval: Sua conta está atualmente aguardando aprovação da moderação
+      pending_confirmation: Sua conta não tem um endereço de e-mail confirmado
     errors:
       cannot_be_added_to_collections: Esta conta não pode ser adicionada a coleções.
     followers:
@@ -72,6 +79,8 @@ pt-BR:
       disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar autenticação de dois fatores
       disabled: Desativada
+      discoverable:
+        title: Visível
       display_name: Nome de exibição
       domain: Domínio
       edit: Editar
@@ -81,6 +90,8 @@ pt-BR:
       enable_sign_in_token_auth: Ativar token de autenticação por e-mail
       enabled: Ativado
       enabled_msg: A conta de %{username} foi descongelada
+      follow_recommendations:
+        allowed: Permitido
       followers: Seguidores
       follows: Seguindo
       header: Capa
@@ -165,6 +176,12 @@ pt-BR:
       suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas isto não recuperará nenhum dado que ela possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente removidos em %{date}. Até lá, a conta pode ser restaurada sem nenhum efeito negativo. Se você deseja remover todos os dados da conta imediatamente, você pode fazer isso abaixo.
       title: Contas
+      trends:
+        allow: Permitir
+        allowed: Permitido
+        disallow: Não permitir
+        disallowed: Não permitido
+        title: Publicações em alta
       unblock_email: Desbloquear endereço de e-mail
       unblocked_email_msg: O endereço de e-mail de %{username} foi desbloqueado
       unconfirmed_email: E-mail não confirmado
@@ -200,6 +217,7 @@ pt-BR:
         create_user_role: Criar cargo
         create_username_block: Criar regra de usuário
         demote_user: Rebaixar usuário
+        destroy_account: Excluir dados da conta
         destroy_announcement: Excluir anúncio
         destroy_canonical_email_block: Excluir bloqueio de e-mail
         destroy_custom_emoji: Excluir emoji personalizado
@@ -268,6 +286,7 @@ pt-BR:
         create_user_role_html: "%{name} criou o cargo %{target}"
         create_username_block_html: "%{name} adicionou regra para nomes de usuário contendo %{target}"
         demote_user_html: "%{name} rebaixou o usuário %{target}"
+        destroy_account_html: "%{name} excluiu os dadas da conta para %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o endereço e-mail com o hash %{target}"
         destroy_collection_html: "%{name} removeu coleção de %{target}"
@@ -601,6 +620,9 @@ pt-BR:
         title: Importar bloqueio de domínios
       no_file: Nenhum arquivo selecionado
     fasp:
+      capabilities:
+        disable: Desativar
+        enable: Ativar
       debug:
         callbacks:
           created_at: Criado em
@@ -624,8 +646,6 @@ pt-BR:
           description: Você recebeu um registro de um FASP. Rejeite se você não tiver iniciado isso. Se você iniciou isso, compare cuidadosamente o nome e a impressão digital da chave antes de confirmar o registro.
           reject: Rejeitar
           title: Confirmar o registro FASP
-        save: Salvar
-        select_capabilities: Selecionar recursos
         sign_in: Entrar
         status: Estado
         title: Provedores de serviços auxiliares do Fediverso
@@ -773,10 +793,7 @@ pt-BR:
       actions:
         delete_description_html: As publicações e/ou coleções denunciadas serão excluídas e um aviso será registrado para ajudá-lo a escalar futuras infrações pela mesma conta.
         mark_as_sensitive_description_html: Os conteúdos de mídia em publicações denunciadas serão marcados como sensíveis e um aviso de violação será mantido para te informar sobre o agravamento caso essa mesma conta comenta infrações no futuro.
-        other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação com a conta denunciada.
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada e a denúncia será encerrada.
-        silence_description_html: A conta ficará visível apenas para aqueles que já a seguem ou que a procuram manualmente, limitando severamente seu alcance. Pode ser revertido a qualquer momento. Fecha todas as denúncias desta conta.
-        suspend_description_html: A conta e todo o seu conteúdo ficará inacessível e, eventualmente, excluído e interagir com ela será impossível. Reversível dentro de 30 dias. Encerra todas as denúncias contra esta conta.
       actions_description_html: Decida qual ação tomar para responder a essa denúncia. Se você tomar uma ação punitiva contra a conta denunciada, uma notificação por e-mail será enviada ao usuário, exceto quando a categoria <strong>Spam</strong> for selecionada.
       actions_description_remote_html: Decida quais medidas tomará para resolver esta denúncia. Isso só afetará como <strong>seu servidor</strong> se comunica com esta conta remota e manipula seu conteúdo.
       actions_no_posts: Essa denúncia não tem nenhuma publicação associada para excluir
@@ -964,10 +981,8 @@ pt-BR:
       discovery:
         follow_recommendations: Seguir recomendações
         preamble: A exibição de conteúdo interessante é fundamental para a integração de novos usuários que podem não conhecer ninguém no Mastodon. Controle o funcionamento de vários recursos de descoberta no seu servidor.
-        privacy: Privacidade
         profile_directory: Diretório de perfis
         public_timelines: Timelines públicas
-        publish_statistics: Publicar estatísticas
         title: Descobrir
         trends: Tendências
         wrapstodon: Wrapstodon
@@ -975,6 +990,8 @@ pt-BR:
         all: Para todos
         disabled: Para ninguém
         users: Para usuários locais logados
+      external:
+        privacy: Privacidade
       feed_access:
         modes:
           authenticated: Apenas usuários autenticados
@@ -1003,7 +1020,12 @@ pt-BR:
         warning_hint: Recomendamos o uso de "Aprovação necessária para se cadastrar", a menos que você esteja confiante de que sua equipe de moderação pode lidar com spam e registros maliciosos em tempo hábil.
       security:
         authorized_fetch: Exigir autenticação por parte de servidores federados
-        authorized_fetch_hint: Exigir autenticação de servidores federados permite uma aplicação mais rigorosa de bloqueios tanto de nível de usuário como de servidor. No entanto, isso traz como custo uma penalidade no desempenho, reduz o alcance das suas respostas e pode introduzir problemas de compatibilidade com alguns serviços federados. Além disso, não impedirá atores dedicados de consultar suas publicações e contas públicas.
+        authorized_fetch_hints:
+          none: Exigir autenticação apenas quando estritamente necessário permite que seu proxy reverso armazene mais solicitações em cache. Essa opção pode ser removida no futuro. Utilize-a apenas se as outras opções causarem problemas.
+        authorized_fetch_modes:
+          actors: Para perfis e conteúdo privado
+          all: Para cada solicitação
+          none: Somente para conteúdo privado
         authorized_fetch_overridden_hint: Você atualmente não pode alterar esta configuração porque ela é sobreposta por uma variável de ambiente.
         federation_authentication: Aplicação de autenticação da Federação
       title: Configurações do servidor
@@ -1262,9 +1284,6 @@ pt-BR:
     warning_presets:
       add_new: Adicionar novo
       delete: Excluir
-      edit_preset: Editar o aviso pré-definido
-      empty: Você ainda não definiu nenhuma predefinição de alerta.
-      title: Predefinições de aviso
     webhooks:
       add_new: Adicionar endpoint
       delete: Excluir
@@ -1344,7 +1363,6 @@ pt-BR:
     animations_and_accessibility: Animações e acessibilidade
     boosting_preferences: Preferências de impulsionamento
     boosting_preferences_info_html: "<strong>Dica:</strong> Independentemente das configurações, <kbd>Shift</kbd> + <kbd>Clique</kbd> no ícone %{icon} Impulsionar irá impulsionar imediatamente."
-    discovery: Descobrir
     localization:
       body: Mastodon é traduzido por voluntários.
       guide_link: https://br.crowdin.com/project/mastodon
@@ -1492,9 +1510,10 @@ pt-BR:
   deletes:
     challenge_not_passed: As informações que você inseriu não estão corretas
     confirm_password: Digite a sua senha atual para verificar a sua identidade
-    confirm_username: Digite seu nome de usuário para confirmar o procedimento
+    confirm_username: Confirmar nome de usuário
     proceed: Excluir conta
     success_msg: Sua conta foi excluída
+    title: Excluir conta %{acct}
     warning:
       before: 'Antes de prosseguir, leia com cuidado:'
       caches: Conteúdo que foi armazenado em cache por outros servidores pode continuar a existir
@@ -1841,6 +1860,9 @@ pt-BR:
     incoming_migrations_html: Para mover de outra conta para esta, você precisa <a href="%{path}">criar um alias</a>.
     moved_msg: Agora sua conta está redirecionando para %{acct} e seus seguidores estão sendo movidos.
     not_redirecting: Sua conta não está redirecionando para nenhuma outra conta atualmente.
+    on_cooldown:
+      one: Você migrou recentemente sua conta. Esta função estará disponível novamente em %{count} dia.
+      other: Você migrou recentemente sua conta. Esta função estará disponível novamente em %{count} dias.
     past_migrations: Migrações passadas
     proceed_with_move: Migrar seguidores
     redirected_msg: Agora sua conta está redirecionando para %{acct}.
@@ -2029,6 +2051,12 @@ pt-BR:
       account: Publicações públicas de @%{acct}
       tag: 'Publicações públicas marcadas com #%{hashtag}'
   scheduled_statuses:
+    over_daily_limit:
+      one: Você excedeu o limite de %{count} publicação agendada para hoje
+      other: Você excedeu o limite de %{count} publicações agendadas para hoje
+    over_total_limit:
+      one: Você excedeu o limite de %{count} publicação agendada
+      other: Você excedeu o limite de %{count} publicações agendadas
     too_soon: a data deve ser no futuro
   self_destruct:
     lead_html: Infelizmente, <strong>%{domain}</strong> está se encerrando de forma permanente. Se você tem uma conta lá, não poderá continuar a usá-la, mas ainda pode solicitar uma cópia dos seus dados.
@@ -2086,7 +2114,6 @@ pt-BR:
     appearance: Aparência
     authorized_apps: Aplicativos autorizados
     back: Voltar para o Mastodon
-    delete: Exclusão de conta
     development: Desenvolvimento
     edit_profile: Editar perfil
     export: Exportar
@@ -2409,7 +2436,6 @@ pt-BR:
     nickname_hint: Digite o apelido da sua nova chave de segurança
     not_enabled: Você ainda não habilitou o WebAuthn
     not_supported: Este navegador não tem suporte a chaves de segurança
-    otp_required: Para usar chaves de segurança, ative a autenticação de dois fatores.
     registered_on: Registrado em %{date}
   wrapstodon:
     description: Veja como %{name} usou o Mastodon este ano!

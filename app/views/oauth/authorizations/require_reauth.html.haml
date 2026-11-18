@@ -1,0 +1,11 @@
+- content_for :page_title do
+  = t('doorkeeper.authorizations.require_reauth.title')
+
+.form-container.simple_form
+  .oauth-prompt
+    %h3= t('doorkeeper.authorizations.require_reauth.title')
+
+    %p= t('doorkeeper.authorizations.require_reauth.prompt_html', handle: current_account.local_username_and_domain)
+
+    .actions
+      = link_to t('doorkeeper.authorizations.require_reauth.log_out_and_continue'), destroy_user_session_path(continue_to_stored_location: true), method: :delete, class: 'button'

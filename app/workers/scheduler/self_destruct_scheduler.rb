@@ -59,7 +59,10 @@ class Scheduler::SelfDestructScheduler
       .sign!(account)
       .to_json
 
-    ActivityPub::DeliveryWorker.push_bulk(inboxes, limit: 1_000) do |inbox_url|
+    # We most probably don't need to send deletion notices to every server
+    filtered_inboxes = account.reach_filter.present? ? account.reach_filter.filter_inboxes(inboxes) : inboxes
+
+    ActivityPub::DeliveryWorker.push_bulk(filtered_inboxes, limit: 1_000) do |inbox_url|
       [json, account.id, inbox_url]
     end
 

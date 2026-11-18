@@ -22,6 +22,7 @@ import type {
   ApiMentionJSON,
   ApiPreviewCardAuthorJSON,
   ApiPreviewCardJSON,
+  ApiStatusHistoryJSON,
   ApiStatusTranslationJSON,
   ApiTagJSON,
   StatusVisibility,
@@ -47,7 +48,7 @@ export interface StatusShape {
   language: string;
   muted: boolean;
   pinned: boolean;
-  filtered: FilterResult[];
+  filtered?: FilterResult[];
   sensitive: boolean;
   collapsed: boolean | null;
   uri: string;
@@ -158,4 +159,9 @@ export type FilterResult = Omit<ApiFilterResultJSON, 'filter'> & {
 
 export type StatusTranslation = Omit<ApiStatusTranslationJSON, 'poll'> & {
   isLoading: boolean;
+};
+
+export type StatusHistory = Omit<ApiStatusHistoryJSON, 'account'> & {
+  account: string;
+  original: boolean;
 };

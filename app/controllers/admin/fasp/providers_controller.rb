@@ -38,7 +38,7 @@ class Admin::Fasp::ProvidersController < Admin::BaseController
   private
 
   def provider_params
-    params.expect(fasp_provider: [capabilities_attributes: {}])
+    params.expect(fasp_provider: [fasp_capabilities_attributes: {}])
   end
 
   def set_provider

@@ -576,10 +576,7 @@ sr-Latn:
       action_taken_by: Akciju izveo
       actions:
         mark_as_sensitive_description_html: Multimedijalni sadržaj sa prijavljenih objava će biti označen kao osetljiv i prekršaj će biti upisan radi lakše intervencije u slučaju daljih prekršaja sa istog naloga.
-        other_description_html: Pogledajte više opcija za kontrolisanje ponašanja naloga i prilagodite komunikaciju sa prijavljenim nalogom.
         resolve_description_html: Nijedna radnja neće biti preduzeta protiv prijavljenog naloga, nijedan prestup nije upisan i prijava će biti zatvorena.
-        silence_description_html: Nalog će biti vidljiv samo onima koji ga već prate ili koji ga ručno potraže, što će značajno ograničiti njegov domet. Ograničenje se može povući u svakom trenutku. Zatvara sve prijave podnete protiv ovog naloga.
-        suspend_description_html: Nalog i svi njegovi sadržaji će postati nedostupni i u jednom trenutku izbrisani, a interakcija sa nalogom više neće biti moguća. Suspenzija se može povući u roku od 30 dana. Zatvara sve prijave podnete protiv ovog naloga.
       actions_description_remote_html: Odlučite koju radnju da preduzmete radi rešavanja ove prijave. Ovo će uticati samo na to kako <strong>Vaš</strong> server komunicira sa ovim udaljenim nalogom i obrađuje njegov sadržaj.
       add_to_report: Dodaj još u prijavu
       already_suspended_badges:
@@ -743,7 +740,6 @@ sr-Latn:
         follow_recommendations: Preporuke za praćenje
         profile_directory: Direktorijum profilâ
         public_timelines: Javne vremenske linije
-        publish_statistics: Objavi statistiku
         title: Otkrivanje
         trends: Trendovi
       domain_blocks:
@@ -762,7 +758,6 @@ sr-Latn:
         warning_hint: Preporučujemo da koristite „Neophodno je odobrenje za registraciju” osim ako niste sigurni da vaš moderatorski tim može blagovremeno da obradi neželjenu poštu i zlonamerne registracije.
       security:
         authorized_fetch: Zahtevaj autentifikaciju sa združenih servera
-        authorized_fetch_hint: Zahtevanje autentifikacije sa združenih servera omogućuje strožiju primenu blokova i na nivou korisnika i na nivou servera. Međutim, ovo dolazi po cenu smanjenja performansi, smanjuje domet vaših odgovora i može dovesti do problema kompatibilnosti sa nekim združenim uslugama. Pored toga, ovo neće sprečiti posvećene aktere da preuzimaju vaše javne objave i naloge.
         authorized_fetch_overridden_hint: Trenutno ne možete da promenite ovo podešavanje jer ga zamenjuje promenljiva okruženja.
         federation_authentication: Sprovođenje združene autentifikacije
       title: Podešavanja servera
@@ -926,9 +921,6 @@ sr-Latn:
     warning_presets:
       add_new: Dodaj novi
       delete: Izbriši
-      edit_preset: Uredi predefinisana upozorenja
-      empty: Još uvek niste definisali nijedno upozorenje.
-      title: Predefinisana upozorenja
     webhooks:
       add_new: Dodaj krajnju tačku
       delete: Izbriši
@@ -997,7 +989,6 @@ sr-Latn:
     remove: Odveži pseudonim
   appearance:
     animations_and_accessibility: Animacije i pristupačnost
-    discovery: Otkrivanje
     localization:
       body: Mastodon prevode dobrovoljci.
       guide_link: https://crowdin.com/project/mastodon
@@ -1116,7 +1107,6 @@ sr-Latn:
   deletes:
     challenge_not_passed: Lozinka koju ste uneli nije bila ispravna
     confirm_password: Unesite trenutnu lozinku za verifikaciju vašeg identiteta
-    confirm_username: Unesite svoje korisničko ime da biste potvrdili proceduru
     proceed: Obriši nalog
     success_msg: Vaš nalog je uspešno obrisan
     warning:
@@ -1570,7 +1560,6 @@ sr-Latn:
     appearance: Izgled
     authorized_apps: Autorizovane aplikacije
     back: Nazad na Mastodon
-    delete: Brisanje naloga
     development: Razvoj
     edit_profile: Uređivanje profila
     featured_tags: Istaknute heš oznake
@@ -1826,5 +1815,4 @@ sr-Latn:
     nickname_hint: Unesite nadimak svog novog sigurnosnog ključa
     not_enabled: Još uvek niste omogućili WebAuthn
     not_supported: Ovaj pretraživač ne podržava sigurnosne ključeve
-    otp_required: Da biste koristili sigurnosne ključeve, molimo Vas prvo uključite dvofaktorsku autentifikaciju.
     registered_on: Registrovan/-a %{date}

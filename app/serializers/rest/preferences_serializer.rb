@@ -5,10 +5,14 @@ class REST::PreferencesSerializer < ActiveModel::Serializer
   attribute :posting_default_sensitive, key: 'posting:default:sensitive'
   attribute :posting_default_language, key: 'posting:default:language'
   attribute :posting_default_quote_policy, key: 'posting:default:quote_policy'
+  attribute :posting_default_spoiler_field, key: 'posting:default:spoiler_field'
 
   attribute :reading_default_sensitive_media, key: 'reading:expand:media'
   attribute :reading_default_sensitive_text, key: 'reading:expand:spoilers'
   attribute :reading_autoplay_gifs, key: 'reading:autoplay:gifs'
+
+  attribute :displaying_own_boosts, key: 'displaying:own:boosts'
+  attribute :displaying_own_posts, key: 'displaying:own:posts'
 
   def posting_default_privacy
     object.user.setting_default_privacy
@@ -26,6 +30,10 @@ class REST::PreferencesSerializer < ActiveModel::Serializer
     object.user.preferred_posting_language
   end
 
+  def posting_default_spoiler_field
+    object.user.setting_default_spoiler_field
+  end
+
   def reading_default_sensitive_media
     object.user.setting_display_media
   end
@@ -36,5 +44,13 @@ class REST::PreferencesSerializer < ActiveModel::Serializer
 
   def reading_autoplay_gifs
     object.user.setting_auto_play_gif
+  end
+
+  def displaying_own_boosts
+    object.user.setting_display_own_boosts
+  end
+
+  def displaying_own_posts
+    object.user.setting_display_own_posts
   end
 end

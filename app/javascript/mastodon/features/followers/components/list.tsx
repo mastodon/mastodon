@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react';
 
 import { AccountListItem } from '@/mastodon/components/account_list_item';
 import { Column } from '@/mastodon/components/column';
-import { ColumnBackButton } from '@/mastodon/components/column/back_button';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import ScrollableList from '@/mastodon/components/scrollable_list';
 import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
@@ -23,6 +23,7 @@ interface AccountListProps {
   accountId?: string | null;
   append?: ReactNode;
   emptyMessage: ReactNode;
+  title: ReactNode;
   header?: ReactNode;
   footer?: ReactNode;
   list?: AccountList | null;
@@ -36,6 +37,7 @@ export const AccountList: FC<AccountListProps> = ({
   accountId,
   append,
   emptyMessage,
+  title,
   header,
   footer,
   list,
@@ -97,7 +99,7 @@ export const AccountList: FC<AccountListProps> = ({
 
   return (
     <Column>
-      <ColumnBackButton />
+      <ColumnHeader withBackButton title={title} />
 
       <ScrollableList
         scrollKey={scrollKey}

@@ -1,56 +1,27 @@
-import { useCallback, useId } from 'react';
+import { useId } from 'react';
 
 import { useIntl } from 'react-intl';
-
-import { useAppSelector } from 'mastodon/store';
 
 import classes from './skip_links.module.scss';
 
 export const getNavigationSkipLinkId = () => 'skip-link-target-nav';
-export const getColumnSkipLinkId = (index: number) =>
-  `skip-link-target-content-${index}`;
+export const getColumnSkipLinkId = (index: number | null) =>
+  `skip-link-target-content-${index ?? ''}`;
 
-export const SkipLinks: React.FC<{
-  multiColumn: boolean;
-  onFocusGettingStartedColumn: () => void;
-}> = ({ multiColumn, onFocusGettingStartedColumn }) => {
+export const SkipLinks: React.FC = () => {
   const intl = useIntl();
-  const columnCount = useAppSelector((state) => {
-    const settings = state.settings;
-    return (settings.get('columns') as Immutable.Map<number, unknown>).size;
-  });
-
-  const focusMultiColumnNavbar = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault();
-      onFocusGettingStartedColumn();
-    },
-    [onFocusGettingStartedColumn],
-  );
 
   return (
-    <ul className={classes.list}>
-      <li className={classes.listItem}>
-        <SkipLink target={getColumnSkipLinkId(1)} hotkey='1'>
+    <div className={classes.list}>
+      <div className={classes.listItem}>
+        <SkipLink target={getColumnSkipLinkId(1)} hotkey='2'>
           {intl.formatMessage({
             id: 'skip_links.skip_to_content',
             defaultMessage: 'Skip to main content',
           })}
         </SkipLink>
-      </li>
-      <li className={classes.listItem}>
-        <SkipLink
-          target={multiColumn ? `/getting-started` : getNavigationSkipLinkId()}
-          onRouterLinkClick={multiColumn ? focusMultiColumnNavbar : undefined}
-          hotkey={multiColumn ? `${columnCount}` : '2'}
-        >
-          {intl.formatMessage({
-            id: 'skip_links.skip_to_navigation',
-            defaultMessage: 'Skip to main navigation',
-          })}
-        </SkipLink>
-      </li>
-    </ul>
+      </div>
+    </div>
   );
 };
 

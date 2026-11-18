@@ -1,8 +1,11 @@
 import { createAppSelector } from 'mastodon/store';
 
 export const getAncestorsIds = createAppSelector(
-  [(_, id: string) => id, (state) => state.contexts.inReplyTos],
+  [(_, id?: string) => id, (state) => state.contexts.inReplyTos],
   (statusId, inReplyTos) => {
+    if (!statusId) {
+      return [];
+    }
     const ancestorsIds: string[] = [];
 
     let currentId: string | undefined = statusId;

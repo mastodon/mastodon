@@ -9,7 +9,7 @@ import MediaGallery from 'mastodon/components/media_gallery';
 import ModalRoot from 'mastodon/components/modal_root';
 import { Poll } from 'mastodon/components/poll';
 import { Audio } from 'mastodon/features/audio';
-import Card from 'mastodon/features/status/components/card';
+import { Card } from 'mastodon/features/status/components/card';
 import { MediaModal } from 'mastodon/features/ui/components/media_modal';
 import { Video } from 'mastodon/features/video';
 import { IntlProvider } from 'mastodon/locales';
@@ -88,6 +88,8 @@ export default class MediaContainer extends PureComponent {
               } : {
                 onOpenMedia: this.handleOpenMedia,
               }),
+
+              showSpoilerButton: true, // To show spoiler button on the MediaGallery component
             });
 
             return createPortal(

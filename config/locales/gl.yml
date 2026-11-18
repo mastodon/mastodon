@@ -136,6 +136,7 @@ gl:
       push_subscription_expires: A subscrición PuSH expira
       redownload: Actualizar perfil
       redownloaded_msg: Actualizado o perfil de %{username} desde a orixe
+      registration_app: Aplicación coa que creou a conta
       reject: Rexeitar
       rejected_msg: Rexeitada a solicitude de rexistro de %{username}
       remote_suspension_irreversible: Elimináronse de xeito irreversible os datos desta conta.
@@ -216,6 +217,7 @@ gl:
         create_user_role: Crear Rol
         create_username_block: Crear regra para Identificadores
         demote_user: Degradar usuaria
+        destroy_account: Eliminar os datos da conta
         destroy_announcement: Eliminar anuncio
         destroy_canonical_email_block: Eliminar bloqueo do correo
         destroy_custom_emoji: Eliminar emoticona personalizada
@@ -284,6 +286,7 @@ gl:
         create_user_role_html: "%{name} creou o rol %{target}"
         create_username_block_html: "%{name} engadiu unha regra para identificadores que contén %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
+        destroy_account_html: "%{name} eliminou os datos da conta %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o correo con suma de comprobación %{target}"
         destroy_collection_html: "%{name} eliminou a colección de %{target}"
@@ -640,8 +643,6 @@ gl:
           description: Recibiches unha solicitude de rexistro desde un FASP. Rexeitaa se non iniciaches ti o proceso. Se foi iniciada por ti, compara con atención o nome e impresión dixital antes de confirmar o rexistro.
           reject: Rexeitar
           title: Confirmar o rexistro do FASP
-        save: Gardar
-        select_capabilities: Seleccionar funcións
         sign_in: Acceder
         status: Estado
         title: Provedores de Servizos Auxiliares do Fediverso
@@ -789,10 +790,7 @@ gl:
       actions:
         delete_description_html: As publicacións e/ou coleccións denunciadas van ser eliminadas e gárdase un aviso para axudarche a xestionar futuras infraccións desta conta.
         mark_as_sensitive_description_html: Os multimedia das publicacións denunciadas serán marcados como sensibles e engadirase un aviso para axudarche a xestionar futuras infraccións da mesma conta.
-        other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
         resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardarán avisos, e pecharase a denuncia.
-        silence_description_html: A conta será visible só para quen xa a está a seguir ou quen a buscou manualmente, limitando moito o seu alcance. Pódese cambiar. Isto pecha tódalas denuncias acerca desta conta.
-        suspend_description_html: A conta e todo o seu contido non serán accesible e finalmente eliminaranse, será imposible interactuar con ela. A decisión é reversible durante 30 días. Isto pecha tódalas denuncias sobre esta conta.
       actions_description_html: Decide a acción a tomar para resolver esta denuncia. Se tomas accións punitivas contra a conta denunciada enviaráselle un correo, excepto se está indicada a categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide a acción a tomar para resolver a denuncia. Isto só lle afecta ao xeito en que o <strong>teu</strong> servidor se comunica con esta conta remota e xestiona o seu contido.
       actions_no_posts: Esta denuncia non ten publicacións asociadas para eliminar
@@ -980,10 +978,8 @@ gl:
       discovery:
         follow_recommendations: Recomendacións de seguimento
         preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
-        privacy: Privacidade
         profile_directory: Directorio de perfís
         public_timelines: Cronoloxías públicas
-        publish_statistics: Publicar estatísticas
         title: Descubrir
         trends: Tendencias
         wrapstodon: Wrapstodon
@@ -1019,7 +1015,6 @@ gl:
         warning_hint: Recomendamos utilizar "Requerir aprobación para o rexistro" a menos que confíes en que o equipo de moderación é quen de xestionar áxilmente o spam e a creación de contas maliciosas.
       security:
         authorized_fetch: Require autenticación desde os servidores federados
-        authorized_fetch_hint: Ao requerir autenticación desde os servidores federados activas un reforzamento das políticas de bloqueo a nivel usuaria e nivel servidor. Este proceder ten un custo no rendemento, reducindo o alcance das túas respostas e podería introducir problemas de compatibilidade con algúns servizos federados. Ademais, non evitará que contas con tal propósito vexan as túas publicacións públicas e contas.
         authorized_fetch_overridden_hint: Actualmente non podes cambiar este axuste porque está controlado por unha variable xeral do sistema.
         federation_authentication: Reforzo da autenticación na federación
       title: Axustes do servidor
@@ -1284,9 +1279,6 @@ gl:
     warning_presets:
       add_new: Engadir novo
       delete: Eliminar
-      edit_preset: Editar aviso preestablecido
-      empty: Non definiches os avisos prestablecidos.
-      title: Preestablecidos de advertencia
     webhooks:
       add_new: Engadir punto de extremo
       delete: Eliminar
@@ -1366,7 +1358,6 @@ gl:
     animations_and_accessibility: Animacións e accesibilidade
     boosting_preferences: Preferencias das promocións
     boosting_preferences_info_html: "<strong>Info:</strong> Independentemente dos axustes, <kbd>Maiús</kbd> + <kbd>Click</kbd> na icona %{icon} Promover promoverá inmediatamente."
-    discovery: Descubrir
     localization:
       body: Mastodon tradúceno persoas voluntarias.
       guide_link: https://crowdin.com/project/mastodon
@@ -1514,7 +1505,6 @@ gl:
   deletes:
     challenge_not_passed: A información introducida non é correcta
     confirm_password: Escribe o contrasinal actual para verificar a túa identidade
-    confirm_username: Introduce o nome de usuaria para confirmar o procedemento
     proceed: Eliminar conta
     success_msg: A súa conta eliminouse correctamente
     warning:
@@ -2120,7 +2110,6 @@ gl:
     appearance: Aparencia
     authorized_apps: Apps autorizadas
     back: Volver a Mastodon
-    delete: Eliminación da conta
     development: Desenvolvemento
     edit_profile: Editar perfil
     export: Exportar
@@ -2443,7 +2432,6 @@ gl:
     nickname_hint: Escribe un alcume para a túa nova chave de seguridade
     not_enabled: Aínda non tes activado WebAuthn
     not_supported: Este navegador non ten soporte para chaves de seguridade
-    otp_required: Para usar chaves de seguridade tes que activar primeiro o segundo factor.
     registered_on: Rexistrado o %{date}
   wrapstodon:
     description: Mira como usou %{name} Mastodon este ano!

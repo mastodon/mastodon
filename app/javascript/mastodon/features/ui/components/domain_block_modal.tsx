@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 import CampaignIcon from '@/material-icons/400-24px/campaign.svg?react';
 import DomainDisabledIcon from '@/material-icons/400-24px/domain_disabled.svg?react';
 import HistoryIcon from '@/material-icons/400-24px/history.svg?react';
 import PersonRemoveIcon from '@/material-icons/400-24px/person_remove.svg?react';
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { blockAccount } from 'mastodon/actions/accounts';
 import { blockDomain } from 'mastodon/actions/domain_blocks';
@@ -14,7 +14,6 @@ import { closeModal } from 'mastodon/actions/modal';
 import { apiRequest } from 'mastodon/api';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { useAppDispatch } from 'mastodon/store';
@@ -159,7 +158,7 @@ export const DomainBlockModal: React.FC<{
 
           <li className='safety-action-modal__bullet-points--deemphasized'>
             <div className='safety-action-modal__bullet-points__icon'>
-              <Icon id='' icon={ReplyIcon} />
+              <Icon icon={StatusReplyIcon} />
             </div>
             <div>
               <FormattedMessage
@@ -171,7 +170,7 @@ export const DomainBlockModal: React.FC<{
 
           <li className='safety-action-modal__bullet-points--deemphasized'>
             <div className='safety-action-modal__bullet-points__icon'>
-              <Icon id='' icon={HistoryIcon} />
+              <Icon icon={HistoryIcon} />
             </div>
             <div>
               <FormattedMessage
@@ -185,7 +184,7 @@ export const DomainBlockModal: React.FC<{
 
       <div className='safety-action-modal__bottom'>
         <div className='safety-action-modal__actions'>
-          <Button onClick={handleSecondaryClick} secondary>
+          <Button onClick={handleSecondaryClick} color='destructive'>
             <FormattedMessage
               id='domain_block_modal.block_account_instead'
               defaultMessage='Block @{name} instead'
@@ -195,22 +194,23 @@ export const DomainBlockModal: React.FC<{
 
           <div className='spacer' />
 
-          <button onClick={handleCancel} className='link-button' type='button'>
+          <Button onClick={handleCancel}>
             <FormattedMessage
               id='confirmation_modal.cancel'
               defaultMessage='Cancel'
             />
-          </button>
+          </Button>
 
-          <Button onClick={handleClick} dangerous aria-busy={loading}>
-            {loading ? (
-              <LoadingIndicator />
-            ) : (
-              <FormattedMessage
-                id='domain_block_modal.block'
-                defaultMessage='Block server'
-              />
-            )}
+          <Button
+            onClick={handleClick}
+            variant='solid'
+            color='destructive'
+            loading={loading}
+          >
+            <FormattedMessage
+              id='domain_block_modal.block'
+              defaultMessage='Block server'
+            />
           </Button>
         </div>
       </div>

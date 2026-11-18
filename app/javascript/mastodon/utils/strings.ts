@@ -6,3 +6,11 @@
 export function stringOrUndefined(input: unknown) {
   return typeof input === 'string' ? input : undefined;
 }
+
+/**
+ * Extracts a file name from a URL.
+ * @param url The URL to extract the filename from.
+ */
+export function fileName(url: string) {
+  return url.split('/').pop()?.split('#')[0]?.split('?')[0];
+}

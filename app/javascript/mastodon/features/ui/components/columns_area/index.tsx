@@ -1,73 +1,47 @@
-import { lazy, Suspense, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import classNames from 'classnames';
 
-import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
-import { Footer } from '@/mastodon/features/custom_homepage/components/footer';
-import { Header } from '@/mastodon/features/custom_homepage/components/header';
-import { CollapsibleNavigationPanel } from '@/mastodon/features/navigation_panel';
-import { useBreakpoint } from '@/mastodon/features/ui/hooks/useBreakpoint';
-import { useColumnsContext } from '@/mastodon/features/ui/util/columns_context';
-import { useAppSelector } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { ComposeButton } from '@/mastodon/features/compose/trigger';
+import { NavigationPanel } from '@/mastodon/features/navigation_panel';
+import { MobileNavigation } from '@/mastodon/features/navigation_panel/mobile_nav';
+import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
+import { useStorageState } from '@/mastodon/hooks/useStorage';
+import { useIdentity } from '@/mastodon/identity_context';
+import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 
-import {
-  ComposePanel,
-  RedirectToMobileComposeIfNeeded,
-} from '../compose_panel';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
 
 import { MultiColumnContent } from './multi_column_content';
+import classes from './styles.module.scss';
+import multiColClasses from './styles_multi_column.module.scss';
 
-const LazyColumnsAreaRedesign = lazy(() =>
-  import('@/mastodon/features/ui/components/columns_area/redesign').then(
-    ({ ColumnsAreaRedesign }) => ({ default: ColumnsAreaRedesign }),
-  ),
-);
-
-const TabsBarPortal = () => {
-  const { setTabsBarElement } = useColumnsContext();
-
-  const setRef = useCallback(
-    (element: HTMLDivElement | null) => {
-      if (element) {
-        setTabsBarElement(element);
-      }
-    },
-    [setTabsBarElement],
-  );
-
-  return <div id='tabs-bar__portal' ref={setRef} />;
-};
-
-interface ColumnsAreaProps {
+export const ColumnsArea: React.FC<{
   singleColumn?: boolean;
   minimalShell?: boolean;
   children: React.ReactElement | React.ReactElement[];
   ref?: React.Ref<HTMLDivElement>;
-}
+}> = ({ children, minimalShell, singleColumn, ref }) => {
+  const isMobile = useBreakpoint('openable');
 
-const ColumnsAreaLegacy: React.FC<ColumnsAreaProps> = ({
-  children,
-  minimalShell,
-  singleColumn,
-  ref,
-}) => {
-  const renderComposePanel = !useBreakpoint('full');
-  const isModalOpen = useAppSelector(
-    (state) => !state.modal.get('stack').isEmpty(),
+  const { accountId } = useIdentity();
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useStorageState<boolean>(
+    'navigation-sidebar-collapsed',
+    singleColumn ? false : true,
+    { prefix: accountId },
   );
+  const toggleIsCollapsed = useCallback(() => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  }, [isSidebarCollapsed, setIsSidebarCollapsed]);
+
+  const multiColScrollSensor = useScrollSensor();
 
   if (minimalShell) {
     return (
-      <div className='columns-area__panels'>
-        <div className='columns-area__panels__main'>
-          <Header />
-
-          <div className='tabs-bar__wrapper'>
-            <TabsBarPortal />
-          </div>
-
-          <div className='columns-area columns-area--mobile'>{children}</div>
+      <div ref={ref} className={classNames(classes.root, classes.rootMinimal)}>
+        {isMobile && <MobileNavigation />}
+        <div className={classes.main}>
+          <div>{children}</div>
 
           <Footer />
         </div>
@@ -77,46 +51,43 @@ const ColumnsAreaLegacy: React.FC<ColumnsAreaProps> = ({
 
   if (singleColumn) {
     return (
-      <div className='columns-area__panels'>
-        <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
-          <div className='columns-area__panels__pane__inner'>
-            {renderComposePanel && <ComposePanel />}
-            <RedirectToMobileComposeIfNeeded />
-          </div>
+      <div
+        ref={ref}
+        className={classes.root}
+        data-collapsed={isSidebarCollapsed}
+      >
+        <div className={classes.navigationWrapper}>
+          <NavigationPanel
+            collapsed={isSidebarCollapsed}
+            onToggleCollapsed={toggleIsCollapsed}
+          />
         </div>
+        {isMobile ? <MobileNavigation /> : <ComposeButton />}
 
-        <main className='columns-area__panels__main'>
-          <div className='tabs-bar__wrapper'>
-            <TabsBarPortal />
-          </div>
-
-          <div className='columns-area columns-area--mobile'>{children}</div>
-        </main>
-
-        <CollapsibleNavigationPanel />
+        <main className={classes.main}>{children}</main>
       </div>
     );
   }
 
   return (
     <main
-      className={classNames('columns-area', { unscrollable: isModalOpen })}
       ref={ref}
-      tabIndex={isModalOpen ? undefined : 0}
+      className={multiColClasses.root}
+      data-collapsed={isSidebarCollapsed}
     >
+      <div
+        className={multiColClasses.navigationWrapper}
+        data-is-scrolled={!multiColScrollSensor.isInViewport}
+      >
+        <NavigationPanel
+          multiColumn
+          collapsed={isSidebarCollapsed}
+          onToggleCollapsed={toggleIsCollapsed}
+        />
+      </div>
+      {multiColScrollSensor.sensor}
+      <ComposeButton />
       <MultiColumnContent>{children}</MultiColumnContent>
     </main>
   );
-};
-
-export const ColumnsArea: React.FC<ColumnsAreaProps> = (props) => {
-  if (isRedesignEnabled()) {
-    return (
-      <Suspense fallback={<LoadingIndicator />}>
-        <LazyColumnsAreaRedesign {...props} />
-      </Suspense>
-    );
-  } else {
-    return <ColumnsAreaLegacy {...props} />;
-  }
 };

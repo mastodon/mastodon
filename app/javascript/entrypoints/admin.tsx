@@ -202,6 +202,38 @@ on(
   },
 );
 
+const onChangeAccountActionSelection = (target: HTMLInputElement) => {
+  const accountAction = target.value;
+  if (!target.checked) return;
+
+  const presetsDropdown = document.getElementById(
+    'presets_dropdown',
+  ) as HTMLSelectElement | null;
+
+  if (presetsDropdown) {
+    const allOptions = Array.from(presetsDropdown.options);
+    presetsDropdown.value = '';
+
+    allOptions.forEach((element) => {
+      const optionType = element.dataset.type;
+
+      if (optionType === 'all_actions' || optionType === accountAction) {
+        element.hidden = false;
+        element.disabled = false;
+      } else {
+        element.hidden = true;
+        element.disabled = true;
+      }
+    });
+  }
+};
+
+on('change', 'input[name="admin_account_action[type]"]', ({ target }) => {
+  if (target instanceof HTMLInputElement) {
+    onChangeAccountActionSelection(target);
+  }
+});
+
 function onEnableBootstrapTimelineAccountsChange(target: HTMLInputElement) {
   const bootstrapTimelineAccountsField =
     document.querySelector<HTMLInputElement>(
@@ -284,6 +316,30 @@ on('change', '#form_admin_settings_registrations_mode', ({ target }) => {
   if (target instanceof HTMLSelectElement) onChangeRegistrationMode(target);
 });
 
+function onChangeOverrideRobots(target: HTMLInputElement) {
+  const enabled = target.checked;
+
+  document
+    .querySelectorAll<HTMLDivElement>('.form_admin_settings_custom_robots')
+    .forEach((element) => {
+      const container = element.closest<HTMLDivElement>('.fields-group');
+
+      if (!container) {
+        return;
+      }
+
+      if (enabled) {
+        container.classList.remove('hidden');
+      } else {
+        container.classList.add('hidden');
+      }
+    });
+}
+
+on('change', '#form_admin_settings_override_robots', ({ target }) => {
+  if (target instanceof HTMLInputElement) onChangeOverrideRobots(target);
+});
+
 async function mountReactComponent(element: Element) {
   const componentName = element.getAttribute('data-admin-component');
   const stringProps = element.getAttribute('data-props');
@@ -326,6 +382,17 @@ ready(() => {
     'select#form_admin_settings_registrations_mode',
   );
   if (registrationMode) onChangeRegistrationMode(registrationMode);
+
+  const overrideRobots = document.querySelector<HTMLInputElement>(
+    '#form_admin_settings_override_robots',
+  );
+  if (overrideRobots) onChangeOverrideRobots(overrideRobots);
+
+  const accountActionSelection = document.querySelector<HTMLInputElement>(
+    'input[name="admin_account_action[type]"]:checked',
+  );
+  if (accountActionSelection)
+    onChangeAccountActionSelection(accountActionSelection);
 
   const inviteUsersPermissionChecbkox =
     document.querySelector<HTMLInputElement>(

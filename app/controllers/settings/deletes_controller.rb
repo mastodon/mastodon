@@ -29,7 +29,8 @@ class Settings::DeletesController < Settings::BaseController
   end
 
   def challenge_passed?
-    return false unless current_account.username == resource_params[:username]
+    username = resource_params[:username].strip.delete_prefix('@')
+    return false unless current_account.username.casecmp(username).zero? || current_account.local_username_and_domain.casecmp(username).zero?
 
     current_user.encrypted_password.blank? || current_user.valid_password?(resource_params[:password])
   end

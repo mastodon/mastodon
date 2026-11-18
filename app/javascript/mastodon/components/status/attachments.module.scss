@@ -1,10 +1,95 @@
 @use '@/styles/mastodon/mixins';
 
+.galleryWrapper {
+  position: relative;
+  border-radius: var(--radius-4);
+  overflow: hidden;
+
+  :global(.media-gallery) {
+    margin-top: 0;
+  }
+
+  // Overrides .media-gallery--layout-2 > .media-gallery__item:nth-child(1)
+  :global(.media-gallery__item):global(.media-gallery__item),
+  :global(.video-player),
+  :global(.audio-player) {
+    outline: none;
+  }
+
+  :global(.video-player) {
+    border-radius: var(--radius-4);
+  }
+
+  :global(.media-gallery__label) {
+    @include mixins.type-label;
+
+    color: var(--color-text-on-overlay);
+    display: flex;
+    align-items: center;
+    background-color: var(--color-bg-overlay);
+    border-radius: var(--radius-round);
+    padding: var(--space-half) var(--space-2);
+
+    [data-contrast='high'] & {
+      color: var(--color-text-inverted);
+      background-color: var(--color-bg-inverted);
+    }
+  }
+
+  :global(.spoiler-button) {
+    display: none;
+  }
+
+  &.galleryWrapperAspectForce {
+    aspect-ratio: var(--aspect-ratio);
+    max-height: var(--max-media-height-large);
+  }
+}
+
+.gallerySpoilerBox,
+.gallerySpoilerButton {
+  position: absolute;
+  z-index: 10;
+}
+
+.gallerySpoilerBox {
+  display: grid;
+  place-content: center;
+  inset: 0;
+
+  > p {
+    @include mixins.type-body-compact;
+
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-block-end: var(--space-2);
+  }
+}
+
+.gallerySpoilerButton {
+  inset-block-start: var(--space-2);
+  inset-inline-end: var(--space-2);
+}
+
+.galleryHideActions {
+  :global(.media-gallery__item__badges),
+  :global(.media-gallery__actions) {
+    display: none;
+  }
+}
+
+.galleryFilterBlur::after {
+  background-color: var(--color-bg-media);
+}
+
 .cardMedia {
+  border: var(--border-thin);
+  border-radius: var(--radius-4);
+  overflow: hidden;
+
   > :global(.status-card) {
     margin-top: 0;
-    border: var(--border-thin);
-    border-radius: var(--radius-4);
+    border: none;
 
     > a {
       transition: background 200ms ease-in-out;
@@ -37,7 +122,27 @@
   }
 }
 
+.cardMediaSpoiler {
+  // Taken from the media card thumbnail dimensions.
+  aspect-ratio: 16 / 9;
+  position: relative;
+  width: 100%;
+
+  > canvas {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.cardAuthors {
+  column-gap: var(--space-2);
+}
+
 .cardAuthor {
-  padding-inline-start: var(--space-2);
-  gap: var(--space-1);
+  z-index: 1;
+
+  > span {
+    display: flex;
+    gap: var(--space-1);
+  }
 }

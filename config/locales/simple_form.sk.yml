@@ -4,6 +4,7 @@ sk:
     hints:
       account:
         attribution_domains: Jeden na riadok. Chráni vás pred falošným pripisovaním autorstva.
+        discoverable: Váš účet sa môže zobrazovať v kolekciách iných používateľov. Mastodon tiež môže odporúčať váš účet a verejné príspevky v ďalších častiach určených na objavovanie obsahu.
         display_name: Vaše meno a priezvisko alebo prezývka.
         fields: Váš web, zámená, vek, čokoľvek, čo chcete o sebe uviesť.
         indexable: Vaše verejné príspevky sa môžu zobrazovať vo výsledkoch vyhľadávania na Mastodone. Ľudia, ktorí s nimi interagovali, ich môžu nájsť vždy.
@@ -15,13 +16,29 @@ sk:
       account_migration:
         acct: Urči prezyvku@domenu účtu, na ktorý sa chceš presunúť
       account_warning_preset:
+        action_category: Vyberte moderátorský zásah, pri ktorom sa má použiť táto odpoveď. Ak sa hodí k viacerým zásahom, vyberte „Všetky zásahy“.
         text: Môžete používať syntax príspevk, ako sú adresy URL, hashtagy a označenia
+        title: Voliteľné. Príjemca tento údaj neuvidí
       admin_account_action:
         include_statuses: Užívateľ uvidí, ktoré príspevky majú za následok moderačný zásah, alebo upozornenie
         send_email_notification: Užívateľ dostane vysvetlenie ohľadom toho, čo sa stalo s ich účtom
-        text_html: Voliteľné. Môžeš používať rovnakú syntaxiu ako v príspevkoch. Môžeš pridať <a href="%{path}">varovné predlohy</a> a ušetriť tak čas
+        text: Voliteľné. Môžete použiť syntax príspevkov. Text sa zobrazí pod predpripravenou odpoveďou
         type_html: Vyber si, čo urobiť s účtom <strong>%{acct}</strong>
-        warning_preset_id: Voliteľné. Stále môžeš vložiť vlastný text na samý koniec predlohy
+        types:
+          disable: Zabráni používateľovi používať svoj účet a ponechá jeho obsah viditeľný.
+          none: Odošle používateľovi upozornenie bez vykonania ďalších zásahov.
+          sensitive: Všetky mediálne prílohy používateľa sa povinne označia ako citlivé.
+          silence: Zabráni používateľovi zverejňovať verejné príspevky a skryje jeho príspevky a oznámenia pred ľuďmi, ktorí ho nesledujú. Uzavrie všetky hlásenia týkajúce sa tohto účtu.
+          suspend: Zabráni všetkým interakciám s týmto účtom aj z jeho strany a odstráni jeho obsah. Zásah možno zvrátiť do 30 dní. Uzavrie všetky hlásenia týkajúce sa tohto účtu.
+        warning_preset_html: Voliteľné. Môžete ich <a href="%{path}">spravovať tu</a>
+      announcement:
+        all_day: Ak je možnosť začiarknutá, zobrazia sa iba dátumy časového rozsahu
+        ends_at: Voliteľné. Oznámenie sa v tomto čase automaticky prestane zobrazovať
+        scheduled_at: Ak chcete oznámenie zverejniť okamžite, nechajte pole prázdne
+        starts_at: Voliteľné. Vyplňte, ak sa oznámenie týka konkrétneho časového obdobia
+        text: Môžete použiť syntax príspevkov. Zohľadnite, koľko miesta oznámenie zaberie na obrazovke používateľa
+      appeal:
+        text: Proti záznamu o porušení pravidiel sa môžete odvolať iba raz
       defaults:
         autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú inheď nasledovať
         avatar: WEBP, PNG, GIF, alebo JPG. Najviac %{size}. Bude zmenšený na %{dimensions}px
@@ -38,20 +55,69 @@ sk:
         password: Heslo musí obsahovať aspoň 8 znakov
         phrase: Zhoda sa nájde nezávisle od toho, či je text napísaný, veľkými, alebo malými písmenami, či už v tele, alebo v hlavičke
         scopes: Ktoré API budú povolené aplikácii pre prístup. Ak vyberieš vrcholný stupeň, nemusíš už potom vyberať po jednom.
+        setting_advanced_layout: Zobrazí Mastodon vo viacerých stĺpcoch. Uvidíte časovú os, oznámenia a tretí stĺpec podľa vlastného výberu. Na menších obrazovkách sa toto rozloženie neodporúča.
         setting_aggregate_reblogs: Nezobrazovať nové zdieľania pre nedávno zdieľané príspevky (týka sa iba nových zdieľaní)
         setting_always_send_emails: Pri bežnom používaní Mastodonu nebudete dostávať e-mailové upozornenia
+        setting_boost_modal: Ak je táto možnosť zapnutá, pri zdieľaní sa najprv zobrazí okno s potvrdením, v ktorom môžete zmeniť viditeľnosť zdieľania.
+        setting_default_quote_policy_private: Ostatní nemôžu citovať príspevky vytvorené na Mastodone, ktoré sú určené iba pre sledovateľov.
+        setting_default_quote_policy_unlisted: Keď vás niekto cituje, jeho príspevok sa tiež skryje na časových osiach trendov.
         setting_default_sensitive: Citlivé médiá sú predvolene ukryté a môžu byť zobrazené kliknutím
+        setting_default_spoiler_field: Pole upozornenia na obsah zostane v editore otvorené. Text môžete upraviť pri každom príspevku.
+        setting_display_media_default: Upozorniť pred zobrazením médií označených ako citlivé
+        setting_display_media_hide_all: Upozorniť pred zobrazením všetkých médií
+        setting_display_media_show_all: Zobraziť všetky médiá bez upozornenia vrátane médií označených ako citlivé
+        setting_emoji_style: Spôsob zobrazenia emoji. Možnosť „Automaticky“ uprednostní systémové emoji, v starších prehliadačoch použije Twemoji.
+        setting_quick_boosting_html: Po zapnutí kliknutie na ikonu %{boost_icon} Zdieľať okamžite zdieľa príspevok. Možnosť citovania sa presunie do ponuky %{options_icon} (Možnosti).
         setting_use_blurhash: Prechody sú založené na farbách skrytých vizuálov, ale skrývajú akékoľvek podrobnosti
         setting_use_pending_items: Časová os bude aktualizovaná až po kliknutí, feed sa nebúde posúvať automaticky
+        username: Môžete použiť písmená, číslice a podčiarkovníky
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
       domain_allow:
         domain: Táto doména bude schopná získavať dáta z tohto servera, a prichádzajúce dáta ním budú spracovávané a uložené
+      email_domain_block:
+        domain: Môže to byť názov domény uvedený v e-mailovej adrese alebo záznam MX, ktorý používa. Overia sa pri registrácii.
+        with_dns_records: Systém sa pokúsi zistiť záznamy DNS zadanej domény a zablokuje aj nájdené domény
       featured_tag:
         name: 'Nedávno ste použili napríklad tieto hashtagy:'
+      filters:
+        action: Vyberte, čo sa má stať, keď príspevok zodpovedá filtru
+        actions:
+          blur: Skryje médiá za upozornenie a samotný text ponechá viditeľný
+          hide: Úplne skryje filtrovaný obsah, akoby neexistoval
+          warn: Skryje filtrovaný obsah za upozornenie s názvom filtra
       form_admin_settings:
+        activity_api_enabled: Týždenné počty miestnych príspevkov, aktívnych používateľov a nových registrácií
+        app_icon: WEBP, PNG, GIF alebo JPG. Nahradí predvolenú ikonu aplikácie na mobilných zariadeniach vlastnou ikonou.
+        backups_retention_period: Používatelia si môžu vytvoriť archív príspevkov na neskoršie stiahnutie. Ak zadáte kladnú hodnotu, archívy sa z úložiska automaticky odstránia po zadanom počte dní.
+        bootstrap_timeline_accounts: Tieto účty sa novým používateľom zobrazia na začiatku zoznamu odporúčaných účtov na sledovanie. Zadajte zoznam účtov oddelených čiarkami.
+        closed_registrations_message: Zobrazí sa, keď je registrácia zatvorená
+        content_cache_retention_period: Po zadanom počte dní sa odstránia všetky príspevky z iných serverov (vrátane zdieľaní a odpovedí) bez ohľadu na to, ako s nimi miestni používatelia interagovali. Odstránia sa aj príspevky uložené v záložkách alebo označené ako obľúbené. Stratia sa aj súkromné zmienky medzi používateľmi z rôznych serverov a nebude ich možné obnoviť. Toto nastavenie je určené pre servery so špeciálnym účelom. Na bežných serveroch môže byť v rozpore s očakávaniami používateľov.
+        custom_css: Pre webovú verziu Mastodonu môžete použiť vlastné štýly.
+        custom_robots_html: <a href="%{path}">Syntax</a>
+        email_footer_text: Voliteľný text, ktorý sa zobrazí iba v päte e-mailových bulletinov.
+        favicon: WEBP, PNG, GIF alebo JPG. Nahradí predvolenú ikonu webu Mastodon vlastnou ikonou.
+        landing_page: Určuje stránku, ktorú návštevníci uvidia pri prvej návšteve servera. Ak vyberiete „Trendy“, musia byť zapnuté v nastaveniach objavovania. Ak vyberiete „Miestny kanál“, v nastaveniach objavovania musí byť „Prístup k živým kanálom s miestnymi príspevkami“ nastavený na „Všetci“.
+        mascot: Nahradí ilustráciu v rozšírenom webovom rozhraní.
+        media_cache_retention_period: Médiá z príspevkov vzdialených používateľov sa ukladajú do vyrovnávacej pamäte vášho servera. Ak zadáte kladnú hodnotu, médiá sa odstránia po zadanom počte dní. Ak si ich niekto vyžiada po odstránení, server ich znova stiahne, pokiaľ sú ešte dostupné pri zdroji. Keďže frekvencia načítavania náhľadov odkazov z webov tretích strán je obmedzená, odporúča sa nastaviť aspoň 14 dní. Pri nižšej hodnote nebude pred uplynutím tejto lehoty možné aktualizovať náhľady na požiadanie.
+        min_age: Pri registrácii sa od používateľov vyžiada potvrdenie dátumu narodenia
+        override_robots: Umožňuje prispôsobiť pravidlá prístupu pre roboty, ktoré rešpektujú pravidlá
+        peers_api_enabled: Zoznam domén, s ktorými sa tento server stretol vo fediverze. Zoznam uvádza iba to, že server danú doménu pozná. Neuvádza, či s ňou federuje. Používajú ho služby, ktoré zhromažďujú všeobecné štatistiky o federovaní.
+        postpone_confirmation_emails: Ak zapnete túto možnosť, potvrdzujúce e-maily pre účty čakajúce na schválenie sa odošlú až po ich schválení. Používateľom to môže sťažiť registráciu, pretože e-mailovú adresu stále musia po doručení správy včas potvrdiť, no čas odoslania neovplyvnia. Moderátorom môže pribudnúť práca, pretože Mastodon pred schválením nevylúči čakajúce účty s neplatnou e-mailovou adresou.
+        profile_directory: Adresár profilov zobrazuje všetkých používateľov, ktorí povolili zobrazovanie svojho profilu v odporúčaniach.
+        require_invite_text: Ak registrácia vyžaduje ručné schválenie, bude pole „Prečo sa chcete pridať?“ povinné
         site_contact_email: Spôsob, ako vás môžu ľudia kontaktovať pre právne účely alebo podporu.
         site_contact_username: Ako vás môžu ľudia na Mastodone nájsť.
+        site_extended_description: Ďalšie informácie, ktoré môžu byť užitočné pre návštevníkov a používateľov. Môžete ich formátovať pomocou Markdownu.
+        site_short_description: Krátky opis, ktorý odlíši váš server od ostatných. Kto ho prevádzkuje a pre koho je určený?
+        site_terms: Použite vlastné zásady ochrany osobných údajov alebo nechajte pole prázdne pre predvolené zásady. Text môžete formátovať pomocou Markdownu.
+        site_title: Názov, ktorým môžu ľudia označovať váš server okrem jeho domény.
+        status_page_url: Adresa URL stránky, na ktorej sa dá počas výpadku zistiť stav servera
+        theme: Motív, ktorý vidia neprihlásení návštevníci a noví používatelia.
         thumbnail: 'Obrázok v pomere približne 2 : 1, ktorý sa zobrazí pri informáciách o serveri.'
+        thumbnail_description: Opis obrázka, ktorý pomôže ľuďom so zrakovým znevýhodnením pochopiť jeho obsah.
+        trendable_by_default: Preskočiť ručnú kontrolu trendov. Jednotlivé položky môžete z trendov odstrániť aj dodatočne.
+        trends: Trendy ukazujú, ktoré príspevky, hashtagy a správy získavajú na vašom serveri popularitu.
+        wrapstodon: Ponúknite miestnym používateľom možnosť vytvoriť si hravý prehľad svojej ročnej aktivity na Mastodone. Funkcia je dostupná každý rok od 10. do 31. decembra pre používateľov, ktorí v danom roku uverejnili aspoň jeden verejný alebo nezaradený verejný príspevok a použili aspoň jeden hashtag.
       form_challenge:
         current_password: Vstupuješ do zabezpečenej časti
       imports:
@@ -59,18 +125,68 @@ sk:
       invite_request:
         text: Toto pomôže s vyhodnocovaním tvojej žiadosti
       ip_block:
+        comment: Voliteľné. Poznačte si, prečo ste toto pravidlo pridali.
+        expires_in: Počet IP adries je obmedzený, niektoré adresy sa zdieľajú a často menia držiteľa. Blokovanie IP adries na neurčito sa preto neodporúča.
+        ip: Zadajte adresu IPv4 alebo IPv6. Pomocou zápisu CIDR môžete zablokovať celé rozsahy. Dajte pozor, aby ste nezablokovali vlastný prístup!
         severities:
+          no_access: Zablokovať prístup ku všetkým zdrojom
           sign_up_block: Nové registrácie nebudú možné
+          sign_up_requires_approval: Nové registrácie budú vyžadovať vaše schválenie
+        severity: Určte, ako sa spracujú požiadavky z tejto adresy IP
+      rule:
+        hint: Voliteľné. Uveďte podrobnosti o pravidle
+        text: Opíšte pravidlo alebo požiadavku pre používateľov tohto servera. Píšte stručne a jednoducho
       sessions:
         otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
+        webauthn: Ak používate kľúč USB, pripojte ho a podľa potreby sa ho dotknite.
       settings:
+        email_subscriptions: Vypnutím sa zachovajú existujúci odberatelia, ale prestanú sa odosielať e-maily.
         indexable: Váš profil sa môže zobraziť vo výsledkoch vyhľadávania cez Google, Bing a ďalšie.
         show_application: Tebe sa táto informácia zobrazí vždy.
       tag:
         name: Zmeniť môžeš iba veľkosť písmen, napríklad aby boli ľahšie čítateľné
+      terms_of_service:
+        changelog: Text môžete formátovať pomocou Markdownu.
+        effective_date: Primeraná lehota môže byť 10 až 30 dní od oznámenia používateľom.
+        text: Text môžete formátovať pomocou Markdownu.
+      terms_of_service_generator:
+        admin_email: Právne oznámenia zahŕňajú protioznámenia, súdne príkazy, žiadosti o odstránenie obsahu a žiadosti orgánov činných v trestnom konaní.
+        arbitration_address: Môže byť rovnaká ako poštová adresa uvedená vyššie. Ak používate e-mail, uveďte „N/A“.
+        arbitration_website: Môžete uviesť webový formulár. Ak používate e-mail, uveďte „N/A“.
+        choice_of_law: Mesto, región, územie alebo štát, ktorého hmotné právo sa bude vzťahovať na všetky nároky.
+        dmca_address: Prevádzkovatelia v USA uvedú adresu zaregistrovanú v registri DMCA Designated Agent Directory. O uvedenie poštového priečinka môžete požiadať priamo. Použite žiadosť DMCA Designated Agent Post Office Box Waiver Request a v e-maile pre americký úrad pre autorské práva vysvetlite, že moderujete obsah z domu a z obavy pred odvetou za svoje zásahy potrebujete uviesť poštový priečinok, aby vaša domáca adresa nebola verejná.
+        dmca_email: Môže to byť tá istá adresa ako v poli „E-mailová adresa pre právne oznámenia“ vyššie.
+        domain: Jednoznačná identifikácia poskytovanej online služby.
+        jurisdiction: Uveďte krajinu, v ktorej žije osoba zodpovedná za úhradu nákladov. Pri spoločnosti alebo inom subjekte uveďte krajinu registrácie a príslušné mesto, región, územie alebo štát.
+        min_age: Vek by nemal byť nižší ako minimum stanovené právom vašej jurisdikcie.
+      user:
+        chosen_languages: Po začiarknutí sa na verejných časových osiach zobrazia iba príspevky vo vybraných jazykoch. Toto nastavenie neovplyvní domovskú časovú os ani zoznamy.
+        date_of_birth:
+          few: Musíme overiť, že máte aspoň %{count} roky, aby ste mohli používať %{domain}. Tento údaj neuložíme.
+          many: Musíme overiť, že máte aspoň %{count} roka, aby ste mohli používať %{domain}. Tento údaj neuložíme.
+          one: Musíme overiť, že máte aspoň %{count} rok, aby ste mohli používať %{domain}. Tento údaj neuložíme.
+          other: Musíme overiť, že máte aspoň %{count} rokov, aby ste mohli používať %{domain}. Tento údaj neuložíme.
+        role: Rola určuje oprávnenia používateľa.
+      user_role:
+        collection_limit: Obmedzuje počet kolekcií, ktoré môže vytvoriť používateľ s touto rolou. Znížením limitu používatelia o existujúce kolekcie neprídu. Ďalšie však môžu vytvoriť až po uvoľnení miesta pod limitom.
+        color: Farba roly v rozhraní, zadaná ako šestnástková hodnota RGB
+        highlighted: Rola bude verejne viditeľná
+        name: Verejný názov roly, ak sa má zobrazovať ako odznak
+        permissions_as_keys: Používatelia s touto rolou budú mať prístup k…
+        position: V niektorých situáciách má pri riešení konfliktov prednosť vyššia rola. Niektoré akcie možno vykonať iba voči rolám s nižšou prioritou
+        require_2fa: Používatelia s touto rolou budú musieť na používanie Mastodonu nastaviť dvojfaktorové overenie
+      username_block:
+        allow_with_approval: Zodpovedajúce registrácie sa budú pred dokončením posudzovať a budú vyžadovať vaše schválenie
+        comparison: Pri blokovaní čiastočných zhôd myslite na Scunthorpský problém
+        username: Zhoda sa vyhodnotí bez ohľadu na veľkosť písmen a s prihliadnutím na podobné znaky, napríklad „4“ namiesto „a“ alebo „3“ namiesto „e“
+      webhook:
+        events: Vyberte udalosti na odosielanie
+        template: Vytvorte vlastné údaje JSON s dosadzovaním premenných. Ak chcete použiť predvolený JSON, nechajte pole prázdne.
+        url: Kam sa budú udalosti odosielať
     labels:
       account:
         attribution_domains: Weby, ktoré vám môžu pripisovať autorstvo
+        discoverable: Zobrazovať môj účet v odporúčaniach
         fields:
           name: Definícia
           value: Hodnota
@@ -82,24 +198,30 @@ sk:
       account_migration:
         acct: Adresa nového účtu
       account_warning_preset:
-        text: Text predlohy
+        action_category: Priradiť moderátorský zásah
+        text: Text odpovede
         title: Názov
       admin_account_action:
         include_statuses: Zahrnúť nahlásené príspevky v emaile
         send_email_notification: Oznam užívateľovi cez email
-        text: Špecifické varovanie
+        text: Vlastná odpoveď
         type: Úkon
         types:
+          all_actions: Všetky zásahy
           disable: Deaktivuj
           none: Neurob nič
+          sensitive: Citlivé
           silence: Utíš
           suspend: Vylúčiť
-        warning_preset_id: Použi varovnú predlohu
+        warning_preset_id: Predpripravená odpoveď
       announcement:
         all_day: Celodenná udalosť
         ends_at: Koniec udalosti
+        scheduled_at: Naplánovať zverejnenie
         starts_at: Začiatok udalosti
         text: Oboznámenie
+      appeal:
+        text: Vysvetlite, prečo by sa toto rozhodnutie malo zrušiť
       defaults:
         autofollow: Pozvi k následovaniu tvojho profilu
         avatar: Profilová fotka
@@ -114,7 +236,9 @@ sk:
         email: E-mailová adresa
         expires_in: Expiruj po
         fields: Metadáta profilu
+        filter_action: Akcia filtra
         header: Obrázok v záhlaví
+        honeypot: "%{label} (nevypĺňajte)"
         inbox_url: URL adresa prechodnej schránky
         irreversible: Zahoď, namiesto ukrytia
         locale: Jazyk rozhrania
@@ -128,37 +252,98 @@ sk:
         setting_aggregate_reblogs: Zoskupovať zdieľania na časových osiach
         setting_always_send_emails: Vždy posielať e-mailové upozornenia
         setting_auto_play_gif: Automaticky prehrávať animácie GIF
+        setting_boost_modal: Nastaviť viditeľnosť zdieľania
+        setting_color_scheme: Režim
+        setting_contrast: Kontrast
         setting_default_language: Jazyk príspevkov
+        setting_default_privacy: Viditeľnosť príspevkov
         setting_default_quote_policy: Kto vás môže citovať
         setting_default_sensitive: Vždy označovať médiá ako citlivé
+        setting_default_spoiler_field: Predvolene používať upozornenia na obsah
+        setting_delete_modal: Upozorniť pred odstránením príspevku
         setting_disable_hover_cards: Vypnúť náhľady profilov pri ukázaní kurzorom
         setting_disable_swiping: Vypnúť gestá posúvaním
         setting_display_media: Zobrazovanie médií
         setting_display_media_default: Štandard
         setting_display_media_hide_all: Ukry všetky
         setting_display_media_show_all: Ukáž všetky
+        setting_display_own_boosts: Zobrazovať moje zdieľania v hlavnom kanáli
+        setting_display_own_posts: Zobrazovať moje príspevky v hlavnom kanáli
+        setting_emoji_style: Štýl emoji
         setting_expand_spoilers: Stále rozbaľovať príspevky označené varovaním o obsahu
         setting_hide_network: Ukry svoju sieť kontaktov
+        setting_missing_alt_text_modal: Upozorniť pred zverejnením médií bez alternatívneho textu
+        setting_quick_boosting: Zapnúť rýchle zdieľanie
         setting_reduce_motion: Stlmiť animácie
+        setting_show_stats_in_feed: Zobrazovať štatistiky interakcií v kanáloch
+        setting_split_default_privacy_discoverable: Zobrazovať moje príspevky vo verejnom kanáli a vo výsledkoch vyhľadávania
         setting_system_font_ui: Používať predvolené písmo systému
         setting_system_scrollbars_ui: Používať predvolený posuvník systému
         setting_theme: Vzhľad webu
-        setting_trends: Zobrazovať dnešné trendy
+        setting_theme_color: Farba motívu
         setting_unfollow_modal: Vyžaduj potvrdenie pred tým, než niekoho prestaneš sledovať
         setting_use_blurhash: Zobrazovať farebné prechody skrytých médií
         setting_use_pending_items: Pomalý režim
         severity: Závažnosť
         sign_in_token_attempt: Bezpečnostný kód
+        sign_in_token_resend: Znova odoslať bezpečnostný kód
+        title: Názov
         type: Typ importu
         username: Prezývka
         username_or_email: Prezývka, alebo email
         whole_word: Celé slovo
+      email_domain_block:
+        with_dns_records: Zahrnúť záznamy MX a adresy IP domény
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          blur: Skryť médiá za upozornenie
+          hide: Úplne skryť
+          warn: Skryť za upozornenie
       form_admin_settings:
+        activity_api_enabled: Zverejňovať súhrnné štatistiky aktivity používateľov cez API
+        app_icon: Ikona aplikácie
+        backups_retention_period: Doba uchovávania používateľských archívov
+        bootstrap_timeline_accounts: Vždy odporúčať tieto účty novým používateľom
+        closed_registrations_message: Vlastná správa pri zatvorenej registrácii
+        content_cache_retention_period: Doba uchovávania vzdialeného obsahu
+        custom_css: Vlastné CSS
+        custom_robots: Vlastný robots.txt
+        email_footer_text: Doplnkový text v päte
+        favicon: Ikona webu
+        landing_page: Úvodná stránka pre nových návštevníkov
+        local_live_feed_access: Prístup k živým kanálom s miestnymi príspevkami
+        local_topic_feed_access: Prístup ku kanálom hashtagov a odkazov s miestnymi príspevkami
+        mascot: Vlastný maskot (staršia funkcia)
+        media_cache_retention_period: Doba uchovávania médií vo vyrovnávacej pamäti
+        min_age: Minimálny požadovaný vek
+        override_robots: Nahradiť predvolený robots.txt
         peers_api_enabled: Zverejni zoznam objavených serverov v API
+        postpone_confirmation_emails: Odoslať potvrdzujúce e-maily až po schválení
+        profile_directory: Zapnúť adresár profilov
+        registrations_mode: Kto sa môže zaregistrovať
+        remote_live_feed_access: Prístup k živým kanálom so vzdialenými príspevkami
+        remote_topic_feed_access: Prístup ku kanálom hashtagov a odkazov so vzdialenými príspevkami
+        require_invite_text: Vyžadovať dôvod registrácie
+        show_domain_blocks: Zobraziť zablokované domény
+        show_domain_blocks_rationale: Zobraziť dôvody zablokovania domén
+        site_contact_email: Kontaktná e-mailová adresa
+        site_contact_username: Kontaktné používateľské meno
+        site_extended_description: Rozšírený opis
+        site_short_description: Opis servera
+        site_terms: Zásady ochrany osobných údajov
+        site_title: Názov servera
         status_page_url: URL adresa stránky stavu
+        theme: Predvolený motív
         thumbnail: Náhľad servera
+        thumbnail_description: Alternatívny text miniatúry
+        trendable_by_default: Povoliť trendy bez predchádzajúcej kontroly
+        trends: Zapnúť trendy
+        wrapstodon: Zapnúť Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Beriem na vedomie, že zapnutie tejto funkcie môže výrazne zvýšiť počet e-mailov odoslaných zo servera a za všetky vzniknuté náklady zodpovedám výlučne ja.
+        agreement_privacy_and_terms: Aktualizoval som zásady ochrany osobných údajov a podmienky používania.
       interactions:
         must_be_follower: Blokuj oboznámenia od užívateľov, ktorí ma nenasledujú
         must_be_following: Blokuj oboznámenia od ľudí, ktorých nesledujem
@@ -169,16 +354,21 @@ sk:
         text: Prečo sa k nám chceš pridať?
       ip_block:
         comment: Komentár
+        ip: IP
         severities:
+          no_access: Zablokovať prístup
+          sign_up_block: Zablokovať registrácie
           sign_up_requires_approval: Obmedz registrácie
         severity: Pravidlo
       notification_emails:
         appeal: Niekto sa odvoláva voči moderátorskému rozhodnutiu
         digest: Zasielať súhrnné emaily
+        end_of_support: Podpora aktuálnej verzie Mastodonu sa čoskoro skončí
         favourite: Niekto ohviezdičkuje váš príspevok
         follow: Niekto vás začal sledovať
         follow_request: Niekto vám posiela žiadosť o sledovanie
         mention: Niekto vás označí
+        moderation_suggestions: K dispozícii sú automatické návrhy na moderovanie
         pending_account: Je potrebná kontrola nového účtu
         quote: Niekto vás cituje
         reblog: Niekto zdieľa váš príspevok
@@ -190,17 +380,62 @@ sk:
           none: Nikdy neupozorňovať na novinky (neodporúčané)
           patch: Upozorňovať na novinky s riešením chýb
         trending_tag: Je potrebné skontrolovať nový trend
+      rule:
+        hint: Ďalšie informácie
+        text: Pravidlo
       settings:
+        email_subscriptions: Povoliť registráciu e-mailom
         indexable: Zobrazovať profil v internetových vyhľadávačoch
         show_application: Zobrazovať apku, z ktorej sú uverejňované príspevky
       tag:
         listable: Povoliť zobrazovanie tohto hashtagu v návrhoch vyhľadávaní
         name: Hashtag
         trendable: Povoliť zobrazovanie tohto hashtagu medzi trendujúcimi
+        usable: Povoliť používanie tohto hashtagu v miestnych príspevkoch
+      terms_of_service:
+        changelog: Čo sa zmenilo?
+        effective_date: Dátum účinnosti
+        text: Podmienky používania
+      terms_of_service_generator:
+        admin_email: E-mailová adresa pre právne oznámenia
+        arbitration_address: Poštová adresa pre oznámenia o rozhodcovskom konaní
+        arbitration_website: Web na podávanie oznámení o rozhodcovskom konaní
+        choice_of_law: Rozhodné právo
+        dmca_address: Poštová adresa pre oznámenia podľa DMCA alebo o autorských právach
+        dmca_email: E-mailová adresa pre oznámenia podľa DMCA alebo o autorských právach
+        domain: Doména
+        jurisdiction: Jurisdikcia
+        min_age: Minimálny vek
       user:
+        date_of_birth_1i: Rok
+        date_of_birth_2i: Mesiac
+        date_of_birth_3i: Deň
+        role: Rola
         time_zone: Časové pásmo
+      user_role:
+        collection_limit: Maximálny počet kolekcií na používateľa
+        color: Farba odznaku
+        highlighted: Zobrazovať rolu ako odznak v profiloch používateľov
+        name: Názov
+        permissions_as_keys: Oprávnenia
+        position: Priorita
+        require_2fa: Vyžadovať dvojfaktorové overenie
+      username_block:
+        allow_with_approval: Povoliť registrácie po schválení
+        comparison: Spôsob porovnávania
+        username: Hľadané slovo
+      webhook:
+        events: Povolené udalosti
+        template: Šablóna obsahu požiadavky
+        url: Adresa URL koncového bodu
     'no': Nie
+    not_recommended: Neodporúča sa
+    overridden: Nahradené
     recommended: Odporúčané
     required:
+      mark: "*"
       text: povinné
+    title:
+      sessions:
+        webauthn: Prihláste sa pomocou jedného zo svojich bezpečnostných kľúčov
     'yes': Áno

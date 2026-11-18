@@ -20,7 +20,7 @@ export interface InputProps {
 }
 
 export interface FieldStatus {
-  variant: 'error' | 'warning' | 'info' | 'success';
+  variant: 'error' | 'info' | 'success';
   message?: string;
 }
 
@@ -28,6 +28,10 @@ export interface FieldWrapperProps {
   label: ReactNode;
   hint?: ReactNode;
   required?: boolean;
+  /**
+   * Note that no hint will be displayed for compact form fields
+   */
+  compact?: true;
   status?: FieldStatus['variant'] | FieldStatus | null;
   inputId?: string;
   describedById?: string;
@@ -41,7 +45,7 @@ export interface FieldWrapperProps {
  */
 export type CommonFieldWrapperProps = Pick<
   FieldWrapperProps,
-  'label' | 'hint' | 'status'
+  'label' | 'hint' | 'status' | 'compact'
 > & { wrapperClassName?: string };
 
 /**
@@ -57,6 +61,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   describedById,
   required,
   status,
+  compact,
   inputPlacement,
   children,
   className,
@@ -65,7 +70,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   const inputId = inputIdProp || `${uniqueId}-input`;
   const statusId = `${inputIdProp || uniqueId}-status`;
   const hintId = `${inputIdProp || uniqueId}-hint`;
-  const hasHint = !!hint;
+  const hasHint = !!hint && !compact;
   const fieldStatus = getFieldStatus(status);
   const hasStatusMessage = !!fieldStatus?.message;
 
@@ -93,6 +98,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
       className={classNames(classes.wrapper, className)}
       data-has-error={fieldStatus?.variant === 'error'}
       data-input-placement={inputPlacement}
+      data-compact={compact}
     >
       {inputPlacement === 'inline-start' && input}
 

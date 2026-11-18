@@ -627,7 +627,6 @@ lt:
         warning_hint: Rekomenduojame naudoti „Registracijai privalomas patvirtinimas“, nebent esi tikras (-a), kad tavo prižiūrėjimo komanda gali laiku apdoroti šlamštus ir kenkėjiškas registracijas.
       security:
         authorized_fetch: Reikalauti tapatybės nustatymo iš federacinių serverių
-        authorized_fetch_hint: Reikalauti tapatybės nustatymo iš federacinių serverių leidžia griežčiau užtikrinti tiek naudotojo, tiek serverio lygio blokų vykdymą. Tačiau dėl to nukenčia našumas, sumažėja atsakymų pasiekiamumas ir gali kilti suderinamumo su kai kuriomis federacinėmis paslaugomis problemų. Be to, tai nesutrukdys skirtiems dalyviams gauti tavo viešų įrašų ir paskyrų.
         authorized_fetch_overridden_hint: Šiuo metu negali pakeisti šio nustatymo, nes jį pakeičia aplinkos kintamasis.
         federation_authentication: Federacijos tapatybės nustatymo vykdymas
     software_updates:
@@ -820,8 +819,6 @@ lt:
     warning_presets:
       add_new: Pridėti naują
       delete: Ištrinti
-      edit_preset: Keisti įspėjimo nustatymus
-      title: Įspėjamieji numatytieji
     webhooks:
       add_new: Pridėti galutinį tašką
       delete: Ištrinti
@@ -857,7 +854,6 @@ lt:
     animations_and_accessibility: Animacijos ir pritaikymas neįgaliesiems
     boosting_preferences: Pasidalinimo nustatymai
     boosting_preferences_info_html: "<strong>Patarimas:</strong> Nepriklausomai nuo nustatymų, <kbd>Shift</kbd> + <kbd>Click</kbd> ant %{icon} Dalintis ikonos iš karto pasidalins įrašu."
-    discovery: Atradimas
     localization:
       body: Mastodon verčia savanoriai.
       guide_link_text: Visi gali prisidėti.
@@ -970,7 +966,6 @@ lt:
   deletes:
     challenge_not_passed: Įvesta informacija buvo neteisinga
     confirm_password: Įvesk dabartinį slaptažodį, kad patvirtintum savo tapatybę
-    confirm_username: Procedūros patvirtinimui įvesk savo naudotojo vardą
     proceed: Ištrinti paskyrą
     success_msg: Tavo paskyra buvo sėkmingai ištrinta
   disputes:
@@ -1152,6 +1147,7 @@ lt:
           thousand: tūkst.
   otp_authentication:
     code_hint: Įvesk autentifikatoriaus programėlės sugeneruotą kodą, kad patvirtintum
+    delete: Ištrinti
     description_html: Jei įjungsi <strong>dvigubo tapatybės nustatymą</strong> naudojant autentifikatoriaus programėlę, prisijungiant reikės turėti telefoną, kuris generuos prieigos raktos, kuriuos turėsi įvesti.
     instructions_html: "<strong>Nuskenuok šį QR kodą į Google Authenticator arba panašią TOTP programėlę savo telefone</strong>. Nuo šiol ši programėlė generuos prieigos raktus, kuriuos turėsi įvesti prisijungiant."
   pagination:
@@ -1235,7 +1231,6 @@ lt:
     appearance: Išvaizda
     authorized_apps: Leidžiamos programėlės
     back: Grįžti į Mastodon
-    delete: Paskyros trynimas
     development: Kūrimas
     edit_profile: Redaguoti profilį
     export: Eksportuoti
@@ -1428,4 +1423,3 @@ lt:
       success: Tavo saugumo raktas buvo sėkmingai ištrintas.
     nickname_hint: Įvesk naujojo saugumo rakto slapyvardį
     not_enabled: Dar neįjungei WebAuthn
-    otp_required: Norint naudoti saugumo raktus, pirmiausia įjunk dvigubą tapatybės nustatymą.

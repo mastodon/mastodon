@@ -213,40 +213,28 @@ RSpec.describe UserRole do
   describe '.everyone' do
     subject { described_class.everyone }
 
-    it 'returns a role' do
-      expect(subject).to be_a(described_class)
-    end
-
-    it 'is identified as the everyone role' do
-      expect(subject.everyone?).to be true
-    end
-
-    it 'has default permissions' do
-      expect(subject.permissions).to eq described_class::FLAGS[:invite_users]
-    end
-
-    it 'has negative position' do
-      expect(subject.position).to eq(described_class::NOBODY_POSITION)
+    it 'returns correct role with permissions and position' do
+      expect(subject)
+        .to be_a(described_class)
+        .and be_everyone
+        .and have_attributes(
+          permissions: described_class::FLAGS[:invite_users],
+          position: described_class::NOBODY_POSITION
+        )
     end
   end
 
   describe '.nobody' do
     subject { described_class.nobody }
 
-    it 'returns a role' do
-      expect(subject).to be_a(described_class)
-    end
-
-    it 'is identified as the nobody role' do
-      expect(subject.nobody?).to be true
-    end
-
-    it 'has no permissions' do
-      expect(subject.permissions).to eq described_class::Flags::NONE
-    end
-
-    it 'has negative position' do
-      expect(subject.position).to eq(described_class::NOBODY_POSITION)
+    it 'returns correct role with permissions and position' do
+      expect(subject)
+        .to be_a(described_class)
+        .and be_nobody
+        .and have_attributes(
+          permissions: described_class::Flags::NONE,
+          position: described_class::NOBODY_POSITION
+        )
     end
   end
 

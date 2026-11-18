@@ -19,7 +19,6 @@ ro:
       admin_account_action:
         include_statuses: Utilizatorul va vedea ce postări au provocat acțiunea de moderare sau avertismentul
         send_email_notification: Utilizatorul va primi o explicație cu privire la ceea ce sa întâmplat cu contul lui
-        text_html: Opțional. Poți utiliza sintaxe. Poți <a href="%{path}">adăuga avertismente predefinite</a> pentru a salva timp
         type_html: Alege ce se întâmplă cu <strong>%{acct}</strong>
         types:
           disable: Împiedicați utilizatorul să-și folosească contul, dar nu ștergeți sau ascundeți conținutul acestuia.
@@ -27,7 +26,6 @@ ro:
           sensitive: Forțează toate atașamentele media ale acestui utilizator să fie marcate ca sensibile.
           silence: Împiedicați utilizatorul să poată posta cu vizibilitate publică, ascundeți postările și notificările de la persoanele care nu le urmăresc. Închide toate rapoartele pentru acest cont.
           suspend: Preveniți orice interacțiune din sau către acest cont și ștergeți conținutul acestuia. Reversibil în 30 de zile. Închide toate rapoartele pentru acest cont.
-        warning_preset_id: Opțional. Poți adăuga text personalizat la sfârșitul presetului
       announcement:
         all_day: Când este bifat, numai datele intervalului de timp vor fi afișate
         ends_at: Opțional. Anunțul va fi automat nepublicat în acest moment
@@ -134,19 +132,16 @@ ro:
       account_migration:
         acct: Identificatorul contului nou
       account_warning_preset:
-        text: Text presetat
         title: Titlu
       admin_account_action:
         include_statuses: Include postările raportate în e-mail
         send_email_notification: Notificați utilizatorul prin e-mail
-        text: Avertisment personalizat
         type: Acțiune
         types:
           disable: Dezactivează
           none: Nu fă nimic
           silence: Liniște
           suspend: Suspendă și șterge ireversibil datele contului
-        warning_preset_id: Utilizează un avertisment predefinit
       announcement:
         all_day: Eveniment pe toată ziua
         ends_at: Sfârșitul evenimentului
@@ -191,7 +186,6 @@ ro:
         setting_reduce_motion: Redu mișcarea în animații
         setting_system_font_ui: Utilizează fontul standard as sistemului
         setting_theme: Tema siteului
-        setting_trends: Arată tendințele de astăzi
         setting_unfollow_modal: Arată dialogul de confirmare înainte de a nu mai urmări pe cineva
         setting_use_blurhash: Arată gradiente colorate pentru media ascunse
         setting_use_pending_items: Modul lent

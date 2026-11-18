@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { ImmutablePureComponent } from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import { getAverageFromBlurhash } from 'mastodon/blurhash';

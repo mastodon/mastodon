@@ -41,7 +41,7 @@ export const AccountFieldModal: FC<{
         />
       </ModalShellBody>
       <ModalShellActions>
-        <Button onClick={onClose} plain>
+        <Button onClick={onClose} variant='ghost' color='accent'>
           <FormattedMessage id='lightbox.close' defaultMessage='Close' />
         </Button>
       </ModalShellActions>

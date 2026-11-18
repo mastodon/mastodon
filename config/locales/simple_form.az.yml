@@ -17,8 +17,12 @@ az:
       featured_tag:
         name: 'Budur, təzəlikcə istifadə etdiyiniz mövzu etiketlərindən bəziləri:'
       form_admin_settings:
+        app_icon: WEBP, PNG, GIF və ya JPG. Mobil cihazlardakı ilkin tətbiq simgəsini özəl bir simgə ilə dəyişdirir.
         backups_retention_period: İstifadəçilər daha sonra endirmək üçün öz göndərişlərinin arxivini yaratma imkanına sahibdir. Müsbət bir dəyər təyin olunduğu zaman, bu arxivlər təyin olunmuş gündən sonra deponuzdan avtomatik olaraq silinəcək.
         content_cache_retention_period: Digər serverlərdən olan bütün göndərişlər (təkrar paylaşımlar və cavablar daxil olmaqla) göstərilən gün sayından sonra, lokal istifadəçilərin həmin göndərişlərlə qarşılıqlı əlaqəsinə baxılmadan silinəcək. Buna, lokal istifadəçinin həmin göndərişi əlfəcinlərə və ya sevimlilərə əlavə etdiyi hallar da daxildir. Fərqli instansiyalardakı istifadəçilər arasında olan şəxsi adçəkmələr də itəcək və bərpası mümkün olmayacaq. Bu ayarın istifadəsi xüsusi məqsədli instansiyalar üçün nəzərdə tutulub və ümumi məqsədli istifadəyə tətbiq edildikdə bir çox istifadəçi gözləntilərini qarşılamaya bilər.
+        favicon: WEBP, PNG, GIF və ya JPG. İlkin Mastodon favicon-ununu özəl bir simgə ilə dəyişdirir.
+        site_extended_description: Ziyarətçilər və istifadəçiləriniz üçün faydalı ola biləcək hər hansı əlavə bilgi. Markdown sintaksisi ilə strukturlaşdırıla bilər.
+        thumbnail: Server bilgilərinizin yanında göstərilən, təxminən 2:1 nisbətində olan şəkil.
       imports:
         data: Digər Mastodon serverindən xaricə köçürdüyünüz CSV faylı
       ip_block:
@@ -36,8 +40,6 @@ az:
     labels:
       account:
         show_collections: Profildə izlənilənləri və izləyiciləri göstər
-      account_warning_preset:
-        text: Ön ayarlanmış mətn
       defaults:
         autofollow: Hesabınızı izləməyə dəvət edin
         confirm_new_password: Yeni parolu təsdiqlə
@@ -63,15 +65,19 @@ az:
         setting_reduce_motion: Animasiyalarda hərəkəti azalt
         setting_system_font_ui: Sistemin ilkin şriftini istifadə et
         setting_system_scrollbars_ui: Sistemin ilkin sürüşdürmə çubuğunu istifadə et
-        setting_trends: Bugünün trendlərini göstər
         setting_use_blurhash: Gizli media üçün rəngli meyilləri göstər
         setting_use_pending_items: Yavaş rejim
       form_admin_settings:
+        app_icon: Tətbiq simgəsi
+        favicon: Favicon
         show_domain_blocks: Əngəllənən domenləri göstər
         site_terms: Məxfilik Siyasəti
       form_email_subscriptions_confirmation:
         agreement_privacy_and_terms: Məxfilik Siyasəti və Xidmət Şərtlərini güncəllədim.
+      invite:
+        comment: Şərh
       ip_block:
+        comment: Şərh
         severities:
           no_access: Erişimi əngəllə
       notification_emails:
@@ -82,6 +88,8 @@ az:
         mention: Kimsə adınızı çəkdi
         quote: Kimsə sizdən sitat gətirdi
         reblog: Kimsə göndərişinizi təkrar paylaşdı
+      rule:
+        hint: Əlavə bilgi
       user_role:
         permissions_as_keys: İzinlər
       username_block:

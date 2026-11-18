@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 
 import classNames from 'classnames';
 
+import { replyComposeById } from '@/mastodon/actions/compose_typed';
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
-import { replyComposeById } from 'mastodon/actions/compose';
 import { toggleReblog, toggleFavourite } from 'mastodon/actions/interactions';
 import {
   navigateToStatus,
@@ -68,7 +68,7 @@ export const NotificationWithStatus: React.FC<{
       },
 
       reply: () => {
-        dispatch(replyComposeById(statusId));
+        dispatch(replyComposeById({ statusId }));
       },
 
       boost: () => {

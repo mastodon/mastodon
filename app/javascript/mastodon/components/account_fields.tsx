@@ -2,7 +2,8 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import CheckIcon from '@/material-icons/400-24px/check.svg?react';
+import { CheckIcon } from '@phosphor-icons/react';
+
 import { Icon } from 'mastodon/components/icon';
 import type { Account } from 'mastodon/models/account';
 

@@ -1,30 +1,30 @@
 @use '@/styles/mastodon/mixins';
 
-// Header
-
-.header {
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-template-rows: 1fr;
+.root {
+  display: flex;
   align-items: center;
   color: var(--color-text-secondary);
 
   a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: var(--link-underline-stealthy);
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: var(--link-underline-stealthy-hover);
     }
   }
 
   // When hovering over any link with the account ID, underline them all.
-  &:has(a[data-id]:hover) a[data-id] {
-    text-decoration: underline;
+  &:has(a[data-main-account-link]:hover) a[data-main-account-link] {
+    text-decoration: var(--link-underline-stealthy-hover);
   }
 }
 
-.headerAvatar {
+.accountWrapper {
+  overflow: hidden;
+}
+
+.avatar {
   padding-inline-end: var(--col-gap);
 
   > span {
@@ -34,25 +34,56 @@
   }
 }
 
-.headerName {
+.name {
   @include mixins.type-body;
 
   display: flex;
   gap: var(--space-1);
+  white-space: nowrap;
 }
 
 // Overrides .header a
-a.headerNameLink {
+a.nameLink {
   @include mixins.type-body-strong;
 
   color: var(--color-text-primary);
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   // Overrides .display-name
   > span {
     display: inline;
   }
+
+  :global(.display-name__html) {
+    font-weight: inherit;
+  }
 }
 
-.headerHandle {
+.date {
+  @include mixins.click-area(var(--space-2));
+
+  flex-shrink: 0;
+
+  &:any-link {
+    text-decoration: var(--link-underline-default);
+
+    &:hover,
+    &:focus {
+      text-decoration: var(--link-underline-default-hover);
+    }
+  }
+}
+
+.handle {
   @include mixins.type-meta;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pinnedBadge {
+  margin-inline-start: var(--col-gap);
+  align-self: flex-start;
 }

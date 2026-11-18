@@ -41,6 +41,8 @@ class NodeInfo::Serializer < ActiveModel::Serializer
     {
       nodeName: Setting.site_title,
       nodeDescription: Setting.site_short_description,
+      optInServerDirectory: Setting.opt_in_server_directory,
+      optInServerRecommendation: Setting.opt_in_server_recommendation,
     }
   end
 

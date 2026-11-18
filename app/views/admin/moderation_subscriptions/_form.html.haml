@@ -1,0 +1,50 @@
+.fields-group
+  = form.input :name,
+               label: t('admin.moderation_subscriptions.name'),
+               wrapper: :with_label
+
+.fields-group
+  = form.input :url,
+               label: t('admin.moderation_subscriptions.url'),
+               wrapper: :with_label
+
+.fields-group
+  = form.input :priority,
+               label: t('admin.moderation_subscriptions.priority'),
+               hint: t('admin.moderation_subscriptions.priority_hint'),
+               wrapper: :with_label
+
+.fields-group
+  = form.input :list_action,
+               as: :radio_buttons,
+               collection: [nil, 'accept', 'reject'],
+               collection_wrapper_tag: 'ul',
+               item_wrapper_tag: 'li',
+               label_method: ->(type) { moderation_subscription_action_label(type || 'default') },
+               label: t('admin.moderation_subscriptions.list_action'),
+               wrapper: :with_label
+
+.fields-group
+  = form.input :apply_conditions,
+               as: :radio_buttons,
+               collection: %w(never safely always),
+               collection_wrapper_tag: 'ul',
+               item_wrapper_tag: 'li',
+               include_blank: false,
+               label_method: ->(type) { moderation_subscription_apply_conditions_label(type) },
+               label: t('admin.moderation_subscriptions.apply_automatically'),
+               wrapper: :with_label
+
+.fields-group
+  = form.input :override_unattributed,
+               as: :boolean,
+               wrapper: :with_label,
+               label: t('admin.moderation_subscriptions.override_unattributed'),
+               hint: t('admin.moderation_subscriptions.override_unattributed_hint')
+
+.fields-group
+  = form.input :retract_automatically,
+               as: :boolean,
+               wrapper: :with_label,
+               label: t('admin.moderation_subscriptions.retract_automatically'),
+               hint: t('admin.moderation_subscriptions.retract_automatically_hint')

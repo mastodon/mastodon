@@ -12,12 +12,14 @@ import { Popover } from '../popover';
 
 import { AutosuggestItem } from './items';
 import classes from './styles.module.scss';
-import type { Suggestion } from './types';
+import type { AutosuggestSourceElements, Suggestion } from './types';
 
 export interface AutosuggestMenuProps {
   suggestions: Suggestion[];
   tokenCb: () => string | null;
   onSuggestionClick: React.MouseEventHandler;
+  source: AutosuggestSourceElements | null;
+  onMenuClose: () => void;
   children?: React.ReactNode;
   listRef?: React.Ref<HTMLDivElement>;
   reference?: HTMLElement | null;
@@ -29,10 +31,11 @@ export const AutosuggestMenu: React.FC<AutosuggestMenuProps> = ({
   suggestions,
   onSuggestionClick,
   children,
+  onMenuClose,
   ...menuProps
 }) => {
   return (
-    <Menu noFocus>
+    <Menu noFocus onClose={onMenuClose}>
       {suggestions.length > 0 && (
         <AutosuggestMenuList {...menuProps} suggestions={suggestions}>
           {children ??
@@ -52,7 +55,7 @@ export const AutosuggestMenu: React.FC<AutosuggestMenuProps> = ({
 
 type AutosuggestMenuListProps = Omit<
   AutosuggestMenuProps,
-  'onSuggestionClick'
+  'onSuggestionClick' | 'onMenuClose'
 > & {
   children: React.ReactNode;
 };
@@ -60,6 +63,7 @@ type AutosuggestMenuListProps = Omit<
 const AutosuggestMenuList: React.FC<AutosuggestMenuListProps> = ({
   children,
   listRef,
+  source,
   tokenCb,
   suggestions,
   reference,
@@ -72,10 +76,15 @@ const AutosuggestMenuList: React.FC<AutosuggestMenuListProps> = ({
   const { popover, menuListProps } = useMenuContext();
 
   useEffect(() => {
-    if (!popover.isMenuOpen && token !== lastToken && suggestions.length > 0) {
+    if (
+      source === document.activeElement &&
+      !popover.isMenuOpen &&
+      token !== lastToken &&
+      suggestions.length > 0
+    ) {
       popover.openMenu();
     }
-  }, [lastToken, popover, suggestions.length, token]);
+  }, [lastToken, popover, suggestions.length, token, source]);
 
   const mergedRef = useMergedRefs(menuListProps.ref, listRef);
 

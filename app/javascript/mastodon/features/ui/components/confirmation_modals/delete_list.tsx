@@ -12,15 +12,16 @@ import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
 const messages = defineMessages({
-  deleteListTitle: {
-    id: 'confirmations.delete_list.title',
-    defaultMessage: 'Delete list?',
+  deleteTitle: {
+    id: 'confirmations.delete_custom_feed.title',
+    defaultMessage: 'Delete custom feed?',
   },
-  deleteListMessage: {
-    id: 'confirmations.delete_list.message',
-    defaultMessage: 'Are you sure you want to permanently delete this list?',
+  deleteMessage: {
+    id: 'confirmations.delete_custom_feed.message',
+    defaultMessage:
+      'Are you sure you want to permanently delete this custom feed?',
   },
-  deleteListConfirm: {
+  deleteConfirm: {
     id: 'confirmations.delete_list.confirm',
     defaultMessage: 'Delete',
   },
@@ -48,9 +49,9 @@ export const ConfirmDeleteListModal: React.FC<
 
   return (
     <ConfirmationModal
-      title={intl.formatMessage(messages.deleteListTitle)}
-      message={intl.formatMessage(messages.deleteListMessage)}
-      confirm={intl.formatMessage(messages.deleteListConfirm)}
+      title={intl.formatMessage(messages.deleteTitle)}
+      message={intl.formatMessage(messages.deleteMessage)}
+      confirm={intl.formatMessage(messages.deleteConfirm)}
       onConfirm={onConfirm}
       onClose={onClose}
     />

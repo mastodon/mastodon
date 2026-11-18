@@ -1,15 +1,11 @@
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 import { CopyButton } from '@/mastodon/components/copy_button';
 import { EmptyState } from '@/mastodon/components/empty_state';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { Button } from 'mastodon/components/button';
 
 import classes from './styles.module.scss';
@@ -76,19 +72,11 @@ export const BundleColumnError: React.FC<BundleColumnErrorProps> = ({
 
   return (
     <Column bindToDocument={!multiColumn}>
-      {isRedesignEnabled() && <ColumnHeader title={title} />}
-      <EmptyState
-        image='error'
-        title={isRedesignEnabled() ? null : title}
-        message={body}
-        className={classNames(
-          classes.error,
-          isRedesignEnabled() && classes.errorRedesign,
-        )}
-      >
+      <ColumnHeader title={title} />
+      <EmptyState image='error' message={body} className={classes.error}>
         <div className={classes.actions}>
           {errorType === 'network' && onRetry && (
-            <Button onClick={onRetry}>
+            <Button onClick={onRetry} variant='solid' color='accent'>
               <FormattedMessage
                 id='bundle_column_error.retry'
                 defaultMessage='Try again'
@@ -103,17 +91,16 @@ export const BundleColumnError: React.FC<BundleColumnErrorProps> = ({
               />
             </CopyButton>
           )}
-          <Link
+          <Button
+            as='link'
             to='/'
-            className={classNames('button', {
-              'button-secondary': errorType !== 'routing',
-            })}
+            variant={errorType !== 'routing' ? 'tonal' : 'solid'}
           >
             <FormattedMessage
               id='bundle_column_error.return'
               defaultMessage='Go back home'
             />
-          </Link>
+          </Button>
         </div>
       </EmptyState>
 

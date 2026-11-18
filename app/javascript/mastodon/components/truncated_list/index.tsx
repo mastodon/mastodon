@@ -6,7 +6,7 @@ import KeyboardArrowUpIcon from '@/material-icons/400-24px/keyboard_arrow_up.svg
 
 import { Icon } from '../icon';
 import type { IconProp } from '../icon';
-import { ListItemButton, ListItemWrapper } from '../list_item';
+import { LockupButton, LockupWrapper } from '../lockup';
 
 export interface TruncatedListItemInfo<TListItem> {
   item: TListItem;
@@ -73,7 +73,7 @@ export const TruncatedListItems = <TListItem,>({
           aria-labelledby={toggleButtonId}
           aria-describedby={toggleButtonDescId}
         >
-          <ListItemWrapper
+          <LockupWrapper
             icon={
               toggleButton.icon && (
                 <Icon id='toggle-icon' icon={toggleButton.icon} />
@@ -90,7 +90,7 @@ export const TruncatedListItems = <TListItem,>({
               />
             }
           >
-            <ListItemButton
+            <LockupButton
               id={toggleButtonId}
               subtitleId={toggleButtonDescId}
               aria-expanded={showTruncatedItems}
@@ -98,8 +98,8 @@ export const TruncatedListItems = <TListItem,>({
               subtitle={toggleButton.subtitle}
             >
               {toggleButton.title}
-            </ListItemButton>
-          </ListItemWrapper>
+            </LockupButton>
+          </LockupWrapper>
         </Article>
       )}
       {showTruncatedItems &&

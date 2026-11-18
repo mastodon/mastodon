@@ -16,19 +16,22 @@ RSpec.describe 'Api::V1::Collections' do
 
     before { Fabricate.times(3, :collection, account:) }
 
-    it 'returns all collections for the given account and http success' do
+    it 'returns all collections for the given account and http success and no deprecation header' do
       subject
 
       expect(response).to have_http_status(200)
       expect(response.parsed_body[:collections].size).to eq 3
+      expect(response.headers['Deprecation']).to be_nil
     end
 
-    it 'features a deprecation header when requested via the alpha route' do
-      subject
-      expect(response.headers['Deprecation']).to be_nil
+    context 'with the alpha route' do
+      subject { get "/api/v1_alpha/accounts/#{account.id}/collections", headers: headers, params: params }
 
-      get "/api/v1_alpha/accounts/#{account.id}/collections", headers: headers, params: params
-      expect(response.headers['Deprecation']).to eq '@1781049600'
+      it 'features a deprecation header' do
+        subject
+
+        expect(response.headers['Deprecation']).to eq '@1781049600'
+      end
     end
 
     context 'with limit param' do

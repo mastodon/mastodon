@@ -63,6 +63,10 @@ nl:
         prompt_html: "%{client_name} vraagt om toegang tot je account. <strong>Keur dit verzoek alleen goed als je deze bron herkent en vertrouwt.</strong>"
         review_permissions: Toestemmingen beoordelen
         title: Autorisatie vereist
+      require_reauth:
+        log_out_and_continue: Uitloggen en doorgaan
+        prompt_html: Je bent momenteel ingelogd als <strong>%{handle}</strong>, maar om verder te gaan, moet je uitloggen.
+        title: Opnieuw inloggen vereist
       show:
         title: Kopieer deze autorisatiecode en plak het in de toepassing.
     authorized_applications:
@@ -188,7 +192,7 @@ nl:
       write: alle gegevens van jouw account bewerken
       write:accounts: jouw profiel bewerken
       write:blocks: accounts en domeinen blokkeren
-      write:bookmarks: berichten aan bladwijzers toevoegen
+      write:bookmarks: berichten opslaan
       write:conversations: gespreken negeren en verwijderen
       write:favourites: favoriete berichten
       write:filters: filters aanmaken

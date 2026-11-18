@@ -157,6 +157,7 @@ class ActivityPub::ProcessAccountService < BaseService
     confirmed_username, confirmed_domain = split_acct(webfinger.subject)
 
     raise Error, "Unsupported username format in webfinger response for #{@username}@#{@domain}" unless Account::USERNAME_ONLY_RE.match?(confirmed_username)
+    raise Error, "Malformed subject (#{webfinger.subject}) in webfinger response for #{@username}@#{@domain}" if confirmed_username.blank? || confirmed_domain.blank?
 
     if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
       raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
@@ -172,6 +173,7 @@ class ActivityPub::ProcessAccountService < BaseService
     raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{@uri} (stopped at #{@username}@#{@domain})" unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
     raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
     raise Error, "Unsupported username format in webfinger response for #{@username}@#{@domain}" unless Account::USERNAME_ONLY_RE.match?(@username)
+    raise Error, "Malformed subject (#{webfinger.subject}) in webfinger response for #{@uri}" if @username.blank? || @domain.blank?
 
     @webfinger_verified = true
   rescue Webfinger::RedirectError => e
@@ -191,7 +193,6 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.protocol          = :activitypub
     @account.username          = @username
     @account.domain            = @domain
-    @account.private_key       = nil
     @account.suspended_at      = domain_block.created_at if auto_suspend?
     @account.suspension_origin = :local if auto_suspend?
     @account.silenced_at       = domain_block.created_at if auto_silence?
@@ -395,6 +396,7 @@ class ActivityPub::ProcessAccountService < BaseService
       end
 
       key_id = value
+      next if non_matching_uri_hosts?(@account.uri, key_id)
 
       # Key is fetched without ID validation because of a GoToSocial bug
       value = fetch_resource_without_id_validation(key_id)
@@ -403,7 +405,7 @@ class ActivityPub::ProcessAccountService < BaseService
       # Special handling for GoToSocial which returns the whole actor for the key ID
       value = first_of_value(value['publicKey']) if value.is_a?(Hash) && value.key?('publicKey')
 
-      next unless value['owner'] == @account.uri
+      next unless value.present? && value['owner'] == @account.uri
 
       key = value['publicKeyPem']
       next if key.nil?
@@ -429,10 +431,11 @@ class ActivityPub::ProcessAccountService < BaseService
       end
 
       key_id = value
+      next if non_matching_uri_hosts?(@account.uri, key_id)
 
-      value = fetch_resource(key_id, true)
+      value = fetch_resource(key_id)
 
-      next unless value['type'] == 'Multikey' && value['controller'] == @account.uri
+      next unless value.present? && value['type'] == 'Multikey' && value['controller'] == @account.uri
 
       key_type, key = key_from_multikey(value['publicKeyMultibase'])
       next if key_type.nil? || key.nil?

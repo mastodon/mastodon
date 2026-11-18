@@ -4,7 +4,6 @@ import {
   addToScrollLockStack,
   removeFromScrollLockStack,
 } from '@/mastodon/reducers/slices/scrollLockStack';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import {
   createAppSelector,
   useAppDispatch,
@@ -14,10 +13,9 @@ import {
 const getShouldLockBodyScroll = createAppSelector(
   [
     (state) => state.scrollLockStack.stack.length > 0,
-    (state) => state.navigation.open,
+    (state) => state.navigation.isMobileMenuOpen,
     (state) => state.modal.get('stack').size > 0,
     (state) =>
-      isRedesignEnabled() &&
       state.composer.displayState === 'showing' &&
       state.meta.get('layout') === 'mobile',
   ],

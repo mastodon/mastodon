@@ -574,10 +574,7 @@
       action_taken_by: Handling utført av
       actions:
         mark_as_sensitive_description_html: Mediene i de rapporterte innleggene vil bli merket som følsomme, og en advarsel vil bli notert for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
-        other_description_html: Se flere alternativer for å kontrollere kontoens atferd og tilpasse kommunikasjonen til den oppgitte kontoen.
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
-        silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles. Lukker alle rapporter mot denne kontoen.
-        suspend_description_html: Kontoen og alt dens innhold vil være utilgjengelig og til slutt slettet, og det vil ikke være mulig å bruke den. Reversibel innen 30 dager. Lukker alle rapporter mot denne kontoen.
       actions_description_remote_html: Velg hvilke tiltak som skal treffes for å løse denne rapporten. Dette påvirker bare hvordan <strong>din</strong> server kommuniserer med denne eksterne kontoen og håndterer innholdet.
       add_to_report: Legg til mer i rapporten
       are_you_sure: Er du sikker?
@@ -735,7 +732,6 @@
         follow_recommendations: Følg anbefalinger
         profile_directory: Profilkatalog
         public_timelines: Offentlige tidslinjer
-        publish_statistics: Publiser statistikk
         title: Oppdagelse
         trends: Trender
       domain_blocks:
@@ -752,7 +748,6 @@
           open: Hvem som helst kan melde seg inn
       security:
         authorized_fetch: Krev autentisering fra fødererte servere
-        authorized_fetch_hint: Krav om godkjenning fra fødererte servere muliggjør strengere håndhevelse av blokker på både brukernivå og servernivå. Dette går imidlertid på bekostning av en ytelsesstraff, reduserer rekkevidden til svarene dine og kan introdusere kompatibilitetsproblemer med enkelte fødererte tjenester. I tillegg vil dette ikke hindre dedikerte aktører i å hente dine offentlige innlegg og kontoer.
         authorized_fetch_overridden_hint: Du kan for øyeblikket ikke endre denne innstillingen fordi den overstyres av en miljøvariabel.
         federation_authentication: Håndheving av føderasjonsautentisering
       title: Serverinnstillinger
@@ -931,8 +926,6 @@
     warning_presets:
       add_new: Legg til ny
       delete: Slett
-      edit_preset: Rediger advarsel forhåndsinnstilling
-      empty: Du har ikke definert noen forhåndsinnstillinger for varsler enda.
     webhooks:
       add_new: Legg til endepunkt
       delete: Slett
@@ -999,7 +992,6 @@
     remove: Fjern aliaslenking
   appearance:
     animations_and_accessibility: Animasjoner og tilgjengelighet
-    discovery: Oppdagelse
     localization:
       body: Mastodon er oversatt av frivillige.
       guide_link: https://crowdin.com/project/mastodon
@@ -1119,7 +1111,6 @@
   deletes:
     challenge_not_passed: Informasjonen du oppga var ikke korrekt
     confirm_password: Skriv inn ditt passord for å verifisere din identitet
-    confirm_username: Skriv inn brukernavnet ditt for å bekrefte prosedyren
     proceed: Slett konto
     success_msg: Din konto ble slettet
     warning:
@@ -1565,7 +1556,6 @@
     appearance: Utseende
     authorized_apps: Autoriserte applikasjoner
     back: Tilbake til Mastodon
-    delete: Kontosletting
     development: Utvikling
     edit_profile: Endre profil
     featured_tags: Utvalgte emneknagger
@@ -1795,5 +1785,4 @@
     nickname_hint: Skriv inn kallenavnet til din nye sikkerhetsnøkkel
     not_enabled: Du har ikke aktivert WebAuthn ennå
     not_supported: Denne nettleseren støtter ikke sikkerhetsnøkler
-    otp_required: For å bruke sikkerhetsnøkler, må du først aktivere to-faktor autentisering.
     registered_on: Registrert den %{date}

@@ -19,12 +19,20 @@ const dateFormatOptions = {
   minute: '2-digit',
 } as const;
 
-export const RelativeTimestamp: FC<{
-  timestamp: string;
-  long?: boolean;
-  noTime?: boolean;
-  hasFuture?: boolean;
-}> = ({ timestamp, long = false, noTime = false, hasFuture = false }) => {
+export const RelativeTimestamp: FC<
+  {
+    timestamp: string;
+    long?: boolean;
+    noTime?: boolean;
+    hasFuture?: boolean;
+  } & Omit<React.ComponentPropsWithRef<'time'>, 'dateTime' | 'title'>
+> = ({
+  timestamp,
+  long = false,
+  noTime = false,
+  hasFuture = false,
+  ...props
+}) => {
   const intl = useIntl();
 
   const [now, setNow] = useState(() => Date.now());
@@ -76,7 +84,11 @@ export const RelativeTimestamp: FC<{
   );
 
   return (
-    <time dateTime={timestamp} title={intl.formatDate(date, dateFormatOptions)}>
+    <time
+      {...props}
+      dateTime={timestamp}
+      title={intl.formatDate(date, dateFormatOptions)}
+    >
       {relativeTime}
     </time>
   );

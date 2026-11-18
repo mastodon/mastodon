@@ -21,6 +21,19 @@
   &:has(.actions) {
     padding-block-end: var(--space-1);
   }
+
+  // Highlight the card on hover if:
+  // 1. it has an embedded `.primaryCardLink` that's being hovered, or
+  &:has(a.primaryCardLink:hover),
+  /* 2. it is being hovered itself when it does not contain an embedded*/
+  /*    `.primaryCardLink`, and no other nested link is being hovered*/
+  &:not(.rootUnclickable, :has(a.primaryCardLink), :has(a:hover)):hover {
+    background-color: var(--color-bg-highlight);
+  }
+}
+
+.rootUnclickable {
+  cursor: auto;
 }
 
 // Handle cases where the root is a link
@@ -45,8 +58,13 @@ a.root {
 
   color: var(--color-text-secondary);
   display: flex;
+  align-items: center;
 
   a {
+    // Ensure that links are displayed above the extended
+    // clickable area of .primaryCardLink
+    position: relative;
+    z-index: 1;
     color: inherit;
     text-decoration: none;
 
@@ -62,8 +80,16 @@ a.root {
   display: block;
   height: var(--space-5);
   margin-inline-end: var(--space-2);
-  overflow: hidden;
   width: var(--space-5);
+
+  > a {
+    // Ensure that (non-primary) links are displayed above
+    // the extended clickable area of .primaryCardLink
+    position: relative;
+    z-index: 1;
+    display: block;
+    border-radius: var(--radius-round);
+  }
 }
 
 .body {
@@ -77,6 +103,10 @@ a.root {
   }
 
   a {
+    // Ensure that (non-primary) links are displayed above
+    // the extended clickable area of .primaryCardLink
+    position: relative;
+    z-index: 1;
     color: var(--color-text-brand);
     text-decoration: none;
 
@@ -87,15 +117,24 @@ a.root {
   }
 }
 
-// Linked body
-a.body {
-  padding-inline: var(--space-3);
-  margin-inline: calc(-1 * var(--space-3));
+// The primary link for non-quote-post cards. Makes the entire
+// card clickable by covering it with a pseudo element.
+a.primaryCardLink {
+  position: static;
+  z-index: 0;
   color: inherit;
   text-decoration: none;
+  outline-offset: -2px;
 
-  .root:has(&:hover) {
-    background-color: var(--color-bg-highlight);
+  &:focus {
+    border-radius: var(--radius-4);
+  }
+
+  // Extend clickable link area to cover the entire card
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
   }
 }
 
@@ -109,7 +148,7 @@ a.body {
   grid-row: 1 / span 9999; // Handles unlimited space
   margin-block: calc(-1 * var(--space-3));
 
-  > img {
+  > * {
     height: 100%;
     object-fit: cover;
     width: 100%;

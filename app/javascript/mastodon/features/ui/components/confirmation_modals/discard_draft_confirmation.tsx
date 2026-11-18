@@ -2,9 +2,8 @@ import { useCallback } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { replyCompose } from 'mastodon/actions/compose';
+import { replyComposeById } from '@/mastodon/actions/compose_typed';
 import { editStatus } from 'mastodon/actions/statuses';
-import type { Status } from 'mastodon/models/status';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import type { BaseConfirmationModalProps } from './confirmation_modal';
@@ -73,14 +72,14 @@ const DiscardDraftConfirmationModal: React.FC<
 
 export const ConfirmReplyModal: React.FC<
   {
-    status: Status;
+    statusId: string;
   } & BaseConfirmationModalProps
-> = ({ status, onClose }) => {
+> = ({ statusId, onClose }) => {
   const dispatch = useAppDispatch();
 
   const onConfirm = useCallback(() => {
-    dispatch(replyCompose(status));
-  }, [dispatch, status]);
+    dispatch(replyComposeById({ statusId, force: true }));
+  }, [dispatch, statusId]);
 
   return (
     <DiscardDraftConfirmationModal onConfirm={onConfirm} onClose={onClose} />

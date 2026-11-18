@@ -1,0 +1,55 @@
+@use '@/styles/mastodon/variables' as *;
+@use '@/styles/mastodon/mixins';
+
+.root {
+  --multi-column-gap: var(--space-1);
+  --sidebar-width: var(--main-navigation-width);
+
+  &[data-collapsed='true'] {
+    --sidebar-width: var(--main-navigation-width-collapsed);
+  }
+
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  gap: var(--multi-column-gap);
+  padding-inline-end: var(--multi-column-gap);
+  margin-inline-start: var(--sidebar-width);
+  overflow-x: auto;
+
+  &:focus-visible {
+    // Scrollable elements are made focusable by some browsers, this adds
+    // a visible outline in this case. Using `border` instead of `outline`
+    // causes a light layout jump shift on focus, but an outline would be
+    // rendered below the navbar and columns and didn't look right.
+    border: var(--outline-focus-default);
+    border-radius: var(--radius-2);
+  }
+}
+
+.navigationWrapper {
+  position: fixed;
+  inset-inline-start: 0;
+  inset-block: 0;
+  z-index: 20;
+  width: var(--sidebar-width);
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--color-bg-desktop);
+
+  &[data-is-scrolled='true'] {
+    box-shadow:
+      0 0 var(--space-half) 0 var(--color-border-primary),
+      var(--space-1) 0 var(--space-2) 0 var(--color-bg-highlight);
+  }
+
+  @media (max-width: ($mobile-menu-breakpoint - 1)) {
+    display: none;
+  }
+}
+
+.discoveryColumn {
+  padding: var(--space-5) var(--space-4) var(--space-6);
+  background: var(--color-bg-desktop) !important;
+  border: none !important;
+}

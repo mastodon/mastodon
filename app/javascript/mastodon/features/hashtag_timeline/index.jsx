@@ -9,21 +9,16 @@ import { connect } from 'react-redux';
 
 import { isEqual } from 'lodash';
 
-import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { connectHashtagStream } from 'mastodon/actions/streaming';
 import { expandHashtagTimeline, clearTimeline } from 'mastodon/actions/timelines';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { remoteTopicFeedAccess, me, localTopicFeedAccess } from 'mastodon/initial_state';
 
 import StatusListContainer from '../ui/containers/status_list_container';
 
-import { HashtagHeader } from './components/hashtag_header';
-import ColumnSettingsContainer from './containers/column_settings_container';
 import { ColumnHeader } from '@/mastodon/components/column_header';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { HashtagColumnMenu } from './components/hashtag_column_menu';
 
 const mapStateToProps = (state, props) => {
@@ -46,6 +41,8 @@ class HashtagTimeline extends PureComponent {
     columnId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     hasUnread: PropTypes.bool,
+    local: PropTypes.bool,
+    hasFeedAccess: PropTypes.bool,
     multiColumn: PropTypes.bool,
   };
 
@@ -166,44 +163,28 @@ class HashtagTimeline extends PureComponent {
     const { hasUnread, columnId, multiColumn, local, hasFeedAccess } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
-    const withHeadingSection = !isRedesignEnabled() && !pinned;
 
     const title = <>#{this.title()}</>;
     const titleAsString = `#${id}`;
 
     return (
       <Column bindToDocument={!multiColumn} label={titleAsString}>
-        {isRedesignEnabled() ? (
-          <ColumnHeader
-            title={title}
-            withUnreadMarker={hasUnread}
-            withBackButton={multiColumn && !pinned && 'auto'}
-            extraButtons={
-              <HashtagColumnMenu
-                tagId={id}
-                multiColumn={multiColumn}
-                columnId={columnId}
-                onPin={this.handlePin}
-                onMove={this.handleMove}
-              />
-            }
-          />
-        ) : (
-          <LegacyColumnHeader
-            icon='hashtag'
-            iconComponent={TagIcon}
-            active={hasUnread}
-            title={this.title()}
-            multiColumn={multiColumn}
-            showBackButton
-            scrollTopOnClick
-          >
-            {columnId && <ColumnSettingsContainer columnId={columnId} />}
-          </LegacyColumnHeader>
-        )}
+        <ColumnHeader
+          title={title}
+          withUnreadMarker={hasUnread}
+          withBackButton={multiColumn && !pinned && 'auto'}
+          extraButtons={
+            <HashtagColumnMenu
+              tagId={id}
+              multiColumn={multiColumn}
+              columnId={columnId}
+              onPin={this.handlePin}
+              onMove={this.handleMove}
+            />
+          }
+        />
 
         <StatusListContainer
-          prepend={withHeadingSection && <HashtagHeader tagId={id} />}
           alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`hashtag_timeline-${columnId}`}

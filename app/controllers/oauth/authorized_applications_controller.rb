@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 class OAuth::AuthorizedApplicationsController < Doorkeeper::AuthorizedApplicationsController
-  skip_before_action :authenticate_resource_owner!
-
-  before_action :store_current_location
-  before_action :authenticate_resource_owner!
+  prepend_before_action :store_current_location
   before_action :require_not_suspended!, only: :destroy
 
   before_action :set_last_used_at_by_app, only: :index, unless: -> { request.format == :json }

@@ -20,7 +20,6 @@ lt:
       admin_account_action:
         include_statuses: Naudotojas (-a) matys, dėl kurių įrašų buvo atliktas prižiūrimo arba įspėjimo veiksmas
         send_email_notification: Naudotojas (-a) gaus paaiškinimą, kas nutiko su jo (-s) paskyra
-        text_html: Pasirinktinai. Gali naudoti įrašo sintaksę. Taupydamas (-a) laiką gali <a href="%{path}">pridėti įspėjimo išankstinius nustatymus</a>
         type_html: Pasirink, ką daryti su <strong>%{acct}</strong>
         types:
           disable: Neleisk naudotojui naudotis savo paskyra, bet nepanaikink ir nepaslėpk jos turinio.
@@ -28,7 +27,6 @@ lt:
           sensitive: Priversk visus šio naudotojo medijos priedus pažymėti kaip jautrius.
           silence: Neleisk naudotojui skelbti viešai matomų įrašų, paslėpk jų įrašus ir pranešimus nuo žmonių, kurie neseka jo. Uždaro visus su šia paskyra susijusius ataskaitas.
           suspend: Neleisk jokios sąveikos iš šios paskyros arba į ją ir ištrink jos turinį. Sugrąžinama per 30 dienų. Uždaro visas su šia paskyra susijusias ataskaitas.
-        warning_preset_id: Pasirinktinai. Gali pridėti pasirinktinį tekstą iš anksto nustatyto rinkinio pabaigoje
       announcement:
         all_day: Jei pažymėta, bus rodomos tik laikotarpio datos
         ends_at: Pasirinktinai. Skelbimas šiuo laiku bus automatiškai panaikintas
@@ -184,7 +182,6 @@ lt:
         setting_system_font_ui: Naudoti numatytąjį sistemos šriftą
         setting_system_scrollbars_ui: Naudoti numatytąją sistemos slankjuostę
         setting_theme: Svetainės tema
-        setting_trends: Rodyti šiandienos trendus
         setting_use_blurhash: Rodyti spalvingus paslėptos medijos gradientus
         setting_use_pending_items: Lėtas režimas
         title: Pavadinimas

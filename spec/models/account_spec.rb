@@ -434,6 +434,42 @@ RSpec.describe Account do
     it 'matches usernames containing uppercase characters' do
       expect(subject.match('Hello to @aLice@Example.com from me')[1]).to eq 'aLice@Example.com'
     end
+
+    it 'matches usernames ascii mention' do
+      expect(subject.match('hi @bob@example.com here')[1]).to eq 'bob@example.com'
+    end
+
+    it 'matches with trailing punctuation' do
+      expect(subject.match('greet @arnt@grå.org, then go')[1]).to eq 'arnt@grå.org'
+    end
+
+    it 'matches implausible host' do
+      expect(subject.match('hi @arnt@nope not')[1]).to eq 'arnt@nope'
+    end
+
+    it 'does not match after a slash (inside a URL path)' do
+      expect(subject.match('hi https://example.com/@arnt@grå.org')).to be_nil
+    end
+
+    it 'matches username with IDN domain name' do
+      expect(subject.match('hi @arnt@grå.org')[1]).to eq 'arnt@grå.org'
+    end
+
+    it 'does not match after a word character' do
+      expect(subject.match('hi foo@arnt@grå.org')).to be_nil
+    end
+
+    it 'matches a local @user (no host)' do
+      expect(subject.match('@bob says hi')[1]).to eq 'bob'
+    end
+
+    it 'finds first mention, with two mentions in one string' do
+      expect(subject.match('@arnt@grå.org and @bob@example.com')[1]).to eq 'arnt@grå.org'
+    end
+
+    it 'matches a CJK-IDN mention' do
+      expect(subject.match('hi @user@慕田峪长城.网址 today')[1]).to eq 'user@慕田峪长城.网址'
+    end
   end
 
   describe 'Callbacks' do
@@ -733,7 +769,6 @@ RSpec.describe Account do
     it 'generates keys' do
       account = described_class.create!(domain: nil, username: 'user_without_keys')
 
-      expect(account.private_key).to be_nil
       expect(account.public_key).to eq ''
 
       expect(account.keypair.keypair)
@@ -745,12 +780,12 @@ RSpec.describe Account do
   context 'when is remote' do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
-      account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: 'remote_user_with_public', public_key: key.to_pem)
+      account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', inbox_url: 'https://remote/actor/inbox', username: 'remote_user_with_public', public_key: key.to_pem)
       expect(account.keypair.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do
-      account = described_class.create!(domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor', username: 'remote_user_with_idn_domain')
+      account = described_class.create!(domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor', inbox_url: 'https://xn--r9j5b5b/actor/inbox', username: 'remote_user_with_idn_domain')
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end

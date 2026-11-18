@@ -45,11 +45,11 @@
 
   & > thead > tr > th {
     vertical-align: bottom;
-    font-weight: 500;
+    font-weight: bold;
   }
 
   & > tbody > tr > th {
-    font-weight: 500;
+    font-weight: bold;
   }
 
   & > tbody > tr:nth-child(odd) > td,
@@ -72,7 +72,7 @@
   }
 
   strong {
-    font-weight: 500;
+    font-weight: bold;
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -184,7 +184,7 @@ a.table-action-link {
   margin-inline-end: 5px;
   padding: 0 10px;
   color: var(--color-text-secondary);
-  font-weight: 500;
+  font-weight: bold;
   white-space: nowrap;
 
   &:hover {
@@ -391,7 +391,7 @@ a.table-action-link {
         flex: 0 0 auto;
         text-align: end;
         color: var(--color-text-secondary);
-        font-weight: 500;
+        font-weight: bold;
       }
     }
 
