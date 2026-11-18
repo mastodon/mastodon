@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import type { NavLinkProps } from 'react-router-dom';
 
+import type { Placement } from '@floating-ui/react-dom';
 import { CaretDownIcon } from '@phosphor-icons/react';
 import type { Icon } from '@phosphor-icons/react';
 
@@ -74,6 +75,7 @@ export type MiniNavigationLinkProps = {
   badgeType?: 'default' | 'dot';
   badgeCount?: number;
   withMenuIndicator?: boolean;
+  tooltipPlacement?: Placement;
   children: ReactNode;
   icon: Icon | React.FC<SVGProps<SVGSVGElement>> | { customIcon: ReactNode };
 } & (
@@ -88,6 +90,7 @@ export const MiniNavigationLink: React.FC<MiniNavigationLinkProps> = ({
   badgeType = 'default',
   badgeCount,
   withMenuIndicator,
+  tooltipPlacement = 'top',
   children,
   ...otherProps
 }) => {
@@ -111,41 +114,40 @@ export const MiniNavigationLink: React.FC<MiniNavigationLinkProps> = ({
   const withBadge = !!badgeCount && badgeType === 'default';
 
   return (
-    <li>
-      <Tooltip text={children} placement='top' offset={-2}>
-        {({ getTooltipProps }) => (
-          <Comp
-            type={as === 'button' ? 'button' : undefined}
-            {...getTooltipProps(otherProps)}
-            className={classNames(classes.link, classes.linkMini)}
+    <Tooltip
+      text={children}
+      placement={tooltipPlacement}
+      offset={tooltipPlacement === 'top' ? -2 : undefined}
+    >
+      {({ getTooltipProps }) => (
+        <Comp
+          type={as === 'button' ? 'button' : undefined}
+          {...getTooltipProps(otherProps)}
+          className={classNames(classes.link, classes.linkMini)}
+        >
+          <span
+            className={classNames(classes.icon, withDot && classes.iconWithDot)}
           >
-            <span
-              className={classNames(
-                classes.icon,
-                withDot && classes.iconWithDot,
-              )}
-            >
-              {icon}
-            </span>
-            <span className='sr-only'>{children}</span>
-            {withMenuIndicator && (
-              <CaretDownIcon
-                weight='fill'
-                size={10}
-                className={classes.menuIndicatorIcon}
-              />
-            )}
+            {icon}
+          </span>
+          <span className='sr-only'>{children}</span>
+          {withMenuIndicator && (
+            <CaretDownIcon
+              weight='fill'
+              size={10}
+              className={classes.menuIndicatorIcon}
+            />
+          )}
 
-            {withBadge && (
-              <Badge
-                variant='accent'
-                label={badgeCount}
-                className={classes.miniBadge}
-              />
-            )}
-          </Comp>
-        )}
-      </Tooltip>
-    </li>
+          {withBadge && (
+            <Badge
+              variant='accent'
+              label={badgeCount}
+              className={classes.miniBadge}
+            />
+          )}
+        </Comp>
+      )}
+    </Tooltip>
   );
 };

@@ -18,9 +18,7 @@
   :global(.layout-multiple-columns) & {
     flex: 0 0 auto;
 
-    --available-width: calc(
-      100% - var(--multi-column-navigation-width) - var(--multi-column-gap)
-    );
+    --available-width: calc(100% - var(--multi-column-gap));
 
     width: clamp(
       360px,

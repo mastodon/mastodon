@@ -8,7 +8,6 @@ import { useLocation } from 'react-router';
 import { ArrowLeftIcon, ListIcon } from '@phosphor-icons/react';
 import type { DistributedOmit } from 'type-fest';
 
-import { openNavigation } from '@/mastodon/actions/navigation';
 import type { IconButtonProps } from '@/mastodon/components/button';
 import { Button, IconButton } from '@/mastodon/components/button';
 import {
@@ -22,6 +21,7 @@ import { Tooltip } from '@/mastodon/components/tooltip';
 import { getColumnSkipLinkId } from '@/mastodon/features/ui/components/skip_links';
 import { useBreakpoint } from '@/mastodon/features/ui/hooks/useBreakpoint';
 import { useResizeObserver } from '@/mastodon/hooks/useObserver';
+import { openMobileMenu } from '@/mastodon/reducers/slices/navigation';
 import { useAppDispatch } from '@/mastodon/store';
 import { hasReactChildren } from '@/mastodon/utils/has_react_children';
 
@@ -201,7 +201,7 @@ const MobileMenuButton: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const openMobileNavigation = useCallback(() => {
-    dispatch(openNavigation());
+    dispatch(openMobileMenu());
   }, [dispatch]);
 
   const isMobile = useBreakpoint('openable');

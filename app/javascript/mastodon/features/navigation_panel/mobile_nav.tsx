@@ -5,17 +5,10 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { useLocation } from 'react-router';
 
-import {
-  BellIcon,
-  ChatCircleDotsIcon,
-  HouseIcon,
-  InfoIcon,
-  MagnifyingGlassIcon,
-} from '@phosphor-icons/react';
+import { InfoIcon, MagnifyingGlassIcon } from '@phosphor-icons/react';
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 
-import { closeNavigation, openNavigation } from '@/mastodon/actions/navigation';
 import { Button, IconButton } from '@/mastodon/components/button';
 import { Menu, MenuList, MenuTrigger } from '@/mastodon/components/menu';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
@@ -27,16 +20,21 @@ import {
   sso_redirect,
   trendsEnabled,
 } from '@/mastodon/initial_state';
+import {
+  closeMobileMenu,
+  openMobileMenu,
+} from '@/mastodon/reducers/slices/navigation';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import {
-  NavigationPanel,
-  useNotificationsCount,
-  handleSearchLinkClick,
-} from '.';
+import { NavigationPanel, handleSearchLinkClick } from '.';
 import { AccountMenuItems } from './account_menu_items';
 import { LogoLockup } from './header';
-import { AccountButton } from './mini_nav';
+import {
+  AccountButton,
+  MiniHomeLink,
+  MiniMessagesLink,
+  MiniNotificationsLink,
+} from './mini_nav';
 import classes from './mobile_nav.module.scss';
 import { MiniNavigationLink } from './navigation_link';
 
@@ -44,10 +42,8 @@ export const MobileNavigation: React.FC = () => {
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
 
-  const notificationsCount = useNotificationsCount();
-
   const openMobileNav = useCallback(() => {
-    dispatch(openNavigation());
+    dispatch(openMobileMenu());
   }, [dispatch]);
 
   // Hide the mobile sign-up button if registrations are closed or
@@ -63,48 +59,43 @@ export const MobileNavigation: React.FC = () => {
       {signedIn ? (
         <nav className={classes.root}>
           <ul className={classNames(classes.floatingCard, classes.list)}>
-            <MiniNavigationLink to='/home' icon={HouseIcon}>
-              <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
-            </MiniNavigationLink>
-            <MiniNavigationLink
-              to={{
-                pathname: trendsEnabled ? '/explore' : '/search',
-                state: { focusTarget: FOCUS_TARGET.SEARCH },
-              }}
-              icon={MagnifyingGlassIcon}
-              onClick={handleSearchLinkClick}
-            >
-              <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
-            </MiniNavigationLink>
-            <MiniNavigationLink to='/conversations' icon={ChatCircleDotsIcon}>
-              <FormattedMessage
-                id='tabs_bar.messages'
-                defaultMessage='Messages'
-                description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
-              />
-            </MiniNavigationLink>
-            <MiniNavigationLink
-              to='/notifications'
-              icon={BellIcon}
-              badgeCount={notificationsCount}
-              badgeType='dot'
-            >
-              <FormattedMessage
-                id='tabs_bar.notifications'
-                defaultMessage='Notifications'
-              />
-            </MiniNavigationLink>
-            <Menu>
-              <MenuTrigger as={AccountButton}>
+            <li>
+              <MiniHomeLink />
+            </li>
+            <li>
+              <MiniNavigationLink
+                to={{
+                  pathname: trendsEnabled ? '/explore' : '/search',
+                  state: { focusTarget: FOCUS_TARGET.SEARCH },
+                }}
+                icon={MagnifyingGlassIcon}
+                onClick={handleSearchLinkClick}
+              >
                 <FormattedMessage
-                  id='tabs_bar.account'
-                  defaultMessage='Account'
+                  id='tabs_bar.search'
+                  defaultMessage='Search'
                 />
-              </MenuTrigger>
-              <MenuList placement='top-end' offset={8}>
-                <AccountMenuItems context='mobile' />
-              </MenuList>
-            </Menu>
+              </MiniNavigationLink>
+            </li>
+            <li>
+              <MiniMessagesLink />
+            </li>
+            <li>
+              <MiniNotificationsLink badgeType='dot' />
+            </li>
+            <li>
+              <Menu>
+                <MenuTrigger as={AccountButton}>
+                  <FormattedMessage
+                    id='tabs_bar.account'
+                    defaultMessage='Account'
+                  />
+                </MenuTrigger>
+                <MenuList placement='top-end' offset={8}>
+                  <AccountMenuItems context='mobile' />
+                </MenuList>
+              </Menu>
+            </li>
           </ul>
           <ComposeButton inline />
         </nav>
@@ -148,18 +139,18 @@ const SlideOutNavigation: React.FC = () => {
   const dispatch = useAppDispatch();
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  const isOpen = useAppSelector((state) => state.navigation.open);
+  const isOpen = useAppSelector((state) => state.navigation.isMobileMenuOpen);
 
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
       if (overlayRef.current && e.target === overlayRef.current) {
-        dispatch(closeNavigation());
+        dispatch(closeMobileMenu());
       }
     };
 
     const handleDocumentKeyUp = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        dispatch(closeNavigation());
+        dispatch(closeMobileMenu());
       }
     };
 
@@ -182,9 +173,9 @@ const SlideOutNavigation: React.FC = () => {
       onRest: {
         x({ value }: { value: number }) {
           if (value === 0) {
-            dispatch(openNavigation());
+            dispatch(openMobileMenu());
           } else if (value === OPEN_MENU_OFFSET) {
-            dispatch(closeNavigation());
+            dispatch(closeMobileMenu());
           }
         },
       },
@@ -248,13 +239,13 @@ const SlideOutNavigation: React.FC = () => {
   const { pathname, search } = useLocation();
   const pathWithSearch = `${pathname}${search}`;
   useEffect(() => {
-    dispatch(closeNavigation());
+    dispatch(closeMobileMenu());
   }, [pathWithSearch, dispatch]);
 
   // Close after browser back navigation
   useCloseOnHistoryBack(
     () => {
-      dispatch(closeNavigation());
+      dispatch(closeMobileMenu());
     },
     {
       active: isOpen,

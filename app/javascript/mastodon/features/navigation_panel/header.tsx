@@ -5,14 +5,18 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { PenNibIcon } from '@phosphor-icons/react';
+import {
+  CaretLineLeftIcon,
+  CaretLineRightIcon,
+  PenNibIcon,
+} from '@phosphor-icons/react';
 
-import { closeNavigation } from '@/mastodon/actions/navigation';
-import { Button } from '@/mastodon/components/button';
+import { Button, IconButton } from '@/mastodon/components/button';
 import { IconLogo } from '@/mastodon/components/logo';
 import { useIdentity } from '@/mastodon/identity_context';
 import { customAppIcon, domain, title } from '@/mastodon/initial_state';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
+import { closeMobileMenu } from '@/mastodon/reducers/slices/navigation';
 import { useAppDispatch } from '@/mastodon/store';
 
 import { getNavigationSkipLinkId } from '../ui/components/skip_links';
@@ -22,21 +26,40 @@ import { MiniNav } from './mini_nav';
 
 export const NavigationHeader: React.FC<{
   siteName?: string;
+  multiColumn?: boolean;
   isStuck: boolean;
-}> = ({ siteName, isStuck }) => {
+  mode: 'slide-out' | 'static';
+  onToggleCollapsed?: () => void;
+}> = ({ siteName, multiColumn, isStuck, mode, onToggleCollapsed }) => {
   const { signedIn } = useIdentity();
   const dispatch = useAppDispatch();
 
   const openComposer = useCallback(() => {
-    dispatch(closeNavigation());
+    dispatch(closeMobileMenu());
     dispatch(openNewComposer({ type: 'post' }));
   }, [dispatch]);
 
   return (
     <header className={classes.root} data-stuck={isStuck}>
-      <LogoLockup siteName={siteName} />
+      <div className={classes.logoLockupWrapper}>
+        <LogoLockup siteName={siteName} />
+        {signedIn && mode === 'static' && (
+          <IconButton
+            icon={multiColumn ? CaretLineLeftIcon : CaretLineRightIcon}
+            size='sm'
+            tooltipPlacement='bottom'
+            onClick={onToggleCollapsed}
+            className='rtl-flip'
+          >
+            <FormattedMessage
+              id='navigation_bar.minimize'
+              defaultMessage='Minimize Menu'
+            />
+          </IconButton>
+        )}
+      </div>
 
-      {signedIn && (
+      {signedIn && mode === 'static' && (
         <>
           <MiniNav />
 
