@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import type { ContextType } from 'react';
+import { useContext } from 'react';
 
 import { __RouterContext } from 'react-router';
 
@@ -19,6 +21,12 @@ export const WithOptionalRouterPropTypes = {
 export interface OptionalRouterProps {
   ref: unknown;
   wrappedComponentRef?: string | ((...args: unknown[]) => unknown) | object;
+}
+
+export function useOptionalRouter():
+  | ContextType<typeof __RouterContext>
+  | undefined {
+  return useContext(__RouterContext);
 }
 
 // This is copied from https://github.com/remix-run/react-router/blob/v5.3.4/packages/react-router/modules/withRouter.js
