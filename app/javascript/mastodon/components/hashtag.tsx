@@ -4,7 +4,6 @@ import { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { __RouterContext } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import type Immutable from 'immutable';
@@ -14,6 +13,7 @@ import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
 import type { Hashtag as HashtagType } from 'mastodon/models/tags';
+import { useOptionalRouter } from 'mastodon/utils/react_router';
 
 interface SilentErrorBoundaryProps {
   children: React.ReactNode;
@@ -113,14 +113,11 @@ export interface HashtagProps {
 const HashtagLink: React.FC<{
   to: string;
   children: React.ReactNode;
-}> = ({ to, children }) => (
-  <__RouterContext.Consumer>
-    {(context) =>
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-      context ? <Link to={to}>{children}</Link> : <a href={to}>{children}</a>
-    }
-  </__RouterContext.Consumer>
-);
+}> = ({ to, children }) => {
+  const router = useOptionalRouter();
+
+  return router ? <Link to={to}>{children}</Link> : <a href={to}>{children}</a>;
+};
 
 export const Hashtag: React.FC<HashtagProps> = ({
   name,
