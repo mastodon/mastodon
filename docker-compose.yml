@@ -1,6 +1,6 @@
 # This file is designed for production server deployment, not local development work
 # For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/docs/DEVELOPMENT.md#docker
-# docker compose will read the DB_NAME, DB_USER, DB_PASS from .env not .env.production (take that into consideration)
+# docker compose will read the DB_NAME, DB_USER, DB_PASS from .env not .env.production (take that into consideration).
 
 services:
   db:
