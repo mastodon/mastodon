@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.22] - 2026-11-19
+
+### Security
+
+- Updated dependencies `ruby`, `puma`, `rails`, `sanitize`, `msgpack` and `omniauth`
+
 ## [4.5.21] - 2026-11-03
 
 ### Security
