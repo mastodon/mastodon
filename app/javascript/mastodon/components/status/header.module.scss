@@ -62,7 +62,7 @@ a.nameLink {
 }
 
 .date {
-  @include mixins.click-area(var(--space-2));
+  @include mixins.expand-hit-area(var(--space-2));
 
   flex-shrink: 0;
 

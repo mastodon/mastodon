@@ -287,16 +287,5 @@ a.base {
 }
 
 .expandHitArea {
-  --hit-area-default: 0px;
-
-  &::after {
-    content: '';
-    position: absolute;
-
-    // --hit-area- properties are added via style attribute
-    inset: calc(-1 * var(--hit-area-top, var(--hit-area-default)))
-      calc(-1 * var(--hit-area-right, var(--hit-area-default)))
-      calc(-1 * var(--hit-area-bottom, var(--hit-area-default)))
-      calc(-1 * var(--hit-area-left, var(--hit-area-default)));
-  }
+  @include mixins.expand-hit-area(0);
 }
