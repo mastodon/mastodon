@@ -82,6 +82,7 @@ jobs:
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
+          POSTGRES_INITDB_ARGS: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
         options: >-
           --health-cmd pg_isready
           --health-interval 10ms
@@ -178,6 +179,7 @@ jobs:
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
+          POSTGRES_INITDB_ARGS: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
         options: >-
           --health-cmd pg_isready
           --health-interval 10ms
@@ -277,6 +279,7 @@ jobs:
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
+          POSTGRES_INITDB_ARGS: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
         options: >-
           --health-cmd pg_isready
           --health-interval 10ms
