@@ -21,8 +21,8 @@ services:
       POSTGRES_INITDB_ARGS: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
       POSTGRES_DB: ${DB_NAME:-mastodon_production}
       POSTGRES_USER: ${DB_USER:-postgres}
-      POSTGRES_HOST_AUTH_METHOD: 'trust' # Replace with password to enforce a POSTGRES_PASSWORD
-      # POSTGRES_PASSWORD: ${DB_PASS:?DB_PASS must be set}
+      POSTGRES_PASSWORD: ${DB_PASS:-}
+      POSTGRES_HOST_AUTH_METHOD: ${DB_AUTHMETHOD:-trust} # Replace with password to enforce DB_PASS
 
   redis:
     restart: always
