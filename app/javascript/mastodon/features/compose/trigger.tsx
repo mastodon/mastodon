@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -12,7 +12,6 @@ import type { IconButtonProps } from '@/mastodon/components/button';
 import { IconButton } from '@/mastodon/components/button';
 import { useBodyScrollLock } from '@/mastodon/hooks/useBodyScrollLock';
 import { useCloseOnHistoryBack } from '@/mastodon/hooks/useCloseOnHistoryBack';
-import { useResizeObserver } from '@/mastodon/hooks/useObserver';
 import { useViewportSize } from '@/mastodon/hooks/useViewportSize';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
@@ -115,8 +114,6 @@ export const ComposeButton: React.FC<{
     [dispatch],
   );
 
-  const trackComposerHeight = useTrackComposerHeight();
-
   const { signedIn } = useIdentity();
   if (!signedIn) {
     return null;
@@ -185,7 +182,6 @@ export const ComposeButton: React.FC<{
         className={classNames(
           isMinimized ? classes.composerMinimized : classes.composer,
         )}
-        ref={trackComposerHeight}
         onClick={handleMinimizedTextClick}
       >
         {/* eslint-enable */}
@@ -249,43 +245,4 @@ function useHasMobileFloatingActionButton({ isMobile }: { isMobile: boolean }) {
     isRouteWithoutMobileComposeButton;
 
   return !shouldHideMobileComposeButton;
-}
-
-function useTrackComposerHeight() {
-  const [height, setHeight] = useState(0);
-
-  useLayoutEffect(() => {
-    document.documentElement.style.setProperty(
-      '--current-composer-height',
-      height ? `${height}px` : null,
-    );
-  }, [height]);
-
-  const onResize: ResizeObserverCallback = useCallback((entries) => {
-    for (const { target } of entries) {
-      if (target instanceof HTMLElement) {
-        setHeight(target.offsetHeight);
-      }
-    }
-  }, []);
-
-  const observer = useResizeObserver(onResize);
-
-  const ref = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (node instanceof HTMLElement) {
-        observer.observe(node);
-        setHeight(node.offsetHeight);
-
-        return () => {
-          observer.unobserve(node);
-          setHeight(0);
-        };
-      }
-      return () => undefined;
-    },
-    [observer],
-  );
-
-  return ref;
 }
