@@ -210,6 +210,7 @@ export const StatusPage: React.FC = () => {
               size='sm'
               variant='ghost'
               active={status.bookmarked}
+              expandHitArea={2}
               icon={
                 status.bookmarked
                   ? StatusBookmarkActiveIcon
@@ -221,8 +222,8 @@ export const StatusPage: React.FC = () => {
                 <FormattedMessage id='status.save' defaultMessage='Save post' />
               ) : (
                 <FormattedMessage
-                  id='status.remove_bookmark'
-                  defaultMessage='Remove bookmark'
+                  id='status.remove_from_saved'
+                  defaultMessage='Remove from Saved'
                 />
               )}
             </ToggleIconButton>

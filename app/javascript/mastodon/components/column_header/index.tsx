@@ -164,14 +164,20 @@ export const ColumnHeaderButton: React.FC<ColumnHeaderButtonProps> = ({
 
   if (showTextOnDesktop && !isMobile) {
     return (
-      <Button {...props} variant={variant} size='sm'>
+      <Button expandHitArea={2} {...props} variant={variant} size='sm'>
         {children}
       </Button>
     );
   }
 
   return (
-    <IconButton icon={icon} {...props} variant={variant} size='sm'>
+    <IconButton
+      icon={icon}
+      expandHitArea={2}
+      {...props}
+      variant={variant}
+      size='sm'
+    >
       {children}
     </IconButton>
   );

@@ -1,6 +1,6 @@
 import type React from 'react';
-import type { ReactNode } from 'react';
-import { useCallback } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -18,6 +18,16 @@ import { Tooltip } from '@/mastodon/components/tooltip';
 import classes from './styles.module.scss';
 
 export const buttonClasses = classes;
+
+type HitArea =
+  | number
+  | {
+      default?: number;
+      top?: number;
+      bottom?: number;
+      left?: number;
+      right?: number;
+    };
 
 interface ButtonPropsBase<As extends 'a' | 'button'> {
   size?: 'lg' | 'md' | 'sm' | 'xs';
@@ -37,6 +47,12 @@ interface ButtonPropsBase<As extends 'a' | 'button'> {
    * with the starting edge of its parent.
    */
   clipPadding?: boolean;
+  /**
+   * Expands the button's interactive area by the specified amount
+   * (a number corresponding to our space tokens),
+   * without increasing the button's visual appearance or layout.
+   */
+  expandHitArea?: HitArea;
   children: ReactNode;
 }
 
@@ -61,9 +77,11 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   onClick,
   loading,
   clipPadding,
+  expandHitArea,
   noActiveHighlight,
   'aria-disabled': ariaDisabled,
   'aria-live': ariaLive,
+  style,
   ...props
 }) => {
   const disabled = 'disabled' in props ? props.disabled : false;
@@ -86,6 +104,11 @@ const BaseButton: React.FC<BaseButtonProps> = ({
     Comp = Link;
   }
 
+  const styles: CSSProperties | undefined = useMemo(
+    () => (expandHitArea ? getHitAreaStyles(style, expandHitArea) : style),
+    [style, expandHitArea],
+  );
+
   return (
     <Comp
       type='button'
@@ -97,8 +120,10 @@ const BaseButton: React.FC<BaseButtonProps> = ({
         classes[color],
         classes[variant],
         clipPadding && classes.clipPadding,
+        expandHitArea && classes.expandHitArea,
         noActiveHighlight && classes.noActiveHighlight,
       )}
+      style={styles}
       onClick={handleClick}
       // Disabled buttons can't have focus, so we don't really
       // disable the button during loading
@@ -242,3 +267,31 @@ export const ToggleIconButton: React.FC<
     className={classNames(className, classes.toggle)}
   />
 );
+
+function getHitAreaStyles(
+  baseStyles: CSSProperties | undefined,
+  expandHitArea: HitArea,
+): CSSProperties | undefined {
+  if (expandHitArea === 0) {
+    return baseStyles;
+  }
+
+  if (typeof expandHitArea === 'number') {
+    return {
+      ...baseStyles,
+      '--hit-area-default': expandHitArea
+        ? `var(--space-${expandHitArea})`
+        : '0px',
+    } as CSSProperties;
+  }
+
+  const properties: Record<string, string> = {};
+  Object.entries(expandHitArea).forEach(([key, value]) => {
+    properties[`--hit-area-${key}`] = value ? `var(--space-${value})` : '0px';
+  });
+
+  return {
+    ...baseStyles,
+    ...properties,
+  };
+}

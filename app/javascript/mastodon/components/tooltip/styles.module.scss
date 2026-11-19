@@ -10,4 +10,6 @@
   overflow-wrap: anywhere;
   @include mixins.line-clamp(4);
   @include mixins.type-meta;
+
+  pointer-events: none;
 }

@@ -623,6 +623,7 @@ export const Search: React.FC<{
           icon={XIcon}
           onClick={handleCloseOrClear}
           size='xs'
+          expandHitArea={{ default: 2, left: 0 }}
           tooltipPlacement='top'
           className={classes.closeButton}
         >

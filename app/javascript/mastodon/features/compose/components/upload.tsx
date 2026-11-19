@@ -72,6 +72,7 @@ export const ComposeUpload: React.FC<
       <Button
         size='xs'
         color='media'
+        expandHitArea={3}
         variant={attachment.description ? 'tonal' : 'solid'}
         onClick={handleAltEdit}
         className={classes.mediaMenuAltButton}
@@ -105,6 +106,7 @@ export const ComposeUpload: React.FC<
             size='xs'
             color='media'
             tooltipPlacement='top'
+            expandHitArea={{ default: 3, right: 1 }}
           >
             {mediaSensitive ? (
               <FormattedMessage
@@ -126,6 +128,7 @@ export const ComposeUpload: React.FC<
             size='xs'
             color='media'
             tooltipPlacement='top'
+            expandHitArea={{ default: 3, left: 1, right: 1 }}
           >
             <FormattedMessage
               id='compose.upload.rearrange'
@@ -139,6 +142,7 @@ export const ComposeUpload: React.FC<
           size='xs'
           color='media'
           tooltipPlacement='top'
+          expandHitArea={{ default: 3, left: 1 }}
         >
           <FormattedMessage
             id='compose.upload.menu.delete'
