@@ -14,10 +14,10 @@ services:
       - ./postgres19:/var/lib/postgresql
     environment:
       POSTGRES_INITDB_ARGS: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
-      POSTGRES_HOST_AUTH_METHOD: 'trust' # Disable to enforce a POSTGRES_PASS
+      POSTGRES_HOST_AUTH_METHOD: 'trust' # Disable to enforce a POSTGRES_PASSWORD
       POSTGRES_USER: 'postgres'
       POSTGRES_DB: 'mastodon_production'
-      #POSTGRES_PASS: 'CHANGEME'
+      #POSTGRES_PASSWORD: 'CHANGEME'
 
   redis:
     restart: always
