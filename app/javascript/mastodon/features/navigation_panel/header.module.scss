@@ -33,6 +33,7 @@
   display: flex;
   align-items: start;
   column-gap: var(--space-1);
+  padding-inline-start: var(--space-2);
 }
 
 .lockupLink {
@@ -63,6 +64,7 @@
   align-self: center;
   width: var(--app-icon-size);
   aspect-ratio: 1;
+  margin-inline-start: calc(-1 * var(--space-2));
 }
 
 .lockupName {
