@@ -29,7 +29,11 @@ export const ColumnSettingsMenu: React.FC<ColumnSettingsMenuProps> = ({
 }) => {
   return (
     <Menu>
-      <MenuTrigger as={ColumnHeaderButton} icon={icon}>
+      <MenuTrigger
+        as={ColumnHeaderButton}
+        icon={icon}
+        expandHitArea={{ default: 2, left: 0 }}
+      >
         {labelPrefix && <>{labelPrefix} </>}
         {label ?? (
           <FormattedMessage
