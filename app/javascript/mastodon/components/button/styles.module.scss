@@ -187,6 +187,7 @@ a.base {
     // Appears like the solid variant in high-contrast mode
     [data-contrast='high'] & {
       --bg: var(--color-bg-inverted);
+      --bg-hover: rgb(from var(--color-bg-inverted) r g b / calc(alpha * 90%));
       --fg: var(--color-text-inverted);
 
       &::before {
