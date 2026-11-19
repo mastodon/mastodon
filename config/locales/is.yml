@@ -275,6 +275,7 @@ is:
         update_ip_block: Uppfæra reglu IP-vistfangs
         update_report: Uppfæra kæru
         update_status: Uppfæra færslu
+        update_tag: Uppfæra myllumerki
         update_user_role: Uppfæra hlutverk
         update_username_block: Uppfæra notandanafnsreglu
       actions:
@@ -590,7 +591,7 @@ is:
         privacy_policy:
           action: Stýra
           hint: Tengill sem vísar á þessa stefnu kemur fram neðst í hverjum tölvupósti
-          title: Meðferð persónuupplýsinga
+          title: Persónuverndarstefna
         title: Stillingar á samhæfni við reglur
       danger_zone:
         disable_feature:
@@ -909,6 +910,8 @@ is:
       action_taken_by: Aðgerð framkvæmd af
       actions:
         delete_description_html: Kærðum færslum og/eða söfnum verður eytt og skráð bann til að flýta fyrir áframhaldandi brotum af hálfu sama notanda.
+        disable_description_html: Koma í veg fyrir að notandinn noti aðganginn sinn, en ekki eyða eða fela efnið þeirra. Þessa aðgerð er hægt að afturkalla. Þetta lokar öllum kærum gagnvart þessum aðgangi.
+        force_sensitive_descption_html: Þvinga fram að öll myndefnisviðhengi þessa notanda verði flögguð sem viðkvæmt efni. Þessa aðgerð er hægt að afturkalla. Þetta lokar öllum kærum gagnvart þessum aðgangi.
         mark_as_sensitive_description_html: Myndefnið í kærðu færslunum verður merkt sem viðkvæmt og refsing verður skráð til minnis fyrir viðbrögð gegn mögulegum framtíðarbrotum frá sama notandaaðgangi.
         resolve_description_html: Til engra aðgerða verður tekið gagnvart kærðum færslum, engin refsing verður skráð og kærunni verður lokað.
         silence_description_html: Notandaaðgangurinn verður einungis sýnilegur þeim sem þegar fylgjast með honum eða sem fletta honum upp handvirkt, sem takmarkar útbreiðslu efnis verulega. Þetta er alltaf hægt að afturkalla. Þetta lokar öllum kærum gagnvart þessum aðgangi.
@@ -1211,6 +1214,7 @@ is:
         preamble: Stýrðu hvernig efni frá notendum sé geymt í Mastodon.
         title: Geymsla efnis
       crawlers:
+        preamble: Stýrðu hvernig bottar (sem haga sér vel) eins og leitarvélaskröpur geta átt í samskiptum við Mastodon-netþjóninn þinn. Illvígir bottar geta hunsað þessar stillingar og þarf því að útiloka með aðgerðum á netkerfinu.
         title: Stýringar vefskrapara
       default_noindex:
         desc_html: Hefur áhrif á alla þá notendur sem ekki hafa breytt þessum stillingum sjálfir
@@ -1268,6 +1272,9 @@ is:
       security:
         authorized_fetch: Krefjast auðkenningar frá netþjónum í skýjasambandi
         authorized_fetch_hint: Ákveddu hvenær fjartengdir netþjónar þurfi að auðkenna sig við að sækja efni af þessum netþjóni.
+        authorized_fetch_hints:
+          actors: Að krefjast auðkenningar fyrir notendasnið virkjar rakningu á hvaða netþjónar hafa uppgötvað hvern að staðværu notendaaðgöngunum hjá þér, sem getur fækkað verulega ónauðsynlegum beiðnum sem verða þegar netþjónar eru látnir vita um eyðingu á notandaaðgangi. Þessi valkostur kemur örlítið niður á afköstum þegar deilt er notendasniðum vegna áðurnefndrar rakningar og vangetu viðsnúna milliþjónsins (reverse proxy) til að setja þessar beiðnir í biðminni. Þetta gæti líka valdið ósamhæfni við sumar þjónustur í skýjasambandi (federated services).
+          none: Krefst auðkenningar einungis þegar nauðsyn krefur gerir viðsnúna milliþjóninum (reverse proxy) kleift að setja fleiri beiðnir í biðminni. Þessi valkostur gæti verið fjarlægður í framtíðinni. Aðeins nota þetta ef aðrir valkostir valda vandamálum.
         authorized_fetch_modes:
           actors: Fyrir notendasnið og einkaefni
           all: Fyrir allar beiðnir
@@ -1855,7 +1862,7 @@ is:
     notification:
       create_account: Búa til nýjan Mastodon-aðgang
       footer:
-        privacy_html: Tölvupóstar eru sendir frá %{domain}, netþjóni sem keyrir Mastodon. Til að sjá hvernig þessi netþjónn vinnur með persónuleg gögn þín, Þá ættirðu að skoða <a href="%{privacy_policy_path}">Meðferð persónuupplýsinga</a>.
+        privacy_html: Tölvupóstar eru sendir frá %{domain}, netþjóni sem keyrir Mastodon. Til að sjá hvernig þessi netþjónn vinnur með persónuleg gögn þín, Þá ættirðu að skoða síðuna <a href="%{privacy_policy_path}">Persónuverndarstefna</a>.
         reason_for_email_html: Þú færð þennan tölvupóst vegna þess að þú skráðir þig til að fá pósta með færslum frá %{name}. Viltu ekki fá þessar póstsendingar? <a href="%{unsubscribe_path}">Hættu í áskrift</a>
       interact_with_this_post:
         one: Eigðu í samskiptum við þessa færslu og finndu fleiri í sama dúr.
@@ -2256,6 +2263,7 @@ is:
   otp_authentication:
     code_hint: Settu inn kóðann sem auðkenningarforritið útbjó til staðfestingar
     delete: Eyða
+    delete_confirmation: Ertu viss um að þú viljir eyða auðkenningarforritinu þínu úr aðferðum fyrir tveggja-þátta auðkenningu?
     description_html: Ef þú virkjar <strong>tveggja-þátta auðkenningu</strong> með auðkenningarforriti, mun innskráning krefjast þess að þú hafir símann þinn við hendina, með honum þarf að útbúa öryggisteikn sem þú þarft að setja inn.
     enable: Virkja
     instructions_html: "<strong>Skannaðu þennar QR-kóða inn í Google Authenticator eða álíka TOTP-forrit á símanum þínum</strong>. Héðan í frá mun það forrit útbúa teikn sem þú verður að setja inn til að geta skráð þig inn."
