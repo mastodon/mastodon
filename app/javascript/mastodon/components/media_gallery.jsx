@@ -332,6 +332,7 @@ class MediaGallery extends PureComponent {
             <IconButton
               icon={EyeSlashIcon}
               size='xs'
+              expandHitArea={3}
               variant='onMedia'
               className='media-gallery__actions__pill'
               onClick={this.handleOpen}

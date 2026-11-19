@@ -863,6 +863,7 @@ export const Video: React.FC<{
                 className='media-gallery__actions__pill'
                 onClick={toggleReveal}
                 type='button'
+                expandHitArea={3}
               >
                 <FormattedMessage
                   id='media_gallery.hide'
