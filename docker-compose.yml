@@ -3,6 +3,7 @@
 
 services:
   db:
+    env_file: .env.production
     restart: always
     image: postgres:19
     shm_size: 256mb
@@ -16,6 +17,9 @@ services:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
       - 'POSTGRES_INITDB_ARGS=--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
       - 'POSTGRES_DB=mastodon_production'
+      - POSTGRES_USER: ${DB_USER:-postgres}
+      - POSTGRES_PASS: ${DB_PASS:-}
+      - POSTGRES_DB: ${DB_DB:-mastodon_production}
 
   redis:
     restart: always
