@@ -15,6 +15,15 @@ RSpec.describe 'Redirect page for accounts' do
         expect(response.body)
           .to have_link(ActivityPub::TagManager.instance.url_for(account))
       end
+
+      context 'with json format' do
+        it 'renders not found' do
+          get redirect_account_path(id: account.id, format: :json)
+
+          expect(response)
+            .to have_http_status(404)
+        end
+      end
     end
 
     context 'with a local account' do

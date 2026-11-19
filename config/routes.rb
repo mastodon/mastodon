@@ -188,7 +188,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :redirect do
+  namespace :redirect, constraints: { format: :html } do
     resources :accounts, only: :show
     resources :statuses, only: :show
     resources :collections, only: :show
