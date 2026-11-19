@@ -29,22 +29,14 @@ export const LinkCard: React.FC<{
   card: CardShape;
   status: ExpandedStatusShape;
 }> = ({ card, status }) => {
-  // Use the old card if we have authors as the new design doesn't have attribution yet.
-  if (card.type === 'video') {
+  if (card.type === 'video' || (card.image && card.width > card.height)) {
     return <LinkEmbedCard card={card} status={status} />;
   }
 
   const providerUrl = new URL(card.provider_url || card.url);
 
-  const authors = card.authors
-    .map(({ accountId }) => accountId)
-    .filter((id): id is string => !!id);
-
   return (
-    <Card
-      image={card.image && <LinkCardImage card={card} />}
-      lang={card.language ?? undefined}
-    >
+    <Card lang={card.language ?? undefined}>
       <CardTitle
         afterContent={
           card.published_at && (
@@ -69,37 +61,37 @@ export const LinkCard: React.FC<{
         <CardBody isDescription>{card.description}</CardBody>
       )}
 
-      {authors.length > 0 && (
-        <CardActions className={classes.cardAuthors}>
-          <FormattedMessage
-            id='status.link_preview.authors'
-            defaultMessage='{count, plural, one {Find the author in the Fediverse:} other {Find the authors in the Fediverse:}}'
-            values={{
-              count: authors.length,
-            }}
-            tagName='span'
-          />
-
-          {authors.map((accountId) => (
-            <LinkCardAuthor authorId={accountId} key={accountId} />
-          ))}
-        </CardActions>
-      )}
+      <LinkCardAuthors authors={card.authors} />
     </Card>
   );
 };
 
-const LinkCardImage: React.FC<{ card: CardShape }> = ({ card }) => {
-  const [loaded, { onTrue: onLoad }] = useToggle();
-  if (!card.image) {
+export const LinkCardAuthors: React.FC<Pick<CardShape, 'authors'>> = ({
+  authors,
+}) => {
+  const authorIds = authors
+    .map(({ accountId }) => accountId)
+    .filter((id): id is string => !!id);
+
+  if (authorIds.length === 0) {
     return null;
   }
 
   return (
-    <>
-      <img src={card.image} alt={card.image_description} onLoad={onLoad} />
-      {!loaded && card.blurhash && <Blurhash hash={card.blurhash} />}
-    </>
+    <CardActions className={classes.cardAuthors}>
+      <FormattedMessage
+        id='status.link_preview.authors'
+        defaultMessage='{count, plural, one {Find the author in the Fediverse:} other {Find the authors in the Fediverse:}}'
+        values={{
+          count: authorIds.length,
+        }}
+        tagName='span'
+      />
+
+      {authorIds.map((accountId) => (
+        <LinkCardAuthor authorId={accountId} key={accountId} />
+      ))}
+    </CardActions>
   );
 };
 

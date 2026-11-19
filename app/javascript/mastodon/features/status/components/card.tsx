@@ -6,13 +6,13 @@ import classNames from 'classnames';
 
 import { isMap } from 'immutable';
 
+import { LinkCardAuthors } from '@/mastodon/components/status/link';
 import { decodeIDNA } from '@/mastodon/utils/links';
 import DescriptionIcon from '@/material-icons/400-24px/description-fill.svg?react';
 import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
 import PlayArrowIcon from '@/material-icons/400-24px/play_arrow-fill.svg?react';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon } from 'mastodon/components/icon';
-import { MoreFromAuthor } from 'mastodon/components/more_from_author';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { displayMedia, useBlurhash } from 'mastodon/initial_state';
 import type { CardShape, Card as CardType } from 'mastodon/models/status';
@@ -262,7 +262,7 @@ export const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
         <CardDescription card={card} />
       </a>
 
-      {author && <MoreFromAuthor accountId={author} />}
+      {author && <LinkCardAuthors authors={card.authors} />}
     </>
   );
 };
