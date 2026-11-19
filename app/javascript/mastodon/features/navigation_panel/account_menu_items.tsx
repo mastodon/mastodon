@@ -28,6 +28,7 @@ import {
 } from '@/mastodon/components/menu';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
+import { domain } from '@/mastodon/initial_state';
 import { useAppDispatch } from '@/mastodon/store';
 
 import classes from './account_menu_items.module.scss';
@@ -143,7 +144,7 @@ export const AccountMenuItems: React.FC<{
 const ProfileMenuItem: React.FC = () => {
   const { accountId } = useIdentity();
   const account = useAccount(accountId);
-  const handle = useAccountHandle(account);
+  const handle = useAccountHandle(account, domain);
 
   if (!accountId) {
     return null;
@@ -157,7 +158,11 @@ const ProfileMenuItem: React.FC = () => {
         icon={<Avatar account={account} size={40} />}
         className={classes.profileMenuItem}
       >
-        <LockupContent subtitle={handle}>
+        <LockupContent
+          subtitle={
+            <span className={classes.profileMenuSubtitle}>{handle}</span>
+          }
+        >
           <DisplayName variant='simple' account={account} />
         </LockupContent>
       </LockupWrapper>

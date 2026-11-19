@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/mixins';
+
 .root {
   --lockup-padding: var(--space-2);
   --lockup-gap: var(--space-2);
@@ -36,4 +38,9 @@
   --lockup-gap: var(--space-2);
 
   color: inherit;
+}
+
+.profileMenuSubtitle {
+  display: block;
+  @include mixins.text-ellipsis;
 }
