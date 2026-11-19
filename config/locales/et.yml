@@ -8,6 +8,14 @@ et:
     hosted_on: Mastodoni teenus serveris %{domain}
     title: Veebirakenduse teave
   accounts:
+    api_errors:
+      2fa_required: Sinu konto kasutamine pole võimalik ilma, et kaheastmeline autentimine oleks seadistatud
+      account_deleted: Sinu kasutajakonto on kustutatud
+      account_suspended: Sinu kasutajakonto tegevus on peatatud
+      login_disabled: Su kasutajakontokonto on hetkel keelatud
+      memorial: Sinu kasutajakonto on muudetud mälestuskontoks
+      pending_approval: Sinu kasutajakonto olek on hetkel moderaatori kinnituse ootel
+      pending_confirmation: Sinu kasutajakontol on puudu kinnitatud e-posti aadress
     errors:
       cannot_be_added_to_collections: Seda kasutajakontot ei saa kogumikku lisada.
     followers:
@@ -759,6 +767,11 @@ et:
       reset: Lähtesta
       search: Otsi
       title: IP-reeglid
+    moderation_subscriptions:
+      delete: Kustuta
+      destroyed_msg: Modereerimise tellimuse kustutamine õnnestus
+      last_synced_at: Viimati sünkroonitud
+      list_action: Tellimuse tüüp
     relationships:
       title: "%{acct}-i suhted"
     relays:
@@ -2311,10 +2324,13 @@ et:
       title: Arhiivi väljavõte
     failed_2fa:
       details: 'Sisenemise üksikasjad:'
-      explanation: Keegi püüdis Su kontole siseneda, ent sisestas vale kaheastmelise autentimise faktori.
+      explanation: Keegi püüdis Su kontole siseneda, ent sisestas vale kaheastmelise autentimise koodi.
       further_actions_html: Kui see polnud Sina, siis soovitame viivitamata %{action}, kuna see võib olla ohus.
-      subject: Kaheastmelise autentimise nurjumine
-      title: Kaheastmeline autentimine nurjus
+      subject: Viga kaheastmelisel autentimisel
+      title: Viga kaheastmelisel autentimisel
+    sign_in_token:
+      change_password: muuda oma salasõna
+      further_actions: 'Kui see polnud sina, siis palun muuda oma salasõna ja võta konto juures kasutusele kaheastmeline autentimine. Sa võid teha seda siin:'
     suspicious_sign_in:
       change_password: muuta oma salasõna
       details: 'Sisenemise üksikasjad:'
@@ -2408,7 +2424,7 @@ et:
     invalid_otp_token: Vale kaheastmeline võti
     otp_lost_help_html: Kui kaotasid ligipääsu mõlemale, saad võtta ühendust %{email}-iga
     rate_limited: Liiga palju autentimise katseid, proovi hiljem uuesti.
-    seamless_external_login: Oled sisse logitud välise teenuse kaudu. Nii pole salasõna ja e-posti seaded saadaval.
+    seamless_external_login: Oled sisse logitud välise teenuse kaudu. Nii pole salasõna ja e-posti seadistused saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:
     extra_instructions_html: <strong>Soovitus:</strong> Sinu kodulehel olev link võib olla nähtamatu. Oluline osa on <code>rel="me"</code>, mis väldib kasutaja loodud sisuga lehtedel libaisikustamist. Sa saad isegi kasutada lehe HEADER osas silti <code>link</code> sildi <code>a</code> asemel, kuid HTML peab olema kättesaadav ilma JavaScripti käivitamata.
