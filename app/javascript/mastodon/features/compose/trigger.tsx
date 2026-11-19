@@ -1,4 +1,13 @@
-import { useCallback, useLayoutEffect, useRef } from 'react';
+import {
+  addTransitionType,
+  startTransition,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  ViewTransition,
+} from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -32,6 +41,18 @@ import classes from './trigger.module.scss';
 
 const NARROW_HEIGHT = 500;
 
+const MINIMIZE: Keyframe[] = [
+  { transform: 'translate(0, 0) scale(1)', opacity: 1, offset: 0 },
+  { opacity: 1, offset: 0.7 },
+  { transform: 'translate(25%, 25%) scale(0.5)', opacity: 0, offset: 1 },
+];
+
+const EXPAND: Keyframe[] = [
+  { transform: 'translate(0, 0) scale(1)', opacity: 1, offset: 0 },
+  { opacity: 1, offset: 0.7 },
+  { transform: 'translate(-50%, -50%) scale(2)', opacity: 0, offset: 1 },
+];
+
 export const ComposeButton: React.FC<{
   /**
    * Render the button in regular document flow instead of fixed positioning for mobile layout
@@ -51,15 +72,52 @@ export const ComposeButton: React.FC<{
   const dispatch = useAppDispatch();
   const handleComposerOpen: React.MouseEventHandler<HTMLButtonElement> =
     useCallback(() => {
-      dispatch(openNewComposer({ type: 'post' }));
+      startTransition(() => {
+        dispatch(openNewComposer({ type: 'post' }));
+      });
     }, [dispatch]);
 
   const toggleMinimize = useCallback(() => {
-    dispatch(minimizeComposerToggle());
+    startTransition(() => {
+      dispatch(minimizeComposerToggle());
+    });
   }, [dispatch]);
 
-  const isMinimized = displayState === 'minimized';
+  // const isMinimized = displayState === 'minimized';
   const isShowing = displayState === 'showing';
+
+  const [isMinimized, setMinimized] = useState(false);
+  useEffect(() => {
+    if (isMinimized === isShowing) {
+      startTransition(() => {
+        addTransitionType(isShowing ? 'composer-expand' : 'composer-minimize');
+        setMinimized(!isMinimized);
+      });
+    }
+  }, [isMinimized, isShowing]);
+
+  const handleViewTransitionUpdate: NonNullable<
+    React.ViewTransitionProps['onUpdate']
+  > = useCallback(
+    (instance) => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      const animation = document.documentElement.animate(
+        isMinimized ? MINIMIZE : EXPAND,
+        {
+          duration: 100,
+          easing: 'ease-out',
+          pseudoElement: `::view-transition-old(${instance.name})`,
+        },
+      );
+      return () => {
+        animation.cancel();
+      };
+    },
+    [isMinimized],
+  );
 
   const handleMinimizedTextClick: React.MouseEventHandler<HTMLDivElement> =
     useCallback(
@@ -171,31 +229,45 @@ export const ComposeButton: React.FC<{
     /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
   }
   return (
-    <div
-      className={classNames(
-        classes.root,
-        isMinimized ? classes.minimized : classes.showing,
-      )}
-      style={style}
-      ref={rootRef}
-      data-fullscreen={isFullscreen}
-      onClick={handleOverlayClick}
+    <ViewTransition
+      name='COMPOSER'
+      default='none'
+      update={{
+        'composer-expand': 'auto',
+        'composer-minimize': 'auto',
+        default: 'none',
+      }}
+      onUpdate={handleViewTransitionUpdate}
     >
       <div
         className={classNames(
-          isMinimized ? classes.composerMinimized : classes.composer,
+          classes.root,
+          isMinimized ? classes.minimized : classes.showing,
         )}
-        onClick={handleMinimizedTextClick}
+        style={style}
+        ref={rootRef}
+        data-fullscreen={isFullscreen}
+        onClick={handleOverlayClick}
       >
-        {/* eslint-enable */}
-        {!isMinimized ? (
-          // Disable autofocus for iPad as it causes scrolling.
-          <ComposeForm autoFocus={!isIPad()} className={classes.composeForm} />
-        ) : (
-          <ComposeFormHeader />
-        )}
+        <div
+          className={classNames(
+            isMinimized ? classes.composerMinimized : classes.composer,
+          )}
+          onClick={handleMinimizedTextClick}
+        >
+          {/* eslint-enable */}
+          {!isMinimized ? (
+            // Disable autofocus for iPad as it causes scrolling.
+            <ComposeForm
+              autoFocus={!isIPad()}
+              className={classes.composeForm}
+            />
+          ) : (
+            <ComposeFormHeader />
+          )}
+        </div>
       </div>
-    </div>
+    </ViewTransition>
   );
 };
 
