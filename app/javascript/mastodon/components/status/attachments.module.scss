@@ -42,7 +42,11 @@
 
   &.galleryWrapperAspectForce {
     aspect-ratio: var(--aspect-ratio);
-    max-height: var(--max-media-height-large);
+    max-height: var(--max-media-height-small);
+
+    @container (width > 500px) {
+      max-height: var(--max-media-height-large);
+    }
   }
 }
 
