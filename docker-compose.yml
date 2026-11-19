@@ -10,7 +10,11 @@ services:
     networks:
       - internal_network
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER:-postgres} -d $${POSTGRES_DB:-mastodon_production}']
+      test:
+        [
+          'CMD-SHELL',
+          'pg_isready -U $${POSTGRES_USER:-postgres} -d $${POSTGRES_DB:-mastodon_production}',
+        ]
     volumes:
       - ./postgres19:/var/lib/postgresql
     environment:
