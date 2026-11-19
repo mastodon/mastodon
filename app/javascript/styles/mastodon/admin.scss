@@ -1331,6 +1331,8 @@ a.name-tag,
   }
 
   &__table {
+    width: 100%;
+
     &__number {
       color: var(--color-bg-primary);
       padding: 10px;
@@ -1359,7 +1361,7 @@ a.name-tag,
 
     &__box {
       box-sizing: border-box;
-      width: 52px;
+      min-width: 52px;
       margin: 1px;
       padding: 10px;
       font-weight: bold;

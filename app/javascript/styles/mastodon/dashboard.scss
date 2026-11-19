@@ -66,15 +66,22 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
+  &__row {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr);
+    gap: inherit;
+
+    &--three-columns {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+      @media screen and (width <= $no-gap-breakpoint) {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  }
+
   &__item {
-    &--span-double-column {
-      grid-column: span 2;
-    }
-
-    &--span-double-row {
-      grid-row: span 2;
-    }
-
     h4 {
       padding-top: 20px;
     }
