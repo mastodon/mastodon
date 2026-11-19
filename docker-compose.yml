@@ -14,6 +14,7 @@ services:
       - ./postgres19:/var/lib/postgresql
     environment:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
+      - 'POSTGRES_INITDB_ARGS=--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
 
   redis:
     restart: always
