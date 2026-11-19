@@ -4,7 +4,6 @@ import { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 
 import type Immutable from 'immutable';
 
@@ -122,7 +121,7 @@ export const Hashtag: React.FC<HashtagProps> = ({
 }) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
-      <Link to={to}>
+      <a href={to}>
         {name ? (
           <>
             #<span>{name}</span>
@@ -130,7 +129,7 @@ export const Hashtag: React.FC<HashtagProps> = ({
         ) : (
           <Skeleton width={50} />
         )}
-      </Link>
+      </a>
 
       {description ? (
         <span>{description}</span>
