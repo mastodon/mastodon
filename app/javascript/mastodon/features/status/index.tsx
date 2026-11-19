@@ -210,6 +210,7 @@ export const StatusPage: React.FC = () => {
               size='sm'
               variant='ghost'
               active={status.bookmarked}
+              expandHitArea={2}
               icon={
                 status.bookmarked
                   ? StatusBookmarkActiveIcon
