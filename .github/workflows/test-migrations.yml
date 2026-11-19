@@ -37,6 +37,7 @@ jobs:
       postgres:
         image: postgres:${{ matrix.postgres}}
         env:
+          POSTGRES_INITDB_ARGS: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
         options: >-
