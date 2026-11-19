@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.7.6] - 2026-11-19
+
+### Security
+
+- Updated dependencies `ruby`, `puma`, `rails`, `sanitize`, `msgpack` and `omniauth`
+
+### Fixed
+
+- Fix missing `featuredCollections` definition to JSON-LD context (#41728 by @oneiros)
+- Fix improper use of translation strings in email notification unsubscription page (#41555 by @ClearlyClaire)
+- Fix missing dropdown label in admin audit log (#41301 by @e-nomem)
+
 ## [4.7.5] - 2026-11-03
 
 ### Security
