@@ -22,7 +22,7 @@ services:
       POSTGRES_DB: ${DB_NAME:-mastodon_production}
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASS:-}
-      POSTGRES_HOST_AUTH_METHOD: ${DB_AUTHMETHOD:-trust} # Replace with password to enforce DB_PASS
+      POSTGRES_HOST_AUTH_METHOD: ${DB_HOSTAUTHMETHOD:-trust} # Replace with password to enforce DB_PASS
 
   redis:
     restart: always
