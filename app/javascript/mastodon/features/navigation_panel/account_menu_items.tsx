@@ -141,6 +141,8 @@ export const AccountMenuItems: React.FC<{
   );
 };
 
+const disableActiveLinkState = () => false;
+
 const ProfileMenuItem: React.FC = () => {
   const { accountId } = useIdentity();
   const account = useAccount(accountId);
@@ -153,7 +155,7 @@ const ProfileMenuItem: React.FC = () => {
   const accountBasePath = `/@${account?.acct}`;
 
   return (
-    <MenuItemLink to={accountBasePath} exact>
+    <MenuItemLink to={accountBasePath} isActive={disableActiveLinkState}>
       <LockupWrapper
         icon={<Avatar account={account} size={40} />}
         className={classes.profileMenuItem}
