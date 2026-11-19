@@ -285,3 +285,16 @@ a.base {
     margin-inline-start: calc(-1 * var(--inline-padding));
   }
 }
+
+.expandHitArea {
+  &::after {
+    content: '';
+    position: absolute;
+
+    // --hit-area- properties are added via style attribute
+    inset: calc(-1 * var(--hit-area-top, 0px))
+      calc(-1 * var(--hit-area-right, 0px))
+      calc(-1 * var(--hit-area-bottom, 0px))
+      calc(-1 * var(--hit-area-left, 0px));
+  }
+}
