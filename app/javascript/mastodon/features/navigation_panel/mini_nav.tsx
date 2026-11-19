@@ -56,7 +56,7 @@ export const MiniNav: React.FC = () => {
       dispatch(closeInlineSearch());
       shouldHandleFocusRef.current = shouldHandleFocus;
     },
-    [dispatch, isSearchOpen],
+    [dispatch],
   );
 
   useEffect(() => {
