@@ -4,6 +4,8 @@ import { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { __RouterContext } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import type Immutable from 'immutable';
 
@@ -108,6 +110,18 @@ export interface HashtagProps {
   children?: React.ReactNode;
 }
 
+const HashtagLink: React.FC<{
+  to: string;
+  children: React.ReactNode;
+}> = ({ to, children }) => (
+  <__RouterContext.Consumer>
+    {(context) =>
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      context ? <Link to={to}>{children}</Link> : <a href={to}>{children}</a>
+    }
+  </__RouterContext.Consumer>
+);
+
 export const Hashtag: React.FC<HashtagProps> = ({
   name,
   to,
@@ -121,7 +135,7 @@ export const Hashtag: React.FC<HashtagProps> = ({
 }) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
-      <a href={to}>
+      <HashtagLink to={to}>
         {name ? (
           <>
             #<span>{name}</span>
@@ -129,7 +143,7 @@ export const Hashtag: React.FC<HashtagProps> = ({
         ) : (
           <Skeleton width={50} />
         )}
-      </a>
+      </HashtagLink>
 
       {description ? (
         <span>{description}</span>
