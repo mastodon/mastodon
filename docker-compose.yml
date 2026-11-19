@@ -1,5 +1,6 @@
 # This file is designed for production server deployment, not local development work
 # For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/docs/DEVELOPMENT.md#docker
+# docker compose will read the DB_NAME, DB_USER, DB_PASS from .env not .env.production (take that into consideration)
 
 services:
   db:
@@ -9,15 +10,15 @@ services:
     networks:
       - internal_network
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U postgres -d mastodon_production']
+      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER:-postgres} -d $${POSTGRES_DB:-mastodon_production}']
     volumes:
       - ./postgres19:/var/lib/postgresql
     environment:
       POSTGRES_INITDB_ARGS: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
+      POSTGRES_DB: ${DB_NAME:-mastodon_production}
+      POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_HOST_AUTH_METHOD: 'trust' # Disable to enforce a POSTGRES_PASSWORD
-      POSTGRES_USER: 'postgres'
-      POSTGRES_DB: 'mastodon_production'
-      #POSTGRES_PASSWORD: 'CHANGEME'
+      #POSTGRES_PASSWORD: ${DB_PASS:?DB_PASS must be set}
 
   redis:
     restart: always
