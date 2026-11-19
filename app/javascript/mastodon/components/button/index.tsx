@@ -276,26 +276,22 @@ function getHitAreaStyles(
     return baseStyles;
   }
 
-  const sides =
-    typeof expandHitArea === 'number'
-      ? {
-          top: expandHitArea,
-          bottom: expandHitArea,
-          left: expandHitArea,
-          right: expandHitArea,
-        }
-      : {
-          top: expandHitArea.top ?? expandHitArea.default,
-          bottom: expandHitArea.bottom ?? expandHitArea.default,
-          left: expandHitArea.left ?? expandHitArea.default,
-          right: expandHitArea.right ?? expandHitArea.default,
-        };
+  if (typeof expandHitArea === 'number') {
+    return {
+      ...baseStyles,
+      '--hit-area-default': expandHitArea
+        ? `var(--space-${expandHitArea})`
+        : '0px',
+    } as CSSProperties;
+  }
+
+  const properties: Record<string, string> = {};
+  Object.entries(expandHitArea).forEach(([key, value]) => {
+    properties[`--hit-area-${key}`] = value ? `var(--space-${value})` : '0px';
+  });
 
   return {
-    '--hit-area-top': `var(--space-${sides.top})`,
-    '--hit-area-bottom': `var(--space-${sides.bottom})`,
-    '--hit-area-left': `var(--space-${sides.left})`,
-    '--hit-area-right': `var(--space-${sides.right})`,
     ...baseStyles,
-  } as CSSProperties;
+    ...properties,
+  };
 }
