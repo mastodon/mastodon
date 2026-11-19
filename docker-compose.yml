@@ -11,7 +11,7 @@ services:
     healthcheck:
       test: ['CMD', 'pg_isready', '-U', 'postgres']
     volumes:
-      - ./postgres14:/var/lib/postgresql
+      - ./postgres19:/var/lib/postgresql
     environment:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
       - 'POSTGRES_INITDB_ARGS=--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
