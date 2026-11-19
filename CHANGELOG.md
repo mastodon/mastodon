@@ -16,6 +16,10 @@ You can read all about it in our [dedicated blog post](https://blog.joinmastodon
 
 ### Added
 
+- Add ability to opt out of interaction stats in feeds (#41561 by @ClearlyClaire)
+- Add admin setting for customizing robots.txt, and add more AI user agents to the default one (#41496 by @Gargron)
+- Add [schema.org](http://schema.org/) markup to SEO-enabled profiles and replies (#41505 and #41656 by @Gargron)
+- Add collection limits to `/api/v2/instance` (#41680 by @oneiros)
 - Add a setting to pick a color theme for the web interface (#41088, #41094, #41153 by @diondiondion and @ClearlyClaire)
 - Add a user setting to have the Content Warning field on by default (#40824 by @ClearlyClaire)
 - Add a user setting to hide your own posts and boosts (#40813 and #40867 by @arte7)
@@ -44,6 +48,7 @@ You can read all about it in our [dedicated blog post](https://blog.joinmastodon
 
 ### Fixed
 
+- Fix image thumbnail URLs in RSS feed items (#40964 by @cweiske)
 - Fix terms of service and privacy policy API failing on percent signs (#41343 by @dualfroz)
 - Fix size of date-of-birth input fields (#41021 by @ClearlyClaire)
 - Fix invisible links in server announcements (#40949 by @diondiondion)
@@ -58,6 +63,8 @@ You can read all about it in our [dedicated blog post](https://blog.joinmastodon
 
 ### Changed
 
+- Change 2FA to allow Webauthn without requiring TOTP (#41608 by @nicolastemciuc, @santiagorodriguez96 and @ClearlyClaire)
+- Change moderation report quick actions (#41346 by @arte7)
 - Change authentication errors to return HTTP 422 instead of HTTP 200 (#41503 by @ClearlyClaire)
 - Change account confirmation e-mail to not redirect to app (#41066 and #41181 by @ClearlyClaire and @oneiros)
 - Change empty search requests to return a HTTP 400 error (#40196 and #40214 by @Gargron)
@@ -67,11 +74,25 @@ You can read all about it in our [dedicated blog post](https://blog.joinmastodon
 
 ### Removed
 
+- Remove reference to deprecated TOR setup in docker compose (#41559 by @mjankowski)
+- Remove vagrant support (#41519 by @mjankowski)
 - Remove discovery area in settings (#41258 by @ChaosExAnima)
 - Remove deprecated `tootctl accounts fix-duplicate` command (#40232 by @ClearlyClaire)
 - Remove support for node version 22 (#41152 by @mjankowski)
 - Remove support for ruby 3.3 and 3.4, only support a single version (#40603 by @mjankowski)
 - Remove support for pre-4.7 zero-downtime migrations (#40235 by @ClearlyClaire)
+
+## [4.7.6] - 2026-11-19
+
+### Security
+
+- Updated dependencies `ruby`, `puma`, `rails`, `sanitize`, `msgpack` and `omniauth`
+
+### Fixed
+
+- Fix missing `featuredCollections` definition to JSON-LD context (#41728 by @oneiros)
+- Fix improper use of translation strings in email notification unsubscription page (#41555 by @ClearlyClaire)
+- Fix missing dropdown label in admin audit log (#41301 by @e-nomem)
 
 ## [4.7.5] - 2026-11-03
 
