@@ -30,7 +30,7 @@ export const LinkCard: React.FC<{
   status: ExpandedStatusShape;
 }> = ({ card, status }) => {
   // Use the old card if we have authors as the new design doesn't have attribution yet.
-  if (card.type === 'video') {
+  if (card.type === 'video' || card.image) {
     return <LinkEmbedCard card={card} status={status} />;
   }
 
