@@ -176,7 +176,7 @@ export const MiniAccountLink: React.FC<
       >
         <FormattedMessage id='tabs_bar.account' defaultMessage='Account' />
       </MenuTrigger>
-      <MenuList placement={menuPlacement} offset={8} minWidth={240}>
+      <MenuList placement={menuPlacement} offset={8} maxWidth={240}>
         <AccountMenuItems />
       </MenuList>
     </Menu>
