@@ -903,27 +903,6 @@ body > [data-popover-placement] {
   }
 }
 
-.learn-more__popout {
-  gap: 8px;
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  h6 {
-    font-size: inherit;
-    font-weight: bold;
-    line-height: inherit;
-    letter-spacing: 0.1px;
-  }
-
-  .link-button {
-    font-weight: bold;
-  }
-}
-
 .account__wrapper {
   display: flex;
   gap: 10px;
@@ -963,36 +942,6 @@ body > [data-popover-placement] {
     display: inline-block;
     vertical-align: middle;
     margin-inline-end: 5px;
-  }
-
-  &-composite {
-    border-radius: 50%;
-    overflow: hidden;
-    position: relative;
-
-    & > div {
-      float: left;
-      position: relative;
-      box-sizing: border-box;
-    }
-
-    .account__avatar {
-      width: 100% !important;
-      height: 100% !important;
-    }
-
-    &__label {
-      display: block;
-      position: absolute;
-      top: 50%;
-      inset-inline-start: 50%;
-      transform: translate(-50%, -50%);
-      color: var(--color-text-primary);
-      text-shadow: 1px 1px 2px
-        rgb(from var(--color-shadow-primary) r g b / 100%);
-      font-weight: 700;
-      font-size: 15px;
-    }
   }
 
   &__counter {
@@ -1758,10 +1707,6 @@ a.account__display-name {
 }
 
 @media screen and (min-width: $no-gap-breakpoint) {
-  .getting-started__wrapper {
-    margin-bottom: 10px;
-  }
-
   .search-page .search {
     display: none;
   }
@@ -2041,23 +1986,6 @@ a.account__display-name {
   }
 }
 
-.drawer__header {
-  flex: 0 0 auto;
-  font-size: 16px;
-  border: 1px solid var(--color-border-primary);
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-  border-radius: 4px;
-  overflow: hidden;
-
-  a:hover,
-  a:focus,
-  a:active {
-    color: var(--color-text-primary);
-  }
-}
-
 .scrollable {
   container: column / inline-size;
   overflow-y: scroll;
@@ -2109,8 +2037,7 @@ a.account__display-name {
   width: 1px;
 }
 
-.follow_requests-unlocked_explanation,
-.switch-to-advanced {
+.follow_requests-unlocked_explanation {
   color: var(--color-text-secondary);
   background-color: var(--color-bg-secondary);
   padding: 15px;
@@ -2180,48 +2107,8 @@ a.account__display-name {
   margin: -6px 10px;
 }
 
-.getting-started__wrapper {
-  flex: 0 0 auto;
-}
-
 .flex-spacer {
   flex: 1 1 auto;
-}
-
-.getting-started {
-  color: var(--color-text-tertiary);
-  overflow: auto;
-  border: 1px solid var(--color-border-primary);
-  border-top: 0;
-
-  &__trends-heading {
-    border-bottom: 1px solid var(--color-border-primary);
-    padding: 10px;
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: bold;
-
-    a {
-      color: var(--color-text-secondary);
-      text-decoration: none;
-    }
-  }
-
-  &__trends {
-    flex: 0 1 auto;
-    opacity: 1;
-    animation: fade 150ms linear;
-    margin-top: 10px;
-
-    .trends__item {
-      border-bottom: 0;
-      padding: 10px;
-
-      &__current {
-        color: var(--color-text-secondary);
-      }
-    }
-  }
 }
 
 .keyboard-shortcuts {
