@@ -439,6 +439,33 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
+      context 'with a reply to a reblog' do
+        let(:original_status) { Fabricate(:status) }
+        let(:reblog) { Fabricate(:status, reblog: original_status) }
+        let(:params) { { status: 'Hello world', in_reply_to_id: reblog.id } }
+
+        it 'replies to the original status', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.parsed_body[:in_reply_to_id]).to eq original_status.id.to_s
+        end
+
+        context 'when the replier is blocked by the original author' do
+          before do
+            original_status.account.block!(user.account)
+          end
+
+          it 'returns an error and does not create a post', :aggregate_failures do
+            expect { subject }.to_not change(user.account.statuses, :count)
+
+            expect(response).to have_http_status(404)
+            expect(response.content_type)
+              .to start_with('application/json')
+          end
+        end
+      end
+
       context 'when scheduling a status' do
         let(:params) { { status: 'Hello world', scheduled_at: 10.minutes.from_now } }
         let(:account) { user.account }
