@@ -78,10 +78,11 @@ jobs:
 
     services:
       postgres:
-        image: postgres:14-alpine
+        image: postgres:19
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
+          POSTGRES_INITDB_ARGS: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
         options: >-
           --health-cmd pg_isready
           --health-interval 10ms
@@ -91,7 +92,7 @@ jobs:
           - 5432:5432
 
       redis:
-        image: redis:7-alpine
+        image: redis:8-alpine
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10ms
@@ -174,10 +175,11 @@ jobs:
 
     services:
       postgres:
-        image: postgres:14-alpine
+        image: postgres:19
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
+          POSTGRES_INITDB_ARGS: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
         options: >-
           --health-cmd pg_isready
           --health-interval 10ms
@@ -187,7 +189,7 @@ jobs:
           - 5432:5432
 
       redis:
-        image: redis:7-alpine
+        image: redis:8-alpine
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10ms
@@ -273,10 +275,11 @@ jobs:
 
     services:
       postgres:
-        image: postgres:14-alpine
+        image: postgres:19
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
+          POSTGRES_INITDB_ARGS: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
         options: >-
           --health-cmd pg_isready
           --health-interval 10ms
@@ -286,7 +289,7 @@ jobs:
           - 5432:5432
 
       redis:
-        image: redis:7-alpine
+        image: redis:8-alpine
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10ms

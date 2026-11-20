@@ -58,7 +58,7 @@ Mastodon is a **free, open-source social network server** based on [ActivityPub]
 ### Requirements
 
 - **Ruby** 4.0
-- **PostgreSQL** 14+
+- **PostgreSQL** 15+
 - **Redis** 7.2+
 - **Node.js** 24+
 - **FFmpeg** 5.1+
