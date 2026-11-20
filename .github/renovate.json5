@@ -110,7 +110,7 @@
     {
       // Update @types/* packages every week, with one grouped PR
       matchManagers: ['npm'],
-      matchPackageNames: '@types/*',
+      matchPackageNames: ['@types/*'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'DefinitelyTyped types (non-major)',
       extends: ['schedule:weekly'],
@@ -153,11 +153,27 @@
       groupName: 'Playwright',
     },
     {
-      // Update devDependencies every week, with one grouped PR
-      // Needs to stay at the bottom of the rule list, before match managers
+      // Update devDependencies with one grouped PR
       matchManagers: ['npm'],
       matchDepTypes: ['devDependencies'],
       matchUpdateTypes: ['patch', 'minor'],
+      // Keep these exclusions synchronized with the dedicated groups above
+      matchPackageNames: [
+        '!@eslint/*',
+        '!@storybook/*',
+        '!@types/*',
+        '!@typescript/typescript6',
+        '!chromatic',
+        '!eslint-*',
+        '!eslint',
+        '!globals',
+        '!msw-storybook-addon',
+        '!msw',
+        '!playwright',
+        '!storybook',
+        '!typescript-eslint',
+        '!typescript',
+      ],
       groupName: 'devDependencies (non-major)',
     },
 
