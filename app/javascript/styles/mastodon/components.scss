@@ -7441,45 +7441,6 @@ noscript {
   }
 }
 
-.filtered-notifications-banner {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--color-border-primary);
-  padding: 16px 24px;
-  gap: 8px;
-  color: var(--color-text-secondary);
-  text-decoration: none;
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: var(--color-text-primary);
-  }
-
-  .notification-group__icon {
-    color: inherit;
-  }
-
-  &__text {
-    flex: 1 1 auto;
-    font-size: 14px;
-    line-height: 20px;
-
-    strong {
-      font-size: 16px;
-      line-height: 24px;
-      display: block;
-    }
-  }
-
-  &__badge {
-    color: var(--color-text-on-brand-base);
-    background: var(--color-bg-brand-base);
-    border-radius: 100px;
-    padding: 2px 8px;
-  }
-}
-
 .notification-request {
   $padding: 15px;
 
@@ -7539,13 +7500,6 @@ noscript {
         white-space: nowrap;
         text-overflow: ellipsis;
       }
-    }
-
-    .filtered-notifications-banner__badge {
-      color: var(--color-text-on-brand-base);
-      background: var(--color-bg-brand-base);
-      border-radius: 4px;
-      padding: 1px 6px;
     }
   }
 
