@@ -113,7 +113,7 @@ export const fetchNotificationsForRequest = createDataLoadingThunk(
   async ({ accountId }: { accountId: string }, { getState }) => {
     const sinceId =
       // @ts-expect-error current.notifications.items is not yet typed
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      // oxlint-disable-next-line @typescript-eslint/no-unsafe-call
       getState().notificationRequests.current.notifications.items[0]?.get(
         'id',
       ) as string | undefined;

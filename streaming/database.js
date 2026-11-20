@@ -1,3 +1,4 @@
+// oxlint-disable import/no-named-as-default-member
 import pg from 'pg';
 import pgConnectionString from 'pg-connection-string';
 

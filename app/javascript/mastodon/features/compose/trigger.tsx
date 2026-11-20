@@ -165,7 +165,7 @@ export const ComposeButton: React.FC<{
     viewport.height < NARROW_HEIGHT || viewport.width < BREAKPOINTS.openable;
 
   {
-    /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+    /* oxlint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
   }
   return (
     <div
@@ -184,7 +184,7 @@ export const ComposeButton: React.FC<{
         )}
         onClick={handleMinimizedTextClick}
       >
-        {/* eslint-enable */}
+        {/* oxlint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         {!isMinimized ? (
           // Disable autofocus for iPad as it causes scrolling.
           <ComposeForm autoFocus={!isIPad()} className={classes.composeForm} />
