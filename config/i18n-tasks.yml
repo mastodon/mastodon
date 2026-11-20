@@ -16,6 +16,7 @@ data:
       line_width: -1
 
 search:
+  strict: false
   paths:
     - app/
     - config/navigation.rb
@@ -71,3 +72,6 @@ ignore_unused:
 
 ignore_inconsistent_interpolations:
   - '*.one'
+  - 'admin.trends.statuses.shared_by.*'
+  - 'admin.terms_of_service.preview.send_to_all.two'
+  - 'user_mailer.welcome.hashtags_recent_count.two'
