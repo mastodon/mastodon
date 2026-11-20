@@ -1343,6 +1343,40 @@ a.name-tag,
   }
 }
 
+.announcements-list--rules {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+
+  .rule-counter {
+    @media screen and (max-width: $no-columns-breakpoint) {
+      display: none;
+    }
+  }
+
+  .announcements-list__item {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: center;
+  }
+
+  .rule-content {
+    min-width: 0;
+  }
+
+  .announcements-list__item__title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .announcements-list__item__meta {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
 .rule-actions {
   display: flex;
   flex-direction: column;
