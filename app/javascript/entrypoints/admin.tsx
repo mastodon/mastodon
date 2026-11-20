@@ -215,14 +215,22 @@ const onChangeEmailNotification = (target: HTMLInputElement) => {
     }
   });
 
-  const statusesCheckbox = document.getElementById(
-    'include_statuses',
-  ) as HTMLInputElement;
+  const mailContent = document.getElementById('mail-content') as HTMLElement;
 
   if (!target.checked) {
-    statusesCheckbox.disabled = true;
+    mailContent.hidden = true;
   } else {
-    statusesCheckbox.disabled = false;
+    mailContent.hidden = false;
+  }
+
+  const statusesCheckbox = document.getElementById(
+    'include_statuses',
+  ) as HTMLInputElement | null;
+
+  if (statusesCheckbox) {
+    if (!target.checked) {
+      statusesCheckbox.checked = false;
+    }
   }
 };
 
@@ -239,6 +247,32 @@ on(
 const onChangeAccountActionSelection = (target: HTMLSelectElement) => {
   const accountAction = target.value;
   if (!target.value) return;
+
+  const selectedOption = target.options[target.selectedIndex];
+
+  const button = document.querySelector<HTMLElement>(
+    'form#action_type button[type=submit]',
+  );
+  const buttonContent = selectedOption?.dataset.buttonLabel ?? null;
+  if (button) {
+    button.textContent = buttonContent;
+  }
+
+  const strikeCardParent = document.querySelector<HTMLElement>(
+    '#data-action-strike-card .preview',
+  );
+  const strikeCard = document.querySelector<HTMLElement>(
+    '#data-action-strike-card .preview p',
+  );
+  const strikeCardContent = selectedOption?.dataset.strikeCard ?? null;
+  if (strikeCard) {
+    if (accountAction === 'none' && strikeCardParent) {
+      strikeCardParent.hidden = true;
+    } else if (strikeCardParent) {
+      strikeCardParent.hidden = false;
+    }
+    strikeCard.textContent = strikeCardContent;
+  }
 
   const presetsDropdown = document.getElementById(
     'presets_dropdown',

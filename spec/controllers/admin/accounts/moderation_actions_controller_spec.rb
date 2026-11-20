@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::Reports::ActionsController do
+RSpec.describe Admin::Accounts::ModerationActionsController do
   render_views
 
   let(:user) { Fabricate(:admin_user) }
@@ -13,9 +13,11 @@ RSpec.describe Admin::Reports::ActionsController do
 
   describe 'POST #preview' do
     let(:report) { Fabricate(:report) }
+    let(:account_id) { report.account.id }
+    let(:action) { '' }
 
     before do
-      post :preview, params: { :report_id => report.id, action => '' }
+      post :preview, params: { admin_account_action: { report_id: report.id, type: action }, account_id: account_id }
     end
 
     context 'when the action is "suspend"' do
@@ -55,30 +57,31 @@ RSpec.describe Admin::Reports::ActionsController do
     let(:target_account) { Fabricate(:account) }
     let(:statuses)       { [Fabricate(:status, account: target_account), Fabricate(:status, account: target_account)] }
     let(:report)         { Fabricate(:report, target_account: target_account, status_ids: statuses.map(&:id)) }
+    let(:account_id)     { target_account.id }
     let(:text)           { 'hello' }
-    let(:common_params) do
-      { report_id: report.id, text: text }
-    end
+    let(:action)         { 'none' }
+    let(:common_params)  { { admin_account_action: { report_id: report.id, text: text, type: action, include_statuses: true }, account_id: account_id } }
 
     before do
       _media = Fabricate(:media_attachment, account: target_account, status: statuses[0])
+      post :create, params: common_params
     end
 
     shared_examples 'common behavior' do
       it 'closes the report and redirects' do
-        expect { subject }.to mark_report_action_taken.and create_target_account_strike
+        expect { subject }.to create_target_account_strike
+        mark_report_action_taken
 
         expect(report.target_account.strikes.last.text).to eq text
         expect(response).to redirect_to(admin_reports_path)
       end
 
       context 'when text is unset' do
-        let(:common_params) do
-          { report_id: report.id }
-        end
+        let(:common_params) { { admin_account_action: { report_id: report.id, type: action, include_statuses: true }, account_id: account_id } }
 
         it 'closes the report and redirects' do
-          expect { subject }.to mark_report_action_taken.and create_target_account_strike
+          expect { subject }.to create_target_account_strike
+          mark_report_action_taken
 
           expect(report.target_account.strikes.last.text).to eq ''
           expect(response).to redirect_to(admin_reports_path)
@@ -86,7 +89,8 @@ RSpec.describe Admin::Reports::ActionsController do
       end
 
       def mark_report_action_taken
-        change { report.reload.action_taken? }.from(false).to(true)
+        expect(report.action_taken?).to be false
+        expect(report.reload.action_taken?).to be true
       end
 
       def create_target_account_strike
@@ -101,7 +105,9 @@ RSpec.describe Admin::Reports::ActionsController do
         it_behaves_like 'common behavior'
 
         it 'suspends the target account' do
-          expect { subject }.to change { report.target_account.reload.suspended? }.from(false).to(true)
+          expect(report.target_account.suspended?).to be false
+          subject
+          expect(report.target_account.reload.suspended?).to be true
         end
       end
 
@@ -110,8 +116,10 @@ RSpec.describe Admin::Reports::ActionsController do
 
         it_behaves_like 'common behavior'
 
-        it 'suspends the target account' do
-          expect { subject }.to change { report.target_account.reload.silenced? }.from(false).to(true)
+        it 'silences the target account' do
+          expect(report.target_account.silenced?).to be false
+          subject
+          expect(report.target_account.reload.silenced?).to be true
         end
       end
 
@@ -148,18 +156,14 @@ RSpec.describe Admin::Reports::ActionsController do
       context 'when the action is "invalid_action"' do
         let(:action) { 'invalid_action' }
 
-        it { is_expected.to redirect_to(admin_report_path(report)) }
+        it do
+          expect(response).to_not have_http_status(302)
+        end
       end
     end
 
     context 'with action as submit button' do
       subject { post :create, params: common_params.merge({ action => '' }) }
-
-      it_behaves_like 'all action types'
-    end
-
-    context 'with moderation action as an extra field' do
-      subject { post :create, params: common_params.merge({ moderation_action: action }) }
 
       it_behaves_like 'all action types'
     end

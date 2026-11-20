@@ -148,11 +148,11 @@ namespace :admin do
   end
 
   resources :reports, only: [:index, :show] do
-    resources :actions, only: [:create], module: :reports do
-      collection do
-        post :preview
-      end
-    end
+    # TODO: remove redirect after 5.0.0
+    post '/actions', to: redirect { |path_params, _req|
+      account_id = Report.find(path_params[:report_id]).account_id
+      account_id ? "/admin/accounts/#{account_id}/moderation_action" : '/admin/reports'
+    }
 
     member do
       post :assign_to_self
@@ -179,9 +179,13 @@ namespace :admin do
       post :unblock_email
     end
 
+    resource :moderation_action, only: [:new, :create], controller: 'accounts/moderation_actions' do
+      collection do
+        post :preview
+      end
+    end
     resource :change_email, only: [:show, :update]
     resource :reset, only: [:create]
-    resource :action, only: [:new, :create], controller: 'account_actions'
 
     resources :collections, only: [:index, :show], concerns: :batch
     resources :statuses, only: [:index, :show], concerns: :batch
