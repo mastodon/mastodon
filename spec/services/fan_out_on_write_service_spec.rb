@@ -26,7 +26,7 @@ RSpec.describe FanOutOnWriteService do
   end
 
   def home_feed_of(account)
-    HomeFeed.new(account).get(10).map(&:id)
+    HomeFeed.new(account).get(limit: 10).map(&:id)
   end
 
   context 'when status account is suspended' do

@@ -31,7 +31,7 @@ RSpec.describe TagUnmergeWorker do
 
     it 'removes the expected status from the feed' do
       expect { subject.perform(followed_tag.id, follower.id) }
-        .to change { HomeFeed.new(follower).get(10).pluck(:id) }
+        .to change { HomeFeed.new(follower).get(limit: 10).pluck(:id) }
         .from([unchanged_tagged_status.id, tagged_status.id, status_from_followed.id])
         .to([unchanged_tagged_status.id, status_from_followed.id])
     end
