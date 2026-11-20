@@ -1,8 +1,8 @@
 = link_to admin_disputes_strike_path(appeal.strike), class: ['log-entry', appeal.approved? && 'log-entry--inactive'] do
-  .log-entry__header
+  .log-entry__header.admin-row-with-status
     .log-entry__avatar
       = image_tag appeal.account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
-    .log-entry__content
+    .log-entry__content.admin-row-with-status__content
       .log-entry__title
         = strike_action_label(appeal)
       .log-entry__timestamp
@@ -12,10 +12,10 @@
         - if appeal.strike.report_id.present?
           ·
           = t('admin.reports.title', id: appeal.strike.report_id)
-        ·
-        - if appeal.approved?
-          %span.positive-hint= t('admin.strikes.appeal_approved')
-        - elsif appeal.rejected?
-          %span.negative-hint= t('admin.strikes.appeal_rejected')
-        - else
-          %span.warning-hint= t('admin.strikes.appeal_pending')
+
+    - if appeal.approved?
+      %span.information-badge.accept= t('admin.strikes.appeal_approved')
+    - elsif appeal.rejected?
+      %span.information-badge.reject= t('admin.strikes.appeal_rejected')
+    - else
+      %span.information-badge.limit= t('admin.strikes.appeal_pending')
