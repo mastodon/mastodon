@@ -2,6 +2,7 @@ moderator:
   name: Moderator
   position: 10
   permissions:
+    - invite_users
     - view_dashboard
     - view_audit_log
     - view_feeds
@@ -12,6 +13,7 @@ admin:
   name: Admin
   position: 100
   permissions:
+    - invite_users
     - view_dashboard
     - view_audit_log
     - view_feeds

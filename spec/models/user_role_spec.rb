@@ -205,8 +205,8 @@ RSpec.describe UserRole do
       end
     end
 
-    it 'returns permissions combined with the everyone role' do
-      expect(subject.computed_permissions).to eq described_class.everyone.permissions
+    it 'returns permissions from the role' do
+      expect(subject.computed_permissions).to eq subject.permissions
     end
   end
 
