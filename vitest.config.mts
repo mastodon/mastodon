@@ -13,7 +13,7 @@ const storybookTests: TestProjectInlineConfiguration = {
     // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
     storybookTest({
       configDir: '.storybook',
-      storybookScript: 'yarn run storybook',
+      storybookScript: 'yarn run storybook --no-open',
     }),
   ],
   test: {
