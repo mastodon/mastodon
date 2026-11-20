@@ -59,6 +59,12 @@ RSpec.describe LanguagesHelper do
         expect(helper.standard_locale_name(:de)).to eq('German')
       end
     end
+
+    context 'with a regional locale' do
+      it 'finds the human readable regional name from a key' do
+        expect(helper.standard_locale_name('en-GB')).to eq('English (British)')
+      end
+    end
   end
 
   describe 'sorted_locales' do

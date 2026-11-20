@@ -281,6 +281,8 @@ module LanguagesHelper
       I18n.t('generic.none')
     elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
       supported_locale[0]
+    elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
+      regional_locale
     else
       locale
     end
