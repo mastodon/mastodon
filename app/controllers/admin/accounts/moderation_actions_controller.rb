@@ -14,7 +14,7 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
   def preview
     authorize @report, :show?
 
-    @moderation_action = action_from_button
+    @moderation_action = action_from_params
   end
 
   def create
@@ -23,19 +23,15 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
 
     @account_action = Admin::AccountAction.new(account_action_params)
 
-    case action_from_button
+    case action_from_params
     when 'delete', 'mark_as_sensitive'
       Admin::ModerationAction.new(shared_params).save!
     when 'silence', 'suspend', 'none', 'disable', 'sensitive'
       @account_action.save!
     else
-      if with_report?
-        return redirect_to admin_report_path(@report), alert: I18n.t('admin.reports.unknown_action_msg', action: action_from_button)
-      else
-        @warning_presets = AccountWarningPreset.all
+      @warning_presets = AccountWarningPreset.all
 
-        return render :new
-      end
+      return render :new
     end
 
     redirect_path_success
@@ -62,7 +58,7 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
       send_email_notification: get_param('send_email_notification'),
       report_id: get_param('report_id'),
       text: get_param('text'),
-      type: action_from_button,
+      type: action_from_params,
       include_statuses: get_param('include_statuses'),
       warning_preset_id: get_param('warning_preset_id'),
     }
@@ -74,11 +70,11 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
       send_email_notification: !@report.spam?,
       report_id: @report.id,
       text: get_param('text'),
-      type: action_from_button,
+      type: action_from_params,
     }
   end
 
-  def action_from_button
+  def action_from_params
     params[:admin_account_action][:type] if params[:admin_account_action].is_a?(ActionController::Parameters) && params[:admin_account_action][:type]
   end
 

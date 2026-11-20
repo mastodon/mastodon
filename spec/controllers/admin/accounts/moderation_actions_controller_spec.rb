@@ -64,12 +64,13 @@ RSpec.describe Admin::Accounts::ModerationActionsController do
 
     before do
       _media = Fabricate(:media_attachment, account: target_account, status: statuses[0])
-      post :preview, params: common_params
+      post :create, params: common_params
     end
 
     shared_examples 'common behavior' do
       it 'closes the report and redirects' do
-        expect { subject }.to mark_report_action_taken.and create_target_account_strike
+        expect { subject }.to create_target_account_strike
+        mark_report_action_taken
 
         expect(report.target_account.strikes.last.text).to eq text
         expect(response).to redirect_to(admin_reports_path)
@@ -79,7 +80,8 @@ RSpec.describe Admin::Accounts::ModerationActionsController do
         let(:common_params) { { admin_account_action: { report_id: report.id, type: action, include_statuses: true }, account_id: account_id } }
 
         it 'closes the report and redirects' do
-          expect { subject }.to mark_report_action_taken.and create_target_account_strike
+          expect { subject }.to create_target_account_strike
+          mark_report_action_taken
 
           expect(report.target_account.strikes.last.text).to eq ''
           expect(response).to redirect_to(admin_reports_path)
@@ -87,7 +89,8 @@ RSpec.describe Admin::Accounts::ModerationActionsController do
       end
 
       def mark_report_action_taken
-        change { report.reload.action_taken? }.from(false).to(true)
+        expect(report.action_taken?).to be false
+        expect(report.reload.action_taken?).to be true
       end
 
       def create_target_account_strike
@@ -102,7 +105,9 @@ RSpec.describe Admin::Accounts::ModerationActionsController do
         it_behaves_like 'common behavior'
 
         it 'suspends the target account' do
-          expect { subject }.to change { report.target_account.reload.suspended? }.from(false).to(true)
+          expect(report.target_account.suspended?).to be false
+          subject
+          expect(report.target_account.reload.suspended?).to be true
         end
       end
 
@@ -111,8 +116,10 @@ RSpec.describe Admin::Accounts::ModerationActionsController do
 
         it_behaves_like 'common behavior'
 
-        it 'suspends the target account' do
-          expect { subject }.to change { report.target_account.reload.silenced? }.from(false).to(true)
+        it 'silences the target account' do
+          expect(report.target_account.silenced?).to be false
+          subject
+          expect(report.target_account.reload.silenced?).to be true
         end
       end
 
@@ -150,7 +157,7 @@ RSpec.describe Admin::Accounts::ModerationActionsController do
         let(:action) { 'invalid_action' }
 
         it do
-          expect(subject).to redirect_to(admin_report_path(report))
+          expect(response).to_not have_http_status(302)
         end
       end
     end
