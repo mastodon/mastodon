@@ -36,8 +36,10 @@ html {
     scroll-padding-top: 0;
   }
 
-  &:has(.layout-multi-column) {
+  &:has(.layout-multiple-columns) {
     --current-column-header-height: 0;
+
+    scrollbar-gutter: auto;
   }
 
   &.system-font {
