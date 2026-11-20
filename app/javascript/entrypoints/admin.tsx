@@ -202,9 +202,43 @@ on(
   },
 );
 
-const onChangeAccountActionSelection = (target: HTMLInputElement) => {
+const onChangeEmailNotification = (target: HTMLInputElement) => {
+  const emailText = document.querySelectorAll<HTMLLIElement>(
+    '#data-action-text-box .email',
+  );
+
+  emailText.forEach((element) => {
+    if (!target.checked) {
+      element.style.display = 'none';
+    } else {
+      element.style.display = 'list-item';
+    }
+  });
+
+  const statusesCheckbox = document.getElementById(
+    'include_statuses',
+  ) as HTMLInputElement;
+
+  if (!target.checked) {
+    statusesCheckbox.disabled = true;
+  } else {
+    statusesCheckbox.disabled = false;
+  }
+};
+
+on(
+  'change',
+  'input#admin_account_action_send_email_notification',
+  ({ target }) => {
+    if (target instanceof HTMLInputElement) {
+      onChangeEmailNotification(target);
+    }
+  },
+);
+
+const onChangeAccountActionSelection = (target: HTMLSelectElement) => {
   const accountAction = target.value;
-  if (!target.checked) return;
+  if (!target.value) return;
 
   const presetsDropdown = document.getElementById(
     'presets_dropdown',
@@ -228,9 +262,29 @@ const onChangeAccountActionSelection = (target: HTMLInputElement) => {
   }
 };
 
-on('change', 'input[name="admin_account_action[type]"]', ({ target }) => {
-  if (target instanceof HTMLInputElement) {
+const onChangeAccountActionTextBox = (target: HTMLSelectElement) => {
+  const accountAction = target.value;
+  if (!target.value) return;
+
+  const allMessages = document.querySelectorAll<HTMLElement>(
+    '#data-action-text-box .flash-message',
+  );
+
+  allMessages.forEach((element) => {
+    const optionType = element.dataset.type;
+
+    if (optionType === accountAction) {
+      element.classList.remove('hidden');
+    } else {
+      element.classList.add('hidden');
+    }
+  });
+};
+
+on('input', 'select[name="admin_account_action[type]"]', ({ target }) => {
+  if (target instanceof HTMLSelectElement) {
     onChangeAccountActionSelection(target);
+    onChangeAccountActionTextBox(target);
   }
 });
 
@@ -388,11 +442,16 @@ ready(() => {
   );
   if (overrideRobots) onChangeOverrideRobots(overrideRobots);
 
-  const accountActionSelection = document.querySelector<HTMLInputElement>(
-    'input[name="admin_account_action[type]"]:checked',
+  const accountActionSelection = document.querySelector<HTMLSelectElement>(
+    'select#admin_account_action_type',
   );
   if (accountActionSelection)
     onChangeAccountActionSelection(accountActionSelection);
+
+  const accountActionTextBox = document.querySelector<HTMLSelectElement>(
+    'select#admin_account_action_type',
+  );
+  if (accountActionTextBox) onChangeAccountActionTextBox(accountActionTextBox);
 
   const inviteUsersPermissionChecbkox =
     document.querySelector<HTMLInputElement>(
