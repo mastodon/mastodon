@@ -96,6 +96,7 @@ en:
         email_footer_text: Optional text that appears in the footer of newsletter emails only.
         favicon: WEBP, PNG, GIF or JPG. Overrides the default Mastodon favicon with a custom icon.
         landing_page: Selects what page new visitors see when they first arrive on your server. If you select "Trends", then trends needs to be enabled in the Discovery Settings. If you select "Local feed", then "Access to live feeds featuring local posts" needs to be set to "Everyone" in the Discovery Settings.
+        limit_logged_out_feed_browsing: Logged-out visitors still see the most recent posts of the live feeds, hashtag and link feeds and trending posts, but need to log in or sign up to scroll further. This keeps the activity of your server visible to newcomers while making bulk scraping of its history harder.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Media files from posts made by remote users are cached on your server. When set to a positive value, media will be deleted after the specified number of days. If the media data is requested after it is deleted, it will be re-downloaded, if the source content is still available. Due to restrictions on how often link preview cards poll third-party sites, it is recommended to set this value to at least 14 days, or link preview cards will not be updated on demand before that time.
         min_age: Users will be asked to confirm their date of birth during sign-up
@@ -309,6 +310,7 @@ en:
         email_footer_text: Additional footer text
         favicon: Favicon
         landing_page: Landing page for new visitors
+        limit_logged_out_feed_browsing: Limit logged-out visitors to the first page of public feeds
         local_live_feed_access: Access to live feeds featuring local posts
         local_topic_feed_access: Access to hashtag and link feeds featuring local posts
         mascot: Custom mascot (legacy)

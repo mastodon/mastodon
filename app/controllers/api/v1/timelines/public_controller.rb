@@ -4,6 +4,8 @@ class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :require_user!, if: :require_auth?
 
+  include Api::LoggedOutFeedBrowsingLimit
+
   PERMITTED_PARAMS = %i(local remote limit only_media).freeze
 
   def show
