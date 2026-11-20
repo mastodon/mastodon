@@ -17,6 +17,7 @@ import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_colu
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
+import { useProfileFeedRequiresSignIn } from '@/mastodon/hooks/useProfileFeedRequiresSignIn';
 import type { MediaAttachment } from '@/mastodon/models/media_attachment';
 import {
   useAppSelector,
@@ -107,24 +108,25 @@ export const AccountGallery: React.FC<{
   } = useAppSelector((state) => selectGalleryTimeline(state, accountId));
 
   const { suspended, blockedBy, hidden } = useAccountVisibility(accountId);
+  const requiresSignIn = useProfileFeedRequiresSignIn();
 
   const maxId = attachments.last()?.getIn(['status', 'id']) as
     | string
     | undefined;
 
   useEffect(() => {
-    if (accountId) {
+    if (accountId && !requiresSignIn) {
       void dispatch(expandAccountMediaTimeline(accountId, { withReplies }));
     }
-  }, [dispatch, accountId, withReplies]);
+  }, [dispatch, accountId, withReplies, requiresSignIn]);
 
   const handleLoadMore = useCallback(() => {
-    if (maxId) {
+    if (maxId && !requiresSignIn) {
       void dispatch(
         expandAccountMediaTimeline(accountId, { maxId, withReplies }),
       );
     }
-  }, [maxId, dispatch, accountId, withReplies]);
+  }, [maxId, dispatch, accountId, withReplies, requiresSignIn]);
 
   const handleOpenMedia = useCallback(
     (attachment: MediaAttachment) => {
@@ -198,6 +200,13 @@ export const AccountGallery: React.FC<{
           defaultMessage='Profile unavailable'
         />
       );
+    } else if (requiresSignIn) {
+      emptyMessage = (
+        <FormattedMessage
+          id='empty_column.account_timeline_requires_sign_in'
+          defaultMessage='Log in to see posts from this profile.'
+        />
+      );
     } else if (attachments.isEmpty()) {
       emptyMessage = <RemoteHint accountId={accountId} />;
     } else {
@@ -211,6 +220,7 @@ export const AccountGallery: React.FC<{
   }
 
   const forceEmptyState = suspended || blockedBy || hidden;
+  const hideItems = forceEmptyState || requiresSignIn;
 
   return (
     <Column>
@@ -230,12 +240,12 @@ export const AccountGallery: React.FC<{
         append={accountId && <RemoteHint accountId={accountId} />}
         scrollKey='account_gallery'
         isLoading={isLoading}
-        hasMore={!forceEmptyState && hasMore}
+        hasMore={!hideItems && hasMore}
         onLoadMore={handleLoadMore}
         emptyMessage={emptyMessage}
         bindToDocument={!multiColumn}
       >
-        {attachments.map((attachment) => (
+        {(hideItems ? emptyList : attachments).map((attachment) => (
           <MediaItem
             key={attachment.get('id') as string}
             attachment={attachment}

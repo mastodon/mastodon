@@ -151,6 +151,30 @@ RSpec.describe 'API V1 Accounts Statuses' do
       end
     end
 
+    context 'when profile feeds are restricted to logged-in users' do
+      let(:account) { Fabricate(:account) }
+
+      before do
+        Fabricate(:status, account: account)
+        Form::AdminSettings.new(profile_feed_access: 'authenticated').save
+      end
+
+      it 'returns the statuses to an authenticated user' do
+        get "/api/v1/accounts/#{account.id}/statuses", headers: headers
+
+        expect(response).to have_http_status(200)
+        expect(response.parsed_body.size).to eq 1
+      end
+
+      it 'returns http unprocessable entity without an authentication token', :aggregate_failures do
+        get "/api/v1/accounts/#{account.id}/statuses"
+
+        expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
+      end
+    end
+
     context 'when requested account is permanently deleted' do
       let(:account) { Fabricate(:account) }
 

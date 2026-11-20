@@ -2,6 +2,7 @@
 
 class Api::V1::Accounts::StatusesController < Api::V1::Accounts::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
+  before_action :require_user!, if: :require_auth?
   before_action :set_account
 
   after_action :insert_pagination_headers
@@ -13,6 +14,10 @@ class Api::V1::Accounts::StatusesController < Api::V1::Accounts::BaseController
   end
 
   private
+
+  def require_auth?
+    Setting.profile_feed_access != 'public'
+  end
 
   def load_statuses
     @account.unavailable? ? [] : preloaded_account_statuses

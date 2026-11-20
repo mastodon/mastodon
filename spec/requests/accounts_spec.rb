@@ -291,6 +291,17 @@ RSpec.describe 'Accounts show response' do
           end
         end
 
+        context 'when profile feeds are restricted to logged-in users' do
+          before do
+            Form::AdminSettings.new(profile_feed_access: 'authenticated').save
+            get short_account_path(username: account.username, format: format)
+          end
+
+          it 'returns http not found' do
+            expect(response).to have_http_status(404)
+          end
+        end
+
         context 'with replies' do
           before do
             get short_account_with_replies_path(username: account.username, format: format)
