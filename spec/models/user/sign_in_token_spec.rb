@@ -22,7 +22,7 @@ RSpec.describe User::SignInToken do
   end
 
   describe '#suspicious_inactive_sign_in?' do
-    subject { Fabricate(:user, current_sign_in_at:) }
+    subject { Fabricate(:user, current_sign_in_at:, created_at: 7.months.ago) }
 
     context 'when current_sign_in_at is nil' do
       let(:current_sign_in_at) { nil }

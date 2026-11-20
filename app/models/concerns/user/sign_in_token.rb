@@ -19,8 +19,23 @@ module User::SignInToken
     !sign_in_token_disabled? &&
       !two_factor_enabled? &&
       encrypted_password? &&
-      current_sign_in_at? &&
-      current_sign_in_at < SUSPICIOUS_INACTIVITY_DURATION.ago
+      !recently_logged_in?
+  end
+
+  def recently_logged_in?
+    # `current_sign_in_at` actually logs logged-in activity, not log-in time,
+    # so a missing `current_sign_in_at` means the user never logged in, but
+    # a recent `current_sign_in_at` does not mean the user logged in recently
+    # (they just have an active session)
+    return false unless current_sign_in_at?
+
+    # The user has a recent log-in activity
+    return true if login_activities.where(success: true).exists?(created_at: SUSPICIOUS_INACTIVITY_DURATION.ago...)
+
+    # There are two reasons for log-in activities to be missing:
+    # 1. The log-in activities are so old they have been reaped
+    # 2. The user only got logged in through registration, in which case we'll just use the account creation date
+    created_at >= SUSPICIOUS_INACTIVITY_DURATION.ago
   end
 
   def valid_sign_in_token?(token)
