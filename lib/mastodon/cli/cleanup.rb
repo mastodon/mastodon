@@ -20,15 +20,11 @@ module Mastodon::CLI
       Clean up accounts and remove all evidence of those accounts, their posts, and their media from DB and S3.
 
       With the --domain DOMAIN option, all remote accounts from a specific domain will be purged.
-      With the --remote-suspended option, all suspended remote accounts will be purged.
       With the --suspended-instances option, all remote accounts from suspended instances will be purged.
-      With the --availability-failing / --availabilityFailing option, all remote accounts from failing instances will be purged.
-      With the --availability-unavailable / --availabilityUnavailable option, all remote accounts from unavailable instances will be purged.
-      With the --all option, all of the above categories will be purged.
     LONG_DESC
     def accounts
-      unless options[:domain].present? || options[:remote_suspended] || options[:suspended_instances] || options[:reject_media_instances] || options[:availability_failing] || options[:availability_unavailable] || options[:all]
-        fail_with_message 'Please specify at least one cleanup category (--domain, --remote-suspended, --suspended-instances, --reject-media-instances, --availability-failing, --availability-unavailable, or --all)'
+      unless options[:domain].present? || options[:suspended_instances]
+        fail_with_message 'Please specify at least one cleanup category (--domain, --suspended-instances)'
       end
 
       target_domain = options[:domain].present? ? TagManager.instance.normalize_domain(options[:domain].to_s.strip) : nil
@@ -38,32 +34,8 @@ module Mastodon::CLI
         scopes << Account.remote.with_domain(target_domain)
       end
 
-      if options[:remote_suspended] || options[:all]
-        scope = Account.remote.suspended
-        scope = scope.with_domain(target_domain) if target_domain.present?
-        scopes << scope
-      end
-
       if options[:suspended_instances] || options[:all]
         domain_scope = DomainBlock.suspend.select(:domain)
-        domain_scope = domain_scope.where('lower(domain) = lower(?)', target_domain) if target_domain.present?
-        scopes << Account.remote.where(domain: domain_scope)
-      end
-
-      if options[:reject_media_instances] || options[:all]
-        domain_scope = DomainBlock.where(reject_media: true).select(:domain)
-        domain_scope = domain_scope.where('lower(domain) = lower(?)', target_domain) if target_domain.present?
-        scopes << Account.remote.where(domain: domain_scope)
-      end
-
-      if options[:availability_failing] || options[:all]
-        warning_domains = DeliveryFailureTracker.warning_domains
-        warning_domains = warning_domains.select { |d| d.casecmp?(target_domain) } if target_domain.present?
-        scopes << Account.remote.where(domain: warning_domains)
-      end
-
-      if options[:availability_unavailable] || options[:all]
-        domain_scope = UnavailableDomain.select(:domain)
         domain_scope = domain_scope.where('lower(domain) = lower(?)', target_domain) if target_domain.present?
         scopes << Account.remote.where(domain: domain_scope)
       end
