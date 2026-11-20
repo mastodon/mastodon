@@ -696,76 +696,9 @@ kbd {
   }
 }
 
-.report-accounts {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.report-accounts__item {
-  display: flex;
-  flex: 250px;
-  flex-direction: column;
-  margin: 0 5px;
-
-  & > strong {
-    display: block;
-    margin: 0 0 10px -5px;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 18px;
-    color: var(--color-text-primary);
-
-    @each $lang in $cjk-langs {
-      &:lang(#{$lang}) {
-        font-weight: 700;
-      }
-    }
-  }
-
-  .account-card {
-    flex: 1 1 auto;
-  }
-}
-
-.report-status,
-.account-status {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.report-status__actions,
-.account-status__actions {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-
-  .icon-button {
-    font-size: 24px;
-    width: 24px;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-}
-
 .simple_form.new_report_note,
 .simple_form.new_account_moderation_note {
   max-width: 100%;
-}
-
-.batch-form-box {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 5px;
-
-  #form_status_batch_action {
-    margin: 0 5px 5px 0;
-    font-size: 14px;
-  }
-
-  input.button {
-    margin: 0 5px 5px 0;
-  }
 }
 
 .back-link {
@@ -782,7 +715,6 @@ kbd {
   }
 }
 
-.special-action-button,
 .back-link {
   text-align: end;
   flex: 1 1 auto;
@@ -1354,10 +1286,6 @@ a.name-tag,
 
 .dashboard__counters.admin-account-counters {
   margin-top: 10px;
-}
-
-.account-badges {
-  margin: -2px 0;
 }
 
 .retention {

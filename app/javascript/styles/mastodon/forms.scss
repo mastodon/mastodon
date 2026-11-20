@@ -1040,32 +1040,7 @@ code {
   }
 }
 
-.quick-nav {
-  list-style: none;
-  margin-bottom: 25px;
-  font-size: 14px;
-
-  li {
-    display: inline-block;
-    margin-inline-end: 10px;
-  }
-
-  a {
-    color: var(--color-text-brand);
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 700;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: var(--color-text-brand-soft);
-    }
-  }
-}
-
-.oauth-prompt,
-.follow-prompt {
+.oauth-prompt {
   margin-bottom: 30px;
   color: var(--color-text-secondary);
 
@@ -1151,23 +1126,6 @@ code {
   samp {
     display: block;
     font-size: 14px;
-  }
-}
-
-.action-pagination {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-
-  .actions,
-  .pagination {
-    flex: 1 1 auto;
-  }
-
-  .actions {
-    padding: 30px 0;
-    padding-inline-end: 20px;
-    flex: 0 0 auto;
   }
 }
 
