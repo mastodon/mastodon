@@ -7,15 +7,10 @@ module Mastodon::CLI
     include ActionView::Helpers::NumberHelper
 
     option :domain, type: :string
-    option :remote_suspended, type: :boolean
     option :suspended_instances, type: :boolean
-    option :reject_media_instances, type: :boolean, aliases: [:rejectMediaInstances]
-    option :availability_failing, type: :boolean, aliases: [:availabilityFailing]
-    option :availability_unavailable, type: :boolean, aliases: [:availabilityUnavailable]
-    option :all, type: :boolean
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :dry_run, type: :boolean
-    desc 'accounts', 'Clean up suspended, deleted, limited, domain-specific, or failing accounts, posts, and media from DB and S3'
+    desc 'accounts', 'Clean up suspended/domain-specific, accounts, posts, and media from DB and S3'
     long_desc <<-LONG_DESC
       Clean up accounts and remove all evidence of those accounts, their posts, and their media from DB and S3.
 
