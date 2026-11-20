@@ -28,15 +28,9 @@ RSpec.describe Mastodon::CLI::Cleanup do
     end
 
     context 'with category options' do
-      let!(:local_suspended) { Fabricate(:account, domain: nil, suspended_at: 1.day.ago) }
       let!(:remote_suspended) { Fabricate(:account, domain: 'suspended-user.com', suspended_at: 1.day.ago) }
-      let!(:local_deleted) { Fabricate(:account, domain: nil, requested_deletion_at: 1.day.ago) }
       let!(:suspended_domain_block) { Fabricate(:domain_block, domain: 'suspended-instance.com', severity: :suspend) }
       let!(:account_on_suspended_instance) { Fabricate(:account, domain: 'suspended-instance.com') }
-      let!(:limited_domain_block) { Fabricate(:domain_block, domain: 'limited-instance.com', severity: :silence) }
-      let!(:account_on_limited_instance) { Fabricate(:account, domain: 'limited-instance.com') }
-      let!(:reject_media_domain_block) { Fabricate(:domain_block, domain: 'reject-media-instance.com', severity: :noop, reject_media: true) }
-      let!(:account_on_reject_media_instance) { Fabricate(:account, domain: 'reject-media-instance.com') }
       let!(:failing_account) { Fabricate(:account, domain: 'failing-instance.com') }
       let!(:unavailable_domain) { Fabricate(:unavailable_domain, domain: 'unavailable-instance.com') }
       let!(:unavailable_account) { Fabricate(:account, domain: 'unavailable-instance.com') }
@@ -73,20 +67,6 @@ RSpec.describe Mastodon::CLI::Cleanup do
         end
       end
 
-      context 'with --local-suspended' do
-        let(:options) { { local_suspended: true } }
-
-        it 'deletes local suspended accounts only' do
-          expect { subject }
-            .to output_results('OK, cleaned up 1 accounts, 0 statuses, 0 media attachments (approx. 0 Bytes)')
-
-          expect(delete_account_service).to have_received(:call).with(local_suspended, reserve_username: false, reserve_email: false, skip_side_effects: true).once
-          expect(delete_account_service).to_not have_received(:call).with(remote_suspended, any_args)
-          expect(delete_account_service).to_not have_received(:call).with(local_deleted, any_args)
-          expect(delete_account_service).to_not have_received(:call).with(account_on_suspended_instance, any_args)
-        end
-      end
-
       context 'with --remote-suspended' do
         let(:options) { { remote_suspended: true } }
 
@@ -95,18 +75,6 @@ RSpec.describe Mastodon::CLI::Cleanup do
             .to output_results('OK, cleaned up 1 accounts, 0 statuses, 0 media attachments (approx. 0 Bytes)')
 
           expect(delete_account_service).to have_received(:call).with(remote_suspended, reserve_username: false, reserve_email: false, skip_side_effects: true).once
-          expect(delete_account_service).to_not have_received(:call).with(local_suspended, any_args)
-        end
-      end
-
-      context 'with --local-deleted' do
-        let(:options) { { local_deleted: true } }
-
-        it 'deletes local deleted accounts only' do
-          expect { subject }
-            .to output_results('OK, cleaned up 1 accounts, 0 statuses, 0 media attachments (approx. 0 Bytes)')
-
-          expect(delete_account_service).to have_received(:call).with(local_deleted, reserve_username: false, reserve_email: false, skip_side_effects: true).once
           expect(delete_account_service).to_not have_received(:call).with(local_suspended, any_args)
         end
       end
@@ -120,29 +88,6 @@ RSpec.describe Mastodon::CLI::Cleanup do
 
           expect(delete_account_service).to have_received(:call).with(account_on_suspended_instance, reserve_username: false, reserve_email: false, skip_side_effects: true).once
           expect(DomainBlock.exists?(id: suspended_domain_block.id)).to be(true)
-        end
-      end
-
-      context 'with --limited-instances' do
-        let(:options) { { limited_instances: true } }
-
-        it 'deletes accounts on limited instances only' do
-          expect { subject }
-            .to output_results('OK, cleaned up 1 accounts, 0 statuses, 0 media attachments (approx. 0 Bytes)')
-
-          expect(delete_account_service).to have_received(:call).with(account_on_limited_instance, reserve_username: false, reserve_email: false, skip_side_effects: true).once
-          expect(delete_account_service).to_not have_received(:call).with(account_on_suspended_instance, any_args)
-        end
-      end
-
-      context 'with --rejectMediaInstances' do
-        let(:options) { { rejectMediaInstances: true } }
-
-        it 'deletes accounts on instances rejecting media' do
-          expect { subject }
-            .to output_results('OK, cleaned up 1 accounts, 0 statuses, 0 media attachments (approx. 0 Bytes)')
-
-          expect(delete_account_service).to have_received(:call).with(account_on_reject_media_instance, reserve_username: false, reserve_email: false, skip_side_effects: true).once
         end
       end
 
@@ -175,12 +120,8 @@ RSpec.describe Mastodon::CLI::Cleanup do
           expect { subject }
             .to output_results('OK, cleaned up 8 accounts, 0 statuses, 0 media attachments (approx. 0 Bytes)')
 
-          expect(delete_account_service).to have_received(:call).with(local_suspended, reserve_username: false, reserve_email: false, skip_side_effects: true).once
           expect(delete_account_service).to have_received(:call).with(remote_suspended, reserve_username: false, reserve_email: false, skip_side_effects: true).once
-          expect(delete_account_service).to have_received(:call).with(local_deleted, reserve_username: false, reserve_email: false, skip_side_effects: true).once
           expect(delete_account_service).to have_received(:call).with(account_on_suspended_instance, reserve_username: false, reserve_email: false, skip_side_effects: true).once
-          expect(delete_account_service).to have_received(:call).with(account_on_limited_instance, reserve_username: false, reserve_email: false, skip_side_effects: true).once
-          expect(delete_account_service).to have_received(:call).with(account_on_reject_media_instance, reserve_username: false, reserve_email: false, skip_side_effects: true).once
           expect(delete_account_service).to have_received(:call).with(failing_account, reserve_username: false, reserve_email: false, skip_side_effects: true).once
           expect(delete_account_service).to have_received(:call).with(unavailable_account, reserve_username: false, reserve_email: false, skip_side_effects: true).once
           expect(delete_account_service).to_not have_received(:call).with(active_local_account, any_args)
