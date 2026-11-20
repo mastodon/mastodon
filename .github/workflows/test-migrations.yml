@@ -26,16 +26,25 @@ jobs:
       fail-fast: false
 
       matrix:
-        postgres:
-          - 17-alpine
-          - 18-alpine
-          - 19
+        include:
+          - postgres: 15-alpine
+            initdb_args: ''
+          - postgres: 16-alpine
+            initdb_args: ''
+          - postgres: 17-alpine
+            initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
+          - postgres: 18-alpine
+            initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
+          - postgres: '18'
+            initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
+          - postgres: '19'
+            initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
 
     services:
       postgres:
-        image: postgres:${{ matrix.postgres}}
+        image: postgres:${{ matrix.postgres }}
         env:
-          POSTGRES_INITDB_ARGS: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
+          POSTGRES_INITDB_ARGS: ${{ matrix.initdb_args }}
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
         options: >-
