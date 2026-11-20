@@ -100,6 +100,7 @@ gem 'json', '< 3'
 gem 'json-canonicalization', '~> 1.0'
 gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
+gem 'json-schema', '~> 6.0'
 gem 'rdf-normalize', '~> 0.5'
 
 gem 'prometheus_exporter', '~> 2.2', require: false
@@ -144,9 +145,6 @@ group :test do
 
   # Used to mock environment variables
   gem 'climate_control'
-
-  # Validate schemas in specs
-  gem 'json-schema', '~> 6.0'
 
   # Test harness fo rack components
   gem 'rack-test', '~> 2.1'
