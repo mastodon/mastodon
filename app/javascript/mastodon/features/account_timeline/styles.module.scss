@@ -95,19 +95,3 @@
   margin: var(--space-3) var(--horizontal-margin);
   width: calc(100% - var(--horizontal-margin) * 2);
 }
-
-.pinnedStatusHeader {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: 1fr 1fr;
-  gap: 4px;
-
-  > :global(.status__relative-time) {
-    grid-column: 2;
-    height: auto;
-  }
-
-  > :global(.status__display-name) {
-    grid-row: span 2;
-  }
-}
