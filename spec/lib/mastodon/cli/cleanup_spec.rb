@@ -30,7 +30,6 @@ RSpec.describe Mastodon::CLI::Cleanup do
     context 'with category options' do
       let!(:suspended_domain_block) { Fabricate(:domain_block, domain: 'suspended-instance.com', severity: :suspend) }
       let!(:specific_domain_account) { Fabricate(:account, domain: 'target-domain.com') }
-      let!(:active_local_account) { Fabricate(:account, domain: nil) }
       let!(:active_remote_account) { Fabricate(:account, domain: 'active-instance.com') }
 
       before do
