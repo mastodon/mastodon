@@ -6,6 +6,7 @@ services:
       dockerfile: .devcontainer/Dockerfile
     volumes:
       - ..:/workspaces/mastodon:cached
+      - node_modules:/workspaces/mastodon/node_modules
     environment:
       RAILS_ENV: development
       NODE_ENV: development
@@ -86,6 +87,7 @@ volumes:
   redis-data:
   es-data:
   lt-data:
+  node_modules:
 
 networks:
   external_network:
