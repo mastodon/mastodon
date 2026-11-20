@@ -944,36 +944,6 @@ body > [data-popover-placement] {
     margin-inline-end: 5px;
   }
 
-  &-composite {
-    border-radius: 50%;
-    overflow: hidden;
-    position: relative;
-
-    & > div {
-      float: left;
-      position: relative;
-      box-sizing: border-box;
-    }
-
-    .account__avatar {
-      width: 100% !important;
-      height: 100% !important;
-    }
-
-    &__label {
-      display: block;
-      position: absolute;
-      top: 50%;
-      inset-inline-start: 50%;
-      transform: translate(-50%, -50%);
-      color: var(--color-text-primary);
-      text-shadow: 1px 1px 2px
-        rgb(from var(--color-shadow-primary) r g b / 100%);
-      font-weight: 700;
-      font-size: 15px;
-    }
-  }
-
   &__counter {
     $height: 16px;
     $h-padding: 5px;
