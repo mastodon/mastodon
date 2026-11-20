@@ -45,6 +45,7 @@
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
 
+    = render 'layouts/loader'
     .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => 'true' }
-      = inline_svg_tag 'logo-symbol-icon.svg'
-      = inline_svg_tag 'logo-symbol-wordmark.svg'
+      = inline_svg_tag 'logo-symbol-icon.svg', width: 0, height: 0, class: 'logo-resources__loader'
+      = inline_svg_tag 'logo-symbol-wordmark.svg', width: 0, height: 0
