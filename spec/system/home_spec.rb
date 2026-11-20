@@ -61,5 +61,20 @@ RSpec.describe 'Home page' do
         expect(page).to have_current_path('/public/local')
       end
     end
+
+    context 'when the explore (trending) page is loaded' do
+      it 'returns page with links to rss feed' do
+        get '/explore'
+        expect(rss_links.first[:href]).to eq('/explore.rss')
+      end
+
+      def rss_links
+        alternate_links.css('[type="application/rss+xml"]')
+      end
+
+      def alternate_links
+        response.parsed_body.css('link[rel=alternate]')
+      end
+    end
   end
 end
