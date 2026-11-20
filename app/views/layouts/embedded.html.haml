@@ -23,6 +23,3 @@
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce, property: 'csp-nonce', nonce: request.content_security_policy_nonce }
   %body.embed
     = yield
-
-    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => 'true' }
-      = inline_svg_tag 'logo-symbol-icon.svg'
