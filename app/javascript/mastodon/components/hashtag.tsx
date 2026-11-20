@@ -13,6 +13,7 @@ import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
 import type { Hashtag as HashtagType } from 'mastodon/models/tags';
+import { useOptionalRouter } from 'mastodon/utils/react_router';
 
 interface SilentErrorBoundaryProps {
   children: React.ReactNode;
@@ -109,6 +110,15 @@ export interface HashtagProps {
   children?: React.ReactNode;
 }
 
+const HashtagLink: React.FC<{
+  to: string;
+  children: React.ReactNode;
+}> = ({ to, children }) => {
+  const router = useOptionalRouter();
+
+  return router ? <Link to={to}>{children}</Link> : <a href={to}>{children}</a>;
+};
+
 export const Hashtag: React.FC<HashtagProps> = ({
   name,
   to,
@@ -122,7 +132,7 @@ export const Hashtag: React.FC<HashtagProps> = ({
 }) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
-      <Link to={to}>
+      <HashtagLink to={to}>
         {name ? (
           <>
             #<span>{name}</span>
@@ -130,7 +140,7 @@ export const Hashtag: React.FC<HashtagProps> = ({
         ) : (
           <Skeleton width={50} />
         )}
-      </Link>
+      </HashtagLink>
 
       {description ? (
         <span>{description}</span>
