@@ -10,7 +10,7 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   attribute :critical_updates_pending, if: -> { object&.role&.can?(:view_devops) && SoftwareUpdate.check_enabled? }
 
-  has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
+  has_one :push_subscription, serializer: REST::WebPushSubscriptionV1Serializer
   has_one :role, serializer: REST::RoleSerializer
 
   def meta
