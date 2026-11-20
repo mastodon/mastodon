@@ -17,7 +17,7 @@
           .sidebar__toggle
             .sidebar__toggle__logo
               = link_to root_path do
-                = logo_as_symbol(:wordmark)
+                = inline_svg_tag 'logo-symbol-wordmark.svg', class: 'logo logo--wordmark', title: 'Mastodon'
 
             = link_to '#', class: 'sidebar__toggle__icon', 'aria-label': t('navigation.toggle_menu'), 'aria-expanded': 'false' do
               = material_symbol 'menu'
