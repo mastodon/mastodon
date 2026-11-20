@@ -103,6 +103,7 @@ en:
         peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         postpone_confirmation_emails: When this setting is enabled, confirmation emails for accounts pending approval are only sent once those accounts are approved. This may provide a poorer sign-up experience for users as they will still need to confirm their e-mail address in a timely fashion after receiving the e-mail but will not be in control of when it is sent anymore. Furthermore, this may provide an increased workload for moderators, as Mastodon will not be able to filter out pending accounts with an invalid e-mail address before they are approved.
         profile_directory: The profile directory lists all users who have opted-in to be discoverable.
+        profile_feed_access: Controls who can list the posts of a profile, both on the web interface and through the API. Restricting it to logged-in users makes it harder for third parties to scrape and mirror the posts of your users, while individual posts and other feeds stay reachable.
         require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
         site_contact_email: How people can reach you for legal or support inquiries.
         site_contact_username: How people can reach you on Mastodon.
@@ -318,6 +319,7 @@ en:
         peers_api_enabled: Publish list of discovered servers in the API
         postpone_confirmation_emails: Postpone confirmation emails after approval
         profile_directory: Enable profile directory
+        profile_feed_access: Access to the posts listed on profiles
         registrations_mode: Who can sign-up
         remote_live_feed_access: Access to live feeds featuring remote posts
         remote_topic_feed_access: Access to hashtag and link feeds featuring remote posts
