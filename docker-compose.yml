@@ -4,8 +4,9 @@
 
 services:
   db:
-    restart: always
     image: postgres:19
+    restart: always
+    env_file: .env.production
     shm_size: 256mb
     networks:
       - internal_network
@@ -22,7 +23,7 @@ services:
       POSTGRES_DB: ${DB_NAME:-mastodon_production}
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASS:-}
-      POSTGRES_HOST_AUTH_METHOD: ${DB_HOSTAUTHMETHOD:-trust}
+      POSTGRES_HOST_AUTH_METHOD: ${DB_HOST_AUTH_METHOD:-trust}
 
   redis:
     restart: always
