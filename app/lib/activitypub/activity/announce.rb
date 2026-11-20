@@ -79,7 +79,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
   end
 
   def requested_through_relay?
-    super || Relay.find_by(inbox_url: @account.inbox_url)&.enabled?
+    super || Relay.find_by(account: @account, direction: :bidirectional)&.enabled?
   end
 
   def reblog_of_local_status?

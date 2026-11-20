@@ -182,7 +182,7 @@ class ActivityPub::Activity
   end
 
   def requested_through_relay?
-    @options[:relayed_through_actor] && Relay.find_by(inbox_url: @options[:relayed_through_actor].inbox_url)&.enabled?
+    @options[:relayed_through_actor] && Relay.find_by(account: @options[:relayed_through_actor], direction: :bidirectional)&.enabled?
   end
 
   def reject_payload!

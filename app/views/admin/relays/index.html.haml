@@ -8,12 +8,5 @@
 - unless @relays.empty?
   %hr.spacer
 
-  .table-wrapper
-    %table.table
-      %thead
-        %tr
-          %th= t('admin.relays.inbox_url')
-          %th= t('admin.relays.status')
-          %th
-      %tbody
-        = render @relays
+  .applications-list
+    = render @relays
