@@ -2,19 +2,20 @@
   = t('deletes.title', acct: current_account.local_username_and_domain)
 
 = simple_form_for @confirmation, url: settings_delete_path, method: :delete do |f|
-  %p.hint= t('deletes.warning.before')
+  .flash-message
+    %p.hint= t('deletes.warning.before')
 
-  %ul.hint
-    - if current_user.confirmed? && current_user.approved?
-      %li.warning-hint= t('deletes.warning.irreversible')
-      %li.warning-hint= t('deletes.warning.username_unavailable')
-      %li.warning-hint= t('deletes.warning.data_removal')
-      %li.warning-hint= t('deletes.warning.caches')
-    - else
-      %li.positive-hint= t('deletes.warning.email_change_html', path: edit_user_registration_path)
-      %li.positive-hint= t('deletes.warning.email_reconfirmation_html', path: new_user_confirmation_path)
-      %li.positive-hint= t('deletes.warning.email_contact_html', email: Setting.site_contact_email)
-      %li.positive-hint= t('deletes.warning.username_available')
+    %ul.hint
+      - if current_user.confirmed? && current_user.approved?
+        %li= t('deletes.warning.irreversible')
+        %li= t('deletes.warning.username_unavailable')
+        %li= t('deletes.warning.data_removal')
+        %li= t('deletes.warning.caches')
+      - else
+        %li= t('deletes.warning.email_change_html', path: edit_user_registration_path)
+        %li= t('deletes.warning.email_reconfirmation_html', path: new_user_confirmation_path)
+        %li= t('deletes.warning.email_contact_html', email: Setting.site_contact_email)
+        %li= t('deletes.warning.username_available')
 
   %p.hint= t('deletes.warning.more_details_html', terms_path: privacy_policy_path)
 
