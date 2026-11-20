@@ -13,10 +13,9 @@ class Admin::AccountAction < Admin::BaseAction
                 :warning_preset_id
 
   attribute :include_statuses, :boolean, default: true
-  attribute :include_rule_violations, :boolean, default: false
+  attribute :include_rule_violations, :boolean, default: true
 
   alias include_statuses? include_statuses
-  alias include_rule_violations? include_rule_violations
 
   validates :target_account, presence: true
 
@@ -40,12 +39,6 @@ class Admin::AccountAction < Admin::BaseAction
     def i18n_scope
       :activerecord
     end
-  end
-
-  def include_rule_violations
-    return false unless include_rule_violations?
-
-    include_rule_violations?
   end
 
   private

@@ -164,7 +164,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_12_113100) do
     t.bigint "target_account_id"
     t.text "text", default: "", null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.boolean "include_rule_violations", default: false, null: false
+    t.boolean "include_rule_violations", default: true, null: false
     t.index ["account_id"], name: "index_account_warnings_on_account_id"
     t.index ["target_account_id"], name: "index_account_warnings_on_target_account_id"
   end
