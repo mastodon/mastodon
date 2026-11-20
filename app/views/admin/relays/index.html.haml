@@ -1,9 +1,10 @@
 - content_for :page_title do
   = t('admin.relays.title')
 
-.simple_form
-  %p.hint= t('admin.relays.description_html')
+- content_for :heading_actions do
   = link_to @relays.empty? ? t('admin.relays.setup') : t('admin.relays.add_new'), new_admin_relay_path, class: 'button button--block'
+
+%p= t('admin.relays.description_html')
 
 - unless @relays.empty?
   %hr.spacer
