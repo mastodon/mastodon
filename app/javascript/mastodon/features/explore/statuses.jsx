@@ -14,6 +14,7 @@ import { debounce } from 'lodash';
 import { fetchTrendingStatuses, expandTrendingStatuses } from 'mastodon/actions/trends';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import StatusList from 'mastodon/components/status_list';
+import { limitLoggedOutFeedBrowsing, me } from 'mastodon/initial_state';
 import { getStatusList } from 'mastodon/selectors';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
@@ -65,6 +66,7 @@ class Statuses extends PureComponent {
         hasMore={hasMore}
         isLoading={isLoading}
         onLoadMore={this.handleLoadMore}
+        browsingLimited={!me && !!limitLoggedOutFeedBrowsing}
         emptyMessage={emptyMessage}
         bindToDocument={!multiColumn}
         withCounters

@@ -44,6 +44,7 @@ class Form::AdminSettings
     remote_live_feed_access
     local_topic_feed_access
     remote_topic_feed_access
+    limit_logged_out_feed_browsing
     landing_page
     wrapstodon
     email_footer_text
@@ -79,6 +80,7 @@ class Form::AdminSettings
     wrapstodon
     postpone_confirmation_emails
     override_robots
+    limit_logged_out_feed_browsing
   ).freeze
 
   UPLOAD_KEYS = %i(

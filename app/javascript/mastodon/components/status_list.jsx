@@ -10,6 +10,7 @@ import { isNonStatusId } from 'mastodon/actions/timelines_typed';
 import { RegenerationIndicator } from 'mastodon/components/regeneration_indicator';
 import { InlineFollowSuggestions } from 'mastodon/features/home_timeline/components/inline_follow_suggestions';
 import { PinnedShowAllButton } from '@/mastodon/features/account_timeline/components/pinned_statuses';
+import { LoggedOutFeedLimit } from '@/mastodon/components/logged_out_feed_limit';
 
 import { Status } from './status';
 
@@ -38,6 +39,7 @@ export default class StatusList extends ImmutablePureComponent {
     lastId: PropTypes.string,
     bindToDocument: PropTypes.bool,
     statusProps: PropTypes.object,
+    browsingLimited: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -54,8 +56,13 @@ export default class StatusList extends ImmutablePureComponent {
   };
 
   render () {
-    const { statusIds, featuredStatusIds, onLoadMore, timelineId, statusProps, ...other }  = this.props;
+    const { statusIds, featuredStatusIds, onLoadMore, timelineId, statusProps, browsingLimited, ...other }  = this.props;
     const { isLoading, isPartial } = other;
+
+    // Logged-out visitors only get the first page of public feeds when the server limits browsing
+    const limited = browsingLimited && statusIds.size > 0;
+
+    const scrollableProps = limited ? { ...other, hasMore: false, append: <LoggedOutFeedLimit /> } : other;
 
     if (isPartial) {
       return <RegenerationIndicator />;
@@ -112,7 +119,7 @@ export default class StatusList extends ImmutablePureComponent {
     }
 
     return (
-      <ScrollableList {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
+      <ScrollableList {...scrollableProps} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && !limited ? this.handleLoadOlder : undefined} ref={this.setRef}>
         {scrollableContent}
       </ScrollableList>
     );

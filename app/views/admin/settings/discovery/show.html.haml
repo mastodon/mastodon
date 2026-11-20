@@ -55,6 +55,11 @@
                 label_method: ->(mode) { I18n.t("admin.settings.feed_access.modes.#{mode}") },
                 wrapper: :with_label
 
+  .fields-group
+    = f.input :limit_logged_out_feed_browsing,
+              as: :boolean,
+              wrapper: :with_label
+
   %h2= t('admin.settings.discovery.follow_recommendations')
 
   .fields-group

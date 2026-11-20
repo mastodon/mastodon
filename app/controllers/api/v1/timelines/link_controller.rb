@@ -2,6 +2,9 @@
 
 class Api::V1::Timelines::LinkController < Api::V1::Timelines::TopicController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
+
+  include Api::LoggedOutFeedBrowsingLimit
+
   before_action :set_preview_card
   before_action :set_statuses
 

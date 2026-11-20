@@ -7,7 +7,11 @@ import { debounce } from 'lodash';
 import { loadPending } from '@/mastodon/actions/timelines';
 import { isNonStatusId, timelineScroll } from '@/mastodon/actions/timelines_typed';
 import StatusList from '@/mastodon/components/status_list';
-import { me } from '@/mastodon/initial_state';
+import { me, limitLoggedOutFeedBrowsing } from '@/mastodon/initial_state';
+
+const LIMITED_FEED_TYPES = /^(public|community|hashtag|link)(:|$)/;
+
+const isBrowsingLimited = (timelineId) => !me && !!limitLoggedOutFeedBrowsing && LIMITED_FEED_TYPES.test(timelineId);
 
 const makeGetStatusIds = (pending = false) => createSelector([
   (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
@@ -69,6 +73,7 @@ const makeMapStateToProps = () => {
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
     hasMore:   state.getIn(['timelines', timelineId, 'hasMore']),
     numPending: getPendingStatusIds(state, { type: timelineId }).size,
+    browsingLimited: isBrowsingLimited(timelineId),
   });
 
   return mapStateToProps;
