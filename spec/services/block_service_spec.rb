@@ -28,6 +28,21 @@ RSpec.describe BlockService do
       end
     end
 
+    context 'when the sender has a pending follow request to the target' do
+      let(:bob) { Fabricate(:account, username: 'bob', locked: true) }
+
+      before do
+        sender.request_follow!(bob)
+      end
+
+      it 'removes the follow request and creates a blocking relation' do
+        expect { subject.call(sender, bob) }
+          .to change { sender.requested?(bob) }.from(true).to(false)
+          .and change { sender.blocking?(bob) }.from(false).to(true)
+        expect(sender.following?(bob)).to be false
+      end
+    end
+
     context 'when the block affects collections' do
       context 'when the sender features the target in a collection' do
         let(:collection) { Fabricate(:collection, account: sender) }
