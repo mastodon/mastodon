@@ -3360,57 +3360,6 @@ a.status-card {
   border-radius: var(--radius-5);
 }
 
-.search__icon {
-  grid-area: 1 / 1;
-  transition: all 100ms linear;
-  transition-property: transform, opacity;
-  color: var(--color-text-secondary);
-
-  @media (forced-colors: active) {
-    color: CanvasText;
-  }
-}
-
-.search__icon.icon-search {
-  .has-value & {
-    pointer-events: none;
-    opacity: 0;
-    transform: rotate(90deg);
-  }
-}
-
-.search__icon--clear-button {
-  background: transparent;
-  border: 0;
-  padding: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
-
-  svg {
-    pointer-events: none;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus {
-    outline: 0 !important;
-  }
-
-  &:focus-visible {
-    box-shadow: 0 0 0 2px var(--color-border-brand);
-  }
-
-  &[aria-hidden='true'] {
-    pointer-events: none;
-    opacity: 0;
-    transform: rotate(-90deg);
-  }
-}
-
 .search-results__section {
   border-bottom: 1px solid var(--color-border-primary);
 
