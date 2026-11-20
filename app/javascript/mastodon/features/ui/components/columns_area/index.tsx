@@ -26,7 +26,7 @@ export const ColumnsArea: React.FC<{
 
   const { accountId } = useIdentity();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useStorageState<boolean>(
-    'navigation-sidebar-collapsed',
+    `navigation-sidebar-collapsed${singleColumn ? '' : '-multi-column'}`,
     singleColumn ? false : true,
     { prefix: accountId },
   );
