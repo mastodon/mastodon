@@ -3797,42 +3797,6 @@ a.status-card {
     }
   }
 
-  &__status {
-    border: 1px solid var(--color-border-primary);
-    border-radius: 8px;
-    padding: 8px;
-    cursor: pointer;
-
-    &__account {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-bottom: 8px;
-      color: var(--color-text-tertiary);
-
-      bdi {
-        color: inherit;
-      }
-    }
-
-    &__content {
-      display: -webkit-box;
-      font-size: 15px;
-      line-height: 22px;
-      color: var(--color-text-tertiary);
-      line-clamp: 4;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      max-height: 4 * 22px;
-      overflow: hidden;
-
-      p,
-      a {
-        color: inherit;
-      }
-    }
-  }
-
   &__bullet-points {
     display: flex;
     flex-direction: column;
@@ -3868,21 +3832,6 @@ a.status-card {
         width: 24px;
         height: 24px;
       }
-    }
-  }
-
-  &__field-group {
-    display: flex;
-    flex-direction: column;
-
-    label {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      font-size: 16px;
-      line-height: 24px;
-      height: 32px;
-      padding: 0 12px;
     }
   }
 
