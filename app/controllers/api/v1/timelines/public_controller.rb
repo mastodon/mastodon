@@ -34,10 +34,10 @@ class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
 
   def public_statuses
     public_feed.get(
-      limit_param(DEFAULT_STATUSES_LIMIT),
-      params[:max_id],
-      params[:since_id],
-      params[:min_id]
+      limit: limit_param(DEFAULT_STATUSES_LIMIT),
+      max_id: params[:max_id],
+      since_id: params[:since_id],
+      min_id: params[:min_id]
     )
   end
 
