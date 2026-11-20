@@ -98,6 +98,22 @@ export const mockHandlers = {
 
     return HttpResponse.arrayBuffer(await media.arrayBuffer());
   }),
+  followRequestsData: http.get('/api/v1/follow_requests', () => {
+    action('fetching follow request data')();
+    return HttpResponse.json([]);
+  }),
+  listsData: http.get('/api/v1/lists', () => {
+    action('fetching lists data')();
+    return HttpResponse.json([]);
+  }),
+  followedTagsData: http.get('/api/v1/followed_tags', () => {
+    action('fetching followed tags data')();
+    return HttpResponse.json([]);
+  }),
+  accountData: http.get('/api/v1/accounts/:id', () => {
+    action('fetching account data')();
+    return HttpResponse.json({});
+  }),
   emojiCustomData: http.get('/api/v1/custom_emojis', () => {
     action('fetching custom emoji data')();
     return HttpResponse.json([customEmojiFactory()]);
