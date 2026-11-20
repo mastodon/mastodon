@@ -94,7 +94,7 @@ export const LoggedOutInfo: React.FC = () => {
           />
         </Button>
       )}
-      <Button as='a' href='/auth/sign_in'>
+      <Button as='a' href='/auth/sign_in' color='accent'>
         <FormattedMessage id='server_banner.log_in' defaultMessage='Log in' />
       </Button>
     </>

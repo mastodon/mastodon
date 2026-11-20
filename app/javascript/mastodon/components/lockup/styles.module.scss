@@ -50,6 +50,10 @@
   @include mixins.type-caption;
 
   color: var(--color-text-secondary);
+
+  :is(:any-link, button):active & {
+    color: inherit;
+  }
 }
 
 .sideContent {
