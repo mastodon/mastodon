@@ -471,6 +471,8 @@ et:
       undo: Eemalda lubatute nimekirjast
     domain_blocks:
       add_new: Lisa uus domeeniblokeering
+      confirm_downgrade:
+        cancel: Katkesta
       confirm_suspension:
         cancel: Tühista
         confirm: Peata
@@ -623,7 +625,7 @@ et:
         private_comment_description_html: 'Pidamaks järge, kust imporditud keelud pärinevad, luuakse need järneva privaatse kommentaariga: <q>%{comment}</q>'
         private_comment_template: Imporditud allikast %{source} kuupäeval %{date}
         title: Domeenikeeldude import
-      invalid_domain_block: 'Üks või mitu domeeniblokeeringut jäeti vahele järgnevate vigade tõttu: %{error}'
+      invalid_domain_block: 'Üks või mitu domeeniblokeeringut jäid vahele järgnevate vigade tõttu: %{error}'
       new:
         title: Domeenikeeldude import
       no_file: Faili pole valitud
@@ -772,6 +774,33 @@ et:
       destroyed_msg: Modereerimise tellimuse kustutamine õnnestus
       last_synced_at: Viimati sünkroonitud
       list_action: Tellimuse tüüp
+      show:
+        edit: Muuda tellimust
+      tabs:
+        logs: Logid
+        subscriptions: Tellimused
+        suggestions: Soovitused
+      title: Modereeritud tellimused
+      type: Tüüp
+      types:
+        csv_list: Loend CSV-failina
+      url: Võrguaadress
+    moderation_subscriptions_logs:
+      title: Tellimuste modereerimise logid
+    moderation_suggestions:
+      actions:
+        accept: Luba
+        limit: Piira
+        reject: Peata
+        retract: Tühista kehtivad reeglid
+      apply_accept: Luba
+      apply_limit: Piira
+      apply_reject: Peata
+      apply_retract: Võta tagasi
+      current_states:
+        accept: hetkel lubatud
+        limit: hetkel piiratud
+        reject: hetkel peatatud
     relationships:
       title: "%{acct}-i suhted"
     relays:
@@ -963,6 +992,22 @@ et:
       translation: Tõlge
       translations: Tõlked
       translations_explanation: Soovi korral võid lisada reeglitele tõlkeid. Kui tõlget pole, siis kuvatakse vaikimisi väärtust. Palun taga alati, et tõlke sisu oleks sünkroonis vaikimisi reegli sisuga.
+    server_checks:
+      categories:
+        completed:
+          title: Lõpetatud
+        critical:
+          title: Kriitiline
+        error:
+          title: Vead
+        ignored:
+          title: Eiratud
+        suggestion:
+          title: Soovitused
+        unprocessed:
+          title: Töötlemata
+        warning:
+          title: Hoiatused
     settings:
       about:
         manage_rules: Halda serveri reegleid
@@ -1000,6 +1045,9 @@ et:
         all: Kõigile
         disabled: Mitte kellelegi
         users: Sisseloginud kohalikele kasutajatele
+      external:
+        privacy: Privaatsus
+        publish_statistics: Avalda statistika
       feed_access:
         modes:
           authenticated: Vaid autenditud kasutajad
@@ -1488,11 +1536,17 @@ et:
     invalid_password: Vigane salasõna
     prompt: Jätkamiseks korda salasõna
   color_scheme:
-    auto: Auto
+    auto: Automaatne
     dark: Tume
     light: Hele
+  color_theme:
+    cyan: Rohekassinine
+    indigo: Indigosinine
+    lime: Laimiroheline
+    orange: Oranž
+    pink: Roosa
   contrast:
-    auto: Auto
+    auto: Automaatne
     high: Suur
   crypto:
     errors:
@@ -1518,8 +1572,11 @@ et:
   deletes:
     challenge_not_passed: Info, mille sisestasid, oli ebakorrektne
     confirm_password: Praegune salasõna isikusamasuse kinnitamiseks
+    confirm_username: Korda kasutajanime
+    confirm_username_hint_html: Kustutatava konto kinnitamiseks palun sisesta <code>%{username}</code>
     proceed: Kustuta konto
     success_msg: Konto kustutamine õnnestus
+    title: 'Kustuta kasutajakonto: %{acct}'
     warning:
       before: 'Veendu, et saad aru, mida toob plaanitav muudatus kaasa:'
       caches: Teiste serverite poolt talletatud sisu võib jääda kättesaadavaks
@@ -1536,6 +1593,7 @@ et:
       action_taken: Tulemus
       appeal: Vaidlustus
       appeal_approved: Selle juhtumi vaidlustus on rahuldatud ja pole enam kehtiv
+      appeal_handled_by: Kaebusega tegeles
       appeal_rejected: Vaidlustus on tagasi lükatud
       appeal_submitted_at: Vaidlustus esitatud
       appealed_msg: Vaidlustus esitatud. Selle rahuldamisel saabub teadaanne.
@@ -1563,7 +1621,7 @@ et:
       your_appeal_rejected: Vaidlustus on tagasi lükatud
   edit_profile:
     other: Muu
-    privacy_redesign_body: Nüüd saad otse oma profiili vaatest valida, kas tahad näidata jälgijavaid ja jälgijaid.
+    privacy_redesign_body: Nüüd saad otse oma profiili vaatest valida, kas tahad maailmale näidata jälgitavaid ja jälgijaid.
     redesign_body: Profiili muutmisele pääseb nüüd ligi otse profiili lehelt.
     redesign_button: Mine sinna
     redesign_title: Profiili muutmine on nüüd teistmoodi
@@ -1977,6 +2035,7 @@ et:
           trillion: trn
   otp_authentication:
     code_hint: Kinnituseks autentimisrakenduse loodud kood
+    delete: Kustuta
     description_html: Kui aktiveerida <strong>kaheastmeline autentimine</strong> autentimisrakenduse abil, on sisselogimiseks tarvis telefoni, mis loob sisenemiseks võtmeid.
     enable: Luba
     instructions_html: "<strong>See QR-kood on võimalik skannida telefoni Google Authenticatori või sarnasesse ühekordsete aeguvate salasõnade (TOTP) rakendusse</strong>. Nüüdsest genereerib see rakendus koode, mille peab sisenemisel sisestama."
@@ -2011,11 +2070,11 @@ et:
   privacy:
     email_subscriptions: Saada postitused e-postiga
     email_subscriptions_hint_html: Lisa oma profiili e-posti registreerimisvorm, mida kuvatakse sisselogimata kasutajatele. Kui külastajad sisestavad oma e-posti aadressi ja annavad nõusoleku, saadab Mastodon neile sinu avalike postitustega e-kirju.
-    hint_html: "<strong>Kohanda, kuidas peaks su postitused ja profiil leitav olema.</strong> Mastodonis olevad paljud oskused võimaldavad jõuda sul rohkemate inimesteni, kui need lubada. Võta üks hetk, et vaadata need üle, et veenduda, kas sinu puhul need sobivad."
+    hint_html: "<strong>Seadista, kuidas peaks su postitused ja profiil leitavad olema.</strong> Mastodonis leiduvad paljud võimalused aitavad sul jõuda rohkemate inimesteni, kui need lubad. Võta üks hetk ja vaata need üle ning veendu, kas sinu puhul need sobivad."
     privacy: Privaatsus
     privacy_hint_html: Määra, kui palju soovid teiste heaks infot avaldada. Inimesed leiavad huvitavaid profiile ning lahedaid äppe sirvides teiste inimeste jälgimisi ja vaadates, milliste äppidega nad postitavad, kuid sa võid soovida hoida seda varjatuna.
     reach: Ulatus
-    reach_hint_html: Määra, kas soovid olla leitav ja jälgitav uute inimeste poolt. Kas soovid, et su postitused ilmuksid uurimise ekraanil? Kas soovid, et teised inimesed näeksid sind oma jälgitavate soovituste hulgas? Kas soovid nõustuda kõigi uute jälgijatega automaatselt või soovid igaühe puhul täpsemaid valikuid?
+    reach_hint_html: Määra, kas soovid olla leitav ja jälgitav uute inimeste poolt. Kas soovid, et su postitused oleksid leitavad „Sirvi ja avasta“ vaates? Kas soovid, et teised inimesed näeksid sind oma jälgitavate soovituste hulgas? Kas soovid nõustuda kõigi uute jälgijatega automaatselt või soovid igaühe puhul eraldi otsustamist?
     search: Otsi
     search_hint_html: Määra, kuidas sind leitakse. Kas soovid, et inimesed leiavad sind su avalike postituste alusel? Kas soovid, et väljaspool Mastodoni olevad inimesed leiavad veebis otsides su profiili? Pea meeles, et avaliku info puhul pole kõigist otsimootoritest info välistamine tagatav.
     title: Privaatsus ja ulatus
@@ -2133,7 +2192,7 @@ et:
     notifications: E-postiteated
     preferences: Eelistused
     profile: Profiil
-    relationships: Jälgitud ja jälgijad
+    relationships: Sina jälgid ja sinu jälgijad
     severed_relationships: Katkestatud seos
     statuses_cleanup: Automaatne kustutamine
     strikes: Modereerimisjuhtumid

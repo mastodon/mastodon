@@ -841,6 +841,7 @@ is:
       priority: Forgangur
       priority_hint: Umsjónaráskriftir eru metnar í forgangsröð, áskriftir með lægra númeri fara fram fyrir áskriftir með hærra númer.
       retract_automatically: Afturkalla ráðleggingar sjálfkrafa
+      retract_automatically_hint: Hvort eigi að leyfa afturköllun eða niðurfærslu á stefnumörkun þegar áskrift fjarlægir viðeigandi atriði. Þegar sjálfvirk afturköllun er virk og samsvarandi ráðlegging er til staðar í lista með lægri forgangi, þá verður hún samþykkt. Þegar sjálfvirk afturköllun er óvirk, verður frekar útbúin tillaga.
       show:
         delete_confirm: Ertu viss um að þú viljir eyða þessari umsjónaráskrift?
         edit: Breyta áskrift
@@ -1274,6 +1275,7 @@ is:
         authorized_fetch_hint: Ákveddu hvenær fjartengdir netþjónar þurfi að auðkenna sig við að sækja efni af þessum netþjóni.
         authorized_fetch_hints:
           actors: Að krefjast auðkenningar fyrir notendasnið virkjar rakningu á hvaða netþjónar hafa uppgötvað hvern að staðværu notendaaðgöngunum hjá þér, sem getur fækkað verulega ónauðsynlegum beiðnum sem verða þegar netþjónar eru látnir vita um eyðingu á notandaaðgangi. Þessi valkostur kemur örlítið niður á afköstum þegar deilt er notendasniðum vegna áðurnefndrar rakningar og vangetu viðsnúna milliþjónsins (reverse proxy) til að setja þessar beiðnir í biðminni. Þetta gæti líka valdið ósamhæfni við sumar þjónustur í skýjasambandi (federated services).
+          all: Til viðbótar við kosti og galla þess að krefjast auðkenningar fyrir notendasnið, mun það að krefjast skilyrðislasrar auðkenningar fyrir netþjóna skýjasambandsins gefa kost á strangari kröfum varðandi útilokanir fyrir bæði notendur og netþjóna. Það mun líka takmarka dreifingu svara frá þér, þar sem áframsending svara verður óvirk.
           none: Krefst auðkenningar einungis þegar nauðsyn krefur gerir viðsnúna milliþjóninum (reverse proxy) kleift að setja fleiri beiðnir í biðminni. Þessi valkostur gæti verið fjarlægður í framtíðinni. Aðeins nota þetta ef aðrir valkostir valda vandamálum.
         authorized_fetch_modes:
           actors: Fyrir notendasnið og einkaefni

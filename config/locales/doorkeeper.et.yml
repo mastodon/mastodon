@@ -62,7 +62,11 @@ et:
       new:
         prompt_html: "%{client_name} soovib saada ligipääsu su kontole. <strong>Kinnita see taotlus ainult siis, kui sa tunned ja usaldad seda allikat.</strong>"
         review_permissions: Lubade ülevaade
-        title: Autoriseerimine vajalik
+        title: Vajalik on autoriseerimine
+      require_reauth:
+        log_out_and_continue: Logi välja ja jätka
+        prompt_html: Sa oled hetkel sisseloginud kasutajana <strong>%{handle}</strong>, aga jätkamiseks pead logima välja.
+        title: Vajalik on uuesti autentimine
       show:
         title: Kopeeri see autoriseerimisvõti ja kleebi see rakendusse.
     authorized_applications:
@@ -150,7 +154,7 @@ et:
           applications: Rakendused
           oauth2_provider: OAuth2 pakkuja
       application:
-        title: OAuth autoriseerimine vajalik
+        title: Vajalik on OAuth-i põhine autoriseerimine
     scopes:
       admin:read: lugeda kõiki andmeid serveril
       admin:read:accounts: lugeda privaatset informatsiooni kõikidel kontodel
