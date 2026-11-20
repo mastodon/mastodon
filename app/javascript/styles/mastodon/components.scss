@@ -7571,23 +7571,6 @@ noscript {
     gap: 8px;
     cursor: pointer;
 
-    &__account {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      color: var(--color-text-tertiary);
-      font-size: 15px;
-      line-height: 22px;
-
-      bdi {
-        color: var(--color-text-secondary);
-      }
-
-      .account__avatar {
-        flex: 0 0 auto;
-      }
-    }
-
     &__content {
       display: -webkit-box;
       font-size: 15px;
