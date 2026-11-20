@@ -5691,41 +5691,6 @@ noscript {
     padding-inline-end: 15px;
     overflow: hidden;
 
-    &__info {
-      overflow: hidden;
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: space-between;
-    }
-
-    &__relative-time {
-      font-size: 15px;
-      color: var(--color-text-secondary);
-      padding-inline-start: 15px;
-    }
-
-    &__names {
-      color: var(--color-text-secondary);
-      font-size: 15px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-bottom: 4px;
-      flex-basis: 90px;
-      flex-grow: 1;
-
-      a {
-        color: var(--color-text-primary);
-        text-decoration: none;
-
-        &:hover,
-        &:focus,
-        &:active {
-          text-decoration: underline;
-        }
-      }
-    }
-
     a {
       overflow-wrap: anywhere;
     }
