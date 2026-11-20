@@ -52,7 +52,7 @@
             %time.time-ago{ datetime: 1.year.ago.to_date.iso8601 }
           %strong.status-card__title= t('author_attribution.example_title')
       .more-from-author
-        = inline_svg_tag 'logo-symbol-icon.svg', class: 'logo logo--icon', view_box: '0 0 79 79'
+        = logo_as_symbol_icon
         = t('author_attribution.more_from_html', name: author_attribution_name(@account))
 
   %h3.heading-small= t('verification.here_is_how')

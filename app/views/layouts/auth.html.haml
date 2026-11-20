@@ -5,10 +5,10 @@
   .container-alt
     %header.logo-container
       - if within_authorization_flow?
-        = inline_svg_tag 'logo-symbol-wordmark.svg', class: 'logo logo--wordmark', title: 'Mastodon'
+        = logo_as_symbol_wordmark
       - else
         = link_to root_path do
-          = inline_svg_tag 'logo-symbol-wordmark.svg', class: 'logo logo--wordmark', title: 'Mastodon'
+          = logo_as_symbol_wordmark
 
     %main.form-container
       = render 'flashes'
