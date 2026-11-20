@@ -1,10 +1,17 @@
-import * as WebAuthnJSON from '@github/webauthn-json';
 import axios, { AxiosError } from 'axios';
 
 import ready from '../mastodon/ready';
 
-type PublicKeyCredentialCreationOptionsJSON =
-  WebAuthnJSON.CredentialCreationOptionsJSON['publicKey'];
+function isWebAuthnSupported() {
+  return (
+    typeof window.PublicKeyCredential !== 'undefined' &&
+    typeof PublicKeyCredential.parseCreationOptionsFromJSON === 'function' &&
+    typeof PublicKeyCredential.parseRequestOptionsFromJSON === 'function' &&
+    typeof PublicKeyCredential.prototype.toJSON === 'function' &&
+    typeof navigator.credentials.create === 'function' &&
+    typeof navigator.credentials.get === 'function'
+  );
+}
 
 function exceptionHasAxiosError(
   error: unknown,
@@ -32,10 +39,16 @@ function hideFlashMessages() {
   });
 }
 
-async function callback(
+function showSecurityKeyError() {
+  document
+    .getElementById('security-key-error-message')
+    ?.classList.remove('hidden');
+}
+
+async function submitWebauthnAuthentication(
   url: string,
   body: {
-    user: { credential: WebAuthnJSON.PublicKeyCredentialWithAssertionJSON };
+    user: { credential: AuthenticationResponseJSON };
   },
 ) {
   try {
@@ -54,10 +67,7 @@ async function callback(
     window.location.replace(response.data.redirect_path);
   } catch (error) {
     if (error instanceof AxiosError && error.response?.status === 422) {
-      const errorMessage = document.getElementById(
-        'security-key-error-message',
-      );
-      errorMessage?.classList.remove('hidden');
+      showSecurityKeyError();
 
       logAxiosResponseError(error);
     } else {
@@ -84,44 +94,54 @@ async function handleWebauthnCredentialRegistration(
   credentialOptions: PublicKeyCredentialCreationOptionsJSON,
 ) {
   try {
-    const credential = await WebAuthnJSON.create({
-      publicKey: credentialOptions,
+    const options =
+      PublicKeyCredential.parseCreationOptionsFromJSON(credentialOptions);
+    const credential = await navigator.credentials.create({
+      publicKey: options,
     });
+
+    if (!(credential instanceof PublicKeyCredential)) {
+      throw new Error('Failed to create public key credential');
+    }
 
     const credentialInput = form.querySelector<HTMLInputElement>(
       'input[name="credential"]',
     );
     if (!credentialInput) return;
 
-    credentialInput.value = JSON.stringify(credential);
+    credentialInput.value = JSON.stringify(credential.toJSON());
     form.submit();
   } catch (error) {
-    const errorMessage = document.getElementById('security-key-error-message');
-    errorMessage?.classList.remove('hidden');
+    showSecurityKeyError();
     console.error(error);
   }
 }
 
 async function handleWebauthnCredentialAuthentication() {
   try {
-    const response = await axios.get<PublicKeyCredentialCreationOptionsJSON>(
+    const response = await axios.get<PublicKeyCredentialRequestOptionsJSON>(
       'sessions/security_key_options',
     );
 
     const credentialOptions = response.data;
 
     try {
-      const credential = await WebAuthnJSON.get({
-        publicKey: credentialOptions,
+      const options =
+        PublicKeyCredential.parseRequestOptionsFromJSON(credentialOptions);
+      const credential = await navigator.credentials.get({
+        publicKey: options,
       });
 
-      const params = { user: { credential: credential } };
-      void callback('sign_in', params);
+      if (!(credential instanceof PublicKeyCredential)) {
+        throw new Error('Failed to get public key credential');
+      }
+
+      const params = {
+        user: { credential: credential.toJSON() as AuthenticationResponseJSON },
+      };
+      void submitWebauthnAuthentication('sign_in', params);
     } catch (error) {
-      const errorMessage = document.getElementById(
-        'security-key-error-message',
-      );
-      errorMessage?.classList.remove('hidden');
+      showSecurityKeyError();
       console.error(error);
     }
   } catch (error) {
@@ -130,7 +150,9 @@ async function handleWebauthnCredentialAuthentication() {
 }
 
 ready(() => {
-  if (!WebAuthnJSON.supported()) {
+  const webAuthnSupported = isWebAuthnSupported();
+
+  if (!webAuthnSupported) {
     const unsupported_browser_message = document.getElementById(
       'unsupported-browser-message',
     );
@@ -152,7 +174,7 @@ ready(() => {
       );
     let credentialOptions: PublicKeyCredentialCreationOptionsJSON | undefined;
 
-    if (WebAuthnJSON.supported()) {
+    if (webAuthnSupported) {
       void fetchWebauthnCredentialCreationOptions().then((options) => {
         credentialOptions = options;
         if (options && registrationButton) registrationButton.disabled = false;
