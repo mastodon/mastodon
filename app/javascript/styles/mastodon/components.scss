@@ -1349,47 +1349,6 @@ a.account__display-name {
   }
 }
 
-.navigation-bar {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  cursor: default;
-  gap: 10px;
-
-  .column > & {
-    padding: 15px;
-  }
-
-  .account {
-    border-bottom: 0;
-    padding: 0;
-    flex: 1 1 auto;
-    min-width: 0;
-
-    &__display-name {
-      font-size: 14px;
-      line-height: 20px;
-      font-weight: bold;
-      outline-offset: 0;
-
-      .display-name__account {
-        font-size: 14px;
-        font-weight: 400;
-      }
-    }
-  }
-
-  .icon-button {
-    padding: 8px;
-    color: var(--color-text-primary);
-  }
-
-  .icon-button .icon {
-    width: 24px;
-    height: 24px;
-  }
-}
-
 .dropdown-animation {
   animation: dropdown 250ms cubic-bezier(0.1, 0.7, 0.1, 1);
 
