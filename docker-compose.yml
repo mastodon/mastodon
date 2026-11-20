@@ -6,7 +6,6 @@ services:
   db:
     image: postgres:19
     restart: always
-    env_file: .env.production
     shm_size: 256mb
     networks:
       - internal_network
