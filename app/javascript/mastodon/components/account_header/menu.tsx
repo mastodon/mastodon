@@ -295,7 +295,7 @@ function getMenuItems({
   }
 
   // Add to list
-  if (relationship?.following) {
+  if (relationship?.following || relationship?.requested) {
     items.push({
       text: intl.formatMessage(messages.addToCustomFeed),
       action: () => {
