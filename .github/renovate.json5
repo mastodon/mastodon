@@ -85,6 +85,13 @@
       groupName: 'eslint (non-major)',
     },
     {
+      // Group all vitest-related packages with `vitest` in the same PR
+      matchManagers: ['npm'],
+      matchPackageNames: ['vitest', '@vitest/*'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'vitest (non-major)',
+    },
+    {
       // Group all Storybook-related packages in the same PR
       matchManagers: ['npm'],
       matchPackageNames: [
@@ -160,12 +167,14 @@
       // Keep these exclusions synchronized with the dedicated groups above
       matchPackageNames: [
         '!@eslint/*',
+        '!@vitest/*',
         '!@storybook/*',
         '!@types/*',
         '!@typescript/typescript6',
         '!chromatic',
         '!eslint-*',
         '!eslint',
+        '!vitest',
         '!globals',
         '!msw-storybook-addon',
         '!msw',
