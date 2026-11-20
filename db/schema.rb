@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_12_221148) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -1520,6 +1520,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
     t.boolean "standard", default: false, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.bigint "user_id", null: false
+    t.string "server_key"
     t.index ["access_token_id"], name: "index_web_push_subscriptions_on_access_token_id", where: "(access_token_id IS NOT NULL)"
     t.index ["user_id"], name: "index_web_push_subscriptions_on_user_id"
   end

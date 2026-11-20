@@ -68,7 +68,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   end
 
   def subscription_params
-    @subscription_params ||= params.expect(subscription: [:standard, :endpoint, keys: [:auth, :p256dh]])
+    @subscription_params ||= params.expect(subscription: [:standard, :endpoint, :server_key, keys: [:auth, :p256dh]])
   end
 
   def web_push_subscription_params
@@ -80,6 +80,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
       key_p256dh: subscription_params[:keys][:p256dh],
       standard: subscription_params[:standard] || false,
       user_id: active_session.user_id,
+      server_key: subscription_params[:server_key],
     }
   end
 
