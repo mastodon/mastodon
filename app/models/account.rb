@@ -595,11 +595,15 @@ class Account < ApplicationRecord
   def create_canonical_email_block!
     return unless local? && user_email.present?
 
-    begin
+    # A savepoint is required so that a unique index violation does not leave
+    # the enclosing transaction (e.g. the one opened by `Admin::AccountAction`)
+    # in an aborted state, which would make every subsequent statement fail
+    CanonicalEmailBlock.transaction(requires_new: true) do
       CanonicalEmailBlock.create(reference_account: self, email: user_email)
-    rescue ActiveRecord::RecordNotUnique
-      # A canonical e-mail block may already exist for the same e-mail
     end
+  rescue ActiveRecord::RecordNotUnique
+    # A canonical e-mail block may already exist for the same e-mail, or be
+    # created concurrently by another suspension, in which case it is kept
   end
 
   def destroy_canonical_email_block!
