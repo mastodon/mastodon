@@ -27,6 +27,14 @@ const messages = defineMessages({
     id: 'report_notification.categories.violation_sentence',
     defaultMessage: 'rule violation',
   },
+  local: {
+    id: 'report_notification.target.local',
+    defaultMessage: 'local',
+  },
+  remote: {
+    id: 'report_notification.target.remote',
+    defaultMessage: 'remote',
+  },
 });
 
 export const NotificationAdminReport: React.FC<{
@@ -43,6 +51,8 @@ export const NotificationAdminReport: React.FC<{
 
   if (!account || !targetAccount) return null;
 
+  const isLocal = !targetAccount.acct.includes('@');
+  const locality = intl.formatMessage(isLocal ? messages.local : messages.remote);
   const name = <DisplayName account={account} variant='simple' />;
   const target = <DisplayName account={targetAccount} variant='simple' />;
   const category = intl.formatMessage(messages[report.category]);
@@ -55,16 +65,16 @@ export const NotificationAdminReport: React.FC<{
       message = (
         <FormattedMessage
           id='notification.admin.report_account_other'
-          defaultMessage='{name} reported {count, plural, one {one post} other {# posts}} from {target}'
-          values={{ name, count, target }}
+          defaultMessage='{name} reported {count, plural, one {one post} other {# posts}} from {target} ({locality})'
+          values={{ name, count, target, locality }}
         />
       );
     } else {
       message = (
         <FormattedMessage
           id='notification.admin.report_account'
-          defaultMessage='{name} reported {count, plural, one {one post} other {# posts}} from {target} for {category}'
-          values={{ name, count, target, category }}
+          defaultMessage='{name} reported {count, plural, one {one post} other {# posts}} from {target} ({locality}) for {category}'
+          values={{ name, count, target, category, locality }}
         />
       );
     }
@@ -73,16 +83,16 @@ export const NotificationAdminReport: React.FC<{
       message = (
         <FormattedMessage
           id='notification.admin.report_statuses_other'
-          defaultMessage='{name} reported {target}'
-          values={{ name, target }}
+          defaultMessage='{name} reported {target} ({locality})'
+          values={{ name, target, locality }}
         />
       );
     } else {
       message = (
         <FormattedMessage
           id='notification.admin.report_statuses'
-          defaultMessage='{name} reported {target} for {category}'
-          values={{ name, target, category }}
+          defaultMessage='{name} reported {target} ({locality}) for {category}'
+          values={{ name, target, category, locality }}
         />
       );
     }
