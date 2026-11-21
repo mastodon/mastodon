@@ -39,7 +39,9 @@ zh-TW:
       action: 執行動作
       already_silenced: 此帳號已被限制。
       already_suspended: 此帳號已被停權。
-      title: 對 %{acct} 執行站務動作
+      notification_title: 使用者通知與訊息
+      text_box_title: 此動作之後果
+      title: 對 @%{acct} 執行站務動作：
     account_moderation_notes:
       create: 新增站務記錄
       created_msg: 已成功新增管理備註！
@@ -961,12 +963,18 @@ zh-TW:
       summary:
         action_preambles:
           delete_html: 您將要 <strong>移除</strong> 某些 <strong>@%{acct}</strong> 之嘟文。此將會：
+          disable_html: 您將要 <strong>停權</strong> <strong>@%{acct}</strong> 之帳號。此將會：
           mark_as_sensitive_html: 您將要 <strong>標記</strong> 某些 <strong>@%{acct}</strong> 之嘟文為 <strong>敏感內容 </strong>。此將會：
+          none_html: 您將要 <strong>警告</strong> <strong>@%{acct}</strong>。此將會：
+          sensitive_html: 您將要 <strong>標記</strong> <strong>@%{acct}</strong> 之帳號為<strong>敏感內容</strong>。此將會：
           silence_html: 您將要 <strong>限制</strong> <strong>@%{acct}</strong> 之帳號。此將會：
           suspend_html: 您將要 <strong>停權</strong> <strong>@%{acct}</strong> 之帳號。此將會：
         actions:
           delete_html: 移除違反規則之嘟文
+          disable_html: 禁止該使用者使用他們的帳號，但是不刪除或隱藏他們的內容
           mark_as_sensitive_html: 將違反規則之嘟文多媒體標記為敏感內容
+          none_html: 寄送警告至該使用者，而不進行其他動作
+          sensitive_html: 強制標記此使用者所有多媒體附加檔案為敏感內容
           silence_html: 藉由標記他們的個人檔案與內容為僅可見於已跟隨帳號或手動查詢此個人檔案，此將嚴格地限制 <strong>@%{acct}</strong> 之觸及率
           suspend_html: 停權 <strong>@%{acct}</strong>，將他們的個人檔案與內容標記為無法存取及無法與之互動
         close_report: '將檢舉報告 #%{id} 標記為已處理'
@@ -1527,7 +1535,9 @@ zh-TW:
       delete: 刪除
       dropdown:
         all_actions: 所有動作
+        delete: 刪除
         disable: 停用
+        mark_as_sensitive: 標記為敏感內容
         none: 警告
         sensitive: 敏感內容
         silence: 限制

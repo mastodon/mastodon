@@ -40,7 +40,9 @@ nl:
       action: Actie uitvoeren
       already_silenced: Dit account is al beperkt.
       already_suspended: Dit account is al geschorst.
-      title: Moderatiemaatregel tegen %{acct} nemen
+      notification_title: Gebruikersmelding & Bericht
+      text_box_title: Gevolgen van deze actie
+      title: 'Moderatiemaatregel uitvoeren op @%{acct}:'
     account_moderation_notes:
       create: Laat een opmerking achter
       created_msg: Aanmaken van opmerking voor moderatoren geslaagd!
@@ -973,12 +975,18 @@ nl:
       summary:
         action_preambles:
           delete_html: 'Je staat op het punt om enkele berichten van <strong>@%{acct}</strong> te <strong>verwijderen</strong>. Dit zal:'
+          disable_html: 'U staat op het punt om account <strong>@%{acct}</strong> <strong>te bevriezen</strong>. Dit kan:'
           mark_as_sensitive_html: 'Je staat op het punt om enkele berichten van <strong>@%{acct}</strong> als <strong>gevoelig te markeren</strong>. Dit zal:'
+          none_html: 'U staat op het punt om account <strong>@%{acct}</strong> <strong>te waarschuwen</strong>. Dit kan:'
+          sensitive_html: 'U staat op het punt om account <strong>@%{acct}</strong> als <strong>gevoelig</strong> <strong>aan te merken</strong>. Dit kan:'
           silence_html: 'Je staat op het punt om het account van <strong>@%{acct}</strong> te <strong>beperken</strong>. Dit zal:'
           suspend_html: 'Je staat op het punt om het account van <strong>@%{acct}</strong> <strong>op te schorten</strong>. Dit zal:'
         actions:
           delete_html: De aanstootgevende berichten verwijderen
+          disable_html: Voorkom dat de gebruiker diens account gebruikt, maar verwijder of verberg de inhoud niet
           mark_as_sensitive_html: De media in de aanstootgevende berichten als gevoelig markeren
+          none_html: Stuur een waarschuwing naar de gebruiker, zonder een andere actie te starten
+          sensitive_html: Forceer dat alle mediabijlagen van deze gebruiker als gevoelig worden gemarkeerd
           silence_html: Het account van <strong>@%{acct}</strong> ernstig beperken, door diens profiel en inhoud alleen zichtbaar te maken aan mensen die dit account al volgen of aan mensen die het account handmatig opzoeken
           suspend_html: Het account van <strong>@%{acct}</strong> opschorten, waarmee diens profiel en inhoud niet toegankelijk zijn en het onmogelijk is om interactie te hebben
         close_report: 'Rapportage #%{id} als opgelost markeren'
@@ -1545,7 +1553,9 @@ nl:
       delete: Verwijderen
       dropdown:
         all_actions: Alle acties
+        delete: Verwijderen
         disable: Bevriezen
+        mark_as_sensitive: Als gevoelig markeren
         none: Waarschuwing
         sensitive: Gevoelig
         silence: Beperken

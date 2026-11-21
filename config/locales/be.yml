@@ -46,7 +46,9 @@ be:
       action: Выканаць дзеянне
       already_silenced: Гэты ўліковы запіс ужо абмежаваны.
       already_suspended: Гэты ўліковы запіс ужо прыпыніў працу.
-      title: Мадэраваць %{acct}
+      notification_title: Карыстальніцкае апавяшчэнне і паведамленне
+      text_box_title: Наступствы гэтага дзеяння
+      title: 'Выканаць дзеянне па мадэрацыі @%{acct}:'
     account_moderation_notes:
       create: Пакінуць нататку
       created_msg: Нататка мадэратара паспяхова створана!
@@ -1001,12 +1003,18 @@ be:
       summary:
         action_preambles:
           delete_html: 'Вы збіраецеся <strong>выдаліць</strong> некаторыя з допісаў <strong>@%{acct}</strong>. Гэта будуць:'
+          disable_html: 'Вы збіраецеся <strong>замарозіць</strong> уліковы запіс <strong>@%{acct}</strong>. Гэта:'
           mark_as_sensitive_html: 'Вы збіраецеся <strong>пазначыць</strong> некаторыя з допісаў <strong>@%{acct}</strong> як <strong>уражальныя</strong>. Гэта будуць:'
+          none_html: 'Вы збіраецеся зрабіць <strong>папярэджанне</strong> уліковаму запісу <strong>@%{acct}</strong>. Гэта:'
+          sensitive_html: 'Вы збіраецеся <strong>пазначыць</strong> уліковы запіс <strong>@%{acct}</strong> як <strong>уражальны</strong>. Гэта:'
           silence_html: 'Вы збіраецеся <strong>абмежаваць</strong> уліковы запіс <strong>@%{acct}</strong>. Гэта будзе:'
           suspend_html: 'Вы збіраецеся <strong>прыпыніць</strong> уліковы запіс <strong>@%{acct}</strong>. Гэта будзе:'
         actions:
           delete_html: Выдаліць абразлівы допіс
+          disable_html: Прадухіліць карыстальніка ад выкарыстання ўліковага запісу, але не выдаляць і не хаваць яго змесціва
           mark_as_sensitive_html: Пазначыць медыя абразлівага допіса як далікатнае
+          none_html: Даслаць карыстальніку папярэджанне, без ужывання іншых мер
+          sensitive_html: Прымусова пазначаць усе медыя гэтага карыстальніка як уражальныя
           silence_html: Значна абмежаваць ахоп <strong>@%{acct}</strong>, зрабіўшы профіль і змесціва бачнымі толькі для людзей, якія ўжо падпісаныя, альбо шукае яго ўручную
           suspend_html: Прыпыніць <strong>@%{acct}</strong>, зрабіць профіль і змесціва недаступным і не даваць магчымасці ўзаемадзейнічаць з імі
         close_report: 'Пазначыць скаргу #%{id} як вырашаную'
@@ -1589,7 +1597,9 @@ be:
       delete: Выдаліць
       dropdown:
         all_actions: Усе дзеянні
+        delete: Выдаліць
         disable: Замарозка
+        mark_as_sensitive: Пазначыць як уражальны
         none: Папярэджанне
         sensitive: Адчув. змесціва
         silence: Абмежав.

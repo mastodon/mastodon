@@ -40,7 +40,9 @@ es:
       action: Realizar acción
       already_silenced: Esta cuenta ya ha sido limitada.
       already_suspended: Esta cuenta ya ha sido suspendida.
-      title: Realizar acción de moderación en %{acct}
+      notification_title: Notificación a Usuario y Mensaje
+      text_box_title: Consecuencias de esta acción
+      title: 'Realizar acción de moderación en @%{acct}:'
     account_moderation_notes:
       create: Dejar nota
       created_msg: "¡Nota de moderación creada con éxito!"
@@ -975,12 +977,18 @@ es:
       summary:
         action_preambles:
           delete_html: 'Estás a punto de <strong>eliminar</strong> algunos de los mensajes de <strong>@%{acct}</strong>. Esto hará:'
+          disable_html: 'Estás a punto de <strong>congelar</strong> la cuenta <strong>@%{acct}</strong>. Esta acción:'
           mark_as_sensitive_html: 'Estás a punto de <strong>marcar</strong> algunas de las publicaciones de <strong>@%{acct}</strong>como <strong>sensibles</strong>. Esto hará:'
+          none_html: 'Estás a punto de <strong>amonestar</strong> la cuenta <strong>@%{acct}</strong>. Esta acción:'
+          sensitive_html: 'Estás a punto de <strong>marcar</strong> la cuenta <strong>@%{acct}</strong> como <strong>sensible</strong>. Esta acción:'
           silence_html: 'Estás a punto de <strong>limitar</strong> la cuenta de <strong>@%{acct}</strong>. Esto hará:'
           suspend_html: 'Estás a punto de <strong>suspender</strong> la cuenta de <strong>@%{acct}</strong>. Esto hará:'
         actions:
           delete_html: Eliminar los mensajes ofensivos
+          disable_html: Evitará que el usuario utilice su cuenta, pero no eliminará ni ocultará sus contenidos
           mark_as_sensitive_html: Marcar los mensajes ofensivos como sensibles
+          none_html: Enviará una advertencia al usuario, sin ejecutar ninguna otra acción
+          sensitive_html: Forzará que todos los archivos multimedia de este usuario sean marcados como sensibles
           silence_html: Limitar severamente el alcance de <strong>@%{acct}</strong> haciendo que su perfil y contenido solo sean visibles para las personas que ya lo siguen o que consulten manualmente su perfil
           suspend_html: Suspender <strong>@%{acct}</strong>, haciendo su perfil y contenido inaccesibles y la interacción con la cuenta imposible
         close_report: 'Marcar informe #%{id} como resuelto'
@@ -1547,7 +1555,9 @@ es:
       delete: Borrar
       dropdown:
         all_actions: Todas las acciones
+        delete: Eliminar
         disable: Congelar
+        mark_as_sensitive: Marcar como sensible
         none: Advertencia
         sensitive: Sensible
         silence: Limitar
