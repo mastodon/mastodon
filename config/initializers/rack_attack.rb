@@ -18,6 +18,8 @@ class Rack::Attack
     end
 
     def throttleable_remote_ip
+      return if Rails.configuration.x.mastodon.disable_ip_rate_limits
+
       @throttleable_remote_ip ||= begin
         ip = IPAddr.new(remote_ip)
 

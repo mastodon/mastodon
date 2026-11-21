@@ -188,4 +188,43 @@ RSpec.describe Rack::Attack, type: :request do
 
     it_behaves_like 'throttled endpoint'
   end
+
+  context 'when IP-based rate limits are disabled' do
+    around do |example|
+      original = Rails.configuration.x.mastodon.disable_ip_rate_limits
+      Rails.configuration.x.mastodon.disable_ip_rate_limits = true
+
+      example.run
+
+      Rails.configuration.x.mastodon.disable_ip_rate_limits = original
+    end
+
+    describe 'excessive sign-in requests from the same IP address' do
+      let(:throttle) { 'throttle_login_attempts/ip' }
+      let(:period) { 5.minutes }
+
+      before do
+        travel_to Time.zone.at((Time.now.to_i / period.seconds).to_i * period.seconds)
+        50.times { described_class.cache.count("#{throttle}:#{remote_ip}", period) }
+      end
+
+      it 'does not throttle the request' do
+        post '/auth/sign_in', headers: { 'REMOTE_ADDR' => remote_ip }
+
+        expect(response).to_not have_http_status(429)
+      end
+    end
+
+    describe 'throttle excessive confirmation e-mail requests by e-mail address' do
+      let(:throttle) { 'throttle_email_confirmations/email' }
+      let(:limit) { 5 }
+      let(:period) { 30.minutes }
+      let(:request) { -> { post path, params: { user: { email: email } } } }
+      let(:path) { '/auth/confirmation' }
+      let(:email) { 'foo@bar.com' }
+      let(:discriminator) { email }
+
+      it_behaves_like 'throttled endpoint'
+    end
+  end
 end
