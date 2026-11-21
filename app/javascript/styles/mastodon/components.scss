@@ -6596,16 +6596,6 @@ noscript {
   overflow: hidden;
   flex-shrink: 0;
 
-  &__background-image {
-    width: 125%;
-    position: absolute;
-    bottom: -25%;
-    inset-inline-end: -25%;
-    z-index: -1;
-    opacity: 0.15;
-    mix-blend-mode: luminosity;
-  }
-
   &__message {
     @include type-body;
 
@@ -6626,22 +6616,6 @@ noscript {
 
       color: var(--color-text-brand);
       margin-bottom: var(--space-2);
-    }
-
-    &__actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-1);
-
-      &__wrapper {
-        display: flex;
-        margin-top: var(--space-7);
-      }
-
-      .button {
-        display: block;
-        flex-grow: 1;
-      }
     }
   }
 
