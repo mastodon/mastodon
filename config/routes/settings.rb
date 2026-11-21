@@ -71,6 +71,6 @@ namespace :settings do
 
   resources :aliases, only: [:index, :create, :destroy]
   resources :sessions, only: [:destroy]
-  resources :featured_tags, only: [:index, :create, :destroy]
+  resources :featured_tags, only: [:index]
   resources :login_activities, only: [:index]
 end
