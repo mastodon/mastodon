@@ -3956,7 +3956,6 @@ a.status-card {
   gap: 4px;
 }
 
-.report-modal,
 .actions-modal,
 .compare-history-modal {
   @include elevation-2;
@@ -3975,12 +3974,6 @@ a.status-card {
     border-radius: var(--radius-4) var(--radius-4) 0 0;
     padding-bottom: env(safe-area-inset-bottom);
   }
-}
-
-.report-modal {
-  width: 90vw;
-  max-width: 700px;
-  border: 1px solid var(--color-border-primary);
 }
 
 .report-dialog-modal {
