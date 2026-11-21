@@ -7,26 +7,6 @@
   border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-3);
   transition: background-color 200ms;
-
-  &:has(.accountLink:hover) {
-    background-color: var(--color-bg-highlight);
-  }
-
-  &:has(.accountLink:focus-visible) {
-    outline: var(--outline-focus-default);
-    background-color: var(--color-bg-highlight);
-  }
-}
-
-.accountLink {
-  // Disable default hover & focus styles
-  &:hover {
-    text-decoration: none !important;
-  }
-
-  &:focus-visible {
-    outline: none;
-  }
 }
 
 .dotsIcon {
