@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 namespace :settings do
-  resource :profile, only: [:show, :update] do
+  resource :profile, only: [:show] do
     resources :pictures, only: :destroy
   end
 
