@@ -40,7 +40,9 @@ sv:
       action: Utför åtgärd
       already_silenced: Detta konto är redan begränsat.
       already_suspended: Detta konto är redan avstängt.
-      title: Utför aktivitet för moderering på %{acct}
+      notification_title: Användarnotis & meddelande
+      text_box_title: Konsekvenser för denna åtgärd
+      title: 'Utför modereringsåtgärd på @%{acct}:'
     account_moderation_notes:
       create: Lämna kommentar
       created_msg: Modereringsnotering skapad utan problem!
@@ -968,12 +970,18 @@ sv:
       summary:
         action_preambles:
           delete_html: 'Du håller på att <strong>ta bort</strong> några av <strong>@%{acct}</strong>s inlägg. Detta kommer:'
+          disable_html: 'Du är på väg att <strong>frysa</strong> <strong>@%{acct}</strong>s konto. Detta kommer att:'
           mark_as_sensitive_html: 'Du håller på att <strong>markera</strong> några av <strong>@%{acct}</strong>s inlägg som <strong>känsliga</strong>. Detta kommer:'
+          none_html: 'Du är på väg att <strong>varna</strong> <strong>@%{acct}</strong>. Detta kommer att:'
+          sensitive_html: 'Du är på väg att <strong>markera</strong> <strong>@%{acct}</strong>s konto som <strong>känsligt</strong>. Detta kommer att:'
           silence_html: 'Du håller på att <strong>begränsa</strong> <strong>@%{acct}</strong>s konto. Detta kommer:'
           suspend_html: 'Du håller på att <strong>stänga av</strong> <strong>@%{acct}</strong>s konto. Detta kommer:'
         actions:
           delete_html: Ta bort kränkande inlägg
+          disable_html: Förhindra användaren från att använda sitt konto, men kommer inte att ta bort eller dölja deras innehåll
           mark_as_sensitive_html: Markera de anmälda inläggens media som känslig
+          none_html: Skicka en varning till användaren, utan att utlösa någon annan åtgärd
+          sensitive_html: Tvinga alla den här användarens mediebilagor att flaggas som känsliga
           silence_html: Begränsa kraftigt <strong>@%{acct}</strong> räckvidd genom att göra deras profil och innehåll bara synligt till folk som redan följer dom eller som manuellt söker upp deras profil
           suspend_html: Stäng av <strong>@%{acct}</strong>, vilket gör deras profil och innehåll oåtkomligt och omöjligt att interagera med
         close_report: 'Markera anmälningen #%{id} som löst'
@@ -1473,7 +1481,9 @@ sv:
       delete: Radera
       dropdown:
         all_actions: Alla åtgärder
+        delete: Radera
         disable: Frys
+        mark_as_sensitive: Markera som känsligt
         none: Varning
         sensitive: Känsligt
         silence: Begränsa

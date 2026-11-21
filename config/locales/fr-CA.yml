@@ -40,7 +40,9 @@ fr-CA:
       action: Effectuer l'action
       already_silenced: Ce compte est déjà limité.
       already_suspended: Ce compte est déjà suspendu.
-      title: Effectuer une action de modération sur %{acct}
+      notification_title: Notification et message à l'utilisateur·rice
+      text_box_title: Conséquences de cette action
+      title: 'Effectuer une action de modération sur @%{acct} :'
     account_moderation_notes:
       create: Laisser une remarque
       created_msg: Note de modération créée avec succès !
@@ -973,12 +975,18 @@ fr-CA:
       summary:
         action_preambles:
           delete_html: 'Vous êtes sur le point de <strong>supprimer</strong> certains messages de <strong>@%{acct}</strong>. Cela va :'
+          disable_html: 'Vous êtes sur le point de <strong>désactiver</strong> le compte de <strong>@%{acct}</strong>. Cela va :'
           mark_as_sensitive_html: 'Vous êtes sur le point de <strong>marquer</strong> certains messages de <strong>@%{acct}</strong> comme <strong>sensibles</strong>. Cela va :'
+          none_html: 'Vous êtes sur le point d''<strong>avertir</strong> le compte de <strong>@%{acct}</strong>. Cela va :'
+          sensitive_html: 'Vous êtes sur le point de <strong>marquer</strong> le compte de <strong>@%{acct}</strong> comme <strong>sensible</strong>. Cela va :'
           silence_html: 'Vous êtes sur le point de <strong>limiter</strong> le compte de <strong>@%{acct}</strong>. Cela va :'
           suspend_html: 'Vous êtes sur le point de <strong>suspendre</strong> le compte de <strong>@%{acct}</strong>. Cela va :'
         actions:
           delete_html: supprimer les messages incriminés
+          disable_html: Empêcher l’utilisateur·rice d’utiliser son compte, mais ne supprimera ou ne masquera pas son contenu
           mark_as_sensitive_html: marquer le média des messages incriminés comme sensible
+          none_html: Envoyer un avertissement à l'utilisateur·rice, sans déclencher d'autres actions
+          sensitive_html: Forcer tous les médias de ce compte à être marqués comme sensibles
           silence_html: limiter drastiquement la portée du compte de <strong>@%{acct}</strong> en rendant son profil, ainsi que ses contenus, visibles uniquement des personnes déjà abonnées ou qui le recherchent manuellement
           suspend_html: suspendre le compte de <strong>@%{acct}</strong>, ce qui empêche toute interaction avec son profil et tout accès à ses contenus
         close_report: 'marquer le signalement #%{id} comme résolu'
@@ -1545,7 +1553,9 @@ fr-CA:
       delete: Supprimer
       dropdown:
         all_actions: Toutes les actions
+        delete: Supprimer
         disable: Désactiver
+        mark_as_sensitive: Marquer comme sensible
         none: Avertissement
         sensitive: Sensible
         silence: Masquer

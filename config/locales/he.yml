@@ -43,7 +43,9 @@ he:
       action: בצע/י פעולה
       already_silenced: חשבון זה הוגבל זה מכבר.
       already_suspended: חשבון זה הושעה.
-      title: ביצוע פעולות הנהלה על %{acct}
+      notification_title: הודעות למשתמש.ת
+      text_box_title: השלכות פעולה זו
+      title: 'ביצוע פעולות ניהול דיון על @%{acct}:'
     account_moderation_notes:
       create: ליצור
       created_msg: הודעת מנחה נוצרה בהצלחה!
@@ -987,12 +989,18 @@ he:
       summary:
         action_preambles:
           delete_html: 'הפעולה <strong>תמחק</strong> כמה הודעות של חשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+          disable_html: 'הפעולה הבאה <strong>תקפיא</strong> את החשבון <strong>@%{acct}</strong>. השלכות הפעולה יהיו:'
           mark_as_sensitive_html: 'הפעולה הבאה <strong>תסמן</strong> כמה הודעות של חשבון <strong>@%{acct}</strong> כ<strong>רגישות</strong>. תוצאות הפעולה יהיו:'
+          none_html: 'הפעולה הבאה <strong>תזהיר</strong> את החשבון <strong>@%{acct}</strong>. השלכות הפעולה יהיו:'
+          sensitive_html: 'הפעולה הבאה <strong>תסמן</strong> החשבון <strong>@%{acct}</strong> כ<strong>רגיש</strong>. השלכות הפעולה יהיו:'
           silence_html: 'הפעולה הבאה <strong>תגביל</strong> את החשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
           suspend_html: 'הפעולה הבאה <strong>תקפיא</strong> את החשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
         actions:
           delete_html: הסרת ההודעות החורגות
+          disable_html: מנעי מהמשתמש להשתמש בחשבונם, מבלי למחוק או להסתיר את תוכנו
           mark_as_sensitive_html: סימון המדיה בהודעות החורגות כרגיש לצפיה
+          none_html: שליחת אזהרה למשתמש.ת, מבלי לגרור פעולות נוספות
+          sensitive_html: אלצי את כל קבצי המדיה המצורפים על ידי המשתמש להיות מסומנים כרגישים
           silence_html: הגבלה חמורה של תפוצת <strong>@%{acct}</strong> על ידי הפיכת החשבון ותכניו לזמינים רק למי שכבר עוקב אחריו או מי שיחפשו את עמוד הפרופיל שלו ישירות
           suspend_html: הקפאת החשבון <strong>@%{acct}</strong>, הפיכת הפרופיל והתוכן לנסתרים ולא ניתנים לתקשורת
         close_report: 'סימון דיווח #%{id} בתור פתור'
@@ -1567,7 +1575,9 @@ he:
       delete: למחוק
       dropdown:
         all_actions: כל הפעולות
+        delete: מחיקה
         disable: הקפאה
+        mark_as_sensitive: סימון כרגיש
         none: אזהרה
         sensitive: סימון כרגיש
         silence: הגבלה

@@ -36,7 +36,9 @@ fi:
       action: Suorita toimi
       already_silenced: Tätä tiliä on jo rajoitettu.
       already_suspended: Tämä tili on jo jäädytetty.
-      title: Suorita moderointitoimi käyttäjälle %{acct}
+      notification_title: Käyttäjän ilmoitus ja viesti
+      text_box_title: Tämän toimen seuraukset
+      title: 'Suorita moderointitoimi käyttäjälle @%{acct}:'
     account_moderation_notes:
       create: Jätä muistiinpano
       created_msg: Moderointimuistiinpanon luonti onnistui!
@@ -876,6 +878,7 @@ fi:
         delete_description_html: Raportoidut julkaisut ja/tai kokoelmat poistetaan ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
         mark_as_sensitive_description_html: Raportoitujen julkaisujen media merkitään arkaluonteiseksi ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
         resolve_description_html: Ilmoitettua tiliä kohtaan ei ryhdytä toimiin, varoitusta ei kirjata ja raportti suljetaan.
+        warn_description_html: Käytä tätä lähettääksesi varoitus käyttäjälle aiheuttamatta muita toimia.
       actions_description_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Jos ryhdyt rangaistustoimeen raportoitua tiliä kohtaan, hänelle lähetetään sähköpostitse ilmoitus asiasta, paitsi jos valittuna on <strong>Roskaposti</strong>-luokka.
       actions_description_remote_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Tämä vaikuttaa vain siihen, miten <strong>sinun</strong> palvelimesi viestii tämän etätilin kanssa ja käsittelee sen sisältöä.
       actions_no_posts: Tähän raporttiin ei liity poistettavia julkaisuja
@@ -930,21 +933,27 @@ fi:
       statuses_description_html: Loukkaava sisältö mainitaan raportoidun tilin yhteydessä
       summary:
         action_preambles:
-          delete_html: 'Olet aikeissa <strong>poistaa</strong> käyttäjän <strong>@%{acct}</strong> julkaisuja. Tästä seuraa:'
-          mark_as_sensitive_html: 'Olet aikeissa <strong>merkitä</strong> käyttäjän <strong>@%{acct}</strong> julkaisuja <strong>arkaluonteisiksi</strong>. Tästä seuraa:'
-          silence_html: 'Olet aikeissa <strong>rajoittaa</strong> käyttäjän <strong>@%{acct}</strong> tiliä. Tästä seuraa:'
-          suspend_html: 'Olet aikeissa <strong>jäädyttää</strong> käyttäjän <strong>@%{acct}</strong> tilin. Tästä seuraa:'
+          delete_html: Olet aikeissa <strong>poistaa</strong> käyttäjän <strong>@%{acct}</strong> julkaisuja. Tämä
+          disable_html: Olet aikeissa <strong>jäädyttää</strong> käyttäjän <strong>@%{acct}</strong> tilin. Tämä
+          mark_as_sensitive_html: Olet aikeissa <strong>merkitä</strong> käyttäjän <strong>@%{acct}</strong> julkaisuja <strong>arkaluonteisiksi</strong>. Tämä
+          none_html: Olet aikeissa <strong>varoittaa</strong> käyttäjää <strong>@%{acct}</strong>. Tämä
+          sensitive_html: Olet aikeissa <strong>merkitä</strong> käyttäjän <strong>@%{acct}</strong> tilin <strong>arkaluonteiseksi</strong>. Tämä
+          silence_html: Olet aikeissa <strong>rajoittaa</strong> käyttäjän <strong>@%{acct}</strong> tiliä. Tämä
+          suspend_html: Olet aikeissa <strong>jäädyttää</strong> käyttäjän <strong>@%{acct}</strong> tilin. Tämä
         actions:
-          delete_html: Poista loukkaavat julkaisut
-          mark_as_sensitive_html: Merkitse loukkaavien julkaisujen media arkaluonteiseksi
-          silence_html: Rajoita merkittävästi käyttäjän <strong>@%{acct}</strong> tavoitettavuutta tekemällä profiilista ja sen sisällöstä näkyviä vain niille, jotka jo seuraavat tiliä tai etsivät sen manuaalisesti
-          suspend_html: Jäädytä <strong>@%{acct}</strong>, jolloin hänen profiilinsa ja sisältönsä ei ole käytettävissä ja hänen kanssaan on mahdotonta olla vuorovaikutuksessa
-        close_report: Merkitse raportti nro %{id} ratkaistuksi
-        close_reports_html: Merkitse <strong>kaikki</strong> käyttäjään <strong>@%{acct}</strong> kohdistuvat raportit ratkaistuiksi
-        delete_data_html: Poista käyttäjän <strong>@%{acct}</strong> profiili ja sen sisältö 30 päivän kuluttua, ellei jäädytystä sillä välin kumota
+          delete_html: poistaa loukkaavat julkaisut
+          disable_html: estää käyttäjää käyttämästä tiliään mutta ei poista eikä piilota sen sisältöä
+          mark_as_sensitive_html: merkitsee loukkaavien julkaisujen median arkaluonteiseksi
+          none_html: lähettää käyttäjälle varoituksen aiheuttamatta muita toimia
+          sensitive_html: pakottaa kaikki tämän käyttäjän mediatiedostot arkaluonteisiksi
+          silence_html: rajoitaa merkittävästi käyttäjän <strong>@%{acct}</strong> tavoitettavuutta tekemällä profiilista ja sen sisällöstä näkyviä vain niille, jotka jo seuraavat tiliä tai etsivät sen manuaalisesti
+          suspend_html: jäädyttää tilin <strong>@%{acct}</strong>, jolloin käyttäjän profiili ja sisältö ei ole käytettävissä ja hänen kanssaan on mahdotonta olla vuorovaikutuksessa
+        close_report: merkitsee raportin nro %{id} ratkaistuksi
+        close_reports_html: merkitsee <strong>kaikki</strong> käyttäjään <strong>@%{acct}</strong> kohdistuvat raportit ratkaistuiksi
+        delete_data_html: poistaa käyttäjän <strong>@%{acct}</strong> profiilin ja sen sisällön 30 päivän kuluttua, ellei jäädytystä sillä välin kumota
         preview_preamble_html: "<strong>@%{acct}</strong> saa varoituksen, jonka sisältö on seuraava:"
-        record_strike_html: Kirjaa käyttäjään <strong>@%{acct}</strong> kohdistuva varoitus, joka auttaa suhtautumaan vakavammin tämän tilin tuleviin rikkomuksiin
-        send_email_html: Lähetä käyttäjälle <strong>@%{acct}</strong> varoitus sähköpostitse
+        record_strike_html: kirjaa käyttäjään <strong>@%{acct}</strong> kohdistuvan varoituksen, joka auttaa suhtautumaan vakavammin tämän tilin tuleviin rikkomuksiin
+        send_email_html: lähettää käyttäjälle <strong>@%{acct}</strong> varoituksen sähköpostitse
         warning_placeholder: Valinnaiset lisäperustelut moderointitoimelle.
       target_origin: Raportoidun tilin alkuperä
       title: Raportit
@@ -1446,6 +1455,9 @@ fi:
     warning_presets:
       add_new: Lisää uusi
       delete: Poista
+      dropdown:
+        delete: Poista
+        mark_as_sensitive: Merkitse arkaluonteiseksi
       edit_preset: Muokkaa valmista vastausta
       empty: Et ole vielä määrittänyt yhtäkään valmista vastausta.
       navigation_title: Valmiit vastaukset

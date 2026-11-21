@@ -37,7 +37,9 @@ vi:
       action: Thực hiện hành động
       already_silenced: Tài khoản này đã bị hạn chế.
       already_suspended: Tài khoản này đã bị vô hiệu hóa.
-      title: Áp đặt kiểm duyệt với %{acct}
+      notification_title: Thông báo và Nhắn tin
+      text_box_title: Hậu quả của hành động này
+      title: 'Áp đặt kiểm duyệt với @%{acct}:'
     account_moderation_notes:
       create: Thêm lưu ý
       created_msg: Thêm lưu ý kiểm duyệt thành công!
@@ -959,12 +961,18 @@ vi:
       summary:
         action_preambles:
           delete_html: 'Bạn sắp <strong>xóa</strong> vài tút của <strong>@%{acct}</strong>. Việc này sẽ:'
+          disable_html: 'Bạn sắp <strong>hạn chế tài khoản</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
           mark_as_sensitive_html: 'Bạn sắp <strong>đánh dấu</strong> vài tút của <strong>@%{acct}</strong> là <strong>nhạy cảm</strong>. Việc này sẽ:'
+          none_html: 'Bạn sắp <strong>cảnh báo</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
+          sensitive_html: 'Bạn sắp <strong>đánh dấu tài khoản</strong> <strong>@%{acct}</strong> là <strong>nhạy cảm</strong>. Việc này sẽ:'
           silence_html: 'Bạn sắp <strong>hạn chế</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
           suspend_html: 'Bạn sắp <strong>vô hiệu hóa</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
         actions:
           delete_html: Xóa các tút vi phạm
+          disable_html: Tạm khóa đăng nhập tài khoản, nhưng không xóa hoặc ẩn tút
           mark_as_sensitive_html: Đánh dấu media trong tút vi phạm là nhạy cảm
+          none_html: Cảnh báo người dùng mà không kích hoạt bất kỳ hành động nào khác
+          sensitive_html: Gán nhãn nhạy cảm cho tất cả media của tài khoản này
           silence_html: Hạn chế mức ảnh hưởng của <strong>@%{acct}</strong> bằng cách làm cho trang và nội dung của họ chỉ hiển thị với những người đã theo dõi họ hoặc tìm kiếm theo cách thủ công
           suspend_html: Vô hiệu hóa <strong>@%{acct}</strong>, làm cho trang và nội dung của họ không thể truy cập và không thể tương tác
         close_report: 'Đánh dấu báo cáo #%{id} đã xử lý xong'
@@ -1523,7 +1531,9 @@ vi:
       delete: Xóa bỏ
       dropdown:
         all_actions: Mọi hành động
+        delete: Xóa
         disable: Khóa
+        mark_as_sensitive: Đánh dấu nhạy cảm
         none: Cảnh báo
         sensitive: Nhạy cảm
         silence: Hạn chế
