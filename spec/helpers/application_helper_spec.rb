@@ -78,6 +78,28 @@ RSpec.describe ApplicationHelper do
     end
   end
 
+  describe '#phosphor_icon' do
+    it 'returns an svg with the icon and options' do
+      result = helper.phosphor_icon('arrows-clockwise', class: :test, data: { hidden: true })
+      svg = Nokogiri::HTML5.fragment(result).at_css('svg')
+
+      expect(svg.classes)
+        .to contain_exactly('icon', 'phosphor-arrows-clockwise', 'test')
+      expect(svg['data-hidden']).to eq('true')
+      expect(svg['aria-hidden']).to eq('true')
+    end
+
+    it 'appends whitespace by default' do
+      expect(helper.phosphor_icon('arrows-clockwise'))
+        .to end_with('</svg> ')
+    end
+
+    it 'can omit trailing whitespace' do
+      expect(helper.phosphor_icon('arrows-clockwise', whitespace: false))
+        .to end_with('</svg>')
+    end
+  end
+
   describe 'open_registrations?' do
     it 'returns true when open for registrations' do
       allow(Setting).to receive(:[]).with('registrations_mode').and_return('open')
