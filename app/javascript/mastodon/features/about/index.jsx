@@ -109,8 +109,10 @@ class About extends PureComponent {
             <div className='about__meta__column'>
               <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
-              {server.item?.contact?.account?.id && (
+              {server.item?.contact?.account?.id ? (
                 <Account id={server.item.contact.account.id} size={36} minimal />
+              ) : (
+                <Skeleton width='10ch' />
               )}
             </div>
 
@@ -119,7 +121,7 @@ class About extends PureComponent {
             <div className='about__meta__column'>
               <h4><FormattedMessage id='about.contact' defaultMessage='Contact:' /></h4>
 
-              {isLoading ? <Skeleton width='10ch' /> : <a className='about__mail' href={`mailto:${server.item?.contact?.email}`}>{server.item?.contact?.email}</a>}
+              {isLoading || !server.item?.contact?.email ? <Skeleton width='10ch' /> : <a className='about__mail' href={`mailto:${server.item.contact.email}`}>{server.item.contact.email}</a>}
             </div>
           </div>
 
