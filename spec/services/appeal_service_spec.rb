@@ -35,6 +35,19 @@ RSpec.describe AppealService, :inline_jobs do
             )
           )
       end
+
+      it 'logs the appeal in the audit log' do
+        expect { subject.call(strike, text) }
+          .to change(Admin::ActionLog, :count).by(1)
+
+        expect(Admin::ActionLog.last)
+          .to have_attributes(
+            account_id: strike.target_account.id,
+            action: :create,
+            target_type: 'Appeal',
+            target_id: Appeal.last.id
+          )
+      end
     end
   end
 end
