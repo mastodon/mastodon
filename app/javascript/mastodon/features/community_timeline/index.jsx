@@ -24,7 +24,7 @@ import { FeedColumnSettings } from '../public_timeline/components/feed_column_se
 import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 
 const messages = defineMessages({
-  title: { id: 'column.community', defaultMessage: 'Local timeline' },
+  title: { id: 'column.community', defaultMessage: 'Live feed for this server' },
   title_redesign: { id: 'column.this_server', defaultMessage: 'This Server' },
 });
 
@@ -121,7 +121,7 @@ class CommunityTimeline extends PureComponent {
     const emptyMessage = canViewFeed(signedIn, permissions, localLiveFeedAccess) ? (
       <FormattedMessage
         id='empty_column.community'
-        defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
+        defaultMessage='The live feed for this server is empty. Write something publicly to get the ball rolling!'
       />
     ) : (
       <FormattedMessage

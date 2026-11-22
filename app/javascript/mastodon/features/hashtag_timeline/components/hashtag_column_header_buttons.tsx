@@ -132,7 +132,7 @@ export const HashtagColumnHeaderButtons: React.FC<{
             >
               <FormattedMessage
                 id='community.column_settings.local_only'
-                defaultMessage='Local only'
+                defaultMessage='This server only'
               />
             </MenuItemCheckbox>
             <MenuItem onClick={openAdvancedSettings}>

@@ -140,7 +140,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>l</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.local' defaultMessage='to open local timeline' /></td>
+                <td><FormattedMessage id='keyboard_shortcuts.local' defaultMessage='to open the live feed for this server' /></td>
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>t</kbd></td>
