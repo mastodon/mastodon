@@ -44,5 +44,6 @@ export const fetchDomainBlocks = createDataLoadingThunk(
   () => apiGetDomainBlocks(),
   {
     condition: (_, { getState }) => !getState().server.domainBlocks.isLoading,
+    skipNotFound: true,
   },
 );
