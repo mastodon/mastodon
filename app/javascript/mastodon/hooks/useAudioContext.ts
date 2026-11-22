@@ -27,7 +27,7 @@ export const useAudioContext = ({ audioElementRef }: AudioContextOptions) => {
       sourceRef.current ??
       context.createMediaElementSource(audioElementRef.current);
 
-    const gainNode = context.createGain();
+    const gainNode = gainNodeRef.current ?? context.createGain();
     gainNode.connect(context.destination);
     source.connect(gainNode);
 
@@ -36,12 +36,12 @@ export const useAudioContext = ({ audioElementRef }: AudioContextOptions) => {
     sourceRef.current = source;
 
     return () => {
+      // Avoid associating media element with another source
+      source.disconnect(gainNode);
+      gainNode.disconnect();
       if (context.state !== 'closed') {
-        void context.close();
+        void context.suspend();
       }
-      audioContextRef.current = null;
-      gainNodeRef.current = null;
-      sourceRef.current = null;
     };
   }, [audioElementRef]);
 
