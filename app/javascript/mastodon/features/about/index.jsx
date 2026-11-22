@@ -109,7 +109,9 @@ class About extends PureComponent {
             <div className='about__meta__column'>
               <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
-              <Account id={server.item?.contact?.account?.id} size={36} minimal />
+              {server.item?.contact?.account?.id && (
+                <Account id={server.item.contact.account.id} size={36} minimal />
+              )}
             </div>
 
             <hr className='about__meta__divider' />
