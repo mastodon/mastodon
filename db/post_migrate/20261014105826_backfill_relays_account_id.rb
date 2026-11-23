@@ -13,7 +13,7 @@ class BackfillRelaysAccountId < ActiveRecord::Migration[8.1]
       if relay_account.nil? # This should not happen
         relay.delete
       else
-        relay.update(account: relay_account, uri: relay_account.uri)
+        relay.update(account_id: relay_account.id, uri: relay_account.uri)
       end
     end
 
