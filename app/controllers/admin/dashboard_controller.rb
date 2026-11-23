@@ -11,7 +11,7 @@ module Admin
       @pending_reports_count = Report.unresolved.async_count
       @pending_tags_count    = pending_tags.async_count
       @pending_users_count   = User.pending.async_count
-      @pending_server_checks = Admin::ServerCheck.count_pending_for(current_user)
+      @pending_server_checks = Admin::ServerCheck.checks_for(current_user).count(&:important?)
       @time_period           = (29.days.ago.to_date..Time.now.utc.to_date)
     end
 

@@ -47,10 +47,6 @@ class Admin::ServerCheck < ApplicationRecord
     end
   end
 
-  def self.count_pending_for(user)
-    checks_for(user).count { |check| check.pending? && !check.ignored? }
-  end
-
   def prepare
     run if sync?
   end
@@ -101,5 +97,14 @@ class Admin::ServerCheck < ApplicationRecord
     return 'error' if error?
 
     severity
+  end
+
+  # A check is important if it's not ignored, pending and of substancial severity
+  def important?
+    return false if ignored?
+    return false unless pending?
+    return false unless critical? || warning?
+
+    true
   end
 end

@@ -67,45 +67,47 @@ RSpec.describe Admin::ServerCheck do
     end
   end
 
-  describe '.count_pending_for' do
-    let(:role) do
-      Fabricate(:user_role, permissions_as_keys: [:administrator])
-    end
-    let(:user) { Fabricate(:user, role:) }
+  describe '#important?' do
+    subject { check }
 
-    before do
-      allow(Admin::ServerCheck::SidekiqProcessRunner)
-        .to receive(:new).and_return(runner.new(status: :ok, data: {}, severity: :warning))
-    end
-
-    context 'when there are pending checks' do
-      before do
-        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending')
+    context 'when the check is pending and with warning severity' do
+      let(:check) do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending', severity: 'warning')
       end
 
-      it 'returns one' do
-        expect(described_class.count_pending_for(user)).to eq(1)
-      end
+      it { is_expected.to be_important }
     end
 
-    context 'when there are pending checks but they are ignored' do
-      before do
-        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending', ignored: true)
+    context 'when the check is pending and with critical severity' do
+      let(:check) do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending', severity: 'critical')
       end
 
-      it 'returns zero' do
-        expect(described_class.count_pending_for(user)).to eq(0)
-      end
+      it { is_expected.to be_important }
     end
 
-    context 'when there are no pending checks' do
-      before do
-        Fabricate('Admin::ServerCheck', key: 'rules', status: 'ok')
+    context 'when the check is pending and with suggestion severity' do
+      let(:check) do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending', severity: 'suggestion')
       end
 
-      it 'returns zero' do
-        expect(described_class.count_pending_for(user)).to eq(0)
+      it { is_expected.to_not be_important }
+    end
+
+    context 'when the check is pending but ignored' do
+      let(:check) do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending', severity: 'critical', ignored: true)
       end
+
+      it { is_expected.to_not be_important }
+    end
+
+    context 'when the check is not pending' do
+      let(:check) do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'unprocessed', severity: 'critical')
+      end
+
+      it { is_expected.to_not be_important }
     end
   end
 
