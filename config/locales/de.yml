@@ -40,7 +40,9 @@ de:
       action: Aktion ausführen
       already_silenced: Dieses Konto wurde bereits eingeschränkt.
       already_suspended: Dieses Konto wurde bereits gesperrt.
-      title: "@%{acct} moderieren"
+      notification_title: Benachrichtigungen und Nachrichten
+      text_box_title: Auswirkungen dieser Aktion
+      title: 'Moderationsmaßnahme für @%{acct}:'
     account_moderation_notes:
       create: Notiz abspeichern
       created_msg: Moderationshinweis erfolgreich abgespeichert!
@@ -953,13 +955,19 @@ de:
       summary:
         action_preambles:
           delete_html: 'Du bist dabei, einige Beiträge von <strong>@%{acct}</strong> zu <strong>entfernen</strong>. Dies wird:'
+          disable_html: 'Du bist dabei, das Konto von <strong>@%{acct}</strong> <strong>einzufrieren</strong>. Dies wird:'
           mark_as_sensitive_html: 'Du bist dabei, einige Beiträge von <strong>@%{acct}</strong> mit einer <strong>Inhaltswarnung</strong> zu <strong>versehen</strong>. Dies wird:'
+          none_html: 'Du bist dabei, das Konto von <strong>@%{acct}</strong> zu <strong>verwarnen</strong>. Dies wird:'
+          sensitive_html: 'Du bist dabei, das Konto von <strong>@%{acct}</strong> mit einer <strong>Inhaltswarnung</strong> zu <strong>versehen</strong>. Dies wird:'
           silence_html: 'Du bist dabei, das Konto von <strong>@%{acct}</strong> <strong>einzuschränken</strong>. Dies wird:'
           suspend_html: 'Du bist dabei, das Konto von <strong>@%{acct}</strong> zu <strong>sperren</strong>. Dies wird:'
         actions:
           delete_html: Die beanstandeten Beiträge entfernen
+          disable_html: Nutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden
           mark_as_sensitive_html: Medien der beanstandeten Beiträge mit einer Inhaltswarnung versehen
-          silence_html: Schränkt die Reichweite von <strong>@%{acct}</strong> stark ein, indem das Profil und dessen Inhalte nur für Personen sichtbar sind, die dem Profil bereits folgen oder es manuell aufrufen
+          none_html: Eine Warnung zusenden, ohne dabei eine andere Aktion vorzunehmen
+          sensitive_html: Alle Medien dieses Kontos mit einer Inhaltswarnung versehen
+          silence_html: Die Reichweite von <strong>@%{acct}</strong> stark einschränken, indem das Profil und dessen Inhalte nur für Personen sichtbar sind, die dem Profil bereits folgen oder es manuell aufrufen
           suspend_html: "<strong>@%{acct}</strong> sperren, sodass das Profil und dessen Inhalte nicht mehr zugänglich sind und keine Interaktion mehr möglich ist"
         close_report: Meldung Nr. %{id} als erledigt markieren
         close_reports_html: "<strong>Alle</strong> Meldungen gegen <strong>@%{acct}</strong> als geklärt markieren"
@@ -1110,6 +1118,8 @@ de:
           unprocessed:
             title: Der Server hat den Privatsphärenstatus noch nicht geprüft
         rules:
+          error:
+            title: Fehler beim Überprüfen der Serverregeln
           ok:
             title: Serverregeln festgelegt
           pending:
@@ -1120,13 +1130,19 @@ de:
           unprocessed:
             title: Der Server hat deine Regeln noch nicht geprüft
         sidekiq_process:
+          error:
+            title: Fehler beim Überprüfen der Sidekiq-Konfiguration
           ok:
             title: Sidekiq ist ohne Fehler konfiguriert
+          pending:
+            title: Bitte überprüfe deine Sidekiq-Konfiguration
           running:
             title: Sidekiq-Konfiguration wird überprüft
           unprocessed:
             title: Der Server hat die Sidekiq-Konfiguration noch nicht geprüft
         software_version:
+          error:
+            title: Fehler beim Prüfen auf Updates
           ok:
             title: Mastodon ist auf dem neuesten Stand
           pending:
@@ -1494,7 +1510,9 @@ de:
       delete: Löschen
       dropdown:
         all_actions: Alle Maßnahmen
+        delete: Entfernen
         disable: Einfrieren
+        mark_as_sensitive: Mit Inhaltswarnung versehen
         none: Verwarnung
         sensitive: Inhaltswarnung
         silence: Stummschalten

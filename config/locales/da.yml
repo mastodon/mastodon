@@ -40,7 +40,9 @@ da:
       action: Udfør handling
       already_silenced: Denne konto er allerede blevet begrænset.
       already_suspended: Denne konto er allerede suspenderet.
-      title: Udfør moderatorhandling på %{acct}
+      notification_title: Brugernotifikation og besked
+      text_box_title: Konsekvenser af denne handling
+      title: 'Udfør moderatorhandling på @%{acct}:'
     account_moderation_notes:
       create: Skriv notat
       created_msg: Moderatornotat oprettet!
@@ -973,12 +975,18 @@ da:
       summary:
         action_preambles:
           delete_html: 'Du er ved at <strong>fjerne</strong> nogle indlæg fra <strong>@%{acct}</strong>. Dette vil:'
+          disable_html: 'Du er ved at <strong>fryse</strong> <strong>@%{acct}</strong>s konto. Dette vil:'
           mark_as_sensitive_html: 'Du er ved at <strong>markere</strong> nogle indlæg fra <strong>@%{acct}</strong> som <strong>sensitive</strong>. Dette vil:'
+          none_html: 'Du er ved at <strong>advare</strong> <strong>@%{acct}</strong>. Dette vil:'
+          sensitive_html: 'Du er ved at <strong>markere</strong> <strong>@%{acct}</strong>''s konto som <strong>følsom</strong>. Dette vil:'
           silence_html: 'Du er ved at <strong>begrænse</strong> nogle indlæg fra kontoen <strong>@%{acct}</strong>. Dette vil:'
           suspend_html: 'Du er ved at <strong>suspendere</strong> kontoen <strong>@%{acct}</strong>. Dette vil:'
         actions:
           delete_html: Fjern de overtrædende indlæg
+          disable_html: Forhindrer brugeren i at benytte sin konto, men sletter eller skjuler ikke indholdet
           mark_as_sensitive_html: Markér medier i overtrædende indlæg som sensitive
+          none_html: Send en advarsel til brugeren uden at udløse nogen anden handling
+          sensitive_html: Tving alle denne brugers mediefiler til at blive markeret som følsomme
           silence_html: Begræns kraftigt rækkeviden for <strong>@%{acct}</strong> ved at gøre vedkommendes profil og indhold synligt alene for personer, som allerede er følgere eller manuelt slår profilen op
           suspend_html: Suspendér <strong>@%{acct}</strong>, hvilket gør vedkommendes profil og indhold utilgængeligt og umuligt at interagere med
         close_report: 'Markér anmeldelsen #%{id} som løst'
@@ -1545,7 +1553,9 @@ da:
       delete: Slet
       dropdown:
         all_actions: Alle handlinger
+        delete: Slet
         disable: Frys
+        mark_as_sensitive: Markér som følsomt
         none: Advarsel
         sensitive: Følsomt
         silence: Begræns

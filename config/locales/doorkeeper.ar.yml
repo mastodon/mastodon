@@ -63,6 +63,9 @@ ar:
         prompt_html: "%{client_name} يريد صلاحية الوصول إلى حسابك. <strong>اقبل الطلب فقط في حال معرفتك بالمصدر وتثق به</strong>"
         review_permissions: مراجعة الصلاحيات
         title: إذن بالتصريح
+      require_reauth:
+        log_out_and_continue: تسجيل الخروج والإكمال
+        title: إعادة تصريح مطلوبة
       show:
         title: قم بنسخ رمز المصادقة و إلصاقه على التطبيق.
     authorized_applications:

@@ -40,7 +40,6 @@ et:
       action: Täida tegevus
       already_silenced: See konto on juba piiratud.
       already_suspended: See konto on juba peatatud.
-      title: Rakenda moderaatori tegevus kasutajale %{acct}
     account_moderation_notes:
       create: Jäta teade
       created_msg: Modereerimisteade edukalt koostatud!
@@ -770,6 +769,8 @@ et:
       search: Otsi
       title: IP-reeglid
     moderation_subscriptions:
+      add_new: Lisa tellimus
+      advisory_action: 'Toiming: %{action}'
       delete: Kustuta
       destroyed_msg: Modereerimise tellimuse kustutamine õnnestus
       last_synced_at: Viimati sünkroonitud
@@ -1008,6 +1009,37 @@ et:
           title: Töötlemata
         warning:
           title: Hoiatused
+      checks:
+        elastic_search:
+          pending:
+            title: Elasticsearchiga on seotud paar probleemi
+          running:
+            title: Veebiserver kontrollib Elasticsearchi seadistusi
+          unprocessed:
+            title: Veebiserver pole Elasticsearchi seadistusi veel kontrollinud
+        media_privacy:
+          pending:
+            lead:
+              upload_check_privacy_error_html: Sinu veebiserver on valesti seadistatud
+        software_version:
+          pending:
+            lead:
+              regular_html: Saadaval on uus Mastodoni versioon
+              urgent_html: Saadaval on Mastodoni kriitiline uuendus, palun uuenda nii kiiresti kui võimalik
+            title: Sinu Mastodoni serveri uuendus
+          running:
+            title: Server kontrollib, kas mõni tarkvarauuendus on ootel
+          unprocessed:
+            title: See server pole veel kontrollinud tarkvarauuenduste olekuid
+      ignore:
+        label: Eira
+      lead: Soovitused, kuidas saad hoida oma serverit turvalisena, külalislahkena ja tõhusana.
+      recommendations:
+        title: Soovitused
+      restore:
+        label: Taasta
+      setup:
+        label: Seadista
     settings:
       about:
         manage_rules: Halda serveri reegleid
@@ -1076,6 +1108,10 @@ et:
         warning_hint: Soovitame liitumisel kasutada heakskiitmise nõuet, kui just pole kindel, et modereerijaskond suudab õigeaegselt käsitleda rämpsu ja pahatahtlikke liitumisi.
       security:
         authorized_fetch: Nõua föderatiivse serveripoolset autoriseerimist
+        authorized_fetch_modes:
+          actors: Profiilide ja privaatse sisu jaoks
+          all: Iga päringu jaoks
+          none: Vaid privaatse sisu jaoks
         authorized_fetch_overridden_hint: Sa ei saa hetkel seda seadistust muuta, sest see on keskkonnamuutuja poolt alistatud.
         federation_authentication: Föderatiivse autentimise jõustamine
       title: Serveri seaded
@@ -1340,6 +1376,15 @@ et:
     warning_presets:
       add_new: Lisa uus
       delete: Kustuta
+      dropdown:
+        all_actions: Kõik toimingud
+        delete: Kustuta
+        disable: Külmuta
+        mark_as_sensitive: Märgi delikaatseks
+        none: Hoiatus
+        sensitive: Delikaatne
+        silence: Piira
+        suspend: Peata
     webhooks:
       add_new: Lisa lõpp-punkt
       delete: Kustuta
