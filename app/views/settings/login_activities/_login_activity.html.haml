@@ -1,10 +1,15 @@
-.log-entry
-  .log-entry__header
-    .log-entry__avatar
-      .indicator-icon{ class: login_activity.success? ? 'success' : 'failure' }
-        = material_symbol login_activity.success? ? 'check' : 'close'
-    .log-entry__content
-      .log-entry__title
-        = login_activity_title(login_activity)
-      .log-entry__timestamp
-        %time.formatted{ datetime: login_activity.created_at.iso8601 }= l(login_activity.created_at)
+%li.login-activity__container
+  .login-activity__icon{ class: login_activity.success? ? 'completed' : 'error' }
+    = material_symbol login_activity.success? ? 'check_circle' : 'dangerous'
+
+  .login-activity__info
+    .login-activity__info__title= login_activity_title(login_activity)
+    .login-activity__info__date
+      %time.formatted{ datetime: login_activity.created_at.iso8601, title: l(login_activity.created_at) }= l(login_activity.created_at)
+
+  .login-activity__details
+    .login-activity__details__browser{ title: login_activity.user_agent }
+      = login_activity_browser_description(login_activity)
+    .login-activity__details__ip
+      %samp
+        %bdi= login_activity.ip

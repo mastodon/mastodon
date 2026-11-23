@@ -1,15 +1,16 @@
 - content_for :page_title do
   = t 'login_activities.title'
 
-%p= t('login_activities.description_html')
-
-%hr.spacer/
+- content_for :heading do
+  .heading-with-lead
+    %h1= t('login_activities.title')
+    %p.lead= t('login_activities.description_html')
 
 - if @login_activities.empty?
   .muted-hint.center-text
     = t 'login_activities.empty'
 - else
-  .announcements-list
+  %ol.login-activities
     = render partial: 'login_activity', collection: @login_activities
 
 = paginate @login_activities
