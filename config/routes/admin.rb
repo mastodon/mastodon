@@ -148,6 +148,13 @@ namespace :admin do
   end
 
   resources :reports, only: [:index, :show] do
+    # TODO: can be removed after 5.0.0
+    resources :actions, only: [:create], module: :reports do
+      collection do
+        post :preview
+      end
+    end
+
     member do
       post :assign_to_self
       post :unassign
@@ -180,6 +187,9 @@ namespace :admin do
     end
     resource :change_email, only: [:show, :update]
     resource :reset, only: [:create]
+
+    # TODO: can be removed after 5.0.0
+    resource :action, only: [:new, :create], controller: 'accounts/moderation_actions'
 
     resources :collections, only: [:index, :show], concerns: :batch
     resources :statuses, only: [:index, :show], concerns: :batch
