@@ -27,8 +27,9 @@ RSpec.describe UnblockService do
       sender.block!(relay.account)
     end
 
-    it 'disables relay preference' do
-      expect { subject.call(sender, relay.account) }.to change { RelayPreference.find_by(relay: relay, account: sender)&.enabled }.from(nil).to(true)
+    it 'does not re-enable the relay preference' do
+      expect { subject.call(sender, relay.account) }
+        .to_not(change { RelayPreference.find_by(relay: relay, account: sender)&.enabled })
     end
   end
 
