@@ -16,6 +16,10 @@ RSpec.describe Admin::ServerCheck do
         @async = async
       end
 
+      def authorized?(*)
+        true
+      end
+
       def async?
         @async
       end
@@ -59,6 +63,48 @@ RSpec.describe Admin::ServerCheck do
         rule = checks.find { |c| c.key == 'rules' }
         expect(rule.new_record?).to be(false)
         expect(checks.reject { |c| c.key == 'rules' }.all?(&:new_record?)).to be(true)
+      end
+    end
+  end
+
+  describe '.count_pending_for' do
+    let(:role) do
+      Fabricate(:user_role, permissions_as_keys: [:administrator])
+    end
+    let(:user) { Fabricate(:user, role:) }
+
+    before do
+      allow(Admin::ServerCheck::SidekiqProcessRunner)
+        .to receive(:new).and_return(runner.new(status: :ok, data: {}, severity: :warning))
+    end
+
+    context 'when there are pending checks' do
+      before do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending')
+      end
+
+      it 'returns one' do
+        expect(described_class.count_pending_for(user)).to eq(1)
+      end
+    end
+
+    context 'when there are pending checks but they are ignored' do
+      before do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending', ignored: true)
+      end
+
+      it 'returns zero' do
+        expect(described_class.count_pending_for(user)).to eq(0)
+      end
+    end
+
+    context 'when there are no pending checks' do
+      before do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'ok')
+      end
+
+      it 'returns zero' do
+        expect(described_class.count_pending_for(user)).to eq(0)
       end
     end
   end

@@ -45,6 +45,10 @@
                             start_at: @time_period.first
 
   .dashboard__item
+    = link_to admin_server_checks_path, class: 'dashboard__quick-access' do
+      %span= t('admin.dashboard.pending_server_checks_html', count: @pending_server_checks)
+      = material_symbol 'chevron_right'
+
     = link_to admin_reports_path, class: 'dashboard__quick-access' do
       %span= t('admin.dashboard.pending_reports_html', count: @pending_reports_count.value)
       = material_symbol 'chevron_right'

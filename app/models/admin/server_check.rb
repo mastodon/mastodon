@@ -47,6 +47,10 @@ class Admin::ServerCheck < ApplicationRecord
     end
   end
 
+  def self.count_pending_for(user)
+    checks_for(user).count { |check| check.pending? && !check.ignored? }
+  end
+
   def prepare
     run if sync?
   end
