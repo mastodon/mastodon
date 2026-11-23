@@ -5,6 +5,7 @@ host            = ENV.fetch('ES_HOST') { 'localhost' }
 port            = ENV.fetch('ES_PORT') { 9200 }
 user            = ENV.fetch('ES_USER', nil).presence
 password        = ENV.fetch('ES_PASS', nil).presence
+api_key         = ENV.fetch('ES_API_KEY', nil).presence
 prefix          = ENV.fetch('ES_PREFIX', nil)
 ca_file         = ENV.fetch('ES_CA_FILE', nil).presence
 
@@ -17,6 +18,7 @@ Chewy.settings = {
   journal: false,
   user: user,
   password: password,
+  api_key: api_key,
   index: {
     number_of_replicas: ['single_node_cluster', nil].include?(ENV['ES_PRESET'].presence) ? 0 : 1,
   },
