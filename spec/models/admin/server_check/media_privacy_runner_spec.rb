@@ -56,7 +56,7 @@ RSpec.describe Admin::ServerCheck::MediaPrivacyRunner do
             s3_options: { endpoint: 'https://storage.example.com' }
           )
         )
-        stub_request(:get, %r{\Ahttps://storage.example.com/mastodon/}).to_return(status: 200, body: '<ListBucketResult></ListBucketResult>')
+        stub_request(:get, %r{\Ahttps://storage\.example\.com/mastodon/}).to_return(status: 200, body: '<ListBucketResult></ListBucketResult>')
       end
 
       it { is_expected.to be_pending }
