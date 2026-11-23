@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 namespace :settings do
-  resource :profile, only: [:show, :update] do
+  resource :profile, only: [:show] do
     resources :pictures, only: :destroy
   end
 
@@ -71,6 +71,6 @@ namespace :settings do
 
   resources :aliases, only: [:index, :create, :destroy]
   resources :sessions, only: [:destroy]
-  resources :featured_tags, only: [:index, :create, :destroy]
+  resources :featured_tags, only: [:index]
   resources :login_activities, only: [:index]
 end
