@@ -73,6 +73,17 @@ RSpec.describe SEO::SocialMediaPostingSerializer do
       end
     end
 
+    context 'with a gifv attachment' do
+      let(:media) { Fabricate :media_attachment, type: :gifv, description: 'An animated image' }
+
+      before { record.media_attachments << media }
+
+      it 'serializes the attachment as a video object' do
+        expect(subject['video'])
+          .to contain_exactly(include('type' => 'VideoObject', 'name' => 'An animated image'))
+      end
+    end
+
     context 'with a video attachment' do
       let(:media) { Fabricate :media_attachment, type: :video, description: 'A video recording' }
 

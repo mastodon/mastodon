@@ -9,7 +9,7 @@
         = opengraph 'og:image:height', media.file.meta.dig('original', 'height')
       - if media.description.present?
         = opengraph 'og:image:alt', media.description
-    - elsif media.video? || media.gifv?
+    - elsif media.video_or_gifv?
       - player_card = true
       = opengraph 'og:image', full_asset_url(media.file.url(:small))
       = opengraph 'og:image:type', 'image/png'
