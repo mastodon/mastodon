@@ -48,8 +48,7 @@ RSpec.describe 'Apps' do
             scopes: ['read', 'write'],
             redirect_uris: redirect_uris,
             # Deprecated properties as of 4.3:
-            redirect_uri: redirect_uri,
-            vapid_key: Rails.configuration.x.vapid.public_key
+            redirect_uri: redirect_uri
           )
         )
       end

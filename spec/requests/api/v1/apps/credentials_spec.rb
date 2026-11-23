@@ -28,8 +28,7 @@ RSpec.describe 'Credentials' do
             scopes: token.application.scopes.map(&:to_s),
             redirect_uris: token.application.redirect_uris,
             # Deprecated properties as of 4.3:
-            redirect_uri: token.application.redirect_uri.split.first,
-            vapid_key: Rails.configuration.x.vapid.public_key
+            redirect_uri: token.application.redirect_uri.split.first
           )
         )
       end
@@ -68,8 +67,7 @@ RSpec.describe 'Credentials' do
             scopes: token.application.scopes.map(&:to_s),
             redirect_uris: token.application.redirect_uris,
             # Deprecated properties as of 4.3:
-            redirect_uri: token.application.redirect_uri.split.first,
-            vapid_key: Rails.configuration.x.vapid.public_key
+            redirect_uri: token.application.redirect_uri.split.first
           )
         )
       end
@@ -95,8 +93,7 @@ RSpec.describe 'Credentials' do
             scopes: token.application.scopes.map(&:to_s),
             redirect_uris: token.application.redirect_uris,
             # Deprecated properties as of 4.3:
-            redirect_uri: token.application.redirect_uri.split.first,
-            vapid_key: Rails.configuration.x.vapid.public_key
+            redirect_uri: token.application.redirect_uri.split.first
           )
         )
       end
