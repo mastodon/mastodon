@@ -40,7 +40,7 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
 
     return if @status.nil?
 
-    ActivityPub::ProcessStatusUpdateService.new.call(@status, @json, @object, request_id: @options[:request_id])
+    ActivityPub::ProcessStatusUpdateService.new.call(@status, @json, @object, request_id: @options[:request_id], forwardable_json: @options[:forwardable_json])
   end
 
   def update_collection

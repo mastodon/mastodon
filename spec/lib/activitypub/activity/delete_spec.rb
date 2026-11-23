@@ -20,7 +20,7 @@ RSpec.describe ActivityPub::Activity::Delete do
   let(:object_json) { ActivityPub::TagManager.instance.uri_for(status) }
 
   describe '#perform' do
-    subject { described_class.new(json, sender) }
+    subject { described_class.new(json, sender, forwardable_json: json) }
 
     it 'deletes sender\'s status' do
       subject.perform
