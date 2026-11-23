@@ -41,11 +41,12 @@ class Admin::ServerCheck::MediaPrivacyRunner
     s3_protocol = paperclip_options[:s3_protocol]
     s3_host_alias = paperclip_options[:s3_host_alias]
     s3_host_name  = paperclip_options[:s3_host_name]
+    s3_endpoint   = paperclip_options.dig(:s3_options, :endpoint)
     bucket_name = paperclip_options.dig(:s3_credentials, :bucket)
 
     res = nil
     urls_to_check << "#{s3_protocol}://#{s3_host_alias}/" if s3_host_alias.present?
-    urls_to_check << "#{s3_protocol}://#{s3_host_name}/#{bucket_name}/"
+    urls_to_check << (s3_endpoint.present? ? "#{s3_endpoint.delete_suffix('/')}/#{bucket_name}/" : "#{s3_protocol}://#{s3_host_name}/#{bucket_name}/")
     urls_to_check.uniq.each do |full_url|
       res = check_s3_listing!(full_url)
       break if res.present?
