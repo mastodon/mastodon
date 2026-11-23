@@ -6,8 +6,6 @@ az:
     contact_unavailable: Mövcud deyil
     title: Haqqında
   admin:
-    account_actions:
-      title: "%{acct} üzərində moderasiya əməliyyatını icra et"
     account_moderation_notes:
       created_msg: Moderasiya notu uğurla yaradıldı!
       destroyed_msg: Moderasiya notu uğurla məhv edildi!
@@ -44,14 +42,29 @@ az:
         update_ip_block: IP qaydasını güncəllə
         update_report: Hesabatı güncəllə
         update_status: Göndərişi güncəllə
+        update_tag: Mövzu etiketini güncəllə
+        update_user_role: Rolu güncəllə
+        update_username_block: İstifadəçi adı qaydasını güncəllə
       actions:
         approve_appeal_html: "%{name}, moderasiya qərarına %{target} tərəfindən verilən etirazı təsdiqlədi"
         destroy_account_html: "%{name} %{target} verilərini sildi"
+        publish_terms_of_service_html: "%{name} xidmət şərtlərində güncəlləmələr dərc etdi"
         reject_appeal_html: "%{name}, moderasiya qərarına %{target} tərəfindən verilən etirazı rədd etdi"
         reset_password_user_html: "%{name}, %{target} istifadəçisinin parolunu sıfırladı"
+        update_announcement_html: "%{name}, %{target} elanını güncəllədi"
+        update_collection_html: "%{name}, %{target} təqdim edən kolleksiyanı güncəllədi"
+        update_custom_emoji_html: "%{name}, %{target} ifadəsini güncəllədi"
+        update_report_html: "%{name}, %{target} hesabatını güncəllədi"
+        update_status_html: "%{name}, %{target} təqdim edən göndərişi güncəllədi"
+        update_username_block_html: "%{name}, %{target} ehtiva edən istifadəçi adları üçün qaydanı güncəllədi"
       deleted_account: silinmiş hesab
+    announcements:
+      updated_msg: Elan uğurla güncəlləndi!
+    critical_update_pending: Kritik güncəlləmə gözlənilir
     custom_emojis:
       unlisted: Sadalanmayıb
+      update_failed_msg: Bu ifadə güncəllənə bilmədi
+      updated_msg: İfadə uğurla güncəlləndi!
     dashboard:
       media_storage: Media deposu
       software: Yazılım
@@ -112,6 +125,7 @@ az:
       confirm_action: "@%{acct} üzərindəki moderasiya əməliyyatını təsdiqlə"
       notes_description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
       quick_actions_description_html: 'Cəld bir əməliyyat edin və ya bildirilən məzmuna baxmaq üçün aşağı diyirlərin:'
+      updated_at: Güncəlləndi
     roles:
       categories:
         moderation: Moderasiya
@@ -150,6 +164,8 @@ az:
           ok:
             title: Serverinizin media məxfiliyi təhlükəsizdir
           pending:
+            lead:
+              upload_check_privacy_error_object_storage_html: Obyekt deponuz yanlış konfiqurasiya edilib
             title: İstifadəçilərinizin məxfiliyi risk altındadır
           running:
             title: Server məxfilik statusunu yoxlayır
@@ -185,6 +201,9 @@ az:
       security:
         authorized_fetch_overridden_hint: Bir ortam dəyişəni tərəfindən yararsız edildiyi üçün hazırda bu ayarı dəyişdirə bilməzsiniz.
       title: Server ayarları
+    software_updates:
+      critical_update: Kritik — lütfən cəld şəkildə güncəlləyin
+      title: Mövcud güncəlləmələr
     statuses:
       application: Tətbiq
       metadata: Meta veri
@@ -195,6 +214,15 @@ az:
         message_html: Elasticsearch-a bağlana bilmədi. Lütfən çalışdığına əmin olun və ya tam mətn axtarışını sıradan çıxardın
       elasticsearch_version_check:
         message_html: 'Uyumlu olmayan Elasticsearch versiyası: %{value}'
+      software_version_check:
+        action: Mövcud güncəlləmələrə bax
+        message_html: Bir Mastodon güncəlləməsi mövcuddur.
+      software_version_critical_check:
+        action: Mövcud güncəlləmələrə bax
+        message_html: Kritik bir Mastodon güncəlləməsi mövcuddur, lütfən mümkün qədər tez güncəlləyin.
+      software_version_patch_check:
+        action: Mövcud güncəlləmələrə bax
+        message_html: Mastodon üçün bir xəta düzəltmə güncəlləməsi mövcuddur.
       upload_check_privacy_error:
         action: Daha çox bilgi üçün buranı yoxlayın
       upload_check_privacy_error_object_storage:
@@ -212,6 +240,9 @@ az:
         used_by_over_week:
           one: Keçən həftə bir nəfər istifadə etdi
           other: Keçən həftə %{count} nəfər istifadə etdi
+    update_available: Güncəlləmə mövcuddur
+    username_blocks:
+      updated_msg: İstifadəçi adı qaydası uğurla güncəlləndi
   admin_mailer:
     auto_close_registrations:
       body: Son vaxtlarda moderator fəaliyyətinin olmamasına görə, %{instance} üzərindəki qeydiyyatlar avtomatik olaraq manual yoxlanış tələb edəcək şəkildə dəyişdirilib, beləliklə %{instance} potensial zərərli aktyorlar tərəfindən istifadə edilən platforma çevrilməyəcək. İstənilən vaxt açıq qeydiyyat rejiminə qaytara bilərsiniz.
@@ -221,6 +252,12 @@ az:
       subject: "%{username}, %{instance} üzərindəki bir moderasiya qərarına etiraz edir"
     new_pending_account:
       body: Yeni hesabın ayrıntıları aşağıdadır. Bu müraciəti təsdiqləyə və ya rədd edə bilərsiniz.
+  aliases:
+    add_new: Təxəllüs yarat
+    created_msg: Yeni təxəllüs uğurla yaradıldı. Artıq köhnə hesabdan daşınma prosesini başlada bilərsiniz.
+    deleted_msg: Təxəllüs uğurla çıxarıldı. Həmin hesabdan bu hesaba daşıma prosesi artıq mümkün deyil.
+    empty: Təxəllüsünüz yoxdur.
+    remove: Təxəllüs əlaqələndirməsini yığışdır
   appearance:
     advanced_settings: Qabaqcıl ayarlar
     animations_and_accessibility: Animasiyalar və erişiləbilənlik
@@ -286,6 +323,8 @@ az:
       irreversible: Hesabınızı bərpa edə və ya təkrar aktivləşdirə bilməyəcəksiniz
       more_details_html: Daha çox ayrıntı üçün <a href="%{terms_path}">məxfilik siyasətinə</a> baxın.
   email_subscription_mailer:
+    confirmation:
+      title: "%{name} göndərən e-poçt güncəlləmələri alınsın?"
     notification:
       footer:
         privacy_html: E-poçtlar, Mastodon tərəfindən dəstəklənən %{domain} serverindən göndərilir. Bu serverin fərdi verilərinizi necə emal etdiyini anlamaq üçün <a href="%{privacy_policy_path}">Məxfilik Siyasətinə</a> baxın.
@@ -335,8 +374,10 @@ az:
       password: parol
     description_html: Əgər tanımadığınız bir fəaliyyəti görsəniz, parolunuzu dəyişdirməyi və iki faktorlu kimlik doğrulamanı fəallaşdırmağı düşünə bilərsiniz
   migrations:
+    errors:
+      missing_also_known_as: bu hesabın təxəllüsü deyil
     incoming_migrations: Fərqli bir hesabdan daşı
-    incoming_migrations_html: Başqa bir hesabdan bu hesaba daşımaq üçün əvvəlcə <a href="%{path}">bir hesab alias-ı yaratmalısınız</a>.
+    incoming_migrations_html: Başqa bir hesabdan bu hesaba daşımaq üçün əvvəlcə <a href="%{path}">bir hesab təxəllüsü yaratmalısınız</a>.
     proceed_with_move: İzləyiciləri daşı
     warning:
       disabled_account: Hazırkı hesabınız daha sonra istifadəyə yararsız olacaq. Ancaq, verilərin xaricə köçürülməsinə, həmçinin təkrar aktivləşdirmə prosesinə erişə biləcəksiniz.
@@ -393,6 +434,7 @@ az:
     view_authentication_history: Hesabınızın kimlik doğrulama tarixçəsinə baxın
   settings:
     account_settings: Hesab ayarları
+    aliases: Hesab təxəllüsləri
     appearance: Görünüş
     development: Gəlişdirmə
     export: Xaricə köçür
