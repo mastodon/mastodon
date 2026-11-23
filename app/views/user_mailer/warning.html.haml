@@ -17,7 +17,7 @@
                   - if @warning.text.present?
                     = linkify(@warning.text)
 
-                  - if @warning.include_rule_violations? && !@warning.report.other?
+                  - if @warning.include_rule_violations? && @warning.report && !@warning.report.other?
                     %p
                       %strong= t('user_mailer.warning.reason')
                       = t("user_mailer.warning.categories.#{@warning.report.category}")
