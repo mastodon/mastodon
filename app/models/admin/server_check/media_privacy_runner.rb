@@ -36,22 +36,15 @@ class Admin::ServerCheck::MediaPrivacyRunner
   end
 
   def run_s3
-    urls_to_check = []
     paperclip_options = Paperclip::Attachment.default_options
     s3_protocol = paperclip_options[:s3_protocol]
     s3_host_alias = paperclip_options[:s3_host_alias]
     s3_host_name  = paperclip_options[:s3_host_name]
     bucket_name = paperclip_options.dig(:s3_credentials, :bucket)
 
-    res = nil
-    urls_to_check << "#{s3_protocol}://#{s3_host_alias}/" if s3_host_alias.present?
-    urls_to_check << "#{s3_protocol}://#{s3_host_name}/#{bucket_name}/"
-    urls_to_check.uniq.each do |full_url|
-      res = check_s3_listing!(full_url)
-      break if res.present?
-    end
+    url_to_check = s3_host_alias.present? ? "#{s3_protocol}://#{s3_host_alias}/" : "#{s3_protocol}://#{s3_host_name}/#{bucket_name}/"
 
-    res || ok
+    check_s3_listing!(url_to_check) || ok
   rescue => e
     error(data: { error: e.message })
   end
