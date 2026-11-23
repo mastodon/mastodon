@@ -16,6 +16,10 @@ RSpec.describe Admin::ServerCheck do
         @async = async
       end
 
+      def authorized?(*)
+        true
+      end
+
       def async?
         @async
       end
@@ -60,6 +64,50 @@ RSpec.describe Admin::ServerCheck do
         expect(rule.new_record?).to be(false)
         expect(checks.reject { |c| c.key == 'rules' }.all?(&:new_record?)).to be(true)
       end
+    end
+  end
+
+  describe '#important?' do
+    subject { check }
+
+    context 'when the check is pending and with warning severity' do
+      let(:check) do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending', severity: 'warning')
+      end
+
+      it { is_expected.to be_important }
+    end
+
+    context 'when the check is pending and with critical severity' do
+      let(:check) do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending', severity: 'critical')
+      end
+
+      it { is_expected.to be_important }
+    end
+
+    context 'when the check is pending and with suggestion severity' do
+      let(:check) do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending', severity: 'suggestion')
+      end
+
+      it { is_expected.to_not be_important }
+    end
+
+    context 'when the check is pending but ignored' do
+      let(:check) do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'pending', severity: 'critical', ignored: true)
+      end
+
+      it { is_expected.to_not be_important }
+    end
+
+    context 'when the check is not pending' do
+      let(:check) do
+        Fabricate('Admin::ServerCheck', key: 'rules', status: 'unprocessed', severity: 'critical')
+      end
+
+      it { is_expected.to_not be_important }
     end
   end
 
