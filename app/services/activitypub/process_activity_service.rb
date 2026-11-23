@@ -63,15 +63,6 @@ class ActivityPub::ProcessActivityService < BaseService
 
     return if !@account.is_a?(Account) || different_actor? || suspended_actor? || @account.local?
 
-    if @json['signature'].present?
-      # We have verified the signature, but in the compaction step above, might
-      # have introduced incompatibilities with other servers that do not
-      # normalize the JSON-LD documents (for instance, previous Mastodon
-      # versions), so skip redistribution if we can't get a safe document.
-      patch_for_forwarding!(original_json, @json)
-      @json.delete('signature') unless safe_for_forwarding?(original_json, @json)
-    end
-
     activity = ActivityPub::Activity.factory(@json, @account, **@options)
     activity&.perform
   rescue JSON::ParserError

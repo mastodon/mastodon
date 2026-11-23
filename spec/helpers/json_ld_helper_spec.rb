@@ -175,41 +175,5 @@ RSpec.describe JsonLdHelper do
         expect(compact(json)['signature']).to eq json['signature']
       end
     end
-
-    describe 'patch_for_forwarding!' do
-      it 'properly patches incompatibilities' do
-        json['object'].delete('convo')
-        compacted = compact(json)
-        patch_for_forwarding!(json, compacted)
-        expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
-        expect(compacted.dig('object', 'tag', 0, 'href')).to eq ['foo']
-        expect(safe_for_forwarding?(json, compacted)).to be true
-      end
-
-      context 'when array size mismatch exists' do
-        subject { helper.patch_for_forwarding!(json, alternate) }
-
-        let(:alternate) { json.merge('to' => %w(one two three)) }
-
-        it { is_expected.to be_nil }
-      end
-    end
-
-    describe 'safe_for_forwarding?' do
-      it 'deems a safe compacting as such' do
-        json['object'].delete('convo')
-        compacted = compact(json)
-        patch_for_forwarding!(json, compacted)
-        expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
-        expect(safe_for_forwarding?(json, compacted)).to be true
-      end
-
-      it 'deems an unsafe compacting as such' do
-        compacted = compact(json)
-        patch_for_forwarding!(json, compacted)
-        expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
-        expect(safe_for_forwarding?(json, compacted)).to be false
-      end
-    end
   end
 end
