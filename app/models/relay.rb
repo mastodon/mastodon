@@ -30,6 +30,7 @@ class Relay < ApplicationRecord
   has_many :preferences, class_name: 'RelayPreference', inverse_of: :relay, dependent: :destroy
 
   scope :enabled, -> { accepted }
+  scope :may_forward_to_mastodon, -> { bidirectional }
   scope :for_account, ->(account_id) { left_outer_joins(:preferences).where(requires_opt_in: false).or(where(preferences: { account_id:, enabled: true })) }
 
   normalizes :acct, with: ->(str) { str.strip.gsub(/\A@/, '') }
