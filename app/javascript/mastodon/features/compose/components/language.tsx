@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { MagnifyingGlassIcon, TranslateIcon } from '@phosphor-icons/react';
 
 import { changeComposeLanguage } from '@/mastodon/actions/compose';
+import { saveSettings } from '@/mastodon/actions/settings';
 import { Button } from '@/mastodon/components/button';
 import { Combobox } from '@/mastodon/components/form_fields';
 import { ComboboxMenuItem } from '@/mastodon/components/form_fields/combobox_field';
@@ -106,6 +107,7 @@ export const LanguageDropdown: React.FC<{ onClose: () => void }> = ({
     ({ code }: LanguageObject) => {
       if (code) {
         dispatch(changeComposeLanguage(code));
+        dispatch(saveSettings());
         onClose();
       }
     },
