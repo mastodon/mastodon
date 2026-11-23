@@ -1,89 +1,30 @@
 import { eld } from 'eld/extrasmall';
-import lande from 'lande';
 import { debounce } from 'lodash';
 
 import { replaceMentions, replaceUrls } from './url_regex';
 
-const ISO_639_MAP = {
-  afr: 'af', // Afrikaans
-  ara: 'ar', // Arabic
-  aze: 'az', // Azerbaijani
-  bel: 'be', // Belarusian
-  ben: 'bn', // Bengali
-  bul: 'bg', // Bulgarian
-  cat: 'ca', // Catalan
-  ces: 'cs', // Czech
-  ckb: 'ku', // Kurdish
-  cmn: 'zh', // Mandarin
-  dan: 'da', // Danish
-  deu: 'de', // German
-  ell: 'el', // Greek
-  eng: 'en', // English
-  est: 'et', // Estonian
-  eus: 'eu', // Basque
-  fin: 'fi', // Finnish
-  fra: 'fr', // French
-  hau: 'ha', // Hausa
-  heb: 'he', // Hebrew
-  hin: 'hi', // Hindi
-  hrv: 'hr', // Croatian
-  hun: 'hu', // Hungarian
-  hye: 'hy', // Armenian
-  ind: 'id', // Indonesian
-  isl: 'is', // Icelandic
-  ita: 'it', // Italian
-  jpn: 'ja', // Japanese
-  kat: 'ka', // Georgian
-  kaz: 'kk', // Kazakh
-  kor: 'ko', // Korean
-  lit: 'lt', // Lithuanian
-  mar: 'mr', // Marathi
-  mkd: 'mk', // Macedonian
-  nld: 'nl', // Dutch
-  nob: 'no', // Norwegian
-  pes: 'fa', // Persian
-  pol: 'pl', // Polish
-  por: 'pt', // Portuguese
-  ron: 'ro', // Romanian
-  run: 'rn', // Rundi
-  rus: 'ru', // Russian
-  slk: 'sk', // Slovak
-  spa: 'es', // Spanish
-  srp: 'sr', // Serbian
-  swe: 'sv', // Swedish
-  tgl: 'tl', // Tagalog
-  tur: 'tr', // Turkish
-  ukr: 'uk', // Ukrainian
-  vie: 'vi', // Vietnamese
-};
-
-const CONFIDENCE_MIN = 0.8;
-
-export function guessLanguage(text: string) {
+export function guessLanguage(text: string, validLanguages?: string[]) {
   text = replaceUrls(
     replaceMentions(text, () => ''),
     '',
   );
 
-  if (text.length > 20) {
-    const guess = lande(text)[0];
-    const guess2 = eld.detect(text);
-    console.log('guessing', guess, guess2, 'from:', text);
-
-    if (!guess) {
-      return '';
-    }
-    const [lang, confidence] = guess;
-
-    if (guess2.isReliable()) {
-      const lang = guess2.language;
-      return isValidLanguage(lang) ? ISO_639_MAP[lang] : '';
-    }
-
-    if (confidence > CONFIDENCE_MIN) return ISO_639_MAP[lang];
+  if (text.length <= 20) {
+    return '';
   }
 
-  return '';
+  const guess = eld.detect(text);
+
+  if (!guess.isReliable()) {
+    return '';
+  }
+
+  const lang = guess.language;
+  if (validLanguages && !validLanguages.includes(lang)) {
+    return '';
+  }
+
+  return lang;
 }
 
 export const debouncedGuess = debounce(
@@ -93,7 +34,3 @@ export const debouncedGuess = debounce(
   500,
   { maxWait: 1500, leading: true, trailing: true },
 );
-
-function isValidLanguage(lang: string): lang is keyof typeof ISO_639_MAP {
-  return lang in ISO_639_MAP;
-}
