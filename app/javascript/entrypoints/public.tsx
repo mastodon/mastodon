@@ -108,7 +108,10 @@ async function loaded() {
     .querySelectorAll<HTMLTimeElement>('time.formatted')
     .forEach((content) => {
       const datetime = new Date(content.dateTime);
-      const formattedDate = dateTimeFormat.format(datetime);
+      const timeGiven = content.dateTime.includes('T');
+      const formattedDate = timeGiven
+        ? dateTimeFormat.format(datetime)
+        : dateFormat.format(datetime);
 
       content.title = formattedDate;
       content.textContent = formattedDate;
