@@ -93,32 +93,35 @@
 .textareaWrapper {
   --fade-size: var(--space-6);
 
-  overflow: hidden auto;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  scrollbar-width: thin;
-  overscroll-behavior-y: contain;
   position: relative;
   margin-inline: calc(-1 * var(--space-2));
   padding-inline: var(--space-2);
 
-  // Only show fade in desktop.
-  [data-fullscreen='false'] &::after {
-    content: '';
-    height: var(--fade-size);
-    background: linear-gradient(
-      to top,
-      var(--color-bg-primary),
-      transparent var(--fade-size)
-    );
-    position: sticky;
-    bottom: 0;
-    flex-shrink: 0;
-    margin-top: calc(-1 * var(--fade-size));
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 200ms;
+  [data-fullscreen='false'] & {
+    overflow: hidden auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: thin;
+
+    // Only show fade in desktop.
+    &::after {
+      content: '';
+      height: var(--fade-size);
+      background: linear-gradient(
+        to top,
+        var(--color-bg-primary),
+        transparent var(--fade-size)
+      );
+      position: sticky;
+      bottom: 0;
+      flex-shrink: 0;
+      margin-top: calc(-1 * var(--fade-size));
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms;
+    }
   }
 
   &[data-scroll-down='true']::after {
@@ -126,7 +129,7 @@
   }
 
   [data-fullscreen='true'] & {
-    overflow-y: visible;
+    flex-shrink: 0;
 
     &[data-scroll-down='true']::after {
       opacity: 0;
