@@ -8,7 +8,7 @@ class SEO::SocialMediaPostingSerializer < ActiveModel::Serializer
              :text, :interaction_statistic
 
   attribute :image, if: -> { object.ordered_media_attachments.any?(&:image?) }
-  attribute :video, if: -> { object.ordered_media_attachments.any? { |attachment| attachment.video? || attachment.gifv? } }
+  attribute :video, if: -> { object.ordered_media_attachments.any?(&:video_or_gifv?) }
   attribute :audio, if: -> { object.ordered_media_attachments.any?(&:audio?) }
   attribute :shared_content, if: -> { object.with_preview_card? || object.with_quote? }
   attribute :parent_item, if: -> { object.reply? }
@@ -82,7 +82,7 @@ class SEO::SocialMediaPostingSerializer < ActiveModel::Serializer
 
   def video
     object.ordered_media_attachments.filter_map do |attachment|
-      next unless attachment.video? || attachment.gifv?
+      next unless attachment.video_or_gifv?
 
       {
         type: 'VideoObject',

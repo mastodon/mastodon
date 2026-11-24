@@ -253,7 +253,11 @@ class MediaAttachment < ApplicationRecord
   end
 
   def larger_media_format?
-    video? || gifv? || audio?
+    video_or_gifv? || audio?
+  end
+
+  def video_or_gifv?
+    video? || gifv?
   end
 
   def audio_or_video?
@@ -374,7 +378,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   def check_video_dimensions
-    return unless (video? || gifv?) && file.queued_for_write[:original].present?
+    return unless video_or_gifv? && file.queued_for_write[:original].present?
 
     movie = ffmpeg_data(file.queued_for_write[:original].path)
 
