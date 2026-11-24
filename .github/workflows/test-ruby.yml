@@ -78,7 +78,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:19
+        image: postgres:19-alpine
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
@@ -175,7 +175,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:19
+        image: postgres:19-alpine
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
@@ -275,7 +275,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:19
+        image: postgres:19-alpine
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
