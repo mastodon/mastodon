@@ -8,5 +8,5 @@ export function countableText(inputText: string) {
   return replaceUrls(
     replaceMentions(inputText, (m: { username: string }) => `@${m.username}`),
     'xxxxxxxxxxxxxxxxxxxxxxx',
-  ) as string;
+  );
 }

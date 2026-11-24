@@ -17,33 +17,52 @@ export function languageName(code: string) {
   return languages?.find(([lang]) => lang === code)?.[1];
 }
 
+const GUESS_TEXT_LENGTH = 20;
+
 export function useLanguageGuess() {
   const text = useAppSelector((state) =>
     (state.compose.get('text') as string).trim(),
   );
   const [guess, setGuess] = useState('');
 
+  const debouncedGuess = useDebouncedCallback(
+    async () => {
+      const { guessLanguage } = await import('../util/language_detection');
+
+      return guessLanguage(text);
+    },
+    500,
+    { maxWait: 1500, leading: true, trailing: true },
+  );
+
   useEffect(() => {
-    void import('../util/language_detection').then(({ debouncedGuess }) => {
-      if (text.length > 20) {
-        debouncedGuess(text, setGuess);
-      } else {
-        debouncedGuess.cancel();
-      }
-    });
-  }, [text]);
-
-  // Keeping track of the previous render's text length here
-  // to be able to reset the guess when the text length drops
-  // below the threshold needed to make a guess
-  const isLongText = text.length > 20;
-  const [wasLongText, setWasLongText] = useState(() => isLongText);
-  if (wasLongText !== isLongText) {
-    setWasLongText(isLongText);
-
-    if (wasLongText) {
-      setGuess('');
+    if (text.length <= GUESS_TEXT_LENGTH) {
+      return;
     }
+
+    debouncedGuess.cancel();
+    const promise = debouncedGuess();
+
+    if (!promise) {
+      return;
+    }
+
+    promise
+      .then((guess) => {
+        if (guess) {
+          setGuess(guess);
+        } else {
+          setGuess('');
+        }
+      })
+      .catch(() => {
+        setGuess('');
+      });
+  }, [debouncedGuess, text]);
+
+  // Remove guess when the text is lower than the threshold.
+  if (text.length <= GUESS_TEXT_LENGTH && guess) {
+    setGuess('');
   }
 
   return guess;
