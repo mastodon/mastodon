@@ -1377,50 +1377,6 @@ sk:
       appeal_approved: Namietnuté
       appeal_pending: Odvolanie čaká na posúdenie
       appeal_rejected: Námietka zamietnutá
-    system_checks:
-      database_schema_check:
-        message_html: Niektoré migrácie databázy ešte neprebehli. Spustite ich, aby aplikácia fungovala správne
-      elasticsearch_analysis_index_mismatch:
-        message_html: Nastavenia analyzátorov indexov Elasticsearch sú zastarané. Spustite <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Klaster Elasticsearch je v chybovom stave (červený stav). Vyhľadávanie nie je dostupné
-      elasticsearch_health_yellow:
-        message_html: Klaster Elasticsearch je v zhoršenom stave (žltý stav). Skontrolujte príčinu
-      elasticsearch_index_mismatch:
-        message_html: Mapovania indexov Elasticsearch sú zastarané. Spustite <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Pozri dokumentáciu
-        message_html: Klaster Elasticsearch má viac než jeden uzol, ale Mastodon ich nemá nakonfigurované na používanie.
-      elasticsearch_preset_single_node:
-        action: Pozri dokumentáciu
-        message_html: Klaster Elasticsearch má iba jeden uzol. Hodnotu <code>ES_PRESET</code> nastavte na <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Systémový index Elasticsearch je po zmene nastavení zastaraný. Aktualizujte ho príkazom <code>tootctl search deploy --reset-chewy</code>.
-      elasticsearch_running_check:
-        message_html: Nepodarilo sa pripojiť k Elasticsearch. Skontrolujte, či je spustený, alebo vypnite fulltextové vyhľadávanie
-      elasticsearch_version_check:
-        message_html: 'Nekompatibilná verzia Elasticsearch: %{value}'
-        version_comparison: Je spustený Elasticsearch %{running_version}, no vyžaduje sa verzia %{required_version}
-      rules_check:
-        action: Spravuj serverové pravidlá
-        message_html: Neurčil/a si žiadne serverové pravidlá.
-      sidekiq_process_check:
-        message_html: Pre fronty %{value} nebeží žiadny proces Sidekiq. Skontrolujte konfiguráciu Sidekiq
-      software_version_check:
-        action: Zobraziť dostupné aktualizácie
-        message_html: Je dostupná aktualizácia Mastodonu.
-      software_version_critical_check:
-        action: Pozri dostupné aktualizácie
-        message_html: Je dostupná kritická aktualizácia Mastodonu. Aktualizujte ho čo najskôr.
-      software_version_patch_check:
-        action: Pozri dostupné aktualizácie
-        message_html: Je dostupná opravná aktualizácia Mastodonu.
-      upload_check_privacy_error:
-        action: Pozri tu pre viac informácií
-        message_html: "<strong>Webový server je nesprávne nakonfigurovaný. Súkromie používateľov je ohrozené.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Pozri tu pre viac informácií
-        message_html: "<strong>Objektové úložisko je nesprávne nakonfigurované. Súkromie používateľov je ohrozené.</strong>"
     tags:
       moderation:
         not_trendable: Nespôsobilé na zaradenie medzi trendy

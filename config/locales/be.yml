@@ -1387,50 +1387,6 @@ be:
       appeal_approved: Абскарджана
       appeal_pending: Апеляцыя разглядаецца
       appeal_rejected: Абскарджанне адхілена
-    system_checks:
-      database_schema_check:
-        message_html: Ёсць незавершаныя міграцыі базы даных. Запусціце іх, каб пераканацца, што праграма паводзіць сябе належным чынам
-      elasticsearch_analysis_index_mismatch:
-        message_html: Налады аналізатара індэксаў Elasticsearch пратэрмінаваныя. Калі ласка, запусціце <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Кластар Elasticsearch нездаровы (чырвоны статус), функцыі пошуку недаступныя
-      elasticsearch_health_yellow:
-        message_html: Кластар Elasticsearch у кепскім стане (жоўты статус), магчыма, варта высветліць прычыну гэтага
-      elasticsearch_index_mismatch:
-        message_html: Супастаўленне індэксаў Elasticsearch састарэла. Выканайце каманду <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Падрабязней у дакументацыі
-        message_html: Ваш кластар Elasticsearch мае больш за адзін вузел, але Mastodon не наладжаны на іх выкарыстанне.
-      elasticsearch_preset_single_node:
-        action: Падрабязней у дакументацыі
-        message_html: Ваш кластар Elasticsearch мае толькі адзін вузел, <code>ES_PRESET</code> неабходна выставіць значэнне <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Ваш сістэмны індэкс Elasticsearch састарэў праз змены ў наладах. Калі ласка, запусціце <code>tootctl search deploy --reset-chewy</code>, каб абнавіць яго.
-      elasticsearch_running_check:
-        message_html: Немагчыма падключыцца да Elasticsearch. Праверце, што ён запушчаны, або адключыце пошук па ўсім тэксце
-      elasticsearch_version_check:
-        message_html: 'Несумяшчальная версія Elasticsearch: %{value}'
-        version_comparison: Elasticsearch %{running_version} выяўлены, але патрабуецца %{required_version}
-      rules_check:
-        action: Кіраваць правіламі сервера
-        message_html: Вы не вызначылі ніякіх правіл сервера.
-      sidekiq_process_check:
-        message_html: Не працуе працэс Sidekiq для %{value} чаргі(-аў). Калі ласка, праверце вашу канфігурацыю Sidekiq
-      software_version_check:
-        action: Праверыць наяўнасць абнаўленняў
-        message_html: Даступна абнаўленне Mastodon.
-      software_version_critical_check:
-        action: Прагледзець даступныя абнаўленні
-        message_html: Даступна крытычнае абнаўленне Mastodon, абнавіцеся як мага хутчэй.
-      software_version_patch_check:
-        action: Прагледзець даступныя абнаўленні
-        message_html: Даступна абнаўленне Mastodon з выпраўленнем памылак.
-      upload_check_privacy_error:
-        action: Для падрабязнасцей націсніце тут
-        message_html: "<strong>Ваш сервер не наладжаны. Прыватнасць карыстальнікаў пад пагрозай.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Для падрабязнасцей націсніце тут
-        message_html: "<strong>Ваша сховішча не наладжана. Прыватнасць карыстальнікаў пад пагрозай.</strong>"
     tags:
       moderation:
         not_trendable: Не можа трапіць у трэнды

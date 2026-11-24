@@ -455,6 +455,8 @@ zh-TW:
         other: "<strong>%{count}</strong> 個待處理申訴"
       pending_reports_html:
         other: "<strong>%{count}</strong> 份待處理回報"
+      pending_server_checks_html:
+        other: 此伺服器有 <strong>%{count}</strong> 筆待處理問題。請前往 <a href="%{url}">伺服器健康頁面</a> 查看更多細節。
       pending_tags_html:
         other: "<strong>%{count}</strong> 個待處理主題標籤"
       pending_users_html:
@@ -1343,50 +1345,6 @@ zh-TW:
       appeal_approved: 已申訴
       appeal_pending: 申訴待審中
       appeal_rejected: 申訴被駁回
-    system_checks:
-      database_schema_check:
-        message_html: 發現尚待處理的資料庫遷移 (database migration)。請執行它們以確保應用程式如期運行。
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearch 索引分析器設定 (index analyzer) 已過期。請執行 <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Elasticsearch 叢集健康狀態異常 (紅色)，無法提供搜尋功能
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch 叢集健康狀態異常 (黃色)，您可能想進一步調查原因
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch 索引對應 (index mappings) 已過期。請執行 <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: 檢視文件
-        message_html: 您的 Elasticsaerch 叢集由多個節點構成，但 Mastodon 並沒有設定使用它們。
-      elasticsearch_preset_single_node:
-        action: 檢視文件
-        message_html: 您的 Elasticsearch 叢集只有一個節點，<code>ES_PRESET</code> 應設定為 <code>single_node_cluster</code>。
-      elasticsearch_reset_chewy:
-        message_html: 您的 Elasticsearch 系統索引 (index) 已過期並需執行設定變更。請執行 <code>tootctl search deploy --reset-chewy</code> 以更新它。
-      elasticsearch_running_check:
-        message_html: 無法連接 Elasticsearch。請檢查是否正在執行中，或者已關閉全文搜尋。
-      elasticsearch_version_check:
-        message_html: 不相容的 Elasticsearch 版本：%{value}
-        version_comparison: Elasticsearch %{running_version} 版正在執行，需要 %{required_version} 版。
-      rules_check:
-        action: 管理伺服器規則
-        message_html: 您尚未定義任何伺服器規則。
-      sidekiq_process_check:
-        message_html: 沒有佇列 %{value} 的 Sidekiq 行程，請檢查您的 Sidekiq 設定組態
-      software_version_check:
-        action: 檢視可取得的更新
-        message_html: 有可取得的 Mastodon 更新。
-      software_version_critical_check:
-        action: 檢視可取得的更新
-        message_html: 有可取得的重要 Mastodon 更新，請立即升級。
-      software_version_patch_check:
-        action: 檢視可取得的更新
-        message_html: 有可取得的 Mastodon 錯誤修正更新。
-      upload_check_privacy_error:
-        action: 檢查這裡以取得更多資訊
-        message_html: "<strong>您的網頁伺服器設定錯誤。您的使用者隱私正暴露於風險之中。</strong>"
-      upload_check_privacy_error_object_storage:
-        action: 檢查這裡以取得更多資訊
-        message_html: "<strong>您的物件資料儲存空間 (object storage) 設定錯誤。您的使用者隱私正暴露於風險之中。</strong>"
     tags:
       moderation:
         not_trendable: 無法作為熱門趨勢

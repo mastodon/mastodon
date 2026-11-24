@@ -667,24 +667,6 @@ lt:
       view_publicly: Peržiūrėti viešai
       view_quoted_post: Peržiūrėti paminėtą įrašą
       with_media: Su medija
-    system_checks:
-      database_schema_check:
-        message_html: Laukiama duomenų bazės perkėlimo. Paleisk juos, kad įsitikintum, jog programa veikia taip, kaip tikimasi.
-      elasticsearch_analysis_index_mismatch:
-        message_html: "„Elasticsearch“ indekso analizatoriaus nustatymai pasenę. Vykdykite <code>tootctl search deploy --only-mapping --only=%{value}</code>."
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch klasteris yra nesveikas (geltona būsena), galbūt norėsi išsiaiškinti priežastį
-      elasticsearch_preset:
-        action: Žiūrėti dokumentaciją
-        message_html: Tavo Elasticsearch klasteris turi daugiau nei vieną mazgą, bet Mastodon nėra sukonfigūruotas juos naudoti.
-      elasticsearch_preset_single_node:
-        action: Žiūrėti dokumentaciją
-        message_html: Tavo Elasticsearch klasteris turi tik vieną mazgą, <code>ES_PRESET</code> turėtų būti nustatyta į <code>single_node_cluster</code>.
-      elasticsearch_running_check:
-        message_html: Nepavyko prijungti prie Elasticsearch. Patikrink, ar ji veikia, arba išjunk viso teksto paiešką.
-      software_version_check:
-        action: Žiūrėti galimus naujinimus
-        message_html: Yra „Mastodon“ naujinimas.
     tags:
       moderation:
         not_trendable: Netendencinga

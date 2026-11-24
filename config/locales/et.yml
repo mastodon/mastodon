@@ -1180,50 +1180,6 @@ et:
       appeal_approved: Vaidlustatud
       appeal_pending: Vaidlustus on ootel
       appeal_rejected: Vaidlustus tagasi lükatud
-    system_checks:
-      database_schema_check:
-        message_html: On ootel andmebaasi migreerimisi. Rakenduse ootuspäraseks toimimiseks palun käivita need
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearchi indeksite analüüsija seadistused on vananenud. Palun käivita <code>tootctl search deploy --only-mapping=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Elasticsearch klaster on ebaterve (punane staatus), otsingufunktsioonid ei ole saadaval
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch klaster on ebaterve (kollane staatus), võiksid uurida põhjust
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearchi indeksite kaardistused on vananenud. Palun käivita <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Vaata dokumentatsiooni
-        message_html: Elasticsearchi klastris on rohkem kui üks sõlme, kuid Mastodon ei ole nende kasutamiseks konfigureeritud.
-      elasticsearch_preset_single_node:
-        action: Vaata dokumentatsiooni
-        message_html: Elasticsearchi klastris on ainult üks sõlm <code>ES_PRESET</code> peaks olema seatud väärtusele <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Elasticsearchi süsteemiindeks on seadistuse muutumise tõttu vananenud. Palun käivita <code>tootctl search deploy --reset-chewy</code> selle uuendamiseks.
-      elasticsearch_running_check:
-        message_html: Elasticsearch ei vasta. Kontrolli, kas see töötab või keela täistekstiotsing
-      elasticsearch_version_check:
-        message_html: 'Elasticsearch versioon ei sobi: %{value}'
-        version_comparison: Elasticsearch %{running_version} töötab, aga nõutud on %{required_version}
-      rules_check:
-        action: Halda serveri reegleid
-        message_html: Serverireegleid pole defineeritud.
-      sidekiq_process_check:
-        message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
-      software_version_check:
-        action: Vaata saadaval uuendusi
-        message_html: Mastodoni uuendus on saadaval.
-      software_version_critical_check:
-        action: Vaata saadaolevaid uuendusi
-        message_html: Saadaval on Mastodoni kriitiline uuendus, uuenda nii kiiresti kui võimalik.
-      software_version_patch_check:
-        action: Vaata saadaolevaid uuendusi
-        message_html: Saadaval on Mastodoni veaparandusuuendus.
-      upload_check_privacy_error:
-        action: Klõpsa lisainfo saamiseks siia
-        message_html: "<strong>Veebiserver on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Klõpsa lisainfo saamiseks siia
-        message_html: "<strong>Objektihoidla on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
     tags:
       moderation:
         not_trendable: Pole trendis

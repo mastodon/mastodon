@@ -460,6 +460,9 @@ de:
       pending_reports_html:
         one: "<strong>%{count}</strong> offene Meldung"
         other: "<strong>%{count}</strong> offene Meldungen"
+      pending_server_checks_html:
+        one: <strong>%{count}</strong> ausstehendes Problem mit diesem Server. Weitere Informationen sind im <a href="%{url}">Serverstatus</a> einsehbar.
+        other: <strong>%{count}</strong> ausstehende Probleme mit diesem Server. Weitere Informationen sind im <a href="%{url}">Serverstatus</a> einsehbar.
       pending_tags_html:
         one: "<strong>%{count}</strong> ungeprüfter Hashtag"
         other: "<strong>%{count}</strong> ungeprüfte Hashtags"
@@ -1101,6 +1104,14 @@ de:
             title: Elasticsearch ist fehlerfrei konfiguriert
           pending:
             lead:
+              analysis_index_mismatch_html: 'Die Einstellungen für die Indexanalyse von Elasticsearch sind veraltet. Bitte führe Folendes aus: <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>'
+              cluster_health_red_html: Elasticsearch-Cluster ist fehlerhaft (roter Status) – Suchfunktionen sind nicht verfügbar
+              cluster_health_yellow_html: Elasticsearch-Cluster ist fehlerhaft (gelber Status) – du solltest den Grund dafür untersuchen
+              index_mismatch_html: 'Elasticsearch-Index-Mappings sind veraltet. Bitte führe Folgendes aus: <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>'
+              preset_html: Elasticsearch-Cluster besitzt mehr als einen Knoten, aber Mastodon ist nicht für die Verwendung dieser Knoten konfiguriert
+              preset_single_node_html: Elasticsearch-Cluster besitzt nur einen Knoten. <code>ES_PRESET</code> sollte auf <code>single_node_cluster</code> gesetzt werden
+              reset_chewy_html: 'Elasticsearch-Systemindex ist aufgrund einer Einstellungsänderung veraltet. Bitte führe Folgendes zum Aktualisieren aus: <code>tootctl search deploy --reset-chewy</code>'
+              running_check_html: Verbindung mit Elasticsearch konnte nicht hergestellt werden. Bitte prüfe, ob Elasticsearch läuft, oder deaktiviere die Volltextsuche
               version_check_html: Elasticsearch %{running_version} wird verwendet, obwohl %{required_version} benötigt wird
             title: Probleme mit Elasticsearch erkannt
           running:
@@ -1318,50 +1329,6 @@ de:
       appeal_approved: Einspruch angenommen
       appeal_pending: Einspruch ausstehend
       appeal_rejected: Einspruch abgelehnt
-    system_checks:
-      database_schema_check:
-        message_html: Es gibt ausstehende Datenbankmigrationen. Bitte führe sie aus, um sicherzustellen, dass sich die Anwendung wie erwartet verhält
-      elasticsearch_analysis_index_mismatch:
-        message_html: 'Die Einstellungen für die Indexanalyse von Elasticsearch sind veraltet. Bitte führe diesen Code aus: <code>tootctl search deploy --only-mapping --only=%{value}</code>'
-      elasticsearch_health_red:
-        message_html: Elasticsearch-Cluster ist fehlerhaft (roter Status) – Suchfunktionen sind nicht verfügbar
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch-Cluster ist fehlerhaft (gelber Status) – du solltest den Grund dafür untersuchen
-      elasticsearch_index_mismatch:
-        message_html: 'Elasticsearch-Index-Mappings sind veraltet. Bitte führe Folgendes aus: <code>tootctl search deploy --only=%{value}</code>'
-      elasticsearch_preset:
-        action: Dokumentation ansehen
-        message_html: Elasticsearch-Cluster besitzt mehr als einen Knoten, aber Mastodon ist nicht für die Verwendung dieser Knoten konfiguriert.
-      elasticsearch_preset_single_node:
-        action: Dokumentation ansehen
-        message_html: Elasticsearch-Cluster besitzt nur einen Knoten. <code>ES_PRESET</code> sollte auf <code>single_node_cluster</code> gesetzt werden.
-      elasticsearch_reset_chewy:
-        message_html: 'Elasticsearch-Systemindex ist aufgrund einer Einstellungsänderung veraltet. Bitte führe Folgendes zum Aktualisieren aus: <code>tootctl search deploy --reset-chewy</code>'
-      elasticsearch_running_check:
-        message_html: Verbindung mit Elasticsearch konnte nicht hergestellt werden. Bitte prüfe, ob Elasticsearch läuft, oder deaktiviere die Volltextsuche
-      elasticsearch_version_check:
-        message_html: 'Inkompatible Elasticsearch-Version: %{value}'
-        version_comparison: Elasticsearch %{running_version} läuft, aber %{required_version} wird benötigt
-      rules_check:
-        action: Serverregeln verwalten
-        message_html: Du hast keine Serverregeln festgelegt.
-      sidekiq_process_check:
-        message_html: Kein Sidekiq-Prozess läuft für die %{value} Warteschlange(n). Bitte überprüfe deine Sidekiq-Konfiguration
-      software_version_check:
-        action: Verfügbare Updates ansehen
-        message_html: Ein Mastodon-Update ist verfügbar.
-      software_version_critical_check:
-        action: Verfügbare Updates ansehen
-        message_html: Ein wichtiges Sicherheitsupdate ist verfügbar – bitte aktualisiere Mastodon so schnell wie möglich.
-      software_version_patch_check:
-        action: Verfügbare Updates ansehen
-        message_html: Ein Mastodon-Update mit Bugfixes ist verfügbar.
-      upload_check_privacy_error:
-        action: Für weitere Informationen hier klicken
-        message_html: "<strong>Die Konfiguration deines Servers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Für weitere Informationen hier klicken
-        message_html: "<strong>Die Konfiguration deines Objektspeichers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
     tags:
       moderation:
         not_trendable: Nicht trendfähig

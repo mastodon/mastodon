@@ -720,19 +720,6 @@ sco:
         suspend: "%{name} suspendit %{target}'s accoont"
       appeal_approved: Appealt
       appeal_pending: Appeal pendin
-    system_checks:
-      database_schema_check:
-        message_html: There pendin database migrations. Please rin them fir tae mak siccar the application behaves as expectit
-      elasticsearch_running_check:
-        message_html: Cuidnae connect tae Elasticseirch. Please check that it is rinnin, or turn aff ful-text seirch
-      elasticsearch_version_check:
-        message_html: 'Incompatible Elasticseirch version: %{value}'
-        version_comparison: Elasticseirch %{running_version} is rinnin whilst %{required_version} is requirt
-      rules_check:
-        action: Manage server rules
-        message_html: Ye huvnae definit onie server rules.
-      sidekiq_process_check:
-        message_html: Nae Sidekiq process rinnin fir the %{value} queue(s). Please luik ower yer Sidekiq configuration
     tags:
       review: Luik ower status
       updated_msg: Hashtag settins updatit successfully

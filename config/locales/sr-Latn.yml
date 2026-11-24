@@ -810,45 +810,6 @@ sr-Latn:
       appeal_approved: Žalba uvažena
       appeal_pending: Žalba u razmatranju
       appeal_rejected: Žalba odbijena
-    system_checks:
-      database_schema_check:
-        message_html: Selidbe bazâ podataka su na čekanju. Molimo Vas obavite ih da bi se aplikacija ponašala kako treba
-      elasticsearch_health_red:
-        message_html: Elasticsearch klaster je nezdrav (crveni status), funkcije pretrage su nedostupne
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch klaster je nezdrav (žuti status), možda biste želeli da istražite razlog
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch mapiranja indeksa su zastarela. Pokrenite <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Pogledaj dokumentaciju
-        message_html: Vaš Elasticsearch klaster ima više od jednog čvora, ali Mastodon nije konfigurisan da ih koristi.
-      elasticsearch_preset_single_node:
-        action: Pogledaj dokumentaciju
-        message_html: Vaš Elasticsearch klaster ima samo jedan čvor, <code>ES_PRESET</code>treba postaviti na<code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Indeks Elasticsearch sistema je zastareo zbog promene podešavanja. Pokrenite <code>tootctl search deploy --reset-chewy</code>da biste ga ažurirali.
-      elasticsearch_running_check:
-        message_html: Povezivanje na Elasticsearch nije bilo moguće. Molimo Vas proverite da li je pokrenut, ili onemogućite pretragu celog teksta
-      elasticsearch_version_check:
-        message_html: 'Neusklađena Elasticsearch verzija: %{value}'
-        version_comparison: Elasticsearch %{running_version} je instaliran a %{required_version} je neophodan
-      rules_check:
-        action: Upravljanje pravilima servera
-        message_html: Niste definisali nijedno pravilo servera.
-      sidekiq_process_check:
-        message_html: Nijedan Sidekiq proces nije pokrenut za red(ove) %{value}. Molimo Vas pregledajte svoju Sidekiq konfiguraciju
-      software_version_critical_check:
-        action: Pogledajte dostupna ažuriranja
-        message_html: Dostupno je kritično ažuriranje za Mastodon, ažurirajte ga što je pre moguće.
-      software_version_patch_check:
-        action: Pogledajte dostupna ažuriranja
-        message_html: Dostupna je ispravka grešaka za Mastodon.
-      upload_check_privacy_error:
-        action: Proverite ovde za više informacija
-        message_html: "<strong>Vaš veb server je pogrešno konfigurisan. Privatnost vaših korisnika je izložena riziku.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Proverite ovde za više informacija
-        message_html: "<strong>Vaše skladište objekta je pogrešno konfigurisano. Privatnost vaših korisnika je izložena riziku.</strong>"
     tags:
       review: Pregledaj status
       updated_msg: Podešavanja heš oznaka uspešno ažurirana

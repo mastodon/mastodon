@@ -1410,50 +1410,6 @@ cy:
       appeal_approved: Apeliwyd
       appeal_pending: Apêl yn aros
       appeal_rejected: Mae'r apêl wedi'i gwrthod
-    system_checks:
-      database_schema_check:
-        message_html: Mae mudo cronfa ddata ar fin digwydd. Rhedwch nhw i sicrhau bod y rhaglen yn ymddwyn yn ôl y disgwyl
-      elasticsearch_analysis_index_mismatch:
-        message_html: Mae gosodiadau dadansoddwr mynegai Elasticsearch wedi dyddio. Rhedwch <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Mae clwstwr Elasticsearch yn afiach (statws coch), nid yw'r nodweddion chwilio ar gael
-      elasticsearch_health_yellow:
-        message_html: Mae clwstwr Elasticsearch yn afiach (statws melyn), efallai y byddwch am ymchwilio i'r rheswm
-      elasticsearch_index_mismatch:
-        message_html: Mae mapiau mynegai Elasticsearch yn hen ffasiwn. Rhedwch <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Darllenwch y ddogfennaeth
-        message_html: Mae gan eich clwstwr Elasticsearch fwy nag un nod, ond nid yw Mastodon wedi'i ffurfweddu i'w defnyddio.
-      elasticsearch_preset_single_node:
-        action: Darllenwch y ddogfennaeth
-        message_html: Dim ond un nod sydd gan eich clwstwr Elasticsearch, mae angen gosod <code>ES_PRESET</code> i <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Mae eich mynegai system Elasticsearch wedi dyddio oherwydd newid gosodiad. Rhedwch chwiliad <code>tootctl search deploy --reset-chewy</code> i'w ddiweddaru.
-      elasticsearch_running_check:
-        message_html: Methu cysylltu ag Elasticsearch. Gwiriwch ei fod yn rhedeg, neu analluogwch chwiliad testun llawn
-      elasticsearch_version_check:
-        message_html: 'Fersiwn Elasticsearch anghydnaws: %{value}'
-        version_comparison: Mae Elasticsearch %{running_version} yn rhedeg tra bod angen %{required_version}
-      rules_check:
-        action: Rheoli rheolau gweinydd
-        message_html: Nid ydych wedi diffinio unrhyw reolau gweinydd.
-      sidekiq_process_check:
-        message_html: Does dim proses Sidekiq yn rhedeg ar gyfer y ciw(iau) %{value}. Adolygwch eich ffurfweddiad Sidekiq
-      software_version_check:
-        action: Gweld y diweddariadau sydd ar gael
-        message_html: Mae diweddariad Mastodon ar gael.
-      software_version_critical_check:
-        action: Gweld y diweddariadau sydd ar gael
-        message_html: Mae diweddariad hanfodol Mastodon ar gael, diweddarwch cyn gynted â phosibl.
-      software_version_patch_check:
-        action: Gweld y diweddariadau sydd ar gael
-        message_html: Mae diweddariad cywiro gwal Mastodon ar gael.
-      upload_check_privacy_error:
-        action: Ewch yma am fwy o wybodaeth
-        message_html: "<strong>Mae eich gweinydd gwe wedi'i gam ffurfweddu.. Mae preifatrwydd eich defnyddwyr mewn perygl.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Ewch yma am fwy o wybodaeth
-        message_html: "<strong>Mae eich storfa gwrthrychau wedi'i cham ffurfweddu. Mae preifatrwydd eich defnyddwyr mewn perygl.</strong>"
     tags:
       moderation:
         not_trendable: Ddim yn trendio

@@ -460,6 +460,9 @@ nl:
       pending_reports_html:
         one: "<strong>%{count}</strong> openstaande rapportage"
         other: "<strong>%{count}</strong> openstaande rapportages"
+      pending_server_checks_html:
+        one: Er is <strong>%{count}</strong> openstaand probleem met de server. Ga naar de <a href="%{url}">Serverstatuspagina</a> om meer details te bekijken.
+        other: Er zijn <strong>%{count}</strong> openstaande problemen met de server. Ga naar de <a href="%{url}">Serverstatuspagina</a> om meer details te bekijken.
       pending_tags_html:
         one: "<strong>%{count}</strong> hashtag te beoordelen"
         other: "<strong>%{count}</strong> hashtags te beoordelen"
@@ -975,17 +978,17 @@ nl:
       summary:
         action_preambles:
           delete_html: 'Je staat op het punt om enkele berichten van <strong>@%{acct}</strong> te <strong>verwijderen</strong>. Dit zal:'
-          disable_html: 'U staat op het punt om account <strong>@%{acct}</strong> <strong>te bevriezen</strong>. Dit kan:'
+          disable_html: 'Je staat op het punt om account <strong>@%{acct}</strong> <strong>te bevriezen</strong>. Dit kan:'
           mark_as_sensitive_html: 'Je staat op het punt om enkele berichten van <strong>@%{acct}</strong> als <strong>gevoelig te markeren</strong>. Dit zal:'
-          none_html: 'U staat op het punt om account <strong>@%{acct}</strong> <strong>te waarschuwen</strong>. Dit kan:'
-          sensitive_html: 'U staat op het punt om account <strong>@%{acct}</strong> als <strong>gevoelig</strong> <strong>aan te merken</strong>. Dit kan:'
+          none_html: 'Je staat op het punt om account <strong>@%{acct}</strong> <strong>te waarschuwen</strong>. Dit kan:'
+          sensitive_html: 'Je staat op het punt om account <strong>@%{acct}</strong> als <strong>gevoelig</strong> <strong>aan te merken</strong>. Dit kan:'
           silence_html: 'Je staat op het punt om het account van <strong>@%{acct}</strong> te <strong>beperken</strong>. Dit zal:'
           suspend_html: 'Je staat op het punt om het account van <strong>@%{acct}</strong> <strong>op te schorten</strong>. Dit zal:'
         actions:
           delete_html: De aanstootgevende berichten verwijderen
           disable_html: Voorkom dat de gebruiker diens account gebruikt, maar verwijder of verberg de inhoud niet
           mark_as_sensitive_html: De media in de aanstootgevende berichten als gevoelig markeren
-          none_html: Stuur een waarschuwing naar de gebruiker, zonder een andere actie te starten
+          none_html: Stuur een waarschuwing naar de gebruiker, zonder een andere actie uit te voeren
           sensitive_html: Forceer dat alle mediabijlagen van deze gebruiker als gevoelig worden gemarkeerd
           silence_html: Het account van <strong>@%{acct}</strong> ernstig beperken, door diens profiel en inhoud alleen zichtbaar te maken aan mensen die dit account al volgen of aan mensen die het account handmatig opzoeken
           suspend_html: Het account van <strong>@%{acct}</strong> opschorten, waarmee diens profiel en inhoud niet toegankelijk zijn en het onmogelijk is om interactie te hebben
@@ -1197,7 +1200,7 @@ nl:
         label: Herstellen
       setup:
         label: Instellen
-      title: Server-gezondheid
+      title: Serverstatus
     settings:
       about:
         manage_rules: Serverregels beheren
@@ -1355,50 +1358,6 @@ nl:
       appeal_approved: Bezwaar ingediend
       appeal_pending: Bezwaar in behandeling
       appeal_rejected: Bezwaar afgewezen
-    system_checks:
-      database_schema_check:
-        message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearch index analyser-instellingen zijn verouderd. Voer <code>tootctl search deploy --only-mapping --only=%{value}</code> uit
-      elasticsearch_health_red:
-        message_html: Elasticsearch-cluster is ongezond (rode status), zoekfuncties zijn niet beschikbaar
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch-cluster is ongezond (gele status), misschien wil je de reden onderzoeken
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch-indextoewijzingen zijn verouderd. Voer <code>tootctl search deploy --only=%{value}</code> uit
-      elasticsearch_preset:
-        action: Zie documentatie
-        message_html: Jouw Elasticsearch-cluster heeft meer dan één node, maar Mastodon is niet geconfigureerd om ze te gebruiken.
-      elasticsearch_preset_single_node:
-        action: Zie documentatie
-        message_html: Jouw Elasticsearch-cluster heeft slechts één node, <code>ES_PRESET</code> moet worden ingesteld op <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Jouw Elasticsearch-systeemindex is verouderd vanwege een instellingswijziging. Voer <code>tootctl search deploy --reset-chewy</code> uit om het bij te werken.
-      elasticsearch_running_check:
-        message_html: Kon geen verbinding maken met Elasticsearch. Controleer dat Elasticsearch wordt uitgevoerd of schakel full-text-zoeken uit
-      elasticsearch_version_check:
-        message_html: 'Incompatibele Elasticsearch-versie: %{value}'
-        version_comparison: Je gebruikt Elasticsearch %{running_version}, maar %{required_version} is vereist
-      rules_check:
-        action: Serverregels beheren
-        message_html: Je hebt voor deze server geen regels opgesteld.
-      sidekiq_process_check:
-        message_html: Er draait geen Sidekiqproces voor de wachtrij(en) %{value}. Controleer je Sidekiqconfiguratie
-      software_version_check:
-        action: Beschikbare updates bekijken
-        message_html: Er is een Mastodon-update beschikbaar.
-      software_version_critical_check:
-        action: Bekijk de beschikbare updates
-        message_html: Er is een kritieke update voor Mastodon beschikbaar. Update zo snel mogelijk.
-      software_version_patch_check:
-        action: Beschikbare updates bekijken
-        message_html: Er is een Mastodon-update voor een bugfix beschikbaar.
-      upload_check_privacy_error:
-        action: Klik hier voor meer informatie
-        message_html: "<strong>Jouw webserver is verkeerd geconfigureerd. De privacy van je gebruikers is in gevaar.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Klik hier voor meer informatie
-        message_html: "<strong>Jouw objectopslag is verkeerd geconfigureerd. De privacy van je gebruikers is in gevaar.</strong>"
     tags:
       moderation:
         not_trendable: Niet trendbaar

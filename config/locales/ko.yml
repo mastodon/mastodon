@@ -1052,50 +1052,6 @@ ko:
       appeal_approved: 이의 받아들여짐
       appeal_pending: 이의제기 대기중
       appeal_rejected: 이의 제기 거절됨
-    system_checks:
-      database_schema_check:
-        message_html: 대기 중인 데이터베이스 마이그레이션이 있습니다. 애플리케이션이 예상대로 동작할 수 있도록 마이그레이션을 실행해 주세요
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearch 인덱스 아날라이저 설정이 업데이트되지 않았습니다. <code>tootctl search deploy --only-mapping --only=%{value}</code> 명령을 실행해주세요
-      elasticsearch_health_red:
-        message_html: Elasticsearch 클러스터가 비정상(red)상태입니다. 검색 기능이 동작하지 않습니다
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch 클러스터가 비정상(yellow)상태입니다. 이유를 조사할 필요가 있습니다
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch 인덱스 매핑이 업데이트되지 않았습니다. <code>tootctl search deploy --only=%{value}</code> 명령을 실행해주세요
-      elasticsearch_preset:
-        action: 문서 참조
-        message_html: Elasticsearch 클러스터가 여러 대의 노드를 사용하지만 마스토돈이 그것을 사용하도록 설정되지 않았습니다.
-      elasticsearch_preset_single_node:
-        action: 문서 참조
-        message_html: Elasticsearch 클러스터가 한 대의 노드만 사용하고 있습니다. <code>ES_PRESET</code>이 <code>single_node_cluster</code>로 설정되어야 합니다.
-      elasticsearch_reset_chewy:
-        message_html: 설정 변경으로 인해 Elasticsearch 시스템 인덱스가 최신상태가 아닙니다. <code>tootctl search deploy --reset-chewy</code> 명령으로 업데이트 하세요.
-      elasticsearch_running_check:
-        message_html: Elasticsearch에 연결할 수 없습니다. 실행중인지 확인하거나, 전문검색을 비활성화하세요
-      elasticsearch_version_check:
-        message_html: '호환되지 않는 Elasticsearch 버전: %{value}'
-        version_comparison: Elasticsearch %{required_version}버전이 필요하지만 %{running_version}버전이 실행 중입니다.
-      rules_check:
-        action: 서버 규칙 관리
-        message_html: 아직 서버 규칙을 정하지 않았습니다.
-      sidekiq_process_check:
-        message_html: "%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요"
-      software_version_check:
-        action: 사용 가능한 업데이트 보기
-        message_html: 마스토돈 업데이트가 있습니다.
-      software_version_critical_check:
-        action: 사용 가능한 업데이트 보기
-        message_html: 긴급 마스토돈 업데이트가 있으니, 가능한 서둘러 업데이트 해주세요.
-      software_version_patch_check:
-        action: 사용 가능한 업데이트 보기
-        message_html: 마스토돈 버그픽스 업데이트가 있습니다.
-      upload_check_privacy_error:
-        action: 더 많은 정보를 보려면 여기를 확인하세요.
-        message_html: "<strong>웹서버가 잘못 설정되어있습니다. 사용자의 개인정보가 위험한 상태입니다.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: 더 많은 정보를 보려면 여기를 확인하세요
-        message_html: "<strong>오브젝트 스토리지가 잘못 설정되어 있습니다. 사용자의 개인정보가 위험한 상태입니다.</strong>"
     tags:
       moderation:
         not_trendable: 유행에 오를 수 없음

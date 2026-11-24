@@ -207,27 +207,6 @@ az:
     statuses:
       application: Tətbiq
       metadata: Meta veri
-    system_checks:
-      database_schema_check:
-        message_html: Gözləmədə olan veri bazası miqrasiyaları var. Tətbiqin gözlənildiyi kimi işləməsi üçün lütfən onları çalışdırın
-      elasticsearch_running_check:
-        message_html: Elasticsearch-a bağlana bilmədi. Lütfən çalışdığına əmin olun və ya tam mətn axtarışını sıradan çıxardın
-      elasticsearch_version_check:
-        message_html: 'Uyumlu olmayan Elasticsearch versiyası: %{value}'
-      software_version_check:
-        action: Mövcud güncəlləmələrə bax
-        message_html: Bir Mastodon güncəlləməsi mövcuddur.
-      software_version_critical_check:
-        action: Mövcud güncəlləmələrə bax
-        message_html: Kritik bir Mastodon güncəlləməsi mövcuddur, lütfən mümkün qədər tez güncəlləyin.
-      software_version_patch_check:
-        action: Mövcud güncəlləmələrə bax
-        message_html: Mastodon üçün bir xəta düzəltmə güncəlləməsi mövcuddur.
-      upload_check_privacy_error:
-        action: Daha çox bilgi üçün buranı yoxlayın
-      upload_check_privacy_error_object_storage:
-        action: Daha çox bilgi üçün buranı yoxlayın
-        message_html: "<strong>Obyekt deponuz yanlış konfiqurasiya olunub. İstifadəçilərinizin məxfiliyi risk altındadır.</strong>"
     tags:
       updated_msg: Mövzu etiketi ayarları uğurla güncəlləndi
     terms_of_service:

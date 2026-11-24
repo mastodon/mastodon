@@ -1393,50 +1393,6 @@ ga:
       appeal_approved: Achomharc
       appeal_pending: Achomharc ar feitheamh
       appeal_rejected: Diúltaíodh don achomharc
-    system_checks:
-      database_schema_check:
-        message_html: Tá aistrithe bunachar sonraí ar feitheamh. Rith iad le do thoil chun a chinntiú go n-iompraíonn an t-iarratas mar a bhíothas ag súil leis
-      elasticsearch_analysis_index_mismatch:
-        message_html: Tá socruithe anailíseora innéacs Elasticsearch as dáta. Rith <code>tootctl search deploy --only-mapping --only=%{value}</code>le do thoil
-      elasticsearch_health_red:
-        message_html: Tá braisle Elasticsearch míshláintiúil (stádas dearg), níl gnéithe cuardaigh ar fáil
-      elasticsearch_health_yellow:
-        message_html: Tá braisle Elasticsearch míshláintiúil (stádas buí), b'fhéidir gur mhaith leat an chúis a fhiosrú
-      elasticsearch_index_mismatch:
-        message_html: Tá mapálacha innéacs Elasticsearch as dáta. Rith <code>tootctl search deploy --only=%{value}</code> le do thoil
-      elasticsearch_preset:
-        action: Féach doiciméadú
-        message_html: Tá níos mó ná nód amháin ag do bhraisle Elasticsearch, ach níl Mastodon cumraithe chun iad a úsáid.
-      elasticsearch_preset_single_node:
-        action: Féach doiciméadú
-        message_html: Níl ach nód amháin ag do bhraisle Elasticsearch, ba cheart <code>ES_PRESET</code> a shocrú go <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Tá d'innéacs córais Elasticsearch as dáta mar gheall ar athrú socruithe. Rith <code>tootctl search deploy --reset-chewy</code> chun é a nuashonrú.
-      elasticsearch_running_check:
-        message_html: Níorbh fhéidir ceangal le Elasticsearch. Cinntigh go bhfuil sé ar siúl, nó díchumasaigh cuardach téacs iomlán
-      elasticsearch_version_check:
-        message_html: 'Leagan neamh-chomhoiriúnach le Elasticsearch: %{value}'
-        version_comparison: Tá Elasticsearch %{running_version} ag rith agus %{required_version} ag teastáil
-      rules_check:
-        action: Bainistigh rialacha freastalaí
-        message_html: Níl aon rialacha freastalaí sainmhínithe agat.
-      sidekiq_process_check:
-        message_html: Níl próiseas Sidekiq ag rith don scuaine/(scuainí) %{value}. Déan athbhreithniú ar do chumraíocht Sidekiq
-      software_version_check:
-        action: Féach nuashonruithe atá ar fáil
-        message_html: Tá nuashonrú Mastodon ar fáil.
-      software_version_critical_check:
-        action: Féach nuashonruithe atá ar fáil
-        message_html: Tá nuashonrú ríthábhachtach Mastodon ar fáil, nuashonraigh chomh tapa agus is féidir le do thoil.
-      software_version_patch_check:
-        action: Féach nuashonruithe atá ar fáil
-        message_html: Tá nuashonrú bugfix Mastodon ar fáil.
-      upload_check_privacy_error:
-        action: Seiceáil anseo le haghaidh tuilleadh eolais
-        message_html: "<strong>Tá do fhreastalaí gréasáin míchumraithe. Tá príobháideacht d'úsáideoirí i mbaol.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Seiceáil anseo le haghaidh tuilleadh eolais
-        message_html: "<strong>Tá do stór oibiachtaí míchumraithe. Tá príobháideacht d'úsáideoirí i mbaol.</strong>"
     tags:
       moderation:
         not_trendable: Ní trendable

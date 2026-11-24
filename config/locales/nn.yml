@@ -1081,50 +1081,6 @@ nn:
       appeal_approved: Anka
       appeal_pending: Klage behandles
       appeal_rejected: Anken er avvist
-    system_checks:
-      database_schema_check:
-        message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
-      elasticsearch_analysis_index_mismatch:
-        message_html: Indeksanalyseinnstillingane til Elasticsearch er utdaterte. Køyr <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Elasticsearch-klynga er usunn (raud status), og søkjefunksjonane er utilgjengelege
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch-klyna er usunn (gul status), så du bør undersøkja kvifor
-      elasticsearch_index_mismatch:
-        message_html: Indekskarta for Elasticsearch er utdaterte. Køyr <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Sjå dokumentasjonen
-        message_html: Elasticsearch-klynga di har meir enn ein node, men Mastodon er ikkje sett opp til å bruka dei.
-      elasticsearch_preset_single_node:
-        action: Sjå dokumentasjonen
-        message_html: Elasticsearch-klynga di har berre ein node. <code>ES_PRESET</code> bør vera <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Elasticsearch-systemindeksen er utdatert på grunn av ei endra innstilling. Køyr <code>tootctl search deploy --reset-chewy</code> for å oppdatera indeksen.
-      elasticsearch_running_check:
-        message_html: Kunne ikke koble til Elasticsearch. Kontroller at den kjører, eller deaktiver fulltekstsøk
-      elasticsearch_version_check:
-        message_html: 'Inkompatibel Elasticsearch-versjon: %{value}'
-        version_comparison: Elasticsearch %{running_version} kjører mens %{required_version} er påkrevd
-      rules_check:
-        action: Handter tenarreglar
-        message_html: Du har ikkje laga reglar for denne tenaren.
-      sidekiq_process_check:
-        message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
-      software_version_check:
-        action: Sjå tilgjengelege oppdateringar
-        message_html: Ei Mastodon-oppdatering er tilgjengeleg.
-      software_version_critical_check:
-        action: Sjå tilgjengelege oppdateringar
-        message_html: Ei kritisk oppdatering til Mastodon er tilgjengeleg. Oppdater så snart som mogleg.
-      software_version_patch_check:
-        action: Sjå tilgjengelege oppdateringar
-        message_html: Ei feilretting for Mastodon er tilgjengeleg.
-      upload_check_privacy_error:
-        action: Sjekk her for meir informasjon
-        message_html: "<strong>Vevtenaren din er sett opp feil. Personvernet til brukarane din er i fare.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Sjekk her for meir informasjon
-        message_html: "<strong>Objektlagringa di er sett opp feil. Personvernet til brukarane dine er i fare.</strong>"
     tags:
       moderation:
         not_trendable: Kan ikkje bli populær

@@ -419,24 +419,6 @@ br:
         delete_statuses: Dilamet eo bet toudoù %{target} gant %{name}
         disable: Skornet eo bet kont %{target} gant %{name}
         suspend: Astalet eo bet kont %{target} gant %{name}
-    system_checks:
-      elasticsearch_preset:
-        action: Gwelet an teuliadur
-      elasticsearch_preset_single_node:
-        action: Gwelet an teuliadur
-      rules_check:
-        action: Merañ reolennoù ar servijer
-      software_version_check:
-        action: Gwelet an hizivadennoù hegerz
-        message_html: Un hizivadenn eus Mastodon a zo hegerz.
-      software_version_critical_check:
-        action: Gwelet an hizivadennoù hegerz
-      software_version_patch_check:
-        action: Gwelet an hizivadennoù hegerz
-      upload_check_privacy_error:
-        action: Gwelet amañ evit kaout muioc'h a ditouroù
-      upload_check_privacy_error_object_storage:
-        action: Gwelet amañ evit kaout muioc'h a ditouroù
     tags:
       name: Anv
       search: Klask
