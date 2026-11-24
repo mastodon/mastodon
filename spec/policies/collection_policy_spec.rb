@@ -33,6 +33,13 @@ RSpec.describe CollectionPolicy do
       expect(policy).to_not permit(domain_blocked_user, collection)
       expect(policy).to_not permit(other_user, collection)
     end
+
+    it 'denies access when owner is suspended' do
+      owner.suspend!
+
+      expect(policy).to_not permit(owner, collection)
+      expect(policy).to_not permit(other_user, collection)
+    end
   end
 
   permissions :create? do

@@ -6,6 +6,8 @@ class CollectionPolicy < ApplicationPolicy
   end
 
   def show?
+    return false if owner.unavailable?
+
     current_account.nil? || !owner.blocking_or_domain_blocking?(current_account)
   end
 
