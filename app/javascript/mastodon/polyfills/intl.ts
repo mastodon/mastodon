@@ -1,3 +1,4 @@
+import { shouldPolyfill as shoudPolyfillDurationFormat } from '@formatjs/intl-durationformat/should-polyfill.js';
 // import { shouldPolyfill as shouldPolyfillCanonicalLocales } from '@formatjs/intl-getcanonicallocales/should-polyfill';
 // import { shouldPolyfill as shouldPolyfillLocale } from '@formatjs/intl-locale/should-polyfill';
 import { shouldPolyfill as shoudPolyfillPluralRules } from '@formatjs/intl-pluralrules/should-polyfill.js';
@@ -60,6 +61,16 @@ async function loadIntlPluralRulesPolyfills(locale: string) {
   );
 }
 
+async function loadIntlDurationFormatPolyfills() {
+  const unsupportedLocale = shoudPolyfillDurationFormat();
+  // This locale is supported
+  if (!unsupportedLocale) {
+    return;
+  }
+  // Load the polyfill 1st BEFORE loading data
+  await import('@formatjs/intl-durationformat/polyfill-force.js');
+}
+
 // async function loadIntlRelativeTimeFormatPolyfill(locale: string) {
 //   const unsupportedLocale = shouldPolyfillIntlRelativeTimeFormat(locale);
 //   // This locale is supported
@@ -92,6 +103,9 @@ export async function loadIntlPolyfills() {
 
   // Supported in IE11 and most other browsers, not useful
   // await loadIntlDateTimeFormatPolyfill(locale)
+
+  // Supported from Safari 16.4+
+  await loadIntlDurationFormatPolyfills();
 
   // Supported from Safari 13+, may still be useful
   await loadIntlPluralRulesPolyfills(locale);
