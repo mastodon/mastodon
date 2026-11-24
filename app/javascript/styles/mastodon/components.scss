@@ -524,17 +524,6 @@ body > [data-popover-placement] {
   .collection-preview {
     margin-top: 14px;
   }
-
-  .no-reduce-motion &--highlighted-entry::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: var(--color-bg-brand-softest);
-    opacity: 0;
-    animation: fade 0.7s reverse both 0.3s;
-    pointer-events: none;
-  }
 }
 
 .status__relative-time {
