@@ -1,0 +1,102 @@
+:ruby
+  report_id = params[:report_id] if params[:report_id].present?
+  type = params[:type] if params[:type].present?
+  report = Report.find(params[:report_id]) if params[:report_id].present?
+  account_id = params[:account_id]
+
+- if @target_account.suspended_locally?
+  .flash-message.alert
+    = t('admin.account_actions.already_suspended')
+- elsif @target_account.silenced?
+  .flash-message.warn
+    = t('admin.account_actions.already_silenced')
+
+= simple_form_for @account_action, url: admin_account_moderation_action_path(account_id), html: { id: 'action_type' } do |f|
+  = f.input :report_id, as: :hidden if report_id
+
+  - content_for :page_title do
+    = t('admin.account_actions.title', acct: @target_account.pretty_acct)
+    = f.input :type,
+              as: :select,
+              collection: account_actions_button_collection,
+              include_blank: false,
+              label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type[0]}") },
+              required: false,
+              input_html: { form: 'action_type' }
+
+  - if report_id.present?
+    .fields-group
+      %p= t('admin.reports.summary.account_action_preamble_html', report: report_id, count: report.status_ids.count, report_path: admin_report_path(report_id))
+
+  #data-action-text-box
+    = render partial: 'actions_text_box', locals: { account: @target_account, report: report }
+
+  - if @target_account.local?
+    %hr.spacer/
+    %h3= t('admin.account_actions.notification_title')
+
+    .fields-group
+      = f.input :send_email_notification,
+                as: :boolean,
+                wrapper: :with_label
+
+    #mail-content
+      %h2.spacer
+
+      %p.hint= t('admin.reports.summary.preview_preamble_html', acct: @target_account.pretty_acct)
+      #data-action-strike-card
+        .strike-card.preview{ hidden: (true if type == 'none') }
+          %p= t "user_mailer.warning.explanation.#{type}", instance: Rails.configuration.x.local_domain
+        %hr.spacer/
+
+      - if @warning_presets.empty?
+        .filters
+          .input.with_block_label
+            %label= t('simple_form.labels.admin_account_action.warning_preset_id')
+          .back-link
+            = link_to admin_warning_presets_path do
+              = t('simple_form.labels.admin_account_action.canned_response_back_link')
+            = material_symbol 'chevron_right'
+        %span.hint= t('simple_form.hints.admin_account_action.warning_preset_explanation')
+        %hr.spacer
+
+      - else
+        .filters
+          .input.with_block_label
+            %label= t('simple_form.labels.admin_account_action.warning_preset_id')
+          .back-link
+            = link_to admin_warning_presets_path do
+              = t('simple_form.labels.admin_account_action.canned_response_back_link')
+            = material_symbol 'chevron_right'
+        .input.with_block_label
+          %span.hint= t('simple_form.hints.admin_account_action.warning_preset')
+
+        .fields-group
+          = f.input :warning_preset_id,
+                    collection: account_action_label_and_categories_collection(@warning_presets),
+                    input_html: { id: 'presets_dropdown' }
+
+      .fields-group
+        = f.input :text,
+                  as: :text,
+                  wrapper: :with_block_label,
+                  hint: t('simple_form.hints.admin_account_action.text')
+
+      - if @target_account.local? && params[:report_id].present?
+        %hr.spacer/
+
+        .fields-group
+          = f.input :include_statuses,
+                    as: :boolean,
+                    wrapper: :with_label,
+                    input_html: { id: 'include_statuses' }
+
+        %hr.spacer/
+
+  .actions
+    - if report_id.present?
+      = link_to t('admin.reports.cancel'), admin_report_path(report_id), class: 'button button-secondary'
+    - else
+      = link_to t('admin.reports.cancel'), admin_accounts_path, class: 'button button-secondary'
+
+    %button.button{ type: :submit }= t("admin.account_actions.types.#{type}")
