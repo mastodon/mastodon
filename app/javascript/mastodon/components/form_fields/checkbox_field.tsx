@@ -2,8 +2,8 @@ import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
 import { forwardRef, useCallback, useEffect, useRef } from 'react';
 
 import classes from './checkbox.module.scss';
-import type { CommonFieldWrapperProps } from './form_field_wrapper';
 import { FormFieldWrapper } from './form_field_wrapper';
+import type { CommonFieldWrapperProps } from './form_field_wrapper';
 
 type Props = Omit<ComponentPropsWithoutRef<'input'>, 'type'> & {
   size?: number;

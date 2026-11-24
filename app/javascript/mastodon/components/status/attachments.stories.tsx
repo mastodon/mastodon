@@ -13,8 +13,8 @@ import {
 
 import { StatusAttachments } from './attachments';
 import { StatusContext } from './hooks';
-import type { AttachmentArgs } from './testing';
 import { attachmentArgTypes, attachmentFactory } from './testing';
+import type { AttachmentArgs } from './testing';
 
 interface StatusAttachmentsStoryProps extends AttachmentArgs {
   isFiltered: boolean;

@@ -12,8 +12,8 @@ import { IconButton } from '@/mastodon/components/button';
 import type { NotificationGroupFollowRequest } from '@/mastodon/models/notification_group';
 import { useAppDispatch } from '@/mastodon/store';
 
-import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationGroupWithStatus } from './notification_group_with_status';
+import type { LabelRenderer } from './notification_group_with_status';
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },

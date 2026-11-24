@@ -1,5 +1,5 @@
-import type { IconProp } from './icon';
 import { Icon } from './icon';
+import type { IconProp } from './icon';
 
 const formatNumber = (num: number): number | string => (num > 40 ? '40+' : num);
 

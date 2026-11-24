@@ -2,12 +2,12 @@ import type { FC } from 'react';
 
 import classNames from 'classnames';
 
-import type { Icon } from '@phosphor-icons/react';
 import {
   CheckCircleIcon,
   InfoIcon,
   WarningCircleIcon,
 } from '@phosphor-icons/react';
+import type { Icon } from '@phosphor-icons/react';
 
 import type { FieldStatus } from '../form_fields/form_field_wrapper';
 

@@ -9,8 +9,8 @@ import { A11yLiveRegion } from 'mastodon/components/a11y_live_region';
 import { CalloutInline } from 'mastodon/components/callout_inline';
 
 import classes from './fieldset.module.scss';
-import type { FieldStatus } from './form_field_wrapper';
 import { getFieldStatus } from './form_field_wrapper';
+import type { FieldStatus } from './form_field_wrapper';
 import formFieldWrapperClasses from './form_field_wrapper.module.scss';
 
 interface FieldsetProps {

@@ -8,8 +8,8 @@ import classNames from 'classnames';
 
 import UnfoldMoreIcon from '@/material-icons/400-24px/unfold_more.svg?react';
 
-import type { SelectItem } from '../dropdown_selector';
 import { DropdownSelector } from '../dropdown_selector';
+import type { SelectItem } from '../dropdown_selector';
 import { Icon } from '../icon';
 import { Popover } from '../popover';
 

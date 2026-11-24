@@ -6,8 +6,8 @@ import { replyComposeById } from '@/mastodon/actions/compose_typed';
 import { editStatus } from 'mastodon/actions/statuses';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 
 const editMessages = defineMessages({
   title: {

@@ -1,10 +1,10 @@
+import { create as createAxiosInstance } from 'axios';
 import type {
   AxiosError,
   AxiosResponse,
   Method,
   RawAxiosRequestHeaders,
 } from 'axios';
-import { create as createAxiosInstance } from 'axios';
 import LinkHeader from 'http-link-header';
 
 import { getAccessToken } from './initial_state';

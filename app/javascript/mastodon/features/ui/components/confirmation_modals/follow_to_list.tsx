@@ -2,8 +2,8 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { useAccount } from 'mastodon/hooks/useAccount';
 
-import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 
 const messages = defineMessages({
   title: {

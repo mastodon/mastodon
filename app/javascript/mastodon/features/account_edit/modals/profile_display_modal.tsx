@@ -9,8 +9,8 @@ import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { patchProfile } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import type { DialogModalProps } from '../../ui/components/dialog_modal';
 import { DialogModal } from '../../ui/components/dialog_modal';
+import type { DialogModalProps } from '../../ui/components/dialog_modal';
 import { messages } from '../index';
 
 import classes from './styles.module.scss';

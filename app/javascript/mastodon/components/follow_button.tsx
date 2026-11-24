@@ -2,8 +2,8 @@ import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import type { Icon } from '@phosphor-icons/react';
 import { UserMinusIcon, UserPlusIcon } from '@phosphor-icons/react';
+import type { Icon } from '@phosphor-icons/react';
 
 import { useIdentity } from '@/mastodon/identity_context';
 import {

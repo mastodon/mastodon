@@ -6,8 +6,8 @@ import { supportsPassiveEvents } from 'detect-passive-events';
 
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
 
-import type { IconProp } from './icon';
 import { Icon } from './icon';
+import type { IconProp } from './icon';
 
 const listenerOptions = supportsPassiveEvents
   ? { passive: true, capture: true }

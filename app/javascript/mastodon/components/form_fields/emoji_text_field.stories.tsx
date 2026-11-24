@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import type { EmojiInputProps } from './emoji_text_field';
 import { EmojiTextAreaField, EmojiTextInputField } from './emoji_text_field';
+import type { EmojiInputProps } from './emoji_text_field';
 
 const meta = {
   title: 'Components/Form Fields/EmojiTextInputField',

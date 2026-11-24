@@ -15,8 +15,8 @@ import { usePrevious } from '@dnd-kit/utilities';
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 
-import type { CarouselPaginationProps } from './pagination';
 import { CarouselPagination } from './pagination';
+import type { CarouselPaginationProps } from './pagination';
 
 import './styles.scss';
 

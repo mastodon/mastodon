@@ -9,8 +9,8 @@ import { XIcon } from '@phosphor-icons/react';
 import type { PolymorphicProps } from '@/types/polymorphic';
 
 import { IconButton } from '../button';
-import type { NamedFocusTarget } from '../navigation_focus_target';
 import { NavigationFocusTarget } from '../navigation_focus_target';
+import type { NamedFocusTarget } from '../navigation_focus_target';
 
 import classes from './redesign.module.scss';
 

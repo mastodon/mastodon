@@ -5,8 +5,8 @@ import { defineMessages, useIntl } from 'react-intl';
 import { revokeQuote } from 'mastodon/actions/interactions_typed';
 import { useAppDispatch } from 'mastodon/store';
 
-import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 
 const messages = defineMessages({
   revokeQuoteTitle: {

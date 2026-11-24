@@ -4,12 +4,12 @@ import type React from 'react';
 import type { useLocation } from 'react-router';
 import { Router as OriginalRouter, useHistory } from 'react-router';
 
+import { createBrowserHistory } from 'history';
 import type {
   LocationDescriptor,
   LocationDescriptorObject,
   Path,
 } from 'history';
-import { createBrowserHistory } from 'history';
 
 import { isDevelopment } from 'mastodon/utils/environment';
 

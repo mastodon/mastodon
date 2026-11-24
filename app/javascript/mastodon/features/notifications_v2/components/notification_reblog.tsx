@@ -6,8 +6,8 @@ import { StatusBoostIcon } from '@/mastodon/components/status/icons';
 import type { NotificationGroupReblog } from 'mastodon/models/notification_group';
 import { useAppSelector } from 'mastodon/store';
 
-import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationGroupWithStatus } from './notification_group_with_status';
+import type { LabelRenderer } from './notification_group_with_status';
 
 const labelRenderer: LabelRenderer = (displayedName, total, seeMoreHref) => {
   if (total === 1)

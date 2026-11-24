@@ -9,8 +9,8 @@ import { me } from '@/mastodon/initial_state';
 import { deleteCollection } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch } from 'mastodon/store';
 
-import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 
 const messages = defineMessages({
   deleteListTitle: {

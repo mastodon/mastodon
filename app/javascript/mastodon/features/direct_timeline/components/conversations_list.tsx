@@ -12,8 +12,8 @@ import {
 import { expandConversations } from 'mastodon/actions/conversations';
 import ScrollableList from 'mastodon/components/scrollable_list';
 
-import type { TConversation } from './conversation';
 import { Conversation } from './conversation';
+import type { TConversation } from './conversation';
 
 const selectConversations = createAppSelector(
   [(state) => state.conversations],

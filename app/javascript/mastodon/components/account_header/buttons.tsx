@@ -11,8 +11,8 @@ import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import type { ButtonProps } from '../button';
 import { Button } from '../button';
+import type { ButtonProps } from '../button';
 import { CopyIconButton } from '../copy_button';
 import { FollowButton } from '../follow_button';
 

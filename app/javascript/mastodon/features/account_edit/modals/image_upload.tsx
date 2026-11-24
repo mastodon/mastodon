@@ -3,8 +3,8 @@ import type { ChangeEventHandler, FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import type { Area } from 'react-easy-crop';
 import Cropper from 'react-easy-crop';
+import type { Area } from 'react-easy-crop';
 
 import { setDragUploadEnabled } from '@/mastodon/actions/compose_typed';
 import { Button } from '@/mastodon/components/button';

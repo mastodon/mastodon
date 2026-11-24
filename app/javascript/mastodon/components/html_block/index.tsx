@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 import { polymorphicForwardRef } from '@/types/polymorphic';
 
-import type { EmojiHTMLProps } from '../emoji/html';
 import { EmojiHTML } from '../emoji/html';
+import type { EmojiHTMLProps } from '../emoji/html';
 import { useElementHandledLink } from '../status/handled_link';
 
 export const HTMLBlock = polymorphicForwardRef<

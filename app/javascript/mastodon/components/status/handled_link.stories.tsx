@@ -5,8 +5,8 @@ import { accountFactoryImmutable } from '@/testing/factories';
 
 import { HoverCardController } from '../hover_card_controller';
 
-import type { HandledLinkProps } from './handled_link';
 import { HandledLink } from './handled_link';
+import type { HandledLinkProps } from './handled_link';
 
 type HandledLinkStoryProps = Pick<
   HandledLinkProps,

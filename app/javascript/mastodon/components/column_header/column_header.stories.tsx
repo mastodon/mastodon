@@ -1,8 +1,8 @@
 import { UserPlusIcon, DotsThreeIcon } from '@phosphor-icons/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import type { ColumnHeaderProps } from './index';
 import { ColumnHeader, ColumnHeaderButton } from './index';
+import type { ColumnHeaderProps } from './index';
 
 const meta = {
   title: 'Redesign/ColumnHeader',

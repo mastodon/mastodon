@@ -2,8 +2,8 @@ import type { ComponentPropsWithRef } from 'react';
 
 import classNames from 'classnames';
 
-import type { CommonFieldWrapperProps } from './form_field_wrapper';
 import { FormFieldWrapper } from './form_field_wrapper';
+import type { CommonFieldWrapperProps } from './form_field_wrapper';
 import classes from './toggle.module.scss';
 
 type Props = Omit<ComponentPropsWithRef<'input'>, 'type' | 'size'> & {

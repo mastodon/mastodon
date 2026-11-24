@@ -1,12 +1,5 @@
 import { useCallback, useEffect } from 'react';
 
-import type {
-  ReferenceType,
-  Placement,
-  OffsetOptions,
-  Strategy,
-  MiddlewareState,
-} from '@floating-ui/react-dom';
 import {
   useFloating,
   autoUpdate,
@@ -16,6 +9,13 @@ import {
   flip as flipMiddleware,
   size,
   hide,
+} from '@floating-ui/react-dom';
+import type {
+  ReferenceType,
+  Placement,
+  OffsetOptions,
+  Strategy,
+  MiddlewareState,
 } from '@floating-ui/react-dom';
 
 import { useOnClickOutside } from '@/mastodon/hooks/useOnClickOutside';

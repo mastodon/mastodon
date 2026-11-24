@@ -25,8 +25,8 @@ import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import { IconButton } from 'mastodon/components/button';
 
 import { LoadingIndicator } from '../loading_indicator';
-import type { PopoverProps } from '../popover';
 import { Popover } from '../popover';
+import type { PopoverProps } from '../popover';
 
 import classes from './combobox.module.scss';
 import { FormFieldWrapper } from './form_field_wrapper';

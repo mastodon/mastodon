@@ -1,7 +1,7 @@
 import { isList } from 'immutable';
 
-import type { CompactEmoji, SkinTone } from 'emojibase';
 import { fromHexcodeToCodepoint } from 'emojibase';
+import type { CompactEmoji, SkinTone } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 

@@ -2,8 +2,8 @@ import { InfoIcon } from '@phosphor-icons/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import type { CalloutProps } from './redesign';
 import { Callout } from './redesign';
+import type { CalloutProps } from './redesign';
 
 const meta = {
   title: 'Redesign/Callout',

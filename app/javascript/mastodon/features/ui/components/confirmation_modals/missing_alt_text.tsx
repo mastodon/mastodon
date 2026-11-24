@@ -9,8 +9,8 @@ import { openModal } from 'mastodon/actions/modal';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 
 const messages = defineMessages({
   title: {

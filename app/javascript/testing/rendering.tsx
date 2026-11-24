@@ -2,8 +2,8 @@ import { IntlProvider } from 'react-intl';
 
 import { MemoryRouter } from 'react-router';
 
-import type { RenderOptions } from '@testing-library/react';
 import { render as rtlRender } from '@testing-library/react';
+import type { RenderOptions } from '@testing-library/react';
 
 import { IdentityContext } from '@/mastodon/identity_context';
 
