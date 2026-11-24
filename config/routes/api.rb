@@ -9,22 +9,6 @@ namespace :api, format: false do
     resources :async_refreshes, only: :show
   end
 
-  # TODO: Remove once apps switch over to v1
-  scope :v1_alpha, as: :v1_alpha, module: :v1 do
-    resources :accounts, only: [] do
-      resources :collections, only: [:index]
-      resources :in_collections, only: [:index]
-    end
-
-    resources :collections, only: [:show, :create, :update, :destroy] do
-      resources :items, only: [:create, :destroy], controller: 'collection_items' do
-        member do
-          post :revoke
-        end
-      end
-    end
-  end
-
   # JSON / REST API
   namespace :v1 do
     resources :statuses, only: [:index, :create, :show, :update, :destroy] do

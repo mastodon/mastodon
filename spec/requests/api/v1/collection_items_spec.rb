@@ -28,14 +28,6 @@ RSpec.describe 'Api::V1Alpha::CollectionItems' do
           expect(response).to have_http_status(200)
           expect(response.parsed_body).to have_key('collection_item')
         end
-
-        it 'features a deprecation header when requested via the alpha route' do
-          subject
-          expect(response.headers['Deprecation']).to be_nil
-
-          post "/api/v1_alpha/collections/#{collection.id}/items", headers: headers, params: params
-          expect(response.headers['Deprecation']).to eq '@1781049600'
-        end
       end
 
       context 'with invalid params' do
