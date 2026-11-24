@@ -41,9 +41,9 @@ RSpec.describe Vite::Manifest do
     end
 
     it 'gets stylesheets' do
-      entry = subject.fetch('entrypoints/admin.ts')
-      expect(entry[:file]).to eq('admin.js')
-      expect(entry[:integrity]).to eq('cba-2')
+      entry = subject.fetch('styles/entrypoints/mailer.scss')
+      expect(entry[:file]).to eq('assets/mailer-xyz.css')
+      expect(entry[:integrity]).to eq('abc-10')
     end
 
     context 'when assets have dependencies' do
