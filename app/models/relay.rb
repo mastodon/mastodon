@@ -41,10 +41,6 @@ class Relay < ApplicationRecord
 
   alias enabled? accepted?
 
-  def local?
-    false
-  end
-
   def to_log_human_identifier
     uri
   end
