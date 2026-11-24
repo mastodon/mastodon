@@ -132,7 +132,6 @@ export const ComposeButton: React.FC<{
           onClick={toggleMinimize}
           {...floatingButtonProps}
           hidden={false} // never hide minimized composer button
-          color='neutral'
         >
           <FormattedMessage
             id='compose.expand'
