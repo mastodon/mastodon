@@ -12,12 +12,14 @@ import type { IconButtonProps } from '@/mastodon/components/button';
 import { IconButton } from '@/mastodon/components/button';
 import { useBodyScrollLock } from '@/mastodon/hooks/useBodyScrollLock';
 import { useCloseOnHistoryBack } from '@/mastodon/hooks/useCloseOnHistoryBack';
+import { usePreventClosingPage } from '@/mastodon/hooks/usePreventClosingPage';
 import { useViewportSize } from '@/mastodon/hooks/useViewportSize';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
   closeOrMinimizeComposer,
   minimizeComposerToggle,
   openNewComposer,
+  selectComposerIsChanged,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { includeMultiColumnPaths } from '@/mastodon/utils/react_router';
@@ -38,6 +40,7 @@ export const ComposeButton: React.FC<{
 }> = ({ inline = false }) => {
   const displayState = useAppSelector((state) => state.composer.displayState);
   const isMobile = useBreakpoint('openable');
+  const isComposerChanged = useAppSelector(selectComposerIsChanged);
 
   const hasMobileFloatingActionButton = useHasMobileFloatingActionButton({
     isMobile,
@@ -72,6 +75,7 @@ export const ComposeButton: React.FC<{
       [dispatch, isMinimized],
     );
 
+  usePreventClosingPage(isComposerChanged && displayState !== 'hidden');
   useBodyScrollLock(isShowing);
   useCloseOnHistoryBack(
     () => {
