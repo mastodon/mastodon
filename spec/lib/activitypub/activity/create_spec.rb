@@ -876,6 +876,31 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'with category' do
+        let(:object_json) do
+          build_object(
+            tag: [
+              {
+                type: 'Category',
+                id: 'http://example.com/vocab/topic/jazz',
+                name: 'Jazz',
+                inScheme: 'https://w3id.org/fep/2fa1#Topic',
+                exactMatch: 'http://www.wikidata.org/entity/Q8341',
+              },
+            ]
+          )
+        end
+
+        it 'creates status and treats the category as hashtag' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.tags.map(&:name)).to include('jazz')
+        end
+      end
+
       context 'with emojis' do
         let(:object_json) do
           build_object(
