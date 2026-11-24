@@ -85,7 +85,7 @@ RSpec.describe ActivityPub::ProcessActivityService do
         expect(ActivityPub::Activity).to_not have_received(:factory)
       end
 
-      it 'processes payload with actor if valid signature exists' do
+      it 'processes payload with actor and forwards compacted JSON if valid signature exists' do
         payload['signature'] = { 'type' => 'RsaSignature2017' }
 
         signature_double = instance_double(ActivityPub::LinkedDataSignature, verify_actor!: actor)
@@ -94,10 +94,19 @@ RSpec.describe ActivityPub::ProcessActivityService do
 
         subject.call(json, forwarder)
 
-        expect(ActivityPub::Activity).to have_received(:factory).with(instance_of(Hash), actor, instance_of(Hash))
+        expect(ActivityPub::Activity)
+          .to have_received(:factory)
+          .with(
+            instance_of(Hash),
+            actor,
+            {
+              forwardable_json: a_hash_including('signature' => payload['signature']),
+              relayed_through_actor: forwarder,
+            }
+          )
       end
 
-      it 'processes payload with actor if valid proof exists' do
+      it 'processes payload with actor and forwards original JSON if valid proof exists' do
         payload['proof'] = {
           'type' => 'DataIntegrityProof',
           'proofPurpose' => 'assertionMethod',
@@ -110,7 +119,47 @@ RSpec.describe ActivityPub::ProcessActivityService do
 
         subject.call(json, forwarder)
 
-        expect(ActivityPub::Activity).to have_received(:factory).with(instance_of(Hash), actor, instance_of(Hash))
+        expect(ActivityPub::Activity)
+          .to have_received(:factory)
+          .with(
+            instance_of(Hash),
+            actor,
+            {
+              forwardable_json: payload.deep_stringify_keys,
+              relayed_through_actor: forwarder,
+            }
+          )
+      end
+
+      it 'processes payload with actor and forwards original JSON if valid signature and proofs exist' do
+        payload['signature'] = { 'type' => 'RsaSignature2017' }
+
+        signature_double = instance_double(ActivityPub::LinkedDataSignature, verify_actor!: actor)
+        allow(ActivityPub::LinkedDataSignature).to receive(:new).and_return(signature_double)
+        allow(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), actor, instance_of(Hash))
+
+        payload['proof'] = {
+          'type' => 'DataIntegrityProof',
+          'proofPurpose' => 'assertionMethod',
+          'cryptosuite' => 'eddsa-jcs-2022',
+        }
+
+        proof_double = instance_double(ActivityPub::ObjectIntegrityProof, verify_actor!: actor)
+        allow(ActivityPub::ObjectIntegrityProof).to receive(:new).and_return(proof_double)
+        allow(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), actor, instance_of(Hash))
+
+        subject.call(json, forwarder)
+
+        expect(ActivityPub::Activity)
+          .to have_received(:factory)
+          .with(
+            instance_of(Hash),
+            actor,
+            {
+              forwardable_json: payload.deep_stringify_keys,
+              relayed_through_actor: forwarder,
+            }
+          )
       end
 
       it 'does not process payload if invalid proof exists' do
@@ -129,7 +178,7 @@ RSpec.describe ActivityPub::ProcessActivityService do
         expect(ActivityPub::Activity).to_not have_received(:factory)
       end
 
-      it 'processes payload with actor if invalid signature exists but valid proof exists' do
+      it 'processes payload with actor and forwards original JSON without signature if invalid signature exists but valid proof exists' do
         payload['signature'] = { 'type' => 'RsaSignature2017' }
         payload['proof'] = {
           'type' => 'DataIntegrityProof',
@@ -147,7 +196,16 @@ RSpec.describe ActivityPub::ProcessActivityService do
 
         subject.call(json, forwarder)
 
-        expect(ActivityPub::Activity).to have_received(:factory).with(instance_of(Hash), actor, instance_of(Hash))
+        expect(ActivityPub::Activity)
+          .to have_received(:factory)
+          .with(
+            instance_of(Hash),
+            actor,
+            {
+              forwardable_json: payload.deep_stringify_keys.without('signature'),
+              relayed_through_actor: forwarder,
+            }
+          )
       end
 
       it 'does not process payload if invalid signature exists' do
