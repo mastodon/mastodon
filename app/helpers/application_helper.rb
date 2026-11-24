@@ -127,6 +127,21 @@ module ApplicationHelper
     )
   end
 
+  def phosphor_icon(icon, attributes = {})
+    whitespace = attributes.delete(:whitespace) { true }
+    safe_join(
+      [
+        inline_svg_tag(
+          "regular/#{icon}.svg",
+          attributes.reverse_merge(aria_hidden: true).merge(
+            class: ['icon', "phosphor-#{icon}"].concat(attributes[:class].to_s.split)
+          )
+        ),
+        whitespace ? ' ' : '',
+      ]
+    )
+  end
+
   def emptyphaunt
     inline_svg_tag 'elephant_ui.svg'
   end
