@@ -29,6 +29,17 @@ RSpec.describe 'Admin IP Blocks' do
     let!(:another_range_ip_block) { Fabricate(:ip_block, ip: '192.2.2.50/32') }
     let!(:other_ip_block) { Fabricate(:ip_block, ip: '192.2.2.0/24') }
 
+    context 'when searching for a non-IP value' do
+      it 'redirects with a format error' do
+        get admin_ip_blocks_path(ip: 'not-an-ip')
+
+        expect(response)
+          .to redirect_to(admin_ip_blocks_path)
+        expect(flash[:alert])
+          .to eq(I18n.t('admin.ip_blocks.format_error'))
+      end
+    end
+
     context 'when searching single ip address' do
       let(:params) { { ip: '192.2.2.1' } }
 
