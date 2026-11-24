@@ -11,6 +11,7 @@ import {
   unblockAccount,
   unmuteAccount,
 } from '@/mastodon/actions/accounts';
+import { showAlertForError } from '@/mastodon/actions/alerts';
 import { initBlockModal } from '@/mastodon/actions/blocks';
 import {
   mentionComposeById,
@@ -23,6 +24,7 @@ import { statusInteraction } from '@/mastodon/actions/interactions_typed';
 import { openModal } from '@/mastodon/actions/modal';
 import { initMuteModal } from '@/mastodon/actions/mutes';
 import { toggleStatusSpoilers } from '@/mastodon/actions/statuses';
+import { navigatorShare } from '@/mastodon/features/ui/util/navigator_share';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import { useExpandedStatus, useStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
@@ -52,6 +54,7 @@ import {
 import { useAppSelector, useAppDispatch } from '@/mastodon/store';
 import type { AppDispatch } from '@/mastodon/store';
 import type { OnElementHandler } from '@/mastodon/utils/html';
+import { supportsNativeShare } from 'mastodon/utils/browser_support';
 
 import type { HotkeyHandlerFunction, HotkeyName } from '../hotkeys';
 import { FOCUS_TARGET } from '../navigation_focus_target';
@@ -644,6 +647,8 @@ export function useStatusMenuActions({
     contextType,
   );
 
+  const nativeShareSupported = useMemo(() => supportsNativeShare(), []);
+
   return useMemo(
     () =>
       getMenuItems({
@@ -651,6 +656,7 @@ export function useStatusMenuActions({
         reblogStatus,
         conditions,
         interactions,
+        nativeShareSupported,
         onStatusInteraction: statusInteractionFactory,
         withDismiss,
         permissions,
@@ -665,6 +671,7 @@ export function useStatusMenuActions({
       reblogStatus,
       conditions,
       interactions,
+      nativeShareSupported,
       statusInteractionFactory,
       withDismiss,
       permissions,
@@ -686,6 +693,7 @@ interface MenuItemsParams {
     intent: StatusInteractionIntent,
   ) => (event: EventShiftKey) => void;
   withDismiss?: boolean;
+  nativeShareSupported: boolean;
   permissions: number;
   intl: ReturnType<typeof useIntl>;
   relationship?: Relationship | null;
@@ -699,6 +707,7 @@ function getMenuItems({
   reblogStatus,
   conditions,
   interactions,
+  nativeShareSupported,
   onStatusInteraction,
   withDismiss,
   permissions,
@@ -735,12 +744,14 @@ function getMenuItems({
     action: onStatusInteraction('copy'),
   });
 
-  if (isPublic && 'share' in navigator) {
+  if (isPublic && nativeShareSupported) {
     menu.push({
       text: intl.formatMessage(menuMessages.share),
       action: () => {
-        void navigator.share({
+        void navigatorShare({
           url: statusUrl,
+        }).catch((error: unknown) => {
+          dispatch(showAlertForError(error));
         });
       },
     });

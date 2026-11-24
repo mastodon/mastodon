@@ -3,10 +3,11 @@ import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { showAlert } from '@/mastodon/actions/alerts';
+import { showAlert, showAlertForError } from '@/mastodon/actions/alerts';
 import { resetCompose, focusCompose } from '@/mastodon/actions/compose';
 import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
+import { navigatorShare } from '@/mastodon/features/ui/util/navigator_share';
 import type { AnnualReport as AnnualReportData } from '@/mastodon/models/annual_report';
 import { useAppDispatch } from '@/mastodon/store';
 
@@ -67,8 +68,10 @@ export const ShareButton: FC<{ report: AnnualReportData }> = ({ report }) => {
   const handleSecondaryShare = useCallback(() => {
     if (report.schema_version === 2 && report.share_url) {
       if (supportsNativeShare) {
-        void navigator.share({
+        void navigatorShare({
           url: report.share_url,
+        }).catch((error: unknown) => {
+          dispatch(showAlertForError(error));
         });
       } else {
         void navigator.clipboard.writeText(report.share_url);

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useState } from 'react';
+import { useCallback, useEffect, useId, useState, useMemo } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -6,8 +6,10 @@ import classNames from 'classnames';
 
 import { DotsThreeIcon, ShareNetworkIcon } from '@phosphor-icons/react';
 
+import { showAlertForError } from '@/mastodon/actions/alerts';
 import { statusInteraction } from '@/mastodon/actions/interactions';
 import { fetchStatus } from '@/mastodon/actions/statuses';
+import { navigatorShare } from '@/mastodon/features/ui/util/navigator_share';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { useDismissible } from '@/mastodon/hooks/useDismissible';
 import { useAccountStatus } from '@/mastodon/hooks/useStatus';
@@ -17,6 +19,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store/typed_functions';
+import { supportsNativeShare } from 'mastodon/utils/browser_support';
 
 import { AnimatedNumber } from '../animated_number';
 import { Button, IconButton, ToggleButton, ToggleIconButton } from '../button';
@@ -58,6 +61,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   const reblogStatus = useAccountStatus(reblogId);
   const { contextType } = useStatusContext();
   const statusUrl = status?.url ?? status?.uri;
+  const nativeShareSupported = useMemo(() => supportsNativeShare(), []);
 
   // Actions
   const dispatch = useAppDispatch();
@@ -66,17 +70,14 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
       return;
     }
 
-    // We need to make this partial as by default share always is set, despite not being supported in FF.
-    const nav = navigator as Partial<Pick<Navigator, 'share'>> &
-      Pick<Navigator, 'clipboard'>;
-    if (nav.share) {
-      void nav.share({
-        url: statusUrl,
+    if (nativeShareSupported) {
+      void navigatorShare({ url: statusUrl }).catch((error: unknown) => {
+        dispatch(showAlertForError(error));
       });
     } else {
       dispatch(statusInteraction({ statusId, intent: 'copy', contextType }));
     }
-  }, [contextType, dispatch, statusId, statusUrl]);
+  }, [contextType, nativeShareSupported, dispatch, statusId, statusUrl]);
 
   const { reply, like, bookmark } = useStatusIcons(statusId);
 

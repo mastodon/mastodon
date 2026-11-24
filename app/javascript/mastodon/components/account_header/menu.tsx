@@ -20,7 +20,7 @@ import {
   unpinAccount,
 } from '@/mastodon/actions/accounts';
 import { removeAccountFromFollowers } from '@/mastodon/actions/accounts_typed';
-import { showAlert } from '@/mastodon/actions/alerts';
+import { showAlert, showAlertForError } from '@/mastodon/actions/alerts';
 import { initBlockModal } from '@/mastodon/actions/blocks';
 import { directCompose } from '@/mastodon/actions/compose';
 import {
@@ -42,6 +42,7 @@ import {
   canAccountBeAdded,
   canAccountBeAddedByFollowers,
 } from '@/mastodon/features/collections/utils';
+import { navigatorShare } from '@/mastodon/features/ui/util/navigator_share';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
 import type { Account } from '@/mastodon/models/account';
@@ -53,6 +54,7 @@ import {
 } from '@/mastodon/permissions';
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { supportsNativeShare } from 'mastodon/utils/browser_support';
 
 export const AccountMenu: FC<
   { accountId: string } & Pick<ButtonProps, 'size'>
@@ -68,6 +70,7 @@ export const AccountMenu: FC<
     (state) => state.meta.get('me') as string,
   );
   const isMe = currentAccountId === accountId;
+  const nativeShareSupported = useMemo(() => supportsNativeShare(), []);
 
   const dispatch = useAppDispatch();
   const menuItems = useMemo(() => {
@@ -80,10 +83,20 @@ export const AccountMenu: FC<
       signedIn: !isMe && signedIn,
       permissions,
       intl,
+      nativeShareSupported,
       relationship,
       dispatch,
     });
-  }, [account, signedIn, isMe, permissions, intl, relationship, dispatch]);
+  }, [
+    account,
+    signedIn,
+    isMe,
+    permissions,
+    intl,
+    relationship,
+    dispatch,
+    nativeShareSupported,
+  ]);
 
   return (
     <Menu>
@@ -106,6 +119,7 @@ export const AccountMenu: FC<
 };
 
 interface MenuItemsParams {
+  nativeShareSupported: boolean;
   account: Account;
   signedIn: boolean;
   permissions: number;
@@ -236,6 +250,7 @@ function getMenuItems({
   signedIn,
   permissions,
   intl,
+  nativeShareSupported,
   relationship,
   dispatch,
 }: MenuItemsParams): DropdownMenuItem[] {
@@ -245,12 +260,14 @@ function getMenuItems({
 
   // Share and copy link options
   if (account.url) {
-    if ('share' in navigator) {
+    if (nativeShareSupported) {
       items.push({
         text: intl.formatMessage(messages.share),
         action: () => {
-          void navigator.share({
+          void navigatorShare({
             url: account.url,
+          }).catch((error: unknown) => {
+            dispatch(showAlertForError(error));
           });
         },
         icon: ShareNetworkIcon,

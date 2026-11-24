@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import classNames from 'classnames';
 
@@ -15,6 +15,7 @@ import {
 import type { Account } from '@/mastodon/models/account';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from '@/mastodon/store';
+import { supportsNativeShare } from 'mastodon/utils/browser_support';
 
 import { AccountBio } from '../account_bio';
 import { Avatar } from '../avatar';
@@ -50,6 +51,7 @@ export const AccountHeader: React.FC<{
   const dispatch = useAppDispatch();
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
+  const nativeShareSupported = useMemo(() => supportsNativeShare(), []);
 
   const handleOpenAvatar = useCallback(
     (e: React.MouseEvent) => {
@@ -130,8 +132,8 @@ export const AccountHeader: React.FC<{
             <AccountButtons
               accountId={accountId}
               className={classes.buttonsDesktop}
-              noShare={!isMe || 'share' in navigator}
-              forceMenu={'share' in navigator}
+              noShare={!isMe || nativeShareSupported}
+              forceMenu={nativeShareSupported}
             />
           </div>
 
