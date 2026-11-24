@@ -7,7 +7,7 @@ class Admin::Reports::ActionsController < Admin::BaseController
 
   def preview
     authorize @target_account, :show?
-    redirect_to preview_admin_account_moderation_action_path(account_id: @target_account.id)
+    redirect_to new_admin_account_moderation_action_path(account_id: @target_account.id)
   end
 
   def create
