@@ -50,6 +50,7 @@
 
 .logoLockup {
   margin-inline-end: auto;
+  margin-block-end: 0;
 }
 
 .signUpButton {
@@ -89,7 +90,7 @@
   position: fixed;
   inset-block: 0;
   inset-inline-start: calc(-1 * var(--pull-tolerance));
-  width: var(--navigation-width);
+  width: var(--main-navigation-width);
   max-width: calc(100vw - var(--space-8));
   padding-inline-start: var(--pull-tolerance);
   touch-action: pan-y;
