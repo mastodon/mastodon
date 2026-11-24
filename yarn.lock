@@ -2579,6 +2579,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/bigdecimal@npm:0.2.11":
+  version: 0.2.11
+  resolution: "@formatjs/bigdecimal@npm:0.2.11"
+  checksum: 10c0/66a4bbcb1b5c8e8ff398785d884ee990d49eec5b7bf48ebf40734207ebaa732a50855f511265045d88ab5ebc257188398b0a68a6c5ce78107191305651325151
+  languageName: node
+  linkType: hard
+
 "@formatjs/cli@npm:6.14.4":
   version: 6.14.4
   resolution: "@formatjs/cli@npm:6.14.4"
@@ -2612,6 +2619,13 @@ __metadata:
   version: 3.1.7
   resolution: "@formatjs/fast-memoize@npm:3.1.7"
   checksum: 10c0/dee801f82eda1f6fdc166b0c907e8750c15e409e20b2006c215d9247fe0db720d84d53fcb2fb7559cec21a24932b69dda326c81ee2885aad2cde31bc25449fd0
+  languageName: node
+  linkType: hard
+
+"@formatjs/fast-memoize@npm:3.1.8":
+  version: 3.1.8
+  resolution: "@formatjs/fast-memoize@npm:3.1.8"
+  checksum: 10c0/817b0b6541401bffb5d42da4bffbacd465083711aab294eee0af8da9aa8aff7ce3938e39a8267f73afb72c08c0eee8eceb74e0d35df9065edc8ec7fb3f8bbc08
   languageName: node
   linkType: hard
 
@@ -2663,12 +2677,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/intl-durationformat@npm:^0.13.1":
+  version: 0.13.1
+  resolution: "@formatjs/intl-durationformat@npm:0.13.1"
+  dependencies:
+    "@formatjs/bigdecimal": "npm:0.2.11"
+    "@formatjs/intl-localematcher": "npm:0.10.2"
+  checksum: 10c0/93a7494a2e7ec7cb794df1219f66f1649728fc18f26641a4cdfd9ef886bd63a21b47ac474dd1e8f8a0352f5467404518274970387171dadc47392f44ef66fc42
+  languageName: node
+  linkType: hard
+
 "@formatjs/intl-localematcher@npm:0.10.1":
   version: 0.10.1
   resolution: "@formatjs/intl-localematcher@npm:0.10.1"
   dependencies:
     "@formatjs/fast-memoize": "npm:3.1.7"
   checksum: 10c0/1c0a944a30cbb8285ad795ac9d88f6d3811bcd93cbce085c92656e19a3a6723c62ad70701685709a988d92db8e88dc8bcd99c6ae8fb79ee778e7284cd49a4554
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl-localematcher@npm:0.10.2":
+  version: 0.10.2
+  resolution: "@formatjs/intl-localematcher@npm:0.10.2"
+  dependencies:
+    "@formatjs/fast-memoize": "npm:3.1.8"
+  checksum: 10c0/8c17db1de961bbe99a4cbf1be60c98821e665ee646579f5a77f75b76df493f6f6c99a81e745e8dac577aa9ffb0f710af7b82e97ae2ac167506f4d658363ee7ce
   languageName: node
   linkType: hard
 
@@ -3013,6 +3046,7 @@ __metadata:
     "@eslint/js": "npm:9.39.5"
     "@floating-ui/react-dom": "npm:2.1.9"
     "@formatjs/cli": "npm:6.14.4"
+    "@formatjs/intl-durationformat": "npm:^0.13.1"
     "@formatjs/intl-pluralrules": "npm:7.0.4"
     "@formatjs/unplugin": "npm:1.2.14"
     "@gamestdio/websocket": "npm:0.3.2"
