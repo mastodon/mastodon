@@ -470,5 +470,78 @@ RSpec.describe TextFormatter do
         expect(subject).to include 'href="xmpp:bob@grå.org"'
       end
     end
+
+    context 'when a URL is wrapped in brackets' do
+      let(:text) { 'See standard [https://example.com] and alternative {https://example.org}' }
+
+      it 'extracts the URLs perfectly without omitting brackets' do
+        expect(subject)
+          .to include('[<a href="https://example.com"')
+          .and include('] and alternative {<a href="https://example.org"')
+          .and include('}')
+      end
+    end
+
+    context 'when a URL contains brackets in query parameters' do
+      let(:text) { 'https://example.com/page?query=[tags][]=ruby&filters[status]=active' }
+
+      it 'matches and links the entire URL including all structural array brackets' do
+        expect(subject).to include('href="https://example.com/page?query=[tags][]=ruby&amp;filters[status]=active"')
+      end
+    end
+
+    context 'when text contains emojis combined with mentions' do
+      let(:preloaded_accounts) { [Fabricate(:account, username: 'alice')] }
+      let(:text) { '👋🏽🚀@alice ✨' }
+
+      it 'renders the mention without corrupting nearby multi-byte text' do
+        expect(subject)
+          .to include('👋🏽🚀<span class="h-card" translate="no"><a href="https://')
+          .and include('✨')
+      end
+    end
+
+    context 'when a URL contains nested or encoded XSS fragments' do
+      let(:text) { 'Check out http://example.org<script>alert("XSS")</script>' }
+
+      it 'safely escapes the URI entities during serialization' do
+        expect(subject)
+          .to include('&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;')
+          .and not_include('<script>')
+      end
+    end
+
+    context 'when an invalid protocol looks like an exploitation attempt' do
+      let(:text) { 'javascript:alert(1) http://example.com' }
+
+      it 'ignores the unsafe javascript pseudo-protocol and only links the valid web URL' do
+        expect(subject)
+          .to include('javascript:alert(1)')
+          .and include('href="http://example.com"')
+          .and not_include('href="javascript:')
+      end
+    end
+
+    context 'when accounts match on username but are remote and local' do
+      let(:alice_local) { Fabricate(:account, username: 'alice', domain: nil) }
+      let(:alice_remote) { Fabricate(:account, username: 'alice', domain: 'remote.com') }
+      let(:preloaded_accounts) { [alice_local, alice_remote] }
+
+      context 'when text mentions the local user explicitly' do
+        let(:text) { '@alice' }
+
+        it 'correctly binds to the local account structure' do
+          expect(subject).to include('class="u-url mention">@<span>alice</span></a>')
+        end
+      end
+
+      context 'when text mentions the remote user with matching username' do
+        let(:text) { '@alice@remote.com' }
+
+        it 'disambiguates and appends the domain name to the link visualization' do
+          expect(subject).to include('alice@remote.com')
+        end
+      end
+    end
   end
 end
