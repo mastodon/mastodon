@@ -55,6 +55,8 @@
   - elsif account.user&.sign_in_token_disabled? && can?(:enable_sign_in_token, account.user)
     %td
       = table_link_to 'lock', t('admin.accounts.enable_sign_in_token'), admin_user_sign_in_token_authentication_path(account.user.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+  - else
+    %td{ class: ('table-cell--spacer' if can?(:reset_password, account.user)) }
 - if can?(:reset_password, account.user)
   %tr
     %td
