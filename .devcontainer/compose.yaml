@@ -35,7 +35,7 @@ services:
       - internal_network
 
   db:
-    image: postgres:19
+    image: postgres:19-alpine
     restart: unless-stopped
     volumes:
       - postgres-data:/var/lib/postgresql
