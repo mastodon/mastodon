@@ -2535,6 +2535,17 @@ a.sparkline {
   padding: 0;
 }
 
+.server-checks {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) max-content max-content;
+  column-gap: 8px;
+
+  > h3,
+  > hr {
+    grid-column: 1 / -1;
+  }
+}
+
 h3.server-checks-category {
   text-transform: uppercase;
   font-size: 16px;
@@ -2545,9 +2556,11 @@ h3.server-checks-category {
 }
 
 .server-check__container {
-  display: flex;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  align-items: center;
   color: var(--color-text-primary);
-  flex-flow: row wrap;
   gap: 8px;
   padding-top: 8px;
   padding-bottom: 16px;
@@ -2571,7 +2584,7 @@ h3.server-checks-category {
 
   .server-check {
     &__info {
-      flex: 3 50%;
+      overflow-wrap: anywhere;
 
       &__lead,
       &__date,
@@ -2590,8 +2603,6 @@ h3.server-checks-category {
     }
 
     &__icon {
-      flex: 0 6%;
-      align-self: center;
       display: inline-flex;
       place-items: center center;
 
@@ -2620,10 +2631,12 @@ h3.server-checks-category {
       }
     }
 
-    &__ignore,
-    &__setup {
-      flex: 0 12.5%;
-      align-self: center;
+    &__actions {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 3 / -1;
+      align-items: center;
+      gap: 8px;
     }
   }
 }
