@@ -4,7 +4,7 @@
 
 services:
   db:
-    image: postgres:19
+    image: postgres:19-alpine
     restart: always
     shm_size: 256mb
     networks:
