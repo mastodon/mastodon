@@ -6,14 +6,19 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
+import { usePreventClosingPage } from '@/mastodon/hooks/usePreventClosingPage';
+import { selectComposerIsChanged } from '@/mastodon/reducers/slices/composer';
 import { mountCompose, unmountCompose } from 'mastodon/actions/compose';
-import { useAppDispatch } from 'mastodon/store';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { ComposeForm } from './form';
 
 const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
+  const isComposerChanged = useAppSelector(selectComposerIsChanged);
+
+  usePreventClosingPage(isComposerChanged);
 
   useEffect(() => {
     dispatch(mountCompose());
