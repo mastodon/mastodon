@@ -20,6 +20,14 @@ RSpec.describe BlockService do
         .and change { NotificationPermission.exists?(account: sender, from_account: bob) }.from(true).to(false)
     end
 
+    context 'when the block affects a relay actor' do
+      let(:relay) { Fabricate(:relay) }
+
+      it 'disables relay preference' do
+        expect { subject.call(sender, relay.account) }.to change { RelayPreference.find_by(relay: relay, account: sender)&.enabled }.from(nil).to(false)
+      end
+    end
+
     context 'when the block affects collections' do
       context 'when the sender features the target in a collection' do
         let(:collection) { Fabricate(:collection, account: sender) }

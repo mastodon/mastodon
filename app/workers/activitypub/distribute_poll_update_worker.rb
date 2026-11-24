@@ -47,7 +47,7 @@ class ActivityPub::DistributePollUpdateWorker
   end
 
   def relay!
-    ActivityPub::DeliveryWorker.push_bulk(Relay.enabled.pluck(:inbox_url)) do |inbox_url|
+    ActivityPub::DeliveryWorker.push_bulk(Relay.enabled.for_account(@account.id).pluck(:inbox_url)) do |inbox_url|
       [payload, @account.id, inbox_url]
     end
   end

@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_20_134347) do
-  # These are extensions that must be enabled in order to support this database
+ActiveRecord::Schema[8.1].define(version: 2026_11_23_145826) do  # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "account_aliases", force: :cascade do |t|
@@ -1131,12 +1130,27 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_20_134347) do
     t.index ["type", "target_name"], name: "index_relationship_severance_events_on_type_and_target_name"
   end
 
+  create_table "relay_preferences", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "relay_id", null: false
+    t.boolean "enabled", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "relay_id"], name: "index_relay_preferences_on_account_id_and_relay_id", unique: true
+    t.index ["relay_id"], name: "index_relay_preferences_on_relay_id"
+  end
+
   create_table "relays", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.string "follow_activity_id"
     t.string "inbox_url", default: "", null: false
     t.integer "state", default: 0, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.string "uri", default: "", null: false
+    t.integer "direction", default: 0, null: false
+    t.boolean "requires_opt_in", default: false, null: false
+    t.bigint "account_id", null: false
+    t.index ["uri"], name: "index_relays_on_uri", unique: true
   end
 
   create_table "report_notes", force: :cascade do |t|
@@ -1676,6 +1690,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_20_134347) do
   add_foreign_key "quotes", "accounts", on_delete: :cascade
   add_foreign_key "quotes", "statuses", column: "quoted_status_id", on_delete: :nullify
   add_foreign_key "quotes", "statuses", on_delete: :cascade
+  add_foreign_key "relay_preferences", "accounts", on_delete: :cascade
+  add_foreign_key "relay_preferences", "relays", on_delete: :cascade
+  add_foreign_key "relays", "accounts", on_delete: :cascade
   add_foreign_key "report_notes", "accounts", on_delete: :cascade
   add_foreign_key "report_notes", "reports", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_bca45b75fd", on_delete: :nullify
