@@ -61,6 +61,7 @@ class Admin::Accounts::ModerationActionsController < Admin::BaseController
       type: action_from_params,
       include_statuses: get_param('include_statuses'),
       warning_preset_id: get_param('warning_preset_id'),
+      include_rule_violations: get_param('include_rule_violations'),
     }
   end
 

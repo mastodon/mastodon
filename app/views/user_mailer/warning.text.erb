@@ -10,7 +10,7 @@
 <%= @warning.text %>
 
 <% end %>
-<% if @warning.report && !@warning.report.other? %>
+<% if @warning.include_rule_violations? && @warning.report && !@warning.report.other? %>
 **<%= t('user_mailer.warning.reason') %>** <%= t("user_mailer.warning.categories.#{@warning.report.category}") %>
 
 <% if @warning.report.violation? && @warning.report.rule_ids.present? %>
