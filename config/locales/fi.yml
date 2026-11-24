@@ -455,6 +455,9 @@ fi:
       pending_reports_html:
         one: "<strong>%{count}</strong> odottava raportti"
         other: "<strong>%{count}</strong> odottavaa raporttia"
+      pending_server_checks_html:
+        one: Palvelimella on <strong>%{count}</strong> odottava ongelma. Siirry <a href="%{url}">Palvelimen kunto -⁠sivulle</a>, jos haluat lisätietoja.
+        other: Palvelimella on <strong>%{count}</strong> odottavaa ongelmaa. Siirry <a href="%{url}">Palvelimen kunto -⁠sivulle</a>, jos haluat lisätietoja.
       pending_tags_html:
         one: "<strong>%{count}</strong> odottava aihetunniste"
         other: "<strong>%{count}</strong> odottavaa aihetunnistetta"
@@ -1259,50 +1262,6 @@ fi:
       appeal_approved: Valittanut
       appeal_pending: Valitus vireillä
       appeal_rejected: Valitus hylätty
-    system_checks:
-      database_schema_check:
-        message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearch-indeksin analysaattoriasetukset ovat vanhentuneet. Suorita <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Elasticsearch-klusteri on vikatilassa (punainen tila), joten hakuominaisuudet eivät ole käytettävissä
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch-klusteri on vikatilassa (keltainen tila), joten suosittelemme tutkimaan syyn
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch-indeksin sidokset ovat vanhentuneet. Suorita <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Katso käyttöohjeet
-        message_html: Elasticsearch-klusterissa on useampi kuin yksi solmu, mutta Mastodonia ei ole määritetty käyttämään niitä.
-      elasticsearch_preset_single_node:
-        action: Katso käyttöohjeet
-        message_html: Elasticsearch-klusterissa on vain yksi solmu. <code>ES_PRESET</code> tulisi asettaa arvoon <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Elasticsearch-järjestelmäindeksi on vanhentunut asetusmuutoksen vuoksi. Suorita <code>tootctl search deploy --reset-chewy</code> päivittääksesi sen.
-      elasticsearch_running_check:
-        message_html: Elasticsearchiin ei saatu yhteyttä. Tarkista, että se on käynnissä, tai poista kokotekstihaku käytöstä
-      elasticsearch_version_check:
-        message_html: 'Yhteensopimaton Elasticsearch-versio: %{value}'
-        version_comparison: Käynnissä on Elasticsearch %{running_version}, kun vaaditaan %{required_version}
-      rules_check:
-        action: Hallitse palvelimen sääntöjä
-        message_html: Et ole määritellyt palvelimen sääntöjä lainkaan.
-      sidekiq_process_check:
-        message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
-      software_version_check:
-        action: Näytä saatavilla olevat päivitykset
-        message_html: Saatavilla on Mastodon-päivitys.
-      software_version_critical_check:
-        action: Näytä saatavilla olevat päivitykset
-        message_html: Kriittinen Mastodon-päivitys on saatavilla. Tee päivitys mahdollisimman ripeästi.
-      software_version_patch_check:
-        action: Näytä saatavilla olevat päivitykset
-        message_html: Mastodonin virhekorjauspäivitys on saatavilla.
-      upload_check_privacy_error:
-        action: Katso lisätietoja täältä
-        message_html: "<strong>Verkkopalvelimesi on määritetty väärin. Käyttäjiesi tietosuoja on vaarassa.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Katso lisätietoja täältä
-        message_html: "<strong>Oliovarastosi on määritetty virheellisesti. Käyttäjiesi tietosuoja on vaarassa.</strong>"
     tags:
       moderation:
         not_trendable: Ei trendattava

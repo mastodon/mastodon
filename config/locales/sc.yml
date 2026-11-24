@@ -585,14 +585,6 @@ sc:
       actions:
         none: "%{name} at imbiadu un'avisu a %{target}"
         suspend: "%{name} at suspèndidu su contu de %{target}"
-    system_checks:
-      database_schema_check:
-        message_html: Ddoe at tràmudas de bases de datos in suspesu. Pone·ddas in esecutzione pro ti assegurare chi s'aplicatzione funtzionet comente si tocat
-      rules_check:
-        action: Gesti is règulas de su serbidore
-        message_html: No as cunfiguradu peruna règula de su serbidore.
-      sidekiq_process_check:
-        message_html: Perunu protzessu Sidekiq est in esecutzione pro sa coa(s) %{value}. Revisiona is cunfiguratziones de Sidekiq
     tags:
       review: Revisiona s'istadu
       updated_msg: Cunfiguratzione de etichetas atualizada

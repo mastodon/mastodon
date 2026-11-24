@@ -907,50 +907,6 @@ uk:
       appeal_approved: Оскаржено
       appeal_pending: Оскарження в очікуванні
       appeal_rejected: Апеляцію відхилено
-    system_checks:
-      database_schema_check:
-        message_html: Існують відкладені перенесення бази даних. Запустіть їх, щоб забезпечити очікувану роботу програми
-      elasticsearch_analysis_index_mismatch:
-        message_html: Налаштування індексу Elasticsearch застарілі. Будь ласка, запустіть <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Кластер Elasticsearch нездоровий (червоний статус), функції пошуку недоступні
-      elasticsearch_health_yellow:
-        message_html: Кластер Elasticsearch нездоровий (жовтий статус), можливо, вам потрібно дослідити причину
-      elasticsearch_index_mismatch:
-        message_html: Зіставлення індексів Elasticsearch застаріли. Запустіть <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Дивись документацію
-        message_html: У вашому кластері Elasticsearch більше ніж один вузол, але Mastodon не сконфігуровано на їх застосування.
-      elasticsearch_preset_single_node:
-        action: Дивись документацію
-        message_html: Ваш кластер Elasticsearch має лише один вузол, <code>ES_PRESET</code> слід налаштувати на <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Ваш індекс системи Elasticsearch застарілий через зміну налаштувань. Запустіть <code>tootctl search deploy --reset-chewy</code>, щоб оновити його.
-      elasticsearch_running_check:
-        message_html: Не вдалося під'єднатися до Elasticsearch. Перевірте, чи він запущений або вимкніть повнотекстовий пошук
-      elasticsearch_version_check:
-        message_html: 'Несумісна версія Elasticsear: %{value}'
-        version_comparison: Запущено Elasticsearch %{running_version}, але вимагається %{required_version}
-      rules_check:
-        action: Керування правилами сервера
-        message_html: Ви не визначили будь-які правила сервера.
-      sidekiq_process_check:
-        message_html: Не працює процес Sidekiq для %{value} черги. Перегляньте конфігурації вашого Sidekiq
-      software_version_check:
-        action: Переглянути доступні оновлення
-        message_html: Доступне оновлення Mastodon.
-      software_version_critical_check:
-        action: Переглянути доступні оновлення
-        message_html: Виявлено критичне оновлення Mastodon. Оновіться якнайшвидше.
-      software_version_patch_check:
-        action: Переглянути доступні оновлення
-        message_html: Доступне оновлення Mastodon з виправленням помилок.
-      upload_check_privacy_error:
-        action: Перегляньте подробиці тут
-        message_html: "<strong>Ваш вебсервер неправильно налаштований. Приватність ваших користувачів піддається ризику</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Перегляньте подробиці тут
-        message_html: "<strong>Ваше сховище об'єктів неправильно налаштоване. Приватність ваших користувачів піддається ризику</strong>"
     tags:
       moderation:
         not_trendable: Не трендові

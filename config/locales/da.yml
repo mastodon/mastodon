@@ -460,6 +460,9 @@ da:
       pending_reports_html:
         one: "<strong>%{count}</strong> verserende anmeldelse"
         other: "<strong>%{count}</strong> verserende anmeldelser"
+      pending_server_checks_html:
+        one: Der er <strong>%{count}</strong> udestående problem med serveren. Gå til siden <a href="%{url}">Serverens sundhedstilstand</a> for at se flere detaljer.
+        other: Der er <strong>%{count}</strong> udestående problemer med serveren. Gå til siden <a href="%{url}">Serverens sundhedstilstand</a> for at se flere detaljer.
       pending_tags_html:
         one: "<strong>%{count}</strong> afventende hashtag"
         other: "<strong>%{count}</strong> afventende etiketter"
@@ -1355,50 +1358,6 @@ da:
       appeal_approved: Appelleret
       appeal_pending: Appel afventer
       appeal_rejected: Appel afvist
-    system_checks:
-      database_schema_check:
-        message_html: Der er afventende databasemigreringer. Kør dem venligst for at sikre, at applikationen opfører sig som forventet
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearch-indeksanalyseringsindstillinger er forældede. Kør <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Elasticsearch-klynge er syg (rød status), søgefunktioner er utilgængelige
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch klynge er syg (gul status), man ønsker måske at tjekke årsagen
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch-indekseringer er forældede. Kør <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Se dokumentation
-        message_html: Dit Elasticsearch-cluster har mere end én node, men Mastodon er ikke konfigureret til at bruge dem.
-      elasticsearch_preset_single_node:
-        action: Se dokumentation
-        message_html: Dit Elasticsearch-cluster har kun én node, <code>ES_PRESET</code> skal sættes til <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Elasticsearch-systemindekset er forældet grundet en indstillingsændring. Kør <code>tootctl search deploy --reset-chewy</code> for at opdatere det.
-      elasticsearch_running_check:
-        message_html: Kunne ikke oprette forbindelse til Elasticsearch. Tjek, at den kører, eller deaktivér fuldtekstsøgning
-      elasticsearch_version_check:
-        message_html: 'Inkompatibel Elasticsearch-version: %{value}'
-        version_comparison: Elasticsearch %{running_version} kører, men %{required_version} kræves
-      rules_check:
-        action: Håndtér serverregler
-        message_html: Ingen serverregler defineret.
-      sidekiq_process_check:
-        message_html: Ingen Sidekiq-proces kører for %{value}-kø(er). Gennemgå Sidekiq-opsætningen
-      software_version_check:
-        action: Se tilgængelige opdateringer
-        message_html: En Mastodon-opdatering er tilgængelig.
-      software_version_critical_check:
-        action: Se tilgængelige opdateringer
-        message_html: En kritisk Mastodon-opdatering er tilgængelig. Opdatér hurtigst muligt.
-      software_version_patch_check:
-        action: Se tilgængelige opdateringer
-        message_html: En Mastodon-fejlrettelsesopdatering er tilgængelig.
-      upload_check_privacy_error:
-        action: Tjek her for flere oplysninger
-        message_html: "<strong>Webserveren er fejlopsat. Brugernes fortrolighed er i fare.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Tjek her for flere oplysninger
-        message_html: "<strong>Objektlageret er fejlopsat. Brugernes fortrolighed er i fare.</strong>"
     tags:
       moderation:
         not_trendable: Ikke trendegnet

@@ -1337,50 +1337,6 @@ hu:
       appeal_approved: Megfellebbezve
       appeal_pending: Fellebbezés folyamatban
       appeal_rejected: Fellebbezés visszautasítva
-    system_checks:
-      database_schema_check:
-        message_html: Vannak esedékes adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, hogy az alkalmazás megfelelően működjön
-      elasticsearch_analysis_index_mismatch:
-        message_html: Az Elasticsearch indexelemző beállításai elavultak. Futtasd a <code>tootctl search deploy --only-mapping --only=%{value}</code> parancsot.
-      elasticsearch_health_red:
-        message_html: Az Elasticsearch klaszter egészségtelen (piros állapotú), a keresési funkciók nem érhetők el
-      elasticsearch_health_yellow:
-        message_html: Az Elasticsearch klaszter egészségtelen (sárga állapotú), érdemes megvizsgálni az okát
-      elasticsearch_index_mismatch:
-        message_html: Az Elasticsearch index leképezések elavultak. Futtasd le a <code>tootctl search deploy --only=%{value}</code> parancsot
-      elasticsearch_preset:
-        action: Dokumentáció megtekintése
-        message_html: Az Elasticsearch klaszter egynél több csomóponttal rendelkezik, de a Mastodon nincs beállítva ezek használatára.
-      elasticsearch_preset_single_node:
-        action: Dokumentácó megtekintése
-        message_html: Az Elasticsearch klaszterednek csak egy csomópontja van, az <code>ES_PRESET</code> értéket <code>single_node_cluster</code> értékre kell állítani.
-      elasticsearch_reset_chewy:
-        message_html: Az Elasticsearch rendszerindexed egy beállításmódosítás miatt elavult. A frissítéshez futtasd a <code>tootctl search deploy --reset-chewy</code> parancsot.
-      elasticsearch_running_check:
-        message_html: Nem sikerült az Elasticsearchhöz kapcsolódni. Ellenőrizd, hogy fut-e, vagy kapcsold ki a teljes szöveges keresést.
-      elasticsearch_version_check:
-        message_html: 'Nem kompatibilis Elasticsearch verzió: %{value}'
-        version_comparison: Az Elasticsearch %{running_version} fut, de %{required_version} szükséges
-      rules_check:
-        action: Kiszolgáló szabályainak kezelése
-        message_html: Még nem definiáltál egy szerver szabályt sem.
-      sidekiq_process_check:
-        message_html: Nincs Sidekiq folyamat, mely a %{value} sorhoz van rendelve. Kérlek, nézd át a Sidekiq beállításait
-      software_version_check:
-        action: Elérhető frissítések megtekintése
-        message_html: Egy Mastodon-frissítés elérhető.
-      software_version_critical_check:
-        action: Elérhető frissítések megtekintése
-        message_html: Kritikus Mastodon frissítés érhető el, frissíts a lehető leggyorsabban.
-      software_version_patch_check:
-        action: Elérhető frissítések megtekintése
-        message_html: Egy hibajavító Mastodon-frissítés elérhető.
-      upload_check_privacy_error:
-        action: Itt találsz több információt
-        message_html: "<strong>A webkiszolgálód félre van konfigurálva. Kockázat merül fel a felhasználóid adatainak biztonságával kapcsolatban.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Itt találsz több információt
-        message_html: "<strong>Az objektumtárolód félre van konfigurálva. Kockázat merül fel a felhasználóid adatainak biztonságával kapcsolatban.</strong>"
     tags:
       moderation:
         not_trendable: Nem lehet felkapott

@@ -726,19 +726,6 @@ an:
         suspend: "%{name} suspendió la cuenta de %{target}"
       appeal_approved: Apelado
       appeal_pending: Apelación pendient
-    system_checks:
-      database_schema_check:
-        message_html: I hai migracions pendients d'a base de datos. Per favor, executa-las pa asegurar-te que l'aplicación funciona como debería
-      elasticsearch_running_check:
-        message_html: No se podió connectar a Elasticsearch. Per favor, compreba que ye executando-se, u desactiva la busqueda de texto completo
-      elasticsearch_version_check:
-        message_html: 'Versión incompatible de Elasticsearch: %{value}'
-        version_comparison: Elasticsearch %{running_version} se ye executando pero s'ameneste Elasticsearch %{required_version}
-      rules_check:
-        action: Administrar reglas d'o servidor
-        message_html: No ha definiu garra regla d'o servidor.
-      sidekiq_process_check:
-        message_html: No i hai garra proceso Sidekiq en execución pa la coda (u codas) de %{value}. Per favor, revise la suya configuración de Sidekiq
     tags:
       review: Estau de revisión
       updated_msg: Hashtags actualizaus exitosament

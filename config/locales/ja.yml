@@ -934,50 +934,6 @@ ja:
       appeal_approved: 異議申立済み
       appeal_pending: 保留中の異議申立
       appeal_rejected: 却下済みの異議申立
-    system_checks:
-      database_schema_check:
-        message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearch インデックスアナライザの設定が古くなっています。 <code>tootctl search deploy --only-mapping --only=%{value}</code>を実行してください
-      elasticsearch_health_red:
-        message_html: 'Elasticsearchクラスターに異常があります(status: red)。検索機能が利用できなくなっています'
-      elasticsearch_health_yellow:
-        message_html: 'Elasticsearchクラスターに異常があります(status: yellow)。必要に応じて対策を実施してください'
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearchのインデックスのマッピング定義が古くなっています。<code>tootctl search deploy --only=%{value}</code> を実行してインデックスを更新してください
-      elasticsearch_preset:
-        action: 詳細情報
-        message_html: Elasticsearchクラスターはマルチノード構成になっていますが、Mastodonがマルチノード構成向けに設定されていません。
-      elasticsearch_preset_single_node:
-        action: 詳細情報
-        message_html: Elasticsearchクラスターはシングルノード構成になっています。<code>ES_PRESET</code> を <code>single_node_cluster</code> に設定してください。
-      elasticsearch_reset_chewy:
-        message_html: 設定が変更されたため、Elasticsearchのシステムインデックスが古くなっています。<code>tootctl search deploy --reset-chewy</code> を実行してインデックスを更新してください
-      elasticsearch_running_check:
-        message_html: Elasticsearchに接続できませんでした。Elasticsearchが実行されていることを確認するか、全文検索を無効にしてください。
-      elasticsearch_version_check:
-        message_html: '互換性のない Elasticsearch バージョン: %{value}'
-        version_comparison: Elasticsearch %{running_version}が実行されていますが、%{required_version}が必要です
-      rules_check:
-        action: サーバーのルールを管理
-        message_html: サーバーのルールを定義していません。
-      sidekiq_process_check:
-        message_html: "%{value}キューに対応するSidekiqプロセスがありません。Sidekiqの設定を確認してください。"
-      software_version_check:
-        action: 利用可能な更新を確認
-        message_html: Mastodonの更新が利用可能です。
-      software_version_critical_check:
-        action: 利用可能な更新を見る
-        message_html: 緊急のMastodonアップデートがあります。速やかに適用してください。
-      software_version_patch_check:
-        action: 詳細
-        message_html: Mastodonのバグ修正アップデートが利用可能です。
-      upload_check_privacy_error:
-        action: ここを開いて詳細を確認してください
-        message_html: "<strong>Web サーバーが正しく設定されていません。ユーザーのプライバシーが危険な状態になっています。</strong>"
-      upload_check_privacy_error_object_storage:
-        action: ここを開いて詳細を確認してください
-        message_html: "<strong>オブジェクトストレージが正しく設定されていません。ユーザーのプライバシーが危険な状態になっています。</strong>"
     tags:
       moderation:
         not_trendable: トレンド不許可

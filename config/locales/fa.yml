@@ -1040,50 +1040,6 @@ fa:
       appeal_approved: تجدیدنظر شده
       appeal_pending: منتظر تجدیدنظر
       appeal_rejected: درخواست تجدیدنظر رد شد
-    system_checks:
-      database_schema_check:
-        message_html: تعداد مهاجرت پایگاه داده در انتظار انجام هستند. لطفا آن‌ها را اجرا کنید تا اطمینان یابید که برنامه مطابق انتظار رفتار خواهد کرد
-      elasticsearch_analysis_index_mismatch:
-        message_html: تنظیمات تحلیلگر اندیس Elasticsearch منقضی شده. لطفاً <code>tootctl search deploy --only-mapping --only=%{value}</code> را اجرا کنید
-      elasticsearch_health_red:
-        message_html: خوشه Elasticsearch ناسالم است (وضعیت قرمز)، ویژگی های جستجو در دسترس نیستند
-      elasticsearch_health_yellow:
-        message_html: خوشه Elasticsearch ناسالم است (وضعیت زرد)، ممکن است بخواهید دلیل آن را بررسی کنید
-      elasticsearch_index_mismatch:
-        message_html: نگاشت فهرست Elasticsearch منسوخ شده است. لطفاً <code>tootctl search deploy --only=%{value}</code> را اجرا کنید
-      elasticsearch_preset:
-        action: دیدن مستندات
-        message_html: خوشه Elasticsearch شما بیش از یک گره دارد، اما ماستودون برای استفاده از آنها پیکربندی نشده است.
-      elasticsearch_preset_single_node:
-        action: دیدن مستندات
-        message_html: خوشه Elasticsearch شما فقط یک گره دارد، <code>ES_PRESET</code> باید روی <code>single_node_cluster</code> تنظیم شود.
-      elasticsearch_reset_chewy:
-        message_html: فهرست سیستم Elasticsearch شما به دلیل تغییر تنظیمات قدیمی است. لطفاً برای به روز رسانی <code>tootctl search deploy --reset-chewy</code> را اجرا کنید.
-      elasticsearch_running_check:
-        message_html: به Elasticsearch متصل نشد. لطفاً بررسی کنید که در حال اجرا است یا جستجوی متن کامل را غیرفعال کنید
-      elasticsearch_version_check:
-        message_html: 'نگارش الستیک‌سرچ ناسازگار: %{value}'
-        version_comparison: الستیک‌سرچ %{running_version} در حال اجراست، حال که %{required_version} لازم است
-      rules_check:
-        action: مدیریت قانون‌های کارساز
-        message_html: هیچ قانون کارسازی تعریف نکرده‌اید.
-      sidekiq_process_check:
-        message_html: صف(های) %{value} فاقد هیچونه فرایند Sidekiq هستند. لطفا تنظیمات Sidekiq خود را بازبینی کنید
-      software_version_check:
-        action: دیدن به‌روز رسانی‌های موجود
-        message_html: به‌روز رسانی ماستودون موجود است.
-      software_version_critical_check:
-        action: مشاهده به‌روزرسانی‌های موجود
-        message_html: یک به‌روزرسانی حیاتی ماستودون موجود است، لطفا در اسرع وقت به‌روزرسانی کنید.
-      software_version_patch_check:
-        action: مشاهده به‌روزرسانی‌های موجود
-        message_html: یک به‌روزرسانی رفع اشکال ماستودون موجود است.
-      upload_check_privacy_error:
-        action: برای اطّلاعات بیش‌تر این‌جا را بررسی کنید
-        message_html: "<strong>کارساز وبتان بد پیکربندی شده. محرمانگی کاربرانتان در خطر است.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: برای اطّلاعات بیش‌تر این‌جا را بررسی کنید
-        message_html: "<strong>ذخیره‌سازتان بد پیکربندی شده. محرمانگی کاربرانتان در خطر است.</strong>"
     tags:
       moderation:
         not_trendable: غیر قابل داغ شدن

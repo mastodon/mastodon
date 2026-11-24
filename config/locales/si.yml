@@ -616,27 +616,6 @@ si:
         suspend: "%{name} %{target}ගේ ගිණුම අත්හිටුවා ඇත"
       appeal_approved: අභියාචනා කළා
       appeal_pending: අභියාචනය පොරොත්තුවෙන්
-    system_checks:
-      database_schema_check:
-        message_html: පොරොත්තු දත්ත සමුදා සංක්‍රමණයන් ඇත. යෙදුම අපේක්ෂිත පරිදි ක්‍රියා කරන බව සහතික කිරීමට කරුණාකර ඒවා ධාවනය කරන්න
-      elasticsearch_preset:
-        action: ප්‍රලේඛනය බලන්න
-      elasticsearch_preset_single_node:
-        action: ප්‍රලේඛනය බලන්න
-      elasticsearch_running_check:
-        message_html: Elasticsearch වෙත සම්බන්ධ වීමට නොහැකි විය. කරුණාකර එය ක්‍රියාත්මක වන බව පරීක්ෂා කරන්න, නැතහොත් සම්පූර්ණ පෙළ සෙවීම අක්‍රීය කරන්න
-      elasticsearch_version_check:
-        message_html: 'නොගැලපෙන ඉලාස්ටික් සෙවුම් අනුවාදය: %{value}'
-        version_comparison: Elasticsearch %{running_version} ක්‍රියාත්මක වන අතර %{required_version} අවශ්‍ය වේ
-      rules_check:
-        action: සේවාදායකයේ නීති කළමනාකරණය
-        message_html: ඔබ සේවාදායක රීති කිසිවක් නිර්වචනය කර නැත.
-      sidekiq_process_check:
-        message_html: "%{value} පෝලිම්(ය) සඳහා Sidekiq ක්‍රියාවලියක් ක්‍රියාත්මක නොවේ. කරුණාකර ඔබේ Sidekiq වින්‍යාසය සමාලෝචනය කරන්න"
-      software_version_critical_check:
-        action: තිබෙන යාවත්කාල බලන්න
-      software_version_patch_check:
-        action: තිබෙන යාවත්කාල බලන්න
     tags:
       review: තත්‍වය සමාලෝචනය
       updated_msg: Hashtag සැකසුම් සාර්ථකව යාවත්කාලීන කරන ලදී

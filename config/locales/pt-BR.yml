@@ -1093,50 +1093,6 @@ pt-BR:
       appeal_approved: Revisado
       appeal_pending: Revisão pendente
       appeal_rejected: Revisão rejeitada
-    system_checks:
-      database_schema_check:
-        message_html: Existem migrações de banco de dados pendentes. Execute-as para garantir que o aplicativo se comporte como esperado
-      elasticsearch_analysis_index_mismatch:
-        message_html: Os mapeamentos de índice do Elasticsearch estão desatualizados. Por favor, execute <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: O agrupamento de Elasticsearch não é saudável (estado vermelho); os recursos de pesquisa não estão disponíveis
-      elasticsearch_health_yellow:
-        message_html: O agrupamento de Elasticsearch não é saudável (estado amarelo); talvez você queira investigar o motivo
-      elasticsearch_index_mismatch:
-        message_html: Os mapeamentos de índice do Elasticsearch estão desatualizados. Por favor, execute <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Ver documentação
-        message_html: Seu agrupamento de Elasticsearch tem mais de um nó, mas o Mastodon não está configurado para usá-los.
-      elasticsearch_preset_single_node:
-        action: Ver documentação
-        message_html: Seu agrupamento de Elasticsearch tem apenas um nó, <code>ES_PRESET</code> deve ser definido como <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Seu índice do sistema Elasticsearch está desatualizado devido a uma alteração de configuração. Por favor, execute <code>tootctl search deploy --reset-chewy</code> para atualizá-lo.
-      elasticsearch_running_check:
-        message_html: Não foi possível conectar ao Elasticsearch. Verifique se ele está em execução ou desative a pesquisa de texto completo
-      elasticsearch_version_check:
-        message_html: 'Versão de Elasticsearch incompatível: %{value}'
-        version_comparison: A versão %{running_version} de Elasticsearch está em execução, porém é obrigatória a versão %{required_version}
-      rules_check:
-        action: Gerenciar regras do servidor
-        message_html: Você não definiu nenhuma regra de servidor.
-      sidekiq_process_check:
-        message_html: Nenhum processo Sidekiq rodando para a(s) fila(s) %{value}. Por favor, revise a sua configuração para Sidekiq
-      software_version_check:
-        action: Ver atualizações disponíveis
-        message_html: Uma atualização do Mastodon está disponível.
-      software_version_critical_check:
-        action: Ver atualizações disponíveis
-        message_html: Uma atualização crítica do Mastodon está disponível. Por favor, atualize o mais rápido possível.
-      software_version_patch_check:
-        action: Ver atualizações disponíveis
-        message_html: Uma atualização do Mastodon para correções está disponível.
-      upload_check_privacy_error:
-        action: Confira aqui para mais informações
-        message_html: "<strong>Seu servidor está mal configurado. A privacidade de seus usuários está em risco.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Confira aqui para mais informações
-        message_html: "<strong>Seu armazenamento de objetos está mal configurado. A privacidade de seus usuários está em risco.</strong>"
     tags:
       moderation:
         not_trendable: Fora de moda

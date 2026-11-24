@@ -1371,50 +1371,6 @@ he:
       appeal_approved: עורער
       appeal_pending: בהמתנה לערעור
       appeal_rejected: הערעור נדחה
-    system_checks:
-      database_schema_check:
-        message_html: נדרשות הגירות מבני נתונים. אנא הריצו אותן כדי להבטיח שהיישום מתנהג כצפוי
-      elasticsearch_analysis_index_mismatch:
-        message_html: מאפייני בוחן האינדקס של Elasticsearch אינם עדכניים. יש להריץ <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: אשכול שירותי חיפוש Elasticsearch אינו זמין כעת (מצב אדום), אפשרויות חיפוש אינן זמינות כרגע
-      elasticsearch_health_yellow:
-        message_html: אשכול שירותי חיפוש Elasticsearch אינו כשיר כעת (מצב צהוב), מומלץ לבדוק מה סיבת הבעיה
-      elasticsearch_index_mismatch:
-        message_html: מיפוי האינדקסים של Elasticsearch אינו עדכני. יש להריץ <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: יש לבדוק בתיעוד
-        message_html: אשכול שירותי חיפוש Elasticsearch שלך מכיל יותר משרת אחד, אך מסטודון אינו מכוון לשימוש בכולם.
-      elasticsearch_preset_single_node:
-        action: יש לבדוק בתיעוד
-        message_html: אשכול שירותי חיפוש Elasticsearch שלך מכיל רק שרת אחד, <code>ES_PRESET</code> צריך להכיל את הערך <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: מיפוי האינדקסים של Elasticsearch אינו עדכני עקב שינוי תצורה. יש להריץ <code>tootctl search deploy --reset-chewy</code> כדי לעדכנו.
-      elasticsearch_running_check:
-        message_html: לא ניתן להתחבר לחיפוש אלסטיק. בדקו בבקשה הוא רץ, או בטלו את חיפוש הטקסט המלא
-      elasticsearch_version_check:
-        message_html: 'גרסת חיפוש אלסטיק לא מתאימה: %{value}'
-        version_comparison: גרסת חיפוש אלסטיק %{running_version} רצה בעוד גרסא %{required_version} נדרשת
-      rules_check:
-        action: ניהול כללי שרת
-        message_html: לא הוגדרו שום כללי שרת.
-      sidekiq_process_check:
-        message_html: שום הליכי Sidekiq לא רצים עבור %{value} תור(ות). בחנו בבקשה את הגדרות Sidekiq
-      software_version_check:
-        action: ראו עדכונים זמינים
-        message_html: עדכון מסטודון זמין כעת.
-      software_version_critical_check:
-        action: ראו עדכונים זמינים
-        message_html: יצא עדכון קריטי למסטודון, נא לעדכן את תוכנת מסטודון בהקדם האפשרי.
-      software_version_patch_check:
-        action: ראו עדכונים זמינים
-        message_html: יצא עדכון מסטודון המכיל תיקוני שקצים.
-      upload_check_privacy_error:
-        action: למידע נוסף
-        message_html: "<strong>שרת הווב שלך אינו מכוון כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: למידע נוסף
-        message_html: "<strong>שרות אחסון הענן שלך אינו מוגדר כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
     tags:
       moderation:
         not_trendable: לא מזוהה כאופנתי

@@ -768,35 +768,6 @@ my:
       appeal_approved: အတည်ပြုခဲ့ပြီး
       appeal_pending: အတည်ပြုမှုဆိုင်းငံ့ထားခြင်း
       appeal_rejected: တင်ပြခြင်းကို ပယ်ချခဲ့သည်
-    system_checks:
-      database_schema_check:
-        message_html: ဆိုင်းငံ့ထားသော ဒေတာဘေ့စ် ပြောင်းရွှေ့မှုများ ရှိပါသည်။ အပလီကေးရှင်းသည် မျှော်လင့်ထားသည့်အတိုင်း လုပ်ဆောင်ကြောင်း သေချာစေရန် ၎င်းတို့ကို လုပ်ဆောင်ပါ။
-      elasticsearch_preset:
-        action: စာရွက်စာတမ်းများကို ကြည့်ပါ
-      elasticsearch_preset_single_node:
-        action: စာရွက်စာတမ်းများကို ကြည့်ပါ
-      elasticsearch_running_check:
-        message_html: Elasticsearch သို့ ချိတ်ဆက်၍မရပါ။ ၎င်းသည် အလုပ်လုပ်နေသလား၊ သို့မဟုတ် စာသားအပြည့်အစုံရှာဖွေမှုကို ပိတ်ပါ။
-      elasticsearch_version_check:
-        message_html: သဟဇာတမဖြစ်သော Elasticsearch ဗားရှင်း- %{value}
-        version_comparison: Elasticsearch %{running_version} သည် %{required_version} လိုအပ်နေချိန်တွင် လုပ်ဆောင်နေသည်
-      rules_check:
-        action: ဆာဗာစည်းမျဉ်းများကို စီမံရန်
-        message_html: သင်သည် မည်သည့်ဆာဗာစည်းမျဉ်းများကိုမျှ မသတ်မှတ်ထားပါ။
-      sidekiq_process_check:
-        message_html: "%{value} တန်းစီ(s) အတွက် Sidekiq လုပ်ငန်းစဉ် မရှိပါ။ သင်၏ Sidekiq ဖွဲ့စည်းမှုကို ပြန်လည်သုံးသပ်ပါ။"
-      software_version_critical_check:
-        action: ရရှိနိုင်သော အပ်ဒိတ်များကြည့်ပါ
-        message_html: Mastodon အပ်ဒိတ်ရနိုင်သည်၊ ကျေးဇူးပြု၍ မြန်မြန် အပ်ဒိတ်လုပ်ပါ။
-      software_version_patch_check:
-        action: ရရှိနိုင်သော အပ်ဒိတ်များကြည့်ပါ
-        message_html: ပြင်ဆင်ပြီးသော Mastodon အပ်ဒိတ် ရနိုင်ပါသည်
-      upload_check_privacy_error:
-        action: နောက်ထပ်အချက်အလက်များအတွက် ဤနေရာတွင် ကြည့်ပါ
-        message_html: "<strong>သင်၏ဝဘ်ဆာဗာကို မှားယွင်းစွာပြုလုပ်ထားသည်။ သင့်အသုံးပြုသူများ၏ လျှို့ဝှက်ချက်များသည် အန္တရာယ်ရှိသည်။</strong>"
-      upload_check_privacy_error_object_storage:
-        action: နောက်ထပ်အချက်အလက်များအတွက် ဤနေရာတွင် ကြည့်ပါ
-        message_html: "<strong>သင်၏ Object သိုလှောင်မှုအား မှားယွင်းစွာ စီစဉ်သတ်မှတ်ထားပါသည်။ သင့်အသုံးပြုသူများ၏ လျှို့ဝှက်ချက်များသည် အန္တရာယ်ရှိသည်။</strong>"
     tags:
       review: အခြေအနေသုံးသပ်ရန်
       updated_msg: ဟက်ရှ်တဂျ်သတ်မှတ်ချက်များကို အပ်ဒိတ်လုပ်ပြီးပါပြီ

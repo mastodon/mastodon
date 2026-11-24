@@ -1339,50 +1339,6 @@ zh-CN:
       appeal_approved: 已申诉
       appeal_pending: 申诉待处理
       appeal_rejected: 申诉已驳回
-    system_checks:
-      database_schema_check:
-        message_html: 有待处理的数据库迁移。请运行它们以确保应用程序正常运行。
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearch索引分析器设置已过期。请运行<code>tootctl search deploy --only=%{value}</code>。
-      elasticsearch_health_red:
-        message_html: Elasticsearch 集群状态不健康（红色），搜索功能不可用
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch 集群不健康(黄色状态)，你可能想要调查原因
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch索引映射已过时。请运行<code>tootctl search deploy --only=%{value}</code>。
-      elasticsearch_preset:
-        action: 阅读文档
-        message_html: 你的Elasticsearch集群有多个节点，但Mastodon未配置好使用它们。
-      elasticsearch_preset_single_node:
-        action: 阅读文档
-        message_html: 你的Elasticsearch集群只有一个节点，<code>ES_PRESET</code>应该设置为<code>single_node_cluster</code>。
-      elasticsearch_reset_chewy:
-        message_html: 你的Elasticsearch系统索引已过时，可能是由于设置更改导致的。请运行<code>tootctl search deploy --reset-chewy</code>命令来更新它。
-      elasticsearch_running_check:
-        message_html: 无法连接到 Elasticsearch。请检查它是否正在运行，或禁用全文搜索
-      elasticsearch_version_check:
-        message_html: '不兼容的 Elasticsearch 版本: %{value}'
-        version_comparison: Elasticsearch 最低版本要求 %{required_version}，正在运行的版本是 %{running_version}
-      rules_check:
-        action: 管理服务器规则
-        message_html: 你没有定义任何服务器规则。
-      sidekiq_process_check:
-        message_html: "%{value} 队列未运行任何 Sidekiq 进程。请检查你的 Sidekiq 配置"
-      software_version_check:
-        action: 查看可用更新
-        message_html: 有一个 Mastodon 更新可用。
-      software_version_critical_check:
-        action: 查看可用更新
-        message_html: 有一个紧急Mastodon紧急更新可用，请尽快更新。
-      software_version_patch_check:
-        action: 查看可用更新
-        message_html: 有一个Mastodon错误修复更新可用。
-      upload_check_privacy_error:
-        action: 点击这里查看更多信息
-        message_html: "<strong>你的网站服务器配置错误，你的用户的隐私处于危险中。</strong>"
-      upload_check_privacy_error_object_storage:
-        action: 点击这里查看更多信息
-        message_html: "<strong>你的对象存储空间配置错误，你的用户的隐私处于危险中。</strong>"
     tags:
       moderation:
         not_trendable: 不在热门中显示

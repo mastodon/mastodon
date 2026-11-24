@@ -934,48 +934,6 @@ sl:
       appeal_approved: Pritoženo
       appeal_pending: Čakajoč na ugovor
       appeal_rejected: Pritožba zavrnjena
-    system_checks:
-      database_schema_check:
-        message_html: Na čakanju so migracije zbirke podatkov. Prosimo, izvedite jih, da zagotovite, da se program vede pričakovano
-      elasticsearch_health_red:
-        message_html: Z gručo Elasticsearch ni vse v redu (rdeče stanje), zmožnosti iskanja niso na voljo
-      elasticsearch_health_yellow:
-        message_html: Z gručo Elasticsearch ni vse v redu (rumeno stanje), priporočeno je ugotoviti razlog
-      elasticsearch_index_mismatch:
-        message_html: Preslikave kazala Elasticsearch so zastarele. Poženite <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Glejte dokumentacijo
-        message_html: Vaša gruča Elasticsearch vsebuje več kot eno vozlišče, vendar Mastodon ni nastavljen, da bi jih uporabljal.
-      elasticsearch_preset_single_node:
-        action: Glejte dokumentacijo
-        message_html: Vaša gruča Elasticsearch vsebuje samo eno vozlišče, <code>ES_PRESET</code> bi moralo biti nastavljeno na <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Sistemsko kazalo Elasticsearch je zastarelo zaradi spremembe nastavitve. Za posodobitev poženite <code>tootctl search deploy --reset-chewy</code>.
-      elasticsearch_running_check:
-        message_html: Povezava z Elasticsearch ni uspela. Preverite, da deluje, ali onemogočite iskanje po vsem besedilu
-      elasticsearch_version_check:
-        message_html: 'Nezdružljiva različica Elasticsearch: %{value}'
-        version_comparison: Izvaja se Elasticsearch %{running_version}, zahtevana pa je različica %{required_version}
-      rules_check:
-        action: Upravljaj pravila strežnika
-        message_html: Nobenih pravil strežnika niste določili.
-      sidekiq_process_check:
-        message_html: Noben proces Sidekiq ne poteka za %{value} vrst. Preglejte svojo prilagoditev Sidekiq
-      software_version_check:
-        action: Oglejte si razpoložljive posodobitve
-        message_html: Na voljo je posodobitev Mastodona.
-      software_version_critical_check:
-        action: Glejte razpoložljive posodobitve
-        message_html: Na voljo je kritična posodobitev Mastodona. Posodobite čim prej.
-      software_version_patch_check:
-        action: Glejte razpoložljive posodobitve
-        message_html: Na voljo je posodobitev Mastodona s popravki hroščev.
-      upload_check_privacy_error:
-        action: Preverite tukaj za več informacij
-        message_html: "<strong>Vaš spletni strežnik je napačno nastavljen. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Preverite tukaj za več informacij
-        message_html: "<strong>Vaša predmetna shramba je napačno nastavljena. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
     tags:
       moderation:
         not_trendable: Ni v trendu

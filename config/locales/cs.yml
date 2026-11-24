@@ -1095,50 +1095,6 @@ cs:
       appeal_approved: Podáno odvolání
       appeal_pending: Čekající odvolání
       appeal_rejected: Odvolání zamítnuto
-    system_checks:
-      database_schema_check:
-        message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
-      elasticsearch_analysis_index_mismatch:
-        message_html: Nastavení analyzátoru Elasticsearch indexu je zastaralé. Prosím spusťte <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Elasticsearch cluster je nezdravý (červený stav), vyhledávací funkce jsou nedostupné
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch cluster je nezdravý (žlutý stav), možná budete chtít prozkoumat důvod
-      elasticsearch_index_mismatch:
-        message_html: Mapování indexu Elasticsearch jsou zastaralá. Prosím spusťte <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Prohlédnout dokumentaci
-        message_html: Váš Elasticsearch cluster má více než jeden node, ale Mastodon není nakonfigurován pro jejich používání.
-      elasticsearch_preset_single_node:
-        action: Zobrazit dokumentaci
-        message_html: Váš Elasticsearch cluster má pouze jeden uzel, <code>ES_PRESET</code> by měl být nastaven na <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Váš system index v Elasticsearch je kvůli změně nastavení zastaralý. Pro aktualizaci prosím spusťte <code>tootctl search deploy --reset-chewy</code>.
-      elasticsearch_running_check:
-        message_html: Nelze se připojit k Elasticsearch. Prosím zkontrolujte, že běží, nebo vypněte fulltextové vyhledávání
-      elasticsearch_version_check:
-        message_html: 'Nekompatibilní verze Elasticsearch: %{value}'
-        version_comparison: Je spuštěn Elasticsearch %{running_version} místo vyžadovaného %{required_version}
-      rules_check:
-        action: Spravovat pravidla serveru
-        message_html: Nedefinovali jste žádná pravidla serveru.
-      sidekiq_process_check:
-        message_html: Pro %{value} frontu/fronty neběží žádný Sidekiq proces. Zkontrolujte prosím svou Sidekiq konfiguraci
-      software_version_check:
-        action: Zobrazit dostupné aktualizace
-        message_html: K dispozici je aktualizace Mastodonu.
-      software_version_critical_check:
-        action: Zobrazit dostupné aktualizace
-        message_html: K dispozici je kritická aktualizace Mastodonu, prosím aktualizujte co nejrychleji.
-      software_version_patch_check:
-        action: Zobrazit dostupné aktualizace
-        message_html: Je dostupná opravná aktualizace Mastodonu.
-      upload_check_privacy_error:
-        action: Pro více informací se podívejte zde
-        message_html: "<strong>Váš webový server je špatně nakonfigurován. Soukromí vašich uživatelů je ohroženo.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Pro více informací se podívejte zde
-        message_html: "<strong>Váš object storage je špatně nakonfigurován. Soukromí vašich uživatelů je ohroženo.</strong>"
     tags:
       moderation:
         not_trendable: Netrendovatelné
