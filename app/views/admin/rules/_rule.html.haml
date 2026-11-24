@@ -1,13 +1,13 @@
 .announcements-list__item
-  = link_to edit_admin_rule_path(rule), class: 'announcements-list__item__title' do
-    #{rule_counter + 1}.
-    = truncate(rule.text)
+  .rule-content
+    = link_to edit_admin_rule_path(rule), class: 'announcements-list__item__title' do
+      %span.rule-counter #{rule_counter + 1}.
+      = rule.text
 
-  .announcements-list__item__action-bar.no-wrap
     .announcements-list__item__meta
       = rule.hint
 
-    .rule-actions
-      = table_link_to 'arrow_upward', t('admin.rules.move_up'), move_up_admin_rule_path(rule), method: :post if can?(:update, rule) && !rule_iteration.first?
-      = table_link_to 'delete', t('admin.rules.delete'), admin_rule_path(rule), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, rule)
-      = table_link_to 'arrow_downward', t('admin.rules.move_down'), move_down_admin_rule_path(rule), method: :post if can?(:update, rule) && !rule_iteration.last?
+  .rule-actions
+    = table_link_to 'arrow_upward', t('admin.rules.move_up'), move_up_admin_rule_path(rule), method: :post if can?(:update, rule) && !rule_iteration.first?
+    = table_link_to 'delete', t('admin.rules.delete'), admin_rule_path(rule), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, rule)
+    = table_link_to 'arrow_downward', t('admin.rules.move_down'), move_down_admin_rule_path(rule), method: :post if can?(:update, rule) && !rule_iteration.last?
