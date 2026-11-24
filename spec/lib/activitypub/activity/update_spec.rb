@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Update do
-  subject { described_class.new(json, sender) }
+  subject { described_class.new(json, sender, forwardable_json: json) }
 
   let!(:sender) { Fabricate(:account, domain: 'example.com', inbox_url: 'https://example.com/foo/inbox', outbox_url: 'https://example.com/foo/outbox') }
 
@@ -176,7 +176,12 @@ RSpec.describe ActivityPub::Activity::Update do
       let(:favourites) { 50 }
       let(:reblogs) { 100 }
 
-      let!(:status) { Fabricate(:status, uri: 'https://example.com/statuses/poll', account: sender) }
+      let!(:status) do
+        travel_to 5.minutes.ago do
+          Fabricate(:status, uri: 'https://example.com/statuses/poll', account: sender)
+        end
+      end
+
       let(:json) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
@@ -199,7 +204,8 @@ RSpec.describe ActivityPub::Activity::Update do
               totalItems: reblogs,
             },
           },
-        }.with_indifferent_access
+          signature: 'foo',
+        }.deep_stringify_keys
       end
 
       shared_examples 'updates counts' do
@@ -230,6 +236,16 @@ RSpec.describe ActivityPub::Activity::Update do
         end
 
         it_behaves_like 'updates counts'
+
+        it 'forwards the activity' do
+          forwarder_double = instance_double(ActivityPub::Forwarder, forwardable?: true, forward!: nil)
+          allow(ActivityPub::Forwarder).to receive(:new).and_return(forwarder_double)
+
+          subject.perform
+
+          expect(ActivityPub::Forwarder).to have_received(:new).with(sender, json, status)
+          expect(forwarder_double).to have_received(:forward!)
+        end
       end
     end
 

@@ -22,9 +22,15 @@ RSpec.describe ActivityPub::Activity::Delete do
   describe '#perform' do
     subject { described_class.new(json, sender, forwardable_json: json) }
 
-    it 'deletes sender\'s status' do
-      subject.perform
-      expect(Status.find_by(id: status.id)).to be_nil
+    it 'deletes sender\'s status and calls the forwarder' do
+      forwarder_double = instance_double(ActivityPub::Forwarder, forwardable?: true, forward!: nil)
+      allow(ActivityPub::Forwarder).to receive(:new).and_return(forwarder_double)
+
+      expect { subject.perform }
+        .to change { Status.find_by(id: status.id) }.to(nil)
+
+      expect(ActivityPub::Forwarder).to have_received(:new).with(sender, json, status)
+      expect(forwarder_double).to have_received(:forward!)
     end
 
     context 'when the status has been reblogged' do
