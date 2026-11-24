@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export function usePreventClosingPage(shouldPreventClosing: boolean) {
+export function useConfirmBeforePageClose(shouldPreventClosing: boolean) {
   useEffect(() => {
     function closePage(event: BeforeUnloadEvent) {
       if (shouldPreventClosing) {

@@ -12,7 +12,7 @@ import type { IconButtonProps } from '@/mastodon/components/button';
 import { IconButton } from '@/mastodon/components/button';
 import { useBodyScrollLock } from '@/mastodon/hooks/useBodyScrollLock';
 import { useCloseOnHistoryBack } from '@/mastodon/hooks/useCloseOnHistoryBack';
-import { usePreventClosingPage } from '@/mastodon/hooks/usePreventClosingPage';
+import { useConfirmBeforePageClose } from '@/mastodon/hooks/useConfirmBeforePageClose';
 import { useViewportSize } from '@/mastodon/hooks/useViewportSize';
 import { useIdentity } from '@/mastodon/identity_context';
 import {
@@ -75,7 +75,7 @@ export const ComposeButton: React.FC<{
       [dispatch, isMinimized],
     );
 
-  usePreventClosingPage(isComposerChanged && displayState !== 'hidden');
+  useConfirmBeforePageClose(isComposerChanged && displayState !== 'hidden');
   useBodyScrollLock(isShowing);
   useCloseOnHistoryBack(
     () => {

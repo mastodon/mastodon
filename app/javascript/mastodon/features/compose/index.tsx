@@ -6,7 +6,7 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
-import { usePreventClosingPage } from '@/mastodon/hooks/usePreventClosingPage';
+import { useConfirmBeforePageClose } from '@/mastodon/hooks/useConfirmBeforePageClose';
 import { selectComposerIsChanged } from '@/mastodon/reducers/slices/composer';
 import { mountCompose, unmountCompose } from 'mastodon/actions/compose';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
@@ -18,7 +18,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const dispatch = useAppDispatch();
   const isComposerChanged = useAppSelector(selectComposerIsChanged);
 
-  usePreventClosingPage(isComposerChanged);
+  useConfirmBeforePageClose(isComposerChanged);
 
   useEffect(() => {
     dispatch(mountCompose());
