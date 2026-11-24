@@ -5930,19 +5930,6 @@ noscript {
   }
 }
 
-.explore__search-results {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-
-  @media screen and (min-width: $no-gap-breakpoint) {
-    border: 1px solid var(--color-border-primary);
-    border-top: 0;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
-}
-
 .story {
   display: flex;
   align-items: center;
