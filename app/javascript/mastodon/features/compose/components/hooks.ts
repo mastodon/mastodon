@@ -23,14 +23,13 @@ export function useLanguageGuess() {
   const text = useAppSelector((state) =>
     (state.compose.get('text') as string).trim(),
   );
-  const frequentlyUsed = useAppSelector(selectFrequentlyUsedLanguages);
   const [guess, setGuess] = useState('');
 
   const debouncedGuess = useDebouncedCallback(
     async () => {
       const { guessLanguage } = await import('../util/language_detection');
 
-      return guessLanguage(text, frequentlyUsed);
+      return guessLanguage(text);
     },
     500,
     { maxWait: 1500, leading: true, trailing: true },

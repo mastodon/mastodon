@@ -2,7 +2,7 @@ import { eld } from 'eld/extrasmall';
 
 import { replaceMentions, replaceUrls } from './url_regex';
 
-export function guessLanguage(text: string, validLanguages?: string[]) {
+export function guessLanguage(text: string) {
   text = replaceUrls(
     replaceMentions(text, () => ''),
     '',
@@ -14,10 +14,5 @@ export function guessLanguage(text: string, validLanguages?: string[]) {
     return null;
   }
 
-  const lang = guess.language;
-  if (validLanguages && !validLanguages.includes(lang)) {
-    return null;
-  }
-
-  return lang;
+  return guess.language;
 }
