@@ -79,18 +79,14 @@ export const ShareButton: FC<{ report: AnnualReportData }> = ({ report }) => {
 
   return (
     <div className={styles.shareButtonWrapper}>
-      <Button
-        text={intl.formatMessage(messages.share_on_mastodon)}
-        onClick={handleShareClick}
-      />
-      <Button
-        plain
-        className={styles.secondaryShareButton}
-        text={intl.formatMessage(
+      <Button onClick={handleShareClick} variant='solid' color='accent'>
+        {intl.formatMessage(messages.share_on_mastodon)}
+      </Button>
+      <Button color='accent' onClick={handleSecondaryShare}>
+        {intl.formatMessage(
           supportsNativeShare ? messages.share_elsewhere : messages.copy_link,
         )}
-        onClick={handleSecondaryShare}
-      />
+      </Button>
     </div>
   );
 };

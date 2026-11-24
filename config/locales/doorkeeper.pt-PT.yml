@@ -63,6 +63,10 @@ pt-PT:
         prompt_html: "%{client_name} gostaria de obter autorização para aceder à tua conta. <strong>Só deves aprovar este pedido se reconheceres e confiares nesta fonte.</strong>"
         review_permissions: Rever permissões
         title: Autorização necessária
+      require_reauth:
+        log_out_and_continue: Terminar sessão e continuar
+        prompt_html: Está atualmente conectado como <strong>%{handle}</strong>, mas para continuar, terá que sair.
+        title: Reautenticação requerida
       show:
         title: Copia este código de autorização e cola-o na aplicação.
     authorized_applications:

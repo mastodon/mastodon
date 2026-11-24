@@ -1,0 +1,107 @@
+@use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
+
+.root {
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+
+  &[data-fullscreen='true'] {
+    overflow-y: visible;
+  }
+}
+
+.showing {
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    // Add a backdrop for the mobile composer to cover up the page
+    // behind the composer that can be visible on Safari iOS
+    background-color: var(--color-bg-primary);
+  }
+
+  &[data-fullscreen='false']::before {
+    background-color: var(--color-bg-overlay);
+  }
+}
+
+.minimized {
+  pointer-events: none;
+}
+
+.composer,
+.composerMinimized {
+  width: 100%;
+  position: fixed;
+  box-sizing: border-box;
+  pointer-events: auto;
+
+  [data-fullscreen='false'] & {
+    max-width: 500px;
+  }
+}
+
+.composer {
+  [data-fullscreen='false'] & {
+    max-width: 500px;
+    inset-inline-end: 50%;
+    inset-block-end: 50%;
+    transform: translate(50%, 50%);
+
+    .composeForm {
+      min-height: 270px;
+      max-height: calc(100vh - (var(--space-4) * 2));
+    }
+  }
+
+  [data-fullscreen='true'] & {
+    .composeForm {
+      // Set from the visualViewport API.
+      height: var(--viewport-height, 100vh);
+      max-height: 100vh;
+    }
+  }
+}
+
+.composerMinimized {
+  @include mixins.elevation-1;
+
+  inset-inline-end: var(--space-2);
+  inset-block-end: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-4);
+  cursor: pointer;
+
+  [data-fullscreen='false'] & {
+    max-width: 240px;
+  }
+}
+
+.buttonWrapper {
+  position: relative;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: all 200ms ease-out;
+  }
+
+  &:not(.buttonWrapperInline) {
+    position: fixed;
+    bottom: var(--space-4);
+    right: var(--space-4);
+    z-index: 2;
+  }
+}
+
+.buttonWrapperInline {
+  margin-inline-end: var(--space-2);
+}
+
+.buttonWrapperHidden {
+  transform: translateX(calc(100% + var(--space-4)));
+  opacity: 0;
+  transition-timing-function: ease-in;
+}

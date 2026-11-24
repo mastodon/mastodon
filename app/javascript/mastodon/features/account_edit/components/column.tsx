@@ -2,17 +2,18 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Link } from 'react-router-dom';
-
+import { CheckIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import {
+  ColumnHeader,
+  ColumnHeaderButton,
+} from '@/mastodon/components/column_header';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
 
 import { useColumnsContext } from '../../ui/util/columns_context';
-import classes from '../styles.module.scss';
 
 export const AccountEditEmptyColumn: FC<{
   notFound?: boolean;
@@ -41,19 +42,24 @@ export const AccountEditColumn: FC<{
     <>
       <Column bindToDocument={!multiColumn}>
         <ColumnHeader
+          withBackButton
           title={title}
-          className={classes.columnHeader}
-          showBackButton
-          extraButton={
-            <Link to={to} className='button'>
+          extraButtons={
+            <ColumnHeaderButton
+              showTextOnDesktop
+              variant='solid'
+              color='accent'
+              as='link'
+              to={to}
+              icon={CheckIcon}
+            >
               <FormattedMessage
                 id='account_edit.column_button'
                 defaultMessage='Done'
               />
-            </Link>
+            </ColumnHeaderButton>
           }
         />
-
         <div className='scrollable'>{children}</div>
       </Column>
       <Helmet>

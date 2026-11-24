@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import type {
   ReferenceType,
   Placement,
   OffsetOptions,
   Strategy,
+  MiddlewareState,
 } from '@floating-ui/react-dom';
 import {
   useFloating,
@@ -30,7 +31,7 @@ export interface PopoverProps {
    * Callback triggered when the popover needs to be closed
    * (e.g. because the Esc key was pressed).
    */
-  onClose: (e: Event) => void;
+  onClose: (e?: Event) => void;
   /**
    * Pass an element that the popover should be attached to.
    * Must come from `useState`, not `useRef`.
@@ -114,13 +115,40 @@ export const Popover: React.FC<PopoverProps> = ({
   popoverElement,
   placement = 'bottom',
   offset,
-  strategy = 'fixed',
+  strategy = 'absolute',
   flip = true,
   container,
   matchReferenceWidth = false,
   closeOnClickOutside = true,
   children,
 }) => {
+  const applySizeModifier = useCallback(
+    ({
+      availableWidth,
+      availableHeight,
+      rects,
+      elements,
+    }: MiddlewareState & {
+      availableWidth: number;
+      availableHeight: number;
+    }) => {
+      elements.floating.style.setProperty(
+        '--popover-width-available',
+        `${Math.max(0, availableWidth)}px`,
+      );
+      elements.floating.style.setProperty(
+        '--popover-height-available',
+        `${Math.max(0, availableHeight)}px`,
+      );
+      if (matchReferenceWidth) {
+        Object.assign(elements.floating.style, {
+          minWidth: `${rects.reference.width}px`,
+        });
+      }
+    },
+    [matchReferenceWidth],
+  );
+
   const {
     placement: computedPlacement,
     update,
@@ -141,15 +169,10 @@ export const Popover: React.FC<PopoverProps> = ({
       inline(),
       shift(),
       flip ? flipMiddleware() : null,
-      matchReferenceWidth
-        ? size({
-            apply({ rects, elements }) {
-              Object.assign(elements.floating.style, {
-                minWidth: `${rects.reference.width}px`,
-              });
-            },
-          })
-        : null,
+      size({
+        padding: 4,
+        apply: applySizeModifier,
+      }),
       hide(),
     ],
   });
@@ -164,7 +187,7 @@ export const Popover: React.FC<PopoverProps> = ({
     (e) => {
       onClose(e);
     },
-    isOpen && closeOnClickOutside,
+    { enabled: isOpen && closeOnClickOutside },
   );
 
   // Close when pressing Escape
@@ -175,14 +198,15 @@ export const Popover: React.FC<PopoverProps> = ({
 
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === 'Escape') {
+        event.preventDefault();
         onClose(event);
       }
     }
 
-    document.addEventListener('keyup', closeOnEscape);
+    document.addEventListener('keydown', closeOnEscape);
 
     return () => {
-      document.removeEventListener('keyup', closeOnEscape);
+      document.removeEventListener('keydown', closeOnEscape);
     };
   }, [isOpen, onClose]);
 
@@ -190,18 +214,22 @@ export const Popover: React.FC<PopoverProps> = ({
     return null;
   }
 
+  const props: PopoverChildProps = {
+    style: floatingStyles,
+    'data-popover-placement': computedPlacement,
+    'data-popover-reference-hidden': middlewareData.hide?.referenceHidden,
+    'data-popover-escaped': middlewareData.hide?.escaped,
+  };
+  if (!popoverElement) {
+    props.ref = refs.setFloating;
+  }
+
   return (
     <Portal container={container}>
       {children({
         placement: computedPlacement,
         update,
-        props: {
-          ref: popoverElement ? undefined : refs.setFloating,
-          style: floatingStyles,
-          'data-popover-placement': computedPlacement,
-          'data-popover-reference-hidden': middlewareData.hide?.referenceHidden,
-          'data-popover-escaped': middlewareData.hide?.escaped,
-        },
+        props,
       })}
     </Portal>
   );

@@ -71,7 +71,6 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
         maxLength={maxLength}
         className={classes.bioField}
         {...textAreaProps}
-        // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
         autoFocus
       />
     </ConfirmationModal>

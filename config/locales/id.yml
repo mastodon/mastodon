@@ -21,7 +21,6 @@ id:
   admin:
     account_actions:
       action: Lakukan aksi
-      title: Lakukan moderasi pada %{acct}
     account_moderation_notes:
       create: Beri catatan
       created_msg: Catatan moderasi berhasil dibuat!
@@ -538,7 +537,6 @@ id:
       action_taken_by: Aksi dilakukan oleh
       actions:
         mark_as_sensitive_description_html: Media di dalam kiriman terlapor akan ditandai sebagai sensitif dan hukuman akan direkam untuk membantu menangani pelanggaran dari akun yang sama di masa mendatang.
-        other_description_html: Lihat opsi lain untuk mengendalikan perilaku akun dan menyesuaikan komunikasi ke akun yang dilaporkan.
         resolve_description_html: Tidak ada tindakan untuk akun yang dilaporkan, tidak ada peringatan yang direkam, dan laporan akan ditutup.
       add_to_report: Tambahkan lebih banyak untuk lapor
       are_you_sure: Apakah Anda yakin?
@@ -753,7 +751,6 @@ id:
         shared_by_over_week:
           other: Dibagikan oleh %{count} orang selama seminggu terakhir
         title: Tautan sedang tren
-        usage_comparison: Dibagikan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
       only_allowed: Yang diizinkan saja
       pending_review: Tinjauan tertunda
       preview_card_providers:
@@ -792,15 +789,12 @@ id:
         trendable: Dapat muncul di bawah tren
         trending_rank: 'Sedang tren #%{rank}'
         usable: Dapat digunakan
-        usage_comparison: Digunakan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
         used_by_over_week:
           other: Digunakan oleh %{count} orang selama seminggu terakhir
       trending: Sedang tren
     warning_presets:
       add_new: Tambah baru
       delete: Hapus
-      edit_preset: Sunting preset peringatan
-      empty: Anda belum mendefinisikan peringatan apapun.
     webhooks:
       add_new: Tambah titik akhir
       delete: Hapus
@@ -858,7 +852,6 @@ id:
     remove: Hapus tautan alias
   appearance:
     animations_and_accessibility: Animasi dan aksesibilitas
-    discovery: Jelajah
     localization:
       body: Mastodon diterjemahkan oleh sukarelawan.
       guide_link: https://crowdin.com/project/mastodon
@@ -946,7 +939,6 @@ id:
   deletes:
     challenge_not_passed: Informasi yang Anda masukkan salah
     confirm_password: Masukkan kata sandi sekarang untuk memverifikasi identitas Anda
-    confirm_username: Masukkan nama pengguna untuk mengonfirmasi prosedur
     proceed: Hapus akun
     success_msg: Akun Anda berhasil dihapus
     warning:
@@ -1080,7 +1072,6 @@ id:
   imports:
     errors:
       invalid_csv_file: 'Berkas CVS tidak sah. Kesalahan: %{error}'
-      over_rows_processing_limit: berisi lebih dari %{count} baris
     modes:
       merge: Gabung
       merge_long: Pertahankan rekaman yang sudah ada dan buat baru
@@ -1147,7 +1138,6 @@ id:
     incoming_migrations_html: Untuk pindah dari akun lain ke sini, Anda harus <a href="%{path}">membuat alias akun</a> terlebih dahulu.
     moved_msg: Akun Anda dialihkan ke %{acct} dan pengikut Anda akan ikut dipindahkan.
     not_redirecting: Saat ini akun Anda tidak dialihkan ke akun lain.
-    on_cooldown: Anda baru saja memindahkan akun Anda. Fungsi ini akan tersedia kembali %{count} hari lagi.
     past_migrations: Migrasi lampau
     proceed_with_move: Pindahkan pengikut
     redirected_msg: Akun Anda sedang dialihkan ke %{acct}.
@@ -1276,9 +1266,6 @@ id:
     descriptions:
       account: Kiriman publik dari @%{acct}
       tag: 'Kiriman publik ditagari #%{hashtag}'
-  scheduled_statuses:
-    over_daily_limit: Anda telah melampaui batas %{limit} kiriman terjadwal untuk sehari
-    over_total_limit: Anda telah melampaui batas %{limit} kiriman terjadwal
   sessions:
     activity: Aktivitas terakhir
     browser: Peramban
@@ -1327,7 +1314,6 @@ id:
     appearance: Tampilan
     authorized_apps: Apl yang diizinkan
     back: Kembali ke Mastodon
-    delete: Penghapusan akun
     development: Pengembangan
     edit_profile: Ubah profil
     featured_tags: Tagar unggulan
@@ -1502,5 +1488,4 @@ id:
     nickname_hint: Masukkan panggilan kunci keamanan baru Anda
     not_enabled: Anda belum mengaktifkan WebAuthn
     not_supported: Peramban ini tidak mendukung kunci keamanan
-    otp_required: Untuk menggunakan kunci keamanan harap aktifkan autentikasi dua-faktor.
     registered_on: Terdaftar pada %{date}

@@ -8,6 +8,7 @@ import type {
 import { createAppSelector } from '@/mastodon/store/typed_functions';
 
 import { selectIsAccountLocal, selectPlainAccount } from './accounts';
+import { selectStatusFilters } from './filters';
 
 export const getStatusList = createAppSelector(
   [
@@ -20,7 +21,8 @@ export const getStatusList = createAppSelector(
 export const selectPlainStatus = createAppSelector(
   [(state, statusId?: string | null) => state.statuses.get(statusId ?? '')],
   (status) => {
-    if (!status) {
+    // Check for statuses that are just `{isLoading: true}`.
+    if (!status?.get('id')) {
       return null;
     }
     return status.toJS() as unknown as StatusShape;
@@ -69,6 +71,35 @@ export const selectExpandedStatus = createAppSelector(
       ...status,
       reblog: reblog ?? undefined,
     };
+  },
+);
+
+export const selectStatusLoadingState = createAppSelector(
+  [
+    (state, { statusId }: { statusId?: string | null }) =>
+      selectExpandedStatus(state, statusId ?? undefined),
+    selectStatusFilters,
+  ],
+  (status, { filterAction }) => {
+    if (!status) {
+      return { state: 'not-found', status: null } as const;
+    }
+
+    if (status.isLoading && !status.id) {
+      return { state: 'loading', status: null } as const;
+    }
+
+    if (filterAction === 'hide') {
+      return { state: 'filtered', status: null } as const;
+    }
+
+    // Fetching means we're refreshing data, but already the status object in Redux.
+    // We put this after checking the filter action so we don't accidentally return the status.
+    if (status.isLoading && status.id) {
+      return { state: 'fetching', status } as const;
+    }
+
+    return { state: 'loaded', status } as const;
   },
 );
 
@@ -143,13 +174,13 @@ export const selectStatusInteractions = createAppSelector(
       Partial<typeof conditionals> & { allowed: boolean }
     > = {
       bookmark: addAllowed({ isLoggedIn }),
+      copy: addAllowed({}),
       delete: addAllowed({ isMine }),
       edit: addAllowed({ isMine }),
-      editQuotePolicy: addAllowed({ isMine, isPublic }),
       embed: addAllowed({ isPublic, isLocal }),
       favourite: addAllowed({ isLoggedIn }),
       filter: addAllowed({ isLoggedIn, isNotMine }),
-      mute: addAllowed({ isMine }),
+      mute: addAllowed({ isLoggedIn }),
       pin: addAllowed({ isMine, isNotDirect }),
       quote: addAllowed({ isLoggedIn }),
       reblog: addAllowed({ isLoggedIn }),

@@ -1,0 +1,93 @@
+.mediaRoot {
+  --media-radius: var(--radius-2);
+
+  position: relative;
+  border-radius: var(--media-radius);
+  overflow: hidden;
+}
+
+.mediaSingle .image {
+  min-width: 120px;
+  max-width: min(100%, 400px);
+  aspect-ratio: var(--aspect);
+}
+
+// Sets the border radius for the grid, ensuring items are flush.
+.mediaGrid {
+  display: grid;
+  gap: var(--space-half);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  aspect-ratio: 3/2;
+
+  a {
+    border-radius: 0;
+  }
+
+  &[data-number='2'] {
+    grid-template-rows: 1fr;
+  }
+
+  [data-index='0'] > :is(a, img) {
+    border-start-start-radius: var(--media-radius);
+  }
+
+  &[data-number='2'],
+  &[data-number='3'] {
+    [data-index='0'] > :is(a, img) {
+      border-end-start-radius: var(--media-radius);
+    }
+  }
+
+  [data-index='1'] > :is(a, img) {
+    border-start-end-radius: var(--media-radius);
+  }
+
+  &[data-number='2'] [data-index='1'] > :is(a, img) {
+    border-end-end-radius: var(--media-radius);
+  }
+
+  &[data-number='3'] [data-index='2'] > :is(a, img),
+  [data-index='3'] > :is(a, img) {
+    border-end-end-radius: var(--media-radius);
+  }
+
+  &[data-number='4'] [data-index='2'] > :is(a, img) {
+    border-end-start-radius: var(--media-radius);
+  }
+}
+
+.image {
+  position: relative;
+  overflow: hidden;
+
+  > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    &:focus {
+      outline: var(--outline-focus-default);
+      outline-offset: -2px;
+    }
+  }
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.imageAltBadge {
+  position: absolute;
+  inset-block-start: var(--space-1);
+  inset-inline-start: var(--space-1);
+  z-index: 2;
+}
+
+.blurHash {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(from var(--color-bg-overlay) r g b / 100%);
+}

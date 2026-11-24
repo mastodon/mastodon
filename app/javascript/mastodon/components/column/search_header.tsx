@@ -2,6 +2,10 @@ import { useCallback, useState, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { TextInput } from '@/mastodon/components/form_fields';
+
+import { Button } from '../button';
+
 export const ColumnSearchHeader: React.FC<{
   onBack: () => void;
   onSubmit: (value: string) => void;
@@ -51,7 +55,7 @@ export const ColumnSearchHeader: React.FC<{
 
   return (
     <form className='column-search-header' onSubmit={handleSubmit}>
-      <input
+      <TextInput
         ref={inputRef}
         type='search'
         value={value}
@@ -62,9 +66,9 @@ export const ColumnSearchHeader: React.FC<{
       />
 
       {active && (
-        <button type='button' className='link-button' onClick={onBack}>
+        <Button variant='ghost' color='accent' size='sm' onClick={onBack}>
           <FormattedMessage id='column_search.cancel' defaultMessage='Cancel' />
-        </button>
+        </Button>
       )}
     </form>
   );

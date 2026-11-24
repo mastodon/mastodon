@@ -5,11 +5,8 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
-import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
-import { SymbolLogo } from 'mastodon/components/logo';
-import { Search } from 'mastodon/features/compose/components/search';
-import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { Search } from '@/mastodon/components/search';
 import { useIdentity } from 'mastodon/identity_context';
 
 import Links from './links';
@@ -19,12 +16,12 @@ import Tags from './tags';
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Trending' },
+  titleRedesign: { id: 'tabs_bar.explore', defaultMessage: 'Explore' },
 });
 
 const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const { signedIn } = useIdentity();
   const intl = useIntl();
-  const logoRequired = useBreakpoint('full');
 
   return (
     <Column
@@ -32,11 +29,8 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       label={intl.formatMessage(messages.title)}
     >
       <ColumnHeader
-        icon={'explore'}
-        iconComponent={logoRequired ? SymbolLogo : TrendingUpIcon}
-        title={intl.formatMessage(messages.title)}
-        multiColumn={multiColumn}
-        scrollTopOnClick
+        withBackButton={multiColumn && 'auto'}
+        title={intl.formatMessage(messages.titleRedesign)}
       />
 
       <div className='explore__search-header'>
@@ -89,7 +83,7 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       </Switch>
 
       <Helmet>
-        <title>{intl.formatMessage(messages.title)}</title>
+        <title>{intl.formatMessage(messages.titleRedesign)}</title>
         <meta name='robots' content='all' />
       </Helmet>
     </Column>

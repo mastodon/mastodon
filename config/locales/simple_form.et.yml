@@ -21,7 +21,6 @@ et:
       admin_account_action:
         include_statuses: Kasutaja näeb, millised postitused on põhjustanud moderaatori otsuse või hoiatuse
         send_email_notification: Kasutajakonto omanik saab selgituse selle kohta, mis juhtus tema kontoga
-        text_html: Valikuline. On võimalik kasutada postituse süntaksi. On võimalik <a href="%{path}">lisada hoiatuste eelseadistusi</a> säästmaks aega
         type_html: Vali, mida teha kasutajaga <strong>%{acct}</strong>
         types:
           disable: Keela kasutajal konto kasutamine, sisu kustutamata või varjamata.
@@ -29,7 +28,6 @@ et:
           sensitive: Kogu kasutaja meediasisu märgitakse kui tundlik sisu.
           silence: Välistab kasutaja võimaluse postitada avalikult, peita postitusi ning teavitusi mitte-jälgijate eest. Lõpetab kõik selle konto kohta esitatud kaebused.
           suspend: Välistab igasuguse suhtluse selle kontoga või sellelt kontolt ning kustutab kogu konto sisu. Tagasipööratav 30 päeva jooksul. Lõpetab kõik selle konto vastu esitatud kaebused.
-        warning_preset_id: Valikuline. Saad ikka lisada mis tahes teksti eelseadistuse lõppu
       announcement:
         all_day: Kui valitud, kuvatakse vaid selle ajavahemiku kuupäevi
         ends_at: Valikuline. Teadaanne eemaldatakse automaatselt sellel ajal
@@ -137,7 +135,7 @@ et:
       settings:
         email_subscriptions: Funktsionaalsuse keelamine säilitab olemasolevad tellijad, kuid peatab e-kirjade saatmise.
         indexable: Su profiilileht võib ilmuda Google, Bingi ja teiste otsimootorite tulemustes.
-        show_application: Sa saad sõltumata sellest vaadata, milline äpp su postituse postitas.
+        show_application: Sa saad sõltumata sellest vaadata, millisest rakendusest oled postitanud.
       tag:
         name: Saad muuta ainult tähtede suurtähelisust, näiteks selleks, et muuta seda loetavamaks
       terms_of_service:
@@ -179,7 +177,7 @@ et:
     labels:
       account:
         attribution_domains: Veebisaidid, mis võivad sind algallikana mainida
-        discoverable: Võimalda mind teistel avatada
+        discoverable: Võimalda mind teistel avastada
         fields:
           name: Nimetus
           value: Sisu
@@ -191,20 +189,18 @@ et:
       account_migration:
         acct: Uue konto aadress
       account_warning_preset:
-        text: Eelseadistatud tekst
         title: Pealkiri
       admin_account_action:
         include_statuses: Kaasa teavitatud postitused selles e-kirjas
         send_email_notification: Teavita kasutajat e-posti teel
-        text: Hoiatus
         type: Tegevus
         types:
+          all_actions: Kõik tegevused
           disable: Lukusta
           none: Ära tee midagi
           sensitive: Tundlik
           silence: Vaigista
           suspend: Kustuta
-        warning_preset_id: Kasuta hoiatuse eelseadistust
       announcement:
         all_day: Kogu päeva sündmus
         ends_at: Sündmuse lõpp
@@ -263,15 +259,17 @@ et:
         setting_missing_alt_text_modal: Enne postitamist hoiata mind meediumi puuduva selgitusteksti puhul
         setting_quick_boosting: Luba kiire hooandmine
         setting_reduce_motion: Vähenda animatsioonides liikumist
+        setting_split_default_privacy_discoverable: Muuda minu postitused leitavates avalikest uudisvoogudest ja otsingutulemustest
         setting_system_font_ui: Kasuta süsteemi vaikefonti
         setting_system_scrollbars_ui: Kasuta süsteemi vaikimisi kerimisriba
         setting_theme: Saidi teema
-        setting_trends: Näita tänaseid trende
+        setting_theme_color: Kujunduse värv
         setting_unfollow_modal: Näita kinnitusdialoogi enne jälgimise eemaldamist
         setting_use_blurhash: Näita peidetud meedia asemel värvilist pilti
         setting_use_pending_items: Aeglane režiim
         severity: Tõsidus
         sign_in_token_attempt: Turvakood
+        sign_in_token_resend: Saada turvakood uuesti
         title: Pealkiri
         type: Impordi tüüp
         username: Kasutajanimi
@@ -294,6 +292,7 @@ et:
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
         content_cache_retention_period: Kaugsisu säilitamise aeg
         custom_css: Kohandatud CSS
+        custom_robots: Kohendatud robots.txt
         email_footer_text: Täiendav jaluse tekst
         favicon: Favicon
         landing_page: Avaleht uute külastajate jaoks
@@ -302,6 +301,7 @@ et:
         mascot: Kohandatud maskott (kunagine)
         media_cache_retention_period: Meediapuhvri talletusperiood
         min_age: Vanuse alampiiri nõue
+        override_robots: Asenda vaikimisi robots.txt fail
         peers_api_enabled: Avalda avastatud serverite loetelu API kaudu
         profile_directory: Luba kasutajate kataloog
         registrations_mode: Kes saab liituda
@@ -350,6 +350,7 @@ et:
         follow: Saada e-kiri, kui keegi alustab jälgimist
         follow_request: Saada e-kiri, kui keegi soovib sind jälgida
         mention: Saada e-kiri, kui keegi mainib sind
+        moderation_suggestions: Saadaval on automaatsed modereerimissoovitused
         pending_account: Saada e-kiri, kui uus konto vajab ülevaatlust
         quote: Keegi tsiteeris sind
         reblog: Keegi jagas postitust

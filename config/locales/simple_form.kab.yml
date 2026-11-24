@@ -21,6 +21,12 @@ kab:
         locale: Tutlayt n ugrudem, imaylen d yilɣa yettudemren
         password: Seqdec ma drus 8 n yisekkilen
         setting_always_send_emails: S umata, ilɣa s yimayl ur d-ttwaceyyεen ara mi ara tesseqdaceḍ Mastodon s wudem urmid
+        setting_default_quote_policy_unlisted: |-
+          Mi ara k-id-bdren wiyyaḍ, ula d izen-nsen ad yettwaffer seg yizirigen n wakud
+          yufraren.
+        setting_emoji_style: |-
+          Amek ara d-banen yimujiyen. "Awurman" ad iɛreḍ ad isseqdec imujiyen inasliyen, maca
+          ad yuɣal ɣer Twemoji i yiminigen iqburen.
         username: Tzemreḍ ad tesqedceḍ isekkilen, uṭṭunen akked yijerriden n wadda
       featured_tag:
         name: 'Ha-t-an kra seg ihacṭagen i tesseqdaceḍ ussan-a ineggura maḍi :'
@@ -46,6 +52,7 @@ kab:
         fields:
           name: Tabzimt
           value: Agbur
+        unlocked: Qbel ineḍfaren imaynuten s wudem awurman
       account_alias:
         acct: Asulay n umiḍan aqbur
       account_migration:
@@ -54,9 +61,9 @@ kab:
         title: Azwel
       admin_account_action:
         send_email_notification: Sileɣ aseqdac s imaylen
-        text: Alɣu udmawan ɣef ugbur
         type: Tigawt
         types:
+          all_actions: Akk tigawin
           disable: Sens anekcum
           none: Ur teg kra
           sensitive: Amḥulfu
@@ -69,7 +76,7 @@ kab:
       defaults:
         autofollow: Ɛreḍ-it-id ad yeḍfer amiḍan-ik·im
         avatar: Avaṭar
-        bot: Wagi d amiḍan aṛubut
+        bot: Wa d amiḍan awurman
         chosen_languages: Sizdeg tutlayin
         confirm_new_password: Sentem awal uffir amaynut
         confirm_password: Sentem awal uffir
@@ -93,8 +100,9 @@ kab:
         phrase: Awal n tsarut neɣ tafyirt
         setting_advanced_layout: Rmed agrudem n web leqqayen
         setting_always_send_emails: Dima ttazen-d ilɣa s yimayl
-        setting_color_scheme: Azenziɣ n yiniten
+        setting_color_scheme: Askar
         setting_default_language: Tutlayt n usuffeɣ
+        setting_default_privacy: Abani n tsuffeɣt
         setting_default_quote_policy: Anwa i izemren ad d-yebder
         setting_display_media: Askanay n imidyaten
         setting_display_media_default: Akk-a kan
@@ -104,7 +112,6 @@ kab:
         setting_hide_network: Ffer azetta-k·m inmetti
         setting_system_font_ui: Seqdec tasefsit tamezwert n unagraw
         setting_theme: Asental n wesmel
-        setting_trends: Sken-d inezzaɣ n wass-a
         setting_use_pending_items: Askar aleɣwayan
         sign_in_token_attempt: Tangalt n tɣellist
         title: Azwel

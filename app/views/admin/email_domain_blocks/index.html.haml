@@ -7,8 +7,8 @@
 = form_with url: admin_email_domain_blocks_path, method: :get, class: :simple_form do |f|
   .fields-group
     .input.string.optional
-      = f.text_field :domain,
-                     value: params[:domain],
+      = f.text_field :by_domain,
+                     value: params[:by_domain],
                      class: 'string optional',
                      placeholder: t('admin.email_domain_blocks.domain')
 
@@ -20,7 +20,7 @@
 
 = form_with model: @form, url: batch_admin_email_domain_blocks_path do |f|
   = hidden_field_tag :page, params[:page] || 1
-  = hidden_field_tag :domain, params[:domain] if params[:domain].present?
+  = hidden_field_tag :by_domain, params[:by_domain] if params[:by_domain].present?
 
   .batch-table
     .batch-table__toolbar

@@ -13,7 +13,7 @@ export const InterceptStatusClicks: React.FC<{
     (e: React.MouseEvent) => {
       const clickTarget = e.target as Element;
       const allowedElementsSelector =
-        '.video-player, .audio-player, .media-gallery, .content-warning';
+        '.video-player, .audio-player, .media-gallery';
       const allowedElements = wrapperRef.current?.querySelectorAll(
         allowedElementsSelector,
       );

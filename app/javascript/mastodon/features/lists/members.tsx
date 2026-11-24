@@ -7,9 +7,8 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnSearchHeader } from '@/mastodon/components/column/search_header';
-import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { fetchRelationships } from 'mastodon/actions/accounts';
 import { showAlertForError } from 'mastodon/actions/alerts';
@@ -33,16 +32,19 @@ import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
 import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-export const messages = defineMessages({
+const messages = defineMessages({
   manageMembers: {
-    id: 'column.list_members',
-    defaultMessage: 'Manage list members',
+    id: 'custom_feeds.manage_accounts_title',
+    defaultMessage: 'Manage Feed Members',
   },
   placeholder: {
     id: 'lists.search',
     defaultMessage: 'Search',
   },
-  enterSearch: { id: 'lists.add_to_list', defaultMessage: 'Add to list' },
+  enterSearch: {
+    id: 'custom_feeds.add_to_feed',
+    defaultMessage: 'Add to feed',
+  },
   add: { id: 'lists.add_member', defaultMessage: 'Add' },
   remove: { id: 'lists.remove_member', defaultMessage: 'Remove' },
   back: { id: 'column_back_button.label', defaultMessage: 'Back' },
@@ -140,12 +142,12 @@ const AccountItem: React.FC<{
 
         <div className='account__relationship'>
           <Button
-            text={intl.formatMessage(
-              partOfList ? messages.remove : messages.add,
-            )}
-            secondary={partOfList}
+            color={partOfList ? 'neutral' : 'accent'}
+            variant={partOfList ? 'tonal' : 'solid'}
             onClick={handleClick}
-          />
+          >
+            {intl.formatMessage(partOfList ? messages.remove : messages.add)}
+          </Button>
         </div>
       </div>
     </div>
@@ -233,11 +235,8 @@ const ListMembers: React.FC<{
       label={intl.formatMessage(messages.manageMembers)}
     >
       <ColumnHeader
+        withBackButton
         title={intl.formatMessage(messages.manageMembers)}
-        icon='list-ul'
-        iconComponent={ListAltIcon}
-        multiColumn={multiColumn}
-        showBackButton
       />
 
       <ColumnSearchHeader
@@ -260,9 +259,14 @@ const ListMembers: React.FC<{
             {displayedAccountIds.length > 0 && <div className='spacer' />}
 
             <div className='column-footer'>
-              <Link to={`/lists/${id}`} className='button button--block'>
+              <Button
+                as='link'
+                to={`/lists/${id}`}
+                variant='solid'
+                color='accent'
+              >
                 <FormattedMessage id='lists.done' defaultMessage='Done' />
-              </Link>
+              </Button>
             </div>
           </>
         }

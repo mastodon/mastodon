@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Button } from '../button/redesign';
+import { Button } from '../button';
 
 import type { ModalShellProps } from './redesign';
 import { ModalShell, ModalActions, ModalTitle } from './redesign';
@@ -38,7 +38,7 @@ const meta = {
         <ModalActions align={actionAlign}>
           <Button>Cancel</Button>
 
-          <Button color='neutral'>Save</Button>
+          <Button variant='solid'>Save</Button>
         </ModalActions>
       </ModalShell>
     );

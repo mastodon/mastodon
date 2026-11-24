@@ -6,13 +6,13 @@ az:
     contact_unavailable: Mövcud deyil
     title: Haqqında
   admin:
-    account_actions:
-      title: "%{acct} üzərində moderasiya əməliyyatını icra et"
     account_moderation_notes:
       created_msg: Moderasiya notu uğurla yaradıldı!
       destroyed_msg: Moderasiya notu uğurla məhv edildi!
     accounts:
       delete: Veriləri sil
+      deletion_irreversible: Bu hesabın veriləri geri qaytarılmayacaq şəkildə silinib.
+      deletion_reversible_hint_html: Bu hesab silinmə ərəfəsindədir və verilər %{date} tarixində tamamilə silinəcək.
       destroyed_msg: "%{username} - verilərinin tezliklə silinməsi növbədədir"
       display_name: Ekran adı
       followers: İzləyicilər
@@ -34,13 +34,37 @@ az:
       suspension_irreversible: Bu hesabın veriləri geri qaytarılmayacaq şəkildə silinib. Hesabı istifadəyə yararlı etmək üçün hesab fəaliyyətinin dayandırılma prosesini ləğv edə bilərsiniz, ancaq daha əvvəl sahib olduğunuz heç bir veri geri qaytarılmayacaq.
     action_logs:
       action_types:
+        destroy_account: Hesab verilərini sil
         resend_user: Təsdiq poçtunu təkrar göndər
         reset_password_user: Parolu sıfırla
+        update_announcement: Elanı güncəllə
+        update_custom_emoji: Özəl ifadəni güncəllə
+        update_ip_block: IP qaydasını güncəllə
+        update_report: Hesabatı güncəllə
+        update_status: Göndərişi güncəllə
+        update_tag: Mövzu etiketini güncəllə
+        update_user_role: Rolu güncəllə
+        update_username_block: İstifadəçi adı qaydasını güncəllə
       actions:
         approve_appeal_html: "%{name}, moderasiya qərarına %{target} tərəfindən verilən etirazı təsdiqlədi"
+        destroy_account_html: "%{name} %{target} verilərini sildi"
+        publish_terms_of_service_html: "%{name} xidmət şərtlərində güncəlləmələr dərc etdi"
         reject_appeal_html: "%{name}, moderasiya qərarına %{target} tərəfindən verilən etirazı rədd etdi"
         reset_password_user_html: "%{name}, %{target} istifadəçisinin parolunu sıfırladı"
+        update_announcement_html: "%{name}, %{target} elanını güncəllədi"
+        update_collection_html: "%{name}, %{target} təqdim edən kolleksiyanı güncəllədi"
+        update_custom_emoji_html: "%{name}, %{target} ifadəsini güncəllədi"
+        update_report_html: "%{name}, %{target} hesabatını güncəllədi"
+        update_status_html: "%{name}, %{target} təqdim edən göndərişi güncəllədi"
+        update_username_block_html: "%{name}, %{target} ehtiva edən istifadəçi adları üçün qaydanı güncəllədi"
       deleted_account: silinmiş hesab
+    announcements:
+      updated_msg: Elan uğurla güncəlləndi!
+    critical_update_pending: Kritik güncəlləmə gözlənilir
+    custom_emojis:
+      unlisted: Sadalanmayıb
+      update_failed_msg: Bu ifadə güncəllənə bilmədi
+      updated_msg: İfadə uğurla güncəlləndi!
     dashboard:
       media_storage: Media deposu
       software: Yazılım
@@ -48,6 +72,9 @@ az:
       export: Xaricə köçür
     domain_blocks:
       export: Xaricə köçür
+      private_comment: Məxfi şərh
+      private_comment_hint: Bu domen məhdudiyyəti barədə şərh, moderatorlar tərəfindən daxili istifadə üçündür.
+      public_comment: Hər kəsə açıq şərh
     email_subscriptions:
       additional_footer_texts:
         show:
@@ -56,12 +83,17 @@ az:
         additional_footer_text:
           hint: Yalnız bülleten e-poçtlarının alt məlumatlarında görünən ixtiyari mətn
           title: Əlavə alt məlumat mətni
+        privacy_policy:
+          title: Məxfilik siyasəti
         title: Riayətlilik ayarları
       danger_zone:
         erase_all_data:
           action: Veriləri sil
           title: Bütün veriləri sil
       purged_msg: Bütün e-poçt abunəlik veriləri silinir.
+      setups:
+        show:
+          important_information: Vacib bilgi
     export_domain_blocks:
       import:
         title: Əngəllənən domenləri daxilə köçür
@@ -70,28 +102,39 @@ az:
     instances:
       confirm_purge: Bu domendən veriləri həmişəlik silmək istədiyinizə əminsiniz?
       dashboard:
+        instance_accounts_measure: depolanmış hesablar
         instance_followers_measure: oradakı izləyicilərimiz
         instance_follows_measure: buradakı izləyiciləri
+        instance_media_attachments_measure: depolanmış media qoşmaları
+        instance_statuses_measure: depolanmış göndərişlər
       destroyed_msg: "%{domain} domenindən verilər artıq silinmək üçün növbədədir."
       moderation:
         title: Moderasiya
       moderation_notes:
         create: Moderasiya notu əlavə et
         description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
+        placeholder: Bu instansiya barədə bilgi, görülən tədbirlər və ya gələcəkdə bu instansiyanı moderasiya etməyə kömək edəcək hər hansı digər bilgilər.
         title: Moderasiya notları
+      private_comment: Məxfi şərh
+      public_comment: Hər kəsə açıq şərh
       purge_description_html: Əgər bu domenin tamamilə oflayn olduğuna inanırsınızsa, deponuzdan bu domenə aid olan bütün hesab qeydlərini və əlaqəli veriləri silə bilərsiniz. Bu bir az vaxt aparacaq.
       totals_time_period_hint_html: Aşağıdakı cəmlərə bütün vaxtlardakı verilər daxildir.
     reports:
-      actions:
-        suspend_description_html: Hesab və onun bütün məzmunları əlçatmaz olacaq və nəticədə silinəcək və onunla əlaqə qurmaq mümkün olmayacaq. 30 gün ərzində geri qaytarıla bilər. Bu hesaba aid bütün hesabatları bağlayır.
       assigned: Təyin edilmiş moderator
+      comment_description_html: 'Daha çox bilgi təqdim etmək üçün %{name} bunu yazıb:'
       confirm_action: "@%{acct} üzərindəki moderasiya əməliyyatını təsdiqlə"
       notes_description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
       quick_actions_description_html: 'Cəld bir əməliyyat edin və ya bildirilən məzmuna baxmaq üçün aşağı diyirlərin:'
+      updated_at: Güncəlləndi
     roles:
       categories:
         moderation: Moderasiya
+      everyone: İlkin izinlər
+      permissions_count:
+        one: "%{count} izin"
+        other: "%{count} izin"
       privileges:
+        administrator_description: Bu iznə sahib istifadəçilər bütün izinləri yan keçə bilər
         delete_user_data: İstifadəçi verilərini sil
         delete_user_data_description: İstifadəçilərin, digər istifadəçilərin verilərini gecikmə olmadan silməsinə icazə verir
         manage_appeals_description: İstifadəçilərin moderasiya əməliyyatlarına etdiyi etirazları incələməsinə icazə verir
@@ -101,37 +144,105 @@ az:
         manage_taxonomies_description: İstifadəçilərin trend məzmunu incələməsinə və mövzu etiketləri ayarlarını güncəlləməsinə icazə verir
         manage_user_access: İstifadəçi erişimini idarə et
         manage_user_access_description: İstifadəçilərin, digər istifadəçilərin iki faktorlu kimlik doğrulamasını sıradan çıxartmasına, onların e-poçt ünvanlarını dəyişdirməsinə və onların parolunu sıfırlamasına icazə verir
-        manage_users_description: İstifadəçilərin digər istifadəçilərin detallarını görməsinə və onlara qarşı moderasiya əməliyyatlarını icra etməsinə icazə verir
+        manage_users_description: İstifadəçilərin digər istifadəçilərin ayrıntılarını görməsinə və onlara qarşı moderasiya əməliyyatlarını icra etməsinə icazə verir
         view_dashboard_description: İstifadəçilərin idarəetmə lövhəsinə və müxtəlif metriklərə erişməsinə icazə verir
         view_devops_description: İstifadəçilərin Sidekiq və pgHero idarəetmə lövhələrinə erişməsinə icazə verir
+    server_checks:
+      checks:
+        database_schema:
+          error:
+            title: Veri bazasının sxemini yoxlayarkən xəta baş verdi
+          ok:
+            title: Gözləmədə olan veri bazası miqrasiyası yoxdur
+          pending:
+            title: Gözləmədə olan veri bazası miqrasiyası var
+          running:
+            title: Serveriniz veri bazası sxemini yoxlayır
+          unprocessed:
+            title: Serveriniz hələ veri bazası sxemini yoxlamayıb
+        media_privacy:
+          ok:
+            title: Serverinizin media məxfiliyi təhlükəsizdir
+          pending:
+            lead:
+              upload_check_privacy_error_object_storage_html: Obyekt deponuz yanlış konfiqurasiya edilib
+            title: İstifadəçilərinizin məxfiliyi risk altındadır
+          running:
+            title: Server məxfilik statusunu yoxlayır
+          unprocessed:
+            title: Server məxfilik statusunu hələ yoxlamayıb
+        software_version:
+          error:
+            title: Yazılım güncəlləmələrini yoxlayarkən bir xəta baş verdi
+          running:
+            title: Server, gözləyən hər hansısa bir yazılım güncəlləməsi olub-olmadığını yoxlayır
+          unprocessed:
+            title: Server, yazılım güncəlləmələrini hələ yoxlamayıb
     settings:
+      about:
+        preamble: Serverin necə idarə olunduğu, moderasiya edildiyi və maliyyələşdirildiyi barədə ətraflı bilgi verin.
       appearance:
         title: Görünüş
+      content_retention:
+        preamble: İstifadəçilərin yaratdığı məzmunun Mastodon-da necə depolanacağına nəzarət edin.
       discovery:
         public_timelines: Ümumi zaman xətləri
         title: Kəşf et
+      external:
+        preamble: Serveriniz haqqında nə qədər bilginin digər xidmətlərlə paylaşılacağına və serverinizin nə dərəcədə aşkar edilə bilən olacağına nəzarət edin.
+        privacy: Məxfilik
+      landing_page:
+        hints:
+          about_html: Bu serverlə bağlı açıqlamanı, əlaqə bilgilərini, qaydaları və digər bilgiləri özündə əks etdirən səhifə.
       registrations:
         moderation_recommandation: Hər kəs üçün qeydiyyatı açmazdan əvvəl lütfən əmin olun ki, adekvat və reaktiv moderasiya komandanız var!
       registrations_mode:
         warning_hint: Moderasiya komandanızın spam və zərərli qeydiyyatları vaxtında idarə edə biləcəyinə əmin deyilsinizsə, “Qeydiyyat üçün təsdiq tələb olunur”dan istifadə etməyi tövsiyə edirik.
+      security:
+        authorized_fetch_overridden_hint: Bir ortam dəyişəni tərəfindən yararsız edildiyi üçün hazırda bu ayarı dəyişdirə bilməzsiniz.
       title: Server ayarları
+    software_updates:
+      critical_update: Kritik — lütfən cəld şəkildə güncəlləyin
+      title: Mövcud güncəlləmələr
     statuses:
       application: Tətbiq
       metadata: Meta veri
     system_checks:
+      database_schema_check:
+        message_html: Gözləmədə olan veri bazası miqrasiyaları var. Tətbiqin gözlənildiyi kimi işləməsi üçün lütfən onları çalışdırın
       elasticsearch_running_check:
         message_html: Elasticsearch-a bağlana bilmədi. Lütfən çalışdığına əmin olun və ya tam mətn axtarışını sıradan çıxardın
       elasticsearch_version_check:
         message_html: 'Uyumlu olmayan Elasticsearch versiyası: %{value}'
+      software_version_check:
+        action: Mövcud güncəlləmələrə bax
+        message_html: Bir Mastodon güncəlləməsi mövcuddur.
+      software_version_critical_check:
+        action: Mövcud güncəlləmələrə bax
+        message_html: Kritik bir Mastodon güncəlləməsi mövcuddur, lütfən mümkün qədər tez güncəlləyin.
+      software_version_patch_check:
+        action: Mövcud güncəlləmələrə bax
+        message_html: Mastodon üçün bir xəta düzəltmə güncəlləməsi mövcuddur.
+      upload_check_privacy_error:
+        action: Daha çox bilgi üçün buranı yoxlayın
       upload_check_privacy_error_object_storage:
+        action: Daha çox bilgi üçün buranı yoxlayın
         message_html: "<strong>Obyekt deponuz yanlış konfiqurasiya olunub. İstifadəçilərinizin məxfiliyi risk altındadır.</strong>"
     tags:
       updated_msg: Mövzu etiketi ayarları uğurla güncəlləndi
+    terms_of_service:
+      generates:
+        chance_to_review_html: "<strong>Tərtib olunmuş xidmət şərtləri avtomatik olaraq dərc olunmayacaq.</strong> Nəticələri incələmə şansınız olacaq. Davam etmək üçün lütfən gərəkli ayrıntıları qeyd edin."
+        explanation_html: Təqdim olunan xidmət şərtləri nümunəsi yalnız bilgi məqsədi daşıyır və heç bir məsələ ilə bağlı hüquqi məsləhət kimi qəbul edilməməlidir. Lütfən, öz vəziyyətiniz və konkret hüquqi suallarınızla bağlı şəxsi hüquq məsləhətçinizə müraciət edin.
+        title: Xidmət Şərtləri Qurulumu
     trends:
       tags:
         used_by_over_week:
           one: Keçən həftə bir nəfər istifadə etdi
           other: Keçən həftə %{count} nəfər istifadə etdi
+    update_available: Güncəlləmə mövcuddur
+    username_blocks:
+      updated_msg: İstifadəçi adı qaydası uğurla güncəlləndi
   admin_mailer:
     auto_close_registrations:
       body: Son vaxtlarda moderator fəaliyyətinin olmamasına görə, %{instance} üzərindəki qeydiyyatlar avtomatik olaraq manual yoxlanış tələb edəcək şəkildə dəyişdirilib, beləliklə %{instance} potensial zərərli aktyorlar tərəfindən istifadə edilən platforma çevrilməyəcək. İstənilən vaxt açıq qeydiyyat rejiminə qaytara bilərsiniz.
@@ -139,10 +250,17 @@ az:
       body: "%{target}, %{date} tarixində %{action_taken_by} tərəfindən verilmiş %{type} moderasiya qərarına etiraz edir. Yazılanlar:"
       next_steps: Moderasiya qərarını geri almaq üçün etirazı təsdiqləyə, ya da etirazı yox saya bilərsiniz.
       subject: "%{username}, %{instance} üzərindəki bir moderasiya qərarına etiraz edir"
+    new_pending_account:
+      body: Yeni hesabın ayrıntıları aşağıdadır. Bu müraciəti təsdiqləyə və ya rədd edə bilərsiniz.
+  aliases:
+    add_new: Təxəllüs yarat
+    created_msg: Yeni təxəllüs uğurla yaradıldı. Artıq köhnə hesabdan daşınma prosesini başlada bilərsiniz.
+    deleted_msg: Təxəllüs uğurla çıxarıldı. Həmin hesabdan bu hesaba daşıma prosesi artıq mümkün deyil.
+    empty: Təxəllüsünüz yoxdur.
+    remove: Təxəllüs əlaqələndirməsini yığışdır
   appearance:
     advanced_settings: Qabaqcıl ayarlar
     animations_and_accessibility: Animasiyalar və erişiləbilənlik
-    discovery: Kəşf et
     localization:
       guide_link_text: Hər kəs töhfə verə bilər.
     sensitive_content: Həssas məzmun
@@ -167,6 +285,8 @@ az:
     link_to_otp: Telefonunuzdan iki faktorlu kodu və ya bir geri qaytarma kodunu daxil edin
     migrate_account: Fərqli bir hesaba daşı
     migrate_account_html: Bu hesabı başqa bir hesaba yönləndirmək istəyirsinizsə, <a href="%{path}">burada konfiqurasiya edə</a> bilərsiniz.
+    progress:
+      details: Ayrıntılarınız
     resend_confirmation: Təsdiq keçidini təkrar göndər
     reset_password: Parolu sıfırla
     rules:
@@ -187,24 +307,33 @@ az:
       functional: Hesabınız tamamilə işləkdir.
       self_destruct: "%{domain} bağlandığı üçün, hesabınıza yalnız məhdud erişiminiz olacaq."
   author_attribution:
-    example_title: Nümunə mətn
+    example_title: Örnək mətn
   challenge:
     hint_html: "<strong>İpucu:</strong> Sonrakı bir saat ərzində sizdən parolu soruşmayacağıq."
     invalid_password: Yararsız parol
     prompt: Davam etmək üçün parolu təsdiqlə
   deletes:
+    challenge_not_passed: Daxil etdiyiniz bilgi doğru deyil
     confirm_password: Kimliyinizi doğrulamaq üçün hazırkı parolunuzu daxil edin
     proceed: Hesabı sil
     success_msg: Hesabınız uğurla silindi
     warning:
+      caches: Digər serverlər tərəfindən keşlənən məzmun qalıcı ola bilər
       data_removal: Göndərişləriniz və digər veriləriniz həmişəlik silinəcək
+      irreversible: Hesabınızı bərpa edə və ya təkrar aktivləşdirə bilməyəcəksiniz
+      more_details_html: Daha çox ayrıntı üçün <a href="%{terms_path}">məxfilik siyasətinə</a> baxın.
   email_subscription_mailer:
+    confirmation:
+      title: "%{name} göndərən e-poçt güncəlləmələri alınsın?"
     notification:
       footer:
         privacy_html: E-poçtlar, Mastodon tərəfindən dəstəklənən %{domain} serverindən göndərilir. Bu serverin fərdi verilərinizi necə emal etdiyini anlamaq üçün <a href="%{privacy_policy_path}">Məxfilik Siyasətinə</a> baxın.
+  errors:
+    '403': Bu səhifəyə baxmaq üçün izniniz yoxdur.
   exports:
     archive_takeout:
       hint_html: "<strong>Göndərişlərinizin və yüklədiyiniz medianın</strong> bir arxivini tələb edə bilərsiniz. Xaricə köçürülmüş verilər, istənilən uyumlu yazılım tərəfindən oxuna bilən ActivityPub formatında olacaq. Hər 7 gündə bir dəfə arxiv tələb edə bilərsiniz."
+      in_progress: Arxiviniz dərlənir...
     domain_blocks: Domen əngəlləmələri
     storage: Media deposu
   filters:
@@ -229,6 +358,7 @@ az:
   imports:
     errors:
       incompatible_type: Seçilmiş daxilə köçürmə növü ilə uyumlu deyil
+      no_data: Bu fayl, verilmiş daxilə köçürmə növü ilə uyuşan heç bir verini ehtiva etmir
     preface: Başqa serverdən xaricə köçürdüyünüz veriləri (məsələn, izlədiyiniz və ya əngəllədiyiniz insanların siyahısını) daxilə köçürə bilərsiniz.
     success: Veriləriniz uğurla yüklənib və zamanla emal olunacaq
     type_groups:
@@ -244,8 +374,10 @@ az:
       password: parol
     description_html: Əgər tanımadığınız bir fəaliyyəti görsəniz, parolunuzu dəyişdirməyi və iki faktorlu kimlik doğrulamanı fəallaşdırmağı düşünə bilərsiniz
   migrations:
+    errors:
+      missing_also_known_as: bu hesabın təxəllüsü deyil
     incoming_migrations: Fərqli bir hesabdan daşı
-    incoming_migrations_html: Başqa bir hesabdan bu hesaba daşımaq üçün əvvəlcə <a href="%{path}">bir hesab alias-ı yaratmalısınız</a>.
+    incoming_migrations_html: Başqa bir hesabdan bu hesaba daşımaq üçün əvvəlcə <a href="%{path}">bir hesab təxəllüsü yaratmalısınız</a>.
     proceed_with_move: İzləyiciləri daşı
     warning:
       disabled_account: Hazırkı hesabınız daha sonra istifadəyə yararsız olacaq. Ancaq, verilərin xaricə köçürülməsinə, həmçinin təkrar aktivləşdirmə prosesinə erişə biləcəksiniz.
@@ -266,6 +398,14 @@ az:
   preferences:
     posting_defaults: Göndəriş ilkin ayarları
     public_timelines: Ümumi zaman xətləri
+  privacy:
+    privacy: Məxfilik
+    search_hint_html: Sizi necə tapacaqlarına özünüz qərar verin. İnsanların sizi hər kəsə açıq şəkildə paylaşdıqlarınız vasitəsilə tapmaqlarını istəyirsiniz? Mastodon-dan kənardakı insanların internetdə axtarış edərkən profilinizi tapmasını istəyirsiniz? Nəzərə alın ki, hər kəsə açıq bilgilərin bütün axtarış sistemlərindən tamamilə silinməsinə zəmanət verilə bilməz.
+    title: Məxfilik və əlçatanlıq
+  privacy_policy:
+    title: Məxfilik Siyasəti
+  redirects:
+    prompt: Bu keçidə güvənirsinizsə, davam etmək üçün klikləyin.
   relationships:
     activity: Hesab fəaliyyəti
     confirm_follow_selected_followers: Seçilmiş izləyicləri izləmək istədiyinizə əminsiniz?
@@ -287,11 +427,14 @@ az:
   sessions:
     browsers:
       edge: Microsoft Edge
+    current_session: Hazırkı oturum
     explanation: Bunlar, hazırda Mastodon hesabınıza giriş etmiş veb brauzerlərdir.
-    title: Seanslar
+    revoke_success: Oturum uğurla ləğv edildi
+    title: Oturumlar
     view_authentication_history: Hesabınızın kimlik doğrulama tarixçəsinə baxın
   settings:
     account_settings: Hesab ayarları
+    aliases: Hesab təxəllüsləri
     appearance: Görünüş
     development: Gəlişdirmə
     export: Xaricə köçür
@@ -305,6 +448,7 @@ az:
   severed_relationships:
     lost_followers: İtirilən izləyicilər
     preamble: Bir domeni əngəllədiyiniz zaman və ya moderatorlarınız uzaq bir serverin fəaliyyətini dayandırmağa qərar verdiyi zaman izlədiklərinizi və izləyicilərinizi itirə bilərsiniz. Bu baş verdiyi zaman, kəsilmiş münasibətlərin bir siyahısını endirə, nəzərdən keçirə və bəlkə də başqa bir serverə köçürə biləcəksiniz.
+    purged: Bu server haqqında bilgilər serverinizin inzibatçıları tərəfindən silinib.
   statuses:
     boosted_from_html: "%{acct_link} üzərindən təkrar paylaşdı"
     default_language: İnterfeys dili ilə eyni
@@ -351,8 +495,13 @@ az:
       subject: "%{date} tarixli etirazınız təsdiqlənib"
       subtitle: Hesabınız yenidən normal vəziyyətdədir.
       title: Etiraz təsdiqlənib
+    failed_2fa:
+      details: 'Daxil olma cəhdi üçün ayrıntılar:'
+    sign_in_token:
+      details: 'Cəhdin ayrıntıları bunlardır:'
     suspicious_sign_in:
       change_password: parolu dəyişdir
+      details: 'Daxil olmaq üçün ayrıntılar:'
       subject: Hesabınıza yeni bir IP ünvanından erişildi
     terms_of_service_changed:
       title: Vacib güncəlləmə

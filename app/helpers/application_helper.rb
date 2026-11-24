@@ -157,13 +157,16 @@ module ApplicationHelper
     tag.meta(content: content, property: property)
   end
 
-  def html_attributes
+  def html_attributes(theme: nil)
+    theme ||= current_theme
+
     base = {
       lang: I18n.locale,
       class: html_classes,
       'data-contrast': contrast.parameterize,
       'data-color-scheme': page_color_scheme.parameterize,
-    }
+      'data-theme-color': page_theme_color(theme)&.parameterize,
+    }.compact
 
     base[:'data-system-theme'] = 'true' if page_color_scheme == 'auto'
 
@@ -234,9 +237,8 @@ module ApplicationHelper
     state_params[:owner] = Account.local.without_suspended.without_internal.first if single_user_mode?
 
     json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
-    # rubocop:disable Rails/OutputSafety
+    # rubocop:disable-next Rails/OutputSafety
     content_tag(:script, json_escape(json).html_safe, id: 'initial-state', type: 'application/json')
-    # rubocop:enable Rails/OutputSafety
   end
 
   def grouped_scopes(scopes)

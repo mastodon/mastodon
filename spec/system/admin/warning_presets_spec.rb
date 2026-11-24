@@ -24,6 +24,7 @@ RSpec.describe 'Admin Warning Presets' do
 
         # Invalid submission
         fill_in 'account_warning_preset_text', with: ''
+        select I18n.t('admin.warning_presets.dropdown.suspend')
         expect { submit_form }
           .to_not change(AccountWarningPreset, :count)
         expect(page)
@@ -31,6 +32,7 @@ RSpec.describe 'Admin Warning Presets' do
 
         # Valid submission
         fill_in 'account_warning_preset_text', with: 'You cant do that here'
+        select I18n.t('admin.warning_presets.dropdown.suspend')
         expect { submit_form }
           .to change(AccountWarningPreset, :count).by(1)
         expect(page)
@@ -51,11 +53,14 @@ RSpec.describe 'Admin Warning Presets' do
         # Invalid submission
         click_on account_warning_preset.text
         fill_in 'account_warning_preset_text', with: ''
+        select I18n.t('admin.warning_presets.dropdown.suspend')
+
         expect { submit_form }
           .to_not change(account_warning_preset.reload, :updated_at)
 
         # Valid update
         fill_in 'account_warning_preset_text', with: 'Updated text'
+        select I18n.t('admin.warning_presets.dropdown.suspend')
         expect { submit_form }
           .to(change { account_warning_preset.reload.text })
       end

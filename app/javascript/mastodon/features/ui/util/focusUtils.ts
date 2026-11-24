@@ -25,60 +25,33 @@ function findFirstVisibleWithRect(
   return null;
 }
 
-function focusColumnTitle(index: number, multiColumn: boolean) {
-  if (multiColumn) {
-    const column = document.querySelector(`.column:nth-child(${index})`);
-    if (column) {
-      column
-        .querySelector<HTMLAnchorElement>(
-          `#${getColumnSkipLinkId(index - 1)}, #${getNavigationSkipLinkId()}`,
-        )
-        ?.focus();
-    }
-  } else {
-    const idSelector =
-      index === 2
-        ? `#${getNavigationSkipLinkId()}`
-        : `#${getColumnSkipLinkId(1)}`;
-
-    document.querySelector<HTMLAnchorElement>(idSelector)?.focus();
-  }
-}
-
 /**
  * Move focus to the column of the passed index (1-based).
  * Focus is placed on the topmost visible item, or the column title.
  */
-export function focusColumn(index = 1) {
-  // Skip the leftmost drawer in multi-column mode
-  const isMultiColumnLayout = !!document.querySelector(
-    'body.layout-multiple-columns',
+export function focusFirstVisibleItemInColumn(columnIndex: number) {
+  const allColumns = Array.from(
+    document.querySelectorAll(`[data-column-root]`),
   );
-  const indexOffset = isMultiColumnLayout ? 1 : 0;
+  const column = allColumns[columnIndex - 1];
 
-  const column = document.querySelector(
-    `.column:nth-child(${index + indexOffset})`,
-  );
-
-  function fallback() {
-    focusColumnTitle(index + indexOffset, isMultiColumnLayout);
+  if (!column) {
     return false;
   }
 
-  if (!column) {
-    return fallback();
+  function fallback() {
+    focusColumn(columnIndex);
+    return false;
   }
 
-  const container = column.querySelector('.scrollable');
+  const itemContainer = column.querySelector('.scrollable');
 
-  if (!container) {
+  if (!itemContainer) {
     return fallback();
   }
 
   const focusableItems = Array.from(
-    container.querySelectorAll<HTMLElement>(
-      '.focusable:not(.status__quote .focusable)',
-    ),
+    itemContainer.querySelectorAll<HTMLElement>('.focusable'),
   );
 
   // Find first item visible in the viewport
@@ -92,12 +65,18 @@ export function focusColumn(index = 1) {
     window.innerWidth || document.documentElement.clientWidth;
   const { item, rect } = itemToFocus;
 
+  const isMultiColumnLayout = !!document.querySelector(
+    'body.layout-multiple-columns',
+  );
   const scrollParent = isMultiColumnLayout
-    ? container
+    ? itemContainer
     : document.documentElement;
+
   const columnHeaderHeight =
     parseInt(
-      getComputedStyle(scrollParent).getPropertyValue('--column-header-height'),
+      getComputedStyle(scrollParent).getPropertyValue(
+        '--current-column-header-height',
+      ),
     ) || 0;
 
   if (
@@ -108,6 +87,23 @@ export function focusColumn(index = 1) {
     itemToFocus.item.scrollIntoView(true);
   }
   itemToFocus.item.focus();
+  return true;
+}
+
+/**
+ * Move focus to the column of the passed index (1-based).
+ * Focus is placed on the topmost visible item, or the column title.
+ */
+export function focusColumn(index = 1) {
+  const idToFocus =
+    index === 1 ? getNavigationSkipLinkId() : getColumnSkipLinkId(index - 1);
+  const title = document.querySelector<HTMLElement>(`#${idToFocus}`);
+
+  if (!title) {
+    return false;
+  }
+
+  title.focus();
   return true;
 }
 
@@ -129,11 +125,13 @@ export function getFocusedItemIndex() {
  * Get the index of the column that contains the user's focus
  */
 export function getFocusedColumnIndex() {
-  const columnWithFocus = document.activeElement?.closest('.column');
+  const columnWithFocus = document.activeElement?.closest('[data-column-root]');
 
   if (!columnWithFocus) return 1;
 
-  const allColumns = Array.from(document.querySelectorAll('.column'));
+  const allColumns = Array.from(
+    document.querySelectorAll('[data-column-root]'),
+  );
   return allColumns.indexOf(columnWithFocus) + 1;
 }
 
@@ -182,7 +180,6 @@ export function focusItemSibling(index: number, direction: 1 | -1) {
   if (!targetElement && siblingItem.matches('.load-more')) {
     targetElement = siblingItem;
   }
-
   // If sibling element is empty, we skip it
   if (!targetElement || siblingItem.matches(':empty')) {
     return focusItemSibling(index + direction, direction);
@@ -209,7 +206,7 @@ function focusListSibling(direction: 1 | -1) {
   }
 
   // Get all item lists in the current column or page
-  const currentColumn = container.closest('.column') ?? document;
+  const currentColumn = container.closest('[data-column-root]') ?? document;
 
   const columnItemLists = Array.from(
     currentColumn.querySelectorAll('.item-list'),

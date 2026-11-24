@@ -40,6 +40,7 @@ module Account::Associations
         has_many :statuses
         has_many :keypairs
         has_many :email_subscriptions
+        has_many :generated_annual_reports
 
         has_one :deletion_request, class_name: 'AccountDeletionRequest'
         has_one :follow_recommendation_suppression
@@ -77,5 +78,8 @@ module Account::Associations
 
     # BulkImport records owned by account
     has_many :bulk_imports, inverse_of: :account, dependent: :delete_all
+
+    # Bloom filter for reach (servers knowing about that actor)
+    has_one :reach_filter, class_name: 'AccountReachFilter', inverse_of: :account, dependent: :destroy
   end
 end

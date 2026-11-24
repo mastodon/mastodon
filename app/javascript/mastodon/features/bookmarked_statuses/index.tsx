@@ -5,8 +5,11 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
-import BookmarksIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
+import {
+  ColumnHeader,
+  ColumnSettingsMenu,
+} from '@/mastodon/components/column_header';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 import {
   fetchBookmarkedStatuses,
   expandBookmarkedStatuses,
@@ -18,6 +21,7 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
   heading: { id: 'column.bookmarks', defaultMessage: 'Bookmarks' },
+  heading_redesign: { id: 'column.saved_posts', defaultMessage: 'Saved Posts' },
 });
 
 const Bookmarks: React.FC<{
@@ -75,14 +79,21 @@ const Bookmarks: React.FC<{
       label={intl.formatMessage(messages.heading)}
     >
       <ColumnHeader
-        icon='bookmarks'
-        iconComponent={BookmarksIcon}
-        title={intl.formatMessage(messages.heading)}
-        onPin={handlePin}
-        onMove={handleMove}
-        pinned={pinned}
-        multiColumn={multiColumn}
-        scrollTopOnClick
+        title={intl.formatMessage(messages.heading_redesign)}
+        withBackButton={multiColumn && !pinned && 'auto'}
+        extraButtons={
+          multiColumn && (
+            <ColumnSettingsMenu
+              labelPrefix={intl.formatMessage(messages.heading_redesign)}
+            >
+              <MultiColumnMenuItems
+                pinned={pinned}
+                onPin={handlePin}
+                onMove={handleMove}
+              />
+            </ColumnSettingsMenu>
+          )
+        }
       />
 
       <StatusList
@@ -98,7 +109,7 @@ const Bookmarks: React.FC<{
       />
 
       <Helmet>
-        <title>{intl.formatMessage(messages.heading)}</title>
+        <title>{intl.formatMessage(messages.heading_redesign)}</title>
         <meta name='robots' content='noindex' />
       </Helmet>
     </Column>

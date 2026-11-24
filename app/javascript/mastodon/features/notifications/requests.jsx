@@ -8,7 +8,6 @@ import { Helmet } from '@unhead/react/helmet';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ArrowDropDownIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';
-import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import {
@@ -17,17 +16,15 @@ import {
   acceptNotificationRequests,
   dismissNotificationRequests,
 } from 'mastodon/actions/notification_requests';
-import { changeSetting } from 'mastodon/actions/settings';
 import { CheckBox } from 'mastodon/components/check_box';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { Dropdown } from 'mastodon/components/dropdown_menu';
 
 import { NotificationRequest } from './components/notification_request';
-import { PolicyControls } from './components/policy_controls';
-import SettingToggle from './components/setting_toggle';
+import { ColumnHeader, ColumnHeaderButton } from '@/mastodon/components/column_header';
+import { GearIcon } from '@phosphor-icons/react';
 
 const messages = defineMessages({
   title: { id: 'notification_requests.title', defaultMessage: 'Filtered notifications' },
@@ -42,38 +39,6 @@ const messages = defineMessages({
   confirmDismissMultipleMessage: { id: 'notification_requests.confirm_dismiss_multiple.message', defaultMessage: "You are about to dismiss {count, plural, one {one notification request} other {# notification requests}}. You won't be able to easily access {count, plural, one {it} other {them}} again. Are you sure you want to proceed?" },
   confirmDismissMultipleButton: { id: 'notification_requests.confirm_dismiss_multiple.button', defaultMessage: '{count, plural, one {Dismiss request} other {Dismiss requests}}' },
 });
-
-const ColumnSettings = () => {
-  const dispatch = useDispatch();
-  const settings = useSelector((state) => state.settings.get('notifications'));
-
-  const onChange = useCallback(
-    (key, checked) => {
-      dispatch(changeSetting(['notifications', ...key], checked));
-    },
-    [dispatch],
-  );
-
-  return (
-    <div className='column-settings'>
-      <section>
-        <div className='column-settings__row'>
-          <SettingToggle
-            prefix='notifications'
-            settings={settings}
-            settingPath={['minimizeFilteredBanner']}
-            onChange={onChange}
-            label={
-              <FormattedMessage id='notification_requests.minimize_banner' defaultMessage='Minimize filtered notifications banner' />
-            }
-          />
-        </div>
-      </section>
-
-      <PolicyControls />
-    </div>
-  );
-};
 
 const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionMode, setSelectionMode}) => {
   const intl = useIntl();
@@ -133,7 +98,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
         direction='right'
         title={intl.formatMessage(messages.more)}
       >
-        <button className='dropdown-button column-header__select-row__select-menu' disabled={selectedItems.length === 0}>
+        <button type='button' className='dropdown-button column-header__select-row__select-menu' disabled={selectedItems.length === 0}>
           <span className='dropdown-button__label'>
             {selectedCount} selected
           </span>
@@ -141,7 +106,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
         </button>
       </Dropdown>
       <div className='column-header__select-row__mode-button'>
-        <button className='text-btn' tabIndex={0} onClick={handleToggleSelectionMode}>
+        <button type='button' className='text-btn' tabIndex={0} onClick={handleToggleSelectionMode}>
           {selectionMode ? (
             <FormattedMessage id='notification_requests.exit_selection' defaultMessage='Done' />
           ) :
@@ -207,22 +172,34 @@ export const NotificationRequests = ({ multiColumn }) => {
     dispatch(fetchNotificationRequests());
   }, [dispatch]);
 
+  const openNotificationRequestsSettings = useCallback(() => {
+    dispatch(
+      openModal({
+        modalType: 'NOTIFICATION_REQUESTS_SETTINGS',
+        modalProps: {},
+      }),
+    );
+  }, [dispatch]);
+
+  const selectionRow = notificationRequests.length > 0 && (
+    <SelectRow selectionMode={selectionMode} setSelectionMode={setSelectionMode} selectAllChecked={selectAllChecked} toggleSelectAll={toggleSelectAll} selectedItems={checkedRequestIds} />
+  );
+
   return (
     <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
-        icon='archive'
-        iconComponent={InventoryIcon}
+        withBackButton
         title={intl.formatMessage(messages.title)}
-        multiColumn={multiColumn}
-        showBackButton
-        scrollTopOnClick
-        appendContent={
-          notificationRequests.length > 0 && (
-            <SelectRow selectionMode={selectionMode} setSelectionMode={setSelectionMode} selectAllChecked={selectAllChecked} toggleSelectAll={toggleSelectAll} selectedItems={checkedRequestIds} />
-          )}
-      >
-        <ColumnSettings />
-      </ColumnHeader>
+        extraButtons={
+          <ColumnHeaderButton icon={GearIcon} onClick={openNotificationRequestsSettings}>
+              <FormattedMessage
+                id='notifications.settings'
+                defaultMessage='Notification Settings'
+              />
+          </ColumnHeaderButton>
+        }
+        extraStickyContent={selectionRow}
+      />
 
       <ScrollableList
         scrollKey='notification_requests'

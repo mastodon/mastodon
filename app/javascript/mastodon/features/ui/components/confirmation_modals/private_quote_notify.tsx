@@ -2,10 +2,10 @@ import { forwardRef, useCallback, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { submitCompose } from '@/mastodon/actions/compose';
 import { PRIVATE_QUOTE_MODAL_ID } from '@/mastodon/actions/compose_typed';
 import { changeSetting } from '@/mastodon/actions/settings';
 import { CheckBox } from '@/mastodon/components/check_box';
+import { submitComposer } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch } from '@/mastodon/store';
 
 import { ConfirmationModal } from './confirmation_modal';
@@ -51,7 +51,7 @@ export const PrivateQuoteNotify = forwardRef<
 
     const dispatch = useAppDispatch();
     const handleConfirm = useCallback(() => {
-      dispatch(submitCompose());
+      dispatch(submitComposer({ force: true }));
       if (dismiss) {
         dispatch(
           changeSetting(['dismissed_banners', PRIVATE_QUOTE_MODAL_ID], true),

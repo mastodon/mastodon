@@ -1,11 +1,12 @@
-import { useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import { IconButton } from 'mastodon/components/icon_button';
-import type { CollectionLockupProps } from 'mastodon/features/collections/components/collection_lockup';
-import { CollectionLockup } from 'mastodon/features/collections/components/collection_lockup';
+import { XIcon } from '@phosphor-icons/react';
+
+import { IconButton } from '@/mastodon/components/button';
+import type { CollectionLockupProps } from '@/mastodon/features/collections/components/collection_lockup';
+import { CollectionLockup } from '@/mastodon/features/collections/components/collection_lockup';
 
 import classes from './collection_preview_card.module.scss';
 
@@ -18,18 +19,14 @@ export const CollectionPreviewCard: React.FC<CollectionPreviewCardProps> = ({
   onRemove,
   ...otherProps
 }) => {
-  const intl = useIntl();
   const removeButton = onRemove && (
     <IconButton
-      icon='remove'
-      iconComponent={CloseIcon}
+      icon={XIcon}
       onClick={onRemove}
-      title={intl.formatMessage({
-        id: 'tag.remove',
-        defaultMessage: 'Remove',
-      })}
       className={classes.removeButton}
-    />
+    >
+      <FormattedMessage id='tag.remove' defaultMessage='Remove' />
+    </IconButton>
   );
 
   return (

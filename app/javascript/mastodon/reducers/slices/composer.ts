@@ -1,21 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAction } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { isList } from 'immutable';
+
+import { length } from 'stringz';
 
 import {
   changeCompose,
+  clearComposeSuggestions,
+  COMPOSE_DIRECT,
+  COMPOSE_FOCUS,
+  COMPOSE_MENTION,
+  COMPOSE_REPLY,
+  COMPOSE_SET_STATUS,
+  COMPOSE_UPLOAD_REQUEST,
   directCompose,
-  replyComposeById,
   resetCompose,
   submitCompose,
 } from '@/mastodon/actions/compose';
 import {
   changeComposeVisibility,
   PRIVATE_QUOTE_MODAL_ID,
+  replyComposeById,
 } from '@/mastodon/actions/compose_typed';
 import { openModal } from '@/mastodon/actions/modal';
+import { REDRAFT } from '@/mastodon/actions/statuses';
 import type {
   ApiStatusJSON,
   StatusVisibility,
 } from '@/mastodon/api_types/statuses';
+import { countableText } from '@/mastodon/features/compose/util/counter';
 import {
   createAppSelector,
   createAppThunk,
@@ -29,20 +42,33 @@ export function getComposerTextarea() {
   }
   return null;
 }
-export function focusComposerTextarea() {
-  getComposerTextarea()?.focus();
+export interface ComposerTextareaSelection {
+  start: number;
+  end: number;
+}
+
+interface PendingFocus {
+  selection: ComposerTextareaSelection | null;
 }
 
 type DisplayState = 'hidden' | 'showing' | 'minimized';
 
-export type ComposeType = 'post' | 'message' | 'reply';
+export type ComposeType = 'post' | 'message' | 'reply' | 'replyPrivate';
+
+export type ComposerPublishError = 'empty' | 'too-long';
 
 interface ComposerState {
   displayState: DisplayState;
+  pendingFocus: PendingFocus | null;
+  publishErrors: ComposerPublishError[];
+  initialText: string;
 }
 
 const initialState: ComposerState = {
   displayState: 'hidden',
+  pendingFocus: null,
+  publishErrors: [],
+  initialText: '',
 };
 
 const composerSlice = createSlice({
@@ -56,14 +82,118 @@ const composerSlice = createSlice({
       state.displayState =
         state.displayState === 'showing' ? 'minimized' : 'showing';
     },
+    minimizeComposer(state) {
+      state.displayState = 'minimized';
+    },
     hideComposer(state) {
       state.displayState = 'hidden';
     },
+    requestFocus(
+      state,
+      action: PayloadAction<ComposerTextareaSelection | undefined>,
+    ) {
+      state.pendingFocus = { selection: action.payload ?? null };
+    },
+    clearPendingFocus(state) {
+      state.pendingFocus = null;
+    },
+    addError(state, action: PayloadAction<ComposerPublishError>) {
+      if (!state.publishErrors.includes(action.payload)) {
+        state.publishErrors.push(action.payload);
+      }
+      state.pendingFocus = { selection: null };
+    },
+    clearErrors(
+      state,
+      action: PayloadAction<ComposerPublishError[] | undefined>,
+    ) {
+      const errorsToClear = action.payload;
+      if (errorsToClear) {
+        state.publishErrors = state.publishErrors.filter(
+          (existingError) => !errorsToClear.includes(existingError),
+        );
+      } else {
+        state.publishErrors = [];
+      }
+    },
+    setInitialText(
+      state,
+      action: PayloadAction<
+        { text: string } & Partial<ComposerTextareaSelection>
+      >,
+    ) {
+      const { text, start = text.length, end = text.length } = action.payload;
+      state.initialText = text;
+      state.pendingFocus = { selection: { start, end } };
+    },
+    reset(state) {
+      state.pendingFocus = null;
+      state.publishErrors = [];
+      state.initialText = '';
+    },
+  },
+  extraReducers(builder) {
+    builder.addMatcher(
+      (action) =>
+        isAction(action) &&
+        [
+          COMPOSE_REPLY,
+          COMPOSE_FOCUS,
+          COMPOSE_MENTION,
+          COMPOSE_DIRECT,
+          COMPOSE_SET_STATUS,
+          COMPOSE_UPLOAD_REQUEST,
+          REDRAFT,
+        ].includes(action.type),
+      (state) => {
+        state.displayState = 'showing';
+      },
+    );
   },
 });
 
 export const composer = composerSlice.reducer;
-export const { minimizeComposerToggle } = composerSlice.actions;
+
+export const {
+  minimizeComposer,
+  requestFocus: requestComposerFocus,
+  clearPendingFocus: clearComposerFocusRequest,
+  clearErrors: clearComposerErrors,
+} = composerSlice.actions;
+
+export const initializeComposer = createAppThunk(
+  (
+    arg:
+      | { noSelect?: boolean; selectAfterFirstSpace?: boolean }
+      | undefined = {},
+    { getState, dispatch },
+  ) => {
+    const text = getState().compose.get('text', '') as string;
+
+    let start = text.length;
+    let end = text.length;
+    if (arg.noSelect) {
+      start = 0;
+      end = 0;
+    }
+    if (arg.selectAfterFirstSpace) {
+      start = text.search(/\s/) + 1;
+    }
+
+    dispatch(composerSlice.actions.setInitialText({ text, start, end }));
+  },
+);
+
+export const minimizeComposerToggle = createAppThunk(
+  (_arg, { dispatch, getState }) => {
+    dispatch(composerSlice.actions.minimizeComposerToggle());
+
+    const displayState = getState().composer.displayState;
+    if (displayState !== 'showing') {
+      dispatch(clearComposeSuggestions());
+    }
+  },
+);
 
 export const selectComposerIsChanged = createAppSelector(
   [
@@ -76,9 +206,18 @@ export const selectComposerIsChanged = createAppSelector(
         'media_attachments',
       ) as unknown as Immutable.List<unknown>,
     (state) => Number(state.compose.get('pending_media_attachments')),
+    (state) => state.composer.initialText,
   ],
-  (text, spoilerText, hasPoll, hasQuote, attachments, pendingAttachmentsNum) =>
-    text.trim().length > 0 ||
+  (
+    text,
+    spoilerText,
+    hasPoll,
+    hasQuote,
+    attachments,
+    pendingAttachmentsNum,
+    initialText,
+  ) =>
+    text !== initialText ||
     spoilerText.trim().length > 0 ||
     hasPoll ||
     hasQuote ||
@@ -104,8 +243,12 @@ type ComposeNewPayload = (
 ) & { force?: boolean };
 
 export const openNewComposer = createAppThunk(
-  (payload: ComposeNewPayload, { dispatch, getState }) => {
-    if (!payload.force && selectComposerIsChanged(getState())) {
+  (payload: ComposeNewPayload | undefined = {}, { dispatch, getState }) => {
+    // Always show the composer if it is closed or minimized.
+    dispatch(composerSlice.actions.showComposer());
+
+    const isChanged = selectComposerIsChanged(getState());
+    if (!payload.force && isChanged) {
       dispatch(
         openModal({
           modalType: 'COMPOSER_DRAFT_DELETE',
@@ -117,7 +260,11 @@ export const openNewComposer = createAppThunk(
       return;
     }
 
+    // Reset but don't hide.
+    dispatch(composerSlice.actions.reset());
     dispatch(resetCompose());
+    dispatch(clearComposeSuggestions());
+
     if (payload.type === 'message') {
       const account =
         !!payload.toAccountId && getState().accounts.get(payload.toAccountId);
@@ -125,53 +272,52 @@ export const openNewComposer = createAppThunk(
         dispatch(directCompose(account));
       } else {
         dispatch(changeComposeVisibility('direct'));
+        dispatch(requestComposerFocus());
       }
     } else if (payload.type === 'reply') {
-      dispatch(replyComposeById(payload.toStatusId));
+      dispatch(replyComposeById({ statusId: payload.toStatusId }));
+    } else {
+      dispatch(requestComposerFocus());
     }
-    dispatch(composerSlice.actions.showComposer());
-
-    // Delay for a frame to ensure the DOM has updated.
-    requestAnimationFrame(() => {
-      focusComposerTextarea();
-    });
   },
 );
 
 export const resetComposer = createAppThunk((_arg, { dispatch }) => {
+  dispatch(composerSlice.actions.reset());
   dispatch(composerSlice.actions.hideComposer());
   dispatch(resetCompose());
+  dispatch(clearComposeSuggestions());
 });
 
 export const closeComposer = createAppThunk((_arg, { getState, dispatch }) => {
   const isChanged = selectComposerIsChanged(getState());
 
-  if (!isChanged) {
-    dispatch(resetComposer());
-  } else {
+  if (isChanged) {
     dispatch(
       openModal({
         modalType: 'COMPOSER_DRAFT_DELETE',
         modalProps: {},
       }),
     );
-  }
-});
-
-export const newComposer = createAppThunk((_arg, { getState, dispatch }) => {
-  const isChanged = selectComposerIsChanged(getState());
-
-  if (!isChanged) {
-    dispatch(resetComposer());
   } else {
-    dispatch(
-      openModal({
-        modalType: 'COMPOSER_DRAFT_DELETE',
-        modalProps: {},
-      }),
-    );
+    dispatch(resetComposer());
   }
 });
+
+/**
+ * Closes the composer if it's empty, otherwise minimises it
+ */
+export const closeOrMinimizeComposer = createAppThunk(
+  (_arg, { getState, dispatch }) => {
+    const isChanged = selectComposerIsChanged(getState());
+
+    if (isChanged) {
+      dispatch(minimizeComposer());
+    } else {
+      dispatch(closeComposer());
+    }
+  },
+);
 
 export const selectIsMinimized = createAppSelector(
   [(state) => state.composer.displayState],
@@ -180,7 +326,7 @@ export const selectIsMinimized = createAppSelector(
 
 export const submitComposer = createAppThunk(
   (
-    { redirectOnSuccess }: { redirectOnSuccess?: boolean },
+    arg: undefined | { redirectOnSuccess?: boolean; force?: boolean } = {},
     { getState, dispatch },
   ) => {
     const textareaValue = getComposerTextarea()?.value;
@@ -191,7 +337,31 @@ export const submitComposer = createAppThunk(
       dispatch(changeCompose(textareaValue));
     }
 
-    const { compose, meta, statuses, settings } = getState();
+    const { compose, meta, statuses, server, settings } = getState();
+
+    const text =
+      (compose.get('text') as string) + (compose.get('spoiler_text') as string);
+
+    const attachments = compose.get('media_attachments');
+    if (!text.trim() && isList(attachments) && attachments.isEmpty()) {
+      dispatch(composerSlice.actions.addError('empty'));
+    }
+
+    const maxChars =
+      server.server.item?.configuration.statuses.max_characters ?? 500;
+    const textLength = length(countableText(text));
+    if (textLength > maxChars) {
+      dispatch(composerSlice.actions.addError('too-long'));
+    }
+
+    // We need to get a fresh state to detect the dispatched errors.
+    const {
+      composer: { publishErrors },
+    } = getState();
+    if (publishErrors.length > 0) {
+      return;
+    }
+
     const privacy = compose.get('privacy') as StatusVisibility;
     const missingAltText = (
       compose.get('media_attachments') as unknown as Immutable.List<
@@ -210,10 +380,13 @@ export const submitComposer = createAppThunk(
       statuses.getIn([quotedStatusId, 'account']) !== me &&
       !settings.getIn(['dismissed_banners', PRIVATE_QUOTE_MODAL_ID]);
 
+    const { force, redirectOnSuccess } = arg;
+
     if (
       !!meta.get('missing_alt_text_modal') &&
       missingAltText &&
-      privacy !== 'direct'
+      privacy !== 'direct' &&
+      !force
     ) {
       dispatch(
         openModal({
@@ -221,7 +394,7 @@ export const submitComposer = createAppThunk(
           modalProps: {},
         }),
       );
-    } else if (quoteToPrivate) {
+    } else if (quoteToPrivate && !force) {
       dispatch(
         openModal({
           modalType: 'CONFIRM_PRIVATE_QUOTE_NOTIFY',
@@ -234,6 +407,8 @@ export const submitComposer = createAppThunk(
           if (redirectOnSuccess) {
             window.location.assign(status.url);
           }
+
+          dispatch(resetComposer());
         }),
       );
     }

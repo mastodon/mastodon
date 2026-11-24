@@ -11,7 +11,6 @@ The following instructions will guide you through the process of setting up a lo
 
 There are instructions for these environments:
 
-- [Vagrant](#vagrant)
 - [macOS](#macos)
 - [Linux](#linux)
 - [Docker](#docker)
@@ -19,18 +18,6 @@ There are instructions for these environments:
 - [GitHub Codespaces](#github-codespaces)
 
 Once completed, continue with the [Next steps](#next-steps) section below.
-
-### Vagrant
-
-A **Vagrant** configuration is included for development purposes. To use it,
-complete the following steps:
-
-- Install Vagrant and Virtualbox
-- Install the `vagrant-hostsupdater` plugin:
-  `vagrant plugin install vagrant-hostsupdater`
-- Run `vagrant up`
-- Run `vagrant ssh -c "cd /vagrant && bin/dev"`
-- Open `http://mastodon.local` in your browser
 
 ### macOS
 
@@ -94,6 +81,14 @@ development environment configured with the software needed for this project.
 - Log in as the default admin user with the username `admin@mastodon.local` or `admin@localhost` (depending on your setup) and the password `mastodonadmin`.
 - Check out the [Mastodon docs] for tips on working with emails in development (you'll need this when creating new user accounts) as well as a list of useful commands for testing and updating your dev instance.
 - You can optionally populate your database with sample data by running `bin/rails dev:populate_sample_data`. This will create a `@showcase_account` account with various types of contents.
+
+## Automated tests
+
+The unit tests can be run as follows:
+
+```
+RAILS_ENV=test bin/rspec
+```
 
 [codespace]: https://codespaces.new/mastodon/mastodon?quickstart=1&devcontainer_path=.devcontainer%2Fcodespaces%2Fdevcontainer.json
 [CONTRIBUTING]: ../CONTRIBUTING.md

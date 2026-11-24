@@ -2,7 +2,200 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.7.0] - UNRELEASED
+## [5.0.0] - UNRELEASED
+
+### New web interface
+
+**Mastodon has a new look!**
+
+This version contains a redesign of Mastodon's web interface. This includes a refreshed visual design (with a new color theme setting to personalise it further), a new page layout and a new composer.
+
+This is only the start of the journey and this version is laying out the basis for many new things to come.
+
+You can read all about it in our [dedicated blog post](https://blog.joinmastodon.org/2026/10/5.0-a-closer-look/).
+
+### Added
+
+- Add ability to opt out of interaction stats in feeds (#41561 by @ClearlyClaire)
+- Add admin setting for customizing robots.txt, and add more AI user agents to the default one (#41496 by @Gargron)
+- Add [schema.org](http://schema.org/) markup to SEO-enabled profiles and replies (#41505 and #41656 by @Gargron)
+- Add collection limits to `/api/v2/instance` (#41680 by @oneiros)
+- Add a setting to pick a color theme for the web interface (#41088, #41094, #41153 by @diondiondion and @ClearlyClaire)
+- Add a user setting to have the Content Warning field on by default (#40824 by @ClearlyClaire)
+- Add a user setting to hide your own posts and boosts (#40813 and #40867 by @arte7)
+  - Your own boosts are now hidden by default.
+- Add ability to follow hashtag from the menu (#40640 by @ChaosExAnima)
+- **Add new Server Health admin page** (#41101 and #41282 by @jhbabon)
+- **Add bloom filters to limit which servers account deletion notices are sent to** (#40283 by @ClearlyClaire)
+  - This heavily reduces the number of deletion notices sent to other servers by storing the list of servers which fetched an account in a bloom filter. This is strongly recommended on large servers which regularly delete many accounts as it heavily decreases the number of federation Delete activities. This feature introduces a new setting to require signed requests for accounts in order to know where the request comes from.
+- Add server setting to postpone confirmation emails after accounts are approved (#40690, #40702, #41099 by @ClearlyClaire)
+- Add `DISABLE_ANNOUNCEMENT_REACTIONS` environment variable to disable emoji reactions in announcements (#40931 by @ClearlyClaire)
+- Add `RACK_COMPRESS` env to enable `Rack::Deflater` middleware (#39927 by @shleeable)
+- Add server directory and default server opt-in options (#40750 by @arte7)
+- Add new tab to server settings for external discovery (#40768 by @arte7)
+- Add moderation domain block/allow list synchronization feature (#40136, #41349 by @ClearlyClaire and @zunda)
+  - In this version, this is behind an experimental feature flag to allow us to gather feedback and test it in the real world. We expect this to be stable and enabled for all servers in our next release.
+- Add the app used for registration in the moderation view of an account (#40567 by @jhbabon)
+- Add canned response (formerly warning presets) categories to restrict them to a specific action (#41092, #41264 by @arte7)
+- Add information about who handled an appeal in moderation interface (#41186, #41427 by @arte7 and @ClearlyClaire)
+- Add information about trends and follow recommendation blocks in the account moderation page (#40398 by @jhbabon)
+- Add support for verifying ML-DSA-44 HTTP Message Signatures (#41119 by @ClearlyClaire)
+- Add support for signing-up through the OAuth flow (#40659 by @ClearlyClaire)
+  - You can read more about the new flow [in our documentation](https://docs.joinmastodon.org/methods/oauth/#authorize). The previous registration flow (`POST /api/v1/accounts`) is deprecated and will be removed in a future version.
+- Add `allow_nonfunctional` parameter to `GET /api/v1/accounts/verify_credentials` (#40803 by @ClearlyClaire)
+- Add server-side filtering to home feed endpoint (#40468, #41031 by @ClearlyClaire and @cacheflow)
+- Add counters to track which features result in users following each other (#40226, #40258, #40340 by @Gargron)
+
+### Fixed
+
+- Fix image thumbnail URLs in RSS feed items (#40964 by @cweiske)
+- Fix terms of service and privacy policy API failing on percent signs (#41343 by @dualfroz)
+- Fix size of date-of-birth input fields (#41021 by @ClearlyClaire)
+- Fix invisible links in server announcements (#40949 by @diondiondion)
+- Fixes infinite requests loop on hovering over broken emojis (#40884 by @FFederi)
+- Fix HTTP 200 response code on paths to remote accounts that don't exist (#40341 by @Gargron)
+- Fix performance of media attachment queries in admin instance page (#40515 by @crafkaz)
+- Fix deprecated nginx HTTP/2 directive (#36149 by @sirodoht)
+- Fix typo in new locales for admin account trending info (#40438 by @jhbabon)
+- Fix follows and followers pages to show "Today" instead of hours (#40367 by @FFederi)
+- Fix long dropdown menus being cut off on smaller screens (#41026 by @diondiondion)
+- Fix the moderation interface to allow seeing media reports of suspended accounts (#40274 by @jhbabon)
+
+### Changed
+
+- Change 2FA to allow Webauthn without requiring TOTP (#41608 by @nicolastemciuc, @santiagorodriguez96 and @ClearlyClaire)
+- Change moderation report quick actions (#41346 by @arte7)
+- Change authentication errors to return HTTP 422 instead of HTTP 200 (#41503 by @ClearlyClaire)
+- Change account confirmation e-mail to not redirect to app (#41066 and #41181 by @ClearlyClaire and @oneiros)
+- Change empty search requests to return a HTTP 400 error (#40196 and #40214 by @Gargron)
+- Change warning presets to canned responses and move the navigation item (#41045 by @arte7)
+- Change FASP configuration to individual toggles for capabilities (#40764 and #40787 by @oneiros)
+- Change the web interface to check media attachment size limit before uploading (#30475 by @rgroothuijsen)
+
+### Removed
+
+- Remove reference to deprecated TOR setup in docker compose (#41559 by @mjankowski)
+- Remove vagrant support (#41519 by @mjankowski)
+- Remove discovery area in settings (#41258 by @ChaosExAnima)
+- Remove deprecated `tootctl accounts fix-duplicate` command (#40232 by @ClearlyClaire)
+- Remove support for node version 22 (#41152 by @mjankowski)
+- Remove support for ruby 3.3 and 3.4, only support a single version (#40603 by @mjankowski)
+- Remove support for pre-4.7 zero-downtime migrations (#40235 by @ClearlyClaire)
+
+## [4.7.6] - 2026-11-19
+
+### Security
+
+- Updated dependencies `ruby`, `puma`, `rails`, `sanitize`, `msgpack` and `omniauth`
+
+### Fixed
+
+- Fix missing `featuredCollections` definition to JSON-LD context (#41728 by @oneiros)
+- Fix improper use of translation strings in email notification unsubscription page (#41555 by @ClearlyClaire)
+- Fix missing dropdown label in admin audit log (#41301 by @e-nomem)
+
+## [4.7.5] - 2026-11-03
+
+### Security
+
+- Fix password authentication bypass for inactive accounts ([GHSA-3xjw-gv43-3w62](https://github.com/mastodon/mastodon/security/advisories/GHSA-3xjw-gv43-3w62))
+- Fix DoS through JSON-LD compaction (#41482 by @ClearlyClaire, [GHSA-cf49-73r7-rxj6](https://github.com/mastodon/mastodon/security/advisories/GHSA-cf49-73r7-rxj6))
+- Fix `Forwarded` header taking precedence over `X-Forwarded-For` (#41481 by @ClearlyClaire, [GHSA-qp4r-p842-mw5c](https://github.com/mastodon/mastodon/security/advisories/GHSA-qp4r-p842-mw5c))
+  - If your reverse-proxy setup uses `Forwarded` instead of `X-Forwarded-For`, please make sure it ignores user-provided `X-Forwarded-For` headers.
+  - If you are using our provided `nginx.conf`, please consider updating it.
+- Updated dependencies, in particular to address security advisories in `addressable`, `loofah`, `rack`, and `rails-html-sanitizer`
+
+### Changed
+
+- Change invites use counts to not decrease if an invited user deletes their account (#41458 by @ClearlyClaire)
+
+## [4.7.4] - 2026-10-29
+
+### Security
+
+- Fix insufficient ActivityPub identifier verification ([GHSA-288h-6j8h-6x5j](https://github.com/mastodon/mastodon/security/advisories/GHSA-288h-6j8h-6x5j))
+- Added security challenge e-mail to users that try to log in after long period of inactivity (#40745 by @jhbabon)
+- Updated dependencies, in particular to address security advisories in Ruby, NodeJS, `excon`, `css_parser`, `pghero`, and `sanitize`
+
+### Fixed
+
+- Fix inefficiency in some hashtag timeline queries (#41132 by @hugogameiro)
+- Fix minor inefficiency in timeline deliveries (#41079 by @isidzukuri)
+- Fix account timeline with `exclude_direct` also excluding followers-only posts for non-followed users (#41019 by @ClearlyClaire)
+- Fix error in `dev:populate_sample_data` task (#40995 and #41051 by @isidzukuri and @mjankowski)
+- Fix local collection item revocation not being properly federated (#40930 by @oneiros)
+
+## [4.7.3] - 2026-10-01
+
+### Security
+
+- Update dependencies
+
+### Added
+
+- Add logging of account data removal (#40572 by @ClearlyClaire)
+- Add link to homepage to 404 error page (#40369 by @diondiondion)
+
+### Changed
+
+- Change account self-deletion page to always ask to confirm username (#40576 and #40733 by @ClearlyClaire)
+
+### Fixed
+
+- Fix error handling for malformed webfinger subjects (#40731 by @ClearlyClaire)
+- Fix threads leak by updating dependency aws-sdk-s3
+- Fix occasional installation-time error by updating dependency yarn to v4.18.1 (#40722 by @renovate[bot])
+- Fix inconsistent horizontal page padding between profile and profile editor (#40700 by @diondiondion)
+- Fix server error on registration for wrong DOB (#40607 by @sudeeptarlekar)
+- Fix quotes disclaimer disappearing on posts with no quote (#40587 by @crafkaz)
+- Fix `POST /api/v1/accounts` still being accessible when `SSO_ACCOUNT_SIGN_UP` is set (#40681 by @ClearlyClaire)
+- Fix reported statuses not being deleted after account deletion (#40650 by @ClearlyClaire)
+- Fix mobile navigation covering up "Next step" button during onboarding (#40634 by @diondiondion)
+- Fix rate limits not normalizing submitted e-mail addresses (#40658 by @Gargron)
+- Fix moderators being able to issue a warning on moderators of higher position (#40646 by @ClearlyClaire)
+- Fix deleted-because-of-suspension accounts being marked as manually deleted (#40645 by @ClearlyClaire)
+- Fix description text overflowing on Overview landing page (#40272 by @diondiondion)
+- Fix account avatar and header descriptions not being deleted when an account is deleted (#40621 by @ClearlyClaire)
+- Fix deleted accounts not being removed from featured collections (#40623 by @ClearlyClaire)
+- Fix `PreviewCardsStatus` records not being deleted on account deletion (#40624 by @ClearlyClaire)
+- Fix z-index of PIP video player to be above the side panel (#40484 by @tribela)
+- Fix replies order (#40481 by @OmmyZhang)
+- Fix missing confirmation when leaving with an unsent post (#40478 by @crafkaz)
+- Fix email footer spacing around custom footer text (#40440 by @mjankowski)
+
+## [4.7.2] - 2026-09-15
+
+### Security
+
+- Temporarily disable HEIF support
+
+### Fixes
+
+- Fix relative privacy policy links in subscription emails (#40486 by @crafkaz)
+- Fix canonical email blocks interfering with freezing or approving users (#40463 by @ClearlyClaire)
+- Fix 500 error when trying to upload a non-custom-filter JSON import (#40449 and #40451 by @ClearlyClaire)
+- Fix 500 error when submitting a status twice (#40439 by @ClearlyClaire)
+- Fix self-deleted accounts not being un-deleted when using `tootctl accounts create --reattach` (#40430 by @mjankowski)
+- Fix account deletion not deleting generated annual reports (#40394 by @ClearlyClaire)
+- Fix notifications not being cleaned up when notification requests are deleted in bulk (#40393 by @ClearlyClaire)
+
+## [4.7.1] - 2026-09-01
+
+### Security
+
+- Fix password authentication bypass in 2FA auth for LDAP/PAM/SSO accounts ([GHSA-vx32-x96w-qq65](https://github.com/mastodon/mastodon/security/advisories/GHSA-vx32-x96w-qq65))
+- Fix Denial of Service when processing pathological JSON-LD activities ([GHSA-vgm8-frgh-rh2v](https://github.com/mastodon/mastodon/security/advisories/GHSA-vgm8-frgh-rh2v))
+- Fix disabled staff accounts still having access to admin API ([GHSA-62j4-hvj7-px3f](https://github.com/mastodon/mastodon/security/advisories/GHSA-62j4-hvj7-px3f))
+
+### Fixes
+
+- Fix invited-without-approval-bypass not being asked for a textual reason (#40332 by @ClearlyClaire)
+- Fix email blocks domain filter not being kept through pagination (#40254 by @ClearlyClaire)
+- Fix `config/` directory missing from Bootsnap precompilation options in Dockerfile (#40255 by @ClearlyClaire)
+- Fix some of 4.7 migrations not re-running cleanly when interrupted (#40264 by @ClearlyClaire)
+- Fix account creation failing on `ActiveRecord::Encryption` configuration in `mastodon:setup` rake task (#40275 by @ClearlyClaire)
+
+## [4.7.0] - 2026-08-20
 
 ### Added
 
@@ -39,6 +232,10 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- Fix autosuggestions overstaying their welcome in languages that don't use spaces (#40217 by @Gargron)
+- Fix error when processing remote actors with `null` public keys (#40194 by @ClearlyClaire)
+- Fix various off-by-one errors in statistics time ranges (#40193 by @ClearlyClaire)
+- Fix `/deck` being removed from path when resizing window (#40180 by @ClearlyClaire)
 - Fix error in `tootctl media refresh` when cleaning some incompletely processed files (#40056 by @shleeable)
 - Fix plain-text formatter not treating `<BR>` as newline (#40079 by @shleeable)
 - Fix performance of listing follow requests by adding appropriate index (#40033 by @ClearlyClaire)

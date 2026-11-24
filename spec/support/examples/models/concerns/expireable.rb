@@ -53,6 +53,8 @@ RSpec.shared_examples 'Expireable' do
     end
 
     context 'when set to a value' do
+      before { freeze_time }
+
       it 'sets expires_at to expected future time' do
         record.expires_in = 60
         expect(record.expires_at)

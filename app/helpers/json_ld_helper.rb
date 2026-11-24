@@ -128,6 +128,30 @@ module JsonLdHelper
     end
   end
 
+  # Checks for unsupported JSON-LD features or too many nodes
+  def check_jsonld_limits!(json, budget = 1_000)
+    budget -= 1
+
+    if json.is_a?(Hash)
+      json.each do |key, value|
+        raise Mastodon::InvalidJsonLdError, 'contains unsupported JSON-LD features' if UNSUPPORTED_JSONLD_KEYWORDS.include?(key)
+        raise Mastodon::InvalidJsonLdError, 'has too many nodes' if budget < 1
+
+        budget = check_jsonld_limits!(value, budget)
+      end
+    elsif json.is_a?(Array)
+      json.each do |value|
+        raise Mastodon::InvalidJsonLdError, 'has too many nodes' if budget < 1
+
+        budget = check_jsonld_limits!(value, budget)
+      end
+    end
+
+    raise Mastodon::InvalidJsonLdError, 'has too many nodes' if budget < 0 # rubocop:disable Style/NumericPredicate
+
+    budget
+  end
+
   def unsupported_jsonld_features?(json)
     if json.is_a?(Hash)
       json.any? { |key, value| UNSUPPORTED_JSONLD_KEYWORDS.include?(key) || unsupported_jsonld_features?(value) }
@@ -212,19 +236,19 @@ module JsonLdHelper
 
   # Fetch the resource given by uri.
   # @param uri [String]
-  # @param id_is_known [Boolean]
+  # @param allow_redirects [Boolean]
   # @param on_behalf_of [nil, Account]
   # @param raise_on_error [Symbol<:all, :temporary, :none>] See {#fetch_resource_without_id_validation} for possible values
-  def fetch_resource(uri, id_is_known, on_behalf_of = nil, raise_on_error: :none, request_options: {})
-    unless id_is_known
-      json = fetch_resource_without_id_validation(uri, on_behalf_of, raise_on_error: raise_on_error)
+  def fetch_resource(uri, allow_redirects: false, on_behalf_of: nil, raise_on_error: :none, request_options: {})
+    if allow_redirects
+      json = fetch_resource_without_id_validation(uri, on_behalf_of: on_behalf_of, raise_on_error: raise_on_error)
 
       return if !json.is_a?(Hash) || unsupported_uri_scheme?(json['id'])
 
       uri = json['id']
     end
 
-    json = fetch_resource_without_id_validation(uri, on_behalf_of, raise_on_error: raise_on_error, request_options: request_options)
+    json = fetch_resource_without_id_validation(uri, allow_redirects: false, on_behalf_of: on_behalf_of, raise_on_error: raise_on_error, request_options: request_options)
     json.present? && json['id'] == uri ? json : nil
   end
 
@@ -240,13 +264,16 @@ module JsonLdHelper
   #
   # @param uri [String]
   # @param on_behalf_of [nil, Account]
+  # @param allow_redirects [Boolean]
   # @param raise_on_error [Symbol<:all, :temporary, :none>]
   #   - +:all+ - raise if response code is not in the 2xx range
   #   - +:temporary+ - raise if the response code is not an "unsalvageable error" like a 404
   #     (see {#response_error_unsalvageable} )
   #   - +:none+ - do not raise, return +nil+
-  def fetch_resource_without_id_validation(uri, on_behalf_of = nil, raise_on_error: :none, request_options: {})
+  def fetch_resource_without_id_validation(uri, allow_redirects: true, on_behalf_of: nil, raise_on_error: :none, request_options: {})
     on_behalf_of ||= Account.representative
+
+    request_options = request_options.merge(follow: false) unless allow_redirects
 
     build_request(uri, on_behalf_of, options: request_options).perform do |response|
       raise Mastodon::UnexpectedResponseError, response if !response_successful?(response) && (
@@ -254,7 +281,7 @@ module JsonLdHelper
         (!response_error_unsalvageable?(response) && raise_on_error == :temporary)
       )
 
-      body_to_json(response.body_with_limit) if response.code == 200 && valid_activitypub_content_type?(response)
+      body_to_json(response.body_with_limit) if response.code == 200 && valid_activitypub_content_type?(response) && (allow_redirects || response.uri.to_s == uri)
     end
   end
 
@@ -321,7 +348,7 @@ module JsonLdHelper
     return collection_or_uri if collection_or_uri.is_a?(Hash)
     return if !reference_uri.nil? && non_matching_uri_hosts?(reference_uri, collection_or_uri)
 
-    fetch_resource_without_id_validation(collection_or_uri, on_behalf_of, raise_on_error: :temporary)
+    fetch_resource_without_id_validation(collection_or_uri, on_behalf_of: on_behalf_of, raise_on_error: :temporary)
   end
 
   def valid_activitypub_content_type?(response)

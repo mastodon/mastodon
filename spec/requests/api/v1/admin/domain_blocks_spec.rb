@@ -15,6 +15,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     context 'when there are no domain blocks' do
       it 'returns an empty list' do
@@ -89,6 +90,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns the expected domain block content', :aggregate_failures do
       subject
@@ -131,6 +133,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     it 'creates a domain block with the expected domain name and severity', :aggregate_failures do
       subject
@@ -239,11 +242,14 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
-    it 'returns the updated domain block', :aggregate_failures do
-      subject
+    it 'updates the block severity and returns the updated domain block', :aggregate_failures do
+      expect { subject }
+        .to change { domain_block.reload.severity }.from('silence').to('suspend')
 
-      expect(response).to have_http_status(200)
+      expect(response)
+        .to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
       expect(response.parsed_body).to match a_hash_including(
@@ -254,10 +260,6 @@ RSpec.describe 'Domain Blocks' do
           severity: 'suspend',
         }
       )
-    end
-
-    it 'updates the block severity' do
-      expect { subject }.to change { domain_block.reload.severity }.from('silence').to('suspend')
     end
 
     context 'when domain block does not exist' do
@@ -281,6 +283,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     it 'deletes the domain block', :aggregate_failures do
       subject

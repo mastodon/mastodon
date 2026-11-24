@@ -83,6 +83,7 @@ const filterConversations = (state, accountIds) => {
   return state.update('items', list => list.filterNot(item => item.get('accounts').some(accountId => accountIds.includes(accountId))));
 };
 
+/** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
 export default function conversations(state = initialState, action) {
   switch (action.type) {
   case CONVERSATIONS_FETCH_REQUEST:

@@ -1,15 +1,16 @@
 import { useCallback, useEffect } from 'react';
 import type { FC } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+
+import { PencilSimpleIcon } from '@phosphor-icons/react';
 
 import { fetchRelationships } from '@/mastodon/actions/accounts';
 import { openModal } from '@/mastodon/actions/modal';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import EditIcon from '@/material-icons/400-24px/edit_square.svg?react';
 
+import { IconButton } from '../button';
 import { Callout } from '../callout';
-import { IconButton } from '../icon_button';
 
 import classes from './styles.module.scss';
 
@@ -17,10 +18,6 @@ const messages = defineMessages({
   title: {
     id: 'account.note.title',
     defaultMessage: 'Personal note (visible only to you)',
-  },
-  editButton: {
-    id: 'account.note.edit_button',
-    defaultMessage: 'Edit',
   },
 });
 
@@ -56,12 +53,16 @@ export const AccountNote: FC<{ accountId: string }> = ({ accountId }) => {
       className={classes.note}
       extraContent={
         <IconButton
-          icon='edit'
-          iconComponent={EditIcon}
-          title={intl.formatMessage(messages.editButton)}
+          size='sm'
+          icon={PencilSimpleIcon}
           className={classes.noteEditButton}
           onClick={handleEdit}
-        />
+        >
+          <FormattedMessage
+            id='account.note.edit_button'
+            defaultMessage='Edit'
+          />
+        </IconButton>
       }
     >
       <div className={classes.noteContent}>{relationship.note}</div>

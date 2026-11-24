@@ -1,4 +1,7 @@
 export function uuid(a?: string): string {
+  if ('randomUUID' in window.crypto) {
+    return crypto.randomUUID();
+  }
   return a
     ? (
         (a as unknown as number) ^

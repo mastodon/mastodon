@@ -364,7 +364,6 @@ const LoginForm: React.FC<{
           aria-label={intl.formatMessage(messages.loginPrompt, {
             example: EXAMPLE_VALUE,
           })}
-          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           onChange={handleChange}
           onFocus={handleFocus}
@@ -375,7 +374,12 @@ const LoginForm: React.FC<{
           spellCheck='false'
         />
 
-        <Button onClick={handleSubmit} disabled={isSubmitting || error}>
+        <Button
+          onClick={handleSubmit}
+          variant='solid'
+          color='accent'
+          disabled={isSubmitting || error}
+        >
           <FormattedMessage id='interaction_modal.go' defaultMessage='Go' />
         </Button>
       </div>
@@ -443,30 +447,36 @@ const InteractionModal: React.FC<{
 
   if (sso_redirect) {
     signupButton = (
-      <a href={sso_redirect} data-method='post' className='link-button'>
+      <Button
+        as='a'
+        href={sso_redirect}
+        data-method='post'
+        color='accent'
+        size='sm'
+      >
         <FormattedMessage
           id='sign_in_banner.create_account'
           defaultMessage='Create account'
         />
-      </a>
+      </Button>
     );
   } else if (registrationsOpen) {
     signupButton = (
-      <a href={signupUrl} className='link-button'>
+      <Button as='a' href={signupUrl} color='accent' size='sm'>
         <FormattedMessage
           id='sign_in_banner.create_account'
           defaultMessage='Create account'
         />
-      </a>
+      </Button>
     );
   } else {
     signupButton = (
-      <button className='link-button' onClick={handleSignupClick} type='button'>
+      <Button onClick={handleSignupClick} color='accent' size='sm'>
         <FormattedMessage
           id='sign_in_banner.create_account'
           defaultMessage='Create account'
         />
-      </button>
+      </Button>
     );
   }
 

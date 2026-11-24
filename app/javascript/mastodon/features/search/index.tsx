@@ -2,23 +2,24 @@ import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
+import {
+  CirclesFourIcon,
+  FileMagnifyingGlassIcon,
+  HashIcon,
+  UsersIcon,
+} from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
-import CollectionsIcon from '@/material-icons/400-24px/category.svg?react';
-import FindInPageIcon from '@/material-icons/400-24px/find_in_page.svg?react';
-import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
-import SearchIcon from '@/material-icons/400-24px/search.svg?react';
-import TagIcon from '@/material-icons/400-24px/tag.svg?react';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { Search } from '@/mastodon/components/search';
 import { submitSearch, expandSearch } from 'mastodon/actions/search';
 import type { ApiSearchType } from 'mastodon/api_types/search';
 import { Account } from 'mastodon/components/account';
 import { CompatibilityHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
-import { StatusQuoteManager } from 'mastodon/components/status_quoted';
-import { Search } from 'mastodon/features/compose/components/search';
+import { Status } from 'mastodon/components/status';
 import { useSearchParam } from 'mastodon/hooks/useSearchParam';
 import type { Hashtag as HashtagType } from 'mastodon/models/tags';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
@@ -28,7 +29,8 @@ import { CollectionListItem } from '../collections/components/collection_list_it
 import { SearchSection } from './components/search_section';
 
 const messages = defineMessages({
-  title: { id: 'search_results.title', defaultMessage: 'Search for "{q}"' },
+  searchFor: { id: 'search_results.title', defaultMessage: 'Search for "{q}"' },
+  search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
 });
 
 const INITIAL_PAGE_LIMIT = 10;
@@ -46,7 +48,9 @@ const hidePeek = <T,>(list: T[]) => {
 };
 
 const renderAccounts = (accountIds: string[]) =>
-  hidePeek<string>(accountIds).map((id) => <Account key={id} id={id} />);
+  hidePeek<string>(accountIds).map((id) => (
+    <Account key={id} id={id} reference='search' />
+  ));
 
 const renderHashtags = (hashtags: HashtagType[]) =>
   hidePeek<HashtagType>(hashtags).map((hashtag) => (
@@ -55,7 +59,7 @@ const renderHashtags = (hashtags: HashtagType[]) =>
 
 const renderStatuses = (statusIds: string[]) =>
   hidePeek<string>(statusIds).map((id) => (
-    <StatusQuoteManager contextType='search' key={id} id={id} />
+    <Status contextType='search' key={id} id={id} />
   ));
 
 type SearchType = 'all' | ApiSearchType;
@@ -137,7 +141,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   key='accounts'
                   title={
                     <>
-                      <Icon id='users' icon={PeopleIcon} />
+                      <Icon id='users' icon={UsersIcon} />
                       <FormattedMessage
                         id='search_results.accounts'
                         defaultMessage='Profiles'
@@ -157,7 +161,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   key='collections'
                   title={
                     <>
-                      <Icon id='collections' icon={CollectionsIcon} />
+                      <Icon id='collections' icon={CirclesFourIcon} />
                       <FormattedMessage
                         id='search_results.collections'
                         defaultMessage='Collections'
@@ -183,7 +187,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   key='hashtags'
                   title={
                     <>
-                      <Icon id='hashtag' icon={TagIcon} />
+                      <Icon id='hashtag' icon={HashIcon} />
                       <FormattedMessage
                         id='search_results.hashtags'
                         defaultMessage='Hashtags'
@@ -203,7 +207,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   key='statuses'
                   title={
                     <>
-                      <Icon id='quote-right' icon={FindInPageIcon} />
+                      <Icon id='quote-right' icon={FileMagnifyingGlassIcon} />
                       <FormattedMessage
                         id='search_results.statuses'
                         defaultMessage='Posts'
@@ -213,7 +217,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   onClickMore={handleSelectStatuses}
                 >
                   {results.statuses.slice(0, INITIAL_DISPLAY).map((id) => (
-                    <StatusQuoteManager contextType='search' key={id} id={id} />
+                    <Status contextType='search' key={id} id={id} />
                   ))}
                 </SearchSection>
               )}
@@ -234,101 +238,97 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
     }
   }
 
-  return (
-    <Column
-      bindToDocument={!multiColumn}
-      label={intl.formatMessage(messages.title, { q })}
-    >
-      <ColumnHeader
-        icon={'search'}
-        iconComponent={SearchIcon}
-        title={intl.formatMessage(messages.title, { q })}
-        multiColumn={multiColumn}
-        scrollTopOnClick
-        appendContent={
-          <>
-            <div className='explore__search-header'>
-              <Search
-                singleColumn
-                initialValue={trimmedValue}
-                key={trimmedValue}
-              />
-            </div>
-
-            <div className='account__section-headline'>
-              <button
-                onClick={handleSelectAll}
-                className={mappedType === 'all' ? 'active' : undefined}
-                type='button'
-              >
-                <FormattedMessage
-                  id='search_results.all'
-                  defaultMessage='All'
-                />
-              </button>
-              <button
-                onClick={handleSelectAccounts}
-                className={mappedType === 'accounts' ? 'active' : undefined}
-                type='button'
-              >
-                <FormattedMessage
-                  id='search_results.accounts'
-                  defaultMessage='Profiles'
-                />
-              </button>
-              <button
-                onClick={handleSelectHashtags}
-                className={mappedType === 'hashtags' ? 'active' : undefined}
-                type='button'
-              >
-                <FormattedMessage
-                  id='search_results.hashtags'
-                  defaultMessage='Hashtags'
-                />
-              </button>
-              <button
-                onClick={handleSelectStatuses}
-                className={mappedType === 'statuses' ? 'active' : undefined}
-                type='button'
-              >
-                <FormattedMessage
-                  id='search_results.statuses'
-                  defaultMessage='Posts'
-                />
-              </button>
-            </div>
-          </>
-        }
-      />
-
-      <div className='explore__search-results' data-nosnippet>
-        <ScrollableList
-          scrollKey='search-results'
-          isLoading={isLoading}
-          showLoading={isLoading && !results}
-          onLoadMore={handleLoadMore}
-          hasMore={hasMore}
-          emptyMessage={
-            trimmedValue.length > 0 ? (
-              <FormattedMessage
-                id='search_results.no_results'
-                defaultMessage='No results.'
-              />
-            ) : (
-              <FormattedMessage
-                id='search_results.no_search_yet'
-                defaultMessage='Try searching for posts, profiles or hashtags.'
-              />
-            )
-          }
-          bindToDocument
-        >
-          {filteredResults}
-        </ScrollableList>
+  const extraStickyHeaderContent = (
+    <>
+      <div className='explore__search-header'>
+        <Search
+          singleColumn
+          initialValue={trimmedValue}
+          initialType={mappedType !== 'all' ? mappedType : undefined}
+          key={trimmedValue}
+        />
       </div>
 
+      <div className='account__section-headline'>
+        <button
+          onClick={handleSelectAll}
+          className={mappedType === 'all' ? 'active' : undefined}
+          type='button'
+        >
+          <FormattedMessage id='search_results.all' defaultMessage='All' />
+        </button>
+        <button
+          onClick={handleSelectAccounts}
+          className={mappedType === 'accounts' ? 'active' : undefined}
+          type='button'
+        >
+          <FormattedMessage
+            id='search_results.accounts'
+            defaultMessage='Profiles'
+          />
+        </button>
+        <button
+          onClick={handleSelectHashtags}
+          className={mappedType === 'hashtags' ? 'active' : undefined}
+          type='button'
+        >
+          <FormattedMessage
+            id='search_results.hashtags'
+            defaultMessage='Hashtags'
+          />
+        </button>
+        <button
+          onClick={handleSelectStatuses}
+          className={mappedType === 'statuses' ? 'active' : undefined}
+          type='button'
+        >
+          <FormattedMessage
+            id='search_results.statuses'
+            defaultMessage='Posts'
+          />
+        </button>
+      </div>
+    </>
+  );
+
+  const pageTitle = q
+    ? intl.formatMessage(messages.searchFor, { q })
+    : intl.formatMessage(messages.search);
+
+  return (
+    <Column bindToDocument={!multiColumn} label={pageTitle}>
+      <ColumnHeader
+        title={pageTitle}
+        extraStickyContent={extraStickyHeaderContent}
+      />
+
+      <ScrollableList
+        noSnippet
+        scrollKey='search-results'
+        isLoading={isLoading}
+        showLoading={isLoading && !results}
+        onLoadMore={handleLoadMore}
+        hasMore={hasMore}
+        emptyMessage={
+          trimmedValue.length > 0 ? (
+            <FormattedMessage
+              id='search_results.no_results'
+              defaultMessage='No results.'
+            />
+          ) : (
+            <FormattedMessage
+              id='search_results.no_search_yet'
+              defaultMessage='Try searching for posts, profiles or hashtags.'
+            />
+          )
+        }
+        bindToDocument
+      >
+        {filteredResults}
+      </ScrollableList>
+
       <Helmet>
-        <title>{intl.formatMessage(messages.title, { q })}</title>
+        <title>{pageTitle}</title>
         <meta name='robots' content='noindex' />
       </Helmet>
     </Column>

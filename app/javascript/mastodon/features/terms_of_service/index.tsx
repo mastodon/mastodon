@@ -7,17 +7,18 @@ import {
   defineMessages,
 } from 'react-intl';
 
+import classNames from 'classnames';
 import { Link, useParams } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 import { apiGetTermsOfService } from 'mastodon/api/instance';
 import type { ApiTermsOfServiceJSON } from 'mastodon/api_types/instance';
 import { BundleColumnError } from 'mastodon/features/ui/components/bundle_column_error';
 
-import { getColumnSkipLinkId } from '../ui/components/skip_links';
+import aboutClasses from '../about/styles.module.scss';
 
 const messages = defineMessages({
   title: { id: 'terms_of_service.title', defaultMessage: 'Terms of Service' },
@@ -56,14 +57,21 @@ const TermsOfService: React.FC<{
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.title)}
     >
-      <div className='scrollable privacy-policy'>
+      <ColumnHeader
+        title={
+          <FormattedMessage
+            id='terms_of_service.title'
+            defaultMessage='Terms of Service'
+          />
+        }
+      />
+      <div
+        className={classNames(
+          'scrollable privacy-policy',
+          aboutClasses.redesignOverrides,
+        )}
+      >
         <div className='column-title'>
-          <NavigationFocusTarget as='h1' id={getColumnSkipLinkId(1)}>
-            <FormattedMessage
-              id='terms_of_service.title'
-              defaultMessage='Terms of Service'
-            />
-          </NavigationFocusTarget>
           <p className='prose'>
             {response?.effective ? (
               <FormattedMessage

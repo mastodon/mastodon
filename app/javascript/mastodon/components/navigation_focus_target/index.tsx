@@ -6,19 +6,21 @@ import {
   useCallback,
 } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
-import { polymorphicForwardRef } from '@/types/polymorphic';
+import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
+import type { PolymorphicProps } from '@/types/polymorphic';
 
 import type { MastodonLocation } from '../router';
 
 export const FOCUS_TARGET = {
   POST: 'detailed-status',
+  SEARCH: 'search',
 } as const;
 
-export type FocusTarget =
-  | boolean
-  | (typeof FOCUS_TARGET)[keyof typeof FOCUS_TARGET];
+export type NamedFocusTarget = (typeof FOCUS_TARGET)[keyof typeof FOCUS_TARGET];
+
+export type FocusTarget = boolean | NamedFocusTarget;
 
 const FocusTargetContext = createContext<React.RefObject<FocusTarget> | null>(
   null,
@@ -98,41 +100,99 @@ export const FocusTargetProvider: React.FC<{
   );
 };
 
-export function useFocusOnNavigation(targetName?: string) {
+interface FocusAfterNavigationOptions {
+  scrollIntoView?: boolean;
+  onAfterFocus?: (hasSetFocus: boolean) => void;
+}
+
+export function useFocusAfterNavigation(
+  targetName?: NamedFocusTarget,
+  { scrollIntoView = false, onAfterFocus }: FocusAfterNavigationOptions = {},
+) {
   const focusTargetRef = useContext(FocusTargetContext);
+  const hasFocusedOnceRef = useRef(false);
+  const wasBackOrForwardNavigation = useHistory().action === 'POP';
 
   return useCallback(
     (element: HTMLElement | null) => {
       const focusTarget = focusTargetRef?.current;
 
-      // Bail out if focusTarget was set to `false`
-      if (!element || !focusTarget) {
+      // Bail out if focusTarget was set to `false`,
+      // if there has already been a focus attempt,
+      // or if the navigation was history.back/forward
+      if (
+        !element ||
+        !focusTarget ||
+        hasFocusedOnceRef.current ||
+        wasBackOrForwardNavigation
+      ) {
+        onAfterFocus?.(false);
         return;
       }
 
-      if (focusTarget === true || focusTarget === targetName) {
-        setTimeout(() => {
+      const shouldSetFocus = targetName
+        ? focusTarget === targetName
+        : focusTarget === true;
+
+      let timeout: ReturnType<typeof setTimeout> | undefined;
+
+      if (shouldSetFocus) {
+        timeout = setTimeout(() => {
+          if (scrollIntoView) {
+            element.scrollIntoView(true);
+          }
           element.focus({ preventScroll: true });
+
+          onAfterFocus?.(true);
+          // Prevent this focus handler from setting focus again
+          hasFocusedOnceRef.current = true;
         }, 0);
+      } else {
+        onAfterFocus?.(false);
       }
+      return () => {
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+      };
     },
-    [focusTargetRef, targetName],
+    [
+      focusTargetRef,
+      wasBackOrForwardNavigation,
+      targetName,
+      onAfterFocus,
+      scrollIntoView,
+    ],
   );
 }
 
 interface FocusTargetElementProps extends React.ComponentPropsWithoutRef<'h1'> {
-  focusTargetName?: string;
+  focusTargetName?: NamedFocusTarget;
+  scrollIntoViewOnFocus?: boolean;
+  onAfterFocus?: FocusAfterNavigationOptions['onAfterFocus'];
 }
 
-export const NavigationFocusTarget = polymorphicForwardRef<
-  'h1',
-  FocusTargetElementProps
->(({ as: Component = 'h1', focusTargetName, children, ...otherProps }) => {
-  const focusOnNavigation = useFocusOnNavigation(focusTargetName);
+export const NavigationFocusTarget = <As extends React.ElementType = 'h1'>({
+  as: asComp,
+  focusTargetName,
+  scrollIntoViewOnFocus,
+  onAfterFocus,
+  children,
+  ...otherProps
+}: PolymorphicProps<FocusTargetElementProps, As>) => {
+  const Component = asComp ?? 'h1';
+  const focusAfterNavigation = useFocusAfterNavigation(focusTargetName, {
+    scrollIntoView: scrollIntoViewOnFocus,
+    onAfterFocus,
+  });
 
   return (
-    <Component ref={focusOnNavigation} tabIndex={-1} {...otherProps}>
+    <Component
+      {...otherProps}
+      ref={useMergedRefs(focusAfterNavigation, otherProps.ref)}
+      tabIndex={-1}
+    >
       {children}
     </Component>
   );
-});
+};

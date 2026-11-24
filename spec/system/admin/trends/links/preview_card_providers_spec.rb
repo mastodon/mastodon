@@ -49,7 +49,7 @@ RSpec.describe 'Admin::Trends::Links::PreviewCardProviders' do
 
     def check_item
       within '.batch-table__row' do
-        find('input[type=checkbox]').check
+        find_field(type: 'checkbox').check
       end
     end
 

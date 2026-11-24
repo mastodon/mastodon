@@ -57,3 +57,11 @@ export function withOptionalRouter<
 
   return hoistStatics(C, Component);
 }
+
+/**
+ * Given an array of paths, returns an array with those same paths
+ * and their multi-column layout equivalents prefixed with `/deck`.
+ */
+export function includeMultiColumnPaths(paths: string[]) {
+  return [...paths, ...paths.map((path) => `/deck${path}`)];
+}

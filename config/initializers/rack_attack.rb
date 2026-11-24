@@ -60,6 +60,10 @@ class Rack::Attack
     def paging_request?
       params['page'].present? || params['min_id'].present? || params['max_id'].present? || params['since_id'].present?
     end
+
+    def normalized_email
+      CanonicalEmailBlock.canonicalize_email(params.dig('user', 'email')) if params.dig('user', 'email').present?
+    end
   end
 
   Rack::Attack.blocklist('deny from blocklist') do |req|
@@ -118,7 +122,7 @@ class Rack::Attack
   end
 
   throttle('throttle_password_resets/email', limit: 5, period: 30.minutes) do |req|
-    req.params.dig('user', 'email').presence if req.post? && req.path_matches?('/auth/password')
+    req.normalized_email if req.post? && req.path_matches?('/auth/password')
   end
 
   throttle('throttle_email_confirmations/ip', limit: 25, period: 5.minutes) do |req|
@@ -127,14 +131,14 @@ class Rack::Attack
 
   throttle('throttle_email_confirmations/email', limit: 5, period: 30.minutes) do |req|
     if req.post? && req.path_matches?('/auth/confirmation')
-      req.params.dig('user', 'email').presence
+      req.normalized_email
     elsif req.post? && req.path == '/api/v1/emails/confirmations'
       req.authenticated_user_id
     end
   end
 
   throttle('throttle_auth_setup/email', limit: 5, period: 10.minutes) do |req|
-    req.params.dig('user', 'email').presence if (req.put? || req.patch?) && req.path_matches?('/auth/setup')
+    req.normalized_email if (req.put? || req.patch?) && req.path_matches?('/auth/setup')
   end
 
   throttle('throttle_auth_setup/account', limit: 5, period: 10.minutes) do |req|
@@ -146,7 +150,7 @@ class Rack::Attack
   end
 
   throttle('throttle_login_attempts/email', limit: 25, period: 1.hour) do |req|
-    req.session[:attempt_user_id] || req.params.dig('user', 'email').presence if req.post? && req.path_matches?('/auth/sign_in')
+    req.session[:attempt_user_id] || req.normalized_email if req.post? && req.path_matches?('/auth/sign_in')
   end
 
   throttle('throttle_password_change/account', limit: 10, period: 10.minutes) do |req|

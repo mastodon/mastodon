@@ -2,10 +2,7 @@ import { useId } from 'react';
 
 import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
 import { Toggle } from '@/mastodon/components/form_fields';
-import {
-  ListItemContent,
-  ListItemWrapper,
-} from '@/mastodon/components/list_item';
+import { LockupContent, LockupWrapper } from '@/mastodon/components/lockup';
 import {
   AvatarGrid,
   CollectionInfo,
@@ -34,7 +31,7 @@ export const CollectionToggle: React.FC<CollectionToggleProps> = ({
   const infoId = `${uniqueId}-info`;
 
   return (
-    <ListItemWrapper
+    <LockupWrapper
       className={classes.wrapper}
       icon={
         <AvatarGrid
@@ -52,7 +49,7 @@ export const CollectionToggle: React.FC<CollectionToggleProps> = ({
         />
       }
     >
-      <ListItemContent
+      <LockupContent
         as='label'
         htmlFor={toggleId}
         subtitle={
@@ -66,7 +63,7 @@ export const CollectionToggle: React.FC<CollectionToggleProps> = ({
         }
       >
         {collection.name}
-      </ListItemContent>
-    </ListItemWrapper>
+      </LockupContent>
+    </LockupWrapper>
   );
 };

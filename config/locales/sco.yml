@@ -23,7 +23,6 @@ sco:
   admin:
     account_actions:
       action: Perform action
-      title: Perform moderation action on %{acct}
     account_moderation_notes:
       create: Lea note
       created_msg: Moderation note successfully makkit!
@@ -541,7 +540,6 @@ sco:
       action_taken_by: Action taen bi
       actions:
         mark_as_sensitive_description_html: The media in the clyped on posts will be mairked as sensitive an a strike wull be recordit fir tae help ye escalate on future infractions bi the same accoont.
-        other_description_html: See mair options fir controllin the accoont's behaviour an customize communication tae the clyped on accoont.
         resolve_description_html: Nae action wull be taen aginst the clyped on accoont, nae strike recordit, an the clype wull be shut.
       add_to_report: Add mair tae yer clype
       are_you_sure: Ye sure?
@@ -756,7 +754,6 @@ sco:
           one: Shared bi ae person ower the last week
           other: Shared bi %{count} fowk ower the last week
         title: Trendin links
-        usage_comparison: Shared %{today} times the day, compart tae %{yesterday} yisterday
       only_allowed: Ainly allooed
       pending_review: Pendin review
       preview_card_providers:
@@ -796,7 +793,6 @@ sco:
         trendable: Kin appear unner trends
         trending_rank: 'Trendin #%{rank}'
         usable: Kin be uised
-        usage_comparison: Uised %{today} times the day, compart tae %{yesterday} yisterday
         used_by_over_week:
           one: Uised bi ae person ower the last week
           other: Uised bi %{count} fowk ower the last week
@@ -804,8 +800,6 @@ sco:
     warning_presets:
       add_new: Add new
       delete: Delete
-      edit_preset: Edit warnin preset
-      empty: Ye huvnae definit onie warnin presets yit.
     webhooks:
       add_new: Add enpynt
       delete: Delete
@@ -864,7 +858,6 @@ sco:
     remove: Unlink alias
   appearance:
     animations_and_accessibility: Animations an accessibility
-    discovery: Discovery
     localization:
       body: Mastodon is translatit bi volunteers.
       guide_link: https://crowdin.com/project/mastodon
@@ -950,7 +943,6 @@ sco:
   deletes:
     challenge_not_passed: The information ye pit in wisnae correct
     confirm_password: Pit in yer current passwird fir tae verify yer identity
-    confirm_username: Pit in yer uisernemm fir tae confirm the procedure
     proceed: Delete accoont
     success_msg: Yer accoont wis successfully deletit
     warning:
@@ -1091,7 +1083,6 @@ sco:
   imports:
     errors:
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
-      over_rows_processing_limit: contains mair nor %{count} rows
     modes:
       merge: Merge
       merge_long: Keep existin records an add new anes
@@ -1159,7 +1150,6 @@ sco:
     incoming_migrations_html: Tae flit fae anither accoont tae this ane, first ye need tae <a href="%{path}">mak a accoont alias</a>.
     moved_msg: Yer accoont is noo redirectin tae %{acct} an yer follaers ur gettin flittit ower.
     not_redirecting: Yer accoont isnae redirectin tae onie ither accoont the noo.
-    on_cooldown: Ye'v flittit yer accoont o late. This function wull become available again in %{count} days.
     past_migrations: Past flittins
     proceed_with_move: Flit follaers
     redirected_msg: Yer accoont is noo redirectin tae %{acct}.
@@ -1288,9 +1278,6 @@ sco:
     descriptions:
       account: Public posts fae @%{acct}
       tag: 'Public posts tagged #%{hashtag}'
-  scheduled_statuses:
-    over_daily_limit: Ye'v went by the limit o %{limit} scheduled posts thit ye'r allooed fir the day
-    over_total_limit: Ye'v went by the limit o %{limit} scheduled posts
   sessions:
     activity: Last activity
     browser: Brooser
@@ -1339,7 +1326,6 @@ sco:
     appearance: Appearance
     authorized_apps: Authorized apps
     back: Back tae Mastodon
-    delete: Accoont deletion
     development: Development
     edit_profile: Edit profile
     featured_tags: Featured hashtags
@@ -1518,5 +1504,4 @@ sco:
     nickname_hint: Pit in the nickname o yer new security key
     not_enabled: Ye huvnae turnt on WebAuthn yit
     not_supported: This brooser disnae support security keys
-    otp_required: Fir tae uise security keys please turn on twa-factor authentication furst.
     registered_on: Registert on %{date}

@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 
 import { afterInitialRender } from 'mastodon/hooks/useRenderSignal';
 
-import { Status } from '../mastodon/features/standalone/status';
+import { EmbedRoot } from '../mastodon/features/standalone/status';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
 
@@ -17,7 +17,7 @@ function loaded() {
     const props = JSON.parse(attr) as { id: string; locale: string };
     const root = createRoot(mountNode);
 
-    root.render(<Status {...props} />);
+    root.render(<EmbedRoot {...props} />);
   }
 }
 

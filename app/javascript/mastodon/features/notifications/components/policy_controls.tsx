@@ -187,8 +187,8 @@ export const PolicyControls: React.FC = () => {
           options={options}
           label={
             <FormattedMessage
-              id='notifications.policy.filter_private_mentions_title'
-              defaultMessage='Unsolicited private mentions'
+              id='notifications.policy.filter_messages'
+              defaultMessage='Unsolicited messages'
             />
           }
           hint={

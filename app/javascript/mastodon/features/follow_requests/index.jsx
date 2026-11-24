@@ -5,12 +5,11 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from '@unhead/react/helmet';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { ImmutablePureComponent } from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
 import { Column } from '@/mastodon/components/column';
 import { injectIntl } from '@/mastodon/components/intl';
 
@@ -19,7 +18,7 @@ import ScrollableList from '../../components/scrollable_list';
 import { me } from '../../initial_state';
 
 import AccountAuthorizeContainer from './containers/account_authorize_container';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 
 const messages = defineMessages({
   heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },
@@ -71,7 +70,7 @@ class FollowRequests extends ImmutablePureComponent {
 
     return (
       <Column bindToDocument={!multiColumn}>
-        <ColumnHeader icon='user-plus' iconComponent={PersonAddIcon} title={intl.formatMessage(messages.heading)} showBackButton />
+        <ColumnHeader withBackButton title={intl.formatMessage(messages.heading)} />
         <ScrollableList
           scrollKey='follow_requests'
           onLoadMore={this.handleLoadMore}

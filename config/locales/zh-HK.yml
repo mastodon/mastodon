@@ -21,7 +21,6 @@ zh-HK:
   admin:
     account_actions:
       action: 執行動作
-      title: 在 %{acct} 執行管理操作
     account_moderation_notes:
       create: 加入管理紀錄
       created_msg: 已新增管理紀錄
@@ -437,7 +436,6 @@ zh-HK:
         registrations:
           confirm: 確認
           reject: 拒絕
-        save: 儲存
         sign_in: 登入
         status: 狀態
       title: FASP
@@ -567,10 +565,7 @@ zh-HK:
       action_taken_by: 操作執行者
       actions:
         mark_as_sensitive_description_html: 被檢舉的帖文中的媒體會被標記為敏感內容，並記錄一次警告，以便日後加快處理同一帳號的違規行為。
-        other_description_html: 查看更多控制帳號行為，以及自訂與被檢舉帳號溝通的選項。
         resolve_description_html: 不會對被檢舉的帳號採取任何動作，也不會記錄警告，檢舉報告將會結案。
-        silence_description_html: 此帳號將會只有追蹤者或手動搜尋它的人才可以看見，大幅限制了它的曝光。你可隨時恢復它。關閉所有對此帳號的檢舉報告。
-        suspend_description_html: 此帳號及其所有內容將不可再被存取，並且最終會被刪除，無法再進行互動。可於 30 天內撤銷此動作。關閉所有對此帳號的檢舉報告。
       actions_description_remote_html: 決定對此檢舉採取哪種動作。這只會影響<strong>你的伺服器</strong>與此遠端帳號的通訊和處理其內容的方式。
       add_to_report: 加入更多到檢舉
       already_suspended_badges:
@@ -732,10 +727,8 @@ zh-HK:
         title: 預設用戶不在搜尋引擎索引之內
       discovery:
         follow_recommendations: 追蹤建議
-        privacy: 私隱
         profile_directory: 個人檔案目錄
         public_timelines: 公共時間軸
-        publish_statistics: 公佈統計數據
         title: 探索
         trends: 熱門
       domain_blocks:
@@ -754,7 +747,6 @@ zh-HK:
         warning_hint: 我們建議你使用「需要審核註冊」的設定，除非你確信審核團隊能夠及時處理垃圾訊息和惡意註冊。
       security:
         authorized_fetch: 要求跨站驗證
-        authorized_fetch_hint: 要求跨站驗證可更嚴謹地執行使用者級及伺服器級的封鎖。然而，這會犧牲性能，降低你回覆的觸及範圍，跨站服務亦可能出現兼容問題。此外，這並無法阻止他人蓄意擷取你的公開帖文和帳號。
         authorized_fetch_overridden_hint: 由於此設定被某環境變數覆寫，因此你目前無法更改此設定。
         federation_authentication: 強制跨站驗證
       title: 伺服器設定
@@ -882,7 +874,6 @@ zh-HK:
         shared_by_over_week:
           other: 上週有 %{count} 人分享
         title: 熱門連結
-        usage_comparison: 今天被分享了 %{today} 次，相較於昨天 %{yesterday} 次
       not_allowed_to_trend: 不允許登上趨勢
       only_allowed: 僅允許
       pending_review: 等待審核中
@@ -922,15 +913,12 @@ zh-HK:
         trendable: 可登上熱門
         trending_rank: '熱門 #%{rank}'
         usable: 可用
-        usage_comparison: 今天被使用了 %{today} 次，相較於昨天 %{yesterday} 次
         used_by_over_week:
           other: 上週有 %{count} 人使用
       trending: 熱門
     warning_presets:
       add_new: 新增
       delete: 刪除
-      edit_preset: 設定警告預設
-      empty: 您尚未定義任何預設警告
     webhooks:
       add_new: 新增端點
       delete: 刪除
@@ -997,7 +985,6 @@ zh-HK:
     remove: 取消連結別名 (Alias)
   appearance:
     animations_and_accessibility: 動畫和輔助功能
-    discovery: 探索
     localization:
       body: Mastodon 是由志願者翻譯的。
       guide_link: https://crowdin.com/project/mastodon
@@ -1118,7 +1105,6 @@ zh-HK:
   deletes:
     challenge_not_passed: 你填寫的資料不正確
     confirm_password: 輸入你現在的密碼來驗證身份
-    confirm_username: 請填寫你的登入名稱以確認程序
     proceed: 刪除帳戶
     success_msg: 你的帳戶已經成功刪除
     warning:
@@ -1261,7 +1247,6 @@ zh-HK:
       empty: 空白 CSV 檔案
       incompatible_type: 與選擇的匯入類型不相符
       invalid_csv_file: 無效的 CSV 檔案。錯誤：%{error}
-      over_rows_processing_limit: 包含超過 %{count} 行
       too_large: 檔案太大
     failures: 失敗
     imported: 已匯入
@@ -1356,7 +1341,6 @@ zh-HK:
     incoming_migrations_html: 要由其他帳戶轉移至當前帳戶的話，首先你需要 <a href="%{path}">新增帳戶別名(alias)</a>.
     moved_msg: 你的帳號正被轉接至 %{acct} ，你的關注者正在同步轉移至該帳號。
     not_redirecting: 你的帳號現時並未被重新定向。
-    on_cooldown: 你最近已經轉移過帳戶。此功能將在 %{count} 天後可重新使用。
     past_migrations: 以往的帳戶轉移
     proceed_with_move: 移動追隨者
     redirected_msg: 你的帳戶即將被重新定向至%{acct}。
@@ -1502,9 +1486,6 @@ zh-HK:
     descriptions:
       account: 來自 @%{acct} 的公開帖文
       tag: "#%{hashtag} 標籤的公開帖文"
-  scheduled_statuses:
-    over_daily_limit: 你已經超越了當天排定發文的限額 (%{limit})
-    over_total_limit: 你已經超越了排定發文的限額 (%{limit})
   self_destruct:
     lead_html: 很遺憾，<strong>%{domain}</strong> 即將永久停止服務。如果你在該處擁有帳號，你將無法繼續使用它，但你仍然可以要求備份你的數據。
     title: 這個伺服器即將停止服務
@@ -1561,7 +1542,6 @@ zh-HK:
     appearance: 外觀設定
     authorized_apps: 授權應用程式
     back: 回到 Mastodon
-    delete: 刪除帳戶
     development: 開發
     edit_profile: 修改個人資料
     export: 匯出
@@ -1813,5 +1793,4 @@ zh-HK:
     nickname_hint: 請為你的安全密鑰裝置命名
     not_enabled: 你還未啟用 WebAuthn
     not_supported: 這個瀏覽器並不支援安全密鑰裝置
-    otp_required: 請開啟雙重認證以使用安全密鑰裝置
     registered_on: 在 %{date} 注冊

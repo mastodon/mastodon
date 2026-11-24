@@ -59,6 +59,22 @@ RSpec.describe 'Media Proxy' do
       end
     end
 
+    context 'when an admin wants to see a suspended attachment' do
+      before do
+        sign_in Fabricate(:admin_user)
+      end
+
+      let(:account) { Fabricate(:account, suspended: true) }
+      let(:status) { Fabricate(:status, account:) }
+      let(:media_attachment) { Fabricate(:media_attachment, account:, status:, type: :image) }
+
+      it 'returns the media' do
+        get "/media_proxy/#{media_attachment.id}"
+
+        expect(response).to have_http_status(200)
+      end
+    end
+
     def stub_attachment_request
       stub_request(
         :get,

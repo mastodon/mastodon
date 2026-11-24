@@ -23,7 +23,6 @@ an:
   admin:
     account_actions:
       action: Realizar acción
-      title: Amoderar %{acct}
     account_moderation_notes:
       create: Creyar
       created_msg: Nota de moderación creyada con exito!
@@ -543,10 +542,7 @@ an:
       action_taken_by: Acción presa per
       actions:
         mark_as_sensitive_description_html: Los fichers multimedia en os mensaches informaus se marcarán como sensibles y s'aplicará una amonestación pa aduyar-te a escalar las futuras infraccions d'a mesma cuenta.
-        other_description_html: Veyer mas opcions pa controlar lo comportamiento d'a cuenta y personalizar la comunicación d'a cuenta denunciada.
         resolve_description_html: No se prendrán medidas contra la cuenta denunciada, no se rechistrará l'amonestación, y se zarrará l'informe.
-        silence_description_html: La cuenta será visible nomás pa aquells que ya en sigan u lo busquen manualment, limitando seriosament lo suyo alcance. Siempre puede estar revertiu. Se zarrarán totz los informes contre esta cuenta.
-        suspend_description_html: Esta cuenta y totz los suyos contenius serán inaccesibles y finalment eliminaus, y interaccionar con ella no será posible. Reversible en 30 días. Zarra totz los informes contra eta cuenta.
       actions_description_remote_html: Decide qué acción prener pa resolver este reporte. Ixo afectará nomás a como <strong>lo tuyo</strong> servidor se comunica con estea cuenta remota y a cómo chestiona lo suyo conteniu.
       add_to_report: Anyadir mas a lo reporte
       are_you_sure: Yes seguro?
@@ -678,7 +674,6 @@ an:
         follow_recommendations: Recomendacions de cuentas
         profile_directory: Directorio de perfils
         public_timelines: Linias de tiempo publicas
-        publish_statistics: Publicar las estatisticas
         title: Escubrimiento
         trends: Tendencias
       domain_blocks:
@@ -765,7 +760,6 @@ an:
           one: Compartiu per una persona entre la zaguera semana
           other: Compartiu per %{count} personas entre la zaguera semana
         title: Vinclos en tendencia
-        usage_comparison: Compartiu %{today} vegadas hue, comparau con %{yesterday} ahiere
       only_allowed: Nomás las permitidas
       pending_review: Revisión pendient
       preview_card_providers:
@@ -805,7 +799,6 @@ an:
         trendable: Pueden amaneixer en tendencias
         trending_rank: 'Tendencia #%{rank}'
         usable: Pueden usar-se
-        usage_comparison: Usada %{today} vegadas hue, comparau con %{yesterday} ahiere
         used_by_over_week:
           one: Usada per una persona entre la zaguera semana
           other: Usada per %{count} personas entre la zaguera semana
@@ -813,8 +806,6 @@ an:
     warning_presets:
       add_new: Anyadir nuevo
       delete: Borrar
-      edit_preset: Editar aviso predeterminau
-      empty: Encara no has definiu garra preajuste d'alvertencia.
     webhooks:
       add_new: Anyadir endpoint
       delete: Eliminar
@@ -873,7 +864,6 @@ an:
     remove: Desvincular alias
   appearance:
     animations_and_accessibility: Animacions y accesibilidat
-    discovery: Descubrir
     localization:
       body: Mastodon ye traduciu con la aduya de voluntarios.
       guide_link: https://crowdin.com/project/mastodon
@@ -962,7 +952,6 @@ an:
   deletes:
     challenge_not_passed: Los datos escritos son incorrectos
     confirm_password: Ingresa la tuya clau actual pa contrimostrar la tuya identidat
-    confirm_username: Escribe lo tuyo nombre d'usuario pa confirmar
     proceed: Eliminar cuenta
     success_msg: La tuya cuenta s'eliminó con exito
     warning:
@@ -1103,7 +1092,6 @@ an:
   imports:
     errors:
       invalid_csv_file: 'Fichero CSV no valido. Error: %{error}'
-      over_rows_processing_limit: contiene mas de %{count} ringleras
     modes:
       merge: Unir
       merge_long: Mantener rechistros existents y anyadir nuevos
@@ -1171,7 +1159,6 @@ an:
     incoming_migrations_html: Pa migrar d'unatra cuenta a esta, primero amenestes <a href="%{path}">creyar un alias d'a cuenta</a>.
     moved_msg: La tuya cuenta agora se ye reendrezando a %{acct} y las tuyas seguidores se son migrando.
     not_redirecting: La tuya cuenta no se ye reendrezando a garra atra cuenta actualment.
-    on_cooldown: Has migrado la tuya cuenta recientment. Esta función será disponible de nuevo en %{count} días.
     past_migrations: Migracions pasadas
     proceed_with_move: Migrar seguidores
     redirected_msg: La tuya cuenta agora reendreza a %{acct}.
@@ -1303,9 +1290,6 @@ an:
     descriptions:
       account: Publicacions publicas de @%{acct}
       tag: 'Publicacions publicas etiquetadas con #%{hashtag}'
-  scheduled_statuses:
-    over_daily_limit: Ha superau lo limite de %{limit} publicacions programadas pa ixe día
-    over_total_limit: Ha superau lo limite de %{limit} publicacions programadas
   sessions:
     activity: Zaguera actividat
     browser: Navegador
@@ -1354,7 +1338,6 @@ an:
     appearance: Apariencia
     authorized_apps: Aplicacions autorizadas
     back: Tornar ta l'inicio
-    delete: Borrar cuenta
     development: Desembolique
     edit_profile: Editar perfil
     featured_tags: Hashtags destacaus
@@ -1533,5 +1516,4 @@ an:
     nickname_hint: Escriba la embotada d'a suya nueva clau de seguranza
     not_enabled: Encara no has activau WebAuthn
     not_supported: Este navegador no suporta claus de seguranza
-    otp_required: Pa usar claus de seguranza, per favor habilite primero l'autenticación de dople factor.
     registered_on: Rechistrau lo %{date}

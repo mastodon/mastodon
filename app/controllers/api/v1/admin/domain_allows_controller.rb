@@ -3,6 +3,7 @@
 class Api::V1::Admin::DomainAllowsController < Api::BaseController
   include Authorization
   include AccountableConcern
+  include Admin::PermissionsConcern
 
   LIMIT = 100
   MAX_LIMIT = 500

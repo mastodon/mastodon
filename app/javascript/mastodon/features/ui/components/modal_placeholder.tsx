@@ -40,13 +40,13 @@ export const ModalPlaceholder: React.FC<{
             </p>
 
             <div className='modal-placeholder__error__message__actions'>
-              <Button onClick={handleRetry}>
+              <Button onClick={handleRetry} variant='solid' color='accent'>
                 <FormattedMessage
                   id='bundle_modal_error.retry'
                   defaultMessage='Try again'
                 />
               </Button>
-              <Button onClick={handleClose} className='button button-secondary'>
+              <Button onClick={handleClose}>
                 <FormattedMessage
                   id='bundle_modal_error.close'
                   defaultMessage='Close'

@@ -22,7 +22,6 @@ co:
   admin:
     account_actions:
       action: Realizà un'azzione
-      title: Realizà un'azzione di muderazione nant'à %{acct}
     account_moderation_notes:
       create: Creà una nota
       created_msg: Nota di muderazione creata!
@@ -490,7 +489,6 @@ co:
     warning_presets:
       add_new: Aghjunghje
       delete: Sguassà
-      edit_preset: Cambià a preselezzione d'avertimentu
   admin_mailer:
     new_pending_account:
       body: I ditagli di u novu contu sò quì sottu. Pudete appruvà o righjittà a dumanda.
@@ -508,7 +506,6 @@ co:
     remove: Sguassà u pseudonimu
   appearance:
     animations_and_accessibility: Animazione è accessibilità
-    discovery: Scuperta
     localization:
       body: Mastodon hè tradottu da una squadra di vuluntari.
       guide_link: https://fr.crowdin.com/project/mastodon
@@ -585,7 +582,6 @@ co:
   deletes:
     challenge_not_passed: L'infurmazione entrata ùn era micca curretta
     confirm_password: Entrate a vostra chjave d’accessu attuale per verificà a vostra identità
-    confirm_username: Entrà u vostru cugnome per cunfirmà a prucedura
     proceed: Sguassà u contu
     success_msg: U vostru contu hè statu sguassatu
     warning:
@@ -657,8 +653,6 @@ co:
       one: Qualcosa ùn và bè! Verificate u prublemu quì sottu
       other: Qualcosa ùn và bè! Verificate %{count} prublemi quì sottu
   imports:
-    errors:
-      over_rows_processing_limit: cuntene più di %{count} filari
     modes:
       merge: Unisce
       merge_long: Cunservà i dati esistenti è aghjunghje i novi
@@ -721,7 +715,6 @@ co:
     incoming_migrations_html: Per spustà da stu contu à un'altru, primu duvete <a href="%{path}">creà un pseudonimu di contu</a>.
     moved_msg: Avà u vostru contu riindirizza versu %{acct} è i vostri abbunati sò in corsu di trasferimentu.
     not_redirecting: U vostru contu ùn riindirizza micca ancu versu un'altru contu.
-    on_cooldown: Avede digià migratu u vostru contu. Sta funzionne sarà torna dispunibule in %{count} ghjorni.
     past_migrations: Anziane migrazione
     proceed_with_move: Trasferì l'abbunati
     redirected_msg: Avà u vostru contu riindirizza versu à %{acct}.
@@ -831,9 +824,6 @@ co:
     status: Statutu di u contu
   remote_follow:
     missing_resource: Ùn avemu pussutu à truvà l’indirizzu di ridirezzione
-  scheduled_statuses:
-    over_daily_limit: Avete trapassatu a limita di %{limit} statuti pianificati per stu ghjornu
-    over_total_limit: Avete trapassatu a limita di %{limit} statuti pianificati
   sessions:
     activity: Ultima attività
     browser: Navigatore
@@ -877,7 +867,6 @@ co:
     appearance: Apparenza
     authorized_apps: Applicazione auturizate
     back: Ritornu nant’à Mastodon
-    delete: Suppressione di u contu
     development: Sviluppu
     edit_profile: Mudificà u prufile
     featured_tags: Hashtag in vista
@@ -1006,5 +995,4 @@ co:
     nickname_hint: Entrate u nome di a vostra nova chjave di sicurità
     not_enabled: Ùn avete micca attivatu WebAuthn
     not_supported: E chjave di sicurità ùn marchjanu micca cù quessu navigatore
-    otp_required: Per utilizà una chjave di sicurità duvete attivà l'identificazione à dui fattori prima.
     registered_on: Arregistrata %{date}

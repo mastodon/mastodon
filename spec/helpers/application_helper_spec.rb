@@ -5,13 +5,14 @@ require 'rails_helper'
 RSpec.describe ApplicationHelper do
   describe 'html_classes' do
     context 'with non-default user settings' do
+      let(:user) { Fabricate :user }
+
       before do
-        user = Fabricate :user
         user.settings['web.use_system_font'] = true
         user.settings['web.reduce_motion'] = true
-        user.save
+        user.save!
 
-        helper.extend controller_helpers
+        helper.extend controller_helpers(user.account)
       end
 
       it 'uses the current theme and user settings classes in the result' do
@@ -22,11 +23,9 @@ RSpec.describe ApplicationHelper do
 
       private
 
-      def controller_helpers
+      def controller_helpers(account)
         Module.new do
-          def current_account
-            @current_account ||= Fabricate(:account, user: User.last)
-          end
+          define_method(:current_account) { account }
         end
       end
     end

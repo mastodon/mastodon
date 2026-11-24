@@ -2,16 +2,18 @@ import { useState, useEffect } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 import { apiGetPrivacyPolicy } from 'mastodon/api/instance';
 import type { ApiPrivacyPolicyJSON } from 'mastodon/api_types/instance';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { Skeleton } from 'mastodon/components/skeleton';
 
-import { getColumnSkipLinkId } from '../ui/components/skip_links';
+import aboutClasses from '../about/styles.module.scss';
 
 const messages = defineMessages({
   title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },
@@ -41,14 +43,21 @@ const PrivacyPolicy: React.FC<{
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.title)}
     >
-      <div className='scrollable privacy-policy'>
+      <ColumnHeader
+        title={
+          <FormattedMessage
+            id='privacy_policy.title'
+            defaultMessage='Privacy Policy'
+          />
+        }
+      />
+      <div
+        className={classNames(
+          'scrollable privacy-policy',
+          aboutClasses.redesignOverrides,
+        )}
+      >
         <div className='column-title'>
-          <NavigationFocusTarget as='h1' id={getColumnSkipLinkId(1)}>
-            <FormattedMessage
-              id='privacy_policy.title'
-              defaultMessage='Privacy Policy'
-            />
-          </NavigationFocusTarget>
           <p>
             <FormattedMessage
               id='privacy_policy.last_updated'

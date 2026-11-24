@@ -5,12 +5,15 @@ class SEO::SocialMediaPostingSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :context, :type, :url, :date_published, :date_modified,
-             :author, :text, :interaction_statistic
+             :text, :interaction_statistic
 
   attribute :image, if: -> { object.ordered_media_attachments.any?(&:image?) }
   attribute :video, if: -> { object.ordered_media_attachments.any? { |attachment| attachment.video? || attachment.gifv? } }
   attribute :audio, if: -> { object.ordered_media_attachments.any?(&:audio?) }
-  attribute :shared_content, if: -> { object.with_preview_card? }
+  attribute :shared_content, if: -> { object.with_preview_card? || object.with_quote? }
+  attribute :parent_item, if: -> { object.reply? }
+
+  has_one :author, serializer: SEO::PersonSerializer
 
   def context
     'https://schema.org'
@@ -33,20 +36,7 @@ class SEO::SocialMediaPostingSerializer < ActiveModel::Serializer
   end
 
   def author
-    {
-      type: 'Person',
-      name: object.account.display_name.presence || object.account.username,
-      alternate_name: object.account.local_username_and_domain,
-      identifier: object.account.local_username_and_domain,
-      url: ActivityPub::TagManager.instance.url_for(object.account),
-      interaction_statistic: [
-        {
-          type: 'InteractionCounter',
-          interaction_type: 'https://schema.org/FollowAction',
-          user_interaction_count: object.account.followers_count,
-        },
-      ],
-    }
+    object.account
   end
 
   def text
@@ -84,6 +74,8 @@ class SEO::SocialMediaPostingSerializer < ActiveModel::Serializer
         content_url: full_asset_url(attachment.file.url(:original, false)),
         thumbnail_url: attachment.thumbnail.present? ? full_asset_url(attachment.thumbnail.url(:original)) : full_asset_url(attachment.file.url(:small)),
         description: attachment.description,
+        width: attachment.file.meta.dig('original', 'width'),
+        height: attachment.file.meta.dig('original', 'height'),
       }
     end
   end
@@ -98,7 +90,7 @@ class SEO::SocialMediaPostingSerializer < ActiveModel::Serializer
         content_url: full_asset_url(attachment.file.url(:original, false)),
         thumbnail_url: attachment.thumbnail.present? ? full_asset_url(attachment.thumbnail.url(:original)) : full_asset_url(attachment.file.url(:small)),
         embed_url: player_medium_url(attachment),
-        description: attachment.description,
+        name: attachment.description,
       }
     end
   end
@@ -113,15 +105,29 @@ class SEO::SocialMediaPostingSerializer < ActiveModel::Serializer
         content_url: full_asset_url(attachment.file.url(:original, false)),
         thumbnail_url: attachment.thumbnail.present? ? full_asset_url(attachment.thumbnail.url(:original)) : full_asset_url(attachment.file.url(:small)),
         embed_url: player_medium_url(attachment),
-        description: attachment.description,
+        name: attachment.description,
       }
     end
   end
 
   def shared_content
+    if object.with_quote? && object.quote&.quoted_status.present?
+      {
+        type: 'SocialMediaPosting',
+        url: ActivityPub::TagManager.instance.url_for(object.quote.quoted_status),
+      }
+    elsif object.with_preview_card?
+      {
+        type: 'WebPage',
+        url: object.preview_card.url,
+      }
+    end
+  end
+
+  def parent_item
     {
-      type: 'WebPage',
-      url: object.preview_card.url,
+      type: 'SocialMediaPosting',
+      url: ActivityPub::TagManager.instance.url_for(object.thread),
     }
   end
 end

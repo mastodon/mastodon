@@ -11,16 +11,25 @@ RSpec.describe 'Settings Deletes' do
     it 'requires password and deletes user record', :inline_jobs do
       visit settings_delete_path
       expect(page)
-        .to have_title(I18n.t('settings.delete'))
+        .to have_title(I18n.t('deletes.title', acct: user.account.local_username_and_domain))
         .and have_private_cache_control
 
       # Wrong confirmation value
+      fill_in 'form_delete_confirmation_username', with: user.account.username
       fill_in 'form_delete_confirmation_password', with: 'wrongvalue'
       click_on I18n.t('deletes.proceed')
       expect(page)
         .to have_text(I18n.t('deletes.challenge_not_passed'))
 
+      # Wrong confirmation value
+      fill_in 'form_delete_confirmation_username', with: 'wrongvalue'
+      fill_in 'form_delete_confirmation_password', with: user.password
+      click_on I18n.t('deletes.proceed')
+      expect(page)
+        .to have_text(I18n.t('deletes.challenge_not_passed'))
+
       # Correct confirmation value
+      fill_in 'form_delete_confirmation_username', with: user.account.username
       fill_in 'form_delete_confirmation_password', with: user.password
       click_on I18n.t('deletes.proceed')
       expect(page)

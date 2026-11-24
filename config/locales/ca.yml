@@ -7,6 +7,13 @@ ca:
     hosted_on: Mastodon allotjat a %{domain}
     title: Quant a
   accounts:
+    api_errors:
+      account_deleted: El vostre compte s'ha esborrat
+      account_suspended: El vostre compte s'ha suspès
+      login_disabled: S'ha desactivat el vostre compte
+      memorial: El vostre compte s'ha transformat en un memorial
+      pending_approval: El vostre compte està pendent d'aprovació per moderació
+      pending_confirmation: El vostre compte no té una adreça de correu confirmada
     errors:
       cannot_be_added_to_collections: Aquest compte no es pot afegir a coŀleccions.
     followers:
@@ -28,7 +35,6 @@ ca:
       action: Realitza l'acció
       already_silenced: Aquest compte ja s'ha limitat.
       already_suspended: Aquest compte ja s'ha suspès.
-      title: Fer l'acció de moderació a %{acct}
     account_moderation_notes:
       create: Crea nota
       created_msg: La nota de moderació s'ha creat correctament!
@@ -53,27 +59,43 @@ ca:
         label: Canvia rol
         no_role: Sense rol
         title: Canvia el rol per a %{username}
+      collections: Col·leccions
       confirm: Confirma
       confirmed: Confirmat
       confirming: Confirmant
       custom: Personalitzat
       delete: Esborra les dades
       deleted: Eliminat
+      deletion_irreversible: Les dades d'aquest compte s'han esborrat irreversiblement.
+      deletion_reversible_hint_html: Aquest compte està pendent d'esborrat, i les dades s'eliminaran completament el %{date}.
       demote: Degrada
       destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
       disable: Inhabilita
+      disable_sign_in_token: Deshabilitar temporalment la validació del codi de seguretat
       disable_sign_in_token_auth: Desactivar l'autenticació de token per correu-e
       disable_two_factor_authentication: Desactiva 2FA
       disabled: Inhabilitat
+      discoverable:
+        disabled: L'autor no vol ser detectable
+        enabled: L'autor ha activat poder ser detectable
+        title: Detectable
       display_name: Nom visible
       domain: Domini
       edit: Edita
       email: Adreça electrònica
       email_status: Estat de l'adreça electrònica
       enable: Habilita
+      enable_sign_in_token: Activar la validació del codi de seguretat
       enable_sign_in_token_auth: Activar l'autenticació de token per correu-e
+      enable_unconfirmed: Permetre correu de confirmació
       enabled: Habilitat
       enabled_msg: El compte de %{username} s’ha descongelat amb èxit
+      follow_recommendations:
+        allowed: Permès
+        suppress: Suprimeix les recomanacions de seguiment
+        suppressed: Suprimit
+        title: Recomanacions de comptes a seguir
+        unsuppress: Restaurar les recomanacions de seguiment
       followers: Seguidors
       follows: Seguits
       header: Capçalera
@@ -119,6 +141,7 @@ ca:
       push_subscription_expires: La subscripció PuSH expira
       redownload: Actualitza el perfil
       redownloaded_msg: El perfil de %{username} s’ha refrescat des de l’origen amb èxit
+      registration_app: Aplicació de registre
       reject: Rebutja
       rejected_msg: S'ha rebutjat la petició de registre de %{username}
       remote_suspension_irreversible: Les dades d'aquest compte s'han esborrat irreversiblement.
@@ -158,6 +181,12 @@ ca:
       suspension_irreversible: Les dades d’aquest compte s’han suprimit irreversiblament. Pots desfer la suspensió del compte per a fer-lo usable però això no recuperarà les dades si és que en tenia.
       suspension_reversible_hint_html: El compte ha estat suspès i les dades seran totalment suprimides el %{date}. Fins llavors, el compte pot ser restaurat sense problemes. Si vols suprimir immediatament totes les dades del compte, ho pots fer a continuació.
       title: Comptes
+      trends:
+        allow: Permet
+        allowed: Permès
+        disallow: No permetre
+        disallowed: No permès
+        title: Tuts en tendència
       unblock_email: Desbloqueja l'adreça de correu
       unblocked_email_msg: Adreça de correu de %{username} desbloquejada amb èxit
       unconfirmed_email: Correu electrònic sense confirmar
@@ -193,6 +222,7 @@ ca:
         create_user_role: Crea Rol
         create_username_block: Crear regla de nom d'usuari
         demote_user: Degrada l'usuari
+        destroy_account: Suprimeix les dades del compte
         destroy_announcement: Esborra l'anunci
         destroy_canonical_email_block: Elimina el blocatge del correu electrònic
         destroy_custom_emoji: Esborra l'emoji personalitzat
@@ -469,6 +499,35 @@ ca:
       resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, que són els responsables finals per a acceptar els correus. Blocar un domini MX blocarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible sigui diferent. <strong>Vigileu de no blocar els grans proveïdors de correu.</strong>
       resolved_through_html: Resolt mitjançant %{domain}
       title: Dominis de correu-e blocats
+    email_subscriptions:
+      accounts:
+        show:
+          disable_feature: Desactiva la funcionalitat
+          email: Adreça de correu electrònic
+          enable_feature: Activar aquesta funció
+          view_account: Veure compte
+        status: Estat
+        subscribers: Subscriptors
+        title: Llistes de correu
+      danger_zone:
+        disable_feature:
+          hint: Desactivar funcionalitat per a tots els comptes
+          title: Desactivar funcionalitat
+        erase_all_data:
+          action: Esborra les dades
+          hint: Esborrar de manera permanent tos els correus en totes les llistes de correu
+          title: Esborrar totes les dades
+        title: Zona de perill
+      index:
+        disabled:
+          get_started: Comença
+        title: Butlletins
+      roles:
+        accounts: Comptes
+        title: Rols
+      setups:
+        show:
+          important_information: Informació important
     export_domain_allows:
       new:
         title: Importa dominis permesos
@@ -508,8 +567,6 @@ ca:
           description: Heu rebut un registre d'un FASP. Rebutgeu-lo si no l'heu iniciat. Si ho heu fet, compareu amb cura el nom i la clau d'empremta abans de confirmar el registre.
           reject: Rebutja
           title: Confirmeu el registre a FASP
-        save: Desa
-        select_capabilities: Seleccioneu les capacitats
         sign_in: Inicieu la sessió
         status: Estat
         title: Proveïdors de Serveis Auxiliars del Fedivers
@@ -654,10 +711,7 @@ ca:
       action_taken_by: Mesures adoptades per
       actions:
         mark_as_sensitive_description_html: Els mèdia dels tuts reportats seran marcats com a sensibles i una acció serà gravada per ajudar a escalar en futures infraccions del mateix compte.
-        other_description_html: Veu més opcions controlant el comportament del compte i personalitza la comunicació al compte denunciat.
         resolve_description_html: No serà presa cap acció contra el compte denunciat, no se'n registrarà res i l'informe es tancarà.
-        silence_description_html: El compte només serà visible a qui ja el seguia o l'ha cercat manualment, limitant-ne fortament l'abast. Sempre es pot revertir. Es tancaran tots els informes contra aquest compte.
-        suspend_description_html: Aquest compte i tots els seus continguts seran inaccessibles i finalment eliminats, i interaccionar amb ell no serà possible. Reversible en 30 dies. Tanca tots els informes contra aquest compte.
       actions_description_html: Decidiu quina acció a prendre per a resoldre aquest informe. Si preneu una acció punitiva contra el compte denunciat, se li enviarà una notificació per correu-e, excepte si se selecciona la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decideix quina acció prendre per a resoldre aquest informe. Això només afectarà com <strong>el teu</strong> servidor es comunica amb aquest compte remot i en gestiona el contingut.
       actions_no_posts: Aquest informe no té associada cap publicació a esborrar
@@ -832,10 +886,8 @@ ca:
         title: Exclou per defecte els usuaris de la indexació dels motors de cerca
       discovery:
         follow_recommendations: Seguir les recomanacions
-        privacy: Privacitat
         profile_directory: Directori de perfils
         public_timelines: Línies de temps públiques
-        publish_statistics: Publica estadístiques
         title: Descobriment
         trends: Tendències
         wrapstodon: Wrapstodon
@@ -859,7 +911,6 @@ ca:
         warning_hint: Recomanem utilitzar l'opció "Es requereix aprovació per a donar-se d'alta" si no teniu un equip de moderadors que puguin gestionar els enviaments de brossa o maliciosos en un temps raonable.
       security:
         authorized_fetch: Requereix autenticació dels servidors federats
-        authorized_fetch_hint: Requerir l'autenticació dels servidors federats permet una aplicació més estricta dels bloqueigs a nivell d'usuari i a nivell de servidor. Tanmateix, això provoca una penalització del rendiment, redueix l'abast de les seves respostes i pot introduir problemes de compatibilitat amb alguns serveis federats. A més, això no impedirà que els actors dedicats busquin les teves publicacions i comptes públics.
         authorized_fetch_overridden_hint: Actualment no pots canviar aquesta configuració perquè està anul·lada per una variable d'entorn.
         federation_authentication: Aplicació de l'autenticació de la federació
       title: Configuració del servidor
@@ -1041,7 +1092,6 @@ ca:
           one: Compartit per una persona en la darrera setmana
           other: Compartit per %{count} persones en la darrera setmana
         title: Enllaços en tendència
-        usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
       not_allowed_to_trend: No es permet la tendència
       only_allowed: Només permesos
       pending_review: Revisió pendent
@@ -1086,7 +1136,6 @@ ca:
         trendable: Pot aparèixer en les tendències
         trending_rank: 'Tendència #%{rank}'
         usable: Pot ser emprat
-        usage_comparison: Usat %{today} vegades avui, comparat amb %{yesterday} d'ahir
         used_by_over_week:
           one: Emprat per una persona en la darrera setmana
           other: Emprat per %{count} persones en la darrera setmana
@@ -1113,9 +1162,6 @@ ca:
     warning_presets:
       add_new: Afegir-ne un de nou
       delete: Elimina
-      edit_preset: Edita l'avís predeterminat
-      empty: Encara no has definit cap preavís.
-      title: Predefinicions d'avís
     webhooks:
       add_new: Afegir extrem
       delete: Elimina
@@ -1183,7 +1229,6 @@ ca:
     remove: Desvincula l'àlies
   appearance:
     animations_and_accessibility: Animacions i accessibilitat
-    discovery: Descobriment
     localization:
       body: Mastodon és traduït per voluntaris.
       guide_link: https://crowdin.com/project/mastodon
@@ -1329,7 +1374,6 @@ ca:
   deletes:
     challenge_not_passed: La informació que has introduït no és correcta
     confirm_password: Introdueix la contrasenya actual per a verificar la identitat
-    confirm_username: Escriu el teu nom d'usuari per a confirmar el procediment
     proceed: Elimina el compte
     success_msg: El compte s'ha eliminat correctament
     warning:
@@ -1486,7 +1530,6 @@ ca:
       empty: Fitxer CSV buit
       incompatible_type: Incompatible amb el tipus d'importació seleccionada
       invalid_csv_file: 'Fitxer CSV invàlid. Error: %{error}'
-      over_rows_processing_limit: conté més de %{count} files
       too_large: El fitxer és massa gran
     failures: Fallades
     imported: Importat
@@ -1629,7 +1672,6 @@ ca:
     incoming_migrations_html: Per a moure't des d'un altre compte a aquest, primer necessites <a href="%{path}">crear un àlies de compte</a>.
     moved_msg: El teu compte ara està redirigint a %{acct} i els teus seguidors estan sent moguts.
     not_redirecting: El teu compte no està redirigint actualment a cap altre.
-    on_cooldown: Recentment has emigrat el teu compte. Aquesta funció esdevindrà un altre cop disponible en %{count} dies.
     past_migrations: Migracions passades
     proceed_with_move: Mou seguidors
     redirected_msg: El teu compte és ara redireccionat a %{acct}.
@@ -1790,8 +1832,6 @@ ca:
       account: Publicacions públiques de @%{acct}
       tag: 'Tuts etiquetats #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Has superat el límit de %{limit} tuts programats per a avui
-    over_total_limit: Has superat el límit de %{limit} tuts programats
     too_soon: la data ha de ser al futur
   self_destruct:
     lead_html: Lamentablement, <strong>%{domain}</strong> tanca de forma definitiva. Si hi teníeu un compte, no el podreu continuar utilitzant, però podeu demanar una còpia de les vostres dades.
@@ -1849,7 +1889,6 @@ ca:
     appearance: Aparença
     authorized_apps: Aplicacions autoritzades
     back: Torna a Mastodon
-    delete: Eliminació del compte
     development: Desenvolupament
     edit_profile: Edita el perfil
     export: Exporta
@@ -2143,7 +2182,6 @@ ca:
     nickname_hint: Introdueix el sobrenom de la teva clau de seguretat nova
     not_enabled: Encara no has activat WebAuthn
     not_supported: Aquest navegador no suporta claus de seguretat
-    otp_required: Per a usar claus de seguretat, activeu primer l'autenticació de dos factors.
     registered_on: Registrat en %{date}
   wrapstodon:
     description: Mira com %{name} ha fet servir Mastodon enguany.

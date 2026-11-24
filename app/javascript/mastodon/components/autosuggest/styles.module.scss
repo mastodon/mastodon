@@ -1,0 +1,79 @@
+@use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
+
+.mirror {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1lh;
+  overflow: hidden;
+}
+
+.textAreaMirror {
+  white-space: pre-wrap; // This makes the formatting match the text area.
+
+  &:lang(#{variables.$vertical-lr-langs}) {
+    writing-mode: vertical-lr;
+    inset: 0 auto 0 0;
+    width: 1lh;
+    height: auto;
+  }
+}
+
+.menuWidth {
+  width: 100%;
+  max-width: var(--_max-card-width);
+}
+
+.item {
+  display: flex;
+  gap: var(--space-1);
+  min-height: var(--space-8);
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.itemIcon {
+  width: var(--space-8);
+  height: var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-round);
+  overflow: hidden;
+  background-color: var(--color-bg-highlight);
+  flex-shrink: 0;
+}
+
+.itemHashUses {
+  color: var(--color-text-tertiary);
+  margin-inline-start: auto;
+  font-size: var(--fs-13);
+}
+
+.itemAccountName {
+  @include mixins.type-label;
+
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-1);
+}
+
+.itemAccountHandle {
+  @include mixins.type-caption;
+
+  color: var(--color-text-tertiary);
+}
+
+.itemAccountVerified {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-brand);
+  font-weight: normal;
+}

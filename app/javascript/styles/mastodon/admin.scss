@@ -1,14 +1,20 @@
 @use 'sass:color';
 @use 'sass:math';
 @use 'variables' as *;
+@use 'mixins';
 
 $no-columns-breakpoint: 890px;
-$sidebar-width: 300px;
-$content-width: 840px;
+$sidebar-width: 288px;
+$main-column-width: 600px;
+$content-width: $main-column-width + $sidebar-width;
 
 .admin-wrapper {
-  display: flex;
-  justify-content: center;
+  // Borrow front-end grid, extend admin content into far column
+  display: grid;
+  grid-template-columns:
+    minmax($sidebar-width, 1fr)
+    minmax(0, $main-column-width)
+    minmax(0, 1fr);
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
@@ -28,7 +34,6 @@ $content-width: 840px;
     min-height: 100dvh;
     overflow: hidden;
     pointer-events: none;
-    flex: 1 1 auto;
 
     &__inner {
       display: flex;
@@ -89,9 +94,9 @@ $content-width: 840px;
 
     .logo {
       display: block;
-      margin: 40px auto;
-      width: 100px;
-      height: 100px;
+      margin: 0;
+      width: 40px;
+      height: 40px;
     }
 
     .logo--wordmark {
@@ -117,11 +122,11 @@ $content-width: 840px;
       }
 
       a {
-        font-size: 14px;
         display: flex;
         align-items: center;
         gap: 6px;
         padding: 15px;
+        border-radius: var(--radius-3);
         color: color-mix(
           in oklab,
           var(--color-text-primary),
@@ -135,6 +140,11 @@ $content-width: 840px;
           color: var(--color-text-primary);
           transition: all 100ms linear;
           transition-property: color, background-color;
+        }
+
+        &:hover,
+        &:focus-visible {
+          background-color: var(--color-bg-highlight);
         }
 
         &:focus-visible {
@@ -162,24 +172,67 @@ $content-width: 840px;
         border-bottom: 0;
       }
     }
+
+    @media screen and (min-width: ($no-columns-breakpoint + 1px)) {
+      & > a:first-child {
+        display: block;
+        width: fit-content;
+        margin: var(--space-6) var(--space-5);
+      }
+
+      & > nav > ul {
+        margin-inline: var(--space-4);
+        margin-bottom: var(--space-6);
+      }
+
+      ul {
+        li {
+          padding-bottom: var(--space-1);
+        }
+
+        a {
+          @include mixins.type-body-compact;
+
+          box-sizing: border-box;
+          min-height: 36px;
+          gap: var(--space-2);
+          padding: var(--space-2);
+          overflow-wrap: anywhere;
+
+          .icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            margin: 0;
+          }
+        }
+
+        ul a {
+          padding: var(--space-2);
+          padding-inline-start: var(--space-8);
+        }
+
+        .simple-navigation-active-leaf > a {
+          font-weight: 700;
+        }
+      }
+    }
   }
 
   .content-wrapper {
+    grid-column: 2 / -1;
     box-sizing: border-box;
     width: 100%;
-    max-width: $content-width;
-    flex: 1 1 auto;
+    min-width: 0;
+    background: var(--color-bg-primary);
     isolation: isolate;
-  }
 
-  @media screen and (max-width: ($content-width + $sidebar-width)) {
-    .sidebar-wrapper--empty {
-      display: none;
-    }
-
-    .sidebar-wrapper {
-      width: $sidebar-width;
-      flex: 0 0 auto;
+    @media screen and (min-width: ($no-columns-breakpoint + 1px)) {
+      max-width: $content-width;
+      margin-top: var(--space-1);
+      border: var(--border-column);
+      border-bottom: none;
+      border-radius: var(--radius-6) var(--radius-6) 0 0;
     }
   }
 
@@ -190,10 +243,7 @@ $content-width: 840px;
   }
 
   .content {
-    padding-top: 55px;
-    padding-bottom: 20px;
-    padding-inline-start: 25px;
-    padding-inline-end: 15px;
+    padding: var(--space-6);
 
     @media screen and (max-width: $no-columns-breakpoint) {
       max-width: none;
@@ -233,12 +283,16 @@ $content-width: 840px;
           display: inline-flex;
           align-items: center;
           padding: 7px 10px;
-          border-radius: 4px;
+          border-radius: var(--radius-round);
           color: var(--color-text-secondary);
           text-decoration: none;
-          font-weight: 500;
+          font-weight: bold;
           gap: 5px;
           white-space: nowrap;
+          transition:
+            background-color 200ms,
+            color 200ms,
+            opacity 200ms;
 
           @media screen and (max-width: $mobile-breakpoint) {
             flex: 1 0 50%;
@@ -276,7 +330,7 @@ $content-width: 840px;
       h1 small {
         font-size: 12px;
         display: block;
-        font-weight: 500;
+        font-weight: bold;
         color: var(--color-text-secondary);
         line-height: 18px;
       }
@@ -318,12 +372,12 @@ $content-width: 840px;
       font-size: 16px;
       color: var(--color-text-primary);
       line-height: 28px;
-      font-weight: 500;
+      font-weight: bold;
     }
 
     .fields-group h6 {
       color: var(--color-text-primary);
-      font-weight: 500;
+      font-weight: bold;
     }
 
     .directory__tag h4 {
@@ -361,7 +415,7 @@ $content-width: 840px;
 
       strong {
         color: var(--color-text-primary);
-        font-weight: 500;
+        font-weight: bold;
 
         @each $lang in $cjk-langs {
           &:lang(#{$lang}) {
@@ -549,31 +603,30 @@ body,
 
   .positive-hint {
     color: var(--color-text-success);
-    font-weight: 500;
+    font-weight: bold;
   }
 
   .negative-hint {
     color: var(--color-text-error);
-    font-weight: 500;
+    font-weight: bold;
   }
 
   .neutral-hint {
     color: var(--color-text-primary);
-    font-weight: 500;
+    font-weight: bold;
   }
 
   .warning-hint {
     color: var(--color-text-warning);
-    font-weight: 500;
+    font-weight: bold;
   }
 }
 
 kbd {
-  font-family: Courier, monospace;
-  background-color: var(--color-bg-brand-softest);
-  padding: 4px;
-  padding-bottom: 2px;
-  border-radius: 5px;
+  font-family: var(--font-monospace), Courier, monospace;
+  background-color: var(--color-bg-highlight);
+  padding: var(--space-1);
+  border-radius: var(--radius-2);
 }
 
 .filters {
@@ -605,7 +658,7 @@ kbd {
     }
 
     strong {
-      font-weight: 500;
+      font-weight: bold;
       text-transform: uppercase;
       font-size: 12px;
 
@@ -627,7 +680,7 @@ kbd {
       text-decoration: none;
       text-transform: uppercase;
       font-size: 12px;
-      font-weight: 500;
+      font-weight: bold;
       border-bottom: 2px solid var(--color-bg-secondary);
 
       &:hover {
@@ -643,76 +696,9 @@ kbd {
   }
 }
 
-.report-accounts {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.report-accounts__item {
-  display: flex;
-  flex: 250px;
-  flex-direction: column;
-  margin: 0 5px;
-
-  & > strong {
-    display: block;
-    margin: 0 0 10px -5px;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 18px;
-    color: var(--color-text-primary);
-
-    @each $lang in $cjk-langs {
-      &:lang(#{$lang}) {
-        font-weight: 700;
-      }
-    }
-  }
-
-  .account-card {
-    flex: 1 1 auto;
-  }
-}
-
-.report-status,
-.account-status {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.report-status__actions,
-.account-status__actions {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-
-  .icon-button {
-    font-size: 24px;
-    width: 24px;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-}
-
 .simple_form.new_report_note,
 .simple_form.new_account_moderation_note {
   max-width: 100%;
-}
-
-.batch-form-box {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 5px;
-
-  #form_status_batch_action {
-    margin: 0 5px 5px 0;
-    font-size: 14px;
-  }
-
-  input.button {
-    margin: 0 5px 5px 0;
-  }
 }
 
 .back-link {
@@ -729,7 +715,6 @@ kbd {
   }
 }
 
-.special-action-button,
 .back-link {
   text-align: end;
   flex: 1 1 auto;
@@ -796,7 +781,7 @@ kbd {
   .target {
     color: var(--color-text-primary);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: bold;
   }
 
   a {
@@ -861,7 +846,7 @@ a.inline-name-tag,
   }
 
   .username {
-    font-weight: 500;
+    font-weight: bold;
   }
 
   &.suspended {
@@ -921,7 +906,7 @@ a.name-tag,
     line-height: 20px;
     border-radius: 4px 4px 4px 0;
     position: relative;
-    font-weight: 500;
+    font-weight: bold;
 
     a {
       color: var(--color-text-secondary);
@@ -961,7 +946,7 @@ a.name-tag,
 
     &__stats {
       flex: 0 0 auto;
-      font-weight: 500;
+      font-weight: bold;
       color: var(--color-text-secondary);
       text-transform: uppercase;
       text-align: end;
@@ -1011,7 +996,7 @@ a.name-tag,
 
         &__icon {
           margin-inline-end: 4px;
-          font-weight: 500;
+          font-weight: bold;
         }
       }
 
@@ -1095,7 +1080,7 @@ a.name-tag,
     }
 
     dt {
-      font-weight: 500;
+      font-weight: bold;
       width: 120px;
       flex: 0 0 auto;
       color: var(--color-text-primary);
@@ -1132,7 +1117,7 @@ a.name-tag,
 
       a {
         color: var(--color-text-success);
-        font-weight: 500;
+        font-weight: bold;
       }
 
       &__mark {
@@ -1209,7 +1194,7 @@ a.name-tag,
     &__title {
       padding: 0 15px;
       display: block;
-      font-weight: 500;
+      font-weight: bold;
       font-size: 18px;
       line-height: 1.5;
       color: var(--color-text-primary);
@@ -1303,10 +1288,6 @@ a.name-tag,
   margin-top: 10px;
 }
 
-.account-badges {
-  margin: -2px 0;
-}
-
 .retention {
   overflow: auto;
 
@@ -1347,7 +1328,7 @@ a.name-tag,
       width: 52px;
       margin: 1px;
       padding: 10px;
-      font-weight: 500;
+      font-weight: bold;
       color: var(--color-text-primary);
       background: var(--color-bg-primary);
 
@@ -1387,14 +1368,14 @@ a.name-tag,
     &__total {
       display: block;
       margin-inline-end: 10px;
-      font-weight: 500;
+      font-weight: bold;
       font-size: 28px;
       color: var(--color-text-primary);
     }
 
     &__change {
       display: block;
-      font-weight: 500;
+      font-weight: bold;
       font-size: 18px;
       color: var(--color-text-secondary);
       margin-bottom: -3px;
@@ -1414,7 +1395,7 @@ a.name-tag,
     padding-bottom: 10px;
     text-transform: uppercase;
     color: var(--color-text-secondary);
-    font-weight: 500;
+    font-weight: bold;
   }
 
   &__graph {
@@ -1487,7 +1468,7 @@ a.sparkline {
     border-bottom: 1px solid var(--color-border-primary);
 
     &__key {
-      font-weight: 500;
+      font-weight: bold;
       padding: 11px 10px;
     }
 
@@ -1793,7 +1774,7 @@ a.sparkline {
 
       .username {
         color: var(--color-text-primary);
-        font-weight: 500;
+        font-weight: bold;
         margin-inline-end: 5px;
 
         a {
@@ -2081,7 +2062,7 @@ a.sparkline {
       position: absolute;
       content: counter(step);
       font-size: 0.625rem;
-      font-weight: 500;
+      font-weight: bold;
       inset-inline-start: 0;
       display: flex;
       justify-content: center;
@@ -2115,7 +2096,7 @@ a.sparkline {
 
   &__entry {
     h5 {
-      font-weight: 500;
+      font-weight: bold;
       color: var(--color-text-primary);
       line-height: 25px;
       margin-bottom: 16px;
@@ -2194,7 +2175,7 @@ a.sparkline {
         background: transparent;
         padding: 0;
         text-decoration: none;
-        font-weight: 500;
+        font-weight: bold;
       }
 
       &:hover,
@@ -2337,7 +2318,7 @@ a.sparkline {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-weight: 500;
+  font-weight: bold;
 
   &__indicator {
     display: inline-block;
@@ -2508,6 +2489,141 @@ a.sparkline {
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+}
+
+// TODO: Temporary hacks for moderation subscriptions interface, rework after design pass
+
+.information-badge {
+  &.accept {
+    color: var(--color-text-success);
+    background-color: var(--color-bg-success-softest);
+    border-color: var(--color-border-success-soft);
+  }
+
+  &.reject {
+    color: var(--color-text-error);
+    background-color: var(--color-bg-error-softest);
+    border-color: var(--color-border-error-soft);
+  }
+
+  &.limit {
+    color: var(--color-text-warning);
+    background-color: var(--color-bg-warning-softest);
+    border-color: var(--color-border-warning-soft);
+  }
+}
+
+.permissions-list__item__text__type a {
+  color: inherit;
+}
+
+.moderation_suggestion-retract {
+  color: inherit;
+}
+
+.moderation_suggestion-limit {
+  color: var(--color-text-warning);
+}
+
+.moderation_suggestion-reject {
+  color: var(--color-text-error);
+}
+
+.permissions-list__item .table-action-link {
+  padding: 0;
+}
+
+h3.server-checks-category {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  padding-top: 24px;
+  margin-bottom: 12px;
+}
+
+.server-check__container {
+  display: flex;
+  color: var(--color-text-primary);
+  flex-flow: row wrap;
+  gap: 8px;
+  padding-top: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-primary);
+  margin-bottom: 7px;
+
+  &.ignored {
+    color: var(--color-text-tertiary);
+
+    .button-secondary {
+      border-color: var(--color-text-disabled);
+      color: var(--color-text-disabled);
+    }
+
+    .button {
+      &:not(.button-secondary) {
+        background-color: var(--color-bg-disabled);
+      }
+    }
+  }
+
+  .server-check {
+    &__info {
+      flex: 3 50%;
+
+      &__lead,
+      &__date,
+      &__title {
+        font-size: 15px;
+        line-height: 20px;
+      }
+
+      &__title {
+        font-weight: 700;
+      }
+
+      &__date {
+        font-size: 13px;
+      }
+    }
+
+    &__icon {
+      flex: 0 6%;
+      align-self: center;
+      display: inline-flex;
+      place-items: center center;
+
+      & > .icon {
+        flex: 1 100%;
+        width: 24px;
+        height: 24px;
+      }
+
+      &.critical,
+      &.error {
+        color: var(--color-text-error);
+      }
+
+      &.warning,
+      &.unprocessed {
+        color: var(--color-text-warning);
+      }
+
+      &.completed {
+        color: var(--color-text-success);
+      }
+
+      &.ignored {
+        color: var(--color-text-disabled);
+      }
+    }
+
+    &__ignore,
+    &__setup {
+      flex: 0 12.5%;
+      align-self: center;
     }
   }
 }

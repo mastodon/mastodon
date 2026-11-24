@@ -2,10 +2,7 @@ import { createAction } from '@reduxjs/toolkit';
 
 import { apiGetSearch } from 'mastodon/api/search';
 import type { ApiSearchType } from 'mastodon/api_types/search';
-import type {
-  RecentSearch,
-  SearchType as RecentSearchType,
-} from 'mastodon/models/search';
+import type { RecentSearch, RecentSearchType } from 'mastodon/models/search';
 import { searchHistory } from 'mastodon/settings';
 import {
   createDataLoadingThunk,

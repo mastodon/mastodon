@@ -1,0 +1,30 @@
+@use '@/styles/mastodon/variables';
+
+.root {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  @media (width > variables.$mobile-menu-breakpoint) {
+    border-inline: var(--border-column);
+  }
+
+  :global(.layout-single-column) & {
+    padding-bottom: var(--current-composer-height, 0);
+  }
+
+  :global(.layout-multiple-columns) & {
+    flex: 0 0 auto;
+
+    --available-width: calc(100% - var(--multi-column-gap));
+
+    width: clamp(
+      360px,
+      (var(--available-width) / 4 - var(--multi-column-gap)),
+      400px
+    );
+    background: var(--color-bg-primary);
+  }
+}

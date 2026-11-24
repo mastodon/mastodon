@@ -57,8 +57,8 @@ RSpec.describe 'Using OAuth from an external app' do
       it 'does not include the PKCE values in the hidden inputs' do
         subject
 
-        code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: false)
-        code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: false)
+        code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: :hidden)
+        code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: :hidden)
 
         expect(code_challenge_inputs).to_not be_empty
         expect(code_challenge_method_inputs).to_not be_empty
@@ -80,8 +80,8 @@ RSpec.describe 'Using OAuth from an external app' do
         it 'includes the PKCE values in the hidden inputs' do
           subject
 
-          code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: false)
-          code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: false)
+          code_challenge_inputs = all('.oauth-prompt input[name=code_challenge]', visible: :hidden)
+          code_challenge_method_inputs = all('.oauth-prompt input[name=code_challenge_method]', visible: :hidden)
 
           expect(code_challenge_inputs).to_not be_empty
           expect(code_challenge_method_inputs).to_not be_empty
@@ -159,6 +159,131 @@ RSpec.describe 'Using OAuth from an external app' do
           # Upon authorizing, it redirects to the apps' callback URL
           expect(page).to redirect_to_callback_url
         end
+      end
+    end
+  end
+
+  context 'when creating a new user' do
+    let(:params) do
+      { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read', prompt: 'create', invite_code: invite.code }
+    end
+
+    let!(:rule) { Fabricate :rule, text: 'You must be seven meters tall' }
+    let(:invite) { Fabricate :invite, autofollow: true }
+
+    it 'returns to app on cancel' do
+      subject
+
+      # Shows rules
+      expect(page)
+        .to have_title(I18n.t('auth.register'))
+        .and have_text(rule.text)
+
+      click_on I18n.t('generic.cancel')
+
+      # Redirects to the app's callback URL
+      expect(page).to redirect_to_callback_url
+    end
+
+    it 'allows creating a new user' do
+      subject
+
+      # Shows rules
+      expect(page)
+        .to have_title(I18n.t('auth.register'))
+        .and have_text(rule.text)
+
+      click_on I18n.t('auth.rules.accept')
+
+      # It presents the user with a sign-up page
+      expect(page)
+        .to have_text(I18n.t('auth.register'))
+        .and have_text(I18n.t('invites.invited_by'))
+
+      # Avoid the registration spam check
+      travel_to 10.seconds.from_now
+
+      fill_in 'user_account_attributes_username', with: 'alice'
+      fill_in 'user_email', with: 'test@example.com'
+      fill_in 'user_password', with: 'Test.123.Pass'
+      fill_in 'user_password_confirmation', with: 'Test.123.Pass'
+
+      # Click without approving user agreement
+      click_on(I18n.t('auth.register'))
+
+      # Brings user back to registration page
+      expect(page)
+        .to have_text(I18n.t('auth.register'))
+
+      fill_in 'user_password', with: 'Test.123.Pass'
+      fill_in 'user_password_confirmation', with: 'Test.123.Pass'
+      check 'user_agreement'
+
+      click_on(I18n.t('auth.register'))
+
+      # Directly authorizes the app
+      user = User.find_by(email: 'test@example.com')
+      grant = Doorkeeper::AccessGrant.find_by(application: client_app, resource_owner_id: user.id)
+      expect(grant).to be_present
+
+      # Redirects to the app's callback URL
+      expect(page).to redirect_to_callback_url
+
+      # Claiming the token marks the user as created by the app
+      expect { post '/oauth/token', params: { grant_type: 'authorization_code', client_id: client_app.uid, code: grant.token, client_secret: client_app.secret, redirect_uri: client_app.redirect_uri } }
+        .to change { user.reload.created_by_application_id }.to(client_app.id)
+    end
+
+    context 'when the user is already logged in' do
+      before do
+        user = Fabricate(:user)
+
+        visit new_user_session_path
+        fill_in_auth_details(user.email, user.password)
+      end
+
+      it 'allows creating a new user' do
+        subject
+
+        # It shows an interstitial to log out
+        expect(page)
+          .to have_title(I18n.t('doorkeeper.authorizations.require_reauth.title'))
+
+        click_on I18n.t('doorkeeper.authorizations.require_reauth.log_out_and_continue')
+
+        # Shows rules
+        expect(page)
+          .to have_title(I18n.t('auth.register'))
+          .and have_text(rule.text)
+
+        click_on I18n.t('auth.rules.accept')
+
+        # It presents the user with a sign-up page
+        expect(page)
+          .to have_text(I18n.t('auth.register'))
+
+        # Avoid the registration spam check
+        travel_to 10.seconds.from_now
+
+        fill_in 'user_account_attributes_username', with: 'alice'
+        fill_in 'user_email', with: 'test@example.com'
+        fill_in 'user_password', with: 'Test.123.Pass'
+        fill_in 'user_password_confirmation', with: 'Test.123.Pass'
+        check 'user_agreement'
+
+        click_on(I18n.t('auth.register'))
+
+        # Directly authorizes the app
+        user = User.find_by(email: 'test@example.com')
+        grant = Doorkeeper::AccessGrant.find_by(application: client_app, resource_owner_id: user.id)
+        expect(grant).to be_present
+
+        # Redirects to the app's callback URL
+        expect(page).to redirect_to_callback_url
+
+        # Claiming the token marks the user as created by the app
+        expect { post '/oauth/token', params: { grant_type: 'authorization_code', client_id: client_app.uid, code: grant.token, client_secret: client_app.secret, redirect_uri: client_app.redirect_uri } }
+          .to change { user.reload.created_by_application_id }.to(client_app.id)
       end
     end
   end

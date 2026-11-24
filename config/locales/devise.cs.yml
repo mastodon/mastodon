@@ -21,7 +21,6 @@ cs:
     mailer:
       confirmation_instructions:
         action: Potvrdit e-mailovou adresu
-        action_with_app: Potvrdit a vrátit se do %{app}
         explanation: S touto e-mailovou adresou jste si vytvořili účet na serveru %{host}. K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyli vy, považujte tento e-mail za bezpředmětný.
         explanation_when_pending: S touto e-mailovou adresu jste požádali o pozváku na %{host}. Jakmile svou e-mailovou adresu potvrdíte, vaši žádost posoudíme. Můžete se přihlásit ke změně podrobností svého účtu nebo jeho smazání, ale do schválení účtu nebudete mít k většině funkcí přístup. Pokud bude vaše žádost zamítnuta, vaše data budou odstraněna, a nebude od vás vyžadována žádná další akce. Pokud jste to nebyli vy, považujte tento e-mail za bezpředmětný.
         extra_html: Přečtěte si prosím také <a href="%{terms_path}">pravidla tohoto serveru</a> a <a href="%{policy_path}">naše podmínky užití</a>.

@@ -63,6 +63,10 @@ it:
         prompt_html: "%{client_name} vorrebbe il permesso di accedere al tuo account. <strong>Approva questa richiesta solo se riconosci e ti fidi di questa fonte.</strong>"
         review_permissions: Revisiona le autorizzazioni
         title: Autorizzazione necessaria
+      require_reauth:
+        log_out_and_continue: Disconnettiti e continua
+        prompt_html: Sei attualmente connesso come <strong>%{handle}</strong>, ma per continuare, dovrai disconnetterti.
+        title: È richiesta una nuova autenticazione
       show:
         title: Copia questo codice d'autorizzazione e incollalo all'applicazione.
     authorized_applications:

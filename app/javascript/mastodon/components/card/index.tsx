@@ -1,0 +1,191 @@
+import type React from 'react';
+import { createContext, use, useId } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
+import { TrashIcon } from '@phosphor-icons/react';
+
+import type { PolymorphicProps } from '@/types/polymorphic';
+
+import { IconButton } from '../button';
+
+import classes from './styles.module.scss';
+
+type CardProps<As extends React.ElementType> = PolymorphicProps<
+  {
+    children: React.ReactNode;
+    className?: string;
+    image?: React.ReactNode;
+    onDelete?: React.MouseEventHandler<HTMLButtonElement>;
+    /**
+     * Use if the card is not clickable in its entirety.
+     * Disables hover effect & pointer cursor
+     */
+    unclickable?: boolean;
+  },
+  As
+>;
+
+interface CardContext {
+  id: string;
+}
+
+const CardContext = createContext<CardContext>({ id: '' });
+
+export const Card = <As extends React.ElementType = 'div'>({
+  as: asComp,
+  children,
+  className,
+  image,
+  onDelete,
+  unclickable,
+  ...props
+}: CardProps<As>) => {
+  const Comp = asComp ?? 'div';
+
+  const id = useId();
+
+  // Disable the button if this is an interactive element, including a Link component.
+  const hideButton =
+    !onDelete || asComp === 'a' || asComp === 'button' || 'to' in props;
+
+  const imageComp =
+    typeof image === 'string' ? (
+      <img src={image} alt='' className={classes.image} />
+    ) : (
+      image && <div className={classes.image}>{image}</div>
+    );
+
+  return (
+    <Comp
+      {...props}
+      className={classNames(
+        className,
+        classes.root,
+        unclickable && classes.rootUnclickable,
+      )}
+      data-interactive-post-content='true'
+    >
+      <CardContext.Provider value={{ id }}>{children}</CardContext.Provider>
+
+      {imageComp}
+
+      {!hideButton && (
+        <IconButton
+          size='sm'
+          icon={TrashIcon}
+          onClick={onDelete}
+          color='destructive'
+          className={classes.delete}
+          aria-describedby={`${id}_title`}
+          variant={image ? 'solid' : 'ghost'}
+          data-color-scheme={image ? 'dark' : undefined}
+        >
+          <FormattedMessage id='card.delete' defaultMessage='Remove this' />
+        </IconButton>
+      )}
+    </Comp>
+  );
+};
+
+interface CardTitleProps {
+  children: React.ReactNode;
+  image?: React.ReactNode;
+  afterContent?: React.ReactNode;
+}
+
+export const CardTitle: React.FC<
+  CardTitleProps & React.ComponentPropsWithRef<'div'>
+> = ({ children, image, afterContent, className, ...props }) => {
+  const { id } = use(CardContext);
+
+  return (
+    <div {...props} className={classNames(className, classes.title)}>
+      {image && <span className={classes.titleImage}>{image}</span>}
+
+      <span id={`${id}_title`}>{children}</span>
+
+      {afterContent && (
+        <span>
+          &nbsp;&bull;&nbsp;
+          {afterContent}
+        </span>
+      )}
+    </div>
+  );
+};
+
+interface CardBodyProps {
+  children: React.ReactNode;
+  className?: string;
+  isDescription?: boolean;
+  noClamp?: boolean;
+}
+
+export const CardBody = ({
+  children,
+  className,
+  isDescription,
+  noClamp,
+  ...props
+}: CardBodyProps & React.ComponentPropsWithRef<'div'>) => {
+  return (
+    <div
+      {...props}
+      className={classNames(
+        className,
+        classes.body,
+        !noClamp && classes.clamp,
+        isDescription && classes.description,
+      )}
+    >
+      {children}
+    </div>
+  );
+};
+
+type PrimaryCardLinkProps<As extends React.ElementType> = PolymorphicProps<
+  {
+    children?: React.ReactNode;
+    className?: string;
+  },
+  As
+>;
+
+export const PrimaryCardLink = <As extends React.ElementType = 'a'>({
+  as: asComp,
+  children,
+  className,
+  ...props
+}: PrimaryCardLinkProps<As>) => {
+  const Comp = asComp ?? 'a';
+  return (
+    <Comp {...props} className={classNames(className, classes.primaryCardLink)}>
+      {children}
+    </Comp>
+  );
+};
+
+type CardActionProps<As extends React.ElementType> = PolymorphicProps<
+  {
+    children: React.ReactNode;
+    className?: string;
+  },
+  As
+>;
+
+export const CardActions = <As extends React.ElementType = 'div'>({
+  as: asComp,
+  children,
+  className,
+  ...props
+}: CardActionProps<As>) => {
+  const Comp = asComp ?? 'div';
+  return (
+    <Comp {...props} className={classNames(className, classes.actions)}>
+      {children}
+    </Comp>
+  );
+};

@@ -17,7 +17,7 @@ const messages = defineMessages({
 
 export function useAccountHandle(
   account: DisplayNameProps['account'],
-  localDomain: DisplayNameProps['localDomain'],
+  localDomain?: DisplayNameProps['localDomain'],
 ) {
   const intl = useIntl();
 

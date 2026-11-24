@@ -235,8 +235,6 @@ ast:
         notes:
           one: "%{count} nota"
           other: "%{count} notes"
-      actions:
-        silence_description_html: La cuenta va ser visible namás pa quien yá la siguiere o la buscare manualmente, lo que llenda'l so algame. Esta decisión pue desfacese en cualesquier momentu. Si escueyes esta opción, zárrense tolos informes escontra esta cuenta.
       add_to_report: Amestar más al informe
       are_you_sure: "¿De xuru que quies facer esta aición?"
       category: Categoría
@@ -316,7 +314,6 @@ ast:
         follow_recommendations: Recomendación de cuentes
         profile_directory: Direutoriu de perfiles
         public_timelines: Llinies de tiempu públiques
-        publish_statistics: Espublizamientu d'estadístiques
         title: Descubrimientu
         trends: Tendencies
       domain_blocks:
@@ -430,7 +427,6 @@ ast:
     empty: Nun tienes nengún nomatu.
   appearance:
     animations_and_accessibility: Animaciones y accesibilidá
-    discovery: Descubrimientu
     localization:
       body: Mastodon tradúcenlu voluntarios,
       guide_link: https://crowdin.com/project/mastodon
@@ -592,8 +588,6 @@ ast:
     save_changes: Guardar los cambeos
     today: güei
   imports:
-    errors:
-      over_rows_processing_limit: contién más de %{count} fileres
     modes:
       merge: Mecíu
       merge_long: Caltién los rexistros esistentes y amiesta otros nuevos
@@ -719,9 +713,6 @@ ast:
     primary: Principal
     relationship: Rellación
     remove_selected_follows: Dexar de siguir a los perfiles seleicionaos
-  scheduled_statuses:
-    over_daily_limit: Superesti la llende de %{limit} artículos programaos pa güei
-    over_total_limit: Superesti la llende de %{limit} artículos programaos
   sessions:
     activity: Última actividá
     browser: Restolador
@@ -884,4 +875,3 @@ ast:
     invalid_credential: La llave de seguranza nun ye válida
     not_enabled: Nun activesti la función WebAuthn
     not_supported: Esti restolador nun ye compatible coles llaves de seguranza
-    otp_required: Pa usar les llaves de seguranza, activa primero l'autenticación en dos pasos.

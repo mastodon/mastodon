@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'singleton'
-require 'yaml'
-
 class Themes
   include Singleton
 
@@ -17,5 +14,11 @@ class Themes
 
   def names
     @conf.keys
+  end
+
+  def available_theme_colors(theme)
+    return [] unless @conf[theme].is_a?(Hash) && @conf[theme]['colors'].present?
+
+    @conf[theme]['colors']
   end
 end

@@ -16,6 +16,10 @@ RSpec.describe TranslateStatusService do
   end
 
   describe '#call' do
+    subject { described_class.new.call(status, lang) }
+
+    let(:lang) { 'es' }
+
     before do
       translation_service = TranslationService.new
       allow(translation_service).to receive(:languages).and_return({ 'en' => ['es', 'es-MX'] })
@@ -33,7 +37,7 @@ RSpec.describe TranslateStatusService do
     end
 
     it 'returns translated status content and source language and provider and original status' do
-      expect(service.call(status, 'es'))
+      expect(subject)
         .to have_attributes(
           content: '<p>Hola</p>',
           detected_source_language: 'en',
@@ -47,13 +51,13 @@ RSpec.describe TranslateStatusService do
       let(:text) { 'Hello & :highfive:' }
 
       it 'does not translate shortcode' do
-        expect(service.call(status, 'es').content).to eq '<p>Hola &amp; :highfive:</p>'
+        expect(subject.content).to eq '<p>Hola &amp; :highfive:</p>'
       end
     end
 
     describe 'status has no spoiler_text' do
       it 'returns an empty string' do
-        expect(service.call(status, 'es').spoiler_text).to eq ''
+        expect(subject.spoiler_text).to eq ''
       end
     end
 
@@ -61,7 +65,7 @@ RSpec.describe TranslateStatusService do
       let(:spoiler_text) { 'Hello & Hello!' }
 
       it 'translates the spoiler text' do
-        expect(service.call(status, 'es').spoiler_text).to eq 'Hola & Hola!'
+        expect(subject.spoiler_text).to eq 'Hola & Hola!'
       end
     end
 
@@ -69,7 +73,7 @@ RSpec.describe TranslateStatusService do
       let(:spoiler_text) { 'Hello :highfive:' }
 
       it 'does not translate shortcode' do
-        expect(service.call(status, 'es').spoiler_text).to eq 'Hola :highfive:'
+        expect(subject.spoiler_text).to eq 'Hola :highfive:'
       end
     end
 
@@ -77,7 +81,7 @@ RSpec.describe TranslateStatusService do
       let(:spoiler_text) { 'Hello :Hello:' }
 
       it 'translates the invalid shortcode' do
-        expect(service.call(status, 'es').spoiler_text).to eq 'Hola :Hola:'
+        expect(subject.spoiler_text).to eq 'Hola :Hola:'
       end
     end
 
@@ -85,7 +89,7 @@ RSpec.describe TranslateStatusService do
       let(:poll) { Fabricate(:poll, options: ['Hello 1', 'Hello 2']) }
 
       it 'translates the poll option title' do
-        status_translation = service.call(status, 'es')
+        status_translation = subject
         expect(status_translation.poll_options.size).to eq 2
         expect(status_translation.poll_options.first.title).to eq 'Hola 1'
       end
@@ -95,7 +99,7 @@ RSpec.describe TranslateStatusService do
       let(:media_attachments) { [Fabricate(:media_attachment, description: 'Hello & :highfive:')] }
 
       it 'translates the media attachment description' do
-        status_translation = service.call(status, 'es')
+        status_translation = subject
 
         media_attachment = status_translation.media_attachments.first
         expect(media_attachment.id).to eq media_attachments.first.id
@@ -103,13 +107,19 @@ RSpec.describe TranslateStatusService do
       end
     end
 
-    describe 'target language is regional' do
+    context 'when target language is regional' do
+      let(:lang) { 'es-MX' }
+
       it 'uses regional variant' do
-        expect(service.call(status, 'es-MX').language).to eq 'es-MX'
+        expect(subject.language).to eq 'es-MX'
       end
+    end
+
+    context 'when target language is regional but unsupported' do
+      let(:lang) { 'es-XX' }
 
       it 'uses parent locale for unsupported regional variant' do
-        expect(service.call(status, 'es-XX').language).to eq 'es'
+        expect(subject.language).to eq 'es'
       end
     end
   end

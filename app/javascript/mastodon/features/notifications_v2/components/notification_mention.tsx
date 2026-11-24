@@ -2,8 +2,8 @@ import { FormattedMessage } from 'react-intl';
 
 import { isEqual } from 'lodash';
 
+import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { me } from 'mastodon/initial_state';
 import type { NotificationGroupMention } from 'mastodon/models/notification_group';
 import { useAppSelector } from 'mastodon/store';
@@ -15,11 +15,8 @@ const mentionLabelRenderer: LabelRenderer = () => (
   <FormattedMessage id='notification.label.mention' defaultMessage='Mention' />
 );
 
-const privateMentionLabelRenderer: LabelRenderer = () => (
-  <FormattedMessage
-    id='notification.label.private_mention'
-    defaultMessage='Private mention'
-  />
+const messageLabelRenderer: LabelRenderer = () => (
+  <FormattedMessage id='notification.label.message' defaultMessage='Message' />
 );
 
 const replyLabelRenderer: LabelRenderer = () => (
@@ -54,12 +51,12 @@ export const NotificationMention: React.FC<{
 
   if (isReply && isDirect) labelRenderer = privateReplyLabelRenderer;
   else if (isReply) labelRenderer = replyLabelRenderer;
-  else if (isDirect) labelRenderer = privateMentionLabelRenderer;
+  else if (isDirect) labelRenderer = messageLabelRenderer;
 
   return (
     <NotificationWithStatus
       type='mention'
-      icon={isReply ? ReplyIcon : AlternateEmailIcon}
+      icon={isReply ? StatusReplyIcon : AlternateEmailIcon}
       iconId='reply'
       accountIds={notification.sampleAccountIds}
       count={notification.notifications_count}

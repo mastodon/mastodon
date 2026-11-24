@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { ImmutablePureComponent } from 'react-immutable-pure-component';
 
 import { debounce } from 'lodash';
 
@@ -11,7 +11,7 @@ import { RegenerationIndicator } from 'mastodon/components/regeneration_indicato
 import { InlineFollowSuggestions } from 'mastodon/features/home_timeline/components/inline_follow_suggestions';
 import { PinnedShowAllButton } from '@/mastodon/features/account_timeline/components/pinned_statuses';
 
-import { StatusQuoteManager } from '../components/status_quoted';
+import { Status } from './status';
 
 import { LoadGap } from './load_gap';
 import ScrollableList from './scrollable_list';
@@ -79,7 +79,7 @@ export default class StatusList extends ImmutablePureComponent {
           );
         default:
           return (
-            <StatusQuoteManager
+            <Status
               key={statusId}
               id={statusId}
               contextType={timelineId}
@@ -99,7 +99,7 @@ export default class StatusList extends ImmutablePureComponent {
           return <PinnedShowAllButton key={TIMELINE_PINNED_VIEW_ALL} />
         }
         return (
-          <StatusQuoteManager
+          <Status
             key={`f-${statusId}`}
             id={statusId}
             featured

@@ -1,0 +1,142 @@
+@use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
+
+.wrapper {
+  margin-bottom: var(--space-half);
+}
+
+.wrapperWithDivider {
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: var(--border-default);
+}
+
+@mixin link-base {
+  --icon-size: 20px;
+  --border-radius: var(--radius-3);
+
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--space-2);
+  column-gap: var(--space-2);
+  border-radius: var(--border-radius);
+  border: none;
+  color: var(--color-text-primary);
+  background-color: transparent;
+  transition: background-color 200ms;
+  text-decoration: none;
+  text-align: start;
+  text-wrap: balance;
+
+  &:where(button, a):hover,
+  &:focus-visible,
+  &[aria-current='page'] {
+    background-color: var(--color-bg-highlight);
+    text-decoration: none;
+
+    @media (forced-colors: active) {
+      &::after {
+        @include mixins.high-contrast-outline;
+      }
+    }
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+  }
+
+  &:focus {
+    // Override silly global focus style
+    border-radius: var(--border-radius);
+  }
+}
+
+.link {
+  @include link-base;
+
+  min-height: 36px;
+  @include mixins.type-body-compact;
+
+  @media (width < variables.$mobile-menu-breakpoint) {
+    min-height: 48px;
+  }
+
+  &[aria-current='page']:not(:where(.linkMini)) {
+    font-weight: bold;
+  }
+}
+
+.linkMini {
+  --icon-size: 20px;
+  --border-radius: var(--radius-3);
+
+  width: 100%;
+  justify-content: center;
+  gap: 0;
+  transition:
+    background-color 200ms,
+    color 200ms;
+
+  &[aria-expanded='true'] {
+    background-color: var(--color-bg-highlight);
+  }
+
+  @media (width < variables.$mobile-menu-breakpoint) {
+    --icon-size: 24px;
+
+    padding-block: var(--space-3);
+  }
+}
+
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+
+  & > svg {
+    width: inherit;
+    height: inherit;
+  }
+}
+
+// A dot is shown instead of a number badge on mobile
+.iconWithDot {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: var(--space-4xs);
+    left: calc(50% + var(--space-half));
+    width: var(--space-2);
+    height: var(--space-2);
+    border-radius: var(--radius-round);
+    background-color: var(--color-bg-brand-base);
+    border: 1px solid var(--color-bg-primary);
+  }
+}
+
+.menuIndicatorIcon {
+  position: absolute;
+  top: 7px;
+  inset-inline-end: 5px;
+  color: inherit;
+}
+
+.miniBadge {
+  position: absolute;
+  top: var(--space-half);
+  inset-inline-end: 9px;
+  padding: var(--space-half);
+}
+
+.label {
+  max-width: 100%;
+  min-width: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}

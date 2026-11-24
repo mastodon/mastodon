@@ -1,306 +1,299 @@
-import type React from 'react';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useId, useState } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import {
-  muteAccount,
-  unblockAccount,
-  unmuteAccount,
-} from '@/mastodon/actions/accounts';
-import { initBlockModal } from '@/mastodon/actions/blocks';
-import { directCompose, mentionCompose } from '@/mastodon/actions/compose';
-import {
-  initDomainBlockModal,
-  unblockDomain,
-} from '@/mastodon/actions/domain_blocks';
-import type { StatusInteractionIntent } from '@/mastodon/actions/interactions';
+import classNames from 'classnames';
+
+import { DotsThreeIcon, ShareNetworkIcon } from '@phosphor-icons/react';
+
 import { statusInteraction } from '@/mastodon/actions/interactions';
 import { fetchStatus } from '@/mastodon/actions/statuses';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
-import { useRelationship } from '@/mastodon/hooks/useRelationship';
-import { useStatus } from '@/mastodon/hooks/useStatus';
-import { useIdentity } from '@/mastodon/identity_context';
+import { useDismissible } from '@/mastodon/hooks/useDismissible';
+import { useAccountStatus } from '@/mastodon/hooks/useStatus';
 import { quickBoosting } from '@/mastodon/initial_state';
-import type { Account } from '@/mastodon/models/account';
-import type { MenuItem } from '@/mastodon/models/dropdown_menu';
-import type { Relationship } from '@/mastodon/models/relationship';
-import type { StatusShape } from '@/mastodon/models/status';
+import type { AccountStatusShape, StatusShape } from '@/mastodon/models/status';
 import {
-  PERMISSION_MANAGE_FEDERATION,
-  PERMISSION_MANAGE_USERS,
-} from '@/mastodon/permissions';
-import type {
-  StatusConditions,
-  StatusInteractionsAllowed,
-} from '@/mastodon/selectors/statuses';
+  useAppDispatch,
+  useAppSelector,
+} from '@/mastodon/store/typed_functions';
+
+import { AnimatedNumber } from '../animated_number';
+import { Button, IconButton, ToggleButton, ToggleIconButton } from '../button';
+import { Icon } from '../icon';
 import {
-  selectStatusConditions,
-  selectStatusInteractionsAllowed,
-} from '@/mastodon/selectors/statuses';
-import type { AppDispatch } from '@/mastodon/store';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import BookmarkIcon from '@/material-icons/400-24px/bookmark-fill.svg?react';
-import BookmarkBorderIcon from '@/material-icons/400-24px/bookmark.svg?react';
-import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
-import ReplyAllIcon from '@/material-icons/400-24px/reply_all.svg?react';
-import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
-import StarBorderIcon from '@/material-icons/400-24px/star.svg?react';
+  Menu,
+  MenuItem,
+  MenuList,
+  MenuTrigger,
+  LegacyDropdownMenuItems,
+} from '../menu';
+import { Popover } from '../popover';
 
-import { Dropdown } from '../dropdown_menu';
-import { IconButton } from '../icon_button';
-import { RemoveQuoteHint } from '../status_action_bar/remove_quote_hint';
-
-import { BoostButton } from './boost_button';
-import { quoteItemState } from './boost_button_utils';
-import type { StatusContextType } from './types';
+import {
+  useStatusContext,
+  useStatusIcons,
+  useStatusMenuActions,
+} from './hooks';
+import {
+  StatusLikeBurstActiveIcon,
+  StatusLikeBurstIcon,
+} from './like_burst_icon';
+import classes from './styles.module.scss';
 
 interface StatusActionBarProps {
   statusId: string;
-  contextType?: StatusContextType;
+  reblogId: string | undefined;
   withDismiss?: boolean;
   withCounters?: boolean;
-  scrollKey?: string;
 }
-
-const messages = defineMessages({
-  delete: { id: 'status.delete', defaultMessage: 'Delete' },
-  redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
-  edit: { id: 'status.edit', defaultMessage: 'Edit' },
-  direct: { id: 'status.direct', defaultMessage: 'Privately mention @{name}' },
-  mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
-  mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
-  block: { id: 'account.block', defaultMessage: 'Block @{name}' },
-  reply: { id: 'status.reply', defaultMessage: 'Reply' },
-  share: { id: 'status.share', defaultMessage: 'Share' },
-  more: { id: 'status.more', defaultMessage: 'More' },
-  replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
-  favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
-  removeFavourite: {
-    id: 'status.remove_favourite',
-    defaultMessage: 'Remove from favorites',
-  },
-  bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
-  removeBookmark: {
-    id: 'status.remove_bookmark',
-    defaultMessage: 'Remove bookmark',
-  },
-  open: { id: 'status.open', defaultMessage: 'Expand this status' },
-  report: { id: 'status.report', defaultMessage: 'Report @{name}' },
-  muteConversation: {
-    id: 'status.mute_conversation',
-    defaultMessage: 'Mute conversation',
-  },
-  unmuteConversation: {
-    id: 'status.unmute_conversation',
-    defaultMessage: 'Unmute conversation',
-  },
-  pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
-  unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
-  embed: { id: 'status.embed', defaultMessage: 'Get embed code' },
-  admin_account: {
-    id: 'status.admin_account',
-    defaultMessage: 'Open moderation interface for @{name}',
-  },
-  admin_status: {
-    id: 'status.admin_status',
-    defaultMessage: 'Open this post in the moderation interface',
-  },
-  admin_domain: {
-    id: 'status.admin_domain',
-    defaultMessage: 'Open moderation interface for {domain}',
-  },
-  copy: { id: 'status.copy', defaultMessage: 'Copy link to post' },
-  blockDomain: {
-    id: 'account.block_domain',
-    defaultMessage: 'Block domain {domain}',
-  },
-  unblockDomain: {
-    id: 'account.unblock_domain',
-    defaultMessage: 'Unblock domain {domain}',
-  },
-  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
-  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
-  filter: { id: 'status.filter', defaultMessage: 'Filter this post' },
-  openOriginalPage: {
-    id: 'account.open_original_page',
-    defaultMessage: 'Open original page',
-  },
-  revokeQuote: {
-    id: 'status.revoke_quote',
-    defaultMessage: 'Remove my post from @{name}’s post',
-  },
-  quotePolicyChange: {
-    id: 'status.quote_policy_change',
-    defaultMessage: 'Change who can quote',
-  },
-});
 
 export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   statusId,
-  contextType,
+  reblogId,
   withDismiss,
   withCounters,
-  scrollKey,
 }) => {
-  const status = useStatus(statusId);
-  const quotedAccountId = useAppSelector(
-    (state) =>
-      state.statuses.getIn([status?.quote?.quoted_status, 'account']) ?? null,
-  );
+  const status = useAccountStatus(statusId);
+  const reblogStatus = useAccountStatus(reblogId);
+  const { contextType } = useStatusContext();
+  const statusUrl = status?.url ?? status?.uri;
+
+  // Actions
+  const dispatch = useAppDispatch();
+  const handleShareClick = useCallback(() => {
+    if (!statusUrl) {
+      return;
+    }
+
+    // We need to make this partial as by default share always is set, despite not being supported in FF.
+    const nav = navigator as Partial<Pick<Navigator, 'share'>> &
+      Pick<Navigator, 'clipboard'>;
+    if (nav.share) {
+      void nav.share({
+        url: statusUrl,
+      });
+    } else {
+      dispatch(statusInteraction({ statusId, intent: 'copy', contextType }));
+    }
+  }, [contextType, dispatch, statusId, statusUrl]);
+
+  const { reply, like, bookmark } = useStatusIcons(statusId);
+
   const currentAccountId = useCurrentAccountId();
 
-  const dispatch = useAppDispatch();
-  const handleReplyClick = useCallback(() => {
-    dispatch(statusInteraction({ statusId, intent: 'reply' }));
-  }, [dispatch, statusId]);
-  const handleFavouriteClick = useCallback(() => {
-    dispatch(statusInteraction({ statusId, intent: 'favourite' }));
-  }, [dispatch, statusId]);
-  const handleBookmarkClick = useCallback(() => {
-    dispatch(statusInteraction({ statusId, intent: 'bookmark' }));
-  }, [dispatch, statusId]);
+  const [likeBurst, setLikeBurst] = useState(false);
 
-  const intl = useIntl();
+  const handleLikeClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (currentAccountId && !like.active) {
+        setLikeBurst(true);
+      }
+
+      like.action(event);
+    },
+    [currentAccountId, like],
+  );
+
+  const handleLikeAnimationEnd = useCallback(
+    (event: React.AnimationEvent<HTMLButtonElement>) => {
+      if (event.animationName.endsWith('heart-pop')) {
+        setLikeBurst(false);
+      }
+    },
+    [],
+  );
 
   if (!status) {
     return null;
   }
 
-  const isReply =
-    !status.in_reply_to_id || status.in_reply_to_account_id === status.account;
-  const replyTitle = isReply
-    ? intl.formatMessage(messages.reply)
-    : intl.formatMessage(messages.replyAll);
-  const replyIcon = isReply ? 'reply' : 'reply-all';
-  const replyIconComponent = isReply ? ReplyIcon : ReplyAllIcon;
-
-  const bookmarkTitle = intl.formatMessage(
-    status.bookmarked ? messages.removeBookmark : messages.bookmark,
-  );
-  const favouriteTitle = intl.formatMessage(
-    status.favourited ? messages.removeFavourite : messages.favourite,
-  );
-
-  const isQuotingMe = quotedAccountId === currentAccountId;
-  const shouldShowQuoteRemovalHint =
-    isQuotingMe && contextType === 'notifications';
+  const isPublic =
+    status.visibility === 'public' || status.visibility === 'unlisted';
 
   return (
-    <div className='status__action-bar'>
-      <div className='status__action-bar__button-wrapper'>
-        <IconButton
-          className='status__action-bar__button'
-          title={replyTitle}
-          icon={replyIcon}
-          iconComponent={replyIconComponent}
-          onClick={handleReplyClick}
-          counter={status.replies_count}
-        />
-      </div>
-      <div className='status__action-bar__button-wrapper'>
-        <BoostButton statusId={statusId} counters={withCounters} />
-      </div>
-      <div className='status__action-bar__button-wrapper'>
-        <IconButton
-          className='status__action-bar__button star-icon'
-          animate
-          active={status.favourited}
-          title={favouriteTitle}
-          icon='star'
-          iconComponent={status.favourited ? StarIcon : StarBorderIcon}
-          onClick={handleFavouriteClick}
-          counter={withCounters ? status.favourites_count : undefined}
-        />
-      </div>
-      <div className='status__action-bar__button-wrapper'>
-        <IconButton
-          className='status__action-bar__button bookmark-icon'
-          disabled={!currentAccountId}
-          active={status.bookmarked}
-          title={bookmarkTitle}
-          icon='bookmark'
-          iconComponent={status.bookmarked ? BookmarkIcon : BookmarkBorderIcon}
-          onClick={handleBookmarkClick}
-        />
-      </div>
-      <RemoveQuoteHint
-        className='status__action-bar__button-wrapper'
-        canShowHint={shouldShowQuoteRemovalHint}
+    <div className={classes.actions}>
+      <Button
+        size='sm'
+        clipPadding
+        variant='ghost'
+        leadingIcon={reply.icon}
+        onClick={reply.action}
+        tooltip={{ type: 'label', text: reply.title }}
       >
-        {(dismissQuoteHint) => (
-          <StatusActionMenu
-            dismissQuoteHint={dismissQuoteHint}
-            status={status}
-            contextType={contextType}
-            withDismiss={withDismiss}
-            scrollKey={scrollKey}
-          />
-        )}
-      </RemoveQuoteHint>
+        {withCounters && <AnimatedNumber value={reply.counter ?? 0} />}
+      </Button>
+
+      <StatusReblogButton statusId={statusId}>
+        {withCounters && <AnimatedNumber value={status.reblogs_count} />}
+      </StatusReblogButton>
+
+      <ToggleButton
+        size='sm'
+        variant='ghost'
+        active={like.active}
+        tooltip={{ type: 'label', text: like.title }}
+        leadingIcon={
+          like.active ? StatusLikeBurstActiveIcon : StatusLikeBurstIcon
+        }
+        onClick={handleLikeClick}
+        data-like-burst={likeBurst || undefined}
+        onAnimationEnd={handleLikeAnimationEnd}
+        className={classes.actionsButtonGap}
+      >
+        {withCounters && <AnimatedNumber value={like.counter ?? 0} />}
+      </ToggleButton>
+
+      {isPublic && (
+        <IconButton
+          size='sm'
+          variant='ghost'
+          icon={ShareNetworkIcon}
+          onClick={handleShareClick}
+        >
+          <FormattedMessage id='status.share' defaultMessage='Share' />
+        </IconButton>
+      )}
+
+      <ToggleIconButton
+        size='sm'
+        variant='ghost'
+        active={bookmark.active}
+        icon={bookmark.icon}
+        onClick={bookmark.action}
+      >
+        {bookmark.title}
+      </ToggleIconButton>
+
+      <StatusActionMenu
+        status={status}
+        reblogStatus={reblogStatus}
+        withDismiss={withDismiss}
+      />
     </div>
   );
 };
 
+export const StatusReblogButton: React.FC<{
+  statusId: string;
+  children: React.ReactNode;
+}> = ({ statusId, children }) => {
+  const { boost, quote } = useStatusIcons(statusId);
+
+  const isBoosted = !!boost.active;
+  const [wasBoosted, setWasBoosted] = useState(isBoosted);
+  const [boostSpin, setBoostSpin] = useState(false);
+
+  if (isBoosted !== wasBoosted) {
+    setWasBoosted(isBoosted);
+    setBoostSpin(isBoosted);
+  }
+
+  const handleBoostAnimationEnd = useCallback(() => {
+    setBoostSpin(false);
+  }, []);
+
+  const handleShiftClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (e.shiftKey) {
+        e.preventDefault();
+        boost.action(e);
+      }
+    },
+    [boost],
+  );
+
+  const preventMenuOpenOnShiftClick = useCallback((e?: React.MouseEvent) => {
+    return !e?.shiftKey;
+  }, []);
+
+  if (quickBoosting) {
+    return (
+      <ToggleButton
+        size='sm'
+        variant='ghost'
+        active={boost.active}
+        tooltip={{
+          type: 'label',
+          text: boost.title,
+        }}
+        leadingIcon={boost.icon}
+        disabled={boost.disabled}
+        onClick={boost.action}
+        className={boostSpin ? classes.boostSpin : undefined}
+        onAnimationEnd={handleBoostAnimationEnd}
+      >
+        {children}
+      </ToggleButton>
+    );
+  }
+
+  return (
+    <Menu onOpen={preventMenuOpenOnShiftClick}>
+      <MenuTrigger
+        as={ToggleButton}
+        size='sm'
+        variant='ghost'
+        active={boost.active}
+        disabled={boost.disabled && quote.disabled}
+        tooltip={{
+          type: 'label',
+          text: (
+            <FormattedMessage
+              id='status.reblog_or_quote'
+              defaultMessage='Boost or quote'
+            />
+          ),
+        }}
+        onClick={handleShiftClick}
+        leadingIcon={boost.icon}
+        className={boostSpin ? classes.boostSpin : undefined}
+        onAnimationEnd={handleBoostAnimationEnd}
+      >
+        {children}
+      </MenuTrigger>
+
+      <MenuList placement='bottom' maxWidth={180}>
+        <MenuItem
+          onClick={boost.action}
+          icon={boost.icon}
+          disabled={boost.disabled}
+          description={boost.meta}
+        >
+          {boost.title}
+        </MenuItem>
+        <MenuItem
+          onClick={quote.action}
+          icon={quote.icon}
+          disabled={quote.disabled}
+          description={quote.meta}
+        >
+          {quote.title}
+        </MenuItem>
+      </MenuList>
+    </Menu>
+  );
+};
+
 const StatusActionMenu: React.FC<{
-  dismissQuoteHint: () => void;
-  status: StatusShape;
-  contextType?: StatusContextType;
-  scrollKey?: string;
+  status: AccountStatusShape;
+  reblogStatus: AccountStatusShape | null;
   withDismiss?: boolean;
-}> = ({ status, dismissQuoteHint, contextType, scrollKey, withDismiss }) => {
-  const account = useAppSelector((state) => state.accounts.get(status.account));
-  const { permissions } = useIdentity();
-  const relationship = useRelationship(account?.id);
-  const intl = useIntl();
+}> = ({ status, reblogStatus, withDismiss }) => {
+  const { contextType } = useStatusContext();
   const dispatch = useAppDispatch();
 
-  const conditions = useAppSelector((state) =>
-    selectStatusConditions(state, status.id),
-  );
-  const interactions = useAppSelector((state) =>
-    selectStatusInteractionsAllowed(state, status.id),
-  );
-  const statusInteractionFactory = useCallback(
-    (intent: StatusInteractionIntent) => {
-      return () => {
-        dispatch(
-          statusInteraction({ statusId: status.id, contextType, intent }),
-        );
-      };
-    },
-    [contextType, dispatch, status.id],
-  );
+  const menu = useStatusMenuActions({
+    status,
+    reblogStatus,
+    contextType,
+    withDismiss,
+  });
 
-  const menu = useMemo(
-    () =>
-      getMenuItems({
-        status,
-        account,
-        conditions,
-        interactions,
-        onStatusInteraction: statusInteractionFactory,
-        withDismiss,
-        permissions,
-        intl,
-        relationship,
-        dispatch,
-      }),
-    [
-      status,
-      account,
-      conditions,
-      interactions,
-      statusInteractionFactory,
-      withDismiss,
-      permissions,
-      intl,
-      relationship,
-      dispatch,
-    ],
-  );
-  const handleOpen = useCallback(() => {
+  const { showHint, dismiss } = useQuoteHint({ status });
+  const [buttonEle, setButtonEle] = useState<HTMLButtonElement | null>(null);
+
+  const onOpen = useCallback(() => {
     // Replicates needsStatusRefresh of the Dropdown component.
     if (quickBoosting && !status.quote_approval) {
       dispatch(
@@ -308,294 +301,141 @@ const StatusActionMenu: React.FC<{
       );
     }
 
-    dismissQuoteHint();
-    return true;
-  }, [dismissQuoteHint, dispatch, status.id, status.quote_approval]);
+    dismiss();
+  }, [dismiss, dispatch, status.id, status.quote_approval]);
 
   return (
-    <Dropdown scrollKey={scrollKey} items={menu} onOpen={handleOpen}>
-      <IconButton
-        className='status__action-bar__button'
-        icon='ellipsis-h'
-        iconComponent={MoreHorizIcon}
-        title={intl.formatMessage(messages.more)}
-      />
-    </Dropdown>
+    <Menu onOpen={onOpen}>
+      <MenuTrigger
+        as={IconButton}
+        size='sm'
+        variant='ghost'
+        icon={DotsThreeIcon}
+        ref={setButtonEle}
+      >
+        <FormattedMessage id='status.more' defaultMessage='More' />
+      </MenuTrigger>
+
+      <MenuList placement='top-end'>
+        <LegacyDropdownMenuItems items={menu} />
+      </MenuList>
+
+      {showHint && (
+        <QuoteHintTooltip anchorElement={buttonEle} dismiss={dismiss} />
+      )}
+    </Menu>
   );
 };
 
-interface MenuItemsParams {
-  status: StatusShape;
-  account?: Account;
-  conditions: StatusConditions;
-  interactions: StatusInteractionsAllowed;
-  onStatusInteraction: (intent: StatusInteractionIntent) => () => void;
-  withDismiss?: boolean;
-  permissions: number;
-  intl: ReturnType<typeof useIntl>;
-  relationship?: Relationship | null;
-  dispatch: AppDispatch;
+const QUOTE_HINT_BANNER_ID = 'notifications/remove_quote_hint';
+
+/**
+ * We don't want to show this hint in the UI more than once,
+ * so the first time it renders, we store a unique component ID
+ * here to prevent any other hints from being displayed after it.
+ */
+let firstHintId: string | null = null;
+
+function useQuoteHint({ status }: { status?: Pick<StatusShape, 'quote'> }) {
+  const { contextType } = useStatusContext();
+  const quotedAccountId = useAppSelector(
+    (state) =>
+      state.statuses.getIn([status?.quote?.quoted_status, 'account']) ?? null,
+  );
+  const currentAccountId = useCurrentAccountId();
+  const isQuotingMe = quotedAccountId === currentAccountId;
+  const shouldShowQuoteRemovalHint =
+    isQuotingMe && contextType === 'notifications';
+
+  const { wasDismissed, dismiss } = useDismissible(QUOTE_HINT_BANNER_ID);
+
+  const shouldShowHint = !wasDismissed && shouldShowQuoteRemovalHint;
+
+  const uniqueId = useId();
+  const [isOnlyHint, setIsOnlyHint] = useState(false);
+  useEffect(() => {
+    if (!shouldShowHint) {
+      return () => null;
+    }
+
+    if (!firstHintId) {
+      firstHintId = uniqueId;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsOnlyHint(true);
+    }
+
+    return () => {
+      if (firstHintId === uniqueId) {
+        firstHintId = null;
+        setIsOnlyHint(false);
+      }
+    };
+  }, [shouldShowHint, uniqueId]);
+
+  return {
+    showHint: isOnlyHint && shouldShowHint,
+    dismiss,
+  };
 }
 
-function getMenuItems({
-  status,
-  account,
-  conditions,
-  interactions,
-  onStatusInteraction,
-  withDismiss,
-  permissions,
-  intl,
-  relationship,
-  dispatch,
-}: MenuItemsParams) {
-  const menu: MenuItem[] = [];
+const QuoteHintTooltip: React.FC<{
+  anchorElement: HTMLElement | null;
+  dismiss: () => void;
+}> = ({ anchorElement, dismiss }) => {
+  const intl = useIntl();
+  return (
+    <Popover
+      isOpen
+      offset={{ mainAxis: 10, crossAxis: 12 }}
+      placement='bottom-end'
+      reference={anchorElement}
+      container={null}
+      onClose={dismiss}
+    >
+      {({ props, placement }) => (
+        <div
+          {...props}
+          className={classNames('info-tooltip dropdown-animation', placement)}
+        >
+          <FormattedMessage
+            id='remove_quote_hint.title'
+            defaultMessage='Want to remove your quoted post?'
+            tagName='h4'
+          />
 
-  const statusId = status.id;
-  const statusUrl = status.url ?? status.uri;
-  const { isPublic, isLocal, isLoggedIn, isMine } = conditions;
+          <FormattedMessage
+            id='remove_quote_hint.message'
+            defaultMessage='You can do so from the {icon} options menu.'
+            values={{
+              icon: (
+                <Icon
+                  icon={DotsThreeIcon}
+                  aria-label={intl.formatMessage({
+                    id: 'status.more',
+                    defaultMessage: 'More',
+                  })}
+                  className={classes.inlineIcon}
+                />
+              ),
+            }}
+            tagName='p'
+          />
 
-  menu.push({
-    text: intl.formatMessage(messages.open),
-    to: `/@${account?.acct}/${statusId}`,
-  });
-
-  if (isPublic && !isLocal) {
-    menu.push({
-      text: intl.formatMessage(messages.openOriginalPage),
-      href: statusUrl,
-    });
-  }
-
-  menu.push({
-    text: intl.formatMessage(messages.copy),
-    action: () => {
-      void navigator.clipboard.writeText(statusUrl);
-    },
-  });
-
-  if (isPublic && 'share' in navigator) {
-    menu.push({
-      text: intl.formatMessage(messages.share),
-      action: () => {
-        void navigator.share({
-          url: statusUrl,
-        });
-      },
-    });
-  }
-
-  if (interactions.embed) {
-    menu.push({
-      text: intl.formatMessage(messages.embed),
-      action: onStatusInteraction('embed'),
-    });
-  }
-
-  if (!isLoggedIn) {
-    return menu;
-  }
-
-  if (quickBoosting) {
-    menu.push(null);
-    const quoteItem = quoteItemState(conditions);
-    menu.push({
-      text: intl.formatMessage(quoteItem.title),
-      description: quoteItem.meta
-        ? intl.formatMessage(quoteItem.meta)
-        : undefined,
-      disabled: quoteItem.disabled,
-      action: onStatusInteraction('quote'),
-    });
-  }
-
-  menu.push(null);
-
-  if (interactions.pin) {
-    menu.push({
-      text: intl.formatMessage(status.pinned ? messages.unpin : messages.pin),
-      action: onStatusInteraction('pin'),
-    });
-    menu.push(null);
-  }
-
-  if (interactions.mute || withDismiss) {
-    menu.push({
-      text: intl.formatMessage(
-        status.muted ? messages.unmuteConversation : messages.muteConversation,
-      ),
-      action: onStatusInteraction('mute'),
-    });
-    if (interactions.editQuotePolicy) {
-      menu.push({
-        text: intl.formatMessage(messages.quotePolicyChange),
-        action: onStatusInteraction('editQuotePolicy'),
-      });
-    }
-    menu.push(null);
-  }
-
-  if (interactions.edit && interactions.delete && interactions.redraft) {
-    menu.push({
-      text: intl.formatMessage(messages.edit),
-      action: onStatusInteraction('edit'),
-    });
-    menu.push({
-      text: intl.formatMessage(messages.delete),
-      action: onStatusInteraction('delete'),
-      dangerous: true,
-    });
-    menu.push({
-      text: intl.formatMessage(messages.redraft),
-      action: onStatusInteraction('redraft'),
-      dangerous: true,
-    });
-  }
-
-  if (isMine || !account) {
-    // Add the filter to handle the edge case of not having account data.
-    if (interactions.filter) {
-      menu.push(null);
-      menu.push({
-        text: intl.formatMessage(messages.filter),
-        action: onStatusInteraction('filter'),
-        dangerous: true,
-      });
-    }
-    return menu;
-  }
-
-  if (!account.invalid_handle) {
-    menu.push({
-      text: intl.formatMessage(messages.mention, {
-        name: account.username,
-      }),
-      action: () => {
-        dispatch(mentionCompose(account));
-      },
-    });
-    menu.push({
-      text: intl.formatMessage(messages.direct, {
-        name: account.username,
-      }),
-      action: () => {
-        dispatch(directCompose(account));
-      },
-    });
-    menu.push(null);
-  }
-
-  if (interactions.revokeQuote) {
-    menu.push({
-      text: intl.formatMessage(messages.revokeQuote, {
-        name: account.username,
-      }),
-      action: onStatusInteraction('revokeQuote'),
-      dangerous: true,
-    });
-  }
-
-  const isMuted = !!relationship?.get('muting');
-  menu.push({
-    text: intl.formatMessage(isMuted ? messages.unmute : messages.mute, {
-      name: account.username,
-    }),
-    action: () => {
-      if (isMuted) {
-        dispatch(unmuteAccount(account.id));
-      } else {
-        dispatch(muteAccount(account.id));
-      }
-    },
-    dangerous: !isMuted,
-  });
-
-  const isBlocking = !!relationship?.blocking;
-  menu.push({
-    text: intl.formatMessage(isBlocking ? messages.unblock : messages.block, {
-      name: account.username,
-    }),
-    action: () => {
-      if (isBlocking) {
-        dispatch(unblockAccount(account.id));
-      } else {
-        dispatch(initBlockModal(account));
-      }
-    },
-    dangerous: !isBlocking,
-  });
-
-  if (interactions.filter) {
-    menu.push(null);
-    menu.push({
-      text: intl.formatMessage(messages.filter),
-      action: onStatusInteraction('filter'),
-      dangerous: true,
-    });
-  }
-  menu.push(null);
-
-  menu.push({
-    text: intl.formatMessage(messages.report, {
-      name: account.username,
-    }),
-    action: onStatusInteraction('report'),
-    dangerous: true,
-  });
-
-  const domain = account.acct.split('@')[1];
-
-  if (!isLocal) {
-    menu.push(null);
-
-    const isDomainBlocking = !!relationship?.domain_blocking;
-    menu.push({
-      text: intl.formatMessage(
-        isDomainBlocking ? messages.unblockDomain : messages.blockDomain,
-        { domain },
-      ),
-      action: () => {
-        if (isDomainBlocking) {
-          dispatch(unblockDomain(domain));
-        } else {
-          dispatch(initDomainBlockModal(account));
-        }
-      },
-      dangerous: !isDomainBlocking,
-    });
-  }
-
-  const canManageUsers =
-    (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS;
-  const canManageFederation =
-    (permissions & PERMISSION_MANAGE_FEDERATION) ===
-      PERMISSION_MANAGE_FEDERATION && !isLocal;
-
-  if (!canManageUsers && !canManageFederation) {
-    return menu;
-  }
-
-  menu.push(null);
-  if (canManageUsers) {
-    menu.push({
-      text: intl.formatMessage(messages.admin_account, {
-        name: account.username,
-      }),
-      href: `/admin/accounts/${status.account}`,
-    });
-    menu.push({
-      text: intl.formatMessage(messages.admin_status),
-      href: `/admin/accounts/${status.account}/statuses/${status.id}`,
-    });
-  }
-  if (canManageFederation) {
-    menu.push({
-      text: intl.formatMessage(messages.admin_domain, {
-        domain,
-      }),
-      href: `/admin/instances/${domain}`,
-    });
-  }
-
-  return menu;
-}
+          <Button
+            variant='ghost'
+            color='accent'
+            size='sm'
+            clipPadding
+            onClick={dismiss}
+            className={classes.button}
+          >
+            <FormattedMessage
+              id='remove_quote_hint.button_label'
+              defaultMessage='Got it'
+            />
+          </Button>
+        </div>
+      )}
+    </Popover>
+  );
+};

@@ -171,27 +171,7 @@
   }
 }
 
-.handleCopy {
-  border: 1px solid var(--color-border-primary);
-  border-radius: 8px;
-  box-sizing: border-box;
-  padding: 4px 8px;
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  font-size: 13px;
-  transition:
-    color 0.2s ease-in-out,
-    background-color 0.2s ease-in-out;
-  margin-top: 12px;
-
-  &:active,
-  &:focus,
-  &:hover {
-    background-color: var(--color-bg-brand-softest);
-  }
-}
-
-$button-breakpoint: 420px;
+$button-breakpoint: 540px;
 $button-fallback-breakpoint: $button-breakpoint + 55px;
 
 .buttonsDesktop,
@@ -327,7 +307,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   }
 
   dd {
-    font-weight: 500;
+    font-weight: bold;
   }
 
   :is(dt, dd) {
@@ -353,10 +333,11 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 }
 
 .fieldVerified {
-  background-color: var(--color-bg-success-softest);
+  dd a {
+    color: var(--color-text-brand);
+  }
 
   &.fieldItem {
-    border-color: var(--color-border-success-soft);
     padding-right: 30px; // 8px padding + 16px for the icon + 8px gap - 2px tolerance
   }
 }
@@ -370,6 +351,8 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   right: 8px;
 
   > svg {
+    fill: var(--color-bg-brand-base);
+    color: var(--color-text-on-brand-base);
     width: 100%;
     height: 100%;
   }
@@ -388,49 +371,6 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   > svg {
     width: 16px;
     height: 12px;
-  }
-}
-
-.modalCloseButton {
-  padding: 8px;
-  border-radius: 50%;
-  border: 1px solid var(--color-border-primary);
-}
-
-.modalTitle {
-  flex-grow: 1;
-  text-align: center;
-}
-
-.modalFieldsList {
-  padding: 16px;
-}
-
-.modalFieldItem {
-  &:not(:first-child) {
-    padding-top: 12px;
-  }
-
-  &:not(:last-child)::after {
-    content: '';
-    display: block;
-    border-bottom: 1px solid var(--color-border-primary);
-    margin-top: 12px;
-  }
-
-  dt {
-    color: var(--color-text-secondary);
-    font-size: 13px;
-  }
-
-  dd {
-    font-weight: 500;
-    font-size: 15px;
-  }
-
-  .fieldIconVerified {
-    vertical-align: middle;
-    margin-left: 4px;
   }
 }
 
@@ -477,14 +417,14 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 .bannerText {
   color: var(--color-text-secondary);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: bold;
   text-align: center;
 }
 
 .bannerTextAndActions {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--space-1);
   font-size: 13px;
   font-weight: 400;
   color: var(--color-text-primary);
@@ -497,15 +437,12 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
 .bannerActions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: var(--space-3);
   width: 100%;
-  margin-top: 16px;
-
-  button {
-    width: 100%;
-  }
+  margin-top: var(--space-4);
 }
 
 .bannerDisclaimer {
@@ -514,28 +451,30 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   }
 }
 
-.bannerInputButton {
+.bannerInputWrapper {
   display: flex;
-  gap: 8px;
+  gap: var(--space-2);
+  flex-wrap: wrap;
   align-self: stretch;
-  align-items: flex-start;
+  align-items: flex-end;
 
+  // Input field wrapper
   & > div {
-    flex-grow: 1;
+    flex: 1 1 0;
+    min-width: 180px; // Wrap button below this width
   }
 
   label {
     font-weight: 400;
   }
 
-  :global(.button) {
-    margin-top: 24px; // To align with input under label
-  }
-
   input[type='email'] {
-    padding: 7px 8px; // To align size with button
     background: var(--color-bg-primary);
   }
+}
+
+.bannerInputButton {
+  margin-bottom: var(--space-half);
 }
 
 .bannerActionsDisplayName {
@@ -568,6 +507,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
 .followButton {
   flex-grow: 1;
+  flex-shrink: 0;
 }
 
 .bioButtonsWrapper {

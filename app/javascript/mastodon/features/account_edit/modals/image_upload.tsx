@@ -283,8 +283,9 @@ const StepUpload: FC<{
         tagName='p'
       />
       <Button
+        variant='solid'
+        color='accent'
         onClick={handleUploadClick}
-        // eslint-disable-next-line jsx-a11y/no-autofocus -- This is the main input, so auto-focus on it.
         autoFocus
       >
         <FormattedMessage
@@ -356,13 +357,18 @@ const StepCrop: FC<{
           wrapperClassName={classes.zoomControl}
           inputPlacement='inline-end'
         />
-        <Button onClick={onCancel} secondary>
+        <Button onClick={onCancel}>
           <FormattedMessage
             id='account_edit.upload_modal.back'
             defaultMessage='Back'
           />
         </Button>
-        <Button onClick={handleNext} disabled={!croppedArea}>
+        <Button
+          variant='solid'
+          color='accent'
+          onClick={handleNext}
+          disabled={!croppedArea}
+        >
           <FormattedMessage
             id='account_edit.upload_modal.next'
             defaultMessage='Next'
@@ -393,18 +399,18 @@ const StepAlt: FC<{
         imageSrc={imageSrc}
         altText={altText}
         onChange={setAltText}
-        hideTip={location === 'header'}
+        imageLocation={location}
       />
 
       <div className={classes.cropActions}>
-        <Button onClick={onCancel} secondary>
+        <Button onClick={onCancel}>
           <FormattedMessage
             id='account_edit.upload_modal.back'
             defaultMessage='Back'
           />
         </Button>
 
-        <Button onClick={handleComplete}>
+        <Button variant='solid' color='accent' onClick={handleComplete}>
           <FormattedMessage
             id='account_edit.upload_modal.done'
             defaultMessage='Done'

@@ -72,6 +72,7 @@ module Admin
     def destroy
       authorize @account, :destroy?
       Admin::AccountDeletionWorker.perform_async(@account.id)
+      log_action :destroy, @account
       redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.destroyed_msg', username: @account.acct)
     end
 

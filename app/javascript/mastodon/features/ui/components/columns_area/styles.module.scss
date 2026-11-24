@@ -1,0 +1,70 @@
+@use '@/styles/mastodon/variables' as *;
+
+.root {
+  --main-column-max-width: 600px;
+  --sidebar-width: var(--main-navigation-width);
+
+  &[data-collapsed='true'] {
+    --sidebar-width: var(--main-navigation-width-collapsed);
+  }
+
+  // This grid definition is shared with the composer
+  --columns-area-grid-columns: minmax(var(--sidebar-width), 1fr)
+    minmax(0, var(--main-column-max-width)) minmax(0, 1fr);
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom);
+
+  @media (min-width: $mobile-menu-breakpoint) {
+    display: grid;
+    grid-template-columns: var(--columns-area-grid-columns);
+  }
+}
+
+.rootMinimal {
+  // In `minimalShell` layout, no sidebar navigation is shown,
+  // so we allow the column to shrink to 0
+  --sidebar-width: 0;
+}
+
+.navigationWrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100dvh;
+  max-width: var(--sidebar-width);
+  padding-bottom: env(safe-area-inset-bottom);
+  justify-self: end;
+
+  @media (max-width: ($mobile-menu-breakpoint - 1)) {
+    display: none;
+  }
+}
+
+.main {
+  box-sizing: border-box;
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
+  contain: inline-size layout style;
+  container: column / inline-size;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+
+  :global(.scrollable) {
+    contain: content;
+    overflow: visible;
+    border: none;
+    border-radius: 0;
+  }
+}

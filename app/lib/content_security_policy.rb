@@ -13,6 +13,11 @@ class ContentSecurityPolicy
     [assets_host, cdn_host_value, paperclip_root_url].concat(extra_media_hosts).compact
   end
 
+  # In the admin area we might need signed URLs that use this domain
+  def admin_media_hosts
+    [s3_endpoint_url].compact
+  end
+
   def sso_host
     return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true' && ENV['OMNIAUTH_ONLY'] == 'true' && Devise.omniauth_providers.length == 1
 
@@ -74,6 +79,10 @@ class ContentSecurityPolicy
 
   def s3_hostname_host
     host_to_url ENV.fetch('S3_HOSTNAME', nil)
+  end
+
+  def s3_endpoint_url
+    ENV.fetch('S3_ENDPOINT', nil)
   end
 
   def swift_object_url

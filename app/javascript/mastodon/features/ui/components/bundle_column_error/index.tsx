@@ -1,11 +1,9 @@
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 import { CopyButton } from '@/mastodon/components/copy_button';
 import { EmptyState } from '@/mastodon/components/empty_state';
 import { Button } from 'mastodon/components/button';
@@ -74,15 +72,11 @@ export const BundleColumnError: React.FC<BundleColumnErrorProps> = ({
 
   return (
     <Column bindToDocument={!multiColumn}>
-      <EmptyState
-        image='error'
-        title={title}
-        message={body}
-        className={classes.error}
-      >
+      <ColumnHeader title={title} />
+      <EmptyState image='error' message={body} className={classes.error}>
         <div className={classes.actions}>
           {errorType === 'network' && onRetry && (
-            <Button onClick={onRetry}>
+            <Button onClick={onRetry} variant='solid' color='accent'>
               <FormattedMessage
                 id='bundle_column_error.retry'
                 defaultMessage='Try again'
@@ -97,17 +91,16 @@ export const BundleColumnError: React.FC<BundleColumnErrorProps> = ({
               />
             </CopyButton>
           )}
-          <Link
+          <Button
+            as='link'
             to='/'
-            className={classNames('button', {
-              'button-secondary': errorType !== 'routing',
-            })}
+            variant={errorType !== 'routing' ? 'tonal' : 'solid'}
           >
             <FormattedMessage
               id='bundle_column_error.return'
               defaultMessage='Go back home'
             />
-          </Link>
+          </Button>
         </div>
       </EmptyState>
 

@@ -1,0 +1,64 @@
+@use '@/styles/mastodon/mixins';
+
+.rootLarge,
+.rootSmall {
+  align-items: center;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-highlight);
+  border-radius: var(--radius-3);
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.rootLarge {
+  padding: var(--space-3);
+
+  // Adds padding to push the buttons flush with the text if it wraps.
+  &:has(.icon) {
+    padding-left: calc(var(--space-3) + var(--space-5) + var(--space-1));
+  }
+}
+
+.rootSmall {
+  padding: var(--space-2);
+}
+
+.icon {
+  width: var(--space-5);
+  height: var(--space-5);
+  align-self: baseline;
+}
+
+.content,
+.actions {
+  display: flex;
+  gap: var(--space-1);
+  align-items: center;
+}
+
+.content {
+  flex-grow: 1;
+
+  // Then remove the padding for the content so the icon is correctly placed.
+  // We use a negative margin instead of absolute positioning as the icon needs to be roughly centered on the text.
+  &:has(.icon) {
+    margin-left: calc(-1 * var(--space-6));
+  }
+}
+
+.textWrapper {
+  @include mixins.type-body-compact;
+
+  flex-grow: 1;
+
+  a {
+    color: inherit;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+    }
+  }
+}

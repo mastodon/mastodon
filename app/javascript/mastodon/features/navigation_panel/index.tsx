@@ -1,553 +1,292 @@
-import { useEffect, useRef } from 'react';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { defineMessages, useIntl } from 'react-intl';
-
-import classNames from 'classnames';
-import { Link, useLocation } from 'react-router-dom';
-
-import type { Map as ImmutableMap } from 'immutable';
-
-import { animated, useSpring } from '@react-spring/web';
-import { useDrag } from '@use-gesture/react';
-
-import { useAccount } from '@/mastodon/hooks/useAccount';
-import AddIcon from '@/material-icons/400-24px/add.svg?react';
-import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
-import BookmarksActiveIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
-import BookmarksIcon from '@/material-icons/400-24px/bookmarks.svg?react';
-import CollectionsActiveIcon from '@/material-icons/400-24px/category-fill.svg?react';
-import CollectionsIcon from '@/material-icons/400-24px/category.svg?react';
-import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
-import HomeIcon from '@/material-icons/400-24px/home.svg?react';
-import InfoIcon from '@/material-icons/400-24px/info.svg?react';
-import NotificationsActiveIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
-import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
-import PersonAddActiveIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
-import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
-import PublicIcon from '@/material-icons/400-24px/public.svg?react';
-import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
-import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
-import StarIcon from '@/material-icons/400-24px/star.svg?react';
-import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
-import { fetchFollowRequests } from 'mastodon/actions/accounts';
-import { openNavigation, closeNavigation } from 'mastodon/actions/navigation';
-import { Account } from 'mastodon/components/account';
-import { IconWithBadge } from 'mastodon/components/icon_with_badge';
-import { WordmarkLogo } from 'mastodon/components/logo';
-import { Search } from 'mastodon/features/compose/components/search';
-import { ColumnLink } from 'mastodon/features/ui/components/column_link';
-import { getNavigationSkipLinkId } from 'mastodon/features/ui/components/skip_links';
-import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
-import { useIdentity } from 'mastodon/identity_context';
 import {
-  localLiveFeedAccess,
-  remoteLiveFeedAccess,
-  trendsEnabled,
-  me,
-} from 'mastodon/initial_state';
-import { transientSingleColumn } from 'mastodon/is_mobile';
-import { canViewFeed } from 'mastodon/permissions';
-import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
-import { useAppSelector, useAppDispatch } from 'mastodon/store';
+  RssSimpleIcon,
+  BookmarkSimpleIcon,
+  PlusIcon,
+  InfoIcon,
+  GavelIcon,
+  ShieldStarIcon,
+  CompassIcon,
+} from '@phosphor-icons/react';
 
-import { AnnualReportNavItem } from '../annual_report/nav_item';
+import { Callout } from '@/mastodon/components/callout/redesign';
+import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
+import { useIdentity } from '@/mastodon/identity_context';
+import { disabledAccountId, trendsEnabled } from '@/mastodon/initial_state';
+import { transientSingleColumn } from '@/mastodon/is_mobile';
+import {
+  canManageReports,
+  canViewAdminDashboard,
+} from '@/mastodon/permissions';
+import { invokeVirtualIosKeyboard } from '@/mastodon/utils/invoke_virtual_ios_keyboard';
 
-import { DisabledAccountBanner } from './components/disabled_account_banner';
-import { FollowedTagsPanel } from './components/followed_tags_panel';
-import { ListPanel } from './components/list_panel';
-import { MoreLink } from './components/more_link';
-import { SignInBanner } from './components/sign_in_banner';
-import { Trends } from './components/trends';
+import { CollapsedNavigationPanel } from './collapsed';
+import { FooterLinks } from './footer_links';
+import { NavigationHeader } from './header';
+import {
+  useCustomFeeds,
+  useFollowedHashtags,
+  usePublicFeedsLink,
+} from './hooks';
+import { ListSection } from './list_section';
+import { DisabledAccountBanner, LoggedOutInfo } from './logged_out_info';
+import { NavigationLink } from './navigation_link';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
-  home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
-  notifications: {
-    id: 'tabs_bar.notifications',
-    defaultMessage: 'Notifications',
-  },
-  explore: { id: 'explore.title', defaultMessage: 'Trending' },
-  firehose: { id: 'column.firehose', defaultMessage: 'Live feeds' },
-  firehose_singular: {
-    id: 'column.firehose_singular',
-    defaultMessage: 'Live feed',
-  },
   main: {
     id: 'navigation_bar.main',
     defaultMessage: 'Main',
     description:
       'Label for the main navigation; should not contain the word "navigation".',
   },
-  direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
-  bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
-  collections: {
-    id: 'navigation_bar.collections',
-    defaultMessage: 'Collections',
-  },
-  preferences: {
-    id: 'navigation_bar.preferences',
-    defaultMessage: 'Preferences',
-  },
-  followsAndFollowers: {
-    id: 'navigation_bar.follows_and_followers',
-    defaultMessage: 'Follows and followers',
-  },
-  about: { id: 'navigation_bar.about', defaultMessage: 'About' },
-  search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
-  searchTrends: {
-    id: 'navigation_bar.search_trends',
-    defaultMessage: 'Search / Trending',
-  },
-  advancedInterface: {
-    id: 'navigation_bar.advanced_interface',
-    defaultMessage: 'Open in advanced web interface',
-  },
-  openedInClassicInterface: {
-    id: 'navigation_bar.opened_in_classic_interface',
-    defaultMessage:
-      'Posts, accounts, and other specific pages are opened by default in the classic web interface.',
-  },
-  followRequests: {
-    id: 'navigation_bar.follow_requests',
-    defaultMessage: 'Follow requests',
-  },
-  logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
-  compose: { id: 'tabs_bar.publish', defaultMessage: 'New Post' },
 });
 
-const NotificationsLink = () => {
-  const count = useAppSelector(selectUnreadNotificationGroupsCount);
-  const intl = useIntl();
+const MAX_HASHTAG_COUNT = 5;
 
-  return (
-    <ColumnLink
-      key='notifications'
-      transparent
-      to='/notifications'
-      icon={
-        <IconWithBadge
-          id='bell'
-          icon={NotificationsIcon}
-          count={count}
-          className='column-link__icon'
-        />
-      }
-      activeIcon={
-        <IconWithBadge
-          id='bell'
-          icon={NotificationsActiveIcon}
-          count={count}
-          className='column-link__icon'
-        />
-      }
-      text={intl.formatMessage(messages.notifications)}
-    />
-  );
-};
+interface NavigationPanelProps {
+  siteName?: string;
+  /**
+   * In 'slide-out' mode (used on mobile), some menu items
+   * are hidden and the design is tweaked slightly
+   */
+  mode?: 'static' | 'slide-out';
+  multiColumn?: boolean;
+  collapsed?: boolean;
+  onToggleCollapsed?: () => void;
+}
 
-const FollowRequestsLink: React.FC = () => {
-  const intl = useIntl();
-  const count = useAppSelector(
-    (state) =>
-      (
-        state.user_lists.getIn(['follow_requests', 'items']) as
-          | ImmutableMap<string, unknown>
-          | undefined
-      )?.size ?? 0,
-  );
-  const dispatch = useAppDispatch();
+export const NavigationPanel: React.FC<NavigationPanelProps> = (props) => {
+  const { mode = 'static', multiColumn, collapsed, onToggleCollapsed } = props;
 
-  useEffect(() => {
-    dispatch(fetchFollowRequests());
-  }, [dispatch]);
-
-  if (count === 0) {
-    return null;
+  if (mode === 'static' && collapsed) {
+    return (
+      <CollapsedNavigationPanel
+        multiColumn={multiColumn}
+        onToggleCollapsed={onToggleCollapsed}
+      />
+    );
+  } else {
+    return <ExpandedNavigationPanel {...props} />;
   }
-
-  return (
-    <ColumnLink
-      transparent
-      to='/follow_requests'
-      icon={
-        <IconWithBadge
-          id='user-plus'
-          icon={PersonAddIcon}
-          count={count}
-          className='column-link__icon'
-        />
-      }
-      activeIcon={
-        <IconWithBadge
-          id='user-plus'
-          icon={PersonAddActiveIcon}
-          count={count}
-          className='column-link__icon'
-        />
-      }
-      text={intl.formatMessage(messages.followRequests)}
-    />
-  );
 };
 
-const ProfileCard: React.FC = () => {
-  if (!me) {
-    return null;
-  }
-
-  return (
-    <div className='navigation-bar'>
-      <Account id={me} minimal size={36} />
-    </div>
-  );
-};
-
-const isFirehoseActive = (
-  match: unknown,
-  { pathname }: { pathname: string },
-) => {
-  return !!match || pathname.startsWith('/public');
-};
-
-const MENU_WIDTH = 284;
-
-export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
-  multiColumn = false,
+const ExpandedNavigationPanel: React.FC<NavigationPanelProps> = ({
+  siteName,
+  mode = 'static',
+  multiColumn,
+  onToggleCollapsed,
 }) => {
   const intl = useIntl();
-  const { signedIn, permissions, disabledAccountId } = useIdentity();
-  const location = useLocation();
-  const showSearch = useBreakpoint('full') && !multiColumn;
-  const account = useAccount(me);
+  const { signedIn, permissions } = useIdentity();
 
-  let banner: React.ReactNode;
+  const isManager = canManageReports(permissions);
+  const isAdmin = canViewAdminDashboard(permissions);
 
-  if (transientSingleColumn) {
-    banner = (
-      <div className='switch-to-advanced'>
-        {intl.formatMessage(messages.openedInClassicInterface)}{' '}
-        <a
-          href={`/deck${location.pathname}`}
-          className='switch-to-advanced__toggle'
-        >
-          {intl.formatMessage(messages.advancedInterface)}
-        </a>
-      </div>
-    );
-  }
+  const { customFeeds } = useCustomFeeds();
+  const { followedHashtags } = useFollowedHashtags();
+
+  const { sensor: topSensor, isInViewport: isScrolledToTop } = useScrollSensor({
+    placement: 'top',
+    tolerance: 2,
+  });
+  const { sensor: bottomSensor, isInViewport: isScrolledToBottom } =
+    useScrollSensor({
+      placement: 'bottom',
+    });
+
+  const explore = trendsEnabled && (
+    <NavigationLink to='/explore' icon={CompassIcon}>
+      <FormattedMessage id='tabs_bar.explore' defaultMessage='Explore' />
+    </NavigationLink>
+  );
+
+  const publicFeedsLink = usePublicFeedsLink();
+  const publicFeeds = publicFeedsLink && (
+    <NavigationLink
+      to={publicFeedsLink.link}
+      icon={publicFeedsLink.icon}
+      isActive={publicFeedsLink.isActive}
+    >
+      {publicFeedsLink.label}
+    </NavigationLink>
+  );
 
   return (
     <nav
-      className='navigation-panel'
+      className={classes.root}
+      data-mode={mode}
+      data-scrollable={!isScrolledToTop || !isScrolledToBottom}
       aria-label={intl.formatMessage(messages.main)}
     >
-      <div className='navigation-panel__logo'>
-        <Link
-          to='/'
-          className='column-link column-link--logo'
-          id={getNavigationSkipLinkId()}
-        >
-          <WordmarkLogo />
-        </Link>
-      </div>
+      {topSensor}
+      <NavigationHeader
+        multiColumn={multiColumn}
+        siteName={siteName}
+        isStuck={!isScrolledToTop}
+        onToggleCollapsed={onToggleCollapsed}
+        mode={mode}
+      />
+      {signedIn && (
+        <>
+          {transientSingleColumn && <TransientSingleColumnCallout />}
+          <ul className={classes.list}>
+            {explore}
+            {publicFeeds}
+            <NavigationLink to='/bookmarks' icon={BookmarkSimpleIcon}>
+              <FormattedMessage
+                id='navigation_bar.saved_posts'
+                defaultMessage='Saved Posts'
+              />
+            </NavigationLink>
 
-      {showSearch && <Search singleColumn />}
-
-      {!multiColumn && <ProfileCard />}
-
-      {banner && <div className='navigation-panel__banner'>{banner}</div>}
-
-      <ul className='navigation-panel__menu'>
-        {signedIn && (
-          <>
-            {!multiColumn && (
-              <li>
-                <ColumnLink
-                  to={{ pathname: '/publish', state: { focusTarget: false } }}
-                  icon='plus'
-                  iconComponent={AddIcon}
-                  activeIconComponent={AddIcon}
-                  text={intl.formatMessage(messages.compose)}
-                  className='button navigation-panel__compose-button'
+            <ListSection
+              id='custom-feeds'
+              title={
+                <FormattedMessage
+                  id='tabs_bar.custom_feeds'
+                  defaultMessage='Custom Feeds'
                 />
-              </li>
-            )}
-            <li>
-              <ColumnLink
-                transparent
-                to='/home'
-                icon='home'
-                iconComponent={HomeIcon}
-                activeIconComponent={HomeActiveIcon}
-                text={intl.formatMessage(messages.home)}
-              />
-            </li>
-          </>
-        )}
-
-        {trendsEnabled && (
-          <li>
-            <ColumnLink
-              transparent
-              to='/explore'
-              icon='explore'
-              iconComponent={TrendingUpIcon}
-              text={intl.formatMessage(messages.explore)}
-            />
-          </li>
-        )}
-
-        {(canViewFeed(signedIn, permissions, localLiveFeedAccess) ||
-          canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) && (
-          <li>
-            <ColumnLink
-              transparent
-              to={
-                canViewFeed(signedIn, permissions, localLiveFeedAccess)
-                  ? '/public/local'
-                  : '/public/remote'
               }
-              icon='globe'
-              iconComponent={PublicIcon}
-              isActive={isFirehoseActive}
-              text={intl.formatMessage(
-                canViewFeed(signedIn, permissions, localLiveFeedAccess) &&
-                  canViewFeed(signedIn, permissions, remoteLiveFeedAccess)
-                  ? messages.firehose
-                  : messages.firehose_singular,
-              )}
-            />
-          </li>
-        )}
+            >
+              <NavigationLink key='new' to='/lists/new' icon={PlusIcon}>
+                <FormattedMessage
+                  id='tabs_bar.create_custom_feed'
+                  defaultMessage='Create Feed'
+                />
+              </NavigationLink>
+              {customFeeds.map((feed) => (
+                <NavigationLink
+                  key={feed.id}
+                  to={`/lists/${feed.id}`}
+                  icon={RssSimpleIcon}
+                >
+                  {feed.title}
+                </NavigationLink>
+              ))}
+            </ListSection>
 
-        {signedIn && (
-          <>
-            <li>
-              <NotificationsLink />
-            </li>
+            {followedHashtags.length > 0 && (
+              <ListSection
+                id='followed-hashtags'
+                title={
+                  <FormattedMessage
+                    id='tabs_bar.followed_hashtags'
+                    defaultMessage='Followed Hashtags'
+                  />
+                }
+              >
+                {followedHashtags.slice(0, MAX_HASHTAG_COUNT).map((tag) => (
+                  <NavigationLink key={tag.name} to={`/tags/${tag.name}`}>
+                    #{tag.name}
+                  </NavigationLink>
+                ))}
+                {followedHashtags.length > MAX_HASHTAG_COUNT && (
+                  <NavigationLink key='view-all' to='/followed_tags'>
+                    <FormattedMessage
+                      id='tabs_bar.followed_tags_view_all'
+                      defaultMessage='View all'
+                    />
+                  </NavigationLink>
+                )}
+              </ListSection>
+            )}
 
-            <li>
-              <FollowRequestsLink />
-            </li>
+            {isAdmin && (
+              <NavigationLink
+                withDivider
+                as='a'
+                href='/admin/dashboard'
+                icon={GavelIcon}
+              >
+                <FormattedMessage
+                  id='navigation_bar.administration'
+                  defaultMessage='Administration'
+                />
+              </NavigationLink>
+            )}
 
-            <li>
-              <AnnualReportNavItem />
-            </li>
+            {isManager && (
+              <NavigationLink
+                withDivider={!isAdmin}
+                as='a'
+                href='/admin/reports'
+                icon={ShieldStarIcon}
+              >
+                <FormattedMessage
+                  id='navigation_bar.moderation'
+                  defaultMessage='Moderation'
+                />
+              </NavigationLink>
+            )}
+          </ul>
 
-            <li role='separator' />
-
-            <ListPanel />
-
-            <FollowedTagsPanel />
-
-            <li>
-              <ColumnLink
-                transparent
-                to='/favourites'
-                icon='star'
-                iconComponent={StarIcon}
-                activeIconComponent={StarActiveIcon}
-                text={intl.formatMessage(messages.favourites)}
+          <footer className={classes.footer}>
+            <FooterLinks multiColumn={multiColumn} />
+          </footer>
+        </>
+      )}
+      {!signedIn && (
+        <>
+          <ul className={classes.list}>
+            <NavigationLink to='/about' icon={InfoIcon}>
+              <FormattedMessage
+                id='footer.about_this_server'
+                defaultMessage='About'
               />
-            </li>
-            <li>
-              <ColumnLink
-                transparent
-                to='/bookmarks'
-                icon='bookmarks'
-                iconComponent={BookmarksIcon}
-                activeIconComponent={BookmarksActiveIcon}
-                text={intl.formatMessage(messages.bookmarks)}
-              />
-            </li>
-            <li>
-              <ColumnLink
-                transparent
-                to={`/@${account?.acct}/collections`}
-                icon='collections'
-                iconComponent={CollectionsIcon}
-                activeIconComponent={CollectionsActiveIcon}
-                text={intl.formatMessage(messages.collections)}
-              />
-            </li>
-            <li>
-              <ColumnLink
-                transparent
-                to='/conversations'
-                icon='at'
-                iconComponent={AlternateEmailIcon}
-                text={intl.formatMessage(messages.direct)}
-              />
-            </li>
-
-            <li role='separator' />
-
-            <li>
-              <ColumnLink
-                transparent
-                href='/settings/preferences'
-                icon='cog'
-                iconComponent={SettingsIcon}
-                text={intl.formatMessage(messages.preferences)}
-              />
-            </li>
-
-            <li>
-              <MoreLink />
-            </li>
-          </>
-        )}
-
-        <li className='navigation-panel__legal'>
-          <ColumnLink
-            transparent
-            to='/about'
-            icon='ellipsis-h'
-            iconComponent={InfoIcon}
-            text={intl.formatMessage(messages.about)}
-          />
-        </li>
-
-        {!signedIn && (
-          <li className='navigation-panel__sign-in-banner'>
-            <hr />
-
-            {disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner />}
-          </li>
-        )}
-      </ul>
-
-      <div className='flex-spacer' />
-
-      <Trends />
+            </NavigationLink>
+            {explore}
+            {publicFeeds}
+          </ul>
+          <div className={classes.loggedOutContent}>
+            {disabledAccountId ? <DisabledAccountBanner /> : <LoggedOutInfo />}
+          </div>
+          <footer className={classes.footer}>
+            <FooterLinks multiColumn={multiColumn} />
+          </footer>
+        </>
+      )}
+      <div
+        className={classes.bottomScrollFade}
+        data-stuck={!isScrolledToBottom}
+      />
+      {bottomSensor}
     </nav>
   );
 };
 
-export const CollapsibleNavigationPanel: React.FC = () => {
-  const open = useAppSelector((state) => state.navigation.open);
-  const dispatch = useAppDispatch();
-  const openable = useBreakpoint('openable');
-  const location = useLocation();
-  const overlayRef = useRef<HTMLDivElement>(null);
+const TransientSingleColumnCallout: React.FC = () => (
+  <Callout className={classes.callout}>
+    <FormattedMessage
+      id='navigation_bar.opened_in_single_column_layout'
+      defaultMessage='Posts, profiles, and other pages are opened in the single-column layout by default.'
+    />
+    <br />
+    <a href={`/deck${location.pathname}`}>
+      <FormattedMessage
+        id='navigation_bar.advanced_interface'
+        defaultMessage='Open in advanced web interface'
+      />
+    </a>
+  </Callout>
+);
 
-  useEffect(() => {
-    dispatch(closeNavigation());
-  }, [dispatch, location]);
-
-  useEffect(() => {
-    const handleDocumentClick = (e: MouseEvent) => {
-      if (overlayRef.current && e.target === overlayRef.current) {
-        dispatch(closeNavigation());
-      }
-    };
-
-    const handleDocumentKeyUp = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        dispatch(closeNavigation());
-      }
-    };
-
-    document.addEventListener('click', handleDocumentClick);
-    document.addEventListener('keyup', handleDocumentKeyUp);
-
-    return () => {
-      document.removeEventListener('click', handleDocumentClick);
-      document.removeEventListener('keyup', handleDocumentKeyUp);
-    };
-  }, [dispatch]);
-
-  const isLtrDir = getComputedStyle(document.body).direction !== 'rtl';
-
-  const OPEN_MENU_OFFSET = isLtrDir ? MENU_WIDTH : -MENU_WIDTH;
-
-  const [{ x }, spring] = useSpring(
-    () => ({
-      x: open ? 0 : OPEN_MENU_OFFSET,
-      onRest: {
-        x({ value }: { value: number }) {
-          if (value === 0) {
-            dispatch(openNavigation());
-          } else if (value === OPEN_MENU_OFFSET) {
-            dispatch(closeNavigation());
-          }
-        },
-      },
-    }),
-    [open],
+export function handleSearchLinkClick() {
+  const mainSearchInput = document.querySelector<HTMLInputElement>(
+    '[data-column-root] input[data-main-search]',
   );
 
-  const bind = useDrag(
-    ({
-      last,
-      offset: [xOffset],
-      velocity: [xVelocity],
-      direction: [xDirection],
-      cancel,
-    }) => {
-      const logicalXDirection = isLtrDir ? xDirection : -xDirection;
-      const logicalXOffset = isLtrDir ? xOffset : -xOffset;
-      const hasReachedDragThreshold = logicalXOffset < -70;
+  // Focus the main search input if we're already on the search page
+  if (mainSearchInput) {
+    mainSearchInput.focus();
+    return;
+  }
 
-      if (hasReachedDragThreshold) {
-        cancel();
-      }
-
-      if (last) {
-        const isAboveOpenThreshold = logicalXOffset > MENU_WIDTH / 2;
-        const isQuickFlick = xVelocity > 0.5 && logicalXDirection > 0;
-
-        if (isAboveOpenThreshold || isQuickFlick) {
-          void spring.start({ x: OPEN_MENU_OFFSET });
-        } else {
-          void spring.start({ x: 0 });
-        }
-      } else {
-        void spring.start({ x: xOffset, immediate: true });
-      }
-    },
-    {
-      from: () => [x.get(), 0],
-      axis: 'x',
-      filterTaps: true,
-      bounds: isLtrDir ? { left: 0 } : { right: 0 },
-      rubberband: true,
-      enabled: openable,
-    },
-  );
-
-  const previouslyFocusedElementRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (open) {
-      const firstLink = document.querySelector<HTMLAnchorElement>(
-        '.navigation-panel__menu .column-link',
-      );
-      previouslyFocusedElementRef.current =
-        document.activeElement as HTMLElement;
-      firstLink?.focus();
-    } else {
-      previouslyFocusedElementRef.current?.focus();
-    }
-  }, [open]);
-
-  const showOverlay = openable && open;
-
-  return (
-    <div
-      className={classNames(
-        'columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational',
-        { 'columns-area__panels__pane--overlay': showOverlay },
-      )}
-      ref={overlayRef}
-    >
-      <animated.div
-        className='columns-area__panels__pane__inner'
-        {...bind()}
-        style={openable ? { x } : undefined}
-      >
-        <NavigationPanel />
-      </animated.div>
-    </div>
-  );
-};
+  // Otherwise, the search element is not on screen yet and
+  // the page needs to be rendered first. In this case, we use
+  // `invokeVirtualIosKeyboard` to work around an iOS quirk that
+  // prevents the virtual keyboard from opening when an element wasn't
+  // focused synchronously.
+  invokeVirtualIosKeyboard();
+}

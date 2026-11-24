@@ -1,5 +1,7 @@
+@use '@/styles/mastodon/mixins';
+
 .wrapper {
-  --list-item-padding: 0px;
+  --lockup-padding: 0px;
 }
 
 .avatarGrid {
@@ -29,4 +31,8 @@
   border-radius: 8px;
   fill: var(--color-text-primary);
   background: var(--color-bg-warning-softest);
+}
+
+.info > li {
+  @include mixins.text-ellipsis;
 }

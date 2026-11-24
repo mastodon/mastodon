@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PrivateAddressCheck do
   describe 'private_address?' do
-    let(:private_ips) { %w(192.168.1.7 0.0.0.0 127.0.0.1 ::ffff:0.0.0.1) }
+    let(:private_ips) { %w(192.168.1.7 0.0.0.0 127.0.0.1 ::ffff:0.0.0.1 ::127.0.0.1 ::ffff:127.0.0.1 ::ffff:10.0.0.1 ::ffff:169.254.169.254 ::) }
 
     it 'returns true for private addresses' do
       expect(private_ips)

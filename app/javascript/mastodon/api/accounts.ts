@@ -32,7 +32,8 @@ export const apiSubmitAccountNote = (id: string, value: string) =>
 export const apiFollowAccount = (
   id: string,
   params?: {
-    reblogs: boolean;
+    reblogs?: boolean;
+    ref?: string;
   },
 ) =>
   apiRequestPost<ApiRelationshipJSON>(`v1/accounts/${id}/follow`, {

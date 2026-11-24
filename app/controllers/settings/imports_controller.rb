@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 class Settings::ImportsController < Settings::BaseController
   before_action :set_bulk_import, only: [:show, :confirm, :destroy]
   before_action :set_recent_imports, only: [:index]

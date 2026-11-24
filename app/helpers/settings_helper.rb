@@ -1,6 +1,23 @@
 # frozen_string_literal: true
 
 module SettingsHelper
+  def themes_select_collection
+    # Rails form helpers get HTML options for inputs from the collections whose items are
+    # themselves arrays including a hash: https://github.com/rails/rails/blob/41b352dcf23e28b38c67dcd4fe341bac0d52334c/actionview/lib/action_view/helpers/form_options_helper.rb#L807-L813
+    # Since we have to do this to pass options, also pass the label in the collection itself.
+    Themes.instance.names.map do |theme|
+      [
+        I18n.t("themes.#{theme}", default: theme),
+        theme,
+        {
+          data: {
+            colors: available_theme_colors(theme).index_with { |color| I18n.t("color_theme.#{color}", default: color) }.to_json,
+          },
+        },
+      ]
+    end
+  end
+
   def filterable_languages
     LanguagesHelper.sorted_locale_keys(LanguagesHelper::SUPPORTED_LOCALES.keys)
   end
@@ -13,20 +30,6 @@ module SettingsHelper
     code
       .as_svg(padding: 0, module_size: 4, use_path: true)
       .html_safe # rubocop:disable Rails/OutputSafety
-  end
-
-  def featured_tags_hint(recently_used_tags)
-    recently_used_tags.present? &&
-      safe_join(
-        [
-          t('simple_form.hints.featured_tag.name'),
-          safe_join(
-            links_for_featured_tags(recently_used_tags),
-            ', '
-          ),
-        ],
-        ' '
-      )
   end
 
   def user_settings_collection(value)
@@ -65,19 +68,5 @@ module SettingsHelper
 
   def time_zone_options
     ActiveSupport::TimeZone.all.map { |tz| ["(GMT#{tz.now.formatted_offset}) #{tz.name}", tz.tzinfo.name] }
-  end
-
-  private
-
-  def links_for_featured_tags(tags)
-    tags.map { |tag| post_link_to_featured_tag(tag) }
-  end
-
-  def post_link_to_featured_tag(tag)
-    link_to(
-      "##{tag.display_name}",
-      settings_featured_tags_path(featured_tag: { name: tag.name }),
-      method: :post
-    )
   end
 end

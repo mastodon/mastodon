@@ -381,7 +381,7 @@ class Status < ApplicationRecord
     def from_text(text)
       return [] if text.blank?
 
-      text.scan(FetchLinkCardService::URL_PATTERN).map(&:second).uniq.filter_map do |url|
+      Extractor.extract_urls_with_indices(text).map { |entity| entity[:url] }.uniq.filter_map do |url|
         status = if TagManager.instance.local_url?(url)
                    ActivityPub::TagManager.instance.uri_to_resource(url, Status)
                  else

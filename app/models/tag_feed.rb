@@ -30,6 +30,7 @@ class TagFeed < PublicFeed
     scope.merge!(tagged_with_any_scope)
     scope.merge!(tagged_with_all_scope)
     scope.merge!(tagged_with_none_scope)
+    scope.merge!(tagged_with_cursor_scope(max_id, since_id, min_id))
     scope.merge!(local_only_scope) if local_only?
     scope.merge!(remote_only_scope) if remote_only?
     scope.merge!(account_filters_scope) if account?
@@ -58,6 +59,14 @@ class TagFeed < PublicFeed
 
   def tagged_with_none_scope
     Status.group(:id).tagged_with_none(tags_for(options[:none]))
+  end
+
+  def tagged_with_cursor_scope(max_id, since_id, min_id)
+    lower_id = min_id.presence || since_id.presence
+    scope = Status.all
+    scope = scope.where(statuses_tags: { status_id: ...max_id }) if max_id.present?
+    scope = scope.where('statuses_tags.status_id > ?', lower_id) if lower_id.present?
+    scope
   end
 
   def tags_for(names)

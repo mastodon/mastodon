@@ -2,14 +2,16 @@ import { useState, useCallback } from 'react';
 
 import { defineMessages } from 'react-intl';
 
-import classNames from 'classnames';
+import { CopyIcon } from '@phosphor-icons/react';
+import type { DistributedOmit } from 'type-fest';
 
-import ContentCopyIcon from '@/material-icons/400-24px/content_copy.svg?react';
-import { showAlert } from 'mastodon/actions/alerts';
-import { IconButton } from 'mastodon/components/icon_button';
-import { useAppDispatch } from 'mastodon/store';
-
-import { Button } from './button';
+import { showAlert } from '@/mastodon/actions/alerts';
+import type {
+  ButtonProps,
+  IconButtonProps,
+} from '@/mastodon/components/button';
+import { Button, IconButton } from '@/mastodon/components/button';
+import { useAppDispatch } from '@/mastodon/store';
 
 const messages = defineMessages({
   copied: {
@@ -35,10 +37,7 @@ export function useCopyToClipboard({ text }: { text: string }) {
 }
 
 export const CopyButton: React.FC<
-  Omit<
-    React.ComponentPropsWithoutRef<typeof Button>,
-    'onClick' | 'text' | 'children'
-  > & {
+  DistributedOmit<ButtonProps, 'onClick' | 'children'> & {
     value: string;
     children: React.ReactNode | ((wasCopied: boolean) => React.ReactNode);
   }
@@ -54,22 +53,22 @@ export const CopyButton: React.FC<
   );
 };
 
-export const CopyIconButton: React.FC<{
-  title: string;
-  value: string;
-  className?: string;
-  'aria-describedby'?: string;
-}> = ({ title, value, className, 'aria-describedby': ariaDescribedBy }) => {
+export const CopyIconButton: React.FC<
+  {
+    title: string;
+    value: string;
+  } & DistributedOmit<IconButtonProps, 'icon' | 'children'>
+> = ({ title, value, ...otherProps }) => {
   const { copyText, wasCopied } = useCopyToClipboard({ text: value });
 
   return (
     <IconButton
-      className={classNames(className, wasCopied ? 'copied' : 'copyable')}
-      title={title}
+      {...otherProps}
       onClick={copyText}
-      icon='copy-icon'
-      iconComponent={ContentCopyIcon}
-      aria-describedby={ariaDescribedBy}
-    />
+      icon={CopyIcon}
+      variant={wasCopied ? 'solid' : otherProps.variant}
+    >
+      {title}
+    </IconButton>
   );
 };

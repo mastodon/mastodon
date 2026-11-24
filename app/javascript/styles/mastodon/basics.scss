@@ -2,24 +2,25 @@
 
 html {
   color: var(--color-text-primary);
-  background: var(--color-bg-primary);
+  background: var(--color-bg-desktop);
 
   &.custom-scrollbars {
     scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
   }
 
-  --font-body: mastodon-font-sans-serif, sans-serif;
-  --font-heading: Syne, sans-serif;
+  --font-body: Inter, sans-serif;
+  --font-heading: Cal Sans UI, sans-serif;
   --font-monospace: mastodon-font-monospace, monospace;
-
-  &[data-redesign='true'] {
-    --font-body: Inter, sans-serif;
-  }
-
   --outline-focus-default: 2px solid var(--color-border-brand);
-  --avatar-border-radius: 8px;
+  --avatar-border-radius: var(--radius-round);
   --max-media-height-small: 460px;
   --max-media-height-large: 566px;
+  --mobile-bottom-nav-height: 65px;
+  --main-navigation-width: 288px;
+  --main-navigation-width-collapsed: 64px;
+
+  // Compensate for column header height when scrolling elements into view
+  --current-column-header-height: 52px;
 
   // Variable for easily inverting directional UI elements,
   --text-x-direction: 1;
@@ -28,49 +29,20 @@ html {
     --text-x-direction: -1;
   }
 
-  // Compensate for column header height when scrolling elements into view
-  --column-header-height: 62px;
+  scroll-padding-top: calc(var(--current-column-header-height));
+  scrollbar-gutter: stable;
 
-  scroll-padding-top: var(--column-header-height);
-
-  &:has(.layout-multi-column) {
-    --column-header-height: 0;
-  }
-}
-
-html.has-modal {
-  &,
-  body {
-    touch-action: none;
-    overscroll-behavior: none;
-    -webkit-overflow-scrolling: auto;
-    scrollbar-gutter: stable;
+  &:has(input:focus, textarea:focus) {
+    scroll-padding-top: 0;
   }
 
-  body {
-    overflow: hidden !important;
-  }
-}
+  &:has(.layout-multiple-columns) {
+    --current-column-header-height: 0;
 
-body {
-  font-family: var(--font-body);
-  background: var(--color-bg-primary);
-  font-size: 13px;
-  line-height: 18px;
-  font-weight: 400;
-  color: var(--color-text-primary);
-  text-rendering: optimizelegibility;
-
-  // Disable kerning for Japanese text to preserve monospaced alignment for readability
-  &:not(:lang(ja)) {
-    font-feature-settings: 'kern';
+    scrollbar-gutter: auto;
   }
 
-  text-size-adjust: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
-  -webkit-tap-highlight-color: transparent;
-
-  .system-font & {
+  &.system-font {
     // system-ui => standard property (Chrome/Android WebView 56+, Opera 43+, Safari 11+)
     // -apple-system => Safari <11 specific
     // BlinkMacSystemFont => Chrome <56 on macOS specific
@@ -81,19 +53,49 @@ body {
     // Fira Sans => Firefox OS
     // Droid Sans => Older Androids (<4.0)
     // Helvetica Neue => Older macOS <10.11
-    font-family:
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      'Fira Sans',
-      'Droid Sans',
-      'Helvetica Neue',
-      sans-serif;
+    --system-font-stack:
+      system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
+      Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    --font-body: var(--system-font-stack);
+    --font-heading: var(--system-font-stack);
+    --font-monospace: monospace;
   }
+}
+
+html.has-modal {
+  &,
+  body {
+    touch-action: none;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+  }
+
+  body {
+    overflow: hidden !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  text-rendering: optimizelegibility;
+
+  html[data-contrast='default'] & {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  // Disable kerning for Japanese text to preserve monospaced alignment for readability
+  &:not(:lang(ja)) {
+    font-feature-settings: 'kern';
+  }
+
+  text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
+  -webkit-tap-highlight-color: transparent;
 
   &.app-body {
     padding: 0;
@@ -105,7 +107,6 @@ body {
       height: auto;
       min-height: 100vh;
       min-height: 100dvh;
-      overflow-y: scroll;
     }
 
     &.layout-multiple-columns {
@@ -153,7 +154,7 @@ body {
 
   &.admin {
     padding: 0;
-    background: var(--color-bg-primary);
+    background: var(--color-bg-desktop);
   }
 
   &.error {
@@ -185,6 +186,7 @@ body {
         font-size: 20px;
         line-height: 28px;
         font-weight: 400;
+        margin-bottom: var(--space-4);
       }
     }
   }
@@ -307,6 +309,10 @@ button {
       transition: none;
     }
   }
+}
+
+.rtl-flip {
+  scale: var(--text-x-direction) 1;
 }
 
 .logo-resources {

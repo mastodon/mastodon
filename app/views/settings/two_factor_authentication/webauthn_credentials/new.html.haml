@@ -7,15 +7,17 @@
 
   %p.hint= t('webauthn_credentials.description_html')
 
+  = hidden_field_tag :credential
+
   .fields_group
     = f.input :nickname,
               wrapper: :with_block_label,
               label: t('webauthn_credentials.nickname'),
               hint: t('webauthn_credentials.nickname_hint'),
-              input_html: { autocomplete: 'off' },
+              input_html: { autocomplete: 'off', name: 'nickname' },
               required: true
 
   .actions
-    = f.button :button, t('webauthn_credentials.add'), class: 'js-webauthn', type: :submit
+    = f.button :button, t('webauthn_credentials.add'), class: 'js-webauthn', type: :submit, disabled: true
 
 = vite_typescript_tag 'two_factor_authentication.ts', crossorigin: 'anonymous'

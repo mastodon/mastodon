@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Notifications' do
   include_context 'with API authentication', oauth_scopes: 'read:notifications write:notifications'
 
-  let(:user)    { Fabricate(:user, account_attributes: { username: 'alice' }) }
+  let(:user) { Fabricate(:user, account_attributes: { username: 'alice' }) }
 
   describe 'GET /api/v1/notifications/unread_count', :inline_jobs do
     subject do

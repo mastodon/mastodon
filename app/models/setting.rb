@@ -51,7 +51,7 @@ class Setting < ApplicationRecord
 
   class << self
     # get or set a variable with the variable as the called method
-    # rubocop:disable Style/MissingRespondToMissing
+    # rubocop:disable-next Style/MissingRespondToMissing
     def method_missing(method, *args)
       # set a value for a variable
       if method.end_with?('=')
@@ -63,7 +63,6 @@ class Setting < ApplicationRecord
         self[method.to_s]
       end
     end
-    # rubocop:enable Style/MissingRespondToMissing
 
     def cache_prefix_by_startup
       @cache_prefix_by_startup ||= Digest::MD5.hexdigest(default_settings.to_s)

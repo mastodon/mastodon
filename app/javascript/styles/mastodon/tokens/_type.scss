@@ -1,18 +1,21 @@
+@use './theme/utils';
+
 @mixin font-size {
-  --fs-3xs: 0.6875rem; // 11px
-  --fs-2xs: 0.75rem; // 12px
-  --fs-xs: 0.8125rem; // 13px
-  --fs-sm: 0.875rem; // 14px
-  --fs-md: 0.9375rem; // 15px
-  --fs-lg: 1rem; // 16px
-  --fs-xl: 1.25rem; // 20px
-  --fs-2xl: 1.375rem; // 22px
-  --fs-3xl: 1.625rem; // 26px
+  --fs-11: 0.6875rem;
+  --fs-12: 0.75rem;
+  --fs-13: 0.8125rem;
+  --fs-14: 0.875rem;
+  --fs-15: 0.9375rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-22: 1.375rem;
+  --fs-26: 1.625rem;
 }
 
 @mixin line-height {
   --lh-tighter: 1.3;
-  --lh-tight: 1.4;
+  --lh-tight: 1.46;
   --lh-normal: 1.6;
 }
 
@@ -22,4 +25,31 @@
   --ls-normal: 0;
   --ls-loose: 0.01em;
   --ls-looser: 0.02em;
+}
+
+@mixin link-underlines {
+  /*
+   * For links that don't need underlines unless hovered because their
+   * context & styling implies interactivity (e.g. usernames in post headers).
+   */
+  --link-underline-stealthy: none;
+  --link-underline-stealthy-hover: underline;
+
+  /*
+   * For links that should have an underline on hover and will benefit from
+   * highlighting in high-contrast mode (e.g. links in posts or longer text).
+   */
+  --link-underline-default: none;
+  --link-underline-default-hover: underline;
+
+  /*
+   * For links that should be underlined by default (e.g. footer links).
+   */
+  --link-underline-contrast: underline;
+  --link-underline-contrast-hover: none;
+
+  @include utils.high-contrast {
+    --link-underline-default: underline;
+    --link-underline-default-hover: none;
+  }
 }

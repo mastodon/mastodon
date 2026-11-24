@@ -16,20 +16,16 @@ data:
       line_width: -1
 
 search:
+  strict: false
   paths:
     - app/
     - config/navigation.rb
 
-  relative_roots:
-    - app/controllers
-    - app/helpers
-    - app/mailers
-    - app/views
-
   exclude:
-    - app/assets/images
-    - app/assets/fonts
-    - app/assets/videos
+    - app/javascript
+
+  ast_matchers:
+    - 'I18n::Tasks::Scanners::AstMatchers::DefaultI18nSubjectMatcher'
 
 ignore_missing:
   - 'activemodel.errors.*'
@@ -63,10 +59,8 @@ ignore_unused:
   - 'admin_mailer.new_appeal.actions.*'
   - 'statuses.attached.*'
   - 'move_handler.carry_{mutes,blocks}_over_text'
-  - 'admin_mailer.*.subject'
-  - 'user_mailer.*.subject'
-  - 'email_subscription_mailer.*'
-  - 'notification_mailer.*'
+  - 'email_subscription_mailer.notification.*' # View uses ternary key selection
+  - 'notification_mailer.admin.*' # Used in Notification::PROPERTIES
   - 'imports.overwrite_preambles.{following,blocking,muting,domain_blocking,bookmarks,lists,custom_filters}_html.*'
   - 'imports.preambles.{following,blocking,muting,domain_blocking,bookmarks,lists,custom_filters}_html.*'
   - 'mail_subscriptions.unsubscribe.emails.*'
@@ -75,6 +69,10 @@ ignore_unused:
   - 'admin.terms_of_service.generate' # temporarily disabled
   - 'admin.username_blocks.matches_exactly_html'
   - 'admin.username_blocks.contains_html'
+  - 'accounts.api_errors.{2fa_required,account_deleted,account_suspended,login_disabled,memorial,pending_approval,pending_confirmation}'
 
 ignore_inconsistent_interpolations:
   - '*.one'
+  - 'admin.trends.statuses.shared_by.*'
+  - 'admin.terms_of_service.preview.send_to_all.two'
+  - 'user_mailer.welcome.hashtags_recent_count.two'

@@ -21,7 +21,6 @@ hu:
     mailer:
       confirmation_instructions:
         action: Emailcím ellenőrzése
-        action_with_app: 'Megerősítés majd visszatérés: %{app}'
         explanation: Ezzel az emailcímmel kezdeményeztél egy regisztrációt a %{host} kiszolgálón. Csak egy kattintásra vagy az aktiválástól. Ha a regisztrációt nem te indítottad, tekintsd ezt az emailt tárgytalannak.
         explanation_when_pending: Ezzel az email címmel meghívást kértél a %{host} kiszolgálóra. Amint az emailcímedet megerősítetted, áttekintjük a jelentkezésedet. Ennek ideje alatt bejelentkezhetsz az adataid módosításához vagy a fiókod törléséhez, de a funkciók többségét nem használhatod a fiókod jóváhagyásáig. Ha a jelentkezésed elutasításra kerül, az adataid törlésre kerülnek, így nincs más teendőd. Ha nem te kezdeményezted ezt, tekintsd ezt az emailt tárgytalannak.
         extra_html: Tekintsd át a <a href="%{terms_path}">a kiszolgáló szabályait</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
@@ -49,19 +48,19 @@ hu:
         subject: 'Mastodon: Jelszóvisszaállítási utasítások'
         title: Jelszó visszaállítása
       two_factor_disabled:
-        explanation: A bejelentkezés most már csupán email címmel és jelszóval lehetséges.
+        explanation: A bejelentkezés most már csupán e-mail-címmel és jelszóval lehetséges.
         subject: 'Mastodon: kétlépcsős hitelesítés letiltva'
         subtitle: A kétlépcsős hitelesítés a fiókodhoz ki lett kapcsolva.
         title: Kétlépcsős hitelesítés kikapcsolva
       two_factor_enabled:
-        explanation: Egy párosított TOTP appal generált tokenre lesz szükség a bejelentkezéshez.
+        explanation: A párosított TOTP-alkalmazással előállított tokenre lesz szükség a bejelentkezéshez.
         subject: 'Mastodon: kétlépcsős hitelesítés engedélyezve'
         subtitle: A kétlépcsős hitelesítés a fiókodhoz aktiválva lett.
         title: Kétlépcsős hitelesítés engedélyezve
       two_factor_recovery_codes_changed:
         explanation: A korábbi helyreállítási kódok letiltásra és újragenerálásra kerültek.
-        subject: 'Mastodon: Kétlépcsős helyreállítási kódok újból előállítva'
-        subtitle: A korábbi helyreállítási kódokat letiltottuk, és újakat generáltunk.
+        subject: 'Mastodon: Kétlépcsős tartalék bejelentkezési kódok újból előállítva'
+        subtitle: A korábbi tartalék bejelentkezési kódokat letiltottuk, és újakat állítottunk elő.
         title: A kétlépcsős kódok megváltoztak
       unlock_instructions:
         subject: 'Mastodon: Feloldási utasítások'

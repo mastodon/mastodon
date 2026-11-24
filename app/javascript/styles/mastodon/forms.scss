@@ -1,5 +1,6 @@
 @use 'sass:color';
 @use 'variables' as *;
+@use 'mixins';
 
 code {
   font-family: var(--font-monospace);
@@ -105,10 +106,6 @@ code {
       display: flex;
       align-items: center;
       gap: 16px;
-
-      .character-counter {
-        flex: 0 0 auto;
-      }
     }
 
     &.hidden {
@@ -116,6 +113,10 @@ code {
     }
 
     &.radio_buttons {
+      &:not(:has(.radio)) {
+        display: none;
+      }
+
       .radio {
         margin-bottom: 15px;
 
@@ -141,9 +142,9 @@ code {
       margin-bottom: 0;
 
       .label_input > label {
-        font-family: inherit;
-        font-size: 14px;
-        padding-top: 5px;
+        @include mixins.type-label;
+
+        padding-top: var(--space-half);
         color: var(--color-text-primary);
         display: block;
         width: auto;
@@ -226,6 +227,8 @@ code {
   }
 
   .hint {
+    @include mixins.type-caption;
+
     color: var(--color-text-secondary);
 
     a {
@@ -254,8 +257,12 @@ code {
 
   span.hint {
     display: block;
-    font-size: 12px;
-    margin-top: 4px;
+    margin-top: var(--space-1);
+  }
+
+  label + span.hint {
+    margin-top: 0;
+    margin-bottom: var(--space-1);
   }
 
   p.hint {
@@ -280,7 +287,7 @@ code {
   }
 
   strong {
-    font-weight: 500;
+    font-weight: bold;
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -297,7 +304,7 @@ code {
         font-family: inherit;
         font-size: 14px;
         color: var(--color-text-primary);
-        font-weight: 500;
+        font-weight: bold;
         min-width: 150px;
         flex: 0 0 auto;
       }
@@ -316,17 +323,16 @@ code {
 
   .input.with_label {
     .label_input > label {
-      font-family: inherit;
-      font-size: 14px;
+      @include mixins.type-label;
+
       color: var(--color-text-primary);
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: var(--space-1);
       overflow-wrap: break-word;
-      font-weight: 500;
     }
 
     .hint {
-      margin-top: 6px;
+      margin-top: var(--space-1);
     }
 
     ul {
@@ -338,17 +344,14 @@ code {
     max-width: none;
 
     & > label {
-      font-family: inherit;
-      font-size: 14px;
+      @include mixins.type-label;
+
       color: var(--color-text-primary);
       display: block;
-      font-weight: 600;
-      line-height: 20px;
     }
 
     .hint {
-      line-height: 16px;
-      margin-bottom: 12px;
+      @include mixins.type-caption;
     }
 
     ul {
@@ -383,13 +386,13 @@ code {
     align-items: center;
 
     input {
-      box-sizing: content-box;
-      width: 32px;
+      width: auto;
       flex: 0;
+      min-width: 70px;
+    }
 
-      &:last-child {
-        width: 64px;
-      }
+    input[size='4'] {
+      min-width: 100px;
     }
   }
 
@@ -404,6 +407,10 @@ code {
 
   .fields-group {
     margin-bottom: 25px;
+
+    &.hidden {
+      display: none;
+    }
 
     .input:last-child {
       margin-bottom: 0;
@@ -555,20 +562,21 @@ code {
   input[type='datetime-local'],
   textarea {
     box-sizing: border-box;
-    font-size: 14px;
-    line-height: 20px;
-    color: var(--color-text-primary);
     display: block;
     width: 100%;
+    padding: var(--space-2);
     font-family: inherit;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border-primary);
-    border-radius: 4px;
-    padding: 10px 16px;
+    @include mixins.type-body-compact;
+
+    color: var(--color-text-primary);
+    background: var(--color-bg-primary);
+    border: var(--bw-thin) solid var(--color-border-input);
+    border-radius: var(--space-2);
+    caret-color: var(--color-text-brand);
     outline: var(--outline-focus-default);
-    outline-offset: -2px;
     outline-color: transparent;
-    transition: outline-color 0.15s ease-out;
+    outline-offset: -2px;
+    transition: outline-color 0.2s ease-out;
 
     &:focus {
       outline: var(--outline-focus-default);
@@ -609,7 +617,7 @@ code {
 
     .error {
       display: block;
-      font-weight: 500;
+      font-weight: bold;
       color: var(--color-text-error);
       margin-top: 4px;
     }
@@ -642,19 +650,27 @@ code {
     display: block;
     width: 100%;
     border: 0;
-    border-radius: 4px;
+    border-radius: var(--radius-round);
     background: var(--color-bg-brand-base);
     color: var(--color-text-on-brand-base);
-    font-size: 15px;
-    line-height: 22px;
+    @include mixins.type-label;
+
     height: auto;
-    padding: 7px 18px;
+    min-height: 40px;
+    padding: var(--space-2) var(--space-3);
     text-decoration: none;
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
-    font-weight: 500;
     outline: 0;
+    transition:
+      background-color 200ms,
+      color 200ms,
+      opacity 200ms;
+
+    @media (forced-colors: active) {
+      border: 1px solid transparent;
+    }
 
     &:last-child {
       margin-inline-end: 0;
@@ -666,7 +682,6 @@ code {
     }
 
     &:active,
-    &:focus,
     &:hover {
       background: var(--color-bg-brand-base-hover);
     }
@@ -686,28 +701,59 @@ code {
         background: var(--color-bg-error-base-hover);
       }
     }
+
+    &.secondary {
+      --bg-opacity: 4%;
+
+      color: var(--color-text-primary);
+      background: rgb(from var(--color-text-primary) r g b / var(--bg-opacity));
+
+      &:active,
+      &:focus,
+      &:hover {
+        --bg-opacity: 10%;
+
+        text-decoration: none;
+      }
+
+      &:disabled {
+        color: var(--color-text-disabled);
+
+        &:active,
+        &:focus,
+        &:hover {
+          color: var(--color-text-disabled);
+        }
+      }
+    }
   }
 
   select {
     appearance: none;
     box-sizing: border-box;
     font-size: 14px;
-    color: var(--color-text-primary);
     display: block;
     width: 100%;
-    outline: 0;
+    padding: var(--space-2);
+    padding-inline-end: var(--space-7);
     font-family: inherit;
-    resize: vertical;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border-primary);
-    border-radius: 4px;
-    padding-inline-start: 10px;
-    padding-inline-end: 30px;
-    height: 41px;
+    @include mixins.type-body-compact;
+
+    color: var(--color-text-primary);
+    background: var(--color-bg-primary);
+    border: var(--bw-thin) solid var(--color-border-input);
+    border-radius: var(--space-2);
+    caret-color: var(--color-text-brand);
+    outline: var(--outline-focus-default);
+    outline-color: transparent;
+    outline-offset: -2px;
+    transition:
+      background-color 200ms,
+      color 200ms,
+      opacity 200ms;
 
     &:focus-visible {
       outline: var(--outline-focus-default);
-      outline-offset: 2px;
     }
 
     @media screen and (width <= 600px) {
@@ -721,6 +767,10 @@ code {
 
   .label_input {
     position: relative;
+
+    &:has(input[type='radio'], input[type='checkbox']) {
+      margin-block-start: var(--space-2);
+    }
 
     &__loading-indicator {
       box-sizing: border-box;
@@ -824,30 +874,25 @@ code {
 }
 
 .flash-message {
-  color: var(--color-text-brand);
-  background: transparent;
-  border: 1px solid var(--color-border-brand);
-  border-radius: 4px;
-  padding: 15px 10px;
-  margin-bottom: 30px;
-  text-align: center;
+  padding: var(--space-3);
+  margin-bottom: var(--space-7);
+
+  @include mixins.type-body-compact;
+
+  color: var(--color-text-primary);
+  background: var(--color-bg-highlight);
+  border-radius: var(--radius-3);
 
   &.notice {
-    border: 1px solid var(--color-border-success-soft);
     background: var(--color-bg-success-softest);
-    color: var(--color-text-success);
   }
 
   &.warning {
-    border: 1px solid var(--color-border-warning-soft);
     background: var(--color-bg-warning-softest);
-    color: var(--color-text-warning);
   }
 
   &.alert {
-    border: 1px solid var(--color-border-error-soft);
     background: var(--color-bg-error-softest);
-    color: var(--color-text-error);
   }
 
   &.hidden {
@@ -884,6 +929,20 @@ code {
     }
   }
 
+  &.left-align {
+    text-align: start;
+    padding: 20px 20px 30px;
+
+    svg {
+      display: inline-block;
+      margin: 5px;
+    }
+
+    .lower-padding {
+      padding: 0 0 8px;
+    }
+  }
+
   p {
     margin-bottom: 15px;
   }
@@ -917,7 +976,7 @@ code {
   }
 
   strong {
-    font-weight: 500;
+    font-weight: bold;
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -938,6 +997,10 @@ code {
       text-decoration: underline;
     }
   }
+}
+
+.indent {
+  padding: 0 25px;
 }
 
 .flash-message-stack {
@@ -977,32 +1040,7 @@ code {
   }
 }
 
-.quick-nav {
-  list-style: none;
-  margin-bottom: 25px;
-  font-size: 14px;
-
-  li {
-    display: inline-block;
-    margin-inline-end: 10px;
-  }
-
-  a {
-    color: var(--color-text-brand);
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 700;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: var(--color-text-brand-soft);
-    }
-  }
-}
-
-.oauth-prompt,
-.follow-prompt {
+.oauth-prompt {
   margin-bottom: 30px;
   color: var(--color-text-secondary);
 
@@ -1014,7 +1052,7 @@ code {
 
   strong {
     color: var(--color-text-primary);
-    font-weight: 500;
+    font-weight: bold;
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -1029,7 +1067,7 @@ code {
     color: var(--color-text-primary);
     font-size: 17px;
     line-height: 22px;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 30px;
   }
 
@@ -1088,23 +1126,6 @@ code {
   samp {
     display: block;
     font-size: 14px;
-  }
-}
-
-.action-pagination {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-
-  .actions,
-  .pagination {
-    flex: 1 1 auto;
-  }
-
-  .actions {
-    padding: 30px 0;
-    padding-inline-end: 20px;
-    flex: 0 0 auto;
   }
 }
 
@@ -1222,7 +1243,7 @@ code {
       flex: 1 1 auto;
 
       &__title {
-        font-weight: 500;
+        font-weight: bold;
       }
 
       &__type {
@@ -1339,7 +1360,7 @@ code {
   .label {
     position: absolute;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: bold;
     color: var(--color-text-primary);
     padding-top: 10px;
     text-align: center;
@@ -1512,7 +1533,6 @@ code {
     align-items: center;
     text-decoration: none;
     color: var(--color-text-primary);
-    margin-bottom: 16px;
 
     &__text {
       flex: 1 1 auto;
@@ -1532,5 +1552,11 @@ code {
         height: 20px;
       }
     }
+  }
+}
+
+.full_width_form {
+  .button {
+    width: 100%;
   }
 }

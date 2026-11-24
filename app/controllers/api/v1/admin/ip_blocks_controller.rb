@@ -3,6 +3,7 @@
 class Api::V1::Admin::IpBlocksController < Api::BaseController
   include Authorization
   include AccountableConcern
+  include Admin::PermissionsConcern
 
   LIMIT = 100
 

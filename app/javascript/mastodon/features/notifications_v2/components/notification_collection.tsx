@@ -85,12 +85,7 @@ export const NotificationCollection: React.FC<{
         <CollectionPreviewCard collection={collection} />
 
         <div className={classes.actions}>
-          <Button
-            compact
-            secondary
-            className='button--destructive'
-            onClick={confirmRevoke}
-          >
+          <Button size='sm' onClick={confirmRevoke}>
             <FormattedMessage
               id='collections.detail.revoke_inclusion'
               defaultMessage='Remove me'

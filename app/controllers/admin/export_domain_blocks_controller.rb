@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 module Admin
   class ExportDomainBlocksController < BaseController
     include Admin::ExportControllerConcern

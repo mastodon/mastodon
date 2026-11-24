@@ -5,3 +5,11 @@
 .fields-group
   = form.input :text,
                wrapper: :with_block_label
+
+.fields-group
+  = form.input :action_category,
+               as: :select,
+               wrapper: :with_block_label,
+               collection: AccountWarningPreset::ACTIONS,
+               include_blank: true,
+               label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type}") }

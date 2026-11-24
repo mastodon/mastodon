@@ -9,13 +9,15 @@ import type { Account, AccountShapeFull } from 'mastodon/models/account';
 
 import { useAccount } from '../hooks/useAccount';
 
+type AvatarAccount = Pick<
+  Account | AccountShapeFull,
+  'id' | 'acct' | 'avatar' | 'avatar_static'
+>;
+
 interface Props {
-  account?: Pick<
-    Account | AccountShapeFull,
-    'id' | 'acct' | 'avatar' | 'avatar_static'
-  >;
+  account?: AvatarAccount;
   alt?: string;
-  size?: number;
+  size?: number | null;
   style?: React.CSSProperties;
   inline?: boolean;
   animate?: boolean;
@@ -41,11 +43,14 @@ export const Avatar: React.FC<Props> = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const style = {
-    ...styleFromParent,
-    width: `${size}px`,
-    height: `${size}px`,
-  };
+  const style =
+    size !== null
+      ? {
+          ...styleFromParent,
+          width: `${size}px`,
+          height: `${size}px`,
+        }
+      : styleFromParent;
 
   const src = hovering || animate ? account?.avatar : account?.avatar_static;
 
@@ -102,4 +107,19 @@ export const AvatarById: React.FC<
 > = ({ accountId, ...otherProps }) => {
   const account = useAccount(accountId);
   return <Avatar account={account} {...otherProps} />;
+};
+
+export const Avatars: React.FC<
+  { accounts: AvatarAccount[]; wrapperClassName?: string } & Omit<
+    Props,
+    'account'
+  >
+> = ({ accounts, wrapperClassName, ...otherProps }) => {
+  return (
+    <div className={wrapperClassName}>
+      {accounts.map((account) => (
+        <Avatar key={account.id} account={account} {...otherProps} />
+      ))}
+    </div>
+  );
 };

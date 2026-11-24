@@ -12,6 +12,9 @@ class SearchQueryTransformer < Parslet::Transform
     in
   ).freeze
 
+  class TransformerError < StandardError; end
+  class QueryError < StandardError; end
+
   class Query
     def initialize(clauses, options = {})
       raise ArgumentError if options[:current_account].nil?
@@ -37,7 +40,11 @@ class SearchQueryTransformer < Parslet::Transform
 
     def validate_clauses!
       # At least one clause should be a positive match unless searching within the library
-      raise 'Empty query not supported' if @flags['in'] != 'library' && (must_clauses + filter_clauses).none? { |clause| clause.is_a?(TermClause) && clause.term.present? }
+      # `from:me` (or `from:<self>`) is effectively a library-scoped query, so allow it without `in:library`
+      return if @flags['in'] == 'library'
+      return if filter_clauses.any? { |clause| clause.is_a?(PrefixClause) && clause.prefix == 'from' && !clause.negated? && clause.term == @options[:current_account].id }
+
+      raise QueryError, 'At least one keyword or phrase is required' if (must_clauses + filter_clauses).none? { |clause| clause.is_a?(TermClause) && clause.term.present? }
     end
 
     def clauses_by_operator
@@ -113,7 +120,7 @@ class SearchQueryTransformer < Parslet::Transform
         when '-'
           :must_not
         else
-          raise "Unknown operator: #{str}"
+          raise TransformerError, "Unknown operator: #{str}"
         end
       end
     end
@@ -182,7 +189,7 @@ class SearchQueryTransformer < Parslet::Transform
         @operator = :flag
         @term = term
       else
-        raise "Unknown prefix: #{prefix}"
+        raise TransformerError, "Unknown prefix: #{prefix}"
       end
     end
 
@@ -192,6 +199,10 @@ class SearchQueryTransformer < Parslet::Transform
       else
         { @type => { @filter => @term } }
       end
+    end
+
+    def negated?
+      @negated
     end
 
     private
@@ -244,7 +255,7 @@ class SearchQueryTransformer < Parslet::Transform
     elsif clause[:phrase]
       PhraseClause.new(operator, term)
     else
-      raise "Unexpected clause type: #{clause}"
+      raise TransformerError, "Unexpected clause type: #{clause}"
     end
   end
 

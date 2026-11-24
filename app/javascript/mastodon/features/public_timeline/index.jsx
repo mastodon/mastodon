@@ -7,9 +7,7 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { connect } from 'react-redux';
 
-import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { injectIntl } from '@/mastodon/components/intl';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
@@ -21,10 +19,13 @@ import { connectPublicStream } from '../../actions/streaming';
 import { expandPublicTimeline } from '../../actions/timelines';
 import StatusListContainer from '../ui/containers/status_list_container';
 
-import ColumnSettingsContainer from './containers/column_settings_container';
+import { ColumnHeader, ColumnSettingsMenu } from '@/mastodon/components/column_header';
+import { FeedColumnSettings } from './components/feed_column_settings';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
+  title_redesign: { id: 'column.other_servers', defaultMessage: 'Other Servers' },
 });
 
 const mapStateToProps = (state, { columnId }) => {
@@ -132,21 +133,29 @@ class PublicTimeline extends PureComponent {
       />
     );
 
+    const title = intl.formatMessage(messages.title_redesign)
+
     return (
-      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} label={title}>
         <ColumnHeader
-          icon='globe'
-          iconComponent={PublicIcon}
-          active={hasUnread}
-          title={intl.formatMessage(messages.title)}
-          onPin={this.handlePin}
-          onMove={this.handleMove}
-          pinned={pinned}
-          multiColumn={multiColumn}
-          scrollTopOnClick
-        >
-          <ColumnSettingsContainer columnId={columnId} />
-        </ColumnHeader>
+          title={title}
+          withUnreadMarker={hasUnread}
+          extraButtons={
+            <ColumnSettingsMenu
+              labelPrefix={title}
+            >
+              <FeedColumnSettings columnId={columnId} />
+              {multiColumn && (
+                <MultiColumnMenuItems
+                  withDivider
+                  pinned={pinned}
+                  onPin={this.handlePin}
+                  onMove={this.handleMove}
+                />
+              )}
+            </ColumnSettingsMenu>
+          }
+        />
 
         <StatusListContainer
           prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the fediverse that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}
@@ -159,7 +168,7 @@ class PublicTimeline extends PureComponent {
         />
 
         <Helmet>
-          <title>{intl.formatMessage(messages.title)}</title>
+          <title>{title}</title>
           <meta name='robots' content='noindex' />
         </Helmet>
       </Column>

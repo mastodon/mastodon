@@ -89,12 +89,10 @@ RSpec.describe Trends::Tags do
         subject.refresh(at_time)
       end
 
-      it 'calculates and re-calculates scores' do
-        expect(subject.query.limit(10).to_a).to eq [tag_cats, tag_ocs]
-      end
-
-      it 'omits hashtags below threshold' do
-        expect(subject.query.limit(10).to_a).to_not include(tag_dogs)
+      it 'calculates and re-calculates scores, omitting below threshold' do
+        expect(subject.query.limit(10).to_a)
+          .to eq([tag_cats, tag_ocs])
+          .and not_include(tag_dogs)
       end
     end
 

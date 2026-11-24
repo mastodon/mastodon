@@ -7,8 +7,7 @@ import { isFulfilled } from '@reduxjs/toolkit';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
-import TagIcon from '@/material-icons/400-24px/tag.svg?react';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 import {
   fetchFollowedHashtags,
   unfollowHashtag,
@@ -20,7 +19,7 @@ import ScrollableList from 'mastodon/components/scrollable_list';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
-  heading: { id: 'followed_tags', defaultMessage: 'Followed hashtags' },
+  heading: { id: 'followed_tags', defaultMessage: 'Followed Hashtags' },
 });
 
 const FollowedTag: React.FC<{
@@ -51,7 +50,7 @@ const FollowedTag: React.FC<{
       withGraph={false}
       people={people}
     >
-      <Button onClick={handleClick}>
+      <Button onClick={handleClick} size='sm' color='destructive'>
         <FormattedMessage id='account.unfollow' defaultMessage='Unfollow' />
       </Button>
     </Hashtag>
@@ -98,12 +97,8 @@ const FollowedTags: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       label={intl.formatMessage(messages.heading)}
     >
       <ColumnHeader
-        icon='hashtag'
-        iconComponent={TagIcon}
+        withBackButton
         title={intl.formatMessage(messages.heading)}
-        multiColumn={multiColumn}
-        showBackButton
-        scrollTopOnClick
       />
 
       <ScrollableList

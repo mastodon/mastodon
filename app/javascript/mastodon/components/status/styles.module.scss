@@ -1,0 +1,244 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  --col-gap: var(--space-2);
+  --avatar-size: 40px;
+  --first-col-width: calc(var(--avatar-size) + var(--col-gap));
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4) var(--space-2);
+  cursor: pointer;
+}
+
+.variantFeed {
+  border-bottom: var(--border-thin);
+}
+
+.variantPage {
+  padding: var(--space-2) var(--space-4);
+  cursor: auto;
+}
+
+.variantThread {
+  --avatar-size: 32px;
+
+  padding: 0;
+}
+
+.isQuote {
+  padding: var(--space-3);
+}
+
+.isHighlighted {
+  :global(.no-reduce-motion) & {
+    animation: highlight-fade 0.7s both 0.3s;
+  }
+}
+
+.isMessage {
+  @include mixins.message-background;
+}
+
+@keyframes highlight-fade {
+  from {
+    background: var(--color-bg-brand-softest);
+  }
+
+  to {
+    background: transparent;
+  }
+}
+
+.mainWrapper {
+  padding-inline-start: var(--first-col-width);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.variantPage,
+:global(.layout-multiple-columns) .variantFeed,
+.isQuote {
+  .mainWrapper {
+    padding-inline-start: 0;
+  }
+}
+
+.spoiler {
+  cursor: auto;
+}
+
+.connectNextReply {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    border-inline-start: var(--bw-thick) solid var(--color-border-primary);
+    margin-inline-start: calc(var(--avatar-size) / 2 - 1px);
+    justify-self: end;
+  }
+}
+
+.translate {
+  display: flex;
+  align-items: center;
+}
+
+.translateInfo {
+  @include mixins.type-meta;
+
+  color: var(--color-text-secondary);
+  margin-inline-start: auto;
+}
+
+.contentWrapper {
+  --fade-time: 100ms;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  position: relative;
+  overflow: clip;
+  border-radius: var(--radius-2);
+  margin-inline: -2px;
+
+  &.isFiltered {
+    display: none;
+  }
+}
+
+.contentWarningBlur {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      var(--color-bg-highlight) 1px,
+      transparent 0
+    );
+    background-size: var(--space-2) var(--space-2);
+    background-repeat: repeat;
+
+    // Override .media-gallery__item
+    z-index: 2;
+
+    // See: https://css-tricks.com/snippets/css/toggle-visibility-when-hiding-elements/
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      visibility 0s linear var(--fade-time),
+      opacity var(--fade-time) ease-in-out;
+
+    // Show only if backdrop-filter is unsupported.
+    background-color: var(--color-bg-desktop);
+
+    @supports (backdrop-filter: blur(20px)) {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+    }
+  }
+
+  &.contentWarningBlurActive::after {
+    visibility: visible;
+    opacity: 1;
+    transition:
+      visibility 0s linear 0s,
+      opacity var(--fade-time) ease-in-out;
+  }
+}
+
+.hashtagsWrapper,
+.hashtags {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: nowrap;
+}
+
+.hashtagsWrapper {
+  // Account for the 2px from the padding/margin in children
+  padding: calc(var(--space-1) - 2px) 0;
+
+  button:focus-visible {
+    outline-offset: 0;
+  }
+
+  > button {
+    // Ensure the +1 button is the same size as the hashtags buttons
+    margin-block: 2px;
+  }
+}
+
+.hashtags {
+  // Add padding for outline
+  padding: 2px;
+  overflow: hidden;
+  position: relative;
+
+  > button {
+    flex-shrink: 0;
+  }
+}
+
+.hashtagsShowAll {
+  flex-wrap: wrap;
+  overflow: visible;
+  max-width: none !important;
+}
+
+.actions {
+  display: flex;
+
+  > button {
+    font-variant-numeric: tabular-nums;
+
+    &:not(:hover, :active, [aria-pressed='true'], [aria-expanded='true']) {
+      opacity: 0.7;
+    }
+
+    &:disabled,
+    &[aria-disabled='true'] {
+      color: color-mix(
+        in srgb,
+        var(--color-text-brand),
+        var(--color-bg-primary)
+      );
+    }
+  }
+}
+
+.actionsButtonGap {
+  margin-inline-end: auto;
+}
+
+.inlineIcon {
+  vertical-align: middle;
+}
+
+.boostSpin :global(.icon) {
+  :global(.no-reduce-motion) & {
+    animation: boost-spin 0.4s ease-out;
+  }
+}
+
+@keyframes boost-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  55% {
+    transform: rotate(200deg) scale(1.15);
+  }
+
+  80% {
+    transform: rotate(170deg) scale(0.95);
+  }
+
+  100% {
+    transform: rotate(180deg) scale(1);
+  }
+}

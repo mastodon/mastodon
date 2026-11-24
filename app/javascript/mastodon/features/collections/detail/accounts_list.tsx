@@ -2,29 +2,29 @@ import { useCallback, useMemo, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { PendingBadge } from '@/mastodon/components/badge';
-import { SelectField } from '@/mastodon/components/form_fields';
-import { useSearchParam } from '@/mastodon/hooks/useSearchParam';
-import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import type {
   ApiCollectionJSON,
   CollectionAccountItem,
-} from 'mastodon/api_types/collections';
-import type { RenderButtonOptions } from 'mastodon/components/account_list_item';
+} from '@/mastodon/api_types/collections';
+import type { RenderButtonOptions } from '@/mastodon/components/account_list_item';
 import {
   AccountListItem,
   AccountListItemFollowButton,
-} from 'mastodon/components/account_list_item';
-import { Button } from 'mastodon/components/button';
+} from '@/mastodon/components/account_list_item';
+import { PendingBadge } from '@/mastodon/components/badge';
+import { Button } from '@/mastodon/components/button';
+import { SelectField } from '@/mastodon/components/form_fields';
 import {
   Article,
   ItemList,
-} from 'mastodon/components/scrollable_list/components';
-import type { TruncatedListItemInfo } from 'mastodon/components/truncated_list';
-import { TruncatedListItems } from 'mastodon/components/truncated_list';
-import { me } from 'mastodon/initial_state';
-import type { Account } from 'mastodon/models/account';
-import { createAppSelector, useAppSelector } from 'mastodon/store';
+} from '@/mastodon/components/scrollable_list/components';
+import type { TruncatedListItemInfo } from '@/mastodon/components/truncated_list';
+import { TruncatedListItems } from '@/mastodon/components/truncated_list';
+import { useSearchParam } from '@/mastodon/hooks/useSearchParam';
+import { me } from '@/mastodon/initial_state';
+import type { Account } from '@/mastodon/models/account';
+import { createAppSelector, useAppSelector } from '@/mastodon/store';
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 
 import { useConfirmRevoke } from './revoke_collection_inclusion_modal';
 import classes from './styles.module.scss';
@@ -47,12 +47,10 @@ const getCollectionItems = createAppSelector(
       state.collections.collections[collectionId ?? '']?.items,
   ],
   (accounts, collectionAccountItems) =>
-    (collectionAccountItems ?? []).map(
-      (item): CollectionItemWithAccount => ({
-        ...item,
-        account: item.account_id ? accounts.get(item.account_id) : null,
-      }),
-    ),
+    (collectionAccountItems ?? []).map((item): CollectionItemWithAccount => ({
+      ...item,
+      account: item.account_id ? accounts.get(item.account_id) : null,
+    })),
 );
 
 function sortAccounts(
@@ -143,7 +141,12 @@ export const CollectionAccountsList: React.FC<{
     ({ relationship, accountId }: RenderButtonOptions) => {
       if (!me || !relationship) {
         // Show follow button when logged out (it will trigger the remote interaction modal)
-        return <AccountListItemFollowButton accountId={accountId} />;
+        return (
+          <AccountListItemFollowButton
+            accountId={accountId}
+            reference='collection'
+          />
+        );
       }
 
       // When viewing your own collection, only show the Follow button
@@ -156,7 +159,7 @@ export const CollectionAccountsList: React.FC<{
 
       if (accountId === me) {
         return (
-          <Button secondary compact onClick={confirmRevoke}>
+          <Button size='sm' onClick={confirmRevoke}>
             <FormattedMessage
               id='collections.detail.revoke_inclusion'
               defaultMessage='Remove me'
@@ -165,7 +168,12 @@ export const CollectionAccountsList: React.FC<{
         );
       }
 
-      return <AccountListItemFollowButton accountId={accountId} />;
+      return (
+        <AccountListItemFollowButton
+          accountId={accountId}
+          reference='collection'
+        />
+      );
     },
     [collectionOwnerId, confirmRevoke],
   );
@@ -187,6 +195,7 @@ export const CollectionAccountsList: React.FC<{
           withBorder={!isLastElement}
           badge={item.state === 'pending' ? <PendingBadge /> : null}
           renderButton={renderAccountItemButton}
+          reference='collection'
         />
       </Article>
     ),

@@ -8,8 +8,11 @@ import { List as ImmutableList } from 'immutable';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
-import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
+import {
+  ColumnHeader,
+  ColumnSettingsMenu,
+} from '@/mastodon/components/column_header';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 import {
   addColumn,
   removeColumn,
@@ -190,14 +193,21 @@ export const Directory: React.FC<{
       label={intl.formatMessage(messages.title)}
     >
       <ColumnHeader
-        icon='address-book-o'
-        iconComponent={PeopleIcon}
         title={intl.formatMessage(messages.title)}
-        onPin={handlePin}
-        onMove={handleMove}
-        pinned={pinned}
-        multiColumn={multiColumn}
-        scrollTopOnClick
+        withBackButton={multiColumn && !pinned && 'auto'}
+        extraButtons={
+          multiColumn && (
+            <ColumnSettingsMenu
+              labelPrefix={intl.formatMessage(messages.title)}
+            >
+              <MultiColumnMenuItems
+                pinned={pinned}
+                onPin={handlePin}
+                onMove={handleMove}
+              />
+            </ColumnSettingsMenu>
+          )
+        }
       />
 
       {multiColumn && !pinned ? (

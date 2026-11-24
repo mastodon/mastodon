@@ -6,7 +6,7 @@ on:
     branches:
       - 'main'
       - 'stable-*'
-    paths:
+    paths: &paths
       - 'Gemfile*'
       - '.ruby-version'
       - '**/*.rb'
@@ -15,16 +15,11 @@ on:
       - 'lib/tasks/db.rake'
 
   pull_request:
-    paths:
-      - 'Gemfile*'
-      - '.ruby-version'
-      - '**/*.rb'
-      - '.github/workflows/test-migrations.yml'
-      - 'lib/tasks/tests.rake'
+    paths: *paths
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
 
     strategy:
@@ -73,7 +68,7 @@ jobs:
       BUNDLE_RETRY: 3
 
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -104,8 +99,8 @@ jobs:
           bin/rails db:create
           SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails tests:migrations:prepare_database
 
-          # Migrate up to v4.3.0 breakpoint
-          bin/rails db:migrate VERSION=20241007071624
+          # Migrate up to v4.7.0 breakpoint
+          bin/rails db:migrate VERSION=20260812154114
 
           # Migrate the rest
           SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:migrate

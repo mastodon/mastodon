@@ -7,9 +7,7 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { connect } from 'react-redux';
 
-import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
 import { injectIntl } from '@/mastodon/components/intl';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
@@ -21,10 +19,13 @@ import { connectCommunityStream } from '../../actions/streaming';
 import { expandCommunityTimeline } from '../../actions/timelines';
 import StatusListContainer from '../ui/containers/status_list_container';
 
-import ColumnSettingsContainer from './containers/column_settings_container';
+import { ColumnHeader, ColumnSettingsMenu } from '@/mastodon/components/column_header';
+import { FeedColumnSettings } from '../public_timeline/components/feed_column_settings';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
+  title_redesign: { id: 'column.this_server', defaultMessage: 'This Server' },
 });
 
 const mapStateToProps = (state, { columnId }) => {
@@ -129,21 +130,29 @@ class CommunityTimeline extends PureComponent {
       />
     );
 
+    const title = intl.formatMessage(messages.title_redesign)
+
     return (
-      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
-        <ColumnHeader
-          icon='users'
-          iconComponent={PeopleIcon}
-          active={hasUnread}
-          title={intl.formatMessage(messages.title)}
-          onPin={this.handlePin}
-          onMove={this.handleMove}
-          pinned={pinned}
-          multiColumn={multiColumn}
-          scrollTopOnClick
-        >
-          <ColumnSettingsContainer columnId={columnId} />
-        </ColumnHeader>
+      <Column bindToDocument={!multiColumn} label={title}>
+          <ColumnHeader
+            title={title}
+            withUnreadMarker={hasUnread}
+            extraButtons={
+              <ColumnSettingsMenu
+                labelPrefix={title}
+              >
+                <FeedColumnSettings localOnly columnId={columnId} />
+                {multiColumn && (
+                  <MultiColumnMenuItems
+                    withDivider
+                    pinned={pinned}
+                    onPin={this.handlePin}
+                    onMove={this.handleMove}
+                  />
+                )}
+              </ColumnSettingsMenu>
+            }
+          />
 
         <StatusListContainer
           prepend={<DismissableBanner id='community_timeline'><FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} /></DismissableBanner>}

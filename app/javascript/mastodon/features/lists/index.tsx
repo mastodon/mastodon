@@ -4,13 +4,16 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import { PlusIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import {
+  ColumnHeader,
+  ColumnHeaderButton,
+} from '@/mastodon/components/column_header';
 import { NotSignedInIndicator } from '@/mastodon/components/not_signed_in_indicator';
 import { useIdentity } from '@/mastodon/identity_context';
-import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
@@ -24,7 +27,12 @@ import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 const messages = defineMessages({
   heading: { id: 'column.lists', defaultMessage: 'Lists' },
+  heading_redesign: {
+    id: 'column.custom_feeds',
+    defaultMessage: 'Custom Feeds',
+  },
   create: { id: 'lists.create_list', defaultMessage: 'Create list' },
+  create_redesign: { id: 'custom_feeds.create', defaultMessage: 'Create' },
   edit: { id: 'lists.edit', defaultMessage: 'Edit list' },
   delete: { id: 'lists.delete', defaultMessage: 'Delete list' },
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -92,13 +100,13 @@ const Lists: React.FC<{
     <>
       <span>
         <FormattedMessage
-          id='lists.no_lists_yet'
-          defaultMessage='No lists yet.'
+          id='custom_feeds.no_custom_feeds_yet'
+          defaultMessage='No custom feeds yet.'
         />
         <br />
         <FormattedMessage
-          id='lists.create_a_list_to_organize'
-          defaultMessage='Create a new list to organize your Home feed'
+          id='custom_feeds.create_a_list_to_organize'
+          defaultMessage='Create a new custom feed to organize your Following feed.'
         />
       </span>
 
@@ -106,27 +114,24 @@ const Lists: React.FC<{
     </>
   );
 
+  const title = intl.formatMessage(messages.heading_redesign);
+
   return (
-    <Column
-      bindToDocument={!multiColumn}
-      label={intl.formatMessage(messages.heading)}
-    >
+    <Column bindToDocument={!multiColumn} label={title}>
       <ColumnHeader
-        title={intl.formatMessage(messages.heading)}
-        icon='list-ul'
-        iconComponent={ListAltIcon}
-        multiColumn={multiColumn}
-        extraButton={
-          signedIn && (
-            <Link
-              to='/lists/new'
-              className='column-header__button'
-              title={intl.formatMessage(messages.create)}
-              aria-label={intl.formatMessage(messages.create)}
-            >
-              <Icon id='plus' icon={AddIcon} />
-            </Link>
-          )
+        withBackButton
+        title={title}
+        extraButtons={
+          <ColumnHeaderButton
+            showTextOnDesktop
+            variant='solid'
+            color='accent'
+            icon={PlusIcon}
+            as='link'
+            to='/lists/new'
+          >
+            {intl.formatMessage(messages.create_redesign)}
+          </ColumnHeaderButton>
         }
       />
 
@@ -145,7 +150,7 @@ const Lists: React.FC<{
       </ScrollableList>
 
       <Helmet>
-        <title>{intl.formatMessage(messages.heading)}</title>
+        <title>{title}</title>
         <meta name='robots' content='noindex' />
       </Helmet>
     </Column>

@@ -10,7 +10,8 @@ import { fetchEndorsedAccounts } from '@/mastodon/actions/accounts';
 import { AccountHeader } from '@/mastodon/components/account_header';
 import { AccountListItem } from '@/mastodon/components/account_list_item';
 import { Column } from '@/mastodon/components/column';
-import { ColumnBackButton } from '@/mastodon/components/column/back_button';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import {
@@ -129,7 +130,10 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
 
   return (
     <Column>
-      <ColumnBackButton />
+      <ColumnHeader
+        withBackButton
+        title={<DisplayNameSimple account={account} />}
+      />
 
       <Scrollable>
         {accountId && (
@@ -151,7 +155,10 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                   aria-posinset={index + 1}
                   aria-setsize={featuredAccountIds.size}
                 >
-                  <AccountListItem accountId={featuredAccountId} />
+                  <AccountListItem
+                    accountId={featuredAccountId}
+                    reference='featured_account'
+                  />
                 </Article>
               ))}
             </ItemList>
@@ -215,9 +222,13 @@ const AccountFeaturedWrapper = ({
   children,
   accountId,
 }: React.PropsWithChildren<{ accountId?: string }>) => {
+  const account = useAccount(accountId);
   return (
     <Column>
-      <ColumnBackButton />
+      <ColumnHeader
+        withBackButton
+        title={<DisplayNameSimple account={account} />}
+      />
       <div className='scrollable scrollable--flex'>
         {accountId && <AccountHeader accountId={accountId} />}
         {children}

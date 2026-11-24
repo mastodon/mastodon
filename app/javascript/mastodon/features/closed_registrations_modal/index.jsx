@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { ImmutablePureComponent } from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import { fetchServer } from 'mastodon/actions/server';

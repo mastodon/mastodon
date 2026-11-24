@@ -26,7 +26,32 @@ RSpec.describe 'Filters' do
 
       click_on I18n.t('filters.new.title')
       fill_in_filter_form
+      expect { click_on I18n.t('filters.new.save') }
+        .to change { user.account.custom_filters.count }.by(1)
       expect(page).to have_text(filter_title)
+    end
+
+    it 'Populates a new filter form with dynamic JS', :js, :streaming do
+      navigate_to_filters
+
+      click_on I18n.t('filters.new.title')
+      fill_in_filter_form
+
+      # Add another keyword field
+      click_on I18n.t('filters.edit.add_keyword')
+      expect(page)
+        .to have_text(I18n.t('filters.index.delete'))
+
+      # Fill in second translation
+      within(all('.nested-fields').last) do
+        find('.custom_filter_keywords_keyword').fill_in with: 'KeywordSecond'
+      end
+
+      expect { click_on I18n.t('filters.new.save') }
+        .to change { user.account.custom_filters.count }.by(1)
+      expect(user.account.custom_filters.last.keywords.count).to eq(2)
+      expect(page)
+        .to have_text(filter_title)
     end
 
     it 'Does not save with invalid values' do
@@ -104,7 +129,6 @@ RSpec.describe 'Filters' do
     within('.custom_filter_keywords_keyword') do
       fill_in with: 'Keyword'
     end
-    click_on I18n.t('filters.new.save')
   end
 
   def custom_filter_keywords_fields

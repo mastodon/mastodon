@@ -1,0 +1,34 @@
+.root {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 64px;
+  margin-inline-start: auto;
+  padding: var(--space-6) var(--space-2);
+}
+
+.expandButton {
+  margin-bottom: var(--space-6);
+}
+
+.list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  > li {
+    text-align: center;
+    padding-bottom: var(--space-half);
+
+    &.itemWithBottomBorder {
+      // Subtracting the default item gap
+      padding-bottom: var(--space-2);
+      border-bottom: var(--border-default);
+    }
+  }
+}
+
+.itemWithBottomBorder + li {
+  padding-top: var(--space-2);
+}

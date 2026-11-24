@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-export function useMergedRefs<T>(...refs: React.Ref<T>[]) {
+export function useMergedRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
   const setRef: React.RefCallback<T> = useCallback(
     (node: T | null) => {
       const cleanups: (() => void)[] = [];

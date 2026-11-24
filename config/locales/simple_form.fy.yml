@@ -20,7 +20,6 @@ fy:
       admin_account_action:
         include_statuses: De brûker sjocht hokker berjochten ferantwurdlik binne foar de moderaasjemaatregel of warskôging
         send_email_notification: De brûker ûntfangt in útlis oer wat der mei harren account bard is
-        text_html: Opsjoneel. Jo kinne spesifike tekst foar berjochten brûke. Om tiid te besparjen kinne jo <a href="%{path}">presets foar warskôgingen tafoegje</a>
         type_html: Kies wat der mei <strong>%{acct}</strong> barre moat
         types:
           disable: Foarkom dat de brûker harren account brûkt, mar wiskje of ferstopje de ynhâld net.
@@ -28,7 +27,6 @@ fy:
           sensitive: Forsearje dat alle mediabylagen fan dizze brûker as gefoelich markearre wurde.
           silence: Foarkom dat de brûker iepenbiere berjochten ferstjoere kin, ferstopje harren berjochten en meldingen foar minsken dy’t dyjinge net folgje. Dit slút alle rapportaazjes oer dizze account.
           suspend: Alle ynteraksjes fan en mei dizze account opkeare, en de accountgegevens fuortsmite. Dit kin binnen 30 dagen weromdraaid wurde. Dit slút alle rapportaazjes oer dizze account.
-        warning_preset_id: Opsjoneel. Jo kinne noch hieltyd hânmjittich tekst tafoegje oan it ein fan de foarynstelling
       announcement:
         all_day: Wannear dit oanfinkt is, wurde allinnich de datums binnen it tiidrek toand
         ends_at: Opsjoneel. De publikaasje fan de meidieling wurdt op dit tiidstip automatysk beëinige
@@ -167,12 +165,10 @@ fy:
       account_migration:
         acct: Mastodonadres fan it nije account
       account_warning_preset:
-        text: Tekst fan preset
         title: Titel
       admin_account_action:
         include_statuses: Rapportearre berjochten oan it e-mailberjocht tafoegje
         send_email_notification: Meld dit per e-mailberjocht oan de brûker
-        text: Oanpaste warskôging
         type: Aksje
         types:
           disable: Befrieze
@@ -180,7 +176,6 @@ fy:
           sensitive: Gefoelich
           silence: Beheine
           suspend: Utstelle en definityf accountgegevens fuortsmite
-        warning_preset_id: Brûk in foarynstelling fan in warskôging
       announcement:
         all_day: De hiele dei troch
         ends_at: Einiget
@@ -234,7 +229,6 @@ fy:
         setting_system_font_ui: Standertlettertype fan jo systeem brûke
         setting_system_scrollbars_ui: Standert skowbalke fan jo systeem brûke
         setting_theme: Websitetema
-        setting_trends: Trends fan hjoed toane
         setting_unfollow_modal: Freegje foar it ûntfolgjen fan ien in befêstiging
         setting_use_blurhash: Dizige kleuroergongen foar ferstoppe media toane
         setting_use_pending_items: Stadige modus

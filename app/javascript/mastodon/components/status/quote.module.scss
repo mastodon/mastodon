@@ -1,0 +1,128 @@
+@use '@/styles/mastodon/mixins';
+
+.title {
+  white-space: nowrap;
+}
+
+// If hovering over an account link, underline all account links.
+.title:has(.accountLink:hover) {
+  .accountLink {
+    text-decoration: underline;
+  }
+}
+
+a.accountLink {
+  display: block;
+  color: var(--color-text-primary);
+  font-weight: bold;
+}
+
+// We target the parent of the account name as otherwise the collapse doesn't work as expected.
+span:has(> .accountName) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+}
+
+.spoiler {
+  background: var(--color-bg-highlight);
+  border-radius: var(--radius-3);
+  margin: var(--space-1) 0;
+  padding: var(--space-2);
+}
+
+.body {
+  @include mixins.type-body;
+
+  color: inherit;
+
+  > a:hover {
+    text-decoration: none;
+  }
+
+  p:not(:last-child) {
+    margin-block-end: 1em;
+  }
+
+  // If a body only has an empty div (such as when quoting just a link), just hide it.
+  &:has(> div:only-child:empty) {
+    display: none;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+}
+
+.reply {
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-2);
+}
+
+a.nestedQuote {
+  @include mixins.type-meta;
+
+  align-items: center;
+  background-color: var(--color-bg-primary);
+  border: var(--border-thin);
+  border-radius: var(--radius-2);
+  color: var(--color-text-tertiary);
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-2);
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: background-color 200ms ease-in-out;
+  }
+
+  strong {
+    color: var(--color-text-primary);
+    font-weight: bold;
+  }
+
+  &:hover {
+    text-decoration: none;
+    background-color: var(--color-bg-highlight);
+  }
+}
+
+.media {
+  margin-top: var(--space-1);
+  max-height: 260px;
+}
+
+.videoDuration {
+  @include mixins.type-meta;
+
+  display: flex;
+  gap: var(--space-1);
+  align-items: center;
+  position: absolute;
+  inset-block-end: var(--space-2);
+  inset-inline-start: var(--space-2);
+  padding: var(--space-1) var(--space-half);
+  background: var(--color-bg-highlight);
+  border-radius: var(--radius-2);
+  color: var(--color-text-primary);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+  }
+}
+
+.error {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.errorButton {
+  flex-shrink: 0;
+}
+
+.infoPopup {
+  padding: var(--space-3);
+}

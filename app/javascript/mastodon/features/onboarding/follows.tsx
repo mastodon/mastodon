@@ -2,15 +2,13 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
-import { Link } from 'react-router-dom';
-
 import { Helmet } from '@unhead/react/helmet';
 import { useDebouncedCallback } from 'use-debounce';
 
+import { Button } from '@/mastodon/components/button';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnSearchHeader } from '@/mastodon/components/column/search_header';
-import PersonIcon from '@/material-icons/400-24px/person.svg?react';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 import { fetchRelationships } from 'mastodon/actions/accounts';
 import { importFetchedAccounts } from 'mastodon/actions/importer';
 import { fetchSuggestions } from 'mastodon/actions/suggestions';
@@ -116,12 +114,7 @@ export const Follows: React.FC<{
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.title)}
     >
-      <ColumnHeader
-        title={intl.formatMessage(messages.title)}
-        icon='person'
-        iconComponent={PersonIcon}
-        multiColumn={multiColumn}
-      />
+      <ColumnHeader withBackButton title={intl.formatMessage(messages.title)} />
 
       <ColumnSearchHeader
         placeholder={intl.formatMessage(messages.search)}
@@ -145,12 +138,17 @@ export const Follows: React.FC<{
             {displayedAccountIds.length > 0 && <div className='spacer' />}
 
             <div className='column-footer'>
-              <Link className='button button--block' to='/start/profile'>
+              <Button
+                variant='solid'
+                color='accent'
+                as='link'
+                to='/start/profile'
+              >
                 <FormattedMessage
                   id='onboarding.follows.next'
                   defaultMessage='Next: Setup your profile'
                 />
-              </Link>
+              </Button>
             </div>
           </>
         }
@@ -169,7 +167,13 @@ export const Follows: React.FC<{
         }
       >
         {displayedAccountIds.map((accountId) => (
-          <Account id={accountId} key={accountId} withBio withMenu={false} />
+          <Account
+            id={accountId}
+            key={accountId}
+            withBio
+            withMenu={false}
+            reference='onboarding'
+          />
         ))}
       </ScrollableList>
 

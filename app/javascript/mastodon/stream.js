@@ -147,11 +147,10 @@ const channelNameWithInlineParams = (channelName, params) => {
  * @param {string} channelName
  * @param {Object.<string, string>} params
  * @param {(dispatch: Dispatch, getState: GetState) => { onConnect: () => void, onReceive: (event: StreamEvent) => void, onDisconnect: () => void }} callbacks
- * @returns {() => void}
+ * @returns {(dispatch: Dispatch, getState: GetState) => () => void}
  */
-// @ts-expect-error
 export const connectStream = (channelName, params, callbacks) => (dispatch, getState) => {
-  const streamingAPIBaseURL = getState().getIn(['meta', 'streaming_api_base_url']);
+  const streamingAPIBaseURL = getState().meta.get('streaming_api_base_url');
   const accessToken = getAccessToken();
   const { onConnect, onReceive, onDisconnect } = callbacks(dispatch, getState);
 

@@ -47,7 +47,7 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
           SELECT #{media_size_total} AS size
           FROM media_attachments
           INNER JOIN accounts ON accounts.id = media_attachments.account_id
-          WHERE date_trunc('day', media_attachments.created_at)::date = axis.period
+          WHERE media_attachments.id >= (date_part('epoch', date_trunc('day', axis.period)::date) * 1000)::bigint << 16 AND media_attachments.id < ((date_part('epoch', date_trunc('day', axis.period)::date + ('1 day')::interval)) * 1000)::bigint << 16
             AND #{account_domain_sql(params[:include_subdomains])}
         )
         SELECT COALESCE(SUM(size), 0) FROM new_media_attachments

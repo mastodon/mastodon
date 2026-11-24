@@ -5,8 +5,7 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
-import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 import { expandLinkTimeline } from 'mastodon/actions/timelines';
 import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
 import type { Card } from 'mastodon/models/status';
@@ -42,15 +41,7 @@ export const LinkTimeline: React.FC<{
 
   return (
     <Column bindToDocument={!multiColumn} label={story?.title}>
-      <ColumnHeader
-        icon='explore'
-        iconComponent={TrendingUpIcon}
-        title={story?.title}
-        multiColumn={multiColumn}
-        showBackButton
-        scrollTopOnClick
-      />
-
+      <ColumnHeader withBackButton title={story?.title} />
       <StatusListContainer
         timelineId={`link:${decodedUrl}`}
         onLoadMore={handleLoadMore}

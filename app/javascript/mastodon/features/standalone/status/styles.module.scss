@@ -1,0 +1,23 @@
+.root {
+  position: relative;
+  padding: var(--space-4);
+
+  > article {
+    padding: 0;
+  }
+}
+
+.logo {
+  position: absolute;
+  inset-block-start: var(--space-4);
+  inset-inline-end: var(--space-4);
+  color: var(--color-text-tertiary);
+  width: 40px;
+  height: 40px;
+}
+
+.overlay {
+  display: block;
+  position: absolute;
+  inset: 0;
+}

@@ -31,6 +31,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { DotsSixVerticalIcon } from '@phosphor-icons/react';
 
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
@@ -46,7 +47,6 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store';
-import DragIndicatorIcon from '@/material-icons/400-24px/drag_indicator.svg?react';
 
 import { ConfirmationModal } from '../../ui/components/confirmation_modals';
 import type { DialogModalProps } from '../../ui/components/dialog_modal';
@@ -299,8 +299,7 @@ const ReorderFieldItem: FC<{ id: string }> = ({ id }) => {
       style={style}
     >
       <Icon
-        icon={DragIndicatorIcon}
-        id='drag'
+        icon={DotsSixVerticalIcon}
         className={classes.fieldHandle}
         aria-label={intl.formatMessage(messages.handleLabel, {
           item: field.name,

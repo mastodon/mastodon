@@ -26,7 +26,6 @@ fy:
       action: Aksje útfiere
       already_silenced: Dizze account is al beheind.
       already_suspended: Dizze account is al opskort.
-      title: Moderaasjemaatregelen tsjin %{acct} nimme
     account_moderation_notes:
       create: Lit in opmerking efter
       created_msg: Oanmeitsjen fan opmerking foar moderatoaren slagge!
@@ -509,8 +508,6 @@ fy:
           description: Jo hawwe in registraasje ûntfongen fan in FASP. Wegerje dizze as jo dit net oanfrege hawwe. Hawwe jo dit wol oanfrege, fergelykje dan soarchfuldich de namme en de fingerôfdruk fan de kaai eardat jo de registraasje befêstigje.
           reject: Wegerje
           title: FASP-registraasje befêstigje
-        save: Bewarje
-        select_capabilities: Mooglikheden selektearje
         sign_in: Oanmelde
         status: Status
         title: Fediverse Auxiliary Service Providers
@@ -655,10 +652,7 @@ fy:
       action_taken_by: Maatregel nommen troch
       actions:
         mark_as_sensitive_description_html: De media yn de rapportearre berjochten wurde markearre as gefoelich en der wurdt in oertrêding registrearre om takomstige oertrêdingen fan itselde account flugger ôfhannelje te kinnen.
-        other_description_html: Besjoch mear opsjes foar it kontrolearjen fan it gedrach fan en de kommunikaasje mei it rapportearre account.
         resolve_description_html: Der wurdt tsjin it rapportearre account gjin maatregel nommen, gjin oertrêding registrearre en de rapportaazje wurdt markearre as oplost.
-        silence_description_html: De account sil allinnich sichtber wêze foar dyjinge dy’t it al folgje of it hânmjittich opsykje, wêrtroch it berik earnstich beheind wurdt. Kin altyd weromdraaid wurde. Dit slút alle rapportaazjes oer dizze account.
-        suspend_description_html: De account en alle ynhâld sil net tagonklik wêze en úteinlik fuortsmiten wurde, en ynteraksje hjirmei sil net mooglik wêze. Binnen 30 dagen werom te draaien. Dit slút alle rapportaazjes oer dizze account.
       actions_description_html: Beslis hokker maatregel nommen wurde moat om dizze rapportaazje op te lossen. Wannear’t jo in (straf)maatregel tsjin it rapportearre account nimme, kriget de account in e-mailmelding, behalve wannear’t de <strong>spam</strong>-kategory keazen is.
       actions_description_remote_html: Beslút hokker aksje nommen wurde moat om dizze rapportaazje ôf te hanneljen. Dit hat allinnich ynfloed op hoe’t <strong>jo</strong> server kommunisearret mei dizze eksterne account en omgiet mei de ynhâld.
       actions_no_posts: Dit rapport hat gjin byhearrende berjochten om fuort te smiten
@@ -833,10 +827,8 @@ fy:
         title: Brûkers standert net troch sykmasinen yndeksearje litte
       discovery:
         follow_recommendations: Oanrekommandearre accounts
-        privacy: Privacy
         profile_directory: Profylmap
         public_timelines: Iepenbiere tiidlinen
-        publish_statistics: Statistiken publisearje
         title: Untdekke
         trends: Trends
       domain_blocks:
@@ -855,7 +847,6 @@ fy:
         warning_hint: Wy riede jo oan om ‘Goedkarring fereaske om registrearje te kinnen’ te brûken, útsein jo der wis fan binne dat jo moderaasjeteam spam en kweawollende registraasjes tidich ôfhannelje kin.
       security:
         authorized_fetch: Ferifikaasje fan fedearre servers fereaskje
-        authorized_fetch_hint: Ferifikaasje fereaskje fan federearre servers, makket in striktere hanthaving fan sawol brûkersnivo as server-levelblokken mooglik. Dit giet wol ten koste fan de prestaasjes, ferminderet it berik fan jo antwurden en kin kompatibiliteitsproblemen mei guon federearre services opleverje. Boppedat sil dit net foarkomme dat tawijde spilers jo iepenbiere artikelen en accounts ophelje.
         authorized_fetch_overridden_hint: Jo kinne op dit stuit dizze ynstelling net wizigje, omdat dizze oerskreaun is troch in omjouwingsfariabele.
         federation_authentication: Oftwongen federaasje-autentikaasje
       title: Serverynstellingen
@@ -1035,7 +1026,6 @@ fy:
           one: Dizze wike troch ien persoan dield
           other: Dizze wike troch %{count} persoanen dield
         title: Trending keppelingen
-        usage_comparison: Hjoed %{today} kear dield, fergelike mei %{yesterday} kear juster
       not_allowed_to_trend: Trending wurdt net tastien
       only_allowed: Allinnich goedkarre
       pending_review: Moat noch beoardiele wurde
@@ -1080,7 +1070,6 @@ fy:
         trendable: Kin net ûnder trends ferskine
         trending_rank: 'Trending #%{rank}'
         usable: Kin brûkt wurde
-        usage_comparison: Hjoed %{today} kear brûkt, fergelike mei %{yesterday} kear juster
         used_by_over_week:
           one: Dizze wike troch ien persoan brûkt
           other: Dizze wike troch %{count} persoanen brûkt
@@ -1108,9 +1097,6 @@ fy:
     warning_presets:
       add_new: Nije tafoegje
       delete: Fuortsmite
-      edit_preset: Foarynstelling foar warskôging bewurkje
-      empty: Jo hawwe noch gjin foarynstellingen foar warskôgingen tafoege.
-      title: Foarynstellingen foar warskôgingen
     webhooks:
       add_new: Einpunt tafoegje
       delete: Fuortsmite
@@ -1178,7 +1164,6 @@ fy:
     remove: Alias ûntkeppelje
   appearance:
     animations_and_accessibility: Animaasjes en tagonklikheid
-    discovery: Untdekke
     localization:
       body: Mastodon wurdt troch frijwilligers oerset.
       guide_link: https://crowdin.com/project/mastodon/fy
@@ -1317,7 +1302,6 @@ fy:
   deletes:
     challenge_not_passed: De ynformaasje dy’t jo ynfierd hawwe is ûnjildich
     confirm_password: Fier jo aktuele wachtwurd yn om jo identiteit te befêstigjen
-    confirm_username: Fier jo brûkersnamme yn om de proseduere te befêstigjen
     proceed: Account fuortsmite
     success_msg: Jo account is mei sukses fuortsmiten
     warning:
@@ -1474,7 +1458,6 @@ fy:
       empty: Leech CSV-bestân
       incompatible_type: Ynkompatibel mei it keazen ymporttype
       invalid_csv_file: 'Unjildich CSV-bestân. Flater: %{error}'
-      over_rows_processing_limit: befettet mear as %{count} rigen
       too_large: Bestân is te grut
     failures: Flaters
     imported: Ymportearre
@@ -1610,7 +1593,6 @@ fy:
     incoming_migrations_html: Om fan in oar account ôf nei dizze account te ferhúzjen, moatte jo earst <a href="%{path}">in accountalias oanmeitsje</a>.
     moved_msg: Jo account wurdt no nei %{acct} trochferwiisd en jo folgers wurde ferhuze.
     not_redirecting: Jo account wurdt op dit stuit net nei in oar account trochferwizen.
-    on_cooldown: Jo hawwe resint jo account ferhuze. Dizze mooglikheid is oer %{count} dagen wer beskikber.
     past_migrations: Foarige migraasjes
     proceed_with_move: Folgers ferhúzje
     redirected_msg: Jo account wurdt no trochferwizen nei %{acct}.
@@ -1759,8 +1741,6 @@ fy:
       account: Iepenbiere berjochten fan @%{acct}
       tag: 'Iepenbiere berjochten mei hashtag #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Jo binne oer de limyt fan %{limit} yn te plannen berjochten foar hjoed
-    over_total_limit: Jo binne oer de limyt fan %{limit} yn te plannen berjochten
     too_soon: datum moat yn de takomst lizze
   self_destruct:
     lead_html: Spitigernôch sil <strong>%{domain}</strong> permanint ôfslute. As jo dêr in account hiene, kinne jo dizze net mear brûke, mar jo kinne noch hieltyd in reservekopy fan jo gegevens opfreegje.
@@ -1818,7 +1798,6 @@ fy:
     appearance: Werjefte
     authorized_apps: Autorisearre apps
     back: Tebek nei Mastodon
-    delete: Account fuortsmite
     development: Untwikkelers
     edit_profile: Profyl bewurkje
     export: Eksportearje
@@ -2094,5 +2073,4 @@ fy:
     nickname_hint: Fier de bynamme yn fan jo nije befeiligingskaai
     not_enabled: Jo hawwe WebAuthn noch net ynskeakele
     not_supported: Dizze browser stipet gjin befeiligingskaaien
-    otp_required: Om befeiligingskaaien brûke te kinnen, moatte jo earst twa-stapsferifikaasje ynskeakelje.
     registered_on: Registrearre op %{date}

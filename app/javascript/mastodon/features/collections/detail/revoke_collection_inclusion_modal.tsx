@@ -93,6 +93,7 @@ export const RevokeCollectionInclusionModal: React.FC<
 
   return (
     <ConfirmationModal
+      destructive
       title={intl.formatMessage(messages.revokeCollectionInclusionTitle)}
       message={intl.formatMessage(messages.revokeCollectionInclusionMessage)}
       confirm={intl.formatMessage(messages.revokeCollectionInclusionConfirm)}

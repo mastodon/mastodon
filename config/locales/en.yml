@@ -8,6 +8,14 @@ en:
     hosted_on: Mastodon hosted on %{domain}
     title: About
   accounts:
+    api_errors:
+      2fa_required: Your account cannot be used without a second authentification factor set up
+      account_deleted: Your account has been deleted
+      account_suspended: Your account has been suspended
+      login_disabled: Your account is currently disabled
+      memorial: Your account has been turned into a memorial
+      pending_approval: Your account is currently pending moderation approval
+      pending_confirmation: Your account is missing a confirmed e-mail address
     errors:
       cannot_be_added_to_collections: This account cannot be added to collections.
     followers:
@@ -32,7 +40,9 @@ en:
       action: Perform action
       already_silenced: This account has already been limited.
       already_suspended: This account has already been suspended.
-      title: Perform moderation action on %{acct}
+      notification_title: User Notification & Message
+      text_box_title: Consequences of this action
+      title: 'Perform moderation action on @%{acct}:'
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
@@ -69,18 +79,31 @@ en:
       demote: Demote
       destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
       disable: Freeze
+      disable_sign_in_token: Temporarily disable security code challenge
       disable_sign_in_token_auth: Disable email token authentication
       disable_two_factor_authentication: Disable 2FA
       disabled: Frozen
+      discoverable:
+        disabled: Author has not opted-in to being discoverable
+        enabled: Author has opted-in to being discoverable
+        title: Discoverable
       display_name: Display name
       domain: Domain
       edit: Edit
       email: Email
       email_status: Email status
       enable: Unfreeze
+      enable_sign_in_token: Enable security code challenge
       enable_sign_in_token_auth: Enable email token authentication
+      enable_unconfirmed: Allow confirmation e-mail
       enabled: Enabled
       enabled_msg: Successfully unfroze %{username}'s account
+      follow_recommendations:
+        allowed: Allowed
+        suppress: Suppress any follow recommendation
+        suppressed: Suppressed
+        title: Follow recommendations
+        unsuppress: Restore any follow recommendation
       followers: Followers
       follows: Follows
       header: Header
@@ -126,6 +149,7 @@ en:
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh profile
       redownloaded_msg: Successfully refreshed %{username}'s profile from origin
+      registration_app: Registration app
       reject: Reject
       rejected_msg: Successfully rejected %{username}'s sign-up application
       remote_suspension_irreversible: The data of this account has been irreversibly deleted.
@@ -165,6 +189,12 @@ en:
       suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
       suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       title: Accounts
+      trends:
+        allow: Allow
+        allowed: Allowed
+        disallow: Disallow
+        disallowed: Disallowed
+        title: Trending posts
       unblock_email: Unblock email address
       unblocked_email_msg: Successfully unblocked %{username}'s email address
       unconfirmed_email: Unconfirmed email
@@ -200,6 +230,7 @@ en:
         create_user_role: Create Role
         create_username_block: Create Username Rule
         demote_user: Demote User
+        destroy_account: Delete Account Data
         destroy_announcement: Delete Announcement
         destroy_canonical_email_block: Delete Email Block
         destroy_custom_emoji: Delete Custom Emoji
@@ -246,6 +277,7 @@ en:
         update_ip_block: Update IP rule
         update_report: Update Report
         update_status: Update Post
+        update_tag: Update Hashtag
         update_user_role: Update Role
         update_username_block: Update Username Rule
       actions:
@@ -263,11 +295,13 @@ en:
         create_domain_block_html: "%{name} blocked domain %{target}"
         create_email_domain_block_html: "%{name} blocked email domain %{target}"
         create_ip_block_html: "%{name} created rule for IP %{target}"
+        create_moderation_subscription_html: "%{name} created moderation subscription %{target}"
         create_relay_html: "%{name} created a relay %{target}"
         create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
         create_user_role_html: "%{name} created %{target} role"
         create_username_block_html: "%{name} added rule for usernames containing %{target}"
         demote_user_html: "%{name} demoted user %{target}"
+        destroy_account_html: "%{name} deleted account data for %{target}"
         destroy_announcement_html: "%{name} deleted announcement %{target}"
         destroy_canonical_email_block_html: "%{name} unblocked email with the hash %{target}"
         destroy_collection_html: "%{name} removed collection by %{target}"
@@ -277,6 +311,7 @@ en:
         destroy_email_domain_block_html: "%{name} unblocked email domain %{target}"
         destroy_instance_html: "%{name} purged domain %{target}"
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
+        destroy_moderation_subscription_html: "%{name} deleted moderation subscription %{target}"
         destroy_relay_html: "%{name} deleted the relay %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
@@ -325,10 +360,18 @@ en:
         update_user_role_html: "%{name} changed %{target} role"
         update_username_block_html: "%{name} updated rule for usernames containing %{target}"
         usable_tag_html: can be used;
+      automated_actions:
+        create_domain_allow_html: Automatically allowed federation with domain %{target}
+        create_domain_block_html: Automatically blocked domain %{target}
+        destroy_domain_allow_html: Automatically disallowed federation with domain %{target}
+        destroy_domain_block_html: Automatically unblocked domain %{target}
+        update_domain_block_html: Automatically updated domain block for %{target}
       deleted_account: deleted account
+      deleted_suggestion: a deleted moderation subscription
       empty: No logs found.
       filter_by_action: Filter by action
       filter_by_user: Filter by user
+      suggested_by_html: Action suggested by %{subscription}
       title: Audit log
       unavailable_instance: "(domain name unavailable)"
     announcements:
@@ -417,6 +460,9 @@ en:
       pending_reports_html:
         one: "<strong>%{count}</strong> pending report"
         other: "<strong>%{count}</strong> pending reports"
+      pending_server_checks_html:
+        one: There is <strong>%{count}</strong> pending issue with the server. Go to the <a href="%{url}">Server Health page</a> to see more details.
+        other: There are <strong>%{count}</strong> pending issues with the server. Go to the <a href="%{url}">Server Health page</a> to see more details.
       pending_tags_html:
         one: "<strong>%{count}</strong> pending hashtag"
         other: "<strong>%{count}</strong> pending hashtags"
@@ -444,6 +490,11 @@ en:
       undo: Disallow federation with domain
     domain_blocks:
       add_new: Add new domain block
+      confirm_downgrade:
+        cancel: Cancel
+        confirm: Downgrade
+        preamble_html: You are about to downgrade the existing block on <strong>%{domain}</strong> and its subdomains.
+        title: Confirm domain block downgrade for %{domain}
       confirm_suspension:
         cancel: Cancel
         confirm: Suspend
@@ -601,6 +652,11 @@ en:
         title: Import domain blocks
       no_file: No file selected
     fasp:
+      capabilities:
+        activation_msg: Capability successfully enabled.
+        deactivation_msg: Capability successfully disabled.
+        disable: Disable
+        enable: Enable
       debug:
         callbacks:
           created_at: Created at
@@ -612,6 +668,7 @@ en:
         active: Active
         base_url: Base URL
         callback: Callback
+        capabilities: Capabilities
         delete: Delete
         edit: Edit Provider
         finish_registration: Finish registration
@@ -624,8 +681,6 @@ en:
           description: You received a registration from a FASP. Reject it if you did not initiate this. If you initiated this, carefully compare name and key fingerprint before confirming the registration.
           reject: Reject
           title: Confirm FASP Registration
-        save: Save
-        select_capabilities: Select Capabilities
         sign_in: Sign In
         status: Status
         title: Fediverse Auxiliary Service Providers
@@ -639,6 +694,8 @@ en:
       title: Follow recommendations
       unsuppress: Restore follow recommendation
     instances:
+      advisories:
+        title: Advisories from moderation subscriptions
       audit_log:
         title: Recent Audit Logs
         view_all: View full audit logs
@@ -662,6 +719,7 @@ en:
         comment: Internal note
         description_html: You can define content policies that will be applied to all accounts from this domain and any of its subdomains.
         limited_federation_mode_description_html: You can chose whether to allow federation with this domain.
+        moderation_subscription: Moderation subscription
         policies:
           reject_media: Reject media
           reject_reports: Reject reports
@@ -742,6 +800,92 @@ en:
       reset: Reset
       search: Search
       title: IP rules
+    moderation_subscriptions:
+      add_new: Add subscription
+      advisory_action: 'Action: %{action}'
+      advisory_actions:
+        accept: allow
+        limit: silence
+        reject: suspend
+      apply_automatically: Apply advisories automatically
+      apply_conditions:
+        always: Always
+        never: Never
+        safely: Only if it does not break relationships
+      apply_conditions_hint:
+        always: Always apply recommended actions automatically. Only use this option for lists you fully trust.
+        never: Never apply recommended actions automatically. Always generate a suggestion instead.
+        safely: Apply recommended actions unless they would break existing follow relationships with local users. In such cases, a suggestion will be generated instead.
+      delete: Delete
+      destroyed_msg: Successfully deleted moderation subscription
+      empty: No moderation list has been subscribed to yet.
+      last_synced_at: Last synced at
+      list_action: Subscription type
+      list_actions:
+        accept: Allow-list
+        default: Mixed (Allow & Deny)
+        reject: Block-list
+      list_actions_hint:
+        accept: Items with no specified action will be treated as allowed. Blocks will be ignored.
+        default: Items with no specified action will be treated as blocks. Blocks and allows will both be treated as such.
+        reject: Items with no specified action will be treated as blocks. Allows will be ignored.
+      list_actions_short:
+        accept: Allow-list
+        default: Mixed
+        reject: Block-list
+      name: Name
+      new:
+        create: Subscribe
+        title: New moderation subscription
+      override_unattributed: Override manual blocks
+      override_unattributed_hint: Allow this subscription to automatically upgrade or take over existing manual blocks when automatically applying advisories.
+      policies:
+        apply_advisories: Automatically applies advisories
+        apply_advisories_safely: Automatically applies advisories that do not break relationships
+        apply_retractions: Automatically applies retractions
+      priority: Priority
+      priority_hint: Moderation subscriptions are evaluated in order of priority, subscriptions with a lower number override subscriptions with a higher one.
+      retract_automatically: Retract advisories automatically
+      retract_automatically_hint: Whether to allow retracting or downgrading policy changes when the subscription removes a corresponding item. When automatic retraction is enabled and an equivalent advisory exists in a lower-priority list, it will be adopted. When automatic retraction is disabled, a suggestion will be generated instead.
+      show:
+        delete_confirm: Are you sure you want to delete this moderation subscription?
+        edit: Edit subscription
+        empty: This subscription has no advisory yet.
+        title: 'Moderation subscription: %{name}'
+      tabs:
+        logs: Logs
+        subscriptions: Subscriptions
+        suggestions: Suggestions
+      title: Moderation subscriptions
+      type: Type
+      types:
+        csv_list: CSV list
+      url: URL
+    moderation_subscriptions_logs:
+      title: Moderation subscriptions logs
+    moderation_suggestions:
+      actions:
+        accept: Allow
+        limit: Limit
+        reject: Suspend
+        retract: Retract current policy
+      applied_msg: Successfully applied suggestion for %{target_key}
+      apply_accept: Allow
+      apply_limit: Limit
+      apply_reject: Suspend
+      apply_retract: Retract
+      current_states:
+        accept: currently allowed
+        limit: currently limited
+        reject: currently suspended
+      description: Below are suggestions from your moderation subscriptions, ordered by priority.
+      destroyed_msg: Successfully dismissed suggestion for %{target_key}
+      dismiss: Dismiss suggestions
+      empty: There is no moderation suggestion at this time.
+      retracted_msg: Successfully retracted policy for %{target_key}
+      suggested_from_html: Suggested by %{link}
+      title: Moderation suggestions
+      unable_to_apply_msg: Unable to apply suggestion for %{target_key}
     relationships:
       title: "%{acct}'s relationships"
     relays:
@@ -772,11 +916,13 @@ en:
       action_taken_by: Action taken by
       actions:
         delete_description_html: The reported posts and/or collections will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
+        disable_description_html: Prevent the user from using their account, but do not delete or hide their contents. This action can be reverted. This closes all reports against this account.
+        force_sensitive_descption_html: Force all this user's media attachments to be flagged as sensitive. This can be reverted. This closes all reports against this account.
         mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
-        other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
         resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
-        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
-        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. This can always be reverted. This closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. This is reversible within 30 days. This closes all reports against this account.
+        warn_description_html: Use this to send a warning to the user, without triggering any other action.
       actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an email notification will be sent to them, except when the <strong>Spam</strong> category is selected.
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       actions_no_posts: This report doesn't have any associated posts to delete
@@ -832,12 +978,18 @@ en:
       summary:
         action_preambles:
           delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
+          disable_html: 'You are about to <strong>freeze</strong> <strong>@%{acct}</strong>''s account. This will:'
           mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
+          none_html: 'You are about to <strong>warn</strong> <strong>@%{acct}</strong>. This will:'
+          sensitive_html: 'You are about to <strong>mark</strong> <strong>@%{acct}</strong>''s account as <strong>sensitive</strong>. This will:'
           silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
           suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
         actions:
           delete_html: Remove the offending posts
+          disable_html: Prevent the user from using their account, but won't delete or hide their contents
           mark_as_sensitive_html: Mark the offending posts' media as sensitive
+          none_html: Send a warning to the user, without triggering any other action
+          sensitive_html: Force all this user's media attachments to be flagged as sensitive
           silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
           suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
         close_report: 'Mark report #%{id} as resolved'
@@ -936,6 +1088,119 @@ en:
       translation: Translation
       translations: Translations
       translations_explanation: You can optionally add translations for the rules. The default value will be shown if no translated version is available. Please always ensure any provided translation is in sync with the default value.
+    server_checks:
+      categories:
+        completed:
+          title: Completed
+        critical:
+          title: Critical
+        error:
+          title: Errors
+        ignored:
+          title: Ignored
+        suggestion:
+          title: Suggestions
+        unprocessed:
+          title: Unprocessed
+        warning:
+          title: Warnings
+      checks:
+        database_schema:
+          error:
+            title: There was an error checking the database schema
+          ok:
+            title: There are no database migrations pending
+          pending:
+            lead_html: Please run them to ensure the application behaves as expected
+            title: There are pending database migrations
+          running:
+            title: Your server is checking the database schema
+          unprocessed:
+            title: Your server hasn't checked the database schema yet
+        elastic_search:
+          error:
+            title: There was an error checking Elasticsearch configuration
+          ok:
+            title: Elasticsearch is configured without issues
+          pending:
+            lead:
+              analysis_index_mismatch_html: Elasticsearch index analyzer settings are outdated. Please run <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Elasticsearch cluster is unhealthy (red status), search features are unavailable
+              cluster_health_yellow_html: Elasticsearch cluster is unhealthy (yellow status), you may want to investigate the reason
+              index_mismatch_html: Elasticsearch index mappings are outdated. Please run <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Your Elasticsearch cluster has more than one node, but Mastodon is not configured to use them
+              preset_single_node_html: Your Elasticsearch cluster has only one node, <code>ES_PRESET</code> should be set to <code>single_node_cluster</code>
+              reset_chewy_html: Your Elasticsearch system index is outdated due to a setting change. Please run <code>tootctl search deploy --reset-chewy</code> to update it
+              running_check_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
+              version_check_html: Elasticsearch %{running_version} is running while %{required_version} is required
+            title: There are issues with Elasticsearch
+          running:
+            title: The server is checking Elasticsearch configuration
+          unprocessed:
+            title: The server hasn't checked Elasticsearch configuration yet
+        media_privacy:
+          error:
+            title: There was an error checking your server's media privacy
+          ok:
+            title: Your server media privacy is secure
+          pending:
+            lead:
+              upload_check_privacy_error_html: Your web server is misconfigured
+              upload_check_privacy_error_object_storage_html: Your object storage is misconfigured
+            title: The privacy of your users is at risk
+          running:
+            title: The server is checking its privacy status
+          unprocessed:
+            title: The server hasn't checked its privacy status yet
+        rules:
+          error:
+            title: There was an error checking your server rules
+          ok:
+            title: Your server rules are set
+          pending:
+            lead_html: Your server has no published rules. Clear rules help moderation and set expectations
+            title: Set up server rules
+          running:
+            title: The server is checking your rules
+          unprocessed:
+            title: The server hasn't checked if there are any rules yet
+        sidekiq_process:
+          error:
+            title: There was an error checking Sidekiq configuration
+          ok:
+            title: Sidekiq is configured without issues
+          pending:
+            lead_html: No Sidekiq process running for the %{missing_queues_str} queue(s)
+            title: Please review your Sidekiq configuration
+          running:
+            title: The server is checking Sidekiq configuration
+          unprocessed:
+            title: The server hasn't checked the Sidekiq configuration yet
+        software_version:
+          error:
+            title: There was an error checking for software updates
+          ok:
+            title: Your Mastodon instance is up to date
+          pending:
+            lead:
+              patch_html: There is a bugfix Mastodon update available
+              regular_html: There is a new version of Mastodon available
+              urgent_html: A critical Mastodon update is available, please update as quickly as possible
+            title: Update your Mastodon instance
+          running:
+            title: The server is checking if there is any software update pending
+          unprocessed:
+            title: The server hasn't checked software updates yet
+      ignore:
+        label: Ignore
+      lead: Recommendations to keep your server safe, welcoming and efficient.
+      recommendations:
+        title: Recommendations
+      restore:
+        label: Restore
+      setup:
+        label: Set up
+      title: Server Health
     settings:
       about:
         manage_rules: Manage server rules
@@ -958,16 +1223,17 @@ en:
         danger_zone: Danger zone
         preamble: Control how user-generated content is stored in Mastodon.
         title: Content retention
+      crawlers:
+        preamble: Control how (well-behaved) bots such as search engine crawlers can interact with your Mastodon server. Malicious bots can ignore these settings and must be blocked at the network level.
+        title: Crawler controls
       default_noindex:
         desc_html: Affects all users who have not changed this setting themselves
         title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone on Mastodon. Control how various discovery features work on your server.
-        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
-        publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
         wrapstodon: Wrapstodon
@@ -975,6 +1241,18 @@ en:
         all: To everyone
         disabled: To no one
         users: To logged-in local users
+      external:
+        directory: Server Directory
+        opt_in_server_directory:
+          description: Allow your server to be listed in server directories such as the one featured on https://joinmastodon.org/servers.
+          title: Opt your server in for the server directory
+        opt_in_server_recommendation:
+          description: Allow your server to be recommended at sign-up time in applications such as the official Mastodon clients.
+          title: Opt your server in for server recommendation
+        preamble: Control how much information about your server gets shared with other services and how discoverable your server should be.
+        privacy: Privacy
+        publish_statistics: Publish statistics
+        title: External Discovery
       feed_access:
         modes:
           authenticated: Authenticated users only
@@ -1003,7 +1281,15 @@ en:
         warning_hint: We recommend using “Approval required for sign up” unless you are confident your moderation team can handle spam and malicious registrations in a timely fashion.
       security:
         authorized_fetch: Require authentication from federated servers
-        authorized_fetch_hint: Requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks. However, this comes at the cost of a performance penalty, reduces the reach of your replies, and may introduce compatibility issues with some federated services. In addition, this will not prevent dedicated actors from fetching your public posts and accounts.
+        authorized_fetch_hint: Decide when remote servers are required to authenticate when fetching content from this server.
+        authorized_fetch_hints:
+          actors: Requiring authentication for profiles enables tracking of which server has ever discovered each of your local accounts, which can greatly reduce the number of unnecessary requests performed when notifying servers of an account deletion. This option comes at a slight performance cost when serving profiles due to said tracking and the inability for the reverse-proxy to cache responses for these requests. This might also introduce compatibility issues with some federated services.
+          all: In addition to the benefits and drawbacks of requiring authentication for profiles, unconditionally requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks, but and also prevents caching of most requests. It will also reduce the reach of your replies, as reply forwarding will be disabled.
+          none: Requiring authentication only when strictly necessary allows your reverse proxy to cache more requests. This option might get removed in the future. Only use it if the other options cause issues.
+        authorized_fetch_modes:
+          actors: For profiles and private content
+          all: For every request
+          none: For private content only
         authorized_fetch_overridden_hint: You are currently unable to change this setting because it is overridden by an environment variable.
         federation_authentication: Federation authentication enforcement
       title: Server settings
@@ -1072,50 +1358,6 @@ en:
       appeal_approved: Appealed
       appeal_pending: Appeal pending
       appeal_rejected: Appeal rejected
-    system_checks:
-      database_schema_check:
-        message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearch index analyzer settings are outdated. Please run <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Elasticsearch cluster is unhealthy (red status), search features are unavailable
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch cluster is unhealthy (yellow status), you may want to investigate the reason
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch index mappings are outdated. Please run <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: See documentation
-        message_html: Your Elasticsearch cluster has more than one node, but Mastodon is not configured to use them.
-      elasticsearch_preset_single_node:
-        action: See documentation
-        message_html: Your Elasticsearch cluster has only one node, <code>ES_PRESET</code> should be set to <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Your Elasticsearch system index is outdated due to a setting change. Please run <code>tootctl search deploy --reset-chewy</code> to update it.
-      elasticsearch_running_check:
-        message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
-      elasticsearch_version_check:
-        message_html: 'Incompatible Elasticsearch version: %{value}'
-        version_comparison: Elasticsearch %{running_version} is running while %{required_version} is required
-      rules_check:
-        action: Manage server rules
-        message_html: You haven't defined any server rules.
-      sidekiq_process_check:
-        message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
-      software_version_check:
-        action: See available updates
-        message_html: A Mastodon update is available.
-      software_version_critical_check:
-        action: See available updates
-        message_html: A critical Mastodon update is available, please update as quickly as possible.
-      software_version_patch_check:
-        action: See available updates
-        message_html: A bugfix Mastodon update is available.
-      upload_check_privacy_error:
-        action: Check here for more information
-        message_html: "<strong>Your web server is misconfigured. The privacy of your users is at risk.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Check here for more information
-        message_html: "<strong>Your object storage is misconfigured. The privacy of your users is at risk.</strong>"
     tags:
       moderation:
         not_trendable: Not trendable
@@ -1190,7 +1432,9 @@ en:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
         title: Trending links
-        usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+        usage_comparison:
+          one: Shared %{count} time today, compared to %{yesterday} yesterday
+          other: Shared %{count} times today, compared to %{yesterday} yesterday
       not_allowed_to_trend: Not allowed to trend
       only_allowed: Only allowed
       pending_review: Pending review
@@ -1235,7 +1479,9 @@ en:
         trendable: Can appear under trends
         trending_rank: 'Trending #%{rank}'
         usable: Can be used
-        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
+        usage_comparison:
+          one: Used %{count} time today, compared to %{yesterday} yesterday
+          other: Used %{count} times today, compared to %{yesterday} yesterday
         used_by_over_week:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
@@ -1264,9 +1510,19 @@ en:
     warning_presets:
       add_new: Add new
       delete: Delete
-      edit_preset: Edit warning preset
-      empty: You haven't defined any warning presets yet.
-      title: Warning presets
+      dropdown:
+        all_actions: All actions
+        delete: Delete
+        disable: Freeze
+        mark_as_sensitive: Mark as sensitive
+        none: Warning
+        sensitive: Sensitive
+        silence: Limit
+        suspend: Suspend
+      edit_preset: Edit canned response
+      empty: You haven't defined any canned responses yet.
+      navigation_title: Canned Responses
+      title: Moderation Canned Responses
     webhooks:
       add_new: Add endpoint
       delete: Delete
@@ -1315,9 +1571,15 @@ en:
     new_critical_software_updates:
       body: New critical versions of Mastodon have been released, you may want to update as soon as possible!
       subject: Critical Mastodon updates are available for %{instance}!
+    new_moderation_suggestions:
+      body: The moderation lists your server is subscribed to have published new suggestions.
+      subject: New moderation suggestions available on %{instance}!
     new_pending_account:
       body: The details of the new account are below. You can approve or reject this application.
       subject: New account up for review on %{instance} (%{username})
+    new_pending_accounts:
+      body: New accounts have been created on %{instance}. As your server is configured to postpone confirmation emails after moderation approval, those accounts did not have a chance to verify their email address yet. The details of the new accounts are below. You can approve or reject these applications.
+      subject: New accounts up for review on %{instance}
     new_report:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
@@ -1346,7 +1608,6 @@ en:
     animations_and_accessibility: Animations and accessibility
     boosting_preferences: Boosting preferences
     boosting_preferences_info_html: "<strong>Tip:</strong> Regardless of settings, <kbd>Shift</kbd> + <kbd>Click</kbd> on the %{icon} Boost icon will immediately boost."
-    discovery: Discovery
     localization:
       body: Mastodon is translated by volunteers.
       guide_link: https://crowdin.com/project/mastodon
@@ -1426,11 +1687,16 @@ en:
     security: Security
     set_new_password: Set new password
     setup:
+      correct_email: Correct address
       email_below_hint_html: Check your spam folder, or request another one. You can correct your email address if it's wrong.
       email_settings_hint_html: Click the link we sent to %{email} to begin using Mastodon. We'll wait right here.
+      email_settings_hint_wait_html: Your application is being reviewed. You should soon receive a mail on %{email}. Once you do, click the link to begin using Mastodon. We'll wait right here.
       link_not_received: Didn't get a link?
       new_confirmation_instructions_sent: You will receive a new email with the confirmation link in a few minutes!
       title: Check your inbox
+      title_wait: Keep an eye on your inbox
+      wrong_email: Wrong email address?
+      wrong_email_below_hint_html: Don't panic! You can correct your email address below.
     sign_in:
       preamble_html: Login with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
       title: Login to %{domain}
@@ -1467,6 +1733,12 @@ en:
     auto: Auto
     dark: Dark
     light: Light
+  color_theme:
+    cyan: Cyan
+    indigo: Indigo
+    lime: Lime
+    orange: Orange
+    pink: Pink
   contrast:
     auto: Auto
     high: High
@@ -1494,9 +1766,11 @@ en:
   deletes:
     challenge_not_passed: The information you entered was not correct
     confirm_password: Enter your current password to verify your identity
-    confirm_username: Enter your username to confirm the procedure
+    confirm_username: Confirm username
+    confirm_username_hint_html: Please type <code>%{username}</code> to confirm the account you want to delete
     proceed: Delete account
     success_msg: Your account was successfully deleted
+    title: Delete account %{acct}
     warning:
       before: 'Before proceeding, please read these notes carefully:'
       caches: Content that has been cached by other servers may persist
@@ -1513,6 +1787,7 @@ en:
       action_taken: Action taken
       appeal: Appeal
       appeal_approved: This strike has been successfully appealed and is no longer valid
+      appeal_handled_by: Appeal handled by
       appeal_rejected: The appeal has been rejected
       appeal_submitted_at: Appeal submitted
       appealed_msg: Your appeal has been submitted. If it is approved, you will be notified.
@@ -1596,6 +1871,7 @@ en:
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
     '503': The page could not be served due to a temporary server failure.
+    go_home: Go home
     noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
   existing_username_validator:
     not_found: could not find a local user with that username
@@ -1692,7 +1968,10 @@ en:
       incompatible_type: Incompatible with the selected import type
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
       invalid_json_file: 'Invalid JSON file. Error: %{error}'
-      over_rows_processing_limit: contains more than %{count} rows
+      no_data: This file does not contain any data matching the given import type
+      over_rows_processing_limit:
+        one: contains more than %{count} row
+        other: contains more than %{count} rows
       status_not_found_warning: Some of your filters hide specific posts that are not known by this server. These posts will not be automatically filtered if they are discovered later by the server.
       too_large: File is too large
     failures: Failures
@@ -1843,7 +2122,9 @@ en:
     incoming_migrations_html: To move from another account to this one, first you need to <a href="%{path}">create an account alias</a>.
     moved_msg: Your account is now redirecting to %{acct} and your followers are being moved over.
     not_redirecting: Your account is not redirecting to any other account currently.
-    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
+    on_cooldown:
+      one: You have recently migrated your account. This function will become available again in %{count} day.
+      other: You have recently migrated your account. This function will become available again in %{count} days.
     past_migrations: Past migrations
     proceed_with_move: Move followers
     redirected_msg: Your account is now redirecting to %{acct}.
@@ -1949,6 +2230,8 @@ en:
           unit: ''
   otp_authentication:
     code_hint: Enter the code generated by your authenticator app to confirm
+    delete: Delete
+    delete_confirmation: Are you sure you want to delete your authenticator app from your two-factor authentication methods?
     description_html: If you enable <strong>two-factor authentication</strong> using an authenticator app, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
     enable: Enable
     instructions_html: "<strong>Scan this QR code into Google Authenticator or a similar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
@@ -2032,8 +2315,12 @@ en:
       account: Public posts from @%{acct}
       tag: 'Public posts tagged #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
-    over_total_limit: You have exceeded the limit of %{limit} scheduled posts
+    over_daily_limit:
+      one: You have exceeded the limit of %{count} scheduled post for today
+      other: You have exceeded the limit of %{count} scheduled posts for today
+    over_total_limit:
+      one: You have exceeded the limit of %{count} scheduled post
+      other: You have exceeded the limit of %{count} scheduled posts
     too_soon: date must be in the future
   self_destruct:
     lead_html: Unfortunately, <strong>%{domain}</strong> is permanently closing down. If you had an account there, you will not be able to continue using it, but you can still request a backup of your data.
@@ -2091,7 +2378,6 @@ en:
     appearance: Appearance
     authorized_apps: Authorized apps
     back: Back to Mastodon
-    delete: Account deletion
     development: Development
     edit_profile: Edit profile
     export: Export
@@ -2295,6 +2581,14 @@ en:
       further_actions_html: If this wasn't you, we recommend that you %{action} immediately as it may be compromised.
       subject: Second factor authentication failure
       title: Failed second factor authentication
+    sign_in_token:
+      change_password: change your password
+      details: 'Here are details of the attempt:'
+      explanation: 'We detected an attempt to sign in to your account after a long time of inactivity. If this is you, please enter the security code below on the sign in challenge page:'
+      further_actions: 'If this wasn''t you, please change your password and enable two-factor authentication on your account. You can do so here:'
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Please confirm attempted sign in
+      title: Sign in attempt
     suspicious_sign_in:
       change_password: change your password
       details: 'Here are details of the sign-in:'
@@ -2384,8 +2678,12 @@ en:
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
+    generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
     go_to_sso_account_settings: Go to your identity provider's account settings
+    inactive_sign_in_confirmation: It's been a while since you logged in, so we're sending a security code to your e-mail address to confirm that it's you.
+    inactive_sign_in_title: Please confirm security code
     invalid_otp_token: Invalid two-factor code
+    invalid_sign_in_token: Invalid security code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     rate_limited: Too many authentication attempts, try again later.
     seamless_external_login: You are logged in via an external service, so password and email settings are not available.
@@ -2414,7 +2712,6 @@ en:
     nickname_hint: Enter the nickname of your new security key
     not_enabled: You haven't enabled WebAuthn yet
     not_supported: This browser doesn't support security keys
-    otp_required: To use security keys please enable two-factor authentication first.
     registered_on: Registered on %{date}
   wrapstodon:
     description: See how %{name} used Mastodon this year!

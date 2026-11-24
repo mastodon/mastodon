@@ -1,21 +1,25 @@
 - content_for :page_title do
-  = t('auth.setup.title')
+  = @user.mails_disabled? ? t('auth.setup.title_wait') : t('auth.setup.title')
 
 = vite_typescript_tag 'sign_up.ts', crossorigin: 'anonymous'
 
 = simple_form_for(@user, url: auth_setup_path) do |f|
   = render 'auth/shared/progress', stage: 'confirm'
 
-  %h1.title= t('auth.setup.title')
-  %p.lead= t('auth.setup.email_settings_hint_html', email: content_tag(:strong, @user.email))
+  - if @user.mails_disabled?
+    %h1.title= t('auth.setup.title_wait')
+    %p.lead= t('auth.setup.email_settings_hint_wait_html', email: content_tag(:strong, @user.email))
+  - else
+    %h1.title= t('auth.setup.title')
+    %p.lead= t('auth.setup.email_settings_hint_html', email: content_tag(:strong, @user.email))
 
   = render 'shared/error_messages', object: @user
 
   %details
     %summary.lead
-      %strong= t('auth.setup.link_not_received')
+      %strong= @user.mails_disabled? ? t('auth.setup.wrong_email') : t('auth.setup.link_not_received')
 
-    %p.lead= t('auth.setup.email_below_hint_html')
+    %p.lead= @user.mails_disabled? ? t('auth.setup.wrong_email_below_hint_html') : t('auth.setup.email_below_hint_html')
 
     .fields-group
       = f.input :email,
@@ -24,4 +28,4 @@
                 required: true
 
     .actions
-      = f.button :button, t('auth.resend_confirmation'), type: :submit, class: 'button timer-button', disabled: true
+      = f.button :button, @user.mails_disabled? ? t('auth.setup.correct_email') : t('auth.resend_confirmation'), type: :submit, class: 'button timer-button', disabled: true
