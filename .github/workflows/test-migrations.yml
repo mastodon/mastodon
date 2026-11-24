@@ -35,9 +35,9 @@ jobs:
             initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
           - postgres: 18-alpine
             initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
-          - postgres: '18'
+          - postgres: '18-alpine'
             initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
-          - postgres: '19'
+          - postgres: '19-alpine'
             initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
 
     services:
