@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_20_134347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -576,7 +576,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_161747) do
     t.datetime "updated_at", null: false
     t.string "version", null: false
     t.index ["fasp_provider_id", "name", "version"], name: "idx_on_fasp_provider_id_name_version_68e2668987", unique: true
-    t.index ["fasp_provider_id"], name: "index_fasp_capabilities_on_fasp_provider_id"
   end
 
   create_table "fasp_debug_callbacks", force: :cascade do |t|
