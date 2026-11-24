@@ -489,9 +489,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def forward_for_reply
-    return unless @status.distributable? && @json['signature'].present? && reply_to_local?
+    return unless @status.distributable? && @options[:forwardable_json].present? && reply_to_local?
 
-    ActivityPub::RawDistributionWorker.perform_async(JSON.generate(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
+    ActivityPub::RawDistributionWorker.perform_async(JSON.generate(@options[:forwardable_json]), replied_to_status.account_id, [@account.preferred_inbox_url])
   end
 
   def increment_voters_count!

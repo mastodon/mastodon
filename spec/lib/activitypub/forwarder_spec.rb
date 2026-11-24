@@ -23,7 +23,36 @@ RSpec.describe ActivityPub::Forwarder do
   end
 
   describe '#forwardable?' do
-    context 'when payload has an inlined signature' do
+    context 'when payload has an inline Linked-Data signature' do
+      it 'returns true' do
+        expect(subject.forwardable?).to be true
+      end
+    end
+
+    context 'when payload has an inline FEP-8b32 proof' do
+      let(:payload) do
+        {
+          '@context': [
+            'https://www.w3.org/ns/activitystreams',
+            'https://w3id.org/security/data-integrity/v2',
+          ],
+          type: 'Delete',
+          object: ActivityPub::TagManager.instance.uri_for(status),
+          proof: {
+            '@context': [
+              'https://www.w3.org/ns/activitystreams',
+              'https://w3id.org/security/data-integrity/v2',
+            ],
+            type: 'DataIntegrityProof',
+            cryptosuite: 'eddsa-jcs-2022',
+            verificationMethod: '...',
+            proofPurpose: 'assertionMethod',
+            proofValue: '...',
+            created: '2023-02-24T23:36:38Z',
+          },
+        }.deep_stringify_keys
+      end
+
       it 'returns true' do
         expect(subject.forwardable?).to be true
       end

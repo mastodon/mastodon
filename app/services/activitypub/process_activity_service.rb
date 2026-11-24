@@ -51,26 +51,30 @@ class ActivityPub::ProcessActivityService < BaseService
       # If Linked Data Signature verification failed, throw away the signature
       # as other parts of the code use its presence as an indication of whether
       # to forward the activity (don't throw away compaction though, it is still useful)
-      @json = @json.without('signature') if @account.nil?
+      if @account.nil?
+        @json = @json.without('signature')
 
-      # TODO: in the future, we might extend our forwarding rules to allow activities with
-      # FEP-8b32 Object Integrity Proofs to be forwarded.
-      # This would require keeping the original JSON around and changing forwarding logic in
-      # a few places. This is not worth it right now since FEP-8b32 is not widely supported,
-      # but could be worth doing in the future.
-      @account ||= actor_from_verified_object_integrity_proof(original_json)
+        # Removing the signature is safe for FEP-8b32 Object Integrity Proofs as per
+        # https://codeberg.org/fediverse/fep/src/branch/main/fep/8b32/fep-8b32.md#backward-compatibility
+        original_json = original_json.without('signature')
+      else
+        @options[:forwardable_json] = @json
+      end
+
+      # Regardless of JSON-LD verification, verify FEP-8b32 Object Integrity Proofs in order
+      # to forward them.
+      actor_from_verified_object_integrity_proof(original_json).tap do |signing_account|
+        @account ||= signing_account
+
+        # Keep the original JSON around (potentially without `signing_account`) to be forwarded
+        # without breaking FEP-8b32 verification
+        @options[:forwardable_json] = original_json if signing_account.present?
+      end
+    elsif original_json['signature'] || original_json['proof']
+      @options[:forwardable_json] = original_json
     end
 
     return if !@account.is_a?(Account) || different_actor? || suspended_actor? || @account.local?
-
-    if @json['signature'].present?
-      # We have verified the signature, but in the compaction step above, might
-      # have introduced incompatibilities with other servers that do not
-      # normalize the JSON-LD documents (for instance, previous Mastodon
-      # versions), so skip redistribution if we can't get a safe document.
-      patch_for_forwarding!(original_json, @json)
-      @json.delete('signature') unless safe_for_forwarding?(original_json, @json)
-    end
 
     activity = ActivityPub::Activity.factory(@json, @account, **@options)
     activity&.perform
