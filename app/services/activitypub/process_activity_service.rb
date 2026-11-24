@@ -70,6 +70,8 @@ class ActivityPub::ProcessActivityService < BaseService
         # without breaking FEP-8b32 verification
         @options[:forwardable_json] = original_json if signing_account.present?
       end
+    elsif original_json['signature'] || original_json['proof']
+      @options[:forwardable_json] = original_json
     end
 
     return if !@account.is_a?(Account) || different_actor? || suspended_actor? || @account.local?

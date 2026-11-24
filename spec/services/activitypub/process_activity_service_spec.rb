@@ -72,6 +72,24 @@ RSpec.describe ActivityPub::ProcessActivityService do
       end
     end
 
+    it 'processes payloadand forwards JSON if signature exists' do
+      payload['signature'] = { 'type' => 'RsaSignature2017' }
+
+      allow(ActivityPub::Activity).to receive(:factory)
+
+      subject.call(json, actor)
+
+      expect(ActivityPub::Activity)
+        .to have_received(:factory)
+        .with(
+          instance_of(Hash),
+          actor,
+          {
+            forwardable_json: payload.deep_stringify_keys,
+          }
+        )
+    end
+
     context 'when actor differs from sender' do
       let(:forwarder) { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/other_account') }
 
