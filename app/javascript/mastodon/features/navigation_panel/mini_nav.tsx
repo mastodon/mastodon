@@ -198,9 +198,7 @@ export const AccountButton: React.FC<AccountButton> = ({
     <MiniNavigationLink
       as='button'
       icon={{
-        customIcon: (
-          <Avatar size={20} account={account} className={classes.avatar} />
-        ),
+        customIcon: <Avatar size={20} account={account} />,
       }}
       {...otherProps}
     >
