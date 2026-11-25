@@ -1,35 +1,24 @@
 @use '@/styles/mastodon/mixins';
 @use '@/styles/mastodon/variables';
 
-.root {
+.modalBackground {
   position: fixed;
-  z-index: 200;
+  z-index: 199;
   inset: 0;
+  background-color: var(--color-bg-overlay);
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
 
-  &[data-fullscreen='true'] {
-    overflow-y: visible;
-  }
-}
-
-.showing {
-  &::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-
+  &.isMobile {
     // Add a backdrop for the mobile composer to cover up the page
     // behind the composer that can be visible on Safari iOS
     background-color: var(--color-bg-primary);
   }
 
-  &[data-fullscreen='false']::before {
-    background-color: var(--color-bg-overlay);
+  &.minimized {
+    pointer-events: none;
+    opacity: 0;
   }
-}
-
-.minimized {
-  pointer-events: none;
 }
 
 .composer,
@@ -38,14 +27,15 @@
   position: fixed;
   box-sizing: border-box;
   pointer-events: auto;
+  z-index: 200;
 
-  [data-fullscreen='false'] & {
+  &[data-fullscreen='false'] {
     max-width: 500px;
   }
 }
 
 .composer {
-  [data-fullscreen='false'] & {
+  &[data-fullscreen='false'] {
     max-width: 500px;
     inset-inline-end: 50%;
     inset-block-end: 50%;
@@ -57,7 +47,7 @@
     }
   }
 
-  [data-fullscreen='true'] & {
+  &[data-fullscreen='true'] {
     .composeForm {
       // Set from the visualViewport API.
       height: var(--viewport-height, 100vh);
@@ -76,8 +66,22 @@
   border-radius: var(--radius-4);
   cursor: pointer;
 
-  [data-fullscreen='false'] & {
+  &[data-fullscreen='false'] {
     max-width: 240px;
+  }
+
+  :global(.no-reduce-motion) &.noTransitions {
+    animation: flash 200ms ease-out;
+  }
+}
+
+@keyframes flash {
+  0% {
+    background-color: var(--color-bg-brand-base);
+  }
+
+  100% {
+    background-color: var(--color-bg-primary);
   }
 }
 
