@@ -154,7 +154,11 @@ export const ComposeButton: React.FC<{
     }
 
     for (const node of nodes) {
-      if (node !== rootRef.current && node instanceof HTMLElement) {
+      if (
+        node !== rootRef.current &&
+        node instanceof HTMLElement &&
+        !node.dataset.noInert
+      ) {
         node.inert = inert;
       }
     }
@@ -167,14 +171,9 @@ export const ComposeButton: React.FC<{
       }
     };
   }, [isShowing]);
-  const handleOverlayClick: React.MouseEventHandler = useCallback(
-    (event) => {
-      if (event.target === rootRef.current) {
-        dispatch(minimizeComposerToggle());
-      }
-    },
-    [dispatch],
-  );
+  const handleOverlayClick = useCallback(() => {
+    dispatch(minimizeComposerToggle());
+  }, [dispatch]);
 
   const { signedIn } = useIdentity();
   if (!signedIn) {
@@ -225,37 +224,28 @@ export const ComposeButton: React.FC<{
   const isFullscreen =
     viewport.height < NARROW_HEIGHT || viewport.width < BREAKPOINTS.openable;
 
-  {
-    /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-  }
   return (
-    <ViewTransition
-      name='COMPOSER'
-      default='none'
-      update={{
-        'composer-expand': 'auto',
-        'composer-minimize': 'auto',
-        default: 'none',
-      }}
-      onUpdate={handleViewTransitionUpdate}
-    >
-      <div
-        className={classNames(
-          classes.root,
-          isMinimized ? classes.minimized : classes.showing,
-        )}
-        style={style}
-        ref={rootRef}
-        data-fullscreen={isFullscreen}
-        onClick={handleOverlayClick}
+    <>
+      {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+      <ViewTransition
+        name='COMPOSER'
+        default='none'
+        update={{
+          'composer-expand': 'auto',
+          'composer-minimize': 'auto',
+          default: 'none',
+        }}
+        onUpdate={handleViewTransitionUpdate}
       >
         <div
+          data-fullscreen={isFullscreen}
+          style={style}
+          ref={rootRef}
           className={classNames(
             isMinimized ? classes.composerMinimized : classes.composer,
           )}
           onClick={handleMinimizedTextClick}
         >
-          {/* eslint-enable */}
           {!isMinimized ? (
             // Disable autofocus for iPad as it causes scrolling.
             <ComposeForm
@@ -266,8 +256,18 @@ export const ComposeButton: React.FC<{
             <ComposeFormHeader />
           )}
         </div>
-      </div>
-    </ViewTransition>
+      </ViewTransition>
+      <div
+        onClick={handleOverlayClick}
+        className={classNames(
+          classes.modalBackground,
+          isFullscreen && classes.isMobile,
+          isMinimized && classes.minimized,
+        )}
+        data-no-inert
+      />
+      {/* eslint-enable */}
+    </>
   );
 };
 
