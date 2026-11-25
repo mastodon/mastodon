@@ -147,7 +147,7 @@ class SwitchingColumnsArea extends PureComponent {
         ?.classList.contains('rtl');
   	  const modifier = isRtlLayout ? -1 : 1;
 
-  	  scrollRight(this.node, (this.node.scrollWidth - window.innerWidth) * modifier);
+  	  scrollRight(this.node, (this.node.scrollWidth - this.node.clientWidth) * modifier);
   	}
   }
 
