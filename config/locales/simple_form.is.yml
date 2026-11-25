@@ -20,6 +20,7 @@ is:
         text: Þú getur notað sömu skilgreiningar og fyrir færslur, svo sem URL-slóðir, myllumerki og tilvísanir
         title: Valkvætt. Ekki sýnilegt viðtakandanum
       admin_account_action:
+        include_rule_violations: Tölvupósturinn mun innihalda hvaða brot á reglum hafi leitt til umsjónaraðgerðinnar
         include_statuses: Notandinn mun sjá hvaða færslur hafa valdið viðbrögðum umsjónarmanns eða aðvörun kerfisins
         send_email_notification: Notandinn mun fá útskýringar á því hvað gerðist með notandaaðganginn hans
         text: Valkvætt. Þú getur notað málskipan færslu. Það mun birtast fyrir neðan staðlaða svarið
@@ -30,7 +31,8 @@ is:
           sensitive: Þvinga fram að öll myndefnisviðhengi þessa notanda verði flögguð sem viðkvæmt efni.
           silence: Koma í veg fyrir að notandinn geti birt færslur opinberlega, fela færslur þeirra og tilkynningar fyrir fólki sem ekki er að fylgjast með notandanum. Lokar öllum kærum gagnvart þessum aðgangi.
           suspend: Koma í veg fyrir öll samskipti til eða frá þessum aðgangi og eyða öllu efni hans. Afturkallanlegt innan 30 daga. Lokar öllum kærum gagnvart þessum aðgangi.
-        warning_preset_html: Valkvætt. Þú getur <a href="%{path}">sýslað með þetta hér</a>
+        warning_preset: Valkvætt. Þú getur ennþá bætt sérsniðnum texta við enda forstillinga
+        warning_preset_explanation: Þú hefur enn ekki vistað nein stöðluð svör. Stöðluð svör eru skilaboð sem þú getur vistað og endurnýtt í kærunum þínum.
       announcement:
         all_day: Þegar merkt er við þetta, munu einungis birtast dagsetningar tímarammans
         ends_at: Valfrjálst. Auglýsing verðut tekin úr birtingu á þessum tíma
@@ -132,6 +134,13 @@ is:
           sign_up_block: Nýskráningar verða ekki mögulegar
           sign_up_requires_approval: Nýskráningar munu þurfa samþykki þitt
         severity: Veldu hvað munir gerast við beiðnir frá þessu IP-vistfangi
+      relay:
+        acct: Á sniðinu notandanafn@lén.
+        direction: Hvernig myndirðu vilja taka þátt í endurvarpanum
+        directions:
+          bidirectional: Útvarpa til endurvarpans og samþykkja efni frá öðrum meðlimum endurvarpans
+          broadcast: Einungis útvarpa til endurvarpans
+        requires_opt_in: Einungis senda efni til endurvarpans fyrir notendur sem sérstaklega skrá sig á þennan endurvarpa
       rule:
         hint: Valkvætt. Gefðu nánari upplýsingar um regluna
         text: Lýstu reglum eða kröfum sem gerðar eru til notenda á þessum netþjóni. Reyndu að hafa þetta skýrt og skorinort
@@ -199,6 +208,8 @@ is:
         text: Texti svars
         title: Titill
       admin_account_action:
+        canned_response_back_link: sýsla með stöðluð svör
+        include_rule_violatins: Hafa með kærð brot á reglum
         include_statuses: Innifela kærðar færslur í tölvupóstinum
         send_email_notification: Láta notanda vita með tölvupósti
         text: Sérsniðið svar
@@ -376,6 +387,13 @@ is:
           none: Aldrei láta vita um uppfærslur (ekki mælt með því)
           patch: Láta vita við uppfærslur með lagfæringum
         trending_tag: Nýtt vinsælt efni krefst yfirferðar
+      relay:
+        acct: Kennislóð endurvarpans
+        direction: Stig þátttöku
+        directions:
+          bidirectional: Báðar áttir
+          broadcast: Einungis útvörpun
+        requires_opt_in: Krefjast að notandi skrái sig
       rule:
         hint: Viðbótarupplýsingar
         text: Regla

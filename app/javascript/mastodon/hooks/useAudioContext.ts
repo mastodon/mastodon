@@ -16,8 +16,12 @@ export const useAudioContext = ({ audioElementRef }: AudioContextOptions) => {
   const audioContextRef = useRef<AudioContext>(null);
   const sourceRef = useRef<MediaElementAudioSourceNode>(null);
   const gainNodeRef = useRef<GainNode>(null);
+  const cleanupTimeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
+    clearTimeout(cleanupTimeoutRef.current);
+    cleanupTimeoutRef.current = undefined;
+
     if (!audioElementRef.current || typeof AudioContext === 'undefined') {
       return;
     }
@@ -27,7 +31,7 @@ export const useAudioContext = ({ audioElementRef }: AudioContextOptions) => {
       sourceRef.current ??
       context.createMediaElementSource(audioElementRef.current);
 
-    const gainNode = context.createGain();
+    const gainNode = gainNodeRef.current ?? context.createGain();
     gainNode.connect(context.destination);
     source.connect(gainNode);
 
@@ -36,12 +40,20 @@ export const useAudioContext = ({ audioElementRef }: AudioContextOptions) => {
     sourceRef.current = source;
 
     return () => {
+      source.disconnect(gainNode);
+      gainNode.disconnect();
       if (context.state !== 'closed') {
-        void context.close();
+        void context.suspend();
       }
-      audioContextRef.current = null;
-      gainNodeRef.current = null;
-      sourceRef.current = null;
+      cleanupTimeoutRef.current = setTimeout(() => {
+        if (context.state !== 'closed') {
+          void context.close();
+        }
+        audioContextRef.current = null;
+        gainNodeRef.current = null;
+        sourceRef.current = null;
+        cleanupTimeoutRef.current = undefined;
+      }, 0);
     };
   }, [audioElementRef]);
 

@@ -422,7 +422,7 @@ code {
       margin-bottom: 10px;
       max-width: 100%;
       height: auto;
-      border-radius: var(--avatar-border-radius);
+      border-radius: var(--radius-2);
       background: url('@/images/void.png');
 
       &[src$='missing.png'] {
@@ -1003,29 +1003,6 @@ code {
   padding: 0 25px;
 }
 
-.flash-message-stack {
-  margin-bottom: 30px;
-
-  .flash-message {
-    border-radius: 0;
-    margin-bottom: 0;
-    border-top-width: 0;
-
-    &:first-child {
-      border-radius: 4px 4px 0 0;
-      border-top-width: 1px;
-    }
-
-    &:last-child {
-      border-radius: 0 0 4px 4px;
-
-      &:first-child {
-        border-radius: 4px;
-      }
-    }
-  }
-}
-
 .form-footer {
   margin-top: 30px;
   text-align: center;
@@ -1558,11 +1535,17 @@ code {
   font-size: 14px;
 }
 
-h1 .admin_account_action_type {
-  display: inline;
+.moderation-action-header {
+  h1 {
+    display: inline;
+  }
 
   select#admin_account_action_type.select.optional {
     padding: 7px;
+  }
+
+  div.input.select.optional.admin_account_action_type {
+    display: inline;
   }
 }
 

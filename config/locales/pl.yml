@@ -43,12 +43,19 @@ pl:
     self_follow_error: Nie możesz obserwować swojego konta
   admin:
     account_actions:
-      action: Wykonaj działanie
       already_silenced: To konto zostało już ograniczone.
       already_suspended: To konto zostało już zawieszone.
       notification_title: Powiadomienie użytkownika i wiadomość
       text_box_title: Konsekwencje tego działania
       title: 'Wykonaj działanie moderacyjne na %{acct}:'
+      types:
+        delete: Usuń posty
+        disable: Wyłącz konto
+        mark_as_sensitive: Oznacz posty jako wrażliwe
+        none: Wyślij ostrzeżenie
+        sensitive: Oznacz konto jako wrażliwe
+        silence: Wycisz konto
+        suspend: Zawieś konto
     account_moderation_notes:
       create: Pozostaw notatkę
       created_msg: Pomyślnie dodano notatkę moderacyjną!
@@ -474,6 +481,11 @@ pl:
         many: "<strong>%{count}</strong> oczekujących raportów"
         one: "<strong>%{count}</strong> oczekujące zgłoszenie"
         other: "<strong>%{count}</strong> oczekujących zgłoszeń"
+      pending_server_checks_html:
+        few: <strong>%{count}</strong> aktualne problemy z serwerem. Przejdź na <a href="%{url}">stronę Stan serwera</a>, aby zobaczyć więcej szczegółów.
+        many: <strong>%{count}</strong> aktualnych problemów z serwerem. Przejdź na <a href="%{url}">stronę Stan serwera</a>, aby zobaczyć więcej szczegółów.
+        one: <strong>%{count}</strong> aktualny problem z serwerem. Przejdź na <a href="%{url}">stronę Stan serwera</a>, aby zobaczyć więcej szczegółów.
+        other: <strong>%{count}</strong> aktualnych problemów z serwerem. Przejdź na <a href="%{url}">stronę Stan serwera</a>, aby zobaczyć więcej szczegółów.
       pending_tags_html:
         few: "<strong>%{count}</strong> oczekujące hashtagi"
         many: "<strong>%{count}</strong> oczekujących hashtagów"
@@ -913,14 +925,16 @@ pl:
       title: Relacje %{acct}
     relays:
       add_new: Dodaj nowy
+      bidirectional: Dwukierunkowe
+      broadcast: Rozgłaszanie
       delete: Usuń
       description_html: "<strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznej obserwacji osób z innych serwerów."
       disable: Wyłącz
       disabled: Wyłączony
       enable: Włącz
-      enable_hint: Jeżeli włączone, Twój serwer zasubskrybuje wszystkie publiczne wpisy z tego przekaźnika i zacznie wysyłać tam publiczne wpisy z tego serwera.
       enabled: Włączony
-      inbox_url: Adres przekaźnika
+      opt_in: Zapisz się
+      opt_out: Wypisz się
       pending: Oczekiwanie na przyjęcie przez przekaźnik
       save_and_enable: Zapisz i aktywuj
       setup: Skonfiguruj połączenie z przekaźnikiem
@@ -948,7 +962,7 @@ pl:
         silence_description_html: Konto będzie widoczne tylko dla tych, którzy go już obserwują lub przeglądają ręcznie, poważnie ograniczając jego zasięg. Zawsze można cofnąć. Zamyka wszelkie zgłoszenia dotyczące tego konta.
         suspend_description_html: Konto i cała jego zawartość będą niedostępne i ostatecznie usunięte, a interakcja z nim będzie niemożliwa. Możliwość odwrócenia w ciągu 30 dni. Zamyka wszelkie zgłoszenia dotyczące tego konta.
         warn_description_html: Użyj tego, aby wysłać użytkownikowi ostrzeżenie, nie wywołując żadnego innego działania.
-      actions_description_html: Zdecyduj, jakie działania należy podjąć, aby rozstrzygnąć niniejsze zgłoszenie. Jeśli podejmiesz działania karne przeciwko zgłoszonemu kontowi, zostanie do nich wysłane powiadomienie e-mail, chyba że wybrano kategorię <strong>Spam</strong>.
+      actions_description_html: Zdecyduj, jakie działania należy podjąć, aby rozstrzygnąć niniejsze zgłoszenie. Jeśli podejmiesz działania karne przeciwko zgłoszonemu kontu, będziesz mógł/mogła wybrać co pojawi się w powiadomieniu e-mail, które zostanie do nich wysłane, chyba że wybrano kategorię <strong>Spam</strong>.
       actions_description_remote_html: Zdecyduj, jakie działanie należy podjąć, aby rozwiązać to zgłoszenie. Będzie to miało wpływ jedynie na sposób, w jaki <strong>Twój</strong> serwer komunikuje się z tym kontem zdalnym i obsługuje jego zawartość.
       actions_no_posts: Ten raport nie ma żadnych powiązanych wpisów do usunięcia
       add_to_report: Dodaj więcej do zgłoszenia
@@ -1001,6 +1015,10 @@ pl:
       statuses: Wpisy (%{count})
       statuses_description_html: Obraźliwe treści będą cytowane w komunikacji ze zgłoszonym kontem
       summary:
+        account_action_preamble_html:
+          one: Z raportu <a href="%{report_path}">#%{report}</a> z %{count} wybranym postem
+          other: Z raportu <a href="%{report_path}">#%{report}</a> z %{count} wybranymi postami
+          zero: Z raportu <a href="%{report_path}">#%{report}</a>, bez wybranych postów
         action_preambles:
           delete_html: 'Zamierzasz <strong>usunąć</strong> niektóre posty <strong>@%{acct}</strong>. To spowoduje:'
           disable_html: 'Zamierzasz <strong>zawiesić</strong> konto <strong>@%{acct}</strong>. To spowoduje:'
@@ -2365,9 +2383,11 @@ pl:
     privacy_hint_html: Kontroluj, ile chcesz ujawniać innym. Ludzie odkrywają ciekawe profile i aplikacje przy przeglądaniu cudzych list obserwowanych i tego, z jakich aplikacji publikują posty, ale może wolisz to ukryć.
     reach: Zasięg
     reach_hint_html: Ustaw, czy chcesz dać się odkryć i zaobserwować. Chcesz, żeby twoje wpisy pojawiały się w zakładce "Odkrywaj"? Chcesz, żeby sugerowano twoje konto do obserwacji? Chcesz przyjmować nowych obserwujących automatycznie, czy aprobować ich ręcznie?
+    relays_hint_html: Możesz dodatkowo zapisać się do wstępnie skonfigurowanych przekaźników, które rozpowszechniają Twoje publiczne posty wśród jeszcze szerszej publiczności, w całym fediwersum.
     search: Wyszukiwanie
     search_hint_html: Kontroluj zakres znajdowalności swojego profilu. Chcesz, aby inni mogli znaleźć Cię po Twoich publicznych wpisach? Chcesz, aby Twój profil dało się znaleźć poza Mastodonem podczas przeszukiwania internetu? Pamiętaj, że nie da się zapewnić całkowitego wykluczenia wszystkich publicznie dostępnych informacji z wyszukiwarek.
     title: Prywatność i zasięg
+    view_relays: Zarządzaj swoimi przekaźnikami
   privacy_policy:
     title: Polityka prywatności
   reactions:
@@ -2398,6 +2418,11 @@ pl:
     remove_selected_followers: Usuń zaznaczonych obserwujących
     remove_selected_follows: Przestań obserwować zaznaczonych użytkowników
     status: Stan konta
+  relay_preferences:
+    explanation_html: To są przekaźniki, z którymi %{domain} może się połączyć. <strong>Przekaźniki Fediverse mogą pomóc Twoim publicznym wpisom dotrzeć do szerszej publiczności.</strong> Jeśli zapiszesz się do przekaźnika, Twoje posty <strong>publiczne</strong> będą mu udostępniane, a on może je dalej rozpowszechniać. Inne rodzaje postów nigdy nie są wysyłane do przekaźników.
+    opt_in: Zapisz się, żeby udostępniać
+    relay: Przekaźnik
+    title: Preferencje przekaźnika
   remote_follow:
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
   reports:

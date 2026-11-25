@@ -88,7 +88,7 @@ export const Status: React.FC<StatusProps> = ({
   hidden,
   showActions = true,
   children,
-  withCounters = showStatsInFeed,
+  withCounters = showStatsInFeed ?? true,
   withDismiss,
   onOpen,
   showThread,

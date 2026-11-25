@@ -37,12 +37,19 @@ nl:
     self_follow_error: Het volgen van je eigen account is niet toegestaan
   admin:
     account_actions:
-      action: Actie uitvoeren
       already_silenced: Dit account is al beperkt.
       already_suspended: Dit account is al geschorst.
       notification_title: Gebruikersmelding & Bericht
       text_box_title: Gevolgen van deze actie
       title: 'Moderatiemaatregel uitvoeren op @%{acct}:'
+      types:
+        delete: Berichten verwijderen
+        disable: Account bevriezen
+        mark_as_sensitive: Berichten als gevoelig markeren
+        none: Waarschuwing sturen
+        sensitive: Account als gevoelig marketen
+        silence: Account beperken
+        suspend: Account schorsen
     account_moderation_notes:
       create: Laat een opmerking achter
       created_msg: Aanmaken van opmerking voor moderatoren geslaagd!
@@ -890,14 +897,13 @@ nl:
       title: Volgrelaties van %{acct}
     relays:
       add_new: Nieuwe relayserver toevoegen
+      bidirectional: Bidirectioneel
       delete: Verwijderen
       description_html: Een <strong>federatierelay</strong> is een tussenliggende server die grote hoeveelheden openbare berichten uitwisselt tussen servers die zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers helpen om content van de fediverse te ontdekken</strong>, waarvoor anders lokale gebruikers handmatig mensen van externe servers moeten volgen.
       disable: Uitschakelen
       disabled: Uitgeschakeld
       enable: Inschakelen
-      enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare berichten van deze relayserver abonneren en stuurt het de openbare berichten van jouw server naar de relayserver.
       enabled: Ingeschakeld
-      inbox_url: Relay-URL
       pending: Aan het wachten op goedkeuring van de relayserver
       save_and_enable: Opslaan en inschakelen
       setup: Een verbinding met een relayserver maken
@@ -923,7 +929,7 @@ nl:
         silence_description_html: Het account is alleen zichtbaar voor degenen die het al volgen of handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Dit kan altijd ongedaan worden gemaakt. Dit sluit alle rapporten tegen dit account af.
         suspend_description_html: Het account en de inhoud hiervan is niet meer toegankelijk, en het is ook niet meer mogelijk om ermee interactie te hebben. Uiteindelijk wordt het account volledig verwijderd. Dit is omkeerbaar binnen 30 dagen. Dit sluit alle rapporten tegen dit account af.
         warn_description_html: Gebruik dit om een waarschuwing naar de gebruiker te sturen, zonder dat nog een andere maatregel wordt genomen.
-      actions_description_html: Beslis welke maatregel moet worden genomen om deze rapportage op te lossen. Wanneer je een (straf)maatregel tegen het gerapporteerde account neemt, krijgt het account een e-mailmelding, behalve wanneer de <strong>spam</strong>-categorie is gekozen.
+      actions_description_html: Beslis welke actie je wilt ondernemen om dit rapport op te lossen. Als je een bestraffende maatregel neemt tegen het gerapporteerde account, kun je kiezen wat er in de e-mailmelding verschijnt die naar hen wordt gestuurd, behalve wanneer de categorie <strong>Spam</strong> is geselecteerd.
       actions_description_remote_html: Beslis welke actie moet worden ondernomen om deze rapportage op te lossen. Dit is alleen van invloed op hoe <strong>jouw</strong> server met dit externe account communiceert en de inhoud ervan beheert.
       actions_no_posts: Dit rapport heeft geen bijbehorende berichten om te verwijderen
       add_to_report: Meer aan de rapportage toevoegen
@@ -976,6 +982,10 @@ nl:
       statuses: Berichten (%{count})
       statuses_description_html: De problematische inhoud wordt aan het gerapporteerde account medegedeeld
       summary:
+        account_action_preamble_html:
+          one: Van rapport <a href="%{report_path}">#%{report}</a> met %{count} geselecteerd bericht
+          other: Van rapport <a href="%{report_path}">#%{report}</a> met %{count} geselecteerde berichten
+          zero: Van rapport <a href="%{report_path}">#%{report}</a> zonder geselecteerde berichten
         action_preambles:
           delete_html: 'Je staat op het punt om enkele berichten van <strong>@%{acct}</strong> te <strong>verwijderen</strong>. Dit zal:'
           disable_html: 'Je staat op het punt om account <strong>@%{acct}</strong> <strong>te bevriezen</strong>. Dit kan:'

@@ -20,6 +20,7 @@ it:
         text: Puoi usare la sintassi dei post, come URL, hashtag e menzioni
         title: Opzionale. Non visibile al destinatario
       admin_account_action:
+        include_rule_violations: L'email includerà quali violazioni delle regole hanno causato l'azione di moderazione
         include_statuses: L'utente vedrà quali post hanno causato l'azione di moderazione o l'avviso
         send_email_notification: L'utente riceverà una spiegazione di ciò che è successo con suo account
         text: Opzionale. Puoi usare la sintassi per i post. Apparirà sotto la risposta predefinita
@@ -30,7 +31,8 @@ it:
           sensitive: Forza tutti gli allegati multimediali di questo utente ad essere contrassegnati come sensibili.
           silence: Impedisce all'utente di poter pubblicare con visibilità pubblica, nasconde i suoi post e notifiche a persone che non lo seguono. Chiude tutte le segnalazioni relative a questo account.
           suspend: Impedisce qualsiasi interazione da o verso questo account e cancellarne il contenuto. Annullabile entro 30 giorni. Chiude tutte le segnalazioni contro questo account.
-        warning_preset_html: Opzionale. Puoi <a href="%{path}">gestirli qui</a>
+        warning_preset: Opzionale. Puoi aggiungere un testo personalizzato alla fine di quello preimpostato
+        warning_preset_explanation: Non hai ancora risposte predefinite salvate. Le risposte predefinite sono messaggi che puoi salvare e riutilizzare nelle tue segnalazioni.
       announcement:
         all_day: Se selezionato, verranno visualizzate solo le date dell'intervallo di tempo
         ends_at: Opzionale. L'annuncio verrà automaticamente ritirato in questo momento
@@ -135,6 +137,13 @@ it:
           sign_up_block: Le nuove iscrizioni non saranno possibili
           sign_up_requires_approval: Le nuove iscrizioni richiederanno la tua approvazione
         severity: Scegli cosa accadrà con le richieste da questo IP
+      relay:
+        acct: Nel formato username@dominio.
+        direction: Come vorresti partecipare al server di ritrasmissione
+        directions:
+          bidirectional: Diffondi al server di ritrasmissione e accetta i contenuti da altri membri dello stesso
+          broadcast: Diffondi solo al server di ritrasmissione
+        requires_opt_in: Invia contenuti al server di ritrasmissione esclusivamente per gli utenti che hanno scelto esplicitamente di aderirvi
       rule:
         hint: Opzionale. Fornisce maggiori dettagli sulla regola
         text: Descrivi una regola o un requisito per gli utenti su questo server. Prova a mantenerla breve e semplice
@@ -202,6 +211,8 @@ it:
         text: Testo della risposta
         title: Titolo
       admin_account_action:
+        canned_response_back_link: gestisci le risposte predefinite
+        include_rule_violatins: Includi le violazioni delle regole segnalate
         include_statuses: Includi i toots segnalati nell'email
         send_email_notification: Informa l'utente via email
         text: Risposta personalizzata
@@ -379,6 +390,13 @@ it:
           none: Non notificare mai sugli aggiornamenti (sconsigliato)
           patch: Notifica sulle correzioni di bug
         trending_tag: La nuova tendenza richiede un controllo
+      relay:
+        acct: Nome univoco del server di ritrasmissione
+        direction: Livello di partecipazione
+        directions:
+          bidirectional: Bidirezionale
+          broadcast: Solo diffusione
+        requires_opt_in: Richiedi l'adesione dell'utente
       rule:
         hint: Informazioni aggiuntive
         text: Regola

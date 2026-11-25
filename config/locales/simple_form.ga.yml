@@ -20,6 +20,7 @@ ga:
         text: Is féidir leat comhréir na bpost a úsáid, mar URLanna, hashtags agus lua
         title: Roghnach. Níl sé le feiceáil ag an bhfaighteoir
       admin_account_action:
+        include_rule_violations: Beidh san ríomhphost cén sárú ar rialacha ba chúis leis an ngníomh measarthachta
         include_statuses: Feicfidh an t-úsáideoir cé na poist ba chúis leis an ngníomh modhnóireachta nó leis an rabhadh
         send_email_notification: Gheobhaidh an t-úsáideoir míniú ar an méid a tharla lena chuntas
         text: Roghnach. Is féidir leat comhréir postála a úsáid. Beidh sé le feiceáil faoin bhfreagra réamhullmhaithe
@@ -30,7 +31,8 @@ ga:
           sensitive: Iallach a chur ar cheangaltáin meán an úsáideora seo go léir a bheith íogair.
           silence: Cosc a chur ar an úsáideoir ó bheith in ann postáil le hinfheictheacht phoiblí, a gcuid postálacha agus fógraí a cheilt ar dhaoine nach leanann iad. Dúnann sé gach tuairisc i gcoinne an chuntais seo.
           suspend: Cosc ar aon idirghníomhaíocht ón gcuntas seo nó chuig an gcuntas seo agus scrios a bhfuil ann. Inchúlaithe laistigh de 30 lá. Dúnann sé gach tuairisc i gcoinne an chuntais seo.
-        warning_preset_html: Roghnach. Is féidir leat <a href="%{path}">iad a bhainistiú anseo</a>
+        warning_preset: Roghnach. Is féidir leat téacs saincheaptha a chur le deireadh an réamhshocraithe fós
+        warning_preset_explanation: Níl aon fhreagraí réamhullmhaithe sábháilte agat go fóill. Is teachtaireachtaí iad freagraí réamhullmhaithe ar féidir leat a shábháil agus a athúsáid i do thuairiscí.
       announcement:
         all_day: Nuair a dhéantar iad a sheiceáil, ní thaispeánfar ach dátaí an raon ama
         ends_at: Roghnach. Beidh an fógra neamhfhoilsithe go huathoibríoch ag an am seo
@@ -202,6 +204,8 @@ ga:
         text: Téacs freagartha
         title: Teideal
       admin_account_action:
+        canned_response_back_link: bainistigh freagraí réamhullmhaithe
+        include_rule_violatins: Cuir sáruithe rialacha tuairiscithe san áireamh
         include_statuses: Cuir postálacha tuairiscithe san áireamh sa ríomhphost
         send_email_notification: Cuir an t-úsáideoir ar an eolas trí ríomhphost
         text: Freagra saincheaptha

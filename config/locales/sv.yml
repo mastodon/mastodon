@@ -37,12 +37,19 @@ sv:
     self_follow_error: Det är inte tillåtet att följa ditt eget konto
   admin:
     account_actions:
-      action: Utför åtgärd
       already_silenced: Detta konto är redan begränsat.
       already_suspended: Detta konto är redan avstängt.
       notification_title: Användarnotis & meddelande
       text_box_title: Konsekvenser för denna åtgärd
       title: 'Utför modereringsåtgärd på @%{acct}:'
+      types:
+        delete: Radera inlägg
+        disable: Frys konto
+        mark_as_sensitive: Markera inlägg som känsliga
+        none: Skicka en varning
+        sensitive: Markera kontot som känsligt
+        silence: Begränsa konto
+        suspend: Stäng av konto
     account_moderation_notes:
       create: Lämna kommentar
       created_msg: Modereringsnotering skapad utan problem!
@@ -892,9 +899,7 @@ sv:
       disable: Inaktivera
       disabled: Inaktiverad
       enable: Aktivera
-      enable_hint: Vid aktivering kommer din server börja prenumerera på alla offentliga inlägg från detta ombud, och kommer börja sända denna servers offentliga inlägg till den.
       enabled: Aktivera
-      inbox_url: Ombuds-URL
       pending: Väntar på ombudets godkännande
       save_and_enable: Spara och aktivera
       setup: Konfigurera ett ombud
@@ -915,7 +920,6 @@ sv:
         delete_description_html: De rapporterade inläggen och/eller samlingarna kommer raderas och en markör kommer registreras för att hjälpa dig att eskalera framtida överträdelser från samma konto.
         mark_as_sensitive_description_html: Medierna i de rapporterade inläggen kommer markeras som känsliga och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         resolve_description_html: Ingen åtgärd vidtas mot det rapporterade kontot, ingen prick registreras och rapporten stängs.
-      actions_description_html: Välj vilken åtgärd som skall vidtas för att lösa denna rapport. Om du vidtar en bestraffningsåtgärd mot det rapporterade kontot kommer en e-postnotis att skickas till dem, förutom om du valt kategorin <strong>Skräppost</strong>.
       actions_description_remote_html: Bestäm vilka åtgärder som ska vidtas för att lösa denna rapport. Detta kommer bara att påverka hur <strong>din</strong> server kommunicerar med detta fjärrkonto och hanterar dess innehåll.
       actions_no_posts: Denna rapport har inga associerade inlägg att ta bort
       add_to_report: Lägg till mer i rapporten

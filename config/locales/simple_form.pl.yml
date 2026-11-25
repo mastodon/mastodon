@@ -20,6 +20,7 @@ pl:
         text: Możesz korzystać ze składni której używasz we wpisach, takiej jak adresy URL, hashtagi i wspomnienia
         title: Opcjonalnie. Niewidoczne dla odbiorcy
       admin_account_action:
+        include_rule_violations: E-mail będzie zawierał, które naruszenia zasad spowodowały działanie moderacyjne
         include_statuses: Użytkownik zobaczy, których wpisów dotyczyło działanie moderacji lub ostrzeżenie
         send_email_notification: Użytkownik otrzyma informację, co stało się z jego kontem
         text: Opcjonalne. Możesz korzystać ze składni, której używasz we wpisach. Pojawi się ona poniżej szablonowej odpowiedzi
@@ -30,7 +31,8 @@ pl:
           sensitive: Wymuś oznaczanie wszystkich załączników multimedialnych tego użytkownika jako wrażliwe.
           silence: Uniemożliwia użytkownikowi publikowanie postów z publiczną widocznością, ukrywanie swoich postów i powiadomień od osób nieśledzących ich. Zamyka wszystkie zgłoszenia dotyczące tego konta.
           suspend: Uniemożliwienie wszelkich interakcji z lub na tym koncie oraz usunięcie jego zawartości. Możliwość odwrócenia w ciągu 30 dni. Zamyka wszelkie zgłoszenia dotyczące tego konta.
-        warning_preset_html: Opcjonalne. Możesz <a href="%{path}">zarządzać nimi tutaj</a>
+        warning_preset: Opcjonalne. Możesz dodać własny tekst na końcu szablonu
+        warning_preset_explanation: Nie masz jeszcze zapisanych gotowych odpowiedzi. Gotowe odpowiedzi to wiadomości, które możesz zachować i ponownie użyć w swoich raportach.
       announcement:
         all_day: Jeżeli zaznaczone, tylko daty z przedziału czasu będą wyświetlane
         ends_at: Opcjonalnie. Ogłoszenie zostanie automatycznie wycofane w tym czasie
@@ -132,6 +134,13 @@ pl:
           sign_up_block: Nowe rejestracje nie będą możliwe
           sign_up_requires_approval: Nowe rejestracje będą wymagać twojej zgody
         severity: Wybierz co ma się stać z żadaniami z tego adresu IP
+      relay:
+        acct: W formacie użytkownik@domena.
+        direction: Jak chcesz uczestniczyć w przekaźniku
+        directions:
+          bidirectional: Transmisja do przekaźnika i przyjmowanie treści od innych członków przekaźnika
+          broadcast: Transmisja tylko do przekaźnika
+        requires_opt_in: Wysyłaj zawartość do przekaźnika tylko dla użytkowników, którzy jawnie zapisali się do tego przekaźnika
       rule:
         hint: Opcjonalne. Dodaj więcej szczegółów dot. tej zasady
         text: Opisz wymóg lub regułę dla użytkowników na tym serwerze. Postaraj się, aby była krótka i prosta
@@ -201,6 +210,8 @@ pl:
         text: Treść odpowiedzi
         title: Tytuł
       admin_account_action:
+        canned_response_back_link: zarządzaj gotowymi odpowiedziami
+        include_rule_violatins: Dołącz zgłoszone naruszenia reguł
         include_statuses: Uwzględniaj zgłoszone wpisy w wiadomości e-mail
         send_email_notification: Powiadom użytkownika mailem
         text: Własna odpowiedź
@@ -378,6 +389,13 @@ pl:
           none: Nigdy nie powiadamiaj o aktualizacjach (niezalecane)
           patch: Powiadamiaj o aktualizacjach naprawiających błędy
         trending_tag: Nowe popularne wymagają przeglądu
+      relay:
+        acct: Nazwa przekaźnika
+        direction: Poziom uczestnictwa
+        directions:
+          bidirectional: Dwukierunkowe
+          broadcast: Tylko nadawanie
+        requires_opt_in: Wymaga zapisania się użytkownika
       rule:
         hint: Informacje dodatkowe
         text: Zasada

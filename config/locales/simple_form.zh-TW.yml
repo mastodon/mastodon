@@ -16,10 +16,11 @@ zh-TW:
       account_migration:
         acct: 指定欲移動至帳號之「使用者名稱@網域名稱」
       account_warning_preset:
-        action_category: 請選擇此回應適用之管理動作。若此回應適用多個動作，請選擇「所有動作」。
+        action_category: 請選擇此回應適用之站務動作。若此回應適用多個動作，請選擇「所有動作」。
         text: 您可使用嘟文語法，例如網址、「#」標籤與提及功能
         title: 可選的。不會向收件者顯示
       admin_account_action:
+        include_rule_violations: 電子郵件內容將包含哪些規則違反導致站務動作執行
         include_statuses: 使用者可看到導致檢舉或警告的嘟文
         send_email_notification: 使用者將收到帳號發生之事情的解釋
         text: 可選。您可以使用嘟文語法。它將顯示於罐頭回應之下
@@ -30,7 +31,8 @@ zh-TW:
           sensitive: 強制標記此使用者所有多媒體附加檔案為敏感內容。
           silence: 禁止該使用者發公開嘟文，從無跟隨他們的帳號中隱藏嘟文與通知。關閉所有對此帳號之檢舉報告。
           suspend: 禁止所有對該帳號任何互動，並且刪除其內容。三十天內可以撤銷此動作。關閉所有對此帳號之檢舉報告。
-        warning_preset_html: 可選。您可以<a href="%{path}">於此管理</a>
+        warning_preset: 可選的。您仍可於預設的結尾新增自訂文字
+        warning_preset_explanation: 您尚未有已儲存之罐頭回應。罐頭回應為您報告中可儲存與重複使用之訊息。
       announcement:
         all_day: 當選取時，僅顯示出時間範圍中的日期部分
         ends_at: 可選的。公告會於該時間點自動取消發布
@@ -132,6 +134,13 @@ zh-TW:
           sign_up_block: 無法註冊新帳號
           sign_up_requires_approval: 新註冊申請需要先經過您的審核
         severity: 請選擇將如何處理來自這個 IP 位址的請求
+      relay:
+        acct: 以 username@domain 之格式。
+        direction: 您欲如何參與中繼站
+        directions:
+          bidirectional: 向中繼站廣播，並且接收來自中繼站其他成員之內容
+          broadcast: 僅向中繼站廣播
+        requires_opt_in: 僅將使用者明確選擇加入此中繼站之內容寄送至此中繼站
       rule:
         hint: 可選的。提供關於此規則更多細節
         text: 說明使用者於此伺服器上需遵守的規則或條款。試著維持各項條款簡短而明瞭。
@@ -194,10 +203,12 @@ zh-TW:
       account_migration:
         acct: 新帳號名稱
       account_warning_preset:
-        action_category: 指派管理動作
+        action_category: 指派站務動作
         text: 回應文字
         title: 標題
       admin_account_action:
+        canned_response_back_link: 管理罐頭回應
+        include_rule_violatins: 包含已回報之規則違反
         include_statuses: 於電子郵件中加入檢舉之嘟文內容
         send_email_notification: 透過電子郵件通知使用者
         text: 客製化回應
@@ -363,7 +374,7 @@ zh-TW:
         follow: 當有使用者跟隨您時，傳送電子郵件通知
         follow_request: 當有使用者請求跟隨您時，傳送電子郵件通知
         mention: 當有使用者於嘟文提及您時，傳送電子郵件通知
-        moderation_suggestions: 有可用之自動管理動作建議
+        moderation_suggestions: 有可用之自動站務動作建議
         pending_account: 有新的帳號需要審核
         quote: 當有使用者引用您的嘟文時
         reblog: 當有使用者轉嘟您的嘟文時，傳送電子郵件通知
@@ -375,6 +386,13 @@ zh-TW:
           none: 永不通知更新（不建議）
           patch: 通知錯誤修正更新
         trending_tag: 新熱門趨勢需要審核
+      relay:
+        acct: 中繼站之 handle
+        direction: 參與等級
+        directions:
+          bidirectional: 雙向的
+          broadcast: 僅限廣播
+        requires_opt_in: 要求使用者選擇加入
       rule:
         hint: 其他資訊
         text: 規則

@@ -29,7 +29,6 @@ en-GB:
     self_follow_error: Following your own account is not allowed
   admin:
     account_actions:
-      action: Perform action
       already_silenced: This account has already been limited.
       already_suspended: This account has already been suspended.
     account_moderation_notes:
@@ -668,9 +667,7 @@ en-GB:
       disable: Disable
       disabled: Disabled
       enable: Enable
-      enable_hint: Once enabled, your server will subscribe to all public posts from this relay, and will begin sending this server's public posts to it.
       enabled: Enabled
-      inbox_url: Relay URL
       pending: Waiting for relay's approval
       save_and_enable: Save and enable
       setup: Set up a relay connection
@@ -690,7 +687,6 @@ en-GB:
       actions:
         mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
         resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
-      actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an email notification will be sent to them, except when the <strong>Spam</strong> category is selected.
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handles its content.
       actions_no_posts: This report doesn't have any associated posts to delete
       add_to_report: Add more to report
@@ -742,16 +738,9 @@ en-GB:
       statuses: Posts (%{count})
       statuses_description_html: Offending content will be cited in communication with the reported account
       summary:
-        account_action_preamble_html:
-          one: From report <a href="%{report_path}">#%{report}</a> with %{count} selected post
-          other: From report <a href="%{report_path}">#%{report}</a> with %{count} selected posts
-          zero: From report <a href="%{report_path}">#%{report}</a> with no selected posts
         action_preambles:
           delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
-          disable_html: 'You are about to <strong>freeze</strong> <strong>@%{acct}</strong>''s account. This will:'
           mark_as_sensitive_html: 'You are about to <strong>mark</strong> some of <strong>@%{acct}</strong>''s posts as <strong>sensitive</strong>. This will:'
-          none_html: 'You are about to <strong>warn</strong> <strong>@%{acct}</strong>. This will:'
-          sensitive_html: 'You are about to <strong>mark</strong> <strong>@%{acct}</strong>''s account as <strong>sensitive</strong>. This will:'
           silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
           suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
         actions:

@@ -1,4 +1,13 @@
-import { useCallback, useLayoutEffect, useRef } from 'react';
+import {
+  addTransitionType,
+  startTransition,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  ViewTransition,
+} from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -32,6 +41,18 @@ import classes from './trigger.module.scss';
 
 const NARROW_HEIGHT = 500;
 
+const MINIMIZE: Keyframe[] = [
+  { transform: 'translate(0, 0) scale(1)', opacity: 1, offset: 0 },
+  { opacity: 1, offset: 0.7 },
+  { transform: 'translate(25%, 25%) scale(0.5)', opacity: 0, offset: 1 },
+];
+
+const EXPAND: Keyframe[] = [
+  { transform: 'translate(0, 0) scale(1)', opacity: 1, offset: 0 },
+  { opacity: 1, offset: 0.7 },
+  { transform: 'translate(-50%, -50%) scale(2)', opacity: 0, offset: 1 },
+];
+
 export const ComposeButton: React.FC<{
   /**
    * Render the button in regular document flow instead of fixed positioning for mobile layout
@@ -58,8 +79,48 @@ export const ComposeButton: React.FC<{
     dispatch(minimizeComposerToggle());
   }, [dispatch]);
 
-  const isMinimized = displayState === 'minimized';
   const isShowing = displayState === 'showing';
+
+  const [isMinimized, setMinimized] = useState(displayState === 'minimized');
+  if (displayState === 'hidden' && isMinimized) {
+    setMinimized(false);
+  }
+  useEffect(() => {
+    if (isMinimized !== (displayState === 'minimized')) {
+      startTransition(() => {
+        addTransitionType(
+          displayState === 'showing' ? 'composer-expand' : 'composer-minimize',
+        );
+        setMinimized(!isMinimized);
+      });
+    }
+  }, [displayState, isMinimized]);
+
+  const handleViewTransitionUpdate: NonNullable<
+    React.ViewTransitionProps['onUpdate']
+  > = useCallback(
+    (instance) => {
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        document.body.classList.contains('reduce-motion')
+      ) {
+        return;
+      }
+
+      const animation = document.documentElement.animate(
+        isMinimized ? MINIMIZE : EXPAND,
+        {
+          duration: 100,
+          easing: 'ease-out',
+          pseudoElement: `::view-transition-old(${instance.name})`,
+        },
+      );
+      return () => {
+        animation.cancel();
+      };
+    },
+    [isMinimized],
+  );
 
   const handleMinimizedTextClick: React.MouseEventHandler<HTMLDivElement> =
     useCallback(
@@ -96,7 +157,11 @@ export const ComposeButton: React.FC<{
     }
 
     for (const node of nodes) {
-      if (node !== rootRef.current && node instanceof HTMLElement) {
+      if (
+        node !== rootRef.current &&
+        node instanceof HTMLElement &&
+        !node.dataset.noInert
+      ) {
         node.inert = inert;
       }
     }
@@ -109,14 +174,9 @@ export const ComposeButton: React.FC<{
       }
     };
   }, [isShowing]);
-  const handleOverlayClick: React.MouseEventHandler = useCallback(
-    (event) => {
-      if (event.target === rootRef.current) {
-        dispatch(minimizeComposerToggle());
-      }
-    },
-    [dispatch],
-  );
+  const handleOverlayClick = useCallback(() => {
+    dispatch(minimizeComposerToggle());
+  }, [dispatch]);
 
   const { signedIn } = useIdentity();
   if (!signedIn) {
@@ -167,35 +227,53 @@ export const ComposeButton: React.FC<{
   const isFullscreen =
     viewport.height < NARROW_HEIGHT || viewport.width < BREAKPOINTS.openable;
 
-  {
-    /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-  }
   return (
-    <div
-      className={classNames(
-        classes.root,
-        isMinimized ? classes.minimized : classes.showing,
-      )}
-      style={style}
-      ref={rootRef}
-      data-fullscreen={isFullscreen}
-      onClick={handleOverlayClick}
-    >
-      <div
-        className={classNames(
-          isMinimized ? classes.composerMinimized : classes.composer,
-        )}
-        onClick={handleMinimizedTextClick}
+    <>
+      {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+      <ViewTransition
+        name='COMPOSER'
+        default='none'
+        update={{
+          'composer-expand': 'auto',
+          'composer-minimize': 'auto',
+          default: 'none',
+        }}
+        onUpdate={handleViewTransitionUpdate}
       >
-        {/* eslint-enable */}
-        {!isMinimized ? (
-          // Disable autofocus for iPad as it causes scrolling.
-          <ComposeForm autoFocus={!isIPad()} className={classes.composeForm} />
-        ) : (
-          <ComposeFormHeader />
+        <div
+          data-fullscreen={isFullscreen}
+          style={style}
+          ref={rootRef}
+          className={classNames(
+            isMinimized ? classes.composerMinimized : classes.composer,
+            isMinimized &&
+              typeof document.startViewTransition !== 'function' &&
+              classes.noTransitions,
+          )}
+          onClick={handleMinimizedTextClick}
+        >
+          {!isMinimized ? (
+            // Disable autofocus for iPad as it causes scrolling.
+            <ComposeForm
+              autoFocus={!isIPad()}
+              className={classes.composeForm}
+            />
+          ) : (
+            <ComposeFormHeader />
+          )}
+        </div>
+      </ViewTransition>
+      <div
+        onClick={handleOverlayClick}
+        className={classNames(
+          classes.modalBackground,
+          isFullscreen && classes.isMobile,
+          isMinimized && classes.minimized,
         )}
-      </div>
-    </div>
+        data-no-inert
+      />
+      {/* eslint-enable */}
+    </>
   );
 };
 

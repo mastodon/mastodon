@@ -37,12 +37,19 @@ it:
     self_follow_error: Seguire il tuo stesso profilo non è consentito
   admin:
     account_actions:
-      action: Esegui azione
       already_silenced: Questo account è già stato limitato.
       already_suspended: Questo account è già stato sospeso.
       notification_title: Notifica e messaggio all'utente
       text_box_title: Conseguenze di questa azione
       title: 'Esegui l''azione di moderazione su %{acct}:'
+      types:
+        delete: Elimina i post
+        disable: Congela l'account
+        mark_as_sensitive: Contrassegna i post come sensibili
+        none: Invia un avviso
+        sensitive: Contrassegna l'account come sensibile
+        silence: Limita l'account
+        suspend: Sospendi l'account
     account_moderation_notes:
       create: Lascia una nota
       created_msg: Nota di moderazione creata correttamente!
@@ -890,14 +897,16 @@ it:
       title: Relazioni di %{acct}
     relays:
       add_new: Aggiungi ripetitore
+      bidirectional: Bidirezionale
+      broadcast: Diffusione
       delete: Cancella
       description_html: Un <strong>ripetitore di federazione</strong> è un server che fa da intermediario e scambia grandi quantità di toot pubblici tra server che si collegano e pubblicano su di esso. <strong>Può aiutare server piccoli e medi a ottenere contenuti dal fediverse</strong>, che altrimenti riceverebbero solo se i loro utenti locali seguissero altre persone su server remoti.
       disable: Disabilita
       disabled: Disabilitato
       enable: Abilita
-      enable_hint: Dopo l'attivazione, il vostro server riceverà tutti i toot pubblici da questo ripetitore, e inizierà a inviargli i suoi toot pubblici.
       enabled: Abilitato
-      inbox_url: Url Relay
+      opt_in: Adesione
+      opt_out: Rinuncia
       pending: In attesa dell'approvazione del ripetitore
       save_and_enable: Salva e attiva
       setup: Crea una connessione con un ripetitore
@@ -923,7 +932,7 @@ it:
         silence_description_html: L'account sarà visibile solo a coloro che già lo seguono o lo cercano manualmente, limitandone fortemente la sua visibilità. Questa operazione può essere annullata. Ciò chiude tutte le segnalazioni relative a questo account.
         suspend_description_html: L'account e tutti i suoi contenuti non saranno più accessibili e verranno infine eliminati; non sarà più possibile interagire con esso. Questa operazione è reversibile entro 30 giorni. Ciò chiude tutte le segnalazioni relative a questo account.
         warn_description_html: Utilizza questa opzione per inviare un avviso all'utente, senza attivare alcuna altra azione.
-      actions_description_html: Decidi quale azione intraprendere per risolvere questa segnalazione. Se intraprendi un'azione punitiva nei confronti dell'account segnalato, gli verrà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
+      actions_description_html: Decidi quale azione intraprendere per risolvere questa segnalazione. Se intraprendi un'azione punitiva nei confronti dell'account segnalato, potrai scegliere cosa apparirà nella notifica via email che gli verrà inviata, tranne quando la categoria <strong>Spam</strong> è selezionata.
       actions_description_remote_html: Decide quali azioni intraprendere per risolvere la relazione. Questo influenzerà solo come <strong>il tuo</strong> server comunica con questo account remoto e ne gestisce il contenuto.
       actions_no_posts: Questa segnalazione non ha alcun post associato da eliminare
       add_to_report: Aggiungi altro alla segnalazione
@@ -976,6 +985,10 @@ it:
       statuses: Post (%{count})
       statuses_description_html: Il contenuto offensivo sarà citato nella comunicazione con l'account segnalato
       summary:
+        account_action_preamble_html:
+          one: Dalla segnalazione <a href="%{report_path}">#%{report}</a> con %{count} post selezionato
+          other: Dalla segnalazione <a href="%{report_path}">#%{report}</a> con %{count} post selezionati
+          zero: Dalla segnalazione <a href="%{report_path}">#%{report}</a> senza post selezionati
         action_preambles:
           delete_html: 'Stai per <strong>rimuovere</strong> alcuni post di <strong>@%{acct}</strong>. Questo conseguirà:'
           disable_html: 'Stai per <strong>congelare</strong> l''account di <strong>@%{acct}</strong>. Questo conseguirà:'
@@ -2270,9 +2283,11 @@ it:
     privacy_hint_html: Controlla quanto tu voglia mostrare a beneficio degli altri. Le persone scoprono profili interessanti e app fantastiche sfogliando il seguito di altre persone e vedendo da quali app pubblichino, ma potresti preferire tenerlo nascosto.
     reach: Visibilità
     reach_hint_html: Controlla se vuoi essere scoperto e seguito da nuove persone. Vuoi che i tuoi post vengano visualizzati nella schermata Esplora? Vuoi che altre persone ti vedano tra i loro consigli di utenti da seguire? Vuoi accettare automaticamente tutti i nuovi follower o avere un controllo granulare su ciascuno di essi?
+    relays_hint_html: Puoi inoltre aderire ai server di ritrasmissione preconfigurati che diffondono i tuoi post pubblici a un pubblico ancora più ampio attraverso il fediverso.
     search: Cerca
     search_hint_html: Controlla come vuoi essere trovato. Vuoi che le persone ti trovino in base a ciò che hai postato pubblicamente? Vuoi che le persone al di fuori di Mastodon trovino il tuo profilo durante la ricerca sul web? Si prega di notare che l'esclusione totale da tutti i motori di ricerca non può essere garantita per le informazioni pubbliche.
     title: Privacy e visibilità
+    view_relays: Gestisci i tuoi server di ritrasmissione
   privacy_policy:
     title: Informativa sulla privacy
   reactions:
@@ -2303,6 +2318,11 @@ it:
     remove_selected_followers: Rimuovi i follower selezionati
     remove_selected_follows: Smetti di seguire gli utenti selezionati
     status: Stato dell'account
+  relay_preferences:
+    explanation_html: Questi sono i server di ritrasmissione ai quali %{domain} può connettersi. <strong>I server di ritrasmissione del fediverso possono aiutare i tuoi post pubblici a raggiungere un pubblico più ampio.</strong> Se scegli di collegarti a un server di ritrasmissione, i tuoi post <strong>pubblici</strong> saranno condivisi con esso, che potrà distribuirli ulteriormente. Gli altri tipi di post non vengono mai inviati ai server di ritrasmissione.
+    opt_in: Adesione alla condivisione
+    relay: Server di ritrasmissione
+    title: Preferenze per i server di ritrasmissione
   remote_follow:
     missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
   reports:
