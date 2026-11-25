@@ -1,25 +1,30 @@
 # frozen_string_literal: true
 
 class HashtagNormalizer
-  def normalize(str)
-    remove_invalid_characters(ascii_folding(lowercase(cjk_width(str))))
-  end
+  class << self
+    def normalize(str)
+      cjk_width(str)
+        .then { |value| lowercase(value) }
+        .then { |value| ascii_folding(value) }
+        .then { |value| remove_invalid_characters(value) }
+    end
 
-  private
+    private
 
-  def remove_invalid_characters(str)
-    str.gsub(Tag::HASHTAG_INVALID_CHARS_RE, '')
-  end
+    def remove_invalid_characters(str)
+      str.gsub(Tag::HASHTAG_INVALID_CHARS_RE, '')
+    end
 
-  def ascii_folding(str)
-    ASCIIFolding.new.fold(str)
-  end
+    def ascii_folding(str)
+      ASCIIFolding.new.fold(str)
+    end
 
-  def lowercase(str)
-    str.downcase.to_s
-  end
+    def lowercase(str)
+      str.downcase.to_s
+    end
 
-  def cjk_width(str)
-    str.unicode_normalize(:nfkc)
+    def cjk_width(str)
+      str.unicode_normalize(:nfkc)
+    end
   end
 end

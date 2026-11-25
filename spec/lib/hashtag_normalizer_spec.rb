@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe HashtagNormalizer do
-  subject { described_class.new }
+  subject { described_class }
 
-  describe '#normalize' do
+  describe '.normalize' do
     it 'converts full-width Latin characters into basic Latin characters' do
       expect(subject.normalize('Ｓｙｎｔｈｗａｖｅ')).to eq 'synthwave'
     end
