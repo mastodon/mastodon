@@ -8,6 +8,7 @@ import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import { Button } from '@/mastodon/components/button';
 import {
   ModalActions,
+  ModalBody,
   ModalShell,
   ModalTitle,
 } from '@/mastodon/components/modal_shell/redesign';
@@ -42,11 +43,13 @@ const ComposerModalSwitch: React.FC = () => {
         />
       </ModalTitle>
 
-      <FormattedMessage
-        id='compose.switch_modal.body'
-        defaultMessage='Your message has limited visibility. If you convert to a post, it will switch to your default post visibility.'
-        description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
-      />
+      <ModalBody>
+        <FormattedMessage
+          id='compose.switch_modal.body'
+          defaultMessage='Your message has limited visibility. If you convert to a post, it will switch to your default post visibility.'
+          description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
+        />
+      </ModalBody>
 
       <ModalActions>
         <Button onClick={handleBack}>

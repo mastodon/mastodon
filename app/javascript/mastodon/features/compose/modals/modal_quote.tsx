@@ -10,6 +10,7 @@ import {
   ModalShell,
   ModalActions,
   ModalTitle,
+  ModalBody,
 } from '@/mastodon/components/modal_shell/redesign';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
@@ -46,10 +47,12 @@ const ComposerQuoteAddConfirm: React.FC<{ statusId: string }> = ({
         />
       </ModalTitle>
 
-      <FormattedMessage
-        id='compose.cancel_modal.body'
-        defaultMessage='You have a draft already in progress. What would you like to do?'
-      />
+      <ModalBody>
+        <FormattedMessage
+          id='compose.cancel_modal.body'
+          defaultMessage='You have a draft already in progress. What would you like to do?'
+        />
+      </ModalBody>
 
       <ModalActions align='vertical'>
         <Button variant='solid' onClick={handleAdd}>
