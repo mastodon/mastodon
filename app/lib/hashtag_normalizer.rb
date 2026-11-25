@@ -3,7 +3,7 @@
 class HashtagNormalizer
   class << self
     def normalize(str)
-      cjk_width(str)
+      unicode_normalize(str)
         .then { |value| lowercase(value) }
         .then { |value| ascii_folding(value) }
         .then { |value| remove_invalid_characters(value) }
@@ -23,7 +23,7 @@ class HashtagNormalizer
       str.downcase.to_s
     end
 
-    def cjk_width(str)
+    def unicode_normalize(str)
       str.unicode_normalize(:nfkc)
     end
   end
