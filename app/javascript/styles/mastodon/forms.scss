@@ -1558,11 +1558,17 @@ code {
   font-size: 14px;
 }
 
-h1 .admin_account_action_type {
-  display: inline;
+.moderation-action-header {
+  h1 {
+    display: inline;
+  }
 
   select#admin_account_action_type.select.optional {
     padding: 7px;
+  }
+
+  div.input.select.optional.admin_account_action_type {
+    display: inline;
   }
 }
 
