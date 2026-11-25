@@ -24,7 +24,7 @@ const NotificationSettingsModal: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <ModalShell maxWidth={600}>
+    <ModalShell maxWidth={540}>
       <ModalTitle onClose={handleCloseModal}>
         <FormattedMessage
           id='notifications.settings'
