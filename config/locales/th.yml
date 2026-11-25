@@ -26,7 +26,6 @@ th:
       action: ทำการกระทำ
       already_silenced: มีการจำกัดบัญชีนี้ไปแล้ว
       already_suspended: มีการระงับบัญชีนี้ไปแล้ว
-      title: ทำการกระทำการกลั่นกรองต่อ %{acct}
     account_moderation_notes:
       create: เขียนหมายเหตุ
       created_msg: สร้างหมายเหตุการกลั่นกรองสำเร็จ!
@@ -866,48 +865,6 @@ th:
       appeal_approved: อุทธรณ์แล้ว
       appeal_pending: รอดำเนินการการอุทธรณ์
       appeal_rejected: ปฏิเสธการอุทธรณ์แล้ว
-    system_checks:
-      database_schema_check:
-        message_html: มีการโยกย้ายฐานข้อมูลที่รอดำเนินการ โปรดเรียกใช้การโยกย้ายเหล่านั้นเพื่อให้แน่ใจว่าแอปพลิเคชันทำงานตามที่คาดไว้
-      elasticsearch_health_red:
-        message_html: คลัสเตอร์ Elasticsearch ทำงานได้ไม่ดี (สถานะสีแดง) คุณลักษณะการค้นหาไม่พร้อมใช้งาน
-      elasticsearch_health_yellow:
-        message_html: คลัสเตอร์ Elasticsearch ทำงานได้ไม่ดี (สถานะสีเหลือง) คุณอาจต้องการสืบสวนสาเหตุ
-      elasticsearch_index_mismatch:
-        message_html: การแมปดัชนี Elasticsearch ล้าสมัยแล้ว โปรดเรียกใช้ <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: ดูเอกสารประกอบ
-        message_html: คลัสเตอร์ Elasticsearch ของคุณมีมากกว่าหนึ่งโหนด แต่ไม่ได้กำหนดค่า Mastodon ให้ใช้โหนดเหล่านั้น
-      elasticsearch_preset_single_node:
-        action: ดูเอกสารประกอบ
-        message_html: คลัสเตอร์ Elasticsearch ของคุณมีเพียงหนึ่งโหนดเท่านั้น ควรตั้ง <code>ES_PRESET</code> เป็น <code>single_node_cluster</code>
-      elasticsearch_reset_chewy:
-        message_html: ดัชนีระบบ Elasticsearch ของคุณล้าสมัยแล้วเนื่องจากการเปลี่ยนแปลงการตั้งค่า โปรดเรียกใช้ <code>tootctl search deploy --reset-chewy</code> เพื่ออัปเดตดัชนี
-      elasticsearch_running_check:
-        message_html: ไม่สามารถเชื่อมต่อกับ Elasticsearch โปรดตรวจสอบว่าซอฟต์แวร์กำลังทำงาน หรือปิดใช้งานการค้นหาข้อความแบบเต็ม
-      elasticsearch_version_check:
-        message_html: 'รุ่น Elasticsearch ที่เข้ากันไม่ได้: %{value}'
-        version_comparison: Elasticsearch %{running_version} กำลังทำงานขณะที่ต้องการ %{required_version}
-      rules_check:
-        action: จัดการกฎของเซิร์ฟเวอร์
-        message_html: คุณไม่ได้กำหนดกฎของเซิร์ฟเวอร์ใด ๆ
-      sidekiq_process_check:
-        message_html: ไม่มีกระบวนการ Sidekiq ที่กำลังทำงานสำหรับคิว %{value} โปรดตรวจทานการกำหนดค่า Sidekiq ของคุณ
-      software_version_check:
-        action: ดูการอัปเดตที่พร้อมใช้งาน
-        message_html: มีการอัปเดต Mastodon ที่พร้อมใช้งาน
-      software_version_critical_check:
-        action: ดูการอัปเดตที่พร้อมใช้งาน
-        message_html: มีการอัปเดต Mastodon สำคัญพร้อมใช้งาน โปรดอัปเดตโดยเร็วที่สุดเท่าที่จะเป็นไปได้
-      software_version_patch_check:
-        action: ดูการอัปเดตที่พร้อมใช้งาน
-        message_html: มีการอัปเดต Mastodon ที่แก้ไขข้อบกพร่องที่พร้อมใช้งาน
-      upload_check_privacy_error:
-        action: ตรวจสอบที่นี่สำหรับข้อมูลเพิ่มเติม
-        message_html: "<strong>เว็บเซิร์ฟเวอร์ของคุณกำหนดค่าไม่ถูกต้อง ความเป็นส่วนตัวของผู้ใช้ของคุณตกอยู่ในความเสี่ยง</strong>"
-      upload_check_privacy_error_object_storage:
-        action: ตรวจสอบที่นี่สำหรับข้อมูลเพิ่มเติม
-        message_html: "<strong>ที่เก็บข้อมูลวัตถุของคุณกำหนดค่าไม่ถูกต้อง ความเป็นส่วนตัวของผู้ใช้ของคุณตกอยู่ในความเสี่ยง</strong>"
     tags:
       moderation:
         not_trendable: ไม่สามารถขึ้นแนวโน้มได้

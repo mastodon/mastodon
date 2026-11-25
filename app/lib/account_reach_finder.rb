@@ -47,7 +47,7 @@ class AccountReachFinder
   end
 
   def relay_inboxes
-    Relay.enabled.pluck(:inbox_url)
+    Relay.enabled.for_account(@account.id).pluck(:inbox_url)
   end
 
   def oldest_status_id

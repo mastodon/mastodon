@@ -63,6 +63,10 @@ fa:
         prompt_html: "%{client_name} برای دسترسی به حساب شما اجازه می‌خواهد. <strong>فقط در صورتی این درخواست را تأیید کنید که این منبع را بشناسید و به آن اعتماد دارید.</strong>"
         review_permissions: بازبینی اجازه‌ها
         title: نیاز به اجازه دادن
+      require_reauth:
+        log_out_and_continue: خروج و ادامه
+        prompt_html: به عنوان <strong>%{handle}</strong> وارد شده‌اید؛ ولی برای ادامه باید خارج شوید.
+        title: نیازمند هویت‌سنجی دوباره
       show:
         title: این کد تأیید را رونوشت کرده و در برنامه بگذارید.
     authorized_applications:

@@ -25,7 +25,6 @@ lad:
       action: Realiza aksion
       already_silenced: Este kuento ya tiene sido limitado.
       already_suspended: Este kuento ya tiene sido suspendido.
-      title: Modera %{acct}
     account_moderation_notes:
       create: Kriya nota
       created_msg: Nota de moderasyon kriyada kon sukseso!
@@ -903,48 +902,6 @@ lad:
       appeal_approved: Apelado
       appeal_pending: Apelasyon asperando
       appeal_rejected: Apelasyon refuzada
-    system_checks:
-      database_schema_check:
-        message_html: Ay migrasyones asperando de la baza de datos. Por favor, egzekutalas para asigurarte de ke la aplikasyon fonksiona komo deveria
-      elasticsearch_health_red:
-        message_html: El klaster de Elasticsearch no es sano (estado kolorado), funksyones de bushkeda no estan disponivles
-      elasticsearch_health_yellow:
-        message_html: El klaster de Elasticsearch no es sano (estado amariyo), es posivle ke keras investigar la razon
-      elasticsearch_index_mismatch:
-        message_html: Las mapas de indeksos Elasticsearch estan dezaktualizadas. Por favor, uza <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Ve dokumentasyon
-        message_html: Tu klaster de Elasticsearch tiene mas ke un nodo, ama Mastodon no esta konfigurado para uzarlos.
-      elasticsearch_preset_single_node:
-        action: Ve dokumentasyon
-        message_html: Tu klaster de Elasticsearch solo tyene un nodo, <code>ES_PRESET</code> deve estableserse a <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Tu indekso del sistema Elasticsearch esta dezaktualizado por un trokamyento de konfigurasyon. Por favor uza <code>tootctl search deploy --reset-chewy</code> para aktualizarlo.
-      elasticsearch_running_check:
-        message_html: No se pudo konektar a Elasticsearch. Por favor, averigua ke esta egzekutandose, o dezaktiva la bushkeda de teksto kompleto
-      elasticsearch_version_check:
-        message_html: 'Versyon inkompativle de Elasticsearch: %{value}'
-        version_comparison: Elasticsearch %{running_version} se esta egzekutando ama ay menester de Elasticsearch %{required_version}
-      rules_check:
-        action: Administra reglas del sirvidor
-        message_html: No tienes definido dinguna regla del sirvidor.
-      sidekiq_process_check:
-        message_html: No ay dingun prosedura Sidekiq en egzekusion para la(s) kola(s) %{value}. Por favor, reviza tu konfigurasyon de Sidekiq
-      software_version_check:
-        action: Amostra aktualizasyones desponivles
-        message_html: Una aktualizasyon de Mastodon esta desponivle.
-      software_version_critical_check:
-        action: Amostra aktualizasyones desponivles
-        message_html: Una aktualizasyon kritika de Mastodon esta desponivle. Por favor aktualiza pishin.
-      software_version_patch_check:
-        action: Amostra aktualizasyones desponivles
-        message_html: Una aktualizasyon de Mastodon kon koreksyon de yerros esta desponivle.
-      upload_check_privacy_error:
-        action: Klika aki para mas enformasyon
-        message_html: "<strong>Tu sirvidor de web es mal konfigurado. La privasita de tus utilizadores esta en riziko.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Ve aki para mas enformasyon
-        message_html: "<strong>Tu magazinaje de objektos es mal konfigurado. La privasita de tus utilizadores esta en riziko.</strong>"
     tags:
       moderation:
         not_trendable: No trendavle

@@ -40,7 +40,6 @@ el:
       action: Εκτέλεση ενέργειας
       already_silenced: Αυτός ο λογαριασμός έχει ήδη περιοριστεί.
       already_suspended: Αυτός ο λογαριασμός έχει ήδη ανασταλεί.
-      title: Εκτέλεση ενέργειας συντονισμού στον %{acct}
     account_moderation_notes:
       create: Άφησε σημείωση
       created_msg: Επιτυχής δημιουργία σημειώματος συντονισμού!
@@ -1320,50 +1319,6 @@ el:
       appeal_approved: Έγινε έφεση
       appeal_pending: Έφεση σε εκκρεμότητα
       appeal_rejected: Η έφεση απορρίφθηκε
-    system_checks:
-      database_schema_check:
-        message_html: Υπάρχουν μετακινήσεις βάσεων δεδομένων που εκκρεμούν. Παρακαλώ εκτέλεσέ τες για να βεβαιωθείς ότι η εφαρμογή συμπεριφέρεται όπως αναμένεται
-      elasticsearch_analysis_index_mismatch:
-        message_html: Οι ρυθμίσεις του δείκτη Elasticsearch είναι ξεπερασμένες. Παρακαλώ εκτέλεσε το <code>tootctl search deploy -- only-mapping -- only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Το σύμπλεγμα Elasticsearch δεν είναι υγιές (κόκκινη κατάσταση), μη διαθέσιμες δυνατότητες αναζήτησης
-      elasticsearch_health_yellow:
-        message_html: Το σύμπλεγμα Elasticsearch δεν είναι υγιές (κίτρινη κατάσταση), ίσως θες να διαπιστώσεις την αιτία
-      elasticsearch_index_mismatch:
-        message_html: Οι αντιστοιχήσεις του δείκτη Elasticsearch δεν είναι ενημερωμένες. Παρακαλώ εκτέλεσε το <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Δες το εγχειρίδιο
-        message_html: Το σύμπλεγμα Elasticsearch σου, έχει παραπάνω από ένα κόμβο, το Mastodon δεν είναι ρυθμισμένο για να τους χρησιμοποιεί.
-      elasticsearch_preset_single_node:
-        action: Δες το εγχειρίδιο
-        message_html: Το σύμπλεγμα Elasticsearch σου έχει μόνο ένα κόμβο, το <code>ES_PRESET</code> πρέπει να οριστεί ως <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Ο δείκτης του συστήματος Elasticsearch είναι ξεπερασμένος λόγω μιας αλλαγής ρύθμισης. Παρακαλώ εκτέλεσε <code>tootctl search deploy --reset-chewy</code> για να τον ενημερώσεις.
-      elasticsearch_running_check:
-        message_html: Δεν ήταν δυνατή η σύνδεση στο Elasticsearch. Παρακαλώ έλεγξε ότι εκτελείται ή απενεργοποίησε την αναζήτηση πλήρους κειμένου
-      elasticsearch_version_check:
-        message_html: 'Μη συμβατή έκδοση Elasticsearch: %{value}'
-        version_comparison: Εκτελείται η έκδοση Elasticsearch %{running_version} ενώ απαιτείται %{required_version}
-      rules_check:
-        action: Διαχείριση κανόνων διακομιστή
-        message_html: Δεν έχεις ορίσει κανέναν κανόνα διακομιστή.
-      sidekiq_process_check:
-        message_html: Καμία διεργασία Sidekiq δεν εκτελείται για την ουρά %{value}. Παρακαλώ έλεγξε τη διαμόρφωση του Sidekiq
-      software_version_check:
-        action: Δες τις διαθέσιμες ενημερώσεις
-        message_html: Μια ενημέρωση Mastodon είναι διαθέσιμη.
-      software_version_critical_check:
-        action: Δες τις διαθέσιμες ενημερώσεις
-        message_html: Μια κρίσιμη ενημέρωση του Mastodon είναι διαθέσιμη, παρακαλώ ενήμερωσε το συντομότερο δυνατόν.
-      software_version_patch_check:
-        action: Δες τις διαθέσιμες ενημερώσεις
-        message_html: Μια ενημέρωση διόρθωσης σφαλμάτων του Mastodon είναι διαθέσιμη.
-      upload_check_privacy_error:
-        action: Δες εδώ για περισσότερες πληροφορίες
-        message_html: "<strong>Ο διακομιστής σας δεν έχει ρυθμιστεί σωστά. Το απόρρητο των χρηστών σας κινδυνεύει.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Δες εδώ για περισσότερες πληροφορίες
-        message_html: "<strong>Ο χώρος αποθήκευσης αντικειμένων σου δεν έχει ρυθμιστεί σωστά. Το απόρρητο των χρηστών σου κινδυνεύει.</strong>"
     tags:
       moderation:
         not_trendable: Δε δημιουργεί τάσεις

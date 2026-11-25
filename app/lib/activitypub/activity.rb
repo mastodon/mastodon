@@ -182,7 +182,7 @@ class ActivityPub::Activity
   end
 
   def requested_through_relay?
-    @options[:relayed_through_actor] && Relay.find_by(inbox_url: @options[:relayed_through_actor].inbox_url)&.enabled?
+    @options[:relayed_through_actor] && Relay.may_forward_to_mastodon.find_by(account: @options[:relayed_through_actor])&.enabled?
   end
 
   def reject_payload!

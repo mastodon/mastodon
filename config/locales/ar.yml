@@ -34,7 +34,6 @@ ar:
       action: تنفيذ الإجراء
       already_silenced: هذا الحساب محدود بالفعل.
       already_suspended: هذا الحساب مفصول مسبقاً.
-      title: اتخاذ إجراء إشراف على %{acct}
     account_moderation_notes:
       create: اترك ملاحظة
       created_msg: تم إنشاء ملاحظة الإشراف بنجاح!
@@ -974,50 +973,6 @@ ar:
       appeal_approved: طُعِن فيه
       appeal_pending: طعن قيد المراجعة
       appeal_rejected: رُفض الطعن
-    system_checks:
-      database_schema_check:
-        message_html: هناك عمليات هجرة معلقة لقواعد البيانات. يرجى تشغيلها لضمان تصرف التطبيق كما هو متوقع
-      elasticsearch_analysis_index_mismatch:
-        message_html: إعدادات محلل فهرس Elasticserch قديمة. الرجاء تشغيل<code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: مجموعة Elasticsearch غير صحية (الحالة الحمراء)، ميزات البحث غير متوفرة
-      elasticsearch_health_yellow:
-        message_html: مجموعة Elasticsearch غير صحية (الحالة الصفراء)، قد ترغب في التحقق من السبب
-      elasticsearch_index_mismatch:
-        message_html: تعيينات فِهْرِس Elasticsearch قديمة. الرجاء تشغيل <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: اطّلع على الدليل
-        message_html: تحتوي مجموعة Elasticsearch الخاصة بك على أكثر من عقدة واحدة، ولكن Mastodon لم يُعَدّ لاستخدامها.
-      elasticsearch_preset_single_node:
-        action: اطّلع على الدليل
-        message_html: تحتوي مجموعة Elasticsearch الخاصة بك على عقدة واحدة فقط، ويجب تعيين <code>ES_PRESET</code> على <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: فِهْرِس نظام Elasticsearch الخاص بك قديم بسبب تغيير الإعداد. يرجى تشغيل <code>tootctl search deploy --reset-chewy</code> لتحديثه.
-      elasticsearch_running_check:
-        message_html: تعذر الاتصال بـElasticsearch. الرجاء التحقق من أنه قيد التشغيل، أو تعطيل البحث عن النص الكامل
-      elasticsearch_version_check:
-        message_html: 'إصدار Elasticsearch غير المتوافق: %{value}'
-        version_comparison: يعمل Elasticsearch بإصدار %{running_version} بينما %{required_version} مطلوب
-      rules_check:
-        action: إدارة قواعد الخادم
-        message_html: لم تقم بتحديد أي قواعد خادم.
-      sidekiq_process_check:
-        message_html: لا توجد عملية Sidekiq قيد التشغيل لقائمة الانتظار %{value}. يرجى مراجعة إعدادات Sidekiq الخاصة بك
-      software_version_check:
-        action: الاطلاع على التحديثات المتوفرة
-        message_html: يتوفر تحديث لماستدون.
-      software_version_critical_check:
-        action: الاطلاع على التحديثات المتوفرة
-        message_html: هناك تحديث هام لماستدون، يرجى التحديث في أسرع وقت ممكن.
-      software_version_patch_check:
-        action: الاطلاع على التحديثات المتوفرة
-        message_html: هناك تحديث ماستدون متوفر لتصحيح الأخطاء.
-      upload_check_privacy_error:
-        action: تحقق هنا للمزيد من المعلومات
-        message_html: إعدادات <strong>خادم الويب الخاص بكم ليست على ما يرام. خصوصية مستخدميكم في خطر.</strong>
-      upload_check_privacy_error_object_storage:
-        action: تحقق هنا للمزيد من المعلومات
-        message_html: "<strong>تم تكوين مخزن الكائنات الخاص بك بشكل خاطئ. خصوصية المستخدمين في خطر.</strong>"
     tags:
       moderation:
         not_trendable: لا يمكن أن يصبح رائج

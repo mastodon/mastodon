@@ -3,9 +3,6 @@
 class REST::ApplicationSerializer < ActiveModel::Serializer
   attributes :id, :name, :website, :scopes, :redirect_uris
 
-  # NOTE: Deprecated in 4.3.0, needs to be removed in 5.0.0
-  attribute :vapid_key
-
   # We should consider this property deprecated for 4.3.0
   attribute :redirect_uri
 
@@ -15,9 +12,5 @@ class REST::ApplicationSerializer < ActiveModel::Serializer
 
   def website
     object.website.presence
-  end
-
-  def vapid_key
-    Rails.configuration.x.vapid.public_key
   end
 end

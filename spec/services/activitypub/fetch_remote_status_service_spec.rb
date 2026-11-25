@@ -320,10 +320,10 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
       context 'with an implicit update to quoting policy' do
         let(:object) do
           note.merge({
-            'content' => existing_status.text,
-            'interactionPolicy' => {
-              'canQuote' => {
-                'automaticApproval' => ['https://www.w3.org/ns/activitystreams#Public'],
+            content: existing_status.text,
+            interactionPolicy: {
+              canQuote: {
+                automaticApproval: ['https://www.w3.org/ns/activitystreams#Public'],
               },
             },
           })

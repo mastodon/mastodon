@@ -8,7 +8,7 @@ class ActivityPub::Forwarder
   end
 
   def forwardable?
-    @json['signature'].present? && @status.distributable?
+    (@json['signature'].present? || @json['proof'].present?) && @status.distributable?
   end
 
   def forward!

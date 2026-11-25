@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import IconLogo from '@/images/logo-symbol-icon.svg?react';
 import { accountFactoryImmutable } from '@/testing/factories';
 
 import { NavigationPanel } from '.';
@@ -18,10 +17,6 @@ const meta = {
         }}
       >
         <NavigationPanel {...args} />
-        <div inert aria-hidden='true' className='logo-resources'>
-          {/* In our web app, this icon is embedded server-side */}
-          <IconLogo />
-        </div>
       </div>
     );
   },

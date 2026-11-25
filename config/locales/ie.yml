@@ -23,7 +23,6 @@ ie:
   admin:
     account_actions:
       action: Acter
-      title: Far un moderatori action a %{acct}
     account_moderation_notes:
       create: Scrir un note
       created_msg: Moderatori nota creat successosimen!
@@ -795,45 +794,6 @@ ie:
       appeal_approved: Apellat
       appeal_pending: Apelle pendent
       appeal_rejected: Apelle rejectet
-    system_checks:
-      database_schema_check:
-        message_html: Hay pendent migrationes de database. Ples far les por far cert que li aplication functiona quam expectat
-      elasticsearch_health_red:
-        message_html: Li cluster Elasticsearch es ínsalubri (statu rubi), functiones por serchar ne disponibil
-      elasticsearch_health_yellow:
-        message_html: Li cluster Elasticsearch es ínsalubri (statu yelb); investigar li rason vell esser un bon idé
-      elasticsearch_index_mismatch:
-        message_html: Índex-mappamentes de Elasticsearch es oldijat. Ples executer <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Vider li documentation
-        message_html: Tui cluster Elasticsearch have plu quam un node, ma Mastodon ne es configurat por usar les.
-      elasticsearch_preset_single_node:
-        action: Vider li documentation
-        message_html: Tui cluster Elasticsearch have solmen un node, ples configurar <code>ES_PRESET</code> quam <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Tui sistema-índex por Elasticsearch ha oldijat pro un change de parametres. Ples executer <code>tootctl search deploy --reset-chewy</code> por actualisar it.
-      elasticsearch_running_check:
-        message_html: Ne posset conexer a Elasticsearch. Ples confirmar que it ha esset executet, o desactivar serchada de plen textu
-      elasticsearch_version_check:
-        message_html: 'Version de Elasticsearch íncompatibil: %{value}'
-        version_comparison: Elasticsearch %{running_version} executet ma %{required_version} postulat
-      rules_check:
-        action: Gerer regules de servitor
-        message_html: Tu ancor ne ha definit quelcunc regules de servitor.
-      sidekiq_process_check:
-        message_html: Null processe Sidekiq executet por li caude %{value}(s). Ples reviser tui configuration Sidekiq
-      software_version_critical_check:
-        action: Vider actualisationes disponibil
-        message_html: Un critical actualisation por Mastodon es disposibil, ples actualisar tam rapidmen possibil.
-      software_version_patch_check:
-        action: Vider actualisationes disponibil
-        message_html: Un actualisation por Mastodon quel fixa problemas es disponibil.
-      upload_check_privacy_error:
-        action: Vider ci por plu information
-        message_html: "<strong>Vor web-servitor es misconfigurat. Li privatie de vor usatores es in risca.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Cliccar ci por plu information
-        message_html: "<strong>Vor inmagasinage de objectes es misconfigurat. Li privatie de vor usatores es in risca.</strong>"
     tags:
       review: Statu de revision
       updated_msg: Parametres pri hashtags actualisat successosimen

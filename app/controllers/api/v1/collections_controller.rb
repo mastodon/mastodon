@@ -2,7 +2,6 @@
 
 class Api::V1::CollectionsController < Api::BaseController
   include Authorization
-  include DeprecationConcern
 
   DEFAULT_COLLECTIONS_LIMIT = 40
   MAX_COLLECTIONS_LIMIT = 100
@@ -10,8 +9,6 @@ class Api::V1::CollectionsController < Api::BaseController
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: ValidationErrorFormatter.new(e).as_json }, status: 422
   end
-
-  deprecate_api '2026-06-10', if: :alpha_path?
 
   before_action -> { authorize_if_got_token! :read, :'read:collections' }, only: [:index, :show]
   before_action -> { doorkeeper_authorize! :write, :'write:collections' }, only: [:create, :update, :destroy]
@@ -69,7 +66,7 @@ class Api::V1::CollectionsController < Api::BaseController
   private
 
   def set_account
-    @account = Account.without_requested_deletion.find(params[:account_id])
+    @account = Account.without_suspended.find(params[:account_id])
   end
 
   def set_collections

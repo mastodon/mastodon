@@ -48,7 +48,7 @@ export const MobileNavigation: React.FC = () => {
 
   // Hide the mobile sign-up button if registrations are closed or
   // SSO is used (as there's not much room for a detailed label)
-  const hasSignUpButton = !sso_redirect && !registrationsOpen;
+  const hasSignUpButton = !sso_redirect && registrationsOpen;
 
   const signupUrl = useAppSelector(
     (state) => state.server.server.item?.registrations.url ?? '/auth/sign_up',

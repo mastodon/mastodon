@@ -98,4 +98,13 @@ class Admin::ServerCheck < ApplicationRecord
 
     severity
   end
+
+  # A check is important if it's not ignored, pending and of substancial severity
+  def important?
+    return false if ignored?
+    return false unless pending?
+    return false unless critical? || warning?
+
+    true
+  end
 end

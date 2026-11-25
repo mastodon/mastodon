@@ -196,8 +196,10 @@
 .simple_form .overridden,
 .simple_form .recommended,
 .simple_form .not_recommended {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 4px 6px;
+  gap: 4px;
   cursor: default;
   border-radius: 4px;
   font-size: 12px;
@@ -207,6 +209,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+
+  .icon {
+    width: 12px !important;
+    height: 12px !important;
+    margin: 0 !important;
+  }
 }
 
 .information-badge,

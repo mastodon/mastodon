@@ -5,10 +5,10 @@
   .container-alt
     %header.logo-container
       - if within_authorization_flow?
-        = logo_as_symbol(:wordmark)
+        = logo_as_symbol_wordmark
       - else
         = link_to root_path do
-          = logo_as_symbol(:wordmark)
+          = logo_as_symbol_wordmark
 
     %main.form-container
       = render 'flashes'

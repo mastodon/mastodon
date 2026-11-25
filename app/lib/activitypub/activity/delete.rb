@@ -48,7 +48,8 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
     return if @status.nil?
 
-    forwarder.forward! if forwarder.forwardable?
+    forwarder = ActivityPub::Forwarder.new(@account, @options[:forwardable_json], @status) if @options[:forwardable_json].present?
+    forwarder.forward! if forwarder&.forwardable?
     RemoveStatusService.new.call(@status, redraft: false)
 
     true
@@ -58,7 +59,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
     @quote = Quote.find_by(approval_uri: object_uri, quoted_account: @account, state: [:pending, :accepted])
     return if @quote.nil?
 
-    ActivityPub::Forwarder.new(@account, @json, @quote.status).forward! if @quote.status.present?
+    ActivityPub::Forwarder.new(@account, @options[:forwardable_json], @quote.status).forward! if @quote.status.present?
 
     @quote.reject!
 
@@ -68,10 +69,6 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
   def delete_feature_authorization!
     collection_item = feature_authorization_from_object
     DeleteCollectionItemService.new.call(collection_item, revoke: true)
-  end
-
-  def forwarder
-    @forwarder ||= ActivityPub::Forwarder.new(@account, @json, @status)
   end
 
   def feature_authorization_from_object

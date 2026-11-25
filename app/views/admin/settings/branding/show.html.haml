@@ -73,7 +73,7 @@
           = material_symbol 'delete'
           = t('admin.site_uploads.delete')
 
-  .fields-row
+  .fields-group
     = f.input :landing_page,
               as: :radio_buttons,
               collection: f.object.class::LANDING_PAGE,

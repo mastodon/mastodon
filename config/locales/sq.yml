@@ -40,7 +40,9 @@ sq:
       action: Kryeje veprimin
       already_silenced: Kjo llogari është kufizuar tashmë.
       already_suspended: Kjo llogari është pezulluar tashmë.
-      title: Kryeni veprim moderimi te %{acct}
+      notification_title: Njoftime & Mesazhe Përdoruesi
+      text_box_title: Pasoja të këtij veprimi
+      title: 'Kryeni veprim moderimi mbi @%{acct}:'
     account_moderation_notes:
       create: Lini një shënim
       created_msg: Shënimi i moderimit u krijua me sukses!
@@ -903,12 +905,18 @@ sq:
       summary:
         action_preambles:
           delete_html: 'Ju ndan një hap nga <strong>heqja</strong> e disa postimeve të <strong>@%{acct}</strong>. Kjo do të sjellë:'
+          disable_html: 'Ju ndan një hap nga <strong>ngrirja</strong> e llogarisë së <strong>@%{acct}</strong>. Kjo do të sjellë:'
           mark_as_sensitive_html: 'Ju ndan një hap nga <strong>vënia shenjë</strong> disa postimeve të <strong>@%{acct}</strong> si <strong>me spec</strong>. Kjo do të sjellë:'
+          none_html: 'Ju ndan një hap nga <strong>paralajmërimi</strong> i <strong>@%{acct}</strong>. Kjo do të sjellë:'
+          sensitive_html: 'Ju ndan një hap nga <strong>vënia shenjë</strong> llogarisë nga <strong>@%{acct}</strong> si <strong>me spec</strong>. Kjo do të sjellë:'
           silence_html: 'Ju ndan një hap nga <strong>kufizimi</strong> i llogarisë së <strong>@%{acct}</strong>. Kjo do të sjellë:'
           suspend_html: 'Ju ndan një hap nga <strong>pezullimi</strong> i llogarisë së <strong>@%{acct}</strong>. Kjo do të sjellë:'
         actions:
           delete_html: Hiqi postimet fyese
+          disable_html: Pengoje përdoruesin të përdorë llogarinë e vet, por mos fshi apo fshih lëndë të tij
           mark_as_sensitive_html: Vëru shenjë si me spec mediave të postimeve fyese
+          none_html: Dërgojini përdoruesit një paralajmërim, pa shkaktuar ndonjë veprim tjetër
+          sensitive_html: Bëj që bashkëngjitjeve media të këtij përdoruesi t’u vihet shenjë si me spec
           silence_html: Kufizoje fort shtrirjen e <strong>@%{acct}</strong>, duke e bërë profilin dhe lëndën e tij të dukshme vetëm për persona që e ndjekin tashmë, ose që kërkojnë dorazi për profilin e tij
           suspend_html: Pezulloje <strong>@%{acct}</strong>, duke e bërë profilin dhe lëndën e tij të pahapshme dhe të pamundur ndërveprimin me të
         close_report: 'Vëri shenjë raportimit #%{id} si të zgjidhur'
@@ -1260,50 +1268,6 @@ sq:
       appeal_approved: Apeluar
       appeal_pending: Apelim pezull
       appeal_rejected: Apelimi u hodh poshtë
-    system_checks:
-      database_schema_check:
-        message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
-      elasticsearch_analysis_index_mismatch:
-        message_html: Rregulliemt për analizues treguesi Elasticsearch janë të vjetruara. Ju lutemi, ekzekutoni <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Grupi juaj i instancave Elasticsearch s’është i shëndetshëm (gjendje e verdhë), s’mund të përdoren veçoritë e kërkimit
-      elasticsearch_health_yellow:
-        message_html: Grupi juaj i instancave Elasticsearch s’është i shëndetshëm (gjendje e verdhë), mund të doni të hetoni shkakun
-      elasticsearch_index_mismatch:
-        message_html: Përshoqërimet e treguesit të Elasticsearch-it janë të vjetruara. Ju lutemi, xhironi <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Shihni dokumentimin
-        message_html: Grupi i instancave tuaja Elasticsearch ka më shumë se një nyjë, por Mastodon-i s’është formësuar t’i përdorë ato.
-      elasticsearch_preset_single_node:
-        action: Shihni dokumentimin
-        message_html: Grupi i instancave tuaja Elasticsearch ka vetëm një nyjë, <code>ES_PRESET</code> i duhet dhënë vlera <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Treguesi juaj i sistemit Elasticsearch është i vjetruar, për shkak të një ndryshimi rregullimesh. Për ta përditësuar, ju lutemi, xhironi <code>tootctl search deploy --reset-chewy</code>.
-      elasticsearch_running_check:
-        message_html: S’u lidh dot me Elasticsearch. Ju lutemi, kontrolloni nëse ky xhiron, ose çaktivizoni kërkimin në tërë tekstin
-      elasticsearch_version_check:
-        message_html: 'Version Elasticsearch i papërputhshëm: %{value}'
-        version_comparison: Xhiron Elasticsearch %{running_version}, ndërkohë që është i domosdoshëm %{required_version}
-      rules_check:
-        action: Administroni rregulla shërbyesi
-        message_html: S’keni përcaktuar ndonjë rregull shërbyesi.
-      sidekiq_process_check:
-        message_html: S’ka proces Sidekiq në punë për %{value} radhë. Ju lutemi, shqyrtoni formësimin tuaj për Sidekiq-un
-      software_version_check:
-        action: Shihni përditësimet e gatshme
-        message_html: Ka gati një përditësim Mastodon-i.
-      software_version_critical_check:
-        action: Shihni përditësimet e gatshme
-        message_html: Ka të gatshëm një përditësim kritik të Mastodon-it, ju lutemi, përditësojeni sa më shpejt të jetë e mundur.
-      software_version_patch_check:
-        action: Shihni përditësimet e gatshme
-        message_html: Ka të gatshëm një përditësim ndreqjeje të metash Mastodon-i.
-      upload_check_privacy_error:
-        action: Për më tepër hollësi, shihni këtu
-        message_html: "<strong>Shërbyesi juaj është formësuar keq. Privatësia e përdoruesve tuaj është në rrezik.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Për më tepër hollësi, shihni këtu
-        message_html: "<strong>Depozita juaj e objekteve është e formësuar keq. Privatësia e përdoruesve tuaj është në rrezik.</strong>"
     tags:
       moderation:
         not_usable: Të papërdorshme
@@ -1449,6 +1413,8 @@ sq:
       delete: Fshije
       dropdown:
         all_actions: Krejt veprimet
+        delete: Fshije
+        mark_as_sensitive: Vëri shenjë si rezervat
         none: Kujdes
         silence: Kufizoje
         suspend: Pezulloje

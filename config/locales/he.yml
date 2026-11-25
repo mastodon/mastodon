@@ -43,7 +43,9 @@ he:
       action: בצע/י פעולה
       already_silenced: חשבון זה הוגבל זה מכבר.
       already_suspended: חשבון זה הושעה.
-      title: ביצוע פעולות הנהלה על %{acct}
+      notification_title: הודעות למשתמש.ת
+      text_box_title: השלכות פעולה זו
+      title: 'ביצוע פעולות ניהול דיון על @%{acct}:'
     account_moderation_notes:
       create: ליצור
       created_msg: הודעת מנחה נוצרה בהצלחה!
@@ -987,12 +989,18 @@ he:
       summary:
         action_preambles:
           delete_html: 'הפעולה <strong>תמחק</strong> כמה הודעות של חשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+          disable_html: 'הפעולה הבאה <strong>תקפיא</strong> את החשבון <strong>@%{acct}</strong>. השלכות הפעולה יהיו:'
           mark_as_sensitive_html: 'הפעולה הבאה <strong>תסמן</strong> כמה הודעות של חשבון <strong>@%{acct}</strong> כ<strong>רגישות</strong>. תוצאות הפעולה יהיו:'
+          none_html: 'הפעולה הבאה <strong>תזהיר</strong> את החשבון <strong>@%{acct}</strong>. השלכות הפעולה יהיו:'
+          sensitive_html: 'הפעולה הבאה <strong>תסמן</strong> החשבון <strong>@%{acct}</strong> כ<strong>רגיש</strong>. השלכות הפעולה יהיו:'
           silence_html: 'הפעולה הבאה <strong>תגביל</strong> את החשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
           suspend_html: 'הפעולה הבאה <strong>תקפיא</strong> את החשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
         actions:
           delete_html: הסרת ההודעות החורגות
+          disable_html: מנעי מהמשתמש להשתמש בחשבונם, מבלי למחוק או להסתיר את תוכנו
           mark_as_sensitive_html: סימון המדיה בהודעות החורגות כרגיש לצפיה
+          none_html: שליחת אזהרה למשתמש.ת, מבלי לגרור פעולות נוספות
+          sensitive_html: אלצי את כל קבצי המדיה המצורפים על ידי המשתמש להיות מסומנים כרגישים
           silence_html: הגבלה חמורה של תפוצת <strong>@%{acct}</strong> על ידי הפיכת החשבון ותכניו לזמינים רק למי שכבר עוקב אחריו או מי שיחפשו את עמוד הפרופיל שלו ישירות
           suspend_html: הקפאת החשבון <strong>@%{acct}</strong>, הפיכת הפרופיל והתוכן לנסתרים ולא ניתנים לתקשורת
         close_report: 'סימון דיווח #%{id} בתור פתור'
@@ -1363,50 +1371,6 @@ he:
       appeal_approved: עורער
       appeal_pending: בהמתנה לערעור
       appeal_rejected: הערעור נדחה
-    system_checks:
-      database_schema_check:
-        message_html: נדרשות הגירות מבני נתונים. אנא הריצו אותן כדי להבטיח שהיישום מתנהג כצפוי
-      elasticsearch_analysis_index_mismatch:
-        message_html: מאפייני בוחן האינדקס של Elasticsearch אינם עדכניים. יש להריץ <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: אשכול שירותי חיפוש Elasticsearch אינו זמין כעת (מצב אדום), אפשרויות חיפוש אינן זמינות כרגע
-      elasticsearch_health_yellow:
-        message_html: אשכול שירותי חיפוש Elasticsearch אינו כשיר כעת (מצב צהוב), מומלץ לבדוק מה סיבת הבעיה
-      elasticsearch_index_mismatch:
-        message_html: מיפוי האינדקסים של Elasticsearch אינו עדכני. יש להריץ <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: יש לבדוק בתיעוד
-        message_html: אשכול שירותי חיפוש Elasticsearch שלך מכיל יותר משרת אחד, אך מסטודון אינו מכוון לשימוש בכולם.
-      elasticsearch_preset_single_node:
-        action: יש לבדוק בתיעוד
-        message_html: אשכול שירותי חיפוש Elasticsearch שלך מכיל רק שרת אחד, <code>ES_PRESET</code> צריך להכיל את הערך <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: מיפוי האינדקסים של Elasticsearch אינו עדכני עקב שינוי תצורה. יש להריץ <code>tootctl search deploy --reset-chewy</code> כדי לעדכנו.
-      elasticsearch_running_check:
-        message_html: לא ניתן להתחבר לחיפוש אלסטיק. בדקו בבקשה הוא רץ, או בטלו את חיפוש הטקסט המלא
-      elasticsearch_version_check:
-        message_html: 'גרסת חיפוש אלסטיק לא מתאימה: %{value}'
-        version_comparison: גרסת חיפוש אלסטיק %{running_version} רצה בעוד גרסא %{required_version} נדרשת
-      rules_check:
-        action: ניהול כללי שרת
-        message_html: לא הוגדרו שום כללי שרת.
-      sidekiq_process_check:
-        message_html: שום הליכי Sidekiq לא רצים עבור %{value} תור(ות). בחנו בבקשה את הגדרות Sidekiq
-      software_version_check:
-        action: ראו עדכונים זמינים
-        message_html: עדכון מסטודון זמין כעת.
-      software_version_critical_check:
-        action: ראו עדכונים זמינים
-        message_html: יצא עדכון קריטי למסטודון, נא לעדכן את תוכנת מסטודון בהקדם האפשרי.
-      software_version_patch_check:
-        action: ראו עדכונים זמינים
-        message_html: יצא עדכון מסטודון המכיל תיקוני שקצים.
-      upload_check_privacy_error:
-        action: למידע נוסף
-        message_html: "<strong>שרת הווב שלך אינו מכוון כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: למידע נוסף
-        message_html: "<strong>שרות אחסון הענן שלך אינו מוגדר כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
     tags:
       moderation:
         not_trendable: לא מזוהה כאופנתי
@@ -1567,7 +1531,9 @@ he:
       delete: למחוק
       dropdown:
         all_actions: כל הפעולות
+        delete: מחיקה
         disable: הקפאה
+        mark_as_sensitive: סימון כרגיש
         none: אזהרה
         sensitive: סימון כרגיש
         silence: הגבלה

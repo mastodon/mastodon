@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 namespace :settings do
-  resource :profile, only: [:show, :update] do
+  resource :profile, only: [:show] do
     resources :pictures, only: :destroy
   end
 
@@ -64,6 +64,7 @@ namespace :settings do
   resource :migration, only: [:show, :create]
   resource :verification, only: [:show, :update]
   resource :privacy, only: [:show, :update], controller: 'privacy'
+  resource :relay_preferences, only: [:show, :update]
 
   namespace :migration do
     resource :redirect, only: [:new, :create, :destroy]
@@ -71,6 +72,6 @@ namespace :settings do
 
   resources :aliases, only: [:index, :create, :destroy]
   resources :sessions, only: [:destroy]
-  resources :featured_tags, only: [:index, :create, :destroy]
+  resources :featured_tags, only: [:index]
   resources :login_activities, only: [:index]
 end

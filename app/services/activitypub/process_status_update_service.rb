@@ -8,10 +8,11 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   CRAWL_DELAY = 1.minute
   PROCESSING_DELAY = (30.seconds)..(10.minutes)
 
-  def call(status, activity_json, object_json, request_id: nil)
+  def call(status, activity_json, object_json, request_id: nil, forwardable_json: nil)
     raise ArgumentError, 'Status has unsaved changes' if status.changed?
 
     @activity_json             = activity_json
+    @forwardable_json          = forwardable_json
     @json                      = object_json
     @status_parser             = ActivityPub::Parser::StatusParser.new(@json, followers_collection: status.account.followers_url, following_collection: status.account.following_url, actor_uri: ActivityPub::TagManager.instance.uri_for(status.account))
     @uri                       = @status_parser.uri
@@ -471,10 +472,11 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def forward_activity!
-    forwarder.forward! if forwarder.forwardable?
-  end
+    return if @forwardable_json.blank?
 
-  def forwarder
-    @forwarder ||= ActivityPub::Forwarder.new(@account, @activity_json, @status)
+    forwarder = ActivityPub::Forwarder.new(@account, @forwardable_json, @status)
+    return unless forwarder.forwardable?
+
+    forwarder.forward!
   end
 end

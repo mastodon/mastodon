@@ -26,7 +26,6 @@ bg:
       action: Изпълняване на действие
       already_silenced: Този акаунт вече е ограничен.
       already_suspended: Този акаунт вече е спрян.
-      title: Извършване на модериращо действие за %{acct}
     account_moderation_notes:
       create: Оставяне на бележка
       created_msg: Успешно създадена бележка за модерация!
@@ -905,50 +904,6 @@ bg:
       appeal_approved: Обжалвано
       appeal_pending: Чака се обжалването
       appeal_rejected: Отхвърлено обжалване
-    system_checks:
-      database_schema_check:
-        message_html: Има миграции на базата данни, които чакат да бъдат изпълнени. Моля, изпълнете ги, за да осигурите изправността на приложението
-      elasticsearch_analysis_index_mismatch:
-        message_html: Настройките за анализиращия индекс Elasticsearch са остарели. Пуснете <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Клъстерът Elasticsearch е нездрав (червено състояние), функциите за търсене не са налични
-      elasticsearch_health_yellow:
-        message_html: Клъстерът Elasticsearch е нездрав (жълто състояние), може да искате да разследвате причината
-      elasticsearch_index_mismatch:
-        message_html: Речниковите съответствия в Elasticsearch са с изтекла давност. Пуснете <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Преглед на документацията
-        message_html: Вашият клъстер в Elasticsearch има повече от един възел, но Mastodon не е настроен да ги употребява.
-      elasticsearch_preset_single_node:
-        action: Преглед на документацията
-        message_html: Вашият клъстер в Elasticsearch има само един възел, то <code>ES_PRESET</code> би трябвало да се зададе да е <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Вашият системен показател в Elasticsearch е остарял поради промяна на настройката. Пуснете <code>tootctl search deploy --reset-chewy</code>, за да го осъвремените.
-      elasticsearch_running_check:
-        message_html: Не можа да се свърже с Elasticsearch. Проверете дали работи или изключете пълнотекстовото търсене
-      elasticsearch_version_check:
-        message_html: 'Несъвместима версия на Elasticsearch: %{value}'
-        version_comparison: Работи Elasticsearch на %{running_version}, докато се изисква %{required_version}
-      rules_check:
-        action: Управление на правилата на сървъра
-        message_html: Не сте определили никакви правила на сървъра.
-      sidekiq_process_check:
-        message_html: Не работи процес Sidekiq за %{value} опашка/и. Прегледайте настройките си за Sidekiq
-      software_version_check:
-        action: Преглед на наличните обновявания
-        message_html: Налично е обновяване на Mastodon.
-      software_version_critical_check:
-        action: Преглед на наличните обновявания
-        message_html: Налично e критично обновяване на Mastodon. Обновете възможно най-бързо.
-      software_version_patch_check:
-        action: Преглед на наличните обновявания
-        message_html: Налично е обновяване на Mastodon за оправяне на бъговете.
-      upload_check_privacy_error:
-        action: Щракнете тук за повече информация
-        message_html: "<strong>Вашият уеб сървър е погрешно конфигуриран. Поверителността на потребителите ви е изложена на риск.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Щракнете тук за повече информация
-        message_html: "<strong>Вашето съхранение на предмети е погрешно конфигурирано. Поверителността на потребителите ви е изложена на риск.</strong>"
     tags:
       moderation:
         not_trendable: Не изгряващо

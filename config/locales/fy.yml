@@ -26,7 +26,6 @@ fy:
       action: Aksje útfiere
       already_silenced: Dizze account is al beheind.
       already_suspended: Dizze account is al opskort.
-      title: Moderaasjemaatregelen tsjin %{acct} nimme
     account_moderation_notes:
       create: Lit in opmerking efter
       created_msg: Oanmeitsjen fan opmerking foar moderatoaren slagge!
@@ -909,50 +908,6 @@ fy:
       appeal_approved: Beswier yntsjinne
       appeal_pending: Beswier yn behanneling
       appeal_rejected: Beswier ôfwêzen
-    system_checks:
-      database_schema_check:
-        message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearch-yndeksanalysearynstellingen binne ferâldere. Fier <code>tootctl search deploy --only-mapping --only=%{value}</code> út
-      elasticsearch_health_red:
-        message_html: Elasticsearch-cluster is net sûn (reade status), sykfunksjes binne net beskikber
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch-cluster is net sûn (giele status), miskien wolle jo de reden ûndersykje
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch-yndekstawizingen binne ferâldere. Fier <code>tootctl search deploy --only=%{value}</code> út
-      elasticsearch_preset:
-        action: Dokumintaasje besjen
-        message_html: Jo Elasticsearch-cluster hat mear as ien node, mar Mastodon is net konfigurearre om se te brûken.
-      elasticsearch_preset_single_node:
-        action: Dokumintaasje besjen
-        message_html: Jo Elasticsearch-cluster hat mar ien node, <code>ES_PRESET</code> moat ynsteld wurde op <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Jo Elasticsearch-systeemyndeks is ferâldere fanwegen in ynstellingswiziging. Fier <code>tootctl search deploy --reset-chewy</code> út om it by te wurkjen.
-      elasticsearch_running_check:
-        message_html: Koe gjin ferbining meitsje mei Elasticsearch. Kontrolearje dat Elasticsearch útfierd wurdt of skeakelje full-text-sykjen út
-      elasticsearch_version_check:
-        message_html: 'Ynkompatibele Elasticsearch-ferzje: %{value}'
-        version_comparison: Jo brûke Elasticsearch %{running_version}, mar %{required_version} is fereaske
-      rules_check:
-        action: Serverregels beheare
-        message_html: Jo hawwe foar dizze server gjin regels opsteld.
-      sidekiq_process_check:
-        message_html: Der draait gjin Sidekiq-proses foar de wachtrige(n) %{value}. Kontrolearje jo Sidekiq-konfiguraasje
-      software_version_check:
-        action: Beskikbere fernijingen besjen
-        message_html: Der is in Mastodon-fernijing beskikber.
-      software_version_critical_check:
-        action: Beskikbere fernijingen besjen
-        message_html: Der is in kritike fernijing foar Mastodon beskikber. Wurkje sa gau as mooglik by.
-      software_version_patch_check:
-        action: Beskikbere fernijingen besjen
-        message_html: Der is in Mastodon-fernijing foar in bugfix beskikber.
-      upload_check_privacy_error:
-        action: Klik hjir foar mear ynformaasje
-        message_html: "<strong>Jo webserver is ferkeard konfigurearre. De privacy fan jo brûkers is yn gefaar.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Klik hjir foar mear ynformaasje
-        message_html: "<strong>Jo objektûnthâld is ferkeard konfigurearre. De privacy fan jo brûkers is yn gefaar.</strong>"
     tags:
       moderation:
         not_trendable: Net trendber

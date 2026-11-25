@@ -306,7 +306,7 @@ class DeleteAccountService < BaseService
   end
 
   def delivery_inboxes
-    @delivery_inboxes ||= @account.followers.inboxes + Relay.enabled.pluck(:inbox_url)
+    @delivery_inboxes ||= @account.followers.inboxes + Relay.enabled.for_account(@account.id).pluck(:inbox_url)
   end
 
   def low_priority_delivery_inboxes

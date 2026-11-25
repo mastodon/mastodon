@@ -35,6 +35,20 @@ RSpec.describe Fasp::AnnounceTrendWorker do
                           })
   end
 
+  context 'when the status is not public' do
+    let(:status) { Fabricate(:status, visibility: :unlisted) }
+
+    before do
+      Fabricate.times(2, :favourite, status:)
+    end
+
+    it 'does not notify any provider' do
+      subject
+
+      expect(stubbed_request).to_not have_been_made
+    end
+  end
+
   context 'when the configured threshold is met' do
     before do
       Fabricate.times(2, :favourite, status:)

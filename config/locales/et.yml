@@ -40,7 +40,6 @@ et:
       action: Täida tegevus
       already_silenced: See konto on juba piiratud.
       already_suspended: See konto on juba peatatud.
-      title: Rakenda moderaatori tegevus kasutajale %{acct}
     account_moderation_notes:
       create: Jäta teade
       created_msg: Modereerimisteade edukalt koostatud!
@@ -770,6 +769,8 @@ et:
       search: Otsi
       title: IP-reeglid
     moderation_subscriptions:
+      add_new: Lisa tellimus
+      advisory_action: 'Toiming: %{action}'
       delete: Kustuta
       destroyed_msg: Modereerimise tellimuse kustutamine õnnestus
       last_synced_at: Viimati sünkroonitud
@@ -1008,6 +1009,37 @@ et:
           title: Töötlemata
         warning:
           title: Hoiatused
+      checks:
+        elastic_search:
+          pending:
+            title: Elasticsearchiga on seotud paar probleemi
+          running:
+            title: Veebiserver kontrollib Elasticsearchi seadistusi
+          unprocessed:
+            title: Veebiserver pole Elasticsearchi seadistusi veel kontrollinud
+        media_privacy:
+          pending:
+            lead:
+              upload_check_privacy_error_html: Sinu veebiserver on valesti seadistatud
+        software_version:
+          pending:
+            lead:
+              regular_html: Saadaval on uus Mastodoni versioon
+              urgent_html: Saadaval on Mastodoni kriitiline uuendus, palun uuenda nii kiiresti kui võimalik
+            title: Sinu Mastodoni serveri uuendus
+          running:
+            title: Server kontrollib, kas mõni tarkvarauuendus on ootel
+          unprocessed:
+            title: See server pole veel kontrollinud tarkvarauuenduste olekuid
+      ignore:
+        label: Eira
+      lead: Soovitused, kuidas saad hoida oma serverit turvalisena, külalislahkena ja tõhusana.
+      recommendations:
+        title: Soovitused
+      restore:
+        label: Taasta
+      setup:
+        label: Seadista
     settings:
       about:
         manage_rules: Halda serveri reegleid
@@ -1076,6 +1108,10 @@ et:
         warning_hint: Soovitame liitumisel kasutada heakskiitmise nõuet, kui just pole kindel, et modereerijaskond suudab õigeaegselt käsitleda rämpsu ja pahatahtlikke liitumisi.
       security:
         authorized_fetch: Nõua föderatiivse serveripoolset autoriseerimist
+        authorized_fetch_modes:
+          actors: Profiilide ja privaatse sisu jaoks
+          all: Iga päringu jaoks
+          none: Vaid privaatse sisu jaoks
         authorized_fetch_overridden_hint: Sa ei saa hetkel seda seadistust muuta, sest see on keskkonnamuutuja poolt alistatud.
         federation_authentication: Föderatiivse autentimise jõustamine
       title: Serveri seaded
@@ -1144,50 +1180,6 @@ et:
       appeal_approved: Vaidlustatud
       appeal_pending: Vaidlustus on ootel
       appeal_rejected: Vaidlustus tagasi lükatud
-    system_checks:
-      database_schema_check:
-        message_html: On ootel andmebaasi migreerimisi. Rakenduse ootuspäraseks toimimiseks palun käivita need
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearchi indeksite analüüsija seadistused on vananenud. Palun käivita <code>tootctl search deploy --only-mapping=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Elasticsearch klaster on ebaterve (punane staatus), otsingufunktsioonid ei ole saadaval
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch klaster on ebaterve (kollane staatus), võiksid uurida põhjust
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearchi indeksite kaardistused on vananenud. Palun käivita <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Vaata dokumentatsiooni
-        message_html: Elasticsearchi klastris on rohkem kui üks sõlme, kuid Mastodon ei ole nende kasutamiseks konfigureeritud.
-      elasticsearch_preset_single_node:
-        action: Vaata dokumentatsiooni
-        message_html: Elasticsearchi klastris on ainult üks sõlm <code>ES_PRESET</code> peaks olema seatud väärtusele <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Elasticsearchi süsteemiindeks on seadistuse muutumise tõttu vananenud. Palun käivita <code>tootctl search deploy --reset-chewy</code> selle uuendamiseks.
-      elasticsearch_running_check:
-        message_html: Elasticsearch ei vasta. Kontrolli, kas see töötab või keela täistekstiotsing
-      elasticsearch_version_check:
-        message_html: 'Elasticsearch versioon ei sobi: %{value}'
-        version_comparison: Elasticsearch %{running_version} töötab, aga nõutud on %{required_version}
-      rules_check:
-        action: Halda serveri reegleid
-        message_html: Serverireegleid pole defineeritud.
-      sidekiq_process_check:
-        message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
-      software_version_check:
-        action: Vaata saadaval uuendusi
-        message_html: Mastodoni uuendus on saadaval.
-      software_version_critical_check:
-        action: Vaata saadaolevaid uuendusi
-        message_html: Saadaval on Mastodoni kriitiline uuendus, uuenda nii kiiresti kui võimalik.
-      software_version_patch_check:
-        action: Vaata saadaolevaid uuendusi
-        message_html: Saadaval on Mastodoni veaparandusuuendus.
-      upload_check_privacy_error:
-        action: Klõpsa lisainfo saamiseks siia
-        message_html: "<strong>Veebiserver on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Klõpsa lisainfo saamiseks siia
-        message_html: "<strong>Objektihoidla on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
     tags:
       moderation:
         not_trendable: Pole trendis
@@ -1340,6 +1332,15 @@ et:
     warning_presets:
       add_new: Lisa uus
       delete: Kustuta
+      dropdown:
+        all_actions: Kõik toimingud
+        delete: Kustuta
+        disable: Külmuta
+        mark_as_sensitive: Märgi delikaatseks
+        none: Hoiatus
+        sensitive: Delikaatne
+        silence: Piira
+        suspend: Peata
     webhooks:
       add_new: Lisa lõpp-punkt
       delete: Kustuta

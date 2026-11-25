@@ -4,9 +4,9 @@
 - content_for :heading_actions do
   = date_range(@time_period)
 
-- unless @system_checks.empty?
-  .flash-message-stack
-    = render collection: @system_checks, partial: 'admin/system_check/messages/message'
+- if @pending_server_checks.positive?
+  .flash-message.warning
+    = t('admin.dashboard.pending_server_checks_html', count: @pending_server_checks, url: admin_server_checks_path)
 
 .dashboard
   .dashboard__item

@@ -26,7 +26,6 @@ io:
       action: Agez
       already_silenced: Ca konto ja limitigesis.
       already_suspended: Ca konto ja blokusesis.
-      title: Agez jero a %{acct}
     account_moderation_notes:
       create: Pozez noto
       created_msg: Jernoto sucesoze kreesis!
@@ -854,46 +853,6 @@ io:
       appeal_approved: Apelis
       appeal_pending: Vartata apelo
       appeal_rejected: Apelo refuzita
-    system_checks:
-      database_schema_check:
-        message_html: Existas vartanta datamaturmigri. Startez por certigar ke la softwaro kondutar quale expektita
-      elasticsearch_health_red:
-        message_html: Elastiksercharo es nekapabla, serchtraiti es nedisponebla
-      elasticsearch_health_yellow:
-        message_html: Elastiksercharo es nekapabla, vu darfas volar inquestar la motivo
-      elasticsearch_preset:
-        action: Videz la dokumentajo
-        message_html: Vua elastiksercharo havas plu kam un nodo, ma Mastodon ne povas uzar ili.
-      elasticsearch_preset_single_node:
-        action: Videz la dokumentajo
-        message_html: Vua elastiksercharo havas nur un nodo, <code>ES_PRESET</code> devas fixesesar ad <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Vua elastikserchsistemindexo esas destildatigita pro preferajchanjo.
-      elasticsearch_running_check:
-        message_html: Ne povas konektas ad Elasticsearch.
-      elasticsearch_version_check:
-        message_html: 'Nekonciliebla versiono di Elasticsearch: %{value}'
-        version_comparison: Elasticsearch %{running_version} funcionas ma %{required_version} bezonesas
-      rules_check:
-        action: Jerez servilreguli
-        message_html: Vu ne fixis irga servilreguli.
-      sidekiq_process_check:
-        message_html: Sidekiq procedo ne funcionas ye %{value} fask(o)
-      software_version_check:
-        action: Vidar disponebla tildatigi
-        message_html: Mastodon-tildatigo es disponebla.
-      software_version_critical_check:
-        action: Videz la aktualigi disponebla
-        message_html: Urjanta Mastodon-aktualigo es disponebla, voluntez aktualigar la servilo tam rapide kam es posibla.
-      software_version_patch_check:
-        action: Videz la aktualigi disponebla
-        message_html: Problemosolvanta Mastodon-aktualigo es disponebla.
-      upload_check_privacy_error:
-        action: Konsultez hike por plu multa informo
-        message_html: "<strong>Vua retservilo es misfigurizita. La privateso di vua uzanti es domajebla.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Konsultez hike por plu multa informo
-        message_html: "<strong>Vua dosierokonservo es misfigurizita. La privateso di vua uzanti es domajebla.</strong>"
     tags:
       moderation:
         not_trendable: Ne popularebla

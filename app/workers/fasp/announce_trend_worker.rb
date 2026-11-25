@@ -5,7 +5,7 @@ class Fasp::AnnounceTrendWorker < Fasp::BaseWorker
 
   def perform(status_id, trend_source)
     status = ::Status.includes(:account).find(status_id)
-    return unless status.account.indexable?
+    return unless status.public_visibility? && status.account.indexable?
 
     Fasp::Subscription.includes(:fasp_provider).active.category_content.trends.each do |subscription|
       with_provider(subscription.fasp_provider) do

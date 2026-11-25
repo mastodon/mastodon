@@ -37,7 +37,9 @@ vi:
       action: Thực hiện hành động
       already_silenced: Tài khoản này đã bị hạn chế.
       already_suspended: Tài khoản này đã bị vô hiệu hóa.
-      title: Áp đặt kiểm duyệt với %{acct}
+      notification_title: Thông báo và Nhắn tin
+      text_box_title: Hậu quả của hành động này
+      title: 'Áp đặt kiểm duyệt với @%{acct}:'
     account_moderation_notes:
       create: Thêm lưu ý
       created_msg: Thêm lưu ý kiểm duyệt thành công!
@@ -451,6 +453,8 @@ vi:
         other: "<strong>%{count}</strong> khiếu nại đang chờ"
       pending_reports_html:
         other: "<strong>%{count}</strong> báo cáo đang chờ"
+      pending_server_checks_html:
+        other: Có <strong>%{count}</strong> vấn đề máy chủ cần giải quyết. Đến trang <a href="%{url}">Sức khỏe Máy chủ</a> để biết thêm chi tiết.
       pending_tags_html:
         other: "<strong>%{count}</strong> hashtag đang chờ"
       pending_users_html:
@@ -959,12 +963,18 @@ vi:
       summary:
         action_preambles:
           delete_html: 'Bạn sắp <strong>xóa</strong> vài tút của <strong>@%{acct}</strong>. Việc này sẽ:'
+          disable_html: 'Bạn sắp <strong>hạn chế tài khoản</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
           mark_as_sensitive_html: 'Bạn sắp <strong>đánh dấu</strong> vài tút của <strong>@%{acct}</strong> là <strong>nhạy cảm</strong>. Việc này sẽ:'
+          none_html: 'Bạn sắp <strong>cảnh báo</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
+          sensitive_html: 'Bạn sắp <strong>đánh dấu tài khoản</strong> <strong>@%{acct}</strong> là <strong>nhạy cảm</strong>. Việc này sẽ:'
           silence_html: 'Bạn sắp <strong>hạn chế</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
           suspend_html: 'Bạn sắp <strong>vô hiệu hóa</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
         actions:
           delete_html: Xóa các tút vi phạm
+          disable_html: Tạm khóa đăng nhập tài khoản, nhưng không xóa hoặc ẩn tút
           mark_as_sensitive_html: Đánh dấu media trong tút vi phạm là nhạy cảm
+          none_html: Cảnh báo người dùng mà không kích hoạt bất kỳ hành động nào khác
+          sensitive_html: Gán nhãn nhạy cảm cho tất cả media của tài khoản này
           silence_html: Hạn chế mức ảnh hưởng của <strong>@%{acct}</strong> bằng cách làm cho trang và nội dung của họ chỉ hiển thị với những người đã theo dõi họ hoặc tìm kiếm theo cách thủ công
           suspend_html: Vô hiệu hóa <strong>@%{acct}</strong>, làm cho trang và nội dung của họ không thể truy cập và không thể tương tác
         close_report: 'Đánh dấu báo cáo #%{id} đã xử lý xong'
@@ -1331,50 +1341,6 @@ vi:
       appeal_approved: Khiếu nại được chấp nhận
       appeal_pending: Đang khiếu nại
       appeal_rejected: Khiếu nại bị từ chối
-    system_checks:
-      database_schema_check:
-        message_html: Có cơ sở dữ liệu đang chờ xử lý. Xin khởi động nó để ứng dụng có thể hoạt động một cách ổn định nhất
-      elasticsearch_analysis_index_mismatch:
-        message_html: Chuẩn đoán chỉ mục Elasticsearch đã lỗi thời. Hãy chạy <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Cụm Elaticsearch không tốt (trạng thái đỏ), tính năng tìm kiếm không khả dụng
-      elasticsearch_health_yellow:
-        message_html: Cụm Elaticsearch không tốt (trạng thái vàng), bạn có thể muốn biết lý do
-      elasticsearch_index_mismatch:
-        message_html: Mapping chỉ mục Elaticsearch đã lỗi thời. Hãy chạy <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Xem tài liệu
-        message_html: Cụm Elaticsearch của bạn có nhiều node nhưng Mastodon không được định cấu hình để sử dụng chúng.
-      elasticsearch_preset_single_node:
-        action: Xem tài liệu
-        message_html: Cụm Elaticsearch của bạn chỉ có một node, <code>ES_PRESET</code> nên đặt thành <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Chỉ mục hệ thống Elaticsearch của bạn đã lỗi thời do thay đổi cài đặt. Hãy chạy <code>tootctl search deploy --reset-chewy</code> để cập nhật.
-      elasticsearch_running_check:
-        message_html: Không thể kết nối Elasticsearch. Hãy kiểm tra xem nó có đang chạy, hay tìm kiếm full-text bị tắt
-      elasticsearch_version_check:
-        message_html: 'Phiên bản Elasticsearch không tương thích: %{value}'
-        version_comparison: Đang dùng Elasticsearch %{running_version} trong khi bắt buộc phải có %{required_version}
-      rules_check:
-        action: Sửa nội quy máy chủ
-        message_html: Bạn chưa cập nhật nội quy máy chủ.
-      sidekiq_process_check:
-        message_html: Sidekiq không hoạt động khi truy vấn %{value}. Hãy kiểm tra lại cấu hình Sidekiq
-      software_version_check:
-        action: Bản cập nhật mới
-        message_html: Có bản cập nhật Mastodon mới.
-      software_version_critical_check:
-        action: Bản cập nhật mới
-        message_html: Có bản cập nhật quan trọng của Mastodon, vui lòng cập nhật nhanh nhất có thể.
-      software_version_patch_check:
-        action: Bản cập nhật mới
-        message_html: Có bản cập nhật sửa lỗi Mastodon.
-      upload_check_privacy_error:
-        action: Nhấn vào đây để biết thêm thông tin
-        message_html: "<strong>Máy chủ web của bạn bị cấu hình sai. Có nguy cơ ảnh hưởng bảo mật của người dùng.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Nhấn vào đây để biết thêm thông tin
-        message_html: "<strong>Lưu trữ đối tượng của bạn bị cấu hình sai. Có nguy cơ ảnh hưởng bảo mật của người dùng.</strong>"
     tags:
       moderation:
         not_trendable: Không xu hướng
@@ -1523,7 +1489,9 @@ vi:
       delete: Xóa bỏ
       dropdown:
         all_actions: Mọi hành động
+        delete: Xóa
         disable: Khóa
+        mark_as_sensitive: Đánh dấu nhạy cảm
         none: Cảnh báo
         sensitive: Nhạy cảm
         silence: Hạn chế

@@ -63,15 +63,6 @@
       }
     }
 
-    .avatar-stack {
-      flex: 0 0 auto;
-      width: (36px + 4px) * 3;
-    }
-
-    &.active .avatar-stack .account__avatar {
-      border-color: var(--color-border-brand);
-    }
-
     .trends__item__current {
       padding-inline-end: 0;
     }
@@ -144,11 +135,6 @@
         color: var(--color-text-brand);
       }
     }
-  }
-
-  &__comment {
-    width: 50%;
-    vertical-align: initial !important;
   }
 
   tbody td.accounts-table__interrelationships {

@@ -40,7 +40,6 @@ pt-PT:
       action: Executar ação
       already_silenced: Esta conta já foi limitada.
       already_suspended: Esta conta já foi suspensa.
-      title: Executar ação de moderação em %{acct}
     account_moderation_notes:
       create: Deixar uma nota
       created_msg: Nota de moderação criada com sucesso!
@@ -1120,50 +1119,6 @@ pt-PT:
       appeal_approved: Contestado
       appeal_pending: Contestação pendente
       appeal_rejected: Contestação rejeitada
-    system_checks:
-      database_schema_check:
-        message_html: Existem migrações de bases de dados pendentes. Execute-as para garantir que a aplicação se comporta como esperado
-      elasticsearch_analysis_index_mismatch:
-        message_html: As definições do analisador de índices do Elasticsearch estão desactualizadas. Por favor, execute <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: O cluster elasticsearch não está de boa saúde (estado vermelho), as funcionalidades de pesquisa não estão disponíveis
-      elasticsearch_health_yellow:
-        message_html: O cluster elasticsearch não está de boa saúde (estado amarelo), pode querer investigar o motivo
-      elasticsearch_index_mismatch:
-        message_html: Os mapeamentos de índice Elasticsearch estão desatualizados. Execute <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Ver a documentação
-        message_html: O seu cluster elasticsearch tem mais de um nó, mas o Mastodon não está configurado para os usar.
-      elasticsearch_preset_single_node:
-        action: Ver documentação
-        message_html: O seu cluster elasticsearch tem apenas um nó, <code>ES_PRESET</code> deve ser configurado para <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: O seu índice de sistema Elasticsearch está desatualizado devido a uma mudança de configuração. Execute <code>tootctl search deploy --reset-chewy</code> para o atualizar.
-      elasticsearch_running_check:
-        message_html: Não foi possível conectar ao Elasticsearch. Verifique se está em execução ou desative a pesquisa de texto completo
-      elasticsearch_version_check:
-        message_html: 'Versão de Elasticsearch incompatível: %{value}'
-        version_comparison: A versão de Elasticsearch %{running_version} está em execução. No entanto, é obrigatória a versão %{required_version}
-      rules_check:
-        action: Gerir regras do servidor
-        message_html: Não definiu nenhuma regra para o servidor.
-      sidekiq_process_check:
-        message_html: Nenhum processo Sidekiq em execução para a(s) fila(s) %{value}. Reveja a configuração do seu Sidekiq
-      software_version_check:
-        action: Ver atualizações disponíveis
-        message_html: Está disponível uma atualização do Mastodon.
-      software_version_critical_check:
-        action: Ver atualizações disponíveis
-        message_html: Está disponível uma atualização crítica do Mastodon. Por favor, atualize assim que possível.
-      software_version_patch_check:
-        action: Ver atualizações disponíveis
-        message_html: Está disponível uma atualização do Mastodon com correções de problemas.
-      upload_check_privacy_error:
-        action: Verifique aqui para mais informações
-        message_html: "<strong>O seu servidor web está mal configurado. A privacidade dos seus utilizadores está em risco.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Verifique aqui para mais informações
-        message_html: "<strong>O seu armazenamento de objetos está mal configurado. A privacidade dos seus utilizadores está em risco.</strong>"
     tags:
       moderation:
         not_trendable: Não pode ser destacado

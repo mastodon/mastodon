@@ -40,7 +40,9 @@ sv:
       action: Utför åtgärd
       already_silenced: Detta konto är redan begränsat.
       already_suspended: Detta konto är redan avstängt.
-      title: Utför aktivitet för moderering på %{acct}
+      notification_title: Användarnotis & meddelande
+      text_box_title: Konsekvenser för denna åtgärd
+      title: 'Utför modereringsåtgärd på @%{acct}:'
     account_moderation_notes:
       create: Lämna kommentar
       created_msg: Modereringsnotering skapad utan problem!
@@ -968,12 +970,18 @@ sv:
       summary:
         action_preambles:
           delete_html: 'Du håller på att <strong>ta bort</strong> några av <strong>@%{acct}</strong>s inlägg. Detta kommer:'
+          disable_html: 'Du är på väg att <strong>frysa</strong> <strong>@%{acct}</strong>s konto. Detta kommer att:'
           mark_as_sensitive_html: 'Du håller på att <strong>markera</strong> några av <strong>@%{acct}</strong>s inlägg som <strong>känsliga</strong>. Detta kommer:'
+          none_html: 'Du är på väg att <strong>varna</strong> <strong>@%{acct}</strong>. Detta kommer att:'
+          sensitive_html: 'Du är på väg att <strong>markera</strong> <strong>@%{acct}</strong>s konto som <strong>känsligt</strong>. Detta kommer att:'
           silence_html: 'Du håller på att <strong>begränsa</strong> <strong>@%{acct}</strong>s konto. Detta kommer:'
           suspend_html: 'Du håller på att <strong>stänga av</strong> <strong>@%{acct}</strong>s konto. Detta kommer:'
         actions:
           delete_html: Ta bort kränkande inlägg
+          disable_html: Förhindra användaren från att använda sitt konto, men kommer inte att ta bort eller dölja deras innehåll
           mark_as_sensitive_html: Markera de anmälda inläggens media som känslig
+          none_html: Skicka en varning till användaren, utan att utlösa någon annan åtgärd
+          sensitive_html: Tvinga alla den här användarens mediebilagor att flaggas som känsliga
           silence_html: Begränsa kraftigt <strong>@%{acct}</strong> räckvidd genom att göra deras profil och innehåll bara synligt till folk som redan följer dom eller som manuellt söker upp deras profil
           suspend_html: Stäng av <strong>@%{acct}</strong>, vilket gör deras profil och innehåll oåtkomligt och omöjligt att interagera med
         close_report: 'Markera anmälningen #%{id} som löst'
@@ -1275,50 +1283,6 @@ sv:
       appeal_approved: Överklagad
       appeal_pending: Överklagande väntar
       appeal_rejected: Överklagan avslagen
-    system_checks:
-      database_schema_check:
-        message_html: Det finns väntande databasmigreringar. Vänligen kör dem för att säkerställa att programmet beter sig som förväntat
-      elasticsearch_analysis_index_mismatch:
-        message_html: Inställningarna för indexanalys med elastisk sökning är inte uppdaterade. Var god kör <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Elasticsearch kluster är ohälsosamt (röd status), sökfunktioner är otillgängliga
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch kluster är ohälsosamt (gul status), du kanske vill undersöka orsaken
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch index mappningar är föråldrade. Vänligen kör <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Se dokumentation
-        message_html: Din Elasticsearch-kluster har mer än en nod, men Mastodon är inte konfigurerad att använda dem.
-      elasticsearch_preset_single_node:
-        action: Se dokumentation
-        message_html: Ditt Elasticsearch-kluster har bara en nod, <code>ES_PRESET</code> borde vara satt till <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Ditt systemindex för Elasticsearch är föråldrat på grund av en inställningsändring. Vänligen kör <code>tootctl search deploy --reset-chewy</code> för att uppdatera det.
-      elasticsearch_running_check:
-        message_html: Kunde inte ansluta till Elasticsearch. Kontrollera att det körs, eller inaktivera fulltextsökning
-      elasticsearch_version_check:
-        message_html: 'Inkompatibel Elasticsearch-version: %{value}'
-        version_comparison: Elasticsearch %{running_version} körs medan %{required_version} krävs
-      rules_check:
-        action: Hantera serverregler
-        message_html: Du har inte definierat några serverregler.
-      sidekiq_process_check:
-        message_html: Ingen Sidekiq-process körs för kön/köerna %{value}. Vänligen kontrollera din Sidekiq-konfiguration
-      software_version_check:
-        action: Se tillgängliga uppdateringar
-        message_html: En Mastodon-uppdatering är tillgänglig.
-      software_version_critical_check:
-        action: Se tillgängliga uppdateringar
-        message_html: En kritisk uppdatering för Mastodon är tillgänglig. Uppdatera så snart som möjligt.
-      software_version_patch_check:
-        action: Se tillgängliga uppdateringar
-        message_html: En buggfix Mastodon-uppdatering är tillgänglig.
-      upload_check_privacy_error:
-        action: Kolla här för mer information
-        message_html: "<strong>Din webbserver är felkonfigurerad. Sekretessen för dina användare är i fara.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Kolla här för mer information
-        message_html: "<strong>Din objektlagring är felkonfigurerad. Sekretessen för dina användare är i riskzonen.</strong>"
     tags:
       moderation:
         not_trendable: Kan inte trenda
@@ -1473,7 +1437,9 @@ sv:
       delete: Radera
       dropdown:
         all_actions: Alla åtgärder
+        delete: Radera
         disable: Frys
+        mark_as_sensitive: Markera som känsligt
         none: Varning
         sensitive: Känsligt
         silence: Begränsa

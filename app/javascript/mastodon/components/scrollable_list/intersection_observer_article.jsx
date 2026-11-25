@@ -52,6 +52,19 @@ export default class IntersectionObserverArticle extends Component {
     this.componentMounted = true;
   }
 
+  getSnapshotBeforeUpdate () {
+    const height = this.getPlaceholderHeight();
+
+    if (height && this.node.style.height !== height) {
+      this.node.style.height = height;
+      this.node.getBoundingClientRect();
+    }
+
+    return null;
+  }
+
+  componentDidUpdate () {}
+
   componentWillUnmount () {
     const { intersectionObserverWrapper, id } = this.props;
     intersectionObserverWrapper.unobserve(id, this.node);
@@ -103,17 +116,28 @@ export default class IntersectionObserverArticle extends Component {
     this.node = node;
   };
 
-  render () {
-    const { children, id, index, listLength, cachedHeight } = this.props;
+  getPlaceholderHeight () {
+    const { cachedHeight } = this.props;
     const { isIntersecting, isHidden } = this.state;
 
-    if (!isIntersecting && (isHidden || cachedHeight)) {
+    if (isIntersecting || !(isHidden || cachedHeight)) {
+      return null;
+    }
+
+    return `${this.height || cachedHeight}px`;
+  }
+
+  render () {
+    const { children, id, index, listLength } = this.props;
+    const height = this.getPlaceholderHeight();
+
+    if (height) {
       return (
         <Article
           ref={this.handleRef}
           aria-posinset={index + 1}
           aria-setsize={listLength}
-          style={{ height: `${this.height || cachedHeight}px`, opacity: 0, overflow: 'hidden' }}
+          style={{ height, opacity: 0, overflow: 'hidden' }}
           data-id={id}
         >
           {children && cloneElement(children, { hidden: true })}

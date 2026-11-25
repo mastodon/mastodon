@@ -62,7 +62,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   gap: 10px;
 
-  @media screen and (width <= 1350px) {
+  @media screen and (width <= $no-gap-breakpoint) {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 

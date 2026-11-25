@@ -40,7 +40,6 @@ eu:
       action: Burutu ekintza
       already_silenced: Kontu hau dagoeneko mugatua izan da.
       already_suspended: Kontu hau dagoeneko kanporatua izan da.
-      title: Burutu moderazio ekintza %{acct} kontuan
     account_moderation_notes:
       create: Sortu oharra
       created_msg: Moderazio oharra ongi sortu da!
@@ -1348,50 +1347,6 @@ eu:
       appeal_approved: Apelatua
       appeal_pending: Apelazioa zain
       appeal_rejected: Apelazioa baztertuta
-    system_checks:
-      database_schema_check:
-        message_html: Aplikatu gabeko datu-basearen migrazioak daude. Exekutatu aplikazioak esperotako portaera izan dezan
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearch indize-analizatzailearen ezarpenak zaharkituta daude. Mesedez, exekutatu <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Elasticsearch-en klusterra ez dago osasuntsu (egoera gorria), bilaketa-eginbideak ez daude erabilgarri
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch-en klusterra ez dago osasuntsu (egoera horia), baliteke arrazoia ikertu nahi izatea
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch indexatze-mapeatzeak zaharkituta daude. Exekutatu <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Ikusi dokumentazioa
-        message_html: Zure Elasticsearch-eko klusterrak nodo bat baino gehiago dauka, baina Mastodonek ezin ditu erabili ez dagoelako horretarako konfiguratuta.
-      elasticsearch_preset_single_node:
-        action: Ikusi dokumentazioa
-        message_html: 'Zure Elasticsearch-eko klusterrak nodo bakarra dauka, hortaz, <code>ES_PRESET</code> balore honetan ezarri beharko zenuke: <code>single_node_cluster</code>.'
-      elasticsearch_reset_chewy:
-        message_html: Zure Elasticsearch indexatze sistematikoa zaharkituta dago ezarpen bat aldatu delako. Eguneratzeko, exekutatu <code>tootctl search deploy --reset-chewy</code>.
-      elasticsearch_running_check:
-        message_html: Ezin izan da Elasticsearch-era konektatu. Egiaztatu martxan dagoela edo desgaitu testu osoko bilaketa
-      elasticsearch_version_check:
-        message_html: 'Elasticsearch bertsio bateraezina: %{value}'
-        version_comparison: Elasticsearch %{running_version} exekutatzen ari da, baina %{required_version} behar da
-      rules_check:
-        action: Kudeatu zerbitzariaren arauak
-        message_html: Ez duzu zerbitzariaren araurik definitu.
-      sidekiq_process_check:
-        message_html: Ez da ari Sidekiq prozesurik exekutatzen %{value} ilad(et)an. Egiaztatu Sidekiq konfigurazioa
-      software_version_check:
-        action: Ikusi eguneraketa eskuragarriak
-        message_html: Mastodon eguneratze bat eskuragarri dago.
-      software_version_critical_check:
-        action: Ikusi eguneraketa eskuragarriak
-        message_html: Mastodon eguneraketa kritikoa eskuragarri, mesedez eguneratu ahal bezain azkar.
-      software_version_patch_check:
-        action: Ikusi eguneraketa eskuragarriak
-        message_html: Mastodon akats konponketa eguneratze bat eskuragarri dago.
-      upload_check_privacy_error:
-        action: Ikus hemen informazio gehiagorako
-        message_html: "<strong>Zure zerbitzaria ez dago ongi konfiguratua. Zure erabiltzaileen pribatutasuna arriskuan dago.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Ikus hemen informazio gehiagorako
-        message_html: "<strong>Zure objektuen biltegiratzea ez dago ongi konfiguratua. Zure erabiltzaileen pribatutasuna arriskuan dago.</strong>"
     tags:
       moderation:
         not_trendable: Ez dago modan

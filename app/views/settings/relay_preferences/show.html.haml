@@ -1,0 +1,30 @@
+- content_for :page_title do
+  = t('relay_preferences.title')
+
+- content_for :heading do
+  %h1= t('relay_preferences.title')
+
+= simple_form_for @batch, url: settings_relay_preferences_path, method: :put do |f|
+  %p.lead= t('relay_preferences.explanation_html', domain: site_hostname)
+
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t 'relay_preferences.relay'
+          %th
+      %tbody
+        - @relays.each do |relay|
+          %tr
+            %td
+              %bdi
+                %strong= relay.display_name
+              %br/
+              = account_bio_format(relay.account)
+            %td.valign-middle
+              %label
+                = f.check_box :relay_ids, { multiple: true }, relay.id
+                = t 'relay_preferences.opt_in'
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

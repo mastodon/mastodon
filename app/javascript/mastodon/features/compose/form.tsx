@@ -9,7 +9,6 @@ import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import {
   closeComposer,
   getComposerTextarea,
-  selectComposerIsChanged,
   submitComposer,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -49,7 +48,6 @@ export const ComposeForm: React.FC<
 
   const { onEmojiPick, onSubmit } = useComposeHandlers({
     redirectOnSuccess,
-    headless,
   });
 
   const titleId = useId();
@@ -104,17 +102,14 @@ const allowedAroundShortCode =
 
 function useComposeHandlers({
   redirectOnSuccess,
-  headless,
 }: {
   redirectOnSuccess?: boolean;
-  headless?: boolean;
 }) {
   const text = useAppSelector((state) => state.compose.get('text') as string);
 
   const dispatch = useAppDispatch();
 
   const isModalOpen = useAppSelector((state) => state.modal.stack.size > 0);
-  const isComposerChanged = useAppSelector(selectComposerIsChanged);
   useEffect(() => {
     function escapeComposer(event: KeyboardEvent) {
       const key = normalizeKey(event.key);
@@ -127,21 +122,11 @@ function useComposeHandlers({
       }
     }
 
-    function closePage(event: BeforeUnloadEvent) {
-      if (isComposerChanged && !headless) {
-        event.preventDefault();
-        return true;
-      }
-      return;
-    }
-
     document.addEventListener('keydown', escapeComposer);
-    window.addEventListener('beforeunload', closePage);
     return () => {
       document.removeEventListener('keydown', escapeComposer);
-      window.removeEventListener('beforeunload', closePage);
     };
-  }, [dispatch, headless, isComposerChanged, isModalOpen]);
+  }, [dispatch, isModalOpen]);
 
   const onEmojiPick: OnEmojiPick = useCallback(
     (emoji) => {

@@ -40,7 +40,9 @@ es-AR:
       action: Ejecutar acción
       already_silenced: Esta cuenta ya fue limitada.
       already_suspended: Esta cuenta ya ha sido suspendida.
-      title: Ejecutar acción de moderación en %{acct}
+      notification_title: Mensaje y notificación de usuario
+      text_box_title: Consecuencias de esta acción
+      title: 'Ejecutar acción de moderación en @%{acct}:'
     account_moderation_notes:
       create: Dejar nota
       created_msg: "¡Nota de moderación creada exitosamente!"
@@ -458,6 +460,9 @@ es-AR:
       pending_reports_html:
         one: "<strong>%{count}</strong> denuncia pendiente"
         other: "<strong>%{count}</strong> denuncias pendientes"
+      pending_server_checks_html:
+        one: Hay <strong>%{count}</strong> problema pendiente con el servidor. Para conocer los detalles, andá a la <a href="%{url}">Página de salud del servidor</a>.
+        other: Hay <strong>%{count}</strong> problemas pendientes con el servidor. Para conocer los detalles, andá a la <a href="%{url}">Página de salud del servidor</a>.
       pending_tags_html:
         one: "<strong>%{count}</strong> etiqueta pendiente"
         other: "<strong>%{count}</strong> etiquetas pendientes"
@@ -973,12 +978,18 @@ es-AR:
       summary:
         action_preambles:
           delete_html: 'Estás a punto de <strong>eliminar</strong> algunos de los mensajes de <strong>@%{acct}</strong>. Esto hará lo siguiente:'
+          disable_html: 'Estás a punto de <strong>suspender</strong> la cuenta de <strong>@%{acct}</strong>. Esto hará lo siguiente:'
           mark_as_sensitive_html: 'Estás a punto de <strong>marcar</strong> algunos de los mensajes de <strong>@%{acct}</strong>como <strong>sensibles</strong>. Esto hará lo siguiente:'
+          none_html: 'Estás a punto de <strong>advertir</strong><strong>@%{acct}</strong>. Esto hará lo siguiente:'
+          sensitive_html: 'Estás a punto de <strong>marcar</strong> la cuenta de <strong>@%{acct}</strong> como <strong>sensible</strong>. Esto hará lo siguiente:'
           silence_html: 'Estás a punto de <strong>limitar</strong> la cuenta de <strong>@%{acct}</strong>. Esto hará lo siguiente:'
           suspend_html: 'Estás a punto de <strong>suspender</strong> la cuenta de <strong>@%{acct}</strong>. Esto hará lo siguiente:'
         actions:
           delete_html: Eliminar los mensajes ofensivos
+          disable_html: Evita que el usuario use su cuenta, pero no elimina ni oculta sus contenidos
           mark_as_sensitive_html: Marcar los mensajes ofensivos como sensibles
+          none_html: Envía una advertencia al usuario, sin activar ninguna otra acción
+          sensitive_html: Fuerza a que todos los archivos adjuntos de medios de este usuario sean marcados como sensibles
           silence_html: Limitar severamente el alcance de <strong>@%{acct}</strong> haciendo que su perfil y contenido solo sean visibles para las personas que ya lo siguen o que busquen manualmente su perfil
           suspend_html: Suspender <strong>@%{acct}</strong>, haciendo su perfil y contenido inaccesibles, e imposibilitando la interacción con la cuenta
         close_report: 'Marcar denuncia #%{id} como resuelta'
@@ -1347,50 +1358,6 @@ es-AR:
       appeal_approved: Apelado
       appeal_pending: Apelación pendiente
       appeal_rejected: Apelación rechazada
-    system_checks:
-      database_schema_check:
-        message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecutalas para asegurarte de que la aplicación funciona según lo esperado
-      elasticsearch_analysis_index_mismatch:
-        message_html: La configuración del analizador de índices Elasticsearch está desactualizada. Por favor, ejecutá <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: El estado del clúster de Elasticsearch no es saludable (estado rojo), las funciones de búsqueda no están disponibles
-      elasticsearch_health_yellow:
-        message_html: El estado del clúster de Elasticsearch no es saludable (estado amarillo), es posible que quieras investigar el motivo
-      elasticsearch_index_mismatch:
-        message_html: Las asignaciones de índices de Elasticsearch están desactualizadas. Por favor, ejecutá <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Ver documentación
-        message_html: Tu clúster de Elasticsearch tiene más de un nodo, pero Mastodon no está configurado para usarlos.
-      elasticsearch_preset_single_node:
-        action: Ver documentación
-        message_html: Tu clúster de Elasticsearch solo tiene un nodo, <code>ES_PRESET</code> debe establecerse a <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Tu sistema de indexado Elasticsearch está desactualizado debido a un cambio de configuración. Ejecutá <code>tootctl search deploy --reset-chewy</code> para actualizarlo.
-      elasticsearch_running_check:
-        message_html: No se pudo conectar a Elasticsearch. Por favor, revisá que se esté ejecutando, o deshabilitá la búsqueda de texto completo
-      elasticsearch_version_check:
-        message_html: 'Versión incompatible de Elasticsearch: %{value}'
-        version_comparison: Se está ejecutando la versión %{running_version} de Elasticsearch, mientras que la versión requerida es la %{required_version}
-      rules_check:
-        action: Administrar reglas del servidor
-        message_html: No definiste ninguna regla del servidor.
-      sidekiq_process_check:
-        message_html: No hay ningún proceso Sidekiq en ejecución para la/s cola/s %{value}. Por favor, revisá tu configuración de Sidekiq
-      software_version_check:
-        action: Ver actualizaciones disponibles
-        message_html: Hay disponible una actualización de Mastodon.
-      software_version_critical_check:
-        action: Ver actualizaciones disponibles
-        message_html: Una actualización crítica de Mastodon está disponible; por favor, actualizá lo antes posible.
-      software_version_patch_check:
-        action: Ver actualizaciones disponibles
-        message_html: Hay disponible una corrección de errores en la actualización de Mastodon.
-      upload_check_privacy_error:
-        action: Revisá acá para más información
-        message_html: "<strong>Tu servidor web está mal configurado. La privacidad de tus usuarios está en riesgo.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Revisá acá para más información
-        message_html: "<strong>El almacenamiento de tu objeto está mal configurado. La privacidad de tus usuarios está en riesgo.</strong>"
     tags:
       moderation:
         not_trendable: No disponible para tendencia
@@ -1545,7 +1512,9 @@ es-AR:
       delete: Eliminar
       dropdown:
         all_actions: Todas las acciones
+        delete: Eliminar
         disable: Congelar
+        mark_as_sensitive: Marcar como sensible
         none: Advertir
         sensitive: Marcar como sensible
         silence: Limitar

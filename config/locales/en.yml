@@ -37,12 +37,19 @@ en:
     self_follow_error: Following your own account is not allowed
   admin:
     account_actions:
-      action: Perform action
       already_silenced: This account has already been limited.
       already_suspended: This account has already been suspended.
       notification_title: User Notification & Message
       text_box_title: Consequences of this action
       title: 'Perform moderation action on @%{acct}:'
+      types:
+        delete: Delete posts
+        disable: Freeze account
+        mark_as_sensitive: Mark posts as sensitive
+        none: Send a warning
+        sensitive: Mark account as sensitive
+        silence: Limit account
+        suspend: Suspend account
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
@@ -460,6 +467,9 @@ en:
       pending_reports_html:
         one: "<strong>%{count}</strong> pending report"
         other: "<strong>%{count}</strong> pending reports"
+      pending_server_checks_html:
+        one: There is <strong>%{count}</strong> pending issue with the server. Go to the <a href="%{url}">Server Health page</a> to see more details.
+        other: There are <strong>%{count}</strong> pending issues with the server. Go to the <a href="%{url}">Server Health page</a> to see more details.
       pending_tags_html:
         one: "<strong>%{count}</strong> pending hashtag"
         other: "<strong>%{count}</strong> pending hashtags"
@@ -887,14 +897,16 @@ en:
       title: "%{acct}'s relationships"
     relays:
       add_new: Add new relay
+      bidirectional: Bidirectional
+      broadcast: Broadcast
       delete: Delete
       description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public posts between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
       disable: Disable
       disabled: Disabled
       enable: Enable
-      enable_hint: Once enabled, your server will subscribe to all public posts from this relay, and will begin sending this server's public posts to it.
       enabled: Enabled
-      inbox_url: Relay URL
+      opt_in: Opt-in
+      opt_out: Opt-out
       pending: Waiting for relay's approval
       save_and_enable: Save and enable
       setup: Setup a relay connection
@@ -920,7 +932,7 @@ en:
         silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. This can always be reverted. This closes all reports against this account.
         suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. This is reversible within 30 days. This closes all reports against this account.
         warn_description_html: Use this to send a warning to the user, without triggering any other action.
-      actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an email notification will be sent to them, except when the <strong>Spam</strong> category is selected.
+      actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, you will be able to select what will appear in the email notification that will be sent to them, except when the <strong>Spam</strong> category is selected.
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       actions_no_posts: This report doesn't have any associated posts to delete
       add_to_report: Add more to report
@@ -973,6 +985,10 @@ en:
       statuses: Posts (%{count})
       statuses_description_html: Offending content will be cited in communication with the reported account
       summary:
+        account_action_preamble_html:
+          one: From report <a href="%{report_path}">#%{report}</a> with %{count} selected post
+          other: From report <a href="%{report_path}">#%{report}</a> with %{count} selected posts
+          zero: From report <a href="%{report_path}">#%{report}</a> with no selected posts
         action_preambles:
           delete_html: 'You are about to <strong>remove</strong> some of <strong>@%{acct}</strong>''s posts. This will:'
           disable_html: 'You are about to <strong>freeze</strong> <strong>@%{acct}</strong>''s account. This will:'
@@ -1355,50 +1371,6 @@ en:
       appeal_approved: Appealed
       appeal_pending: Appeal pending
       appeal_rejected: Appeal rejected
-    system_checks:
-      database_schema_check:
-        message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
-      elasticsearch_analysis_index_mismatch:
-        message_html: Elasticsearch index analyzer settings are outdated. Please run <code>tootctl search deploy --only-mapping --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Elasticsearch cluster is unhealthy (red status), search features are unavailable
-      elasticsearch_health_yellow:
-        message_html: Elasticsearch cluster is unhealthy (yellow status), you may want to investigate the reason
-      elasticsearch_index_mismatch:
-        message_html: Elasticsearch index mappings are outdated. Please run <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: See documentation
-        message_html: Your Elasticsearch cluster has more than one node, but Mastodon is not configured to use them.
-      elasticsearch_preset_single_node:
-        action: See documentation
-        message_html: Your Elasticsearch cluster has only one node, <code>ES_PRESET</code> should be set to <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: Your Elasticsearch system index is outdated due to a setting change. Please run <code>tootctl search deploy --reset-chewy</code> to update it.
-      elasticsearch_running_check:
-        message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
-      elasticsearch_version_check:
-        message_html: 'Incompatible Elasticsearch version: %{value}'
-        version_comparison: Elasticsearch %{running_version} is running while %{required_version} is required
-      rules_check:
-        action: Manage server rules
-        message_html: You haven't defined any server rules.
-      sidekiq_process_check:
-        message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
-      software_version_check:
-        action: See available updates
-        message_html: A Mastodon update is available.
-      software_version_critical_check:
-        action: See available updates
-        message_html: A critical Mastodon update is available, please update as quickly as possible.
-      software_version_patch_check:
-        action: See available updates
-        message_html: A bugfix Mastodon update is available.
-      upload_check_privacy_error:
-        action: Check here for more information
-        message_html: "<strong>Your web server is misconfigured. The privacy of your users is at risk.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Check here for more information
-        message_html: "<strong>Your object storage is misconfigured. The privacy of your users is at risk.</strong>"
     tags:
       moderation:
         not_trendable: Not trendable
@@ -2312,9 +2284,11 @@ en:
     privacy_hint_html: Control how much you want to disclose for the benefit of others. People discover interesting profiles and cool apps by browsing other people's follows and seeing which apps they post from, but you may prefer to keep it hidden.
     reach: Reach
     reach_hint_html: Control whether you want to be discovered and followed by new people. Do you want your posts to appear on the Explore screen? Do you want other people to see you in their follow recommendations? Do you want to accept all new followers automatically, or have granular control over each one?
+    relays_hint_html: You can additionally opt-in to preconfigured relays that distribute your public posts to an even wider audience across the fediverse.
     search: Search
     search_hint_html: Control how you want to be found. Do you want people to find you by what you've publicly posted about? Do you want people outside Mastodon to find your profile when searching the web? Please mind that total exclusion from all search engines cannot be guaranteed for public information.
     title: Privacy and reach
+    view_relays: Manage your relays
   privacy_policy:
     title: Privacy Policy
   reactions:
@@ -2345,6 +2319,11 @@ en:
     remove_selected_followers: Remove selected followers
     remove_selected_follows: Unfollow selected users
     status: Account status
+  relay_preferences:
+    explanation_html: These are relays that %{domain} can connect with. <strong>Fediverse relays can help your public posts reach a wider audience.</strong> If you opt-in to a relay, your <strong>public</strong> posts will be shared with the relay, which can share them further. Other kinds of posts are never sent to relays.
+    opt_in: Opt-in to sharing
+    relay: Relay
+    title: Relay preferences
   remote_follow:
     missing_resource: Could not find the required redirect URL for your account
   reports:

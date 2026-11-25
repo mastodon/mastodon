@@ -21,34 +21,34 @@ RSpec.describe Paperclip::ResponseWithLimitAdapter do
   context 'with Content-Disposition header' do
     let(:headers) { { 'Content-Disposition' => 'attachment; filename="bar.png"' } }
 
-    it 'uses filename from header' do
-      expect(subject.original_filename).to eq 'bar.png'
-    end
-
-    it 'detects MIME type from content' do
-      expect(subject.content_type).to eq 'image/jpeg'
+    it 'uses filename from header and MIME type from content' do
+      expect(subject)
+        .to have_attributes(
+          original_filename: 'bar.png',
+          content_type: 'image/jpeg'
+        )
     end
   end
 
   context 'without Content-Disposition header' do
-    it 'uses filename from path' do
-      expect(subject.original_filename).to eq 'foo.png'
-    end
-
-    it 'detects MIME type from content' do
-      expect(subject.content_type).to eq 'image/jpeg'
+    it 'uses filename from path and MIME from content' do
+      expect(subject)
+        .to have_attributes(
+          original_filename: 'foo.png',
+          content_type: 'image/jpeg'
+        )
     end
   end
 
   context 'without filename in path' do
     let(:url) { 'https://example.com/' }
 
-    it 'falls back to "data"' do
-      expect(subject.original_filename).to eq 'data'
-    end
-
-    it 'detects MIME type from content' do
-      expect(subject.content_type).to eq 'image/jpeg'
+    it 'falls back to "data" and detects MIME from content' do
+      expect(subject)
+        .to have_attributes(
+          original_filename: 'data',
+          content_type: 'image/jpeg'
+        )
     end
   end
 

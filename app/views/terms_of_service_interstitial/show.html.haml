@@ -10,7 +10,7 @@
     - if @terms_of_service.usable_effective_date.past?
       = t('terms_of_service_interstitial.past_preamble_html')
     - else
-      = t('terms_of_service_interstitial.future_preamble_html', date: l(@terms_of_service.usable_effective_date))
+      = t('terms_of_service_interstitial.future_preamble_html', date: tag.time(l(@terms_of_service.usable_effective_date), class: 'formatted', datetime: @terms_of_service.usable_effective_date))
 
   %p.lead= t('user_mailer.terms_of_service_changed.agreement', domain: site_hostname)
 

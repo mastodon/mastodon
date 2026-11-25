@@ -40,7 +40,9 @@ fr:
       action: Effectuer l'action
       already_silenced: Ce compte est déjà limité.
       already_suspended: Ce compte est déjà suspendu.
-      title: Effectuer une action de modération sur %{acct}
+      notification_title: Notification et message à l'utilisateur·rice
+      text_box_title: Conséquences de cette action
+      title: 'Effectuer une action de modération sur @%{acct} :'
     account_moderation_notes:
       create: Laisser une remarque
       created_msg: Note de modération créée avec succès !
@@ -973,21 +975,27 @@ fr:
       summary:
         action_preambles:
           delete_html: 'Vous êtes sur le point de <strong>supprimer</strong> certains messages de <strong>@%{acct}</strong>. Cela va :'
+          disable_html: 'Vous êtes sur le point de <strong>désactiver</strong> le compte de <strong>@%{acct}</strong>. Cela va :'
           mark_as_sensitive_html: 'Vous êtes sur le point de <strong>marquer</strong> certains messages de <strong>@%{acct}</strong> comme <strong>sensibles</strong>. Cela va :'
+          none_html: 'Vous êtes sur le point d''<strong>avertir</strong> le compte de <strong>@%{acct}</strong>. Cela va :'
+          sensitive_html: 'Vous êtes sur le point de <strong>marquer</strong> le compte de <strong>@%{acct}</strong> comme <strong>sensible</strong>. Cela va :'
           silence_html: 'Vous êtes sur le point de <strong>limiter</strong> le compte de <strong>@%{acct}</strong>. Cela va :'
           suspend_html: 'Vous êtes sur le point de <strong>suspendre</strong> le compte de <strong>@%{acct}</strong>. Cela va :'
         actions:
-          delete_html: supprimer les messages incriminés
-          mark_as_sensitive_html: marquer le média des messages incriminés comme sensible
-          silence_html: limiter drastiquement la portée du compte de <strong>@%{acct}</strong> en rendant son profil, ainsi que ses contenus, visibles uniquement des personnes déjà abonnées ou qui le recherchent manuellement
-          suspend_html: suspendre le compte de <strong>@%{acct}</strong>, ce qui empêche toute interaction avec son profil et tout accès à ses contenus
+          delete_html: Supprimer les messages incriminés
+          disable_html: Empêcher l’utilisateur·rice d’utiliser son compte, mais ne supprimera ou ne masquera pas son contenu
+          mark_as_sensitive_html: Marquer le média des messages incriminés comme sensible
+          none_html: Envoyer un avertissement à l'utilisateur·rice, sans déclencher d'autres actions
+          sensitive_html: Forcer tous les médias de ce compte à être marqués comme sensibles
+          silence_html: Limiter drastiquement la portée du compte de <strong>@%{acct}</strong> en rendant son profil, ainsi que son contenu, visibles uniquement des personnes déjà abonnées ou qui le recherchent manuellement
+          suspend_html: Suspendre le compte de <strong>@%{acct}</strong>, ce qui empêche toute interaction avec son profil et tout accès à ses contenus
         close_report: Marquer le signalement n°%{id} comme traité
         close_reports_html: Marquer <strong>tous</strong> les signalements de <strong>@%{acct}</strong> comme traités
-        delete_data_html: effacer le profil de <strong>@%{acct}</strong> et ses contenus dans 30 jours, à moins que la suspension du compte ne soit annulée entre temps
+        delete_data_html: Effacer le profil de <strong>@%{acct}</strong> et son contenu dans 30 jours, à moins que la suspension du compte ne soit annulée entre temps
         preview_preamble_html: "<strong>@%{acct}</strong> recevra un avertissement contenant les éléments suivants :"
-        record_strike_html: enregistrer une sanction contre <strong>@%{acct}</strong> pour vous aider à prendre des mesures supplémentaires en cas d'infractions futures de ce compte
+        record_strike_html: Enregistrer une sanction contre <strong>@%{acct}</strong> pour vous aider à prendre des mesures supplémentaires en cas d'infractions futures de ce compte
         send_email_html: Envoyer un courriel d'avertissement à <strong>@%{acct}</strong>
-        warning_placeholder: Arguments supplémentaires pour l'action de modération (facultatif).
+        warning_placeholder: Informations complémentaires concernant l'action de modération.
       target_origin: Origine du compte signalé
       title: Signalements
       unassign: Dés-assigner
@@ -1347,50 +1355,6 @@ fr:
       appeal_approved: Appel soumis
       appeal_pending: Appel en attente
       appeal_rejected: Appel rejeté
-    system_checks:
-      database_schema_check:
-        message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
-      elasticsearch_analysis_index_mismatch:
-        message_html: Les paramètres de l'analyseur d'index d'Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_health_red:
-        message_html: Le cluster Elasticsearch n’est pas sain (statut rouge), les fonctionnalités de recherche ne sont pas disponible
-      elasticsearch_health_yellow:
-        message_html: Le cluster Elasticsearch n’est pas sain (statut jaune), il est possible que vous souhaitiez en investiguer la raison
-      elasticsearch_index_mismatch:
-        message_html: Les correspondances (mappings) des indexes Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only=%{value}</code>
-      elasticsearch_preset:
-        action: Voir la documentation
-        message_html: Votre cluster Elasticsearch a plus d’un nœud, mais Mastodon n’a pas été configuré pour les utiliser.
-      elasticsearch_preset_single_node:
-        action: Voir la documentation
-        message_html: Votre cluster Elasticsearch n’a qu’un seul nœud, <code>ES_PRESET</code> devrait avoir la valeur <code>single_node_cluster</code>.
-      elasticsearch_reset_chewy:
-        message_html: L’index de votre système Elasticsearch n’est plus à jour à cause d’un changement de paramètre. Veuillez lancer <code>tootctl search deploy --reset-chewy</code> pour le mettre à jour.
-      elasticsearch_running_check:
-        message_html: Impossible de se connecter à Elasticsearch. Veuillez vérifier qu’il est en cours d’exécution ou désactiver la recherche en plein texte
-      elasticsearch_version_check:
-        message_html: 'Version d’Elasticsearch incompatible : %{value}'
-        version_comparison: Elasticsearch %{running_version} est en cours d’exécution alors que %{required_version} est requise
-      rules_check:
-        action: Gérer les règles du serveur
-        message_html: Vous n'avez pas défini de règles pour le serveur.
-      sidekiq_process_check:
-        message_html: Aucun processus Sidekiq en cours d'exécution pour la/les file(s) d'attente %{value}. Veuillez vérifier votre configuration de Sidekiq
-      software_version_check:
-        action: Voir les mises à jour disponibles
-        message_html: Une mise à jour de Mastodon est disponible.
-      software_version_critical_check:
-        action: Voir les mises à jour disponibles
-        message_html: Une mise à jour critique de Mastodon est disponible, veuillez mettre à jour le plus rapidement possible.
-      software_version_patch_check:
-        action: Voir les mises à jour disponibles
-        message_html: Une mise à jour de correction de bug de Mastodon est disponible.
-      upload_check_privacy_error:
-        action: Pour plus d'informations, cliquez ici
-        message_html: "<strong>Votre serveur web est mal configuré. La confidentialité de vos utilisateurs est en péril.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Pour plus d'informations, cliquez ici
-        message_html: "<strong>Votre serveur web est mal configuré. La confidentialité de vos utilisateurs est en péril.</strong>"
     tags:
       moderation:
         not_trendable: Ne peut être en tendance
@@ -1545,7 +1509,9 @@ fr:
       delete: Supprimer
       dropdown:
         all_actions: Toutes les actions
+        delete: Supprimer
         disable: Désactiver
+        mark_as_sensitive: Marquer comme sensible
         none: Avertissement
         sensitive: Sensible
         silence: Masquer

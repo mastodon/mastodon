@@ -108,7 +108,10 @@ async function loaded() {
     .querySelectorAll<HTMLTimeElement>('time.formatted')
     .forEach((content) => {
       const datetime = new Date(content.dateTime);
-      const formattedDate = dateTimeFormat.format(datetime);
+      const timeGiven = content.dateTime.includes('T');
+      const formattedDate = timeGiven
+        ? dateTimeFormat.format(datetime)
+        : dateFormat.format(datetime);
 
       content.title = formattedDate;
       content.textContent = formattedDate;
@@ -175,10 +178,6 @@ async function loaded() {
         noTime: !timeGiven,
       });
     });
-
-  updateDefaultQuotePrivacyFromPrivacy(
-    document.querySelector('#user_settings_attributes_default_privacy'),
-  );
 
   updateDefaultDiscoverableFromPrivacy(
     document.querySelector('#user_settings_attributes_split_default_privacy'),
@@ -427,31 +426,6 @@ on('change', '#account_statuses_cleanup_policy_enabled', ({ target }) => {
     .forEach((input) => {
       setInputDisabled(input, !target.checked);
     });
-});
-
-const updateDefaultQuotePrivacyFromPrivacy = (
-  privacySelect: EventTarget | null,
-) => {
-  if (!(privacySelect instanceof HTMLSelectElement) || !privacySelect.form)
-    return;
-
-  const select = privacySelect.form.querySelector<HTMLSelectElement>(
-    'select#user_settings_attributes_default_quote_policy',
-  );
-  if (!select) return;
-
-  setInputHint(select, privacySelect.value);
-
-  if (privacySelect.value === 'private') {
-    select.value = 'nobody';
-    setInputDisabled(select, true);
-  } else {
-    setInputDisabled(select, false);
-  }
-};
-
-on('change', '#user_settings_attributes_default_privacy', ({ target }) => {
-  updateDefaultQuotePrivacyFromPrivacy(target);
 });
 
 const updateDefaultDiscoverableFromPrivacy = (

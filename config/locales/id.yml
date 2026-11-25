@@ -21,7 +21,6 @@ id:
   admin:
     account_actions:
       action: Lakukan aksi
-      title: Lakukan moderasi pada %{acct}
     account_moderation_notes:
       create: Beri catatan
       created_msg: Catatan moderasi berhasil dibuat!
@@ -719,19 +718,6 @@ id:
         suspend: "%{name} menangguhkan akun %{target}"
       appeal_approved: Banding disetujui
       appeal_pending: Banding ditunda
-    system_checks:
-      database_schema_check:
-        message_html: Ada proses migrasi basis data tertunda. Silakan jalankan untuk memastikan aplikasi bekerja seperti yang diharapkan
-      elasticsearch_running_check:
-        message_html: Tidak dapat tersambung ke Elasticsearch. Pastikan itu berjalan, atau nonaktifkan pencarian teks penuh
-      elasticsearch_version_check:
-        message_html: 'Versi Elasticsearch tidak kompatibel: %{value}'
-        version_comparison: Elasticsearch %{running_version} sedang berjalan, sementara yang diwajibkan adalah %{required_version}
-      rules_check:
-        action: Kelola aturan server
-        message_html: Anda belum menentukan aturan server apapun.
-      sidekiq_process_check:
-        message_html: Tidak ada proses Sidekiq yang berjalan untuk %{value} antrian. Silakan tinjau konfigurasi Sidekiq Anda
     tags:
       review: Tinjau status
       updated_msg: Pembaruan pengaturan tagar berhasil
