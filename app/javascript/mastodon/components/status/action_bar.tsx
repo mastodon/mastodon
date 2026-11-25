@@ -427,7 +427,6 @@ const QuoteHintTooltip: React.FC<{
             size='sm'
             clipPadding
             onClick={dismiss}
-            className={classes.button}
           >
             <FormattedMessage
               id='remove_quote_hint.button_label'

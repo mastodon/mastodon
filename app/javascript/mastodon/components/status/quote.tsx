@@ -319,7 +319,6 @@ const QuotedStatusBody: React.FC<{
         <div className={classes.media}>
           <StatusImage
             statusId={linkStatus ? status.id : undefined}
-            className={classes.image}
             attachment={mainAttachment}
             sensitive={sensitive}
             aria-label={mainAttachment.description}
@@ -342,7 +341,6 @@ const QuotedStatusBody: React.FC<{
             <StatusImage
               showAlt
               statusId={linkStatus ? status.id : undefined}
-              className={classes.image}
               attachment={attachment}
               sensitive={sensitive}
               key={attachment.id}

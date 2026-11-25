@@ -99,7 +99,6 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
       className={classNames(
         className,
         classes.root,
-        hasExtraStickyContent && classes.withStickyContent,
         !isScrolledToTop && classes.rootScrolledDown,
         hasUnreadIndicator && classes.withGlow,
       )}
