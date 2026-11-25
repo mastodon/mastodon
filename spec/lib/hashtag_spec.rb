@@ -28,98 +28,144 @@ RSpec.describe Hashtag do
   end
 
   describe 'EXTRACTION_RE' do
-    subject { described_class::EXTRACTION_RE }
+    subject { described_class::EXTRACTION_RE.match(text)&.to_s }
 
-    it 'does not match URLs with anchors with non-hashtag characters' do
-      expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
+    context 'with URL anchors containing non-hashtag characters' do
+      let(:text) { 'Check this out https://medium.com/@alice/some-article#.abcdef123' }
+
+      it { is_expected.to be_nil }
     end
 
-    it 'does not match URLs with hashtag-like anchors' do
-      expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)#Lawsuit')).to be_nil
+    context 'with hashtag-like URL anchors' do
+      let(:text) { 'https://en.wikipedia.org/wiki/Ghostbusters_(song)#Lawsuit' }
+
+      it { is_expected.to be_nil }
     end
 
-    it 'does not match URLs with hashtag-like anchors after a numeral' do
-      expect(subject.match('https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111895#c4')).to be_nil
+    context 'with hashtag-like URL anchors after a numeral' do
+      let(:text) { 'https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111895#c4' }
+
+      it { is_expected.to be_nil }
     end
 
-    it 'does not match URLs with hashtag-like anchors after a non-ascii character' do
-      expect(subject.match('https://example.org/testé#foo')).to be_nil
+    context 'with hashtag-like URL anchors after a non-ASCII character' do
+      let(:text) { 'https://example.org/testé#foo' }
+
+      it { is_expected.to be_nil }
     end
 
-    it 'does not match URLs with hashtag-like anchors after an empty query parameter' do
-      expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)?foo=#Lawsuit')).to be_nil
+    context 'with hashtag-like URL anchors after an empty query parameter' do
+      let(:text) { 'https://en.wikipedia.org/wiki/Ghostbusters_(song)?foo=#Lawsuit' }
+
+      it { is_expected.to be_nil }
     end
 
-    it 'does not match URLs with hashtag-like anchors after a dot' do
-      expect(subject.match('https://en.wikipedia.org/wiki/Google_LLC_v._Oracle_America,_Inc.#Decision')).to be_nil
+    context 'with hashtag-like URL anchors after a dot' do
+      let(:text) { 'https://en.wikipedia.org/wiki/Google_LLC_v._Oracle_America,_Inc.#Decision' }
+
+      it { is_expected.to be_nil }
     end
 
-    it 'matches a hashtag preceded by a non-break space' do
-      expect(subject.match('test #foo').to_s).to eq '#foo'
+    context 'with a hashtag preceded by a non-break space' do
+      let(:text) { 'test #foo' }
+
+      it { is_expected.to eq '#foo' }
     end
 
-    it 'matches ﻿#ａｅｓｔｈｅｔｉｃ' do
-      expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ').to_s).to eq '#ａｅｓｔｈｅｔｉｃ'
+    context 'with full-width Latin characters' do
+      let(:text) { '﻿this is #ａｅｓｔｈｅｔｉｃ' }
+
+      it { is_expected.to eq '#ａｅｓｔｈｅｔｉｃ' }
     end
 
-    it 'matches ＃ｆｏｏ' do
-      expect(subject.match('this is ＃ｆｏｏ').to_s).to eq '＃ｆｏｏ'
+    context 'with a full-width hash symbol' do
+      let(:text) { 'this is ＃ｆｏｏ' }
+
+      it { is_expected.to eq '＃ｆｏｏ' }
     end
 
-    it 'matches digits at the start' do
-      expect(subject.match('hello #3d').to_s).to eq '#3d'
+    context 'with digits at the start' do
+      let(:text) { 'hello #3d' }
+
+      it { is_expected.to eq '#3d' }
     end
 
-    it 'matches digits in the middle' do
-      expect(subject.match('hello #l33ts35k').to_s).to eq '#l33ts35k'
+    context 'with digits in the middle' do
+      let(:text) { 'hello #l33ts35k' }
+
+      it { is_expected.to eq '#l33ts35k' }
     end
 
-    it 'matches digits at the end' do
-      expect(subject.match('hello #world2016').to_s).to eq '#world2016'
+    context 'with digits at the end' do
+      let(:text) { 'hello #world2016' }
+
+      it { is_expected.to eq '#world2016' }
     end
 
-    it 'matches underscores at the beginning' do
-      expect(subject.match('hello #_test').to_s).to eq '#_test'
+    context 'with underscores at the beginning' do
+      let(:text) { 'hello #_test' }
+
+      it { is_expected.to eq '#_test' }
     end
 
-    it 'matches underscores at the end' do
-      expect(subject.match('hello #test_').to_s).to eq '#test_'
+    context 'with underscores at the end' do
+      let(:text) { 'hello #test_' }
+
+      it { is_expected.to eq '#test_' }
     end
 
-    it 'matches underscores in the middle' do
-      expect(subject.match('hello #one_two_three').to_s).to eq '#one_two_three'
+    context 'with underscores in the middle' do
+      let(:text) { 'hello #one_two_three' }
+
+      it { is_expected.to eq '#one_two_three' }
     end
 
-    it 'matches middle dots' do
-      expect(subject.match('hello #one·two·three').to_s).to eq '#one·two·three'
+    context 'with middle dots' do
+      let(:text) { 'hello #one·two·three' }
+
+      it { is_expected.to eq '#one·two·three' }
     end
 
-    it 'matches ・unicode in ぼっち・ざ・ろっく correctly' do
-      expect(subject.match('testing #ぼっち・ざ・ろっく').to_s).to eq '#ぼっち・ざ・ろっく'
+    context 'with Katakana middle dots' do
+      let(:text) { 'testing #ぼっち・ざ・ろっく' }
+
+      it { is_expected.to eq '#ぼっち・ざ・ろっく' }
     end
 
-    it 'matches ZWNJ' do
-      expect(subject.match('just add #نرم‌افزار and').to_s).to eq '#نرم‌افزار'
+    context 'with a zero-width non-joiner' do
+      let(:text) { 'just add #نرم‌افزار and' }
+
+      it { is_expected.to eq '#نرم‌افزار' }
     end
 
-    it 'does not match middle dots at the start' do
-      expect(subject.match('hello #·one·two·three')).to be_nil
+    context 'with middle dots at the start' do
+      let(:text) { 'hello #·one·two·three' }
+
+      it { is_expected.to be_nil }
     end
 
-    it 'does not match middle dots at the end' do
-      expect(subject.match('hello #one·two·three·').to_s).to eq '#one·two·three'
+    context 'with middle dots at the end' do
+      let(:text) { 'hello #one·two·three·' }
+
+      it { is_expected.to eq '#one·two·three' }
     end
 
-    it 'does not match purely-numeric hashtags' do
-      expect(subject.match('hello #0123456')).to be_nil
+    context 'with purely numeric hashtags' do
+      let(:text) { 'hello #0123456' }
+
+      it { is_expected.to be_nil }
     end
 
-    it 'matches hashtags immediately following the letter ß' do
-      expect(subject.match('Hello toß #ruby').to_s).to eq '#ruby'
+    context 'with a hashtag following the letter ß and a space' do
+      let(:text) { 'Hello toß #ruby' }
+
+      it { is_expected.to eq '#ruby' }
     end
 
-    it 'matches hashtags containing uppercase characters' do
-      expect(subject.match('Hello #rubyOnRails').to_s).to eq '#rubyOnRails'
+    context 'with uppercase characters' do
+      let(:text) { 'Hello #rubyOnRails' }
+
+      it { is_expected.to eq '#rubyOnRails' }
     end
   end
 end
