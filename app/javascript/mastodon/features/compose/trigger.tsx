@@ -83,10 +83,12 @@ export const ComposeButton: React.FC<{
     });
   }, [dispatch]);
 
-  // const isMinimized = displayState === 'minimized';
   const isShowing = displayState === 'showing';
 
-  const [isMinimized, setMinimized] = useState(false);
+  const [isMinimized, setMinimized] = useState(displayState === 'minimized');
+  if (displayState === 'hidden' && isMinimized) {
+    setMinimized(false);
+  }
   useEffect(() => {
     if (isMinimized === isShowing) {
       startTransition(() => {
@@ -94,7 +96,7 @@ export const ComposeButton: React.FC<{
         setMinimized(!isMinimized);
       });
     }
-  }, [isMinimized, isShowing]);
+  }, [displayState, isMinimized, isShowing]);
 
   const handleViewTransitionUpdate: NonNullable<
     React.ViewTransitionProps['onUpdate']
