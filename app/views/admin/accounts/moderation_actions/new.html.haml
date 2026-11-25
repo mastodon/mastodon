@@ -16,13 +16,17 @@
 
   - content_for :page_title do
     = t('admin.account_actions.title', acct: @target_account.pretty_acct)
-    = f.input :type,
-              as: :select,
-              collection: account_actions_button_collection,
-              include_blank: false,
-              label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type[0]}") },
-              required: false,
-              input_html: { form: 'action_type' }
+
+  - content_for :heading do
+    .moderation-action-header
+      %h1= t('admin.account_actions.title', acct: @target_account.pretty_acct)
+      = f.input :type,
+                as: :select,
+                collection: account_actions_button_collection,
+                include_blank: false,
+                label_method: ->(type) { I18n.t("admin.warning_presets.dropdown.#{type[0]}") },
+                required: false,
+                input_html: { form: 'action_type' }
 
   - if report_id.present?
     .fields-group
