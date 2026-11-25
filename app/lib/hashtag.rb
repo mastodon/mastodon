@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HashtagNormalizer
+class Hashtag
   class << self
     def normalize(str)
       unicode_normalize(str)

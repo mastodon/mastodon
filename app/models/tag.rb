@@ -68,7 +68,7 @@ class Tag < ApplicationRecord
                         }
   scope :matches_name, ->(term) { where(arel_table[:name].lower.matches(arel_table.lower("#{sanitize_sql_like(normalize_value_for(:name, term))}%"), nil, true)) } # Search with case-sensitive to use B-tree index
 
-  normalizes :name, with: ->(value) { HashtagNormalizer.normalize(value) }
+  normalizes :name, with: ->(value) { Hashtag.normalize(value) }
   normalizes :display_name, with: ->(value) { value.gsub(HASHTAG_INVALID_CHARS_RE, '') }
 
   update_index('tags', :self)

@@ -21,7 +21,7 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
     return if items.nil?
 
     names            = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }.take(FeaturedTag::LIMIT)
-    tags             = names.index_by { |name| HashtagNormalizer.normalize(name) }
+    tags             = names.index_by { |name| Hashtag.normalize(name) }
     normalized_names = tags.keys
 
     FeaturedTag.includes(:tag).references(:tag).where(account: @account).where.not(tag: { name: normalized_names }).delete_all

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe HashtagNormalizer do
+RSpec.describe Hashtag do
   subject { described_class }
 
   describe '.normalize' do
