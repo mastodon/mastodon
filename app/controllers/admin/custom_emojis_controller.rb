@@ -2,14 +2,10 @@
 
 module Admin
   class CustomEmojisController < BaseController
+    before_action :normalize_filter_params, only: [:index, :batch]
+
     def index
       authorize :custom_emoji, :index?
-
-      # If filtering by domain, ensure remote filter is set.
-      if params[:by_domain].present?
-        params.delete(:local)
-        params[:remote] = '1'
-      end
 
       @custom_emojis = filtered_custom_emojis.eager_load(:local_counterpart).page(params[:page])
       @form          = Form::CustomEmojiBatch.new
@@ -48,6 +44,18 @@ module Admin
     end
 
     private
+
+    def normalize_filter_params
+      local = params.delete(:local) == '1'
+      remote = params.delete(:remote) == '1'
+
+      if local
+        params[:local] = '1'
+        params.delete(:by_domain)
+      elsif remote || params[:by_domain].present?
+        params[:remote] = '1'
+      end
+    end
 
     def resource_params
       params
