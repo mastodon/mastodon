@@ -20,6 +20,7 @@ zh-CN:
         text: 你可以使用嘟文格式，例如加入 URL、话题和“@”
         title: 可选。对接收者不可见
       admin_account_action:
+        include_rule_violations: 邮件将包含是哪些条例违反行为导致了管理操作
         include_statuses: 用户将会看到哪些嘟文导致了管理操作或警告
         send_email_notification: 用户将收到关于其账号异动的解释
         text: 可选。你可以使用嘟文格式。会在预置回复下方出现
@@ -30,7 +31,8 @@ zh-CN:
           sensitive: 强制将此用户的全部媒体文件标记为敏感内容。
           silence: 阻止用户发送公开嘟文，除了关注者以外，其他人都无法看到他的嘟文和通知。关闭针对此账号的全部举报。
           suspend: 阻止此账号的任何交互并删除其内容。30天内可以撤销操作。关闭针对此账号的全部举报。
-        warning_preset_html: 可选。你可以在<a href="%{path}">此处管理</a>
+        warning_preset: 可选。你可以在预置文本末尾添加自定义文本
+        warning_preset_explanation: 你尚未保存过预置回复。预置回复是你可以提前保存并在举报中重复使用的消息。
       announcement:
         all_day: 如果选中，只有该时间段内的日期会显示。
         ends_at: 可选。公告会在该时间点自动取消发布
@@ -132,6 +134,13 @@ zh-CN:
           sign_up_block: 无法进行新的账号注册
           sign_up_requires_approval: 新注册需要你的批准
         severity: 选择如何处理来自此 IP 的请求。
+      relay:
+        acct: 格式为 username@domain。
+        direction: 你想如何参与中继站
+        directions:
+          bidirectional: 向中继站广播并接受来自中继站其他成员的内容
+          broadcast: 仅向中继站广播
+        requires_opt_in: 仅为选择加入此中继站的用户将内容发送至中继站
       rule:
         hint: 选填。提供关于这条规则的更多详情
         text: 描述这个服务器上的用户规则或要求。尽量确保简洁、清晰易懂
@@ -198,6 +207,8 @@ zh-CN:
         text: 回复文本
         title: 标题
       admin_account_action:
+        canned_response_back_link: 管理预置回复
+        include_rule_violatins: 包含已举报的条例违反行为
         include_statuses: 在电子邮件中包括已举报的嘟文
         send_email_notification: 通过邮件提醒此用户
         text: 自定义回复
@@ -375,6 +386,13 @@ zh-CN:
           none: 从不通知更新（不推荐）
           patch: 通知错误修复更新
         trending_tag: 新热门待审核
+      relay:
+        acct: 中继站代号
+        direction: 参与等级
+        directions:
+          bidirectional: 双向
+          broadcast: 仅广播
+        requires_opt_in: 要求用户选择加入
       rule:
         hint: 补充信息
         text: 规则

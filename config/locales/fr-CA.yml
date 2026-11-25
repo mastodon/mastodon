@@ -37,12 +37,19 @@ fr-CA:
     self_follow_error: Suivre votre propre compte n'est pas autorisé
   admin:
     account_actions:
-      action: Effectuer l'action
       already_silenced: Ce compte est déjà limité.
       already_suspended: Ce compte est déjà suspendu.
       notification_title: Notification et message à l'utilisateur·rice
       text_box_title: Conséquences de cette action
       title: 'Effectuer une action de modération sur @%{acct} :'
+      types:
+        delete: Supprimer les messages
+        disable: Désactiver le compte
+        mark_as_sensitive: Marquer les messages comme sensibles
+        none: Envoyer un avertissement
+        sensitive: Marquer le compte comme sensible
+        silence: Limiter le compte
+        suspend: Suspendre le compte
     account_moderation_notes:
       create: Laisser une remarque
       created_msg: Note de modération créée avec succès !
@@ -460,6 +467,9 @@ fr-CA:
       pending_reports_html:
         one: "<strong>%{count}</strong> rapport en attente"
         other: "<strong>%{count}</strong> rapports en attente"
+      pending_server_checks_html:
+        one: Il y a <strong>%{count}</strong> problème en attente sur le serveur. Allez à la <a href="%{url}">page État du serveur</a> pour plus de détails.
+        other: Il y a <strong>%{count}</strong> problèmes en attente sur le serveur. Allez à la <a href="%{url}">page État du serveur</a> pour plus de détails.
       pending_tags_html:
         one: "<strong>%{count}</strong> hashtag en attente"
         other: "<strong>%{count}</strong> hashtags en attente"
@@ -887,14 +897,14 @@ fr-CA:
       title: Relations de %{acct}
     relays:
       add_new: Ajouter un nouveau relais
+      bidirectional: Bidirectionnel
+      broadcast: Diffuser
       delete: Supprimer
       description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de messages publics entre les serveurs qui s’inscrivent et ceux qui publient dessus. <strong>Il peut aider les petits et moyens serveurs à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que leurs membres suivent des gens inscrits sur d’autres serveurs.
       disable: Désactiver
       disabled: Désactivé
       enable: Activer
-      enable_hint: Une fois activé, votre serveur souscrira à tous les messages publics de ce relais et y enverra ses propres messages publics.
       enabled: Activé
-      inbox_url: URL du relais
       pending: En attente de l’approbation du relai
       save_and_enable: Sauvegarder et activer
       setup: Paramétrer une connexion de relais
@@ -920,7 +930,7 @@ fr-CA:
         silence_description_html: Le compte sera visible uniquement pour les personnes qui le suivent déjà ou qui le recherchent manuellement, limitant fortement sa portée. Cette action est réversible et clôt tous les signalements envers ce compte.
         suspend_description_html: Le compte et son contenu seront inaccessibles puis supprimés, et toute interaction sera impossible. Cette action est réversible pendant 30 jours et clôt tous les signalements envers ce compte.
         warn_description_html: Utilisez ceci pour envoyer un avertissement à l’utilisateur·rice, sans déclencher aucune autre action.
-      actions_description_html: Décider de l'action à entreprendre pour traiter ce signalement. Si vous prenez une mesure punitive à l'encontre du compte signalé, une notification sera envoyée par courriel, sauf si la catégorie <strong>Spam</strong> est sélectionnée.
+      actions_description_html: Décider de l'action à prendre pour traiter ce signalement. Si vous prenez une mesure punitive à l'encontre du compte signalé, vous pourrez choisir ce qui apparaîtra dans la notification envoyée par courriel, sauf si la catégorie <strong>Spam</strong> est sélectionnée.
       actions_description_remote_html: Décidez des mesures à prendre pour résoudre ce signalement. Cela n'affectera que la manière dont <strong>votre</strong> serveur communique avec ce compte distant et traite son contenu.
       actions_no_posts: Ce signalement n'a pas de messages associés à supprimer
       add_to_report: Ajouter davantage au rapport
@@ -973,6 +983,10 @@ fr-CA:
       statuses: Messages (%{count})
       statuses_description_html: Le contenu offensant sera cité dans la communication avec le compte signalé
       summary:
+        account_action_preamble_html:
+          one: À partir du signalement <a href="%{report_path}">n°%{report}</a> avec %{count} message sélectionné
+          other: À partir du signalement <a href="%{report_path}">n°%{report}</a> avec %{count} messages sélectionnés
+          zero: À partir du signalement <a href="%{report_path}">n°%{report}</a> sans message sélectionné
         action_preambles:
           delete_html: 'Vous êtes sur le point de <strong>supprimer</strong> certains messages de <strong>@%{acct}</strong>. Cela va :'
           disable_html: 'Vous êtes sur le point de <strong>désactiver</strong> le compte de <strong>@%{acct}</strong>. Cela va :'
@@ -1514,7 +1528,7 @@ fr-CA:
         mark_as_sensitive: Marquer comme sensible
         none: Avertissement
         sensitive: Sensible
-        silence: Masquer
+        silence: Limiter
         suspend: Suspendre
       edit_preset: Modifier la réponse standard
       empty: Vous n'avez pas encore défini de réponses standards.

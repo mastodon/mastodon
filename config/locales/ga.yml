@@ -46,9 +46,19 @@ ga:
     self_follow_error: Ní cheadaítear do chuntas féin a leanúint
   admin:
     account_actions:
-      action: Déan gníomh
       already_silenced: Tá teorainn leis an gcuntas seo cheana féin.
       already_suspended: Tá an cuntas seo curtha ar fionraí cheana féin.
+      notification_title: Fógra agus Teachtaireacht don Úsáideoir
+      text_box_title: Iarmhairtí an ghnímh seo
+      title: 'Déan gníomh modhnóireachta ar @%{acct}:'
+      types:
+        delete: Scrios postálacha
+        disable: Reoigh cuntas
+        mark_as_sensitive: Marcáil postálacha mar íogair
+        none: Seol rabhadh
+        sensitive: Marcáil cuntas mar chuntas íogair
+        silence: Cuir teorainn le cuntas
+        suspend: Cuir cuntas ar fionraí
     account_moderation_notes:
       create: Fág nóta
       created_msg: Cruthaíodh nóta modhnóireachta go rathúil!
@@ -286,6 +296,7 @@ ga:
         update_ip_block: Íoslódáil an riail IP
         update_report: Tuairisc Nuashonraithe
         update_status: Nuashonraigh Postáil
+        update_tag: Nuashonraigh an Haischlib
         update_user_role: Nuashonraigh Ról
         update_username_block: Nuashonraigh an Riail Ainm Úsáideora
       actions:
@@ -477,6 +488,12 @@ ga:
         one: "<strong>%{count}</strong> tuairisc ar feitheamh"
         other: "<strong>%{count}</strong> tuairiscí ar feitheamh"
         two: "<strong>%{count}</strong> tuairiscí ar feitheamh"
+      pending_server_checks_html:
+        few: Tá <strong>%{count}</strong> saincheist ar feitheamh leis an bhfreastalaí. Téigh chuig an <a href="%{url}">leathanach sláinte an fhreastalaí</a> chun tuilleadh sonraí a fheiceáil.
+        many: Tá <strong>%{count}</strong> saincheist ar feitheamh leis an bhfreastalaí. Téigh chuig an <a href="%{url}">leathanach sláinte an fhreastalaí</a> chun tuilleadh sonraí a fheiceáil.
+        one: Tá <strong>%{count}</strong> saincheist ar feitheamh leis an bhfreastalaí. Téigh chuig an <a href="%{url}">leathanach sláinte an fhreastalaí</a> chun tuilleadh sonraí a fheiceáil.
+        other: Tá <strong>%{count}</strong> saincheist ar feitheamh leis an bhfreastalaí. Téigh chuig an <a href="%{url}">leathanach sláinte an fhreastalaí</a> chun tuilleadh sonraí a fheiceáil.
+        two: Tá <strong>%{count}</strong> saincheist ar feitheamh leis an bhfreastalaí. Téigh chuig an <a href="%{url}">leathanach sláinte an fhreastalaí</a> chun tuilleadh sonraí a fheiceáil.
       pending_tags_html:
         few: "<strong>%{count}</strong> hashtags ar feitheamh"
         many: "<strong>%{count}</strong> hashtags ar feitheamh"
@@ -927,9 +944,7 @@ ga:
       disable: Díchumasaigh
       disabled: Díchumasaithe
       enable: Cumasaigh
-      enable_hint: Nuair a bheidh sé cumasaithe, liostóidh do fhreastalaí le gach postáil phoiblí ón athsheoladh seo, agus tosóidh sé ag seoladh postálacha poiblí an fhreastalaí seo chuige.
       enabled: Ar chumas
-      inbox_url: URL Athsheolta
       pending: Ag fanacht le ceadú sealaíochta
       save_and_enable: Sábháil agus cumasaigh
       setup: Socraigh nasc sealaíochta
@@ -958,7 +973,7 @@ ga:
         silence_description_html: Ní bheidh an cuntas le feiceáil ach ag na daoine a leanann é cheana féin nó a dhéanann cuardach air de láimh; cuireann sé seo srian mór ar a raon teacht. Is féidir an t-athrú seo a chur ar ceal tráth ar bith. Dúnann sé seo gach tuairisc atá déanta i gcoinne an chuntais seo.
         suspend_description_html: Beidh an cuntas agus a bhfuil ann ar fad do-rochtana, scriosfar é sa deireadh, agus ní bheidh sé indéanta idirghníomhú leis. Is féidir an próiseas seo a chur ar ceal laistigh de 30 lá. Dúnann sé seo gach tuairisc atá déanta i gcoinne an chuntais seo.
         warn_description_html: Úsáid é seo chun rabhadh a sheoladh chuig an úsáideoir, gan aon ghníomh eile a spreagadh.
-      actions_description_html: Déan cinneadh ar an ngníomh atá le déanamh chun an tuarascáil seo a réiteach. Má dhéanann tú beart pionósach in aghaidh an chuntais tuairiscithe, seolfar fógra ríomhphoist chucu, ach amháin nuair a roghnaítear an chatagóir <strong>Turscar</strong>.
+      actions_description_html: Socraigh cén beart atá le déanamh chun an tuairisc seo a réiteach. Má ghlacann tú beart pionósach i gcoinne an chuntais a tuairiscíodh, beidh tú in ann a roghnú cad a bheidh le feiceáil sa bhfógra ríomhphoist a sheolfar chuige, ach amháin nuair a roghnaítear an chatagóir <strong>Spam</strong>.
       actions_description_remote_html: Déan cinneadh ar an ngníomh atá le déanamh chun an tuarascáil seo a réiteach. Ní bheidh tionchar aige seo ach ar an gcaoi a ndéanann <strong>do fhreastalaí</strong> cumarsáid leis an gcianchuntas seo agus a láimhseálann sé a ábhar.
       actions_no_posts: Níl aon phostáil ghaolmhar ag an tuarascáil seo le scriosadh
       add_to_report: Cuir tuilleadh leis an tuairisc
@@ -1011,14 +1026,24 @@ ga:
       statuses: Poist (%{count})
       statuses_description_html: Luafar ábhar ciontach i gcumarsáid leis an gcuntas tuairiscithe
       summary:
+        account_action_preamble_html:
+          one: Ó thuairisc <a href="%{report_path}">#%{report}</a> le %{count} postáil roghnaithe
+          other: Ó thuairisc <a href="%{report_path}">#%{report}</a> le %{count} post roghnaithe
+          zero: Ó thuairisc <a href="%{report_path}">#%{report}</a> gan aon phostáil roghnaithe
         action_preambles:
           delete_html: 'Tá tú ar tí <strong>cuid de phostálacha </strong>@%{acct}<strong> a bhaint</strong>. Déanfaidh sé seo:'
+          disable_html: 'Tá tú ar tí cuntas <strong>@%{acct}</strong> a <strong>reo</strong>. Déanfaidh sé seo an méid seo a leanas:'
           mark_as_sensitive_html: 'Tá tú ar tí <strong>marcáil</strong> ar chuid de phostálacha <strong>@%{acct}</strong> mar <strong>íogair</strong>. Déanfaidh sé seo:'
+          none_html: 'Tá tú ar tí <strong>rabhadh</strong> a thabhairt do <strong>@%{acct}</strong>. Déanfaidh sé seo an méid seo a leanas:'
+          sensitive_html: 'Tá tú ar tí cuntas <strong>@%{acct}</strong> a mharcáil mar chuntas <strong>íogair</strong>. Déanfaidh sé seo an méid seo a leanas:'
           silence_html: 'Tá tú ar tí <strong>teorannú</strong> a dhéanamh ar chuntas <strong>@%{acct}</strong>. Déanfaidh sé seo:'
           suspend_html: 'Tá tú ar tí cuntas <strong>a chur ar fionraí</strong> <strong>@%{acct}</strong>. Déanfaidh sé seo:'
         actions:
           delete_html: Bain na postálacha ciontaithe
+          disable_html: Cuir cosc ​​ar an úsáideoir a chuntas a úsáid, ach ná scrios ná ná folaigh a chuid ábhair
           mark_as_sensitive_html: Marcáil meáin na bpost ciontaithe mar íogair
+          none_html: Seol rabhadh chuig an úsáideoir, gan aon ghníomh eile a spreagadh
+          sensitive_html: Cuir iachall go marcálfar gach ceangaltán meán ón úsáideoir seo mar ábhar íogair
           silence_html: Cuir teorainn mhór le rochtain <strong>@%{acct}</strong> trí a bpróifíl agus a n-inneachar a dhéanamh infheicthe ag daoine atá á leanúint cheana féin nó ag breathnú uirthi de láimh
           suspend_html: Cuir <strong>@%{acct}</strong> ar fionraí, rud a fhágann go bhfuil a bpróifíl agus a bhfuil iontu dorochtana agus dodhéanta idirghníomhú leo
         close_report: 'Marcáil an tuairisc #%{id} mar réitithe'
@@ -1565,7 +1590,9 @@ ga:
       delete: Scrios
       dropdown:
         all_actions: Gach gníomh
+        delete: Scrios
         disable: Reo
+        mark_as_sensitive: Marcáil mar íogair
         none: Rabhadh
         sensitive: Íogair
         silence: Teorainn

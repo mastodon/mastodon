@@ -20,6 +20,7 @@ fr-CA:
         text: Vous pouvez utiliser la syntaxe des messages, comme les URL, les hashtags et les mentions
         title: Facultatif. Invisible pour le destinataire
       admin_account_action:
+        include_rule_violations: Le courriel inclura les infractions aux règles qui ont causé l'action de modération
         include_statuses: L’utilisateur·rice verra quels messages sont la source de l’action de modération ou de l’avertissement
         send_email_notification: L’utilisateur recevra une explication de ce qu’il s’est passé avec son compte
         text: Facultatif. Vous pouvez utiliser la syntaxe des messages. Il apparaîtra sous la réponse standard
@@ -30,7 +31,8 @@ fr-CA:
           sensitive: Forcer toutes les pièces jointes de cet·te utilisateur·rice à être signalées comme sensibles.
           silence: Empêcher l'utilisateur⋅rice de publier des messages en visibilité publique et cacher tous ses messages et notifications aux comptes non abonnés. Cloture tous les signalements concernant ce compte.
           suspend: Empêcher toute interaction depuis ou vers ce compte et supprimer son contenu. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
-        warning_preset_html: Facultatif. Vous pouvez <a href="%{path}">les gérer ici</a>
+        warning_preset: Facultatif. Vous pouvez toujours ajouter un texte personnalisé à la fin du modèle
+        warning_preset_explanation: Vous n'avez aucune réponse standard pour l'instant. Les réponses standard sont des messages que vous pouvez enregistrer et réutiliser pour les signalements.
       announcement:
         all_day: Coché, seules les dates de l’intervalle de temps seront affichées
         ends_at: Facultatif. La fin de l'annonce surviendra automatiquement à ce moment
@@ -199,6 +201,8 @@ fr-CA:
         text: Texte de la réponse
         title: Titre
       admin_account_action:
+        canned_response_back_link: gérer les réponses standard
+        include_rule_violatins: Inclure les infractions signalées
         include_statuses: Inclure les messages signalés dans le courriel
         send_email_notification: Notifier l’utilisateur par courriel
         text: Réponse personnalisée

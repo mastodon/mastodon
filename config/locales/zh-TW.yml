@@ -36,12 +36,19 @@ zh-TW:
     self_follow_error: 無法跟隨您自己的帳號
   admin:
     account_actions:
-      action: 執行動作
       already_silenced: 此帳號已被限制。
       already_suspended: 此帳號已被停權。
       notification_title: 使用者通知與訊息
       text_box_title: 此動作之後果
       title: 對 @%{acct} 執行站務動作：
+      types:
+        delete: 刪除嘟文
+        disable: 凍結帳號
+        mark_as_sensitive: 將嘟文標記為敏感內容
+        none: 寄送警告
+        sensitive: 將帳號標記為敏感內容
+        silence: 靜音帳號
+        suspend: 停權帳號
     account_moderation_notes:
       create: 新增站務記錄
       created_msg: 已成功新增管理備註！
@@ -869,23 +876,25 @@ zh-TW:
       description: 以下是來自您的管理訂閱之建議，依照優先權排序。
       destroyed_msg: 已成功忽略 %{target_key} 之動作建議
       dismiss: 忽略建議
-      empty: 目前無管理動作建議。
+      empty: 目前無站務動作建議。
       retracted_msg: 已成功撤回對 %{target_key} 之政策
       suggested_from_html: 被 %{link} 建議
-      title: 管理動作建議
+      title: 站務動作建議
       unable_to_apply_msg: 無法套用對 %{target_key} 之動作建議
     relationships:
       title: "%{acct} 的關係"
     relays:
       add_new: 新增中繼
+      bidirectional: 雙向的
+      broadcast: 廣播
       delete: 刪除
       description_html: "<strong>聯邦中繼站</strong> 是種中繼伺服器，會於訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器自聯邦宇宙中探索內容</strong>，而無須本地使用者手動跟隨遠端伺服器的其他使用者。"
       disable: 停用
       disabled: 停用
       enable: 啟用
-      enable_hint: 啟用後，您的伺服器將訂閱該中繼的所有公開文章，並將此伺服器的公開文章向它發送。
       enabled: 已啟用
-      inbox_url: 中繼 URL
+      opt_in: 選擇加入 (opt-in)
+      opt_out: 選擇退出 (opt-out)
       pending: 等待中繼站審核
       save_and_enable: 儲存並啟用
       setup: 設定中繼連結
@@ -910,7 +919,7 @@ zh-TW:
         silence_description_html: 此帳號僅對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。此將關閉所有對此帳號之檢舉報告。
         suspend_description_html: 此帳號及其所有內容將不可被存取並且最終被移除，並且無法與之進行互動。三十天內可以撤銷此動作。此將關閉所有對此帳號之檢舉報告。
         warn_description_html: 使用這個寄送警告至該使用者，而不進行其他動作。
-      actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，則將對他們發送 e-mail 通知，除非選擇了 <strong>垃圾郵件</strong> 類別。
+      actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，您能選擇將對他們發送之電子郵件通知內容，除非選擇了 <strong>垃圾訊息</strong> 類別。
       actions_description_remote_html: 決定將對此檢舉報告採取何種動作。這將僅作用於<strong>您的伺服器</strong>與此遠端帳號及其內容之通訊行為。
       actions_no_posts: 此報告無任何需要刪除之相關嘟文
       add_to_report: 加入更多至報告
@@ -963,6 +972,10 @@ zh-TW:
       statuses: 嘟文 (%{count})
       statuses_description_html: 侵犯性違規內容將被引用於檢舉帳號通知中
       summary:
+        account_action_preamble_html:
+          one: 自報告 <a href="%{report_path}">#%{report}</a> 中之 %{count} 則已選嘟文
+          other: 自報告 <a href="%{report_path}">#%{report}</a> 中之 %{count} 則已選嘟文
+          zero: 自報告 <a href="%{report_path}">#%{report}</a>，未選擇嘟文
         action_preambles:
           delete_html: 您將要 <strong>移除</strong> 某些 <strong>@%{acct}</strong> 之嘟文。此將會：
           disable_html: 您將要 <strong>停權</strong> <strong>@%{acct}</strong> 之帳號。此將會：
@@ -1051,7 +1064,7 @@ zh-TW:
         manage_webhooks: 管理 Webhooks
         manage_webhooks_description: 允許使用者為管理事件設定 webhooks
         view_audit_log: 檢視審核日誌
-        view_audit_log_description: 允許使用者檢視伺服器上的管理動作歷史
+        view_audit_log_description: 允許使用者檢視伺服器上的站務動作歷史
         view_dashboard: 檢視儀表板
         view_dashboard_description: 允許使用者存取儀表板與各種指標
         view_devops: DevOps
@@ -1553,7 +1566,7 @@ zh-TW:
       subject: "%{instance} 有可取得的重要 Mastodon 更新！"
     new_moderation_suggestions:
       body: 您伺服器訂閱之審核清單已發布新建議。
-      subject: "%{instance} 有可用之新管理動作建議！"
+      subject: "%{instance} 有可用之新站務動作建議！"
     new_pending_account:
       body: 以下是新帳號的詳細資訊。您可以同意或拒絕這項申請。
       subject: "%{instance} 上有新帳號 (%{username}) 待審核"
@@ -2226,9 +2239,11 @@ zh-TW:
     privacy_hint_html: 控制您希望向其他人揭露之內容。人們透過瀏覽其他人的跟隨者與其發嘟之應用程式發現有趣的個人檔案與酷炫的 Mastodon 應用程式，但您能選擇將其隱藏。
     reach: 觸及
     reach_hint_html: 控制您希望被新使用者探索或跟隨之方式。想使您的嘟文出現於探索頁面嗎？想使其他人透過他們的跟隨建議找到您嗎？想自動接受所有新跟隨者嗎？或是想逐一控制跟隨請求嗎？
+    relays_hint_html: 您可以額外選擇加入預先設定的中繼站，它們將會將您的公開嘟文擴散至聯邦宇宙中更廣大的受眾。
     search: 搜尋
     search_hint_html: 控制您希望如何被發現。您想透過您的公開嘟文被人們發現嗎？您想透過網頁搜尋被 Mastodon 以外的人找到您的個人檔案嗎？請注意，公開資訊可能無法全面地被所有搜尋引擎所排除。
     title: 隱私權與觸及
+    view_relays: 管理中繼站
   privacy_policy:
     title: 隱私權政策
   reactions:
@@ -2259,6 +2274,11 @@ zh-TW:
     remove_selected_followers: 移除選取的跟隨者
     remove_selected_follows: 取消跟隨選取的使用者
     status: 帳號狀態
+  relay_preferences:
+    explanation_html: "%{domain} 能連接之中繼站。 <strong>聯邦宇宙中繼站能協助您的公開嘟文擴散至更廣大的受眾。</strong> 若您選擇加入，您的 <strong>公開</strong> 嘟文將被分享至這些中繼站，並將它們進一步分享出去。其他嘟文將絕不被寄送至中繼站。"
+    opt_in: 選擇加入分享
+    relay: 中繼站
+    title: 中繼偏好設定
   remote_follow:
     missing_resource: 無法找到資源
   reports:

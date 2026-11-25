@@ -37,12 +37,19 @@ sq:
     self_follow_error: Ndjekja e llogarisë personale nuk lejohet
   admin:
     account_actions:
-      action: Kryeje veprimin
       already_silenced: Kjo llogari është kufizuar tashmë.
       already_suspended: Kjo llogari është pezulluar tashmë.
       notification_title: Njoftime & Mesazhe Përdoruesi
       text_box_title: Pasoja të këtij veprimi
       title: 'Kryeni veprim moderimi mbi @%{acct}:'
+      types:
+        delete: Fshini postime
+        disable: Ngrije llogarinë
+        mark_as_sensitive: Vëruni shenjë postimeve si me spec
+        none: Dërgoni një sinjalizim
+        sensitive: I vini shenjë një llogarie si me spec
+        silence: Kufizoni llogari
+        suspend: Pezulloni llogari
     account_moderation_notes:
       create: Lini një shënim
       created_msg: Shënimi i moderimit u krijua me sukses!
@@ -817,14 +824,16 @@ sq:
       title: Marrëdhënie të %{acct}
     relays:
       add_new: Shtoni rele të re
+      bidirectional: Dykahëshe
+      broadcast: Transmetim
       delete: Fshije
       description_html: Një <strong>rele federimesh</strong> është një shërbyes ndërmjetës që shkëmben vëllime të mëdha mesazhesh publike mes shërbyesve që janë pajtuar në të dhe publikojnë në të. <strong>Mund t’u vijë në ndihmë shërbyesve të vegjël dhe të mesëm të gjejnë lëndë nga fediversi</strong>, gjë që përndryshe do të kërkonte që përdoruesit vendorë të ndiqnin dorazi persona të tjerë nëpër shërbyes të largët.
       disable: Çaktivizoje
       disabled: E çaktivizuar
       enable: Aktivizoje
-      enable_hint: Pasi të aktivizohet, shërbyesi juaj do të pajtohet te krejt mesazhet publike prej kësaj releje, dhe do të fillojë të dërgojë në të mesazhet publike të këtij shërbyesi.
       enabled: E aktivizuar
-      inbox_url: URL releje
+      opt_in: Zgjidhni përdorimin
+      opt_out: Zgjidhni reshtjen e përdorimit
       pending: Në pritje të miratimit të relesë
       save_and_enable: Ruaje dhe aktivizoje
       setup: Ujdisni një lidhje releje
@@ -850,7 +859,7 @@ sq:
         silence_description_html: Llogaria do të jetë e dukshme vetëm për ata që e ndjekin atë tashmë, ose e kërkojnë dorazi, duke kufizuar rëndë shtrirjen e saj. Kjo mund të prapakthehet përherë. Kjo mbyll krejt raportimet kundër kësaj llogarie.
         suspend_description_html: Llogaria dhe krejt lënda e saj do të jetë e papërdoshme dhe së fundi do të fshihet, ndërsa ndërveprimi me të do të jetë i pamundur. Kjo është e prapakthyeshme brenda 30 ditësh. Kjo mbyll krejt raportimet kundër kësaj llogarie.
         warn_description_html: Përdoreni këtë që të dërgoni një sinjalizim te përdoruesi, pa shkaktuar çfarëdo veprimi tjetër.
-      actions_description_html: Vendosni cili veprim të kryhet për të zgjidhur këtë raportim. Nëse ndërmerrni një veprim ndëshkues kundër llogarisë së raportuar, atyre do t’u dërgohet një njoftim me email, hiq rastin kur përzgjidhet kategoria <strong>I padëshiruar</strong>.
+      actions_description_html: Vendosni cili veprim të kryhet për të zgjidhur këtë njoftim. Nëse ndërmerrni një veprim ndëshkues kundër llogarisë së njoftuar, do të jeni në gjendje të përzgjidhni ç’të shfaqet te njoftimi email që do t’u dërgohet, hiq rastet kur është përzgjedhur kategoria <strong>Spam</strong>.
       actions_description_remote_html: Vendosni cili veprim të ndërmerret për zgjidhjen e këtij raportimi. Kjo do të prekë vetëm mënyrën se si shërbyesi <strong>juaj</strong> komunikon me këtë llogari të largët dhe se si e trajtojnë lëndën e saj.
       actions_no_posts: Ky raportim s’ka ndonjë postim të përshoqëruar, për fshirje
       add_to_report: Shtoni më tepër te raportimi
@@ -903,6 +912,10 @@ sq:
       statuses: Postime (%{count})
       statuses_description_html: Lënda problematike do të citohet në komunikimin me llogarinë e raportuar
       summary:
+        account_action_preamble_html:
+          one: Nga njoftimi <a href="%{report_path}">#%{report}</a> me %{count} postim të përzgjedhur
+          other: Nga njoftimi <a href="%{report_path}">#%{report}</a> me %{count} postime të përzgjedhur
+          zero: Nga njoftimi <a href="%{report_path}">#%{report}</a> pa postime të përzgjedhur
         action_preambles:
           delete_html: 'Ju ndan një hap nga <strong>heqja</strong> e disa postimeve të <strong>@%{acct}</strong>. Kjo do të sjellë:'
           disable_html: 'Ju ndan një hap nga <strong>ngrirja</strong> e llogarisë së <strong>@%{acct}</strong>. Kjo do të sjellë:'
@@ -2153,9 +2166,11 @@ sq:
     privacy_hint_html: Kontrolloni sa doni të tregoni prej vetes për të mirën e të tjerëve. Njerëzit zbulojnë profile interensante dhe aplikacione të lezetshme duke shfletuar ndjekjet e personave të tjerë dhe duke parë se prej cilëve aplikacione postuan, por mund të parapëlqeni ta mbani të fshehur këtë.
     reach: Shtrirje
     reach_hint_html: Kontrolloni zbulimin dhe ndjekjen tuaj nga persona të rinj. Doni që postimet tuaja të shfaqen në skenën Exploroni? Doni që persona të tjerë t’ju shohin te rekomandimet për ndjekje prej tyre? Doni të pranohen automatikisht ndjekësit e rinj, apo të keni kontroll të imët mbi secilin rast?
+    relays_hint_html: Për më tepër mund të zgjidhni përdorim relesh të paraformësuara që shëprndajnë postimet tuaja publike te një publik edhe më i gjerë nëpër Fedivers.
     search: Kërkim
     search_hint_html: Kontrolloni mënyrën se si do t’ju gjejnë. Doni që njerëzit t’ju gjejnë përmes çka keni postuar botërisht? Doni që njerëz jashtë Mastodon-it ta gjejnë profilin tuaj kur kërkojnë në internet? Ju lutemi, kini parasysh se për informacione publike s’mund të garantohet përjashtimi tërësor nga krejt motorët e kërkimeve.
     title: Privatësi dhe shtrirje
+    view_relays: Administroni reletë tuaja
   privacy_policy:
     title: Rregulla Privatësie
   reactions:
@@ -2186,6 +2201,11 @@ sq:
     remove_selected_followers: Hiq ndjekësit e përzgjedhur
     remove_selected_follows: Hiqe ndjekjen e përdoruesve të përzgjedhur
     status: Gjendje llogarie
+  relay_preferences:
+    explanation_html: Këto janë rele me të cilat mund të lidhet përkatësia %{domain}. <strong>Reletë Fedivers mund të ndihmojnë që postimet tuaja publike të mbërrijnë te një publik më i gjerë.</strong> Nëse zgjidhni përdorimin e një releje, postimet tuaja <strong>publike</strong> do të ndahen me relenë, e cila mund t’i ndajë më tej me të tjerë. Lloje të tjera postimesh s’dërgohen kurrë në rele.
+    opt_in: Zgjidhni ndarjen me të tjerë
+    relay: Rele
+    title: Parapëlqime releje
   remote_follow:
     missing_resource: S’u gjet dot URL-ja e domosdoshme e ridrejtimit për llogarinë tuaj
   reports:

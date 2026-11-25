@@ -20,6 +20,7 @@ tr:
         text: Bğlantılar, etiketler ve bahsedenler gibi gönderi sözdizimini kullanabilirsiniz
         title: İsteğe bağlı. Alıcıya görünmez
       admin_account_action:
+        include_rule_violations: E-postada, moderasyon işleminin neden olduğu kural ihlallerinin hangileri olduğu belirtilecektir
         include_statuses: Kullanıcı hangi gönderilerin denetleme eylemi veya uyarısına neden olduğunu görecektir
         send_email_notification: Kullanıcı, hesabına ne olduğuna dair bir açıklama alacak
         text: İsteğe bağlı. Gönderi sözdizimi kullanabilirsiniz. Hazır yanıtın altında görünecektir
@@ -30,7 +31,8 @@ tr:
           sensitive: Bu kullanıcının tüm medya eklerini hassas olarak işaretlemeye zorla.
           silence: Kullanıcının herkese açık şekilde gönderimde bulunmasını engelle, gönderilerini ve bildirimlerini onları takip etmeyen kişilerden gizle. Bu hesaba yönelik tüm bildirimleri kapatır.
           suspend: Bu hesaptan herhangi bir etkileşimi engelle ve içeriğini sil. 30 gün içerisinde geri alınabilir. Bu hesaba yönelik tüm bildirimleri kapatır.
-        warning_preset_html: İsteğe bağlı. <a href="%{path}">Buradan yönetebilirsiniz</a>
+        warning_preset: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
+        warning_preset_explanation: Henüz kaydedilmiş hazır yanıtınız yok. Hazır yanıtlar, raporlarınızda kaydedip tekrar kullanabileceğiniz mesajlardır.
       announcement:
         all_day: İşaretlendiğinde, yalnızca zaman aralığındaki tarihler görüntülenir
         ends_at: İsteğe bağlı. Duyuru, bu tarihte otomatik olarak yayından kaldırılacak
@@ -132,6 +134,13 @@ tr:
           sign_up_block: Yeni kayıtlar mümkün olmayacaktır
           sign_up_requires_approval: Yeni kayıt onayınızı gerektirir
         severity: Bu IP'den gelen isteklere ne olacağını seçin
+      relay:
+        acct: kullaniciadi@alanadi biçiminde.
+        direction: Aktarıcıya nasıl katılmak istersiniz
+        directions:
+          bidirectional: Aktarıcıya yayın yap ve aktarıcının diğer üyelerinden gelen içeriği kabul et
+          broadcast: Sadece aktarıcıya yayın yap
+        requires_opt_in: Sadece açıkça bu aktarıcıya katılmış kullanıcılar için aktarıcıya içerik gönder
       rule:
         hint: İsteğe bağlı. Kural hakkında daha fazla ayrıntı verin
         text: Bu sunucu üzerindeki kullanıcılar için bir kural veya gereksinimi tanımlayın. Kuralı kısa ve yalın tutmaya çalışın
@@ -199,6 +208,8 @@ tr:
         text: Yanıt metni
         title: Başlık
       admin_account_action:
+        canned_response_back_link: hazır yanıtları yönet
+        include_rule_violatins: Bildirilen kural ihlallerini dahil et
         include_statuses: Bildirilen gönderileri e-postaya dahil et
         send_email_notification: Kullanıcıyı e-posta ile bilgilendir
         text: Özel yanıt
@@ -376,6 +387,13 @@ tr:
           none: Güncellemeleri hiç bir zaman bildirme (önerilmiyor)
           patch: Yama güncellemelerini bildir
         trending_tag: Yeni eğilimin gözden geçmesi gerekiyor
+      relay:
+        acct: Aktarıcının adı
+        direction: Katılım düzeyi
+        directions:
+          bidirectional: Çift yönlü
+          broadcast: Sadece yayın
+        requires_opt_in: Kullanıcılar katılsın
       rule:
         hint: Ek bilgi
         text: Kural

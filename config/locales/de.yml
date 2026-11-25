@@ -37,12 +37,18 @@ de:
     self_follow_error: Es ist nicht erlaubt, deinem eigenen Konto zu folgen
   admin:
     account_actions:
-      action: Aktion ausführen
       already_silenced: Dieses Konto wurde bereits eingeschränkt.
       already_suspended: Dieses Konto wurde bereits gesperrt.
       notification_title: Benachrichtigungen und Nachrichten
       text_box_title: Auswirkungen dieser Aktion
       title: 'Moderationsmaßnahme für @%{acct}:'
+      types:
+        delete: Beiträge löschen
+        disable: Konto einfrieren
+        mark_as_sensitive: Beiträge mit einer Inhaltswarnung versehen
+        none: Verwarnen
+        sensitive: Profil mit einer Inhaltswarnung versehen
+        suspend: Konto sperren
     account_moderation_notes:
       create: Notiz abspeichern
       created_msg: Moderationshinweis erfolgreich abgespeichert!
@@ -875,9 +881,9 @@ de:
       disable: Ausschalten
       disabled: Ausgeschaltet
       enable: Einschalten
-      enable_hint: Sobald aktiviert, wird dein Server alle öffentlichen Beiträge dieses Relais abonnieren und alle öffentlichen Beiträge dieses Servers an dieses senden.
       enabled: Eingeschaltet
-      inbox_url: Relay-URL
+      opt_in: Opt-in
+      opt_out: Opt-out
       pending: Warte auf Zustimmung des Relays
       save_and_enable: Speichern und aktivieren
       setup: Neues Relais verbinden
@@ -903,7 +909,7 @@ de:
         silence_description_html: Das Konto wird nur für diejenigen sichtbar sein, die dem Konto bereits folgen oder es manuell aufrufen. Die Reichweite wird dadurch stark eingeschränkt und alle Meldungen zu diesem Konto werden geschlossen. Die Entscheidung kann jederzeit rückgängig gemacht werden.
         suspend_description_html: Das Konto und dessen Inhalte werden nicht mehr aufrufbar sein und ggf. gelöscht. Eine Interaktion mit dem Konto wird unmöglich und alle Meldungen zu diesem Konto werden geschlossen. Die Entscheidung kann innerhalb von 30 Tagen rückgängig gemacht werden.
         warn_description_html: Dem Konto eine Warnung zusenden, ohne dabei eine andere Aktion vorzunehmen.
-      actions_description_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, erhält es eine E-Mail-Benachrichtigung, sofern nicht die <strong>Spam</strong>-Kategorie ausgewählt ist.
+      actions_description_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, erhält es eine E-Mail-Benachrichtigung, die du anpassen kannst, sofern nicht die <strong>Spam</strong>-Kategorie ausgewählt ist.
       actions_description_remote_html: Entscheide, welche Maßnahmen du zum Klären dieser Meldung ergreifen möchtest. Dies wirkt sich lediglich darauf aus, wie <strong>dein</strong> Server mit diesem externen Konto kommuniziert und dessen Inhalt handhabt.
       actions_no_posts: Diese Meldung enthält keine zu löschenden Beiträge
       add_to_report: Meldung ergänzen
@@ -956,6 +962,10 @@ de:
       statuses: Beiträge (%{count})
       statuses_description_html: Beanstandete Inhalte werden in der Kommunikation mit dem gemeldeten Konto erwähnt
       summary:
+        account_action_preamble_html:
+          one: Aus Meldung <a href="%{report_path}">Nr. %{report}</a> mit %{count} ausgewählten Beitrag
+          other: Aus Meldung <a href="%{report_path}">Nr. %{report}</a> mit %{count} ausgewählten Beiträgen
+          zero: Aus Meldung <a href="%{report_path}">Nr. %{report}</a> ohne ausgewählte Beiträge
         action_preambles:
           delete_html: 'Du bist dabei, einige Beiträge von <strong>@%{acct}</strong> zu <strong>entfernen</strong>. Dies wird:'
           disable_html: 'Du bist dabei, das Konto von <strong>@%{acct}</strong> <strong>einzufrieren</strong>. Dies wird:'

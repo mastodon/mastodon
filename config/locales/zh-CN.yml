@@ -34,12 +34,19 @@ zh-CN:
     self_follow_error: 不可以关注自己
   admin:
     account_actions:
-      action: 执行操作
       already_silenced: 此账号已受限。
       already_suspended: 此账号已被封禁。
       notification_title: 用户通知及消息
       text_box_title: 操作结果
       title: 对 @%{acct} 执行管理操作：
+      types:
+        delete: 删除嘟文
+        disable: 冻结账号
+        mark_as_sensitive: 将嘟文标记为敏感内容
+        none: 发送警告
+        sensitive: 将账号标记为敏感内容
+        silence: 限制账号
+        suspend: 封禁账号
     account_moderation_notes:
       create: 新建记录
       created_msg: 管理记录创建成功！
@@ -453,6 +460,8 @@ zh-CN:
         other: "<strong>%{count}</strong> 个待处理申诉"
       pending_reports_html:
         other: "<strong>%{count}</strong> 个待处理举报"
+      pending_server_checks_html:
+        other: 服务器有 <strong>%{count}</strong> 条待处理问题。前往<a href="%{url}">服务器健康状态页面</a>查看详情。
       pending_tags_html:
         other: "<strong>%{count}</strong> 个待处理话题"
       pending_users_html:
@@ -874,14 +883,16 @@ zh-CN:
       title: "%{acct} 的关系"
     relays:
       add_new: 订阅新的中继站
+      bidirectional: 双向
+      broadcast: 广播
       delete: 删除
       description_html: "<strong>中继服务器</strong>是一个信息统合服务器，各服务器可以通过订阅中继服务器和向中继服务器推送信息来大量交换公开嘟文。<strong>它可以帮助中小型服务器发现联邦宇宙中的其他服务器的内容</strong>，而无需本站用户手动关注其他远程服务器上的用户。"
       disable: 禁用
       disabled: 已禁用
       enable: 启用
-      enable_hint: 启用此功能后，你的实例会订阅此中继站的全部公开嘟文，并同时向其推送本服务器的公开嘟文。
       enabled: 已启用
-      inbox_url: 中继站 URL
+      opt_in: 选择加入
+      opt_out: 选择退出
       pending: 等待中继站的确认
       save_and_enable: 保存并启用
       setup: 设置中继连接
@@ -906,7 +917,7 @@ zh-CN:
         silence_description_html: 只有关注或手工搜索此账号才能查看其资料，将严重限制其触达范围。此操作可随时撤销。此操作会关闭针对此账号的全部举报。
         suspend_description_html: 该账号及其全部内容将无法访问并最终被删除，且无法与该账号进行互动。此操作在 30 天内可随时撤销。此操作会关闭针对此账号的全部举报。
         warn_description_html: 用它来向用户发送警告，不会触发其他操作。
-      actions_description_html: 决定采取何种措施处理此举报。如果对被举报账号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
+      actions_description_html: 决定采取何种措施处理此举报。如果对被举报账号采取惩罚性措施，你将可以选择向其发送的电子邮件通知中出现的内容。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
       actions_description_remote_html: 决定采取何种行动来解决此举报。 这只会影响<strong>你的</strong>服务器如何与该远程账号的通信并处理其内容。
       actions_no_posts: 该举报没有相关嘟文可供删除
       add_to_report: 添加更多内容到举报
@@ -959,6 +970,10 @@ zh-CN:
       statuses: 嘟文 (%{count})
       statuses_description_html: 在与该账号的通信中将引用违规内容
       summary:
+        account_action_preamble_html:
+          one: 来自举报 <a href="%{report_path}">#%{report}</a>，选择了 %{count} 条嘟文
+          other: 来自举报 <a href="%{report_path}">#%{report}</a>，选择了 %{count} 条嘟文
+          zero: 来自举报 <a href="%{report_path}">#%{report}</a>，没有选择嘟文
         action_preambles:
           delete_html: 你即将<strong>删除</strong> <strong>@%{acct}</strong> 的一些嘟文。 这将：
           disable_html: 你即将<strong>冻结</strong> <strong>@%{acct}</strong> 的账号。 这将：
@@ -2218,9 +2233,11 @@ zh-CN:
     privacy_hint_html: 控制你愿意向他人透露多少信息。通过浏览他人的关注列表和查看他们发嘟所用的应用，人们可以发现有趣的用户和酷炫的应用，但你可能更喜欢将其隐藏起来。
     reach: 范围
     reach_hint_html: 控制你是否希望被新人发现和关注。你是否希望你的嘟文出现在“探索”页面上？你是否希望其他人在关注推荐中看到你？你是想自动接受全部新关注者，还是对每个关注者都进行仔细的筛选？
+    relays_hint_html: 你可以额外选择加入预先配置的中继站，这些中继站可以帮助你的公开嘟文扩散到联邦宇宙中更广大的受众。
     search: 搜索
     search_hint_html: 控制你希望被找到的方式。你想让人们通过你公开发布的内容来找到你吗？当在网络上搜索时，你是否希望Mastodon之外的人能够找到你的个人资料？请注意，我们无法保证完全排除所有搜索引擎对公开信息的索引。
     title: 隐私与可达性
+    view_relays: 管理中继站
   privacy_policy:
     title: 隐私政策
   reactions:
@@ -2251,6 +2268,11 @@ zh-CN:
     remove_selected_followers: 移除选中的关注者
     remove_selected_follows: 取消关注所选用户
     status: 账号状态
+  relay_preferences:
+    explanation_html: 以下是 %{domain} 可以连接的中继站。<strong>联邦宇宙中继站可以帮助你的公开嘟文扩散到更广大的受众。</strong>如果你选择加入中继，你的<strong>公开</strong>嘟文将被分享至中继站，而中继站可以将嘟文进一步分享出去。其他类型的嘟文不会被发送至中继站。
+    opt_in: 选择加入分享
+    relay: 中继站
+    title: 中继偏好设置
   remote_follow:
     missing_resource: 无法确定你的账号的跳转 URL
   reports:

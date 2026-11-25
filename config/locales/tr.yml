@@ -37,12 +37,19 @@ tr:
     self_follow_error: Kendi hesabınızı takip etmenize izin yok
   admin:
     account_actions:
-      action: Eylemi gerçekleştir
       already_silenced: Bu hesap zaten sınırlanmış.
       already_suspended: Bu hesap zaten askıya alınmış.
       notification_title: Kullanıcı Bildirimi ve İleti
       text_box_title: Bu eylemin sonuçları
       title: "@%{acct} üzerinde denetleme eylemi gerçekleştir:"
+      types:
+        delete: Gönderileri sil
+        disable: Hesabı dondur
+        mark_as_sensitive: Gönderileri hassas olarak işaretle
+        none: Bir uyarı gönder
+        sensitive: Hesabı hassas olarak işaretle
+        silence: Hesabı kısıtla
+        suspend: Hesabı askıya al
     account_moderation_notes:
       create: Not bırak
       created_msg: Denetim notu başarıyla oluşturuldu!
@@ -460,6 +467,9 @@ tr:
       pending_reports_html:
         one: "<strong>%{count}</strong> bekleyen bildirim"
         other: "<strong>%{count}</strong> bekleyen bildirim"
+      pending_server_checks_html:
+        one: Sunucuda <strong>%{count}</strong> adet bekleyen sorun bulunmaktadır. Daha fazla ayrıntı için <a href="%{url}">Sunucu Durumu sayfasına</a> gidin.
+        other: Sunucuda <strong>%{count}</strong> adet bekleyen sorun bulunmaktadır. Daha fazla ayrıntı için <a href="%{url}">Sunucu Durumu sayfasına</a> gidin.
       pending_tags_html:
         one: "<strong>%{count}</strong> bekleyen etiket"
         other: "<strong>%{count}</strong> bekleyen etiket"
@@ -887,14 +897,16 @@ tr:
       title: "%{acct} kişisinin ilişkileri"
     relays:
       add_new: Yeni aktarıcı ekle
+      bidirectional: Çift yönlü
+      broadcast: Yayın
       delete: Sil
       description_html: "<strong>Federasyon aktarıcısı</strong>, kendisine abone olan ve yayın yapan sunucular arasında büyük miktarlarda herkese açık gönderilerin değiş tokuşunu yapan aracı bir sunucudur. <strong>Küçük ve orta boyutlu sunucuların fediverse'ten içerik keşfetmesine yardımcı olurlar</strong>, aksi takdirde yerel kullanıcıların uzak sunuculardaki diğer kişileri manuel olarak takip etmeleri gerekecektir."
       disable: Devre dışı
       disabled: Devre dışı
       enable: Etkin
-      enable_hint: Etkinleştirildiğinde, sunucunuz bu aktarıcıdan gelecek tüm herkese açık gönderilere abone olacak, ve kendisinin herkese açık gönderilerini bu aktarıcıya göndermeye başlayacaktır.
       enabled: Etkin
-      inbox_url: Aktarıcı URL'si
+      opt_in: Katıl
+      opt_out: Ayrıl
       pending: Aktarıcının onaylaması için bekleniyor
       save_and_enable: Kaydet ve etkinleştir
       setup: Bir aktarıcı bağlantısı kur
@@ -920,7 +932,7 @@ tr:
         silence_description_html: Bu hesap sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir. Hesaba yönelik tüm bildirimleri kapatır.
         suspend_description_html: Bu hesap ve tüm içeriği erişilmez olacak ve nihayetinde silinecek ve bu hesapla etkileşim mümkün olmayacaktır. 30 gün içinde geri alınabilir. Hesaba yönelik tüm bildiriimleri kapatır.
         warn_description_html: Bunu, başka bir eylem tetiklemeden kullanıcıya bir uyarı göndermek için kullan.
-      actions_description_html: Bu bildirimi çözmek için ne yapılması gerektiğine karar verin. Bildirilen hesap için ceza işlemi yaparsanız, <strong>İstenmeyen</strong> kategorisi seçilmemişse, onlara bir e-posta duyurusu gönderilecektir.
+      actions_description_html: Bu bildirimi çözmek için ne yapılması gerektiğine karar verin. Bildirilen hesaba karşı bir yaptırım uygulayacaksanız, <strong>İstenmeyen</strong> kategorisi seçilmediği sürece, hesaba gönderilecek e-posta bildiriminde neyin yer alacağını seçebilirsiniz.
       actions_description_remote_html: Bu bildirimi çözmek için hangi eylemi yapmak istediğinize karar verin. Bu yalnızca <strong>sizin</strong> sunucunuzun bu uzak hesapla nasıl etkileşeğini ve içeriğiyle ne yapacağını etkiler.
       actions_no_posts: Bu raporun ilişkili olduğu silinecek gönderi yok
       add_to_report: Bildirime daha fazlasını ekle
@@ -973,6 +985,10 @@ tr:
       statuses: Gönderiler (%{count})
       statuses_description_html: İncitici içerik, bildirilen hesapla iletişimde alıntılanacaktır
       summary:
+        account_action_preamble_html:
+          one: <a href="%{report_path}">#%{report}</a> raporundan, %{count} adet seçilmiş gönderi ile
+          other: <a href="%{report_path}">#%{report}</a> raporundan, %{count} adet seçilmiş gönderi ile
+          zero: <a href="%{report_path}">#%{report}</a> raporundan; seçili gönderi yok
         action_preambles:
           delete_html: "<strong>@%{acct}</strong> hesabının bazı gönderilerini <strong>kaldıracaksınız</strong>, böylece:"
           disable_html: "<strong>@%{acct}</strong> hesabını <strong>donduracaksınız</strong>, böylece:"
@@ -2267,9 +2283,11 @@ tr:
     privacy_hint_html: Başkalarına ne kadar bilgi göstermek istediğinizi denetleyin. İnsanlar ilginç profilleri ve havalı uygulamaları diğer kişilerin takiplerine ve gönderileri paylaştıkları uygulamalara bakarak keşfederler, ama belki de gizli tutmak isteyebilirsiniz.
     reach: Erişim
     reach_hint_html: Yeni insanlar tarafından ne kadar keşfedilmek ve takip edilmek istediğinizi denetleyin. Gönderilerinizin Keşfet ekranında görüntülenmesini istiyor musunuz? Başkalarının takip önerileri listesinde görünmek istiyor musunuz? Tüm yeni takipçileri otomatik olarak kabul etmek mi yoksa her bir istek üzerinden ayrıntılı denetim mi istiyorsunuz?
+    relays_hint_html: Ayrıca, genel yayınlarınızı fediverse genelinde daha da geniş bir kitleye ulaştıran önceden yapılandırılmış aktarıcılara katılmayı da tercih edebilirsiniz.
     search: Ara
     search_hint_html: Nasıl bulunmak istediğinizi denetleyin. Herkese açık gönderileriniz aracılığıyla daha fazla insanın sizi bulmasını istiyor musunuz? Mastodon dışındaki kişilerin webte arama yaptığında profilinizi bulmasını istiyor musunuz? Tüm arama motorlarından tamamen çıkmanın herkese açık bilgiler için garanti olmadığını lütfen unutmayın.
     title: Gizlilik ve erişim
+    view_relays: Aktarıcılarınızı yönetin
   privacy_policy:
     title: Gizlilik Politikası
   reactions:
@@ -2300,6 +2318,11 @@ tr:
     remove_selected_followers: Seçili takipçileri kaldır
     remove_selected_follows: Seçili kullanıcıları takip etmeyi bırak
     status: Hesap durumu
+  relay_preferences:
+    explanation_html: Bunlar, %{domain}'in bağlanabileceği aktarıcılardır. <strong>Fediverse aktarıcıları, herkese açık gönderilerinizin daha geniş bir kitleye ulaşmasına yardımcı olabilir.</strong> Bir aktarıcıya katılmayı seçerseniz, <strong>herkese açık</strong> gönderileriniz aktarıcıyla paylaşılır ve aktarıcı da bunları daha geniş bir kitleye yayabilir. Diğer türdeki gönderiler hiçbir zaman aktarıcılara gönderilmez.
+    opt_in: Paylaşmaya katıl
+    relay: Aktarıcı
+    title: Aktarıcı tercihleri
   remote_follow:
     missing_resource: Hesabınız için gerekli yönlendirme URL'si bulunamadı
   reports:
