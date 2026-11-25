@@ -27,7 +27,25 @@ RSpec.describe 'Admin Custom Emojis' do
   end
 
   describe 'POST /admin/custom_emojis/batch' do
+    let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: 'wave', domain: 'example.org', disabled: false) }
+
     before { sign_in Fabricate(:admin_user) }
+
+    it 'preserves filters and pagination after a successful batch submission' do
+      expect do
+        post batch_admin_custom_emojis_path, params: {
+          remote: '1',
+          by_domain: 'example.org',
+          shortcode: 'wave',
+          page: '2',
+          disable: '1',
+          form_custom_emoji_batch: { custom_emoji_ids: [custom_emoji.id] },
+        }
+      end.to change { custom_emoji.reload.disabled }.from(false).to(true)
+
+      expect(response)
+        .to redirect_to(admin_custom_emojis_path(remote: '1', by_domain: 'example.org', shortcode: 'wave', page: '2'))
+    end
 
     it 'preserves normalized local filters on redirect' do
       post batch_admin_custom_emojis_path(local: '1', remote: '1', by_domain: 'example.org', shortcode: 'wave')
