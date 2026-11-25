@@ -40,6 +40,8 @@ export function useCloseOnHistoryBack(
 
     const { pathname, search, hash, state } = history.location;
 
+    let shouldGoBackOnUnmount = false;
+
     if (state?.mastodonModalKey !== key) {
       history.push(
         { pathname, search, hash },
@@ -49,6 +51,7 @@ export function useCloseOnHistoryBack(
           mastodonModalKey: key,
         },
       );
+      shouldGoBackOnUnmount = true;
     }
 
     const unlisten = history.listen((newLocation, action) => {
@@ -60,7 +63,7 @@ export function useCloseOnHistoryBack(
     return () => {
       unlisten();
 
-      if (state?.mastodonModalKey === key) {
+      if (shouldGoBackOnUnmount) {
         history.goBack();
       }
     };
