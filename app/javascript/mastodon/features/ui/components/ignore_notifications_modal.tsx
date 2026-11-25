@@ -156,19 +156,21 @@ export const IgnoreNotificationsModal: React.FC<{ filterType: FilterType }> = ({
 
           <div className='spacer' />
 
-          <Button onClick={handleCancel}>
-            <FormattedMessage
-              id='confirmation_modal.cancel'
-              defaultMessage='Cancel'
-            />
-          </Button>
+          <div className='safety-action-modal__button-group'>
+            <Button onClick={handleCancel}>
+              <FormattedMessage
+                id='confirmation_modal.cancel'
+                defaultMessage='Cancel'
+              />
+            </Button>
 
-          <Button onClick={handleClick} variant='solid' color='destructive'>
-            <FormattedMessage
-              id='ignore_notifications_modal.ignore'
-              defaultMessage='Ignore notifications'
-            />
-          </Button>
+            <Button onClick={handleClick} variant='solid' color='destructive'>
+              <FormattedMessage
+                id='ignore_notifications_modal.ignore'
+                defaultMessage='Ignore notifications'
+              />
+            </Button>
+          </div>
         </div>
       </div>
     </div>

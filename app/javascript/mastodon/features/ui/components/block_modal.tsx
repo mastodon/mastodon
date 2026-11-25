@@ -157,24 +157,26 @@ export const BlockModal: React.FC<{ accountId: string; acct: string }> = ({
 
           <div className='spacer' />
 
-          <Button onClick={handleCancel}>
-            <FormattedMessage
-              id='confirmation_modal.cancel'
-              defaultMessage='Cancel'
-            />
-          </Button>
+          <div className='safety-action-modal__button-group'>
+            <Button onClick={handleCancel}>
+              <FormattedMessage
+                id='confirmation_modal.cancel'
+                defaultMessage='Cancel'
+              />
+            </Button>
 
-          <Button
-            onClick={handleClick}
-            variant='solid'
-            color='destructive'
-            autoFocus
-          >
-            <FormattedMessage
-              id='confirmations.block.confirm'
-              defaultMessage='Block'
-            />
-          </Button>
+            <Button
+              onClick={handleClick}
+              variant='solid'
+              color='destructive'
+              autoFocus
+            >
+              <FormattedMessage
+                id='confirmations.block.confirm'
+                defaultMessage='Block'
+              />
+            </Button>
+          </div>
         </div>
       </div>
     </div>

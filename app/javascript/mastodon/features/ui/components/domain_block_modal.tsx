@@ -194,24 +194,26 @@ export const DomainBlockModal: React.FC<{
 
           <div className='spacer' />
 
-          <Button onClick={handleCancel}>
-            <FormattedMessage
-              id='confirmation_modal.cancel'
-              defaultMessage='Cancel'
-            />
-          </Button>
+          <div className='safety-action-modal__button-group'>
+            <Button onClick={handleCancel}>
+              <FormattedMessage
+                id='confirmation_modal.cancel'
+                defaultMessage='Cancel'
+              />
+            </Button>
 
-          <Button
-            onClick={handleClick}
-            variant='solid'
-            color='destructive'
-            loading={loading}
-          >
-            <FormattedMessage
-              id='domain_block_modal.block'
-              defaultMessage='Block server'
-            />
-          </Button>
+            <Button
+              onClick={handleClick}
+              variant='solid'
+              color='destructive'
+              loading={loading}
+            >
+              <FormattedMessage
+                id='domain_block_modal.block'
+                defaultMessage='Block server'
+              />
+            </Button>
+          </div>
         </div>
       </div>
     </div>

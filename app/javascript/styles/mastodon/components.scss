@@ -3803,9 +3803,10 @@ a.status-card {
 
   &__actions {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
     justify-content: flex-end;
+    gap: 8px;
 
     &__hint {
       font-size: 14px;
@@ -3817,6 +3818,23 @@ a.status-card {
       padding: 10px 12px;
       font-weight: 600;
     }
+
+    .spacer {
+      // This large value prevents a neighboring &__button-group
+      // from taking up more space than needed if it's on the same row
+      // as the spacer. Once the button-group wraps, it'll expand to
+      // fill the entire row.
+      flex-grow: 100;
+    }
+  }
+
+  &__button-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 8px;
+    margin-inline-start: auto;
   }
 }
 
