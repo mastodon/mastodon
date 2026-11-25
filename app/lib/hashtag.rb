@@ -16,29 +16,29 @@ class Hashtag
   private_constant :FIRST_SEQUENCE_CHUNK_ONE, :FIRST_SEQUENCE_CHUNK_TWO, :FIRST_SEQUENCE, :LAST_SEQUENCE, :NAME_PAT
 
   class << self
-    def normalize(str)
-      unicode_normalize(str)
-        .then { |value| lowercase(value) }
-        .then { |value| ascii_fold(value) }
-        .then { |value| remove_invalid_characters(value) }
+    def normalize(value)
+      unicode_normalize(value)
+        .then { lowercase(it) }
+        .then { ascii_fold(it) }
+        .then { remove_invalid_characters(it) }
     end
 
     private
 
-    def unicode_normalize(str)
-      str.unicode_normalize(:nfkc)
+    def unicode_normalize(string)
+      string.unicode_normalize(:nfkc)
     end
 
-    def lowercase(str)
-      str.downcase.to_s
+    def lowercase(string)
+      string.downcase.to_s
     end
 
-    def ascii_fold(str)
-      ASCIIFolding.new.fold(str)
+    def ascii_fold(string)
+      ASCIIFolding.new.fold(string)
     end
 
-    def remove_invalid_characters(str)
-      str.gsub(INVALID_CHARS_RE, '')
+    def remove_invalid_characters(string)
+      string.gsub(INVALID_CHARS_RE, '')
     end
   end
 end
