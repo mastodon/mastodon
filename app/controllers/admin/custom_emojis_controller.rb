@@ -4,6 +4,8 @@ module Admin
   class CustomEmojisController < BaseController
     before_action :normalize_filter_params, only: [:index, :batch]
 
+    helper_method :filter_fields
+
     def index
       authorize :custom_emoji, :index?
 
@@ -44,6 +46,10 @@ module Admin
     end
 
     private
+
+    def filter_fields
+      params[:local] == '1' ? %i(shortcode) : %i(shortcode by_domain)
+    end
 
     def normalize_filter_params
       local = params.delete(:local) == '1'

@@ -18,9 +18,7 @@
     - %i(local remote).each do |key|
       = form.hidden_field key, value: params[key] if params[key].present?
 
-    - %i(shortcode by_domain).each do |key|
-      - next if key == :by_domain && params[:local] == '1'
-
+    - filter_fields.each do |key|
       .input.string.optional
         = form.text_field key,
                           value: params[key],
