@@ -20,6 +20,7 @@ da:
         text: Du kan bruge indlægssyntaks, såsom URL'er, hashtags og omtaler
         title: Valgfri. Ikke synlig for modtageren
       admin_account_action:
+        include_rule_violations: I e-mailen vil det fremgå, hvilke regelbrud der har ført til moderationshandlingen
         include_statuses: Brugeren vil se, hvilke indlæg, som har forårsaget modereringen/advarslen
         send_email_notification: Brugeren modtager en forklaring på, hvad der skete med deres konto
         text: Valgfri. Du kan bruge indlægssyntaks. Det vises under forudindstillede svar
@@ -30,7 +31,8 @@ da:
           sensitive: Gennemtving sensitivmarkering af alle denne brugers medievedhæftninger.
           silence: Forhindr brugeren i at udgive offentligt synlige indlæg, skjul vedkommendes indlæg samt notifikationer fra ikke-følgere. Lukker alle indrapporteringer af kontoen.
           suspend: Forhindr alle interaktion fra/til kontoen og slet dens indhold. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
-        warning_preset_html: Valgfri. Du kan <a href="%{path}">administrere dem her</a>
+        warning_preset: Valgfri. Du kan stadig tilføje tilpasset tekst til slutningen af forvalgene
+        warning_preset_explanation: Du har endnu ingen gemte standardsvar. Standardsvar er beskeder, som du kan gemme og genbruge i dine anmeldelser.
       announcement:
         all_day: Hvis markeret, vil kun datoerne for tidsintervallet blive vist
         ends_at: Valgfri. En bekendtgørelse vil automatisk blive afpubliceret på dette tidspunkt
@@ -199,6 +201,8 @@ da:
         text: Svartekst
         title: Titel
       admin_account_action:
+        canned_response_back_link: administrer standardsvar
+        include_rule_violatins: Inkludér rapporterede regelovertrædelser
         include_statuses: Medtag anmeldte indlæg i e-mailen
         send_email_notification: Underret brugeren pr. e-mail
         text: Tilpasset svar

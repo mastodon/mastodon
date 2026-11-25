@@ -37,12 +37,19 @@ da:
     self_follow_error: Det er ikke tilladt at følge ens egen konto
   admin:
     account_actions:
-      action: Udfør handling
       already_silenced: Denne konto er allerede blevet begrænset.
       already_suspended: Denne konto er allerede suspenderet.
       notification_title: Brugernotifikation og besked
       text_box_title: Konsekvenser af denne handling
       title: 'Udfør moderatorhandling på @%{acct}:'
+      types:
+        delete: Slet indlæg
+        disable: Fastfrys konto
+        mark_as_sensitive: Markér indlæg som følsomme
+        none: Send en advarsel
+        sensitive: Markér konto som følsom
+        silence: Begræns konto
+        suspend: Suspendér konto
     account_moderation_notes:
       create: Skriv notat
       created_msg: Moderatornotat oprettet!
@@ -890,14 +897,13 @@ da:
       title: "%{acct}-relationer"
     relays:
       add_new: Tilføj ny videreformidler
+      bidirectional: Dobbeltrettet
       delete: Slet
       description_html: En <strong>federationsvidereformidler</strong> er en mellemliggende server, der udveksler store mængder offentlige indlæg mellem servere, som abonnerer på og publicerer til den. <strong>Det kan hjælpe små og mellemstore servere med at opdage indhold fra fediverset</strong>, der ellers ville kræve at lokale brugere manuelt følger andre personer på fjernservere.
       disable: Deaktivér
       disabled: Deaktiveret
       enable: Aktivér
-      enable_hint: Når aktiveret, vil din server abonnere på alle offentlige indlæg fra denne videreformidler og vil begynde at sende denne servers offentlige indlæg til den.
       enabled: Aktiveret
-      inbox_url: Videreformidler-URL
       pending: Afventer videreformidlers godkendelse
       save_and_enable: Gem og aktivér
       setup: Opsæt en videreformidlerforbindelse
@@ -923,7 +929,7 @@ da:
         silence_description_html: Kontoen vil kun være synlig for dem, der allerede følger den eller manuelt søger efter den, hvilket i høj grad begrænser dens rækkevidde. Dette kan altid omgøres. Dette lukker alle anmeldelser vedrørende denne konto.
         suspend_description_html: Kontoen og alt dens indhold vil blive utilgængeligt og til sidst slettet, og det vil ikke længere være muligt at interagere med den. Dette kan omgøres inden for 30 dage. Dette lukker alle anmeldelser vedrørende denne konto.
         warn_description_html: Brug dette til at sende en advarsel til brugeren uden at udløse nogen anden handling.
-      actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Ved en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
+      actions_description_html: Vælg, hvilken handling der skal iværksættes for at behandle denne anmeldelse. Hvis du iværksætter en sanktion mod den anmeldte konto, kan du vælge, hvad der skal stå i den e-mail-besked, der sendes til brugeren, medmindre kategorien <strong>Spam</strong> er valgt.
       actions_description_remote_html: Fastslå en nødvendig handling mhp. at løse denne anmeldelse. Dette vil kun påvirke <strong>din</strong> servers kommunikation med, og indholdshåndtering for, fjernkontoen.
       actions_no_posts: Denne anmeldelse har ingen tilknyttede indlæg at slette
       add_to_report: Føj mere til anmeldelse
@@ -976,6 +982,10 @@ da:
       statuses: Indlæg (%{count})
       statuses_description_html: Krænkende indhold citeres i kommunikationen med den anmeldte konto
       summary:
+        account_action_preamble_html:
+          one: Fra anmeldelsen <a href="%{report_path}">#%{report}</a> med %{count} udvalgt indlæg
+          other: Fra anmeldelsen <a href="%{report_path}">#%{report}</a> med %{count} udvalgte indlæg
+          zero: Fra anmeldelsen <a href="%{report_path}">#%{report}</a> med ingen udvalgte indlæg
         action_preambles:
           delete_html: 'Du er ved at <strong>fjerne</strong> nogle indlæg fra <strong>@%{acct}</strong>. Dette vil:'
           disable_html: 'Du er ved at <strong>fryse</strong> <strong>@%{acct}</strong>s konto. Dette vil:'

@@ -37,9 +37,19 @@ is:
     self_follow_error: Ekki er leyft að fylgjast með eigin aðgangi
   admin:
     account_actions:
-      action: Framkvæma aðgerð
       already_silenced: Þessi aðgangur hefur þegar verið takmarkaður.
       already_suspended: Þessi aðgangur hefur þegar verið settur í frysti.
+      notification_title: Tilkynning til notanda og skilaboð
+      text_box_title: Afleiðingar þessarar aðgerðar
+      title: 'Framkvæma umsjónaraðgerð á @%{acct}:'
+      types:
+        delete: Eyða færslum
+        disable: Gera notandaaðgang óvirkan
+        mark_as_sensitive: Merkja færslur sem viðkvæmar
+        none: Senda aðvörun
+        sensitive: Merkja aðgang sem viðkvæmt efni
+        silence: Takmarka notandaaðgang
+        suspend: Frysta notandaaðgang
     account_moderation_notes:
       create: Skilja eftir minnispunkt
       created_msg: Tókst að útbúa minnispunkt umsjónarmanns!
@@ -457,6 +467,9 @@ is:
       pending_reports_html:
         one: "<strong>%{count}</strong> kæra í bið"
         other: "<strong>%{count}</strong> kærur í bið"
+      pending_server_checks_html:
+        one: Það er <strong>%{count}</strong> vandamál í bið varðandi netþjónninn. Farðu á síðuna <a href="%{url}">Heilsa netþjóns</a> til að sjá frekari upplýsingar.
+        other: Það eru <strong>%{count}</strong> vandamál í bið varðandi netþjónninn. Farðu á síðuna <a href="%{url}">Heilsa netþjóns</a> til að sjá frekari upplýsingar.
       pending_tags_html:
         one: "<strong>%{count}</strong> myllumerki í bið"
         other: "<strong>%{count}</strong> myllumerki í bið"
@@ -884,14 +897,16 @@ is:
       title: Vensl %{acct}
     relays:
       add_new: Bæta við nýjum endurvarpa
+      bidirectional: Báðar áttir
+      broadcast: Útvörpun
       delete: Eyða
       description_html: "<strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra færslna við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum."
       disable: Gera óvirkt
       disabled: Óvirkt
       enable: Virkja
-      enable_hint: Ef þetta er einu sinni virkjað, mun vefþjónninn þinn gerast áskrifandi að öllum opinberum færslum frá þessum endurvarpa og byrja að senda sín eigin opinberu tíst til hans.
       enabled: Virkt
-      inbox_url: Slóð endurvarpa
+      opt_in: Skrá sig í
+      opt_out: Skrá sig úr
       pending: Bíð eftir samþykki endurvarpa
       save_and_enable: Vista og virkja
       setup: Setja upp endurvarpatengingu
@@ -917,7 +932,7 @@ is:
         silence_description_html: Notandaaðgangurinn verður einungis sýnilegur þeim sem þegar fylgjast með honum eða sem fletta honum upp handvirkt, sem takmarkar útbreiðslu efnis verulega. Þetta er alltaf hægt að afturkalla. Þetta lokar öllum kærum gagnvart þessum aðgangi.
         suspend_description_html: Notandaaðgangurinn og allt efni á honum mun verða óaðgengilegt og á endanum eytt út og samskipti við aðganginn verða ekki möguleg. Þetta er hægt að afturkalla innan 30 daga. Þetta lokar öllum kærum gagnvart þessum aðgangi.
         warn_description_html: Nota þetta til að senda aðvörun til notandans, án þess að setja neina aðra aðgerð í gang.
-      actions_description_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Ef þú ákveður að refsa kærða notandaaðgangnum, verður viðkomandi send tilkynning í tölvupósti, nema ef flokkurinn <strong>Ruslpóstur</strong> sé valinn.
+      actions_description_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Ef þú ákveður að refsa kærða notandaaðgangnum, muntu geta valið hvað muni birtast í tölvupóstinum sem viðkomandi verður viðkomandi sendur, nema ef flokkurinn <strong>Ruslpóstur</strong> sé valinn.
       actions_description_remote_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Þetta mun aðeins hafa áhrif á hvernig <strong>netþjónninn þinn</strong> meðhöndlar þennan fjartengda aðgang og efnið á honum.
       actions_no_posts: Þessi tilkynning er ekki með neinar tengdar færslur til að eyða
       add_to_report: Bæta fleiru í kæru
@@ -970,14 +985,24 @@ is:
       statuses: Færslur (%{count})
       statuses_description_html: Óviðeigandi efni verður tiltekið í samskiptum við kærðan notandaaðgang
       summary:
+        account_action_preamble_html:
+          one: Úr kæru <a href="%{report_path}">#%{report}</a> með %{count} valinni færslu
+          other: Úr kæru <a href="%{report_path}">#%{report}</a> með %{count} völdum færslum
+          zero: Úr kæru <a href="%{report_path}">#%{report}</a> með engum völdum færslum
         action_preambles:
           delete_html: 'Þú er í þann mund að fara að <strong>fjarlægja</strong> sumar af færslunum frá <strong>@%{acct}</strong>. Þetta mun:'
+          disable_html: 'Þú er í þann mund að fara að <strong>gera aðganginn óvirkann</strong> <strong>@%{acct}</strong>. Þetta mun:'
           mark_as_sensitive_html: 'Þú er í þann mund að fara að <strong>merkja</strong> sumar af færslunum frá <strong>@%{acct}</strong> sem <strong>viðkvæmar</strong>. Þetta mun:'
+          none_html: 'Þú er í þann mund að fara að <strong>aðvara</strong> <strong>@%{acct}</strong> Þetta mun:'
+          sensitive_html: 'Þú er í þann mund að fara að <strong>merkja</strong> aðganginn hjá <strong>@%{acct}</strong> sem <strong>viðkvæmt efni</strong>. Þetta mun:'
           silence_html: 'Þú er í þann mund að fara að <strong>takmarka aðganginn</strong> <strong>@%{acct}</strong>. Þetta mun:'
           suspend_html: 'Þú er í þann mund að fara að <strong>frysta</strong> aðganginn hjá <strong>@%{acct}</strong>. Þetta mun:'
         actions:
           delete_html: Fjarlægja viðkomandi færslur
+          disable_html: Koma í veg fyrir að notandinn noti aðganginn sinn, en ekki eyða eða fela efnið þeirra
           mark_as_sensitive_html: Merkja myndefni í viðkomandi færslum sem viðkvæmt
+          none_html: Senda aðvörun til notandans, án þess að setja neina aðra aðgerð í gang
+          sensitive_html: Þvinga fram að öll myndefnisviðhengi þessa notanda verði flögguð sem viðkvæmt efni
           silence_html: Takmarka verulega umfangið hjá <strong>@%{acct}</strong> með því að gera notandasniðið og efni þess einungis sýnilegt fólki sem þegar fylgist með viðkomandi eða þeim sem fletta handvirkt upp upplýsingunum
           suspend_html: Setja <strong>@%{acct}</strong> í frysti, gera notandasniðið og efni þess óaðgengilegt án mögulegrar gagnvirkni
         close_report: 'Merkja kæruna #%{id} sem leysta'
@@ -1502,7 +1527,9 @@ is:
       delete: Eyða
       dropdown:
         all_actions: Allar aðgerðir
-        disable: Frysta
+        delete: Eyða
+        disable: Gera óvirkt
+        mark_as_sensitive: Merkja sem viðkvæmt
         none: Aðvörun
         sensitive: Viðkvæmt
         silence: Takmarka
@@ -2260,9 +2287,11 @@ is:
     privacy_hint_html: Stýrðu því hve miklar upplýsingar þú birtir sem gætu gagnast öðrum. Fólk uppgötvar áhugaverða notendur og sniðug forrit með því að skoða hvað annað fólk fylgist með og hvaða forrit það notar til að birta færslur, en hinsvegar er þér frjálst að halda þessu leyndu.
     reach: Útbreiðsla
     reach_hint_html: Stýrðu hvort annað fólk geti fundið þig og fylgst með þér. Viltu að færslur frá þér birtist á Kanna-skjánum? Viltu að annað fólk sjái þigþar sem mælt er með hverjum hægt sé að fylgjast með? Viltu samþykkja alla nýja fylgjendur sjálfkrafa, eða viltu stýra því fyrir hvern og einn?
+    relays_hint_html: Að auki geturðu skráð þig á forstillta endurvarpa sem dreifa opinberum færslum þínum til enn fleiri lesenda út um víða velli skýjasambandsins.
     search: Leit
     search_hint_html: Stýrðu hvernig hægt sé að finna þig. Viltu að fólk finni þig út frá því sem þú hefur birt opinberlega? Viltu að fólk utan Mastodon geti fundið notandasniðið þitt þegar það leitar á vefnum? Athugaðu að ekki er hægt að tryggja algjöra útilokun frá öllum leitarvélum þegar um opinberlega birtar upplýsingar er að ræða.
     title: Gagnaleynd og útbreiðsla
+    view_relays: Sýslaðu með endurvarpana þína
   privacy_policy:
     title: Persónuverndarstefna
   reactions:
@@ -2293,6 +2322,11 @@ is:
     remove_selected_followers: Fjarlægja valda fylgjendur
     remove_selected_follows: Hætta að fylgjast með völdum notendum
     status: Staða aðgangs
+  relay_preferences:
+    explanation_html: Þetta eru endurvarpar sem %{domain} getur tengst. <strong>Endurvarpar skýjasambandsins geta hjálpað opinberu færslunum þínum að ná til breiðari lesendahóps.</strong> Ef þú skráir þig á endurvarpa, verður <strong>opinberum</strong> færslum þínum deilt með endurvarpanum, sem deilir þeim svo áfram. Aðrar gerðir færslna eru aldrei sendar á endurvarpa.
+    opt_in: Skrá sig til að deila
+    relay: Endurvarpi
+    title: Kjörstillingar endurvarpa
   remote_follow:
     missing_resource: Gat ekki fundið endurbeiningarslóðina fyrir notandaaðganginn þinn
   reports:
