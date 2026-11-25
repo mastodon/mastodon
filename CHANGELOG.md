@@ -16,6 +16,9 @@ You can read all about it in our [dedicated blog post](https://blog.joinmastodon
 
 ### Added
 
+- **Add creator controls for relays** (#41636 by @Gargron)
+  - When your admin has configured opt-in relays on your server, you can decide whether to share your public posts with them using the controls in the "Privacy and reach" area of the settings. You can change your choice at any time. If you stop sharing, the relay is notified via a block activity so it can clean up data if needed.
+- Add forwarding of activities with FEP-8b32 Object Integrity Proofs (#41856 by @ClearlyClaire)
 - Add ability to opt out of interaction stats in feeds (#41561 by @ClearlyClaire)
 - Add admin setting for customizing robots.txt, and add more AI user agents to the default one (#41496 by @Gargron)
 - Add [schema.org](http://schema.org/) markup to SEO-enabled profiles and replies (#41505 and #41656 by @Gargron)
@@ -25,7 +28,7 @@ You can read all about it in our [dedicated blog post](https://blog.joinmastodon
 - Add a user setting to hide your own posts and boosts (#40813 and #40867 by @arte7)
   - Your own boosts are now hidden by default.
 - Add ability to follow hashtag from the menu (#40640 by @ChaosExAnima)
-- **Add new Server Health admin page** (#41101 and #41282 by @jhbabon)
+- **Add new Server Health admin page** (#41101 and #41282, #41792, and #41750 by @jhbabon and @mjankowski)
 - **Add bloom filters to limit which servers account deletion notices are sent to** (#40283 by @ClearlyClaire)
   - This heavily reduces the number of deletion notices sent to other servers by storing the list of servers which fetched an account in a bloom filter. This is strongly recommended on large servers which regularly delete many accounts as it heavily decreases the number of federation Delete activities. This feature introduces a new setting to require signed requests for accounts in order to know where the request comes from.
 - Add server setting to postpone confirmation emails after accounts are approved (#40690, #40702, #41099 by @ClearlyClaire)
@@ -48,6 +51,13 @@ You can read all about it in our [dedicated blog post](https://blog.joinmastodon
 
 ### Fixed
 
+- Fix handling of missing admin name and email on about page (#41830 by @mjankowski)
+- Fix styling of landing page setting in branding admin settings (#41887 by @mjankowski)
+- Fix REST API serving suspended user’s collections (#41869 by @oneiros)
+- Fix trend FASPs being notified of non-public posts (#41867 by @oneiros)
+- Fix JS error on Terms of Service admin index page date formatting (#41857 by @mjankowski)
+- Fix media privacy server check ignoring `S3_ENDPOINT` (#41834 by @lazerg)
+- Fix error when “redirect” pages are requested with JSON format (#41761 by @mjankowski)
 - Fix image thumbnail URLs in RSS feed items (#40964 by @cweiske)
 - Fix terms of service and privacy policy API failing on percent signs (#41343 by @dualfroz)
 - Fix size of date-of-birth input fields (#41021 by @ClearlyClaire)
@@ -63,6 +73,12 @@ You can read all about it in our [dedicated blog post](https://blog.joinmastodon
 
 ### Changed
 
+- **Change relay setup** (#41636 by @Gargron)
+  - Instead of enabling a relay by pasting its "inbox URL" you can now enable it by using the relay's fediverse handle. You also gain additional options, such as controlling whether the relay can send you posts (bidirectional) or only accept them from you (broadcast-only), and whether all users' public posts are sent to the relay by default or they must opt-in to it first.
+- **Change the moderation account and report actions** to unify them and add new quick actions (#41558, #41666, and #41902 by @arte7)
+- Change Terms of Service interstitial to format `time` (#41860 by @mjankowski)
+- Change `standard_locale_name` helper to support regional locales (#41767 by @mjankowski)
+- Change accounts moderation actions page, use new layout and dynamic inputs (#41409 by @arte7)
 - Change 2FA to allow Webauthn without requiring TOTP (#41608 by @nicolastemciuc, @santiagorodriguez96 and @ClearlyClaire)
 - Change moderation report quick actions (#41346 by @arte7)
 - Change authentication errors to return HTTP 422 instead of HTTP 200 (#41503 by @ClearlyClaire)
@@ -74,6 +90,12 @@ You can read all about it in our [dedicated blog post](https://blog.joinmastodon
 
 ### Removed
 
+- Remove deprecated collection alpha routes (#41870 by @oneiros)
+- Remove redundant database index on `fasp_capabilities` (#41788 by @mjankowski)
+- Remove `vapid_key` from `Application` REST API entity (#41859 by @e-nomem)
+- Remove system checks from admin dashboard (#41854 by @jhbabon)
+- Remove old routes for profile updates settings/featured_tags create/destroy actions (#41814 and #41815 by @mjankowski)
+  - This may cause an error for people in the middle of updating their profiles when a server is updated from pre-4.6 Mastodon to Mastodon 5.0
 - Remove reference to deprecated TOR setup in docker compose (#41559 by @mjankowski)
 - Remove vagrant support (#41519 by @mjankowski)
 - Remove discovery area in settings (#41258 by @ChaosExAnima)
