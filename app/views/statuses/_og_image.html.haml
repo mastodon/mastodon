@@ -37,9 +37,6 @@
       = opengraph 'twitter:player:stream:content_type', media.file_content_type
       = opengraph 'twitter:player:width', MediaPlayerHelper::PLAYER_WIDTH
       = opengraph 'twitter:player:height', MediaPlayerHelper::PLAYER_HEIGHT
-  - if status.ordered_media_attachments.any?(&:larger_media_format?)
-    = opengraph 'twitter:card', 'player'
-  - else
-    = opengraph 'twitter:card', 'summary_large_image'
+  = opengraph 'twitter:card', media_player_card_type(status)
 - else
   = opengraph 'twitter:card', 'summary'
