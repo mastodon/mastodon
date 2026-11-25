@@ -72,15 +72,11 @@ export const ComposeButton: React.FC<{
   const dispatch = useAppDispatch();
   const handleComposerOpen: React.MouseEventHandler<HTMLButtonElement> =
     useCallback(() => {
-      startTransition(() => {
-        dispatch(openNewComposer({ type: 'post' }));
-      });
+      dispatch(openNewComposer({ type: 'post' }));
     }, [dispatch]);
 
   const toggleMinimize = useCallback(() => {
-    startTransition(() => {
-      dispatch(minimizeComposerToggle());
-    });
+    dispatch(minimizeComposerToggle());
   }, [dispatch]);
 
   const isShowing = displayState === 'showing';
@@ -90,13 +86,15 @@ export const ComposeButton: React.FC<{
     setMinimized(false);
   }
   useEffect(() => {
-    if (isMinimized === isShowing) {
+    if (isMinimized !== (displayState === 'minimized')) {
       startTransition(() => {
-        addTransitionType(isShowing ? 'composer-expand' : 'composer-minimize');
+        addTransitionType(
+          displayState === 'showing' ? 'composer-expand' : 'composer-minimize',
+        );
         setMinimized(!isMinimized);
       });
     }
-  }, [displayState, isMinimized, isShowing]);
+  }, [displayState, isMinimized]);
 
   const handleViewTransitionUpdate: NonNullable<
     React.ViewTransitionProps['onUpdate']
