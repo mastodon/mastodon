@@ -3,27 +3,37 @@
 require 'rails_helper'
 
 RSpec.describe Hashtag do
-  subject { described_class }
-
   describe '.normalize' do
-    it 'converts full-width Latin characters into basic Latin characters' do
-      expect(subject.normalize('Ｓｙｎｔｈｗａｖｅ')).to eq 'synthwave'
+    subject { described_class.normalize(text) }
+
+    context 'with full-width Latin characters' do
+      let(:text) { 'Ｓｙｎｔｈｗａｖｅ' }
+
+      it { is_expected.to eq 'synthwave' }
     end
 
-    it 'converts half-width Katakana into Kana characters' do
-      expect(subject.normalize('ｼｰｻｲﾄﾞﾗｲﾅｰ')).to eq 'シーサイドライナー'
+    context 'with half-width Katakana characters' do
+      let(:text) { 'ｼｰｻｲﾄﾞﾗｲﾅｰ' }
+
+      it { is_expected.to eq 'シーサイドライナー' }
     end
 
-    it 'converts modified Latin characters into basic Latin characters' do
-      expect(subject.normalize('BLÅHAJ')).to eq 'blahaj'
+    context 'with modified Latin characters' do
+      let(:text) { 'BLÅHAJ' }
+
+      it { is_expected.to eq 'blahaj' }
     end
 
-    it 'strips out invalid characters' do
-      expect(subject.normalize('#foo')).to eq 'foo'
+    context 'with invalid characters' do
+      let(:text) { '#foo' }
+
+      it { is_expected.to eq 'foo' }
     end
 
-    it 'keeps valid characters' do
-      expect(subject.normalize('a·b')).to eq 'a·b'
+    context 'with valid characters' do
+      let(:text) { 'a·b' }
+
+      it { is_expected.to eq 'a·b' }
     end
   end
 
