@@ -5,7 +5,7 @@ class HashtagNormalizer
     def normalize(str)
       unicode_normalize(str)
         .then { |value| lowercase(value) }
-        .then { |value| ascii_folding(value) }
+        .then { |value| ascii_fold(value) }
         .then { |value| remove_invalid_characters(value) }
     end
 
@@ -15,7 +15,7 @@ class HashtagNormalizer
       str.gsub(Tag::HASHTAG_INVALID_CHARS_RE, '')
     end
 
-    def ascii_folding(str)
+    def ascii_fold(str)
       ASCIIFolding.new.fold(str)
     end
 
