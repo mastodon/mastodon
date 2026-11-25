@@ -99,19 +99,6 @@
   }
 }
 
-.unreadButton {
-  position: absolute;
-  top: 100%;
-  inset-inline: 0;
-  margin-inline: auto;
-  width: max-content;
-  max-width: 100%;
-
-  :global(body.layout-multiple-columns) & {
-    margin-top: var(--space-1);
-  }
-}
-
 .leftButton {
   grid-area: 1 / 1;
   justify-self: start;

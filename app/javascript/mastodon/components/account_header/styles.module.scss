@@ -237,18 +237,6 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   border-top: 1px solid var(--color-border-primary);
 }
 
-.buttonMenu {
-  // Override the modal for mobile.
-  &:global(.actions-modal) {
-    max-height: none;
-  }
-
-  li :global(.icon) {
-    width: 20px;
-    height: 20px;
-  }
-}
-
 .numberFields {
   @container (width >= #{$button-breakpoint}) {
     --number-fields-gap: 40px;
