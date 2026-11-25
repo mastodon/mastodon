@@ -69,6 +69,20 @@
   &[data-fullscreen='false'] {
     max-width: 240px;
   }
+
+  :global(.no-reduce-motion) &.noTransitions {
+    animation: flash 200ms ease-out;
+  }
+}
+
+@keyframes flash {
+  0% {
+    background-color: var(--color-bg-brand-base);
+  }
+
+  100% {
+    background-color: var(--color-bg-primary);
+  }
 }
 
 .buttonWrapper {

@@ -245,6 +245,9 @@ export const ComposeButton: React.FC<{
           ref={rootRef}
           className={classNames(
             isMinimized ? classes.composerMinimized : classes.composer,
+            isMinimized &&
+              typeof document.startViewTransition !== 'function' &&
+              classes.noTransitions,
           )}
           onClick={handleMinimizedTextClick}
         >
