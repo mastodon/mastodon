@@ -101,7 +101,7 @@ module Extractor
 
     possible_entries = []
 
-    text.scan(Tag::HASHTAG_RE) do |hash_text, _|
+    text.scan(Hashtag::EXTRACTION_RE) do |hash_text, _|
       match_data     = $LAST_MATCH_INFO
       start_position = match_data.begin(1) - 1
       end_position   = match_data.end(1)
