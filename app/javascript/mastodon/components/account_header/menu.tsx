@@ -70,7 +70,6 @@ export const AccountMenu: FC<
     (state) => state.meta.get('me') as string,
   );
   const isMe = currentAccountId === accountId;
-  const nativeShareSupported = useMemo(() => supportsNativeShare(), []);
 
   const dispatch = useAppDispatch();
   const menuItems = useMemo(() => {
@@ -83,20 +82,10 @@ export const AccountMenu: FC<
       signedIn: !isMe && signedIn,
       permissions,
       intl,
-      nativeShareSupported,
       relationship,
       dispatch,
     });
-  }, [
-    account,
-    signedIn,
-    isMe,
-    permissions,
-    intl,
-    relationship,
-    dispatch,
-    nativeShareSupported,
-  ]);
+  }, [account, signedIn, isMe, permissions, intl, relationship, dispatch]);
 
   return (
     <Menu>
@@ -119,7 +108,6 @@ export const AccountMenu: FC<
 };
 
 interface MenuItemsParams {
-  nativeShareSupported: boolean;
   account: Account;
   signedIn: boolean;
   permissions: number;
@@ -250,7 +238,6 @@ function getMenuItems({
   signedIn,
   permissions,
   intl,
-  nativeShareSupported,
   relationship,
   dispatch,
 }: MenuItemsParams): DropdownMenuItem[] {
@@ -260,7 +247,7 @@ function getMenuItems({
 
   // Share and copy link options
   if (account.url) {
-    if (nativeShareSupported) {
+    if (supportsNativeShare) {
       items.push({
         text: intl.formatMessage(messages.share),
         action: () => {

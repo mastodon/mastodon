@@ -117,7 +117,7 @@ export const CollectionShareModal: React.FC<{
               defaultMessage='Post on Mastodon'
             />
           </Button>
-          {supportsNativeShare() && (
+          {supportsNativeShare && (
             <Button onClick={handleShareOnDevice}>
               <FormattedMessage
                 id='collection.share_modal.share_via_system'

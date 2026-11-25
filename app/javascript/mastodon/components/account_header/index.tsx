@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 
 import classNames from 'classnames';
 
@@ -51,7 +51,6 @@ export const AccountHeader: React.FC<{
   const dispatch = useAppDispatch();
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
-  const nativeShareSupported = useMemo(() => supportsNativeShare(), []);
 
   const handleOpenAvatar = useCallback(
     (e: React.MouseEvent) => {
@@ -132,8 +131,8 @@ export const AccountHeader: React.FC<{
             <AccountButtons
               accountId={accountId}
               className={classes.buttonsDesktop}
-              noShare={!isMe || nativeShareSupported}
-              forceMenu={nativeShareSupported}
+              noShare={!isMe || supportsNativeShare}
+              forceMenu={supportsNativeShare}
             />
           </div>
 

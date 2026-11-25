@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useState, useMemo } from 'react';
+import { useCallback, useEffect, useId, useState } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -61,7 +61,6 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   const reblogStatus = useAccountStatus(reblogId);
   const { contextType } = useStatusContext();
   const statusUrl = status?.url ?? status?.uri;
-  const nativeShareSupported = useMemo(() => supportsNativeShare(), []);
 
   // Actions
   const dispatch = useAppDispatch();
@@ -70,14 +69,14 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
       return;
     }
 
-    if (nativeShareSupported) {
+    if (supportsNativeShare) {
       void navigatorShare({ url: statusUrl }).catch((error: unknown) => {
         dispatch(showAlertForError(error));
       });
     } else {
       dispatch(statusInteraction({ statusId, intent: 'copy', contextType }));
     }
-  }, [contextType, nativeShareSupported, dispatch, statusId, statusUrl]);
+  }, [contextType, dispatch, statusId, statusUrl]);
 
   const { reply, like, bookmark } = useStatusIcons(statusId);
 

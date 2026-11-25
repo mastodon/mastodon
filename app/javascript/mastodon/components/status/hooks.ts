@@ -647,8 +647,6 @@ export function useStatusMenuActions({
     contextType,
   );
 
-  const nativeShareSupported = useMemo(() => supportsNativeShare(), []);
-
   return useMemo(
     () =>
       getMenuItems({
@@ -656,7 +654,6 @@ export function useStatusMenuActions({
         reblogStatus,
         conditions,
         interactions,
-        nativeShareSupported,
         onStatusInteraction: statusInteractionFactory,
         withDismiss,
         permissions,
@@ -671,7 +668,6 @@ export function useStatusMenuActions({
       reblogStatus,
       conditions,
       interactions,
-      nativeShareSupported,
       statusInteractionFactory,
       withDismiss,
       permissions,
@@ -693,7 +689,6 @@ interface MenuItemsParams {
     intent: StatusInteractionIntent,
   ) => (event: EventShiftKey) => void;
   withDismiss?: boolean;
-  nativeShareSupported: boolean;
   permissions: number;
   intl: ReturnType<typeof useIntl>;
   relationship?: Relationship | null;
@@ -707,7 +702,6 @@ function getMenuItems({
   reblogStatus,
   conditions,
   interactions,
-  nativeShareSupported,
   onStatusInteraction,
   withDismiss,
   permissions,
@@ -744,7 +738,7 @@ function getMenuItems({
     action: onStatusInteraction('copy'),
   });
 
-  if (isPublic && nativeShareSupported) {
+  if (isPublic && supportsNativeShare) {
     menu.push({
       text: intl.formatMessage(menuMessages.share),
       action: () => {

@@ -12,8 +12,9 @@ export const navigatorShare = async (
   data: Record<keyof ShareData, unknown>,
 ): Promise<void> => {
   try {
-    if (supportsNativeShare()) {
-      await navigator.share(data); return;
+    if (supportsNativeShare) {
+      await navigator.share(data);
+      return;
     }
   } catch (err) {
     const error = toError(err);

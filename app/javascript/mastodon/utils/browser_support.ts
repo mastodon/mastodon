@@ -1,1 +1,1 @@
-export const supportsNativeShare = (): boolean => 'share' in navigator;
+export const supportsNativeShare = 'share' in navigator;
