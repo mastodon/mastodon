@@ -15,7 +15,7 @@
 
 = form_with url: admin_custom_emojis_url, method: :get, class: :simple_form do |form|
   .fields-group
-    - %i(local remote).each do |key|
+    - filter_hidden_fields.each do |key|
       = form.hidden_field key, value: params[key] if params[key].present?
 
     - filter_fields.each do |key|

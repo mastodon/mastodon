@@ -2,9 +2,12 @@
 
 module Admin
   class CustomEmojisController < BaseController
+    FILTER_FIELDS = %i(shortcode by_domain).freeze
+    LOCAL_FILTER_FIELDS = %i(shortcode).freeze
+
     before_action :normalize_filter_params, only: [:index, :batch]
 
-    helper_method :filter_fields
+    helper_method :filter_fields, :filter_hidden_fields
 
     def index
       authorize :custom_emoji, :index?
@@ -48,7 +51,11 @@ module Admin
     private
 
     def filter_fields
-      params[:local] == '1' ? %i(shortcode) : %i(shortcode by_domain)
+      params[:local] == '1' ? LOCAL_FILTER_FIELDS : FILTER_FIELDS
+    end
+
+    def filter_hidden_fields
+      CustomEmojiFilter::KEYS - FILTER_FIELDS
     end
 
     def normalize_filter_params
