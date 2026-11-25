@@ -102,7 +102,10 @@ export const ComposeButton: React.FC<{
     React.ViewTransitionProps['onUpdate']
   > = useCallback(
     (instance) => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        document.body.classList.contains('reduce-motion')
+      ) {
         return;
       }
 
