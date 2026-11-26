@@ -2554,13 +2554,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/bigdecimal@npm:0.2.10":
-  version: 0.2.10
-  resolution: "@formatjs/bigdecimal@npm:0.2.10"
-  checksum: 10c0/322ec2881c6f6c89fcdcc5cbf94cf43fc381ceaf1f250848f3570387bdbf99c18f005569f9cd590a72708dea4296245f5f2bf6c910740c360f39d7b91166284c
-  languageName: node
-  linkType: hard
-
 "@formatjs/bigdecimal@npm:0.2.11":
   version: 0.2.11
   resolution: "@formatjs/bigdecimal@npm:0.2.11"
@@ -2669,15 +2662,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-localematcher@npm:0.10.1":
-  version: 0.10.1
-  resolution: "@formatjs/intl-localematcher@npm:0.10.1"
-  dependencies:
-    "@formatjs/fast-memoize": "npm:3.1.7"
-  checksum: 10c0/1c0a944a30cbb8285ad795ac9d88f6d3811bcd93cbce085c92656e19a3a6723c62ad70701685709a988d92db8e88dc8bcd99c6ae8fb79ee778e7284cd49a4554
-  languageName: node
-  linkType: hard
-
 "@formatjs/intl-localematcher@npm:0.10.2":
   version: 0.10.2
   resolution: "@formatjs/intl-localematcher@npm:0.10.2"
@@ -2687,13 +2671,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-pluralrules@npm:7.0.4":
-  version: 7.0.4
-  resolution: "@formatjs/intl-pluralrules@npm:7.0.4"
+"@formatjs/intl-pluralrules@npm:7.1.1":
+  version: 7.1.1
+  resolution: "@formatjs/intl-pluralrules@npm:7.1.1"
   dependencies:
-    "@formatjs/bigdecimal": "npm:0.2.10"
-    "@formatjs/intl-localematcher": "npm:0.10.1"
-  checksum: 10c0/8daff19fa36784fd269a831d18d9651c62e26fe737ebcb57eadf8c1c0c914adde8a1904ababcd27ed16ec0bf599af40a17265dcd92f52fbee3ec45d8d4877a60
+    "@formatjs/bigdecimal": "npm:0.2.11"
+    "@formatjs/intl-localematcher": "npm:0.10.2"
+  checksum: 10c0/4b0b1cb80b7c09e140e17547da84ea63148bf91f88adec8b8e95400644e91c545b14f44b315b2affeb7dadc8b0e830b84e93175c036647fcda19088787b0b1c5
   languageName: node
   linkType: hard
 
@@ -3030,7 +3014,7 @@ __metadata:
     "@floating-ui/react-dom": "npm:2.1.9"
     "@formatjs/cli": "npm:6.14.4"
     "@formatjs/intl-durationformat": "npm:^0.13.1"
-    "@formatjs/intl-pluralrules": "npm:7.0.4"
+    "@formatjs/intl-pluralrules": "npm:7.1.1"
     "@formatjs/unplugin": "npm:1.2.14"
     "@gamestdio/websocket": "npm:0.3.2"
     "@github/webauthn-json": "npm:2.1.1"
