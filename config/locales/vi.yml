@@ -39,6 +39,14 @@ vi:
       notification_title: Thông báo và Nhắn tin
       text_box_title: Hậu quả của hành động này
       title: 'Áp đặt kiểm duyệt với @%{acct}:'
+      types:
+        delete: Xóa tút
+        disable: Khóa tài khoản
+        mark_as_sensitive: Đánh dấu tút là nhạy cảm
+        none: Cảnh báo
+        sensitive: Đánh dấu tài khoản là nhạy cảm
+        silence: Hạn chế tài khoản
+        suspend: Vô hiệu hóa tài khoản
     account_moderation_notes:
       create: Thêm lưu ý
       created_msg: Thêm lưu ý kiểm duyệt thành công!
@@ -875,12 +883,16 @@ vi:
       title: Mối quan hệ của %{acct}
     relays:
       add_new: Thêm liên hợp mới
+      bidirectional: Hai chiều
+      broadcast: Broadcast
       delete: Loại bỏ
       description_html: "<strong>Liên hợp</strong> nghĩa là cho phép bài đăng công khai của máy chủ này xuất hiện trên bảng tin của máy chủ khác và ngược lại. <strong>Nó giúp các máy chủ vừa và nhỏ tiếp cận nội dung từ các máy chủ lớn hơn</strong>. Nếu không chọn, người ở máy chủ này vẫn có thể theo dõi người khác trên các máy chủ khác."
       disable: Tắt
       disabled: Đã tắt
       enable: Kích hoạt
       enabled: Đã kích hoạt
+      opt_in: Chọn tham gia
+      opt_out: Không tham gia
       pending: Chờ phê duyệt liên hợp
       save_and_enable: Lưu và kích hoạt
       setup: Kết nối mạng liên hợp
@@ -905,6 +917,7 @@ vi:
         silence_description_html: Tài khoản này sẽ chỉ hiển thị với những người đã theo dõi hoặc tự tìm kiếm, điều này sẽ hạn chế đáng kể phạm vi tiếp cận của nó. Bạn luôn có thể hoàn tác thiết lập này. Đồng thời đóng tất cả các báo cáo liên quan đến tài khoản này.
         suspend_description_html: Tài khoản và tất cả nội dung của nó sẽ không thể truy cập và cuối cùng sẽ bị xóa, việc tương tác với tài khoản này sẽ không thể thực hiện được. Thao tác này có thể được đảo ngược trong vòng 30 ngày. Đồng thời đóng tất cả các báo cáo liên quan đến tài khoản này.
         warn_description_html: Dùng cái này để gửi cảnh báo cho người dùng mà không kích hoạt bất kỳ hành động nào khác.
+      actions_description_html: Quyết định hành động nào cần thực hiện để giải quyết báo cáo này. Nếu bạn thực hiện hành động trừng phạt đối với tài khoản bị báo cáo, bạn sẽ có thể chọn nội dung hiển thị trong thông báo email được gửi đến họ, ngoại trừ trường hợp mục <strong>Spam</strong> được chọn.
       actions_description_remote_html: Chọn hành động cần thực hiện để xử lý báo cáo này. Điều này sẽ chỉ ảnh hưởng đến cách máy chủ <strong>của bạn</strong> giao tiếp với tài khoản này và xử lý nội dung của nó.
       actions_no_posts: Báo cáo này không có tút liên quan để xóa
       add_to_report: Bổ sung báo cáo
@@ -957,6 +970,10 @@ vi:
       statuses: Tút (%{count})
       statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
       summary:
+        account_action_preamble_html:
+          one: Từ báo cáo <a href="%{report_path}">#%{report}</a> với %{count} tút đã chọn
+          other: Từ báo cáo <a href="%{report_path}">#%{report}</a> với %{count} tút đã chọn
+          zero: Từ báo cáo <a href="%{report_path}">#%{report}</a> với không tút nào đã chọn
         action_preambles:
           delete_html: 'Bạn sắp <strong>xóa</strong> vài tút của <strong>@%{acct}</strong>. Việc này sẽ:'
           disable_html: 'Bạn sắp <strong>hạn chế tài khoản</strong> <strong>@%{acct}</strong>. Việc này sẽ:'
@@ -2216,9 +2233,11 @@ vi:
     privacy_hint_html: Kiểm soát mức độ tiết lộ chi tiết. Mọi người khám phá các hồ sơ thú vị và các ứng dụng thú vị bằng cách xem bạn theo dõi ai và bạn đăng bằng ứng dụng nào, nhưng có thể bạn muốn ẩn nó đi.
     reach: Tiếp cận
     reach_hint_html: Kiểm soát cách bạn được đề xuất và theo dõi. Bạn có muốn tút của mình xuất hiện trên trang Khám phá không? Bạn có muốn bạn xuất hiện trong các đề xuất theo dõi của người khác không? Bạn muốn tự động chấp nhận tất cả những người theo dõi mới hay tự duyệt từng người theo dõi?
+    relays_hint_html: Bạn cũng có thể chọn tham gia các relay chuyển tiếp được cấu hình sẵn để phân phối tút công khai của mình đến nhiều người hơn nữa trên toàn bộ mạng liên hợp.
     search: Tìm kiếm
     search_hint_html: Kiểm soát cách tìm thấy bạn. Bạn có muốn mọi người tìm thấy bạn bằng những gì bạn đã đăng công khai không? Bạn có muốn những người bên ngoài Mastodon tìm thấy hồ sơ của bạn khi tìm kiếm trên web không? Lưu ý là không thể đảm bảo tránh khỏi các công cụ tìm kiếm đối với thông tin công khai.
     title: Riêng tư và tiếp cận
+    view_relays: Quản lý relay của bạn
   privacy_policy:
     title: Chính sách bảo mật
   reactions:
@@ -2249,6 +2268,11 @@ vi:
     remove_selected_followers: Xóa những người theo dõi đã chọn
     remove_selected_follows: Bỏ theo dõi những người đã chọn
     status: Trạng thái
+  relay_preferences:
+    explanation_html: Đây là các relay mà %{domain} có thể kết nối đến. <strong>Các relay Fediverse có thể giúp tút công khai của bạn tiếp cận được nhiều người hơn.</strong> Nếu bạn chọn tham gia relay, tút <strong>công khai</strong> của bạn sẽ được chia sẻ với relay, và máy chủ này có thể chia sẻ chúng rộng rãi hơn. Các loại tút khác sẽ không bao giờ được gửi đến relay.
+    opt_in: Tham gia để chia sẻ
+    relay: Relay
+    title: Thiết lập relay
   remote_follow:
     missing_resource: Không tìm thấy URL chuyển hướng cho tài khoản của bạn
   reports:

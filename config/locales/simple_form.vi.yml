@@ -20,6 +20,7 @@ vi:
         text: Bạn có thể dùng URL, hashtag và nhắc đến
         title: Tùy chọn. Không cho người nhận xem
       admin_account_action:
+        include_rule_violations: Email đó sẽ nêu rõ những vi phạm nội quy nào đã dẫn đến hành động kiểm duyệt
         include_statuses: Người dùng sẽ thấy các tút nào của họ bị kiểm duyệt
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
         text: Tùy chọn. Bạn có thể dùng biểu thức tút. Nó sẽ xuất hiện dưới mẫu phản hồi
@@ -30,6 +31,8 @@ vi:
           sensitive: Gán nhãn nhạy cảm cho tất cả media của tài khoản này.
           silence: Cấm đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
           suspend: Vô hiệu hóa và xóa mọi nội dung. Có thể đảo ngược quyết định trước 30 ngày.
+        warning_preset: Tùy chọn. Bạn vẫn có thể thêm chú thích riêng
+        warning_preset_explanation: Bạn chưa lưu bất kỳ mẫu phản hồi nào. Phản hồi mẫu là những tin nhắn mà bạn có thể lưu lại và sử dụng lại trong báo cáo của mình.
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
         ends_at: Tùy chọn. Thông báo sẽ tự động hủy vào lúc này
@@ -131,6 +134,13 @@ vi:
           sign_up_block: Không chấp nhận đăng ký mới
           sign_up_requires_approval: Bạn sẽ phê duyệt những đăng ký mới từ IP này
         severity: Chọn hành động nếu nhận được yêu cầu từ IP này
+      relay:
+        acct: Trong định dạng username@domain.
+        direction: Bạn muốn tham gia relay thế nào
+        directions:
+          bidirectional: Broadcast tới relay và nhận nội dung từ các thành viên khác của relay
+          broadcast: Chỉ broadcast đến relay
+        requires_opt_in: Chỉ gửi nội dung đến relay cho những người dùng đã đồng ý rõ ràng với việc chuyển tiếp này
       rule:
         hint: Tùy chọn. Cung cấp chi tiết hơn về nội quy
         text: Mô tả một nội quy bắt buộc trên máy chủ này. Nên để ngắn và đơn giản
@@ -197,6 +207,8 @@ vi:
         text: Nội dung phản hồi
         title: Tựa đề
       admin_account_action:
+        canned_response_back_link: quản lý mẫu phản hồi
+        include_rule_violatins: Bao gồm các vi phạm nội quy bị báo cáo
         include_statuses: Đính kèm những tút bị báo cáo trong e-mail
         send_email_notification: Thông báo cho người này qua email
         text: Tùy chỉnh phản hồi
@@ -374,6 +386,13 @@ vi:
           none: Không bao giờ thông báo (không đề xuất)
           patch: Thông báo bản cập sửa lỗi
         trending_tag: Phê duyệt xu hướng mới
+      relay:
+        acct: Địa chỉ relay
+        direction: Mức độ tham gia
+        directions:
+          bidirectional: Hai chiều
+          broadcast: Chỉ broadcast
+        requires_opt_in: Yêu cầu người dùng đồng ý
       rule:
         hint: Thông tin thêm
         text: Nội quy

@@ -134,6 +134,13 @@ fr:
           sign_up_block: Les nouvelles inscriptions ne seront pas possibles
           sign_up_requires_approval: Les nouvelles inscriptions nécessiteront votre approbation
         severity: Choisir ce qui se passera avec les requêtes de cette adresse IP
+      relay:
+        acct: Au format compte@domaine.
+        direction: Comment souhaitez-vous participer au relai
+        directions:
+          bidirectional: Diffuser vers le relai et accepter le contenu de ses autres membres
+          broadcast: Diffuser uniquement vers le relai
+        requires_opt_in: Envoyer uniquement le contenu des utilisateur·rice·s ayant explicitement donné·e·s leur accord pour ce relai
       rule:
         hint: Optionnel. Fournissez plus de détails sur la règle
         text: Décrivez une règle ou une exigence pour les utilisateurs sur ce serveur. Essayez de la garder courte et simple
@@ -380,6 +387,13 @@ fr:
           none: Ne jamais notifier des mises à jour (déconseillé)
           patch: Notifier pour des mises à jour de corrections de bug
         trending_tag: Nouvelle tendance nécessitant supervision
+      relay:
+        acct: Identifiant du relai
+        direction: Niveau de participation
+        directions:
+          bidirectional: Bidirectionnel
+          broadcast: Diffusion uniquement
+        requires_opt_in: Exiger l'accord des utilisateur·rice·s
       rule:
         hint: Information supplémentaire
         text: Règle

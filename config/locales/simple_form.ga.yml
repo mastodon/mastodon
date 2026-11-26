@@ -134,6 +134,13 @@ ga:
           sign_up_block: Ní bheidh clárú nua indéanta
           sign_up_requires_approval: Beidh do cheadú ag teastáil le haghaidh clárúcháin nua
         severity: Roghnaigh cad a tharlóidh le hiarratais ón IP seo
+      relay:
+        acct: Sa fhormáid ainm úsáideora@fearann.
+        direction: Conas ba mhaith leat páirt a ghlacadh san athsheachadán
+        directions:
+          bidirectional: Craol chuig an athsheachadán agus glac le hábhar ó bhaill eile an athsheachadáin
+          broadcast: Craol chuig an athsheachadán amháin
+        requires_opt_in: Ná seol ábhar chuig an athsheachadán ach amháin i gcás úsáideoirí a thugann toiliú sainráite chun páirt a ghlacadh san athsheachadán seo
       rule:
         hint: Roghnach. Tabhair tuilleadh sonraí faoin riail
         text: Déan cur síos ar riail nó riachtanas d'úsáideoirí ar an bhfreastalaí seo. Déan iarracht é a choinneáil gearr agus simplí
@@ -383,6 +390,13 @@ ga:
           none: Ná cuir nuashonruithe ar an eolas choíche (ní mholtar é)
           patch: Fógra ar nuashonruithe bugfix
         trending_tag: Teastaíonn athbhreithniú ar threocht nua
+      relay:
+        acct: Láimhseáil an Athsheachadán
+        direction: Leibhéal rannpháirtíochta
+        directions:
+          bidirectional: Déthreoch
+          broadcast: Craoladh amháin
+        requires_opt_in: Éiligh rogha isteach úsáideora
       rule:
         hint: Eolas breise
         text: Riail

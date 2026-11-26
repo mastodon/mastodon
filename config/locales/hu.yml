@@ -39,6 +39,17 @@ hu:
     account_actions:
       already_silenced: Ezt a fiókot már korlátozták.
       already_suspended: Ezt a fiókot már felfüggesztették.
+      notification_title: Felhasználói értesítés és üzenet
+      text_box_title: Művelet következményei
+      title: 'Moderálási művelet végrehajtása ezen: @%{acct}:'
+      types:
+        delete: Bejegyzések törlése
+        disable: Fiók befagyasztása
+        mark_as_sensitive: Bejegyzések érzékenynek jelölése
+        none: Figyelmeztetés küldése
+        sensitive: Fiók érzékenynek jelölése
+        silence: Fiók korlátozása
+        suspend: Fiók felfüggesztése
     account_moderation_notes:
       create: Megjegyzés hagyása
       created_msg: A moderációs megjegyzés sikeresen létrehozva!
@@ -880,6 +891,8 @@ hu:
       title: "%{acct} kapcsolatai"
     relays:
       add_new: Új továbbító hozzáadása
+      bidirectional: Kétirányú
+      broadcast: Szétküldés
       delete: Törlés
       description_html: A <strong>föderációs továbbító</strong> egy olyan köztes kiszolgáló, mely nagy mennyiségű nyilvános bejegyzést cserél az erre feliratkozó vagy erre publikáló kiszolgálók között. <strong>Ezzel segíthetsz kis és közepes kiszolgálóknak megtalálni a tartalmakat a föderációban</strong>, melyek egyébként csak akkor válnának lehetővé, ha a saját felhasználóik más kiszolgálókon lévő fiókokat követnének.
       disable: Kikapcsolás
@@ -1487,7 +1500,9 @@ hu:
       delete: Törlés
       dropdown:
         all_actions: Összes művelet
+        delete: Törlés
         disable: Befagyasztás
+        mark_as_sensitive: Megjelelölés érzénykenként
         none: Figyelmeztetés
         sensitive: Kényes
         silence: Korlátozás
@@ -1544,10 +1559,14 @@ hu:
     new_critical_software_updates:
       body: Megjelent a Mastodon új kritikus verziója, érdemes lehet a lehető leghamarabb frissíteni!
       subject: A %{instance} kiszolgálóhoz kritikus Mastodon frissítések érhetőek el!
+    new_moderation_suggestions:
+      body: A moderációs listák, amelyre a kiszolgáló fel van iratkozva, új javaslatokkal rendelkeznek.
+      subject: 'Új moderációs javaslatok érhetők el ezen: %{instance}!'
     new_pending_account:
       body: Az új fiók részletesen alább látható. Ezt a jelentkezést engedélyezheted vagy elutasíthatod.
       subject: Új fiók (%{username}) engedélyezésre vár a %{instance} szerveren
     new_pending_accounts:
+      body: 'Új fiókok lettek létrehozva ezen: %{instance}. Mivel a kiszolgáló úgy van beállítva, hogy a moderátori jóváhagyásig elhalassza a megerősítő leveleket, ezeknél még nem tudták megerősíteni az e-mail-címet. Az új fiókok részletei alább láthatóak. Jóváhagyhatod vagy elutasíthatod ezeket a jelentkezéseket.'
       subject: 'Új jóváhagyandó fiókok ezen: %{instance}'
     new_report:
       body: "%{reporter} jelentette: %{target}"
