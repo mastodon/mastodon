@@ -76,6 +76,11 @@ a.nameLink {
   }
 }
 
+.editedIndicator {
+  z-index: 1; // Raise above the increased click area of the date
+  text-decoration: underline dotted;
+}
+
 .handle {
   @include mixins.type-meta;
 
