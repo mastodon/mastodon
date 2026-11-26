@@ -55,6 +55,30 @@ RSpec.describe 'Admin Reports' do
     end
   end
 
+  describe 'Resolving a report by deleting posts' do
+    let(:account) { Fabricate(:remote_account) }
+    let(:status) { Fabricate(:status, account: account) }
+    let(:report) { Fabricate(:report, target_account: account, status_ids: [status.id]) }
+
+    it 'resolves the report and delete statuses' do
+      visit admin_report_path(report)
+
+      within '.report-actions' do
+        click_on I18n.t('admin.reports.delete_and_resolve')
+      end
+
+      # Shows the confirmation page
+      expect(page)
+        .to have_title(I18n.t('admin.account_actions.title', acct: account.acct))
+
+      expect { click_on(I18n.t('admin.account_actions.types.delete')) }
+        .to change { report.reload.action_taken_by_account }.to(user.account)
+        .and change { report.reload.action_taken? }.to(true)
+        .and change { last_action_log&.target }.to(report)
+        .and enqueue_sidekiq_job(RemovalWorker).with(status.id, anything)
+    end
+  end
+
   describe 'Reopening reports' do
     let!(:report) { Fabricate :report, action_taken_at: 3.days.ago }
 

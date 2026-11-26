@@ -10,15 +10,16 @@ class Admin::ModerationAction < Admin::BaseAction
 
   attr_accessor :warning_preset_id
 
-  attribute :include_statuses, :boolean, default: true
   attribute :include_rule_violations, :boolean, default: true
 
+  # Whether to include statuses in the strike sent to the user
+  attribute :include_statuses, :boolean, default: true
   alias include_statuses? include_statuses
 
   private
 
   def status_ids
-    report.status_ids if include_statuses?
+    report.status_ids
   end
 
   def statuses
