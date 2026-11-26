@@ -9,6 +9,12 @@ import type { InitialStateLanguage } from '@/mastodon/initial_state';
 import { languages } from '@/mastodon/initial_state';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
+import {
+  removeHashtags,
+  replaceMentions,
+  replaceUrls,
+} from '../util/url_regex';
+
 export function useLanguages() {
   return languages;
 }
@@ -17,31 +23,43 @@ export function languageName(code: string) {
   return languages?.find(([lang]) => lang === code)?.[1];
 }
 
-const GUESS_TEXT_LENGTH = 20;
+// Only extract useful text below the threshold.
+const GUESS_TEXT_LENGTH = 40;
+const selectTextForGuessing = createAppSelector(
+  [(state) => state.compose.get('text') as string],
+  (rawText) => {
+    let text = replaceMentions(rawText);
+    text = replaceUrls(text);
+    text = removeHashtags(text);
+    text = text.trim();
+
+    if (text.length <= GUESS_TEXT_LENGTH) {
+      return null;
+    }
+    return text;
+  },
+);
 
 export function useLanguageGuess() {
-  const text = useAppSelector((state) =>
-    (state.compose.get('text') as string).trim(),
-  );
+  const text = useAppSelector(selectTextForGuessing);
   const [guess, setGuess] = useState('');
 
   const debouncedGuess = useDebouncedCallback(
-    async () => {
+    async (input: string) => {
       const { guessLanguage } = await import('../util/language_detection');
 
-      return guessLanguage(text);
+      return guessLanguage(input);
     },
     500,
     { maxWait: 1500, leading: true, trailing: true },
   );
 
   useEffect(() => {
-    if (text.length <= GUESS_TEXT_LENGTH) {
+    debouncedGuess.cancel();
+    if (!text) {
       return;
     }
-
-    debouncedGuess.cancel();
-    const promise = debouncedGuess();
+    const promise = debouncedGuess(text);
 
     if (!promise) {
       return;
@@ -49,7 +67,8 @@ export function useLanguageGuess() {
 
     promise
       .then((guess) => {
-        if (guess) {
+        // Use languageName to ensure the language code exists.
+        if (guess && languageName(guess)) {
           setGuess(guess);
         } else {
           setGuess('');
@@ -61,7 +80,7 @@ export function useLanguageGuess() {
   }, [debouncedGuess, text]);
 
   // Remove guess when the text is lower than the threshold.
-  if (text.length <= GUESS_TEXT_LENGTH && guess) {
+  if (!text && guess) {
     setGuess('');
   }
 
