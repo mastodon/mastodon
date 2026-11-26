@@ -10,10 +10,19 @@ class StatusReachFinder
   end
 
   def inboxes
-    (reached_account_inboxes + followers_inboxes + relay_inboxes).uniq
+    inboxes = (reached_account_inboxes + followers_inboxes + relay_inboxes).uniq
+
+    # This ensures relays don't get unrelayable activity, even if they are individually following local accounts
+    inboxes -= Relay.pluck(:inbox_url) if unrelayable?
+
+    inboxes
   end
 
   private
+
+  def unrelayable?
+    @status.reblog? && !unsafe?
+  end
 
   def reached_account_inboxes
     scope = Account.where(id: reached_account_ids)
