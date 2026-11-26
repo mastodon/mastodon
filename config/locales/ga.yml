@@ -939,12 +939,16 @@ ga:
       title: Caidrimh %{acct}
     relays:
       add_new: Cuir sealaíochta nua leis
+      bidirectional: Déthreoch
+      broadcast: Craoladh
       delete: Scrios
       description_html: Is freastalaí idirghabhálaí é <strong>athsheachadán cónaidhme</strong> a mhalartaíonn líon mór postálacha poiblí idir freastalaithe a shíníonn dó agus a fhoilsíonn é. <strong>Is féidir leis cabhrú le freastalaithe beaga agus meánmhéide inneachar a aimsiú ón bhfeideas</strong>, rud a d'éileodh ar úsáideoirí áitiúla daoine eile a leanúint de láimh ar fhreastalaithe cianda.
       disable: Díchumasaigh
       disabled: Díchumasaithe
       enable: Cumasaigh
       enabled: Ar chumas
+      opt_in: Roghnú isteach
+      opt_out: Roghnú amach
       pending: Ag fanacht le ceadú sealaíochta
       save_and_enable: Sábháil agus cumasaigh
       setup: Socraigh nasc sealaíochta
@@ -2431,9 +2435,11 @@ ga:
     privacy_hint_html: Rialú ar an méid is mian leat a nochtadh ar mhaithe le daoine eile. Aimsíonn daoine próifílí suimiúla agus aipeanna fionnuara trí na haipeanna seo a leanas a bhrabhsáil agus a fheiceáil cé na haipeanna a bpostálann siad, ach b’fhéidir gurbh fhearr leat é a choinneáil faoi cheilt.
     reach: Shroich
     reach_hint_html: Smacht a fháil ar cé acu is mian leat a fháil amach agus daoine nua a leanúint. Ar mhaith leat do phostálacha a thaispeáint ar an scáileán Explore? Ar mhaith leat go bhfeicfeadh daoine eile tú sna moltaí a leanann siad? Ar mhaith leat glacadh le gach leantóir nua go huathoibríoch, nó smacht gráinneach a bheith agat ar gach leantóir?
+    relays_hint_html: Ina theannta sin, is féidir leat roghnú páirt a ghlacadh i sealaí réamhchumraithe a scaipeann do phoist phoiblí chuig lucht féachana atá níos leithne fós ar fud an fhediverse.
     search: Cuardach
     search_hint_html: Rialú conas ba mhaith leat a fháil. Ar mhaith leat go bhfaighidh daoine tú tríd an rud a chuir tú suas go poiblí faoi? Ar mhaith leat go bhfaighidh daoine lasmuigh de Mastodon do phróifíl agus iad ag cuardach an ghréasáin? Tabhair faoi deara le do thoil nach féidir eisiamh iomlán ó gach inneall cuardaigh a chinntiú mar fhaisnéis don phobal.
     title: Príobháideacht agus teacht
+    view_relays: Bainistigh do athsheachadáin
   privacy_policy:
     title: Beartas Príobháideachais
   reactions:
@@ -2464,6 +2470,11 @@ ga:
     remove_selected_followers: Bain leantóirí roghnaithe
     remove_selected_follows: Dí-lean úsáideoirí roghnaithe
     status: Stádas cuntais
+  relay_preferences:
+    explanation_html: Is athsheoltóirí iad seo ar féidir le %{domain} nascadh leo. <strong>Is féidir le hathsheoltóirí Fediverse cabhrú le do phoist phoiblí teacht chuig lucht féachana níos leithne.</strong> Má roghnaíonn tú nascadh le hathsheoltóir, roinnfear do phoist <strong>phoiblí</strong> leis an athsheoltóir sin, ar féidir leis iad a roinnt tuilleadh. Ní sheoltar cineálacha eile post chuig athsheoltóirí riamh.
+    opt_in: Roghnaigh páirt a ghlacadh sa roinnt
+    relay: Athsheachadán
+    title: Sainroghanna athsheachadáin
   remote_follow:
     missing_resource: Níorbh fhéidir an URL atreoraithe riachtanach do do chuntas a aimsiú
   reports:
