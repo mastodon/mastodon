@@ -131,10 +131,7 @@ const LinkEmbedCard: React.FC<{
           <Blurhash hash={card.blurhash} dummy={!useBlurhash} />
 
           {!status.hidden && (
-            <div
-              className={classes.gallerySpoiler}
-              data-interactive-post-content='true'
-            >
+            <div data-interactive-post-content='true'>
               <Button size='sm' variant='solid' onClick={onShow}>
                 <FormattedMessage
                   id='content_warning.media.show_short'

@@ -2,8 +2,6 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
-
 import {
   ArrowsLeftRightIcon,
   EyeIcon,
@@ -60,7 +58,7 @@ export const ComposeUpload: React.FC<
   }, [dispatch]);
 
   if (!attachment || attachment.type === 'unknown') {
-    return <div className={classNames(classes.mediaUpload, className)} />;
+    return <div className={className} />;
   }
 
   if (attachment.type === 'audio') {
