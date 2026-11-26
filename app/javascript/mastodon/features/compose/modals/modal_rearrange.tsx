@@ -12,6 +12,7 @@ import { rearrangeComposeAttachments } from '@/mastodon/actions/compose_typed';
 import { Button, IconButton } from '@/mastodon/components/button';
 import {
   ModalActions,
+  ModalBody,
   ModalShell,
   ModalTitle,
 } from '@/mastodon/components/modal_shell/redesign';
@@ -97,31 +98,33 @@ const ComposerModalRearrange: React.FC<{ onClose: () => void }> = ({
         />
       </ModalTitle>
 
-      <SortableList
-        ids={attachmentIds}
-        onSort={setAttachmentIds}
-        onDragStart={onDragStart}
-        onDragEnd={onDragEnd}
-        messages={messages}
-        messageLabelCb={activeToIndex}
-        overlay={<ComposeOverlay activeId={activeId} ids={attachmentIds} />}
-        dropAnimation={null}
-      >
-        {attachmentIds.map((id) => (
-          <SortableListItem
-            id={id}
-            key={id}
-            noTransition
-            className={classes.attachmentItem}
-            draggingClassName={classes.attachmentGrabbed}
-          >
-            <ComposeRearrangeItemDisplay
+      <ModalBody>
+        <SortableList
+          ids={attachmentIds}
+          onSort={setAttachmentIds}
+          onDragStart={onDragStart}
+          onDragEnd={onDragEnd}
+          messages={messages}
+          messageLabelCb={activeToIndex}
+          overlay={<ComposeOverlay activeId={activeId} ids={attachmentIds} />}
+          dropAnimation={null}
+        >
+          {attachmentIds.map((id) => (
+            <SortableListItem
               id={id}
-              index={attachmentIds.indexOf(id)}
-            />
-          </SortableListItem>
-        ))}
-      </SortableList>
+              key={id}
+              noTransition
+              className={classes.attachmentItem}
+              draggingClassName={classes.attachmentGrabbed}
+            >
+              <ComposeRearrangeItemDisplay
+                id={id}
+                index={attachmentIds.indexOf(id)}
+              />
+            </SortableListItem>
+          ))}
+        </SortableList>
+      </ModalBody>
 
       <ModalActions className={classes.footer}>
         <Button onClick={onClose}>

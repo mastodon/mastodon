@@ -6,6 +6,7 @@ import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
 import {
   ModalActions,
+  ModalBody,
   ModalShell,
   ModalTitle,
 } from '@/mastodon/components/modal_shell/redesign';
@@ -55,17 +56,19 @@ const ComposerModalCancelConfirm: React.FC<{ openNew?: boolean }> = ({
         )}
       </ModalTitle>
 
-      {isEditing ? (
-        <FormattedMessage
-          id='compose.cancel_modal.edit.body'
-          defaultMessage='You were editing a post. What would you like to do?'
-        />
-      ) : (
-        <FormattedMessage
-          id='compose.cancel_modal.body'
-          defaultMessage='You have a draft already in progress. What would you like to do?'
-        />
-      )}
+      <ModalBody>
+        {isEditing ? (
+          <FormattedMessage
+            id='compose.cancel_modal.edit.body'
+            defaultMessage='You were editing a post. What would you like to do?'
+          />
+        ) : (
+          <FormattedMessage
+            id='compose.cancel_modal.body'
+            defaultMessage='You have a draft already in progress. What would you like to do?'
+          />
+        )}
+      </ModalBody>
 
       <ModalActions>
         <Button variant='tonal' onClick={handleContinue}>

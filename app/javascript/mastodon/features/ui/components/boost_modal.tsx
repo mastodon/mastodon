@@ -14,6 +14,7 @@ import {
 } from '@/mastodon/components/menu';
 import {
   ModalActions,
+  ModalBody,
   ModalShell,
   ModalTitle,
 } from '@/mastodon/components/modal_shell/redesign';
@@ -94,7 +95,9 @@ export const BoostModal: React.FC<{
         </span>
       </ModalTitle>
 
-      <QuotedStatus id={statusId} disableOpen />
+      <ModalBody>
+        <QuotedStatus id={statusId} disableOpen />
+      </ModalBody>
 
       <ModalActions>
         <Menu>
