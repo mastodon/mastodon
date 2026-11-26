@@ -33,15 +33,15 @@ module Admin::ServerChecksHelper
   end
 
   def admin_server_check_setup(check)
-    path = admin_server_check_setup_path(check)
+    url = admin_server_check_setup_url(check)
 
-    link_to(t('admin.server_checks.setup.label'), path, class: %w(button)) if path.present?
+    link_to(t('admin.server_checks.setup.label'), url, class: %w(button)) if url.present?
   end
 
-  def admin_server_check_setup_path(check)
+  def admin_server_check_setup_url(check)
     case check.key
     when 'rules'
-      admin_rules_path
+      admin_rules_url
     when 'elastic_search'
       'https://docs.joinmastodon.org/admin/elasticsearch/#scaling' if check.data['reason']&.in?(%w(preset_single_node preset))
     when 'media_privacy'
@@ -51,7 +51,7 @@ module Admin::ServerChecksHelper
         'https://docs.joinmastodon.org/admin/optional/object-storage/#FS'
       end
     when 'software_version'
-      admin_software_updates_path
+      admin_software_updates_url
     end
   end
 
