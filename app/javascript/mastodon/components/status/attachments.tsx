@@ -346,10 +346,7 @@ const MediaAttachmentWrapper: React.FC<MediaAttachmentWrapperProps> = ({
     >
       {!visible && !statusHidden && (
         <div
-          className={classNames(
-            classes.gallerySpoilerBox,
-            mediaFilters.length > 0 && classes.gallerySpoilerFilter,
-          )}
+          className={classes.gallerySpoilerBox}
           data-interactive-post-content='true'
         >
           {mediaFilters.length > 0 && (

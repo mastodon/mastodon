@@ -43,6 +43,7 @@ const config: StorybookConfig = {
         ...(config.optimizeDeps?.include ?? []),
         'lodash/debounce.js',
         'lodash/groupBy.js',
+        'lodash/isEqual.js',
         'lodash/minBy.js',
         'lodash/throttle.js',
       ],

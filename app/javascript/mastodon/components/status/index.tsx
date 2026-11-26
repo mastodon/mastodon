@@ -271,7 +271,7 @@ export const Status: React.FC<StatusProps> = ({
           </div>
 
           {(variant === 'page' || (showActions && !isQuotedPost)) && (
-            <footer className={classes.footer}>
+            <footer>
               {showActions && !isQuotedPost && (
                 <StatusActionBar
                   statusId={status.id}

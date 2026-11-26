@@ -30,7 +30,7 @@ export const ListSection: React.FC<{
 
   return (
     <li className={classes.root}>
-      <div className={classes.titleWrapper}>
+      <div>
         {hasContent ? (
           <button
             type='button'

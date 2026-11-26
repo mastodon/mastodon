@@ -84,10 +84,10 @@ export const ModalTitle: React.FC<
     );
   }
 
-  if (onClose) {
-    return (
-      <header className={classes.titleWrapper}>
-        {title}
+  return (
+    <header className={classes.titleWrapper}>
+      {title}
+      {onClose && (
         <IconButton
           variant='ghost'
           icon={XIcon}
@@ -96,11 +96,31 @@ export const ModalTitle: React.FC<
         >
           <FormattedMessage id='lightbox.close' defaultMessage='Close' />
         </IconButton>
-      </header>
-    );
-  }
+      )}
+    </header>
+  );
+};
 
-  return title;
+export const ModalBody = <As extends React.ElementType = 'div'>({
+  align,
+  as: asComp,
+  children,
+  className,
+  ...props
+}: PolymorphicProps<
+  {
+    children?: React.ReactNode;
+    className?: string;
+  },
+  As
+>) => {
+  const Comp = asComp ?? 'div';
+
+  return (
+    <Comp {...props} className={classNames(className, classes.body)}>
+      {children}
+    </Comp>
+  );
 };
 
 export const ModalActions = <As extends React.ElementType = 'div'>({

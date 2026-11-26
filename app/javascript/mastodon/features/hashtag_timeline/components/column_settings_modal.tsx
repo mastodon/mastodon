@@ -6,6 +6,7 @@ import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
 import {
   ModalActions,
+  ModalBody,
   ModalShell,
   ModalTitle,
 } from '@/mastodon/components/modal_shell/redesign';
@@ -30,7 +31,9 @@ const HashtagSettingsModal: React.FC<{ columnId: string }> = ({ columnId }) => {
           defaultMessage='Add more tags to column'
         />
       </ModalTitle>
-      <ColumnSettingsContainer columnId={columnId} />
+      <ModalBody>
+        <ColumnSettingsContainer columnId={columnId} />
+      </ModalBody>
       <ModalActions>
         <Button variant='solid' color='accent' onClick={handleCloseModal}>
           <FormattedMessage id='alt_text_modal.done' defaultMessage='Done' />

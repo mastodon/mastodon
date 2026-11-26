@@ -33,6 +33,7 @@ const startMsw = mswLoader(async () => {
 
   await worker.start({
     onUnhandledFrame: unhandledFrameHandler,
+    quiet: true,
   });
 
   return worker;
