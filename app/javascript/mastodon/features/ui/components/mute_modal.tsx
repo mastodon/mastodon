@@ -226,24 +226,26 @@ export const MuteModal: React.FC<{ accountId: string; acct: string }> = ({
 
           <div className='spacer' />
 
-          <Button onClick={handleCancel}>
-            <FormattedMessage
-              id='confirmation_modal.cancel'
-              defaultMessage='Cancel'
-            />
-          </Button>
+          <div className='safety-action-modal__button-group'>
+            <Button onClick={handleCancel}>
+              <FormattedMessage
+                id='confirmation_modal.cancel'
+                defaultMessage='Cancel'
+              />
+            </Button>
 
-          <Button
-            variant='solid'
-            color='accent'
-            onClick={handleClick}
-            autoFocus
-          >
-            <FormattedMessage
-              id='confirmations.mute.confirm'
-              defaultMessage='Mute'
-            />
-          </Button>
+            <Button
+              variant='solid'
+              color='accent'
+              onClick={handleClick}
+              autoFocus
+            >
+              <FormattedMessage
+                id='confirmations.mute.confirm'
+                defaultMessage='Mute'
+              />
+            </Button>
+          </div>
         </div>
       </div>
     </div>
