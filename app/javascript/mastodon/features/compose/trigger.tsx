@@ -53,6 +53,10 @@ const EXPAND: Keyframe[] = [
   { transform: 'translate(-50%, -50%) scale(2)', opacity: 0, offset: 1 },
 ];
 
+const disableAnimation =
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+  document.documentElement.classList.contains('reduce-motion');
+
 export const ComposeButton: React.FC<{
   /**
    * Render the button in regular document flow instead of fixed positioning for mobile layout
@@ -79,13 +83,25 @@ export const ComposeButton: React.FC<{
     dispatch(minimizeComposerToggle());
   }, [dispatch]);
 
+  // Sync minimized React state to Redux, as it's required for ViewTransitions.
   const isShowing = displayState === 'showing';
-
   const [isMinimized, setMinimized] = useState(displayState === 'minimized');
   if (displayState === 'hidden' && isMinimized) {
     setMinimized(false);
+  } else if (
+    // When animation is disabled, just change state without the transition.
+    disableAnimation &&
+    isMinimized !== (displayState === 'minimized')
+  ) {
+    setMinimized(displayState === 'minimized');
   }
+
+  // Update the state in a transition when it changes.
   useEffect(() => {
+    if (disableAnimation) {
+      return;
+    }
+
     if (isMinimized !== (displayState === 'minimized')) {
       startTransition(() => {
         addTransitionType(
@@ -96,17 +112,11 @@ export const ComposeButton: React.FC<{
     }
   }, [displayState, isMinimized]);
 
+  // Set the correct animation.
   const handleViewTransitionUpdate: NonNullable<
     React.ViewTransitionProps['onUpdate']
   > = useCallback(
     (instance) => {
-      if (
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-        document.body.classList.contains('reduce-motion')
-      ) {
-        return;
-      }
-
       const animation = document.documentElement.animate(
         isMinimized ? MINIMIZE : EXPAND,
         {
