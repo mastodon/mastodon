@@ -83,11 +83,10 @@ export const MediaModal = forwardRef<HTMLDivElement, MediaModalProps>(
         }
         setIndex(newIndex);
         setZoomedIn(false);
-        if (animate) {
-          void api.start({
-            x: `calc(${sign}${newIndex * 100}% + 0px)`,
-          });
-        }
+        void api.start({
+          x: `calc(${sign}${newIndex * 100}% + 0px)`,
+          immediate: !animate,
+        });
       },
       [api, media.size, sign],
     );
@@ -117,26 +116,30 @@ export const MediaModal = forwardRef<HTMLDivElement, MediaModalProps>(
     );
 
     const bind = useDrag(
-      ({ active, movement: [mx], direction: [xDir], cancel }) => {
+      ({ active, movement: [mx] }) => {
         // Disable swipe when zoomed in.
         if (zoomedIn) {
           return;
         }
 
-        // If dragging and swipe distance is enough, change the index.
-        if (
-          active &&
-          Math.abs(mx) > Math.min(window.innerWidth / 4, MIN_SWIPE_DISTANCE)
-        ) {
-          handleChangeIndex(isLtrDir ? index - xDir : index + xDir);
-          cancel();
+        if (active) {
+          const operator = isLtrDir ? '+' : '-';
+          void api.start({
+            x: `calc(${sign}${index * 100}% ${operator} ${mx}px)`,
+            immediate: true,
+          });
+          return;
         }
-        // Set the x position via calc to ensure proper centering regardless of screen size.
-        const x = active ? mx : 0;
-        const operator = isLtrDir ? '+' : '-';
-        void api.start({
-          x: `calc(${sign}${index * 100}% ${operator} ${x}px)`,
-        });
+
+        const hasReachedSwipeThreshold =
+          Math.abs(mx) > Math.min(window.innerWidth / 4, MIN_SWIPE_DISTANCE);
+        const direction = Math.sign(mx);
+        const newIndex =
+          hasReachedSwipeThreshold && direction
+            ? index + (isLtrDir ? -direction : direction)
+            : index;
+
+        handleChangeIndex(newIndex, true);
       },
       { pointer: { capture: false } },
     );
