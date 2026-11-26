@@ -67,8 +67,7 @@ export function useLanguageGuess() {
 
     promise
       .then((guess) => {
-        // Use languageName to ensure the language code exists.
-        if (guess && languageName(guess)) {
+        if (guess) {
           setGuess(guess);
         } else {
           setGuess('');
