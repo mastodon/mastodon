@@ -7,6 +7,12 @@ RSpec.describe ActivityPub::DistributionWorker do
 
   let(:status)   { Fabricate(:status) }
   let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com', domain: 'example.com') }
+  let!(:opted_in_relay) { Fabricate(:relay, state: :accepted, direction: :broadcast, requires_opt_in: true) }
+  let!(:other_relay) { Fabricate(:relay, state: :accepted, direction: :broadcast, requires_opt_in: true) }
+
+  before do
+    RelayPreference.create!(account: status.account, relay: opted_in_relay, enabled: true)
+  end
 
   describe '#perform' do
     before do
@@ -18,11 +24,13 @@ RSpec.describe ActivityPub::DistributionWorker do
         status.update(visibility: :public)
       end
 
-      it 'delivers to followers' do
+      it 'delivers to followers and opted-in relays' do
         subject.perform(status.id)
 
         expect(ActivityPub::DeliveryWorker)
           .to have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything)
+          .and have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, opted_in_relay.inbox_url, anything)
+          .and have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, other_relay.inbox_url, anything).exactly(0)
       end
     end
 
@@ -31,11 +39,13 @@ RSpec.describe ActivityPub::DistributionWorker do
         status.update(visibility: :private)
       end
 
-      it 'delivers to followers' do
+      it 'delivers to followers but not relays' do
         subject.perform(status.id)
 
         expect(ActivityPub::DeliveryWorker)
           .to have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything)
+          .and have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, opted_in_relay.inbox_url, anything).exactly(0)
+          .and have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, other_relay.inbox_url, anything).exactly(0)
       end
     end
 
@@ -47,11 +57,14 @@ RSpec.describe ActivityPub::DistributionWorker do
         status.mentions.create!(account: mentioned_account)
       end
 
-      it 'delivers to mentioned accounts' do
+      it 'delivers to mentioned accounts but not followers nor relays' do
         subject.perform(status.id)
 
         expect(ActivityPub::DeliveryWorker)
           .to have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, 'https://foo.bar/inbox', anything)
+          .and have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything).exactly(0)
+          .and have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, opted_in_relay.inbox_url, anything).exactly(0)
+          .and have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, other_relay.inbox_url, anything).exactly(0)
       end
     end
 
