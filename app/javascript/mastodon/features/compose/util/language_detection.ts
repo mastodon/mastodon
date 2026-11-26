@@ -1,14 +1,12 @@
 import { eld } from 'eld/extrasmall';
 
-import { replaceMentions, replaceUrls } from './url_regex';
+import { languages } from '@/mastodon/initial_state';
 
 export function guessLanguage(text: string) {
-  text = replaceUrls(
-    replaceMentions(text, () => ''),
-    '',
-  );
-
   const guess = eld.detect(text);
+  if (languages) {
+    eld.setLanguageSubset(languages.map(([code]) => code));
+  }
 
   if (!guess.isReliable()) {
     return null;

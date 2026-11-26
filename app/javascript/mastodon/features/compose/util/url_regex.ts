@@ -1,10 +1,12 @@
 import { Extractor, extractUrlsWithIndices } from '@agulbra/uts58';
 
+import { HASHTAG_REGEX } from '@/mastodon/utils/hashtags';
+
 const extractor = new Extractor();
 
 // Replaces every URL uts58 finds in `text` with `replacement`. Walks
 // the entities back-to-front so earlier indices stay valid.
-export function replaceUrls(text: string, replacement: string) {
+export function replaceUrls(text: string, replacement = '') {
   const entities = extractUrlsWithIndices(text, {
     extractUrlsWithoutProtocol: false,
   });
@@ -68,7 +70,7 @@ export function extractMentionsWithIndices(text: string) {
 
 export function replaceMentions(
   text: string,
-  replacementFn: (mention: MentionIndex) => string,
+  replacement: ((mention: MentionIndex) => string) | string = '',
 ) {
   const mentions = extractMentionsWithIndices(text);
   let out = text;
@@ -79,8 +81,12 @@ export function replaceMentions(
     }
     out =
       out.slice(0, mention.indices[0]) +
-      replacementFn(mention) +
+      (typeof replacement === 'string' ? replacement : replacement(mention)) +
       out.slice(mention.indices[1]);
   }
   return out;
+}
+
+export function removeHashtags(text: string) {
+  return text.replaceAll(HASHTAG_REGEX, '');
 }
