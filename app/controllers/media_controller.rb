@@ -34,7 +34,7 @@ class MediaController < ApplicationController
   end
 
   def check_playable
-    not_found unless @media_attachment.larger_media_format?
+    not_found unless @media_attachment.playable_media_format?
   end
 
   def allow_iframing
