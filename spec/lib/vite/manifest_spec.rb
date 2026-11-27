@@ -41,8 +41,8 @@ RSpec.describe Vite::Manifest do
     end
 
     it 'gets stylesheets' do
-      entry = subject.fetch('styles/entrypoints/inert.scss')
-      expect(entry[:file]).to eq('assets/inert-xyz.css')
+      entry = subject.fetch('styles/entrypoints/mailer.scss')
+      expect(entry[:file]).to eq('assets/mailer-xyz.css')
       expect(entry[:integrity]).to eq('abc-10')
     end
 
