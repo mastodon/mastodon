@@ -35,16 +35,22 @@ const Favourites: React.FC<{ multiColumn?: boolean }> = ({ multiColumn }) => {
 
   const { statusId } = useParams<{ statusId?: string }>();
 
-  const { accountIds, hasMore, isLoading } = useAppSelector((state) => ({
-    accountIds: state.user_lists.getIn(['favourited_by', statusId, 'items']) as
-      | ImmutableList<string>
-      | undefined,
-    hasMore: !!state.user_lists.getIn(['favourited_by', statusId, 'next']),
-    isLoading: state.user_lists.getIn(
-      ['favourited_by', statusId, 'isLoading'],
-      true,
-    ) as boolean,
-  }));
+  const accountIds = useAppSelector(
+    (state) =>
+      state.user_lists.getIn(['favourited_by', statusId, 'items']) as
+        | ImmutableList<string>
+        | undefined,
+  );
+  const hasMore = useAppSelector(
+    (state) => !!state.user_lists.getIn(['favourited_by', statusId, 'next']),
+  );
+  const isLoading = useAppSelector(
+    (state) =>
+      state.user_lists.getIn(
+        ['favourited_by', statusId, 'isLoading'],
+        true,
+      ) as boolean,
+  );
 
   useEffect(() => {
     if (!accountIds) {
