@@ -338,13 +338,25 @@ RSpec.describe Settings::ImportsController do
         end
       end
 
-      describe 'failing import' do
-        let(:mode) { 'merge' }
-        let(:data) { fixture_file_upload('empty.json', 'application/json') }
+      context 'when import fails' do
+        context 'with empty uploaded json file' do
+          let(:mode) { 'merge' }
+          let(:data) { fixture_file_upload('empty.json', 'application/json') }
 
-        it 'does not creates an unconfirmed bulk_import', :aggregate_failures do
-          expect { subject }.to_not(change { user.account.bulk_imports.count })
-          expect(response.body).to include('field_with_errors')
+          it 'does not creates an unconfirmed bulk_import', :aggregate_failures do
+            expect { subject }.to_not(change { user.account.bulk_imports.count })
+            expect(response.body).to include('field_with_errors')
+          end
+        end
+
+        context 'with uploaded json file which does not contain required fields' do
+          let(:mode) { 'merge' }
+          let(:data) { fixture_file_upload('empty_root.json', 'application/json') }
+
+          it 'does not creates an unconfirmed bulk_import', :aggregate_failures do
+            expect { subject }.to_not(change { user.account.bulk_imports.count })
+            expect(response.body).to include('field_with_errors')
+          end
         end
       end
     end
