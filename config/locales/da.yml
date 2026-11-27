@@ -898,12 +898,15 @@ da:
     relays:
       add_new: Tilføj ny videreformidler
       bidirectional: Dobbeltrettet
+      broadcast: Udsend
       delete: Slet
       description_html: En <strong>federationsvidereformidler</strong> er en mellemliggende server, der udveksler store mængder offentlige indlæg mellem servere, som abonnerer på og publicerer til den. <strong>Det kan hjælpe små og mellemstore servere med at opdage indhold fra fediverset</strong>, der ellers ville kræve at lokale brugere manuelt følger andre personer på fjernservere.
       disable: Deaktivér
       disabled: Deaktiveret
       enable: Aktivér
       enabled: Aktiveret
+      opt_in: Tilvælg
+      opt_out: Fravælg
       pending: Afventer videreformidlers godkendelse
       save_and_enable: Gem og aktivér
       setup: Opsæt en videreformidlerforbindelse
@@ -2280,9 +2283,11 @@ da:
     privacy_hint_html: Styr, hvor meget du vil afsløre til gavn for andre. Folk opdager interessante profiler og apps ved at gennemse andres følgere og se, hvilke apps de sender fra, men du foretrækker måske at holde det skjult.
     reach: Rækkevidde
     reach_hint_html: Indstil, om du vil opdages og følges af nye personer. Vil du have, at dine indlæg skal vises på Udforsk-siden? Vil du have, at andre skal kunne se dig i deres følg-anbefalinger? Vil du acceptere alle nye følgere automatisk eller have detaljeret kontrol over hver enkelt?
+    relays_hint_html: Du kan desuden tilvælge forudkonfigurerede relæer, som distribuerer dine offentlige indlæg til et endnu bredere publikum i fediverset.
     search: Søgning
     search_hint_html: Indstil hvordan du vil findes. Ønsker du, at folk skal finde dig gennem hvad du har skrevet offentligt? Vil du have folk udenfor Mastodon til at finde din profil, når de søger på nettet? Vær opmærksom på, at det ikke kan garanteres at dine offentlige indlæg er udelukket fra alle søgemaskiner.
     title: Fortrolighed og rækkevidde
+    view_relays: Administrer dine relæer
   privacy_policy:
     title: Privatlivspolitik
   reactions:
@@ -2313,6 +2318,11 @@ da:
     remove_selected_followers: Fjern valgte følgere
     remove_selected_follows: Følg ikke længere valgte brugere
     status: Kontostatus
+  relay_preferences:
+    explanation_html: Dette er relæer, som %{domain} kan forbinde til. <strong>Fediverse-relæer kan hjælpe dine offentlige indlæg med at nå et bredere publikum.</strong> Hvis du tilvælger et relæ, deles dine <strong>offentlige</strong> indlæg med relæet, som kan dele dem videre. Andre typer indlæg sendes aldrig til relæer.
+    opt_in: Tilvælg deling
+    relay: Relæ
+    title: Relæpræferencer
   remote_follow:
     missing_resource: Nødvendige omdirigerings-URL til kontoen ikke fundet
   reports:
@@ -2471,7 +2481,7 @@ da:
     ignore_favs: Ignorér favoritter
     ignore_reblogs: Ignorér fremhævelser
     interaction_exceptions: Undtagelser baseret på interaktioner
-    interaction_exceptions_explanation: Indlæg, der midlertidigt overskrider favorit- eller fremhævelsestærsklen, kan blive bevaret, selvom de senere reduceres.
+    interaction_exceptions_explanation: Indlæg, der midlertidigt overskrider tærsklen for favoritter eller fremhævelser, bliver muligvis bevaret, selvom antallet senere falder.
     keep_direct: Behold direkte beskeder
     keep_direct_hint: Sletter ingen af dine direkte beskeder
     keep_media: Behold indlæg med medievedhæftninger

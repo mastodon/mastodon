@@ -303,6 +303,7 @@ sv:
         closed_registrations_message: Anpassat meddelande när nyregistreringar inte är tillgängliga
         content_cache_retention_period: Förvaringsperiod för fjärrinnehåll
         custom_css: Anpassad CSS
+        custom_robots: Anpassad robots.txt
         email_footer_text: Ytterligare sidfotstext
         favicon: Favicon
         landing_page: Startsida för nya besökare
@@ -311,6 +312,7 @@ sv:
         mascot: Anpassad maskot (tekniskt arv)
         media_cache_retention_period: Tid för bibehållande av mediecache
         min_age: Åldersgräns
+        override_robots: Åsidosätt standard robots.txt
         peers_api_enabled: Publicera lista över upptäckta servrar i API:et
         postpone_confirmation_emails: Skjut upp bekräftelsemeddelanden efter godkännande
         profile_directory: Aktivera profilkatalog
@@ -372,6 +374,13 @@ sv:
           none: Meddela inte om uppdateringar (rekommenderas inte)
           patch: Meddela vid buggfix-uppdateringar
         trending_tag: En ny trend kräver granskning
+      relay:
+        acct: Hantering av reläet
+        direction: Deltagarnivå
+        directions:
+          bidirectional: Dubbelriktad
+          broadcast: Endast sändning
+        requires_opt_in: Kräv att användaren går med
       rule:
         hint: Ytterligare information
         text: Regel
