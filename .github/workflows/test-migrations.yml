@@ -26,16 +26,25 @@ jobs:
       fail-fast: false
 
       matrix:
-        postgres:
-          - 14-alpine
-          - 15-alpine
-          - 16-alpine
-          - 17-alpine
+        include:
+          - postgres: 15-alpine
+            initdb_args: ''
+          - postgres: 16-alpine
+            initdb_args: ''
+          - postgres: 17-alpine
+            initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
+          - postgres: 18-alpine
+            initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
+          - postgres: '18-alpine'
+            initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
+          - postgres: '19-alpine'
+            initdb_args: '--locale-provider=builtin --builtin-locale=C.UTF-8 --encoding=UTF8'
 
     services:
       postgres:
-        image: postgres:${{ matrix.postgres}}
+        image: postgres:${{ matrix.postgres }}
         env:
+          POSTGRES_INITDB_ARGS: ${{ matrix.initdb_args }}
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
         options: >-
@@ -47,7 +56,7 @@ jobs:
           - 5432:5432
 
       redis:
-        image: redis:7-alpine
+        image: redis:8-alpine
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10ms
