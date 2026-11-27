@@ -2,6 +2,8 @@
 
 module Admin
   class IpBlocksController < BaseController
+    rescue_from IPAddr::InvalidAddressError, with: :invalid_ip_query
+
     def index
       authorize :ip_block, :index?
 
@@ -44,8 +46,7 @@ module Admin
     private
 
     def filter_by_ip(scope)
-      scope.merge!(IpBlock.overlapping_with(params[:ip])) if params[:ip].present?
-      scope
+      scope.tap { IPAddr.new(params[:ip]) && it.merge!(IpBlock.overlapping_with(params[:ip])) if params[:ip].present? }
     end
 
     def resource_params
@@ -60,6 +61,10 @@ module Admin
     def form_ip_block_batch_params
       params
         .expect(form_ip_block_batch: [ip_block_ids: []])
+    end
+
+    def invalid_ip_query
+      redirect_to admin_ip_blocks_path, alert: I18n.t('admin.ip_blocks.format_error')
     end
   end
 end
