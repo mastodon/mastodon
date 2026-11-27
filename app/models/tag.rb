@@ -136,16 +136,16 @@ class Tag < ApplicationRecord
     def search_for(term, limit = 5, offset = 0, options = {})
       options.reverse_merge!({ exclude_unlistable: true, exclude_unreviewed: false })
 
-      search_query(term, options)
+      search_query(term.to_s, options)
         .limit(limit)
         .offset(offset)
         .by_name_length
     end
 
     def search_query(term, options)
-      matches_name(term.to_s).tap do |query|
+      matches_name(term).tap do |query|
         query.merge!(listable) if options[:exclude_unlistable]
-        query.merge!(matching_name(term.to_s).or(reviewed)) if options[:exclude_unreviewed]
+        query.merge!(matching_name(term).or(reviewed)) if options[:exclude_unreviewed]
       end
     end
 
