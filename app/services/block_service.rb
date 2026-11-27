@@ -30,7 +30,7 @@ class BlockService < BaseService
   private
 
   def handle_following_relationships
-    UnfollowService.new.call(@account, @target_account) if @account.following?(@target_account)
+    UnfollowService.new.call(@account, @target_account) if @account.following?(@target_account) || @account.requested?(@target_account)
     UnfollowService.new.call(@target_account, @account) if @target_account.following?(@account)
     RejectFollowService.new.call(@target_account, @account) if @target_account.requested?(@account)
   end
