@@ -29,6 +29,7 @@ import {
 } from '@/mastodon/components/menu';
 import { StatusContent } from '@/mastodon/components/status/content';
 import { StatusHeaderAuthors } from '@/mastodon/components/status/header';
+import { useStatusHandlers } from '@/mastodon/components/status/hooks';
 import { StatusReplyIcon } from '@/mastodon/components/status/icons';
 import { statusLink } from '@/mastodon/components/status/utils';
 import { useAccountStatus } from '@/mastodon/hooks/useStatus';
@@ -125,6 +126,11 @@ export const Conversation: React.FC<{
     dispatch(markConversationRead(id));
   }, [dispatch, id]);
 
+  const { onOpenCallback } = useStatusHandlers({
+    status: lastStatus,
+    contextType: 'detailed',
+  });
+
   const menu = useMemo(() => {
     const menu = [
       { text: intl.formatMessage(messages.open), action: handleClick },
@@ -204,7 +210,7 @@ export const Conversation: React.FC<{
           <StatusContent
             status={lastStatus}
             onClick={handleClick}
-            onReadMore={handleShowMore}
+            onReadMore={onOpenCallback}
             collapsible
           />
 
