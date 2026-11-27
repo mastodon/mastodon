@@ -467,6 +467,9 @@ sv:
       pending_reports_html:
         one: "<strong>%{count}</strong> väntande rapport"
         other: "<strong>%{count}</strong> väntande rapporter"
+      pending_server_checks_html:
+        one: Det finns <strong>%{count}</strong> väntande problem med servern. Gå till <a href="%{url}">Serverhälsa-sidan</a> för att se mer dealjer.
+        other: Det finns <strong>%{count}</strong> väntande problem med servern. Gå till <a href="%{url}">Serverhälsa-sidan</a> för att se mer detaljer.
       pending_tags_html:
         one: "<strong>%{count}</strong> väntande hashtagg"
         other: "<strong>%{count}</strong> väntande hashtaggar"
@@ -894,12 +897,16 @@ sv:
       title: "%{acct}s relationer"
     relays:
       add_new: Lägg till nytt ombud
+      bidirectional: Dubbelriktad
+      broadcast: Sändning
       delete: Radera
       description_html: Ett <strong>federeringsombud</strong> är en mellanliggande server som utbyter höga antal offentliga inlägg mellan servrar som prenumererar på och publicerar till det. <strong>Det kan hjälpa små och medelstora servrar upptäcka innehåll från fediversumet</strong>, vilket annars skulle kräva att lokala användare manuellt följer personer på fjärrservrar.
       disable: Inaktivera
       disabled: Inaktiverad
       enable: Aktivera
       enabled: Aktivera
+      opt_in: Inkludera
+      opt_out: Exkludera
       pending: Väntar på ombudets godkännande
       save_and_enable: Spara och aktivera
       setup: Konfigurera ett ombud
@@ -918,8 +925,14 @@ sv:
       action_taken_by: Åtgärder vidtagna av
       actions:
         delete_description_html: De rapporterade inläggen och/eller samlingarna kommer raderas och en markör kommer registreras för att hjälpa dig att eskalera framtida överträdelser från samma konto.
+        disable_description_html: Förhindra användaren från att använda sitt konto, men ta inte bort eller dölj deras innehåll. Denna åtgärd kan återställas. Detta stänger alla anmälningar mot detta konto.
+        force_sensitive_descption_html: Tvinga alla denna användares mediebilagor att flaggas som känsliga. Detta kan återställas. Detta stänger alla anmälningar mot detta konto.
         mark_as_sensitive_description_html: Medierna i de rapporterade inläggen kommer markeras som känsliga och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         resolve_description_html: Ingen åtgärd vidtas mot det rapporterade kontot, ingen prick registreras och rapporten stängs.
+        silence_description_html: Kontot kommer endast synas för de som redan följer den eller manuellt söker på den, vilket dramatiskt minskar dess räckvidd. Detta kan alltid ångras. Detta stänger alla anmälningar mot detta konto.
+        suspend_description_html: Kontot och allt dess innehåll kommer att vara oåtkomligt och så småningom tas bort, det kommer inte gå att interagera med kontot. Detta kan ångras inom 30 dagar. Detta stänger alla anmälningar mot detta konto.
+        warn_description_html: Använd detta för att skicka en varning till användaren, utan att utlösa någon annan åtgärd.
+      actions_description_html: Välj vilken åtgärd som skall vidtas för att lösa denna rapport. Om du vidtar en bestraffningsåtgärd mot det rapporterade kontot kommer du att kunna välja vad som visas i notisen som skickas till dem via e-post, förutom om du valt kategorin <strong>Skräppost</strong>.
       actions_description_remote_html: Bestäm vilka åtgärder som ska vidtas för att lösa denna rapport. Detta kommer bara att påverka hur <strong>din</strong> server kommunicerar med detta fjärrkonto och hanterar dess innehåll.
       actions_no_posts: Denna rapport har inga associerade inlägg att ta bort
       add_to_report: Lägg till mer i rapporten
@@ -972,6 +985,10 @@ sv:
       statuses: Inlägg (%{count})
       statuses_description_html: Stötande innehåll kommer att citeras i kommunikationen med det rapporterade kontot
       summary:
+        account_action_preamble_html:
+          one: Från rapport <a href="%{report_path}">#%{report}</a> med %{count} valda inlägg
+          other: Från rapport <a href="%{report_path}">#%{report}</a> med %{count} valda inlägg
+          zero: Från rapport <a href="%{report_path}">#%{report}</a> utan valda inlägg
         action_preambles:
           delete_html: 'Du håller på att <strong>ta bort</strong> några av <strong>@%{acct}</strong>s inlägg. Detta kommer:'
           disable_html: 'Du är på väg att <strong>frysa</strong> <strong>@%{acct}</strong>s konto. Detta kommer att:'
@@ -1118,12 +1135,61 @@ sv:
             title: Det gick inte att kontrollera Elasticsearch-konfigurationen
           ok:
             title: Elasticsearch är konfigurerad utan problem
+          pending:
+            lead:
+              analysis_index_mismatch_html: Inställningarna för indexanalys med elastisk sökning är utdaterade. Var god kör <code>tootctl search deploy --only-mapping --only=%{mismatched_specifications_indexes_str}</code>
+              cluster_health_red_html: Elasticsearch kluster är ohälsosamt (röd status), sökfunktioner är otillgängliga
+              cluster_health_yellow_html: Elasticsearch kluster är ohälsosamt (gul status), du kanske vill undersöka orsaken
+              index_mismatch_html: Elasticsearch index-kartläggningar är utdaterade. Vänligen kör <code>tootctl search deploy --only=%{mismatched_indexes_str}</code>
+              preset_html: Din Elasticsearch-kluster har mer än en nod, men Mastodon är inte konfigurerad att använda dem
+              preset_single_node_html: Ditt Elasticsearch-kluster har bara en nod, <code>ES_PRESET</code> borde vara satt till <code>single_node_cluster</code>
+              reset_chewy_html: Ditt systemindex för Elasticsearch är föråldrat på grund av en inställningsändring. Vänligen kör <code>tootctl search deploy --reset-chewy</code> för att uppdatera det
+            title: Det finns problem med Elasticsearch
+          running:
+            title: Servern kontrollerar Elasticsearch-konfigurationen
+          unprocessed:
+            title: Servern har inte kontrollerat Elasticsearch-konfigurationen ännu
+        media_privacy:
+          error:
+            title: Det gick inte att kontrollera din servers mediesekretess
+          ok:
+            title: Din integritet för servermedia är säker
+          pending:
+            lead:
+              upload_check_privacy_error_html: Din webbserver är felkonfigurerad
         rules:
           pending:
             title: Ställ in serverregler
+          running:
+            title: Servern kontrollerar dina regler
+          unprocessed:
+            title: Servern har inte kontrollerat om det finns några regler ännu
+        sidekiq_process:
+          error:
+            title: Det gick inte att kontrollera Sidekiq-konfigurationen
+          ok:
+            title: Sidekiq är konfigurerad utan problem
+          pending:
+            lead_html: Ingen Sidekiq-process körs för %{missing_queues_str} kö(er)
+            title: Vänligen granska din Sidekiq-konfiguration
+          running:
+            title: Servern kontrollerar Sidekiq-konfigurationen
+          unprocessed:
+            title: Servern har inte kontrollerat Sidekiq-konfigurationen ännu
         software_version:
+          error:
+            title: Det gick inte att söka efter programuppdateringar
           ok:
             title: Din Mastodon-instans är uppdaterad
+          pending:
+            lead:
+              regular_html: Det finns en ny version av Mastodon tillgänglig
+              urgent_html: En kritisk uppdatering för Mastodon är tillgänglig, uppdatera så snart som möjligt
+            title: Uppdatera din Mastodon-instans
+          running:
+            title: Servern kontrollerar om det finns någon pågående programuppdatering
+          unprocessed:
+            title: Servern har inte kontrollerat programuppdateringar ännu
       ignore:
         label: Ignorera
       recommendations:
@@ -2231,6 +2297,9 @@ sv:
     remove_selected_followers: Ta bort valda följare
     remove_selected_follows: Sluta följ valda användare
     status: Kontostatus
+  relay_preferences:
+    relay: Relä
+    title: Relä inställningar
   remote_follow:
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
   reports:

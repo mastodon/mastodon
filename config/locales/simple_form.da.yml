@@ -134,6 +134,13 @@ da:
           sign_up_block: Nye tilmeldinger vil ikke være mulige
           sign_up_requires_approval: Nye tilmeldinger kræver din godkendelse
         severity: Afgør, hvordan forespørgsler fra denne IP behandles
+      relay:
+        acct: I formatet brugernavn@domæne.
+        direction: Hvordan vil du gerne deltage i relæet
+        directions:
+          bidirectional: Udsend til relæet og modtag indhold fra andre medlemmer af relæet
+          broadcast: Udsend kun til relæet
+        requires_opt_in: Send kun indhold til relæet for brugere, der udtrykkeligt har tilvalgt dette relæ
       rule:
         hint: Valgfrit. Oplys yderligere detaljer om reglen
         text: Beskriv på en kort og enkel form en regel/krav for brugere på denne server
@@ -381,8 +388,12 @@ da:
           patch: Notificér om fejlrettelsesopdateringer
         trending_tag: Ny tendens kræver revidering
       relay:
+        acct: Relæets handle
+        direction: Deltagelsesniveau
         directions:
           bidirectional: Dobbeltrettet
+          broadcast: Kun udsendelse
+        requires_opt_in: Kræv brugertilvalg
       rule:
         hint: Yderligere oplysninger
         text: Regel

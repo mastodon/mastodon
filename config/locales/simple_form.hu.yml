@@ -130,6 +130,12 @@ hu:
           sign_up_block: Új feliratkozások nem lesznek lehetségesek
           sign_up_requires_approval: Új regisztrációk csak a jóváhagyásoddal történhetnek majd meg
         severity: Válaszd ki, mi történjen a kérésekkel erről az IP-ről
+      relay:
+        acct: 'Ebben a formátumban: felhasznalonev@domain.'
+        direction: Hogyan venne részt a továbbítóban
+        directions:
+          bidirectional: Szétküldés a továbbítónak, és a továbbító más tagjai tartalmainak elfogadása
+          broadcast: Szétküldés csak a továbbítónak
       rule:
         hint: Nem kötelező. Adj meg további részleteket a szabályról.
         text: Írd le, mi a szabály vagy elvárás ezen a kiszolgálón a felhasználók felé. Próbálj röviden, egyszerűen fogalmazni.
@@ -197,6 +203,7 @@ hu:
         text: Válasz szövege
         title: Cím
       admin_account_action:
+        canned_response_back_link: konzervválaszok kezelése
         include_statuses: Tedd az e-mailbe a bejelentett bejegyzéseket
         send_email_notification: Figyelmeztessük a felhasználót e-mailben
         text: Egyéni válasz
@@ -374,6 +381,12 @@ hu:
           none: Nincs értesítés a frissítésekről (nem ajánlott)
           patch: Értesítés hibajavítási frissítésekről
         trending_tag: Új trend felülvizsgálatra vár
+      relay:
+        acct: A továbbító felhasználóneve
+        direction: Részvételi szint
+        directions:
+          bidirectional: Kétirányú
+          broadcast: Csak szétküldés
       rule:
         hint: További információk
         text: Szabály
