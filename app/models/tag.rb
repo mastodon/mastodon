@@ -145,7 +145,7 @@ class Tag < ApplicationRecord
     def search_query(term, options)
       matches_name(term.to_s).tap do |query|
         query.merge!(listable) if options[:exclude_unlistable]
-        query.merge!(reviewed) if options[:exclude_unreviewed]
+        query.merge!(matching_name(term.to_s).or(reviewed)) if options[:exclude_unreviewed]
       end
     end
 
