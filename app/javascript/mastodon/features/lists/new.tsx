@@ -117,6 +117,9 @@ const NewList: React.FC<{ list?: List | null }> = ({ list }) => {
   const [repliesPolicy, setRepliesPolicy] =
     useState<RepliesPolicyType>(initialRepliesPolicy);
   const [submitting, setSubmitting] = useState(false);
+  const maxTitleLength = useAppSelector(
+    (state) => state.server.server.item?.configuration.lists.max_title_length,
+  );
 
   const handleTitleChange = useCallback(
     ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
@@ -183,7 +186,7 @@ const NewList: React.FC<{ list?: List | null }> = ({ list }) => {
     <FormStack as='form' onSubmit={handleSubmit}>
       <TextInputField
         required
-        maxLength={30}
+        maxLength={maxTitleLength ?? 256}
         label={intl.formatMessage(messages.nameFieldLabel)}
         value={title}
         onChange={handleTitleChange}

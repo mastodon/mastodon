@@ -143,5 +143,9 @@ export interface ApiInstanceJSON {
     };
 
     limited_federation: boolean;
+
+    lists: {
+      max_title_length: number;
+    };
   };
 }
