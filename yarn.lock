@@ -3124,7 +3124,7 @@ __metadata:
     redux-immutable: "npm:4.0.0"
     requestidlecallback: "npm:0.3.0"
     rollup-plugin-gzip: "npm:4.2.3"
-    rollup-plugin-visualizer: "npm:7.1.3"
+    rollup-plugin-visualizer: "npm:7.3.0"
     sass: "npm:1.108.2"
     scroll-behavior: "npm:0.11.0"
     stacktrace-js: "npm:2.0.2"
@@ -12243,13 +12243,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-visualizer@npm:7.1.3":
-  version: 7.1.3
-  resolution: "rollup-plugin-visualizer@npm:7.1.3"
+"rollup-plugin-visualizer@npm:7.3.0":
+  version: 7.3.0
+  resolution: "rollup-plugin-visualizer@npm:7.3.0"
   dependencies:
+    "@jridgewell/trace-mapping": "npm:^0.3.31"
     open: "npm:^11.0.0"
     picomatch: "npm:^4.0.5"
-    source-map: "npm:^0.8.0"
     yargs: "npm:^18.1.0"
   peerDependencies:
     rolldown: 1.x || ^1.0.0-beta || ^1.0.0-rc
@@ -12261,7 +12261,7 @@ __metadata:
       optional: true
   bin:
     rollup-plugin-visualizer: dist/bin/cli.js
-  checksum: 10c0/733ea461f864f6f5edefd69009488bc523190d2d19e42a5208f925e6eb5a6c4fcb9f75b5b48041d49e0716407dfa1da836a432c61df879321c2096ea1a227ff3
+  checksum: 10c0/35d2006ea7896a3256dbbc6e137ba03079c60b5b3a0f0144e00f2b22314256eb43c982fa3be60b76895e80e9d70338dd646630e2462327f8971d6504e6415c73
   languageName: node
   linkType: hard
 
@@ -12639,7 +12639,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map@npm:^0.8.0, source-map@npm:~0.8.0":
+"source-map@npm:~0.8.0":
   version: 0.8.0
   resolution: "source-map@npm:0.8.0"
   checksum: 10c0/fd2a5b81a1bf40f6155592f19c44abb46fc75b0f0f9473dd40c665b6f3866516a26218dad3d76b58b8b3e44560f3ab2191a837e1ce6631987e51a2db2e1cac56
