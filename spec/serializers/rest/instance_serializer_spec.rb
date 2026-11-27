@@ -40,5 +40,14 @@ RSpec.describe REST::InstanceSerializer do
           )
         )
     end
+
+    it 'returns the list title length limit' do
+      expect(serialization.deep_symbolize_keys)
+        .to include(
+          configuration: include(
+            lists: { max_title_length: List::TITLE_LENGTH_LIMIT }
+          )
+        )
+    end
   end
 end

@@ -131,6 +131,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
         max_name_length: Collection::NAME_LENGTH_LOCAL_LIMIT,
         max_description_length: Collection::DESCRIPTION_LENGTH_LOCAL_LIMIT,
       },
+
+      lists: {
+        max_title_length: List::TITLE_LENGTH_LIMIT,
+      },
     }
   end
 
