@@ -5,12 +5,6 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type {
-  DragEndEvent,
-  ScreenReaderInstructions,
-  Announcements,
-  Active,
-} from '@dnd-kit/core';
 import {
   useSensors,
   useSensor,
@@ -18,6 +12,12 @@ import {
   KeyboardSensor,
   DndContext,
   closestCenter,
+} from '@dnd-kit/core';
+import type {
+  DragEndEvent,
+  ScreenReaderInstructions,
+  Announcements,
+  Active,
 } from '@dnd-kit/core';
 import {
   restrictToVerticalAxis,

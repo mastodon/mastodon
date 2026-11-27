@@ -14,8 +14,8 @@ import { me } from '@/mastodon/initial_state';
 import { selectUserListWithoutMe } from '@/mastodon/selectors/user_lists';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import type { EmptyMessageProps } from './components/empty';
 import { BaseEmptyMessage } from './components/empty';
+import type { EmptyMessageProps } from './components/empty';
 import { AccountListHeader } from './components/header';
 import { AccountList } from './components/list';
 

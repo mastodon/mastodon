@@ -21,8 +21,8 @@ import {
   useAppSelector,
 } from '@/mastodon/store';
 
-import type { IAnnouncement } from './announcement';
 import { Announcement } from './announcement';
+import type { IAnnouncement } from './announcement';
 
 const announcementSelector = createAppSelector(
   [(state) => state.announcements as Map<string, List<Map<string, unknown>>>],

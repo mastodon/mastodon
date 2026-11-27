@@ -10,8 +10,8 @@ import { domain } from '@/mastodon/initial_state';
 import { patchProfile } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch } from 'mastodon/store';
 
-import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 
 const messages = defineMessages({
   title: {

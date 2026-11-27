@@ -43,8 +43,8 @@ import {
   MiniMessagesLink,
   MiniNotificationsLink,
 } from './mini_nav';
-import type { MiniNavigationLinkProps } from './navigation_link';
 import { MiniNavigationLink } from './navigation_link';
+import type { MiniNavigationLinkProps } from './navigation_link';
 
 const messages = defineMessages({
   main: {

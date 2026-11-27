@@ -6,8 +6,8 @@ import { Details } from '@/mastodon/components/details';
 import { CopyLinkField } from '@/mastodon/components/form_fields/copy_link_field';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
-import type { DialogModalProps } from '../../ui/components/dialog_modal';
 import { DialogModal } from '../../ui/components/dialog_modal';
+import type { DialogModalProps } from '../../ui/components/dialog_modal';
 
 import classes from './styles.module.scss';
 

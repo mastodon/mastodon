@@ -16,8 +16,8 @@ import { useAppDispatch } from '@/mastodon/store';
 import MoreIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 
 import { CustomEmojiProvider } from '../emoji/context';
-import type { EmojiHTMLProps } from '../emoji/html';
 import { EmojiHTML } from '../emoji/html';
+import type { EmojiHTMLProps } from '../emoji/html';
 import { Icon } from '../icon';
 import { IconButton } from '../icon_button';
 import { MiniCard } from '../mini_card';

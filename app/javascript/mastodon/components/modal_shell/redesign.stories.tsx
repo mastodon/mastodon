@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Button } from '../button';
 
-import type { ModalShellProps } from './redesign';
 import { ModalShell, ModalActions, ModalTitle } from './redesign';
+import type { ModalShellProps } from './redesign';
 
 const meta = {
   title: 'Redesign/Modal',

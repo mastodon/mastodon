@@ -30,8 +30,8 @@ import { handleSearchLinkClick } from '.';
 import { AccountMenuItems } from './account_menu_items';
 import { useNotificationsCount } from './hooks';
 import classes from './mini_nav.module.scss';
-import type { MiniNavigationLinkProps } from './navigation_link';
 import { MiniNavigationLink } from './navigation_link';
+import type { MiniNavigationLinkProps } from './navigation_link';
 
 /**
  * The small link bar at the top of the main navigation

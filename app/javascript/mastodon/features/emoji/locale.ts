@@ -1,5 +1,5 @@
-import type { Locale } from 'emojibase';
 import { SUPPORTED_LOCALES } from 'emojibase';
+import type { Locale } from 'emojibase';
 
 import { EMOJI_DB_NAME_SHORTCODES, EMOJI_TYPE_CUSTOM } from './constants';
 import type { CacheKey, LocaleOrCustom, LocaleWithShortcodes } from './types';

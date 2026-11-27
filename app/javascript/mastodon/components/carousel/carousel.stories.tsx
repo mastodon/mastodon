@@ -3,8 +3,8 @@ import type { CSSProperties, FC } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn, userEvent, expect } from 'storybook/test';
 
-import type { CarouselProps } from './index';
 import { Carousel } from './index';
+import type { CarouselProps } from './index';
 
 interface TestSlideProps {
   id: number;

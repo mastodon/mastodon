@@ -1,8 +1,8 @@
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
-import type { TimelineParams } from '../actions/timelines_typed';
 import { timelineKey } from '../actions/timelines_typed';
+import type { TimelineParams } from '../actions/timelines_typed';
 import { createAppSelector } from '../store';
 
 interface TimelineShape {

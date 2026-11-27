@@ -14,8 +14,8 @@ import {
 } from '@/testing/factories';
 
 import { Status } from '.';
-import type { AttachmentArgs } from './testing';
 import { attachmentArgTypes, attachmentFactory } from './testing';
+import type { AttachmentArgs } from './testing';
 import type { StatusContextType, StatusVariant } from './types';
 
 interface StatusStoryProps extends AttachmentArgs {

@@ -3,8 +3,8 @@ import type { FC, HTMLAttributes } from 'react';
 
 import classNames from 'classnames';
 
-import type { AnimatedProps } from '@react-spring/web';
 import { animated, useTransition } from '@react-spring/web';
+import type { AnimatedProps } from '@react-spring/web';
 
 import { addReaction, removeReaction } from '@/mastodon/actions/announcements';
 import type { ApiAnnouncementReactionJSON } from '@/mastodon/api_types/announcements';

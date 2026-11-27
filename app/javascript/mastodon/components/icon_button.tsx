@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import { usePrevious } from '../hooks/usePrevious';
 
 import { AnimatedNumber } from './animated_number';
-import type { IconProp } from './icon';
 import { Icon } from './icon';
+import type { IconProp } from './icon';
 
 interface Props {
   className?: string;

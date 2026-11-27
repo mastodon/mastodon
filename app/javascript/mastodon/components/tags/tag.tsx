@@ -9,8 +9,8 @@ import type { Merge } from 'type-fest';
 
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
-import type { IconProp } from '../icon';
 import { Icon } from '../icon';
+import type { IconProp } from '../icon';
 import { IconButton } from '../icon_button';
 
 import classes from './style.module.css';

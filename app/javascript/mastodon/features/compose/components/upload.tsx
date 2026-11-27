@@ -22,8 +22,8 @@ import { StatusImage } from '@/mastodon/components/status/image';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import classes from './attachments.module.scss';
-import type { ComposeAttachment } from './selectors';
 import { selectComposeAttachment, selectComposeSensitive } from './selectors';
+import type { ComposeAttachment } from './selectors';
 
 export const ComposeUpload: React.FC<
   {

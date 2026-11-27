@@ -27,8 +27,8 @@ import {
 import { isUrlWithoutProtocol } from '@/mastodon/utils/checks';
 
 import { ConfirmationModal } from '../../ui/components/confirmation_modals';
-import type { DialogModalProps } from '../../ui/components/dialog_modal';
 import { DialogModal } from '../../ui/components/dialog_modal';
+import type { DialogModalProps } from '../../ui/components/dialog_modal';
 
 import classes from './styles.module.scss';
 

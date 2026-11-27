@@ -13,8 +13,8 @@ import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import { selectUserListWithoutMe } from '@/mastodon/selectors/user_lists';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import type { EmptyMessageProps } from '../followers/components/empty';
 import { BaseEmptyMessage } from '../followers/components/empty';
+import type { EmptyMessageProps } from '../followers/components/empty';
 import { AccountListHeader } from '../followers/components/header';
 import { AccountList } from '../followers/components/list';
 

@@ -3,8 +3,8 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect } from 'storybook/test';
 
-import type { HotkeyHandlerMap } from '.';
 import { Hotkeys } from '.';
+import type { HotkeyHandlerMap } from '.';
 
 const meta = {
   title: 'Components/Hotkeys',

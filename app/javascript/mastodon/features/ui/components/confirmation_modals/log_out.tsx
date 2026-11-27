@@ -4,8 +4,8 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { logOut } from 'mastodon/utils/log_out';
 
-import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 
 const messages = defineMessages({
   logoutTitle: {

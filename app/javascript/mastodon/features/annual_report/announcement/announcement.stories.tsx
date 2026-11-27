@@ -4,8 +4,8 @@ import type { ConditionalExcept } from 'type-fest';
 
 import type { AnyFunction } from '@/mastodon/utils/types';
 
-import type { AnnualReportAnnouncementProps } from '.';
 import { AnnualReportAnnouncement } from '.';
+import type { AnnualReportAnnouncementProps } from '.';
 
 type Props = ConditionalExcept<
   // We can't use the name 'state' here because it's reserved for overriding Redux state.

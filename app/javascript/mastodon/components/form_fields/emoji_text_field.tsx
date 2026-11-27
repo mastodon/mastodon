@@ -13,12 +13,12 @@ import type { Merge } from 'type-fest';
 import { insertEmojiAtPosition } from '@/mastodon/features/emoji/utils';
 
 import { CharacterCounter } from '../character_counter';
-import type { OnEmojiPick } from '../emoji/picker';
 import { EmojiPickerButton, emojiToString } from '../emoji/picker';
+import type { OnEmojiPick } from '../emoji/picker';
 
 import classes from './emoji_text_field.module.scss';
-import type { CommonFieldWrapperProps, InputProps } from './form_field_wrapper';
 import { FormFieldWrapper } from './form_field_wrapper';
+import type { CommonFieldWrapperProps, InputProps } from './form_field_wrapper';
 import { TextArea } from './text_area_field';
 import type { TextAreaProps } from './text_area_field';
 import { TextInput } from './text_input_field';

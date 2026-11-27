@@ -4,6 +4,14 @@ import { useCallback, useMemo } from 'react';
 import type { MessageDescriptor } from 'react-intl';
 import { useIntl } from 'react-intl';
 
+import {
+  DndContext,
+  DragOverlay,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 import type {
   Active,
   Announcements,
@@ -13,14 +21,6 @@ import type {
   Over,
   ScreenReaderInstructions,
   UniqueIdentifier,
-} from '@dnd-kit/core';
-import {
-  DndContext,
-  DragOverlay,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
 } from '@dnd-kit/core';
 import {
   restrictToParentElement,

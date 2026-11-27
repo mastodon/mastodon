@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { useLocation, useHistory } from 'react-router-dom';
 
-import type { LocationBase } from 'scroll-behavior';
 import ScrollBehavior from 'scroll-behavior';
+import type { LocationBase } from 'scroll-behavior';
 
 import type {
   LocationState,

@@ -10,8 +10,8 @@ import ErrorIcon from '@/material-icons/400-24px/error.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
 import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 
-import type { IconProp } from '../icon';
 import { Icon } from '../icon';
+import type { IconProp } from '../icon';
 import { IconButton } from '../icon_button';
 
 import classes from './styles.module.css';

@@ -6,8 +6,8 @@ import { unblockAccount } from 'mastodon/actions/accounts';
 import type { Account } from 'mastodon/models/account';
 import { useAppDispatch } from 'mastodon/store';
 
-import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
+import type { BaseConfirmationModalProps } from './confirmation_modal';
 
 const messages = defineMessages({
   unblockConfirm: {

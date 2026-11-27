@@ -3,8 +3,8 @@ import { Record as ImmutableRecord, Stack } from 'immutable';
 
 import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
-import type { ModalType } from '../actions/modal';
 import { openModal, closeModal } from '../actions/modal';
+import type { ModalType } from '../actions/modal';
 
 export type ModalProps = Record<string, unknown>;
 interface Modal {

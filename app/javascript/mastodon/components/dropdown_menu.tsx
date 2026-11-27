@@ -33,8 +33,8 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 import { Icon } from './icon';
 import type { IconProp } from './icon';
 import { IconButton } from './icon_button';
-import type { PopoverProps } from './popover';
 import { Popover } from './popover';
+import type { PopoverProps } from './popover';
 
 let id = 0;
 

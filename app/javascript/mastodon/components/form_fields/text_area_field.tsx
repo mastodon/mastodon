@@ -3,8 +3,8 @@ import { forwardRef, useCallback } from 'react';
 
 import classNames from 'classnames';
 
-import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 import TextAreaAutosize from 'react-textarea-autosize';
+import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
 import { FormFieldWrapper } from './form_field_wrapper';
 import type { CommonFieldWrapperProps } from './form_field_wrapper';

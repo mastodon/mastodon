@@ -6,8 +6,8 @@ import { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 
 import { FieldsetNameContext } from './fieldset';
-import type { CommonFieldWrapperProps } from './form_field_wrapper';
 import { FormFieldWrapper } from './form_field_wrapper';
+import type { CommonFieldWrapperProps } from './form_field_wrapper';
 import classes from './radio_button.module.scss';
 
 type Props = Omit<ComponentPropsWithoutRef<'input'>, 'type'> & {

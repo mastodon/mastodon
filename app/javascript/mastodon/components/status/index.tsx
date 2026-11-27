@@ -9,12 +9,12 @@ import type { ExpandedStatusShape } from '@/mastodon/models/status';
 import { selectStatusLoadingState } from '@/mastodon/selectors/statuses';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
+import { Hotkeys } from '../hotkeys';
 import type {
   HotkeyHandlerFunction,
   HotkeyHandlerMap,
   HotkeyName,
 } from '../hotkeys';
-import { Hotkeys } from '../hotkeys';
 import { Poll } from '../poll';
 
 import { StatusActionBar } from './action_bar';
