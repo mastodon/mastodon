@@ -75,7 +75,7 @@ class FetchResourceService < BaseService
     page      = Nokogiri::HTML5(response.body_with_limit)
     json_link = page.xpath('//link[nokogiri:link_rel_include(@rel, "alternate")]', NokogiriHandler).find { |link| ACTIVITY_STREAM_LINK_TYPES.include?(link['type']) }
 
-    process(json_link['href'], terminal: true) unless json_link.nil?
+    process(json_link['href'], terminal: false) unless json_link.nil?
   end
 
   def process_link_headers(response)
@@ -84,7 +84,7 @@ class FetchResourceService < BaseService
 
     json_link = link_header.find_link(%w(rel alternate), %w(type application/activity+json)) || link_header.find_link(%w(rel alternate), ['type', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'])
 
-    process(json_link.href, terminal: true) unless json_link.nil?
+    process(json_link.href, terminal: false) unless json_link.nil?
   end
 
   def parse_link_header(response)
