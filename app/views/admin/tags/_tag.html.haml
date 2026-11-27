@@ -1,6 +1,6 @@
 .batch-table__row{ class: [!tag.requires_review? && !tag.usable? && 'batch-table__row--muted'] }
-  .batch-table__row__content.batch-table__row__content--padded.pending-account
-    .pending-account__header
+  .batch-table__row__content.batch-table__row__content--padded.pending-account.admin-row-with-status
+    .pending-account__header.admin-row-with-status__content
       %strong
         = link_to tag.formatted_name, admin_tag_path(tag.id)
 
@@ -17,11 +17,9 @@
       - else
         = t('admin.tags.moderation.not_trendable')
 
-      - if tag.requested_review? || tag.requires_review?
-        ·
-        - if tag.requested_review?
-          %span.negative-hint
-            = t('admin.tags.moderation.review_requested')
-        - else
-          %span.warning-hint
-            = t('admin.tags.moderation.pending_review')
+    - if tag.requested_review?
+      %span.information-badge.reject
+        = t('admin.tags.moderation.review_requested')
+    - elsif tag.requires_review?
+      %span.information-badge.limit
+        = t('admin.tags.moderation.pending_review')

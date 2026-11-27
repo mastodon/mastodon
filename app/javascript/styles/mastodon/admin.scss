@@ -730,6 +730,29 @@ kbd {
   flex: 1 1 auto;
 }
 
+.admin-row-with-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+
+  &__content {
+    flex: 1 1 12rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  > .information-badge {
+    box-sizing: border-box;
+    max-width: 100%;
+    margin-inline-start: auto;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 18px;
+    text-align: center;
+  }
+}
+
 .log-entry {
   display: block;
   line-height: 20px;
