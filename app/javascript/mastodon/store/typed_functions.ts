@@ -47,6 +47,7 @@ export type AppThunkApi = Pick<
 
 interface AppThunkOptions<Arg> {
   useLoadingBar?: boolean;
+  skipNotFound?: boolean;
   condition?: (
     arg: Arg,
     { getState }: { getState: AppThunkApi['getState'] },
@@ -154,7 +155,7 @@ export function createAsyncThunk<Arg = void, Returned = void>(
         });
       } catch (error) {
         return rejectWithValue(
-          { error },
+          { error, skipNotFound: options.skipNotFound },
           {
             useLoadingBar: options.useLoadingBar,
           },
@@ -253,6 +254,7 @@ export function createDataLoadingThunk<
  * @param maybeThunkOptions
  *   Additional Mastodon specific options for the thunk. Currently supports:
  *   - `useLoadingBar` to display a loading bar while this action is pending. Defaults to true.
+ *   - `skipNotFound` to not show an error alert when the request fails with a 404 or 410
  *   - `condition` is passed to `createAsyncThunk` (https://redux-toolkit.js.org/api/createAsyncThunk#canceling-before-execution)
  * @returns The created thunk
  */
@@ -307,6 +309,7 @@ export function createDataLoadingThunk<
     },
     {
       useLoadingBar: thunkOptions?.useLoadingBar ?? true,
+      skipNotFound: thunkOptions?.skipNotFound,
       condition: thunkOptions?.condition,
     },
   );
