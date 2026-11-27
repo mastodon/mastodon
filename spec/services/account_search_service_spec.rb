@@ -105,14 +105,41 @@ RSpec.describe AccountSearchService do
   end
 
   context 'when elasticsearch is enabled', :search do
-    it 'returns matching accounts' do
-      account = Fabricate(:account, username: 'matchingusername')
-
+    subject do
       AccountsIndex.import!
+      described_class.new.call(query, nil, limit:)
+    end
 
-      results = subject.call('match', nil, limit: 5)
+    let(:limit) { 5 }
+    let(:query) { '' }
 
-      expect(results).to eq [account]
+    context 'when account username matches' do
+      let(:query) { 'alice' }
+      let!(:alice) { Fabricate :account, username: 'alice' } # Only match
+      let!(:other) { Fabricate :account, username: 'charles' }
+
+      it { is_expected.to include(alice).and(not_include(other)) }
+    end
+
+    context 'when stronger matches are present' do
+      let(:query) { 'Alice Koala' }
+      let!(:other) { Fabricate :account, username: 'alice_lines', display_name: 'Snakes' }
+      let!(:alice) { Fabricate :account, username: 'alice', display_name: 'Alice Koala' } # Stronger match
+
+      it { is_expected.to eq([alice, other]) }
+    end
+
+    context 'when matches are equal but followers differ' do
+      let(:query) { 'alice' }
+      let!(:alice_one) { Fabricate :account, username: 'alice_one', display_name: 'Alice One' }
+      let!(:alice_two) { Fabricate :account, username: 'alice_two', display_name: 'Alice Two' } # More followers breaks tie
+
+      before do
+        alice_one.update! followers_count: 1
+        alice_two.update! followers_count: 100
+      end
+
+      it { is_expected.to eq([alice_two, alice_one]) }
     end
   end
 end

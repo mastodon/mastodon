@@ -34,6 +34,7 @@ class AccountSearchService < BaseService
               functions: [
                 followers_score_function,
               ],
+              boost_mode: 'sum',
             },
           },
 
