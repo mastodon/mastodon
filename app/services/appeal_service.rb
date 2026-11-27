@@ -6,6 +6,7 @@ class AppealService < BaseService
     @text   = text
 
     create_appeal!
+    log_appeal!
     notify_staff!
 
     @appeal
@@ -19,6 +20,10 @@ class AppealService < BaseService
       text: @text,
       account: @strike.target_account
     )
+  end
+
+  def log_appeal!
+    @appeal.account.action_logs.create!(action: :create, target: @appeal)
   end
 
   def notify_staff!
