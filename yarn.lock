@@ -2611,15 +2611,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/icu-messageformat-parser@npm:3.5.18":
-  version: 3.5.18
-  resolution: "@formatjs/icu-messageformat-parser@npm:3.5.18"
-  dependencies:
-    "@formatjs/icu-skeleton-parser": "npm:2.1.11"
-  checksum: 10c0/4c4ecfb9e99e4f644c934279f91f034dc607e1935d0116e7fc7524c70f2708e9847ab2b335baeb2fbecb21da6f5cb629d2d713c56cd545f189ea0f45673028e9
-  languageName: node
-  linkType: hard
-
 "@formatjs/icu-messageformat-parser@npm:3.5.22":
   version: 3.5.22
   resolution: "@formatjs/icu-messageformat-parser@npm:3.5.22"
@@ -2635,13 +2626,6 @@ __metadata:
   dependencies:
     "@formatjs/icu-skeleton-parser": "npm:2.1.13"
   checksum: 10c0/133c2058bb7f59944ac97dce1ed358de988b31f97e1ec8e0c334d0b9548bfe80bde3ce47248cd72376d96aae8273ca6fd92ddded12abceecdc01b7abd88bb6c6
-  languageName: node
-  linkType: hard
-
-"@formatjs/icu-skeleton-parser@npm:2.1.11":
-  version: 2.1.11
-  resolution: "@formatjs/icu-skeleton-parser@npm:2.1.11"
-  checksum: 10c0/9224b5cbfd64dc1e22ff48d758582e2f36cb4e2cd58f7f1fcfd251527f52ed7a1be27998c800c6dec3b718e06c73f98318a8fd8550bb0bbb467168988c630d29
   languageName: node
   linkType: hard
 
@@ -2697,14 +2681,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl@npm:4.2.1":
-  version: 4.2.1
-  resolution: "@formatjs/intl@npm:4.2.1"
+"@formatjs/intl@npm:6.2.1":
+  version: 6.2.1
+  resolution: "@formatjs/intl@npm:6.2.1"
   dependencies:
-    "@formatjs/fast-memoize": "npm:3.1.7"
-    "@formatjs/icu-messageformat-parser": "npm:3.5.18"
-    intl-messageformat: "npm:11.2.15"
-  checksum: 10c0/5fb14ef7a36e1cb0d387e5ea06c0441f1d616405838f1df2d0a5a9dae5efc308b4e7c025033e910ae2e1561b771efda39a384d0968632b5d5da617032a52fe9e
+    "@formatjs/fast-memoize": "npm:3.1.8"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.23"
+    intl-messageformat: "npm:12.2.1"
+  checksum: 10c0/ae91cf3f4f9f3532b0d5665717e04f55cdcc02aa7c3693068e2460c55cbd617079d5efca7c8e325d7d99eace22c8f15bde4d7893295f9ef9c508f3e8826115ff
   languageName: node
   linkType: hard
 
@@ -3112,7 +3096,7 @@ __metadata:
     husky: "npm:9.1.7"
     idb: "npm:8.0.4"
     immutable: "npm:4.3.9"
-    intl-messageformat: "npm:11.2.15"
+    intl-messageformat: "npm:12.2.1"
     js-yaml: "npm:5.5.0"
     lint-staged: "npm:17.5.1"
     lodash: "npm:4.18.1"
@@ -3129,7 +3113,7 @@ __metadata:
     react-easy-crop: "npm:6.2.5"
     react-immutable-proptypes: "npm:2.2.0"
     react-immutable-pure-component: "npm:2.2.2"
-    react-intl: "npm:10.2.2"
+    react-intl: "npm:12.2.1"
     react-redux: "npm:9.3.1"
     react-redux-loading-bar: "npm:5.0.8"
     react-router: "npm:5.3.4"
@@ -8914,13 +8898,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"intl-messageformat@npm:11.2.15":
-  version: 11.2.15
-  resolution: "intl-messageformat@npm:11.2.15"
+"intl-messageformat@npm:12.2.1":
+  version: 12.2.1
+  resolution: "intl-messageformat@npm:12.2.1"
   dependencies:
-    "@formatjs/fast-memoize": "npm:3.1.7"
-    "@formatjs/icu-messageformat-parser": "npm:3.5.18"
-  checksum: 10c0/868247481c9a1bf8ae5041f2264de79ea7bb9efc7f5fdd7419ae9aad30ebd2b18e5d6f611283c9efed2409338290f2628be12685043aaff56f136cf714ebfff0
+    "@formatjs/fast-memoize": "npm:3.1.8"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.23"
+  checksum: 10c0/c326552ddcf219d6a0da763bfc049dcb1c64d40532dc9f6bbaf331c5ec011cf18f04c6e6210cf6cdfb7d9afa8fe5fa90b42321e61b3465c5ed54112ffbdfcb6c
   languageName: node
   linkType: hard
 
@@ -11712,17 +11696,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intl@npm:10.2.2":
-  version: 10.2.2
-  resolution: "react-intl@npm:10.2.2"
+"react-intl@npm:12.2.1":
+  version: 12.2.1
+  resolution: "react-intl@npm:12.2.1"
   dependencies:
-    "@formatjs/icu-messageformat-parser": "npm:3.5.18"
-    "@formatjs/intl": "npm:4.2.1"
-    intl-messageformat: "npm:11.2.15"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.23"
+    "@formatjs/intl": "npm:6.2.1"
+    intl-messageformat: "npm:12.2.1"
   peerDependencies:
     "@types/react": ">=18.0.0"
     react: ">=18.0.0"
-  checksum: 10c0/c5d7477cc36c566ec63f01426a518925ee7d520ea19d306856d161ad2c0d1b11e08c534c316eefe73a7f36564ea952af332abf6b0a2fa94bc0ef104f800ba732
+  checksum: 10c0/f291b065a052170258413f84eef5e49c361c2a409d2272b72178bd818495b2f19549ad902c48e6e1925bc07359b8a9b78f71b97b531bd85f8ce9c3cc86da5813
   languageName: node
   linkType: hard
 
