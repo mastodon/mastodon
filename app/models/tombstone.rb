@@ -16,4 +16,6 @@ class Tombstone < ApplicationRecord
   belongs_to :account
 
   validates :uri, presence: true
+
+  scope :preventing_creation, ->(datetime) { where(by_moderator: true).or(where(created_at: datetime...)) }
 end

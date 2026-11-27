@@ -26,9 +26,18 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
         # database before we try to load it.
         # Without the lock, `delete_later!` could be called after `delete_arrived_first?`
         # and `Status.find` before `Status.create!`
-        with_redis_lock("create:#{object_uri}") { delete_later!(object_uri) }
+        with_redis_lock("create:#{object_uri}") { delete_later!(object_uri, delete_published_at&.to_i) }
 
-        Tombstone.find_or_create_by(uri: object_uri, account: @account)
+        # TODO: will only work if we have a unique index
+        Tombstone.upsert(
+          {
+            account_id: @account.id,
+            uri: object_uri,
+            created_at: delete_published_at || Time.now.utc,
+          },
+          on_duplicate: Arel.sql('created_at = GREATEST(tombstones.created_at, EXCLUDED.created_at)'),
+          unique_by: %i(account_id uri)
+        )
       end
 
       case @object['type']
@@ -75,5 +84,12 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
     return @collection_item if instance_variable_defined?(:@collection_item)
 
     @collection_item = CollectionItem.local.find_by(approval_uri: value_or_id(@object), account_id: @account.id)
+  end
+
+  def delete_published_at
+    # TODO: maybe do some sanity check on the date?
+    @json['published']&.to_datetime
+  rescue ArgumentError
+    nil
   end
 end
