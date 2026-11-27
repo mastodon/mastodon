@@ -15,6 +15,7 @@ import {
 import type { Account } from '@/mastodon/models/account';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from '@/mastodon/store';
+import { supportsNativeShare } from 'mastodon/utils/browser_support';
 
 import { AccountBio } from '../account_bio';
 import { Avatar } from '../avatar';
@@ -130,8 +131,8 @@ export const AccountHeader: React.FC<{
             <AccountButtons
               accountId={accountId}
               className={classes.buttonsDesktop}
-              noShare={!isMe || 'share' in navigator}
-              forceMenu={'share' in navigator}
+              noShare={!isMe || supportsNativeShare}
+              forceMenu={supportsNativeShare}
             />
           </div>
 

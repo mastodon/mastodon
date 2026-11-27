@@ -6,6 +6,7 @@ import { useLocation } from 'react-router';
 
 import { XIcon } from '@phosphor-icons/react';
 
+import { showAlertForError } from '@/mastodon/actions/alerts';
 import { focusCompose } from '@/mastodon/actions/compose';
 import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
 import { Button, IconButton } from '@/mastodon/components/button';
@@ -16,8 +17,10 @@ import {
   ModalShellBody,
 } from '@/mastodon/components/modal_shell';
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
+import { navigatorShare } from '@/mastodon/features/ui/util/navigator_share';
 import { me } from '@/mastodon/initial_state';
 import { useAppDispatch } from '@/mastodon/store';
+import { supportsNativeShare } from 'mastodon/utils/browser_support';
 
 import { CollectionPreviewCard } from './collection_preview_card';
 import classes from './share_modal.module.scss';
@@ -48,10 +51,12 @@ export const CollectionShareModal: React.FC<{
   const collectionLink = collection.url;
 
   const handleShareOnDevice = useCallback(() => {
-    void navigator.share({
+    void navigatorShare({
       url: collectionLink,
+    }).catch((error: unknown) => {
+      dispatch(showAlertForError(error));
     });
-  }, [collectionLink]);
+  }, [collectionLink, dispatch]);
 
   const handleShareViaPost = useCallback(() => {
     let shareMessage = isOwnCollection
@@ -114,7 +119,7 @@ export const CollectionShareModal: React.FC<{
               defaultMessage='Post on Mastodon'
             />
           </Button>
-          {'share' in navigator && (
+          {supportsNativeShare && (
             <Button onClick={handleShareOnDevice}>
               <FormattedMessage
                 id='collection.share_modal.share_via_system'
