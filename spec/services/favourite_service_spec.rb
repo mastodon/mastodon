@@ -36,4 +36,31 @@ RSpec.describe FavouriteService do
         .to have_been_made.once
     end
   end
+
+  describe 'through a boost' do
+    let(:bob)    { Fabricate(:account) }
+    let(:status) { Fabricate(:status, account: bob) }
+    let(:reblog) { Fabricate(:status, reblog: status) }
+
+    it 'favourites the original status' do
+      subject.call(sender, reblog)
+
+      expect(status.favourites.where(account: sender)).to exist
+    end
+
+    it 'returns the existing favourite when called again' do
+      favourite = subject.call(sender, reblog)
+
+      expect(subject.call(sender, reblog)).to eq favourite
+    end
+
+    context 'when the original author blocks the sender' do
+      before { bob.block!(sender) }
+
+      it 'refuses to favourite the original status' do
+        expect { subject.call(sender, reblog) }.to raise_error(Mastodon::NotPermittedError)
+        expect(status.favourites.where(account: sender)).to_not exist
+      end
+    end
+  end
 end
