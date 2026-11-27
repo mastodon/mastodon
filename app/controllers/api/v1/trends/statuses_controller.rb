@@ -9,7 +9,16 @@ class Api::V1::Trends::StatusesController < Api::BaseController
 
   def index
     cache_if_unauthenticated!
-    render json: @statuses, each_serializer: REST::StatusSerializer
+    respond_to do |format|
+      format.rss do
+        # restore default CSP
+        request.content_security_policy = Rails.application.config.content_security_policy
+        render rss: @statuses
+      end
+      format.any do
+        render json: @statuses, each_serializer: REST::StatusSerializer
+      end
+    end
   end
 
   private
