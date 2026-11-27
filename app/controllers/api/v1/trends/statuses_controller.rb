@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Trends::StatusesController < Api::BaseController
+  include Api::LoggedOutFeedBrowsingLimit
+
   vary_by 'Authorization, Accept-Language'
 
   before_action :set_statuses
