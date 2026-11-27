@@ -18,9 +18,6 @@ class ActivityPub::FetchRemoteFeaturedCollectionService < BaseService
     account = Account.find_by(uri: json['attributedTo'])
     return unless account
 
-    existing_collection = account.collections.find_by(uri:)
-    return existing_collection if existing_collection.present?
-
     ActivityPub::ProcessFeaturedCollectionService.new.call(account, json, request_id:)
   end
 end
