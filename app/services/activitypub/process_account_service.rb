@@ -463,10 +463,8 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def property_values
-    return unless @json['attachment'].is_a?(Array)
-
     as_array(@json['attachment'])
-      .select { |attachment| attachment['type'] == 'PropertyValue' }
+      .select { |attachment| attachment.is_a?(Hash) && attachment['type'] == 'PropertyValue' }
       .take(MAX_PROFILE_FIELDS)
       .map { |attachment| attachment.slice('name', 'value') }
   end
