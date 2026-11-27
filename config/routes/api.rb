@@ -345,6 +345,10 @@ namespace :api, format: false do
       resources :statuses, only: [:show, :destroy]
     end
 
+    namespace :push do
+      resource :subscription, only: [:create, :show, :update, :destroy]
+    end
+
     namespace :admin do
       resources :accounts, only: [:index]
       resources :server_checks, only: [:index]
