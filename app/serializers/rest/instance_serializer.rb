@@ -122,6 +122,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
           local: Setting.local_topic_feed_access,
           remote: Setting.remote_topic_feed_access,
         },
+        profile_feeds: Setting.profile_feed_access,
       },
 
       limited_federation: limited_federation?,

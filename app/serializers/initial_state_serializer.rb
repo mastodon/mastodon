@@ -137,6 +137,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       remote_live_feed_access: Setting.remote_live_feed_access,
       local_topic_feed_access: Setting.local_topic_feed_access,
       remote_topic_feed_access: Setting.remote_topic_feed_access,
+      profile_feed_access: Setting.profile_feed_access,
     }
   end
 

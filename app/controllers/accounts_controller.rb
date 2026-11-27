@@ -24,6 +24,8 @@ class AccountsController < ApplicationController
       end
 
       format.rss do
+        return not_found if Setting.profile_feed_access != 'public'
+
         expires_in 1.minute, public: true
 
         limit     = params[:limit].present? ? [params[:limit].to_i, PAGE_SIZE_MAX].min : PAGE_SIZE

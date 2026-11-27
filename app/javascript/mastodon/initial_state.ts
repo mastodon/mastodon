@@ -42,6 +42,7 @@ interface InitialStateMeta {
   remote_live_feed_access: 'public' | 'authenticated' | 'disabled';
   local_topic_feed_access: 'public' | 'authenticated';
   remote_topic_feed_access: 'public' | 'authenticated' | 'disabled';
+  profile_feed_access: 'public' | 'authenticated';
   title: string;
   custom_app_icon: string | null;
   show_trends: boolean;
@@ -143,6 +144,7 @@ export const localLiveFeedAccess = getMeta('local_live_feed_access');
 export const remoteLiveFeedAccess = getMeta('remote_live_feed_access');
 export const localTopicFeedAccess = getMeta('local_topic_feed_access');
 export const remoteTopicFeedAccess = getMeta('remote_topic_feed_access');
+export const profileFeedAccess = getMeta('profile_feed_access');
 export const title = getMeta('title');
 export const customAppIcon = getMeta('custom_app_icon');
 export const landingPage = getMeta('landing_page');

@@ -27,6 +27,7 @@ import {
   useCurrentAccountId,
 } from '@/mastodon/hooks/useAccountId';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
+import { useProfileFeedRequiresSignIn } from '@/mastodon/hooks/useProfileFeedRequiresSignIn';
 import type { Account } from '@/mastodon/models/account';
 import { selectTimelineByKey } from '@/mastodon/selectors/timelines';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -91,22 +92,23 @@ const InnerTimeline: FC<{ account: Account; multiColumn: boolean }> = ({
 
   const timeline = useAppSelector((state) => selectTimelineByKey(state, key));
   const { blockedBy, hidden, suspended } = useAccountVisibility(accountId);
-  const forceEmptyState = blockedBy || hidden || suspended;
+  const requiresSignIn = useProfileFeedRequiresSignIn();
+  const forceEmptyState = blockedBy || hidden || suspended || requiresSignIn;
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (accountId) {
+    if (accountId && !requiresSignIn) {
       dispatch(expandTimelineByKey({ key }));
     }
-  }, [accountId, dispatch, key]);
+  }, [accountId, dispatch, key, requiresSignIn]);
 
   const handleLoadMore = useCallback(
     (maxId: number) => {
-      if (accountId) {
+      if (accountId && !requiresSignIn) {
         dispatch(expandTimelineByKey({ key, maxId }));
       }
     },
-    [accountId, dispatch, key],
+    [accountId, dispatch, key, requiresSignIn],
   );
 
   const { isLoading: isPinnedLoading, statusIds: pinnedStatusIds } =
@@ -164,6 +166,7 @@ const Prepend: FC<{
 
 const EmptyMessage: FC<{ accountId: string }> = ({ accountId }) => {
   const { blockedBy, hidden, suspended } = useAccountVisibility(accountId);
+  const requiresSignIn = useProfileFeedRequiresSignIn();
   if (suspended) {
     return (
       <FormattedMessage
@@ -178,6 +181,13 @@ const EmptyMessage: FC<{ accountId: string }> = ({ accountId }) => {
       <FormattedMessage
         id='empty_column.account_unavailable'
         defaultMessage='Profile unavailable'
+      />
+    );
+  } else if (requiresSignIn) {
+    return (
+      <FormattedMessage
+        id='empty_column.account_timeline_requires_sign_in'
+        defaultMessage='Log in to see posts from this profile.'
       />
     );
   }
