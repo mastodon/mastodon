@@ -88,8 +88,17 @@ class Api::BaseController < ApplicationController
     render json: {}, status: 200
   end
 
+  # Endpoints that also serve anonymous visitors only authorize the request when
+  # a token is present. A token that was supplied but does not resolve to any
+  # access token (unknown, deleted, or made up) must be rejected rather than
+  # silently downgraded to an anonymous request, otherwise any restriction that
+  # relies on the presence of an `Authorization` header can be bypassed.
   def authorize_if_got_token!(*scopes)
-    doorkeeper_authorize!(*scopes) if doorkeeper_token
+    doorkeeper_authorize!(*scopes) if doorkeeper_token || access_token_supplied?
+  end
+
+  def access_token_supplied?
+    Doorkeeper::OAuth::Token.from_request(request, *Doorkeeper.config.access_token_methods).present?
   end
 
   def disallow_unauthenticated_api_access?
