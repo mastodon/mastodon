@@ -12,7 +12,7 @@ RSpec.describe ActivityPub::Activity::Announce do
   let(:json) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
-      id: 'foo',
+      id: 'https://example.com/actor/announces/1',
       type: 'Announce',
       actor: 'https://example.com/actor',
       object: object_json,
@@ -148,6 +148,56 @@ RSpec.describe ActivityPub::Activity::Announce do
         it 'does not create anything' do
           expect(sender.statuses.count).to eq 0
         end
+      end
+    end
+
+    context 'when the activity id is on a different host than the sender' do
+      let(:victim) { Fabricate(:account, uri: 'https://victim.example/users/bob', domain: 'victim.example') }
+      let(:victim_status_uri) { 'https://victim.example/users/bob/statuses/112233' }
+      let(:object_json) { ActivityPub::TagManager.instance.uri_for(status) }
+
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: victim_status_uri,
+          type: 'Announce',
+          actor: 'https://example.com/actor',
+          object: object_json,
+          to: 'https://www.w3.org/ns/activitystreams#Public',
+        }.with_indifferent_access
+      end
+
+      let(:victim_create_json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: "#{victim_status_uri}/activity",
+          type: 'Create',
+          actor: victim.uri,
+          object: {
+            id: victim_status_uri,
+            type: 'Note',
+            content: 'Hello from bob',
+            attributedTo: victim.uri,
+            to: 'https://www.w3.org/ns/activitystreams#Public',
+          },
+        }.deep_stringify_keys
+      end
+
+      before do
+        Fabricate(:account).follow!(sender)
+        Fabricate(:account).follow!(victim)
+        subject.perform
+      end
+
+      it 'does not create a reblog' do
+        expect(sender.reblogged?(status)).to be false
+        expect(Status.find_by(uri: victim_status_uri)).to be_nil
+      end
+
+      it 'still accepts the real status from its author' do
+        ActivityPub::Activity::Create.new(victim_create_json, victim).perform
+
+        expect(Status.find_by(uri: victim_status_uri)&.account).to eq victim
       end
     end
 

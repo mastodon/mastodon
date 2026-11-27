@@ -2,6 +2,7 @@
 
 class ActivityPub::Activity::Announce < ActivityPub::Activity
   def perform
+    return reject_payload! if non_matching_uri_hosts?(@account.uri, @json['id'])
     return reject_payload! if delete_arrived_first?(@json['id']) || !related_to_local_activity?
     return reject_payload! if @object.nil?
 
