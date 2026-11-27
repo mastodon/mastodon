@@ -383,14 +383,16 @@ RSpec.describe Tag do
     end
 
     it 'excludes non reviewed tags via option' do
-      tag = Fabricate(:tag, name: 'match', reviewed_at: 5.days.ago)
-      unreviewed_tag = Fabricate(:tag, name: 'matchreviewed', reviewed_at: nil)
+      unreviewed_exact_tag = Fabricate(:tag, name: 'match', reviewed_at: nil)
+      unreviewed_excess_tag = Fabricate(:tag, name: 'matchunreviewed', reviewed_at: nil)
+      reviewed_excess_tag = Fabricate(:tag, name: 'matchreviewed', reviewed_at: 5.days.ago)
 
       results = described_class.search_for('match', 5, 0, exclude_unreviewed: true)
 
       expect(results)
-        .to include(tag)
-        .and not_include(unreviewed_tag)
+        .to include(reviewed_excess_tag)
+        .and include(unreviewed_exact_tag)
+        .and not_include(unreviewed_excess_tag)
     end
   end
 end
