@@ -48,6 +48,8 @@
   }
 
   &[data-fullscreen='true'] {
+    inset: 0;
+
     .composeForm {
       // Set from the visualViewport API.
       height: var(--viewport-height, 100vh);

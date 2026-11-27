@@ -15,20 +15,12 @@ const getShouldLockBodyScroll = createAppSelector(
     (state) => state.scrollLockStack.stack.length > 0,
     (state) => state.navigation.isMobileMenuOpen,
     (state) => state.modal.get('stack').size > 0,
-    (state) =>
-      state.composer.displayState === 'showing' &&
-      state.meta.get('layout') === 'mobile',
   ],
   (
     hasScrollLockStackItems: boolean,
     isMobileMenuOpen: boolean,
     isModalOpen: boolean,
-    isRedesignComposerOpen: boolean,
-  ) =>
-    hasScrollLockStackItems ||
-    isMobileMenuOpen ||
-    isModalOpen ||
-    isRedesignComposerOpen,
+  ) => hasScrollLockStackItems || isMobileMenuOpen || isModalOpen,
 );
 
 /**
