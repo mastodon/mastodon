@@ -124,7 +124,7 @@ group :opentelemetry do
   gem 'opentelemetry-sdk', '~> 1.4', require: false
 end
 
-group :test do
+group :test, optional: true do
   # Enable usage of all available CPUs/cores during spec runs
   gem 'flatware-rspec'
 
@@ -164,7 +164,7 @@ group :test do
   gem 'websocket-driver', '~> 0.8', require: false
 end
 
-group :development do
+group :development, optional: true do
   # Code linting CLI and plugins
   gem 'rubocop', require: false
   gem 'rubocop-capybara', require: false
@@ -196,7 +196,7 @@ group :development do
   gem 'i18n-tasks', '~> 1.0', require: false
 end
 
-group :development, :test do
+group :development, :test, optional: true do
   # Interactive Debugging tools
   gem 'debug', '~> 1.8', require: false
 

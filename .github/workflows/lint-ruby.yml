@@ -24,6 +24,7 @@ jobs:
 
     env:
       BUNDLE_ONLY: development
+      BUNDLE_WITH: development
 
     steps:
       - name: Clone repository

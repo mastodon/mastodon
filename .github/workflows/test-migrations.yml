@@ -64,6 +64,7 @@ jobs:
       BUNDLE_CLEAN: true
       BUNDLE_FROZEN: true
       BUNDLE_WITHOUT: 'development:production'
+      BUNDLE_WITH: test
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
 
