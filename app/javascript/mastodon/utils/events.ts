@@ -5,7 +5,7 @@
 export function isKeyComposing(event: React.KeyboardEvent) {
   return (
     event.nativeEvent.isComposing ||
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
+    // oxlint-disable-next-line @typescript-eslint/no-deprecated
     event.nativeEvent.keyCode === 229
   );
 }

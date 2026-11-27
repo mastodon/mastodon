@@ -157,8 +157,6 @@ export const wrapstodon = getMeta('wrapstodon');
 export const showStatsInFeed = getMeta('show_stats_in_feed');
 
 const displayNames =
-  // Intl.DisplayNames can be undefined in old browsers
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   Intl.DisplayNames &&
   (new Intl.DisplayNames(getMeta('locale'), {
     type: 'language',

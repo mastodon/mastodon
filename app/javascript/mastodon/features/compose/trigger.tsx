@@ -282,7 +282,6 @@ export const ComposeButton: React.FC<{
         )}
         data-no-inert
       />
-      {/* eslint-enable */}
     </>
   );
 };

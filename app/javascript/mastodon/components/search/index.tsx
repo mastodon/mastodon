@@ -643,7 +643,7 @@ export const Search: React.FC<{
         </IconButton>
       )}
 
-      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+      {/* oxlint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
       <div
         className='search__popout'
         role='dialog'

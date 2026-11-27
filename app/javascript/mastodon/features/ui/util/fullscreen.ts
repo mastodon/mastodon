@@ -26,7 +26,6 @@ export const isFullscreen = () => {
 export const exitFullscreen = () => {
   const d = document as DocumentWithFullscreen;
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (d.exitFullscreen) {
     void d.exitFullscreen();
   } else if (d.webkitExitFullscreen) {
@@ -41,7 +40,6 @@ export const requestFullscreen = (el: HTMLElementWithFullscreen | null) => {
     return;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (el.requestFullscreen) {
     void el.requestFullscreen();
   } else if (el.webkitRequestFullscreen) {
@@ -58,10 +56,10 @@ export const attachFullscreenListener = (listener: () => void) => {
     d.addEventListener('fullscreenchange', listener);
   } else if ('onwebkitfullscreenchange' in d) {
     // @ts-expect-error This is valid on some browsers
-    d.addEventListener('webkitfullscreenchange', listener); // eslint-disable-line @typescript-eslint/no-unsafe-call
+    d.addEventListener('webkitfullscreenchange', listener); // oxlint-disable-line @typescript-eslint/no-unsafe-call
   } else if ('onmozfullscreenchange' in d) {
     // @ts-expect-error This is valid on some browsers
-    d.addEventListener('mozfullscreenchange', listener); // eslint-disable-line @typescript-eslint/no-unsafe-call
+    d.addEventListener('mozfullscreenchange', listener); // oxlint-disable-line @typescript-eslint/no-unsafe-call
   }
 };
 
@@ -72,9 +70,9 @@ export const detachFullscreenListener = (listener: () => void) => {
     d.removeEventListener('fullscreenchange', listener);
   } else if ('onwebkitfullscreenchange' in d) {
     // @ts-expect-error This is valid on some browsers
-    d.removeEventListener('webkitfullscreenchange', listener); // eslint-disable-line @typescript-eslint/no-unsafe-call
+    d.removeEventListener('webkitfullscreenchange', listener); // oxlint-disable-line @typescript-eslint/no-unsafe-call
   } else if ('onmozfullscreenchange' in d) {
     // @ts-expect-error This is valid on some browsers
-    d.removeEventListener('mozfullscreenchange', listener); // eslint-disable-line @typescript-eslint/no-unsafe-call
+    d.removeEventListener('mozfullscreenchange', listener); // oxlint-disable-line @typescript-eslint/no-unsafe-call
   }
 };

@@ -166,8 +166,6 @@ const localeOptionsSelector = createSelector(
     };
     // Use the default locale as a target to translate language names.
     const intlLocale =
-      // Intl.DisplayNames can be undefined in old browsers
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       Intl.DisplayNames &&
       (new Intl.DisplayNames(intl.locale, {
         type: 'language',

@@ -16,7 +16,6 @@ export function loadPolyfills() {
   return Promise.all([
     loadVitePreloadPolyfill(),
     loadIntlPolyfills(),
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- those properties might not exist in old browsers, even if they are always here in types
     needsExtraPolyfills ? importExtraPolyfills() : Promise.resolve(),
     loadEmojiPolyfills(),
   ]);
@@ -32,7 +31,6 @@ async function loadEmojiPolyfills() {
 // Loads Vite's module preload polyfill for older browsers, but not in a Worker context.
 function loadVitePreloadPolyfill() {
   if (typeof document === 'undefined') return;
-  // eslint-disable-next-line import/extensions
   return import('vite/modulepreload-polyfill');
 }
 
