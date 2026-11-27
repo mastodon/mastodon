@@ -64,52 +64,56 @@
     = link_to admin_disputes_appeals_path(status: 'pending'), class: 'dashboard__quick-access' do
       %span= t('admin.dashboard.pending_appeals_html', count: @pending_appeals_count.value)
       = material_symbol 'chevron_right'
-  .dashboard__item
-    = react_admin_component :dimension,
-                            dimension: 'sources',
-                            end_at: @time_period.last,
-                            label: t('admin.dashboard.sources'),
-                            limit: 8,
-                            start_at: @time_period.first
 
-  .dashboard__item
-    = react_admin_component :dimension,
-                            dimension: 'languages',
-                            end_at: @time_period.last,
-                            label: t('admin.dashboard.top_languages'),
-                            limit: 8,
-                            start_at: @time_period.first
+  .dashboard__row.dashboard__row--three-columns
+    .dashboard__item
+      = react_admin_component :dimension,
+                              dimension: 'sources',
+                              end_at: @time_period.last,
+                              label: t('admin.dashboard.sources'),
+                              limit: 8,
+                              start_at: @time_period.first
 
-  .dashboard__item
-    = react_admin_component :dimension,
-                            dimension: 'servers',
-                            end_at: @time_period.last,
-                            label: t('admin.dashboard.top_servers'),
-                            limit: 8,
-                            start_at: @time_period.first
+    .dashboard__item
+      = react_admin_component :dimension,
+                              dimension: 'languages',
+                              end_at: @time_period.last,
+                              label: t('admin.dashboard.top_languages'),
+                              limit: 8,
+                              start_at: @time_period.first
 
-  .dashboard__item.dashboard__item--span-double-column
-    = react_admin_component :retention,
-                            end_at: @time_period.last,
-                            frequency: 'month',
-                            start_at: @time_period.last - 6.months
+    .dashboard__item
+      = react_admin_component :dimension,
+                              dimension: 'servers',
+                              end_at: @time_period.last,
+                              label: t('admin.dashboard.top_servers'),
+                              limit: 8,
+                              start_at: @time_period.first
 
-  .dashboard__item.dashboard__item--span-double-row
-    = react_admin_component :trends,
-                            limit: 7
+  .dashboard__row.dashboard__row--three-columns
+    .dashboard__item
+      = react_admin_component :trends,
+                              limit: 7
 
-  .dashboard__item
-    = react_admin_component :dimension,
-                            dimension: 'software_versions',
-                            end_at: @time_period.last,
-                            label: t('admin.dashboard.software'),
-                            limit: 4,
-                            start_at: @time_period.first
+    .dashboard__item
+      = react_admin_component :dimension,
+                              dimension: 'software_versions',
+                              end_at: @time_period.last,
+                              label: t('admin.dashboard.software'),
+                              limit: 4,
+                              start_at: @time_period.first
 
-  .dashboard__item
-    = react_admin_component :dimension,
-                            dimension: 'space_usage',
-                            end_at: @time_period.last,
-                            label: t('admin.dashboard.space'),
-                            limit: 3,
-                            start_at: @time_period.first
+    .dashboard__item
+      = react_admin_component :dimension,
+                              dimension: 'space_usage',
+                              end_at: @time_period.last,
+                              label: t('admin.dashboard.space'),
+                              limit: 3,
+                              start_at: @time_period.first
+
+  .dashboard__row
+    .dashboard__item
+      = react_admin_component :retention,
+                              end_at: @time_period.last,
+                              frequency: 'month',
+                              start_at: @time_period.last - 6.months
