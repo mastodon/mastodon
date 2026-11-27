@@ -2,12 +2,12 @@
   = t('settings.migrate')
 
 = simple_form_for @redirect, url: settings_migration_redirect_path do |f|
-  %p.hint= t('migrations.warning.before')
-
-  %ul.hint
-    %li.warning-hint= t('migrations.warning.redirect')
-    %li.warning-hint= t('migrations.warning.other_data')
-    %li.warning-hint= t('migrations.warning.disabled_account')
+  .flash-message
+    %p.hint= t('migrations.warning.before')
+    %ul.hint
+      %li= t('migrations.warning.redirect')
+      %li= t('migrations.warning.other_data')
+      %li= t('migrations.warning.disabled_account')
 
   %hr.spacer/
 

@@ -23,18 +23,18 @@
 
 = simple_form_for @migration, url: settings_migration_path do |f|
   - if on_cooldown?
-    %p.hint
-      %span.warning-hint= t('migrations.on_cooldown', count: @cooldown.remaining_cooldown_days)
+    .flash-message
+      %p.hint= t('migrations.on_cooldown', count: @cooldown.remaining_cooldown_days)
   - else
-    %p.hint= t('migrations.warning.before')
-
-    %ul.hint
-      %li.warning-hint= t('migrations.warning.followers')
-      %li.warning-hint= t('migrations.warning.other_data')
-      %li.warning-hint= t('migrations.warning.redirect')
-      %li.warning-hint= t('migrations.warning.backreference_required')
-      %li.warning-hint= t('migrations.warning.cooldown')
-      %li.warning-hint= t('migrations.warning.disabled_account')
+    .flash-message
+      %p.hint= t('migrations.warning.before')
+      %ul.hint
+        %li= t('migrations.warning.followers')
+        %li= t('migrations.warning.other_data')
+        %li= t('migrations.warning.redirect')
+        %li= t('migrations.warning.backreference_required')
+        %li= t('migrations.warning.cooldown')
+        %li= t('migrations.warning.disabled_account')
 
   %p.hint= t('migrations.warning.only_redirect_html', path: new_settings_migration_redirect_path)
 
