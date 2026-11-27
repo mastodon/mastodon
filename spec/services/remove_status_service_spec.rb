@@ -52,7 +52,7 @@ RSpec.describe RemoveStatusService, :inline_jobs do
     def home_feed_ids(personage)
       HomeFeed
         .new(personage)
-        .get(10)
+        .get(limit: 10)
         .pluck(:id)
     end
 
