@@ -255,6 +255,7 @@ class MediaAttachment < ApplicationRecord
   def larger_media_format?
     video_or_gifv? || audio?
   end
+  alias playable_media_format? larger_media_format?
 
   def video_or_gifv?
     video? || gifv?
