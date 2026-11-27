@@ -470,6 +470,10 @@ RSpec.describe Account do
     it 'matches a CJK-IDN mention' do
       expect(subject.match('hi @user@慕田峪长城.网址 today')[1]).to eq 'user@慕田峪长城.网址'
     end
+
+    it 'matches usernames with unicode domain names' do
+      expect(subject.match('@alice@🌈🌈🌈.st')[1]).to eq 'alice@🌈🌈🌈.st'
+    end
   end
 
   describe 'Callbacks' do
