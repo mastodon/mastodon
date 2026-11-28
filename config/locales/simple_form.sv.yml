@@ -30,6 +30,7 @@ sv:
           sensitive: Tvinga alla denna användares mediebilagor till att flaggas som känsliga.
           silence: Hindra användaren från att göra offentliga inlägg, dölj hens inlägg och aviseringar för personer som inte följer hen. Stänger alla anmälningar mot detta konto.
           suspend: Förhindrar all interaktion från eller till detta konto och ta bort dess innehåll. Går att ångra inom 30 dagar. Stänger alla anmälningar mot detta konto.
+        warning_preset: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
         ends_at: Valfri. Kungörelsen kommer automatiskt avpubliceras vid denna tidpunkt
@@ -91,6 +92,7 @@ sv:
         closed_registrations_message: Visas när nyregistreringar är avstängda
         content_cache_retention_period: Alla inlägg från andra servrar (inklusive boostar och svar) raderas efter det angivna antalet dagar, utan hänsyn till lokal användarinteraktion med dessa inlägg. Det gäller även inlägg som en lokal användare har lagt till som bokmärke eller favorit. Privata omnämnanden mellan användare på olika instanser går också förlorade och kan inte återställas. Den här inställningen är avsedd för specialiserade instanser och bryter mot många användares förväntningar om den används på allmänna instanser.
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
+        custom_robots_html: <a href="%{path}">Syntax</a>
         email_footer_text: Valfri text som endast visas i sidfoten av e-post om nyhetsbrev.
         favicon: WEBP, PNG, GIF eller JPG. Används på mobila enheter istället för appens egen ikon.
         landing_page: Väljer vilken sida nya besökare ser när de först anländer till din server. Om du väljer "Trender" måste trenderna aktiveras i Upptäckningsinställningarna. Om du väljer "Lokalt flöde" måste "Åtkomst till live-flöden med lokala inlägg" sättas till "Alla" i Upptäckningsinställningarna.
